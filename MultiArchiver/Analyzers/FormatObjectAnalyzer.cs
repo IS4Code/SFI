@@ -19,7 +19,7 @@ namespace IS4.MultiArchiver.Analyzers
             node.Set(Classes.MediaObject);
 
             node.Set(Properties.EncodingFormat, entity.Format.MediaType);
-            node.Set(Properties.EncodingFormat, new Uri(Vocabularies.MediaTypes + entity.Format.MediaType));
+            node.Set(Properties.EncodingFormat, Vocabularies.MediaTypes, entity.Format.MediaType);
 
             return node;
         }

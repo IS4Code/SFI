@@ -20,12 +20,12 @@ namespace IS4.MultiArchiver
             this.handler = handler;
             this.baseAnalyzer = baseAnalyzer;
             cache = new VocabularyCache<IUriNode>(handler.CreateUriNode);
-            Root = Create(root);
+            Root = new UriNode(this, handler.CreateUriNode(root));
         }
 
-        public ILinkedNode Create(Uri uri)
+        public ILinkedNode Create<T>(IUriFormatter<T> formatter, T value)
         {
-            return new UriNode(this, handler.CreateUriNode(uri));
+            return new UriNode(this, handler.CreateUriNode(formatter.FormatUri(value)));
         }
 
         public ILinkedNode Create<T>(T entity) where T : class
@@ -99,6 +99,17 @@ namespace IS4.MultiArchiver
                 HandleTriple(subject, cache[property], parent[value, language]);
             }
 
+            public void Set(Properties property, Vocabularies vocabulary, string localName)
+            {
+                if(localName == null) throw new ArgumentNullException(nameof(localName));
+                HandleTriple(subject, cache[property], new UriNode(parent, cache[vocabulary])[localName].subject);
+            }
+
+            public void Set<T>(Properties property, IUriFormatter<T> formatter, T value)
+            {
+                HandleTriple(subject, cache[property], parent.handler.CreateUriNode(formatter.FormatUri(value)));
+            }
+
             public void Set(Properties property, ILinkedNode value)
             {
                 if(value == null) throw new ArgumentNullException(nameof(value));
@@ -108,8 +119,7 @@ namespace IS4.MultiArchiver
 
             public void Set(Properties property, Uri value)
             {
-                if(value == null) throw new ArgumentNullException(nameof(value));
-                HandleTriple(subject, cache[property], parent[value]);
+                Set(property, value.IsAbsoluteUri ? value.AbsoluteUri : value.OriginalString, Datatypes.AnyURI);
             }
 
             public void Set<T>(Properties property, T value) where T : struct, IEquatable<T>, IFormattable, ISerializable
@@ -124,12 +134,14 @@ namespace IS4.MultiArchiver
                 HandleTriple(subject, cache[property], obj);
             }
 
-            public ILinkedNode this[string subName] {
+            public UriNode this[string subName] {
                 get {
                     if(subName == null) throw new ArgumentNullException(nameof(subName));
-                    return new UriNode(parent, parent.handler.CreateUriNode(new Uri(subject.Uri.AbsoluteUri + "/" + Uri.EscapeDataString(subName))));
+                    return new UriNode(parent, parent.handler.CreateUriNode(new Uri(subject.Uri.AbsoluteUri + "/" + subName)));
                 }
             }
+
+            ILinkedNode ILinkedNode.this[string subName] => this[subName];
 
             public bool Equals(ILinkedNode other)
             {

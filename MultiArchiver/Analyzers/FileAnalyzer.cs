@@ -15,13 +15,12 @@ namespace IS4.MultiArchiver.Analyzers
         public ILinkedNode Analyze(FileInfo entity, ILinkedNodeFactory nodeFactory)
         {
             var pathUri = new Uri(entity.FullName);
-            var fileUri = new Uri("file:///" + Uri.EscapeDataString(entity.Name), UriKind.Absolute);
 
             var node = nodeFactory.Root[Guid.NewGuid().ToString("D")];
 
             node.Set(Classes.FileDataObject);
 
-            node.Set(Properties.Broader, fileUri);
+            node.Set(Properties.Broader, Vocabularies.File, Uri.EscapeDataString(entity.Name));
             //handler.HandleTriple(fileNode, this[Properties.Broader], this[pathUri]);
             //handler.HandleTriple(this[pathUri], this[Properties.Broader], this[fileUri]);
 

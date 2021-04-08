@@ -11,6 +11,8 @@ namespace IS4.MultiArchiver.Services
         void Set(Properties property, string value);
         void Set(Properties property, string value, Datatypes datatype);
         void Set(Properties property, string value, string language);
+        void Set(Properties property, Vocabularies vocabulary, string localName);
+        void Set<T>(Properties property, IUriFormatter<T> formatter, T value);
         void Set(Properties property, Uri value);
         void Set(Properties property, ILinkedNode value);
         void Set<T>(Properties property, T value) where T : struct, IEquatable<T>, IFormattable, ISerializable;

@@ -67,7 +67,7 @@ namespace IS4.MultiArchiver.Analyzers
                 isBinary = true;
             }
 
-            var node = nodeFactory.Create(hashAlgorithm.FormatUri(hash));
+            var node = nodeFactory.Create(hashAlgorithm, hash);
 
             node.Set(isBinary ? Classes.ContentAsBase64 : Classes.ContentAsText);
             node.Set(Properties.Extent, entity.Length.ToString(), Datatypes.Byte);
