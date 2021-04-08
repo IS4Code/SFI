@@ -28,17 +28,26 @@ namespace IS4.MultiArchiver.Tools
 
         public override long Position { get => throw new NotSupportedException(); set => throw new NotSupportedException(); }
 
+        private bool FlushInner()
+        {
+            if(currentData.Array == null)
+            {
+                throw new IOException();
+            }
+            if(currentData.Count == 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public override void Flush()
         {
             while(true)
             {
                 syncSemaphore.Wait();
                 try{
-                    if(currentData.Array == null)
-                    {
-                        throw new IOException();
-                    }
-                    if(currentData.Count == 0)
+                    if(FlushInner())
                     {
                         break;
                     }
@@ -54,7 +63,7 @@ namespace IS4.MultiArchiver.Tools
             {
                 await syncSemaphore.WaitAsync(cancellationToken);
                 try{
-                    if(currentData.Count == 0)
+                    if(FlushInner())
                     {
                         break;
                     }
@@ -64,21 +73,30 @@ namespace IS4.MultiArchiver.Tools
             }
         }
 
+        private bool CloseInner()
+        {
+            if(currentData.Array == null)
+            {
+                throw new IOException();
+            }
+            int remaining = currentData.Count;
+            if(ForceClose || remaining == 0)
+            {
+                currentData = default;
+                if(remaining == 0) readSemaphore.Release();
+                return true;
+            }
+            return false;
+        }
+
         public override void Close()
         {
             while(true)
             {
                 syncSemaphore.Wait();
                 try{
-                    if(currentData.Array == null)
+                    if(CloseInner())
                     {
-                        throw new IOException();
-                    }
-                    int remaining = currentData.Count;
-                    if(ForceClose || remaining == 0)
-                    {
-                        currentData = default;
-                        if(remaining == 0) readSemaphore.Release();
                         break;
                     }
                 }finally{
@@ -95,9 +113,8 @@ namespace IS4.MultiArchiver.Tools
             {
                 await syncSemaphore.WaitAsync(cancellationToken);
                 try{
-                    if(ForceClose || currentData.Count == 0)
+                    if(CloseInner())
                     {
-                        currentData = default;
                         break;
                     }
                 }finally{
@@ -159,15 +176,21 @@ namespace IS4.MultiArchiver.Tools
             }
             while(true)
             {
-                await syncSemaphore.WaitAsync(cancellationToken);
+                int remaining = 0;
+                await readSemaphore.WaitAsync(cancellationToken);
                 try{
-                    int read = ReadInner(buffer, offset, count, out _);
-                    if(read >= 0)
-                    {
-                        return read;
+                    await syncSemaphore.WaitAsync(cancellationToken);
+                    try{
+                        int read = ReadInner(buffer, offset, count, out remaining);
+                        if(read >= 0)
+                        {
+                            return read;
+                        }
+                    }finally{
+                        syncSemaphore.Release();
                     }
                 }finally{
-                    syncSemaphore.Release();
+                    if(remaining != 0) readSemaphore.Release();
                 }
             }
         }
@@ -191,18 +214,21 @@ namespace IS4.MultiArchiver.Tools
             return ((Task<int>)asyncResult).Result;
         }
 
-        private int ReadByteInner()
+        private int ReadByteInner(out int remaining)
         {
             if(currentData.Array == null)
             {
+                remaining = 0;
                 return -1;
             }
             if(currentData.Count > 0)
             {
+                remaining = currentData.Count - 1;
                 byte result = currentData.Array[currentData.Offset];
-                currentData = new ArraySegment<byte>(currentData.Array, currentData.Offset + 1, currentData.Count - 1);
+                currentData = new ArraySegment<byte>(currentData.Array, currentData.Offset + 1, remaining);
                 return result;
             }
+            remaining = 0;
             return -2;
         }
 
@@ -210,15 +236,21 @@ namespace IS4.MultiArchiver.Tools
         {
             while(true)
             {
-                syncSemaphore.Wait();
+                int remaining = 0;
+                readSemaphore.Wait();
                 try{
-                    int result = ReadByteInner();
-                    if(result >= -1)
-                    {
-                        return result;
+                    syncSemaphore.Wait();
+                    try{
+                        int result = ReadByteInner(out remaining);
+                        if(result >= -1)
+                        {
+                            return result;
+                        }
+                    }finally{
+                        syncSemaphore.Release();
                     }
                 }finally{
-                    syncSemaphore.Release();
+                    if(remaining != 0) readSemaphore.Release();
                 }
             }
         }
@@ -227,15 +259,21 @@ namespace IS4.MultiArchiver.Tools
         {
             while(true)
             {
-                await syncSemaphore.WaitAsync(cancellationToken);
+                int remaining = 0;
+                await readSemaphore.WaitAsync(cancellationToken);
                 try{
-                    int result = ReadByteInner();
-                    if(result >= -1)
-                    {
-                        return result;
+                    await syncSemaphore.WaitAsync(cancellationToken);
+                    try{
+                        int result = ReadByteInner(out remaining);
+                        if(result >= -1)
+                        {
+                            return result;
+                        }
+                    }finally{
+                        syncSemaphore.Release();
                     }
                 }finally{
-                    syncSemaphore.Release();
+                    if(remaining != 0) readSemaphore.Release();
                 }
             }
         }
@@ -275,6 +313,7 @@ namespace IS4.MultiArchiver.Tools
 
         public override async Task WriteAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
         {
+            if(count == 0) return;
             while(true)
             {
                 await syncSemaphore.WaitAsync(cancellationToken);

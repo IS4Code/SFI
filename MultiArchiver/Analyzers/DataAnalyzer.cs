@@ -4,11 +4,8 @@ using IS4.MultiArchiver.Tools;
 using IS4.MultiArchiver.Types;
 using IS4.MultiArchiver.Vocabulary;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Runtime.Serialization;
 using System.Security.Cryptography;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,7 +14,7 @@ using VDS.RDF;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-	public class DataAnalyzer : RdfBase, IEntityAnalyzer<Stream>, IEntityAnalyzer<byte[]>
+    public class DataAnalyzer : RdfBase, IEntityAnalyzer<Stream>, IEntityAnalyzer<byte[]>
 	{
 		static readonly ThreadLocal<MD5> md5 = new ThreadLocal<MD5>(new Func<MD5>(MD5.Create));
 
@@ -64,6 +61,12 @@ namespace IS4.MultiArchiver.Analyzers
                 {
                     result.Flush();
                 }
+                /*Parallel.ForEach(results, result => {
+                    result.Write(segment.Array, segment.Offset, segment.Count);
+                });
+                Parallel.ForEach(results, result => {
+                    result.Flush();
+                });*/
             }));
 
 			charsetDetector.DataEnd();
@@ -75,15 +78,14 @@ namespace IS4.MultiArchiver.Analyzers
 			handler.HandleTriple(uriNode, this[Properties.DigestAlgorithm], this[Individuals.MD5]);
 			handler.HandleTriple(uriNode, this[Properties.DigestValue], this[Convert.ToBase64String(hash), Datatypes.Base64Binary]);
 
-			results.RemoveAll(result => !result.Format.IsMatch(signatureBuffer));
-			results.Sort(TypeComparer.Instance);
+            results.RemoveAll(result => !result.IsValid(signatureBuffer));
+			results.Sort();
 
 			if(results.Count > 0)
 			{
-				FormatObject entity2 = new FormatObject(results[0].Format, results[0].Task.Result);
-				IUriNode uriNode2 = baseAnalyzer.Analyze(entity2, handler);
-				bool flag2 = uriNode2 != null;
-				if (flag2)
+				var entity2 = new FormatObject(results[0].Format, results[0].Task?.Result);
+				var uriNode2 = baseAnalyzer.Analyze(entity2, handler);
+				if(uriNode2 != null)
 				{
 					handler.HandleTriple(uriNode2, this[Properties.HasFormat], uriNode);
 				}
@@ -102,7 +104,7 @@ namespace IS4.MultiArchiver.Analyzers
 			return this.Analyze(new MemoryStream(entity, false), handler, baseAnalyzer);
 		}
         
-		class FormatResult
+		class FormatResult : IComparable<FormatResult>
 		{
 			readonly IFileFormatReader reader;
             QueueStream stream;
@@ -131,7 +133,12 @@ namespace IS4.MultiArchiver.Analyzers
 					    }
                     });
 				}
-			}
+            }
+
+            public bool IsValid(Stream header)
+            {
+                return Format.IsMatch(header) && (reader == null || reader.IsMatch(Task.Result));
+            }
 
             public bool Write(byte[] buffer, int offset, int count)
             {
@@ -165,24 +172,18 @@ namespace IS4.MultiArchiver.Analyzers
                     return false;
                 }
             }
-		}
 
-		class TypeComparer : IComparer<FormatResult>, IComparer<Type>
-		{
-			public static readonly TypeComparer Instance = new TypeComparer();
-
-			public int Compare(Type x, Type y)
-			{
-				return x.IsAssignableFrom(y) ? 1 : y.IsAssignableFrom(x) ? -1 : 0;
-			}
-
-			public int Compare(FormatResult x, FormatResult y)
-			{
-                if(x.Task == null && y.Task == null) return 0;
-                else if(x.Task == null) return 1;
-                else if(y.Task == null) return -1;
-                else return Compare(x.Task.GetType(), y.Task.GetType());
-			}
-		}
+            public int CompareTo(FormatResult other)
+            {
+                var a = Task?.Result;
+                var b = other.Task?.Result;
+                if(a == null && b == null) return 0;
+                else if(a == null) return 1;
+                else if(b == null) return -1;
+                var t1 = a.GetType();
+                var t2 = b.GetType();
+                return t1.IsAssignableFrom(t2) ? 1 : t2.IsAssignableFrom(t1) ? -1 : 0;
+            }
+        }
 	}
 }
