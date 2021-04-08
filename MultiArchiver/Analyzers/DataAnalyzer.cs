@@ -16,30 +16,23 @@ namespace IS4.MultiArchiver.Analyzers
 {
     public class DataAnalyzer : RdfBase, IEntityAnalyzer<Stream>, IEntityAnalyzer<byte[]>
 	{
-		static readonly ThreadLocal<MD5> md5 = new ThreadLocal<MD5>(new Func<MD5>(MD5.Create));
+        readonly IHashAlgorithm hashAlgorithm;
 
-		public DataAnalyzer(INodeFactory nodeFactory) : base(nodeFactory)
+		public DataAnalyzer(IHashAlgorithm hashAlgorithm, INodeFactory nodeFactory) : base(nodeFactory)
 		{
-
+            this.hashAlgorithm = hashAlgorithm;
 		}
 
 		public IUriNode Analyze(Stream entity, IRdfHandler handler, IEntityAnalyzer baseAnalyzer)
 		{
-			var uriNode = handler.CreateUriNode(new Uri("http://archive.data.is4.site/.well-known/genid/" + Guid.NewGuid().ToString("D")));
-
-			handler.HandleTriple(uriNode, this[Properties.Type], this[Classes.ContentAsBase64]);
-			handler.HandleTriple(uriNode, this[Properties.Extent], this[entity.Length.ToString(), Datatypes.Byte]);
-
             var results = FileFormatLocator.GetFormats().Where(format => format != null).OrderByDescending(format => format.HeaderLength).Select(format => new FormatResult(format)).ToList();
-            //var results = FileFormatLocator.GetFormats().Where(format => format is IFileFormatReader).OrderByDescending(format => format.HeaderLength).Select(format => new FormatResult(format)).Skip(6).ToList();
-            //var aliveResults = results.Where(result => result.Stream != null);
             var signatureBuffer = new MemoryStream(results.Select(result => result.Format).Max(format => Math.Max(format.HeaderLength == Int32.MaxValue ? 0 : format.HeaderLength, format.Offset + format.Signature.Count)));
 
             var charsetDetector = new CharsetDetector();
             var isBinary = false;
             byte[] hash = null;
 
-			hash = md5.Value.ComputeHash(new AnalyzingStream(entity, segment => {
+			hash = hashAlgorithm.ComputeHash(new AnalyzingStream(entity, segment => {
 				if(!isBinary)
 				{
 					if(Array.IndexOf<byte>(segment.Array, 0, segment.Offset, segment.Count) != -1)
@@ -61,12 +54,6 @@ namespace IS4.MultiArchiver.Analyzers
                 {
                     result.Flush();
                 }
-                /*Parallel.ForEach(results, result => {
-                    result.Write(segment.Array, segment.Offset, segment.Count);
-                });
-                Parallel.ForEach(results, result => {
-                    result.Flush();
-                });*/
             }));
 
 			charsetDetector.DataEnd();
@@ -75,7 +62,12 @@ namespace IS4.MultiArchiver.Analyzers
                 result.Close();
             }
 
-			handler.HandleTriple(uriNode, this[Properties.DigestAlgorithm], this[Individuals.MD5]);
+            var uriNode = handler.CreateUriNode(hashAlgorithm.FormatUri(hash));
+
+            handler.HandleTriple(uriNode, this[Properties.Type], this[Classes.ContentAsBase64]);
+            handler.HandleTriple(uriNode, this[Properties.Extent], this[entity.Length.ToString(), Datatypes.Byte]);
+
+            handler.HandleTriple(uriNode, this[Properties.DigestAlgorithm], this[hashAlgorithm.Identifier]);
 			handler.HandleTriple(uriNode, this[Properties.DigestValue], this[Convert.ToBase64String(hash), Datatypes.Base64Binary]);
 
             results.RemoveAll(result => !result.IsValid(signatureBuffer));
@@ -147,8 +139,13 @@ namespace IS4.MultiArchiver.Analyzers
                     return true;
                 }catch(IOException)
                 {
-                    return false;
+
+                }catch(ObjectDisposedException)
+                {
+
                 }
+                stream = null;
+                return false;
             }
 
             public bool Flush()
@@ -158,8 +155,13 @@ namespace IS4.MultiArchiver.Analyzers
                     return true;
                 }catch(IOException)
                 {
-                    return false;
+
+                }catch(ObjectDisposedException)
+                {
+
                 }
+                stream = null;
+                return false;
             }
 
             public bool Close()
@@ -169,8 +171,13 @@ namespace IS4.MultiArchiver.Analyzers
                     return true;
                 }catch(IOException)
                 {
-                    return false;
+
+                }catch(ObjectDisposedException)
+                {
+
                 }
+                stream = null;
+                return false;
             }
 
             public int CompareTo(FormatResult other)

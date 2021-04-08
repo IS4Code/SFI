@@ -103,8 +103,6 @@ namespace IS4.MultiArchiver.Tools
                     syncSemaphore.Release();
                 }
             }
-
-            base.Close();
         }
 
         public async Task CloseAsync(CancellationToken cancellationToken)
@@ -120,6 +118,18 @@ namespace IS4.MultiArchiver.Tools
                 }finally{
                     syncSemaphore.Release();
                 }
+            }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+
+            if(disposing)
+            {
+                syncSemaphore.Wait();
+                readSemaphore.Dispose();
+                syncSemaphore.Dispose();
             }
         }
 

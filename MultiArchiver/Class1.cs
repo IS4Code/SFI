@@ -1,8 +1,11 @@
 ﻿using IS4.MultiArchiver.Analyzers;
 using IS4.MultiArchiver.Services;
+using IS4.MultiArchiver.Tools;
+using IS4.MultiArchiver.Vocabulary;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.Cryptography;
 using VDS.RDF;
 
 namespace IS4.MultiArchiver
@@ -13,11 +16,13 @@ namespace IS4.MultiArchiver
 
         public Class1()
         {
+            var hash = new BuiltInHash(MD5.Create, Individuals.MD5, "urn:md5:");
+
             var graph = new Graph();
             analyzers = new ConcurrentBag<object>()
             {
                 new FileAnalyzer(graph),
-                new DataAnalyzer(graph),
+                new DataAnalyzer(hash, graph),
                 new FormatObjectAnalyzer(graph)
             };
 
