@@ -2,25 +2,24 @@
 using IS4.MultiArchiver.Types;
 using IS4.MultiArchiver.Vocabulary;
 using System;
-using VDS.RDF;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class FormatObjectAnalyzer : RdfBase, IEntityAnalyzer<FormatObject>
+    public sealed class FormatObjectAnalyzer : IEntityAnalyzer<FormatObject>
     {
-        public FormatObjectAnalyzer(INodeFactory nodeFactory) : base(nodeFactory)
+        public FormatObjectAnalyzer()
         {
 
         }
 
-        public IUriNode Analyze(FormatObject entity, IRdfHandler handler, IEntityAnalyzer baseAnalyzer)
+        public IRdfEntity Analyze(FormatObject entity, IRdfAnalyzer analyzer)
         {
-            var node = baseAnalyzer.TryAnalyze(entity.Value, handler) ?? handler.CreateUriNode(new Uri(Vocabularies.ArchiveId + Guid.NewGuid().ToString("D")));
+            var node = analyzer.TryAnalyze(entity.Value) ?? analyzer.CreateUriNode(new Uri(Vocabularies.ArchiveId + Guid.NewGuid().ToString("D")));
 
-            handler.HandleTriple(node, this[Properties.Type], this[Classes.MediaObject]);
+            node.Set(Classes.MediaObject);
 
-            handler.HandleTriple(node, this[Properties.EncodingFormat], this[entity.Format.MediaType]);
-            handler.HandleTriple(node, this[Properties.EncodingFormat], this[new Uri(Vocabularies.MediaTypes + entity.Format.MediaType)]);
+            node.Set(Properties.EncodingFormat, entity.Format.MediaType);
+            node.Set(Properties.EncodingFormat, new Uri(Vocabularies.MediaTypes + entity.Format.MediaType));
 
             return node;
         }

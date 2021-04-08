@@ -11,12 +11,12 @@ namespace IS4.MultiArchiver
             handler.HandleTriple(new Triple(subj, pred, obj));
         }
 
-        public static IUriNode TryAnalyze(this IEntityAnalyzer analyzer, object value, IRdfHandler handler)
+        public static IRdfEntity TryAnalyze(this IRdfAnalyzer analyzer, object value)
         {
             if(value == null) return null;
             try
             {
-                return analyzer.Analyze((dynamic)value, handler);
+                return analyzer.Analyze((dynamic)value);
             }catch(RuntimeBinderException)
             {
                 return null;

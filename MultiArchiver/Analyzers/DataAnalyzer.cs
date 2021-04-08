@@ -1,32 +1,31 @@
-﻿using FileSignatures;
-using IS4.MultiArchiver.Services;
+﻿using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Tools;
 using IS4.MultiArchiver.Types;
 using IS4.MultiArchiver.Vocabulary;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Threading;
 using System.Threading.Tasks;
 using Ude;
-using VDS.RDF;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class DataAnalyzer : RdfBase, IEntityAnalyzer<Stream>, IEntityAnalyzer<byte[]>
+    public sealed class DataAnalyzer : IEntityAnalyzer<Stream>, IEntityAnalyzer<byte[]>
 	{
         readonly IHashAlgorithm hashAlgorithm;
+        readonly IEnumerable<IFileFormat> formats;
 
-		public DataAnalyzer(IHashAlgorithm hashAlgorithm, INodeFactory nodeFactory) : base(nodeFactory)
+		public DataAnalyzer(IHashAlgorithm hashAlgorithm, IEnumerable<IFileFormat> formats)
 		{
             this.hashAlgorithm = hashAlgorithm;
-		}
+            this.formats = formats.Where(format => format != null).OrderByDescending(format => format.HeaderLength);
+        }
 
-		public IUriNode Analyze(Stream entity, IRdfHandler handler, IEntityAnalyzer baseAnalyzer)
+		public IRdfEntity Analyze(Stream entity, IRdfAnalyzer analyzer)
 		{
-            var results = FileFormatLocator.GetFormats().Where(format => format != null).OrderByDescending(format => format.HeaderLength).Select(format => new FormatResult(format)).ToList();
-            var signatureBuffer = new MemoryStream(results.Select(result => result.Format).Max(format => Math.Max(format.HeaderLength == Int32.MaxValue ? 0 : format.HeaderLength, format.Offset + format.Signature.Count)));
+            var results = formats.Select(FormatResult.Create).ToList();
+            var signatureBuffer = new MemoryStream(results.Max(result => result.MaxReadBytes));
 
             var charsetDetector = new CharsetDetector();
             var isBinary = false;
@@ -55,20 +54,30 @@ namespace IS4.MultiArchiver.Analyzers
                     result.Flush();
                 }
             }));
-
-			charsetDetector.DataEnd();
             foreach(var result in results)
             {
                 result.Close();
             }
 
-            var uriNode = handler.CreateUriNode(hashAlgorithm.FormatUri(hash));
+            charsetDetector.DataEnd();
 
-            handler.HandleTriple(uriNode, this[Properties.Type], this[Classes.ContentAsBase64]);
-            handler.HandleTriple(uriNode, this[Properties.Extent], this[entity.Length.ToString(), Datatypes.Byte]);
+            if(charsetDetector.Charset == null || charsetDetector.Confidence < Single.Epsilon)
+            {
+                isBinary = true;
+            }
 
-            handler.HandleTriple(uriNode, this[Properties.DigestAlgorithm], this[hashAlgorithm.Identifier]);
-			handler.HandleTriple(uriNode, this[Properties.DigestValue], this[Convert.ToBase64String(hash), Datatypes.Base64Binary]);
+            var node = analyzer.CreateUriNode(hashAlgorithm.FormatUri(hash));
+
+            node.Set(isBinary ? Classes.ContentAsBase64 : Classes.ContentAsText);
+            node.Set(Properties.Extent, entity.Length.ToString(), Datatypes.Byte);
+
+            if(!isBinary)
+            {
+                node.Set(Properties.CharacterEncoding, charsetDetector.Charset);
+            }
+
+            node.Set(Properties.DigestAlgorithm, hashAlgorithm.Identifier);
+            node.Set(Properties.DigestValue, Convert.ToBase64String(hash), Datatypes.Base64Binary);
 
             results.RemoveAll(result => !result.IsValid(signatureBuffer));
 			results.Sort();
@@ -76,10 +85,10 @@ namespace IS4.MultiArchiver.Analyzers
 			if(results.Count > 0)
 			{
 				var entity2 = new FormatObject(results[0].Format, results[0].Task?.Result);
-				var uriNode2 = baseAnalyzer.Analyze(entity2, handler);
-				if(uriNode2 != null)
+				var node2 = analyzer.Analyze(entity2);
+				if(node2 != null)
 				{
-					handler.HandleTriple(uriNode2, this[Properties.HasFormat], uriNode);
+                    node2.Set(Properties.HasFormat, node);
 				}
 			}
 
@@ -88,28 +97,30 @@ namespace IS4.MultiArchiver.Analyzers
 			    result.Task?.Dispose();
 			}
 
-			return uriNode;
+			return node;
 		}
 
-		public IUriNode Analyze(byte[] entity, IRdfHandler handler, IEntityAnalyzer baseAnalyzer)
+		public IRdfEntity Analyze(byte[] entity, IRdfAnalyzer analyzer)
 		{
-			return this.Analyze(new MemoryStream(entity, false), handler, baseAnalyzer);
+			return this.Analyze(new MemoryStream(entity, false), analyzer);
 		}
         
 		class FormatResult : IComparable<FormatResult>
 		{
-			readonly IFileFormatReader reader;
+			readonly IFileLoader loader;
             QueueStream stream;
 
-            public FileFormat Format { get; }
+            public IFileFormat Format { get; }
 
             public Task<IDisposable> Task { get; }
 
-			public FormatResult(FileFormat format)
+            public int MaxReadBytes => Format.HeaderLength;
+
+            public FormatResult(IFileFormat format)
 			{
                 Format = format;
-				reader = format as IFileFormatReader;
-				if(reader != null)
+				loader = format as IFileLoader;
+				if(loader != null)
 				{
 					stream = new QueueStream
 					{
@@ -118,7 +129,7 @@ namespace IS4.MultiArchiver.Analyzers
 					};
                     Task = System.Threading.Tasks.Task.Run(() => {
 					    try{
-						    return reader.Read(stream);
+						    return loader.Match(stream);
 					    }catch{
                             Close();
                             return null;
@@ -127,9 +138,18 @@ namespace IS4.MultiArchiver.Analyzers
 				}
             }
 
-            public bool IsValid(Stream header)
+            public static FormatResult Create(IFileFormat format)
             {
-                return Format.IsMatch(header) && (reader == null || reader.IsMatch(Task.Result));
+                return new FormatResult(format);
+            }
+
+            public bool IsValid(MemoryStream header)
+            {
+                if(!header.TryGetBuffer(out var buffer))
+                {
+                    buffer = new ArraySegment<byte>(header.ToArray());
+                }
+                return Format.Match(buffer.AsSpan()) && (loader == null || Task.Result != null);
             }
 
             public bool Write(byte[] buffer, int offset, int count)

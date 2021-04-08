@@ -1,14 +1,14 @@
-﻿using FileSignatures;
+﻿using IS4.MultiArchiver.Services;
 using System;
 
 namespace IS4.MultiArchiver.Types
 {
     public class FormatObject : IDisposable
     {
-        public FileFormat Format { get; }
+        public IFileFormat Format { get; }
         public IDisposable Value { get; private set; }
 
-        public FormatObject(FileFormat format, IDisposable value)
+        public FormatObject(IFileFormat format, IDisposable value)
         {
             Format = format;
             Value = value;
