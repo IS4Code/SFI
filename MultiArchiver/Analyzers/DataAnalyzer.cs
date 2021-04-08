@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Ude;
 
 namespace IS4.MultiArchiver.Analyzers
 {
@@ -15,10 +14,12 @@ namespace IS4.MultiArchiver.Analyzers
 	{
         readonly IHashAlgorithm hashAlgorithm;
         readonly IEnumerable<IFileFormat> formats;
+        readonly Func<IEncodingDetector> encodingDetectorFactory;
 
-		public DataAnalyzer(IHashAlgorithm hashAlgorithm, IEnumerable<IFileFormat> formats)
+		public DataAnalyzer(IHashAlgorithm hashAlgorithm, Func<IEncodingDetector> encodingDetectorFactory, IEnumerable<IFileFormat> formats)
 		{
             this.hashAlgorithm = hashAlgorithm;
+            this.encodingDetectorFactory = encodingDetectorFactory;
             this.formats = formats.Where(format => format != null).OrderByDescending(format => format.HeaderLength);
         }
 
@@ -27,7 +28,7 @@ namespace IS4.MultiArchiver.Analyzers
             var results = formats.Select(FormatResult.Create).ToList();
             var signatureBuffer = new MemoryStream(results.Max(result => result.MaxReadBytes));
 
-            var charsetDetector = new CharsetDetector();
+            var encodingDetector = encodingDetectorFactory?.Invoke();
             var isBinary = false;
             byte[] hash = null;
 
@@ -38,7 +39,7 @@ namespace IS4.MultiArchiver.Analyzers
 					{
 						isBinary = true;
 					}else{
-						charsetDetector.Feed(segment.Array, segment.Offset, segment.Count);
+						encodingDetector.Write(segment);
 					}
 				}
 				if(signatureBuffer.Length < signatureBuffer.Capacity)
@@ -59,9 +60,9 @@ namespace IS4.MultiArchiver.Analyzers
                 result.Close();
             }
 
-            charsetDetector.DataEnd();
+            encodingDetector.End();
 
-            if(charsetDetector.Charset == null || charsetDetector.Confidence < Single.Epsilon)
+            if(encodingDetector.Charset == null || encodingDetector.Confidence < Single.Epsilon)
             {
                 isBinary = true;
             }
@@ -73,7 +74,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             if(!isBinary)
             {
-                node.Set(Properties.CharacterEncoding, charsetDetector.Charset);
+                node.Set(Properties.CharacterEncoding, encodingDetector.Charset);
             }
 
             node.Set(Properties.DigestAlgorithm, hashAlgorithm.Identifier);
