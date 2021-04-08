@@ -3,7 +3,7 @@ using System;
 using System.Buffers;
 using Ude;
 
-namespace IS4.MultiArchiver
+namespace IS4.MultiArchiver.Tools
 {
     public class UdeEncodingDetector : IEncodingDetector
     {

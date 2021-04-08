@@ -11,7 +11,9 @@
         public const string Nie = "http://www.semanticdesktop.org/ontologies/2007/01/19/nie#";
         public const string Schema = "http://schema.org/";
         public const string Cnt = "http://www.w3.org/2011/content#";
+        public const string XmlDSig = "http://www.w3.org/2000/09/xmldsig#";
         public const string XmlDSigMore = "http://www.w3.org/2001/04/xmldsig-more#";
+        public const string XmlEnc = "http://www.w3.org/2001/04/xmlenc#";
         public const string Foaf = "http://xmlns.com/foaf/0.1/";
         public const string Exif = "http://www.w3.org/2003/12/exif/ns#";
         public const string Xsd = "http://www.w3.org/2001/XMLSchema#";

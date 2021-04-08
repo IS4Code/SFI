@@ -23,7 +23,7 @@ namespace IS4.MultiArchiver.Analyzers
             this.formats = formats.Where(format => format != null).OrderByDescending(format => format.HeaderLength);
         }
 
-		public ILinkedNode Analyze(Stream entity, ILinkedNodeFactory analyzer)
+		public ILinkedNode Analyze(Stream entity, ILinkedNodeFactory nodeFactory)
 		{
             var results = formats.Select(FormatResult.Create).ToList();
             var signatureBuffer = new MemoryStream(results.Max(result => result.MaxReadBytes));
@@ -67,7 +67,7 @@ namespace IS4.MultiArchiver.Analyzers
                 isBinary = true;
             }
 
-            var node = analyzer.Create(hashAlgorithm.FormatUri(hash));
+            var node = nodeFactory.Create(hashAlgorithm.FormatUri(hash));
 
             node.Set(isBinary ? Classes.ContentAsBase64 : Classes.ContentAsText);
             node.Set(Properties.Extent, entity.Length.ToString(), Datatypes.Byte);
@@ -86,7 +86,7 @@ namespace IS4.MultiArchiver.Analyzers
 			if(results.Count > 0)
 			{
 				var entity2 = new FormatObject(results[0].Format, results[0].Task?.Result);
-				var node2 = analyzer.Create(entity2);
+				var node2 = nodeFactory.Create(entity2);
 				if(node2 != null)
 				{
                     node2.Set(Properties.HasFormat, node);
@@ -103,7 +103,7 @@ namespace IS4.MultiArchiver.Analyzers
 
 		public ILinkedNode Analyze(byte[] entity, ILinkedNodeFactory analyzer)
 		{
-			return this.Analyze(new MemoryStream(entity, false), analyzer);
+			return Analyze(new MemoryStream(entity, false), analyzer);
 		}
         
 		class FormatResult : IComparable<FormatResult>

@@ -1,4 +1,4 @@
-﻿using IS4.MultiArchiver;
+﻿using MultiArchiverExtensions;
 
 namespace Test
 {
@@ -6,7 +6,8 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            var test = new Class1();
+            var archive = new Archiver();
+            archive.Archive("xml2rdf.csproj", "graph.ttl");
         }
     }
 }

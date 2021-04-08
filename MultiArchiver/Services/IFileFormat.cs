@@ -9,6 +9,7 @@ namespace IS4.MultiArchiver.Services
         string MediaType { get; }
         string Extension { get; }
 
+        bool Match(ArraySegment<byte> header);
         bool Match(Span<byte> header);
     }
 
@@ -33,6 +34,11 @@ namespace IS4.MultiArchiver.Services
             HeaderLength = headerLength;
             MediaType = mediaType;
             Extension = extension;
+        }
+
+        public virtual bool Match(ArraySegment<byte> header)
+        {
+            return Match(header.AsSpan());
         }
 
         public abstract bool Match(Span<byte> header);

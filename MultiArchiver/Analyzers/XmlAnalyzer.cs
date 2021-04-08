@@ -11,9 +11,9 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override ILinkedNode Analyze(XmlReader entity, ILinkedNodeFactory analyzer)
+        public override ILinkedNode Analyze(XmlReader entity, ILinkedNodeFactory nodeFactory)
         {
-            var node = base.Analyze(entity, analyzer);
+            var node = base.Analyze(entity, nodeFactory);
             if(node != null)
             {
 

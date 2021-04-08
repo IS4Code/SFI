@@ -1,8 +1,8 @@
 ﻿using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Vocabulary;
+using Microsoft.CSharp.RuntimeBinder;
 using System;
-using System.Collections.Concurrent;
-using System.Linq;
+using System.Runtime.Serialization;
 using VDS.RDF;
 
 namespace IS4.MultiArchiver
@@ -11,16 +11,13 @@ namespace IS4.MultiArchiver
     {
         readonly IRdfHandler handler;
         readonly IEntityAnalyzer baseAnalyzer;
-
-        public RdfHandler(Graph graph, IEntityAnalyzer baseAnalyzer) : this(new VDS.RDF.Parsing.Handlers.GraphHandler(graph), baseAnalyzer)
-        {
-
-        }
+        readonly VocabularyCache<IUriNode> cache;
 
         public RdfHandler(IRdfHandler handler, IEntityAnalyzer baseAnalyzer)
         {
             this.handler = handler;
             this.baseAnalyzer = baseAnalyzer;
+            cache = new VocabularyCache<IUriNode>(handler.CreateUriNode);
         }
 
         public ILinkedNode Create(Uri uri)
@@ -33,42 +30,31 @@ namespace IS4.MultiArchiver
             return baseAnalyzer.Analyze(entity, this);
         }
 
-        ILiteralNode this[int value] => value.ToLiteral(handler);
-        ILiteralNode this[DateTime value] => value.ToLiteral(handler, true);
         ILiteralNode this[string literal] => handler.CreateLiteralNode(literal);
-        ILiteralNode this[string literal, Datatypes datatype] => handler.CreateLiteralNode(literal, this[datatype].Uri);
+        ILiteralNode this[string literal, Datatypes datatype] => handler.CreateLiteralNode(literal, cache[datatype].Uri);
+        ILiteralNode this[string literal, string language] => handler.CreateLiteralNode(literal, language);
+
+        ILiteralNode this[bool value] => value.ToLiteral(handler);
+        ILiteralNode this[sbyte value] => value.ToLiteral(handler);
+        ILiteralNode this[byte value] => value.ToLiteral(handler);
+        ILiteralNode this[short value] => value.ToLiteral(handler);
+        ILiteralNode this[int value] => value.ToLiteral(handler);
+        ILiteralNode this[long value] => value.ToLiteral(handler);
+        ILiteralNode this[float value] => value.ToLiteral(handler);
+        ILiteralNode this[double value] => value.ToLiteral(handler);
+        ILiteralNode this[decimal value] => value.ToLiteral(handler);
+        ILiteralNode this[TimeSpan value] => value.ToLiteral(handler);
+        ILiteralNode this[DateTimeOffset value] => value.ToLiteral(handler);
+        ILiteralNode this[DateTime value] => value.ToLiteral(handler, true);
 
         IUriNode this[Uri name] => handler.CreateUriNode(name);
-        IUriNode this[Classes name] => CreateNode(name, false, classCache);
-        IUriNode this[Properties name] => CreateNode(name, true, propertyCache);
-        IUriNode this[Individuals name] => CreateNode(name, true, individualCache);
-        IUriNode this[Datatypes name] => CreateNode(name, true, datatypeCache);
-
-        readonly ConcurrentDictionary<Classes, IUriNode> classCache = new ConcurrentDictionary<Classes, IUriNode>();
-        readonly ConcurrentDictionary<Properties, IUriNode> propertyCache = new ConcurrentDictionary<Properties, IUriNode>();
-        readonly ConcurrentDictionary<Individuals, IUriNode> individualCache = new ConcurrentDictionary<Individuals, IUriNode>();
-        readonly ConcurrentDictionary<Datatypes, IUriNode> datatypeCache = new ConcurrentDictionary<Datatypes, IUriNode>();
-            
-        IUriNode CreateNode<T>(T name, bool lowerCase, ConcurrentDictionary<T, IUriNode> cache) where T : struct
-        {
-            return cache.GetOrAdd(name, n => {
-                var enumType = typeof(T);
-                var fieldName = enumType.GetEnumName(n);
-                var field = enumType.GetField(fieldName, System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
-                var uriAttribute = field.GetCustomAttributes(typeof(UriAttribute), false).OfType<UriAttribute>().FirstOrDefault();
-                if(uriAttribute == null)
-                {
-                    throw new ArgumentException(null, nameof(name));
-                }
-                var localName = uriAttribute.LocalName ?? (lowerCase ? fieldName.Substring(0, 1).ToLowerInvariant() + fieldName.Substring(1) : fieldName);
-                return handler.CreateUriNode(new Uri(uriAttribute.Vocabulary + localName, UriKind.Absolute));
-            });
-        }
 
         class UriNode : ILinkedNode
         {
             readonly RdfHandler parent;
             readonly INode subject;
+
+            VocabularyCache<IUriNode> cache => parent.cache;
 
             public UriNode(RdfHandler parent, INode subject)
             {
@@ -76,40 +62,72 @@ namespace IS4.MultiArchiver
                 this.subject = subject;
             }
 
+            private void HandleTriple(INode subj, INode pred, INode obj)
+            {
+                parent.handler.HandleTriple(new Triple(subj, pred, obj));
+            }
+
             public void Set(Classes @class)
             {
-                parent.handler.HandleTriple(subject, parent[Properties.Type], parent[@class]);
+                HandleTriple(subject, cache[Properties.Type], cache[@class]);
             }
 
             public void Set(Properties property, Individuals value)
             {
-                parent.handler.HandleTriple(subject, parent[property], parent[value]);
+                HandleTriple(subject, cache[property], cache[value]);
             }
 
             public void Set(Properties property, string value)
             {
-                parent.handler.HandleTriple(subject, parent[property], parent[value]);
+                HandleTriple(subject, cache[property], parent[value]);
             }
 
             public void Set(Properties property, string value, Datatypes datatype)
             {
-                parent.handler.HandleTriple(subject, parent[property], parent[value, datatype]);
+                HandleTriple(subject, cache[property], parent[value, datatype]);
             }
 
-            public void Set(Properties property, Services.ILinkedNode entity)
+            public void Set(Properties property, string value, string language)
+            {
+                HandleTriple(subject, cache[property], parent[value, language]);
+            }
+
+            public void Set(Properties property, ILinkedNode entity)
             {
                 if(!(entity is UriNode node)) throw new ArgumentException(null, nameof(entity));
-                parent.handler.HandleTriple(subject, parent[property], node.subject);
+                HandleTriple(subject, cache[property], node.subject);
             }
 
             public void Set(Properties property, Uri value)
             {
-                parent.handler.HandleTriple(subject, parent[property], parent[value]);
+                HandleTriple(subject, cache[property], parent[value]);
             }
 
-            public void Set<T>(Properties property, T value) where T : struct
+            public void Set<T>(Properties property, T value) where T : struct, IEquatable<T>, IFormattable, ISerializable
             {
-                parent.handler.HandleTriple(subject, parent[property], (INode)parent[(dynamic)value]);
+                INode obj;
+                try{
+                    obj = parent[(dynamic)value];
+                }catch(RuntimeBinderException e)
+                {
+                    throw new ArgumentException(null, nameof(value), e);
+                }
+                HandleTriple(subject, cache[property], obj);
+            }
+
+            public bool Equals(ILinkedNode other)
+            {
+                return other is UriNode node && subject.Equals(node.subject);
+            }
+
+            public override bool Equals(object obj)
+            {
+                return obj is UriNode node && subject.Equals(node.subject);
+            }
+
+            public override int GetHashCode()
+            {
+                return subject.GetHashCode();
             }
         }
     }
