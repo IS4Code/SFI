@@ -19,10 +19,6 @@
         public const string Xsd = "http://www.w3.org/2001/XMLSchema#";
         public const string Dt = "http://dbpedia.org/datatype/";
 
-        public const string Archive = "http://archive.data.is4.site/";
-        public const string ArchiveTerns = Archive + "terms#";
-        public const string ArchiveId = Archive + ".well-known/genid/";
-
         public const string MediaTypes = "http://www.iana.org/assignments/media-types/";
     }
 }

@@ -6,9 +6,9 @@ namespace IS4.MultiArchiver.Types
     public class FormatObject : IDisposable
     {
         public IFileFormat Format { get; }
-        public IDisposable Value { get; private set; }
+        public object Value { get; private set; }
 
-        public FormatObject(IFileFormat format, IDisposable value)
+        public FormatObject(IFileFormat format, object value)
         {
             Format = format;
             Value = value;
@@ -18,9 +18,9 @@ namespace IS4.MultiArchiver.Types
         {
             if(Value != null)
             {
-                if(disposing)
+                if(disposing && Value is IDisposable disposable)
                 {
-                    Value.Dispose();
+                    disposable.Dispose();
                 }
                 Value = null;
             }

@@ -14,7 +14,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         public ILinkedNode Analyze(FormatObject entity, ILinkedNodeFactory nodeFactory)
         {
-            var node = nodeFactory.TryCreate(entity.Value) ?? nodeFactory.Create(new Uri(Vocabularies.ArchiveId + Guid.NewGuid().ToString("D")));
+            var node = nodeFactory.TryCreate(entity.Value) ?? nodeFactory.Root[Guid.NewGuid().ToString("D")];
 
             node.Set(Classes.MediaObject);
 

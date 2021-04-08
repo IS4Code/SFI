@@ -21,7 +21,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         public virtual ILinkedNode Analyze(T entity, ILinkedNodeFactory nodeFactory)
         {
-            var node = nodeFactory.Create(new Uri(Vocabularies.ArchiveId + Guid.NewGuid().ToString("D")));
+            var node = nodeFactory.Root[Guid.NewGuid().ToString("D")];
 
             foreach(var cls in recognizedClasses)
             {

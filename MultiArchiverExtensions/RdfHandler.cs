@@ -13,11 +13,14 @@ namespace IS4.MultiArchiver
         readonly IEntityAnalyzer baseAnalyzer;
         readonly VocabularyCache<IUriNode> cache;
 
-        public RdfHandler(IRdfHandler handler, IEntityAnalyzer baseAnalyzer)
+        public ILinkedNode Root { get; }
+
+        public RdfHandler(Uri root, IRdfHandler handler, IEntityAnalyzer baseAnalyzer)
         {
             this.handler = handler;
             this.baseAnalyzer = baseAnalyzer;
             cache = new VocabularyCache<IUriNode>(handler.CreateUriNode);
+            Root = Create(root);
         }
 
         public ILinkedNode Create(Uri uri)
@@ -52,11 +55,11 @@ namespace IS4.MultiArchiver
         class UriNode : ILinkedNode
         {
             readonly RdfHandler parent;
-            readonly INode subject;
+            readonly IUriNode subject;
 
             VocabularyCache<IUriNode> cache => parent.cache;
 
-            public UriNode(RdfHandler parent, INode subject)
+            public UriNode(RdfHandler parent, IUriNode subject)
             {
                 this.parent = parent;
                 this.subject = subject;
@@ -79,27 +82,33 @@ namespace IS4.MultiArchiver
 
             public void Set(Properties property, string value)
             {
+                if(value == null) throw new ArgumentNullException(nameof(value));
                 HandleTriple(subject, cache[property], parent[value]);
             }
 
             public void Set(Properties property, string value, Datatypes datatype)
             {
+                if(value == null) throw new ArgumentNullException(nameof(value));
                 HandleTriple(subject, cache[property], parent[value, datatype]);
             }
 
             public void Set(Properties property, string value, string language)
             {
+                if(value == null) throw new ArgumentNullException(nameof(value));
+                if(language == null) throw new ArgumentNullException(nameof(language));
                 HandleTriple(subject, cache[property], parent[value, language]);
             }
 
-            public void Set(Properties property, ILinkedNode entity)
+            public void Set(Properties property, ILinkedNode value)
             {
-                if(!(entity is UriNode node)) throw new ArgumentException(null, nameof(entity));
+                if(value == null) throw new ArgumentNullException(nameof(value));
+                if(!(value is UriNode node)) throw new ArgumentException(null, nameof(value));
                 HandleTriple(subject, cache[property], node.subject);
             }
 
             public void Set(Properties property, Uri value)
             {
+                if(value == null) throw new ArgumentNullException(nameof(value));
                 HandleTriple(subject, cache[property], parent[value]);
             }
 
@@ -113,6 +122,13 @@ namespace IS4.MultiArchiver
                     throw new ArgumentException(null, nameof(value), e);
                 }
                 HandleTriple(subject, cache[property], obj);
+            }
+
+            public ILinkedNode this[string subName] {
+                get {
+                    if(subName == null) throw new ArgumentNullException(nameof(subName));
+                    return new UriNode(parent, parent.handler.CreateUriNode(new Uri(subject.Uri.AbsoluteUri + "/" + Uri.EscapeDataString(subName))));
+                }
             }
 
             public bool Equals(ILinkedNode other)

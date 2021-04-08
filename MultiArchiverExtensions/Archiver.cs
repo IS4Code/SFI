@@ -3,6 +3,7 @@ using IS4.MultiArchiver.Analyzers;
 using IS4.MultiArchiver.Formats;
 using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Tools;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using VDS.RDF;
@@ -32,10 +33,9 @@ namespace MultiArchiverExtensions
         {
             var graph = new Graph();
             var graphHandler = new VDS.RDF.Parsing.Handlers.GraphHandler(graph);
-            var handler = new RdfHandler(graphHandler, analyzer);
+            var handler = new RdfHandler(new Uri("http://archive.data.is4.site/.well-known/genid"), graphHandler, analyzer);
             graphHandler.StartRdf();
-            try
-            {
+            try{
                 new FileAnalyzer().Analyze(new FileInfo(file), handler);
             }finally
             {

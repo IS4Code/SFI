@@ -20,6 +20,18 @@
         CharacterEncoding,
         [Uri(Vocabularies.Cnt)]
         Rest,
+        [Uri(Vocabularies.Cnt)]
+        DoctypeName,
+        [Uri(Vocabularies.Cnt)]
+        PublicId,
+        [Uri(Vocabularies.Cnt)]
+        SystemId,
+        [Uri(Vocabularies.Cnt, "version")]
+        XmlVersion,
+        [Uri(Vocabularies.Cnt, "declaredEncoding")]
+        XmlEncoding,
+        [Uri(Vocabularies.Cnt, "standalone")]
+        XmlStandalone,
 
         [Uri(Vocabularies.Foaf)]
         Depicts,

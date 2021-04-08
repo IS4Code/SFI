@@ -15,6 +15,8 @@
         ContentAsBase64,
         [Uri(Vocabularies.Cnt)]
         ContentAsXML,
+        [Uri(Vocabularies.Cnt)]
+        DoctypeDecl,
 
         [Uri(Vocabularies.Nfo)]
         ArchiveItem,

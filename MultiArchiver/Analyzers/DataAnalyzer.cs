@@ -25,7 +25,7 @@ namespace IS4.MultiArchiver.Analyzers
 
 		public ILinkedNode Analyze(Stream entity, ILinkedNodeFactory nodeFactory)
 		{
-            var results = formats.Select(FormatResult.Create).ToList();
+            var results = formats.Select(format => new FormatResult(format, nodeFactory)).ToList();
             var signatureBuffer = new MemoryStream(results.Max(result => result.MaxReadBytes));
 
             var encodingDetector = encodingDetectorFactory?.Invoke();
@@ -108,40 +108,41 @@ namespace IS4.MultiArchiver.Analyzers
         
 		class FormatResult : IComparable<FormatResult>
 		{
-			readonly IFileLoader loader;
             QueueStream stream;
 
             public IFileFormat Format { get; }
 
-            public Task<IDisposable> Task { get; }
+            public Task<object> Task { get; }
 
             public int MaxReadBytes => Format.HeaderLength;
 
-            public FormatResult(IFileFormat format)
+            public FormatResult(IFileFormat format, ILinkedNodeFactory nodeFactory)
 			{
                 Format = format;
-				loader = format as IFileLoader;
-				if(loader != null)
+                if(format is IFileReader reader)
+                {
+                    Task = StartReading(stream => reader.Match(stream, nodeFactory));
+                }else if(format is IFileLoader loader)
 				{
-					stream = new QueueStream
-					{
-						ForceClose = true,
-                        AutoFlush = false
-					};
-                    Task = System.Threading.Tasks.Task.Run(() => {
-					    try{
-						    return loader.Match(stream);
-					    }catch{
-                            Close();
-                            return null;
-					    }
-                    });
+                    Task = StartReading(stream => loader.Match(stream));
 				}
             }
 
-            public static FormatResult Create(IFileFormat format)
+            private Task<object> StartReading(Func<Stream, object> reader)
             {
-                return new FormatResult(format);
+				stream = new QueueStream
+				{
+					ForceClose = true,
+                    AutoFlush = false
+				};
+                return System.Threading.Tasks.Task.Run(() => {
+					try{
+						return reader(stream);
+					}catch{
+                        Close();
+                        return null;
+					}
+                });
             }
 
             public bool IsValid(MemoryStream header)
@@ -150,7 +151,7 @@ namespace IS4.MultiArchiver.Analyzers
                 {
                     buffer = new ArraySegment<byte>(header.ToArray());
                 }
-                return Format.Match(buffer.AsSpan()) && (loader == null || Task.Result != null);
+                return Format.Match(buffer.AsSpan()) && (Task == null || Task.Result != null);
             }
 
             public bool Write(byte[] buffer, int offset, int count)

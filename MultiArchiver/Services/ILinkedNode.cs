@@ -14,5 +14,7 @@ namespace IS4.MultiArchiver.Services
         void Set(Properties property, Uri value);
         void Set(Properties property, ILinkedNode value);
         void Set<T>(Properties property, T value) where T : struct, IEquatable<T>, IFormattable, ISerializable;
+
+        ILinkedNode this[string subName] { get; }
     }
 }

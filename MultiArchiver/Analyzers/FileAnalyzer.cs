@@ -17,7 +17,7 @@ namespace IS4.MultiArchiver.Analyzers
             var pathUri = new Uri(entity.FullName);
             var fileUri = new Uri("file:///" + Uri.EscapeDataString(entity.Name), UriKind.Absolute);
 
-            var node = nodeFactory.Create(new Uri(Vocabularies.ArchiveId + Guid.NewGuid().ToString("D")));
+            var node = nodeFactory.Root[Guid.NewGuid().ToString("D")];
 
             node.Set(Classes.FileDataObject);
 
