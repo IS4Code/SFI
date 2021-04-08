@@ -12,12 +12,12 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public IRdfEntity Analyze(FileInfo entity, IRdfAnalyzer analyzer)
+        public ILinkedNode Analyze(FileInfo entity, ILinkedNodeFactory analyzer)
         {
             var pathUri = new Uri(entity.FullName);
             var fileUri = new Uri("file:///" + Uri.EscapeDataString(entity.Name), UriKind.Absolute);
 
-            var node = analyzer.CreateUriNode(new Uri(Vocabularies.ArchiveId + Guid.NewGuid().ToString("D")));
+            var node = analyzer.Create(new Uri(Vocabularies.ArchiveId + Guid.NewGuid().ToString("D")));
 
             node.Set(Classes.FileDataObject);
 
@@ -33,7 +33,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             using(var stream = entity.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete))
             {
-                var content = analyzer.Analyze(stream);
+                var content = analyzer.Create(stream);
                 if(content != null)
                 {
                     content.Set(Properties.IsStoredAs, node);

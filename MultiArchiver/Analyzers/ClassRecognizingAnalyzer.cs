@@ -19,9 +19,9 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public virtual IRdfEntity Analyze(T entity, IRdfAnalyzer analyzer)
+        public virtual ILinkedNode Analyze(T entity, ILinkedNodeFactory analyzer)
         {
-            var node = analyzer.CreateUriNode(new Uri(Vocabularies.ArchiveId + Guid.NewGuid().ToString("D")));
+            var node = analyzer.Create(new Uri(Vocabularies.ArchiveId + Guid.NewGuid().ToString("D")));
 
             foreach(var cls in recognizedClasses)
             {

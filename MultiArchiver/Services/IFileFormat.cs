@@ -19,7 +19,7 @@ namespace IS4.MultiArchiver.Services
 
     public interface IFileReader : IFileFormat
     {
-        IRdfEntity Match(Stream stream, IRdfAnalyzer analyzer);
+        ILinkedNode Match(Stream stream, ILinkedNodeFactory analyzer);
     }
 
     public abstract class FileFormat : IFileFormat

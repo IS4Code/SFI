@@ -43,11 +43,11 @@ namespace IS4.MultiArchiver.Formats
             return reader;
         }
 
-        public IRdfEntity Match(Stream stream, IRdfAnalyzer analyzer)
+        public ILinkedNode Match(Stream stream, ILinkedNodeFactory analyzer)
         {
             using(var reader = XmlReader.Create(stream, readerSettings))
             {
-                return analyzer.Analyze(reader);
+                return analyzer.Create(reader);
             }
         }
 

@@ -2,6 +2,6 @@
 {
     public interface IEntityAnalyzer<in T> where T : class
     {
-        IRdfEntity Analyze(T entity, IRdfAnalyzer analyzer);
+        ILinkedNode Analyze(T entity, ILinkedNodeFactory analyzer);
     }
 }

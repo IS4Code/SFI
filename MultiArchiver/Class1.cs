@@ -48,12 +48,7 @@ namespace IS4.MultiArchiver
             graph.SaveToFile("graph.ttl");
         }
 
-        public IRdfEntity CreateUriNode(Uri uri)
-        {
-            throw new NotImplementedException();
-        }
-
-        IRdfEntity Analyze<T>(T entity, TripleHandler handler) where T : class
+        ILinkedNode Analyze<T>(T entity, TripleHandler handler) where T : class
         {
             if(entity == null) return null;
             foreach(var obj in analyzers)
@@ -67,7 +62,7 @@ namespace IS4.MultiArchiver
             return null;
         }
 
-        class TripleHandler : IRdfAnalyzer
+        class TripleHandler : ILinkedNodeFactory
         {
             readonly Class1 parent;
             readonly IRdfHandler handler;
@@ -78,12 +73,12 @@ namespace IS4.MultiArchiver
                 this.handler = handler;
             }
 
-            public IRdfEntity CreateUriNode(Uri uri)
+            public ILinkedNode Create(Uri uri)
             {
                 return new UriNode(this, handler.CreateUriNode(uri));
             }
 
-            public IRdfEntity Analyze<T>(T entity) where T : class
+            public ILinkedNode Create<T>(T entity) where T : class
             {
                 return parent.Analyze(entity, this);
             }
@@ -118,12 +113,12 @@ namespace IS4.MultiArchiver
                 });
             }
 
-            class UriNode : IRdfEntity
+            class UriNode : Services.ILinkedNode
             {
                 readonly TripleHandler parent;
-                readonly INode subject;
+                readonly VDS.RDF.INode subject;
 
-                public UriNode(TripleHandler parent, INode subject)
+                public UriNode(TripleHandler parent, VDS.RDF.INode subject)
                 {
                     this.parent = parent;
                     this.subject = subject;
@@ -149,7 +144,7 @@ namespace IS4.MultiArchiver
                     parent.handler.HandleTriple(subject, parent[property], parent[value, datatype]);
                 }
 
-                public void Set(Properties property, IRdfEntity entity)
+                public void Set(Properties property, Services.ILinkedNode entity)
                 {
                     if(!(entity is UriNode node)) throw new ArgumentException(null, nameof(entity));
                     parent.handler.HandleTriple(subject, parent[property], node.subject);
@@ -162,7 +157,7 @@ namespace IS4.MultiArchiver
 
                 public void Set<T>(Properties property, T value) where T : struct
                 {
-                    parent.handler.HandleTriple(subject, parent[property], (INode)parent[(dynamic)value]);
+                    parent.handler.HandleTriple(subject, parent[property], (VDS.RDF.INode)parent[(dynamic)value]);
                 }
             }
         }

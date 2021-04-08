@@ -6,17 +6,17 @@ namespace IS4.MultiArchiver
 {
     internal static class Extensions
     {
-        public static void HandleTriple(this IRdfHandler handler, INode subj, INode pred, INode obj)
+        public static void HandleTriple(this IRdfHandler handler, VDS.RDF.INode subj, VDS.RDF.INode pred, VDS.RDF.INode obj)
         {
             handler.HandleTriple(new Triple(subj, pred, obj));
         }
 
-        public static IRdfEntity TryAnalyze(this IRdfAnalyzer analyzer, object value)
+        public static ILinkedNode TryAnalyze(this ILinkedNodeFactory analyzer, object value)
         {
             if(value == null) return null;
             try
             {
-                return analyzer.Analyze((dynamic)value);
+                return analyzer.Create((dynamic)value);
             }catch(RuntimeBinderException)
             {
                 return null;
