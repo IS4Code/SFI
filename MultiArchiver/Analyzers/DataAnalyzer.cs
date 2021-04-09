@@ -12,27 +12,26 @@ namespace IS4.MultiArchiver.Analyzers
 {
     public sealed class DataAnalyzer : IEntityAnalyzer<Stream>, IEntityAnalyzer<byte[]>
 	{
-        readonly IHashAlgorithm hashAlgorithm;
-        readonly IEnumerable<IFileFormat> formats;
-        readonly Func<IEncodingDetector> encodingDetectorFactory;
+        public IHashAlgorithm HashAlgorithm { get; set; }
+        public Func<IEncodingDetector> EncodingDetectorFactory { get; set; }
+        public ICollection<IFileFormat> Formats { get; } = new SortedSet<IFileFormat>();
 
-		public DataAnalyzer(IHashAlgorithm hashAlgorithm, Func<IEncodingDetector> encodingDetectorFactory, IEnumerable<IFileFormat> formats)
+		public DataAnalyzer(IHashAlgorithm hashAlgorithm, Func<IEncodingDetector> encodingDetectorFactory)
 		{
-            this.hashAlgorithm = hashAlgorithm;
-            this.encodingDetectorFactory = encodingDetectorFactory;
-            this.formats = formats.Where(format => format != null).OrderByDescending(format => format.HeaderLength);
+            HashAlgorithm = hashAlgorithm;
+            EncodingDetectorFactory = encodingDetectorFactory;
         }
 
 		public ILinkedNode Analyze(Stream entity, ILinkedNodeFactory nodeFactory)
 		{
-            var results = formats.Select(format => new FormatResult(format, nodeFactory)).ToList();
+            var results = Formats.Select(format => new FormatResult(format, nodeFactory)).ToList();
             var signatureBuffer = new MemoryStream(results.Max(result => result.MaxReadBytes));
 
-            var encodingDetector = encodingDetectorFactory?.Invoke();
+            var encodingDetector = EncodingDetectorFactory?.Invoke();
             var isBinary = false;
             byte[] hash = null;
 
-			hash = hashAlgorithm.ComputeHash(new AnalyzingStream(entity, segment => {
+			hash = HashAlgorithm.ComputeHash(new AnalyzingStream(entity, segment => {
 				if(!isBinary)
 				{
 					if(Array.IndexOf<byte>(segment.Array, 0, segment.Offset, segment.Count) != -1)
@@ -67,7 +66,7 @@ namespace IS4.MultiArchiver.Analyzers
                 isBinary = true;
             }
 
-            var node = nodeFactory.Create(hashAlgorithm, hash);
+            var node = nodeFactory.Create(HashAlgorithm, hash);
 
             node.Set(isBinary ? Classes.ContentAsBase64 : Classes.ContentAsText);
             node.Set(Properties.Extent, entity.Length.ToString(), Datatypes.Byte);
@@ -77,7 +76,7 @@ namespace IS4.MultiArchiver.Analyzers
                 node.Set(Properties.CharacterEncoding, encodingDetector.Charset);
             }
 
-            node.Set(Properties.DigestAlgorithm, hashAlgorithm.Identifier);
+            node.Set(Properties.DigestAlgorithm, HashAlgorithm.Identifier);
             node.Set(Properties.DigestValue, Convert.ToBase64String(hash), Datatypes.Base64Binary);
 
             results.RemoveAll(result => !result.IsValid(signatureBuffer));
@@ -212,6 +211,21 @@ namespace IS4.MultiArchiver.Analyzers
                 var t1 = a.GetType();
                 var t2 = b.GetType();
                 return t1.IsAssignableFrom(t2) ? 1 : t2.IsAssignableFrom(t1) ? -1 : 0;
+            }
+        }
+
+        class HeaderLengthComparer : IComparer<IFileFormat>
+        {
+            public static readonly HeaderLengthComparer Instance = new HeaderLengthComparer();
+
+            private HeaderLengthComparer()
+            {
+
+            }
+
+            public int Compare(IFileFormat x, IFileFormat y)
+            {
+                return -x.HeaderLength.CompareTo(y);
             }
         }
 	}

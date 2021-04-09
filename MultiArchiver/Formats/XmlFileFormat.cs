@@ -2,7 +2,6 @@
 using System;
 using System.IO;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Xml;
 
 namespace IS4.MultiArchiver.Formats
@@ -74,7 +73,7 @@ namespace IS4.MultiArchiver.Formats
             {
                 if(relativeUri.IndexOf("//", StringComparison.Ordinal) > 0 && !new Uri(relativeUri, UriKind.RelativeOrAbsolute).IsAbsoluteUri)
                 {
-                    return CreatePublicId(relativeUri);
+                    return UriTools.CreatePublicId(relativeUri);
                 }
                 return base.ResolveUri(baseUri, relativeUri);
             }
@@ -101,36 +100,6 @@ namespace IS4.MultiArchiver.Formats
             public virtual StringReader GetEntityAsReader(Uri absoluteUri, string role)
             {
                 return new StringReader(resourcestring);
-            }
-
-            const string publicid = "publicid:";
-
-            static readonly Regex pubIdRegex = new Regex(@"(^\s+|\s+$)|(\s+)|(\/\/)|(::)|([+:\/;'?#%])", RegexOptions.Compiled);
-
-            static Uri CreatePublicId(string id)
-            {
-                return new Uri("urn:" + publicid + TranscribePublicId(id));
-            }
-
-            static string TranscribePublicId(string id)
-            {
-                return pubIdRegex.Replace(id, m => {
-                    if(m.Groups[1].Success)
-                    {
-                        return "";
-                    }else if(m.Groups[2].Success)
-                    {
-                        return "+";
-                    }else if(m.Groups[3].Success)
-                    {
-                        return ":";
-                    }else if(m.Groups[4].Success)
-                    {
-                        return ";";
-                    }else{
-                        return Uri.EscapeDataString(m.Value);
-                    }
-                });
             }
         }
     }

@@ -1,11 +1,16 @@
 ﻿using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Vocabulary;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace IS4.MultiArchiver.Analyzers
 {
     public class XmlAnalyzer : ClassRecognizingAnalyzer<XmlReader>
     {
+        public ICollection<IXmlDocumentFormat> XmlFormats { get; } = new List<IXmlDocumentFormat>();
+
         public XmlAnalyzer() : base(Classes.ContentAsXML)
         {
 
@@ -16,6 +21,7 @@ namespace IS4.MultiArchiver.Analyzers
             var node = base.Analyze(reader, nodeFactory);
             if(node != null)
             {
+                XDocumentType docType = null;
                 do
                 {
                     switch(reader.NodeType)
@@ -40,7 +46,7 @@ namespace IS4.MultiArchiver.Analyzers
                         case XmlNodeType.DocumentType:
                             var dtd = node["doctype"];
                             dtd.Set(Classes.DoctypeDecl);
-                            var name = reader.GetAttribute("Name");
+                            var name = reader.Name;
                             if(name != null)
                             {
                                 dtd.Set(Properties.DoctypeName, name);
@@ -55,8 +61,17 @@ namespace IS4.MultiArchiver.Analyzers
                             {
                                 dtd.Set(Properties.PublicId, sysid, Datatypes.AnyURI);
                             }
+                            docType = new XDocumentType(name, pubid, sysid, reader.Value);
                             break;
                         case XmlNodeType.Element:
+                            foreach(var format in XmlFormats)
+                            {
+                                if(format.Match(reader, docType, nodeFactory) is ILinkedNode node2)
+                                {
+                                    node2.Set(Properties.HasFormat, node);
+                                    break;
+                                }
+                            }
                             return node;
                     }
                 }while(reader.Read());
