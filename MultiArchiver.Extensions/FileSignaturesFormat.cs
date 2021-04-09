@@ -58,17 +58,17 @@ namespace IS4.MultiArchiver.Formats
                 this.reader = reader;
             }
 
-            public string GetExtension(IDisposable value)
+            public string GetExtension(object value)
             {
-                return null;
+                return Extension;
             }
 
-            public string GetMediaType(IDisposable value)
+            public string GetMediaType(object value)
             {
-                return null;
+                return MediaType;
             }
 
-            public IDisposable Match(Stream stream)
+            public object Match(Stream stream)
             {
                 var result = reader.Read(stream);
                 bool matches = false;

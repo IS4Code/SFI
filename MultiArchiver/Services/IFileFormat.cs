@@ -16,10 +16,10 @@ namespace IS4.MultiArchiver.Services
 
     public interface IFileLoader : IFileFormat
     {
-        string GetMediaType(IDisposable value);
-        string GetExtension(IDisposable value);
+        string GetMediaType(object value);
+        string GetExtension(object value);
 
-        IDisposable Match(Stream stream);
+        object Match(Stream stream);
     }
 
     public interface IFileReader : IFileFormat
@@ -46,5 +46,42 @@ namespace IS4.MultiArchiver.Services
         }
 
         public abstract bool Match(Span<byte> header);
+    }
+
+    public abstract class FileLoader<T> : FileFormat, IFileLoader where T : class
+    {
+        public FileLoader(int headerLength, string mediaType, string extension) : base(headerLength, mediaType, extension)
+        {
+
+        }
+
+        public virtual string GetExtension(T value)
+        {
+            return Extension;
+        }
+
+        public virtual string GetMediaType(T value)
+        {
+            return MediaType;
+        }
+
+        public abstract T Match(Stream stream);
+
+        string IFileLoader.GetExtension(object value)
+        {
+            if(!(value is T obj)) throw new ArgumentException(null, nameof(value));
+            return GetExtension(obj);
+        }
+
+        string IFileLoader.GetMediaType(object value)
+        {
+            if(!(value is T obj)) throw new ArgumentException(null, nameof(value));
+            return GetMediaType(obj);
+        }
+
+        object IFileLoader.Match(Stream stream)
+        {
+            return Match(stream);
+        }
     }
 }

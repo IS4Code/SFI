@@ -11,7 +11,7 @@ namespace Test
         {
             var archiver = new Archiver();
             archiver.DataAnalyzer.Formats.Add(new ImageFormat());
-            archiver.Analyzers.Add(new TestAnalyzer());
+            //archiver.Analyzers.Add(new TestAnalyzer());
             archiver.Analyzers.Add(new ImageAnalyzer());
             archiver.Archive("DSC00014.JPG", "graph.ttl");
         }

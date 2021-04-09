@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public sealed class DataAnalyzer : IEntityAnalyzer<Stream>, IEntityAnalyzer<byte[]>
+    public sealed class DataAnalyzer : IEntityAnalyzer<Func<Stream>>, IEntityAnalyzer<byte[]>
 	{
         public IHashAlgorithm HashAlgorithm { get; set; }
         public Func<IEncodingDetector> EncodingDetectorFactory { get; set; }
@@ -22,44 +22,38 @@ namespace IS4.MultiArchiver.Analyzers
             EncodingDetectorFactory = encodingDetectorFactory;
         }
 
-		public ILinkedNode Analyze(Stream entity, ILinkedNodeFactory nodeFactory)
+		public ILinkedNode Analyze(Func<Stream> streamFactory, ILinkedNodeFactory nodeFactory)
 		{
-            var results = Formats.Select(format => new FormatResult(format, nodeFactory)).ToList();
+            var results = Formats.Select(format => new FormatResult(streamFactory, format, nodeFactory)).ToList();
             var signatureBuffer = new MemoryStream(results.Max(result => result.MaxReadBytes));
 
             var encodingDetector = EncodingDetectorFactory?.Invoke();
             var isBinary = false;
             byte[] hash = null;
+            long length;
 
-			hash = HashAlgorithm.ComputeHash(new AnalyzingStream(entity, segment => {
-				if(!isBinary)
-				{
-					if(Array.IndexOf<byte>(segment.Array, 0, segment.Offset, segment.Count) != -1)
-					{
-						isBinary = true;
-					}else{
-						encodingDetector.Write(segment);
-					}
-				}
-				if(signatureBuffer.Length < signatureBuffer.Capacity)
-				{
-					signatureBuffer.Write(segment.Array, segment.Offset, Math.Min(signatureBuffer.Capacity - (int)signatureBuffer.Length, segment.Count));
-				}
-                foreach(var result in results)
-                {
-                    result.Write(segment.Array, segment.Offset, segment.Count);
-                }
-                foreach(var result in results)
-                {
-                    result.Flush();
-                }
-            }));
-            foreach(var result in results)
+            using(var stream = streamFactory())
             {
-                result.Close();
-            }
+                length = stream.Length;
 
-            encodingDetector.End();
+			    hash = HashAlgorithm.ComputeHash(new AnalyzingStream(stream, segment => {
+				    if(!isBinary)
+				    {
+					    if(Array.IndexOf<byte>(segment.Array, 0, segment.Offset, segment.Count) != -1)
+					    {
+						    isBinary = true;
+					    }else{
+						    encodingDetector.Write(segment);
+					    }
+				    }
+				    if(signatureBuffer.Length < signatureBuffer.Capacity)
+				    {
+					    signatureBuffer.Write(segment.Array, segment.Offset, Math.Min(signatureBuffer.Capacity - (int)signatureBuffer.Length, segment.Count));
+				    }
+                }));
+
+                encodingDetector.End();
+            }
 
             if(encodingDetector.Charset == null || encodingDetector.Confidence < Single.Epsilon)
             {
@@ -69,7 +63,7 @@ namespace IS4.MultiArchiver.Analyzers
             var node = nodeFactory.Create(HashAlgorithm, hash);
 
             node.Set(isBinary ? Classes.ContentAsBase64 : Classes.ContentAsText);
-            node.Set(Properties.Extent, entity.Length.ToString(), Datatypes.Byte);
+            node.Set(Properties.Extent, length.ToString(), Datatypes.Byte);
 
             if(!isBinary)
             {
@@ -82,65 +76,51 @@ namespace IS4.MultiArchiver.Analyzers
             results.RemoveAll(result => !result.IsValid(signatureBuffer));
 			results.Sort();
 
-			if(results.Count > 0)
-			{
-				var entity2 = new FormatObject(results[0].Format, results[0].Task?.Result);
-				var node2 = nodeFactory.Create(entity2);
-				if(node2 != null)
-				{
+            foreach(var result in results)
+            {
+                var entity2 = new FormatObject(result.Format, result.Task);
+                var node2 = nodeFactory.Create(entity2);
+                if(node2 != null)
+                {
                     node2.Set(Properties.HasFormat, node);
-				}
-			}
-
-			foreach(var result in results)
-			{
-			    result.Task?.Dispose();
-			}
+                }
+            }
 
 			return node;
 		}
 
 		public ILinkedNode Analyze(byte[] entity, ILinkedNodeFactory analyzer)
 		{
-			return Analyze(new MemoryStream(entity, false), analyzer);
+			return Analyze(() => new MemoryStream(entity, false), analyzer);
 		}
         
 		class FormatResult : IComparable<FormatResult>
 		{
-            QueueStream stream;
-
             public IFileFormat Format { get; }
 
             public Task<object> Task { get; }
 
             public int MaxReadBytes => Format.HeaderLength;
 
-            public FormatResult(IFileFormat format, ILinkedNodeFactory nodeFactory)
+            public FormatResult(Func<Stream> streamFactory, IFileFormat format, ILinkedNodeFactory nodeFactory)
 			{
                 Format = format;
                 if(format is IFileReader reader)
                 {
-                    Task = StartReading(stream => reader.Match(stream, nodeFactory));
+                    Task = StartReading(streamFactory, s => reader.Match(s, nodeFactory));
                 }else if(format is IFileLoader loader)
 				{
-                    Task = StartReading(stream => loader.Match(stream));
+                    Task = StartReading(streamFactory, loader.Match);
 				}
             }
 
-            private Task<object> StartReading(Func<Stream, object> reader)
+            private Task<object> StartReading(Func<Stream> streamFactory, Func<Stream, object> reader)
             {
-				stream = new QueueStream
-				{
-					ForceClose = true,
-                    AutoFlush = false
-				};
                 return System.Threading.Tasks.Task.Run(() => {
-					try{
-						return reader(stream);
-					}catch{
-                        Close();
-                        return null;
-					}
+                    using(var stream = streamFactory())
+                    {
+                        return reader(stream);
+                    }
                 });
             }
 
@@ -151,54 +131,6 @@ namespace IS4.MultiArchiver.Analyzers
                     buffer = new ArraySegment<byte>(header.ToArray());
                 }
                 return Format.Match(buffer.AsSpan()) && (Task == null || Task.Result != null);
-            }
-
-            public bool Write(byte[] buffer, int offset, int count)
-            {
-                try{
-                    stream?.Write(buffer, offset, count);
-                    return true;
-                }catch(IOException)
-                {
-
-                }catch(ObjectDisposedException)
-                {
-
-                }
-                stream = null;
-                return false;
-            }
-
-            public bool Flush()
-            {
-                try{
-                    stream?.Flush();
-                    return true;
-                }catch(IOException)
-                {
-
-                }catch(ObjectDisposedException)
-                {
-
-                }
-                stream = null;
-                return false;
-            }
-
-            public bool Close()
-            {
-                try{
-                    stream?.Close();
-                    return true;
-                }catch(IOException)
-                {
-
-                }catch(ObjectDisposedException)
-                {
-
-                }
-                stream = null;
-                return false;
             }
 
             public int CompareTo(FormatResult other)
