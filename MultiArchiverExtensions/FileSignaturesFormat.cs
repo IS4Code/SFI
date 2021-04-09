@@ -18,19 +18,24 @@ namespace IS4.MultiArchiver.Formats
         {
             using(var stream = new MemoryStream(HeaderLength))
             {
-                if(HeaderLength < 64)
+                if(stream.TryGetBuffer(out var buffer))
                 {
-                    foreach(var b in header)
-                    {
-                        stream.WriteByte(b);
-                    }
+                    header.CopyTo(buffer);
                 }else{
-                    byte[] sharedBuffer = ArrayPool<byte>.Shared.Rent(HeaderLength);
-                    try{
-                        header.CopyTo(sharedBuffer);
-                        stream.Write(sharedBuffer, 0, HeaderLength);
-                    }finally{
-                        ArrayPool<byte>.Shared.Return(sharedBuffer);
+                    if(HeaderLength < 64)
+                    {
+                        foreach(var b in header)
+                        {
+                            stream.WriteByte(b);
+                        }
+                    }else{
+                        byte[] sharedBuffer = ArrayPool<byte>.Shared.Rent(HeaderLength);
+                        try{
+                            header.CopyTo(sharedBuffer);
+                            stream.Write(sharedBuffer, 0, HeaderLength);
+                        }finally{
+                            ArrayPool<byte>.Shared.Return(sharedBuffer);
+                        }
                     }
                 }
                 return Format.IsMatch(stream);
@@ -51,6 +56,16 @@ namespace IS4.MultiArchiver.Formats
             public ParsingFileSignaturesFormat(FileSignatures.IFileFormatReader reader, FileSignatures.FileFormat format) : base(format)
             {
                 this.reader = reader;
+            }
+
+            public string GetExtension(IDisposable value)
+            {
+                return null;
+            }
+
+            public string GetMediaType(IDisposable value)
+            {
+                return null;
             }
 
             public IDisposable Match(Stream stream)

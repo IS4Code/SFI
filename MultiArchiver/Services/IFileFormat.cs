@@ -6,6 +6,7 @@ namespace IS4.MultiArchiver.Services
     public interface IFileFormat
     {
         int HeaderLength { get; }
+
         string MediaType { get; }
         string Extension { get; }
 
@@ -15,6 +16,9 @@ namespace IS4.MultiArchiver.Services
 
     public interface IFileLoader : IFileFormat
     {
+        string GetMediaType(IDisposable value);
+        string GetExtension(IDisposable value);
+
         IDisposable Match(Stream stream);
     }
 

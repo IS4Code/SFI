@@ -14,7 +14,7 @@ namespace IS4.MultiArchiver.Analyzers
 	{
         public IHashAlgorithm HashAlgorithm { get; set; }
         public Func<IEncodingDetector> EncodingDetectorFactory { get; set; }
-        public ICollection<IFileFormat> Formats { get; } = new SortedSet<IFileFormat>();
+        public ICollection<IFileFormat> Formats { get; } = new SortedSet<IFileFormat>(HeaderLengthComparer.Instance);
 
 		public DataAnalyzer(IHashAlgorithm hashAlgorithm, Func<IEncodingDetector> encodingDetectorFactory)
 		{
@@ -214,7 +214,7 @@ namespace IS4.MultiArchiver.Analyzers
             }
         }
 
-        class HeaderLengthComparer : IComparer<IFileFormat>
+        class HeaderLengthComparer : GlobalObjectComparer<IFileFormat>
         {
             public static readonly IComparer<IFileFormat> Instance = new HeaderLengthComparer();
 
@@ -223,9 +223,9 @@ namespace IS4.MultiArchiver.Analyzers
 
             }
 
-            public int Compare(IFileFormat x, IFileFormat y)
+            protected override int CompareInner(IFileFormat x, IFileFormat y)
             {
-                return -x.HeaderLength.CompareTo(y);
+                return -x.HeaderLength.CompareTo(y.HeaderLength);
             }
         }
 	}

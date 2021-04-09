@@ -108,7 +108,7 @@ namespace IS4.MultiArchiver.Services
         public LinkedNode<TNode> this[string subName] {
             get{
                 if(subName == null) throw new ArgumentNullException(nameof(subName));
-                return CreateNew(CreateNode(GetUri(Subject).AbsoluteUri + "/" + subName));
+                return CreateNew(CreateNode(new Uri(GetUri(Subject).AbsoluteUri + "/" + subName)));
             }
         }
 

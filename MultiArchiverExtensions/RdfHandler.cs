@@ -4,7 +4,7 @@ using Microsoft.CSharp.RuntimeBinder;
 using System;
 using VDS.RDF;
 
-namespace IS4.MultiArchiver
+namespace IS4.MultiArchiver.Extensions
 {
     public class RdfHandler : ILinkedNodeFactory
     {
@@ -38,6 +38,7 @@ namespace IS4.MultiArchiver
 
             public UriNode(INode subject, IRdfHandler handler, IVocabularyCache<INode> cache) : base(subject, cache)
             {
+                if(!(subject is IUriNode)) throw new ArgumentException(null, nameof(subject));
                 this.handler = handler;
             }
 

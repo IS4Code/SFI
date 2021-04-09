@@ -5,12 +5,15 @@ namespace IS4.MultiArchiver.Types
 {
     public class FormatObject : IDisposable
     {
-        public IFileFormat Format { get; }
+        readonly IFileFormat format;
         public object Value { get; private set; }
+
+        public string Extension => format is IFileLoader loader ? loader.GetExtension((IDisposable)Value) : format.Extension;
+        public string MediaType => format is IFileLoader loader ? loader.GetMediaType((IDisposable)Value) : format.MediaType;
 
         public FormatObject(IFileFormat format, object value)
         {
-            Format = format;
+            this.format = format;
             Value = value;
         }
 
