@@ -216,7 +216,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         class HeaderLengthComparer : IComparer<IFileFormat>
         {
-            public static readonly HeaderLengthComparer Instance = new HeaderLengthComparer();
+            public static readonly IComparer<IFileFormat> Instance = new HeaderLengthComparer();
 
             private HeaderLengthComparer()
             {

@@ -19,12 +19,12 @@ namespace IS4.MultiArchiver
             this.handler = handler;
             this.baseAnalyzer = baseAnalyzer;
             cache = new VocabularyCache<IUriNode>(handler.CreateUriNode);
-            Root = new UriNode(this, handler.CreateUriNode(root));
+            Root = Create(IdentityUriFormatter.Instance, root);
         }
 
         public ILinkedNode Create<T>(IUriFormatter<T> formatter, T value)
         {
-            return new UriNode(this, handler.CreateUriNode(formatter.FormatUri(value)));
+            return new UriNode(handler.CreateUriNode(formatter.FormatUri(value)), handler, cache);
         }
 
         public ILinkedNode Create<T>(T entity) where T : class
@@ -32,57 +32,44 @@ namespace IS4.MultiArchiver
             return baseAnalyzer.Analyze(entity, this);
         }
 
-        ILiteralNode this[bool value] => value.ToLiteral(handler);
-        ILiteralNode this[sbyte value] => value.ToLiteral(handler);
-        ILiteralNode this[byte value] => value.ToLiteral(handler);
-        ILiteralNode this[short value] => value.ToLiteral(handler);
-        ILiteralNode this[int value] => value.ToLiteral(handler);
-        ILiteralNode this[long value] => value.ToLiteral(handler);
-        ILiteralNode this[float value] => value.ToLiteral(handler);
-        ILiteralNode this[double value] => value.ToLiteral(handler);
-        ILiteralNode this[decimal value] => value.ToLiteral(handler);
-        ILiteralNode this[TimeSpan value] => value.ToLiteral(handler);
-        ILiteralNode this[DateTimeOffset value] => value.ToLiteral(handler);
-        ILiteralNode this[DateTime value] => value.ToLiteral(handler, true);
-
         class UriNode : LinkedNode<INode>
         {
-            readonly RdfHandler parent;
+            readonly IRdfHandler handler;
 
-            public UriNode(RdfHandler parent, INode subject) : base(subject, parent.cache)
+            public UriNode(INode subject, IRdfHandler handler, IVocabularyCache<INode> cache) : base(subject, cache)
             {
-                this.parent = parent;
+                this.handler = handler;
             }
 
             protected override void HandleTriple(INode subj, INode pred, INode obj)
             {
-                parent.handler.HandleTriple(new Triple(subj, pred, obj));
+                handler.HandleTriple(new Triple(subj, pred, obj));
             }
 
             protected override INode CreateNode(Uri uri)
             {
-                return parent.handler.CreateUriNode(uri);
+                return handler.CreateUriNode(uri);
             }
 
             protected override INode CreateNode(string value)
             {
-                return parent.handler.CreateLiteralNode(value);
+                return handler.CreateLiteralNode(value);
             }
 
             protected override INode CreateNode(string value, INode datatype)
             {
-                return parent.handler.CreateLiteralNode(value, GetUri(datatype));
+                return handler.CreateLiteralNode(value, GetUri(datatype));
             }
 
             protected override INode CreateNode(string value, string language)
             {
-                return parent.handler.CreateLiteralNode(value, language);
+                return handler.CreateLiteralNode(value, language);
             }
 
             protected override INode CreateNode<T>(T value)
             {
                 try{
-                    return parent[(dynamic)value];
+                    return LiteralExtensions.ToLiteral((dynamic)value, handler);
                 }catch(RuntimeBinderException e)
                 {
                     throw new ArgumentException(null, nameof(value), e);
@@ -96,7 +83,7 @@ namespace IS4.MultiArchiver
 
             protected override LinkedNode<INode> CreateNew(INode subject)
             {
-                return new UriNode(parent, subject);
+                return new UriNode(subject, handler, Cache);
             }
         }
     }

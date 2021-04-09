@@ -12,7 +12,7 @@ namespace IS4.MultiArchiver
 
         public class PublicIdFormatter : IUriFormatter<string>
         {
-            public static readonly PublicIdFormatter Instance = new PublicIdFormatter();
+            public static readonly IUriFormatter<string> Instance = new PublicIdFormatter();
 
             private PublicIdFormatter()
             {

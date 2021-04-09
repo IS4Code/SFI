@@ -23,13 +23,13 @@ namespace IS4.MultiArchiver.Services
 
     public abstract class LinkedNode<TNode> : ILinkedNode where TNode : class, IEquatable<TNode>
     {
-        readonly IVocabularyCache<TNode> cache;
+        protected IVocabularyCache<TNode> Cache { get; }
         protected TNode Subject { get; }
 
         public LinkedNode(TNode subject, IVocabularyCache<TNode> cache)
         {
             Subject = subject;
-            this.cache = cache;
+            Cache = cache;
         }
 
         protected abstract void HandleTriple(TNode subj, TNode pred, TNode obj);
@@ -45,54 +45,54 @@ namespace IS4.MultiArchiver.Services
 
         public void Set(Classes @class)
         {
-            HandleTriple(Subject, cache[Properties.Type], cache[@class]);
+            HandleTriple(Subject, Cache[Properties.Type], Cache[@class]);
         }
 
         public void Set<T>(IUriFormatter<T> formatter, T value)
         {
-            HandleTriple(Subject, cache[Properties.Type], CreateNode(formatter.FormatUri(value)));
+            HandleTriple(Subject, Cache[Properties.Type], CreateNode(formatter.FormatUri(value)));
         }
 
         public void Set(Properties property, Individuals value)
         {
-            HandleTriple(Subject, cache[property], cache[value]);
+            HandleTriple(Subject, Cache[property], Cache[value]);
         }
 
         public void Set(Properties property, string value)
         {
             if(value == null) throw new ArgumentNullException(nameof(value));
-            HandleTriple(Subject, cache[property], CreateNode(value));
+            HandleTriple(Subject, Cache[property], CreateNode(value));
         }
 
         public void Set(Properties property, string value, Datatypes datatype)
         {
             if(value == null) throw new ArgumentNullException(nameof(value));
-            HandleTriple(Subject, cache[property], CreateNode(value, cache[datatype]));
+            HandleTriple(Subject, Cache[property], CreateNode(value, Cache[datatype]));
         }
 
         public void Set(Properties property, string value, string language)
         {
             if(value == null) throw new ArgumentNullException(nameof(value));
             if(language == null) throw new ArgumentNullException(nameof(language));
-            HandleTriple(Subject, cache[property], CreateNode(value, language));
+            HandleTriple(Subject, Cache[property], CreateNode(value, language));
         }
 
         public void Set(Properties property, Vocabularies vocabulary, string localName)
         {
             if(localName == null) throw new ArgumentNullException(nameof(localName));
-            HandleTriple(Subject, cache[property], CreateNode(new Uri(GetUri(cache[vocabulary]).AbsoluteUri + "/" + localName, UriKind.Absolute)));
+            HandleTriple(Subject, Cache[property], CreateNode(new Uri(GetUri(Cache[vocabulary]).AbsoluteUri + "/" + localName, UriKind.Absolute)));
         }
 
         public void Set<T>(Properties property, IUriFormatter<T> formatter, T value)
         {
-            HandleTriple(Subject, cache[property], CreateNode(formatter.FormatUri(value)));
+            HandleTriple(Subject, Cache[property], CreateNode(formatter.FormatUri(value)));
         }
 
         public void Set(Properties property, ILinkedNode value)
         {
             if(value == null) throw new ArgumentNullException(nameof(value));
             if(!(value is LinkedNode<TNode> node)) throw new ArgumentException(null, nameof(value));
-            HandleTriple(Subject, cache[property], node.Subject);
+            HandleTriple(Subject, Cache[property], node.Subject);
         }
 
         public void Set(Properties property, Uri value)
@@ -102,7 +102,7 @@ namespace IS4.MultiArchiver.Services
 
         public void Set<T>(Properties property, T value) where T : struct, IEquatable<T>, IFormattable, ISerializable
         {
-            HandleTriple(Subject, cache[property], CreateNode(value));
+            HandleTriple(Subject, Cache[property], CreateNode(value));
         }
 
         public LinkedNode<TNode> this[string subName] {
