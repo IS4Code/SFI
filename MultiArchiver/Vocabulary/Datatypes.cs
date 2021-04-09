@@ -8,6 +8,11 @@
         Base64Binary,
         [Uri(Vocabularies.Xsd)]
         Integer,
+        [Uri(Vocabularies.Xsd)]
+        String,
+
+        [Uri(Vocabularies.Owl)]
+        Rational,
 
         [Uri(Vocabularies.Dt)]
         Byte,

@@ -10,9 +10,10 @@ namespace IS4.MultiArchiver.Types
         Task<object> task;
 
         public object Value => task.Result;
+        public bool Successful => !(Value is Exception);
 
-        public string Extension => format is IFileLoader loader ? loader.GetExtension((IDisposable)Value) : format.Extension;
-        public string MediaType => format is IFileLoader loader ? loader.GetMediaType((IDisposable)Value) : format.MediaType;
+        public string Extension => format is IFileLoader loader ? loader.GetExtension(Value) : format.Extension;
+        public string MediaType => format is IFileLoader loader ? loader.GetMediaType(Value) : format.MediaType;
 
         public FormatObject(IFileFormat format, Task<object> task)
         {

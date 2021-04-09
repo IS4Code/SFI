@@ -32,6 +32,8 @@
         Exif,
         [Uri("http://www.w3.org/2001/XMLSchema#")]
         Xsd,
+        [Uri("http://www.w3.org/2002/07/owl#")]
+        Owl,
         [Uri("http://dbpedia.org/datatype/")]
         Dt,
         [Uri("http://www.iana.org/assignments/media-types/")]

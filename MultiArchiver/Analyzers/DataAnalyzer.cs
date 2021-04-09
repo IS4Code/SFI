@@ -62,7 +62,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             var node = nodeFactory.Create(HashAlgorithm, hash);
 
-            node.Set(isBinary ? Classes.ContentAsBase64 : Classes.ContentAsText);
+            node.SetClass(isBinary ? Classes.ContentAsBase64 : Classes.ContentAsText);
             node.Set(Properties.Extent, length.ToString(), Datatypes.Byte);
 
             if(!isBinary)
@@ -119,7 +119,12 @@ namespace IS4.MultiArchiver.Analyzers
                 return System.Threading.Tasks.Task.Run(() => {
                     using(var stream = streamFactory())
                     {
-                        return reader(stream);
+                        try{
+                            return reader(stream);
+                        }catch(Exception e)
+                        {
+                            return e;
+                        }
                     }
                 });
             }

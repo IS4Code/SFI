@@ -7,6 +7,26 @@ namespace IS4.MultiArchiver.Services
         Uri FormatUri(T value);
     }
 
+    public interface IIndividualUriFormatter<in T> : IUriFormatter<T>
+    {
+
+    }
+
+    public interface IPropertyUriFormatter<in T> : IUriFormatter<T>
+    {
+
+    }
+
+    public interface IClassUriFormatter<in T> : IUriFormatter<T>
+    {
+
+    }
+
+    public interface IDatatypeUriFormatter<in T> : IUriFormatter<T>
+    {
+
+    }
+
     public class UriFormatter : IUriFormatter<string>
     {
         public static readonly IUriFormatter<string> Instance = new UriFormatter();

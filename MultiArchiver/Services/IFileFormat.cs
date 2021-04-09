@@ -48,7 +48,7 @@ namespace IS4.MultiArchiver.Services
         public abstract bool Match(Span<byte> header);
     }
 
-    public abstract class FileLoader<T> : FileFormat, IFileLoader where T : class
+    public abstract class FileLoader<T> : FileFormat, IFileLoader
     {
         public FileLoader(int headerLength, string mediaType, string extension) : base(headerLength, mediaType, extension)
         {

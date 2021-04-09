@@ -25,7 +25,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             foreach(var cls in recognizedClasses)
             {
-                node.Set(cls);
+                node.SetClass(cls);
             }
 
             return node;

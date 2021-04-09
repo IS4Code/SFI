@@ -19,7 +19,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             var node = nodeFactory.Root[Guid.NewGuid().ToString("D")];
 
-            node.Set(Classes.FileDataObject);
+            node.SetClass(Classes.FileDataObject);
 
             node.Set(Properties.Broader, Vocabularies.File, Uri.EscapeDataString(file.Name));
             //handler.HandleTriple(fileNode, this[Properties.Broader], this[pathUri]);

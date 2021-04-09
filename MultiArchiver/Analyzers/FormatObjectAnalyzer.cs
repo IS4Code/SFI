@@ -14,9 +14,10 @@ namespace IS4.MultiArchiver.Analyzers
 
         public ILinkedNode Analyze(FormatObject entity, ILinkedNodeFactory nodeFactory)
         {
+            if(!entity.Successful) return null;
             var node = nodeFactory.TryCreate(entity.Value) ?? nodeFactory.Root[Guid.NewGuid().ToString("D")];
 
-            node.Set(Classes.MediaObject);
+            node.SetClass(Classes.MediaObject);
 
             if(entity.MediaType is string type)
             {

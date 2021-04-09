@@ -2,13 +2,12 @@
 using IS4.MultiArchiver.Tools;
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 
 namespace IS4.MultiArchiver
 {
     public class EntityAnalyzer : IEntityAnalyzer
     {
-        public ICollection<object> Analyzers { get; } = new SortedSet<object>(TypeInheritanceComparer.Instance);
+        public ICollection<object> Analyzers { get; } = new SortedSet<object>(EntityAnalyzerComparer.Instance);
 
         public ILinkedNode Analyze<T>(T entity, ILinkedNodeFactory nodeFactory) where T : class
         {
@@ -24,24 +23,18 @@ namespace IS4.MultiArchiver
             return null;
         }
 
-        class TypeInheritanceComparer : GlobalObjectComparer<object>
+        class EntityAnalyzerComparer : TypeInheritanceComparer<object>
         {
-            public static readonly IComparer<object> Instance = new TypeInheritanceComparer();
+            public static new readonly IComparer<object> Instance = new EntityAnalyzerComparer();
 
-            private TypeInheritanceComparer()
+            private EntityAnalyzerComparer()
             {
 
-            }
-
-            protected override int CompareInner(object x, object y)
-            {
-                var i1 = FindInterfaceOfType(x.GetType()) ?? throw new ArgumentException(null, nameof(x));
-                var i2 = FindInterfaceOfType(y.GetType()) ?? throw new ArgumentException(null, nameof(y));
-                return i1.IsAssignableFrom(i2) ? -1 : i2.IsAssignableFrom(i1) ? 1 : 0;
             }
 
             static readonly Type analyzerType = typeof(IEntityAnalyzer<>);
-            private Type FindInterfaceOfType(Type t)
+
+            protected override Type SelectType(Type t)
             {
                 foreach(var i in t.GetInterfaces())
                 {
