@@ -1,5 +1,5 @@
-﻿using System;
-using System.Globalization;
+﻿using IS4.MultiArchiver.Services;
+using System;
 using System.Text.RegularExpressions;
 
 namespace IS4.MultiArchiver
@@ -9,6 +9,21 @@ namespace IS4.MultiArchiver
         const string publicid = "publicid:";
 
         static readonly Regex pubIdRegex = new Regex(@"(^\s+|\s+$)|(\s+)|(\/\/)|(::)|([+:\/;'?#%])", RegexOptions.Compiled);
+
+        public class PublicIdFormatter : IUriFormatter<string>
+        {
+            public static readonly PublicIdFormatter Instance = new PublicIdFormatter();
+
+            private PublicIdFormatter()
+            {
+
+            }
+
+            public Uri FormatUri(string value)
+            {
+                return CreatePublicId(value);
+            }
+        }
 
         public static Uri CreatePublicId(string id)
         {

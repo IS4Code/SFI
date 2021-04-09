@@ -1,10 +1,11 @@
-﻿using System;
+﻿using IS4.MultiArchiver.Services;
+using System;
 using System.Collections.Concurrent;
 using System.Linq;
 
 namespace IS4.MultiArchiver.Vocabulary
 {
-    public sealed class VocabularyCache<TNode> where TNode : class
+    public sealed class VocabularyCache<TNode> : IVocabularyCache<TNode> where TNode : class
     {
         readonly Func<Uri, TNode> nodeFactory;
 

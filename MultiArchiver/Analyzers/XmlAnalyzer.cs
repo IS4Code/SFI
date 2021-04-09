@@ -55,12 +55,14 @@ namespace IS4.MultiArchiver.Analyzers
                             if(pubid != null)
                             {
                                 dtd.Set(Properties.PublicId, pubid);
+                                node.Set(UriTools.PublicIdFormatter.Instance, pubid);
                             }
                             var sysid = reader.GetAttribute("SYSTEM");
                             if(sysid != null)
                             {
                                 dtd.Set(Properties.PublicId, sysid, Datatypes.AnyURI);
                             }
+                            node.Set(Properties.DtDecl, dtd);
                             docType = new XDocumentType(name, pubid, sysid, reader.Value);
                             break;
                         case XmlNodeType.Element:

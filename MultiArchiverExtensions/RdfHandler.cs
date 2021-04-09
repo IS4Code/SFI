@@ -2,7 +2,6 @@
 using IS4.MultiArchiver.Vocabulary;
 using Microsoft.CSharp.RuntimeBinder;
 using System;
-using System.Runtime.Serialization;
 using VDS.RDF;
 
 namespace IS4.MultiArchiver
@@ -33,10 +32,6 @@ namespace IS4.MultiArchiver
             return baseAnalyzer.Analyze(entity, this);
         }
 
-        ILiteralNode this[string literal] => handler.CreateLiteralNode(literal);
-        ILiteralNode this[string literal, Datatypes datatype] => handler.CreateLiteralNode(literal, cache[datatype].Uri);
-        ILiteralNode this[string literal, string language] => handler.CreateLiteralNode(literal, language);
-
         ILiteralNode this[bool value] => value.ToLiteral(handler);
         ILiteralNode this[sbyte value] => value.ToLiteral(handler);
         ILiteralNode this[byte value] => value.ToLiteral(handler);
@@ -50,112 +45,58 @@ namespace IS4.MultiArchiver
         ILiteralNode this[DateTimeOffset value] => value.ToLiteral(handler);
         ILiteralNode this[DateTime value] => value.ToLiteral(handler, true);
 
-        IUriNode this[Uri name] => handler.CreateUriNode(name);
-
-        class UriNode : ILinkedNode
+        class UriNode : LinkedNode<INode>
         {
             readonly RdfHandler parent;
-            readonly IUriNode subject;
 
-            VocabularyCache<IUriNode> cache => parent.cache;
-
-            public UriNode(RdfHandler parent, IUriNode subject)
+            public UriNode(RdfHandler parent, INode subject) : base(subject, parent.cache)
             {
                 this.parent = parent;
-                this.subject = subject;
             }
 
-            private void HandleTriple(INode subj, INode pred, INode obj)
+            protected override void HandleTriple(INode subj, INode pred, INode obj)
             {
                 parent.handler.HandleTriple(new Triple(subj, pred, obj));
             }
 
-            public void Set(Classes @class)
+            protected override INode CreateNode(Uri uri)
             {
-                HandleTriple(subject, cache[Properties.Type], cache[@class]);
+                return parent.handler.CreateUriNode(uri);
             }
 
-            public void Set(Properties property, Individuals value)
+            protected override INode CreateNode(string value)
             {
-                HandleTriple(subject, cache[property], cache[value]);
+                return parent.handler.CreateLiteralNode(value);
             }
 
-            public void Set(Properties property, string value)
+            protected override INode CreateNode(string value, INode datatype)
             {
-                if(value == null) throw new ArgumentNullException(nameof(value));
-                HandleTriple(subject, cache[property], parent[value]);
+                return parent.handler.CreateLiteralNode(value, GetUri(datatype));
             }
 
-            public void Set(Properties property, string value, Datatypes datatype)
+            protected override INode CreateNode(string value, string language)
             {
-                if(value == null) throw new ArgumentNullException(nameof(value));
-                HandleTriple(subject, cache[property], parent[value, datatype]);
+                return parent.handler.CreateLiteralNode(value, language);
             }
 
-            public void Set(Properties property, string value, string language)
+            protected override INode CreateNode<T>(T value)
             {
-                if(value == null) throw new ArgumentNullException(nameof(value));
-                if(language == null) throw new ArgumentNullException(nameof(language));
-                HandleTriple(subject, cache[property], parent[value, language]);
-            }
-
-            public void Set(Properties property, Vocabularies vocabulary, string localName)
-            {
-                if(localName == null) throw new ArgumentNullException(nameof(localName));
-                HandleTriple(subject, cache[property], new UriNode(parent, cache[vocabulary])[localName].subject);
-            }
-
-            public void Set<T>(Properties property, IUriFormatter<T> formatter, T value)
-            {
-                HandleTriple(subject, cache[property], parent.handler.CreateUriNode(formatter.FormatUri(value)));
-            }
-
-            public void Set(Properties property, ILinkedNode value)
-            {
-                if(value == null) throw new ArgumentNullException(nameof(value));
-                if(!(value is UriNode node)) throw new ArgumentException(null, nameof(value));
-                HandleTriple(subject, cache[property], node.subject);
-            }
-
-            public void Set(Properties property, Uri value)
-            {
-                Set(property, value.IsAbsoluteUri ? value.AbsoluteUri : value.OriginalString, Datatypes.AnyURI);
-            }
-
-            public void Set<T>(Properties property, T value) where T : struct, IEquatable<T>, IFormattable, ISerializable
-            {
-                INode obj;
                 try{
-                    obj = parent[(dynamic)value];
+                    return parent[(dynamic)value];
                 }catch(RuntimeBinderException e)
                 {
                     throw new ArgumentException(null, nameof(value), e);
                 }
-                HandleTriple(subject, cache[property], obj);
             }
 
-            public UriNode this[string subName] {
-                get {
-                    if(subName == null) throw new ArgumentNullException(nameof(subName));
-                    return new UriNode(parent, parent.handler.CreateUriNode(new Uri(subject.Uri.AbsoluteUri + "/" + subName)));
-                }
-            }
-
-            ILinkedNode ILinkedNode.this[string subName] => this[subName];
-
-            public bool Equals(ILinkedNode other)
+            protected override Uri GetUri(INode node)
             {
-                return other is UriNode node && subject.Equals(node.subject);
+                return ((IUriNode)node).Uri;
             }
 
-            public override bool Equals(object obj)
+            protected override LinkedNode<INode> CreateNew(INode subject)
             {
-                return obj is UriNode node && subject.Equals(node.subject);
-            }
-
-            public override int GetHashCode()
-            {
-                return subject.GetHashCode();
+                return new UriNode(parent, subject);
             }
         }
     }

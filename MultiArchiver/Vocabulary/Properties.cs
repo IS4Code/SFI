@@ -32,6 +32,8 @@
         XmlEncoding,
         [Uri(Vocabularies.Cnt, "standalone")]
         XmlStandalone,
+        [Uri(Vocabularies.Cnt)]
+        DtDecl,
 
         [Uri(Vocabularies.Foaf)]
         Depicts,
