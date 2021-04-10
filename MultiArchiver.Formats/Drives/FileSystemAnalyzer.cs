@@ -66,6 +66,8 @@ namespace IS4.MultiArchiver.Analyzers
 
             public DateTime? LastAccessTime => info.LastAccessTimeUtc;
 
+            public bool IsThreadSafe => info.FileSystem.IsThreadSafe;
+
             public Stream Open()
             {
                 return info.Open(FileMode.Open, FileAccess.Read);

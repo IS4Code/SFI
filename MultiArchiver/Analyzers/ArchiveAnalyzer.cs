@@ -71,6 +71,8 @@ namespace IS4.MultiArchiver.Analyzers
 
             public DateTime? LastAccessTime => null;
 
+            public bool IsThreadSafe => true;
+
             public Stream Open()
             {
                 return new MemoryStream(data.Value, false);

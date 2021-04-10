@@ -14,7 +14,7 @@ namespace IS4.MultiArchiver.Formats
 
         public override bool Match(Span<byte> header)
         {
-            return header[0] == 0x50 && header[1] == 0x4B;
+            return header.Length >= 2 && header[0] == 0x50 && header[1] == 0x4B;
         }
 
         public ILinkedNode Match(Stream stream, ILinkedNodeFactory nodeFactory)

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public sealed class DataAnalyzer : IEntityAnalyzer<Func<Stream>>, IEntityAnalyzer<byte[]>
+    public sealed class DataAnalyzer : IEntityAnalyzer<IStreamFactory>, IEntityAnalyzer<byte[]>
 	{
         public IHashAlgorithm HashAlgorithm { get; set; }
         public Func<IEncodingDetector> EncodingDetectorFactory { get; set; }
@@ -22,7 +22,7 @@ namespace IS4.MultiArchiver.Analyzers
             EncodingDetectorFactory = encodingDetectorFactory;
         }
 
-		public ILinkedNode Analyze(Func<Stream> streamFactory, ILinkedNodeFactory nodeFactory)
+		public ILinkedNode Analyze(IStreamFactory streamFactory, ILinkedNodeFactory nodeFactory)
 		{
             var results = Formats.Select(format => new FormatResult(streamFactory, format, nodeFactory)).ToList();
             var signatureBuffer = new MemoryStream(results.Max(result => result.MaxReadBytes));
@@ -32,16 +32,17 @@ namespace IS4.MultiArchiver.Analyzers
             byte[] hash = null;
             long length = 0;
 
-            using(var stream = streamFactory())
+            using(var stream = streamFactory.Open())
             {
 			    hash = HashAlgorithm.ComputeHash(new AnalyzingStream(stream, segment => {
+                    if(segment.Count == 0) return;
 				    if(!isBinary)
 				    {
 					    if(Array.IndexOf<byte>(segment.Array, 0, segment.Offset, segment.Count) != -1)
 					    {
 						    isBinary = true;
 					    }else{
-						    encodingDetector.Write(segment);
+                            encodingDetector.Write(segment);
 					    }
 				    }
 				    if(signatureBuffer.Length < signatureBuffer.Capacity)
@@ -77,57 +78,91 @@ namespace IS4.MultiArchiver.Analyzers
 
             foreach(var result in results)
             {
-                var entity2 = new FormatObject(result.Format, result.Task);
-                var node2 = nodeFactory.Create(entity2);
-                if(node2 != null)
+                using(var entity2 = new FormatObject(result.Format, result.Result?.Result))
                 {
-                    node2.Set(Properties.HasFormat, node);
+                    var node2 = nodeFactory.Create(entity2);
+                    if(node2 != null)
+                    {
+                        node2.Set(Properties.HasFormat, node);
+                    }
                 }
-
-                result.Dispose();
             }
 
 			return node;
 		}
 
-		public ILinkedNode Analyze(byte[] entity, ILinkedNodeFactory analyzer)
+		public ILinkedNode Analyze(byte[] data, ILinkedNodeFactory analyzer)
 		{
-			return Analyze(() => new MemoryStream(entity, false), analyzer);
+			return Analyze(new MemoryStreamFactory(data), analyzer);
 		}
+
+        class MemoryStreamFactory : IStreamFactory
+        {
+            readonly byte[] data;
+
+            public bool IsThreadSafe => true;
+
+            public MemoryStreamFactory(byte[] data)
+            {
+                this.data = data;
+            }
+
+            public Stream Open()
+            {
+                return new MemoryStream(data, false);
+            }
+        }
         
-		class FormatResult : IDisposable, IComparable<FormatResult>
+		class FormatResult : IComparable<FormatResult>
 		{
             public IFileFormat Format { get; }
 
-            public Task<object> Task { get; }
+            readonly bool isParsed = false;
+            public Task<object> Result { get; }
 
             public int MaxReadBytes => Format.HeaderLength;
 
-            public FormatResult(Func<Stream> streamFactory, IFileFormat format, ILinkedNodeFactory nodeFactory)
+            public FormatResult(IStreamFactory streamFactory, IFileFormat format, ILinkedNodeFactory nodeFactory)
 			{
                 Format = format;
                 if(format is IFileReader reader)
                 {
-                    Task = StartReading(streamFactory, s => reader.Match(s, nodeFactory));
+                    isParsed = true;
+                    Result = StartReading(streamFactory, s => reader.Match(s, nodeFactory));
                 }else if(format is IFileLoader loader)
-				{
-                    Task = StartReading(streamFactory, loader.Match);
+                {
+                    isParsed = true;
+                    Result = StartReading(streamFactory, loader.Match);
 				}
             }
 
-            private Task<object> StartReading(Func<Stream> streamFactory, Func<Stream, object> reader)
+            private Task<object> StartReading(IStreamFactory streamFactory, Func<Stream, object> reader)
             {
-                return System.Threading.Tasks.Task.Run(() => {
-                    using(var stream = streamFactory())
+                if(streamFactory.IsThreadSafe)
+                {
+                    return Task.Run(() => StartReadingInner(streamFactory, reader));
+                }else{
+                    return Task.FromResult(StartReadingInner(streamFactory, reader));
+                }
+            }
+
+            private object StartReadingInner(IStreamFactory streamFactory, Func<Stream, object> reader)
+            {
+                var stream = streamFactory.Open();
+                try{
+                    try{
+                        return reader(stream);
+                    }catch(Exception e)
                     {
-                        try{
-                            return reader(stream);
-                        }catch(Exception e)
-                        {
-                            return e;
-                        }
+                        return e;
                     }
-                });
+                }finally{
+                    try{
+                        stream.Dispose();
+                    }catch{
+
+                    }
+                }
             }
 
             public bool IsValid(MemoryStream header)
@@ -136,32 +171,19 @@ namespace IS4.MultiArchiver.Analyzers
                 {
                     buffer = new ArraySegment<byte>(header.ToArray());
                 }
-                return Format.Match(buffer.AsSpan()) && (Task == null || Task.Result != null);
+                return Format.Match(buffer.AsSpan()) && (!isParsed || Result != null);
             }
 
             public int CompareTo(FormatResult other)
             {
-                var a = Task?.Result;
-                var b = other.Task?.Result;
+                var a = Result;
+                var b = other?.Result;
                 if(a == null && b == null) return 0;
                 else if(a == null) return 1;
                 else if(b == null) return -1;
                 var t1 = a.GetType();
                 var t2 = b.GetType();
                 return t1.IsAssignableFrom(t2) ? 1 : t2.IsAssignableFrom(t1) ? -1 : 0;
-            }
-
-            protected virtual void Dispose(bool disposing)
-            {
-                if(disposing && Task != null)
-                {
-                    (Task.Result as IDisposable)?.Dispose();
-                }
-            }
-
-            public void Dispose()
-            {
-                Dispose(true);
             }
         }
 

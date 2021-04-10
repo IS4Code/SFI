@@ -16,10 +16,9 @@ namespace IS4.MultiArchiver.Services
         IFileNodeInfo WithContainer(ILinkedNode container);
     }
 
-    public interface IFileInfo : IFileNodeInfo
+    public interface IFileInfo : IFileNodeInfo, IStreamFactory
     {
         long? Length { get; }
-        Stream Open();
     }
 
     public interface IDirectoryInfo : IFileNodeInfo

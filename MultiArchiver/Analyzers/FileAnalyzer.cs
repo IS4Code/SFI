@@ -8,14 +8,14 @@ using System.Linq;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public sealed class FileAnalyzer : IEntityAnalyzer<IFileInfo>, IEntityAnalyzer<FileInfo>, IEntityAnalyzer<IDirectoryInfo>, IEntityAnalyzer<DirectoryInfo>
+    public sealed class FileAnalyzer : IEntityAnalyzer<IFileInfo>, IEntityAnalyzer<FileInfo>, IEntityAnalyzer<IDirectoryInfo>, IEntityAnalyzer<DirectoryInfo>, IEntityAnalyzer<IFileNodeInfo>
     {
         public FileAnalyzer()
         {
 
         }
 
-        private ILinkedNode Analyze(IFileNodeInfo info, ILinkedNodeFactory nodeFactory)
+        private ILinkedNode AnalyzeInner(IFileNodeInfo info, ILinkedNodeFactory nodeFactory)
         {
             var name = Uri.EscapeUriString(info.Name);
             var node = info.Container?[name] ?? nodeFactory.Root[Guid.NewGuid().ToString("D")];
@@ -45,14 +45,14 @@ namespace IS4.MultiArchiver.Analyzers
 
         public ILinkedNode Analyze(IFileInfo file, ILinkedNodeFactory nodeFactory)
         {
-            var node = Analyze((IFileNodeInfo)file, nodeFactory);
+            var node = AnalyzeInner(file, nodeFactory);
             if(node != null)
             {
                 if(file.Length is long len)
                 {
                     node.Set(Properties.FileSize, len);
                 }
-                var content = nodeFactory.Create<Func<Stream>>(() => file.Open());
+                var content = nodeFactory.Create<IStreamFactory>(file);
                 if(content != null)
                 {
                     content.Set(Properties.IsStoredAs, node);
@@ -63,7 +63,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         public ILinkedNode Analyze(IDirectoryInfo directory, ILinkedNodeFactory nodeFactory)
         {
-            var node = Analyze((IFileNodeInfo)directory, nodeFactory);
+            var node = AnalyzeInner(directory, nodeFactory);
             if(node != null)
             {
                 var folder = nodeFactory.Root[Guid.NewGuid().ToString("D")];
@@ -76,7 +76,7 @@ namespace IS4.MultiArchiver.Analyzers
 
                     foreach(var entry in directory.Entries)
                     {
-                        var node2 = nodeFactory.Create(entry.WithContainer(folder));
+                        var node2 = Analyze(entry.WithContainer(folder), nodeFactory);
                         if(node2 != null)
                         {
                             node2.Set(Properties.BelongsToContainer, folder);
@@ -95,6 +95,16 @@ namespace IS4.MultiArchiver.Analyzers
         public ILinkedNode Analyze(DirectoryInfo entity, ILinkedNodeFactory nodeFactory)
         {
             return Analyze(new DirectoryInfoWrapper(entity, null), nodeFactory);
+        }
+
+        public ILinkedNode Analyze(IFileNodeInfo entity, ILinkedNodeFactory nodeFactory)
+        {
+            switch(entity)
+            {
+                case IFileInfo file: return Analyze(file, nodeFactory);
+                case IDirectoryInfo dir: return Analyze(dir, nodeFactory);
+                default: return null;
+            }
         }
 
         class FileInfoWrapper : IFileInfo
@@ -120,6 +130,8 @@ namespace IS4.MultiArchiver.Analyzers
             public DateTime? LastWriteTime => baseInfo.LastWriteTimeUtc;
 
             public DateTime? LastAccessTime => baseInfo.LastAccessTimeUtc;
+
+            public bool IsThreadSafe => true;
 
             public Stream Open()
             {
