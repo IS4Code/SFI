@@ -20,8 +20,10 @@ namespace IS4.MultiArchiver.Extensions
             Analyzers.Add(FileAnalyzer = new FileAnalyzer());
             Analyzers.Add(DataAnalyzer = new DataAnalyzer(hash, () => new UdeEncodingDetector()));
             DataAnalyzer.Formats.Add(new XmlFileFormat());
+            DataAnalyzer.Formats.Add(new ZipFileFormat());
             Analyzers.Add(new FormatObjectAnalyzer());
             Analyzers.Add(new XmlAnalyzer());
+            Analyzers.Add(new ArchiveAnalyzer());
         }
 
         public void Archive(string file, string output)

@@ -18,7 +18,7 @@ namespace Test
             var analyzer = new ImageMetadataAnalyzer();
             analyzer.MetadataReaders.Add(new ExifReader());
             archiver.Analyzers.Add(analyzer);
-            archiver.Archive("DSC00014.JPG", "graph.ttl");
+            archiver.Archive("DSC00014.zip", "graph.ttl");
             //archiver.Archive("image.png", "graph.ttl");
         }
     }

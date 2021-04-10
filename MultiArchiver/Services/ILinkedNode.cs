@@ -17,7 +17,7 @@ namespace IS4.MultiArchiver.Services
         void Set<T>(Properties property, IUriFormatter<T> formatter, T value);
         void Set(Properties property, Uri value);
         void Set(Properties property, ILinkedNode value);
-        void Set<T>(Properties property, T value) where T : struct, IEquatable<T>, IFormattable, ISerializable;
+        void Set<T>(Properties property, T value) where T : struct, IEquatable<T>, IFormattable;
 
         void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, Individuals value);
         void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, string value);
@@ -91,7 +91,7 @@ namespace IS4.MultiArchiver.Services
         public void Set(Properties property, Vocabularies vocabulary, string localName)
         {
             if(localName == null) throw new ArgumentNullException(nameof(localName));
-            HandleTriple(Subject, Cache[property], CreateNode(new Uri(GetUri(Cache[vocabulary]).AbsoluteUri + "/" + localName, UriKind.Absolute)));
+            HandleTriple(Subject, Cache[property], CreateNode(new Uri(GetUri(Cache[vocabulary]).AbsoluteUri + localName, UriKind.Absolute)));
         }
 
         public void Set<T>(Properties property, IUriFormatter<T> formatter, T value)
@@ -111,7 +111,7 @@ namespace IS4.MultiArchiver.Services
             Set(property, value.IsAbsoluteUri ? value.AbsoluteUri : value.OriginalString, Datatypes.AnyURI);
         }
 
-        public void Set<T>(Properties property, T value) where T : struct, IEquatable<T>, IFormattable, ISerializable
+        public void Set<T>(Properties property, T value) where T : struct, IEquatable<T>, IFormattable
         {
             HandleTriple(Subject, Cache[property], CreateNode(value));
         }
@@ -143,7 +143,7 @@ namespace IS4.MultiArchiver.Services
         public void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, Vocabularies vocabulary, string localName)
         {
             if(localName == null) throw new ArgumentNullException(nameof(localName));
-            HandleTriple(Subject, CreateNode(propertyFormatter.FormatUri(propertyValue)), CreateNode(new Uri(GetUri(Cache[vocabulary]).AbsoluteUri + "/" + localName, UriKind.Absolute)));
+            HandleTriple(Subject, CreateNode(propertyFormatter.FormatUri(propertyValue)), CreateNode(new Uri(GetUri(Cache[vocabulary]).AbsoluteUri + localName, UriKind.Absolute)));
         }
 
         public void Set<TProp, T>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, IUriFormatter<T> formatter, T value)

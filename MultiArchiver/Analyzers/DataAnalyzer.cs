@@ -30,12 +30,10 @@ namespace IS4.MultiArchiver.Analyzers
             var encodingDetector = EncodingDetectorFactory?.Invoke();
             var isBinary = false;
             byte[] hash = null;
-            long length;
+            long length = 0;
 
             using(var stream = streamFactory())
             {
-                length = stream.Length;
-
 			    hash = HashAlgorithm.ComputeHash(new AnalyzingStream(stream, segment => {
 				    if(!isBinary)
 				    {
@@ -50,6 +48,7 @@ namespace IS4.MultiArchiver.Analyzers
 				    {
 					    signatureBuffer.Write(segment.Array, segment.Offset, Math.Min(signatureBuffer.Capacity - (int)signatureBuffer.Length, segment.Count));
 				    }
+                    length += segment.Count;
                 }));
 
                 encodingDetector.End();

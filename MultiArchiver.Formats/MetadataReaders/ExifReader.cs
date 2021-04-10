@@ -2,10 +2,10 @@
 using IS4.MultiArchiver.Vocabulary;
 using MetadataExtractor;
 using MetadataExtractor.Formats.Exif;
-using Microsoft.CSharp.RuntimeBinder;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Text;
 
 namespace IS4.MultiArchiver.Analyzers.MetadataReaders
 {
@@ -15,18 +15,17 @@ namespace IS4.MultiArchiver.Analyzers.MetadataReaders
         {
             foreach(var tag in directory.Tags)
             {
-                if(!exifFields.TryGetValue(tag.Type, out var key))
+                if(!exifFields.TryGetValue(tag.Type, out var id))
                 {
                     continue;
                 }
-                var id = key.Split('.');
                 string value;
                 Datatypes datatype;
                 switch(directory.GetObject(tag.Type))
                 {
                     case Rational r:
                         r = r.GetSimplifiedInstance();
-                        if(r.Denominator == 0)
+                        if(r.Denominator == 1)
                         {
                             node.Set(ExifFormatter.Instance, id, r.Numerator);
                             continue;
@@ -38,9 +37,20 @@ namespace IS4.MultiArchiver.Analyzers.MetadataReaders
                         value = s.ToString();
                         datatype = Datatypes.String;
                         break;
-                    case byte[] b:
-                        value = Convert.ToBase64String(b);
-                        datatype = Datatypes.Base64Binary;
+                    case byte[] bs:
+                        if(bs.Length <= 8)
+                        {
+                            var sb = new StringBuilder();
+                            foreach(byte b in bs)
+                            {
+                                sb.Append(b.ToString("X2"));
+                            }
+                            value = sb.ToString();
+                            datatype = Datatypes.HexBinary;
+                        }else{
+                            value = Convert.ToBase64String(bs);
+                            datatype = Datatypes.Base64Binary;
+                        }
                         break;
                     case ValueType v:
                         node.TrySet(ExifFormatter.Instance, id, v);
@@ -66,111 +76,110 @@ namespace IS4.MultiArchiver.Analyzers.MetadataReaders
             return false;
         }
 
-        class ExifFormatter : IPropertyUriFormatter<string[]>
+        class ExifFormatter : IPropertyUriFormatter<string>
         {
-            public static readonly IPropertyUriFormatter<string[]> Instance = new ExifFormatter();
+            public static readonly IPropertyUriFormatter<string> Instance = new ExifFormatter();
 
             private ExifFormatter()
             {
 
             }
 
-            public Uri FormatUri(string[] value)
+            public Uri FormatUri(string key)
             {
-                var key = value[value.Length - 1];
                 key = key.Substring(0, 1).ToLowerInvariant() + key.Substring(1);
-                return new Uri($"http://www.w3.org/2003/12/exif/ns#{key}", UriKind.Absolute);
+                return new Uri("http://www.w3.org/2003/12/exif/ns#" + key, UriKind.Absolute);
             }
         }
 
         static readonly Dictionary<int, string> exifFields = new Dictionary<int, string>
         {
-            { 0x0100, "Exif.Image.ImageWidth" },
-            { 0x0101, "Exif.Image.ImageLength" },
-            { 0x0102, "Exif.Image.BitsPerSample" },
-            { 0x0103, "Exif.Image.Compression" },
-            { 0x0106, "Exif.Image.PhotometricInterpretation" },
-            { 0x010e, "Exif.Image.ImageDescription" },
-            { 0x010f, "Exif.Image.Make" },
-            { 0x0110, "Exif.Image.Model" },
-            { 0x0111, "Exif.Image.StripOffsets" },
-            { 0x0112, "Exif.Image.Orientation" },
-            { 0x0115, "Exif.Image.SamplesPerPixel" },
-            { 0x0116, "Exif.Image.RowsPerStrip" },
-            { 0x0117, "Exif.Image.StripByteCounts" },
-            { 0x011a, "Exif.Image.XResolution" },
-            { 0x011b, "Exif.Image.YResolution" },
-            { 0x011c, "Exif.Image.PlanarConfiguration" },
-            { 0x0128, "Exif.Image.ResolutionUnit" },
-            { 0x012d, "Exif.Image.TransferFunction" },
-            { 0x0131, "Exif.Image.Software" },
-            { 0x0132, "Exif.Image.DateTime" },
-            { 0x013b, "Exif.Image.Artist" },
-            { 0x013e, "Exif.Image.WhitePoint" },
-            { 0x013f, "Exif.Image.PrimaryChromaticities" },
-            { 0x0201, "Exif.Image.JPEGInterchangeFormat" },
-            { 0x0202, "Exif.Image.JPEGInterchangeFormatLength" },
-            { 0x0211, "Exif.Image.YCbCrCoefficients" },
-            { 0x0212, "Exif.Image.YCbCrSubSampling" },
-            { 0x0213, "Exif.Image.YCbCrPositioning" },
-            { 0x0214, "Exif.Image.ReferenceBlackWhite" },
-            { 0x8298, "Exif.Image.Copyright" },
-            { 0x829a, "Exif.Image.ExposureTime" },
-            { 0x829d, "Exif.Image.FNumber" },
-            { 0x8822, "Exif.Image.ExposureProgram" },
-            { 0x8824, "Exif.Image.SpectralSensitivity" },
-            { 0x8827, "Exif.Image.ISOSpeedRatings" },
-            { 0x8828, "Exif.Image.OECF" },
-            { 0x9000, "Exif.Photo.ExifVersion" },
-            { 0x9003, "Exif.Image.DateTimeOriginal" },
-            { 0x9004, "Exif.Photo.DateTimeDigitized" },
-            { 0x9101, "Exif.Photo.ComponentsConfiguration" },
-            { 0x9102, "Exif.Image.CompressedBitsPerPixel" },
-            { 0x9201, "Exif.Image.ShutterSpeedValue" },
-            { 0x9202, "Exif.Image.ApertureValue" },
-            { 0x9203, "Exif.Image.BrightnessValue" },
-            { 0x9204, "Exif.Image.ExposureBiasValue" },
-            { 0x9205, "Exif.Image.MaxApertureValue" },
-            { 0x9206, "Exif.Image.SubjectDistance" },
-            { 0x9207, "Exif.Image.MeteringMode" },
-            { 0x9208, "Exif.Image.LightSource" },
-            { 0x9209, "Exif.Image.Flash" },
-            { 0x920a, "Exif.Image.FocalLength" },
-            { 0x9214, "Exif.Photo.SubjectArea" },
-            { 0x927c, "Exif.Photo.MakerNote" },
-            { 0x9286, "Exif.Photo.UserComment" },
-            { 0x9290, "Exif.Photo.SubSecTime" },
-            { 0x9291, "Exif.Photo.SubSecTimeOriginal" },
-            { 0x9292, "Exif.Photo.SubSecTimeDigitized" },
-            { 0xa000, "Exif.Photo.FlashpixVersion" },
-            { 0xa001, "Exif.Photo.ColorSpace" },
-            { 0xa002, "Exif.Photo.PixelXDimension" },
-            { 0xa003, "Exif.Photo.PixelYDimension" },
-            { 0xa004, "Exif.Photo.RelatedSoundFile" },
-            { 0xa20b, "Exif.Photo.FlashEnergy" },
-            { 0xa20c, "Exif.Photo.SpatialFrequencyResponse" },
-            { 0xa20e, "Exif.Photo.FocalPlaneXResolution" },
-            { 0xa20f, "Exif.Photo.FocalPlaneYResolution" },
-            { 0xa210, "Exif.Photo.FocalPlaneResolutionUnit" },
-            { 0xa214, "Exif.Photo.SubjectLocation" },
-            { 0xa215, "Exif.Photo.ExposureIndex" },
-            { 0xa217, "Exif.Photo.SensingMethod" },
-            { 0xa300, "Exif.Photo.FileSource" },
-            { 0xa301, "Exif.Photo.SceneType" },
-            { 0xa302, "Exif.Photo.CFAPattern" },
-            { 0xa401, "Exif.Photo.CustomRendered" },
-            { 0xa402, "Exif.Photo.ExposureMode" },
-            { 0xa403, "Exif.Photo.WhiteBalance" },
-            { 0xa404, "Exif.Photo.DigitalZoomRatio" },
-            { 0xa405, "Exif.Photo.FocalLengthIn35mmFilm" },
-            { 0xa406, "Exif.Photo.SceneCaptureType" },
-            { 0xa407, "Exif.Photo.GainControl" },
-            { 0xa408, "Exif.Photo.Contrast" },
-            { 0xa409, "Exif.Photo.Saturation" },
-            { 0xa40a, "Exif.Photo.Sharpness" },
-            { 0xa40b, "Exif.Photo.DeviceSettingDescription" },
-            { 0xa40c, "Exif.Photo.SubjectDistanceRange" },
-            { 0xa420, "Exif.Photo.ImageUniqueID" },
+            { 0x0100, "ImageWidth" },
+            { 0x0101, "ImageLength" },
+            { 0x0102, "BitsPerSample" },
+            { 0x0103, "Compression" },
+            { 0x0106, "PhotometricInterpretation" },
+            { 0x010e, "ImageDescription" },
+            { 0x010f, "Make" },
+            { 0x0110, "Model" },
+            { 0x0111, "StripOffsets" },
+            { 0x0112, "Orientation" },
+            { 0x0115, "SamplesPerPixel" },
+            { 0x0116, "RowsPerStrip" },
+            { 0x0117, "StripByteCounts" },
+            { 0x011a, "XResolution" },
+            { 0x011b, "YResolution" },
+            { 0x011c, "PlanarConfiguration" },
+            { 0x0128, "ResolutionUnit" },
+            { 0x012d, "TransferFunction" },
+            { 0x0131, "Software" },
+            { 0x0132, "DateTime" },
+            { 0x013b, "Artist" },
+            { 0x013e, "WhitePoint" },
+            { 0x013f, "PrimaryChromaticities" },
+            { 0x0201, "JPEGInterchangeFormat" },
+            { 0x0202, "JPEGInterchangeFormatLength" },
+            { 0x0211, "YCbCrCoefficients" },
+            { 0x0212, "YCbCrSubSampling" },
+            { 0x0213, "YCbCrPositioning" },
+            { 0x0214, "ReferenceBlackWhite" },
+            { 0x8298, "Copyright" },
+            { 0x829a, "ExposureTime" },
+            { 0x829d, "FNumber" },
+            { 0x8822, "ExposureProgram" },
+            { 0x8824, "SpectralSensitivity" },
+            { 0x8827, "ISOSpeedRatings" },
+            { 0x8828, "OECF" },
+            { 0x9000, "ExifVersion" },
+            { 0x9003, "DateTimeOriginal" },
+            { 0x9004, "DateTimeDigitized" },
+            { 0x9101, "ComponentsConfiguration" },
+            { 0x9102, "CompressedBitsPerPixel" },
+            { 0x9201, "ShutterSpeedValue" },
+            { 0x9202, "ApertureValue" },
+            { 0x9203, "BrightnessValue" },
+            { 0x9204, "ExposureBiasValue" },
+            { 0x9205, "MaxApertureValue" },
+            { 0x9206, "SubjectDistance" },
+            { 0x9207, "MeteringMode" },
+            { 0x9208, "LightSource" },
+            { 0x9209, "Flash" },
+            { 0x920a, "FocalLength" },
+            { 0x9214, "SubjectArea" },
+            { 0x927c, "MakerNote" },
+            { 0x9286, "UserComment" },
+            { 0x9290, "SubSecTime" },
+            { 0x9291, "SubSecTimeOriginal" },
+            { 0x9292, "SubSecTimeDigitized" },
+            { 0xa000, "FlashpixVersion" },
+            { 0xa001, "ColorSpace" },
+            { 0xa002, "PixelXDimension" },
+            { 0xa003, "PixelYDimension" },
+            { 0xa004, "RelatedSoundFile" },
+            { 0xa20b, "FlashEnergy" },
+            { 0xa20c, "SpatialFrequencyResponse" },
+            { 0xa20e, "FocalPlaneXResolution" },
+            { 0xa20f, "FocalPlaneYResolution" },
+            { 0xa210, "FocalPlaneResolutionUnit" },
+            { 0xa214, "SubjectLocation" },
+            { 0xa215, "ExposureIndex" },
+            { 0xa217, "SensingMethod" },
+            { 0xa300, "FileSource" },
+            { 0xa301, "SceneType" },
+            { 0xa302, "CFAPattern" },
+            { 0xa401, "CustomRendered" },
+            { 0xa402, "ExposureMode" },
+            { 0xa403, "WhiteBalance" },
+            { 0xa404, "DigitalZoomRatio" },
+            { 0xa405, "FocalLengthIn35mmFilm" },
+            { 0xa406, "SceneCaptureType" },
+            { 0xa407, "GainControl" },
+            { 0xa408, "Contrast" },
+            { 0xa409, "Saturation" },
+            { 0xa40a, "Sharpness" },
+            { 0xa40b, "DeviceSettingDescription" },
+            { 0xa40c, "SubjectDistanceRange" },
+            { 0xa420, "ImageUniqueID" },
         };
     }
 }

@@ -5,6 +5,8 @@
         [Uri(Vocabularies.Xsd)]
         AnyURI,
         [Uri(Vocabularies.Xsd)]
+        HexBinary,
+        [Uri(Vocabularies.Xsd)]
         Base64Binary,
         [Uri(Vocabularies.Xsd)]
         Integer,

@@ -26,22 +26,6 @@ namespace IS4.MultiArchiver.Formats
             return true;
         }
 
-        public IDisposable Match(Stream stream)
-        {
-            var reader = XmlReader.Create(stream, readerSettings);
-            try{
-                if(!reader.Read())
-                {
-                    reader.Dispose();
-                    return null;
-                }
-            }catch{
-                reader.Dispose();
-                throw;
-            }
-            return reader;
-        }
-
         public ILinkedNode Match(Stream stream, ILinkedNodeFactory nodeFactory)
         {
             using(var reader = XmlReader.Create(stream, readerSettings))

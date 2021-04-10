@@ -16,10 +16,7 @@ namespace IS4.MultiArchiver.Analyzers
             var node = base.Analyze(image, nodeFactory);
             if(node != null)
             {
-                foreach(var prop in image.PropertyItems)
-                {
-                    //MetadataExtractor.Formats.Exif.ExifReader()
-                }
+
             }
             return node;
         }
