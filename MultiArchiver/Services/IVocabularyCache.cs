@@ -1,4 +1,5 @@
 ﻿using IS4.MultiArchiver.Vocabulary;
+using System.Collections.Generic;
 
 namespace IS4.MultiArchiver.Services
 {
@@ -9,5 +10,6 @@ namespace IS4.MultiArchiver.Services
         TNode this[Individuals name] { get; }
         TNode this[Datatypes name] { get; }
         TNode this[Vocabularies name] { get; }
+        IReadOnlyDictionary<Vocabularies, string> Vocabularies { get; }
     }
 }

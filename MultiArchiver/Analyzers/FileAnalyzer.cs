@@ -8,8 +8,10 @@ using System.Linq;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public sealed class FileAnalyzer : IEntityAnalyzer<IFileInfo>, IEntityAnalyzer<FileInfo>, IEntityAnalyzer<IDirectoryInfo>, IEntityAnalyzer<DirectoryInfo>, IEntityAnalyzer<IFileNodeInfo>
+    public sealed class FileAnalyzer : IEntityAnalyzer<FileInfo>, IEntityAnalyzer<DirectoryInfo>, IEntityAnalyzer<IFileNodeInfo>
     {
+        public ICollection<IFileHashAlgorithm> HashAlgorithms { get; } = new List<IFileHashAlgorithm>();
+
         public FileAnalyzer()
         {
 
@@ -43,11 +45,27 @@ namespace IS4.MultiArchiver.Analyzers
             return node;
         }
 
-        public ILinkedNode Analyze(IFileInfo file, ILinkedNodeFactory nodeFactory)
+        private void HashInfo(ILinkedNode node, IFileNodeInfo info, ILinkedNodeFactory nodeFactory)
+        {
+            foreach(var alg in HashAlgorithms)
+            {
+                var hash = alg.ComputeHash(info);
+                var hashNode = nodeFactory.Create(alg, hash);
+
+                hashNode.Set(Properties.DigestAlgorithm, alg.Identifier);
+                hashNode.Set(Properties.DigestValue, Convert.ToBase64String(hash), Datatypes.Base64Binary);
+
+                node.Set(Properties.Broader, hashNode);
+            }
+        }
+
+        private ILinkedNode Analyze(IFileInfo file, ILinkedNodeFactory nodeFactory)
         {
             var node = AnalyzeInner(file, nodeFactory);
             if(node != null)
             {
+                HashInfo(node, file, nodeFactory);
+
                 if(file.Length is long len)
                 {
                     node.Set(Properties.FileSize, len);
@@ -61,7 +79,7 @@ namespace IS4.MultiArchiver.Analyzers
             return node;
         }
 
-        public ILinkedNode Analyze(IDirectoryInfo directory, ILinkedNodeFactory nodeFactory)
+        private ILinkedNode Analyze(IDirectoryInfo directory, ILinkedNodeFactory nodeFactory)
         {
             var node = AnalyzeInner(directory, nodeFactory);
             if(node != null)
@@ -74,9 +92,11 @@ namespace IS4.MultiArchiver.Analyzers
 
                     folder.Set(Properties.IsStoredAs, node);
 
+                    HashInfo(folder, directory, nodeFactory);
+
                     foreach(var entry in directory.Entries)
                     {
-                        var node2 = Analyze(entry.WithContainer(folder), nodeFactory);
+                        var node2 = Analyze(entry.WithContainer(node), nodeFactory);
                         if(node2 != null)
                         {
                             node2.Set(Properties.BelongsToContainer, folder);
@@ -123,7 +143,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             public string Path => baseInfo.FullName.Substring(System.IO.Path.GetPathRoot(baseInfo.FullName).Length);
 
-            public long? Length => baseInfo.Length;
+            public long Length => baseInfo.Length;
 
             public DateTime? CreationTime => baseInfo.CreationTimeUtc;
 
@@ -132,6 +152,10 @@ namespace IS4.MultiArchiver.Analyzers
             public DateTime? LastAccessTime => baseInfo.LastAccessTimeUtc;
 
             public bool IsThreadSafe => true;
+
+            object IPersistentKey.ReferenceKey => AppDomain.CurrentDomain;
+
+            object IPersistentKey.DataKey => baseInfo.FullName;
 
             public Stream Open()
             {
@@ -170,6 +194,10 @@ namespace IS4.MultiArchiver.Analyzers
                 baseInfo.EnumerateFiles().Select(f => (IFileNodeInfo)new FileInfoWrapper(f, null)).Concat(
                     baseInfo.EnumerateDirectories().Select(d => new DirectoryInfoWrapper(d, null))
                     );
+
+            object IPersistentKey.ReferenceKey => AppDomain.CurrentDomain;
+
+            object IPersistentKey.DataKey => baseInfo.FullName;
 
             public IFileNodeInfo WithContainer(ILinkedNode container)
             {

@@ -5,6 +5,9 @@
         [Uri(Vocabularies.Rdf)]
         Type,
 
+        [Uri(Vocabularies.Owl)]
+        SameAs,
+
         [Uri(Vocabularies.DcTerms)]
         Description,
         [Uri(Vocabularies.DcTerms)]
@@ -69,5 +72,12 @@
 
         [Uri(Vocabularies.Skos)]
         Broader,
+        [Uri(Vocabularies.Skos)]
+        ExactMatch,
+        [Uri(Vocabularies.Skos)]
+        CloseMatch,
+
+        /*[Uri(Vocabularies.At)]
+        Digest,*/
     }
 }

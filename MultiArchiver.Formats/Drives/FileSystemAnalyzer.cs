@@ -58,7 +58,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             public string Path => info.FullName;
 
-            public long? Length => info.Length;
+            public long Length => info.Length;
 
             public DateTime? CreationTime => info.CreationTimeUtc;
 
@@ -67,6 +67,10 @@ namespace IS4.MultiArchiver.Analyzers
             public DateTime? LastAccessTime => info.LastAccessTimeUtc;
 
             public bool IsThreadSafe => info.FileSystem.IsThreadSafe;
+
+            object IPersistentKey.ReferenceKey => info.FileSystem;
+
+            object IPersistentKey.DataKey => info.FullName;
 
             public Stream Open()
             {
@@ -104,6 +108,10 @@ namespace IS4.MultiArchiver.Analyzers
                 info.GetFiles().Select(f => (IFileNodeInfo)new FileInfoWrapper(f, null)).Concat(
                     info.GetDirectories().Select(d => new DirectoryInfoWrapper(d, null))
                     );
+
+            object IPersistentKey.ReferenceKey => info.FileSystem;
+
+            object IPersistentKey.DataKey => info.FullName;
 
             public IFileNodeInfo WithContainer(ILinkedNode container)
             {

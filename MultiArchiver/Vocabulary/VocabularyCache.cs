@@ -1,6 +1,7 @@
 ﻿using IS4.MultiArchiver.Services;
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace IS4.MultiArchiver.Vocabulary
@@ -14,6 +15,8 @@ namespace IS4.MultiArchiver.Vocabulary
         public TNode this[Individuals name] => CreateNode(name, true, individualCache);
         public TNode this[Datatypes name] => CreateNode(name, true, datatypeCache);
         public TNode this[Vocabularies name] => nodeFactory(new Uri(vocabularyCache.GetOrAdd(name, GetUri)));
+
+        public IReadOnlyDictionary<Vocabularies, string> Vocabularies => vocabularyCache;
 
         readonly ConcurrentDictionary<Classes, TNode> classCache = new ConcurrentDictionary<Classes, TNode>();
         readonly ConcurrentDictionary<Properties, TNode> propertyCache = new ConcurrentDictionary<Properties, TNode>();

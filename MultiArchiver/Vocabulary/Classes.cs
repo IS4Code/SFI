@@ -28,5 +28,8 @@
         FilesystemImage,
         [Uri(Vocabularies.Nfo)]
         Folder,
+
+        [Uri(Vocabularies.Sec)]
+        Digest,
     }
 }

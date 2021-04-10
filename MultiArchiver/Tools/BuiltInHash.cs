@@ -7,13 +7,13 @@ using Cryptography = System.Security.Cryptography;
 
 namespace IS4.MultiArchiver.Tools
 {
-    public class BuiltInHash : HashAlgorithm
+    public class BuiltInHash : DataHashAlgorithm
     {
-        public static readonly IHashAlgorithm MD5 = new BuiltInHash(Cryptography.MD5.Create, Individuals.MD5, "urn:md5:");
-        public static readonly IHashAlgorithm SHA1 = new BuiltInHash(Cryptography.SHA1.Create, Individuals.SHA1, "urn:sha1:");
-        public static readonly IHashAlgorithm SHA256 = new BuiltInHash(Cryptography.SHA256.Create, Individuals.SHA256, "urn:sha256:");
-        public static readonly IHashAlgorithm SHA384 = new BuiltInHash(Cryptography.SHA384.Create, Individuals.SHA384, "urn:sha384:");
-        public static readonly IHashAlgorithm SHA512 = new BuiltInHash(Cryptography.SHA512.Create, Individuals.SHA512, "urn:sha512:");
+        public static readonly IDataHashAlgorithm MD5 = new BuiltInHash(Cryptography.MD5.Create, Individuals.MD5, "urn:md5:");
+        public static readonly IDataHashAlgorithm SHA1 = new BuiltInHash(Cryptography.SHA1.Create, Individuals.SHA1, "urn:sha1:");
+        public static readonly IDataHashAlgorithm SHA256 = new BuiltInHash(Cryptography.SHA256.Create, Individuals.SHA256, "urn:sha256:");
+        public static readonly IDataHashAlgorithm SHA384 = new BuiltInHash(Cryptography.SHA384.Create, Individuals.SHA384, "urn:sha384:");
+        public static readonly IDataHashAlgorithm SHA512 = new BuiltInHash(Cryptography.SHA512.Create, Individuals.SHA512, "urn:sha512:");
 
         readonly ThreadLocal<Cryptography.HashAlgorithm> algorithm;
 

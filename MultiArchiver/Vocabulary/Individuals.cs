@@ -24,7 +24,9 @@
         SHA3_384,
         [Uri(Vocabularies.XmlDSigMore, "sha3-512")]
         SHA3_512,
-        [Uri(Vocabularies.XmlDSigMore, "whirlpool")]
+        [Uri(Vocabularies.XmlDSigMore)]
         Whirlpool,
+        [Uri(Vocabularies.At, "btih")]
+        BTIH,
     }
 }

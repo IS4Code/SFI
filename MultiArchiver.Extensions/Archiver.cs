@@ -4,6 +4,8 @@ using IS4.MultiArchiver.Tools;
 using System;
 using System.IO;
 using VDS.RDF;
+using VDS.RDF.Parsing;
+using VDS.RDF.Writing;
 
 namespace IS4.MultiArchiver.Extensions
 {
@@ -14,10 +16,13 @@ namespace IS4.MultiArchiver.Extensions
 
         public Archiver()
         {
-            var hash = BuiltInHash.MD5;
-
             Analyzers.Add(FileAnalyzer = new FileAnalyzer());
-            Analyzers.Add(DataAnalyzer = new DataAnalyzer(hash, () => new UdeEncodingDetector()));
+            Analyzers.Add(DataAnalyzer = new DataAnalyzer(() => new UdeEncodingDetector()));
+
+            DataAnalyzer.HashAlgorithms.Add(BuiltInHash.MD5);
+            DataAnalyzer.HashAlgorithms.Add(BuiltInHash.SHA1);
+
+            FileAnalyzer.HashAlgorithms.Add(new BitTorrentHash());
         }
 
         public static Archiver CreateDefault()
@@ -41,7 +46,8 @@ namespace IS4.MultiArchiver.Extensions
         {
             var graph = new Graph();
             var graphHandler = new VDS.RDF.Parsing.Handlers.GraphHandler(graph);
-            var handler = new RdfHandler(new Uri("http://archive.data.is4.site/.well-known/genid"), graphHandler, this);
+            var root = "http://archive.data.is4.site/.well-known/genid";
+            var handler = new RdfHandler(new Uri(root), graphHandler, this);
             graphHandler.StartRdf();
             try{
                 new FileAnalyzer().Analyze(new FileInfo(file), handler);
@@ -49,7 +55,23 @@ namespace IS4.MultiArchiver.Extensions
             {
                 graphHandler.EndRdf(true);
             }
-            graph.SaveToFile(output);
+            foreach(var voc in handler.Vocabularies)
+            {
+                graph.NamespaceMap.AddNamespace(voc.Key.ToString().ToLowerInvariant(), new Uri(voc.Value, UriKind.Absolute));
+            }
+            foreach(var hash in DataAnalyzer.HashAlgorithms)
+            {
+                graph.NamespaceMap.AddNamespace(hash.Name, hash.FormatUri(Array.Empty<byte>()));
+            }
+            foreach(var hash in FileAnalyzer.HashAlgorithms)
+            {
+                graph.NamespaceMap.AddNamespace(hash.Name, hash.FormatUri(Array.Empty<byte>()));
+            }
+            graph.NamespaceMap.AddNamespace("id", new Uri(root + "/"));
+            var writer = new CompressingTurtleWriter(TurtleSyntax.W3C);
+            writer.PrettyPrintMode = true;
+            writer.DefaultNamespaces.Clear();
+            graph.SaveToFile(output, writer);
         }
     }
 }

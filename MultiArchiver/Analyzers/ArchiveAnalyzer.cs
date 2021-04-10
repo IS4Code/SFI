@@ -63,7 +63,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             public string Path => entry.FullName;
 
-            public long? Length => entry.Length;
+            public long Length => entry.Length;
 
             public DateTime? CreationTime => null;
 
@@ -72,6 +72,10 @@ namespace IS4.MultiArchiver.Analyzers
             public DateTime? LastAccessTime => null;
 
             public bool IsThreadSafe => true;
+
+            object IPersistentKey.ReferenceKey => entry.Archive;
+
+            object IPersistentKey.DataKey => entry.FullName;
 
             public Stream Open()
             {

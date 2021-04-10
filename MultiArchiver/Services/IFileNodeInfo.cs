@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 
 namespace IS4.MultiArchiver.Services
 {
-    public interface IFileNodeInfo
+    public interface IFileNodeInfo : IPersistentKey
     {
         ILinkedNode Container { get; }
         string Name { get; }
@@ -18,7 +17,7 @@ namespace IS4.MultiArchiver.Services
 
     public interface IFileInfo : IFileNodeInfo, IStreamFactory
     {
-        long? Length { get; }
+        long Length { get; }
     }
 
     public interface IDirectoryInfo : IFileNodeInfo

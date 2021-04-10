@@ -36,9 +36,11 @@
         Owl,
         [Uri("http://dbpedia.org/datatype/")]
         Dt,
-        [Uri("http://www.iana.org/assignments/media-types/")]
-        MediaTypes,
+        [Uri("https://www.iana.org/assignments/media-types/")]
+        Mime,
         [Uri("file:///")]
         File,
+        [Uri("http://archive.data.is4.site/terms/")]
+        At,
     }
 }

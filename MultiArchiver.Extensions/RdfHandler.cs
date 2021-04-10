@@ -2,6 +2,7 @@
 using IS4.MultiArchiver.Vocabulary;
 using Microsoft.CSharp.RuntimeBinder;
 using System;
+using System.Collections.Generic;
 using VDS.RDF;
 
 namespace IS4.MultiArchiver.Extensions
@@ -11,6 +12,8 @@ namespace IS4.MultiArchiver.Extensions
         readonly IRdfHandler handler;
         readonly IEntityAnalyzer baseAnalyzer;
         readonly VocabularyCache<IUriNode> cache;
+
+        public IReadOnlyDictionary<Vocabularies, string> Vocabularies => cache.Vocabularies;
 
         public ILinkedNode Root { get; }
 

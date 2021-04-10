@@ -12,13 +12,12 @@ namespace IS4.MultiArchiver.Analyzers
 {
     public sealed class DataAnalyzer : IEntityAnalyzer<IStreamFactory>, IEntityAnalyzer<byte[]>
 	{
-        public IHashAlgorithm HashAlgorithm { get; set; }
+        public ICollection<IDataHashAlgorithm> HashAlgorithms { get; } = new List<IDataHashAlgorithm>();
         public Func<IEncodingDetector> EncodingDetectorFactory { get; set; }
         public ICollection<IFileFormat> Formats { get; } = new SortedSet<IFileFormat>(HeaderLengthComparer.Instance);
 
-		public DataAnalyzer(IHashAlgorithm hashAlgorithm, Func<IEncodingDetector> encodingDetectorFactory)
+		public DataAnalyzer(Func<IEncodingDetector> encodingDetectorFactory)
 		{
-            HashAlgorithm = hashAlgorithm;
             EncodingDetectorFactory = encodingDetectorFactory;
         }
 
@@ -29,28 +28,71 @@ namespace IS4.MultiArchiver.Analyzers
 
             var encodingDetector = EncodingDetectorFactory?.Invoke();
             var isBinary = false;
-            byte[] hash = null;
             long length = 0;
+
+            var hashes = new List<(IDataHashAlgorithm alg, QueueStream stream, Task<byte[]> data)>();
 
             using(var stream = streamFactory.Open())
             {
-			    hash = HashAlgorithm.ComputeHash(new AnalyzingStream(stream, segment => {
-                    if(segment.Count == 0) return;
-				    if(!isBinary)
+                foreach(var hash in HashAlgorithms)
+                {
+                    var queue = new QueueStream
+                    {
+                        AutoFlush = false
+                    };
+                    hashes.Add((hash, queue, Task.Run(() => {
+                        /*try
+                        {*/
+                            return hash.ComputeHash(queue);
+                        /*} finally
+                        {
+                            try
+                            {
+                                queue.Dispose();
+                            } catch
+                            {
+
+                            }
+                        }*/
+                    })));
+                }
+
+                var buffer = new byte[16384];
+                int read = -1;
+                while(read != 0)
+                {
+                    read = stream.Read(buffer, 0, buffer.Length);
+                    if(read == 0)
+                    {
+                        foreach(var hash in hashes)
+                        {
+                            hash.stream.Dispose();
+                        }
+                        break;
+                    }
+                    foreach(var hash in hashes)
+                    {
+                        hash.stream.Write(buffer, 0, read);
+                    }
+                    foreach(var hash in hashes)
+                    {
+                        hash.stream.Flush();
+                    }
+                    if(!isBinary)
 				    {
-					    if(Array.IndexOf<byte>(segment.Array, 0, segment.Offset, segment.Count) != -1)
+					    if(Array.IndexOf<byte>(buffer, 0, 0, read) != -1)
 					    {
 						    isBinary = true;
 					    }else{
-                            encodingDetector.Write(segment);
+                            encodingDetector.Write(new ArraySegment<byte>(buffer, 0, read));
 					    }
 				    }
 				    if(signatureBuffer.Length < signatureBuffer.Capacity)
 				    {
-					    signatureBuffer.Write(segment.Array, segment.Offset, Math.Min(signatureBuffer.Capacity - (int)signatureBuffer.Length, segment.Count));
+					    signatureBuffer.Write(buffer, 0, Math.Min(signatureBuffer.Capacity - (int)signatureBuffer.Length, read));
 				    }
-                    length += segment.Count;
-                }));
+                    length += read;
+                }
 
                 encodingDetector.End();
             }
@@ -60,18 +102,34 @@ namespace IS4.MultiArchiver.Analyzers
                 isBinary = true;
             }
 
-            var node = nodeFactory.Create(HashAlgorithm, hash);
-
-            node.SetClass(isBinary ? Classes.ContentAsBase64 : Classes.ContentAsText);
-            node.Set(Properties.Extent, length.ToString(), Datatypes.Byte);
-
-            if(!isBinary)
+            ILinkedNode node = null;
+            foreach(var hash in hashes)
             {
-                node.Set(Properties.CharacterEncoding, encodingDetector.Charset);
-            }
+                var hashNode = nodeFactory.Create(hash.alg, hash.data.Result);
 
-            node.Set(Properties.DigestAlgorithm, HashAlgorithm.Identifier);
-            node.Set(Properties.DigestValue, Convert.ToBase64String(hash), Datatypes.Base64Binary);
+                hashNode.SetClass(isBinary ? Classes.ContentAsBase64 : Classes.ContentAsText);
+                hashNode.Set(Properties.Extent, length.ToString(), Datatypes.Byte);
+
+                if(!isBinary)
+                {
+                    hashNode.Set(Properties.CharacterEncoding, encodingDetector.Charset);
+                }
+
+                
+                hashNode.Set(Properties.DigestAlgorithm, hash.alg.Identifier);
+                hashNode.Set(Properties.DigestValue, Convert.ToBase64String(hash.data.Result), Datatypes.Base64Binary);
+
+                if(node == null)
+                {
+                    node = hashNode;
+                }else{
+                    node.Set(Properties.CloseMatch, hashNode);
+                }
+            }
+            if(node == null)
+            {
+                node = nodeFactory.Root[Guid.NewGuid().ToString("D")];
+            }
 
             results.RemoveAll(result => !result.IsValid(signatureBuffer));
 			results.Sort();

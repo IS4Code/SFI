@@ -21,7 +21,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             if(entity.MediaType is string type)
             {
-                node.Set(Properties.EncodingFormat, Vocabularies.MediaTypes, Uri.EscapeUriString(type));
+                node.Set(Properties.EncodingFormat, Vocabularies.Mime, Uri.EscapeUriString(type));
             }
 
             return node;

@@ -11,7 +11,7 @@ namespace Test
             var archiver = Archiver.CreateDefault();
             archiver.Archive(@"G:\ISO\Broodwar.iso", "graph.ttl");
             //archiver.Archive("image.png", "graph.ttl");
-            Console.ReadKey(true);
+            //Console.ReadKey(true);
         }
     }
 
