@@ -1,4 +1,5 @@
-﻿using IS4.MultiArchiver.Services;
+﻿using IS4.MultiArchiver.Analyzers.MetadataReaders;
+using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Tools;
 using IS4.MultiArchiver.Vocabulary;
 using MetadataExtractor;
@@ -27,6 +28,15 @@ namespace IS4.MultiArchiver.Analyzers
                 }
             }
             return node;
+        }
+
+        public static ImageMetadataAnalyzer CreateDefault()
+        {
+            var analyzer = new ImageMetadataAnalyzer();
+
+            analyzer.MetadataReaders.Add(new ExifReader());
+
+            return analyzer;
         }
 
         private bool Describe<T>(ILinkedNode node, T dir, ILinkedNodeFactory nodeFactory) where T : Directory

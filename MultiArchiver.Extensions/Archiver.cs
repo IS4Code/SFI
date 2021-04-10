@@ -1,5 +1,4 @@
-﻿using IS4.MultiArchiver;
-using IS4.MultiArchiver.Analyzers;
+﻿using IS4.MultiArchiver.Analyzers;
 using IS4.MultiArchiver.Formats;
 using IS4.MultiArchiver.Tools;
 using System;
@@ -19,11 +18,21 @@ namespace IS4.MultiArchiver.Extensions
 
             Analyzers.Add(FileAnalyzer = new FileAnalyzer());
             Analyzers.Add(DataAnalyzer = new DataAnalyzer(hash, () => new UdeEncodingDetector()));
-            DataAnalyzer.Formats.Add(new XmlFileFormat());
-            DataAnalyzer.Formats.Add(new ZipFileFormat());
-            Analyzers.Add(new FormatObjectAnalyzer());
-            Analyzers.Add(new XmlAnalyzer());
-            Analyzers.Add(new ArchiveAnalyzer());
+        }
+
+        public static Archiver CreateDefault()
+        {
+            var archiver = new Archiver();
+
+            archiver.DataAnalyzer.Formats.Add(new XmlFileFormat());
+            archiver.DataAnalyzer.Formats.Add(new ZipFileFormat());
+            archiver.DataAnalyzer.Formats.Add(new ImageMetadataFormat());
+            archiver.Analyzers.Add(new FormatObjectAnalyzer());
+            archiver.Analyzers.Add(new XmlAnalyzer());
+            archiver.Analyzers.Add(new ArchiveAnalyzer());
+            archiver.Analyzers.Add(ImageMetadataAnalyzer.CreateDefault());
+
+            return archiver;
         }
 
         public void Archive(string file, string output)
