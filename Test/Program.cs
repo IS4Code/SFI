@@ -1,5 +1,6 @@
 ﻿using IS4.MultiArchiver.Extensions;
 using IS4.MultiArchiver.Services;
+using System;
 
 namespace Test
 {
@@ -8,8 +9,9 @@ namespace Test
         static void Main(string[] args)
         {
             var archiver = Archiver.CreateDefault();
-            archiver.Archive("DSC00014.zip", "graph.ttl");
+            archiver.Archive(@"G:\ISO\Broodwar.iso", "graph.ttl");
             //archiver.Archive("image.png", "graph.ttl");
+            Console.ReadKey(true);
         }
     }
 

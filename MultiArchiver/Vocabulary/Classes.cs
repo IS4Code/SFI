@@ -24,5 +24,9 @@
         Archive,
         [Uri(Vocabularies.Nfo)]
         FileDataObject,
+        [Uri(Vocabularies.Nfo)]
+        FilesystemImage,
+        [Uri(Vocabularies.Nfo)]
+        Folder,
     }
 }

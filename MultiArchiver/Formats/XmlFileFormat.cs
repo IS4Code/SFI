@@ -30,6 +30,7 @@ namespace IS4.MultiArchiver.Formats
         {
             using(var reader = XmlReader.Create(stream, readerSettings))
             {
+                if(!reader.Read()) return null;
                 return nodeFactory.Create(reader);
             }
         }

@@ -83,6 +83,8 @@ namespace IS4.MultiArchiver.Analyzers
                 {
                     node2.Set(Properties.HasFormat, node);
                 }
+
+                result.Dispose();
             }
 
 			return node;
@@ -93,7 +95,7 @@ namespace IS4.MultiArchiver.Analyzers
 			return Analyze(() => new MemoryStream(entity, false), analyzer);
 		}
         
-		class FormatResult : IComparable<FormatResult>
+		class FormatResult : IDisposable, IComparable<FormatResult>
 		{
             public IFileFormat Format { get; }
 
@@ -147,6 +149,19 @@ namespace IS4.MultiArchiver.Analyzers
                 var t1 = a.GetType();
                 var t2 = b.GetType();
                 return t1.IsAssignableFrom(t2) ? 1 : t2.IsAssignableFrom(t1) ? -1 : 0;
+            }
+
+            protected virtual void Dispose(bool disposing)
+            {
+                if(disposing && Task != null)
+                {
+                    (Task.Result as IDisposable)?.Dispose();
+                }
+            }
+
+            public void Dispose()
+            {
+                Dispose(true);
             }
         }
 

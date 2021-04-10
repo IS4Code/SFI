@@ -37,21 +37,26 @@ namespace IS4.MultiArchiver.Analyzers
             readonly ZipArchiveEntry entry;
             readonly Lazy<byte[]> data;
 
-            public ZipEntryInfo(ILinkedNode container, ZipArchiveEntry entry)
+            public ZipEntryInfo(ILinkedNode container, ZipArchiveEntry entry) : this(container, entry, new Lazy<byte[]>(() => {
+                var buffer = new byte[entry.Length];
+                using(var stream = new MemoryStream(buffer, true))
+                {
+                    using(var inner = entry.Open())
+                    {
+                        inner.CopyTo(stream);
+                    }
+                    return buffer;
+                }
+            }))
+            {
+
+            }
+
+            public ZipEntryInfo(ILinkedNode container, ZipArchiveEntry entry, Lazy<byte[]> data)
             {
                 Container = container;
                 this.entry = entry;
-                data = new Lazy<byte[]>(() => {
-                    var buffer = new byte[entry.Length];
-                    using(var stream = new MemoryStream(buffer, true))
-                    {
-                        using(var inner = entry.Open())
-                        {
-                            inner.CopyTo(stream);
-                        }
-                        return buffer;
-                    }
-                });
+                this.data = data;
             }
 
             public string Name => entry.Name;
@@ -69,6 +74,11 @@ namespace IS4.MultiArchiver.Analyzers
             public Stream Open()
             {
                 return new MemoryStream(data.Value, false);
+            }
+
+            public IFileNodeInfo WithContainer(ILinkedNode container)
+            {
+                return new ZipEntryInfo(container, entry, data);
             }
         }
     }
