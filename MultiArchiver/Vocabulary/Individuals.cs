@@ -16,15 +16,15 @@
         SHA512,
         [Uri(Vocabularies.XmlEnc, "ripemd160")]
         RIPEMD160,
-        [Uri(Vocabularies.XmlDSigMore, "sha3-224")]
+        [Uri(Vocabularies.XmlDSigMore2, "sha3-224")]
         SHA3_224,
-        [Uri(Vocabularies.XmlDSigMore, "sha3-256")]
+        [Uri(Vocabularies.XmlDSigMore2, "sha3-256")]
         SHA3_256,
-        [Uri(Vocabularies.XmlDSigMore, "sha3-384")]
+        [Uri(Vocabularies.XmlDSigMore2, "sha3-384")]
         SHA3_384,
-        [Uri(Vocabularies.XmlDSigMore, "sha3-512")]
+        [Uri(Vocabularies.XmlDSigMore2, "sha3-512")]
         SHA3_512,
-        [Uri(Vocabularies.XmlDSigMore)]
+        [Uri(Vocabularies.XmlDSigMore2)]
         Whirlpool,
         [Uri(Vocabularies.At, "btih")]
         BTIH,

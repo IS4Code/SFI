@@ -24,6 +24,8 @@
         XmlDSig,
         [Uri("http://www.w3.org/2001/04/xmldsig-more#")]
         XmlDSigMore,
+        [Uri("http://www.w3.org/2007/05/xmldsig-more#")]
+        XmlDSigMore2,
         [Uri("http://www.w3.org/2001/04/xmlenc#")]
         XmlEnc,
         [Uri("http://xmlns.com/foaf/0.1/")]
