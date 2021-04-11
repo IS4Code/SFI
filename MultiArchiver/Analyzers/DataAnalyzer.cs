@@ -41,19 +41,7 @@ namespace IS4.MultiArchiver.Analyzers
                         AutoFlush = false
                     };
                     hashes.Add((hash, queue, Task.Run(() => {
-                        /*try
-                        {*/
-                            return hash.ComputeHash(queue);
-                        /*} finally
-                        {
-                            try
-                            {
-                                queue.Dispose();
-                            } catch
-                            {
-
-                            }
-                        }*/
+                        return hash.ComputeHash(queue);
                     })));
                 }
 
@@ -102,33 +90,26 @@ namespace IS4.MultiArchiver.Analyzers
                 isBinary = true;
             }
 
-            ILinkedNode node = null;
+            var node = nodeFactory.Root[Guid.NewGuid().ToString("D")];
+
+            node.SetClass(isBinary ? Classes.ContentAsBase64 : Classes.ContentAsText);
+            node.Set(Properties.Extent, length.ToString(), Datatypes.Byte);
+
+            if(!isBinary)
+            {
+                node.Set(Properties.CharacterEncoding, encodingDetector.Charset);
+            }
+
             foreach(var hash in hashes)
             {
                 var hashNode = nodeFactory.Create(hash.alg, hash.data.Result);
 
-                hashNode.SetClass(isBinary ? Classes.ContentAsBase64 : Classes.ContentAsText);
-                hashNode.Set(Properties.Extent, length.ToString(), Datatypes.Byte);
-
-                if(!isBinary)
-                {
-                    hashNode.Set(Properties.CharacterEncoding, encodingDetector.Charset);
-                }
-
+                hashNode.SetClass(Classes.Digest);
                 
                 hashNode.Set(Properties.DigestAlgorithm, hash.alg.Identifier);
                 hashNode.Set(Properties.DigestValue, Convert.ToBase64String(hash.data.Result), Datatypes.Base64Binary);
 
-                if(node == null)
-                {
-                    node = hashNode;
-                }else{
-                    node.Set(Properties.CloseMatch, hashNode);
-                }
-            }
-            if(node == null)
-            {
-                node = nodeFactory.Root[Guid.NewGuid().ToString("D")];
+                node.Set(Properties.Broader, hashNode);
             }
 
             results.RemoveAll(result => !result.IsValid(signatureBuffer));

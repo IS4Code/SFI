@@ -11,7 +11,7 @@
         [Uri("https://w3id.org/security#")]
         Sec,
         [Uri("http://purl.org/dc/terms/")]
-        DcTerms,
+        Dct,
         [Uri("http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#")]
         Nfo,
         [Uri("http://www.semanticdesktop.org/ontologies/2007/01/19/nie#")]
@@ -21,13 +21,13 @@
         [Uri("http://www.w3.org/2011/content#")]
         Cnt,
         [Uri("http://www.w3.org/2000/09/xmldsig#")]
-        XmlDSig,
+        Ds,
         [Uri("http://www.w3.org/2001/04/xmldsig-more#")]
-        XmlDSigMore,
+        Dsm,
         [Uri("http://www.w3.org/2007/05/xmldsig-more#")]
-        XmlDSigMore2,
+        Dsm2,
         [Uri("http://www.w3.org/2001/04/xmlenc#")]
-        XmlEnc,
+        Enc,
         [Uri("http://xmlns.com/foaf/0.1/")]
         Foaf,
         [Uri("http://www.w3.org/2003/12/exif/ns#")]

@@ -52,6 +52,8 @@ namespace IS4.MultiArchiver.Analyzers
                 var hash = alg.ComputeHash(info);
                 var hashNode = nodeFactory.Create(alg, hash);
 
+                hashNode.SetClass(Classes.Digest);
+
                 hashNode.Set(Properties.DigestAlgorithm, alg.Identifier);
                 hashNode.Set(Properties.DigestValue, Convert.ToBase64String(hash), Datatypes.Base64Binary);
 

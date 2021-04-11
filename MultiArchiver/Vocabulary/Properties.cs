@@ -8,11 +8,11 @@
         [Uri(Vocabularies.Owl)]
         SameAs,
 
-        [Uri(Vocabularies.DcTerms)]
+        [Uri(Vocabularies.Dct)]
         Description,
-        [Uri(Vocabularies.DcTerms)]
+        [Uri(Vocabularies.Dct)]
         HasFormat,
-        [Uri(Vocabularies.DcTerms)]
+        [Uri(Vocabularies.Dct)]
         Extent,
 
         [Uri(Vocabularies.Cnt)]

@@ -3,7 +3,6 @@ using IS4.MultiArchiver.Tools;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Text;
 
 namespace IS4.MultiArchiver
 {
