@@ -3,36 +3,36 @@ using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Tools;
 using IS4.MultiArchiver.Vocabulary;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace IS4.MultiArchiver
 {
     public class BitTorrentHash : FileHashAlgorithm
     {
-        static readonly IDataHashAlgorithm hashAlgorithm = BuiltInHash.SHA1;
-        readonly PersistenceStore<IFileInfo, FileInfo> cache;
+        public static readonly IDataHashAlgorithm HashAlgorithm = BuiltInHash.SHA1;
 
-        public long BlockSize { get; }
+        public long BlockSize { get; } = 262144;
 
         public delegate void InfoCreatedDelegate(BDictionary info, byte[] hash);
 
         public event InfoCreatedDelegate InfoCreated;
 
-        public BitTorrentHash(long blockSize = 262144) : base(Individuals.BTIH, hashAlgorithm.HashSize, "urn:btih:", FormattingMethod.Hex)
+        public BitTorrentHash() : base(Individuals.BTIH, HashAlgorithm.HashSize, "urn:btih:", FormattingMethod.Hex)
         {
-            BlockSize = blockSize;
-            cache = new PersistenceStore<IFileInfo, FileInfo>(GetInfo);
+
         }
 
         public override byte[] ComputeHash(IFileNodeInfo fileNode)
         {
-            var dict = GetDictionary(fileNode);
-            var hash = hashAlgorithm.ComputeHash(dict.EncodeAsBytes());
+            var dict = CreateDictionary(fileNode);
+            var hash = HashAlgorithm.ComputeHash(dict.EncodeAsBytes());
             InfoCreated?.Invoke(dict, hash);
             return hash;
         }
 
-        private BDictionary GetDictionary(IFileNodeInfo fileNode)
+        private BDictionary CreateDictionary(IFileNodeInfo fileNode)
         {
             var dict = new BDictionary();
             byte[] buffer;
@@ -41,23 +41,23 @@ namespace IS4.MultiArchiver
             switch(fileNode)
             {
                 case IFileInfo file:
-                    var info = cache[file];
+                    var info = BitTorrentHashCache.GetCachedInfo(BlockSize, file);
                     dict["length"] = new BNumber(file.Length);
-                    buffer = new byte[info.BlockHashes.Count * hashAlgorithm.HashSize + info.LastHash.Length];
+                    buffer = new byte[info.BlockHashes.Count * HashAlgorithm.HashSize + info.LastHash.Length];
                     for(int i = 0; i < info.BlockHashes.Count; i++)
                     {
-                        info.BlockHashes[i].CopyTo(buffer, i * hashAlgorithm.HashSize);
+                        info.BlockHashes[i].CopyTo(buffer, i * HashAlgorithm.HashSize);
                     }
                     info.LastHash.CopyTo(buffer, buffer.Length - info.LastHash.Length);
                     break;
                 case IDirectoryInfo directory:
-                    var files = new List<(IFileInfo info, FileInfo cached, BList<BString> path)>();
+                    var files = new List<(IFileInfo info, BitTorrentHashCache.FileInfo cached, BList<BString> path)>();
                     long bufferLength = 0;
                     foreach(var (file, path) in FindFiles(directory, new BList<BString>()))
                     {
-                        var cachedInfo = cache[file];
+                        var cachedInfo = BitTorrentHashCache.GetCachedInfo(BlockSize, file);
                         files.Add((file, cachedInfo, path));
-                        bufferLength += cachedInfo.BlockHashes.Count * hashAlgorithm.HashSize + cachedInfo.LastHashPadded.Length;
+                        bufferLength += cachedInfo.BlockHashes.Count * HashAlgorithm.HashSize + cachedInfo.LastHashPadded.Length;
                     }
                     buffer = new byte[bufferLength];
                     int pos = 0;
@@ -97,7 +97,7 @@ namespace IS4.MultiArchiver
 
         private IEnumerable<(IFileInfo info, BList<BString> path)> FindFiles(IDirectoryInfo dir, BList<BString> current)
         {
-            foreach(var entry in dir.Entries)
+            foreach(var entry in dir.Entries.OrderBy(e => e.Name, StringComparer.Ordinal))
             {
                 var path = new BList<BString>(current);
                 path.Add(entry.Name);
@@ -112,67 +112,6 @@ namespace IS4.MultiArchiver
                             yield return inner;
                         }
                         break;
-                }
-            }
-        }
-
-        private FileInfo GetInfo(IFileInfo file)
-        {
-            return new FileInfo(this, file);
-        }
-
-        class FileInfo
-        {
-            public IReadOnlyList<byte[]> BlockHashes { get; }
-            public byte[] LastHash { get; }
-            public byte[] LastHashPadded { get; }
-            public int Padding { get; set; }
-
-            public FileInfo(BitTorrentHash hashInfo, IFileInfo file)
-            {
-                var list = new List<byte[]>();
-                list.AddRange(HashFile(hashInfo, file));
-                if(list.Count > 0)
-                {
-                    LastHash = list[list.Count - 1];
-                    list.RemoveAt(list.Count - 1);
-                    if(LastHash != null)
-                    {
-                        LastHashPadded = list[list.Count - 1];
-                        list.RemoveAt(list.Count - 1);
-                    }else{
-                        LastHashPadded = LastHash = Array.Empty<byte>();
-                    }
-                }
-                BlockHashes = list;
-            }
-
-            private IEnumerable<byte[]> HashFile(BitTorrentHash hashInfo, IFileInfo file)
-            {
-                var hashAlgorithm = BitTorrentHash.hashAlgorithm;
-                var buffer = new byte[hashInfo.BlockSize];
-                using(var stream = file.Open())
-                {
-                    int read;
-                    int pos = 0;
-                    while((read = stream.Read(buffer, pos, buffer.Length - pos)) > 0)
-                    {
-                        pos += read;
-                        if(pos == buffer.Length)
-                        {
-                            yield return hashAlgorithm.ComputeHash(buffer, 0, pos);
-                            pos = 0;
-                        }
-                    }
-                    if(pos > 0)
-                    {
-                        Array.Clear(buffer, pos, buffer.Length - pos);
-                        yield return hashAlgorithm.ComputeHash(buffer);
-                        yield return hashAlgorithm.ComputeHash(buffer, 0, pos);
-                        Padding = buffer.Length - pos;
-                    }else{
-                        yield return null;
-                    }
                 }
             }
         }
