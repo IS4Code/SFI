@@ -17,14 +17,32 @@ namespace IS4.MultiArchiver.Tools
 
         readonly ThreadLocal<Cryptography.HashAlgorithm> algorithm;
 
-        public BuiltInHash(Func<Cryptography.HashAlgorithm> factory, Individuals identifier, string prefix) : base(identifier, prefix, FormattingMethod.Hex)
+        public BuiltInHash(Func<Cryptography.HashAlgorithm> factory, Individuals identifier, string prefix) : base(identifier, GetHashSize(factory), prefix, FormattingMethod.Hex)
         {
             algorithm = new ThreadLocal<Cryptography.HashAlgorithm>(factory);
+        }
+
+        private static int GetHashSize(Func<Cryptography.HashAlgorithm> factory)
+        {
+            using(var hash = factory())
+            {
+                return (hash.HashSize + 7) / 8;
+            }
         }
 
         public override byte[] ComputeHash(Stream input)
         {
             return algorithm.Value.ComputeHash(input);
+        }
+
+        public override byte[] ComputeHash(byte[] data)
+        {
+            return algorithm.Value.ComputeHash(data);
+        }
+
+        public override byte[] ComputeHash(byte[] data, int offset, int count)
+        {
+            return algorithm.Value.ComputeHash(data, offset, count);
         }
     }
 }
