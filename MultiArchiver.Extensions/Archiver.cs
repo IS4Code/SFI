@@ -13,6 +13,7 @@ namespace IS4.MultiArchiver.Extensions
     {
         public FileAnalyzer FileAnalyzer { get; }
         public DataAnalyzer DataAnalyzer { get; }
+        public BitTorrentHash BitTorrentHash { get; }
 
         public Archiver()
         {
@@ -22,7 +23,7 @@ namespace IS4.MultiArchiver.Extensions
             DataAnalyzer.HashAlgorithms.Add(BuiltInHash.MD5);
             DataAnalyzer.HashAlgorithms.Add(BuiltInHash.SHA1);
 
-            FileAnalyzer.HashAlgorithms.Add(new BitTorrentHash());
+            FileAnalyzer.HashAlgorithms.Add(BitTorrentHash = new BitTorrentHash());
         }
 
         public static Archiver CreateDefault()

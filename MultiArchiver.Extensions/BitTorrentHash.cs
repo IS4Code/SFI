@@ -4,31 +4,36 @@ using IS4.MultiArchiver.Tools;
 using IS4.MultiArchiver.Vocabulary;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Threading;
 
 namespace IS4.MultiArchiver
 {
-    class BitTorrentHash : FileHashAlgorithm
+    public class BitTorrentHash : FileHashAlgorithm
     {
         static readonly ThreadLocal<SHA1> sha1 = new ThreadLocal<SHA1>(SHA1.Create);
         readonly PersistenceStore<IFileInfo, FileInfo> cache;
-        readonly byte[] paddingHash;
+        readonly int hashSize;
 
         public long BlockSize { get; }
+
+        public delegate void InfoCreatedDelegate(BDictionary info, byte[] hash);
+
+        public event InfoCreatedDelegate InfoCreated;
 
         public BitTorrentHash(long blockSize = 262144) : base(Individuals.BTIH, "urn:btih:", FormattingMethod.Hex)
         {
             BlockSize = blockSize;
             cache = new PersistenceStore<IFileInfo, FileInfo>(GetInfo);
+            hashSize = sha1.Value.HashSize / 8;
         }
 
         public override byte[] ComputeHash(IFileNodeInfo fileNode)
         {
             var dict = GetDictionary(fileNode);
-            return sha1.Value.ComputeHash(dict.EncodeAsBytes());
+            var hash = sha1.Value.ComputeHash(dict.EncodeAsBytes());
+            InfoCreated?.Invoke(dict, hash);
+            return hash;
         }
 
         private BDictionary GetDictionary(IFileNodeInfo fileNode)
@@ -42,10 +47,10 @@ namespace IS4.MultiArchiver
                 case IFileInfo file:
                     var info = cache[file];
                     dict["length"] = new BNumber(file.Length);
-                    buffer = new byte[info.BlockHashes.Count * BlockSize + info.LastHash.Length];
+                    buffer = new byte[info.BlockHashes.Count * hashSize + info.LastHash.Length];
                     for(int i = 0; i < info.BlockHashes.Count; i++)
                     {
-                        info.BlockHashes[i].CopyTo(buffer, i * BlockSize);
+                        info.BlockHashes[i].CopyTo(buffer, i * hashSize);
                     }
                     info.LastHash.CopyTo(buffer, buffer.Length - info.LastHash.Length);
                     break;
@@ -56,7 +61,7 @@ namespace IS4.MultiArchiver
                     {
                         var cachedInfo = cache[file];
                         files.Add((file, cachedInfo, path));
-                        bufferLength += cachedInfo.BlockHashes.Count * BlockSize + cachedInfo.LastHashPadded.Length;
+                        bufferLength += cachedInfo.BlockHashes.Count * hashSize + cachedInfo.LastHashPadded.Length;
                     }
                     buffer = new byte[bufferLength];
                     int pos = 0;

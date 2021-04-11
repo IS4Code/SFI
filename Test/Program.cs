@@ -1,6 +1,8 @@
-﻿using IS4.MultiArchiver.Extensions;
+﻿using BencodeNET.Objects;
+using IS4.MultiArchiver.Extensions;
 using IS4.MultiArchiver.Services;
 using System;
+using System.IO;
 
 namespace Test
 {
@@ -9,6 +11,15 @@ namespace Test
         static void Main(string[] args)
         {
             var archiver = Archiver.CreateDefault();
+            archiver.BitTorrentHash.InfoCreated += delegate(BDictionary info, byte[] hash)
+            {
+                var dict = new BDictionary();
+                dict["info"] = info;
+                using(var stream = File.Create($@"torrent\{BitConverter.ToString(hash)}.torrent"))
+                {
+                    dict.EncodeTo(stream);
+                }
+            };
             archiver.Archive(@"G:\ISO\Broodwar.iso", "graph.ttl");
             //archiver.Archive("image.png", "graph.ttl");
             //Console.ReadKey(true);
