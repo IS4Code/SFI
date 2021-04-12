@@ -30,6 +30,7 @@ namespace IS4.MultiArchiver.Services
         void Set<TProp, T>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, T value) where T : struct, IEquatable<T>, IFormattable;
 
         ILinkedNode this[string subName] { get; }
+        ILinkedNode this[IUriFormatter<Uri> subFormatter] { get; }
     }
 
     public abstract class LinkedNode<TNode> : ILinkedNode where TNode : class, IEquatable<TNode>
@@ -171,11 +172,20 @@ namespace IS4.MultiArchiver.Services
         public LinkedNode<TNode> this[string subName] {
             get{
                 if(subName == null) throw new ArgumentNullException(nameof(subName));
-                return CreateNew(CreateNode(new Uri(GetUri(Subject).AbsoluteUri + "/" + subName)));
+                return CreateNew(CreateNode(new Uri(GetUri(Subject).AbsoluteUri + (subName.StartsWith("#") ? "" : "/") + subName)));
             }
         }
 
         ILinkedNode ILinkedNode.this[string subName] => this[subName];
+
+        public LinkedNode<TNode> this[IUriFormatter<Uri> subFormatter] {
+            get{
+                if(subFormatter == null) throw new ArgumentNullException(nameof(subFormatter));
+                return CreateNew(CreateNode(subFormatter.FormatUri(GetUri(Subject))));
+            }
+        }
+
+        ILinkedNode ILinkedNode.this[IUriFormatter<Uri> subFormatter] => this[subFormatter];
 
         public bool Equals(ILinkedNode other)
         {

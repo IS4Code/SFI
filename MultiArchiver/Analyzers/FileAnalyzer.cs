@@ -86,7 +86,7 @@ namespace IS4.MultiArchiver.Analyzers
             var node = AnalyzeInner(directory, nodeFactory);
             if(node != null)
             {
-                var folder = nodeFactory.Root[Guid.NewGuid().ToString("D")];
+                var folder = node[""] ?? nodeFactory.Root[Guid.NewGuid().ToString("D")];
 
                 if(folder != null)
                 {
