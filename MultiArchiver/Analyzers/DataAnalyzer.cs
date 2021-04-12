@@ -111,6 +111,7 @@ namespace IS4.MultiArchiver.Analyzers
                 node.Set(Properties.Broader, hashNode);
             }
 
+            Task.WaitAll(results.Select(r => r.Result).ToArray());
             results.RemoveAll(result => !result.IsValid(signatureBuffer));
 			results.Sort();
 
@@ -213,7 +214,7 @@ namespace IS4.MultiArchiver.Analyzers
                 {
                     buffer = new ArraySegment<byte>(header.ToArray());
                 }
-                return Format.Match(buffer.AsSpan()) && (!isParsed || Result != null);
+                return Format.Match(buffer.AsSpan()) && (!isParsed || !(Result?.Result is Exception));
             }
 
             public int CompareTo(FormatResult other)

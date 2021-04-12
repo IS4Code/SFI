@@ -32,6 +32,7 @@ namespace IS4.MultiArchiver.Extensions
 
         public ILinkedNode Create<T>(ILinkedNode parent, T entity) where T : class
         {
+            if(entity is ILinkedNode node) return node;
             return baseAnalyzer.Analyze(parent, entity, this);
         }
 

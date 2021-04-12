@@ -15,7 +15,7 @@ namespace Test
             {
                 var dict = new BDictionary();
                 dict["info"] = info;
-                using(var stream = File.Create($@"torrent\{BitConverter.ToString(hash)}.torrent"))
+                using(var stream = File.Create($@"torrent\{BitConverter.ToString(hash).Replace("-", "")}.torrent"))
                 {
                     dict.EncodeTo(stream);
                 }

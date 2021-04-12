@@ -40,16 +40,15 @@ namespace IS4.MultiArchiver
 
             static readonly Type analyzerType = typeof(IEntityAnalyzer<>);
 
-            protected override Type SelectType(Type t)
+            protected override IEnumerable<Type> SelectType(Type t)
             {
                 foreach(var i in t.GetInterfaces())
                 {
                     if(i.IsGenericType && i.GetGenericTypeDefinition().Equals(analyzerType))
                     {
-                        return i;
+                        yield return i;
                     }
                 }
-                return null;
             }
         }
     }

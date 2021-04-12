@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public sealed class FileAnalyzer : IEntityAnalyzer<FileInfo>, IEntityAnalyzer<DirectoryInfo>, IEntityAnalyzer<IFileNodeInfo>
+    public sealed class FileAnalyzer : IEntityAnalyzer<FileInfo>, IEntityAnalyzer<DirectoryInfo>, IEntityAnalyzer<IFileInfo>, IEntityAnalyzer<IDirectoryInfo>, IEntityAnalyzer<IFileNodeInfo>
     {
         public ICollection<IFileHashAlgorithm> HashAlgorithms { get; } = new List<IFileHashAlgorithm>();
 
@@ -61,7 +61,7 @@ namespace IS4.MultiArchiver.Analyzers
             }
         }
 
-        private ILinkedNode Analyze(ILinkedNode parent, IFileInfo file, ILinkedNodeFactory nodeFactory)
+        public ILinkedNode Analyze(ILinkedNode parent, IFileInfo file, ILinkedNodeFactory nodeFactory)
         {
             var node = AnalyzeInner(parent, file, nodeFactory);
             if(node != null)
@@ -81,7 +81,7 @@ namespace IS4.MultiArchiver.Analyzers
             return node;
         }
 
-        private ILinkedNode Analyze(ILinkedNode parent, IDirectoryInfo directory, ILinkedNodeFactory nodeFactory)
+        public ILinkedNode Analyze(ILinkedNode parent, IDirectoryInfo directory, ILinkedNodeFactory nodeFactory)
         {
             var node = AnalyzeInner(parent, directory, nodeFactory);
             if(node != null)
