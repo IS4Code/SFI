@@ -60,7 +60,7 @@ namespace IS4.MultiArchiver.Services
                     Base32(data, sb);
                     break;
                 case FormattingMethod.Base64:
-                    sb.Append(Convert.ToBase64String(data).TrimEnd('='));
+                    Base64(data, sb);
                     break;
                 default:
                     throw new InvalidOperationException();
@@ -102,6 +102,37 @@ namespace IS4.MultiArchiver.Services
                     hi += 5;
                 }
                 sb.Append(chars[index]);
+            }
+        }
+        
+        static void Base64(byte[] bytes, StringBuilder sb)
+        {
+            string str = Convert.ToBase64String(bytes);
+
+            int end = 0;
+            for(end = str.Length; end > 0; end--)
+            {
+                if(str[end - 1] != '=')
+                {
+                    break;
+                }
+            }
+
+            for(int i = 0; i < end; i++)
+            {
+                char c = str[i];
+
+                switch (c) {
+                    case '+':
+                        sb.Append('-');
+                        break;
+                    case '/':
+                        sb.Append('_');
+                        break;
+                    default:
+                        sb.Append(c);
+                        break;
+                }
             }
         }
     }

@@ -13,7 +13,7 @@ namespace IS4.MultiArchiver
     {
         public static readonly IDataHashAlgorithm HashAlgorithm = BuiltInHash.SHA1;
 
-        public long BlockSize { get; } = 262144;
+        public int BlockSize { get; set; } = 262144;
 
         public delegate void InfoCreatedDelegate(BDictionary info, byte[] hash);
 

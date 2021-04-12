@@ -28,5 +28,11 @@
         Whirlpool,
         [Uri(Vocabularies.At, "btih")]
         BTIH,
+        [Uri(Vocabularies.At, "bsha1-256")]
+        BSHA1_256,
+        [Uri(Vocabularies.At, "bsha1-512")]
+        BSHA1_512,
+        [Uri(Vocabularies.At, "bsha1-1024")]
+        BSHA1_1024,
     }
 }

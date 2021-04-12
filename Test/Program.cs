@@ -21,7 +21,7 @@ namespace Test
                 }
             };
             //archiver.Archive(@"G:\ISO\Broodwar.iso", "graph.ttl");
-            archiver.Archive("image.zip", "graph.ttl");
+            archiver.Archive("MultiArchiver.zip", "graph.ttl");
             //Console.ReadKey(true);
         }
     }

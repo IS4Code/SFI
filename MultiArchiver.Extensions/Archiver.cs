@@ -22,6 +22,7 @@ namespace IS4.MultiArchiver.Extensions
 
             DataAnalyzer.HashAlgorithms.Add(BuiltInHash.MD5);
             DataAnalyzer.HashAlgorithms.Add(BuiltInHash.SHA1);
+            DataAnalyzer.HashAlgorithms.Add(new PaddedBlockHash(Vocabulary.Individuals.BSHA1_256, "urn:bsha1-256:", 262144));
 
             FileAnalyzer.HashAlgorithms.Add(BitTorrentHash = new BitTorrentHash());
         }
