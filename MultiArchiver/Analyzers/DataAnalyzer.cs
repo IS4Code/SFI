@@ -141,6 +141,10 @@ namespace IS4.MultiArchiver.Analyzers
 
             public bool IsThreadSafe => true;
 
+            object IPersistentKey.ReferenceKey => data;
+
+            object IPersistentKey.DataKey => null;
+
             public MemoryStreamFactory(byte[] data)
             {
                 this.data = data;

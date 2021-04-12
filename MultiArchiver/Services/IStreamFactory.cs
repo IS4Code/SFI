@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 
 namespace IS4.MultiArchiver.Services
 {
-    public interface IStreamFactory
+    public interface IStreamFactory : IPersistentKey
     {
         bool IsThreadSafe { get; }
         Stream Open();
