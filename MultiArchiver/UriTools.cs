@@ -1,6 +1,7 @@
 ﻿using IS4.MultiArchiver.Services;
 using System;
 using System.Text.RegularExpressions;
+using System.Web;
 
 namespace IS4.MultiArchiver
 {
@@ -78,6 +79,16 @@ namespace IS4.MultiArchiver
                 }
             }
             return null;
+        }
+
+        static readonly Regex urlRegex = new Regex(@"%[a-f0-9]{2}|\+", RegexOptions.Compiled);
+
+        public static string EscapeDataBytes(byte[] bytes, int offset, int length)
+        {
+            return urlRegex.Replace(HttpUtility.UrlEncode(bytes, offset, length), m => {
+                if(m.Value == "+") return "%20";
+                return m.Value.ToUpperInvariant();
+            });
         }
     }
 }
