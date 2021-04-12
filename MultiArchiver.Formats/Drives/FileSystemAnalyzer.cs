@@ -15,32 +15,27 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override ILinkedNode Analyze(ILinkedNode parent, IFileSystem filesystem, ILinkedNodeFactory nodeFactory)
+        public override void Analyze(ILinkedNode node, IFileSystem filesystem, ILinkedNodeFactory nodeFactory)
         {
-            var node = base.Analyze(parent, filesystem, nodeFactory);
-            if(node != null)
+            foreach(var file in filesystem.GetFiles(null))
             {
-                foreach(var file in filesystem.GetFiles(null))
+                var info = filesystem.GetFileInfo(file);
+                var node2 = nodeFactory.Create(node, new FileInfoWrapper(info));
+                if(node2 != null)
                 {
-                    var info = filesystem.GetFileInfo(file);
-                    var node2 = nodeFactory.Create(node, new FileInfoWrapper(info));
-                    if(node2 != null)
-                    {
-                        node2.Set(Properties.BelongsToContainer, node);
-                    }
-                }
-
-                foreach(var directory in filesystem.GetDirectories(null))
-                {
-                    var info = filesystem.GetDirectoryInfo(directory);
-                    var node2 = nodeFactory.Create(node, new DirectoryInfoWrapper(info));
-                    if(node2 != null)
-                    {
-                        node2.Set(Properties.BelongsToContainer, node);
-                    }
+                    node2.Set(Properties.BelongsToContainer, node);
                 }
             }
-            return node;
+
+            foreach(var directory in filesystem.GetDirectories(null))
+            {
+                var info = filesystem.GetDirectoryInfo(directory);
+                var node2 = nodeFactory.Create(node, new DirectoryInfoWrapper(info));
+                if(node2 != null)
+                {
+                    node2.Set(Properties.BelongsToContainer, node);
+                }
+            }
         }
 
         class FileInfoWrapper : IFileInfo

@@ -13,22 +13,17 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override ILinkedNode Analyze(ILinkedNode parent, ZipArchive archive, ILinkedNodeFactory nodeFactory)
+        public override void Analyze(ILinkedNode node, ZipArchive archive, ILinkedNodeFactory nodeFactory)
         {
-            var node = base.Analyze(parent, archive, nodeFactory);
-            if(node != null)
+            foreach(var entry in archive.Entries)
             {
-                foreach(var entry in archive.Entries)
+                var node2 = nodeFactory.Create(node, new ZipEntryInfo(entry));
+                if(node2 != null)
                 {
-                    var node2 = nodeFactory.Create(node, new ZipEntryInfo(entry));
-                    if(node2 != null)
-                    {
-                        node2.SetClass(Classes.ArchiveItem);
-                        node2.Set(Properties.BelongsToContainer, node);
-                    }
+                    node2.SetClass(Classes.ArchiveItem);
+                    node2.Set(Properties.BelongsToContainer, node);
                 }
             }
-            return node;
         }
 
         class ZipEntryInfo : IFileInfo

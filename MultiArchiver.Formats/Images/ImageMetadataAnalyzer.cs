@@ -17,17 +17,12 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override ILinkedNode Analyze(ILinkedNode parent, IReadOnlyList<Directory> image, ILinkedNodeFactory nodeFactory)
+        public override void Analyze(ILinkedNode node, IReadOnlyList<Directory> image, ILinkedNodeFactory nodeFactory)
         {
-            var node = base.Analyze(parent, image, nodeFactory);
-            if(node != null)
+            foreach(var dir in image)
             {
-                foreach(var dir in image)
-                {
-                    TryDescribe(node, dir, nodeFactory);
-                }
+                TryDescribe(node, dir, nodeFactory);
             }
-            return node;
         }
 
         public static ImageMetadataAnalyzer CreateDefault()

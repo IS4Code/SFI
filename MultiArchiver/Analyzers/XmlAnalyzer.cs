@@ -17,17 +17,14 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override ILinkedNode Analyze(ILinkedNode parent, XmlReader reader, ILinkedNodeFactory nodeFactory)
+        public override void Analyze(ILinkedNode node, XmlReader reader, ILinkedNodeFactory nodeFactory)
         {
-            var nodeLazy = new Lazy<ILinkedNode>(() => base.Analyze(parent, reader, nodeFactory), false);
             XDocumentType docType = null;
             do
             {
-                ILinkedNode node;
                 switch(reader.NodeType)
                 {
                     case XmlNodeType.XmlDeclaration:
-                        node = nodeLazy.Value;
                         var version = reader.GetAttribute("version");
                         if(version != null)
                         {
@@ -45,7 +42,6 @@ namespace IS4.MultiArchiver.Analyzers
                         }
                         break;
                     case XmlNodeType.DocumentType:
-                        node = nodeLazy.Value;
                         var dtd = node["doctype"];
                         dtd.SetClass(Classes.DoctypeDecl);
                         var name = reader.Name;
@@ -68,7 +64,6 @@ namespace IS4.MultiArchiver.Analyzers
                         docType = new XDocumentType(name, pubid, sysid, reader.Value);
                         break;
                     case XmlNodeType.Element:
-                        node = nodeLazy.Value;
                         foreach(var format in XmlFormats)
                         {
                             if(format.Match(reader, docType, nodeFactory) is ILinkedNode node2)
@@ -77,10 +72,9 @@ namespace IS4.MultiArchiver.Analyzers
                                 break;
                             }
                         }
-                        return node;
+                        return;
                 }
             }while(reader.Read());
-            return nodeLazy.Value;
         }
     }
 }

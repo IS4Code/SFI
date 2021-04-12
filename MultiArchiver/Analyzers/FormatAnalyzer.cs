@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class FormatAnalyzer<T> : IEntityAnalyzer<T>, IEntityAnalyzer<IFormatObject<T>> where T : class
+    public class FormatAnalyzer<T> : IEntityAnalyzer<IFormatObject<T>> where T : class
     {
         readonly IEnumerable<Classes> recognizedClasses;
 
@@ -19,17 +19,23 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public virtual ILinkedNode Analyze(ILinkedNode parent, T entity, ILinkedNodeFactory nodeFactory)
+        protected virtual ILinkedNode CreateNode(ILinkedNode parent, IFormatObject<T> format)
         {
-            return parent;
+            return parent[format.MediaType];
+        }
+
+        public virtual void Analyze(ILinkedNode node, T entity, ILinkedNodeFactory nodeFactory)
+        {
+
         }
 
         public ILinkedNode Analyze(ILinkedNode parent, IFormatObject<T> entity, ILinkedNodeFactory nodeFactory)
         {
-            var node = Analyze(parent[entity.MediaType], entity.Value, nodeFactory);
+            var node = CreateNode(parent, entity);
 
             if(node != null)
             {
+                Analyze(node, entity.Value, nodeFactory);
                 node.SetClass(Classes.MediaObject);
                 foreach(var cls in recognizedClasses)
                 {
