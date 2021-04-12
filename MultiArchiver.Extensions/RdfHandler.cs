@@ -30,9 +30,9 @@ namespace IS4.MultiArchiver.Extensions
             return new UriNode(handler.CreateUriNode(formatter.FormatUri(value)), handler, cache);
         }
 
-        public ILinkedNode Create<T>(T entity) where T : class
+        public ILinkedNode Create<T>(ILinkedNode parent, T entity) where T : class
         {
-            return baseAnalyzer.Analyze(entity, this);
+            return baseAnalyzer.Analyze(parent, entity, this);
         }
 
         class UriNode : LinkedNode<INode>

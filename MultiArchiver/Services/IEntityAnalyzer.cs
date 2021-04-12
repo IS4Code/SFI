@@ -2,11 +2,11 @@
 {
     public interface IEntityAnalyzer
     {
-        ILinkedNode Analyze<T>(T entity, ILinkedNodeFactory nodeFactory) where T : class;
+        ILinkedNode Analyze<T>(ILinkedNode parent, T entity, ILinkedNodeFactory nodeFactory) where T : class;
     }
 
     public interface IEntityAnalyzer<in T> where T : class
     {
-        ILinkedNode Analyze(T entity, ILinkedNodeFactory nodeFactory);
+        ILinkedNode Analyze(ILinkedNode parent, T entity, ILinkedNodeFactory nodeFactory);
     }
 }

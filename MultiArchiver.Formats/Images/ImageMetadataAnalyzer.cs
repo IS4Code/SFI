@@ -17,9 +17,9 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override ILinkedNode Analyze(IReadOnlyList<Directory> image, ILinkedNodeFactory nodeFactory)
+        public override ILinkedNode Analyze(ILinkedNode parent, IReadOnlyList<Directory> image, ILinkedNodeFactory nodeFactory)
         {
-            var node = base.Analyze(image, nodeFactory);
+            var node = base.Analyze(parent, image, nodeFactory);
             if(node != null)
             {
                 foreach(var dir in image)

@@ -11,9 +11,9 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override ILinkedNode Analyze(Image image, ILinkedNodeFactory nodeFactory)
+        public override ILinkedNode Analyze(ILinkedNode parent, Image image, ILinkedNodeFactory nodeFactory)
         {
-            var node = base.Analyze(image, nodeFactory);
+            var node = base.Analyze(parent, image, nodeFactory);
             if(node != null)
             {
 

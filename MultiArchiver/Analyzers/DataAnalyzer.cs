@@ -21,9 +21,10 @@ namespace IS4.MultiArchiver.Analyzers
             EncodingDetectorFactory = encodingDetectorFactory;
         }
 
-		public ILinkedNode Analyze(IStreamFactory streamFactory, ILinkedNodeFactory nodeFactory)
-		{
-            var results = Formats.Select(format => new FormatResult(streamFactory, format, nodeFactory)).ToList();
+		public ILinkedNode Analyze(ILinkedNode parent, IStreamFactory streamFactory, ILinkedNodeFactory nodeFactory)
+        {
+            var node = nodeFactory.Root[Guid.NewGuid().ToString("D")];
+            var results = Formats.Select(format => new FormatResult(streamFactory, format, node, nodeFactory)).ToList();
             var signatureBuffer = new MemoryStream(results.Max(result => result.MaxReadBytes));
 
             var encodingDetector = EncodingDetectorFactory?.Invoke();
@@ -90,8 +91,6 @@ namespace IS4.MultiArchiver.Analyzers
                 isBinary = true;
             }
 
-            var node = nodeFactory.Root[Guid.NewGuid().ToString("D")];
-
             node.SetClass(isBinary ? Classes.ContentAsBase64 : Classes.ContentAsText);
             node.Set(Properties.Extent, length.ToString(), Datatypes.Byte);
 
@@ -119,7 +118,7 @@ namespace IS4.MultiArchiver.Analyzers
             {
                 using(var entity2 = new FormatObject(result.Format, result.Result?.Result))
                 {
-                    var node2 = nodeFactory.Create(entity2);
+                    var node2 = nodeFactory.Create(node, entity2);
                     if(node2 != null)
                     {
                         node2.Set(Properties.HasFormat, node);
@@ -130,9 +129,9 @@ namespace IS4.MultiArchiver.Analyzers
 			return node;
 		}
 
-		public ILinkedNode Analyze(byte[] data, ILinkedNodeFactory analyzer)
+		public ILinkedNode Analyze(ILinkedNode parent, byte[] data, ILinkedNodeFactory analyzer)
 		{
-			return Analyze(new MemoryStreamFactory(data), analyzer);
+			return Analyze(parent, new MemoryStreamFactory(data), analyzer);
 		}
 
         class MemoryStreamFactory : IStreamFactory
@@ -165,13 +164,13 @@ namespace IS4.MultiArchiver.Analyzers
 
             public int MaxReadBytes => Format.HeaderLength;
 
-            public FormatResult(IStreamFactory streamFactory, IFileFormat format, ILinkedNodeFactory nodeFactory)
+            public FormatResult(IStreamFactory streamFactory, IFileFormat format, ILinkedNode parent, ILinkedNodeFactory nodeFactory)
 			{
                 Format = format;
                 if(format is IFileReader reader)
                 {
                     isParsed = true;
-                    Result = StartReading(streamFactory, s => reader.Match(s, nodeFactory));
+                    Result = StartReading(streamFactory, s => reader.Match(s, parent, nodeFactory));
                 }else if(format is IFileLoader loader)
                 {
                     isParsed = true;

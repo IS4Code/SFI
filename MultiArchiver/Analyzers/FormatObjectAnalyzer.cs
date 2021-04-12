@@ -12,10 +12,10 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public ILinkedNode Analyze(FormatObject entity, ILinkedNodeFactory nodeFactory)
+        public ILinkedNode Analyze(ILinkedNode parent, FormatObject entity, ILinkedNodeFactory nodeFactory)
         {
             if(!entity.Successful) return null;
-            var node = nodeFactory.TryCreate(entity.Value) ?? nodeFactory.Root[Guid.NewGuid().ToString("D")];
+            var node = nodeFactory.TryCreate(parent, entity.Value) ?? nodeFactory.Root[Guid.NewGuid().ToString("D")];
 
             node.SetClass(Classes.MediaObject);
 

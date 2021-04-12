@@ -20,15 +20,15 @@ namespace Test
                     dict.EncodeTo(stream);
                 }
             };
-            archiver.Archive(@"G:\ISO\Broodwar.iso", "graph.ttl");
-            //archiver.Archive("image.png", "graph.ttl");
+            //archiver.Archive(@"G:\ISO\Broodwar.iso", "graph.ttl");
+            archiver.Archive("image.zip", "graph.ttl");
             //Console.ReadKey(true);
         }
     }
 
     class TestAnalyzer : IEntityAnalyzer<object>
     {
-        public ILinkedNode Analyze(object entity, ILinkedNodeFactory nodeFactory)
+        public ILinkedNode Analyze(ILinkedNode parent, object entity, ILinkedNodeFactory nodeFactory)
         {
             throw new System.NotImplementedException();
         }

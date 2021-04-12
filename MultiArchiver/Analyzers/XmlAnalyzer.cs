@@ -17,9 +17,9 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override ILinkedNode Analyze(XmlReader reader, ILinkedNodeFactory nodeFactory)
+        public override ILinkedNode Analyze(ILinkedNode parent, XmlReader reader, ILinkedNodeFactory nodeFactory)
         {
-            var nodeLazy = new Lazy<ILinkedNode>(() => base.Analyze(reader, nodeFactory), false);
+            var nodeLazy = new Lazy<ILinkedNode>(() => base.Analyze(parent, reader, nodeFactory), false);
             XDocumentType docType = null;
             do
             {

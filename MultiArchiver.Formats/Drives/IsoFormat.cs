@@ -17,11 +17,11 @@ namespace IS4.MultiArchiver.Formats
             return true;
         }
 
-        public ILinkedNode Match(Stream stream, ILinkedNodeFactory nodeFactory)
+        public ILinkedNode Match(Stream stream, ILinkedNode parent, ILinkedNodeFactory nodeFactory)
         {
             using(var reader = new CDReader(stream, true))
             {
-                return nodeFactory.Create(reader);
+                return nodeFactory.Create(parent, reader);
             }
         }
     }

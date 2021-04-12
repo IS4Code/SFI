@@ -26,12 +26,12 @@ namespace IS4.MultiArchiver.Formats
             return true;
         }
 
-        public ILinkedNode Match(Stream stream, ILinkedNodeFactory nodeFactory)
+        public ILinkedNode Match(Stream stream, ILinkedNode parent, ILinkedNodeFactory nodeFactory)
         {
             using(var reader = XmlReader.Create(stream, readerSettings))
             {
                 if(!reader.Read()) return null;
-                return nodeFactory.Create(reader);
+                return nodeFactory.Create(parent, reader);
             }
         }
 

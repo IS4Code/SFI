@@ -17,11 +17,11 @@ namespace IS4.MultiArchiver.Formats
             return header.Length >= 2 && header[0] == 0x50 && header[1] == 0x4B;
         }
 
-        public ILinkedNode Match(Stream stream, ILinkedNodeFactory nodeFactory)
+        public ILinkedNode Match(Stream stream, ILinkedNode parent, ILinkedNodeFactory nodeFactory)
         {
             using(var archive = new ZipArchive(stream, ZipArchiveMode.Read, true))
             {
-                return nodeFactory.Create(archive);
+                return nodeFactory.Create(parent, archive);
             }
         }
     }

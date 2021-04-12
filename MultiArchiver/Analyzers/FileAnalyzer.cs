@@ -17,10 +17,10 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        private ILinkedNode AnalyzeInner(IFileNodeInfo info, ILinkedNodeFactory nodeFactory)
+        private ILinkedNode AnalyzeInner(ILinkedNode parent, IFileNodeInfo info, ILinkedNodeFactory nodeFactory)
         {
             var name = Uri.EscapeUriString(info.Name);
-            var node = info.Container?[name] ?? nodeFactory.Root[Guid.NewGuid().ToString("D")];
+            var node = parent?[name] ?? nodeFactory.Root[Guid.NewGuid().ToString("D")];
 
             node.SetClass(Classes.FileDataObject);
 
@@ -61,9 +61,9 @@ namespace IS4.MultiArchiver.Analyzers
             }
         }
 
-        private ILinkedNode Analyze(IFileInfo file, ILinkedNodeFactory nodeFactory)
+        private ILinkedNode Analyze(ILinkedNode parent, IFileInfo file, ILinkedNodeFactory nodeFactory)
         {
-            var node = AnalyzeInner(file, nodeFactory);
+            var node = AnalyzeInner(parent, file, nodeFactory);
             if(node != null)
             {
                 HashInfo(node, file, nodeFactory);
@@ -72,7 +72,7 @@ namespace IS4.MultiArchiver.Analyzers
                 {
                     node.Set(Properties.FileSize, len);
                 }
-                var content = nodeFactory.Create<IStreamFactory>(file);
+                var content = nodeFactory.Create<IStreamFactory>(node, file);
                 if(content != null)
                 {
                     content.Set(Properties.IsStoredAs, node);
@@ -81,9 +81,9 @@ namespace IS4.MultiArchiver.Analyzers
             return node;
         }
 
-        private ILinkedNode Analyze(IDirectoryInfo directory, ILinkedNodeFactory nodeFactory)
+        private ILinkedNode Analyze(ILinkedNode parent, IDirectoryInfo directory, ILinkedNodeFactory nodeFactory)
         {
-            var node = AnalyzeInner(directory, nodeFactory);
+            var node = AnalyzeInner(parent, directory, nodeFactory);
             if(node != null)
             {
                 var folder = node[""] ?? nodeFactory.Root[Guid.NewGuid().ToString("D")];
@@ -98,7 +98,7 @@ namespace IS4.MultiArchiver.Analyzers
 
                     foreach(var entry in directory.Entries)
                     {
-                        var node2 = Analyze(entry.WithContainer(node), nodeFactory);
+                        var node2 = Analyze(node, entry, nodeFactory);
                         if(node2 != null)
                         {
                             node2.Set(Properties.BelongsToContainer, folder);
@@ -109,36 +109,33 @@ namespace IS4.MultiArchiver.Analyzers
             return node;
         }
 
-        public ILinkedNode Analyze(FileInfo entity, ILinkedNodeFactory nodeFactory)
+        public ILinkedNode Analyze(ILinkedNode parent, FileInfo entity, ILinkedNodeFactory nodeFactory)
         {
-            return Analyze(new FileInfoWrapper(entity, null), nodeFactory);
+            return Analyze(parent, new FileInfoWrapper(entity), nodeFactory);
         }
 
-        public ILinkedNode Analyze(DirectoryInfo entity, ILinkedNodeFactory nodeFactory)
+        public ILinkedNode Analyze(ILinkedNode parent, DirectoryInfo entity, ILinkedNodeFactory nodeFactory)
         {
-            return Analyze(new DirectoryInfoWrapper(entity, null), nodeFactory);
+            return Analyze(parent, new DirectoryInfoWrapper(entity), nodeFactory);
         }
 
-        public ILinkedNode Analyze(IFileNodeInfo entity, ILinkedNodeFactory nodeFactory)
+        public ILinkedNode Analyze(ILinkedNode parent, IFileNodeInfo entity, ILinkedNodeFactory nodeFactory)
         {
             switch(entity)
             {
-                case IFileInfo file: return Analyze(file, nodeFactory);
-                case IDirectoryInfo dir: return Analyze(dir, nodeFactory);
+                case IFileInfo file: return Analyze(parent, file, nodeFactory);
+                case IDirectoryInfo dir: return Analyze(parent, dir, nodeFactory);
                 default: return null;
             }
         }
 
         class FileInfoWrapper : IFileInfo
         {
-            public ILinkedNode Container { get; }
-
             readonly FileInfo baseInfo;
 
-            public FileInfoWrapper(FileInfo baseInfo, ILinkedNode container)
+            public FileInfoWrapper(FileInfo baseInfo)
             {
                 this.baseInfo = baseInfo;
-                Container = container;
             }
 
             public string Name => baseInfo.Name;
@@ -163,23 +160,15 @@ namespace IS4.MultiArchiver.Analyzers
             {
                 return baseInfo.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete);
             }
-
-            public IFileNodeInfo WithContainer(ILinkedNode container)
-            {
-                return new FileInfoWrapper(baseInfo, container);
-            }
         }
 
         class DirectoryInfoWrapper : IDirectoryInfo
         {
-            public ILinkedNode Container { get; }
-
             readonly DirectoryInfo baseInfo;
 
-            public DirectoryInfoWrapper(DirectoryInfo baseInfo, ILinkedNode container)
+            public DirectoryInfoWrapper(DirectoryInfo baseInfo)
             {
                 this.baseInfo = baseInfo;
-                Container = container;
             }
 
             public string Name => baseInfo.Name;
@@ -193,18 +182,13 @@ namespace IS4.MultiArchiver.Analyzers
             public DateTime? LastAccessTime => baseInfo.LastAccessTimeUtc;
 
             public IEnumerable<IFileNodeInfo> Entries =>
-                baseInfo.EnumerateFiles().Select(f => (IFileNodeInfo)new FileInfoWrapper(f, null)).Concat(
-                    baseInfo.EnumerateDirectories().Select(d => new DirectoryInfoWrapper(d, null))
+                baseInfo.EnumerateFiles().Select(f => (IFileNodeInfo)new FileInfoWrapper(f)).Concat(
+                    baseInfo.EnumerateDirectories().Select(d => new DirectoryInfoWrapper(d))
                     );
 
             object IPersistentKey.ReferenceKey => AppDomain.CurrentDomain;
 
             object IPersistentKey.DataKey => baseInfo.FullName;
-
-            public IFileNodeInfo WithContainer(ILinkedNode container)
-            {
-                return new DirectoryInfoWrapper(baseInfo, container);
-            }
         }
     }
 }

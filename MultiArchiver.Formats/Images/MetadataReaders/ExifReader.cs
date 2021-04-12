@@ -56,7 +56,7 @@ namespace IS4.MultiArchiver.Analyzers.MetadataReaders
                         node.TrySet(ExifFormatter.Instance, id, v);
                         continue;
                     case object o:
-                        var node2 = nodeFactory.TryCreate(o);
+                        var node2 = nodeFactory.TryCreate(null, o);
                         if(node2 != null)
                         {
                             node.Set(ExifFormatter.Instance, id, node2);

@@ -15,15 +15,15 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override ILinkedNode Analyze(IFileSystem filesystem, ILinkedNodeFactory nodeFactory)
+        public override ILinkedNode Analyze(ILinkedNode parent, IFileSystem filesystem, ILinkedNodeFactory nodeFactory)
         {
-            var node = base.Analyze(filesystem, nodeFactory);
+            var node = base.Analyze(parent, filesystem, nodeFactory);
             if(node != null)
             {
                 foreach(var file in filesystem.GetFiles(null))
                 {
                     var info = filesystem.GetFileInfo(file);
-                    var node2 = nodeFactory.Create(new FileInfoWrapper(info, node));
+                    var node2 = nodeFactory.Create(node, new FileInfoWrapper(info));
                     if(node2 != null)
                     {
                         node2.Set(Properties.BelongsToContainer, node);
@@ -33,7 +33,7 @@ namespace IS4.MultiArchiver.Analyzers
                 foreach(var directory in filesystem.GetDirectories(null))
                 {
                     var info = filesystem.GetDirectoryInfo(directory);
-                    var node2 = nodeFactory.Create(new DirectoryInfoWrapper(info, node));
+                    var node2 = nodeFactory.Create(node, new DirectoryInfoWrapper(info));
                     if(node2 != null)
                     {
                         node2.Set(Properties.BelongsToContainer, node);
@@ -45,12 +45,10 @@ namespace IS4.MultiArchiver.Analyzers
 
         class FileInfoWrapper : IFileInfo
         {
-            public ILinkedNode Container { get; }
             readonly DiscFileInfo info;
 
-            public FileInfoWrapper(DiscFileInfo info, ILinkedNode container)
+            public FileInfoWrapper(DiscFileInfo info)
             {
-                Container = container;
                 this.info = info;
             }
 
@@ -76,21 +74,14 @@ namespace IS4.MultiArchiver.Analyzers
             {
                 return info.Open(FileMode.Open, FileAccess.Read);
             }
-
-            public IFileNodeInfo WithContainer(ILinkedNode container)
-            {
-                return new FileInfoWrapper(info, container);
-            }
         }
 
         class DirectoryInfoWrapper : IDirectoryInfo
         {
-            public ILinkedNode Container { get; }
             readonly DiscDirectoryInfo info;
 
-            public DirectoryInfoWrapper(DiscDirectoryInfo info, ILinkedNode container)
+            public DirectoryInfoWrapper(DiscDirectoryInfo info)
             {
-                Container = container;
                 this.info = info;
             }
 
@@ -105,18 +96,13 @@ namespace IS4.MultiArchiver.Analyzers
             public DateTime? LastAccessTime => info.LastAccessTimeUtc;
 
             public IEnumerable<IFileNodeInfo> Entries =>
-                info.GetFiles().Select(f => (IFileNodeInfo)new FileInfoWrapper(f, null)).Concat(
-                    info.GetDirectories().Select(d => new DirectoryInfoWrapper(d, null))
+                info.GetFiles().Select(f => (IFileNodeInfo)new FileInfoWrapper(f)).Concat(
+                    info.GetDirectories().Select(d => new DirectoryInfoWrapper(d))
                     );
 
             object IPersistentKey.ReferenceKey => info.FileSystem;
 
             object IPersistentKey.DataKey => info.FullName;
-
-            public IFileNodeInfo WithContainer(ILinkedNode container)
-            {
-                return new DirectoryInfoWrapper(info, container);
-            }
         }
     }
 }

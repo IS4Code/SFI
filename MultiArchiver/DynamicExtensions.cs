@@ -7,12 +7,12 @@ namespace IS4.MultiArchiver
 {
     public static class DynamicExtensions
     {
-        public static ILinkedNode TryCreate(this ILinkedNodeFactory factory, object value)
+        public static ILinkedNode TryCreate(this ILinkedNodeFactory factory, ILinkedNode parent, object value)
         {
             if(value == null) return null;
             try
             {
-                return factory.Create((dynamic)value);
+                return factory.Create(parent, (dynamic)value);
             }catch(RuntimeBinderException)
             {
                 return null;

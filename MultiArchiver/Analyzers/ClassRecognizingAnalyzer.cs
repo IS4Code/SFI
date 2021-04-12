@@ -19,9 +19,9 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public virtual ILinkedNode Analyze(T entity, ILinkedNodeFactory nodeFactory)
+        public virtual ILinkedNode Analyze(ILinkedNode parent, T entity, ILinkedNodeFactory nodeFactory)
         {
-            var node = nodeFactory.Root[Guid.NewGuid().ToString("D")];
+            var node = (this is IUriFormatter<Uri> formatter ? parent?[formatter] : null) ?? nodeFactory.Root[Guid.NewGuid().ToString("D")];
 
             foreach(var cls in recognizedClasses)
             {

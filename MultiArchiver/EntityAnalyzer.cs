@@ -9,7 +9,7 @@ namespace IS4.MultiArchiver
     {
         public ICollection<object> Analyzers { get; } = new SortedSet<object>(EntityAnalyzerComparer.Instance);
 
-        public ILinkedNode Analyze<T>(T entity, ILinkedNodeFactory nodeFactory) where T : class
+        public ILinkedNode Analyze<T>(ILinkedNode parent, T entity, ILinkedNodeFactory nodeFactory) where T : class
         {
             if(entity == null) return null;
             foreach(var obj in Analyzers)
@@ -17,7 +17,7 @@ namespace IS4.MultiArchiver
                 if(obj is IEntityAnalyzer<T> analyzer)
                 {
                     try{
-                        var result = analyzer.Analyze(entity, nodeFactory);
+                        var result = analyzer.Analyze(parent, entity, nodeFactory);
                         if(result != null) return result;
                     }catch(Exception e)
                     {

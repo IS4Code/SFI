@@ -13,14 +13,14 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override ILinkedNode Analyze(ZipArchive archive, ILinkedNodeFactory nodeFactory)
+        public override ILinkedNode Analyze(ILinkedNode parent, ZipArchive archive, ILinkedNodeFactory nodeFactory)
         {
-            var node = base.Analyze(archive, nodeFactory);
+            var node = base.Analyze(parent, archive, nodeFactory);
             if(node != null)
             {
                 foreach(var entry in archive.Entries)
                 {
-                    var node2 = nodeFactory.Create(new ZipEntryInfo(node, entry));
+                    var node2 = nodeFactory.Create(node, new ZipEntryInfo(entry));
                     if(node2 != null)
                     {
                         node2.SetClass(Classes.ArchiveItem);
@@ -38,11 +38,10 @@ namespace IS4.MultiArchiver.Analyzers
 
         class ZipEntryInfo : IFileInfo
         {
-            public ILinkedNode Container { get; }
             readonly ZipArchiveEntry entry;
             readonly Lazy<byte[]> data;
 
-            public ZipEntryInfo(ILinkedNode container, ZipArchiveEntry entry) : this(container, entry, new Lazy<byte[]>(() => {
+            public ZipEntryInfo(ZipArchiveEntry entry) : this(entry, new Lazy<byte[]>(() => {
                 var buffer = new byte[entry.Length];
                 using(var stream = new MemoryStream(buffer, true))
                 {
@@ -57,9 +56,8 @@ namespace IS4.MultiArchiver.Analyzers
 
             }
 
-            public ZipEntryInfo(ILinkedNode container, ZipArchiveEntry entry, Lazy<byte[]> data)
+            public ZipEntryInfo(ZipArchiveEntry entry, Lazy<byte[]> data)
             {
-                Container = container;
                 this.entry = entry;
                 this.data = data;
             }
@@ -85,11 +83,6 @@ namespace IS4.MultiArchiver.Analyzers
             public Stream Open()
             {
                 return new MemoryStream(data.Value, false);
-            }
-
-            public IFileNodeInfo WithContainer(ILinkedNode container)
-            {
-                return new ZipEntryInfo(container, entry, data);
             }
         }
     }
