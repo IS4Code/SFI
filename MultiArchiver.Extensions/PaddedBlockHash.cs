@@ -1,9 +1,7 @@
-﻿using BencodeNET.Objects;
-using IS4.MultiArchiver.Services;
+﻿using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Vocabulary;
 using System;
 using System.IO;
-using System.IO.Compression;
 
 namespace IS4.MultiArchiver
 {
@@ -20,16 +18,12 @@ namespace IS4.MultiArchiver
         {
             using(var output = new MemoryStream())
             {
-                //using(var gzip = new GZipStream(output, CompressionLevel.Optimal, false))
+                var list = BitTorrentHashCache.HashData(BlockSize, input, out var padding);
+                var enc = BitConverter.GetBytes(padding);
+                output.Write(enc, 0, enc.Length);
+                foreach(var block in list)
                 {
-                    var gzip = output;
-                    var list = BitTorrentHashCache.HashData(BlockSize, input, out var padding);
-                    var enc = BitConverter.GetBytes(padding);
-                    gzip.Write(enc, 0, enc.Length);
-                    foreach(var block in list)
-                    {
-                        if(block != null) gzip.Write(block, 0, block.Length);
-                    }
+                    if(block != null) output.Write(block, 0, block.Length);
                 }
                 return output.ToArray();
             }
