@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class ImageMetadataAnalyzer : ClassRecognizingAnalyzer<IReadOnlyList<Directory>>
+    public class ImageMetadataAnalyzer : FormatAnalyzer<IReadOnlyList<Directory>>
     {
         public ICollection<object> MetadataReaders { get; } = new SortedSet<object>(TypeInheritanceComparer<object>.Instance);
 

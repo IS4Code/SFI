@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace IS4.MultiArchiver.Formats
 {
-    public class ImageFormat : FileLoader<Image>
+    public class ImageFormat : FileFormat<Image>
     {
         public ImageFormat() : base(0, "image", null)
         {
@@ -29,9 +29,12 @@ namespace IS4.MultiArchiver.Formats
             return ImageCodecInfo.GetImageDecoders().FirstOrDefault(codec => codec.FormatID == format.Guid);
         }
 
-        public override Image Match(Stream stream)
+        public override TResult Match<TResult>(Stream stream, Func<Image, TResult> resultFactory)
         {
-            return Image.FromStream(stream);
+            using(var image = Image.FromStream(stream))
+            {
+                return resultFactory(image);
+            }
         }
 
         public override bool Match(ArraySegment<byte> header)

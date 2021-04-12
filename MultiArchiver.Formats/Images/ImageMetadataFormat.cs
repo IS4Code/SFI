@@ -1,6 +1,5 @@
 ﻿using IS4.MultiArchiver.Services;
 using MetadataExtractor;
-using MetadataExtractor.Util;
 using MetadataExtractor.Formats.FileType;
 using System;
 using System.Collections.Generic;
@@ -9,7 +8,7 @@ using System.Linq;
 
 namespace IS4.MultiArchiver.Formats
 {
-    public class ImageMetadataFormat : FileLoader<IReadOnlyList<MetadataExtractor.Directory>>
+    public class ImageMetadataFormat : FileFormat<IReadOnlyList<MetadataExtractor.Directory>>
     {
         public ImageMetadataFormat() : base(0, null, null)
         {
@@ -31,9 +30,9 @@ namespace IS4.MultiArchiver.Formats
             return metadata.OfType<FileTypeDirectory>().FirstOrDefault()?.GetString(tag);
         }
 
-        public override IReadOnlyList<MetadataExtractor.Directory> Match(Stream stream)
+        public override TResult Match<TResult>(Stream stream, Func<IReadOnlyList<MetadataExtractor.Directory>, TResult> resultFactory)
         {
-            return ImageMetadataReader.ReadMetadata(stream);
+            return resultFactory(ImageMetadataReader.ReadMetadata(stream));
         }
 
         public override bool Match(ArraySegment<byte> header)

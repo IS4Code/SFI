@@ -34,11 +34,11 @@ namespace IS4.MultiArchiver.Extensions
             archiver.DataAnalyzer.Formats.Add(new ZipFileFormat());
             archiver.DataAnalyzer.Formats.Add(new ImageMetadataFormat());
             archiver.DataAnalyzer.Formats.Add(new IsoFormat());
-            archiver.Analyzers.Add(new FormatObjectAnalyzer());
             archiver.Analyzers.Add(new XmlAnalyzer());
             archiver.Analyzers.Add(new ArchiveAnalyzer());
             archiver.Analyzers.Add(new FileSystemAnalyzer());
             archiver.Analyzers.Add(ImageMetadataAnalyzer.CreateDefault());
+            archiver.Analyzers.Add(new FormatAnalyzer<object>());
 
             return archiver;
         }

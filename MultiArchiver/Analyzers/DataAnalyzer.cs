@@ -1,6 +1,5 @@
 ﻿using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Tools;
-using IS4.MultiArchiver.Types;
 using IS4.MultiArchiver.Vocabulary;
 using System;
 using System.Collections.Generic;
@@ -111,20 +110,17 @@ namespace IS4.MultiArchiver.Analyzers
                 node.Set(Properties.Broader, hashNode);
             }
 
-            Task.WaitAll(results.Select(r => r.Result).ToArray());
+            foreach(var result in results)
+            {
+                result.Wait();
+            }
+
             results.RemoveAll(result => !result.IsValid(signatureBuffer));
 			results.Sort();
 
             foreach(var result in results)
             {
-                using(var entity2 = new FormatObject(result.Format, result.Result?.Result))
-                {
-                    var node2 = nodeFactory.Create(node, entity2);
-                    if(node2 != null)
-                    {
-                        node2.Set(Properties.HasFormat, node);
-                    }
-                }
+                result.Result.Set(Properties.HasFormat, node);
             }
 
 			return node;
@@ -156,49 +152,69 @@ namespace IS4.MultiArchiver.Analyzers
             }
         }
         
-		class FormatResult : IComparable<FormatResult>
+		class FormatResult : IComparable<FormatResult>, IFileReadingResultFactory<ILinkedNode>
 		{
-            public IFileFormat Format { get; }
+            readonly IFileFormat format;
+            readonly ILinkedNode parent;
+            readonly ILinkedNodeFactory nodeFactory;
+            readonly Task<ILinkedNode> task;
 
-            readonly bool isParsed = false;
-            public Task<object> Result { get; }
+            public int MaxReadBytes => format.HeaderLength;
 
-            public int MaxReadBytes => Format.HeaderLength;
+            public ILinkedNode Result => task?.Result;
 
             public FormatResult(IStreamFactory streamFactory, IFileFormat format, ILinkedNode parent, ILinkedNodeFactory nodeFactory)
 			{
-                Format = format;
-                if(format is IFileReader reader)
-                {
-                    isParsed = true;
-                    Result = StartReading(streamFactory, s => reader.Match(s, parent, nodeFactory));
-                }else if(format is IFileLoader loader)
-                {
-                    isParsed = true;
-                    Result = StartReading(streamFactory, loader.Match);
-				}
+                this.format = format;
+                this.parent = parent;
+                this.nodeFactory = nodeFactory;
+                task = StartReading(streamFactory, s => format.Match(s, this));
             }
 
-            private Task<object> StartReading(IStreamFactory streamFactory, Func<Stream, object> reader)
+            public void Wait()
+            {
+                Task.WaitAny(task);
+            }
+
+            ILinkedNode IFileReadingResultFactory<ILinkedNode>.Read<T>(T value)
+            {
+                return nodeFactory.Create<IFormatObject<T>>(parent, new FormatObject<T>(format, value));
+            }
+
+            class FormatObject<T> : IFormatObject<T>
+            {
+                readonly IFileFormat format;
+                public string Extension => format is IFileFormat<T> fmt ? fmt.GetExtension(Value) : format.GetExtension(Value);
+                public string MediaType => format is IFileFormat<T> fmt ? fmt.GetMediaType(Value) : format.GetMediaType(Value);
+                public T Value { get; }
+
+                public FormatObject(IFileFormat format, T value)
+                {
+                    this.format = format;
+                    Value = value;
+                }
+            }
+
+            private Task<ILinkedNode> StartReading(IStreamFactory streamFactory, Func<Stream, ILinkedNode> reader)
             {
                 if(streamFactory.IsThreadSafe)
                 {
                     return Task.Run(() => StartReadingInner(streamFactory, reader));
                 }else{
-                    return Task.FromResult(StartReadingInner(streamFactory, reader));
+                    try{
+                        return Task.FromResult(StartReadingInner(streamFactory, reader));
+                    }catch(Exception e)
+                    {
+                        return Task.FromException<ILinkedNode>(e);
+                    }
                 }
             }
 
-            private object StartReadingInner(IStreamFactory streamFactory, Func<Stream, object> reader)
+            private ILinkedNode StartReadingInner(IStreamFactory streamFactory, Func<Stream, ILinkedNode> reader)
             {
                 var stream = streamFactory.Open();
                 try{
-                    try{
-                        return reader(stream);
-                    }catch(Exception e)
-                    {
-                        return e;
-                    }
+                    return reader(stream);
                 }finally{
                     try{
                         stream.Dispose();
@@ -214,13 +230,13 @@ namespace IS4.MultiArchiver.Analyzers
                 {
                     buffer = new ArraySegment<byte>(header.ToArray());
                 }
-                return Format.Match(buffer.AsSpan()) && (!isParsed || !(Result?.Result is Exception));
+                return format.Match(buffer.AsSpan()) && !task.IsFaulted;
             }
 
             public int CompareTo(FormatResult other)
             {
-                var a = Result;
-                var b = other?.Result;
+                var a = task;
+                var b = other?.task;
                 if(a == null && b == null) return 0;
                 else if(a == null) return 1;
                 else if(b == null) return -1;

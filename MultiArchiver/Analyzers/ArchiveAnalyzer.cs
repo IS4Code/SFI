@@ -6,7 +6,7 @@ using System.IO.Compression;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class ArchiveAnalyzer : ClassRecognizingAnalyzer<ZipArchive>, IUriFormatter<Uri>
+    public class ArchiveAnalyzer : FormatAnalyzer<ZipArchive>
     {
         public ArchiveAnalyzer() : base(Classes.Archive)
         {
@@ -29,11 +29,6 @@ namespace IS4.MultiArchiver.Analyzers
                 }
             }
             return node;
-        }
-
-        public Uri FormatUri(Uri value)
-        {
-            return new Uri("zip:" + value.AbsoluteUri + "!", UriKind.Absolute);
         }
 
         class ZipEntryInfo : IFileInfo

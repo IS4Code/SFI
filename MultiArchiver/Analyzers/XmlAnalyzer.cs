@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class XmlAnalyzer : ClassRecognizingAnalyzer<XmlReader>
+    public class XmlAnalyzer : FormatAnalyzer<XmlReader>
     {
         public ICollection<IXmlDocumentFormat> XmlFormats { get; } = new List<IXmlDocumentFormat>();
 

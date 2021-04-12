@@ -5,7 +5,7 @@ using System.IO.Compression;
 
 namespace IS4.MultiArchiver.Formats
 {
-    public class ZipFileFormat : FileFormat, IFileReader
+    public class ZipFileFormat : FileFormat<ZipArchive>
     {
         public ZipFileFormat() : base(2, "application/zip", "zip")
         {
@@ -17,11 +17,11 @@ namespace IS4.MultiArchiver.Formats
             return header.Length >= 2 && header[0] == 0x50 && header[1] == 0x4B;
         }
 
-        public ILinkedNode Match(Stream stream, ILinkedNode parent, ILinkedNodeFactory nodeFactory)
+        public override TResult Match<TResult>(Stream stream, Func<ZipArchive, TResult> resultFactory)
         {
             using(var archive = new ZipArchive(stream, ZipArchiveMode.Read, true))
             {
-                return nodeFactory.Create(parent, archive);
+                return resultFactory(archive);
             }
         }
     }

@@ -5,7 +5,7 @@ using System.IO;
 
 namespace IS4.MultiArchiver.Formats
 {
-    public class MetadataExtractorFormat : FileLoader<FileType>
+    public class MetadataExtractorFormat : FileFormat<FileType>
     {
         public MetadataExtractorFormat() : base(0, null, null)
         {
@@ -22,9 +22,9 @@ namespace IS4.MultiArchiver.Formats
             return value.GetMimeType();
         }
 
-        public override FileType Match(Stream stream)
+        public override TResult Match<TResult>(Stream stream, Func<FileType, TResult> resultFactory)
         {
-            return FileTypeDetector.DetectFileType(stream);
+            return resultFactory(FileTypeDetector.DetectFileType(stream));
         }
 
         public override bool Match(Span<byte> header)

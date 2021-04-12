@@ -7,27 +7,28 @@ namespace IS4.MultiArchiver.Services
     {
         int HeaderLength { get; }
 
-        string MediaType { get; }
-        string Extension { get; }
-
-        bool Match(ArraySegment<byte> header);
-        bool Match(Span<byte> header);
-    }
-
-    public interface IFileLoader : IFileFormat
-    {
         string GetMediaType(object value);
         string GetExtension(object value);
 
-        object Match(Stream stream);
+        bool Match(ArraySegment<byte> header);
+        bool Match(Span<byte> header);
+        TResult Match<TResult>(Stream stream, IFileReadingResultFactory<TResult> resultFactory) where TResult : class;
     }
 
-    public interface IFileReader : IFileFormat
+    public interface IFileFormat<T> : IFileFormat
     {
-        ILinkedNode Match(Stream stream, ILinkedNode parent, ILinkedNodeFactory nodeFactory);
+        string GetMediaType(T value);
+        string GetExtension(T value);
+
+        TResult Match<TResult>(Stream stream, Func<T, TResult> resultFactory) where TResult : class;
     }
 
-    public abstract class FileFormat : IFileFormat
+    public interface IFileReadingResultFactory<TResult>
+    {
+        TResult Read<T>(T value);
+    }
+
+    public abstract class FileFormat<T> : IFileFormat<T>
     {
         public int HeaderLength { get; }
         public string MediaType { get; }
@@ -46,14 +47,6 @@ namespace IS4.MultiArchiver.Services
         }
 
         public abstract bool Match(Span<byte> header);
-    }
-
-    public abstract class FileLoader<T> : FileFormat, IFileLoader
-    {
-        public FileLoader(int headerLength, string mediaType, string extension) : base(headerLength, mediaType, extension)
-        {
-
-        }
 
         public virtual string GetExtension(T value)
         {
@@ -65,23 +58,23 @@ namespace IS4.MultiArchiver.Services
             return MediaType;
         }
 
-        public abstract T Match(Stream stream);
+        public abstract TResult Match<TResult>(Stream stream, Func<T, TResult> resultFactory) where TResult : class;
 
-        string IFileLoader.GetExtension(object value)
+        public TResult Match<TResult>(Stream stream, IFileReadingResultFactory<TResult> resultFactory) where TResult : class
+        {
+            return Match(stream, value => resultFactory.Read(value));
+        }
+
+        string IFileFormat.GetExtension(object value)
         {
             if(!(value is T obj)) throw new ArgumentException(null, nameof(value));
             return GetExtension(obj);
         }
 
-        string IFileLoader.GetMediaType(object value)
+        string IFileFormat.GetMediaType(object value)
         {
             if(!(value is T obj)) throw new ArgumentException(null, nameof(value));
             return GetMediaType(obj);
-        }
-
-        object IFileLoader.Match(Stream stream)
-        {
-            return Match(stream);
         }
     }
 }

@@ -5,7 +5,7 @@ using System.IO;
 
 namespace IS4.MultiArchiver.Formats
 {
-    public class IsoFormat : FileFormat, IFileReader
+    public class IsoFormat : FileFormat<CDReader>
     {
         public IsoFormat() : base(0, null, "iso")
         {
@@ -17,11 +17,11 @@ namespace IS4.MultiArchiver.Formats
             return true;
         }
 
-        public ILinkedNode Match(Stream stream, ILinkedNode parent, ILinkedNodeFactory nodeFactory)
+        public override TResult Match<TResult>(Stream stream, Func<CDReader, TResult> resultFactory)
         {
             using(var reader = new CDReader(stream, true))
             {
-                return nodeFactory.Create(parent, reader);
+                return resultFactory(reader);
             }
         }
     }

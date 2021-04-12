@@ -6,7 +6,7 @@ using System.Xml;
 
 namespace IS4.MultiArchiver.Formats
 {
-    public class XmlFileFormat : FileFormat, IFileReader
+    public class XmlFileFormat : FileFormat<XmlReader>
     {
         static readonly XmlReaderSettings readerSettings = new XmlReaderSettings
         {
@@ -26,12 +26,12 @@ namespace IS4.MultiArchiver.Formats
             return true;
         }
 
-        public ILinkedNode Match(Stream stream, ILinkedNode parent, ILinkedNodeFactory nodeFactory)
+        public override TResult Match<TResult>(Stream stream, Func<XmlReader, TResult> resultFactory)
         {
             using(var reader = XmlReader.Create(stream, readerSettings))
             {
                 if(!reader.Read()) return null;
-                return nodeFactory.Create(parent, reader);
+                return resultFactory(reader);
             }
         }
 

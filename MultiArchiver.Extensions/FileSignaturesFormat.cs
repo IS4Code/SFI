@@ -5,7 +5,7 @@ using System.IO;
 
 namespace IS4.MultiArchiver.Formats
 {
-    public class FileSignaturesFormat : FileFormat
+    public class FileSignaturesFormat : FileFormat<IDisposable>
     {
         public FileSignatures.FileFormat Format { get; }
 
@@ -42,6 +42,11 @@ namespace IS4.MultiArchiver.Formats
             }
         }
 
+        public override TResult Match<TResult>(Stream stream, Func<IDisposable, TResult> resultFactory)
+        {
+            return resultFactory(null);
+        }
+
         public static FileSignaturesFormat Create(FileSignatures.FileFormat format)
         {
             return format is FileSignatures.IFileFormatReader reader ?
@@ -49,7 +54,7 @@ namespace IS4.MultiArchiver.Formats
                 new FileSignaturesFormat(format);
         }
 
-        class ParsingFileSignaturesFormat : FileSignaturesFormat, IFileLoader
+        class ParsingFileSignaturesFormat : FileSignaturesFormat
         {
             readonly FileSignatures.IFileFormatReader reader;
 
@@ -58,29 +63,11 @@ namespace IS4.MultiArchiver.Formats
                 this.reader = reader;
             }
 
-            public string GetExtension(object value)
+            public override TResult Match<TResult>(Stream stream, Func<IDisposable, TResult> resultFactory)
             {
-                return Extension;
-            }
-
-            public string GetMediaType(object value)
-            {
-                return MediaType;
-            }
-
-            public object Match(Stream stream)
-            {
-                var result = reader.Read(stream);
-                bool matches = false;
-                try{
-                    if(reader.IsMatch(result))
-                    {
-                        matches = true;
-                        return result;
-                    }
-                    return null;
-                }finally{
-                    if(!matches) result.Dispose();
+                using(var result = reader.Read(stream))
+                {
+                    return resultFactory(result);
                 }
             }
         }
