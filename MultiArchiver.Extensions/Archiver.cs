@@ -69,6 +69,11 @@ namespace IS4.MultiArchiver.Extensions
                 graph.NamespaceMap.AddNamespace(hash.Name, hash.FormatUri(Array.Empty<byte>()));
             }
             graph.NamespaceMap.AddNamespace("id", new Uri(root + "/"));
+            graph.NamespaceMap.AddNamespace("dtxt", new Uri("data:,"));
+            graph.NamespaceMap.AddNamespace("dt64", new Uri("data:;base64,"));
+            graph.NamespaceMap.AddNamespace("dbin", new Uri("data:application/octet-stream,"));
+            graph.NamespaceMap.AddNamespace("db64", new Uri("data:application/octet-stream;base64,"));
+            graph.NamespaceMap.AddNamespace("exif", new Uri("http://www.w3.org/2003/12/exif/ns#"));
             var writer = new CompressingTurtleWriter(TurtleSyntax.W3C);
             writer.PrettyPrintMode = true;
             writer.DefaultNamespaces.Clear();

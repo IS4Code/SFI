@@ -19,9 +19,18 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        protected virtual ILinkedNode CreateNode(ILinkedNode parent, IFormatObject<T> format)
+        protected virtual ILinkedNode CreateNode(ILinkedNode parent, IFormatObject<T> format, ILinkedNodeFactory nodeFactory)
         {
-            return parent[format.MediaType];
+            if(format.MediaType == null)
+            {
+                return nodeFactory.Root[Guid.NewGuid().ToString("D")];
+            }
+            var split = format.MediaType.Split('/');
+            if(split.Length < 2)
+            {
+                return nodeFactory.Root[Guid.NewGuid().ToString("D")];
+            }
+            return parent[split[1]];
         }
 
         public virtual void Analyze(ILinkedNode node, T entity, ILinkedNodeFactory nodeFactory)
@@ -31,7 +40,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         public ILinkedNode Analyze(ILinkedNode parent, IFormatObject<T> entity, ILinkedNodeFactory nodeFactory)
         {
-            var node = CreateNode(parent, entity);
+            var node = CreateNode(parent, entity, nodeFactory);
 
             if(node != null)
             {

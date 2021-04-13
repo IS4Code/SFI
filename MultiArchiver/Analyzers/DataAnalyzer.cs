@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -15,6 +16,7 @@ namespace IS4.MultiArchiver.Analyzers
         public ICollection<IDataHashAlgorithm> HashAlgorithms { get; } = new List<IDataHashAlgorithm>();
         public Func<IEncodingDetector> EncodingDetectorFactory { get; set; }
         public ICollection<IFileFormat> Formats { get; } = new SortedSet<IFileFormat>(HeaderLengthComparer.Instance);
+        public float MinimumCharsetConfidence { get; } = 0.5000001f;
 
 		public DataAnalyzer(Func<IEncodingDetector> encodingDetectorFactory)
 		{
@@ -25,7 +27,7 @@ namespace IS4.MultiArchiver.Analyzers
         {
             var node = nodeFactory.Root[Guid.NewGuid().ToString("D")];
             var results = Formats.Select(format => new FormatResult(streamFactory, format, node, nodeFactory)).ToList();
-            int maxDataLength = HashAlgorithms.Sum(h => 2 * h.HashSize);
+            int maxDataLength = HashAlgorithms.Sum(h => h.HashSize);
             var signatureBuffer = new MemoryStream(Math.Max(maxDataLength, results.Max(result => result.MaxReadBytes)));
 
             var encodingDetector = EncodingDetectorFactory?.Invoke();
@@ -87,7 +89,7 @@ namespace IS4.MultiArchiver.Analyzers
                 encodingDetector.End();
             }
 
-            if(length == 0 || encodingDetector.Charset == null || encodingDetector.Confidence < Single.Epsilon)
+            if(length == 0 || encodingDetector.Charset == null || encodingDetector.Confidence < MinimumCharsetConfidence)
             {
                 isBinary = true;
             }
@@ -112,9 +114,19 @@ namespace IS4.MultiArchiver.Analyzers
 
             bool identifyWithData = length <= maxDataLength;
 
+            Encoding encoding = null;
+            string charset = null;
+
+            if(!isBinary)
+            {
+                encoding = TryGetEncoding(encodingDetector.Charset);
+                charset = encoding?.WebName ?? encodingDetector.Charset;
+                node.Set(Properties.CharacterEncoding, charset);
+            }
+
             if(identifyWithData)
             {
-                var dataNode = nodeFactory.Create(this, (encodingDetector?.Charset, signature));
+                var dataNode = nodeFactory.Create(this, (charset, signature));
                 if(results.Count > 0)
                 {
                     node.Set(Properties.SameAs, dataNode);
@@ -125,13 +137,16 @@ namespace IS4.MultiArchiver.Analyzers
             node.SetClass(isBinary ? Classes.ContentAsBase64 : Classes.ContentAsText);
             node.Set(Properties.Extent, length.ToString(), Datatypes.Byte);
 
-            if(!isBinary)
+            if(identifyWithData)
             {
-                node.Set(Properties.CharacterEncoding, encodingDetector.Charset);
-            }
-
-            if(!identifyWithData)
-            {
+                string strval;
+                if(isBinary || (strval = TryGetString(encoding, signature)) == null)
+                {
+                    node.Set(Properties.Value, Convert.ToBase64String(signature.Array, signature.Offset, signature.Count), Datatypes.Base64Binary);
+                }else{
+                    node.Set(Properties.Value, strval, Datatypes.String);
+                }
+            }else{
                 foreach(var hash in hashes)
                 {
                     var hashNode = nodeFactory.Create(hash.alg, hash.data.Result);
@@ -158,6 +173,28 @@ namespace IS4.MultiArchiver.Analyzers
 			return Analyze(parent, new MemoryStreamFactory(data), analyzer);
 		}
 
+        private Encoding TryGetEncoding(string charset)
+        {
+            if(charset == null) return null;
+            try{
+                return Encoding.GetEncoding(charset, EncoderFallback.ExceptionFallback, DecoderFallback.ExceptionFallback);
+            }catch(ArgumentException)
+            {
+                return null;
+            }
+        }
+
+        private string TryGetString(Encoding encoding, ArraySegment<byte> data)
+        {
+            if(encoding == null) return null;
+            try{
+                return encoding.GetString(data.Array, data.Offset, data.Count);
+            }catch(ArgumentException)
+            {
+                return null;
+            }
+        }
+
         static readonly Regex urlRegex = new Regex(@"%[a-f0-9]{2}|\+", RegexOptions.Compiled);
 
         Uri IUriFormatter<(string charset, ArraySegment<byte> data)>.FormatUri((string charset, ArraySegment<byte> data) value)
@@ -167,15 +204,15 @@ namespace IS4.MultiArchiver.Analyzers
 
             string data = uriEncoded.Length <= base64Encoded.Length ? uriEncoded : base64Encoded;
 
-            switch(value.charset)
+            switch(value.charset?.ToLowerInvariant())
             {
                 case null:
                     return new Uri("data:application/octet-stream" + data, UriKind.Absolute);
-                case "ASCII":
-                case "US-ASCII":
+                case "ascii":
+                case "us-ascii":
                     return new Uri("data:" + data);
                 default:
-                    return new Uri($"data:;charset={value.charset}" + data, UriKind.Absolute);
+                    return new Uri("data:;charset=" + value.charset + data, UriKind.Absolute);
             }
         }
 

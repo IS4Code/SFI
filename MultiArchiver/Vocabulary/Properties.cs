@@ -4,6 +4,8 @@
     {
         [Uri(Vocabularies.Rdf)]
         Type,
+        [Uri(Vocabularies.Rdf)]
+        Value,
 
         [Uri(Vocabularies.Owl)]
         SameAs,

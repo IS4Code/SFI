@@ -77,6 +77,16 @@ namespace IS4.MultiArchiver.Analyzers
                 {
                     content.Set(Properties.IsStoredAs, node);
                 }
+
+                if(file is IDirectoryInfo directory)
+                {
+                    var folder = AnalyzeContents(node, directory, nodeFactory);
+
+                    if(folder != null)
+                    {
+                        folder.Set(Properties.IsStoredAs, node);
+                    }
+                }
             }
             return node;
         }
@@ -86,27 +96,39 @@ namespace IS4.MultiArchiver.Analyzers
             var node = AnalyzeInner(parent, directory, nodeFactory);
             if(node != null)
             {
-                var folder = node[""] ?? nodeFactory.Root[Guid.NewGuid().ToString("D")];
+                var folder = AnalyzeContents(node, directory, nodeFactory);
 
                 if(folder != null)
                 {
-                    folder.SetClass(Classes.Folder);
-
                     folder.Set(Properties.IsStoredAs, node);
-
-                    HashInfo(folder, directory, nodeFactory);
-
-                    foreach(var entry in directory.Entries)
-                    {
-                        var node2 = Analyze(node, entry, nodeFactory);
-                        if(node2 != null)
-                        {
-                            node2.Set(Properties.BelongsToContainer, folder);
-                        }
-                    }
                 }
             }
             return node;
+        }
+
+        private ILinkedNode AnalyzeContents(ILinkedNode parent, IDirectoryInfo directory, ILinkedNodeFactory nodeFactory)
+        {
+            var folder = parent[""] ?? nodeFactory.Root[Guid.NewGuid().ToString("D")];
+
+            if(folder != null)
+            {
+                folder.SetClass(Classes.Folder);
+
+                folder.Set(Properties.IsStoredAs, parent);
+
+                HashInfo(folder, directory, nodeFactory);
+
+                foreach(var entry in directory.Entries)
+                {
+                    var node2 = Analyze(parent, entry, nodeFactory);
+                    if(node2 != null)
+                    {
+                        node2.Set(Properties.BelongsToContainer, folder);
+                    }
+                }
+            }
+
+            return folder;
         }
 
         public ILinkedNode Analyze(ILinkedNode parent, FileInfo entity, ILinkedNodeFactory nodeFactory)

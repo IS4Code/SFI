@@ -1,6 +1,7 @@
 ﻿using IS4.MultiArchiver.Services;
 using System;
 using System.Buffers;
+using System.Text;
 using Ude;
 
 namespace IS4.MultiArchiver.Tools
