@@ -18,7 +18,9 @@ namespace IS4.MultiArchiver.Analyzers
         public ICollection<IFileFormat> Formats { get; } = new SortedSet<IFileFormat>(HeaderLengthComparer.Instance);
         public float MinimumCharsetConfidence { get; } = 0.5000001f;
 
-		public DataAnalyzer(Func<IEncodingDetector> encodingDetectorFactory)
+        public int MaxDataLengthToStore => Math.Max(64, HashAlgorithms.Sum(h => h.HashSize + 64)) - 16;
+
+        public DataAnalyzer(Func<IEncodingDetector> encodingDetectorFactory)
 		{
             EncodingDetectorFactory = encodingDetectorFactory;
         }
@@ -27,8 +29,7 @@ namespace IS4.MultiArchiver.Analyzers
         {
             var node = nodeFactory.Root[Guid.NewGuid().ToString("D")];
             var results = Formats.Select(format => new FormatResult(streamFactory, format, node, nodeFactory)).ToList();
-            int maxDataLength = HashAlgorithms.Sum(h => h.HashSize);
-            var signatureBuffer = new MemoryStream(Math.Max(maxDataLength, results.Max(result => result.MaxReadBytes)));
+            var signatureBuffer = new MemoryStream(Math.Max(MaxDataLengthToStore, results.Max(result => result.MaxReadBytes)));
 
             var encodingDetector = EncodingDetectorFactory?.Invoke();
             var isBinary = false;
@@ -112,7 +113,7 @@ namespace IS4.MultiArchiver.Analyzers
             results.RemoveAll(result => !result.IsValid(signature));
 			results.Sort();
 
-            bool identifyWithData = length <= maxDataLength;
+            bool identifyWithData = length <= MaxDataLengthToStore;
 
             Encoding encoding = null;
             string charset = null;
