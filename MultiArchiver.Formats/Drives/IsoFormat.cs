@@ -7,7 +7,7 @@ namespace IS4.MultiArchiver.Formats
 {
     public class IsoFormat : FileFormat<CDReader>
     {
-        public IsoFormat() : base(0, null, "iso")
+        public IsoFormat() : base(0, "application/x-iso9660-image", "iso")
         {
 
         }

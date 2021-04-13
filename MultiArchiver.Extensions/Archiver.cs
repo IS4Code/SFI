@@ -74,7 +74,7 @@ namespace IS4.MultiArchiver.Extensions
             graph.NamespaceMap.AddNamespace("dbin", new Uri("data:application/octet-stream,"));
             graph.NamespaceMap.AddNamespace("db64", new Uri("data:application/octet-stream;base64,"));
             graph.NamespaceMap.AddNamespace("exif", new Uri("http://www.w3.org/2003/12/exif/ns#"));
-            var writer = new CompressingTurtleWriter(TurtleSyntax.W3C);
+            var writer = new CompressingTurtleWriter(TurtleSyntax.Original);
             writer.PrettyPrintMode = true;
             writer.DefaultNamespaces.Clear();
             graph.SaveToFile(output, writer);

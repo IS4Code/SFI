@@ -50,7 +50,10 @@ namespace IS4.MultiArchiver.Analyzers
                 {
                     node.SetClass(cls);
                 }
-                node.Set(Properties.EncodingFormat, Vocabularies.Mime, Uri.EscapeUriString(entity.MediaType));
+                if(entity.MediaType != null)
+                {
+                    node.Set(Properties.EncodingFormat, Vocabularies.Mime, Uri.EscapeUriString(entity.MediaType));
+                }
             }
 
             return node;

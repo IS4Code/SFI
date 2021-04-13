@@ -19,14 +19,18 @@ namespace IS4.MultiArchiver.Analyzers
 
         private ILinkedNode AnalyzeInner(ILinkedNode parent, IFileNodeInfo info, ILinkedNodeFactory nodeFactory)
         {
-            var name = Uri.EscapeUriString(info.Name);
+            var name = Uri.EscapeDataString(info.Name);
             var node = parent?[name] ?? nodeFactory.Root[Guid.NewGuid().ToString("D")];
 
             node.SetClass(Classes.FileDataObject);
 
             node.Set(Properties.Broader, Vocabularies.File, name);
-            //handler.HandleTriple(fileNode, this[Properties.Broader], this[pathUri]);
-            //handler.HandleTriple(this[pathUri], this[Properties.Broader], this[fileUri]);
+
+            var path = info.Path.Split('/');
+            for(int i = 0; i < path.Length; i++)
+            {
+                node.Set(Properties.Broader, Vocabularies.File, String.Join("/", path.Skip(i).Select(Uri.EscapeDataString)));
+            }
 
             node.Set(Properties.FileName, info.Name);
             if(info.CreationTime is DateTime dt1)
@@ -50,7 +54,7 @@ namespace IS4.MultiArchiver.Analyzers
             foreach(var alg in HashAlgorithms)
             {
                 var hash = alg.ComputeHash(info);
-                var hashNode = nodeFactory.Create(alg, hash);
+                var hashNode = hash.Length < 1984 ? nodeFactory.Create(alg, hash) : nodeFactory.Root[Guid.NewGuid().ToString("D")];
 
                 hashNode.SetClass(Classes.Digest);
 
@@ -162,7 +166,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             public string Name => baseInfo.Name;
 
-            public string Path => baseInfo.FullName.Substring(System.IO.Path.GetPathRoot(baseInfo.FullName).Length);
+            public string Path => baseInfo.FullName.Substring(System.IO.Path.GetPathRoot(baseInfo.FullName).Length).Replace(System.IO.Path.DirectorySeparatorChar, '/');
 
             public long Length => baseInfo.Length;
 
