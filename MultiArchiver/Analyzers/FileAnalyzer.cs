@@ -25,12 +25,7 @@ namespace IS4.MultiArchiver.Analyzers
             node.SetClass(Classes.FileDataObject);
 
             node.Set(Properties.Broader, Vocabularies.File, name);
-
-            var path = info.Path.Split('/');
-            for(int i = 0; i < path.Length; i++)
-            {
-                node.Set(Properties.Broader, Vocabularies.File, String.Join("/", path.Skip(i).Select(Uri.EscapeDataString)));
-            }
+            LinkDirectories(node, info.Path, nodeFactory);
 
             node.Set(Properties.FileName, info.Name);
             if(info.CreationTime is DateTime dt1)
@@ -112,13 +107,16 @@ namespace IS4.MultiArchiver.Analyzers
 
         private ILinkedNode AnalyzeContents(ILinkedNode parent, IDirectoryInfo directory, ILinkedNodeFactory nodeFactory)
         {
-            var folder = parent[""] ?? nodeFactory.Root[Guid.NewGuid().ToString("D")];
+            var folder = parent?[""] ?? nodeFactory.Root[Guid.NewGuid().ToString("D")];
 
             if(folder != null)
             {
                 folder.SetClass(Classes.Folder);
 
                 folder.Set(Properties.IsStoredAs, parent);
+
+                folder.Set(Properties.Broader, Vocabularies.File, Uri.EscapeDataString(directory.Name) + "/");
+                LinkDirectories(folder, directory.Path + "/", nodeFactory);
 
                 HashInfo(folder, directory, nodeFactory);
 
@@ -133,6 +131,17 @@ namespace IS4.MultiArchiver.Analyzers
             }
 
             return folder;
+        }
+
+        private void LinkDirectories(ILinkedNode initial, string path, ILinkedNodeFactory nodeFactory)
+        {
+            var parts = path.Split('/');
+            for(int i = 0; i < path.Length; i++)
+            {
+                var file = nodeFactory.Create(Vocabularies.File, String.Join("/", parts.Skip(i).Select(Uri.EscapeDataString)));
+                initial.Set(Properties.Broader, file);
+                initial = file;
+            }
         }
 
         public ILinkedNode Analyze(ILinkedNode parent, FileInfo entity, ILinkedNodeFactory nodeFactory)

@@ -25,6 +25,11 @@ namespace IS4.MultiArchiver.Extensions
             Root = Create(IdentityUriFormatter.Instance, root);
         }
 
+        public ILinkedNode Create(Vocabularies vocabulary, string localName)
+        {
+            return new UriNode(handler.CreateUriNode(new Uri(cache[vocabulary] + localName, UriKind.Absolute)), handler, cache);
+        }
+
         public ILinkedNode Create<T>(IUriFormatter<T> formatter, T value)
         {
             return new UriNode(handler.CreateUriNode(formatter.FormatUri(value)), handler, cache);
