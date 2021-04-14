@@ -1,8 +1,6 @@
 ﻿using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Vocabulary;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Xml;
 using System.Xml.Linq;
 
@@ -17,7 +15,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override void Analyze(ILinkedNode node, XmlReader reader, ILinkedNodeFactory nodeFactory)
+        public override bool Analyze(ILinkedNode node, XmlReader reader, ILinkedNodeFactory nodeFactory)
         {
             XDocumentType docType = null;
             do
@@ -72,9 +70,10 @@ namespace IS4.MultiArchiver.Analyzers
                                 break;
                             }
                         }
-                        return;
+                        return false;
                 }
             }while(reader.Read());
+            return false;
         }
     }
 }

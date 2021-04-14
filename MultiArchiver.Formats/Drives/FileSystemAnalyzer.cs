@@ -15,7 +15,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override void Analyze(ILinkedNode node, IFileSystem filesystem, ILinkedNodeFactory nodeFactory)
+        public override bool Analyze(ILinkedNode node, IFileSystem filesystem, ILinkedNodeFactory nodeFactory)
         {
             foreach(var file in filesystem.GetFiles(null))
             {
@@ -36,6 +36,8 @@ namespace IS4.MultiArchiver.Analyzers
                     node2.Set(Properties.BelongsToContainer, node);
                 }
             }
+
+            return false;
         }
 
         abstract class FileSystemInfoWrapper<TInfo> : IFileNodeInfo where TInfo : DiscFileSystemInfo

@@ -11,9 +11,9 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override void Analyze(ILinkedNode node, Image image, ILinkedNodeFactory nodeFactory)
+        public override bool Analyze(ILinkedNode node, Image image, ILinkedNodeFactory nodeFactory)
         {
-
+            return false;
         }
     }
 }

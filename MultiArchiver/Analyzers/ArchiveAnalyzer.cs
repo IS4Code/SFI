@@ -1,7 +1,6 @@
 ﻿using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Vocabulary;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
@@ -16,7 +15,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override void Analyze(ILinkedNode node, ZipArchive archive, ILinkedNodeFactory nodeFactory)
+        public override bool Analyze(ILinkedNode node, ZipArchive archive, ILinkedNodeFactory nodeFactory)
         {
             foreach(var group in archive.Entries.Select(e => (d: GetFirstDir(e.FullName), e)).GroupBy(p => p.d.dir))
             {
@@ -40,6 +39,7 @@ namespace IS4.MultiArchiver.Analyzers
                     }
                 }
             }
+            return false;
         }
 
         static (string dir, string subpath) GetFirstDir(string path)

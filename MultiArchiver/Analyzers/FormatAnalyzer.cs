@@ -33,9 +33,9 @@ namespace IS4.MultiArchiver.Analyzers
             return parent[split[1]];
         }
 
-        public virtual void Analyze(ILinkedNode node, T entity, ILinkedNodeFactory nodeFactory)
+        public virtual bool Analyze(ILinkedNode node, T entity, ILinkedNodeFactory nodeFactory)
         {
-
+            return false;
         }
 
         public ILinkedNode Analyze(ILinkedNode parent, IFormatObject<T> entity, ILinkedNodeFactory nodeFactory)
@@ -44,7 +44,13 @@ namespace IS4.MultiArchiver.Analyzers
 
             if(node != null)
             {
-                Analyze(node, entity.Value, nodeFactory);
+                if(!Analyze(node, entity.Value, nodeFactory))
+                {
+                    if(entity.Extension != null)
+                    {
+                        node.Set(Properties.PrefLabel, $"{entity.Extension.ToUpperInvariant()} data", "en");
+                    }
+                }
                 node.SetClass(Classes.MediaObject);
                 foreach(var cls in recognizedClasses)
                 {

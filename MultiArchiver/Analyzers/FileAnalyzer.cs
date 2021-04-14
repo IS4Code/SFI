@@ -27,6 +27,8 @@ namespace IS4.MultiArchiver.Analyzers
             node.Set(Properties.Broader, Vocabularies.File, name);
             LinkDirectories(node, info.Path, false, nodeFactory);
 
+            node.Set(Properties.PrefLabel, "/" + info.Path);
+
             node.Set(Properties.FileName, info.Name);
             if(info.CreationTime is DateTime dt1)
             {
@@ -106,6 +108,8 @@ namespace IS4.MultiArchiver.Analyzers
                 folder.SetClass(Classes.Folder);
 
                 folder.Set(Properties.IsStoredAs, parent);
+
+                folder.Set(Properties.PrefLabel, "/" + directory.Path + "/");
 
                 folder.Set(Properties.Broader, Vocabularies.File, Uri.EscapeDataString(directory.Name) + "/");
                 LinkDirectories(folder, directory.Path, true, nodeFactory);

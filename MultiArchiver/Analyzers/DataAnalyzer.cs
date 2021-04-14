@@ -125,14 +125,19 @@ namespace IS4.MultiArchiver.Analyzers
                 node.Set(Properties.CharacterEncoding, charset);
             }
 
+            var label = $"{(isBinary ? "binary data" : "text")} ({DataTools.SizeSuffix(length, 2)})";
+
             if(identifyWithData)
             {
                 var dataNode = nodeFactory.Create(this, (charset, signature));
                 if(results.Count > 0)
                 {
                     node.Set(Properties.SameAs, dataNode);
+                    node.Set(Properties.PrefLabel, label, "en");
                 }
                 node = dataNode;
+            }else{
+                node.Set(Properties.PrefLabel, label, "en");
             }
 
             node.SetClass(isBinary ? Classes.ContentAsBase64 : Classes.ContentAsText);
