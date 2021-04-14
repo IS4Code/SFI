@@ -38,20 +38,18 @@ namespace IS4.MultiArchiver.Analyzers
             }
         }
 
-        class FileInfoWrapper : IFileInfo
+        abstract class FileSystemInfoWrapper<TInfo> : IFileNodeInfo where TInfo : DiscFileSystemInfo
         {
-            readonly DiscFileInfo info;
+            protected readonly TInfo info;
 
-            public FileInfoWrapper(DiscFileInfo info)
+            public FileSystemInfoWrapper(TInfo info)
             {
                 this.info = info;
             }
 
             public string Name => info.Name;
 
-            public string Path => info.FullName;
-
-            public long Length => info.Length;
+            public virtual string Path => info.FullName.Replace(System.IO.Path.DirectorySeparatorChar, '/');
 
             public DateTime? CreationTime => info.CreationTimeUtc;
 
@@ -59,11 +57,21 @@ namespace IS4.MultiArchiver.Analyzers
 
             public DateTime? LastAccessTime => info.LastAccessTimeUtc;
 
-            public bool IsThreadSafe => info.FileSystem.IsThreadSafe;
-
             object IPersistentKey.ReferenceKey => info.FileSystem;
 
             object IPersistentKey.DataKey => info.FullName;
+        }
+
+        class FileInfoWrapper : FileSystemInfoWrapper<DiscFileInfo>, IFileInfo
+        {
+            public FileInfoWrapper(DiscFileInfo info) : base(info)
+            {
+
+            }
+
+            public long Length => info.Length;
+
+            public bool IsThreadSafe => info.FileSystem.IsThreadSafe;
 
             public Stream Open()
             {
@@ -71,33 +79,19 @@ namespace IS4.MultiArchiver.Analyzers
             }
         }
 
-        class DirectoryInfoWrapper : IDirectoryInfo
+        class DirectoryInfoWrapper : FileSystemInfoWrapper<DiscDirectoryInfo>, IDirectoryInfo
         {
-            readonly DiscDirectoryInfo info;
-
-            public DirectoryInfoWrapper(DiscDirectoryInfo info)
+            public DirectoryInfoWrapper(DiscDirectoryInfo info) : base(info)
             {
-                this.info = info;
+
             }
 
-            public string Name => info.Name;
-
-            public string Path => info.FullName;
-
-            public DateTime? CreationTime => info.CreationTimeUtc;
-
-            public DateTime? LastWriteTime => info.LastWriteTimeUtc;
-
-            public DateTime? LastAccessTime => info.LastAccessTimeUtc;
+            public override string Path => base.Path.TrimEnd('/');
 
             public IEnumerable<IFileNodeInfo> Entries =>
                 info.GetFiles().Select(f => (IFileNodeInfo)new FileInfoWrapper(f)).Concat(
                     info.GetDirectories().Select(d => new DirectoryInfoWrapper(d))
                     );
-
-            object IPersistentKey.ReferenceKey => info.FileSystem;
-
-            object IPersistentKey.DataKey => info.FullName;
         }
     }
 }

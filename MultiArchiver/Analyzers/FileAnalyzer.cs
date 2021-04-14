@@ -25,7 +25,7 @@ namespace IS4.MultiArchiver.Analyzers
             node.SetClass(Classes.FileDataObject);
 
             node.Set(Properties.Broader, Vocabularies.File, name);
-            LinkDirectories(node, info.Path, nodeFactory);
+            LinkDirectories(node, info.Path, false, nodeFactory);
 
             node.Set(Properties.FileName, info.Name);
             if(info.CreationTime is DateTime dt1)
@@ -116,7 +116,7 @@ namespace IS4.MultiArchiver.Analyzers
                 folder.Set(Properties.IsStoredAs, parent);
 
                 folder.Set(Properties.Broader, Vocabularies.File, Uri.EscapeDataString(directory.Name) + "/");
-                LinkDirectories(folder, directory.Path + "/", nodeFactory);
+                LinkDirectories(folder, directory.Path, true, nodeFactory);
 
                 HashInfo(folder, directory, nodeFactory);
 
@@ -133,12 +133,13 @@ namespace IS4.MultiArchiver.Analyzers
             return folder;
         }
 
-        private void LinkDirectories(ILinkedNode initial, string path, ILinkedNodeFactory nodeFactory)
+        private void LinkDirectories(ILinkedNode initial, string path, bool directory, ILinkedNodeFactory nodeFactory)
         {
             var parts = path.Split('/');
-            for(int i = 0; i < path.Length; i++)
+            for(int i = 0; i < parts.Length; i++)
             {
-                var file = nodeFactory.Create(Vocabularies.File, String.Join("/", parts.Skip(i).Select(Uri.EscapeDataString)));
+                var local = String.Join("/", parts.Skip(i).Select(Uri.EscapeDataString)) + (directory ? "/" : "");
+                var file = nodeFactory.Create(Vocabularies.File, local);
                 initial.Set(Properties.Broader, file);
                 initial = file;
             }
