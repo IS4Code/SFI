@@ -7,6 +7,9 @@
         [Uri(Vocabularies.Rdf)]
         Value,
 
+        [Uri(Vocabularies.Rdfs)]
+        Label,
+
         [Uri(Vocabularies.Owl)]
         SameAs,
 
@@ -78,6 +81,10 @@
         ExactMatch,
         [Uri(Vocabularies.Skos)]
         CloseMatch,
+        [Uri(Vocabularies.Skos)]
+        PrefLabel,
+        [Uri(Vocabularies.Skos)]
+        AltLabel,
 
         /*[Uri(Vocabularies.At)]
         Digest,*/

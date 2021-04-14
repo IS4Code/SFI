@@ -150,14 +150,7 @@ namespace IS4.MultiArchiver.Analyzers
             }else{
                 foreach(var hash in hashes)
                 {
-                    var hashNode = hash.data.Result.Length < 1984 ? nodeFactory.Create(hash.alg, hash.data.Result) : nodeFactory.Root[Guid.NewGuid().ToString("D")];
-
-                    hashNode.SetClass(Classes.Digest);
-
-                    hashNode.Set(Properties.DigestAlgorithm, hash.alg.Identifier);
-                    hashNode.Set(Properties.DigestValue, Convert.ToBase64String(hash.data.Result), Datatypes.Base64Binary);
-
-                    node.Set(Properties.Broader, hashNode);
+                    HashAlgorithm.AddHash(node, hash.alg, hash.data.Result, nodeFactory);
                 }
             }
 

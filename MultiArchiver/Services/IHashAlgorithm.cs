@@ -75,6 +75,24 @@ namespace IS4.MultiArchiver.Services
             Base64
         }
 
+        public static void AddHash(ILinkedNode node, IHashAlgorithm algorithm, byte[] hash, ILinkedNodeFactory nodeFactory)
+        {
+            bool tooLong = hash.Length >= 1984;
+            var hashNode = tooLong ? nodeFactory.Root[Guid.NewGuid().ToString("D")] : nodeFactory.Create(algorithm, hash);
+
+            hashNode.SetClass(Classes.Digest);
+
+            hashNode.Set(Properties.DigestAlgorithm, algorithm.Identifier);
+            hashNode.Set(Properties.DigestValue, Convert.ToBase64String(hash), Datatypes.Base64Binary);
+
+            if(tooLong)
+            {
+                node.Set(Properties.Label, algorithm.FormatUri(Array.Empty<byte>()).AbsoluteUri + "\u2026 (URI too long)");
+            }
+
+            node.Set(Properties.Broader, hashNode);
+        }
+
         static void Base32(byte[] bytes, StringBuilder sb)
         {
             const string chars = "QAZ2WSX3EDC4RFV5TGB6YHN7UJM8K9LP";

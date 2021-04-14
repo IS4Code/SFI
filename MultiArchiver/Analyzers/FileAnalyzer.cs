@@ -48,15 +48,7 @@ namespace IS4.MultiArchiver.Analyzers
         {
             foreach(var alg in HashAlgorithms)
             {
-                var hash = alg.ComputeHash(info);
-                var hashNode = hash.Length < 1984 ? nodeFactory.Create(alg, hash) : nodeFactory.Root[Guid.NewGuid().ToString("D")];
-
-                hashNode.SetClass(Classes.Digest);
-
-                hashNode.Set(Properties.DigestAlgorithm, alg.Identifier);
-                hashNode.Set(Properties.DigestValue, Convert.ToBase64String(hash), Datatypes.Base64Binary);
-
-                node.Set(Properties.Broader, hashNode);
+                HashAlgorithm.AddHash(node, alg, alg.ComputeHash(info), nodeFactory);
             }
         }
 
