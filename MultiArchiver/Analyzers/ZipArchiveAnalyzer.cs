@@ -117,7 +117,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             public ZipFileDirectoryInfo(ZipArchiveEntry container, IGrouping<string, DirectoryTools.EntryInfo<ZipArchiveEntry>> entries) : base(container, entries)
             {
-                this.entryInfo = new ZipFileInfo(container);
+                entryInfo = new ZipFileInfo(container);
             }
 
             public long Length => entryInfo.Length;

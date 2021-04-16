@@ -133,7 +133,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             public ArchiveFileDirectoryInfo(IArchiveEntry container, IGrouping<string, DirectoryTools.EntryInfo<IArchiveEntry>> entries) : base(container, entries)
             {
-                this.entryInfo = new ArchiveFileInfo(container);
+                entryInfo = new ArchiveFileInfo(container);
             }
 
             public long Length => entryInfo.Length;
@@ -148,21 +148,9 @@ namespace IS4.MultiArchiver.Analyzers
 
         class ArchiveFileInfo : ArchiveEntryInfo, IFileInfo
         {
-            readonly Lazy<byte[]> data;
-
             public ArchiveFileInfo(IArchiveEntry entry) : base(entry)
             {
-                data = new Lazy<byte[]>(() => {
-                    var buffer = new byte[entry.Size];
-                    using(var stream = new MemoryStream(buffer, true))
-                    {
-                        using(var inner = entry.OpenEntryStream())
-                        {
-                            inner.CopyTo(stream);
-                        }
-                        return buffer;
-                    }
-                });
+
             }
 
             public long Length => Entry.Size;
@@ -171,7 +159,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             public Stream Open()
             {
-                return new MemoryStream(data.Value, false);
+                return Entry.OpenEntryStream();
             }
         }
     }
