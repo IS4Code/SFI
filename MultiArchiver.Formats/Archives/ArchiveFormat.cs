@@ -1,8 +1,8 @@
 ﻿using IS4.MultiArchiver.Services;
 using SharpCompress.Archives;
-using Archives = SharpCompress.Archives;
 using System;
 using System.IO;
+using SharpCompress.Common;
 
 namespace IS4.MultiArchiver.Formats
 {
@@ -15,17 +15,17 @@ namespace IS4.MultiArchiver.Formats
 
         private (string ext, string type) GetArchiveInfo(IArchive archive)
         {
-            switch(archive)
+            switch(archive.Type)
             {
-                case Archives.Rar.RarArchive _:
+                case ArchiveType.Rar:
                     return ("rar", "application/vnd.rar");
-                case Archives.Zip.ZipArchive _:
+                case ArchiveType.Zip:
                     return ("zip", "application/zip");
-                case Archives.Tar.TarArchive _:
+                case ArchiveType.Tar:
                     return ("tar", "application/x-tar");
-                case Archives.SevenZip.SevenZipArchive _:
+                case ArchiveType.SevenZip:
                     return ("7z", "application/x-7z-compressed");
-                case Archives.GZip.GZipArchive _:
+                case ArchiveType.GZip:
                     return ("gz", "application/gzip");
                 default:
                     return default;
