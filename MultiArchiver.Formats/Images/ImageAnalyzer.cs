@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class ImageAnalyzer : FormatAnalyzer<Image>
+    public class ImageAnalyzer : BinaryFormatAnalyzer<Image>
     {
         public ImageAnalyzer() : base(Classes.ImageObject)
         {

@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class ArchiveAnalyzer : FormatAnalyzer<IArchive>
+    public class ArchiveAnalyzer : BinaryFormatAnalyzer<IArchive>
     {
         public ArchiveAnalyzer() : base(Classes.Archive)
         {

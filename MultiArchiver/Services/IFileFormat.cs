@@ -33,11 +33,15 @@ namespace IS4.MultiArchiver.Services
 
     public interface IXmlDocumentFormat : IFileFormat
     {
+        string GetPublicId(object value);
+        Uri GetNamespace(object value);
         TResult Match<TResult>(XmlReader reader, XDocumentType docType, IGenericFunc<TResult> resultFactory) where TResult : class;
     }
 
     public interface IXmlDocumentFormat<T> : IFileFormat<T>, IXmlDocumentFormat
     {
+        string GetPublicId(T value);
+        Uri GetNamespace(T value);
         TResult Match<TResult>(XmlReader reader, XDocumentType docType, Func<T, TResult> resultFactory) where TResult : class;
     }
 
@@ -101,6 +105,47 @@ namespace IS4.MultiArchiver.Services
         public TResult Match<TResult>(Stream stream, IGenericFunc<TResult> resultFactory) where TResult : class
         {
             return Match(stream, value => resultFactory.Invoke(value));
+        }
+    }
+
+    public abstract class XmlDocumentFormat<T> : FileFormat<T>, IXmlDocumentFormat<T>
+    {
+        public string PublicId { get; }
+        public Uri Namespace { get; }
+
+        public XmlDocumentFormat(string publicId, Uri @namespace, string mediaType, string extension) : base(mediaType, extension)
+        {
+            PublicId = publicId;
+            Namespace = @namespace;
+        }
+
+        public abstract TResult Match<TResult>(XmlReader reader, XDocumentType docType, Func<T, TResult> resultFactory) where TResult : class;
+
+        public TResult Match<TResult>(XmlReader reader, XDocumentType docType, IGenericFunc<TResult> resultFactory) where TResult : class
+        {
+            return Match(reader, docType, value => resultFactory.Invoke(value));
+        }
+
+        public virtual string GetPublicId(T value)
+        {
+            return PublicId;
+        }
+
+        public virtual Uri GetNamespace(T value)
+        {
+            return Namespace;
+        }
+
+        string IXmlDocumentFormat.GetPublicId(object value)
+        {
+            if(!(value is T obj)) throw new ArgumentException(null, nameof(value));
+            return GetPublicId(obj);
+        }
+
+        Uri IXmlDocumentFormat.GetNamespace(object value)
+        {
+            if(!(value is T obj)) throw new ArgumentException(null, nameof(value));
+            return GetNamespace(obj);
         }
     }
 }

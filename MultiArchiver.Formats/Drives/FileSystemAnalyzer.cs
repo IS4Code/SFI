@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class FileSystemAnalyzer : FormatAnalyzer<IFileSystem>
+    public class FileSystemAnalyzer : BinaryFormatAnalyzer<IFileSystem>
     {
         public FileSystemAnalyzer() : base(Classes.FilesystemImage)
         {

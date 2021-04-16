@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class ZipArchiveAnalyzer : FormatAnalyzer<ZipArchive>
+    public class ZipArchiveAnalyzer : BinaryFormatAnalyzer<ZipArchive>
     {
         public ZipArchiveAnalyzer() : base(Classes.Archive)
         {

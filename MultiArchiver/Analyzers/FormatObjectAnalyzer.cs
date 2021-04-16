@@ -2,24 +2,25 @@
 using IS4.MultiArchiver.Vocabulary;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class FormatAnalyzer<T> : IEntityAnalyzer<IFormatObject<T>> where T : class
+    public abstract class FormatObjectAnalyzer<T, TFormat> : IEntityAnalyzer<IFormatObject<T, TFormat>> where TFormat : IFileFormat
     {
         readonly IEnumerable<Classes> recognizedClasses;
 
-        public FormatAnalyzer(IEnumerable<Classes> recognizedClasses)
+        public FormatObjectAnalyzer(IEnumerable<Classes> recognizedClasses)
         {
             this.recognizedClasses = recognizedClasses;
         }
 
-        public FormatAnalyzer(params Classes[] recognizedClasses) : this((IEnumerable<Classes>)recognizedClasses)
+        public FormatObjectAnalyzer(params Classes[] recognizedClasses) : this((IEnumerable<Classes>)recognizedClasses)
         {
 
         }
 
-        protected virtual ILinkedNode CreateNode(ILinkedNode parent, IFormatObject<T> format, ILinkedNodeFactory nodeFactory)
+        protected virtual ILinkedNode CreateNode(ILinkedNode parent, IFormatObject<T, TFormat> format, ILinkedNodeFactory nodeFactory)
         {
             if(format.MediaType == null)
             {
@@ -38,7 +39,7 @@ namespace IS4.MultiArchiver.Analyzers
             return false;
         }
 
-        public ILinkedNode Analyze(ILinkedNode parent, IFormatObject<T> entity, ILinkedNodeFactory nodeFactory)
+        public virtual ILinkedNode Analyze(ILinkedNode parent, IFormatObject<T, TFormat> entity, ILinkedNodeFactory nodeFactory)
         {
             var node = CreateNode(parent, entity, nodeFactory);
 

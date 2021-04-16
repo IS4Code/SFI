@@ -1,22 +1,23 @@
 ﻿namespace IS4.MultiArchiver.Services
 {
-    public interface IFormatObject<out T>
+    public interface IFormatObject<out T, out TFormat> where TFormat : IFileFormat
     {
+        TFormat Format { get; }
         string Extension { get; }
         string MediaType { get; }
         T Value { get; }
     }
 
-    public class FormatObject<T> : IFormatObject<T>
+    public sealed class FormatObject<T, TFormat> : IFormatObject<T, TFormat> where TFormat : IFileFormat
     {
-        readonly IFileFormat format;
-        public string Extension => format is IFileFormat<T> fmt ? fmt.GetExtension(Value) : format.GetExtension(Value);
-        public string MediaType => format is IFileFormat<T> fmt ? fmt.GetMediaType(Value) : format.GetMediaType(Value);
+        public TFormat Format { get; }
+        public string Extension => Format is IFileFormat<T> fmt ? fmt.GetExtension(Value) : Format.GetExtension(Value);
+        public string MediaType => Format is IFileFormat<T> fmt ? fmt.GetMediaType(Value) : Format.GetMediaType(Value);
         public T Value { get; }
 
-        public FormatObject(IFileFormat format, T value)
+        public FormatObject(TFormat format, T value)
         {
-            this.format = format;
+            Format = format;
             Value = value;
         }
     }

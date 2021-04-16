@@ -261,7 +261,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             ILinkedNode IGenericFunc<ILinkedNode>.Invoke<T>(T value)
             {
-                return nodeFactory.Create<IFormatObject<T>>(parent, new FormatObject<T>(format, value));
+                return nodeFactory.Create<IFormatObject<T, IBinaryFileFormat>>(parent, new FormatObject<T, IBinaryFileFormat>(format, value));
             }
 
             private Task<ILinkedNode> StartReading(IStreamFactory streamFactory, Func<Stream, ILinkedNode> reader)

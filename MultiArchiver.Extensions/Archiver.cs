@@ -21,7 +21,8 @@ namespace IS4.MultiArchiver.Extensions
             Analyzers.Add(FileAnalyzer = new FileAnalyzer());
             Analyzers.Add(DataAnalyzer = new DataAnalyzer(() => new UdeEncodingDetector()));
             Analyzers.Add(XmlAnalyzer = new XmlAnalyzer());
-            Analyzers.Add(new FormatAnalyzer<object>());
+            Analyzers.Add(new BinaryFormatAnalyzer<object>());
+            Analyzers.Add(new XmlFormatAnalyzer<object>());
 
             DataAnalyzer.HashAlgorithms.Add(BuiltInHash.MD5);
             DataAnalyzer.HashAlgorithms.Add(BuiltInHash.SHA1);
