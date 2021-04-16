@@ -17,7 +17,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         public override bool Analyze(ILinkedNode node, IArchive archive, ILinkedNodeFactory nodeFactory)
         {
-            foreach(var group in DirectoryTools.GroupByDirectories(archive.Entries, e => e.Key))
+            foreach(var group in DirectoryTools.GroupByDirectories(archive.Entries, ExtractPath))
             {
                 if(group.Key == null)
                 {
@@ -40,6 +40,17 @@ namespace IS4.MultiArchiver.Analyzers
                 }
             }
             return false;
+        }
+
+        private static string ExtractPath(IArchiveEntry entry)
+        {
+            if(entry == null) return null;
+            var path = entry.Key.Replace(Path.DirectorySeparatorChar, '/');
+            if(entry.IsDirectory)
+            {
+                path += "/";
+            }
+            return path;
         }
         
         class ArchiveDirectoryInfo : IDirectoryInfo
@@ -75,7 +86,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             public string Name => entries.Key;
 
-            public string Path => container?.Key;
+            public string Path => ExtractPath(container);
 
             public DateTime? CreationTime => container?.CreatedTime;
 
@@ -146,7 +157,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             public string Name => System.IO.Path.GetFileName(entry.Key);
 
-            public string Path => entry.Key;
+            public string Path => ExtractPath(entry);
 
             public long Length => entry.Size;
 
