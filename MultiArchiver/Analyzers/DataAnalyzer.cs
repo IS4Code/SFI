@@ -264,20 +264,6 @@ namespace IS4.MultiArchiver.Analyzers
                 return nodeFactory.Create<IFormatObject<T>>(parent, new FormatObject<T>(format, value));
             }
 
-            class FormatObject<T> : IFormatObject<T>
-            {
-                readonly IBinaryFileFormat format;
-                public string Extension => format is IBinaryFileFormat<T> fmt ? fmt.GetExtension(Value) : format.GetExtension(Value);
-                public string MediaType => format is IBinaryFileFormat<T> fmt ? fmt.GetMediaType(Value) : format.GetMediaType(Value);
-                public T Value { get; }
-
-                public FormatObject(IBinaryFileFormat format, T value)
-                {
-                    this.format = format;
-                    Value = value;
-                }
-            }
-
             private Task<ILinkedNode> StartReading(IStreamFactory streamFactory, Func<Stream, ILinkedNode> reader)
             {
                 if(streamFactory.IsThreadSafe)

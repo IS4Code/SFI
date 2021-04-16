@@ -82,10 +82,10 @@ namespace IS4.MultiArchiver.Analyzers
         class ResultFactory : IGenericFunc<ILinkedNode>
         {
             readonly ILinkedNode parent;
-            readonly IXmlDocumentFormat format;
+            readonly IFileFormat format;
             readonly ILinkedNodeFactory nodeFactory;
 
-            public ResultFactory(ILinkedNode parent, IXmlDocumentFormat format, ILinkedNodeFactory nodeFactory)
+            public ResultFactory(ILinkedNode parent, IFileFormat format, ILinkedNodeFactory nodeFactory)
             {
                 this.parent = parent;
                 this.format = format;
@@ -95,20 +95,6 @@ namespace IS4.MultiArchiver.Analyzers
             ILinkedNode IGenericFunc<ILinkedNode>.Invoke<T>(T value)
             {
                 return nodeFactory.Create(parent, new FormatObject<T>(format, value));
-            }
-
-            class FormatObject<T> : IFormatObject<T>
-            {
-                readonly IXmlDocumentFormat format;
-                public string Extension => format is IBinaryFileFormat<T> fmt ? fmt.GetExtension(Value) : format.GetExtension(Value);
-                public string MediaType => format is IBinaryFileFormat<T> fmt ? fmt.GetMediaType(Value) : format.GetMediaType(Value);
-                public T Value { get; }
-
-                public FormatObject(IXmlDocumentFormat format, T value)
-                {
-                    this.format = format;
-                    Value = value;
-                }
             }
         }
     }
