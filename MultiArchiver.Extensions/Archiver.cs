@@ -13,12 +13,15 @@ namespace IS4.MultiArchiver.Extensions
     {
         public FileAnalyzer FileAnalyzer { get; }
         public DataAnalyzer DataAnalyzer { get; }
+        public XmlAnalyzer XmlAnalyzer { get; }
         public BitTorrentHash BitTorrentHash { get; }
 
         public Archiver()
         {
             Analyzers.Add(FileAnalyzer = new FileAnalyzer());
             Analyzers.Add(DataAnalyzer = new DataAnalyzer(() => new UdeEncodingDetector()));
+            Analyzers.Add(XmlAnalyzer = new XmlAnalyzer());
+            Analyzers.Add(new FormatAnalyzer<object>());
 
             DataAnalyzer.HashAlgorithms.Add(BuiltInHash.MD5);
             DataAnalyzer.HashAlgorithms.Add(BuiltInHash.SHA1);
@@ -36,11 +39,9 @@ namespace IS4.MultiArchiver.Extensions
             archiver.DataAnalyzer.Formats.Add(new ArchiveFormat());
             archiver.DataAnalyzer.Formats.Add(new ImageMetadataFormat());
             archiver.DataAnalyzer.Formats.Add(new IsoFormat());
-            archiver.Analyzers.Add(new XmlAnalyzer());
             //archiver.Analyzers.Add(new ZipArchiveAnalyzer());
             archiver.Analyzers.Add(new ArchiveAnalyzer());
             archiver.Analyzers.Add(ImageMetadataAnalyzer.CreateDefault());
-            archiver.Analyzers.Add(new FormatAnalyzer<object>());
 
             return archiver;
         }
