@@ -160,7 +160,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             foreach(var result in results)
             {
-                result.Result.Set(Properties.HasFormat, node);
+                result.Result?.Set(Properties.HasFormat, node);
             }
 
 			return node;
