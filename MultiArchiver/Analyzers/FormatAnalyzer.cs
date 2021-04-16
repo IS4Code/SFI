@@ -48,7 +48,7 @@ namespace IS4.MultiArchiver.Analyzers
                 {
                     if(entity.Extension != null)
                     {
-                        node.Set(Properties.PrefLabel, $"{entity.Extension.ToUpperInvariant()} data", "en");
+                        node.Set(Properties.PrefLabel, $"{entity.Extension.ToUpperInvariant()} object", "en");
                     }
                 }
                 node.SetClass(Classes.MediaObject);
