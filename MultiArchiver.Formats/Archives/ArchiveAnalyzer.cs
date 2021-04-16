@@ -23,7 +23,7 @@ namespace IS4.MultiArchiver.Analyzers
                 {
                     foreach(var entry in group)
                     {
-                        var node2 = nodeFactory.Create(node, new ArchiveEntryInfo(entry.Entry));
+                        var node2 = nodeFactory.Create(node, new ArchiveFileInfo(entry.Entry));
                         if(node2 != null)
                         {
                             node2.SetClass(Classes.ArchiveItem);
@@ -57,15 +57,39 @@ namespace IS4.MultiArchiver.Analyzers
             if(entry == null) return null;
             return entry.Key.Replace(Path.DirectorySeparatorChar, '/');
         }
-        
-        class ArchiveDirectoryInfo : IDirectoryInfo
+
+        abstract class ArchiveEntryInfo : IFileNodeInfo
         {
-            readonly IArchiveEntry container;
+            protected IArchiveEntry Entry { get; }
+
+            public ArchiveEntryInfo(IArchiveEntry entry)
+            {
+                Entry = entry;
+            }
+
+            public string Name => System.IO.Path.GetFileName(Entry?.Key);
+
+            public string Path => ExtractPathSimple(Entry);
+
+            public DateTime? CreationTime => Entry?.CreatedTime;
+
+            public DateTime? LastWriteTime => Entry?.LastModifiedTime;
+
+            public DateTime? LastAccessTime => Entry?.LastAccessedTime;
+
+            protected virtual object ReferenceKey => Entry?.Archive;
+
+            object IPersistentKey.ReferenceKey => ReferenceKey;
+
+            object IPersistentKey.DataKey => Entry?.Key;
+        }
+
+        class ArchiveDirectoryInfo : ArchiveEntryInfo, IDirectoryInfo
+        {
             readonly IGrouping<string, DirectoryTools.EntryInfo<IArchiveEntry>> entries;
 
-            protected ArchiveDirectoryInfo(IArchiveEntry container, IGrouping<string, DirectoryTools.EntryInfo<IArchiveEntry>> entries)
+            protected ArchiveDirectoryInfo(IArchiveEntry container, IGrouping<string, DirectoryTools.EntryInfo<IArchiveEntry>> entries) : base(container)
             {
-                this.container = container;
                 this.entries = entries;
             }
 
@@ -79,7 +103,7 @@ namespace IS4.MultiArchiver.Analyzers
                             {
                                 if(!String.IsNullOrWhiteSpace(entry.SubPath))
                                 {
-                                    yield return new ArchiveEntryInfo(entry.Entry);
+                                    yield return new ArchiveFileInfo(entry.Entry);
                                 }
                             }
                         }else{
@@ -89,19 +113,7 @@ namespace IS4.MultiArchiver.Analyzers
                 }
             }
 
-            public string Name => entries.Key;
-
-            public string Path => ExtractPathSimple(container);
-
-            public DateTime? CreationTime => container?.CreatedTime;
-
-            public DateTime? LastWriteTime => container?.LastModifiedTime;
-
-            public DateTime? LastAccessTime => container?.LastAccessedTime;
-
-            public object ReferenceKey => container?.Archive ?? entries.FirstOrDefault().Entry?.Archive;
-
-            public object DataKey => container?.Key;
+            protected override object ReferenceKey => base.ReferenceKey ?? entries.FirstOrDefault().Entry?.Archive;
 
             public static ArchiveDirectoryInfo Create(IGrouping<string, DirectoryTools.EntryInfo<IArchiveEntry>> group)
             {
@@ -117,11 +129,11 @@ namespace IS4.MultiArchiver.Analyzers
 
         class ArchiveFileDirectoryInfo : ArchiveDirectoryInfo, IFileInfo
         {
-            readonly ArchiveEntryInfo entryInfo;
+            readonly ArchiveFileInfo entryInfo;
 
             public ArchiveFileDirectoryInfo(IArchiveEntry container, IGrouping<string, DirectoryTools.EntryInfo<IArchiveEntry>> entries) : base(container, entries)
             {
-                this.entryInfo = new ArchiveEntryInfo(container);
+                this.entryInfo = new ArchiveFileInfo(container);
             }
 
             public long Length => entryInfo.Length;
@@ -134,49 +146,28 @@ namespace IS4.MultiArchiver.Analyzers
             }
         }
 
-        class ArchiveEntryInfo : IFileInfo
+        class ArchiveFileInfo : ArchiveEntryInfo, IFileInfo
         {
-            readonly IArchiveEntry entry;
             readonly Lazy<byte[]> data;
 
-            public ArchiveEntryInfo(IArchiveEntry entry) : this(entry, new Lazy<byte[]>(() => {
-                var buffer = new byte[entry.Size];
-                using(var stream = new MemoryStream(buffer, true))
-                {
-                    using(var inner = entry.OpenEntryStream())
+            public ArchiveFileInfo(IArchiveEntry entry) : base(entry)
+            {
+                data = new Lazy<byte[]>(() => {
+                    var buffer = new byte[entry.Size];
+                    using(var stream = new MemoryStream(buffer, true))
                     {
-                        inner.CopyTo(stream);
+                        using(var inner = entry.OpenEntryStream())
+                        {
+                            inner.CopyTo(stream);
+                        }
+                        return buffer;
                     }
-                    return buffer;
-                }
-            }))
-            {
-
+                });
             }
 
-            public ArchiveEntryInfo(IArchiveEntry entry, Lazy<byte[]> data)
-            {
-                this.entry = entry;
-                this.data = data;
-            }
-
-            public string Name => System.IO.Path.GetFileName(entry.Key);
-
-            public string Path => ExtractPathSimple(entry);
-
-            public long Length => entry.Size;
-
-            public DateTime? CreationTime => entry.CreatedTime;
-
-            public DateTime? LastWriteTime => entry.LastModifiedTime;
-
-            public DateTime? LastAccessTime => entry.LastAccessedTime;
+            public long Length => Entry.Size;
 
             public bool IsThreadSafe => true;
-
-            object IPersistentKey.ReferenceKey => entry.Archive;
-
-            object IPersistentKey.DataKey => entry.Key;
 
             public Stream Open()
             {

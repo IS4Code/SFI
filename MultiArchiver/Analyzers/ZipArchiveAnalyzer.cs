@@ -23,7 +23,7 @@ namespace IS4.MultiArchiver.Analyzers
                 {
                     foreach(var entry in group)
                     {
-                        var node2 = nodeFactory.Create(node, new ZipEntryInfo(entry.Entry));
+                        var node2 = nodeFactory.Create(node, new ZipFileInfo(entry.Entry));
                         if(node2 != null)
                         {
                             node2.SetClass(Classes.ArchiveItem);
@@ -42,14 +42,38 @@ namespace IS4.MultiArchiver.Analyzers
             return false;
         }
 
-        class ZipDirectoryInfo : IDirectoryInfo
+        abstract class ZipEntryInfo : IFileNodeInfo
         {
-            readonly ZipArchiveEntry container;
+            protected ZipArchiveEntry Entry { get; }
+
+            public ZipEntryInfo(ZipArchiveEntry entry)
+            {
+                Entry = entry;
+            }
+
+            public string Name => Entry?.Name;
+
+            public string Path => Entry?.FullName;
+
+            public DateTime? CreationTime => null;
+
+            public DateTime? LastWriteTime => Entry?.LastWriteTime.UtcDateTime;
+
+            public DateTime? LastAccessTime => null;
+
+            protected virtual object ReferenceKey => Entry?.Archive;
+
+            object IPersistentKey.ReferenceKey => ReferenceKey;
+
+            object IPersistentKey.DataKey => Entry?.FullName;
+        }
+
+        class ZipDirectoryInfo : ZipEntryInfo, IDirectoryInfo
+        {
             readonly IGrouping<string, DirectoryTools.EntryInfo<ZipArchiveEntry>> entries;
 
-            protected ZipDirectoryInfo(ZipArchiveEntry container, IGrouping<string, DirectoryTools.EntryInfo<ZipArchiveEntry>> entries)
+            protected ZipDirectoryInfo(ZipArchiveEntry container, IGrouping<string, DirectoryTools.EntryInfo<ZipArchiveEntry>> entries) : base(container)
             {
-                this.container = container;
                 this.entries = entries;
             }
 
@@ -63,7 +87,7 @@ namespace IS4.MultiArchiver.Analyzers
                             {
                                 if(!String.IsNullOrWhiteSpace(entry.SubPath))
                                 {
-                                    yield return new ZipEntryInfo(entry.Entry);
+                                    yield return new ZipFileInfo(entry.Entry);
                                 }
                             }
                         }else{
@@ -73,19 +97,7 @@ namespace IS4.MultiArchiver.Analyzers
                 }
             }
 
-            public string Name => entries.Key;
-
-            public string Path => container?.FullName.TrimEnd('/');
-
-            public DateTime? CreationTime => null;
-
-            public DateTime? LastWriteTime => container?.LastWriteTime.UtcDateTime;
-
-            public DateTime? LastAccessTime => null;
-
-            public object ReferenceKey => container?.Archive ?? entries.FirstOrDefault().Entry?.Archive;
-
-            public object DataKey => container?.FullName;
+            protected override object ReferenceKey => base.ReferenceKey ?? entries.FirstOrDefault().Entry?.Archive;
 
             public static ZipDirectoryInfo Create(IGrouping<string, DirectoryTools.EntryInfo<ZipArchiveEntry>> group)
             {
@@ -101,11 +113,11 @@ namespace IS4.MultiArchiver.Analyzers
 
         class ZipFileDirectoryInfo : ZipDirectoryInfo, IFileInfo
         {
-            readonly ZipEntryInfo entryInfo;
+            readonly ZipFileInfo entryInfo;
 
             public ZipFileDirectoryInfo(ZipArchiveEntry container, IGrouping<string, DirectoryTools.EntryInfo<ZipArchiveEntry>> entries) : base(container, entries)
             {
-                this.entryInfo = new ZipEntryInfo(container);
+                this.entryInfo = new ZipFileInfo(container);
             }
 
             public long Length => entryInfo.Length;
@@ -118,49 +130,28 @@ namespace IS4.MultiArchiver.Analyzers
             }
         }
 
-        class ZipEntryInfo : IFileInfo
+        class ZipFileInfo : ZipEntryInfo, IFileInfo
         {
-            readonly ZipArchiveEntry entry;
             readonly Lazy<byte[]> data;
 
-            public ZipEntryInfo(ZipArchiveEntry entry) : this(entry, new Lazy<byte[]>(() => {
-                var buffer = new byte[entry.Length];
-                using(var stream = new MemoryStream(buffer, true))
-                {
-                    using(var inner = entry.Open())
+            public ZipFileInfo(ZipArchiveEntry entry) : base(entry)
+            {
+                data = new Lazy<byte[]>(() => {
+                    var buffer = new byte[entry.Length];
+                    using(var stream = new MemoryStream(buffer, true))
                     {
-                        inner.CopyTo(stream);
+                        using(var inner = entry.Open())
+                        {
+                            inner.CopyTo(stream);
+                        }
+                        return buffer;
                     }
-                    return buffer;
-                }
-            }))
-            {
-
+                });
             }
 
-            public ZipEntryInfo(ZipArchiveEntry entry, Lazy<byte[]> data)
-            {
-                this.entry = entry;
-                this.data = data;
-            }
-
-            public string Name => entry.Name;
-
-            public string Path => entry.FullName;
-
-            public long Length => entry.Length;
-
-            public DateTime? CreationTime => null;
-
-            public DateTime? LastWriteTime => entry.LastWriteTime.UtcDateTime;
-
-            public DateTime? LastAccessTime => null;
+            public long Length => Entry.Length;
 
             public bool IsThreadSafe => true;
-
-            object IPersistentKey.ReferenceKey => entry.Archive;
-
-            object IPersistentKey.DataKey => entry.FullName;
 
             public Stream Open()
             {
