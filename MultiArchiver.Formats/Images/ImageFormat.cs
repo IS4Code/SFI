@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace IS4.MultiArchiver.Formats
 {
-    public class ImageFormat : FileFormat<Image>
+    public class ImageFormat : BinaryFileFormat<Image>
     {
         public ImageFormat() : base(0, "image", null)
         {

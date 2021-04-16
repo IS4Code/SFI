@@ -5,7 +5,7 @@ using System.IO;
 
 namespace IS4.MultiArchiver.Formats
 {
-    public class IsoFormat : FileFormat<CDReader>
+    public class IsoFormat : BinaryFileFormat<CDReader>
     {
         public IsoFormat() : base(0, "application/x-iso9660-image", "iso")
         {

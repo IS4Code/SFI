@@ -15,7 +15,7 @@ namespace IS4.MultiArchiver.Analyzers
 	{
         public ICollection<IDataHashAlgorithm> HashAlgorithms { get; } = new List<IDataHashAlgorithm>();
         public Func<IEncodingDetector> EncodingDetectorFactory { get; set; }
-        public ICollection<IFileFormat> Formats { get; } = new SortedSet<IFileFormat>(HeaderLengthComparer.Instance);
+        public ICollection<IBinaryFileFormat> Formats { get; } = new SortedSet<IBinaryFileFormat>(HeaderLengthComparer.Instance);
         public float MinimumCharsetConfidence { get; } = 0.5000001f;
 
         public int MaxDataLengthToStore => Math.Max(64, HashAlgorithms.Sum(h => h.HashSize + 64)) - 16;
@@ -235,9 +235,9 @@ namespace IS4.MultiArchiver.Analyzers
             }
         }
         
-		class FormatResult : IComparable<FormatResult>, IFileReadingResultFactory<ILinkedNode>
+		class FormatResult : IComparable<FormatResult>, IGenericFunc<ILinkedNode>
 		{
-            readonly IFileFormat format;
+            readonly IBinaryFileFormat format;
             readonly ILinkedNode parent;
             readonly ILinkedNodeFactory nodeFactory;
             readonly Task<ILinkedNode> task;
@@ -246,7 +246,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             public ILinkedNode Result => task?.Result;
 
-            public FormatResult(IStreamFactory streamFactory, IFileFormat format, ILinkedNode parent, ILinkedNodeFactory nodeFactory)
+            public FormatResult(IStreamFactory streamFactory, IBinaryFileFormat format, ILinkedNode parent, ILinkedNodeFactory nodeFactory)
 			{
                 this.format = format;
                 this.parent = parent;
@@ -259,19 +259,19 @@ namespace IS4.MultiArchiver.Analyzers
                 Task.WaitAny(task);
             }
 
-            ILinkedNode IFileReadingResultFactory<ILinkedNode>.Read<T>(T value)
+            ILinkedNode IGenericFunc<ILinkedNode>.Invoke<T>(T value)
             {
                 return nodeFactory.Create<IFormatObject<T>>(parent, new FormatObject<T>(format, value));
             }
 
             class FormatObject<T> : IFormatObject<T>
             {
-                readonly IFileFormat format;
-                public string Extension => format is IFileFormat<T> fmt ? fmt.GetExtension(Value) : format.GetExtension(Value);
-                public string MediaType => format is IFileFormat<T> fmt ? fmt.GetMediaType(Value) : format.GetMediaType(Value);
+                readonly IBinaryFileFormat format;
+                public string Extension => format is IBinaryFileFormat<T> fmt ? fmt.GetExtension(Value) : format.GetExtension(Value);
+                public string MediaType => format is IBinaryFileFormat<T> fmt ? fmt.GetMediaType(Value) : format.GetMediaType(Value);
                 public T Value { get; }
 
-                public FormatObject(IFileFormat format, T value)
+                public FormatObject(IBinaryFileFormat format, T value)
                 {
                     this.format = format;
                     Value = value;
@@ -325,16 +325,16 @@ namespace IS4.MultiArchiver.Analyzers
             }
         }
 
-        class HeaderLengthComparer : GlobalObjectComparer<IFileFormat>
+        class HeaderLengthComparer : GlobalObjectComparer<IBinaryFileFormat>
         {
-            public static readonly IComparer<IFileFormat> Instance = new HeaderLengthComparer();
+            public static readonly IComparer<IBinaryFileFormat> Instance = new HeaderLengthComparer();
 
             private HeaderLengthComparer()
             {
 
             }
 
-            protected override int CompareInner(IFileFormat x, IFileFormat y)
+            protected override int CompareInner(IBinaryFileFormat x, IBinaryFileFormat y)
             {
                 return -x.HeaderLength.CompareTo(y.HeaderLength);
             }

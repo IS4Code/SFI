@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace IS4.MultiArchiver.Formats
 {
-    public class ImageMetadataFormat : FileFormat<IReadOnlyList<MetadataExtractor.Directory>>
+    public class ImageMetadataFormat : BinaryFileFormat<IReadOnlyList<MetadataExtractor.Directory>>
     {
         public ImageMetadataFormat() : base(0, null, null)
         {

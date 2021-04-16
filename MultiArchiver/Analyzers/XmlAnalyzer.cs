@@ -1,4 +1,5 @@
 ﻿using IS4.MultiArchiver.Services;
+using IS4.MultiArchiver.Tools;
 using IS4.MultiArchiver.Vocabulary;
 using System.Collections.Generic;
 using System.Xml;
@@ -8,7 +9,7 @@ namespace IS4.MultiArchiver.Analyzers
 {
     public class XmlAnalyzer : FormatAnalyzer<XmlReader>
     {
-        public ICollection<IXmlDocumentFormat> XmlFormats { get; } = new List<IXmlDocumentFormat>();
+        public ICollection<IXmlDocumentFormat> XmlFormats { get; } = new SortedSet<IXmlDocumentFormat>(TypeInheritanceComparer<IXmlDocumentFormat>.Instance);
 
         public XmlAnalyzer() : base(Classes.ContentAsXML)
         {
@@ -64,9 +65,11 @@ namespace IS4.MultiArchiver.Analyzers
                     case XmlNodeType.Element:
                         foreach(var format in XmlFormats)
                         {
-                            if(format.Match(reader, docType, nodeFactory) is ILinkedNode node2)
+                            var resultFactory = new ResultFactory(node, format, nodeFactory);
+                            var result = format.Match(reader, docType, resultFactory);
+                            if(result != null)
                             {
-                                node2.Set(Properties.HasFormat, node);
+                                result.Set(Properties.HasFormat, node);
                                 break;
                             }
                         }
@@ -74,6 +77,39 @@ namespace IS4.MultiArchiver.Analyzers
                 }
             }while(reader.Read());
             return false;
+        }
+
+        class ResultFactory : IGenericFunc<ILinkedNode>
+        {
+            readonly ILinkedNode parent;
+            readonly IXmlDocumentFormat format;
+            readonly ILinkedNodeFactory nodeFactory;
+
+            public ResultFactory(ILinkedNode parent, IXmlDocumentFormat format, ILinkedNodeFactory nodeFactory)
+            {
+                this.parent = parent;
+                this.format = format;
+                this.nodeFactory = nodeFactory;
+            }
+
+            ILinkedNode IGenericFunc<ILinkedNode>.Invoke<T>(T value)
+            {
+                return nodeFactory.Create(parent, new FormatObject<T>(format, value));
+            }
+
+            class FormatObject<T> : IFormatObject<T>
+            {
+                readonly IXmlDocumentFormat format;
+                public string Extension => format is IBinaryFileFormat<T> fmt ? fmt.GetExtension(Value) : format.GetExtension(Value);
+                public string MediaType => format is IBinaryFileFormat<T> fmt ? fmt.GetMediaType(Value) : format.GetMediaType(Value);
+                public T Value { get; }
+
+                public FormatObject(IXmlDocumentFormat format, T value)
+                {
+                    this.format = format;
+                    Value = value;
+                }
+            }
         }
     }
 }

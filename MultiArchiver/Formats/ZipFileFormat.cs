@@ -5,7 +5,7 @@ using System.IO.Compression;
 
 namespace IS4.MultiArchiver.Formats
 {
-    public class ZipFileFormat : FileFormat<ZipArchive>
+    public class ZipFileFormat : BinaryFileFormat<ZipArchive>
     {
         public ZipFileFormat() : base(2, "application/zip", "zip")
         {

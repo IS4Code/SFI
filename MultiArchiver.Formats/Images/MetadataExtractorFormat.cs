@@ -5,7 +5,7 @@ using System.IO;
 
 namespace IS4.MultiArchiver.Formats
 {
-    public class MetadataExtractorFormat : FileFormat<FileType>
+    public class MetadataExtractorFormat : BinaryFileFormat<FileType>
     {
         public MetadataExtractorFormat() : base(0, null, null)
         {

@@ -5,7 +5,7 @@ using System.IO;
 
 namespace IS4.MultiArchiver.Formats
 {
-    public class FileSignaturesFormat : FileFormat<IDisposable>
+    public class FileSignaturesFormat : BinaryFileFormat<IDisposable>
     {
         public FileSignatures.FileFormat Format { get; }
 

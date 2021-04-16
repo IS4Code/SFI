@@ -6,7 +6,7 @@ using System.Xml;
 
 namespace IS4.MultiArchiver.Formats
 {
-    public class XmlFileFormat : FileFormat<XmlReader>
+    public class XmlFileFormat : BinaryFileFormat<XmlReader>
     {
         static readonly XmlReaderSettings readerSettings = new XmlReaderSettings
         {
