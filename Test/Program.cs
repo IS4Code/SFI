@@ -20,9 +20,9 @@ namespace Test
                     dict.EncodeTo(stream);
                 }
             };
-            //archiver.Archive(@"G:\ISO\Broodwar.iso", "graph.ttl");
+            archiver.Archive(@"G:\ISO\Broodwar.iso", "graph.ttl");
             //archiver.Archive("smol.png", "graph.ttl");
-            archiver.Archive("test.rar", "graph.ttl");
+            //archiver.Archive("test.rar", "graph.ttl");
 
             //Console.ReadKey(true);
         }

@@ -41,6 +41,7 @@ namespace IS4.MultiArchiver.Extensions
             archiver.DataAnalyzer.Formats.Add(new IsoFormat());
             //archiver.Analyzers.Add(new ZipArchiveAnalyzer());
             archiver.Analyzers.Add(new ArchiveAnalyzer());
+            archiver.Analyzers.Add(new FileSystemAnalyzer());
             archiver.Analyzers.Add(ImageMetadataAnalyzer.CreateDefault());
 
             return archiver;

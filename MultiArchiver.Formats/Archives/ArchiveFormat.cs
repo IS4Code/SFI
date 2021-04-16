@@ -51,6 +51,10 @@ namespace IS4.MultiArchiver.Formats
         {
             using(var archive = ArchiveFactory.Open(stream))
             {
+                if(archive.TotalSize <= 0 || archive.TotalUncompressSize <= 0)
+                {
+                    return null;
+                }
                 return resultFactory(archive);
             }
         }
