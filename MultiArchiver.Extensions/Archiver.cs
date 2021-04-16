@@ -32,12 +32,13 @@ namespace IS4.MultiArchiver.Extensions
             var archiver = new Archiver();
 
             archiver.DataAnalyzer.Formats.Add(new XmlFileFormat());
-            archiver.DataAnalyzer.Formats.Add(new ZipFileFormat());
+            //archiver.DataAnalyzer.Formats.Add(new ZipFileFormat());
+            archiver.DataAnalyzer.Formats.Add(new ArchiveFormat());
             archiver.DataAnalyzer.Formats.Add(new ImageMetadataFormat());
             archiver.DataAnalyzer.Formats.Add(new IsoFormat());
             archiver.Analyzers.Add(new XmlAnalyzer());
+            //archiver.Analyzers.Add(new ZipArchiveAnalyzer());
             archiver.Analyzers.Add(new ArchiveAnalyzer());
-            archiver.Analyzers.Add(new FileSystemAnalyzer());
             archiver.Analyzers.Add(ImageMetadataAnalyzer.CreateDefault());
             archiver.Analyzers.Add(new FormatAnalyzer<object>());
 

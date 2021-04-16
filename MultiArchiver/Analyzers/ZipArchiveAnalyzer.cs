@@ -8,22 +8,22 @@ using System.Linq;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class ArchiveAnalyzer : FormatAnalyzer<ZipArchive>
+    public class ZipArchiveAnalyzer : FormatAnalyzer<ZipArchive>
     {
-        public ArchiveAnalyzer() : base(Classes.Archive)
+        public ZipArchiveAnalyzer() : base(Classes.Archive)
         {
 
         }
 
         public override bool Analyze(ILinkedNode node, ZipArchive archive, ILinkedNodeFactory nodeFactory)
         {
-            foreach(var group in archive.Entries.Select(e => (d: GetFirstDir(e.FullName), e)).GroupBy(p => p.d.dir))
+            foreach(var group in DirectoryTools.GroupByDirectories(archive.Entries, e => e.FullName))
             {
                 if(group.Key == null)
                 {
                     foreach(var entry in group)
                     {
-                        var node2 = nodeFactory.Create(node, new ZipEntryInfo(entry.e));
+                        var node2 = nodeFactory.Create(node, new ZipEntryInfo(entry.Entry));
                         if(node2 != null)
                         {
                             node2.SetClass(Classes.ArchiveItem);
@@ -42,19 +42,12 @@ namespace IS4.MultiArchiver.Analyzers
             return false;
         }
 
-        static (string dir, string subpath) GetFirstDir(string path)
-        {
-            int index = path.IndexOf('/');
-            if(index == -1) return (null, path);
-            return (path.Substring(0, index), path.Substring(index + 1));
-        }
-
         class ZipDirectoryInfo : IDirectoryInfo
         {
             readonly ZipArchiveEntry container;
-            readonly IGrouping<string, ((string dir, string subpath) d, ZipArchiveEntry e)> entries;
+            readonly IGrouping<string, DirectoryTools.EntryInfo<ZipArchiveEntry>> entries;
 
-            protected ZipDirectoryInfo(ZipArchiveEntry container, IGrouping<string, ((string dir, string subpath) d, ZipArchiveEntry e)> entries)
+            protected ZipDirectoryInfo(ZipArchiveEntry container, IGrouping<string, DirectoryTools.EntryInfo<ZipArchiveEntry>> entries)
             {
                 this.container = container;
                 this.entries = entries;
@@ -62,15 +55,15 @@ namespace IS4.MultiArchiver.Analyzers
 
             public IEnumerable<IFileNodeInfo> Entries{
                 get{
-                    foreach(var group in entries.Select(p => (d: GetFirstDir(p.d.subpath), p.e)).GroupBy(p => p.d.dir))
+                    foreach(var group in DirectoryTools.GroupByDirectories(entries, e => e.SubPath, e => e.Entry))
                     {
                         if(group.Key == null)
                         {
                             foreach(var entry in group)
                             {
-                                if(!String.IsNullOrWhiteSpace(entry.d.subpath))
+                                if(!String.IsNullOrWhiteSpace(entry.SubPath))
                                 {
-                                    yield return new ZipEntryInfo(entry.e);
+                                    yield return new ZipEntryInfo(entry.Entry);
                                 }
                             }
                         }else{
@@ -90,18 +83,18 @@ namespace IS4.MultiArchiver.Analyzers
 
             public DateTime? LastAccessTime => null;
 
-            public object ReferenceKey => container?.Archive;
+            public object ReferenceKey => container?.Archive ?? entries.FirstOrDefault().Entry?.Archive;
 
             public object DataKey => container?.FullName;
 
-            public static ZipDirectoryInfo Create(IGrouping<string, ((string dir, string subpath) d, ZipArchiveEntry e)> group)
+            public static ZipDirectoryInfo Create(IGrouping<string, DirectoryTools.EntryInfo<ZipArchiveEntry>> group)
             {
-                var container = group.FirstOrDefault(p => String.IsNullOrEmpty(p.d.subpath));
-                if(container.e != null && container.e.Length > 0)
+                var container = group.FirstOrDefault(p => String.IsNullOrEmpty(p.SubPath));
+                if(container.Entry != null && container.Entry.Length > 0)
                 {
-                    return new ZipFileDirectoryInfo(container.e, group);
+                    return new ZipFileDirectoryInfo(container.Entry, group);
                 }else{
-                    return new ZipDirectoryInfo(container.e, group);
+                    return new ZipDirectoryInfo(container.Entry, group);
                 }
             }
         }
@@ -110,7 +103,7 @@ namespace IS4.MultiArchiver.Analyzers
         {
             readonly ZipEntryInfo entryInfo;
 
-            public ZipFileDirectoryInfo(ZipArchiveEntry container, IGrouping<string, ((string, string), ZipArchiveEntry)> entries) : base(container, entries)
+            public ZipFileDirectoryInfo(ZipArchiveEntry container, IGrouping<string, DirectoryTools.EntryInfo<ZipArchiveEntry>> entries) : base(container, entries)
             {
                 this.entryInfo = new ZipEntryInfo(container);
             }
