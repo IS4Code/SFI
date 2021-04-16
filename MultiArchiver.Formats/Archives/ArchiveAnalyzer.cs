@@ -44,13 +44,18 @@ namespace IS4.MultiArchiver.Analyzers
 
         private static string ExtractPath(IArchiveEntry entry)
         {
-            if(entry == null) return null;
-            var path = entry.Key.Replace(Path.DirectorySeparatorChar, '/');
-            if(entry.IsDirectory)
+            var path = ExtractPathSimple(entry);
+            if(entry != null && entry.IsDirectory)
             {
                 path += "/";
             }
             return path;
+        }
+
+        private static string ExtractPathSimple(IArchiveEntry entry)
+        {
+            if(entry == null) return null;
+            return entry.Key.Replace(Path.DirectorySeparatorChar, '/');
         }
         
         class ArchiveDirectoryInfo : IDirectoryInfo
@@ -86,7 +91,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             public string Name => entries.Key;
 
-            public string Path => ExtractPath(container);
+            public string Path => ExtractPathSimple(container);
 
             public DateTime? CreationTime => container?.CreatedTime;
 
@@ -157,7 +162,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             public string Name => System.IO.Path.GetFileName(entry.Key);
 
-            public string Path => ExtractPath(entry);
+            public string Path => ExtractPathSimple(entry);
 
             public long Length => entry.Size;
 

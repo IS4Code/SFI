@@ -75,7 +75,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             public string Name => entries.Key;
 
-            public string Path => container?.FullName;
+            public string Path => container?.FullName.TrimEnd('/');
 
             public DateTime? CreationTime => null;
 
