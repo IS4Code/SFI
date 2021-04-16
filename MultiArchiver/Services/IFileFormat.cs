@@ -11,7 +11,7 @@ namespace IS4.MultiArchiver.Services
         string GetExtension(object value);
     }
 
-    public interface IFileFormat<T> : IFileFormat
+    public interface IFileFormat<T> : IFileFormat where T : class
     {
         string GetMediaType(T value);
         string GetExtension(T value);
@@ -26,7 +26,7 @@ namespace IS4.MultiArchiver.Services
         TResult Match<TResult>(Stream stream, IGenericFunc<TResult> resultFactory) where TResult : class;
     }
 
-    public interface IBinaryFileFormat<T> : IFileFormat<T>, IBinaryFileFormat
+    public interface IBinaryFileFormat<T> : IFileFormat<T>, IBinaryFileFormat where T : class
     {
         TResult Match<TResult>(Stream stream, Func<T, TResult> resultFactory) where TResult : class;
     }
@@ -38,7 +38,7 @@ namespace IS4.MultiArchiver.Services
         TResult Match<TResult>(XmlReader reader, XDocumentType docType, IGenericFunc<TResult> resultFactory) where TResult : class;
     }
 
-    public interface IXmlDocumentFormat<T> : IFileFormat<T>, IXmlDocumentFormat
+    public interface IXmlDocumentFormat<T> : IFileFormat<T>, IXmlDocumentFormat where T : class
     {
         string GetPublicId(T value);
         Uri GetNamespace(T value);
@@ -47,10 +47,10 @@ namespace IS4.MultiArchiver.Services
 
     public interface IGenericFunc<TResult>
     {
-        TResult Invoke<T>(T value);
+        TResult Invoke<T>(T value) where T : class;
     }
 
-    public abstract class FileFormat<T> : IFileFormat<T>
+    public abstract class FileFormat<T> : IFileFormat<T> where T : class
     {
         public string MediaType { get; }
         public string Extension { get; }
@@ -84,7 +84,7 @@ namespace IS4.MultiArchiver.Services
         }
     }
 
-    public abstract class BinaryFileFormat<T> : FileFormat<T>, IBinaryFileFormat<T>
+    public abstract class BinaryFileFormat<T> : FileFormat<T>, IBinaryFileFormat<T> where T : class
     {
         public int HeaderLength { get; }
 
@@ -108,7 +108,7 @@ namespace IS4.MultiArchiver.Services
         }
     }
 
-    public abstract class XmlDocumentFormat<T> : FileFormat<T>, IXmlDocumentFormat<T>
+    public abstract class XmlDocumentFormat<T> : FileFormat<T>, IXmlDocumentFormat<T> where T : class
     {
         public string PublicId { get; }
         public Uri Namespace { get; }

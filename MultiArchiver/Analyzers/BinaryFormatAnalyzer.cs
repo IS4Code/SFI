@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class BinaryFormatAnalyzer<T> : FormatObjectAnalyzer<T, IBinaryFileFormat>
+    public class BinaryFormatAnalyzer<T> : FormatObjectAnalyzer<T, IBinaryFileFormat> where T : class
     {
         public BinaryFormatAnalyzer(IEnumerable<Classes> recognizedClasses) : base(recognizedClasses)
         {

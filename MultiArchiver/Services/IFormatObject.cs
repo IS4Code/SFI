@@ -1,6 +1,6 @@
 ﻿namespace IS4.MultiArchiver.Services
 {
-    public interface IFormatObject<out T, out TFormat> where TFormat : IFileFormat
+    public interface IFormatObject<out T, out TFormat> where T : class where TFormat : class, IFileFormat
     {
         TFormat Format { get; }
         string Extension { get; }
@@ -8,7 +8,7 @@
         T Value { get; }
     }
 
-    public sealed class FormatObject<T, TFormat> : IFormatObject<T, TFormat> where TFormat : IFileFormat
+    public sealed class FormatObject<T, TFormat> : IFormatObject<T, TFormat> where T : class where TFormat : class, IFileFormat
     {
         public TFormat Format { get; }
         public string Extension => Format is IFileFormat<T> fmt ? fmt.GetExtension(Value) : Format.GetExtension(Value);

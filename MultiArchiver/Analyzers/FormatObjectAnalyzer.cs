@@ -6,7 +6,7 @@ using System.Text;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public abstract class FormatObjectAnalyzer<T, TFormat> : IEntityAnalyzer<IFormatObject<T, TFormat>> where TFormat : IFileFormat
+    public abstract class FormatObjectAnalyzer<T, TFormat> : IEntityAnalyzer<IFormatObject<T, TFormat>> where T : class where TFormat : class, IFileFormat
     {
         readonly IEnumerable<Classes> recognizedClasses;
 

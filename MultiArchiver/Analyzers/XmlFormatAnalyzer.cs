@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class XmlFormatAnalyzer<T> : FormatObjectAnalyzer<T, IXmlDocumentFormat>
+    public class XmlFormatAnalyzer<T> : FormatObjectAnalyzer<T, IXmlDocumentFormat> where T : class
     {
         public XmlFormatAnalyzer(IEnumerable<Classes> recognizedClasses) : base(recognizedClasses)
         {
