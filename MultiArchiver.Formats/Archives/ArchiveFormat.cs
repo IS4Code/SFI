@@ -3,6 +3,7 @@ using SharpCompress.Archives;
 using System;
 using System.IO;
 using SharpCompress.Common;
+using System.Linq;
 
 namespace IS4.MultiArchiver.Formats
 {
@@ -52,6 +53,10 @@ namespace IS4.MultiArchiver.Formats
             using(var archive = ArchiveFactory.Open(stream))
             {
                 if(archive.TotalSize <= 0 || archive.TotalUncompressSize <= 0)
+                {
+                    return null;
+                }
+                if(archive.Type == ArchiveType.Tar && archive.TotalUncompressSize != archive.Entries.Sum(e => e.Size))
                 {
                     return null;
                 }
