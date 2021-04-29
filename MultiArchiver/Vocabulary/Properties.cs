@@ -86,7 +86,9 @@
         [Uri(Vocabularies.Skos)]
         AltLabel,
 
-        /*[Uri(Vocabularies.At)]
-        Digest,*/
+        [Uri(Vocabularies.At)]
+        Digest,
+        [Uri(Vocabularies.At)]
+        Source,
     }
 }

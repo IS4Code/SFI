@@ -90,7 +90,7 @@ namespace IS4.MultiArchiver.Services
                 hashNode.Set(Properties.Label, algorithm.FormatUri(Array.Empty<byte>()).AbsoluteUri + "\u2026 (URI too long)", "en");
             }
 
-            node.Set(Properties.Broader, hashNode);
+            node.Set(Properties.Digest, hashNode);
         }
 
         static void Base32(byte[] bytes, StringBuilder sb)
