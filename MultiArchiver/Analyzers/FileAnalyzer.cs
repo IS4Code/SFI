@@ -20,7 +20,7 @@ namespace IS4.MultiArchiver.Analyzers
         private ILinkedNode AnalyzeInner(ILinkedNode parent, IFileNodeInfo info, ILinkedNodeFactory nodeFactory)
         {
             var name = Uri.EscapeDataString(info.Name);
-            var node = parent?[name] ?? nodeFactory.Root[Guid.NewGuid().ToString("D")];
+            var node = parent?[name] ?? nodeFactory.NewGuidNode();
 
             node.SetClass(Classes.FileDataObject);
 
@@ -101,7 +101,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         private ILinkedNode AnalyzeContents(ILinkedNode parent, IDirectoryInfo directory, ILinkedNodeFactory nodeFactory)
         {
-            var folder = parent?[""] ?? nodeFactory.Root[Guid.NewGuid().ToString("D")];
+            var folder = parent?[""] ?? nodeFactory.NewGuidNode();
 
             if(folder != null)
             {

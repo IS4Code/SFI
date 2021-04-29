@@ -27,7 +27,7 @@ namespace IS4.MultiArchiver.Analyzers
 
 		public ILinkedNode Analyze(ILinkedNode parent, IStreamFactory streamFactory, ILinkedNodeFactory nodeFactory)
         {
-            var node = nodeFactory.Root[Guid.NewGuid().ToString("D")];
+            var node = nodeFactory.NewGuidNode();
             var results = Formats.Select(format => new FormatResult(streamFactory, format, node, nodeFactory)).ToList();
             var signatureBuffer = new MemoryStream(Math.Max(MaxDataLengthToStore, results.Max(result => result.MaxReadBytes)));
 

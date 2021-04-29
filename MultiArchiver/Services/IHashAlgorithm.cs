@@ -78,7 +78,7 @@ namespace IS4.MultiArchiver.Services
         public static void AddHash(ILinkedNode node, IHashAlgorithm algorithm, byte[] hash, ILinkedNodeFactory nodeFactory)
         {
             bool tooLong = hash.Length >= 1984;
-            var hashNode = tooLong ? nodeFactory.Root[Guid.NewGuid().ToString("D")] : nodeFactory.Create(algorithm, hash);
+            var hashNode = tooLong ? nodeFactory.NewGuidNode() : nodeFactory.Create(algorithm, hash);
 
             hashNode.SetClass(Classes.Digest);
 

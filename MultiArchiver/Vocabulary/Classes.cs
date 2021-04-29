@@ -31,5 +31,8 @@
 
         [Uri(Vocabularies.Sec)]
         Digest,
+
+        [Uri(Vocabularies.At)]
+        Root,
     }
 }

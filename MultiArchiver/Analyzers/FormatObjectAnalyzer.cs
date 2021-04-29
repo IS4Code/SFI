@@ -24,12 +24,12 @@ namespace IS4.MultiArchiver.Analyzers
         {
             if(format.MediaType == null)
             {
-                return nodeFactory.Root[Guid.NewGuid().ToString("D")];
+                return nodeFactory.NewGuidNode();
             }
             var split = format.MediaType.Split('/');
             if(split.Length < 2)
             {
-                return nodeFactory.Root[Guid.NewGuid().ToString("D")];
+                return nodeFactory.NewGuidNode();
             }
             return parent[split[1]];
         }
