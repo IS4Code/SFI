@@ -26,7 +26,8 @@ namespace IS4.MultiArchiver.Formats
                 buffer.WriteByte((byte)'Z');
                 stream.CopyTo(buffer);
                 buffer.Position = 0;
-                var file = new PeFile(buffer.ToArray());
+                var data = buffer.ToArray();
+                var file = new PeFile(data);
                 return resultFactory(file);
             }
         }
