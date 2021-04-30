@@ -28,6 +28,8 @@
         FilesystemImage,
         [Uri(Vocabularies.Nfo)]
         Folder,
+        [Uri(Vocabularies.Nfo)]
+        Executable,
 
         [Uri(Vocabularies.Sec)]
         Digest,

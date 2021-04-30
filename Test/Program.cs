@@ -23,7 +23,7 @@ namespace Test
             //archiver.Archive(@"G:\ISO\Broodwar.iso", "graph.ttl");
             //archiver.Archive("smol.png", "graph.ttl");
             //archiver.Archive("test.rar", "graph.ttl");
-            archiver.Archive("font.svg", "graph.ttl");
+            archiver.Archive(@"D:\Games\Keen\KEEN1\KEEN1.EXE", "graph.ttl");
 
             //Console.ReadKey(true);
         }

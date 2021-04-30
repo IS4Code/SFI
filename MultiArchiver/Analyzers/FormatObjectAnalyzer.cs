@@ -57,7 +57,7 @@ namespace IS4.MultiArchiver.Analyzers
                 {
                     node.SetClass(cls);
                 }
-                if(entity.MediaType != null)
+                if(entity.MediaType != null && !entity.MediaType.StartsWith("x-custom/", StringComparison.OrdinalIgnoreCase))
                 {
                     node.Set(Properties.EncodingFormat, Vocabularies.Mime, Uri.EscapeUriString(entity.MediaType));
                 }
