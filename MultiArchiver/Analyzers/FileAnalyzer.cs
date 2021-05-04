@@ -24,7 +24,6 @@ namespace IS4.MultiArchiver.Analyzers
 
             node.SetClass(Classes.FileDataObject);
 
-            node.Set(Properties.Broader, Vocabularies.File, name);
             LinkDirectories(node, info.Path, false, nodeFactory);
 
             node.Set(Properties.PrefLabel, "/" + info.Path);
@@ -111,7 +110,6 @@ namespace IS4.MultiArchiver.Analyzers
 
                 folder.Set(Properties.PrefLabel, "/" + directory.Path + "/");
 
-                folder.Set(Properties.Broader, Vocabularies.File, Uri.EscapeDataString(directory.Name) + "/");
                 LinkDirectories(folder, directory.Path, true, nodeFactory);
 
                 HashInfo(folder, directory, nodeFactory);
@@ -136,7 +134,7 @@ namespace IS4.MultiArchiver.Analyzers
             {
                 var local = String.Join("/", parts.Skip(i).Select(Uri.EscapeDataString)) + (directory ? "/" : "");
                 var file = nodeFactory.Create(Vocabularies.File, local);
-                initial.Set(Properties.Broader, file);
+                initial.Set(Properties.PathObject, file);
                 initial = file;
             }
         }

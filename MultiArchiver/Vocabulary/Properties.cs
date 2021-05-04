@@ -90,5 +90,11 @@
         Digest,
         [Uri(Vocabularies.At)]
         Source,
+        [Uri(Vocabularies.At, "prefLabel")]
+        AtPrefLabel,
+        [Uri(Vocabularies.At, "altLabel")]
+        AtAltLabel,
+        [Uri(Vocabularies.At)]
+        PathObject,
     }
 }
