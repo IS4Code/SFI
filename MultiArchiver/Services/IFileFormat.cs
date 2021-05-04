@@ -34,6 +34,7 @@ namespace IS4.MultiArchiver.Services
     public interface IXmlDocumentFormat : IFileFormat
     {
         string GetPublicId(object value);
+        string GetSystemId(object value);
         Uri GetNamespace(object value);
         TResult Match<TResult>(XmlReader reader, XDocumentType docType, IGenericFunc<TResult> resultFactory) where TResult : class;
     }
@@ -41,6 +42,7 @@ namespace IS4.MultiArchiver.Services
     public interface IXmlDocumentFormat<T> : IFileFormat<T>, IXmlDocumentFormat where T : class
     {
         string GetPublicId(T value);
+        string GetSystemId(T value);
         Uri GetNamespace(T value);
         TResult Match<TResult>(XmlReader reader, XDocumentType docType, Func<T, TResult> resultFactory) where TResult : class;
     }
@@ -111,11 +113,13 @@ namespace IS4.MultiArchiver.Services
     public abstract class XmlDocumentFormat<T> : FileFormat<T>, IXmlDocumentFormat<T> where T : class
     {
         public string PublicId { get; }
+        public string SystemId { get; }
         public Uri Namespace { get; }
 
-        public XmlDocumentFormat(string publicId, Uri @namespace, string mediaType, string extension) : base(mediaType, extension)
+        public XmlDocumentFormat(string publicId, string systemId, Uri @namespace, string mediaType, string extension) : base(mediaType, extension)
         {
             PublicId = publicId;
+            SystemId = systemId;
             Namespace = @namespace;
         }
 
@@ -131,6 +135,11 @@ namespace IS4.MultiArchiver.Services
             return PublicId;
         }
 
+        public virtual string GetSystemId(T value)
+        {
+            return SystemId;
+        }
+
         public virtual Uri GetNamespace(T value)
         {
             return Namespace;
@@ -140,6 +149,12 @@ namespace IS4.MultiArchiver.Services
         {
             if(!(value is T obj)) throw new ArgumentException(null, nameof(value));
             return GetPublicId(obj);
+        }
+
+        string IXmlDocumentFormat.GetSystemId(object value)
+        {
+            if(!(value is T obj)) throw new ArgumentException(null, nameof(value));
+            return GetSystemId(obj);
         }
 
         Uri IXmlDocumentFormat.GetNamespace(object value)

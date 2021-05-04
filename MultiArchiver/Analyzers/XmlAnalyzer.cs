@@ -103,23 +103,32 @@ namespace IS4.MultiArchiver.Analyzers
         {
             public static readonly ImprovisedXmlFormat Instance = new ImprovisedXmlFormat();
 
-            private ImprovisedXmlFormat() : base(null, null, null, null)
+            private ImprovisedXmlFormat() : base(null, null, null, null, null)
             {
 
             }
 
             public override string GetPublicId(XmlFormat value)
             {
-                if(!String.IsNullOrEmpty(value.DocType.PublicId))
+                if(!String.IsNullOrEmpty(value.DocType?.PublicId))
                 {
                     return value.DocType.PublicId;
                 }
                 return base.GetPublicId(value);
             }
 
+            public override string GetSystemId(XmlFormat value)
+            {
+                if(!String.IsNullOrEmpty(value.DocType?.SystemId))
+                {
+                    return value.DocType.SystemId;
+                }
+                return base.GetSystemId(value);
+            }
+
             public override Uri GetNamespace(XmlFormat value)
             {
-                if(!String.IsNullOrEmpty(value.RootName.Namespace))
+                if(!String.IsNullOrEmpty(value.RootName?.Namespace))
                 {
                     return new Uri(value.RootName.Namespace, UriKind.Absolute);
                 }
