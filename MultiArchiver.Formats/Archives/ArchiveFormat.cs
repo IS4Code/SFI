@@ -56,9 +56,20 @@ namespace IS4.MultiArchiver.Formats
                 {
                     return null;
                 }
-                if(archive.Type == ArchiveType.Tar && archive.TotalUncompressSize != archive.Entries.Sum(e => e.Size))
+                if(archive.Type == ArchiveType.Tar)
                 {
-                    return null;
+                    if(archive.TotalUncompressSize > 1024 * (long)Int32.MaxValue)
+                    {
+                        return null;
+                    }
+                    if(archive.TotalUncompressSize != archive.Entries.Sum(e => e.Size))
+                    {
+                        return null;
+                    }
+                    if(archive.Entries.Any(e => e.Key.Contains('\0')))
+                    {
+                        return null;
+                    }
                 }
                 return resultFactory(archive);
             }
