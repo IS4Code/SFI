@@ -31,6 +31,11 @@
         [Uri(Vocabularies.Nfo)]
         Executable,
 
+        [Uri(Vocabularies.Xis)]
+        Document,
+        [Uri(Vocabularies.Xis)]
+        Element,
+
         [Uri(Vocabularies.Sec)]
         Digest,
 

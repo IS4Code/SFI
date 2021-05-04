@@ -147,9 +147,9 @@ namespace IS4.MultiArchiver.Analyzers
                 string strval;
                 if(isBinary || (strval = TryGetString(encoding, signature)) == null)
                 {
-                    node.Set(Properties.Value, Convert.ToBase64String(signature.Array, signature.Offset, signature.Count), Datatypes.Base64Binary);
+                    node.Set(Properties.Bytes, Convert.ToBase64String(signature.Array, signature.Offset, signature.Count), Datatypes.Base64Binary);
                 }else{
-                    node.Set(Properties.Value, strval, Datatypes.String);
+                    node.Set(Properties.Chars, strval, Datatypes.String);
                 }
             }else{
                 foreach(var hash in hashes)

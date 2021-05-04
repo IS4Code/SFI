@@ -13,7 +13,7 @@ namespace IS4.MultiArchiver.Analyzers
     {
         public ICollection<IXmlDocumentFormat> XmlFormats { get; } = new SortedSet<IXmlDocumentFormat>(TypeInheritanceComparer<IXmlDocumentFormat>.Instance);
 
-        public XmlAnalyzer() : base(Classes.ContentAsXML)
+        public XmlAnalyzer() : base(Classes.ContentAsXML, Classes.Document)
         {
 
         }
@@ -43,27 +43,36 @@ namespace IS4.MultiArchiver.Analyzers
                         }
                         break;
                     case XmlNodeType.DocumentType:
-                        var dtd = node["doctype"];
-                        dtd.SetClass(Classes.DoctypeDecl);
                         var name = reader.Name;
-                        if(name != null)
-                        {
-                            dtd.Set(Properties.DoctypeName, name);
-                        }
                         var pubid = reader.GetAttribute("PUBLIC");
-                        if(pubid != null)
-                        {
-                            dtd.Set(Properties.PublicId, pubid);
-                        }
                         var sysid = reader.GetAttribute("SYSTEM");
-                        if(sysid != null)
+                        if(!String.IsNullOrEmpty(pubid))
                         {
-                            dtd.Set(Properties.PublicId, sysid, Datatypes.AnyURI);
+                            var dtd = nodeFactory.Create(Vocabularies.Ao, "public/" + UriTools.TranscribePublicId(pubid));
+                            dtd.SetClass(Classes.DoctypeDecl);
+                            if(name != null)
+                            {
+                                dtd.Set(Properties.DoctypeName, name);
+                            }
+                            dtd.Set(Properties.PublicId, pubid);
+                            if(sysid != null)
+                            {
+                                dtd.Set(Properties.SystemId, sysid, Datatypes.AnyURI);
+                            }
+                            node.Set(Properties.DtDecl, dtd);
                         }
-                        node.Set(Properties.DtDecl, dtd);
                         docType = new XDocumentType(name, pubid, sysid, reader.Value);
                         break;
                     case XmlNodeType.Element:
+                        var elem = node[reader.LocalName];
+                        elem.SetClass(Classes.Element);
+                        elem.Set(Properties.LocalName, reader.LocalName);
+                        elem.Set(Properties.XmlName, reader.Name);
+                        if(!String.IsNullOrEmpty(reader.NamespaceURI))
+                        {
+                            elem.Set(Properties.NamespaceName, reader.NamespaceURI, Datatypes.AnyURI);
+                        }
+                        node.Set(Properties.DocumentElement, elem);
                         foreach(var format in XmlFormats.Concat(new[] { ImprovisedXmlFormat.Instance }))
                         {
                             var resultFactory = new ResultFactory(node, format, nodeFactory);

@@ -86,6 +86,15 @@
         [Uri(Vocabularies.Skos)]
         AltLabel,
 
+        [Uri(Vocabularies.Xis)]
+        DocumentElement,
+        [Uri(Vocabularies.Xis)]
+        LocalName,
+        [Uri(Vocabularies.Xis, "name")]
+        XmlName,
+        [Uri(Vocabularies.Xis)]
+        NamespaceName,
+
         [Uri(Vocabularies.At)]
         Digest,
         [Uri(Vocabularies.At)]

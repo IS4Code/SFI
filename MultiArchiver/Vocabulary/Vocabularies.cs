@@ -34,6 +34,8 @@
         Exif,
         [Uri("http://www.w3.org/2001/XMLSchema#")]
         Xsd,
+        [Uri("http://www.w3.org/2001/04/infoset#")]
+        Xis,
         [Uri("http://www.w3.org/2002/07/owl#")]
         Owl,
         [Uri("http://dbpedia.org/datatype/")]
@@ -44,5 +46,7 @@
         File,
         [Uri("http://archive.data.is4.site/terms/")]
         At,
+        [Uri("http://archive.data.is4.site/objects/")]
+        Ao,
     }
 }
