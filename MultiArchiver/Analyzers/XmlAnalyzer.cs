@@ -57,7 +57,7 @@ namespace IS4.MultiArchiver.Analyzers
                             dtd.Set(Properties.PublicId, pubid);
                             if(sysid != null)
                             {
-                                dtd.Set(Properties.SystemId, sysid, Datatypes.AnyURI);
+                                dtd.Set(Properties.SystemId, sysid, Datatypes.AnyUri);
                             }
                             node.Set(Properties.DtDecl, dtd);
                         }
@@ -70,7 +70,7 @@ namespace IS4.MultiArchiver.Analyzers
                         elem.Set(Properties.XmlName, reader.Name);
                         if(!String.IsNullOrEmpty(reader.NamespaceURI))
                         {
-                            elem.Set(Properties.NamespaceName, reader.NamespaceURI, Datatypes.AnyURI);
+                            elem.Set(Properties.NamespaceName, reader.NamespaceURI, Datatypes.AnyUri);
                         }
                         node.Set(Properties.DocumentElement, elem);
                         foreach(var format in XmlFormats.Concat(new[] { ImprovisedXmlFormat.Instance }))

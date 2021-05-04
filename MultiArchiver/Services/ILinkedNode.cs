@@ -109,7 +109,7 @@ namespace IS4.MultiArchiver.Services
 
         public void Set(Properties property, Uri value)
         {
-            Set(property, value.IsAbsoluteUri ? value.AbsoluteUri : value.OriginalString, Datatypes.AnyURI);
+            Set(property, value.IsAbsoluteUri ? value.AbsoluteUri : value.OriginalString, Datatypes.AnyUri);
         }
 
         public void Set<T>(Properties property, T value) where T : struct, IEquatable<T>, IFormattable
@@ -161,7 +161,7 @@ namespace IS4.MultiArchiver.Services
 
         public void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, Uri value)
         {
-            Set(propertyFormatter, propertyValue, value.IsAbsoluteUri ? value.AbsoluteUri : value.OriginalString, Datatypes.AnyURI);
+            Set(propertyFormatter, propertyValue, value.IsAbsoluteUri ? value.AbsoluteUri : value.OriginalString, Datatypes.AnyUri);
         }
 
         public void Set<TProp, T>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, T value) where T : struct, IEquatable<T>, IFormattable

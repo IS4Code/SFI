@@ -2,8 +2,15 @@
 {
     public enum Datatypes
     {
-        [Uri(Vocabularies.Xsd)]
-        AnyURI,
+        [Uri(Vocabularies.Rdf, "XMLLiteral")]
+        XmlLiteral,
+        [Uri(Vocabularies.Rdf, "HTML")]
+        Html,
+        [Uri(Vocabularies.Rdf, "JSON")]
+        Json,
+
+        [Uri(Vocabularies.Xsd, "anyURI")]
+        AnyUri,
         [Uri(Vocabularies.Xsd)]
         HexBinary,
         [Uri(Vocabularies.Xsd)]

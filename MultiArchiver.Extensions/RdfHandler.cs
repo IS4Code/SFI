@@ -3,6 +3,9 @@ using IS4.MultiArchiver.Vocabulary;
 using Microsoft.CSharp.RuntimeBinder;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Text.RegularExpressions;
+using System.Web;
 using VDS.RDF;
 
 namespace IS4.MultiArchiver.Extensions
@@ -56,6 +59,22 @@ namespace IS4.MultiArchiver.Extensions
                 handler.HandleTriple(new Triple(subj, pred, obj));
             }
 
+            static readonly Regex unsafeCharacters = new Regex(@"^\p{M}|[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x84\x86-\x9F]|(^|[^\uD800-\uDBFF])[\uDC00-\uDFFF]|[\uD800-\uDBFF]($|[^\uDC00-\uDFFF])", RegexOptions.Compiled | RegexOptions.Multiline);
+
+            static bool IsSafeString(string str)
+            {
+                if(unsafeCharacters.IsMatch(str)) return false;
+                var e = StringInfo.GetTextElementEnumerator(str);
+                while(e.MoveNext())
+                {
+                    if(Char.GetUnicodeCategory(str, e.ElementIndex) == UnicodeCategory.OtherNotAssigned)
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
             protected override INode CreateNode(Uri uri)
             {
                 return handler.CreateUriNode(uri);
@@ -63,17 +82,21 @@ namespace IS4.MultiArchiver.Extensions
 
             protected override INode CreateNode(string value)
             {
-                return handler.CreateLiteralNode(value);
+                if(IsSafeString(value)) return handler.CreateLiteralNode(value);
+                return handler.CreateLiteralNode($@"{{""@value"":{HttpUtility.JavaScriptStringEncode(value, true)}}}", GetUri(Cache[Datatypes.Json]));
             }
 
             protected override INode CreateNode(string value, INode datatype)
             {
-                return handler.CreateLiteralNode(value, GetUri(datatype));
+                var dt = GetUri(datatype);
+                if(IsSafeString(value)) return handler.CreateLiteralNode(value, dt);
+                return handler.CreateLiteralNode($@"{{""@value"":{HttpUtility.JavaScriptStringEncode(value, true)},""@type"":{HttpUtility.JavaScriptStringEncode(dt.IsAbsoluteUri ? dt.AbsoluteUri : dt.OriginalString, true)}}}", GetUri(Cache[Datatypes.Json]));
             }
 
             protected override INode CreateNode(string value, string language)
             {
-                return handler.CreateLiteralNode(value, language);
+                if(IsSafeString(value)) return handler.CreateLiteralNode(value, language);
+                return handler.CreateLiteralNode($@"{{""@value"":{HttpUtility.JavaScriptStringEncode(value, true)},""@language"":{HttpUtility.JavaScriptStringEncode(language, true)}}}", GetUri(Cache[Datatypes.Json]));
             }
 
             protected override INode CreateNode<T>(T value)
