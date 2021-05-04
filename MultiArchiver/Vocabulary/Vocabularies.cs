@@ -11,7 +11,7 @@
         [Uri("https://w3id.org/security#")]
         Sec,
         [Uri("http://purl.org/dc/terms/")]
-        Dct,
+        Dcterms,
         [Uri("http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#")]
         Nfo,
         [Uri("http://www.semanticdesktop.org/ontologies/2007/01/19/nie#")]
