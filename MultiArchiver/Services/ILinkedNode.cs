@@ -40,7 +40,7 @@ namespace IS4.MultiArchiver.Services
 
         public LinkedNode(TNode subject, IVocabularyCache<TNode> cache)
         {
-            Subject = subject;
+            Subject = subject ?? throw new ArgumentNullException(nameof(subject));
             Cache = cache;
         }
 
@@ -200,6 +200,11 @@ namespace IS4.MultiArchiver.Services
         public override int GetHashCode()
         {
             return Subject.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return Subject.ToString();
         }
     }
 }
