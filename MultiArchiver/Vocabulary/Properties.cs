@@ -76,6 +76,14 @@
         FileLastModified,
         [Uri(Vocabularies.Nfo)]
         FileSize,
+        [Uri(Vocabularies.Nfo)]
+        FreeSpace,
+        [Uri(Vocabularies.Nfo)]
+        OccupiedSpace,
+        [Uri(Vocabularies.Nfo)]
+        TotalSpace,
+        [Uri(Vocabularies.Nfo)]
+        FilesystemType,
 
         [Uri(Vocabularies.Skos)]
         Broader,
@@ -107,5 +115,7 @@
         AtAltLabel,
         [Uri(Vocabularies.At)]
         PathObject,
+        [Uri(Vocabularies.At)]
+        VolumeLabel,
     }
 }

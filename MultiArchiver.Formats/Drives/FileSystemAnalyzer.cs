@@ -19,6 +19,19 @@ namespace IS4.MultiArchiver.Analyzers
 
         public override bool Analyze(ILinkedNode node, IFileSystem filesystem, ILinkedNodeFactory nodeFactory)
         {
+            try{ node.Set(Properties.FreeSpace, filesystem.AvailableSpace); }
+            catch(NotSupportedException) { }
+            try{ node.Set(Properties.OccupiedSpace, filesystem.UsedSpace); }
+            catch(NotSupportedException) { }
+            try{ node.Set(Properties.TotalSpace, filesystem.AvailableSpace + filesystem.UsedSpace); }
+            catch(NotSupportedException) { }
+
+            if(filesystem is DiscFileSystem disc)
+            {
+                node.Set(Properties.VolumeLabel, disc.VolumeLabel);
+                node.Set(Properties.FilesystemType, disc.FriendlyName);
+            }
+
             foreach(var file in filesystem.GetFiles(null))
             {
                 var info = filesystem.GetFileInfo(file);
