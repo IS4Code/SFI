@@ -4,6 +4,12 @@ using System;
 using System.IO;
 using SharpCompress.Common;
 using System.Linq;
+using SharpCompress.Readers;
+using SharpCompress.Archives.Zip;
+using SharpCompress.Archives.SevenZip;
+using SharpCompress.Archives.GZip;
+using SharpCompress.Archives.Rar;
+using SharpCompress.Archives.Tar;
 
 namespace IS4.MultiArchiver.Formats
 {
@@ -48,11 +54,54 @@ namespace IS4.MultiArchiver.Formats
             return true;
         }
 
+        private IArchive CheckArchiveType(Stream stream, Func<Stream, bool> check, Func<Stream, ReaderOptions, IArchive> create, ReaderOptions options)
+        {
+            var pos = stream.Position;
+            var success = check(stream);
+            stream.Position = pos;
+            if(success)
+            {
+                return create(stream, options);
+            }
+            return null;
+        }
+
+        private IArchive CheckArchiveType(Stream stream, Func<Stream, string, bool> check, Func<Stream, ReaderOptions, IArchive> create, ReaderOptions options)
+        {
+            var pos = stream.Position;
+            var success = check(stream, null);
+            stream.Position = pos;
+            if(success)
+            {
+                return create(stream, options);
+            }
+            return null;
+        }
+
+        private IArchive CheckArchiveType(Stream stream, Func<Stream, ReaderOptions, bool> check, Func<Stream, ReaderOptions, IArchive> create, ReaderOptions options)
+        {
+            var pos = stream.Position;
+            var success = check(stream, options);
+            stream.Position = pos;
+            if(success)
+            {
+                return create(stream, options);
+            }
+            return null;
+        }
+
         public override TResult Match<TResult>(Stream stream, Func<IArchive, TResult> resultFactory)
         {
-            using(var archive = ArchiveFactory.Open(stream))
+            var options = new ReaderOptions();
+            using(var archive =
+                CheckArchiveType(stream, ZipArchive.IsZipFile, ZipArchive.Open, options)
+                ?? CheckArchiveType(stream, SevenZipArchive.IsSevenZipFile, SevenZipArchive.Open, options)
+                ?? CheckArchiveType(stream, GZipArchive.IsGZipFile, GZipArchive.Open, options)
+                ?? CheckArchiveType(stream, RarArchive.IsRarFile, RarArchive.Open, options)
+                //?? CheckArchiveType(stream, TarArchive.IsTarFile, TarArchive.Open, options)
+                )
             {
-                if(archive.TotalSize <= 0 || archive.TotalUncompressSize <= 0)
+                if(archive == null || archive.TotalSize <= 0 || archive.TotalUncompressSize <= 0)
                 {
                     return null;
                 }
