@@ -6,11 +6,20 @@ using System.Text;
 
 namespace IS4.MultiArchiver.Services
 {
+    public enum FormattingMethod
+    {
+        Hex,
+        Base32,
+        Base64
+    }
+
     public interface IHashAlgorithm : IUriFormatter<byte[]>
     {
         string Name { get; }
         int HashSize { get; }
         Individuals Identifier { get; }
+        string Prefix { get; }
+        FormattingMethod FormattingMethod { get; }
     }
 
     public interface IDataHashAlgorithm : IHashAlgorithm
@@ -31,24 +40,23 @@ namespace IS4.MultiArchiver.Services
         public string Name { get; }
         public int HashSize { get; }
         public Individuals Identifier { get; }
-
-        readonly string prefix;
-        readonly FormattingMethod formatting;
+        public string Prefix { get; }
+        public FormattingMethod FormattingMethod { get; }
 
         public HashAlgorithm(Individuals identifier, int hashSize, string prefix, FormattingMethod formatting)
         {
             Identifier = identifier;
             HashSize = hashSize;
-            this.prefix = prefix;
-            this.formatting = formatting;
+            Prefix = prefix;
+            FormattingMethod = formatting;
             Name = String.Concat(new Uri(prefix, UriKind.Absolute).AbsolutePath.Where(Char.IsLetterOrDigit));
         }
 
         public Uri FormatUri(byte[] data)
         {
-            var sb = new StringBuilder(prefix.Length + data.Length * 2);
-            sb.Append(prefix);
-            switch(formatting)
+            var sb = new StringBuilder(Prefix.Length + data.Length * 2);
+            sb.Append(Prefix);
+            switch(FormattingMethod)
             {
                 case FormattingMethod.Hex:
                     foreach(byte b in data)
@@ -66,13 +74,6 @@ namespace IS4.MultiArchiver.Services
                     throw new InvalidOperationException();
             }
             return new Uri(sb.ToString());
-        }
-
-        public enum FormattingMethod
-        {
-            Hex,
-            Base32,
-            Base64
         }
 
         public static void AddHash(ILinkedNode node, IHashAlgorithm algorithm, byte[] hash, ILinkedNodeFactory nodeFactory)

@@ -1,5 +1,6 @@
 ﻿using IS4.MultiArchiver.Analyzers;
 using IS4.MultiArchiver.Formats;
+using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Tools;
 using System;
 using System.IO;
@@ -68,11 +69,17 @@ namespace IS4.MultiArchiver.Extensions
             }
             foreach(var hash in DataAnalyzer.HashAlgorithms)
             {
-                graph.NamespaceMap.AddNamespace(hash.Name, hash.FormatUri(Array.Empty<byte>()));
+                if(hash.FormattingMethod != FormattingMethod.Base64)
+                {
+                    graph.NamespaceMap.AddNamespace(hash.Name, hash.FormatUri(Array.Empty<byte>()));
+                }
             }
             foreach(var hash in FileAnalyzer.HashAlgorithms)
             {
-                graph.NamespaceMap.AddNamespace(hash.Name, hash.FormatUri(Array.Empty<byte>()));
+                if(hash.FormattingMethod != FormattingMethod.Base64)
+                {
+                    graph.NamespaceMap.AddNamespace(hash.Name, hash.FormatUri(Array.Empty<byte>()));
+                }
             }
             graph.NamespaceMap.AddNamespace("id", new Uri(root + "/"));
             graph.NamespaceMap.AddNamespace("dtxt", new Uri("data:,"));
