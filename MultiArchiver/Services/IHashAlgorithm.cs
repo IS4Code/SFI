@@ -32,7 +32,8 @@ namespace IS4.MultiArchiver.Services
 
     public interface IFileHashAlgorithm : IHashAlgorithm
     {
-        byte[] ComputeHash(IFileNodeInfo fileNode);
+        byte[] ComputeHash(IFileInfo file);
+        byte[] ComputeHash(IDirectoryInfo directory, bool contents);
     }
 
     public abstract class HashAlgorithm : IHashAlgorithm
@@ -78,6 +79,7 @@ namespace IS4.MultiArchiver.Services
 
         public static void AddHash(ILinkedNode node, IHashAlgorithm algorithm, byte[] hash, ILinkedNodeFactory nodeFactory)
         {
+            if(hash == null) return;
             bool tooLong = hash.Length >= 1984;
             var hashNode = tooLong ? nodeFactory.NewGuidNode() : nodeFactory.Create(algorithm, hash);
 
@@ -182,6 +184,7 @@ namespace IS4.MultiArchiver.Services
 
         }
 
-        public abstract byte[] ComputeHash(IFileNodeInfo fileNode);
+        public abstract byte[] ComputeHash(IFileInfo file);
+        public abstract byte[] ComputeHash(IDirectoryInfo directory, bool contents);
     }
 }

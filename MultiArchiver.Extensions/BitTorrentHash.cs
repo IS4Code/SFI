@@ -24,20 +24,28 @@ namespace IS4.MultiArchiver
 
         }
 
-        public override byte[] ComputeHash(IFileNodeInfo fileNode)
+        public override byte[] ComputeHash(IFileInfo file)
         {
-            var dict = CreateDictionary(fileNode);
+            var dict = CreateDictionary(file, true);
             var hash = HashAlgorithm.ComputeHash(dict.EncodeAsBytes());
             InfoCreated?.Invoke(dict, hash);
             return hash;
         }
 
-        private BDictionary CreateDictionary(IFileNodeInfo fileNode)
+        public override byte[] ComputeHash(IDirectoryInfo directory, bool content)
+        {
+            var dict = CreateDictionary(directory, content);
+            var hash = HashAlgorithm.ComputeHash(dict.EncodeAsBytes());
+            InfoCreated?.Invoke(dict, hash);
+            return hash;
+        }
+
+        private BDictionary CreateDictionary(IFileNodeInfo fileNode, bool content)
         {
             var dict = new BDictionary();
             byte[] buffer;
             dict["piece length"] = new BNumber(BlockSize);
-            dict["name"] = new BString(fileNode.Name);
+            dict["name"] = new BString(content ? fileNode.Name : "");
             switch(fileNode)
             {
                 case IFileInfo file:
@@ -53,7 +61,12 @@ namespace IS4.MultiArchiver
                 case IDirectoryInfo directory:
                     var files = new List<(IFileInfo info, BitTorrentHashCache.FileInfo cached, BList<BString> path)>();
                     long bufferLength = 0;
-                    foreach(var (file, path) in FindFiles(directory, new BList<BString>()))
+                    var root = new BList<BString>();
+                    if(!content)
+                    {
+                        root.Add(fileNode.Name);
+                    }
+                    foreach(var (file, path) in FindFiles(directory, root))
                     {
                         var cachedInfo = BitTorrentHashCache.GetCachedInfo(BlockSize, file);
                         files.Add((file, cachedInfo, path));

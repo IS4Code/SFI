@@ -17,7 +17,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        private ILinkedNode AnalyzeInner(ILinkedNode parent, IFileNodeInfo info, ILinkedNodeFactory nodeFactory)
+        private ILinkedNode AnalyzeFileNode(ILinkedNode parent, IFileNodeInfo info, ILinkedNodeFactory nodeFactory)
         {
             var name = Uri.EscapeDataString(info.Name);
             var node = parent?[name] ?? nodeFactory.NewGuidNode();
@@ -49,20 +49,15 @@ namespace IS4.MultiArchiver.Analyzers
             return node;
         }
 
-        private void HashInfo(ILinkedNode node, IFileNodeInfo info, ILinkedNodeFactory nodeFactory)
-        {
-            foreach(var alg in HashAlgorithms)
-            {
-                HashAlgorithm.AddHash(node, alg, alg.ComputeHash(info), nodeFactory);
-            }
-        }
-
         public ILinkedNode Analyze(ILinkedNode parent, IFileInfo file, ILinkedNodeFactory nodeFactory)
         {
-            var node = AnalyzeInner(parent, file, nodeFactory);
+            var node = AnalyzeFileNode(parent, file, nodeFactory);
             if(node != null)
             {
-                HashInfo(node, file, nodeFactory);
+                foreach(var alg in HashAlgorithms)
+                {
+                    HashAlgorithm.AddHash(node, alg, alg.ComputeHash(file), nodeFactory);
+                }
 
                 if(file.Length is long len)
                 {
@@ -76,28 +71,33 @@ namespace IS4.MultiArchiver.Analyzers
 
                 if(file is IDirectoryInfo directory)
                 {
-                    var folder = AnalyzeContents(node, directory, nodeFactory);
-
-                    if(folder != null)
-                    {
-                        folder.Set(Properties.IsStoredAs, node);
-                    }
+                    AnalyzeDirectory(node, directory, nodeFactory);
                 }
             }
             return node;
         }
 
+        private void AnalyzeDirectory(ILinkedNode node, IDirectoryInfo directory, ILinkedNodeFactory nodeFactory)
+        {
+            var folder = AnalyzeContents(node, directory, nodeFactory);
+
+            if(folder != null)
+            {
+                folder.Set(Properties.IsStoredAs, node);
+            }
+
+            foreach(var alg in HashAlgorithms)
+            {
+                HashAlgorithm.AddHash(node, alg, alg.ComputeHash(directory, false), nodeFactory);
+            }
+        }
+
         public ILinkedNode Analyze(ILinkedNode parent, IDirectoryInfo directory, ILinkedNodeFactory nodeFactory)
         {
-            var node = AnalyzeInner(parent, directory, nodeFactory);
+            var node = AnalyzeFileNode(parent, directory, nodeFactory);
             if(node != null)
             {
-                var folder = AnalyzeContents(node, directory, nodeFactory);
-
-                if(folder != null)
-                {
-                    folder.Set(Properties.IsStoredAs, node);
-                }
+                AnalyzeDirectory(node, directory, nodeFactory);
             }
             return node;
         }
@@ -116,7 +116,10 @@ namespace IS4.MultiArchiver.Analyzers
 
                 LinkDirectories(folder, directory.Path, true, nodeFactory);
 
-                HashInfo(folder, directory, nodeFactory);
+                foreach(var alg in HashAlgorithms)
+                {
+                    HashAlgorithm.AddHash(folder, alg, alg.ComputeHash(directory, true), nodeFactory);
+                }
 
                 foreach(var entry in directory.Entries)
                 {
