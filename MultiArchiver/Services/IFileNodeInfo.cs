@@ -7,6 +7,7 @@ namespace IS4.MultiArchiver.Services
     {
         string Name { get; }
         string Path { get; }
+        int? Revision { get; }
         DateTime? CreationTime { get; }
         DateTime? LastWriteTime { get; }
         DateTime? LastAccessTime { get; }

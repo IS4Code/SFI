@@ -61,6 +61,8 @@ namespace IS4.MultiArchiver.Analyzers
 
             public DateTime? LastAccessTime => null;
 
+            public int? Revision => null;
+
             protected virtual object ReferenceKey => Entry?.Archive;
 
             object IPersistentKey.ReferenceKey => ReferenceKey;

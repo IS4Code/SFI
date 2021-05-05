@@ -59,6 +59,8 @@
         Encoding,
         [Uri(Vocabularies.Schema)]
         EncodingFormat,
+        [Uri(Vocabularies.Schema)]
+        Version,
 
         [Uri(Vocabularies.Nie)]
         IsStoredAs,

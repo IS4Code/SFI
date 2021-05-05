@@ -3,8 +3,10 @@ using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Vocabulary;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace IS4.MultiArchiver.Analyzers
 {
@@ -49,15 +51,29 @@ namespace IS4.MultiArchiver.Analyzers
                 this.info = info;
             }
 
-            public string Name => info.Name;
+            static readonly Regex revisionRegex = new Regex(@";(\d+)$", RegexOptions.Compiled);
 
-            public virtual string Path => info.FullName.Replace(System.IO.Path.DirectorySeparatorChar, '/');
+            public string Name => revisionRegex.Replace(info.Name, "");
+
+            public virtual string Path => revisionRegex.Replace(info.FullName, "").Replace(System.IO.Path.DirectorySeparatorChar, '/');
 
             public DateTime? CreationTime => info.CreationTimeUtc;
 
             public DateTime? LastWriteTime => info.LastWriteTimeUtc;
 
             public DateTime? LastAccessTime => info.LastAccessTimeUtc;
+
+            public int? Revision {
+                get {
+                    var match = revisionRegex.Match(info.Name);
+                    if(!match.Success) return null;
+                    if(Int32.TryParse(match.Groups[1].Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out int result))
+                    {
+                        return result;
+                    }
+                    return null;
+                }
+            }
 
             object IPersistentKey.ReferenceKey => info.FileSystem;
 

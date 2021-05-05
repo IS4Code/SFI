@@ -41,6 +41,10 @@ namespace IS4.MultiArchiver.Analyzers
             {
                 node.Set(Properties.FileLastAccessed, dt3);
             }
+            if(info.Revision is int rev)
+            {
+                node.Set(Properties.Version, rev);
+            }
 
             return node;
         }
@@ -180,6 +184,8 @@ namespace IS4.MultiArchiver.Analyzers
 
             public DateTime? LastAccessTime => baseInfo.LastAccessTimeUtc;
 
+            public int? Revision => null;
+
             public bool IsThreadSafe => true;
 
             object IPersistentKey.ReferenceKey => AppDomain.CurrentDomain;
@@ -210,6 +216,8 @@ namespace IS4.MultiArchiver.Analyzers
             public DateTime? LastWriteTime => baseInfo.LastWriteTimeUtc;
 
             public DateTime? LastAccessTime => baseInfo.LastAccessTimeUtc;
+
+            public int? Revision => null;
 
             public IEnumerable<IFileNodeInfo> Entries =>
                 baseInfo.EnumerateFiles().Select(f => (IFileNodeInfo)new FileInfoWrapper(f)).Concat(
