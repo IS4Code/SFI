@@ -196,6 +196,11 @@ namespace IS4.MultiArchiver.Analyzers
             {
                 return baseInfo.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete);
             }
+
+            public override string ToString()
+            {
+                return baseInfo.ToString();
+            }
         }
 
         class DirectoryInfoWrapper : IDirectoryInfo
@@ -227,6 +232,11 @@ namespace IS4.MultiArchiver.Analyzers
             object IPersistentKey.ReferenceKey => AppDomain.CurrentDomain;
 
             object IPersistentKey.DataKey => baseInfo.FullName;
+
+            public override string ToString()
+            {
+                return baseInfo.ToString();
+            }
         }
     }
 }

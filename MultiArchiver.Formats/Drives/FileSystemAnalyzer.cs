@@ -78,6 +78,11 @@ namespace IS4.MultiArchiver.Analyzers
             object IPersistentKey.ReferenceKey => info.FileSystem;
 
             object IPersistentKey.DataKey => info.FullName;
+
+            public override string ToString()
+            {
+                return Path;
+            }
         }
 
         class FileInfoWrapper : FileSystemInfoWrapper<DiscFileInfo>, IFileInfo

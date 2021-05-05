@@ -68,6 +68,11 @@ namespace IS4.MultiArchiver.Analyzers
             object IPersistentKey.ReferenceKey => ReferenceKey;
 
             object IPersistentKey.DataKey => Entry?.FullName;
+
+            public override string ToString()
+            {
+                return Path;
+            }
         }
 
         class ZipDirectoryInfo : ZipEntryInfo, IDirectoryInfo

@@ -2,7 +2,6 @@
 using IS4.MultiArchiver.Vocabulary;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace IS4.MultiArchiver.Analyzers
 {

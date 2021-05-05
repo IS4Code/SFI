@@ -18,7 +18,11 @@ namespace IS4.MultiArchiver
                 {
                     try{
                         var result = analyzer.Analyze(parent, entity, nodeFactory);
-                        if(result != null) return result;
+                        if(result != null)
+                        {
+                            Console.Error.WriteLine(entity);
+                            return result;
+                        }
                     }catch(Exception e)
                     {
                         Console.Error.WriteLine("Error in analyzer " + obj);

@@ -20,5 +20,10 @@
             Format = format;
             Value = value;
         }
+
+        public override string ToString()
+        {
+            return MediaType ?? Format?.ToString();
+        }
     }
 }
