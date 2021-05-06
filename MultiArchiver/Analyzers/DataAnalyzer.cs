@@ -11,14 +11,15 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public sealed class DataAnalyzer : IEntityAnalyzer<IStreamFactory>, IEntityAnalyzer<byte[]>, IUriFormatter<(string charset, ArraySegment<byte> data)>
+    public sealed class DataAnalyzer : IEntityAnalyzer<IStreamFactory>, IEntityAnalyzer<byte[]>
 	{
         public ICollection<IDataHashAlgorithm> HashAlgorithms { get; } = new List<IDataHashAlgorithm>();
         public Func<IEncodingDetector> EncodingDetectorFactory { get; set; }
         public ICollection<IBinaryFileFormat> Formats { get; } = new SortedSet<IBinaryFileFormat>(HeaderLengthComparer.Instance);
-        public float MinimumCharsetConfidence { get; } = 0.5000001f;
 
         public int MaxDataLengthToStore => Math.Max(64, HashAlgorithms.Sum(h => h.HashSize + 64)) - 16;
+
+        public float MinimumCharsetConfidence { get; } = 0.5000001f;
 
         public DataAnalyzer(Func<IEncodingDetector> encodingDetectorFactory)
 		{
@@ -27,14 +28,15 @@ namespace IS4.MultiArchiver.Analyzers
 
 		public ILinkedNode Analyze(ILinkedNode parent, IStreamFactory streamFactory, ILinkedNodeFactory nodeFactory)
         {
-            var node = nodeFactory.NewGuidNode();
-            var results = Formats.Select(format => new FormatResult(streamFactory, format, node, nodeFactory)).ToList();
-            var signatureBuffer = new MemoryStream(Math.Max(MaxDataLengthToStore, results.Max(result => result.MaxReadBytes)));
+            var signatureBuffer = new MemoryStream(Math.Max(MaxDataLengthToStore + 1, Formats.Max(fmt => fmt.HeaderLength)));
 
             var encodingDetector = EncodingDetectorFactory?.Invoke();
-            var isBinary = false;
-            long length = 0;
 
+            var isBinary = false;
+
+            var lazyMatch = new Lazy<FileMatch>(() => new FileMatch(Formats, streamFactory, signatureBuffer, MaxDataLengthToStore, encodingDetector, isBinary, nodeFactory), false);
+            
+            long length = 0;
             var hashes = new List<(IDataHashAlgorithm alg, QueueStream stream, Task<byte[]> data)>();
 
             using(var stream = streamFactory.Open())
@@ -83,82 +85,55 @@ namespace IS4.MultiArchiver.Analyzers
 				    if(signatureBuffer.Length < signatureBuffer.Capacity)
 				    {
 					    signatureBuffer.Write(buffer, 0, Math.Min(signatureBuffer.Capacity - (int)signatureBuffer.Length, read));
-				    }
+                    }else{
+                        _ = lazyMatch.Value;
+                    }
                     length += read;
                 }
 
                 encodingDetector.End();
             }
 
-            if(length == 0 || encodingDetector.Charset == null || encodingDetector.Confidence < MinimumCharsetConfidence)
+            var match = lazyMatch.Value;
+
+            isBinary |= match.IsBinary;
+
+            if(encodingDetector.Charset == null || encodingDetector.Confidence < MinimumCharsetConfidence)
             {
                 isBinary = true;
             }
 
-            if(isBinary)
-            {
-                encodingDetector = null;
-            }
-
-            foreach(var result in results)
+            foreach(var result in match.Results)
             {
                 result.Wait();
             }
 
-            if(!signatureBuffer.TryGetBuffer(out var signature))
-            {
-                signature = new ArraySegment<byte>(signatureBuffer.ToArray());
-            }
+            match.Results.RemoveAll(result => !result.IsValid);
+            match.Results.Sort();
 
-            results.RemoveAll(result => !result.IsValid(signature));
-			results.Sort();
-
-            bool identifyWithData = length <= MaxDataLengthToStore;
-
-            Encoding encoding = null;
-            string charset = null;
+            var node = match.Node;
 
             if(!isBinary)
             {
-                encoding = TryGetEncoding(encodingDetector.Charset);
-                charset = encoding?.WebName ?? encodingDetector.Charset;
-                node.Set(Properties.CharacterEncoding, charset);
+                node.Set(Properties.CharacterEncoding, match.CharsetMatch.Charset);
             }
 
             var label = $"{(isBinary ? "binary data" : "text")} ({DataTools.SizeSuffix(length, 2)})";
 
-            if(identifyWithData)
-            {
-                var dataNode = nodeFactory.Create(this, (charset, signature));
-                if(results.Count > 0)
-                {
-                    node.Set(Properties.SameAs, dataNode);
-                    node.Set(Properties.PrefLabel, label, "en");
-                }
-                node = dataNode;
-            }
             node.Set(Properties.PrefLabel, label, "en");
 
             node.SetClass(isBinary ? Classes.ContentAsBase64 : Classes.ContentAsText);
             node.Set(Properties.Extent, length.ToString(), Datatypes.Byte);
 
-            if(identifyWithData)
+            if(!match.IdentifyWithData)
             {
-                string strval;
-                if(isBinary || (strval = TryGetString(encoding, signature)) == null)
-                {
-                    node.Set(Properties.Bytes, Convert.ToBase64String(signature.Array, signature.Offset, signature.Count), Datatypes.Base64Binary);
-                }else{
-                    node.Set(Properties.Chars, strval, Datatypes.String);
-                }
-            }else{
                 foreach(var hash in hashes)
                 {
                     HashAlgorithm.AddHash(node, hash.alg, hash.data.Result, nodeFactory);
                 }
             }
 
-            foreach(var result in results)
+            foreach(var result in match.Results)
             {
                 result.Result?.Set(Properties.HasFormat, node);
             }
@@ -166,53 +141,128 @@ namespace IS4.MultiArchiver.Analyzers
 			return node;
 		}
 
+        class FileMatch : IUriFormatter<bool>
+        {
+            public bool IsBinary { get; }
+            public List<FormatResult> Results { get; }
+            public ILinkedNode Node { get; }
+            public bool IdentifyWithData { get; }
+
+            readonly Lazy<CharsetMatch> LazyCharsetMatch;
+
+            public CharsetMatch CharsetMatch => LazyCharsetMatch?.Value;
+
+            public ArraySegment<byte> Signature { get; }
+
+            public FileMatch(ICollection<IBinaryFileFormat> formats, IStreamFactory streamFactory, MemoryStream signatureBuffer, int maxDataLength, IEncodingDetector encodingDetector, bool isBinary, ILinkedNodeFactory nodeFactory)
+            {
+                if(!signatureBuffer.TryGetBuffer(out var signature))
+                {
+                    signature = new ArraySegment<byte>(signatureBuffer.ToArray());
+                }
+                Signature = signature;
+
+                if(Signature.Count == 0)
+                {
+                    isBinary = true;
+                }
+
+                IdentifyWithData = Signature.Count <= maxDataLength;
+
+                if(!isBinary)
+                {
+                    LazyCharsetMatch = new Lazy<CharsetMatch>(() => new CharsetMatch(encodingDetector), false);
+                }
+
+                if(IdentifyWithData)
+                {
+                    string strval = null;
+                    if(!isBinary)
+                    {
+                        strval = TryGetString(CharsetMatch.Encoding, signature);
+                        if(strval == null)
+                        {
+                            LazyCharsetMatch = null;
+                            isBinary = true;
+                        }
+                    }
+
+                    Node = nodeFactory.Create(this, false);
+
+                    if(isBinary)
+                    {
+                        Node.Set(Properties.Bytes, Convert.ToBase64String(signature.Array, signature.Offset, signature.Count), Datatypes.Base64Binary);
+                    }else{
+                        Node.Set(Properties.Chars, strval, Datatypes.String);
+                    }
+                }else{
+                    Node = nodeFactory.NewGuidNode();
+                }
+
+                IsBinary = isBinary;
+                Results = formats.Where(fmt => fmt.Match(signature)).Select(fmt => new FormatResult(streamFactory, fmt, Node, nodeFactory)).ToList();
+            }
+
+            Uri IUriFormatter<bool>.FormatUri(bool _)
+            {
+                string base64Encoded = ";base64," + Convert.ToBase64String(Signature.Array, Signature.Offset, Signature.Count);
+                string uriEncoded = "," + UriTools.EscapeDataBytes(Signature.Array, Signature.Offset, Signature.Count);
+
+                string data = uriEncoded.Length <= base64Encoded.Length ? uriEncoded : base64Encoded;
+
+                switch(CharsetMatch?.Charset.ToLowerInvariant())
+                {
+                    case null:
+                        return new Uri("data:application/octet-stream" + data, UriKind.Absolute);
+                    case "ascii":
+                    case "us-ascii":
+                        return new Uri("data:" + data);
+                    default:
+                        return new Uri("data:;charset=" + CharsetMatch.Charset + data, UriKind.Absolute);
+                }
+            }
+
+            private string TryGetString(Encoding encoding, ArraySegment<byte> data)
+            {
+                if(encoding == null) return null;
+                try{
+                    return encoding.GetString(data.Array, data.Offset, data.Count);
+                }catch(ArgumentException)
+                {
+                    return null;
+                }
+            }
+        }
+
+        class CharsetMatch
+        {
+            public Encoding Encoding { get; }
+            public string Charset { get; }
+            public double Confidence { get; }
+
+            public CharsetMatch(IEncodingDetector encodingDetector)
+            {
+                Confidence = encodingDetector.Confidence;
+                Encoding = TryGetEncoding(encodingDetector.Charset);
+                Charset = Encoding?.WebName ?? encodingDetector.Charset;
+            }
+
+            private Encoding TryGetEncoding(string charset)
+            {
+                if(charset == null) return null;
+                try{
+                    return Encoding.GetEncoding(charset, EncoderFallback.ExceptionFallback, DecoderFallback.ExceptionFallback);
+                }catch(ArgumentException)
+                {
+                    return null;
+                }
+            }
+        }
+
 		public ILinkedNode Analyze(ILinkedNode parent, byte[] data, ILinkedNodeFactory analyzer)
 		{
 			return Analyze(parent, new MemoryStreamFactory(data), analyzer);
 		}
-
-        private Encoding TryGetEncoding(string charset)
-        {
-            if(charset == null) return null;
-            try{
-                return Encoding.GetEncoding(charset, EncoderFallback.ExceptionFallback, DecoderFallback.ExceptionFallback);
-            }catch(ArgumentException)
-            {
-                return null;
-            }
-        }
-
-        private string TryGetString(Encoding encoding, ArraySegment<byte> data)
-        {
-            if(encoding == null) return null;
-            try{
-                return encoding.GetString(data.Array, data.Offset, data.Count);
-            }catch(ArgumentException)
-            {
-                return null;
-            }
-        }
-
-        static readonly Regex urlRegex = new Regex(@"%[a-f0-9]{2}|\+", RegexOptions.Compiled);
-
-        Uri IUriFormatter<(string charset, ArraySegment<byte> data)>.FormatUri((string charset, ArraySegment<byte> data) value)
-        {
-            string base64Encoded = ";base64," + Convert.ToBase64String(value.data.Array, value.data.Offset, value.data.Count);
-            string uriEncoded = "," + UriTools.EscapeDataBytes(value.data.Array, value.data.Offset, value.data.Count);
-
-            string data = uriEncoded.Length <= base64Encoded.Length ? uriEncoded : base64Encoded;
-
-            switch(value.charset?.ToLowerInvariant())
-            {
-                case null:
-                    return new Uri("data:application/octet-stream" + data, UriKind.Absolute);
-                case "ascii":
-                case "us-ascii":
-                    return new Uri("data:" + data);
-                default:
-                    return new Uri("data:;charset=" + value.charset + data, UriKind.Absolute);
-            }
-        }
 
         class MemoryStreamFactory : IStreamFactory
         {
@@ -241,6 +291,8 @@ namespace IS4.MultiArchiver.Analyzers
             readonly ILinkedNode parent;
             readonly ILinkedNodeFactory nodeFactory;
             readonly Task<ILinkedNode> task;
+
+            public bool IsValid => !task.IsFaulted;
 
             public int MaxReadBytes => format.HeaderLength;
 
@@ -291,11 +343,6 @@ namespace IS4.MultiArchiver.Analyzers
 
                     }
                 }
-            }
-
-            public bool IsValid(ArraySegment<byte> header)
-            {
-                return format.Match(header) && !task.IsFaulted;
             }
 
             public int CompareTo(FormatResult other)
