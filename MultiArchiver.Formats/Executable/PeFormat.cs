@@ -19,11 +19,8 @@ namespace IS4.MultiArchiver.Formats
 
         public override TResult Match<TResult>(Stream stream, Func<PeFile, TResult> resultFactory)
         {
-            if(stream.ReadByte() != 'M' || stream.ReadByte() != 'Z') return null;
             using(var buffer = new MemoryStream())
             {
-                buffer.WriteByte((byte)'M');
-                buffer.WriteByte((byte)'Z');
                 stream.CopyTo(buffer);
                 buffer.Position = 0;
                 var data = buffer.ToArray();
