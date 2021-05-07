@@ -42,9 +42,20 @@ namespace IS4.MultiArchiver.Analyzers
                 {
                     node.SetClass(cls);
                 }
-                if(format.MediaType != null)
+                var type = format.MediaType?.ToLowerInvariant();
+                if(type != null)
                 {
-                    node.Set(Properties.EncodingFormat, Vocabularies.Mime, Uri.EscapeUriString(format.MediaType));
+                    if(type.StartsWith("audio/", StringComparison.Ordinal))
+                    {
+                        node.SetClass(Classes.AudioObject);
+                    }else if(type.StartsWith("video/", StringComparison.Ordinal))
+                    {
+                        node.SetClass(Classes.VideoObject);
+                    }else if(type.StartsWith("image/", StringComparison.Ordinal))
+                    {
+                        node.SetClass(Classes.ImageObject);
+                    }
+                    node.Set(Properties.EncodingFormat, Vocabularies.Mime, Uri.EscapeUriString(type));
                 }
             }
 

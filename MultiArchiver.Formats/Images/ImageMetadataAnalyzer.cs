@@ -12,11 +12,6 @@ namespace IS4.MultiArchiver.Analyzers
     {
         public ICollection<object> MetadataReaders { get; } = new SortedSet<object>(TypeInheritanceComparer<object>.Instance);
 
-        public ImageMetadataAnalyzer() : base(Classes.ImageObject)
-        {
-
-        }
-
         public override bool Analyze(ILinkedNode node, IReadOnlyList<Directory> image, ILinkedNodeFactory nodeFactory)
         {
             bool result = false;

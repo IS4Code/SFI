@@ -7,6 +7,10 @@
         [Uri(Vocabularies.Schema)]
         ImageObject,
         [Uri(Vocabularies.Schema)]
+        AudioObject,
+        [Uri(Vocabularies.Schema)]
+        VideoObject,
+        [Uri(Vocabularies.Schema)]
         MediaObject,
 
         [Uri(Vocabularies.Cnt)]
