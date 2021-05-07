@@ -84,6 +84,10 @@
         TotalSpace,
         [Uri(Vocabularies.Nfo)]
         FilesystemType,
+        [Uri(Vocabularies.Nfo)]
+        Width,
+        [Uri(Vocabularies.Nfo)]
+        Height,
 
         [Uri(Vocabularies.Skos)]
         Broader,

@@ -34,6 +34,12 @@
         Folder,
         [Uri(Vocabularies.Nfo)]
         Executable,
+        [Uri(Vocabularies.Nfo)]
+        Audio,
+        [Uri(Vocabularies.Nfo)]
+        Image,
+        [Uri(Vocabularies.Nfo)]
+        Video,
 
         [Uri(Vocabularies.Xis)]
         Document,

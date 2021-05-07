@@ -48,12 +48,15 @@ namespace IS4.MultiArchiver.Analyzers
                     if(type.StartsWith("audio/", StringComparison.Ordinal))
                     {
                         node.SetClass(Classes.AudioObject);
+                        node.SetClass(Classes.Audio);
                     }else if(type.StartsWith("video/", StringComparison.Ordinal))
                     {
                         node.SetClass(Classes.VideoObject);
+                        node.SetClass(Classes.Video);
                     }else if(type.StartsWith("image/", StringComparison.Ordinal))
                     {
                         node.SetClass(Classes.ImageObject);
+                        node.SetClass(Classes.Image);
                     }
                     node.Set(Properties.EncodingFormat, Vocabularies.Mime, Uri.EscapeUriString(type));
                 }

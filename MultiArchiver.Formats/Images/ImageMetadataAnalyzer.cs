@@ -5,6 +5,7 @@ using IS4.MultiArchiver.Vocabulary;
 using MetadataExtractor;
 using Microsoft.CSharp.RuntimeBinder;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace IS4.MultiArchiver.Analyzers
 {
@@ -20,6 +21,15 @@ namespace IS4.MultiArchiver.Analyzers
                 if(TryDescribe(node, dir, nodeFactory))
                 {
                     result = true;
+                }
+
+                if(dir.Tags.FirstOrDefault(t => t.Name == "Image Width") is Tag width)
+                {
+                    node.Set(Properties.Width, dir.GetInt32(width.Type));
+                }
+                if(dir.Tags.FirstOrDefault(t => t.Name == "Image Height") is Tag height)
+                {
+                    node.Set(Properties.Height, dir.GetInt32(height.Type));
                 }
             }
             return result;

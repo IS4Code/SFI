@@ -9,7 +9,7 @@ namespace IS4.MultiArchiver.Formats
 {
     public class ImageFormat : BinaryFileFormat<Image>
     {
-        public ImageFormat() : base(0, "image", null)
+        public ImageFormat() : base(0, null, null)
         {
 
         }
