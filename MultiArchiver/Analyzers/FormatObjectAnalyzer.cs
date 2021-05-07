@@ -19,36 +19,22 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        protected virtual ILinkedNode CreateNode(ILinkedNode parent, IFormatObject<T, TFormat> format, ILinkedNodeFactory nodeFactory)
-        {
-            if(format.MediaType == null)
-            {
-                return nodeFactory.NewGuidNode();
-            }
-            var split = format.MediaType.Split('/');
-            if(split.Length < 2)
-            {
-                return nodeFactory.NewGuidNode();
-            }
-            return parent[split[1]];
-        }
-
         public virtual bool Analyze(ILinkedNode node, T entity, ILinkedNodeFactory nodeFactory)
         {
             return false;
         }
 
-        public virtual ILinkedNode Analyze(ILinkedNode parent, IFormatObject<T, TFormat> entity, ILinkedNodeFactory nodeFactory)
+        public virtual ILinkedNode Analyze(ILinkedNode parent, IFormatObject<T, TFormat> format, ILinkedNodeFactory nodeFactory)
         {
-            var node = CreateNode(parent, entity, nodeFactory);
+            var node = parent[format];
 
             if(node != null)
             {
-                if(!Analyze(node, entity.Value, nodeFactory))
+                if(!Analyze(node, format.Value, nodeFactory))
                 {
-                    if(entity.Extension != null)
+                    if(format.Extension != null)
                     {
-                        node.Set(Properties.Description, $"{entity.Extension.ToUpperInvariant()} object", "en");
+                        node.Set(Properties.Description, $"{format.Extension.ToUpperInvariant()} object", "en");
                     }
                 }
                 node.SetClass(Classes.MediaObject);
@@ -56,9 +42,9 @@ namespace IS4.MultiArchiver.Analyzers
                 {
                     node.SetClass(cls);
                 }
-                if(entity.MediaType != null && !entity.MediaType.StartsWith("x-custom/", StringComparison.OrdinalIgnoreCase))
+                if(format.MediaType != null)
                 {
-                    node.Set(Properties.EncodingFormat, Vocabularies.Mime, Uri.EscapeUriString(entity.MediaType));
+                    node.Set(Properties.EncodingFormat, Vocabularies.Mime, Uri.EscapeUriString(format.MediaType));
                 }
             }
 
