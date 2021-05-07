@@ -19,8 +19,6 @@ namespace IS4.MultiArchiver.Analyzers
 
         public int MaxDataLengthToStore => Math.Max(64, HashAlgorithms.Sum(h => h.HashSize + 64)) - 16;
 
-        public float MinimumCharsetConfidence { get; } = 0.5000001f;
-
         public DataAnalyzer(Func<IEncodingDetector> encodingDetectorFactory)
 		{
             EncodingDetectorFactory = encodingDetectorFactory;
@@ -98,11 +96,6 @@ namespace IS4.MultiArchiver.Analyzers
 
             isBinary |= match.IsBinary;
 
-            if(encodingDetector.Charset == null || encodingDetector.Confidence < MinimumCharsetConfidence)
-            {
-                isBinary = true;
-            }
-
             foreach(var result in match.Results)
             {
                 result.Wait();
@@ -143,7 +136,8 @@ namespace IS4.MultiArchiver.Analyzers
 
         class FileMatch : IUriFormatter<bool>
         {
-            public bool IsBinary { get; }
+            readonly bool isBinary;
+            public bool IsBinary => isBinary || CharsetMatch?.Charset == null;
             public List<FormatResult> Results { get; }
             public ILinkedNode Node { get; }
             public bool IdentifyWithData { get; }
@@ -199,7 +193,7 @@ namespace IS4.MultiArchiver.Analyzers
                     Node = nodeFactory.NewGuidNode();
                 }
 
-                IsBinary = isBinary;
+                this.isBinary = isBinary;
                 Results = formats.Where(fmt => fmt.Match(signature)).Select(fmt => new FormatResult(streamFactory, fmt, Node, nodeFactory)).ToList();
             }
 
@@ -243,8 +237,11 @@ namespace IS4.MultiArchiver.Analyzers
             public CharsetMatch(IEncodingDetector encodingDetector)
             {
                 Confidence = encodingDetector.Confidence;
-                Encoding = TryGetEncoding(encodingDetector.Charset);
-                Charset = Encoding?.WebName ?? encodingDetector.Charset;
+                if(Confidence > 0)
+                {
+                    Encoding = TryGetEncoding(encodingDetector.Charset);
+                    Charset = Encoding?.WebName ?? encodingDetector.Charset;
+                }
             }
 
             private Encoding TryGetEncoding(string charset)
