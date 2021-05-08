@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
+using System.Text;
 
 namespace IS4.MultiArchiver
 {
@@ -20,6 +22,26 @@ namespace IS4.MultiArchiver
                 adjustedSize /= 1024;
             }
             return String.Format(CultureInfo.InvariantCulture, $"{{0:0.{new string('#', decimalPlaces)}}} {{1}}", adjustedSize, units[n]);
+        }
+
+        static readonly byte[][] knownBoms = new[]
+        {
+            Encoding.UTF8,
+            Encoding.Unicode,
+            Encoding.BigEndianUnicode,
+            new UTF32Encoding(true, true),
+            new UTF32Encoding(false, true)
+        }.Select(e => e.GetPreamble()).ToArray();
+
+        public static readonly int MaxBomLength = knownBoms.Max(b => b.Length);
+
+        public static int FindBom(Span<byte> data)
+        {
+            foreach(var bom in knownBoms)
+            {
+                if(data.StartsWith(bom)) return bom.Length;
+            }
+            return 0;
         }
     }
 }

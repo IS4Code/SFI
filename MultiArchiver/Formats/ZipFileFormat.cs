@@ -1,20 +1,14 @@
-﻿using IS4.MultiArchiver.Services;
-using System;
+﻿using System;
 using System.IO;
 using System.IO.Compression;
 
 namespace IS4.MultiArchiver.Formats
 {
-    public class ZipFileFormat : BinaryFileFormat<ZipArchive>
+    public class ZipFileFormat : SignatureFormat<ZipArchive>
     {
-        public ZipFileFormat() : base(2, "application/zip", "zip")
+        public ZipFileFormat() : base(3, "PK", "application/zip", "zip")
         {
 
-        }
-
-        public override bool Match(Span<byte> header)
-        {
-            return header.Length >= 2 && header[0] == 0x50 && header[1] == 0x4B;
         }
 
         public override TResult Match<TResult>(Stream stream, Func<ZipArchive, TResult> resultFactory)

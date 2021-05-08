@@ -8,7 +8,7 @@ namespace IS4.MultiArchiver.Formats
 {
     public class XmlFileFormat : BinaryFileFormat<XmlReader>
     {
-        static readonly XmlReaderSettings readerSettings = new XmlReaderSettings
+        public XmlReaderSettings ReaderSettings { get; } = new XmlReaderSettings
         {
             CloseInput = false,
             DtdProcessing = DtdProcessing.Parse,
@@ -16,19 +16,32 @@ namespace IS4.MultiArchiver.Formats
             XmlResolver = new XmlPlaceholderResolver()
         };
 
-        public XmlFileFormat(string mediaType = "application/xml", string extension = "xml") : base(0, mediaType, extension)
+        public XmlFileFormat(string mediaType = "application/xml", string extension = "xml") : base(DataTools.MaxBomLength + 1, mediaType, extension)
         {
 
         }
 
         public override bool Match(Span<byte> header)
         {
-            return true;
+            header = header.Slice(DataTools.FindBom(header));
+            if(header.Length == 0) return false;
+            switch(header[0])
+            {
+                // Whitespace
+                case (byte)'\t':
+                case (byte)'\r':
+                case (byte)'\n':
+                case (byte)' ':
+                // XML declaration
+                case (byte)'<':
+                    return true;
+                default: return false;
+            }
         }
 
         public override TResult Match<TResult>(Stream stream, Func<XmlReader, TResult> resultFactory)
         {
-            using(var reader = XmlReader.Create(stream, readerSettings))
+            using(var reader = XmlReader.Create(stream, ReaderSettings))
             {
                 if(!reader.Read()) return null;
                 return resultFactory(reader);

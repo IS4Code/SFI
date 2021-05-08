@@ -101,9 +101,6 @@ namespace IS4.MultiArchiver.Analyzers
                 result.Wait();
             }
 
-            match.Results.RemoveAll(result => !result.IsValid);
-            match.Results.Sort();
-
             var node = match.Node;
 
             if(!isBinary)
@@ -126,7 +123,7 @@ namespace IS4.MultiArchiver.Analyzers
                 }
             }
 
-            foreach(var result in match.Results)
+            foreach(var result in match.Results.Where(result => result.IsValid))
             {
                 result.Result?.Set(Properties.HasFormat, node);
             }
@@ -138,7 +135,7 @@ namespace IS4.MultiArchiver.Analyzers
         {
             readonly bool isBinary;
             public bool IsBinary => isBinary || CharsetMatch?.Charset == null;
-            public List<FormatResult> Results { get; }
+            public IReadOnlyList<FormatResult> Results { get; }
             public ILinkedNode Node { get; }
             public bool IdentifyWithData { get; }
 
@@ -194,7 +191,13 @@ namespace IS4.MultiArchiver.Analyzers
                 }
 
                 this.isBinary = isBinary;
-                Results = formats.Where(fmt => fmt.Match(signature)).Select(fmt => new FormatResult(streamFactory, fmt, Node, nodeFactory)).ToList();
+
+                if(Signature.Count > 0)
+                {
+                    Results = formats.Where(fmt => fmt.Match(signature)).Select(fmt => new FormatResult(streamFactory, fmt, Node, nodeFactory)).ToList();
+                }else{
+                    Results = Array.Empty<FormatResult>();
+                }
             }
 
             Uri IUriFormatter<bool>.FormatUri(bool _)
