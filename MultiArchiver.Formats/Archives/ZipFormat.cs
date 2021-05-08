@@ -1,22 +1,21 @@
-﻿using SharpCompress.Archives.Zip;
+﻿using SharpCompress.Readers.Zip;
 using System;
 using System.IO;
 
 namespace IS4.MultiArchiver.Formats
 {
-    public class ZipFormat : ArchiveFormat<ZipArchive>
+    public class ZipFormat : SignatureFormat<ZipReader>
     {
         public ZipFormat() : base("PK", "application/zip", "zip")
         {
 
         }
 
-        public override TResult Match<TResult>(Stream stream, Func<ZipArchive, TResult> resultFactory)
+        public override TResult Match<TResult>(Stream stream, Func<ZipReader, TResult> resultFactory)
         {
-            using(var archive = ZipArchive.Open(stream))
+            using(var reader = ZipReader.Open(stream))
             {
-                if(!CheckArchive(archive)) return null;
-                return resultFactory(archive);
+                return resultFactory(reader);
             }
         }
     }

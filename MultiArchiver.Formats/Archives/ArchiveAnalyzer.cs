@@ -1,6 +1,7 @@
 ﻿using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Vocabulary;
 using SharpCompress.Archives;
+using SharpCompress.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -42,7 +43,7 @@ namespace IS4.MultiArchiver.Analyzers
             return false;
         }
 
-        private static string ExtractPath(IArchiveEntry entry)
+        internal static string ExtractPath(IEntry entry)
         {
             var path = ExtractPathSimple(entry);
             if(entry != null && entry.IsDirectory && !path.EndsWith('/'))
@@ -54,7 +55,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         static readonly char[] trimChars = { '/' };
 
-        private static string ExtractPathSimple(IArchiveEntry entry)
+        internal static string ExtractPathSimple(IEntry entry)
         {
             if(entry?.Key == null) return null;
             var path = entry.Key.Replace(Path.DirectorySeparatorChar, '/');

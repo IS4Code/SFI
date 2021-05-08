@@ -1,22 +1,21 @@
-﻿using SharpCompress.Archives.GZip;
+﻿using SharpCompress.Readers.GZip;
 using System;
 using System.IO;
 
 namespace IS4.MultiArchiver.Formats
 {
-    public class GZipFormat : ArchiveFormat<GZipArchive>
+    public class GZipFormat : SignatureFormat<GZipReader>
     {
         public GZipFormat() : base(new byte[] { 0x1F, 0x8B }, "application/gzip", "gz")
         {
 
         }
 
-        public override TResult Match<TResult>(Stream stream, Func<GZipArchive, TResult> resultFactory)
+        public override TResult Match<TResult>(Stream stream, Func<GZipReader, TResult> resultFactory)
         {
-            using(var archive = GZipArchive.Open(stream))
+            using(var reader = GZipReader.Open(stream))
             {
-                if(!CheckArchive(archive)) return null;
-                return resultFactory(archive);
+                return resultFactory(reader);
             }
         }
     }

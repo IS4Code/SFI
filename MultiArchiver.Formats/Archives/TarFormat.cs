@@ -1,4 +1,4 @@
-﻿using SharpCompress.Archives.Tar;
+﻿using SharpCompress.Readers.Tar;
 using System;
 using System.IO;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 
 namespace IS4.MultiArchiver.Formats
 {
-    public class TarFormat : ArchiveFormat<TarArchive>
+    public class TarFormat : SignatureFormat<TarReader>
     {
         public TarFormat() : base(headerLength, "application/x-tar", "tar")
         {
@@ -89,24 +89,11 @@ namespace IS4.MultiArchiver.Formats
             return true;
         }
 
-        public override TResult Match<TResult>(Stream stream, Func<TarArchive, TResult> resultFactory)
+        public override TResult Match<TResult>(Stream stream, Func<TarReader, TResult> resultFactory)
         {
-            using(var archive = TarArchive.Open(stream))
+            using(var reader = TarReader.Open(stream))
             {
-                if(!CheckArchive(archive)) return null;
-                if(archive.TotalUncompressSize > 1024 * (long)Int32.MaxValue)
-                {
-                    return null;
-                }
-                /*if(archive.TotalUncompressSize != archive.Entries.Sum(e => e.Size))
-                {
-                    return null;
-                }
-                if(archive.Entries.Any(e => e.Key.Contains('\0')))
-                {
-                    return null;
-                }*/
-                return resultFactory(archive);
+                return resultFactory(reader);
             }
         }
     }

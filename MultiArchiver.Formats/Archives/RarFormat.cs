@@ -1,22 +1,21 @@
-﻿using SharpCompress.Archives.Rar;
+﻿using SharpCompress.Readers.Rar;
 using System;
 using System.IO;
 
 namespace IS4.MultiArchiver.Formats
 {
-    public class RarFormat : ArchiveFormat<RarArchive>
+    public class RarFormat : SignatureFormat<RarReader>
     {
         public RarFormat() : base("Rar!", "application/vnd.rar", "rar")
         {
 
         }
 
-        public override TResult Match<TResult>(Stream stream, Func<RarArchive, TResult> resultFactory)
+        public override TResult Match<TResult>(Stream stream, Func<RarReader, TResult> resultFactory)
         {
-            using(var archive = RarArchive.Open(stream))
+            using(var reader = RarReader.Open(stream))
             {
-                if(!CheckArchive(archive)) return null;
-                return resultFactory(archive);
+                return resultFactory(reader);
             }
         }
     }
