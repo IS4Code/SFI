@@ -31,7 +31,7 @@ namespace IS4.MultiArchiver.Analyzers
                         }
                     }
                 }else{
-                    var node2 = nodeFactory.Create(node, ArchiveDirectoryInfo.Create(group));
+                    var node2 = nodeFactory.Create(node, ArchiveDirectoryInfo.Create("", group));
                     if(node2 != null)
                     {
                         node2.SetClass(Classes.ArchiveItem);
@@ -45,17 +45,21 @@ namespace IS4.MultiArchiver.Analyzers
         private static string ExtractPath(IArchiveEntry entry)
         {
             var path = ExtractPathSimple(entry);
-            if(entry != null && entry.IsDirectory)
+            if(entry != null && entry.IsDirectory && !path.EndsWith('/'))
             {
                 path += "/";
             }
             return path;
         }
 
+        static readonly char[] trimChars = { '/' };
+
         private static string ExtractPathSimple(IArchiveEntry entry)
         {
             if(entry == null) return null;
-            return entry.Key.Replace(Path.DirectorySeparatorChar, '/');
+            var path = entry.Key.Replace(Path.DirectorySeparatorChar, '/');
+            if(entry.IsDirectory) path = path.TrimEnd(trimChars);
+            return path;
         }
 
         abstract class ArchiveEntryInfo : IFileNodeInfo
@@ -67,9 +71,9 @@ namespace IS4.MultiArchiver.Analyzers
                 Entry = entry;
             }
 
-            public string Name => System.IO.Path.GetFileName(Entry?.Key);
+            public virtual string Name => Entry != null ? System.IO.Path.GetFileName(Path) : null;
 
-            public string Path => ExtractPathSimple(Entry);
+            public virtual string Path => ExtractPathSimple(Entry);
 
             public DateTime? CreationTime => Entry?.CreatedTime;
 
@@ -90,9 +94,16 @@ namespace IS4.MultiArchiver.Analyzers
         {
             readonly IGrouping<string, DirectoryTools.EntryInfo<IArchiveEntry>> entries;
 
-            protected ArchiveDirectoryInfo(IArchiveEntry container, IGrouping<string, DirectoryTools.EntryInfo<IArchiveEntry>> entries) : base(container)
+            readonly string path;
+
+            public override string Name => base.Name ?? entries.Key;
+
+            public override string Path => base.Path ?? path + entries.Key + "/";
+
+            protected ArchiveDirectoryInfo(IArchiveEntry container, string path, IGrouping<string, DirectoryTools.EntryInfo<IArchiveEntry>> entries) : base(container)
             {
                 this.entries = entries;
+                this.path = path;
             }
 
             public IEnumerable<IFileNodeInfo> Entries{
@@ -109,7 +120,7 @@ namespace IS4.MultiArchiver.Analyzers
                                 }
                             }
                         }else{
-                            yield return Create(group);
+                            yield return Create(Path, group);
                         }
                     }
                 }
@@ -117,14 +128,14 @@ namespace IS4.MultiArchiver.Analyzers
 
             protected override object ReferenceKey => base.ReferenceKey ?? entries.FirstOrDefault().Entry?.Archive;
 
-            public static ArchiveDirectoryInfo Create(IGrouping<string, DirectoryTools.EntryInfo<IArchiveEntry>> group)
+            public static ArchiveDirectoryInfo Create(string path, IGrouping<string, DirectoryTools.EntryInfo<IArchiveEntry>> group)
             {
                 var container = group.FirstOrDefault(p => String.IsNullOrEmpty(p.SubPath));
                 if(container.Entry != null && container.Entry.Size > 0)
                 {
                     return new ArchiveFileDirectoryInfo(container.Entry, group);
                 }else{
-                    return new ArchiveDirectoryInfo(container.Entry, group);
+                    return new ArchiveDirectoryInfo(container.Entry, path, group);
                 }
             }
         }
@@ -133,7 +144,7 @@ namespace IS4.MultiArchiver.Analyzers
         {
             readonly ArchiveFileInfo entryInfo;
 
-            public ArchiveFileDirectoryInfo(IArchiveEntry container, IGrouping<string, DirectoryTools.EntryInfo<IArchiveEntry>> entries) : base(container, entries)
+            public ArchiveFileDirectoryInfo(IArchiveEntry container, IGrouping<string, DirectoryTools.EntryInfo<IArchiveEntry>> entries) : base(container, null, entries)
             {
                 entryInfo = new ArchiveFileInfo(container);
             }
