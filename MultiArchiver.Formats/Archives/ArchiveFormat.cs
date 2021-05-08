@@ -1,15 +1,13 @@
 ﻿using IS4.MultiArchiver.Services;
 using SharpCompress.Archives;
-using System;
-using System.IO;
-using SharpCompress.Common;
-using System.Linq;
-using SharpCompress.Readers;
-using SharpCompress.Archives.Zip;
-using SharpCompress.Archives.SevenZip;
 using SharpCompress.Archives.GZip;
 using SharpCompress.Archives.Rar;
-using SharpCompress.Archives.Tar;
+using SharpCompress.Archives.SevenZip;
+using SharpCompress.Archives.Zip;
+using SharpCompress.Common;
+using SharpCompress.Readers;
+using System;
+using System.IO;
 
 namespace IS4.MultiArchiver.Formats
 {
@@ -104,21 +102,6 @@ namespace IS4.MultiArchiver.Formats
                 if(archive == null || archive.TotalSize <= 0 || archive.TotalUncompressSize <= 0)
                 {
                     return null;
-                }
-                if(archive.Type == ArchiveType.Tar)
-                {
-                    if(archive.TotalUncompressSize > 1024 * (long)Int32.MaxValue)
-                    {
-                        return null;
-                    }
-                    if(archive.TotalUncompressSize != archive.Entries.Sum(e => e.Size))
-                    {
-                        return null;
-                    }
-                    if(archive.Entries.Any(e => e.Key.Contains('\0')))
-                    {
-                        return null;
-                    }
                 }
                 return resultFactory(archive);
             }
