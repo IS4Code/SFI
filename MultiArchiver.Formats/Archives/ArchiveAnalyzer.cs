@@ -56,7 +56,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         private static string ExtractPathSimple(IArchiveEntry entry)
         {
-            if(entry == null) return null;
+            if(entry?.Key == null) return null;
             var path = entry.Key.Replace(Path.DirectorySeparatorChar, '/');
             if(entry.IsDirectory) path = path.TrimEnd(trimChars);
             return path;

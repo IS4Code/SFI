@@ -19,16 +19,23 @@ namespace IS4.MultiArchiver.Analyzers
 
         private ILinkedNode AnalyzeFileNode(ILinkedNode parent, IFileNodeInfo info, ILinkedNodeFactory nodeFactory)
         {
-            var name = Uri.EscapeDataString(info.Name);
+            var name = Uri.EscapeDataString(info.Name ?? "");
             var node = parent?[name] ?? nodeFactory.NewGuidNode();
 
             node.SetClass(Classes.FileDataObject);
 
-            LinkDirectories(node, info.Path, false, nodeFactory);
+            if(info.Path != null)
+            {
+                LinkDirectories(node, info.Path, false, nodeFactory);
+            }
 
             node.Set(Properties.PrefLabel, "/" + info.Path);
 
-            node.Set(Properties.FileName, info.Name);
+            if(info.Name != null)
+            {
+                node.Set(Properties.FileName, info.Name);
+            }
+
             if(info.CreationTime is DateTime dt1)
             {
                 node.Set(Properties.FileCreated, dt1);

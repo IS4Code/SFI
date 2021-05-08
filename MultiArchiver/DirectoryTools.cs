@@ -18,6 +18,7 @@ namespace IS4.MultiArchiver
 
         static (string dir, string subpath) GetFirstDir(string path)
         {
+            if(path == null) return default;
             int index = path.IndexOf('/');
             if(index == -1) return (null, path);
             return (path.Substring(0, index), path.Substring(index + 1));
