@@ -9,12 +9,12 @@ namespace IS4.MultiArchiver.Formats
 
         }
 
-        public ArchiveFormat(string signature, string mediaType, string extension) : base(signature.Length + 1, signature, mediaType, extension)
+        public ArchiveFormat(string signature, string mediaType, string extension) : base(signature, mediaType, extension)
         {
 
         }
 
-        public ArchiveFormat(byte[] signature, string mediaType, string extension) : base(signature.Length + 1, signature, mediaType, extension)
+        public ArchiveFormat(byte[] signature, string mediaType, string extension) : base(signature, mediaType, extension)
         {
 
         }

@@ -13,12 +13,22 @@ namespace IS4.MultiArchiver.Formats
             signature = Array.Empty<byte>();
         }
 
-        public SignatureFormat(int headerLength, string signature, string mediaType, string extension) : this(headerLength, mediaType, extension)
+        public SignatureFormat(int headerLength, string signature, string mediaType, string extension) : base(headerLength, mediaType, extension)
         {
             this.signature = Encoding.ASCII.GetBytes(signature);
         }
 
-        public SignatureFormat(int headerLength, byte[] signature, string mediaType, string extension) : this(headerLength, mediaType, extension)
+        public SignatureFormat(int headerLength, byte[] signature, string mediaType, string extension) : base(headerLength, mediaType, extension)
+        {
+            this.signature = (byte[])signature.Clone();
+        }
+
+        public SignatureFormat(string signature, string mediaType, string extension) : base(signature.Length + 1, mediaType, extension)
+        {
+            this.signature = Encoding.ASCII.GetBytes(signature);
+        }
+
+        public SignatureFormat(byte[] signature, string mediaType, string extension) : base(signature.Length + 1, mediaType, extension)
         {
             this.signature = (byte[])signature.Clone();
         }

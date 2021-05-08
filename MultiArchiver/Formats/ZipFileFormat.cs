@@ -6,7 +6,7 @@ namespace IS4.MultiArchiver.Formats
 {
     public class ZipFileFormat : SignatureFormat<ZipArchive>
     {
-        public ZipFileFormat() : base(3, "PK", "application/zip", "zip")
+        public ZipFileFormat() : base("PK", "application/zip", "zip")
         {
 
         }
