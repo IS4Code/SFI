@@ -37,8 +37,10 @@ namespace IS4.MultiArchiver.Extensions
             var archiver = new Archiver();
 
             archiver.DataAnalyzer.Formats.Add(new XmlFileFormat());
-            //archiver.DataAnalyzer.Formats.Add(new ZipFileFormat());
-            archiver.DataAnalyzer.Formats.Add(new ArchiveFormat());
+            archiver.DataAnalyzer.Formats.Add(new ZipFormat());
+            archiver.DataAnalyzer.Formats.Add(new RarFormat());
+            archiver.DataAnalyzer.Formats.Add(new SevenZipFormat());
+            archiver.DataAnalyzer.Formats.Add(new GZipFormat());
             archiver.DataAnalyzer.Formats.Add(new TarFormat());
             archiver.DataAnalyzer.Formats.Add(new ImageMetadataFormat());
             archiver.DataAnalyzer.Formats.Add(new IsoFormat());
