@@ -17,10 +17,15 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        private ILinkedNode AnalyzeFileNode(ILinkedNode parent, IFileNodeInfo info, ILinkedNodeFactory nodeFactory)
+        private ILinkedNode CreateNode(ILinkedNode parent, IFileNodeInfo info, ILinkedNodeFactory nodeFactory)
         {
             var name = Uri.EscapeDataString(info.Name ?? "");
-            var node = parent?[name] ?? nodeFactory.NewGuidNode();
+            return parent?[name] ?? nodeFactory.NewGuidNode();
+        }
+
+        private ILinkedNode AnalyzeFileNode(ILinkedNode parent, IFileNodeInfo info, ILinkedNodeFactory nodeFactory)
+        {
+            var node = CreateNode(parent, info, nodeFactory);
 
             node.SetClass(Classes.FileDataObject);
 
@@ -169,7 +174,7 @@ namespace IS4.MultiArchiver.Analyzers
             {
                 case IFileInfo file: return Analyze(parent, file, nodeFactory);
                 case IDirectoryInfo dir: return Analyze(parent, dir, nodeFactory);
-                default: return null;
+                default: return CreateNode(parent, entity, nodeFactory);
             }
         }
 

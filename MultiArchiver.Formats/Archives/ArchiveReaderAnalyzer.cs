@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using IS4.MultiArchiver.Analyzers;
 using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Vocabulary;
@@ -18,49 +19,68 @@ namespace IS4.MultiArchiver.Analyzers
 
         public override bool Analyze(ILinkedNode parent, IReader reader, ILinkedNodeFactory nodeFactory)
         {
-            var remainingDirectories = new HashSet<string>();
-            var visitedDirectories = new HashSet<string>();
+            var directories = new Dictionary<string, ArchiveDirectoryInfo>();
 
             while(reader.MoveToNextEntry())
             {
                 var entry = reader.Entry;
-                var info = entry.IsDirectory ? (IFileNodeInfo)new ArchiveDirectoryInfo(reader, entry) : new ArchiveFileInfo(reader, entry);
-                var dir = GetDirectory(info.Path);
-                if(dir != null && !visitedDirectories.Contains(dir))
-                {
-                    remainingDirectories.Add(dir);
-                }
-                var container = dir == null ? parent : parent[Uri.EscapeUriString(dir)];
-                var node = nodeFactory.Create(container, info);
-                node.Set(Properties.BelongsToContainer, dir == null ? parent : container[""]);
+                IFileNodeInfo info;
+                string dir;
                 if(entry.IsDirectory)
                 {
-                    visitedDirectories.Add(info.Path);
-                }
-            }
-
-            if(remainingDirectories.Count > 0)
-            {
-                var queue = new Queue<string>(remainingDirectories);
-
-                while(queue.Count > 0)
-                {
-                    var path = queue.Dequeue();
-                    if(!visitedDirectories.Contains(path))
+                    info = new ArchiveDirectoryInfo(reader, entry);
+                    if(!directories.TryGetValue(info.Path, out var dirInfo))
                     {
-                        var dir = GetDirectory(path);
-                        if(dir != null && !visitedDirectories.Contains(dir))
+                        directories[info.Path] = (ArchiveDirectoryInfo)info;
+                    }else{
+                        dirInfo.Entry = entry;
+                    }
+                    dir = GetDirectory(info.Path);
+                }else{
+                    info = new ArchiveFileInfo(reader, entry);
+                    dir = GetDirectory(info.Path);
+                    var container = GetContainer(parent, dir);
+                    var node = nodeFactory.Create(container, info);
+                    if(dir == null) node?.Set(Properties.BelongsToContainer, parent);
+                    //node?.Set(Properties.BelongsToContainer, dir == null ? parent : container[""]);
+                }
+                if(dir != null)
+                {
+                    if(!directories.TryGetValue(dir, out var dirInfo))
+                    {
+                        dirInfo = directories[dir] = new ArchiveDirectoryInfo(reader, null);
+                    }
+                    dirInfo.Entries.Add(entry.IsDirectory ? info : new ArchiveEntryInfo(reader, entry));
+                    dir = GetDirectory(dir);
+                    while(dir != null)
+                    {
+                        if(directories.TryGetValue(dir, out var parentDirInfo))
                         {
-                            queue.Enqueue(dir);
+                            break;
                         }
-                        var container = dir == null ? parent : parent[Uri.EscapeUriString(dir)];
-                        var node = nodeFactory.Create(container, new BlankDirectoryInfo(reader, path));
-                        node.Set(Properties.BelongsToContainer, dir == null ? parent : container[""]);
-                        visitedDirectories.Add(path);
+                        parentDirInfo = directories[dir] = new ArchiveDirectoryInfo(reader, null);
+                        parentDirInfo.Entries.Add(dirInfo);
+                        dir = GetDirectory(dir);
+                        dirInfo = parentDirInfo;
                     }
                 }
             }
+
+            foreach(var pair in directories)
+            {
+                var info = pair.Value;
+                var dir = GetDirectory(info.Path);
+                var container = GetContainer(parent, dir);
+                var node = nodeFactory.Create(container, info);
+                if(dir == null) node?.Set(Properties.BelongsToContainer, parent);
+            }
+
             return false;
+        }
+
+        static ILinkedNode GetContainer(ILinkedNode parent, string dir)
+        {
+            return dir == null ? parent : parent[String.Join("/", dir.Split('/').Select(Uri.EscapeDataString))];
         }
 
         static string GetDirectory(string path)
@@ -71,10 +91,10 @@ namespace IS4.MultiArchiver.Analyzers
             return null;
         }
         
-        abstract class ArchiveEntryInfo : IFileNodeInfo
+        class ArchiveEntryInfo : IFileNodeInfo
         {
             protected IReader Reader { get; }
-            protected IEntry Entry { get; }
+            public IEntry Entry { get; set; }
 
             public ArchiveEntryInfo(IReader reader, IEntry entry)
             {
@@ -134,12 +154,14 @@ namespace IS4.MultiArchiver.Analyzers
 
         class ArchiveDirectoryInfo : ArchiveEntryInfo, IDirectoryInfo
         {
+            public List<IFileNodeInfo> Entries { get; } = new List<IFileNodeInfo>();
+
             public ArchiveDirectoryInfo(IReader reader, IEntry entry) : base(reader, entry)
             {
 
             }
 
-            public IEnumerable<IFileNodeInfo> Entries => Array.Empty<IFileNodeInfo>();
+            IEnumerable<IFileNodeInfo> IDirectoryInfo.Entries => Entries;
         }
 
         class BlankDirectoryInfo : ArchiveDirectoryInfo

@@ -59,7 +59,7 @@ namespace IS4.MultiArchiver
                     info.LastHash.CopyTo(buffer, buffer.Length - info.LastHash.Length);
                     break;
                 case IDirectoryInfo directory:
-                    var files = new List<(IFileInfo info, BitTorrentHashCache.FileInfo cached, BList<BString> path)>();
+                    var files = new List<(BitTorrentHashCache.FileInfo cached, BList<BString> path)>();
                     long bufferLength = 0;
                     var root = new BList<BString>();
                     if(!content)
@@ -69,17 +69,17 @@ namespace IS4.MultiArchiver
                     foreach(var (file, path) in FindFiles(directory, root))
                     {
                         var cachedInfo = BitTorrentHashCache.GetCachedInfo(BlockSize, file);
-                        files.Add((file, cachedInfo, path));
+                        files.Add((cachedInfo, path));
                         bufferLength += cachedInfo.BlockHashes.Count * HashAlgorithm.HashSize + cachedInfo.LastHashPadded.Length;
                     }
                     buffer = new byte[bufferLength];
                     int pos = 0;
                     var filesList = new BList<BDictionary>();
-                    foreach(var (file, cachedInfo, path) in files)
+                    foreach(var (cachedInfo, path) in files)
                     {
                         var fileDict = new BDictionary();
                         fileDict["path"] = path;
-                        fileDict["length"] = new BNumber(file.Length);
+                        fileDict["length"] = new BNumber(cachedInfo.Length);
                         filesList.Add(fileDict);
 
                         foreach(var hash in cachedInfo.BlockHashes)
@@ -108,7 +108,7 @@ namespace IS4.MultiArchiver
             return dict;
         }
 
-        private IEnumerable<(IFileInfo info, BList<BString> path)> FindFiles(IDirectoryInfo dir, BList<BString> current)
+        private IEnumerable<(IFileNodeInfo info, BList<BString> path)> FindFiles(IDirectoryInfo dir, BList<BString> current)
         {
             foreach(var entry in dir.Entries.OrderBy(e => e.Name, StringComparer.Ordinal))
             {
@@ -116,14 +116,14 @@ namespace IS4.MultiArchiver
                 path.Add(entry.Name);
                 switch(entry)
                 {
-                    case IFileInfo file:
-                        yield return (file, path);
-                        break;
                     case IDirectoryInfo directory:
                         foreach(var inner in FindFiles(directory, path))
                         {
                             yield return inner;
                         }
+                        break;
+                    default:
+                        yield return (entry, path);
                         break;
                 }
             }

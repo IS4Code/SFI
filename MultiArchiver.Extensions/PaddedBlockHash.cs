@@ -18,7 +18,7 @@ namespace IS4.MultiArchiver
         {
             using(var output = new MemoryStream())
             {
-                var list = BitTorrentHashCache.HashData(BlockSize, input, out var padding);
+                var list = BitTorrentHashCache.HashData(BlockSize, input, out var padding, out _);
                 var enc = BitConverter.GetBytes(padding);
                 output.Write(enc, 0, enc.Length);
                 foreach(var block in list)
