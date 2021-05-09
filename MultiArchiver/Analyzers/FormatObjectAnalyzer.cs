@@ -24,13 +24,18 @@ namespace IS4.MultiArchiver.Analyzers
             return false;
         }
 
+        public virtual bool Analyze(ILinkedNode node, T entity, object source, ILinkedNodeFactory nodeFactory)
+        {
+            return Analyze(node, entity, nodeFactory);
+        }
+
         public virtual ILinkedNode Analyze(ILinkedNode parent, IFormatObject<T, TFormat> format, ILinkedNodeFactory nodeFactory)
         {
             var node = parent[format];
 
             if(node != null)
             {
-                if(!Analyze(node, format.Value, nodeFactory))
+                if(!Analyze(node, format.Value, format.Source, nodeFactory))
                 {
                     if(format.Extension != null)
                     {

@@ -43,12 +43,14 @@ namespace IS4.MultiArchiver.Extensions
             archiver.DataAnalyzer.Formats.Add(new GZipFormat());
             archiver.DataAnalyzer.Formats.Add(new TarFormat());
             archiver.DataAnalyzer.Formats.Add(new ImageMetadataFormat());
+            archiver.DataAnalyzer.Formats.Add(new TagLibFormat());
             archiver.DataAnalyzer.Formats.Add(new IsoFormat());
             archiver.DataAnalyzer.Formats.Add(new PeFormat());
             archiver.Analyzers.Add(new ArchiveAnalyzer());
             archiver.Analyzers.Add(new ArchiveReaderAnalyzer());
             archiver.Analyzers.Add(new FileSystemAnalyzer());
             archiver.Analyzers.Add(ImageMetadataAnalyzer.CreateDefault());
+            archiver.Analyzers.Add(new TagLibAnalyzer());
             archiver.Analyzers.Add(new PeAnalyzer());
 
             return archiver;

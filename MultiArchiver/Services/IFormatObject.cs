@@ -8,6 +8,7 @@ namespace IS4.MultiArchiver.Services
         string Extension { get; }
         string MediaType { get; }
         T Value { get; }
+        object Source { get; }
     }
 
     public sealed class FormatObject<T, TFormat> : IFormatObject<T, TFormat> where T : class where TFormat : class, IFileFormat
@@ -16,11 +17,13 @@ namespace IS4.MultiArchiver.Services
         public string Extension => Format is IFileFormat<T> fmt ? fmt.GetExtension(Value) : Format.GetExtension(Value);
         public string MediaType => Format is IFileFormat<T> fmt ? fmt.GetMediaType(Value) : Format.GetMediaType(Value);
         public T Value { get; }
+        public object Source { get; }
 
-        public FormatObject(TFormat format, T value)
+        public FormatObject(TFormat format, T value, object source)
         {
             Format = format;
             Value = value;
+            Source = source;
         }
 
         public override string ToString()

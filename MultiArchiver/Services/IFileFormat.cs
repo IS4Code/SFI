@@ -23,12 +23,12 @@ namespace IS4.MultiArchiver.Services
 
         bool Match(ArraySegment<byte> header);
         bool Match(Span<byte> header);
-        TResult Match<TResult>(Stream stream, IGenericFunc<TResult> resultFactory) where TResult : class;
+        TResult Match<TResult>(Stream stream, object source, IGenericFunc<TResult> resultFactory) where TResult : class;
     }
 
     public interface IBinaryFileFormat<T> : IFileFormat<T>, IBinaryFileFormat where T : class
     {
-        TResult Match<TResult>(Stream stream, Func<T, TResult> resultFactory) where TResult : class;
+        TResult Match<TResult>(Stream stream, object source, Func<T, TResult> resultFactory) where TResult : class;
     }
 
     public interface IXmlDocumentFormat : IFileFormat
@@ -36,7 +36,7 @@ namespace IS4.MultiArchiver.Services
         string GetPublicId(object value);
         string GetSystemId(object value);
         Uri GetNamespace(object value);
-        TResult Match<TResult>(XmlReader reader, XDocumentType docType, IGenericFunc<TResult> resultFactory) where TResult : class;
+        TResult Match<TResult>(XmlReader reader, XDocumentType docType, object source, IGenericFunc<TResult> resultFactory) where TResult : class;
     }
 
     public interface IXmlDocumentFormat<T> : IFileFormat<T>, IXmlDocumentFormat where T : class
@@ -44,7 +44,7 @@ namespace IS4.MultiArchiver.Services
         string GetPublicId(T value);
         string GetSystemId(T value);
         Uri GetNamespace(T value);
-        TResult Match<TResult>(XmlReader reader, XDocumentType docType, Func<T, TResult> resultFactory) where TResult : class;
+        TResult Match<TResult>(XmlReader reader, XDocumentType docType, object source, Func<T, TResult> resultFactory) where TResult : class;
     }
 
     public interface IGenericFunc<TResult>
@@ -104,9 +104,14 @@ namespace IS4.MultiArchiver.Services
 
         public abstract TResult Match<TResult>(Stream stream, Func<T, TResult> resultFactory) where TResult : class;
 
-        public TResult Match<TResult>(Stream stream, IGenericFunc<TResult> resultFactory) where TResult : class
+        public virtual TResult Match<TResult>(Stream stream, object source, Func<T, TResult> resultFactory) where TResult : class
         {
-            return Match(stream, value => resultFactory.Invoke(value));
+            return Match(stream, resultFactory);
+        }
+
+        public TResult Match<TResult>(Stream stream, object source, IGenericFunc<TResult> resultFactory) where TResult : class
+        {
+            return Match(stream, source, value => resultFactory.Invoke(value));
         }
     }
 
@@ -125,9 +130,14 @@ namespace IS4.MultiArchiver.Services
 
         public abstract TResult Match<TResult>(XmlReader reader, XDocumentType docType, Func<T, TResult> resultFactory) where TResult : class;
 
-        public TResult Match<TResult>(XmlReader reader, XDocumentType docType, IGenericFunc<TResult> resultFactory) where TResult : class
+        public virtual TResult Match<TResult>(XmlReader reader, XDocumentType docType, object source, Func<T, TResult> resultFactory) where TResult : class
         {
-            return Match(reader, docType, value => resultFactory.Invoke(value));
+            return Match(reader, docType, resultFactory);
+        }
+
+        public TResult Match<TResult>(XmlReader reader, XDocumentType docType, object source, IGenericFunc<TResult> resultFactory) where TResult : class
+        {
+            return Match(reader, docType, source, value => resultFactory.Invoke(value));
         }
 
         public virtual string GetPublicId(T value)

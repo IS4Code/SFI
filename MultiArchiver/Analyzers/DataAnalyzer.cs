@@ -290,6 +290,7 @@ namespace IS4.MultiArchiver.Analyzers
             readonly ILinkedNode parent;
             readonly ILinkedNodeFactory nodeFactory;
             readonly Task<ILinkedNode> task;
+            readonly IStreamFactory streamFactory;
 
             public bool IsValid => !task.IsFaulted;
 
@@ -302,7 +303,13 @@ namespace IS4.MultiArchiver.Analyzers
                 this.format = format;
                 this.parent = parent;
                 this.nodeFactory = nodeFactory;
-                task = StartReading(streamFactory, s => format.Match(s, this));
+                this.streamFactory = streamFactory;
+                task = StartReading(streamFactory, Reader);
+            }
+
+            private ILinkedNode Reader(Stream stream)
+            {
+                return format.Match(stream, streamFactory, this);
             }
 
             public void Wait()
@@ -312,7 +319,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             ILinkedNode IGenericFunc<ILinkedNode>.Invoke<T>(T value)
             {
-                return nodeFactory.Create<IFormatObject<T, IBinaryFileFormat>>(parent, new FormatObject<T, IBinaryFileFormat>(format, value));
+                return nodeFactory.Create<IFormatObject<T, IBinaryFileFormat>>(parent, new FormatObject<T, IBinaryFileFormat>(format, value, streamFactory));
             }
 
             private Task<ILinkedNode> StartReading(IStreamFactory streamFactory, Func<Stream, ILinkedNode> reader)

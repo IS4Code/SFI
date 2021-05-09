@@ -18,7 +18,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override bool Analyze(ILinkedNode node, XmlReader reader, ILinkedNodeFactory nodeFactory)
+        public override bool Analyze(ILinkedNode node, XmlReader reader, object source, ILinkedNodeFactory nodeFactory)
         {
             XDocumentType docType = null;
             do
@@ -75,8 +75,8 @@ namespace IS4.MultiArchiver.Analyzers
                         node.Set(Properties.DocumentElement, elem);
                         foreach(var format in XmlFormats.Concat(new[] { ImprovisedXmlFormat.Instance }))
                         {
-                            var resultFactory = new ResultFactory(node, format, nodeFactory);
-                            var result = format.Match(reader, docType, resultFactory);
+                            var resultFactory = new ResultFactory(node, source, format, nodeFactory);
+                            var result = format.Match(reader, null, docType, resultFactory);
                             if(result != null)
                             {
                                 result.Set(Properties.HasFormat, node);
@@ -94,17 +94,19 @@ namespace IS4.MultiArchiver.Analyzers
             readonly ILinkedNode parent;
             readonly IXmlDocumentFormat format;
             readonly ILinkedNodeFactory nodeFactory;
+            readonly object source;
 
-            public ResultFactory(ILinkedNode parent, IXmlDocumentFormat format, ILinkedNodeFactory nodeFactory)
+            public ResultFactory(ILinkedNode parent, object source, IXmlDocumentFormat format, ILinkedNodeFactory nodeFactory)
             {
                 this.parent = parent;
+                this.source = source;
                 this.format = format;
                 this.nodeFactory = nodeFactory;
             }
 
             ILinkedNode IGenericFunc<ILinkedNode>.Invoke<T>(T value)
             {
-                return nodeFactory.Create(parent, new FormatObject<T, IXmlDocumentFormat>(format, value));
+                return nodeFactory.Create(parent, new FormatObject<T, IXmlDocumentFormat>(format, value, source));
             }
         }
 
