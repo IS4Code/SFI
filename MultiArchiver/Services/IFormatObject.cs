@@ -2,7 +2,7 @@
 
 namespace IS4.MultiArchiver.Services
 {
-    public interface IFormatObject<out T, out TFormat> : IUriFormatter<Uri> where T : class where TFormat : class, IFileFormat
+    public interface IFormatObject<out T, out TFormat> : IIndividualUriFormatter<Uri> where T : class where TFormat : class, IFileFormat
     {
         TFormat Format { get; }
         string Extension { get; }
