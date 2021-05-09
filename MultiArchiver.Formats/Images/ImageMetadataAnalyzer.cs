@@ -3,8 +3,11 @@ using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Tools;
 using IS4.MultiArchiver.Vocabulary;
 using MetadataExtractor;
+using MetadataExtractor.Formats.FileType;
 using Microsoft.CSharp.RuntimeBinder;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace IS4.MultiArchiver.Analyzers
@@ -13,23 +16,70 @@ namespace IS4.MultiArchiver.Analyzers
     {
         public ICollection<object> MetadataReaders { get; } = new SortedSet<object>(TypeInheritanceComparer<object>.Instance);
 
-        public override bool Analyze(ILinkedNode node, IReadOnlyList<Directory> image, ILinkedNodeFactory nodeFactory)
+        public override bool Analyze(ILinkedNode node, IReadOnlyList<Directory> entity, ILinkedNodeFactory nodeFactory)
         {
             bool result = false;
-            foreach(var dir in image)
+            foreach(var dir in entity)
             {
                 if(TryDescribe(node, dir, nodeFactory))
                 {
                     result = true;
                 }
 
-                if(dir.Tags.FirstOrDefault(t => t.Name == "Image Width") is Tag width)
+                if(dir.Tags.FirstOrDefault(t => t.Name == "Width" || t.Name == "Image Width") is Tag width)
                 {
-                    node.Set(Properties.Width, dir.GetInt32(width.Type));
+                    if(dir.TryGetInt32(width.Type, out var value))
+                    {
+                        node.Set(Properties.Width, value);
+                    }
                 }
-                if(dir.Tags.FirstOrDefault(t => t.Name == "Image Height") is Tag height)
+                if(dir.Tags.FirstOrDefault(t => t.Name == "Height" || t.Name == "Image Height") is Tag height)
                 {
-                    node.Set(Properties.Height, dir.GetInt32(height.Type));
+                    if(dir.TryGetInt32(height.Type, out var value))
+                    {
+                        node.Set(Properties.Height, value);
+                    }
+                }
+                if(dir.Tags.FirstOrDefault(t => t.Name == "Bits Per Sample") is Tag bits)
+                {
+                    Properties prop;
+                    switch(entity.OfType<FileTypeDirectory>().FirstOrDefault()?.GetString(FileTypeDirectory.TagDetectedFileMimeType)?.Substring(0, 6).ToLowerInvariant())
+                    {
+                        case "audio/":
+                            prop = Properties.BitsPerSample;
+                            break;
+                        case "image/":
+                            prop = Properties.ColorDepth;
+                            break;
+                        default:
+                            prop = Properties.BitDepth;
+                            break;
+                    }
+                    if(dir.TryGetInt32(bits.Type, out var value))
+                    {
+                        node.Set(prop, value);
+                    }
+                }
+                if(dir.Tags.FirstOrDefault(t => t.Name == "Channels") is Tag channels)
+                {
+                    if(dir.TryGetInt32(channels.Type, out var value))
+                    {
+                        node.Set(Properties.Channels, value);
+                    }
+                }
+                if(dir.Tags.FirstOrDefault(t => t.Name == "Sampling Rate") is Tag rate)
+                {
+                    if(dir.TryGetInt32(rate.Type, out var value))
+                    {
+                        node.Set(Properties.SampleRate, value);
+                    }
+                }
+                if(dir.Tags.FirstOrDefault(t => t.Name == "Duration") is Tag duration)
+                {
+                    if(TimeSpan.TryParse(dir.GetString(duration.Type), CultureInfo.InvariantCulture, out var value))
+                    {
+                        node.Set(Properties.Duration, value);
+                    }
                 }
             }
             return result;

@@ -88,6 +88,20 @@
         Width,
         [Uri(Vocabularies.Nfo)]
         Height,
+        [Uri(Vocabularies.Nfo)]
+        BitDepth,
+        [Uri(Vocabularies.Nfo)]
+        ColorDepth,
+        [Uri(Vocabularies.Nfo)]
+        BitsPerSample,
+        [Uri(Vocabularies.Nfo)]
+        Channels,
+        [Uri(Vocabularies.Nfo)]
+        SampleCount,
+        [Uri(Vocabularies.Nfo)]
+        SampleRate,
+        [Uri(Vocabularies.Nfo)]
+        Duration,
 
         [Uri(Vocabularies.Skos)]
         Broader,
