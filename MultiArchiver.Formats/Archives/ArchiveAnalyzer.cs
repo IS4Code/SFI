@@ -46,7 +46,7 @@ namespace IS4.MultiArchiver.Analyzers
         internal static string ExtractPath(IEntry entry)
         {
             var path = ExtractPathSimple(entry);
-            if(entry != null && entry.IsDirectory && !path.EndsWith('/'))
+            if(entry != null && entry.IsDirectory && !path.EndsWith("/"))
             {
                 path += "/";
             }
