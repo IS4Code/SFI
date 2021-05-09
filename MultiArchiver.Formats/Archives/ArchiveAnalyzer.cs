@@ -89,6 +89,11 @@ namespace IS4.MultiArchiver.Analyzers
             object IPersistentKey.ReferenceKey => ReferenceKey;
 
             object IPersistentKey.DataKey => Entry?.Key;
+
+            public override string ToString()
+            {
+                return Path;
+            }
         }
 
         class ArchiveDirectoryInfo : ArchiveEntryInfo, IDirectoryInfo

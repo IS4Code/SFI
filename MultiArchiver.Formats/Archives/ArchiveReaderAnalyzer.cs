@@ -117,6 +117,11 @@ namespace IS4.MultiArchiver.Analyzers
             object IPersistentKey.ReferenceKey => Reader;
 
             object IPersistentKey.DataKey => Path;
+
+            public override string ToString()
+            {
+                return Path;
+            }
         }
 
         class ArchiveFileInfo : ArchiveEntryInfo, IFileInfo
