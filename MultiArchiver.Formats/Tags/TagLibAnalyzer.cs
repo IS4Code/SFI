@@ -1,14 +1,17 @@
 ﻿using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Vocabulary;
+using Microsoft.CSharp.RuntimeBinder;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using TagLib;
 using Properties = IS4.MultiArchiver.Vocabulary.Properties;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class TagLibAnalyzer : BinaryFormatAnalyzer<File>, IEntityAnalyzer<ICodec>
+    public class TagLibAnalyzer : BinaryFormatAnalyzer<File>, IEntityAnalyzer<ICodec>, IPropertyUriFormatter<string>
     {
         static readonly ConditionalWeakTable<ICodec, string> codecPosition = new ConditionalWeakTable<ICodec, string>();
 
@@ -60,7 +63,68 @@ namespace IS4.MultiArchiver.Analyzers
                 }
             }
 
+            if((file.TagTypes & (TagTypes.Id3v1 | TagTypes.Id3v2)) != 0)
+            {
+                node.SetClass(Classes.ID3Audio);
+            }
+
+            foreach(var prop in file.Tag.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance))
+            {
+                if(!propertyNames.TryGetValue(prop.Name, out var name)) continue;
+                var value = prop.GetValue(file.Tag);
+                if(value is ICollection collection)
+                {
+                    foreach(var elem in collection)
+                    {
+                        try{
+                            node.Set(this, name, (dynamic)elem);
+                        }catch(RuntimeBinderException)
+                        {
+
+                        }
+                    }
+                    continue;
+                }
+                if(value == null || Double.NaN.Equals(value) || 0.Equals(value) || 0u.Equals(value) || false.Equals(value)) continue;
+                try{
+                    node.Set(this, name, (dynamic)value);
+                }catch(RuntimeBinderException)
+                {
+
+                }
+            }
+
             return null;
+        }
+
+        static readonly Dictionary<string, string> propertyNames = new Dictionary<string, string>
+        {
+            { nameof(Tag.Album), "albumTitle" },
+            { nameof(Tag.BeatsPerMinute), "beatsPerMinute" },
+            { nameof(Tag.Composers), "composer" },
+            { nameof(Tag.Conductor), "conductor" },
+            { nameof(Tag.Performers), "leadArtist" },
+            { nameof(Tag.Genres), "contentType" },
+            { nameof(Tag.Track), "trackNumber" },
+            { nameof(Tag.Disc), "partOfSet" },
+            { nameof(Tag.Grouping), "contentGroupDescription" },
+            { nameof(Tag.AlbumArtists), "backgroundArtist" },
+            { nameof(Tag.Comment), "comments" },
+            { nameof(Tag.Copyright), "copyrightMessage" },
+            { nameof(Tag.DateTagged), "comments" },
+            { nameof(Tag.InitialKey), "initialKey" },
+            { nameof(Tag.ISRC), "internationalStandardRecordingCode" },
+            { nameof(Tag.RemixedBy), "interpretedBy" },
+            { nameof(Tag.Publisher), "publisher" },
+            { nameof(Tag.Subtitle), "subtitle" },
+            { nameof(Tag.Title), "title" },
+            { nameof(Tag.Year), "recordingYear" },
+
+        };
+
+        Uri IUriFormatter<string>.FormatUri(string name)
+        {
+            return new Uri($"http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#{name}", UriKind.Absolute);
         }
 
         public ILinkedNode Analyze(ILinkedNode parent, ICodec codec, ILinkedNodeFactory nodeFactory)

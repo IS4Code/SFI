@@ -16,6 +16,8 @@
         Nfo,
         [Uri("http://www.semanticdesktop.org/ontologies/2007/01/19/nie#")]
         Nie,
+        [Uri("http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#")]
+        Nid3,
         [Uri("http://schema.org/")]
         Schema,
         [Uri("http://www.w3.org/2011/content#")]
