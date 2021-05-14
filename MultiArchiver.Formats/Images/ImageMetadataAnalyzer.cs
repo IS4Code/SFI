@@ -16,14 +16,14 @@ namespace IS4.MultiArchiver.Analyzers
     {
         public ICollection<object> MetadataReaders { get; } = new SortedSet<object>(TypeInheritanceComparer<object>.Instance);
 
-        public override bool Analyze(ILinkedNode node, IReadOnlyList<Directory> entity, ILinkedNodeFactory nodeFactory)
+        public override string Analyze(ILinkedNode node, IReadOnlyList<Directory> entity, ILinkedNodeFactory nodeFactory)
         {
-            bool result = false;
+            string result = null;
             foreach(var dir in entity)
             {
-                if(TryDescribe(node, dir, nodeFactory))
+                if(TryDescribe(node, dir, nodeFactory) is string s)
                 {
-                    result = true;
+                    result = s;
                 }
 
                 if(dir.Tags.FirstOrDefault(t => t.Name == "Width" || t.Name == "Image Width") is Tag width)
@@ -94,29 +94,29 @@ namespace IS4.MultiArchiver.Analyzers
             return analyzer;
         }
 
-        private bool Describe<T>(ILinkedNode node, T dir, ILinkedNodeFactory nodeFactory) where T : Directory
+        private string Describe<T>(ILinkedNode node, T dir, ILinkedNodeFactory nodeFactory) where T : Directory
         {
             foreach(var obj in MetadataReaders)
             {
                 if(obj is IMetadataReader<T> reader)
                 {
-                    if(reader.Describe(node, dir, nodeFactory))
+                    if(reader.Describe(node, dir, nodeFactory) is string s)
                     {
-                        return true;
+                        return s;
                     }
                 }
             }
-            return false;
+            return null;
         }
 
-        private bool TryDescribe(ILinkedNode node, Directory dir, ILinkedNodeFactory nodeFactory)
+        private string TryDescribe(ILinkedNode node, Directory dir, ILinkedNodeFactory nodeFactory)
         {
             try
             {
                 return Describe(node, (dynamic)dir, nodeFactory);
             }catch(RuntimeBinderException)
             {
-                return false;
+                return null;
             }
         }
     }

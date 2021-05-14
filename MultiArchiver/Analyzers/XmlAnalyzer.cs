@@ -18,7 +18,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override bool Analyze(ILinkedNode node, XmlReader reader, object source, ILinkedNodeFactory nodeFactory)
+        public override string Analyze(ILinkedNode node, XmlReader reader, object source, ILinkedNodeFactory nodeFactory)
         {
             XDocumentType docType = null;
             do
@@ -80,13 +80,13 @@ namespace IS4.MultiArchiver.Analyzers
                             if(result != null)
                             {
                                 result.Set(Properties.HasFormat, node);
-                                return false;
+                                return null;
                             }
                         }
-                        return false;
+                        return null;
                 }
             }while(reader.Read());
-            return false;
+            return null;
         }
 
         class ResultFactory : IGenericFunc<ILinkedNode>

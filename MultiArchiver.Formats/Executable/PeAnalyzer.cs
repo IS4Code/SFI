@@ -11,7 +11,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override bool Analyze(ILinkedNode node, PeFile file, ILinkedNodeFactory nodeFactory)
+        public override string Analyze(ILinkedNode node, PeFile file, ILinkedNodeFactory nodeFactory)
         {
             /*var res = file.ImageResourceDirectory;
             foreach(var entry in res.DirectoryEntries)
@@ -21,7 +21,7 @@ namespace IS4.MultiArchiver.Analyzers
                     entry.
                 }
             }*/
-            return false;
+            return null;
         }
     }
 }

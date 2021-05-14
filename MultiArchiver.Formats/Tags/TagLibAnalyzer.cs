@@ -12,7 +12,7 @@ namespace IS4.MultiArchiver.Analyzers
     {
         static readonly ConditionalWeakTable<ICodec, string> codecPosition = new ConditionalWeakTable<ICodec, string>();
 
-        public override bool Analyze(ILinkedNode node, File file, ILinkedNodeFactory nodeFactory)
+        public override string Analyze(ILinkedNode node, File file, ILinkedNodeFactory nodeFactory)
         {
             var properties = file.Properties;
             Set(node, Properties.Width, properties.PhotoWidth);
@@ -60,7 +60,7 @@ namespace IS4.MultiArchiver.Analyzers
                 }
             }
 
-            return false;
+            return null;
         }
 
         public ILinkedNode Analyze(ILinkedNode parent, ICodec codec, ILinkedNodeFactory nodeFactory)

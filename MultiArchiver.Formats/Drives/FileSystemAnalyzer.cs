@@ -17,7 +17,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override bool Analyze(ILinkedNode node, IFileSystem filesystem, ILinkedNodeFactory nodeFactory)
+        public override string Analyze(ILinkedNode node, IFileSystem filesystem, ILinkedNodeFactory nodeFactory)
         {
             try{ node.Set(Properties.FreeSpace, filesystem.AvailableSpace); }
             catch(NotSupportedException) { }
@@ -52,7 +52,7 @@ namespace IS4.MultiArchiver.Analyzers
                 }
             }
 
-            return false;
+            return null;
         }
 
         abstract class FileSystemInfoWrapper<TInfo> : IFileNodeInfo where TInfo : DiscFileSystemInfo

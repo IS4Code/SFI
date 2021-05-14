@@ -16,7 +16,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override bool Analyze(ILinkedNode node, IArchive archive, ILinkedNodeFactory nodeFactory)
+        public override string Analyze(ILinkedNode node, IArchive archive, ILinkedNodeFactory nodeFactory)
         {
             foreach(var group in DirectoryTools.GroupByDirectories(archive.Entries, ExtractPath))
             {
@@ -40,7 +40,7 @@ namespace IS4.MultiArchiver.Analyzers
                     }
                 }
             }
-            return false;
+            return null;
         }
 
         internal static string ExtractPath(IEntry entry)

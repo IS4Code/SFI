@@ -11,7 +11,7 @@ namespace IS4.MultiArchiver.Analyzers.MetadataReaders
 {
     public class ExifReader : IMetadataReader<ExifDirectoryBase>
     {
-        public bool Describe(ILinkedNode node, ExifDirectoryBase directory, ILinkedNodeFactory nodeFactory)
+        public string Describe(ILinkedNode node, ExifDirectoryBase directory, ILinkedNodeFactory nodeFactory)
         {
             foreach(var tag in directory.Tags)
             {
@@ -73,7 +73,7 @@ namespace IS4.MultiArchiver.Analyzers.MetadataReaders
                     node.Set(ExifFormatter.Instance, id, value, datatype);
                 }
             }
-            return false;
+            return null;
         }
 
         class ExifFormatter : IPropertyUriFormatter<string>

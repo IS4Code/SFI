@@ -17,7 +17,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override bool Analyze(ILinkedNode parent, IReader reader, ILinkedNodeFactory nodeFactory)
+        public override string Analyze(ILinkedNode parent, IReader reader, ILinkedNodeFactory nodeFactory)
         {
             var directories = new Dictionary<string, ArchiveDirectoryInfo>();
 
@@ -75,7 +75,7 @@ namespace IS4.MultiArchiver.Analyzers
                 if(dir == null) node?.Set(Properties.BelongsToContainer, parent);
             }
 
-            return false;
+            return null;
         }
 
         static ILinkedNode GetContainer(ILinkedNode parent, string dir)

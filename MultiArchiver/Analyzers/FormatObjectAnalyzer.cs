@@ -19,12 +19,12 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public virtual bool Analyze(ILinkedNode node, T entity, ILinkedNodeFactory nodeFactory)
+        public virtual string Analyze(ILinkedNode node, T entity, ILinkedNodeFactory nodeFactory)
         {
-            return false;
+            return null;
         }
 
-        public virtual bool Analyze(ILinkedNode node, T entity, object source, ILinkedNodeFactory nodeFactory)
+        public virtual string Analyze(ILinkedNode node, T entity, object source, ILinkedNodeFactory nodeFactory)
         {
             return Analyze(node, entity, nodeFactory);
         }
@@ -35,12 +35,10 @@ namespace IS4.MultiArchiver.Analyzers
 
             if(node != null)
             {
-                if(!Analyze(node, format.Value, format.Source, nodeFactory))
+                var label = Analyze(node, format.Value, format.Source, nodeFactory);
+                if(format.Extension != null)
                 {
-                    if(format.Extension != null)
-                    {
-                        node.Set(Properties.Description, $"{format.Extension.ToUpperInvariant()} object", "en");
-                    }
+                    node.Set(Properties.PrefLabel, $"{format.Extension.ToUpperInvariant()} object" + (label != null ? $" ({label})" : ""), "en");
                 }
                 node.SetClass(Classes.MediaObject);
                 foreach(var cls in recognizedClasses)
