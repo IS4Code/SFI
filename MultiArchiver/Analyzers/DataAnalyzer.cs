@@ -112,7 +112,7 @@ namespace IS4.MultiArchiver.Analyzers
             node.Set(Properties.PrefLabel, label, "en");
 
             node.SetClass(isBinary ? Classes.ContentAsBase64 : Classes.ContentAsText);
-            node.Set(Properties.Extent, length.ToString(), Datatypes.Byte);
+            node.Set(Properties.Extent, length, Datatypes.Byte);
 
             if(!match.IdentifyWithData)
             {

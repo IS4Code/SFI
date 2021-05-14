@@ -99,6 +99,11 @@ namespace IS4.MultiArchiver.Extensions
                 return handler.CreateLiteralNode($@"{{""@value"":{HttpUtility.JavaScriptStringEncode(value, true)},""@language"":{HttpUtility.JavaScriptStringEncode(language, true)}}}", GetUri(Cache[Datatypes.Json]));
             }
 
+            protected override INode CreateNode(bool value)
+            {
+                return LiteralExtensions.ToLiteral(value, handler);
+            }
+
             protected override INode CreateNode<T>(T value)
             {
                 try{
