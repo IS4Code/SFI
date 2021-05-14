@@ -40,6 +40,8 @@
         Image,
         [Uri(Vocabularies.Nfo)]
         Video,
+        [Uri(Vocabularies.Nfo)]
+        MediaStream,
 
         [Uri(Vocabularies.Xis)]
         Document,

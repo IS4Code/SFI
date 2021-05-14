@@ -102,6 +102,12 @@
         SampleRate,
         [Uri(Vocabularies.Nfo)]
         Duration,
+        [Uri(Vocabularies.Nfo)]
+        HasMediaStream,
+        [Uri(Vocabularies.Nfo)]
+        AverageBitrate,
+        [Uri(Vocabularies.Nfo)]
+        CompressionType,
 
         [Uri(Vocabularies.Skos)]
         Broader,

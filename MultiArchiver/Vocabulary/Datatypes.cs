@@ -25,5 +25,9 @@
 
         [Uri(Vocabularies.Dt)]
         Byte,
+        [Uri(Vocabularies.Dt)]
+        Hertz,
+        [Uri(Vocabularies.Dt)]
+        BitPerSecond,
     }
 }

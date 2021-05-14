@@ -71,7 +71,7 @@ namespace IS4.MultiArchiver.Analyzers
                 {
                     if(dir.TryGetInt32(rate.Type, out var value))
                     {
-                        node.Set(Properties.SampleRate, value);
+                        node.Set(Properties.SampleRate, value, Datatypes.Hertz);
                     }
                 }
                 if(dir.Tags.FirstOrDefault(t => t.Name == "Duration") is Tag duration)
