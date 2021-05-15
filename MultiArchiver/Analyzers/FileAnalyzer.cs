@@ -201,7 +201,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             public int? Revision => null;
 
-            public bool IsThreadSafe => true;
+            public StreamFactoryAccess Access => StreamFactoryAccess.Parallel;
 
             object IPersistentKey.ReferenceKey => AppDomain.CurrentDomain;
 

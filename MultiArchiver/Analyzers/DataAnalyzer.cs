@@ -185,6 +185,8 @@ namespace IS4.MultiArchiver.Analyzers
                     }else{
                         Node.Set(Properties.Chars, strval, Datatypes.String);
                     }
+
+                    streamFactory = new MemoryStreamFactory(signature, streamFactory);
                 }else{
                     Node = nodeFactory.NewGuidNode();
                 }
@@ -260,29 +262,8 @@ namespace IS4.MultiArchiver.Analyzers
 
 		public ILinkedNode Analyze(ILinkedNode parent, byte[] data, ILinkedNodeFactory analyzer)
 		{
-			return Analyze(parent, new MemoryStreamFactory(data), analyzer);
+			return Analyze(parent, new MemoryStreamFactory(new ArraySegment<byte>(data), data, null), analyzer);
 		}
-
-        class MemoryStreamFactory : IStreamFactory
-        {
-            readonly byte[] data;
-
-            public bool IsThreadSafe => true;
-
-            object IPersistentKey.ReferenceKey => data;
-
-            object IPersistentKey.DataKey => null;
-
-            public MemoryStreamFactory(byte[] data)
-            {
-                this.data = data;
-            }
-
-            public Stream Open()
-            {
-                return new MemoryStream(data, false);
-            }
-        }
         
 		class FormatResult : IComparable<FormatResult>, IGenericFunc<ILinkedNode>
 		{
@@ -324,7 +305,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             private Task<ILinkedNode> StartReading(IStreamFactory streamFactory, Func<Stream, ILinkedNode> reader)
             {
-                if(streamFactory.IsThreadSafe)
+                if(streamFactory.Access == StreamFactoryAccess.Parallel)
                 {
                     return Task.Run(() => StartReadingInner(streamFactory, reader));
                 }else{

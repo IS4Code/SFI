@@ -15,7 +15,7 @@ namespace IS4.MultiArchiver.Services
 
     public interface IFileInfo : IFileNodeInfo, IStreamFactory
     {
-        long Length { get; }
+
     }
 
     public interface IDirectoryInfo : IFileNodeInfo

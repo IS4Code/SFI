@@ -157,7 +157,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             public long Length => entryInfo.Length;
 
-            public bool IsThreadSafe => entryInfo.IsThreadSafe;
+            public StreamFactoryAccess Access => entryInfo.Access;
 
             public Stream Open()
             {
@@ -174,7 +174,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             public long Length => Entry.Size;
 
-            public bool IsThreadSafe => true;
+            public StreamFactoryAccess Access => StreamFactoryAccess.Parallel;
 
             public Stream Open()
             {
