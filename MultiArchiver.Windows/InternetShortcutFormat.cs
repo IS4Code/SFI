@@ -2,9 +2,10 @@
 using IS4.MultiArchiver.Windows;
 using System;
 using System.IO;
-using System.Runtime.ExceptionServices;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Threading.Tasks;
+using System.Threading.Tasks.Schedulers;
 using static Vanara.PInvoke.Url;
 using IPersistStream = IS4.MultiArchiver.Windows.IPersistStream;
 
@@ -31,8 +32,9 @@ namespace IS4.MultiArchiver.Formats
 
         public override TResult Match<TResult>(Stream stream, Func<IUniformResourceLocator, TResult> resultFactory)
         {
-            TResult Inner()
-            {
+            if(InternetShortcut == null) return null;
+
+            return Task.Factory.StartNew(() => {
                 var shortcut = (IUniformResourceLocator)Activator.CreateInstance(InternetShortcut);
                 try{
                     if(((IPersistStream)shortcut).Load(new StreamWrapper(stream)) < 0) return null;
@@ -42,32 +44,7 @@ namespace IS4.MultiArchiver.Formats
                 }finally{
                     Marshal.FinalReleaseComObject(shortcut);
                 }
-            }
-
-            if(Thread.CurrentThread.GetApartmentState() != ApartmentState.STA)
-            {
-                TResult result = null;
-                Exception exc = null;
-                var thread = new Thread(() => {
-                    try{
-                        result = Inner();
-                    }catch(Exception e)
-                    {
-                        exc = e;
-                    }
-                });
-                thread.SetApartmentState(ApartmentState.STA);
-                thread.IsBackground = true;
-                thread.Start();
-                thread.Join();
-                if(exc != null)
-                {
-                    ExceptionDispatchInfo.Capture(exc).Throw();
-                }
-                return result;
-            }
-
-            return Inner();
+            }, CancellationToken.None, 0, StaTaskScheduler.Shared).Result;
         }
     }
 }
