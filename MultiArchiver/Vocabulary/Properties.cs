@@ -110,6 +110,8 @@
         AverageBitrate,
         [Uri(Vocabularies.Nfo)]
         CompressionType,
+        [Uri(Vocabularies.Nfo)]
+        EncryptionStatus,
 
         [Uri(Vocabularies.Skos)]
         Broader,

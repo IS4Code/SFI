@@ -38,5 +38,9 @@
         LosslessCompressionType,
         [Uri(Vocabularies.Nfo)]
         LossyCompressionType,
+        [Uri(Vocabularies.Nfo)]
+        DecryptedStatus,
+        [Uri(Vocabularies.Nfo)]
+        EncryptedStatus,
     }
 }

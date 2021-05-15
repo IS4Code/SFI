@@ -70,10 +70,16 @@ namespace IS4.MultiArchiver.Analyzers
                 {
                     node.Set(Properties.FileSize, len);
                 }
-                var content = nodeFactory.Create<IStreamFactory>(node, file);
-                if(content != null)
+
+                if(file.IsEncrypted)
                 {
-                    content.Set(Properties.IsStoredAs, node);
+                    node.Set(Properties.EncryptionStatus, Individuals.EncryptedStatus);
+                }else{
+                    var content = nodeFactory.Create<IStreamFactory>(node, file);
+                    if(content != null)
+                    {
+                        content.Set(Properties.IsStoredAs, node);
+                    }
                 }
 
                 foreach(var alg in HashAlgorithms)
@@ -200,6 +206,8 @@ namespace IS4.MultiArchiver.Analyzers
             public DateTime? LastAccessTime => baseInfo.LastAccessTimeUtc;
 
             public int? Revision => null;
+
+            public bool IsEncrypted => false;
 
             public StreamFactoryAccess Access => StreamFactoryAccess.Parallel;
 

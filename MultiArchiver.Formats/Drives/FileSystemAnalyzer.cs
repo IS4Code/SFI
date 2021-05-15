@@ -107,6 +107,8 @@ namespace IS4.MultiArchiver.Analyzers
 
             public long Length => info.Length;
 
+            public bool IsEncrypted => false;
+
             public StreamFactoryAccess Access => info.FileSystem.IsThreadSafe ? StreamFactoryAccess.Parallel : StreamFactoryAccess.Reentrant;
 
             public Stream Open()

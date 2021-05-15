@@ -18,27 +18,32 @@ namespace IS4.MultiArchiver.Analyzers
 
         public override string Analyze(ILinkedNode node, IArchive archive, ILinkedNodeFactory nodeFactory)
         {
-            foreach(var group in DirectoryTools.GroupByDirectories(archive.Entries, ExtractPath))
-            {
-                if(group.Key == null)
+            try{
+                foreach(var group in DirectoryTools.GroupByDirectories(archive.Entries, ExtractPath))
                 {
-                    foreach(var entry in group)
+                    if(group.Key == null)
                     {
-                        var node2 = nodeFactory.Create(node, new ArchiveFileInfo(entry.Entry));
+                        foreach(var entry in group)
+                        {
+                            var node2 = nodeFactory.Create(node, new ArchiveFileInfo(entry.Entry));
+                            if(node2 != null)
+                            {
+                                node2.SetClass(Classes.ArchiveItem);
+                                node2.Set(Properties.BelongsToContainer, node);
+                            }
+                        }
+                    }else{
+                        var node2 = nodeFactory.Create(node, ArchiveDirectoryInfo.Create("", group));
                         if(node2 != null)
                         {
                             node2.SetClass(Classes.ArchiveItem);
                             node2.Set(Properties.BelongsToContainer, node);
                         }
                     }
-                }else{
-                    var node2 = nodeFactory.Create(node, ArchiveDirectoryInfo.Create("", group));
-                    if(node2 != null)
-                    {
-                        node2.SetClass(Classes.ArchiveItem);
-                        node2.Set(Properties.BelongsToContainer, node);
-                    }
                 }
+            }catch(CryptographicException)
+            {
+                node.Set(Properties.EncryptionStatus, Individuals.EncryptedStatus);
             }
             return null;
         }
@@ -157,6 +162,8 @@ namespace IS4.MultiArchiver.Analyzers
 
             public long Length => entryInfo.Length;
 
+            public bool IsEncrypted => entryInfo.IsEncrypted;
+
             public StreamFactoryAccess Access => entryInfo.Access;
 
             public Stream Open()
@@ -173,6 +180,8 @@ namespace IS4.MultiArchiver.Analyzers
             }
 
             public long Length => Entry.Size;
+
+            public bool IsEncrypted => Entry.IsEncrypted;
 
             public StreamFactoryAccess Access => StreamFactoryAccess.Parallel;
 

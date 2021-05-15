@@ -17,62 +17,66 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override string Analyze(ILinkedNode parent, IReader reader, ILinkedNodeFactory nodeFactory)
+        public override string Analyze(ILinkedNode node, IReader reader, ILinkedNodeFactory nodeFactory)
         {
             var directories = new Dictionary<string, ArchiveDirectoryInfo>();
 
-            while(reader.MoveToNextEntry())
-            {
-                var entry = reader.Entry;
-                IFileNodeInfo info;
-                string dir;
-                if(entry.IsDirectory)
+            try{
+                while(reader.MoveToNextEntry())
                 {
-                    info = new ArchiveDirectoryInfo(reader, entry);
-                    if(!directories.TryGetValue(info.Path, out var dirInfo))
+                    var entry = reader.Entry;
+                    IFileNodeInfo info;
+                    string dir;
+                    if(entry.IsDirectory)
                     {
-                        directories[info.Path] = (ArchiveDirectoryInfo)info;
-                    }else{
-                        dirInfo.Entry = entry;
-                    }
-                    dir = GetDirectory(info.Path);
-                }else{
-                    info = new ArchiveFileInfo(reader, entry);
-                    dir = GetDirectory(info.Path);
-                    var container = GetContainer(parent, dir);
-                    var node = nodeFactory.Create(container, info);
-                    if(dir == null) node?.Set(Properties.BelongsToContainer, parent);
-                    //node?.Set(Properties.BelongsToContainer, dir == null ? parent : container[""]);
-                }
-                if(dir != null)
-                {
-                    if(!directories.TryGetValue(dir, out var dirInfo))
-                    {
-                        dirInfo = directories[dir] = new ArchiveDirectoryInfo(reader, null);
-                    }
-                    dirInfo.Entries.Add(entry.IsDirectory ? info : new ArchiveEntryInfo(reader, entry));
-                    dir = GetDirectory(dir);
-                    while(dir != null)
-                    {
-                        if(directories.TryGetValue(dir, out var parentDirInfo))
+                        info = new ArchiveDirectoryInfo(reader, entry);
+                        if(!directories.TryGetValue(info.Path, out var dirInfo))
                         {
-                            break;
+                            directories[info.Path] = (ArchiveDirectoryInfo)info;
+                        }else{
+                            dirInfo.Entry = entry;
                         }
-                        parentDirInfo = directories[dir] = new ArchiveDirectoryInfo(reader, null);
-                        parentDirInfo.Entries.Add(dirInfo);
+                        dir = GetDirectory(info.Path);
+                    }else{
+                        info = new ArchiveFileInfo(reader, entry);
+                        dir = GetDirectory(info.Path);
+                        var container = GetContainer(node, dir);
+                        var fileNode = nodeFactory.Create(container, info);
+                        if(dir == null) fileNode?.Set(Properties.BelongsToContainer, node);
+                    }
+                    if(dir != null)
+                    {
+                        if(!directories.TryGetValue(dir, out var dirInfo))
+                        {
+                            dirInfo = directories[dir] = new ArchiveDirectoryInfo(reader, null);
+                        }
+                        dirInfo.Entries.Add(entry.IsDirectory ? info : new ArchiveEntryInfo(reader, entry));
                         dir = GetDirectory(dir);
-                        dirInfo = parentDirInfo;
+                        while(dir != null)
+                        {
+                            if(directories.TryGetValue(dir, out var parentDirInfo))
+                            {
+                                break;
+                            }
+                            parentDirInfo = directories[dir] = new ArchiveDirectoryInfo(reader, null);
+                            parentDirInfo.Entries.Add(dirInfo);
+                            dir = GetDirectory(dir);
+                            dirInfo = parentDirInfo;
+                        }
                     }
                 }
+            }catch(CryptographicException)
+            {
+                node.Set(Properties.EncryptionStatus, Individuals.EncryptedStatus);
             }
 
             foreach(var pair in directories)
             {
                 var info = pair.Value;
                 var dir = GetDirectory(info.Path);
-                var container = GetContainer(parent, dir);
-                var node = nodeFactory.Create(container, info);
-                if(dir == null) node?.Set(Properties.BelongsToContainer, parent);
+                var container = GetContainer(node, dir);
+                var dirNode = nodeFactory.Create(container, info);
+                if(dir == null) dirNode?.Set(Properties.BelongsToContainer, node);
             }
 
             return null;
@@ -147,6 +151,8 @@ namespace IS4.MultiArchiver.Analyzers
             }
 
             public long Length => Entry.Size;
+
+            public bool IsEncrypted => Entry.IsEncrypted;
 
             public StreamFactoryAccess Access => StreamFactoryAccess.Parallel;
 
