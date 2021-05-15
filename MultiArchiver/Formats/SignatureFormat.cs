@@ -33,7 +33,7 @@ namespace IS4.MultiArchiver.Formats
             this.signature = (byte[])signature.Clone();
         }
 
-        public override bool Match(Span<byte> header)
+        public override bool CheckHeader(Span<byte> header)
         {
             return header.Length >= HeaderLength && header.StartsWith(signature);
         }

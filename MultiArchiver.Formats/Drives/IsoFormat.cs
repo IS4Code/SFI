@@ -12,7 +12,7 @@ namespace IS4.MultiArchiver.Formats
 
         }
 
-        public override bool Match(Span<byte> header)
+        public override bool CheckHeader(Span<byte> header)
         {
             return true;
         }

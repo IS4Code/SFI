@@ -21,8 +21,9 @@ namespace IS4.MultiArchiver.Services
     {
         int HeaderLength { get; }
 
-        bool Match(ArraySegment<byte> header);
-        bool Match(Span<byte> header);
+        bool CheckEncoding(bool isBinary, IEncodingDetector detectedEncoding);
+        bool CheckHeader(ArraySegment<byte> header);
+        bool CheckHeader(Span<byte> header);
         TResult Match<TResult>(Stream stream, object source, IGenericFunc<TResult> resultFactory) where TResult : class;
     }
 
@@ -95,12 +96,17 @@ namespace IS4.MultiArchiver.Services
             HeaderLength = headerLength;
         }
 
-        public virtual bool Match(ArraySegment<byte> header)
+        public virtual bool CheckEncoding(bool isBinary, IEncodingDetector encodingDetector)
         {
-            return Match(header.AsSpan());
+            return true;
         }
 
-        public abstract bool Match(Span<byte> header);
+        public virtual bool CheckHeader(ArraySegment<byte> header)
+        {
+            return CheckHeader(header.AsSpan());
+        }
+
+        public abstract bool CheckHeader(Span<byte> header);
 
         public abstract TResult Match<TResult>(Stream stream, Func<T, TResult> resultFactory) where TResult : class;
 

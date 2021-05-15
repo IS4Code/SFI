@@ -19,7 +19,7 @@ namespace IS4.MultiArchiver.Formats
 
         static readonly byte[] terminator = { 0, (byte)' ' };
 
-        public override bool Match(Span<byte> header)
+        public override bool CheckHeader(Span<byte> header)
         {
             if(header.Length < headerLength) return false;
             if(header.Slice(154, 2).IndexOfAny(terminator) != 0)
