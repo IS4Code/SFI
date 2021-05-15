@@ -4,6 +4,7 @@ using Microsoft.CSharp.RuntimeBinder;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using TagLib;
@@ -27,39 +28,49 @@ namespace IS4.MultiArchiver.Analyzers
             Set(node, Properties.Channels, properties.AudioChannels);
             Set(node, Properties.Duration, properties.Duration);
 
-            var codecCounters = new Dictionary<char, int>();
-
-            foreach(var codec in properties.Codecs)
+            if(properties.Codecs.Any())
             {
-                char streamType;
-                switch(codec.MediaTypes)
+                if(!properties.Codecs.Skip(1).Any())
                 {
-                    case MediaTypes.Video:
-                        streamType = 'v';
-                        break;
-                    case MediaTypes.Audio:
-                        streamType = 'a';
-                        break;
-                    case MediaTypes.Photo:
-                        streamType = 't';
-                        break;
-                    case MediaTypes.Text:
-                        streamType = 's';
-                        break;
-                    default:
-                        continue;
-                }
-                if(!codecCounters.TryGetValue(streamType, out int counter))
-                {
-                    counter = 0;
-                }
-                codecCounters[streamType] = counter + 1;
-                codecPosition.Add(codec, streamType + ":" + counter);
+                    var codec = properties.Codecs.First();
+                    codecPosition.Add(codec, null);
+                    nodeFactory.Create(node, codec);
+                }else{
+                    var codecCounters = new Dictionary<char, int>();
 
-                var codecNode = nodeFactory.Create(node, codec);
-                if(codecNode != null)
-                {
-                    node.Set(Properties.HasMediaStream, codecNode);
+                    foreach(var codec in properties.Codecs)
+                    {
+                        char streamType;
+                        switch(codec.MediaTypes)
+                        {
+                            case MediaTypes.Video:
+                                streamType = 'v';
+                                break;
+                            case MediaTypes.Audio:
+                                streamType = 'a';
+                                break;
+                            case MediaTypes.Photo:
+                                streamType = 't';
+                                break;
+                            case MediaTypes.Text:
+                                streamType = 's';
+                                break;
+                            default:
+                                continue;
+                        }
+                        if(!codecCounters.TryGetValue(streamType, out int counter))
+                        {
+                            counter = 0;
+                        }
+                        codecCounters[streamType] = counter + 1;
+                        codecPosition.Add(codec, streamType + ":" + counter);
+
+                        var codecNode = nodeFactory.Create(node, codec);
+                        if(codecNode != null)
+                        {
+                            node.Set(Properties.HasMediaStream, codecNode);
+                        }
+                    }
                 }
             }
 
@@ -130,10 +141,13 @@ namespace IS4.MultiArchiver.Analyzers
         public ILinkedNode Analyze(ILinkedNode parent, ICodec codec, ILinkedNodeFactory nodeFactory)
         {
             if(!codecPosition.TryGetValue(codec, out var pos)) return null;
-            var node = parent[pos];
+            var node = pos == null ? parent : parent[pos];
             if(node != null)
             {
-                node.SetClass(Classes.MediaStream);
+                if(pos != null)
+                {
+                    node.SetClass(Classes.MediaStream);
+                }
                 Set(node, Properties.Duration, codec.Duration);
                 if(codec is ILosslessAudioCodec losslessAudio)
                 {
@@ -144,7 +158,7 @@ namespace IS4.MultiArchiver.Analyzers
                 if(codec is IAudioCodec audio)
                 {
                     node.SetClass(Classes.Audio);
-                    Set(node, Properties.AverageBitrate, audio.AudioBitrate, Datatypes.BitPerSecond);
+                    Set(node, Properties.AverageBitrate, audio.AudioBitrate, Datatypes.KilobitPerSecond);
                     Set(node, Properties.Channels, audio.AudioChannels);
                     Set(node, Properties.SampleRate, audio.AudioSampleRate, Datatypes.Hertz);
                 }
