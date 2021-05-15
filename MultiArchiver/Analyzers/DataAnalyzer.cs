@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
@@ -34,42 +35,35 @@ namespace IS4.MultiArchiver.Analyzers
             var lazyMatch = new Lazy<FileMatch>(() => new FileMatch(Formats, streamFactory, signatureBuffer, MaxDataLengthToStore, encodingDetector, isBinary, nodeFactory), false);
             
             long length = 0;
-            var hashes = new List<(IDataHashAlgorithm alg, QueueStream stream, Task<byte[]> data)>();
+            var hashes = new List<(IDataHashAlgorithm alg, ChannelWriter<ArraySegment<byte>> writer, Task<byte[]> data)>();
 
             using(var stream = streamFactory.Open())
             {
                 foreach(var hash in HashAlgorithms)
                 {
-                    var queue = new QueueStream
+                    var channel = Channel.CreateBounded<ArraySegment<byte>>(new BoundedChannelOptions(1)
                     {
-                        AutoFlush = false
-                    };
-                    hashes.Add((hash, queue, Task.Run(() => {
-                        return hash.ComputeHash(queue);
-                    })));
+                        AllowSynchronousContinuations = true,
+                        FullMode = BoundedChannelFullMode.Wait,
+                        SingleReader = true,
+                        SingleWriter = true
+                    });
+                    var queue = new QueueStream(channel.Reader);
+                    hashes.Add((hash, channel.Writer, Task.Run(() => hash.ComputeHash(queue))));
                 }
 
                 var buffer = new byte[16384];
-                int read = -1;
-                while(read != 0)
+
+                int read;
+                while((read = stream.Read(buffer, 0, buffer.Length)) != 0)
                 {
-                    read = stream.Read(buffer, 0, buffer.Length);
-                    if(read == 0)
-                    {
-                        foreach(var hash in hashes)
-                        {
-                            hash.stream.Dispose();
-                        }
-                        break;
-                    }
-                    foreach(var hash in hashes)
-                    {
-                        hash.stream.Write(buffer, 0, read);
-                    }
-                    foreach(var hash in hashes)
-                    {
-                        hash.stream.Flush();
-                    }
+                    var segment = new ArraySegment<byte>(buffer, 0, read);
+                    var writing = hashes.Select(async h => {
+                        await h.writer.WriteAsync(segment);
+                        await h.writer.WriteAsync(default);
+                        await h.writer.WaitToWriteAsync();
+                    }).ToArray();
+
                     if(!isBinary)
 				    {
 					    if(Array.IndexOf<byte>(buffer, 0, 0, read) != -1)
@@ -86,6 +80,13 @@ namespace IS4.MultiArchiver.Analyzers
                         _ = lazyMatch.Value;
                     }
                     length += read;
+
+                    Task.WaitAll(writing);
+                }
+
+                foreach(var hash in hashes)
+                {
+                    hash.writer.Complete();
                 }
 
                 encodingDetector.End();

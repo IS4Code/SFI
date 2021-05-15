@@ -1,26 +1,22 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.ExceptionServices;
 using System.Threading;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Tools
 {
     internal sealed class QueueStream : Stream
     {
-        readonly SemaphoreSlim syncSemaphore = new SemaphoreSlim(1, 1);
-        readonly SemaphoreSlim readSemaphore = new SemaphoreSlim(0, 1);
-
-        ArraySegment<byte> currentData = new ArraySegment<byte>(Array.Empty<byte>(), 0, 0);
-
-        public bool AutoFlush { get; set; } = true;
-
-        public bool ForceClose { get; set; }
+        readonly ChannelReader<ArraySegment<byte>> channelReader;
+        ArraySegment<byte> current;
 
         public override bool CanRead => true;
 
         public override bool CanSeek => false;
 
-        public override bool CanWrite => true;
+        public override bool CanWrite => false;
 
         public override bool CanTimeout => false;
 
@@ -28,127 +24,33 @@ namespace IS4.MultiArchiver.Tools
 
         public override long Position { get => throw new NotSupportedException(); set => throw new NotSupportedException(); }
 
-        private bool FlushInner()
+        public QueueStream(ChannelReader<ArraySegment<byte>> channelReader)
         {
-            if(currentData.Array == null)
-            {
-                throw new IOException();
-            }
-            if(currentData.Count == 0)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public override void Flush()
-        {
-            while(true)
-            {
-                syncSemaphore.Wait();
-                try{
-                    if(FlushInner())
-                    {
-                        break;
-                    }
-                }finally{
-                    syncSemaphore.Release();
-                }
-            }
-        }
-
-        public override async Task FlushAsync(CancellationToken cancellationToken)
-        {
-            while(true)
-            {
-                await syncSemaphore.WaitAsync(cancellationToken);
-                try{
-                    if(FlushInner())
-                    {
-                        break;
-                    }
-                }finally{
-                    syncSemaphore.Release();
-                }
-            }
-        }
-
-        private bool CloseInner()
-        {
-            if(currentData.Array == null)
-            {
-                throw new IOException();
-            }
-            int remaining = currentData.Count;
-            if(ForceClose || remaining == 0)
-            {
-                currentData = default;
-                if(remaining == 0) readSemaphore.Release();
-                return true;
-            }
-            return false;
+            this.channelReader = channelReader;
         }
 
         public override void Close()
         {
-            while(true)
-            {
-                syncSemaphore.Wait();
-                try{
-                    if(CloseInner())
-                    {
-                        break;
-                    }
-                }finally{
-                    syncSemaphore.Release();
-                }
-            }
+            throw new NotSupportedException();
         }
 
-        public async Task CloseAsync(CancellationToken cancellationToken)
+        private int ReadInner(byte[] buffer, ref int offset, ref int count)
         {
-            while(true)
+            if(current.Count == 0)
             {
-                await syncSemaphore.WaitAsync(cancellationToken);
-                try{
-                    if(CloseInner())
-                    {
-                        break;
-                    }
-                }finally{
-                    syncSemaphore.Release();
-                }
-            }
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            base.Dispose(disposing);
-
-            if(disposing)
-            {
-                syncSemaphore.Wait();
-                readSemaphore.Dispose();
-                syncSemaphore.Dispose();
-            }
-        }
-
-        private int ReadInner(byte[] buffer, int offset, int count, out int remaining)
-        {
-            if(currentData.Array == null)
-            {
-                remaining = 0;
+                current = default;
                 return 0;
             }
-            int read = Math.Min(count, currentData.Count);
-            remaining = currentData.Count - read;
-            if(read > 0)
+            int len = Math.Min(count, current.Count);
+            Array.Copy(current.Array, current.Offset, buffer, offset, len);
+            current = new ArraySegment<byte>(current.Array, current.Offset + len, current.Count - len);
+            if(current.Count == 0)
             {
-                Array.Copy(currentData.Array, currentData.Offset, buffer, offset, read);
-                currentData = new ArraySegment<byte>(currentData.Array, currentData.Offset + read, remaining);
-                return read;
+                current = default;
             }
-            return -1;
+            offset += len;
+            count -= len;
+            return len;
         }
 
         public override int Read(byte[] buffer, int offset, int count)
@@ -157,25 +59,37 @@ namespace IS4.MultiArchiver.Tools
             {
                 throw new ArgumentOutOfRangeException(nameof(count));
             }
-            while(true)
-            {
-                int remaining = 0;
-                readSemaphore.Wait();
-                try{
-                    syncSemaphore.Wait();
-                    try{
-                        int read = ReadInner(buffer, offset, count, out remaining);
-                        if(read >= 0)
+            int read = 0;
+            try{
+                while(read < count)
+                {
+                    if(current.Array == null)
+                    {
+                        if(!channelReader.TryRead(out current))
                         {
-                            return read;
+                            var task = channelReader.ReadAsync();
+                            if(task.IsCompletedSuccessfully)
+                            {
+                                current = task.Result;
+                            }else{
+                                current = task.AsTask().Result;
+                            }
                         }
-                    }finally{
-                        syncSemaphore.Release();
                     }
-                }finally{
-                    if(remaining != 0) readSemaphore.Release();
+                    read += ReadInner(buffer, ref offset, ref count);
+                }
+            }catch(ChannelClosedException)
+            {
+
+            }catch(AggregateException agg) when(agg.InnerExceptions.Count == 1)
+            {
+                if(!(agg.InnerException is ChannelClosedException))
+                {
+                    ExceptionDispatchInfo.Capture(agg.InnerException).Throw();
+                    throw;
                 }
             }
+            return read;
         }
 
         public override async Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
@@ -184,25 +98,31 @@ namespace IS4.MultiArchiver.Tools
             {
                 throw new ArgumentOutOfRangeException(nameof(count));
             }
-            while(true)
-            {
-                int remaining = 0;
-                await readSemaphore.WaitAsync(cancellationToken);
-                try{
-                    await syncSemaphore.WaitAsync(cancellationToken);
-                    try{
-                        int read = ReadInner(buffer, offset, count, out remaining);
-                        if(read >= 0)
+            int read = 0;
+            try{
+                while(read < count)
+                {
+                    if(current.Array == null)
+                    {
+                        if(!channelReader.TryRead(out current))
                         {
-                            return read;
+                            current = await channelReader.ReadAsync(cancellationToken);
                         }
-                    }finally{
-                        syncSemaphore.Release();
                     }
-                }finally{
-                    if(remaining != 0) readSemaphore.Release();
+                    read += ReadInner(buffer, ref offset, ref count);
+                }
+            }catch(ChannelClosedException)
+            {
+
+            }catch(AggregateException agg) when(agg.InnerExceptions.Count == 1)
+            {
+                if(!(agg.InnerException is ChannelClosedException))
+                {
+                    ExceptionDispatchInfo.Capture(agg.InnerException).Throw();
+                    throw;
                 }
             }
+            return read;
         }
 
         public override IAsyncResult BeginRead(byte[] buffer, int offset, int count, AsyncCallback callback, object state)
@@ -224,138 +144,114 @@ namespace IS4.MultiArchiver.Tools
             return ((Task<int>)asyncResult).Result;
         }
 
-        private int ReadByteInner(out int remaining)
+        private int ReadByteInner()
         {
-            if(currentData.Array == null)
+            if(current.Count == 0)
             {
-                remaining = 0;
+                current = default;
                 return -1;
             }
-            if(currentData.Count > 0)
+            var result = current.Array[current.Offset];
+            current = new ArraySegment<byte>(current.Array, current.Offset + 1, current.Count - 1);
+            if(current.Count == 0)
             {
-                remaining = currentData.Count - 1;
-                byte result = currentData.Array[currentData.Offset];
-                currentData = new ArraySegment<byte>(currentData.Array, currentData.Offset + 1, remaining);
-                return result;
+                current = default;
             }
-            remaining = 0;
-            return -2;
+            return result;
         }
 
         public override int ReadByte()
         {
-            while(true)
-            {
-                int remaining = 0;
-                readSemaphore.Wait();
-                try{
-                    syncSemaphore.Wait();
-                    try{
-                        int result = ReadByteInner(out remaining);
-                        if(result >= -1)
+            int result = -1;
+            try{
+                while(result == -1)
+                {
+                    if(current.Array == null)
+                    {
+                        if(!channelReader.TryRead(out current))
                         {
-                            return result;
+                            var task = channelReader.ReadAsync();
+                            if(task.IsCompletedSuccessfully)
+                            {
+                                current = task.Result;
+                            }else{
+                                current = task.AsTask().Result;
+                            }
                         }
-                    }finally{
-                        syncSemaphore.Release();
                     }
-                }finally{
-                    if(remaining != 0) readSemaphore.Release();
+                    result = ReadByteInner();
+                }
+            }catch(ChannelClosedException)
+            {
+
+            }catch(AggregateException agg) when(agg.InnerExceptions.Count == 1)
+            {
+                if(!(agg.InnerException is ChannelClosedException))
+                {
+                    ExceptionDispatchInfo.Capture(agg.InnerException).Throw();
+                    throw;
                 }
             }
+            return -1;
         }
 
         public async Task<int> ReadByteAsync(CancellationToken cancellationToken)
         {
-            while(true)
-            {
-                int remaining = 0;
-                await readSemaphore.WaitAsync(cancellationToken);
-                try{
-                    await syncSemaphore.WaitAsync(cancellationToken);
-                    try{
-                        int result = ReadByteInner(out remaining);
-                        if(result >= -1)
+            int result = -1;
+            try{
+                while(result != -1)
+                {
+                    if(current.Array == null)
+                    {
+                        if(!channelReader.TryRead(out current))
                         {
-                            return result;
+                            current = await channelReader.ReadAsync(cancellationToken);
                         }
-                    }finally{
-                        syncSemaphore.Release();
                     }
-                }finally{
-                    if(remaining != 0) readSemaphore.Release();
+                    result = ReadByteInner();
+                }
+            }catch(ChannelClosedException)
+            {
+
+            }catch(AggregateException agg) when(agg.InnerExceptions.Count == 1)
+            {
+                if(!(agg.InnerException is ChannelClosedException))
+                {
+                    ExceptionDispatchInfo.Capture(agg.InnerException).Throw();
+                    throw;
                 }
             }
-        }
-
-        private bool WriteInner(byte[] buffer, int offset, int count)
-        {
-            if(currentData.Array == null)
-            {
-                throw new IOException();
-            }
-            if(currentData.Count == 0)
-            {
-                currentData = new ArraySegment<byte>(buffer, offset, count);
-                readSemaphore.Release();
-                return true;
-            }
-            return false;
+            return result;
         }
 
         public override void Write(byte[] buffer, int offset, int count)
         {
-            if(count == 0) return;
-            while(true)
-            {
-                syncSemaphore.Wait();
-                try{
-                    if(WriteInner(buffer, offset, count))
-                    {
-                        break;
-                    }
-                }finally{
-                    syncSemaphore.Release();
-                }
-            }
-            if(AutoFlush) Flush();
+            throw new NotSupportedException();
         }
 
-        public override async Task WriteAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
+        public override Task WriteAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
         {
-            if(count == 0) return;
-            while(true)
-            {
-                await syncSemaphore.WaitAsync(cancellationToken);
-                try{
-                    if(WriteInner(buffer, offset, count))
-                    {
-                        break;
-                    }
-                }finally{
-                    syncSemaphore.Release();
-                }
-            }
-            if(AutoFlush) await FlushAsync(cancellationToken);
+            throw new NotSupportedException();
         }
 
         public override IAsyncResult BeginWrite(byte[] buffer, int offset, int count, AsyncCallback callback, object state)
         {
-            var task = WriteAsync(buffer, offset, count);
-            var completion = new TaskCompletionSource<bool>(state);
-            task.ContinueWith(t =>
-            {
-                if(t.IsFaulted) completion.TrySetException(t.Exception.InnerExceptions);
-                else if(t.IsCanceled) completion.TrySetCanceled();
-                else completion.TrySetResult(true);
-                callback?.Invoke(completion.Task);
-            }, TaskScheduler.Default);
-            return completion.Task;
+            throw new NotSupportedException();
         }
 
         public override void EndWrite(IAsyncResult asyncResult)
         {
-            _ = ((Task<bool>)asyncResult).Result;
+            throw new NotSupportedException();
+        }
+
+        public override void Flush()
+        {
+            throw new NotSupportedException();
+        }
+
+        public override Task FlushAsync(CancellationToken cancellationToken)
+        {
+            throw new NotSupportedException();
         }
 
         public override long Seek(long offset, SeekOrigin origin)
