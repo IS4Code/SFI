@@ -24,10 +24,10 @@ namespace IS4.MultiArchiver.Services
 
     public interface IDataHashAlgorithm : IHashAlgorithm
     {
-        byte[] ComputeHash(Stream input);
-        byte[] ComputeHash(byte[] buffer);
-        byte[] ComputeHash(byte[] buffer, int offset, int count);
-        byte[] ComputeHash(ArraySegment<byte> buffer);
+        byte[] ComputeHash(Stream input, IPersistentKey key = null);
+        byte[] ComputeHash(byte[] buffer, IPersistentKey key = null);
+        byte[] ComputeHash(byte[] buffer, int offset, int count, IPersistentKey key = null);
+        byte[] ComputeHash(ArraySegment<byte> buffer, IPersistentKey key = null);
     }
 
     public interface IFileHashAlgorithm : IHashAlgorithm
@@ -165,13 +165,13 @@ namespace IS4.MultiArchiver.Services
 
         }
 
-        public abstract byte[] ComputeHash(Stream input);
+        public abstract byte[] ComputeHash(Stream input, IPersistentKey key = null);
 
-        public abstract byte[] ComputeHash(byte[] data);
+        public abstract byte[] ComputeHash(byte[] data, IPersistentKey key = null);
 
-        public abstract byte[] ComputeHash(byte[] data, int offset, int count);
+        public abstract byte[] ComputeHash(byte[] data, int offset, int count, IPersistentKey key = null);
 
-        public byte[] ComputeHash(ArraySegment<byte> buffer)
+        public byte[] ComputeHash(ArraySegment<byte> buffer, IPersistentKey key = null)
         {
             return ComputeHash(buffer.Array, buffer.Offset, buffer.Count);
         }

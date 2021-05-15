@@ -11,14 +11,29 @@ namespace IS4.MultiArchiver
     {
         static IDataHashAlgorithm HashAlgorithm => BitTorrentHash.HashAlgorithm;
 
-        static readonly ConcurrentDictionary<int, PersistenceStore<IFileNodeInfo, FileInfo>> cache = new ConcurrentDictionary<int, PersistenceStore<IFileNodeInfo, FileInfo>>();
+        static readonly ConcurrentDictionary<int, PersistenceStore<IPersistentKey, FileInfo>> cache = new ConcurrentDictionary<int, PersistenceStore<IPersistentKey, FileInfo>>();
+
+        static PersistenceStore<IPersistentKey, FileInfo> GetCache(int blockSize)
+        {
+            return cache.GetOrAdd(blockSize, l => new PersistenceStore<IPersistentKey, FileInfo>(f => FileInfo.Create(l, f)));
+        }
 
         public static FileInfo GetCachedInfo(int blockSize, IFileNodeInfo file)
         {
-            return cache.GetOrAdd(blockSize, l => new PersistenceStore<IFileNodeInfo, FileInfo>(f => new FileInfo(l, f)))[file];
+            return GetCache(blockSize)[file];
         }
 
-        public static List<byte[]> HashData(int blockSize, Stream stream, out int padding, out long length)
+        public static FileInfo GetCachedInfo(int blockSize, Stream stream, IPersistentKey key)
+        {
+            var info = new FileInfo(blockSize, stream);
+            if(key != null)
+            {
+                GetCache(blockSize)[key] = info;
+            }
+            return info;
+        }
+
+        static List<byte[]> HashData(int blockSize, Stream stream, out int padding, out long length)
         {
             var hashAlgorithm = HashAlgorithm;
             var buffer = new byte[blockSize];
@@ -57,16 +72,12 @@ namespace IS4.MultiArchiver
             public int Padding { get; }
             public long Length { get; }
 
-            public FileInfo(int blockSize, IFileNodeInfo fileInfo)
+            public FileInfo(int blockSize, Stream stream)
             {
-                if(!(fileInfo is IStreamFactory file)) throw new ArgumentException(null, nameof(fileInfo));
-                List<byte[]> list;
-                using(var stream = file.Open())
-                {
-                    list = HashData(blockSize, stream, out var padding, out var length);
-                    Padding = padding;
-                    Length = length;
-                }
+                var list = HashData(blockSize, stream, out var padding, out var length);
+                Padding = padding;
+                Length = length;
+
                 if(list.Count > 0)
                 {
                     LastHash = list[list.Count - 1];
@@ -80,6 +91,15 @@ namespace IS4.MultiArchiver
                     }
                 }
                 BlockHashes = list;
+            }
+
+            public static FileInfo Create(int blockSize, IPersistentKey key)
+            {
+                if(!(key is IStreamFactory file)) throw new ArgumentException(null, nameof(key));
+                using(var stream = file.Open())
+                {
+                    return new FileInfo(blockSize, stream);
+                }
             }
         }
     }

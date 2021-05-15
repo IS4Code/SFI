@@ -30,17 +30,17 @@ namespace IS4.MultiArchiver.Tools
             }
         }
 
-        public override byte[] ComputeHash(Stream input)
+        public override byte[] ComputeHash(Stream input, IPersistentKey key)
         {
             return algorithm.Value.ComputeHash(input);
         }
 
-        public override byte[] ComputeHash(byte[] data)
+        public override byte[] ComputeHash(byte[] data, IPersistentKey key)
         {
             return algorithm.Value.ComputeHash(data);
         }
 
-        public override byte[] ComputeHash(byte[] data, int offset, int count)
+        public override byte[] ComputeHash(byte[] data, int offset, int count, IPersistentKey key)
         {
             return algorithm.Value.ComputeHash(data, offset, count);
         }

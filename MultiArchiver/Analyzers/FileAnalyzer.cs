@@ -66,11 +66,6 @@ namespace IS4.MultiArchiver.Analyzers
             var node = AnalyzeFileNode(parent, file, nodeFactory);
             if(node != null)
             {
-                foreach(var alg in HashAlgorithms)
-                {
-                    HashAlgorithm.AddHash(node, alg, alg.ComputeHash(file), nodeFactory);
-                }
-
                 if(file.Length is long len)
                 {
                     node.Set(Properties.FileSize, len);
@@ -79,6 +74,11 @@ namespace IS4.MultiArchiver.Analyzers
                 if(content != null)
                 {
                     content.Set(Properties.IsStoredAs, node);
+                }
+
+                foreach(var alg in HashAlgorithms)
+                {
+                    HashAlgorithm.AddHash(node, alg, alg.ComputeHash(file), nodeFactory);
                 }
 
                 if(file is IDirectoryInfo directory)

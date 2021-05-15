@@ -26,7 +26,7 @@ namespace IS4.MultiArchiver.Analyzers
 
 		public ILinkedNode Analyze(ILinkedNode parent, IStreamFactory streamFactory, ILinkedNodeFactory nodeFactory)
         {
-            var signatureBuffer = new MemoryStream(Math.Max(MaxDataLengthToStore + 1, Formats.Max(fmt => fmt.HeaderLength)));
+            var signatureBuffer = new MemoryStream(Math.Max(MaxDataLengthToStore + 1, Formats.Count == 0 ? 0 : Formats.Max(fmt => fmt.HeaderLength)));
 
             var encodingDetector = EncodingDetectorFactory?.Invoke();
 
@@ -49,7 +49,7 @@ namespace IS4.MultiArchiver.Analyzers
                         SingleWriter = true
                     });
                     var queue = new QueueStream(channel.Reader);
-                    hashes.Add((hash, channel.Writer, Task.Run(() => hash.ComputeHash(queue))));
+                    hashes.Add((hash, channel.Writer, Task.Run(() => hash.ComputeHash(queue, streamFactory))));
                 }
 
                 var buffer = new byte[16384];

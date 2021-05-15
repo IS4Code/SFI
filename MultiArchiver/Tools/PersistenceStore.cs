@@ -23,6 +23,13 @@ namespace IS4.MultiArchiver.Tools
                 var dataKey = key.DataKey ?? NullPlaceholder;
                 return data.GetOrCreateValue(refKey).GetOrAdd(dataKey, _ => new Lazy<TValue>(() => factory(key))).Value;
             }
+            set{
+                var refKey = key.ReferenceKey ?? NullPlaceholder;
+                var dataKey = key.DataKey ?? NullPlaceholder;
+                var lazy = new Lazy<TValue>(() => value, false);
+                _ = lazy.Value;
+                data.GetOrCreateValue(refKey)[dataKey] = lazy;
+            }
         }
     }
 }

@@ -14,34 +14,36 @@ namespace IS4.MultiArchiver
             BlockSize = blockSize;
         }
 
-        public override byte[] ComputeHash(Stream input)
+        public override byte[] ComputeHash(Stream input, IPersistentKey key = null)
         {
             using(var output = new MemoryStream())
             {
-                var list = BitTorrentHashCache.HashData(BlockSize, input, out var padding, out _);
-                var enc = BitConverter.GetBytes(padding);
+                var info = BitTorrentHashCache.GetCachedInfo(BlockSize, input, key);
+                var enc = BitConverter.GetBytes(info.Padding);
                 output.Write(enc, 0, enc.Length);
-                foreach(var block in list)
+                foreach(var block in info.BlockHashes)
                 {
-                    if(block != null) output.Write(block, 0, block.Length);
+                    output.Write(block, 0, block.Length);
                 }
+                output.Write(info.LastHashPadded, 0, info.LastHashPadded.Length);
+                output.Write(info.LastHash, 0, info.LastHash.Length);
                 return output.ToArray();
             }
         }
 
-        public override byte[] ComputeHash(byte[] data)
+        public override byte[] ComputeHash(byte[] data, IPersistentKey key = null)
         {
             using(var stream = new MemoryStream(data, false))
             {
-                return ComputeHash(stream);
+                return ComputeHash(stream, key);
             }
         }
 
-        public override byte[] ComputeHash(byte[] data, int offset, int count)
+        public override byte[] ComputeHash(byte[] data, int offset, int count, IPersistentKey key = null)
         {
             using(var stream = new MemoryStream(data, offset, count, false))
             {
-                return ComputeHash(stream);
+                return ComputeHash(stream, key);
             }
         }
     }
