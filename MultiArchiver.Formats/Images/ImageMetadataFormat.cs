@@ -35,12 +35,12 @@ namespace IS4.MultiArchiver.Formats
             return resultFactory(ImageMetadataReader.ReadMetadata(stream));
         }
 
-        public override bool CheckHeader(ArraySegment<byte> header)
+        public override bool CheckHeader(ArraySegment<byte> header, bool isBinary, IEncodingDetector encodingDetector)
         {
             return true;
         }
 
-        public override bool CheckHeader(Span<byte> header)
+        public override bool CheckHeader(Span<byte> header, bool isBinary, IEncodingDetector encodingDetector)
         {
             return true;
         }

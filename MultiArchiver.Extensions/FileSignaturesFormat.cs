@@ -14,7 +14,7 @@ namespace IS4.MultiArchiver.Formats
             Format = format;
         }
 
-        public override bool CheckHeader(Span<byte> header)
+        public override bool CheckHeader(Span<byte> header, bool isBinary, IEncodingDetector encodingDetector)
         {
             using(var stream = new MemoryStream(HeaderLength))
             {

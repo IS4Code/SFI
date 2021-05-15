@@ -193,7 +193,7 @@ namespace IS4.MultiArchiver.Analyzers
 
                 if(Signature.Count > 0)
                 {
-                    Results = formats.Where(fmt => fmt.CheckEncoding(isBinary, encodingDetector) && fmt.CheckHeader(signature)).Select(fmt => new FormatResult(streamFactory, fmt, Node, nodeFactory)).ToList();
+                    Results = formats.Where(fmt => fmt.CheckHeader(signature, isBinary, encodingDetector)).Select(fmt => new FormatResult(streamFactory, fmt, Node, nodeFactory)).ToList();
                 }else{
                     Results = Array.Empty<FormatResult>();
                 }

@@ -21,8 +21,9 @@ namespace IS4.MultiArchiver.Formats
 
         }
 
-        public override bool CheckHeader(Span<byte> header)
+        public override bool CheckHeader(Span<byte> header, bool isBinary, IEncodingDetector encodingDetector)
         {
+            if(isBinary) return false;
             header = header.Slice(DataTools.FindBom(header));
             if(header.Length == 0) return false;
             switch(header[0])

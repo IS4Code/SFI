@@ -19,9 +19,14 @@ namespace IS4.MultiArchiver.Formats
 
         }
 
-        public override bool CheckHeader(Span<byte> header)
+        public override bool CheckHeader(ArraySegment<byte> header, bool isBinary, IEncodingDetector encodingDetector)
         {
-            return true;
+            return !isBinary;
+        }
+
+        public override bool CheckHeader(Span<byte> header, bool isBinary, IEncodingDetector encodingDetector)
+        {
+            return !isBinary;
         }
 
         public override TResult Match<TResult>(Stream stream, Func<IUniformResourceLocator, TResult> resultFactory)

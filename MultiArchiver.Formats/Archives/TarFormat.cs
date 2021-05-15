@@ -1,4 +1,5 @@
-﻿using SharpCompress.Readers.Tar;
+﻿using IS4.MultiArchiver.Services;
+using SharpCompress.Readers.Tar;
 using System;
 using System.IO;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace IS4.MultiArchiver.Formats
 
         static readonly byte[] terminator = { 0, (byte)' ' };
 
-        public override bool CheckHeader(Span<byte> header)
+        public override bool CheckHeader(Span<byte> header, bool isBinary, IEncodingDetector encodingDetector)
         {
             if(header.Length < headerLength) return false;
             if(header.Slice(154, 2).IndexOfAny(terminator) != 0)
