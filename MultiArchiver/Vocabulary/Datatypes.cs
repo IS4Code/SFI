@@ -29,5 +29,7 @@
         Hertz,
         [Uri(Vocabularies.Dt)]
         BitPerSecond,
+        [Uri(Vocabularies.Dt)]
+        KilobitPerSecond,
     }
 }

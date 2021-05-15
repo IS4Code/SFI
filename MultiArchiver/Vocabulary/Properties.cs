@@ -64,6 +64,8 @@
 
         [Uri(Vocabularies.Nie)]
         IsStoredAs,
+        [Uri(Vocabularies.Nie)]
+        Links,
         [Uri(Vocabularies.Nfo)]
         FileName,
         [Uri(Vocabularies.Nfo)]

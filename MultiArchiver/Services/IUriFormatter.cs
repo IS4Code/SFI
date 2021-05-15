@@ -27,9 +27,9 @@ namespace IS4.MultiArchiver.Services
 
     }
 
-    public class UriFormatter : IUriFormatter<string>
+    public class UriFormatter : IIndividualUriFormatter<string>, IPropertyUriFormatter<string>, IClassUriFormatter<string>, IDatatypeUriFormatter<string>
     {
-        public static readonly IUriFormatter<string> Instance = new UriFormatter();
+        public static readonly UriFormatter Instance = new UriFormatter();
 
         private UriFormatter()
         {
@@ -42,9 +42,9 @@ namespace IS4.MultiArchiver.Services
         }
     }
 
-    public class IdentityUriFormatter : IUriFormatter<Uri>
+    public class IdentityUriFormatter : IIndividualUriFormatter<Uri>, IPropertyUriFormatter<Uri>, IClassUriFormatter<Uri>, IDatatypeUriFormatter<Uri>
     {
-        public static readonly IUriFormatter<Uri> Instance = new IdentityUriFormatter();
+        public static readonly IdentityUriFormatter Instance = new IdentityUriFormatter();
 
         private IdentityUriFormatter()
         {
