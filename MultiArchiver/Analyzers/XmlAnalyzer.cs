@@ -67,10 +67,15 @@ namespace IS4.MultiArchiver.Analyzers
                         var elem = node[reader.LocalName];
                         elem.SetClass(Classes.Element);
                         elem.Set(Properties.LocalName, reader.LocalName);
+                        if(!String.IsNullOrEmpty(reader.Prefix))
+                        {
+                            elem.Set(Properties.XmlPrefix, reader.Prefix);
+                        }
                         elem.Set(Properties.XmlName, reader.Name);
                         if(!String.IsNullOrEmpty(reader.NamespaceURI))
                         {
                             elem.Set(Properties.NamespaceName, reader.NamespaceURI, Datatypes.AnyUri);
+                            elem.Set(Properties.SeeAlso, UriFormatter.Instance, reader.NamespaceURI);
                         }
                         node.Set(Properties.DocumentElement, elem);
                         foreach(var format in XmlFormats.Concat(new[] { ImprovisedXmlFormat.Instance }))

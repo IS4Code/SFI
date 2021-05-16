@@ -9,6 +9,8 @@
 
         [Uri(Vocabularies.Rdfs)]
         Label,
+        [Uri(Vocabularies.Rdfs)]
+        SeeAlso,
 
         [Uri(Vocabularies.Owl)]
         SameAs,
@@ -66,6 +68,9 @@
         IsStoredAs,
         [Uri(Vocabularies.Nie)]
         Links,
+        [Uri(Vocabularies.Nie)]
+        HasPart,
+
         [Uri(Vocabularies.Nfo)]
         FileName,
         [Uri(Vocabularies.Nfo)]
@@ -130,6 +135,8 @@
         LocalName,
         [Uri(Vocabularies.Xis, "name")]
         XmlName,
+        [Uri(Vocabularies.Xis, "prefix")]
+        XmlPrefix,
         [Uri(Vocabularies.Xis)]
         NamespaceName,
 
