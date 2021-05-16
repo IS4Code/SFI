@@ -36,34 +36,16 @@ namespace IS4.MultiArchiver.Analyzers
                     codecPosition.Add(codec, null);
                     nodeFactory.Create(node, codec);
                 }else{
-                    var codecCounters = new Dictionary<char, int>();
+                    var codecCounters = new Dictionary<MediaTypes, int>();
 
                     foreach(var codec in properties.Codecs)
                     {
-                        char streamType;
-                        switch(codec.MediaTypes)
-                        {
-                            case MediaTypes.Video:
-                                streamType = 'v';
-                                break;
-                            case MediaTypes.Audio:
-                                streamType = 'a';
-                                break;
-                            case MediaTypes.Photo:
-                                streamType = 't';
-                                break;
-                            case MediaTypes.Text:
-                                streamType = 's';
-                                break;
-                            default:
-                                continue;
-                        }
-                        if(!codecCounters.TryGetValue(streamType, out int counter))
+                        if(!codecCounters.TryGetValue(codec.MediaTypes, out int counter))
                         {
                             counter = 0;
                         }
-                        codecCounters[streamType] = counter + 1;
-                        codecPosition.Add(codec, streamType + ":" + counter);
+                        codecCounters[codec.MediaTypes] = counter + 1;
+                        codecPosition.Add(codec, codec.MediaTypes.ToString() + "/" + counter);
 
                         var codecNode = nodeFactory.Create(node, codec);
                         if(codecNode != null)
