@@ -42,6 +42,8 @@
         Video,
         [Uri(Vocabularies.Nfo)]
         MediaStream,
+        [Uri(Vocabularies.Nfo)]
+        EmbeddedFileDataObject,
         [Uri(Vocabularies.Nid3)]
         ID3Audio,
 

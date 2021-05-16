@@ -32,9 +32,12 @@ namespace IS4.MultiArchiver.Analyzers
             if(info.Path != null)
             {
                 LinkDirectories(node, info.Path, false, nodeFactory);
+                node.Set(Properties.PrefLabel, "/" + info.Path);
+            }else if(info.Name != null)
+            {
+                LinkDirectories(node, info.Name, false, nodeFactory);
+                node.Set(Properties.PrefLabel, info.Name);
             }
-
-            node.Set(Properties.PrefLabel, "/" + info.Path);
 
             if(info.Name != null)
             {
@@ -66,9 +69,9 @@ namespace IS4.MultiArchiver.Analyzers
             var node = AnalyzeFileNode(parent, file, nodeFactory);
             if(node != null)
             {
-                if(file.Length is long len)
+                if(file.Length >= 0)
                 {
-                    node.Set(Properties.FileSize, len);
+                    node.Set(Properties.FileSize, file.Length);
                 }
 
                 if(file.IsEncrypted)

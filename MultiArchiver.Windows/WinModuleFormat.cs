@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.IO;
 using System.Runtime.InteropServices;
 using Vanara.PInvoke;
@@ -16,14 +17,18 @@ namespace IS4.MultiArchiver.Formats
         public override TResult Match<TResult>(Stream stream, Func<SafeHINSTANCE, TResult> resultFactory)
         {
             string tmpPath = Path.GetTempPath() + Guid.NewGuid().ToString();
-            using(var file = File.Create(tmpPath, 4096, FileOptions.DeleteOnClose))
+            using(var file = new FileStream(tmpPath, FileMode.CreateNew))
             {
                 stream.CopyTo(file);
-                file.Flush();
-                using(var inst = LoadLibraryEx(tmpPath, LoadLibraryExFlags.LOAD_LIBRARY_AS_DATAFILE_EXCLUSIVE))
+            }
+            try{
+                using(var inst = LoadLibraryEx(tmpPath, LoadLibraryExFlags.LOAD_LIBRARY_AS_IMAGE_RESOURCE | LoadLibraryExFlags.LOAD_LIBRARY_AS_DATAFILE_EXCLUSIVE))
                 {
+                    if(inst.IsNull) return null;
                     return resultFactory(inst);
                 }
+            }finally{
+                File.Delete(tmpPath);
             }
         }
 
