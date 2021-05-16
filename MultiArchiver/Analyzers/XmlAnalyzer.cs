@@ -4,6 +4,8 @@ using IS4.MultiArchiver.Vocabulary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Linq;
 
@@ -149,6 +151,45 @@ namespace IS4.MultiArchiver.Analyzers
                     return new Uri(value.RootName.Namespace, UriKind.Absolute);
                 }
                 return base.GetNamespace(value);
+            }
+
+            static readonly Regex badCharacters = new Regex(@"://|//|[^a-zA-Z0-9._-]", RegexOptions.Compiled);
+
+            public override string GetMediaType(XmlFormat value)
+            {
+                var ns = GetNamespace(value);
+                if(ns == null)
+                {
+                    var pub = GetPublicId(value);
+                    if(pub != null)
+                    {
+                        ns = UriTools.CreatePublicId(pub);
+                    }
+                }
+                if(ns == null)
+                {
+                    return $"application/x.{value.RootName.Name}+xml";
+                }
+                if(!String.IsNullOrEmpty(ns.IdnHost))
+                {
+                    var host = ns.IdnHost;
+                    var builder = new UriBuilder(ns);
+                    builder.Host = String.Join(".", host.Split('.').Reverse());
+                    ns = builder.Uri;
+                }
+                var replaced = badCharacters.Replace(ns.OriginalString, m => {
+                    switch(m.Value)
+                    {
+                        case "%": return "&";
+                        case ":":
+                        case "/":
+                        case "?":
+                        case "//":
+                        case "://": return ".";
+                        default: return String.Join("", Encoding.UTF8.GetBytes(m.Value).Select(b => $"&{b:X2}"));
+                    }
+                });
+                return $"application/x.{replaced}.{value.RootName.Name}+xml";
             }
 
             public override TResult Match<TResult>(XmlReader reader, XDocumentType docType, Func<XmlFormat, TResult> resultFactory)
