@@ -16,6 +16,14 @@ namespace IS4.MultiArchiver.Formats
 
         public override TResult Match<TResult>(Stream stream, Func<SafeHINSTANCE, TResult> resultFactory)
         {
+            if(stream is FileStream fileStream)
+            {
+                using(var inst = LoadLibraryEx(fileStream.Name, LoadLibraryExFlags.LOAD_LIBRARY_AS_IMAGE_RESOURCE | LoadLibraryExFlags.LOAD_LIBRARY_AS_DATAFILE_EXCLUSIVE))
+                {
+                    if(inst.IsNull) return null;
+                    return resultFactory(inst);
+                }
+            }
             string tmpPath = Path.GetTempPath() + Guid.NewGuid().ToString();
             using(var file = new FileStream(tmpPath, FileMode.CreateNew))
             {
