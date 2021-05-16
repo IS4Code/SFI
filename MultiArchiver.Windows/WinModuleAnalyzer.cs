@@ -1,6 +1,7 @@
 ﻿using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Vocabulary;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using Vanara.PInvoke;
 using static Vanara.PInvoke.Kernel32;
@@ -11,45 +12,33 @@ namespace IS4.MultiArchiver.Analyzers
     {
         public override string Analyze(ILinkedNode node, SafeHINSTANCE module, ILinkedNodeFactory nodeFactory)
         {
+            var resources = new List<ResourceInfo>();
             EnumResourceTypesEx(module, (mod, type, par) => {
-                using(var safeType = new SafeResourceId(type.DangerousGetHandle()))
-                {
-                    EnumResourceNamesEx(mod, safeType, (mod2, type2, name, par2) => {
-                        using(var safeName = new SafeResourceId(name.DangerousGetHandle()))
-                        {
-                            var res = FindResource(module, safeName, safeType);
-                            if(!res.IsNull)
-                            {
-                                var info = new ResourceInfo(module, safeType, safeName, res);
-                                var infoNode = nodeFactory.Create<IFileInfo>(node[info.Type], info);
-                                if(infoNode != null)
-                                {
-                                    infoNode.SetClass(Classes.EmbeddedFileDataObject);
-                                    node.Set(Properties.HasMediaStream, infoNode);
-                                }
-                            }
-                        }
-                        return true;
-                    }, IntPtr.Zero, RESOURCE_ENUM_FLAGS.RESOURCE_ENUM_LN, 0);
-                }
+                var safeType = new SafeResourceId(type.DangerousGetHandle());
+                EnumResourceNamesEx(mod, safeType, (mod2, type2, name, par2) => {
+                    var safeName = new SafeResourceId(name.DangerousGetHandle());
+                    var res = FindResource(mod2, safeName, safeType);
+                    if(!res.IsNull)
+                    {
+                        resources.Add(new ResourceInfo(module, safeType, safeName, res));
+                    }
+                    return true;
+                }, IntPtr.Zero, RESOURCE_ENUM_FLAGS.RESOURCE_ENUM_LN, 0);
                 return true;
             }, IntPtr.Zero, RESOURCE_ENUM_FLAGS.RESOURCE_ENUM_LN, 0);
-            return null;
-        }
 
-        /*ILinkedNode Analyze(ILinkedNode parent, ResourceInfo info, ILinkedNodeFactory nodeFactory)
-        {
-            var node = parent[info.Identifier];
-            if(node != null)
+            foreach(var info in resources)
             {
-                var content = nodeFactory.Create<IStreamFactory>(node, info);
-                if(content != null)
+                var infoNode = nodeFactory.Create<IFileInfo>(node[info.Type], info);
+                if(infoNode != null)
                 {
-                    content.Set(Properties.IsStoredAs, node);
+                    infoNode.SetClass(Classes.EmbeddedFileDataObject);
+                    node.Set(Properties.HasMediaStream, infoNode);
                 }
             }
-            return node;
-        }*/
+
+            return null;
+        }
 
         class ResourceInfo : IFileInfo
         {
@@ -109,25 +98,30 @@ namespace IS4.MultiArchiver.Analyzers
 
             enum Win32ResourceType : ushort
             {
+                Cursor = 1,
+                Bitmap = 2,
+                Icon = 3,
+                Menu = 4,
+                Dialog = 5,
+                String = 6,
+                FontDirectory = 7,
+                Font = 8,
                 Accelerator = 9,
+                UserData = 10,
+                MessageTable = 11,
+                GroupCursor = 12,
+                MenuEx = 13,
+                GroupIcon = 14,
+                NameTable = 15,
+                Version = 16,
+                DialogInclude = 17,
+                DialogEx = 18,
+                PlugAndPlay = 19,
+                VXD = 20,
                 AnimatedCursor = 21,
                 AnimatedIcon = 22,
-                Bitmap = 2,
-                Cursor = 1,
-                Dialog = 5,
-                Font = 8,
-                FontDir = 7,
-                GroupCursor = 12,
-                GroupIcon = 14,
-                Icon = 3,
                 Html = 23,
-                Menu = 4,
                 Manifest = 24,
-                MessageTable = 11,
-                UserData = 10,
-                String = 6,
-                Version = 16,
-                PlugAndPlay = 19,
             }
         }
     }
