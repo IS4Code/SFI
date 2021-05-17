@@ -14,7 +14,9 @@ namespace IS4.MultiArchiver.Formats
     public class InternetShortcutFormat : BinaryFileFormat<IUniformResourceLocator>
     {
         static readonly Type InternetShortcut = Type.GetTypeFromCLSID(new Guid(0xFBF23B40, 0xE3F0, 0x101B, 0x84, 0x88, 0x00, 0xAA, 0x00, 0x3E, 0x56, 0xF8));
-        
+
+        public TaskScheduler StaTaskScheduler = new StaTaskScheduler(1);
+
         public InternetShortcutFormat() : base(0, "text/x-uri", "url")
         {
 
@@ -44,7 +46,7 @@ namespace IS4.MultiArchiver.Formats
                 }finally{
                     Marshal.FinalReleaseComObject(shortcut);
                 }
-            }, CancellationToken.None, 0, StaTaskScheduler.Shared).Result;
+            }, CancellationToken.None, 0, StaTaskScheduler).Result;
         }
     }
 }

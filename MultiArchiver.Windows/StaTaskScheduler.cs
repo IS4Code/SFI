@@ -5,10 +5,8 @@ using System.Linq;
 namespace System.Threading.Tasks.Schedulers
 {
     /// <summary>Provides a scheduler that uses STA threads.</summary>
-    public sealed class StaTaskScheduler : TaskScheduler, IDisposable
+    sealed class StaTaskScheduler : TaskScheduler, IDisposable
     {
-        public static readonly StaTaskScheduler Shared = new StaTaskScheduler(1);
-
         /// <summary>Stores the queued tasks to be executed by our pool of STA threads.</summary>
         private BlockingCollection<Task> _tasks;
         /// <summary>The STA threads used by the scheduler.</summary>
