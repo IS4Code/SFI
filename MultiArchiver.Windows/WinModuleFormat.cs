@@ -1,8 +1,8 @@
 ﻿using System;
-using System.ComponentModel;
 using System.IO;
 using System.Runtime.InteropServices;
 using Vanara.PInvoke;
+using static Vanara.PInvoke.DbgHelp;
 using static Vanara.PInvoke.Kernel32;
 
 namespace IS4.MultiArchiver.Formats
@@ -18,7 +18,7 @@ namespace IS4.MultiArchiver.Formats
         {
             if(stream is FileStream fileStream)
             {
-                using(var inst = LoadLibraryEx(fileStream.Name, LoadLibraryExFlags.LOAD_LIBRARY_AS_IMAGE_RESOURCE | LoadLibraryExFlags.LOAD_LIBRARY_AS_DATAFILE_EXCLUSIVE))
+                using(var inst = LoadLibraryEx(fileStream.Name, LoadLibraryExFlags.LOAD_LIBRARY_AS_IMAGE_RESOURCE | LoadLibraryExFlags.LOAD_LIBRARY_AS_DATAFILE | LoadLibraryExFlags.DONT_RESOLVE_DLL_REFERENCES))
                 {
                     if(inst.IsNull) return null;
                     return resultFactory(inst);
@@ -30,7 +30,7 @@ namespace IS4.MultiArchiver.Formats
                 stream.CopyTo(file);
             }
             try{
-                using(var inst = LoadLibraryEx(tmpPath, LoadLibraryExFlags.LOAD_LIBRARY_AS_IMAGE_RESOURCE | LoadLibraryExFlags.LOAD_LIBRARY_AS_DATAFILE_EXCLUSIVE))
+                using(var inst = LoadLibraryEx(tmpPath, LoadLibraryExFlags.LOAD_LIBRARY_AS_IMAGE_RESOURCE | LoadLibraryExFlags.LOAD_LIBRARY_AS_DATAFILE | LoadLibraryExFlags.DONT_RESOLVE_DLL_REFERENCES))
                 {
                     if(inst.IsNull) return null;
                     return resultFactory(inst);
@@ -40,13 +40,24 @@ namespace IS4.MultiArchiver.Formats
             }
         }
 
-        public override string GetExtension(SafeHINSTANCE value)
+        public override unsafe string GetExtension(SafeHINSTANCE value)
         {
-            if(!GetModuleInformation(GetCurrentProcess(), value, out var info, unchecked((uint)Marshal.SizeOf<MODULEINFO>())))
+            var dosHeader = (IntPtr)((long)value.DangerousGetHandle() & ~3);
+            var ntHeader = (IMAGE_NT_HEADERS*)((byte*)dosHeader + Marshal.ReadInt32(dosHeader, 60));
+            if(ntHeader->Signature == 0x4550)
             {
-                return null;
+                if(ntHeader->OptionalHeader.Subsystem == IMAGE_SUBSYSTEM.IMAGE_SUBSYSTEM_NATIVE)
+                {
+                    return "sys";
+                }
+                if(ntHeader->OptionalHeader.AddressOfEntryPoint != 0)
+                {
+                    return "exe";
+                }
+                /*exe dll sys drv ocx cpl scr mui*/
+                return "dll";
             }
-            return info.EntryPoint == IntPtr.Zero ? "dll" : "exe";
+            return null;
         }
 
         [DllImport(Lib.Kernel32, SetLastError = true, ExactSpelling = true, EntryPoint = "K32GetModuleInformation")]
