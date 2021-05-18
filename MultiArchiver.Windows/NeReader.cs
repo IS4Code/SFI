@@ -73,9 +73,13 @@ namespace IS4.MultiArchiver.Windows
                 names[name] = new string(reader.ReadChars(len));
             }
 
-            object GetId(short id)
+            object GetId(short id, bool type)
             {
-                if(id < 0) return id & 0x7FFF;
+                if(id < 0)
+                {
+                    id &= 0x7FFF;
+                    return type ? (object)(Win32ResourceType)id : id;
+                }
                 return names[id];
             }
 
@@ -83,7 +87,7 @@ namespace IS4.MultiArchiver.Windows
 
             foreach(var res in resources.OrderBy(t => t.Item1))
             {
-                yield return new Resource(stream, GetId(res.Item3), GetId(res.Item4), res.Item1, res.Item2, maxAlignment);
+                yield return new Resource(stream, GetId(res.Item3, true), GetId(res.Item4, false), res.Item1, res.Item2, maxAlignment);
             }
         }
 
@@ -139,6 +143,11 @@ namespace IS4.MultiArchiver.Windows
             public Stream Open()
             {
                 return new MemoryStream(Data.Array, Data.Offset, Data.Count, false);
+            }
+
+            public override string ToString()
+            {
+                return Type + "/" + Name;
             }
         }
     }
