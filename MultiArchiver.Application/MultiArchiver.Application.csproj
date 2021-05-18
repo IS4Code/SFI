@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>IS4.MultiArchiver</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MultiArchiver.Extensions\MultiArchiver.Extensions.csproj" />
+    <ProjectReference Include="..\MultiArchiver.Formats\MultiArchiver.Formats.csproj" />
+    <ProjectReference Include="..\MultiArchiver.Windows\MultiArchiver.Windows.csproj" />
+    <ProjectReference Include="..\MultiArchiver\MultiArchiver.csproj" />
+  </ItemGroup>
+
+</Project>

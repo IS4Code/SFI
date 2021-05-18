@@ -32,6 +32,11 @@ namespace IS4.MultiArchiver.Extensions
             FileAnalyzer.HashAlgorithms.Add(BitTorrentHash = new BitTorrentHash());
         }
 
+        static Archiver()
+        {
+            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+        }
+
         public static Archiver CreateDefault()
         {
             var archiver = new Archiver();
