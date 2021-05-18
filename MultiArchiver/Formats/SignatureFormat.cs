@@ -35,7 +35,7 @@ namespace IS4.MultiArchiver.Formats
 
         public override bool CheckHeader(Span<byte> header, bool isBinary, IEncodingDetector encodingDetector)
         {
-            return header.Length >= HeaderLength && header.StartsWith(signature);
+            return header.Length > signature.Length && header.StartsWith(signature);
         }
     }
 }
