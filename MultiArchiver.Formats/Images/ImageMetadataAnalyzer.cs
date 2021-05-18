@@ -94,7 +94,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             if(tags.TryGetValue("Sampling Rate", out var rate))
             {
-                node.Set(Properties.Channels, Convert.ToInt32(rate), Datatypes.Hertz);
+                node.Set(Properties.SampleRate, Convert.ToInt32(rate), Datatypes.Hertz);
             }
 
             if(tags.TryGetValue("Duration", out var duration))
