@@ -35,7 +35,7 @@ namespace IS4.MultiArchiver.Analyzers
                 data = new Lazy<ArraySegment<byte>>(() => {
                     int start = 0;
                     var typeCode = resource.Type as Win32ResourceType? ?? 0;
-                    if(typeCode == Win32ResourceType.Bitmap)
+                    if(typeCode == Win32ResourceType.Bitmap || typeCode == Win32ResourceType.Icon || typeCode == Win32ResourceType.Cursor)
                     {
                         start = 14;
                     }
@@ -43,14 +43,16 @@ namespace IS4.MultiArchiver.Analyzers
                     int read = resource.Read(buffer, start, resource.Length);
 
                     var segment = new ArraySegment<byte>(buffer, 0, start + read);
-                    if(typeCode == Win32ResourceType.Bitmap)
+                    if(typeCode == Win32ResourceType.Bitmap || typeCode == Win32ResourceType.Icon || typeCode == Win32ResourceType.Cursor)
                     {
                         var header = new Span<byte>(buffer, 0, start);
                         MemoryMarshal.Cast<byte, short>(header)[0] = 0x4D42;
                         var fields = MemoryMarshal.Cast<byte, int>(header.Slice(2));
                         fields[0] = segment.Count;
 
-                        int dataStart = start + BitConverter.ToInt32(buffer, start);
+                        int headerLength = BitConverter.ToInt32(buffer, start);
+
+                        int dataStart = start + headerLength;
 
                         int numColors = BitConverter.ToInt32(buffer, start + 32);
                         if(numColors == 0)
@@ -63,6 +65,12 @@ namespace IS4.MultiArchiver.Analyzers
                         }
 
                         dataStart += numColors * sizeof(int);
+
+                        if(typeCode == Win32ResourceType.Icon || typeCode == Win32ResourceType.Cursor)
+                        {
+                            var bmpHeader = MemoryMarshal.Cast<byte, int>(new Span<byte>(buffer, start, headerLength));
+                            bmpHeader[2] /= 2;
+                        }
 
                         fields[2] = dataStart;
                     }
