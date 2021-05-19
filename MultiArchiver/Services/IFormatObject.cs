@@ -36,10 +36,10 @@ namespace IS4.MultiArchiver.Services
 
         public Uri FormatUri(Uri value)
         {
-            var type = MediaType;
-            if(type == null || type.IndexOf('/') == -1) throw new InvalidOperationException();
             if(value.Scheme.Equals("data", StringComparison.OrdinalIgnoreCase))
             {
+                var type = MediaType?.ToLowerInvariant();
+                if(type == null || type.IndexOf('/') == -1) throw new InvalidOperationException();
                 var builder = new UriBuilder(value);
                 int rest = builder.Path.IndexOfAny(dataChars);
                 if(rest == -1) throw new ArgumentException(null, nameof(value));
@@ -47,7 +47,23 @@ namespace IS4.MultiArchiver.Services
                 return builder.Uri;
             }
             if(String.IsNullOrEmpty(value.Authority)) throw new ArgumentException(null, nameof(value));
-            return new Uri(value.AbsoluteUri + "/" + type.Split(splitChar)[1]);
+            var sub = Extension?.ToLowerInvariant();
+            if(sub == null)
+            {
+                sub = MediaType?.ToLowerInvariant();
+                if(sub == null || sub.IndexOf('/') == -1) throw new InvalidOperationException();
+                sub = sub.Split(splitChar)[1];
+                if(sub.StartsWith("prs.") || sub.StartsWith("vnd."))
+                {
+                    sub = sub.Substring(4);
+                }
+                int plus = sub.IndexOf('+');
+                if(plus != -1)
+                {
+                    sub = sub.Substring(0, plus);
+                }
+            }
+            return new Uri(value.AbsoluteUri + "/" + sub);
         }
     }
 }
