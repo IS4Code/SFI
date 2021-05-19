@@ -56,7 +56,11 @@ namespace IS4.MultiArchiver.Extensions
 
             protected override void HandleTriple(INode subj, INode pred, INode obj)
             {
-                handler.HandleTriple(new Triple(subj, pred, obj));
+                try{
+                    handler.HandleTriple(new Triple(subj, pred, obj));
+                }catch{
+
+                }
             }
 
             static readonly Regex unsafeCharacters = new Regex(@"^\p{M}|[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x84\x86-\x9F]|(^|[^\uD800-\uDBFF])[\uDC00-\uDFFF]|[\uD800-\uDBFF]($|[^\uDC00-\uDFFF])", RegexOptions.Compiled | RegexOptions.Multiline);
