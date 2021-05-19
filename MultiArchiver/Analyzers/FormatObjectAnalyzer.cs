@@ -36,9 +36,13 @@ namespace IS4.MultiArchiver.Analyzers
             if(node != null)
             {
                 var label = Analyze(node, format.Value, format.Source, nodeFactory);
-                if(format.Extension != null)
+                if(format.Extension is string extension)
                 {
-                    node.Set(Properties.PrefLabel, $"{format.Extension.ToUpperInvariant()} object" + (label != null ? $" ({label})" : ""), "en");
+                    if(label == null && format.Source is IStreamFactory file)
+                    {
+                        label = DataTools.SizeSuffix(file.Length, 2);
+                    }
+                    node.Set(Properties.PrefLabel, $"{extension.ToUpperInvariant()} object" + (label != null ? $" ({label})" : ""), "en");
                 }
                 node.SetClass(Classes.MediaObject);
                 foreach(var cls in recognizedClasses)
