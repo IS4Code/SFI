@@ -18,9 +18,28 @@ namespace IS4.MultiArchiver.Analyzers
             foreach(var resource in module.ReadResources())
             {
                 var info = new ResourceInfo(resource);
-                if(info.TypeCode == Win32ResourceType.GroupIcon || info.TypeCode == Win32ResourceType.GroupCursor)
+                switch(info.TypeCode)
                 {
-                    groups.Add(info);
+                    case Win32ResourceType.GroupIcon:
+                    case Win32ResourceType.GroupCursor:
+                        groups.Add(info);
+                        continue;
+                    case Win32ResourceType.Accelerator:
+                    case Win32ResourceType.Dialog:
+                    case Win32ResourceType.DialogEx:
+                    case Win32ResourceType.DialogInclude:
+                    case Win32ResourceType.Menu:
+                    case Win32ResourceType.MenuEx:
+                    case Win32ResourceType.MessageTable:
+                    case Win32ResourceType.NameTable:
+                    case Win32ResourceType.PlugAndPlay:
+                    case Win32ResourceType.String:
+                    case Win32ResourceType.Version:
+                    case Win32ResourceType.VXD:
+                        continue;
+                }
+                if(info.Type.Equals("MUI"))
+                {
                     continue;
                 }
                 cache[(resource.Type, resource.Name)] = info;
