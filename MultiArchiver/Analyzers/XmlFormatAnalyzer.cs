@@ -36,7 +36,7 @@ namespace IS4.MultiArchiver.Analyzers
 
                 if(pubId != null)
                 {
-                    node.Set(Properties.EncodingFormat, UriTools.PublicIdFormatter.Instance, pubId);
+                    node.Set(Properties.EncodingFormat, UriTools.PublicIdFormatter, pubId);
                 }
             }
 

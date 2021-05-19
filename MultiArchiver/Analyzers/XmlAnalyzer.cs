@@ -50,7 +50,7 @@ namespace IS4.MultiArchiver.Analyzers
                         var sysid = reader.GetAttribute("SYSTEM");
                         if(!String.IsNullOrEmpty(pubid))
                         {
-                            var dtd = nodeFactory.Create(Vocabularies.Ao, "public/" + UriTools.TranscribePublicId(pubid));
+                            var dtd = nodeFactory.Create(UriTools.PublicIdFormatter, pubid);
                             dtd.SetClass(Classes.DoctypeDecl);
                             if(name != null)
                             {

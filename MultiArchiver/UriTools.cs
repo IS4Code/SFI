@@ -11,15 +11,10 @@ namespace IS4.MultiArchiver
 
         static readonly Regex pubIdRegex = new Regex(@"(^\s+|\s+$)|(\s+)|(\/\/)|(::)|([+:\/;'?#%])", RegexOptions.Compiled);
 
-        public class PublicIdFormatter : IIndividualUriFormatter<string>
+        public static readonly IIndividualUriFormatter<string> PublicIdFormatter = new PublicIdFormatterClass();
+
+        class PublicIdFormatterClass : IIndividualUriFormatter<string>
         {
-            public static readonly PublicIdFormatter Instance = new PublicIdFormatter();
-
-            private PublicIdFormatter()
-            {
-
-            }
-
             public Uri FormatUri(string value)
             {
                 return CreatePublicId(value);
