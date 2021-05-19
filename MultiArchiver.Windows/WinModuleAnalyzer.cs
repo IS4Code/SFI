@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using IS4.MultiArchiver.Services;
@@ -11,9 +12,28 @@ namespace IS4.MultiArchiver.Analyzers
     {
         public override string Analyze(ILinkedNode node, IModule module, ILinkedNodeFactory nodeFactory)
         {
+            var cache = new Dictionary<(object, object), ResourceInfo>();
+            var groups = new List<ResourceInfo>();
+
             foreach(var resource in module.ReadResources())
             {
                 var info = new ResourceInfo(resource);
+                if(info.TypeCode == Win32ResourceType.GroupIcon || info.TypeCode == Win32ResourceType.GroupCursor)
+                {
+                    groups.Add(info);
+                    continue;
+                }
+                cache[(resource.Type, resource.Name)] = info;
+                var infoNode = nodeFactory.Create<IFileInfo>(node[info.Type], info);
+                if(infoNode != null)
+                {
+                    infoNode.SetClass(Classes.EmbeddedFileDataObject);
+                    node.Set(Properties.HasMediaStream, infoNode);
+                }
+            }
+            foreach(var info in groups)
+            {
+                info.MakeGroup(cache);
                 var infoNode = nodeFactory.Create<IFileInfo>(node[info.Type], info);
                 if(infoNode != null)
                 {
@@ -27,55 +47,131 @@ namespace IS4.MultiArchiver.Analyzers
         class ResourceInfo : IFileInfo
         {
             readonly IModuleResource resource;
-            readonly Lazy<ArraySegment<byte>> data;
+
+            public ArraySegment<byte> Data { get; private set; }
+
+            public Win32ResourceType TypeCode { get; }
+
+            public int CursorHotspot { get; }
+
+            public int OriginalHeight { get; }
 
             public ResourceInfo(IModuleResource resource)
             {
                 this.resource = resource;
-                data = new Lazy<ArraySegment<byte>>(() => {
-                    int start = 0;
-                    var typeCode = resource.Type as Win32ResourceType? ?? 0;
-                    if(typeCode == Win32ResourceType.Bitmap || typeCode == Win32ResourceType.Icon || typeCode == Win32ResourceType.Cursor)
+                TypeCode = resource.Type as Win32ResourceType? ?? 0;
+
+                int start = 0;
+                if(TypeCode == Win32ResourceType.Bitmap || TypeCode == Win32ResourceType.Icon)
+                {
+                    start = 14;
+                }
+                if(TypeCode == Win32ResourceType.Cursor)
+                {
+                    start = 10;
+                }
+                var buffer = new byte[start + resource.Length];
+                int read = resource.Read(buffer, start, resource.Length);
+
+                if(TypeCode == Win32ResourceType.Cursor)
+                {
+                    start += 4;
+                    read -= 4;
+                }
+
+                Data = new ArraySegment<byte>(buffer, 0, start + read);
+                if(TypeCode == Win32ResourceType.Bitmap || TypeCode == Win32ResourceType.Icon || TypeCode == Win32ResourceType.Cursor)
+                {
+                    var header = new Span<byte>(buffer, 0, start);
+                    MemoryMarshal.Cast<byte, short>(header)[0] = 0x4D42;
+                    var fields = MemoryMarshal.Cast<byte, int>(header.Slice(2));
+                    fields[0] = Data.Count;
+
+                    int headerLength = BitConverter.ToInt32(buffer, start);
+
+                    int dataStart = start + headerLength;
+
+                    int numColors = BitConverter.ToInt32(buffer, start + 32);
+                    if(numColors == 0)
                     {
-                        start = 14;
+                        var bits = BitConverter.ToInt16(buffer, start + 14);
+                        if(bits < 16)
+                        {
+                            numColors = 1 << bits;
+                        }
                     }
-                    var buffer = new byte[start + resource.Length];
-                    int read = resource.Read(buffer, start, resource.Length);
 
-                    var segment = new ArraySegment<byte>(buffer, 0, start + read);
-                    if(typeCode == Win32ResourceType.Bitmap || typeCode == Win32ResourceType.Icon || typeCode == Win32ResourceType.Cursor)
+                    dataStart += numColors * sizeof(int);
+
+                    if(TypeCode == Win32ResourceType.Icon || TypeCode == Win32ResourceType.Cursor)
                     {
-                        var header = new Span<byte>(buffer, 0, start);
-                        MemoryMarshal.Cast<byte, short>(header)[0] = 0x4D42;
-                        var fields = MemoryMarshal.Cast<byte, int>(header.Slice(2));
-                        fields[0] = segment.Count;
-
-                        int headerLength = BitConverter.ToInt32(buffer, start);
-
-                        int dataStart = start + headerLength;
-
-                        int numColors = BitConverter.ToInt32(buffer, start + 32);
-                        if(numColors == 0)
-                        {
-                            var bits = BitConverter.ToInt16(buffer, start + 14);
-                            if(bits < 16)
-                            {
-                                numColors = 1 << bits;
-                            }
-                        }
-
-                        dataStart += numColors * sizeof(int);
-
-                        if(typeCode == Win32ResourceType.Icon || typeCode == Win32ResourceType.Cursor)
-                        {
-                            var bmpHeader = MemoryMarshal.Cast<byte, int>(new Span<byte>(buffer, start, headerLength));
-                            bmpHeader[2] /= 2;
-                        }
-
-                        fields[2] = dataStart;
+                        var bmpHeader = MemoryMarshal.Cast<byte, int>(new Span<byte>(buffer, start, headerLength));
+                        OriginalHeight = bmpHeader[2];
+                        bmpHeader[2] /= 2;
                     }
-                    return segment;
-                });
+
+                    if(TypeCode == Win32ResourceType.Cursor)
+                    {
+                        CursorHotspot = fields[2];
+                    }
+
+                    fields[2] = dataStart;
+                }
+            }
+
+            public void MakeGroup(IReadOnlyDictionary<(object, object), ResourceInfo> cache)
+            {
+                var data = new Span<byte>(Data.Array, Data.Offset, Data.Count);
+                var header = MemoryMarshal.Cast<byte, short>(data);
+                var type = header[1];
+                var count = header[2];
+                object typeCode;
+                switch(type)
+                {
+                    case 1:
+                        typeCode = Win32ResourceType.Icon;
+                        break;
+                    case 2:
+                        typeCode = Win32ResourceType.Cursor;
+                        break;
+                    default:
+                        return;
+                }
+                using(var buffer = new MemoryStream())
+                {
+                    int dataOffset = 6 + count * 16;
+                    var resources = new List<ResourceInfo>();
+                    var writer = new BinaryWriter(buffer);
+                    buffer.Write(Data.Array, Data.Offset, 6);
+                    for(int i = 0; i < count; i++)
+                    {
+                        var info = new ArraySegment<byte>(Data.Array, Data.Offset + 6 + i * 14, 14);
+                        var span = MemoryMarshal.Cast<byte, short>(new Span<byte>(info.Array, info.Offset, info.Count));
+                        int id = span[6];
+                        buffer.Write(info.Array, info.Offset, info.Count - 2);
+
+                        if(!cache.TryGetValue((typeCode, id), out var res))
+                        {
+                            return;
+                        }
+                        resources.Add(res);
+
+                        writer.Write(dataOffset);
+
+                        dataOffset += res.Data.Count - 14;
+                    }
+                    foreach(var res in resources)
+                    {
+                        buffer.Write(res.Data.Array, res.Data.Offset + 14, 8);
+                        writer.Write(res.OriginalHeight);
+                        buffer.Write(res.Data.Array, res.Data.Offset + 26, res.Data.Count - 26);
+                    }
+                    if(!buffer.TryGetBuffer(out var seg))
+                    {
+                        seg = new ArraySegment<byte>(buffer.ToArray());
+                    }
+                    Data = seg;
+                }
             }
 
             public long Length => resource.Length;
@@ -88,8 +184,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             public unsafe Stream Open()
             {
-                var seg = data.Value;
-                return new MemoryStream(seg.Array, seg.Offset, seg.Count, false);
+                return new MemoryStream(Data.Array, Data.Offset, Data.Count, false);
             }
 
             public bool IsEncrypted => false;

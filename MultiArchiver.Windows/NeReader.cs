@@ -83,7 +83,7 @@ namespace IS4.MultiArchiver.Windows
                 if(id < 0)
                 {
                     id &= 0x7FFF;
-                    return type ? (object)(Win32ResourceType)id : id;
+                    return type ? (object)(Win32ResourceType)id : (int)id;
                 }
                 return names[id];
             }
