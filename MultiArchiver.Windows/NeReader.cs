@@ -1,14 +1,12 @@
-﻿using IS4.MultiArchiver.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
 
 namespace IS4.MultiArchiver.Windows
 {
-    public class NeReader
+    public class NeReader : IModule
     {
         readonly Stream stream;
         readonly BinaryReader reader;
@@ -21,6 +19,12 @@ namespace IS4.MultiArchiver.Windows
             }
         }
 
+        public ModuleType Type {
+            get {
+                return (Flags & 0x8000) != 0 ? ModuleType.Library : ModuleType.Executable;
+            }
+        }
+
         public NeReader(Stream stream)
         {
             this.stream = stream;
@@ -30,7 +34,7 @@ namespace IS4.MultiArchiver.Windows
             stream.Position = headerOffset = reader.ReadUInt32();
         }
 
-        public IEnumerable<Resource> ReadResources()
+        public IEnumerable<IModuleResource> ReadResources()
         {
             stream.Position = headerOffset + 0x24;
             var resourcesOffset = headerOffset + reader.ReadUInt16();
@@ -92,93 +96,42 @@ namespace IS4.MultiArchiver.Windows
             }
         }
 
-        public class Resource : IFileInfo
+        public class Resource : IModuleResource
         {
             public object Type { get; }
             public object Name { get; }
-            public ArraySegment<byte> Data { get; }
 
-            public bool IsEncrypted => false;
+            readonly long offset;
+            readonly int maxAlignment;
+            public int Length { get; }
 
-            string IFileNodeInfo.Name => Name?.ToString();
-
-            public string Path => null;
-
-            public int? Revision => null;
-
-            public DateTime? CreationTime => null;
-
-            public DateTime? LastWriteTime => null;
-
-            public DateTime? LastAccessTime => null;
-
-            public long Length { get; }
-
-            public StreamFactoryAccess Access => StreamFactoryAccess.Parallel;
-
-            public object ReferenceKey { get; }
-
-            public object DataKey => (Type, Name);
+            readonly Stream stream;
 
             public Resource(Stream stream, object type, object name, long offset, int length, int maxAlignment)
             {
-                var typeCode = type as Win32ResourceType? ?? 0;
-
-                ReferenceKey = stream;
                 Type = type;
                 Name = name;
                 Length = length;
-                int start = 0;
-                if(typeCode == Win32ResourceType.Bitmap)
+                this.offset = offset;
+                this.stream = stream;
+                this.maxAlignment = maxAlignment;
+            }
+
+            public int Read(byte[] buffer, int offset, int length)
+            {
+                length = Math.Min(length, Length);
+                stream.Position = this.offset;
+                int read = stream.Read(buffer, offset, length);
+                int minLength = offset + Math.Min(Length - maxAlignment, length);
+                for(int i = offset + read - 1; i >= minLength; i--)
                 {
-                    start = 14;
-                }
-                var data = new byte[start + length];
-                stream.Position = offset;
-                int read = stream.Read(data, start, length);
-                int minLength = start + length - maxAlignment;
-                for(int i = start + read - 1; i >= minLength; i--)
-                {
-                    if(data[i] != 0)
+                    if(buffer[i] != 0)
                     {
                         minLength = i + 1;
                         break;
                     }
                 }
-                Data = new ArraySegment<byte>(data, 0, minLength);
-                if(typeCode == Win32ResourceType.Bitmap)
-                {
-                    var header = new Span<byte>(data, 0, start);
-                    MemoryMarshal.Cast<byte, short>(header)[0] = 0x4D42;
-                    var fields = MemoryMarshal.Cast<byte, int>(header.Slice(2));
-                    fields[0] = Data.Count;
-
-                    int dataStart = start + BitConverter.ToInt32(data, start);
-
-                    int numColors = BitConverter.ToInt32(data, start + 32);
-                    if(numColors == 0)
-                    {
-                        var bits = BitConverter.ToInt16(data, start + 14);
-                        if(bits < 16)
-                        {
-                            numColors = 1 << bits;
-                        }
-                    }
-
-                    dataStart += numColors * sizeof(int);
-
-                    fields[2] = dataStart;
-                }
-            }
-
-            public Stream Open()
-            {
-                return new MemoryStream(Data.Array, Data.Offset, Data.Count, false);
-            }
-
-            public override string ToString()
-            {
-                return Type + "/" + Name;
+                return minLength - offset;
             }
         }
     }

@@ -1,11 +1,12 @@
 ﻿using IS4.MultiArchiver.Services;
+using IS4.MultiArchiver.Windows;
 using System;
 using System.Runtime.InteropServices;
 using System.Text;
 
 namespace IS4.MultiArchiver.Formats
 {
-    public abstract class ModuleFormat<T> : SignatureFormat<T> where T : class
+    public abstract class ModuleFormat : SignatureFormat<IModule>
     {
         const int CommonMaxStubSize = 256;
 
@@ -48,6 +49,17 @@ namespace IS4.MultiArchiver.Formats
             var testSignature = new Span<byte>(this.signature);
             int len = Math.Min(signature.Length, testSignature.Length);
             return signature.Slice(0, len).SequenceEqual(testSignature.Slice(0, len));
+        }
+
+        public override string GetExtension(IModule module)
+        {
+            switch(module.Type)
+            {
+                case ModuleType.System: return "sys";
+                case ModuleType.Library: return "dll";
+                case ModuleType.Executable: return "exe";
+                default: return null;
+            }
         }
     }
 }

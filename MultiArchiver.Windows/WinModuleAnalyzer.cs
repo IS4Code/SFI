@@ -1,35 +1,19 @@
-﻿using IS4.MultiArchiver.Services;
+﻿using System;
+using System.IO;
+using System.Runtime.InteropServices;
+using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Vocabulary;
 using IS4.MultiArchiver.Windows;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using Vanara.PInvoke;
-using static Vanara.PInvoke.Kernel32;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class WinModuleAnalyzer : BinaryFormatAnalyzer<SafeHINSTANCE>
+    public class WinModuleAnalyzer : BinaryFormatAnalyzer<IModule>
     {
-        public override string Analyze(ILinkedNode node, SafeHINSTANCE module, ILinkedNodeFactory nodeFactory)
+        public override string Analyze(ILinkedNode node, IModule module, ILinkedNodeFactory nodeFactory)
         {
-            var resources = new List<ResourceInfo>();
-            EnumResourceTypesEx(module, (mod, type, par) => {
-                var safeType = new SafeResourceId(type.DangerousGetHandle());
-                EnumResourceNamesEx(mod, safeType, (mod2, type2, name, par2) => {
-                    var safeName = new SafeResourceId(name.DangerousGetHandle());
-                    var res = FindResource(mod2, safeName, safeType);
-                    if(!res.IsNull)
-                    {
-                        resources.Add(new ResourceInfo(module, safeType, safeName, res));
-                    }
-                    return true;
-                }, IntPtr.Zero, RESOURCE_ENUM_FLAGS.RESOURCE_ENUM_LN, 0);
-                return true;
-            }, IntPtr.Zero, RESOURCE_ENUM_FLAGS.RESOURCE_ENUM_LN, 0);
-
-            foreach(var info in resources)
+            foreach(var resource in module.ReadResources())
             {
+                var info = new ResourceInfo(resource);
                 var infoNode = nodeFactory.Create<IFileInfo>(node[info.Type], info);
                 if(infoNode != null)
                 {
@@ -37,50 +21,74 @@ namespace IS4.MultiArchiver.Analyzers
                     node.Set(Properties.HasMediaStream, infoNode);
                 }
             }
-
             return null;
         }
 
         class ResourceInfo : IFileInfo
         {
-            readonly SafeHINSTANCE module;
-            readonly SafeResourceId type;
-            readonly SafeResourceId name;
-            readonly HRSRC res;
+            readonly IModuleResource resource;
+            readonly Lazy<ArraySegment<byte>> data;
 
-            public ResourceInfo(SafeHINSTANCE module, SafeResourceId type, SafeResourceId name, HRSRC res)
+            public ResourceInfo(IModuleResource resource)
             {
-                this.module = module;
-                this.type = type;
-                this.name = name;
-                this.res = res;
+                this.resource = resource;
+                data = new Lazy<ArraySegment<byte>>(() => {
+                    int start = 0;
+                    var typeCode = resource.Type as Win32ResourceType? ?? 0;
+                    if(typeCode == Win32ResourceType.Bitmap)
+                    {
+                        start = 14;
+                    }
+                    var buffer = new byte[start + resource.Length];
+                    int read = resource.Read(buffer, start, resource.Length);
+
+                    var segment = new ArraySegment<byte>(buffer, 0, start + read);
+                    if(typeCode == Win32ResourceType.Bitmap)
+                    {
+                        var header = new Span<byte>(buffer, 0, start);
+                        MemoryMarshal.Cast<byte, short>(header)[0] = 0x4D42;
+                        var fields = MemoryMarshal.Cast<byte, int>(header.Slice(2));
+                        fields[0] = segment.Count;
+
+                        int dataStart = start + BitConverter.ToInt32(buffer, start);
+
+                        int numColors = BitConverter.ToInt32(buffer, start + 32);
+                        if(numColors == 0)
+                        {
+                            var bits = BitConverter.ToInt16(buffer, start + 14);
+                            if(bits < 16)
+                            {
+                                numColors = 1 << bits;
+                            }
+                        }
+
+                        dataStart += numColors * sizeof(int);
+
+                        fields[2] = dataStart;
+                    }
+                    return segment;
+                });
             }
 
-            public long Length => SizeofResource(module, res);
+            public long Length => resource.Length;
 
             public StreamFactoryAccess Access => StreamFactoryAccess.Parallel;
 
-            public object ReferenceKey => module;
+            public object ReferenceKey => resource;
 
-            public object DataKey => res.DangerousGetHandle();
+            public object DataKey => null;
 
             public unsafe Stream Open()
             {
-                var len = Length;
-                var hResData = LoadResource(module, res);
-                var pResData = LockResource(hResData);
-                return new UnmanagedMemoryStream((byte*)pResData, len, len, System.IO.FileAccess.Read);
-            }
-
-            public string Type {
-                get {
-                    return type.IsIntResource ? ((Win32ResourceType)type.id).ToString() : type.ToString();
-                }
+                var seg = data.Value;
+                return new MemoryStream(seg.Array, seg.Offset, seg.Count, false);
             }
 
             public bool IsEncrypted => false;
 
-            public string Name => name.IsIntResource ? name.id.ToString() : name.ToString();
+            public string Name => resource.Name.ToString();
+
+            public string Type => resource.Type.ToString();
 
             public string Path => null;
 

@@ -58,7 +58,6 @@ namespace IS4.MultiArchiver.Extensions
             archiver.Analyzers.Add(ImageMetadataAnalyzer.CreateDefault());
             archiver.Analyzers.Add(new TagLibAnalyzer());
             archiver.Analyzers.Add(new WinModuleAnalyzer());
-            archiver.Analyzers.Add(new Win16ModuleAnalyzer());
 
             return archiver;
         }
