@@ -123,9 +123,25 @@ namespace IS4.MultiArchiver.Analyzers
                 }
             }
 
-            foreach(var result in match.Results.Where(result => result.IsValid))
+            var results = match.Results.Where(result => result.IsValid);
+
+            foreach(var result in results.GroupBy(r => r.Result))
             {
-                result.Result?.Set(Properties.HasFormat, node);
+                if(result.Key != null)
+                {
+                    result.Key.Set(Properties.HasFormat, node);
+
+                    var extension = result.Select(r => r.FormatObject?.Extension).FirstOrDefault(e => e != null);
+                    if(extension != null)
+                    {
+                        var formatLabel = result.Select(r => r.FormatObject?.Label).FirstOrDefault(l => l != null);
+                        if(formatLabel == null)
+                        {
+                            formatLabel = DataTools.SizeSuffix(streamFactory.Length, 2);
+                        }
+                        result.Key.Set(Properties.PrefLabel, $"{extension.ToUpperInvariant()} object ({formatLabel})", "en");
+                    }
+                }
             }
 
 			return node;
@@ -278,6 +294,8 @@ namespace IS4.MultiArchiver.Analyzers
 
             public int MaxReadBytes => format.HeaderLength;
 
+            public IFormatObject FormatObject { get; private set; }
+
             public ILinkedNode Result => task?.Result;
 
             public FormatResult(IStreamFactory streamFactory, IBinaryFileFormat format, ILinkedNode parent, ILinkedNodeFactory nodeFactory)
@@ -301,7 +319,9 @@ namespace IS4.MultiArchiver.Analyzers
 
             ILinkedNode IGenericFunc<ILinkedNode>.Invoke<T>(T value)
             {
-                return nodeFactory.Create<IFormatObject<T, IBinaryFileFormat>>(parent, new FormatObject<T, IBinaryFileFormat>(format, value, streamFactory));
+                var obj = new FormatObject<T, IBinaryFileFormat>(format, value, streamFactory);
+                FormatObject = obj;
+                return nodeFactory.Create<IFormatObject<T, IBinaryFileFormat>>(parent, obj);
             }
 
             private Task<ILinkedNode> StartReading(IStreamFactory streamFactory, Func<Stream, ILinkedNode> reader)
