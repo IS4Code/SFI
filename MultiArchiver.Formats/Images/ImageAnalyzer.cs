@@ -27,7 +27,7 @@ namespace IS4.MultiArchiver.Analyzers
         public override string Analyze(ILinkedNode node, Image image, ILinkedNodeFactory nodeFactory)
         {
             ArraySegment<byte> data;
-            using(var thumbnail = ResizeImage(image, 8, 8, PixelFormat.Format32bppArgb, Color.Transparent))
+            using(var thumbnail = ResizeImage(image, 12, 12, PixelFormat.Format32bppArgb, Color.Transparent))
             {
                 using(var stream = new MemoryStream())
                 {
