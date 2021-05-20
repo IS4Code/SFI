@@ -224,7 +224,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             public override string ToString()
             {
-                return Type + "/" + Name;
+                return $"/{Type}/{Name}";
             }
         }
     }

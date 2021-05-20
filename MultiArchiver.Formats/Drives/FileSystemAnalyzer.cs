@@ -94,7 +94,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             public override string ToString()
             {
-                return Path;
+                return "/" + Path;
             }
         }
 

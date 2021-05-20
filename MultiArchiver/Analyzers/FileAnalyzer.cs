@@ -32,12 +32,11 @@ namespace IS4.MultiArchiver.Analyzers
             if(info.Path != null)
             {
                 LinkDirectories(node, info.Path, false, nodeFactory);
-                node.Set(Properties.PrefLabel, "/" + info.Path);
             }else if(info.Name != null)
             {
                 LinkDirectories(node, info.Name, false, nodeFactory);
-                node.Set(Properties.PrefLabel, info.Name);
             }
+            node.Set(Properties.PrefLabel, info.ToString());
 
             if(info.Name != null)
             {
@@ -133,7 +132,7 @@ namespace IS4.MultiArchiver.Analyzers
 
                 folder.Set(Properties.IsStoredAs, parent);
 
-                folder.Set(Properties.PrefLabel, "/" + directory.Path + "/");
+                folder.Set(Properties.PrefLabel, directory.ToString() + "/");
 
                 LinkDirectories(folder, directory.Path, true, nodeFactory);
 
@@ -225,7 +224,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             public override string ToString()
             {
-                return baseInfo.ToString();
+                return "/" + Path;
             }
         }
 
@@ -261,7 +260,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             public override string ToString()
             {
-                return baseInfo.ToString();
+                return "/" + Path;
             }
         }
     }
