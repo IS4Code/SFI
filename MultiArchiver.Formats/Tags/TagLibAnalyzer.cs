@@ -71,9 +71,9 @@ namespace IS4.MultiArchiver.Analyzers
                         node.Set(Properties.HasMediaStream, codecNode);
                         if(label != null)
                         {
-                            codecNode.Set(Properties.PrefLabel, $"{codec.MediaTypes} ({label})");
+                            codecNode.Set(Properties.PrefLabel, $"{counter}:{codec.MediaTypes} ({label})");
                         }else{
-                            codecNode.Set(Properties.PrefLabel, codec.MediaTypes.ToString());
+                            codecNode.Set(Properties.PrefLabel, $"{counter}:{codec.MediaTypes}");
                         }
                     }
                 }

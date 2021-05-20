@@ -44,7 +44,9 @@ namespace IS4.MultiArchiver.Analyzers
                         node.Set(Properties.HasMediaStream, streamNode);
                         if(label != null)
                         {
-                            streamNode.Set(Properties.PrefLabel, label);
+                            streamNode.Set(Properties.PrefLabel, $"{i}:{stream.Key.Name} ({label})");
+                        }else{
+                            streamNode.Set(Properties.PrefLabel, $"{i}:{stream.Key.Name}");
                         }
                     }
                 }
