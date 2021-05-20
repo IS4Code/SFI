@@ -140,9 +140,9 @@ namespace IS4.MultiArchiver.Analyzers
             {
                 if(bits != null)
                 {
-                    return $"{width}x{height}, {bits}bpp";
+                    return $"{width}×{height}, {bits} bpp";
                 }
-                return $"{width}x{height}";
+                return $"{width}×{height}";
             }
 
             if(rate != null)

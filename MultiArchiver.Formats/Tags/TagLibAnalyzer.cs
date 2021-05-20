@@ -6,7 +6,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using TagLib;
 using Properties = IS4.MultiArchiver.Vocabulary.Properties;
 
@@ -27,6 +26,27 @@ namespace IS4.MultiArchiver.Analyzers
             Set(node, Properties.Duration, properties.Duration);
 
             string result = null;
+
+            if(properties.PhotoWidth != 0 && properties.PhotoHeight != 0)
+            {
+                if(properties.BitsPerSample != 0)
+                {
+                    result = $"{properties.PhotoWidth}×{properties.PhotoHeight}, {properties.BitsPerSample} bpp";
+                }else{
+                    result = $"{properties.PhotoWidth}×{properties.PhotoHeight}";
+                }
+            }else if(properties.VideoWidth != 0 && properties.VideoHeight != 0)
+            {
+                result = $"{properties.VideoWidth}×{properties.VideoHeight}";
+            }else if(properties.AudioSampleRate != 0)
+            {
+                if(properties.AudioChannels != 0)
+                {
+                    result = $"{properties.AudioSampleRate} Hz, {properties.AudioChannels} channels";
+                }else{
+                    result = $"{properties.AudioSampleRate} Hz";
+                }
+            }
 
             if(properties.Codecs.Any())
             {
@@ -157,7 +177,7 @@ namespace IS4.MultiArchiver.Analyzers
 
                 if(video.VideoWidth != 0 && video.VideoHeight != 0)
                 {
-                    result = $"{video.VideoWidth}x{video.VideoHeight}";
+                    result = $"{video.VideoWidth}×{video.VideoHeight}";
                 }
             }
             if(codec is IPhotoCodec photo)
@@ -168,7 +188,7 @@ namespace IS4.MultiArchiver.Analyzers
 
                 if(photo.PhotoWidth != 0 && photo.PhotoHeight != 0)
                 {
-                    result = $"{photo.PhotoWidth}x{photo.PhotoHeight}";
+                    result = $"{photo.PhotoWidth}×{photo.PhotoHeight}";
                 }
             }
             return result;
