@@ -131,10 +131,10 @@ namespace IS4.MultiArchiver.Analyzers
                 {
                     result.Key.Set(Properties.HasFormat, node);
 
-                    var extension = result.Select(r => r.FormatObject?.Extension).FirstOrDefault(e => e != null);
+                    var extension = result.Select(r => r.Extension).FirstOrDefault(e => e != null);
                     if(extension != null)
                     {
-                        var formatLabel = result.Select(r => r.FormatObject?.Label).FirstOrDefault(l => l != null);
+                        var formatLabel = result.Select(r => r.Label).FirstOrDefault(l => l != null);
                         if(formatLabel == null)
                         {
                             formatLabel = DataTools.SizeSuffix(streamFactory.Length, 2);
@@ -294,7 +294,8 @@ namespace IS4.MultiArchiver.Analyzers
 
             public int MaxReadBytes => format.HeaderLength;
 
-            public IFormatObject FormatObject { get; private set; }
+            public string Extension { get; private set; }
+            public string Label { get; private set; }
 
             public ILinkedNode Result => task?.Result;
 
@@ -320,8 +321,10 @@ namespace IS4.MultiArchiver.Analyzers
             ILinkedNode IGenericFunc<ILinkedNode>.Invoke<T>(T value)
             {
                 var obj = new FormatObject<T, IBinaryFileFormat>(format, value, streamFactory);
-                FormatObject = obj;
-                return nodeFactory.Create<IFormatObject<T, IBinaryFileFormat>>(parent, obj);
+                var node = nodeFactory.Create<IFormatObject<T, IBinaryFileFormat>>(parent, obj);
+                Extension = obj.Extension;
+                Label = obj.Label;
+                return node;
             }
 
             private Task<ILinkedNode> StartReading(IStreamFactory streamFactory, Func<Stream, ILinkedNode> reader)
