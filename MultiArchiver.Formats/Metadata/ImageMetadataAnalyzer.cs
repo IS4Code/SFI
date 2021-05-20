@@ -33,14 +33,18 @@ namespace IS4.MultiArchiver.Analyzers
             {
                 if(streams.Count == 1)
                 {
-                    Analyze(node, -1, streams[0].Key, streams[0].Value, entity, nodeFactory);
+                    return result ?? Analyze(node, streams[0].Key, streams[0].Value, entity, nodeFactory);
                 }else{
                     for(int i = 0; i < streams.Count; i++)
                     {
-                        var streamNode = Analyze(node, i, streams[0].Key, streams[0].Value, entity, nodeFactory);
-                        if(streamNode != null)
+                        var stream = streams[i];
+                        var streamNode = node[i.ToString()];
+                        var label = Analyze(streamNode, stream.Key, stream.Value, entity, nodeFactory);
+                        streamNode.SetClass(Classes.MediaStream);
+                        node.Set(Properties.HasMediaStream, streamNode);
+                        if(label != null)
                         {
-                            node.Set(Properties.HasMediaStream, streamNode);
+                            streamNode.Set(Properties.PrefLabel, label);
                         }
                     }
                 }
@@ -55,21 +59,33 @@ namespace IS4.MultiArchiver.Analyzers
                 .Where(p => p.Value.Values.Any(v => v != null));
         }
 
-        ILinkedNode Analyze(ILinkedNode parent, int index, Directory dir, IReadOnlyDictionary<string, object> tags, IReadOnlyList<Directory> entity, ILinkedNodeFactory nodeFactory)
+        string Analyze(ILinkedNode node, Directory dir, IReadOnlyDictionary<string, object> tags, IReadOnlyList<Directory> entity, ILinkedNodeFactory nodeFactory)
         {
-            var node = index >= 0 ? parent[index.ToString()] : parent;
-
-            if(tags.TryGetValue("Width", out var width) || tags.TryGetValue("Image Width", out width))
+            int? width = null, height = null, bits = null;
+            if(tags.TryGetValue("Width", out var widthObj) || tags.TryGetValue("Image Width", out widthObj))
             {
-                node.Set(Properties.Width, Convert.ToInt32(width));
+                width = Convert.ToInt32(widthObj);
+            }
+            if(tags.TryGetValue("Height", out var heightObj) || tags.TryGetValue("Image Height", out heightObj))
+            {
+                height = Convert.ToInt32(heightObj);
+            }
+            if(tags.TryGetValue("Bits Per Sample", out var bitsObj))
+            {
+                bits = Convert.ToInt32(bitsObj);
             }
 
-            if(tags.TryGetValue("Height", out var height) || tags.TryGetValue("Image Height", out height))
+            if(width != null)
             {
-                node.Set(Properties.Height, Convert.ToInt32(height));
+                node.Set(Properties.Width, width.GetValueOrDefault());
             }
 
-            if(tags.TryGetValue("Bits Per Sample", out var bits))
+            if(height != null)
+            {
+                node.Set(Properties.Height, height.GetValueOrDefault());
+            }
+
+            if(bits != null)
             {
                 Properties prop;
                 switch(entity.OfType<FileTypeDirectory>().FirstOrDefault()?.GetString(FileTypeDirectory.TagDetectedFileMimeType)?.Substring(0, 6).ToLowerInvariant())
@@ -84,28 +100,60 @@ namespace IS4.MultiArchiver.Analyzers
                         prop = Properties.BitDepth;
                         break;
                 }
-                node.Set(prop, Convert.ToInt32(bits));
+                node.Set(prop, bits.GetValueOrDefault());
             }
 
-            if(tags.TryGetValue("Channels", out var channels))
+            int? channels = null, rate = null;
+            TimeSpan? duration = null;
+            if(tags.TryGetValue("Channels", out var channelsObj))
             {
-                node.Set(Properties.Channels, Convert.ToInt32(channels));
+                channels = Convert.ToInt32(channelsObj);
             }
-
-            if(tags.TryGetValue("Sampling Rate", out var rate))
+            if(tags.TryGetValue("Sampling Rate", out var rateObj))
             {
-                node.Set(Properties.SampleRate, Convert.ToInt32(rate), Datatypes.Hertz);
+                rate = Convert.ToInt32(rateObj);
             }
-
-            if(tags.TryGetValue("Duration", out var duration))
+            if(tags.TryGetValue("Duration", out var durationObj))
             {
-                if(TimeSpan.TryParse(duration.ToString(), CultureInfo.InvariantCulture, out var value))
+                if(TimeSpan.TryParse(durationObj.ToString(), CultureInfo.InvariantCulture, out var value))
                 {
-                    node.Set(Properties.Duration, value);
+                    duration = value;
                 }
             }
 
-            return node;
+            if(channels != null)
+            {
+                node.Set(Properties.Channels, channels.GetValueOrDefault());
+            }
+
+            if(rate != null)
+            {
+                node.Set(Properties.SampleRate, rate.GetValueOrDefault(), Datatypes.Hertz);
+            }
+
+            if(duration != null)
+            {
+                node.Set(Properties.Duration, duration.GetValueOrDefault());
+            }
+
+            if(width != null && height != null)
+            {
+                if(bits != null)
+                {
+                    return $"{width}x{height}, {bits}bpp";
+                }
+                return $"{width}x{height}";
+            }
+
+            if(rate != null)
+            {
+                if(channels != null)
+                {
+                    return $"{rate} Hz, {channels} channels";
+                }
+                return $"{rate} Hz";
+            }
+            return null;
         }
 
         public static ImageMetadataAnalyzer CreateDefault()

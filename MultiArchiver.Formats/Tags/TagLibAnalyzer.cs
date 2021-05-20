@@ -12,10 +12,8 @@ using Properties = IS4.MultiArchiver.Vocabulary.Properties;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class TagLibAnalyzer : BinaryFormatAnalyzer<File>, IEntityAnalyzer<ICodec>, IPropertyUriFormatter<string>
+    public class TagLibAnalyzer : BinaryFormatAnalyzer<File>, IPropertyUriFormatter<string>
     {
-        static readonly ConditionalWeakTable<ICodec, string> codecPosition = new ConditionalWeakTable<ICodec, string>();
-
         public override string Analyze(ILinkedNode node, File file, ILinkedNodeFactory nodeFactory)
         {
             var properties = file.Properties;
@@ -28,13 +26,14 @@ namespace IS4.MultiArchiver.Analyzers
             Set(node, Properties.Channels, properties.AudioChannels);
             Set(node, Properties.Duration, properties.Duration);
 
+            string result = null;
+
             if(properties.Codecs.Any())
             {
                 if(!properties.Codecs.Skip(1).Any())
                 {
                     var codec = properties.Codecs.First();
-                    codecPosition.Add(codec, null);
-                    nodeFactory.Create(node, codec);
+                    result = result ?? Analyze(node, codec, nodeFactory);
                 }else{
                     var codecCounters = new Dictionary<MediaTypes, int>();
 
@@ -45,12 +44,16 @@ namespace IS4.MultiArchiver.Analyzers
                             counter = 0;
                         }
                         codecCounters[codec.MediaTypes] = counter + 1;
-                        codecPosition.Add(codec, codec.MediaTypes.ToString() + "/" + counter);
 
-                        var codecNode = nodeFactory.Create(node, codec);
-                        if(codecNode != null)
+                        var codecNode = node[codec.MediaTypes.ToString() + "/" + counter];
+                        var label = Analyze(codecNode, codec, nodeFactory);
+                        codecNode.SetClass(Classes.MediaStream);
+                        node.Set(Properties.HasMediaStream, codecNode);
+                        if(label != null)
                         {
-                            node.Set(Properties.HasMediaStream, codecNode);
+                            codecNode.Set(Properties.PrefLabel, $"{codec.MediaTypes} ({label})");
+                        }else{
+                            codecNode.Set(Properties.PrefLabel, codec.MediaTypes.ToString());
                         }
                     }
                 }
@@ -120,44 +123,55 @@ namespace IS4.MultiArchiver.Analyzers
             return new Uri($"http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#{name}", UriKind.Absolute);
         }
 
-        public ILinkedNode Analyze(ILinkedNode parent, ICodec codec, ILinkedNodeFactory nodeFactory)
+        string Analyze(ILinkedNode node, ICodec codec, ILinkedNodeFactory nodeFactory)
         {
-            if(!codecPosition.TryGetValue(codec, out var pos)) return null;
-            var node = pos == null ? parent : parent[pos];
-            if(node != null)
+            string result = null;
+            Set(node, Properties.Duration, codec.Duration);
+            if(codec is ILosslessAudioCodec losslessAudio)
             {
-                if(pos != null)
+                node.SetClass(Classes.Audio);
+                Set(node, Properties.BitsPerSample, losslessAudio.BitsPerSample);
+                node.Set(Properties.CompressionType, Individuals.LosslessCompressionType);
+            }
+            if(codec is IAudioCodec audio)
+            {
+                node.SetClass(Classes.Audio);
+                Set(node, Properties.AverageBitrate, audio.AudioBitrate, Datatypes.KilobitPerSecond);
+                Set(node, Properties.Channels, audio.AudioChannels);
+                Set(node, Properties.SampleRate, audio.AudioSampleRate, Datatypes.Hertz);
+                if(audio.AudioSampleRate != 0)
                 {
-                    node.SetClass(Classes.MediaStream);
-                }
-                Set(node, Properties.Duration, codec.Duration);
-                if(codec is ILosslessAudioCodec losslessAudio)
-                {
-                    node.SetClass(Classes.Audio);
-                    Set(node, Properties.BitsPerSample, losslessAudio.BitsPerSample);
-                    node.Set(Properties.CompressionType, Individuals.LosslessCompressionType);
-                }
-                if(codec is IAudioCodec audio)
-                {
-                    node.SetClass(Classes.Audio);
-                    Set(node, Properties.AverageBitrate, audio.AudioBitrate, Datatypes.KilobitPerSecond);
-                    Set(node, Properties.Channels, audio.AudioChannels);
-                    Set(node, Properties.SampleRate, audio.AudioSampleRate, Datatypes.Hertz);
-                }
-                if(codec is IVideoCodec video)
-                {
-                    node.SetClass(Classes.Video);
-                    Set(node, Properties.Width, video.VideoWidth);
-                    Set(node, Properties.Height, video.VideoHeight);
-                }
-                if(codec is IPhotoCodec photo)
-                {
-                    node.SetClass(Classes.Image);
-                    Set(node, Properties.Width, photo.PhotoWidth);
-                    Set(node, Properties.Height, photo.PhotoHeight);
+                    if(audio.AudioChannels != 0)
+                    {
+                        result = $"{audio.AudioSampleRate} Hz, {audio.AudioChannels} channels";
+                    }else{
+                        result = $"{audio.AudioSampleRate} Hz";
+                    }
                 }
             }
-            return node;
+            if(codec is IVideoCodec video)
+            {
+                node.SetClass(Classes.Video);
+                Set(node, Properties.Width, video.VideoWidth);
+                Set(node, Properties.Height, video.VideoHeight);
+
+                if(video.VideoWidth != 0 && video.VideoHeight != 0)
+                {
+                    result = $"{video.VideoWidth}x{video.VideoHeight}";
+                }
+            }
+            if(codec is IPhotoCodec photo)
+            {
+                node.SetClass(Classes.Image);
+                Set(node, Properties.Width, photo.PhotoWidth);
+                Set(node, Properties.Height, photo.PhotoHeight);
+
+                if(photo.PhotoWidth != 0 && photo.PhotoHeight != 0)
+                {
+                    result = $"{photo.PhotoWidth}x{photo.PhotoHeight}";
+                }
+            }
+            return result;
         }
 
         private void Set<T>(ILinkedNode node, Properties prop, T valueOrDefault) where T : struct, IEquatable<T>, IFormattable
