@@ -48,6 +48,7 @@ namespace IS4.MultiArchiver.Extensions
             archiver.DataAnalyzer.Formats.Add(new GZipFormat());
             archiver.DataAnalyzer.Formats.Add(new TarFormat());
             archiver.DataAnalyzer.Formats.Add(new ImageMetadataFormat());
+            archiver.DataAnalyzer.Formats.Add(new ImageFormat());
             archiver.DataAnalyzer.Formats.Add(new TagLibFormat());
             archiver.DataAnalyzer.Formats.Add(new IsoFormat());
             archiver.DataAnalyzer.Formats.Add(new WinModuleFormat());
@@ -56,6 +57,7 @@ namespace IS4.MultiArchiver.Extensions
             archiver.Analyzers.Add(new ArchiveReaderAnalyzer());
             archiver.Analyzers.Add(new FileSystemAnalyzer());
             archiver.Analyzers.Add(ImageMetadataAnalyzer.CreateDefault());
+            archiver.Analyzers.Add(new ImageAnalyzer());
             archiver.Analyzers.Add(new TagLibAnalyzer());
             archiver.Analyzers.Add(new WinModuleAnalyzer());
 

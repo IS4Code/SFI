@@ -63,6 +63,8 @@
         EncodingFormat,
         [Uri(Vocabularies.Schema)]
         Version,
+        [Uri(Vocabularies.Schema)]
+        Thumbnail,
 
         [Uri(Vocabularies.Nie)]
         IsStoredAs,

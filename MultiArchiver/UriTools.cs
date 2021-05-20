@@ -5,7 +5,7 @@ using System.Web;
 
 namespace IS4.MultiArchiver
 {
-    internal static class UriTools
+    public static class UriTools
     {
         const string publicid = "publicid:";
 
@@ -18,6 +18,16 @@ namespace IS4.MultiArchiver
             public Uri FormatUri(string value)
             {
                 return CreatePublicId(value);
+            }
+        }
+
+        public static readonly IIndividualUriFormatter<(string mediaType, ArraySegment<byte> data)> DataUriFormatter = new DataUriFormatterClass();
+
+        class DataUriFormatterClass : IIndividualUriFormatter<(string mediaType, ArraySegment<byte> data)>
+        {
+            public Uri FormatUri((string mediaType, ArraySegment<byte> data) value)
+            {
+                return new Uri($"data:{value.mediaType};base64,{Convert.ToBase64String(value.data.Array, value.data.Offset, value.data.Count)}", UriKind.Absolute);
             }
         }
 
