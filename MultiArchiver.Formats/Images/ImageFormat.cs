@@ -16,7 +16,12 @@ namespace IS4.MultiArchiver.Formats
 
         public override string GetExtension(Image image)
         {
-            return GetCodec(image.RawFormat)?.FilenameExtension;
+            var extension = GetCodec(image.RawFormat)?.FilenameExtension;
+            if(extension == null) return null;
+            int next = extension.IndexOf(';');
+            if(next != -1) extension = extension.Substring(2, next - 2);
+            else extension = extension.Substring(2);
+            return extension.ToLowerInvariant();
         }
 
         public override string GetMediaType(Image image)
