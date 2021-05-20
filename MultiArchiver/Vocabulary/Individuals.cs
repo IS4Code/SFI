@@ -34,6 +34,8 @@
         BSHA1_512,
         [Uri(Vocabularies.At, "bsha1-1024")]
         BSHA1_1024,
+        [Uri(Vocabularies.At, "dhash")]
+        DHash,
         [Uri(Vocabularies.Nfo)]
         LosslessCompressionType,
         [Uri(Vocabularies.Nfo)]
