@@ -58,7 +58,10 @@ namespace IS4.MultiArchiver.Formats
                         try{
                             var tagFile = (TagLib.File)Activator.CreateInstance(fileType, file, ReadStyle.Average);
 
-                            return resultFactory(tagFile);
+                            if(tagFile.Properties != null || (tagFile.Tag != null && tagFile.TagTypes != TagTypes.None))
+                            {
+                                return resultFactory(tagFile);
+                            }
                         }catch(System.Reflection.TargetInvocationException e)
                         {
                             System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(e.InnerException).Throw();

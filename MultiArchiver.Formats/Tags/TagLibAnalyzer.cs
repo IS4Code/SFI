@@ -87,29 +87,32 @@ namespace IS4.MultiArchiver.Analyzers
                 node.SetClass(Classes.ID3Audio);
             }
 
-            foreach(var prop in file.Tag.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance))
+            if(file.Tag != null)
             {
-                if(!propertyNames.TryGetValue(prop.Name, out var name)) continue;
-                var value = prop.GetValue(file.Tag);
-                if(value is ICollection collection)
+                foreach(var prop in file.Tag.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance))
                 {
-                    foreach(var elem in collection)
+                    if(!propertyNames.TryGetValue(prop.Name, out var name)) continue;
+                    var value = prop.GetValue(file.Tag);
+                    if(value is ICollection collection)
                     {
-                        try{
-                            node.Set(this, name, (dynamic)elem);
-                        }catch(RuntimeBinderException)
+                        foreach(var elem in collection)
                         {
+                            try{
+                                node.Set(this, name, (dynamic)elem);
+                            }catch(RuntimeBinderException)
+                            {
 
+                            }
                         }
+                        continue;
                     }
-                    continue;
-                }
-                if(value == null || "".Equals(value) || Double.NaN.Equals(value) || 0.Equals(value) || 0u.Equals(value) || false.Equals(value)) continue;
-                try{
-                    node.Set(this, name, (dynamic)value);
-                }catch(RuntimeBinderException)
-                {
+                    if(value == null || "".Equals(value) || Double.NaN.Equals(value) || 0.Equals(value) || 0u.Equals(value) || false.Equals(value)) continue;
+                    try{
+                        node.Set(this, name, (dynamic)value);
+                    }catch(RuntimeBinderException)
+                    {
 
+                    }
                 }
             }
 
