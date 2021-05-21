@@ -184,6 +184,8 @@ namespace IS4.MultiArchiver.Analyzers
                 var replaced = badCharacters.Replace(ns.OriginalString, m => {
                     switch(m.Value)
                     {
+                        case "[":
+                        case "]": return "";
                         case "%": return "&";
                         case ":":
                         case "/":
