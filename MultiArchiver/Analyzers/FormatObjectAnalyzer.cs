@@ -29,13 +29,18 @@ namespace IS4.MultiArchiver.Analyzers
             return Analyze(node, entity, nodeFactory);
         }
 
+        public virtual string Analyze(ILinkedNode parent, ILinkedNode node, T entity, object source, ILinkedNodeFactory nodeFactory)
+        {
+            return Analyze(node, entity, source, nodeFactory);
+        }
+
         public virtual ILinkedNode Analyze(ILinkedNode parent, IFormatObject<T, TFormat> format, ILinkedNodeFactory nodeFactory)
         {
             var node = parent[format];
 
             if(node != null)
             {
-                format.Label = Analyze(node, format.Value, format.Source, nodeFactory);
+                format.Label = Analyze(parent, node, format.Value, format.Source, nodeFactory);
                 node.SetClass(Classes.MediaObject);
                 foreach(var cls in recognizedClasses)
                 {

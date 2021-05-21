@@ -20,7 +20,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override string Analyze(ILinkedNode node, XmlReader reader, object source, ILinkedNodeFactory nodeFactory)
+        public override string Analyze(ILinkedNode parent, ILinkedNode node, XmlReader reader, object source, ILinkedNodeFactory nodeFactory)
         {
             XDocumentType docType = null;
             do
@@ -82,7 +82,7 @@ namespace IS4.MultiArchiver.Analyzers
                         node.Set(Properties.DocumentElement, elem);
                         foreach(var format in XmlFormats.Concat(new[] { ImprovisedXmlFormat.Instance }))
                         {
-                            var resultFactory = new ResultFactory(node, source, format, nodeFactory);
+                            var resultFactory = new ResultFactory(parent, source, format, nodeFactory);
                             var result = format.Match(reader, null, docType, resultFactory);
                             if(result != null)
                             {
