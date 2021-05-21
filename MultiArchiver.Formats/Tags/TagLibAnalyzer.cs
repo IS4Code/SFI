@@ -16,64 +16,67 @@ namespace IS4.MultiArchiver.Analyzers
         public override string Analyze(ILinkedNode node, File file, ILinkedNodeFactory nodeFactory)
         {
             var properties = file.Properties;
-            Set(node, Properties.Width, properties.PhotoWidth);
-            Set(node, Properties.Height, properties.PhotoHeight);
-            Set(node, Properties.Width, properties.VideoWidth);
-            Set(node, Properties.Height, properties.VideoHeight);
-            Set(node, Properties.BitsPerSample, properties.BitsPerSample);
-            Set(node, Properties.SampleRate, properties.AudioSampleRate, Datatypes.Hertz);
-            Set(node, Properties.Channels, properties.AudioChannels);
-            Set(node, Properties.Duration, properties.Duration);
-
-            string result = null;
-
-            if(properties.PhotoWidth != 0 && properties.PhotoHeight != 0)
+            if(properties != null)
             {
-                if(properties.BitsPerSample != 0)
+                Set(node, Properties.Width, properties.PhotoWidth);
+                Set(node, Properties.Height, properties.PhotoHeight);
+                Set(node, Properties.Width, properties.VideoWidth);
+                Set(node, Properties.Height, properties.VideoHeight);
+                Set(node, Properties.BitsPerSample, properties.BitsPerSample);
+                Set(node, Properties.SampleRate, properties.AudioSampleRate, Datatypes.Hertz);
+                Set(node, Properties.Channels, properties.AudioChannels);
+                Set(node, Properties.Duration, properties.Duration);
+
+                string result = null;
+
+                if(properties.PhotoWidth != 0 && properties.PhotoHeight != 0)
                 {
-                    result = $"{properties.PhotoWidth}×{properties.PhotoHeight}, {properties.BitsPerSample} bpp";
-                }else{
-                    result = $"{properties.PhotoWidth}×{properties.PhotoHeight}";
-                }
-            }else if(properties.VideoWidth != 0 && properties.VideoHeight != 0)
-            {
-                result = $"{properties.VideoWidth}×{properties.VideoHeight}";
-            }else if(properties.AudioSampleRate != 0)
-            {
-                if(properties.AudioChannels != 0)
-                {
-                    result = $"{properties.AudioSampleRate} Hz, {properties.AudioChannels} channels";
-                }else{
-                    result = $"{properties.AudioSampleRate} Hz";
-                }
-            }
-
-            if(properties.Codecs.Any())
-            {
-                if(!properties.Codecs.Skip(1).Any())
-                {
-                    var codec = properties.Codecs.First();
-                    result = result ?? Analyze(node, codec, nodeFactory);
-                }else{
-                    var codecCounters = new Dictionary<MediaTypes, int>();
-
-                    foreach(var codec in properties.Codecs)
+                    if(properties.BitsPerSample != 0)
                     {
-                        if(!codecCounters.TryGetValue(codec.MediaTypes, out int counter))
-                        {
-                            counter = 0;
-                        }
-                        codecCounters[codec.MediaTypes] = counter + 1;
+                        result = $"{properties.PhotoWidth}×{properties.PhotoHeight}, {properties.BitsPerSample} bpp";
+                    }else{
+                        result = $"{properties.PhotoWidth}×{properties.PhotoHeight}";
+                    }
+                }else if(properties.VideoWidth != 0 && properties.VideoHeight != 0)
+                {
+                    result = $"{properties.VideoWidth}×{properties.VideoHeight}";
+                }else if(properties.AudioSampleRate != 0)
+                {
+                    if(properties.AudioChannels != 0)
+                    {
+                        result = $"{properties.AudioSampleRate} Hz, {properties.AudioChannels} channels";
+                    }else{
+                        result = $"{properties.AudioSampleRate} Hz";
+                    }
+                }
 
-                        var codecNode = node[codec.MediaTypes.ToString() + "/" + counter];
-                        var label = Analyze(codecNode, codec, nodeFactory);
-                        codecNode.SetClass(Classes.MediaStream);
-                        node.Set(Properties.HasMediaStream, codecNode);
-                        if(label != null)
+                if(properties.Codecs.Any())
+                {
+                    if(!properties.Codecs.Skip(1).Any())
+                    {
+                        var codec = properties.Codecs.First();
+                        result = result ?? Analyze(node, codec, nodeFactory);
+                    }else{
+                        var codecCounters = new Dictionary<MediaTypes, int>();
+
+                        foreach(var codec in properties.Codecs)
                         {
-                            codecNode.Set(Properties.PrefLabel, $"{counter}:{codec.MediaTypes} ({label})");
-                        }else{
-                            codecNode.Set(Properties.PrefLabel, $"{counter}:{codec.MediaTypes}");
+                            if(!codecCounters.TryGetValue(codec.MediaTypes, out int counter))
+                            {
+                                counter = 0;
+                            }
+                            codecCounters[codec.MediaTypes] = counter + 1;
+
+                            var codecNode = node[codec.MediaTypes.ToString() + "/" + counter];
+                            var label = Analyze(codecNode, codec, nodeFactory);
+                            codecNode.SetClass(Classes.MediaStream);
+                            node.Set(Properties.HasMediaStream, codecNode);
+                            if(label != null)
+                            {
+                                codecNode.Set(Properties.PrefLabel, $"{counter}:{codec.MediaTypes} ({label})");
+                            }else{
+                                codecNode.Set(Properties.PrefLabel, $"{counter}:{codec.MediaTypes}");
+                            }
                         }
                     }
                 }
