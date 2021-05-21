@@ -104,7 +104,7 @@ namespace IS4.MultiArchiver.Analyzers
                     }
                     continue;
                 }
-                if(value == null || Double.NaN.Equals(value) || 0.Equals(value) || 0u.Equals(value) || false.Equals(value)) continue;
+                if(value == null || "".Equals(value) || Double.NaN.Equals(value) || 0.Equals(value) || 0u.Equals(value) || false.Equals(value)) continue;
                 try{
                     node.Set(this, name, (dynamic)value);
                 }catch(RuntimeBinderException)
