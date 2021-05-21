@@ -1,4 +1,5 @@
-﻿using IS4.MultiArchiver.Vocabulary;
+﻿using IS4.MultiArchiver.Tools;
+using IS4.MultiArchiver.Vocabulary;
 using System;
 using System.IO;
 using System.Linq;
@@ -81,7 +82,16 @@ namespace IS4.MultiArchiver.Services
         {
             if(hash == null) return;
             bool tooLong = hash.Length >= 1984;
-            var hashNode = tooLong ? nodeFactory.NewGuidNode() : nodeFactory.Create(algorithm, hash);
+            ILinkedNode hashNode;
+            if(tooLong)
+            {
+                var hashHash = BuiltInHash.SHA256.ComputeHash(hash);
+                var sb = new StringBuilder();
+                Base32(hashHash, sb);
+                hashNode = nodeFactory.Create(Vocabularies.Ao, algorithm.Name + "-hashed/" + sb);
+            }else{
+                hashNode = nodeFactory.Create(algorithm, hash);
+            }
 
             hashNode.SetClass(Classes.Digest);
 
@@ -90,7 +100,7 @@ namespace IS4.MultiArchiver.Services
 
             if(tooLong)
             {
-                hashNode.Set(Properties.Label, algorithm.FormatUri(Array.Empty<byte>()).AbsoluteUri + "\u2026 (URI too long)", "en");
+                hashNode.Set(Properties.AtPrefLabel, algorithm.FormatUri(Array.Empty<byte>()).AbsoluteUri + "\u2026 (URI too long)", "en");
             }
 
             node.Set(Properties.Digest, hashNode);
