@@ -87,6 +87,16 @@ namespace IS4.MultiArchiver.Analyzers
                             if(result != null)
                             {
                                 result.Set(Properties.HasFormat, node);
+
+                                if(resultFactory.Extension is string extension)
+                                {
+                                    if(resultFactory.Label is string formatLabel)
+                                    {
+                                        result.Set(Properties.PrefLabel, $"{extension.ToUpperInvariant()} object ({formatLabel})", "en");
+                                    }else{
+                                        result.Set(Properties.PrefLabel, $"{extension.ToUpperInvariant()} object", "en");
+                                    }
+                                }
                                 return null;
                             }
                         }
@@ -103,6 +113,9 @@ namespace IS4.MultiArchiver.Analyzers
             readonly ILinkedNodeFactory nodeFactory;
             readonly object source;
 
+            public string Extension { get; private set; }
+            public string Label { get; private set; }
+
             public ResultFactory(ILinkedNode parent, object source, IXmlDocumentFormat format, ILinkedNodeFactory nodeFactory)
             {
                 this.parent = parent;
@@ -113,7 +126,11 @@ namespace IS4.MultiArchiver.Analyzers
 
             ILinkedNode IGenericFunc<ILinkedNode>.Invoke<T>(T value)
             {
-                return nodeFactory.Create(parent, new FormatObject<T, IXmlDocumentFormat>(format, value, source));
+                var obj = new FormatObject<T, IXmlDocumentFormat>(format, value, source);
+                var result = nodeFactory.Create(parent, obj);
+                Extension = obj.Extension;
+                Label = obj.Label;
+                return result;
             }
         }
 
