@@ -175,6 +175,10 @@ namespace IS4.MultiArchiver.Analyzers
                     var host = ns.IdnHost;
                     var builder = new UriBuilder(ns);
                     builder.Host = String.Join(".", host.Split('.').Reverse());
+                    if(!ns.Authority.EndsWith($":{builder.Port}", StringComparison.Ordinal))
+                    {
+                        builder.Port = -1;
+                    }
                     ns = builder.Uri;
                 }
                 var replaced = badCharacters.Replace(ns.OriginalString, m => {
