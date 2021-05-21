@@ -16,6 +16,7 @@ namespace IS4.MultiArchiver.Formats
 
         static IEnumerable<SupportedMimeType> GetMimeTypes(TagLib.File file)
         {
+            if(file is TagLib.Image.NoMetadata.File) return Array.Empty<SupportedMimeType>();
             return file.GetType().GetCustomAttributes(typeof(SupportedMimeType), true).OfType<SupportedMimeType>();
         }
 
