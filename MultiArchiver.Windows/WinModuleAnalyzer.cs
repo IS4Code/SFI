@@ -217,7 +217,9 @@ namespace IS4.MultiArchiver.Analyzers
 
             public bool IsEncrypted => false;
 
-            public string Name => resource.Name.ToString() + (ordinal != null ? $":{ordinal}" : "");
+            public string Name => resource.Name.ToString();
+
+            public string SubName => ordinal?.ToString();
 
             public string Type => resource.Type.ToString();
 

@@ -20,6 +20,10 @@ namespace IS4.MultiArchiver.Analyzers
         private ILinkedNode CreateNode(ILinkedNode parent, IFileNodeInfo info, ILinkedNodeFactory nodeFactory)
         {
             var name = Uri.EscapeDataString(info.Name ?? "");
+            if(info.SubName is string subName)
+            {
+                name += ":" + Uri.EscapeDataString(subName);
+            }
             return parent?[name] ?? nodeFactory.NewGuidNode();
         }
 
@@ -197,6 +201,8 @@ namespace IS4.MultiArchiver.Analyzers
 
             public string Name => baseInfo.Name;
 
+            public string SubName => null;
+
             public string Path => baseInfo.FullName.Substring(System.IO.Path.GetPathRoot(baseInfo.FullName).Length).Replace(System.IO.Path.DirectorySeparatorChar, '/');
 
             public long Length => baseInfo.Length;
@@ -238,6 +244,8 @@ namespace IS4.MultiArchiver.Analyzers
             }
 
             public string Name => baseInfo.Name;
+
+            public string SubName => null;
 
             public string Path => baseInfo.FullName.Substring(System.IO.Path.GetPathRoot(baseInfo.FullName).Length);
 

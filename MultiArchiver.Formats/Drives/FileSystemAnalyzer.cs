@@ -68,6 +68,8 @@ namespace IS4.MultiArchiver.Analyzers
 
             public string Name => revisionRegex.Replace(info.Name, "");
 
+            public string SubName => Revision?.ToString();
+
             public virtual string Path => revisionRegex.Replace(info.FullName, "").Replace(System.IO.Path.DirectorySeparatorChar, '/');
 
             public DateTime? CreationTime => info.CreationTimeUtc;

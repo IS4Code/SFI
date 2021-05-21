@@ -6,6 +6,7 @@ namespace IS4.MultiArchiver.Services
     public interface IFileNodeInfo : IPersistentKey
     {
         string Name { get; }
+        string SubName { get; }
         string Path { get; }
         int? Revision { get; }
         DateTime? CreationTime { get; }

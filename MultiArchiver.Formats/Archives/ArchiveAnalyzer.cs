@@ -79,6 +79,8 @@ namespace IS4.MultiArchiver.Analyzers
 
             public virtual string Name => Entry != null ? System.IO.Path.GetFileName(Path) : null;
 
+            public string SubName => null;
+
             public virtual string Path => ExtractPathSimple(Entry);
 
             public DateTime? CreationTime => Entry?.CreatedTime;
