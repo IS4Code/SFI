@@ -7,6 +7,7 @@ using MetadataExtractor.Formats.FileType;
 using Microsoft.CSharp.RuntimeBinder;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 
@@ -86,6 +87,26 @@ namespace IS4.MultiArchiver.Analyzers
                     result = (T)Convert.ChangeType(obj, typeof(T), CultureInfo.InvariantCulture);
                     return true;
                 }catch(FormatException)
+                {
+
+                }catch(InvalidCastException)
+                {
+
+                }
+                try{
+                    var converter = TypeDescriptor.GetConverter(typeof(T));
+                    if(converter.CanConvertFrom(obj.GetType()))
+                    {
+                        result = (T)converter.ConvertFrom(null, CultureInfo.InvariantCulture, obj);
+                        return true;
+                    }
+                }catch(FormatException)
+                {
+
+                }catch(NotSupportedException)
+                {
+
+                }catch(InvalidCastException)
                 {
 
                 }
