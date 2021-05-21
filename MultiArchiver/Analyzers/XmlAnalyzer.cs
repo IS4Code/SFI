@@ -189,6 +189,8 @@ namespace IS4.MultiArchiver.Analyzers
                         case "/":
                         case "?":
                         case ";":
+                        case "&":
+                        case "=":
                         case "//":
                         case "://": return ".";
                         default: return String.Join("", Encoding.UTF8.GetBytes(m.Value).Select(b => $"&{b:X2}"));
