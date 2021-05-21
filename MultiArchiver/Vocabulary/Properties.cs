@@ -65,6 +65,8 @@
         Version,
         [Uri(Vocabularies.Schema)]
         Thumbnail,
+        [Uri(Vocabularies.Schema)]
+        Image,
 
         [Uri(Vocabularies.Nie)]
         IsStoredAs,

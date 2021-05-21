@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public abstract class FormatObjectAnalyzer<T, TFormat> : IEntityAnalyzer<IFormatObject<T, TFormat>> where T : class where TFormat : class, IFileFormat
+    public abstract class FormatObjectAnalyzer<T, TFormat> : IEntityAnalyzer<IFormatObject<T, TFormat>>, IEntityAnalyzer<ILinkedObject<T>> where T : class where TFormat : class, IFileFormat
     {
         readonly IEnumerable<Classes> recognizedClasses;
 
@@ -67,6 +67,12 @@ namespace IS4.MultiArchiver.Analyzers
             }
 
             return node;
+        }
+
+        ILinkedNode IEntityAnalyzer<ILinkedObject<T>>.Analyze(ILinkedNode parent, ILinkedObject<T> entity, ILinkedNodeFactory nodeFactory)
+        {
+            entity.Label = Analyze(parent, entity.Node, entity.Value, entity.Source, nodeFactory);
+            return entity.Node;
         }
     }
 }
