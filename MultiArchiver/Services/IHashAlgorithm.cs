@@ -88,7 +88,7 @@ namespace IS4.MultiArchiver.Services
                 var hashHash = BuiltInHash.SHA256.ComputeHash(hash);
                 var sb = new StringBuilder();
                 Base32(hashHash, sb);
-                hashNode = nodeFactory.Create(Vocabularies.Ao, algorithm.Name + "-hashed/" + sb);
+                hashNode = nodeFactory.Create(Vocabularies.Ao, "hashed/" + algorithm.Name + "/" + sb);
             }else{
                 hashNode = nodeFactory.Create(algorithm, hash);
             }
