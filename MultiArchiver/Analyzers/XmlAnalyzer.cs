@@ -170,7 +170,7 @@ namespace IS4.MultiArchiver.Analyzers
                 {
                     return $"application/x.{value.RootName.Name}+xml";
                 }
-                if(!String.IsNullOrEmpty(ns.IdnHost))
+                if(ns.HostNameType == UriHostNameType.Dns && !String.IsNullOrEmpty(ns.IdnHost))
                 {
                     var host = ns.IdnHost;
                     var builder = new UriBuilder(ns);
