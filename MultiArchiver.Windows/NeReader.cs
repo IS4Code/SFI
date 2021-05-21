@@ -32,6 +32,11 @@ namespace IS4.MultiArchiver.Windows
 
             stream.Position = 0x3C;
             stream.Position = headerOffset = reader.ReadUInt32();
+            short sig = reader.ReadInt16();
+            if(sig != 0x454E)
+            {
+                throw new ArgumentException("Not a valid NE file!", nameof(stream));
+            }
         }
 
         public IEnumerable<IModuleResource> ReadResources()
