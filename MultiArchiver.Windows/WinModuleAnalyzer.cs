@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Vocabulary;
@@ -15,39 +16,45 @@ namespace IS4.MultiArchiver.Analyzers
             var cache = new Dictionary<(object, object), ResourceInfo>();
             var groups = new List<ResourceInfo>();
 
-            foreach(var resource in module.ReadResources())
+            foreach(var resourceGroup in module.ReadResources().GroupBy(r => $"{r.Type}/{r.Name}"))
             {
-                var info = new ResourceInfo(resource);
-                switch(info.TypeCode)
+                int ordinal = 0;
+                bool more = resourceGroup.Skip(1).Any();
+                foreach(var resource in resourceGroup)
                 {
-                    case Win32ResourceType.GroupIcon:
-                    case Win32ResourceType.GroupCursor:
-                        groups.Add(info);
+                    var info = new ResourceInfo(resource, more ? ordinal : (int?)null);
+                    switch(info.TypeCode)
+                    {
+                        case Win32ResourceType.GroupIcon:
+                        case Win32ResourceType.GroupCursor:
+                            groups.Add(info);
+                            continue;
+                        case Win32ResourceType.Accelerator:
+                        case Win32ResourceType.Dialog:
+                        case Win32ResourceType.DialogEx:
+                        case Win32ResourceType.DialogInclude:
+                        case Win32ResourceType.Menu:
+                        case Win32ResourceType.MenuEx:
+                        case Win32ResourceType.MessageTable:
+                        case Win32ResourceType.NameTable:
+                        case Win32ResourceType.PlugAndPlay:
+                        case Win32ResourceType.String:
+                        case Win32ResourceType.Version:
+                        case Win32ResourceType.VXD:
+                            continue;
+                    }
+                    if(info.Type.Equals("MUI"))
+                    {
                         continue;
-                    case Win32ResourceType.Accelerator:
-                    case Win32ResourceType.Dialog:
-                    case Win32ResourceType.DialogEx:
-                    case Win32ResourceType.DialogInclude:
-                    case Win32ResourceType.Menu:
-                    case Win32ResourceType.MenuEx:
-                    case Win32ResourceType.MessageTable:
-                    case Win32ResourceType.NameTable:
-                    case Win32ResourceType.PlugAndPlay:
-                    case Win32ResourceType.String:
-                    case Win32ResourceType.Version:
-                    case Win32ResourceType.VXD:
-                        continue;
-                }
-                if(info.Type.Equals("MUI"))
-                {
-                    continue;
-                }
-                cache[(resource.Type, resource.Name)] = info;
-                var infoNode = nodeFactory.Create<IFileInfo>(node[info.Type], info);
-                if(infoNode != null)
-                {
-                    infoNode.SetClass(Classes.EmbeddedFileDataObject);
-                    node.Set(Properties.HasMediaStream, infoNode);
+                    }
+                    cache[(resource.Type, resource.Name)] = info;
+                    var infoNode = nodeFactory.Create<IFileInfo>(node[info.Type], info);
+                    if(infoNode != null)
+                    {
+                        infoNode.SetClass(Classes.EmbeddedFileDataObject);
+                        node.Set(Properties.HasMediaStream, infoNode);
+                    }
+                    ordinal++;
                 }
             }
             foreach(var info in groups)
@@ -66,6 +73,7 @@ namespace IS4.MultiArchiver.Analyzers
         class ResourceInfo : IFileInfo
         {
             readonly IModuleResource resource;
+            readonly int? ordinal;
 
             public ArraySegment<byte> Data { get; private set; }
 
@@ -75,9 +83,10 @@ namespace IS4.MultiArchiver.Analyzers
 
             public int OriginalHeight { get; }
 
-            public ResourceInfo(IModuleResource resource)
+            public ResourceInfo(IModuleResource resource, int? ordinal)
             {
                 this.resource = resource;
+                this.ordinal = ordinal;
                 TypeCode = resource.Type as Win32ResourceType? ?? 0;
 
                 int start = 0;
@@ -208,7 +217,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             public bool IsEncrypted => false;
 
-            public string Name => resource.Name.ToString();
+            public string Name => resource.Name.ToString() + (ordinal != null ? $":{ordinal}" : "");
 
             public string Type => resource.Type.ToString();
 
