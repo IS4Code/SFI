@@ -168,7 +168,7 @@ namespace IS4.MultiArchiver.Analyzers
                 }
                 if(ns == null)
                 {
-                    return $"application/x.{value.RootName.Name}+xml";
+                    return $"application/x.ns.{value.RootName.Name}+xml";
                 }
                 if(ns.HostNameType == UriHostNameType.Dns && !String.IsNullOrEmpty(ns.IdnHost))
                 {
@@ -196,7 +196,7 @@ namespace IS4.MultiArchiver.Analyzers
                         default: return String.Join("", Encoding.UTF8.GetBytes(m.Value).Select(b => $"&{b:X2}"));
                     }
                 });
-                return $"application/x.{replaced}.{value.RootName.Name}+xml";
+                return $"application/x.ns.{replaced}.{value.RootName.Name}+xml";
             }
 
             public override TResult Match<TResult>(XmlReader reader, XDocumentType docType, Func<XmlFormat, TResult> resultFactory)
