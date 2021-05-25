@@ -41,7 +41,7 @@ namespace MultiArchiver.Analysis.Audio
             samplesPerFrame = frameSize * channels;
 
             offset = (int)Math.Round(minFreq / sampleRate * frameSize);
-            Size = Math.Min(frameSize, (int)Math.Round(maxFreq / sampleRate * frameSize));
+            Size = (int)Math.Min(frameSize, Math.Round(maxFreq / sampleRate * frameSize));
         }
 
         private AudioSpectrum(int channels)
