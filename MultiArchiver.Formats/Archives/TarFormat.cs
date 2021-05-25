@@ -90,7 +90,7 @@ namespace IS4.MultiArchiver.Formats
             return true;
         }
 
-        public override TResult Match<TResult>(Stream stream, Func<TarReader, TResult> resultFactory)
+        public override TResult Match<TResult>(Stream stream, ResultFactory<TarReader, TResult> resultFactory)
         {
             using(var reader = TarReader.Open(stream))
             {

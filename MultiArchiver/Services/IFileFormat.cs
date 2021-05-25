@@ -23,12 +23,12 @@ namespace IS4.MultiArchiver.Services
 
         bool CheckHeader(ArraySegment<byte> header, bool isBinary, IEncodingDetector encodingDetector);
         bool CheckHeader(Span<byte> header, bool isBinary, IEncodingDetector encodingDetector);
-        TResult Match<TResult>(Stream stream, object source, IGenericFunc<TResult> resultFactory) where TResult : class;
+        TResult Match<TResult>(Stream stream, object source, IResultFactory<TResult> resultFactory) where TResult : class;
     }
 
     public interface IBinaryFileFormat<T> : IFileFormat<T>, IBinaryFileFormat where T : class
     {
-        TResult Match<TResult>(Stream stream, object source, Func<T, TResult> resultFactory) where TResult : class;
+        TResult Match<TResult>(Stream stream, object source, ResultFactory<T, TResult> resultFactory) where TResult : class;
     }
 
     public interface IXmlDocumentFormat : IFileFormat
@@ -36,7 +36,7 @@ namespace IS4.MultiArchiver.Services
         string GetPublicId(object value);
         string GetSystemId(object value);
         Uri GetNamespace(object value);
-        TResult Match<TResult>(XmlReader reader, XDocumentType docType, object source, IGenericFunc<TResult> resultFactory) where TResult : class;
+        TResult Match<TResult>(XmlReader reader, XDocumentType docType, object source, IResultFactory<TResult> resultFactory) where TResult : class;
     }
 
     public interface IXmlDocumentFormat<T> : IFileFormat<T>, IXmlDocumentFormat where T : class
@@ -47,10 +47,12 @@ namespace IS4.MultiArchiver.Services
         TResult Match<TResult>(XmlReader reader, XDocumentType docType, object source, Func<T, TResult> resultFactory) where TResult : class;
     }
 
-    public interface IGenericFunc<TResult>
+    public interface IResultFactory<TResult>
     {
-        TResult Invoke<T>(T value) where T : class;
+        TResult Invoke<T>(T value, bool unknownType = false) where T : class;
     }
+
+    public delegate TResult ResultFactory<T, TResult>(T value, bool unknownType = false) where T : class;
 
     public abstract class FileFormat<T> : IFileFormat<T> where T : class
     {
@@ -102,16 +104,16 @@ namespace IS4.MultiArchiver.Services
 
         public abstract bool CheckHeader(Span<byte> header, bool isBinary, IEncodingDetector encodingDetector);
 
-        public abstract TResult Match<TResult>(Stream stream, Func<T, TResult> resultFactory) where TResult : class;
+        public abstract TResult Match<TResult>(Stream stream, ResultFactory<T, TResult> resultFactory) where TResult : class;
 
-        public virtual TResult Match<TResult>(Stream stream, object source, Func<T, TResult> resultFactory) where TResult : class
+        public virtual TResult Match<TResult>(Stream stream, object source, ResultFactory<T, TResult> resultFactory) where TResult : class
         {
             return Match(stream, resultFactory);
         }
 
-        public TResult Match<TResult>(Stream stream, object source, IGenericFunc<TResult> resultFactory) where TResult : class
+        public TResult Match<TResult>(Stream stream, object source, IResultFactory<TResult> resultFactory) where TResult : class
         {
-            return Match(stream, source, value => resultFactory.Invoke(value));
+            return Match(stream, source, (value, unknownType) => resultFactory.Invoke(value, unknownType));
         }
     }
 
@@ -135,7 +137,7 @@ namespace IS4.MultiArchiver.Services
             return Match(reader, docType, resultFactory);
         }
 
-        public TResult Match<TResult>(XmlReader reader, XDocumentType docType, object source, IGenericFunc<TResult> resultFactory) where TResult : class
+        public TResult Match<TResult>(XmlReader reader, XDocumentType docType, object source, IResultFactory<TResult> resultFactory) where TResult : class
         {
             return Match(reader, docType, source, value => resultFactory.Invoke(value));
         }

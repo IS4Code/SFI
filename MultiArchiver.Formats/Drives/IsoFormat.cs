@@ -22,7 +22,7 @@ namespace IS4.MultiArchiver.Formats
             return isBinary;
         }
 
-        public override TResult Match<TResult>(Stream stream, Func<CDReader, TResult> resultFactory)
+        public override TResult Match<TResult>(Stream stream, ResultFactory<CDReader, TResult> resultFactory)
         {
             using(var reader = new CDReader(stream, true))
             {

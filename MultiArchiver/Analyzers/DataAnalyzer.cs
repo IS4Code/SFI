@@ -282,7 +282,7 @@ namespace IS4.MultiArchiver.Analyzers
 			return Analyze(parent, new MemoryStreamFactory(new ArraySegment<byte>(data), data, null), analyzer);
 		}
         
-		class FormatResult : IComparable<FormatResult>, IGenericFunc<ILinkedNode>
+		class FormatResult : IComparable<FormatResult>, IResultFactory<ILinkedNode>
 		{
             readonly IBinaryFileFormat format;
             readonly ILinkedNode parent;
@@ -318,7 +318,7 @@ namespace IS4.MultiArchiver.Analyzers
                 Task.WaitAny(task);
             }
 
-            ILinkedNode IGenericFunc<ILinkedNode>.Invoke<T>(T value)
+            ILinkedNode IResultFactory<ILinkedNode>.Invoke<T>(T value, bool unknownFormat)
             {
                 var obj = new FormatObject<T, IBinaryFileFormat>(format, value, streamFactory);
                 var node = nodeFactory.Create<IFormatObject<T, IBinaryFileFormat>>(parent, obj);

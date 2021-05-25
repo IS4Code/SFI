@@ -1,5 +1,5 @@
-﻿using SharpCompress.Readers.GZip;
-using System;
+﻿using IS4.MultiArchiver.Services;
+using SharpCompress.Readers.GZip;
 using System.IO;
 
 namespace IS4.MultiArchiver.Formats
@@ -11,7 +11,7 @@ namespace IS4.MultiArchiver.Formats
 
         }
 
-        public override TResult Match<TResult>(Stream stream, Func<GZipReader, TResult> resultFactory)
+        public override TResult Match<TResult>(Stream stream, ResultFactory<GZipReader, TResult> resultFactory)
         {
             using(var reader = GZipReader.Open(stream))
             {

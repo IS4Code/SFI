@@ -42,7 +42,7 @@ namespace IS4.MultiArchiver.Formats
             }
         }
 
-        public override TResult Match<TResult>(Stream stream, Func<IDisposable, TResult> resultFactory)
+        public override TResult Match<TResult>(Stream stream, ResultFactory<IDisposable, TResult> resultFactory)
         {
             return resultFactory(null);
         }
@@ -63,7 +63,7 @@ namespace IS4.MultiArchiver.Formats
                 this.reader = reader;
             }
 
-            public override TResult Match<TResult>(Stream stream, Func<IDisposable, TResult> resultFactory)
+            public override TResult Match<TResult>(Stream stream, ResultFactory<IDisposable, TResult> resultFactory)
             {
                 using(var result = reader.Read(stream))
                 {

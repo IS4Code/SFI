@@ -1,4 +1,4 @@
-﻿using System;
+﻿using IS4.MultiArchiver.Services;
 using System.IO;
 using System.IO.Compression;
 
@@ -11,7 +11,7 @@ namespace IS4.MultiArchiver.Formats
 
         }
 
-        public override TResult Match<TResult>(Stream stream, Func<ZipArchive, TResult> resultFactory)
+        public override TResult Match<TResult>(Stream stream, ResultFactory<ZipArchive, TResult> resultFactory)
         {
             using(var archive = new ZipArchive(stream, ZipArchiveMode.Read, true))
             {

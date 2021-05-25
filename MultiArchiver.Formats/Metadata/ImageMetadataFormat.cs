@@ -30,7 +30,7 @@ namespace IS4.MultiArchiver.Formats
             return metadata.OfType<FileTypeDirectory>().FirstOrDefault()?.GetString(tag);
         }
 
-        public override TResult Match<TResult>(Stream stream, Func<IReadOnlyList<MetadataExtractor.Directory>, TResult> resultFactory)
+        public override TResult Match<TResult>(Stream stream, ResultFactory<IReadOnlyList<MetadataExtractor.Directory>, TResult> resultFactory)
         {
             return resultFactory(ImageMetadataReader.ReadMetadata(stream));
         }

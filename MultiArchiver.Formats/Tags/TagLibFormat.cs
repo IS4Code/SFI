@@ -51,12 +51,12 @@ namespace IS4.MultiArchiver.Formats
             return file.MimeType;
         }
 
-        public override TResult Match<TResult>(Stream stream, Func<TagLib.File, TResult> resultFactory)
+        public override TResult Match<TResult>(Stream stream, ResultFactory<TagLib.File, TResult> resultFactory)
         {
             return Match(stream, null, resultFactory);
         }
 
-        public override TResult Match<TResult>(Stream stream, object source, Func<TagLib.File, TResult> resultFactory)
+        public override TResult Match<TResult>(Stream stream, object source, ResultFactory<TagLib.File, TResult> resultFactory)
         {
             var file = new File(stream, source);
             if(file.Name != null)

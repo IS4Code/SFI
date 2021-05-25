@@ -28,7 +28,7 @@ namespace IS4.MultiArchiver.Analysis.Audio
 
         public Complex[][] CreateSpectrum(int sampleRate, int channels, ISampleProvider provider)
         {
-            var gen = new AudioSpectrumSingle(sampleRate, channels, 4096, 2048, maxFreq: 4000);
+            var gen = new AudioSpectrumSingle(sampleRate, channels, 2048, 1536, maxFreq: 4000);
 
             var buffer = ArrayPool<float>.Shared.Rent(16384);
             try{

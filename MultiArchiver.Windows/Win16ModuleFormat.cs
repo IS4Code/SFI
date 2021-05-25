@@ -1,4 +1,5 @@
-﻿using IS4.MultiArchiver.Windows;
+﻿using IS4.MultiArchiver.Services;
+using IS4.MultiArchiver.Windows;
 using System;
 using System.IO;
 
@@ -11,7 +12,7 @@ namespace IS4.MultiArchiver.Formats
 
         }
 
-        public override TResult Match<TResult>(Stream stream, Func<IModule, TResult> resultFactory)
+        public override TResult Match<TResult>(Stream stream, ResultFactory<IModule, TResult> resultFactory)
         {
             return resultFactory(new NeReader(stream));
         }

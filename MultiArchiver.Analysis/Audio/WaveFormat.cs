@@ -22,7 +22,7 @@ namespace IS4.MultiArchiver.Formats
             return MemoryMarshal.Cast<byte, uint>(header)[2] == 0x45564157;
         }
 
-        public override TResult Match<TResult>(Stream stream, Func<WaveStream, TResult> resultFactory)
+        public override TResult Match<TResult>(Stream stream, ResultFactory<WaveStream, TResult> resultFactory)
         {
             using(var reader = new WaveFileReader(stream))
             {

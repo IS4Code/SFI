@@ -40,7 +40,7 @@ namespace IS4.MultiArchiver.Formats
             }
         }
 
-        public override TResult Match<TResult>(Stream stream, Func<XmlReader, TResult> resultFactory)
+        public override TResult Match<TResult>(Stream stream, ResultFactory<XmlReader, TResult> resultFactory)
         {
             using(var reader = XmlReader.Create(stream, ReaderSettings))
             {

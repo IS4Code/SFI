@@ -1,5 +1,5 @@
-﻿using SharpCompress.Readers.Rar;
-using System;
+﻿using IS4.MultiArchiver.Services;
+using SharpCompress.Readers.Rar;
 using System.IO;
 
 namespace IS4.MultiArchiver.Formats
@@ -11,7 +11,7 @@ namespace IS4.MultiArchiver.Formats
 
         }
 
-        public override TResult Match<TResult>(Stream stream, Func<RarReader, TResult> resultFactory)
+        public override TResult Match<TResult>(Stream stream, ResultFactory<RarReader, TResult> resultFactory)
         {
             using(var reader = RarReader.Open(stream))
             {

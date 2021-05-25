@@ -34,7 +34,7 @@ namespace IS4.MultiArchiver.Formats
             return ImageCodecInfo.GetImageDecoders().FirstOrDefault(codec => codec.FormatID == format.Guid);
         }
 
-        public override TResult Match<TResult>(Stream stream, Func<Image, TResult> resultFactory)
+        public override TResult Match<TResult>(Stream stream, ResultFactory<Image, TResult> resultFactory)
         {
             using(var image = Image.FromStream(stream))
             {

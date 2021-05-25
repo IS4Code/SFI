@@ -106,7 +106,7 @@ namespace IS4.MultiArchiver.Analyzers
             return null;
         }
 
-        class ResultFactory : IGenericFunc<ILinkedNode>
+        class ResultFactory : IResultFactory<ILinkedNode>
         {
             readonly ILinkedNode parent;
             readonly IXmlDocumentFormat format;
@@ -124,7 +124,7 @@ namespace IS4.MultiArchiver.Analyzers
                 this.nodeFactory = nodeFactory;
             }
 
-            ILinkedNode IGenericFunc<ILinkedNode>.Invoke<T>(T value)
+            ILinkedNode IResultFactory<ILinkedNode>.Invoke<T>(T value, bool unknownFormat)
             {
                 var obj = new FormatObject<T, IXmlDocumentFormat>(format, value, source);
                 var result = nodeFactory.Create(parent, obj);
