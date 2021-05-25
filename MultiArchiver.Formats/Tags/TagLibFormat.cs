@@ -17,6 +17,18 @@ namespace IS4.MultiArchiver.Formats
         static IEnumerable<SupportedMimeType> GetMimeTypes(TagLib.File file)
         {
             if(file is TagLib.Image.NoMetadata.File) return Array.Empty<SupportedMimeType>();
+            if(file is TagLib.Riff.File riff)
+            {
+                if(file.Properties.Codecs.All(c => c is TagLib.Riff.WaveFormatEx))
+                {
+                    return new[] { new SupportedMimeType("audio/vnd.wave", "wav") };
+                }
+                if(file.Properties.Codecs.Any(c => c is TagLib.Riff.BitmapInfoHeader))
+                {
+                    return new[] { new SupportedMimeType("video/vnd.avi", "avi") };
+                }
+                return Array.Empty<SupportedMimeType>();
+            }
             return file.GetType().GetCustomAttributes(typeof(SupportedMimeType), true).OfType<SupportedMimeType>();
         }
 

@@ -84,7 +84,12 @@ namespace IS4.MultiArchiver.Analyzers
 
             if((file.TagTypes & (TagTypes.Id3v1 | TagTypes.Id3v2)) != 0)
             {
-                node.SetClass(Classes.ID3Audio);
+                if(
+                    (file.GetTag(TagTypes.Id3v1) is IEnumerable<object> e1 && e1.Any()) ||
+                    (file.GetTag(TagTypes.Id3v2) is IEnumerable<object> e2 && e2.Any()))
+                {
+                    node.SetClass(Classes.ID3Audio);
+                }
             }
 
             if(file.Tag != null)

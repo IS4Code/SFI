@@ -38,7 +38,6 @@ namespace IS4.MultiArchiver.Analyzers
                         return null;
                 }
 
-                bmp.Save("test.png");
                 var imageObj = new LinkedObject<Image>(node, source, bmp);
                 nodeFactory.Create<ILinkedObject<Image>>(parent, imageObj);
             }
