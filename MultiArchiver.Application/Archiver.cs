@@ -78,7 +78,12 @@ namespace IS4.MultiArchiver.Extensions
             var handler = new RdfHandler(new Uri(root), graphHandler, this);
             graphHandler.StartRdf();
             try{
-                FileAnalyzer.Analyze(null, new FileInfo(file), handler);
+                if((File.GetAttributes(file) & FileAttributes.Directory) != 0)
+                {
+                    FileAnalyzer.Analyze(null, new DirectoryInfo(file), handler);
+                }else{
+                    FileAnalyzer.Analyze(null, new FileInfo(file), handler);
+                }
             }finally{
                 graphHandler.EndRdf(true);
             }
