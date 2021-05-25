@@ -212,7 +212,8 @@ namespace IS4.MultiArchiver.Analyzers
 
                 if(Signature.Count > 0)
                 {
-                    Results = formats.Where(fmt => fmt.CheckHeader(signature, isBinary, encodingDetector)).Select(fmt => new FormatResult(streamFactory, fmt, Node, nodeFactory)).ToList();
+                    var nodeCreated = new TaskCompletionSource<ILinkedNode>();
+                    Results = formats.Where(fmt => fmt.CheckHeader(signature, isBinary, encodingDetector)).Select(fmt => new FormatResult(streamFactory, fmt, nodeCreated, Node, nodeFactory)).ToList();
                 }else{
                     Results = Array.Empty<FormatResult>();
                 }
@@ -289,6 +290,7 @@ namespace IS4.MultiArchiver.Analyzers
             readonly ILinkedNodeFactory nodeFactory;
             readonly Task<ILinkedNode> task;
             readonly IStreamFactory streamFactory;
+            readonly TaskCompletionSource<ILinkedNode> nodeCreated;
 
             public bool IsValid => !task.IsFaulted;
 
@@ -299,12 +301,13 @@ namespace IS4.MultiArchiver.Analyzers
 
             public ILinkedNode Result => task?.Result;
 
-            public FormatResult(IStreamFactory streamFactory, IBinaryFileFormat format, ILinkedNode parent, ILinkedNodeFactory nodeFactory)
+            public FormatResult(IStreamFactory streamFactory, IBinaryFileFormat format, TaskCompletionSource<ILinkedNode> nodeCreated, ILinkedNode parent, ILinkedNodeFactory nodeFactory)
 			{
                 this.format = format;
                 this.parent = parent;
                 this.nodeFactory = nodeFactory;
                 this.streamFactory = streamFactory;
+                this.nodeCreated = nodeCreated;
                 task = StartReading(streamFactory, Reader);
             }
 
@@ -320,11 +323,24 @@ namespace IS4.MultiArchiver.Analyzers
 
             ILinkedNode IResultFactory<ILinkedNode>.Invoke<T>(T value, bool unknownFormat)
             {
-                var obj = new FormatObject<T, IBinaryFileFormat>(format, value, streamFactory);
-                var node = nodeFactory.Create<IFormatObject<T, IBinaryFileFormat>>(parent, obj);
-                Extension = obj.Extension;
-                Label = obj.Label;
-                return node;
+                if(unknownFormat)
+                {
+                    var node = nodeCreated.Task.Result;
+                    if(node != null)
+                    {
+                        var obj = new LinkedObject<T>(node, streamFactory, value);
+                        node = nodeFactory.Create<ILinkedObject<T>>(parent, obj);
+                        Label = obj.Label;
+                    }
+                    return node;
+                }else{
+                    var obj = new FormatObject<T, IBinaryFileFormat>(format, value, streamFactory);
+                    var node = nodeFactory.Create<IFormatObject<T, IBinaryFileFormat>>(parent, obj);
+                    Extension = obj.Extension;
+                    Label = obj.Label;
+                    nodeCreated?.TrySetResult(node);
+                    return node;
+                }
             }
 
             private Task<ILinkedNode> StartReading(IStreamFactory streamFactory, Func<Stream, ILinkedNode> reader)
