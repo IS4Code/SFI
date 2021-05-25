@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 
 namespace MultiArchiver.Analysis.Audio
 {
-    public abstract class AudioSpectrum<TFloat> : IReadOnlyList<ChannelSpectrum>
-        where TFloat : struct, IComparable, IComparable<TFloat>, IConvertible, IEquatable<TFloat>, IFormattable
+    public abstract class AudioSpectrum<TSample, TComplex> : IReadOnlyList<ChannelSpectrum<TComplex>>
+        where TSample : struct, IComparable, IComparable<TSample>, IConvertible, IEquatable<TSample>
+        where TComplex : struct, IEquatable<Complex>
     {
         public int Size { get; }
 
@@ -24,8 +25,8 @@ namespace MultiArchiver.Analysis.Audio
         readonly int samplesPerStep;
         readonly int samplesPerFrame;
 
-        readonly List<Complex[]>[] channelFrames;
-        readonly TFloat[] audioBuffer;
+        readonly List<TComplex[]>[] channelFrames;
+        readonly TSample[] audioBuffer;
         int audioFilled;
         int numTotal;
 
@@ -36,7 +37,7 @@ namespace MultiArchiver.Analysis.Audio
             this.frameSize = frameSize;
 
             audioBufferSize = (frameSize + stepSize) * channels * 8;
-            audioBuffer = new TFloat[audioBufferSize];
+            audioBuffer = new TSample[audioBufferSize];
             samplesPerStep = stepSize * channels;
             samplesPerFrame = frameSize * channels;
 
@@ -47,16 +48,16 @@ namespace MultiArchiver.Analysis.Audio
         private AudioSpectrum(int channels)
         {
             this.channels = channels;
-            channelFrames = new List<Complex[]>[channels];
+            channelFrames = new List<TComplex[]>[channels];
             for(int i = 0; i < channels; i++)
             {
-                channelFrames[i] = new List<Complex[]>();
+                channelFrames[i] = new List<TComplex[]>();
             }
         }
 
-        public ChannelSpectrum this[int channel] {
+        public ChannelSpectrum<TComplex> this[int channel] {
             get {
-                return new ChannelSpectrum(channelFrames[channel], Count, offset, Size);
+                return new ChannelSpectrum<TComplex>(channelFrames[channel], Count, offset, Size);
             }
         }
 
@@ -93,15 +94,15 @@ namespace MultiArchiver.Analysis.Audio
         private void AddFrames()
         {
             int numSteps = (audioFilled - samplesPerFrame) / samplesPerStep;
-            var frames = new Complex[channels][];
+            var frames = new TComplex[channels][];
             for(int step = 0; step < numSteps; step++)
             {
                 for(int channel = 0; channel < channels; channel++)
                 {
-                    channelFrames[channel].Add(frames[channel] = new Complex[frameSize]);
+                    channelFrames[channel].Add(frames[channel] = new TComplex[frameSize]);
                 }
                 int start = step * samplesPerStep;
-                Convert(new ArraySegment<TFloat>(audioBuffer, start, samplesPerFrame), frames, channels);
+                Convert(new ArraySegment<TSample>(audioBuffer, start, samplesPerFrame), frames, channels);
             }
             numTotal += numSteps;
 
@@ -110,24 +111,21 @@ namespace MultiArchiver.Analysis.Audio
             audioFilled -= wraparound;
         }
 
-        protected abstract void Convert(ArraySegment<TFloat> samples, Complex[][] frames, int channels);
+        protected abstract void Convert(ArraySegment<TSample> samples, TComplex[][] frames, int channels);
 
         private void Process()
         {
             Parallel.For(0, (numTotal - Count) * channels, index => {
                 var frame = channelFrames[index % channels][Count + index / channels];
 
-                Fourier.Forward(frame, FourierOptions.NoScaling);
-
-                for(int i = 0; i < Size; i++)
-                {
-                    frame[offset + i] /= frameSize;
-                }
+                Transform(new ArraySegment<TComplex>(frame, offset, Size));
             });
             Count = numTotal;
         }
 
-        public IEnumerator<ChannelSpectrum> GetEnumerator()
+        protected abstract void Transform(ArraySegment<TComplex> frame);
+
+        public IEnumerator<ChannelSpectrum<TComplex>> GetEnumerator()
         {
             for(int i = 0; i < Count; i++)
             {
@@ -141,17 +139,18 @@ namespace MultiArchiver.Analysis.Audio
         }
     }
 
-    public struct ChannelSpectrum : IReadOnlyList<ArraySegment<Complex>>
+    public struct ChannelSpectrum<TComplex> : IReadOnlyList<ArraySegment<TComplex>>
+        where TComplex : struct, IEquatable<Complex>
     {
         public int Size { get; }
-        readonly List<Complex[]> data;
+        readonly List<TComplex[]> data;
         readonly int offset;
 
-        public ArraySegment<Complex> this[int index] => new ArraySegment<Complex>(data[index], offset, Size);
+        public ArraySegment<TComplex> this[int index] => new ArraySegment<TComplex>(data[index], offset, Size);
 
         public int Count { get; }
 
-        public ChannelSpectrum(List<Complex[]> data, int count, int offset, int size)
+        internal ChannelSpectrum(List<TComplex[]> data, int count, int offset, int size)
         {
             this.data = data;
             Count = count;
@@ -159,7 +158,7 @@ namespace MultiArchiver.Analysis.Audio
             Size = size;
         }
 
-        public IEnumerator<ArraySegment<Complex>> GetEnumerator()
+        public IEnumerator<ArraySegment<TComplex>> GetEnumerator()
         {
             for(int i = 0; i < Count; i++)
             {
@@ -173,7 +172,27 @@ namespace MultiArchiver.Analysis.Audio
         }
     }
 
-    public class AudioSpectrumSingle : AudioSpectrum<float>
+    public abstract class AudioSpectrumComplex<TSample> : AudioSpectrum<TSample, Complex>
+        where TSample : struct, IComparable, IComparable<TSample>, IConvertible, IEquatable<TSample>
+    {
+        public AudioSpectrumComplex(int sampleRate, int channels, int frameSize, int stepSize, double minFreq = 0, double maxFreq = double.PositiveInfinity) : base(sampleRate, channels, frameSize, stepSize, minFreq, maxFreq)
+        {
+
+        }
+
+        protected override void Transform(ArraySegment<Complex> frame)
+        {
+            Fourier.Forward(frame.Array, FourierOptions.NoScaling);
+
+            int frameSize = frame.Array.Length;
+            for(int i = 0; i < frame.Count; i++)
+            {
+                frame.Array[frame.Offset + i] /= frameSize;
+            }
+        }
+    }
+
+    public class AudioSpectrumSingle : AudioSpectrumComplex<float>
     {
         readonly double sampleScale;
         readonly double[] window;
