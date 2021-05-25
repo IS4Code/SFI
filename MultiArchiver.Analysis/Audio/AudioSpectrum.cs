@@ -114,19 +114,16 @@ namespace MultiArchiver.Analysis.Audio
 
         private void Process()
         {
-            foreach(var channel in channelFrames)
-            {
-                Parallel.For(Count, numTotal, fftIndex => {
-                    var frame = channel[fftIndex];
+            Parallel.For(0, (numTotal - Count) * channels, index => {
+                var frame = channelFrames[index % channels][Count + index / channels];
 
-                    Fourier.Forward(frame, FourierOptions.NoScaling);
+                Fourier.Forward(frame, FourierOptions.NoScaling);
 
-                    for(int i = 0; i < Size; i++)
-                    {
-                        frame[offset + i] /= frameSize;
-                    }
-                });
-            }
+                for(int i = 0; i < Size; i++)
+                {
+                    frame[offset + i] /= frameSize;
+                }
+            });
             Count = numTotal;
         }
 
