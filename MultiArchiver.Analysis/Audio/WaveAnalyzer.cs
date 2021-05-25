@@ -1,13 +1,9 @@
 ﻿using IS4.MultiArchiver.Analysis.Audio;
-using IS4.MultiArchiver.Analyzers;
 using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Vocabulary;
 using NAudio.Wave;
 using NAudio.Wave.SampleProviders;
-using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Text;
 
 namespace IS4.MultiArchiver.Analyzers
 {
@@ -18,6 +14,9 @@ namespace IS4.MultiArchiver.Analyzers
         public override string Analyze(ILinkedNode parent, ILinkedNode node, WaveStream wave, object source, ILinkedNodeFactory nodeFactory)
         {
             node.Set(Properties.Duration, wave.TotalTime);
+            node.Set(Properties.Channels, wave.WaveFormat.Channels);
+            node.Set(Properties.BitsPerSample, wave.WaveFormat.BitsPerSample);
+            node.Set(Properties.SampleRate, wave.WaveFormat.SampleRate, Datatypes.Hertz);
 
             if(wave.WaveFormat.Encoding == WaveFormatEncoding.Pcm)
             {
