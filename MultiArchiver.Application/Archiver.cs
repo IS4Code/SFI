@@ -53,6 +53,7 @@ namespace IS4.MultiArchiver.Extensions
             archiver.DataAnalyzer.Formats.Add(new IsoFormat());
             archiver.DataAnalyzer.Formats.Add(new WinModuleFormat());
             archiver.DataAnalyzer.Formats.Add(new Win16ModuleFormat());
+            archiver.DataAnalyzer.Formats.Add(new WaveFormat());
 
             archiver.XmlAnalyzer.XmlFormats.Add(new SvgFormat());
 
@@ -64,6 +65,7 @@ namespace IS4.MultiArchiver.Extensions
             archiver.Analyzers.Add(new TagLibAnalyzer());
             archiver.Analyzers.Add(new WinModuleAnalyzer());
             archiver.Analyzers.Add(new SvgAnalyzer());
+            archiver.Analyzers.Add(new WaveAnalyzer());
 
             return archiver;
         }

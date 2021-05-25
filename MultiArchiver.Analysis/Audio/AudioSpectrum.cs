@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using System.Threading.Tasks;
 
-namespace MultiArchiver.Analysis.Audio
+namespace IS4.MultiArchiver.Analysis
 {
     public abstract class AudioSpectrum<TSample, TComplex> : IReadOnlyList<ChannelSpectrum<TComplex>>
         where TSample : struct, IComparable, IComparable<TSample>, IConvertible, IEquatable<TSample>
