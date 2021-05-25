@@ -160,6 +160,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         private void LinkDirectories(ILinkedNode initial, string path, bool directory, ILinkedNodeFactory nodeFactory)
         {
+            if(path == null) return;
             var parts = path.Split('/');
             for(int i = 0; i < parts.Length; i++)
             {
