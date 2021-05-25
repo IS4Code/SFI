@@ -54,6 +54,7 @@ namespace IS4.MultiArchiver.Extensions
             archiver.DataAnalyzer.Formats.Add(new WinModuleFormat());
             archiver.DataAnalyzer.Formats.Add(new Win16ModuleFormat());
             archiver.DataAnalyzer.Formats.Add(new WaveFormat());
+            archiver.DataAnalyzer.Formats.Add(new OggFormat());
 
             archiver.XmlAnalyzer.XmlFormats.Add(new SvgFormat());
 
