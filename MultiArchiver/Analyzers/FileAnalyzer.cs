@@ -248,7 +248,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             public string SubName => null;
 
-            public string Path => baseInfo.FullName.Substring(System.IO.Path.GetPathRoot(baseInfo.FullName).Length);
+            public string Path => baseInfo.FullName.Substring(System.IO.Path.GetPathRoot(baseInfo.FullName).Length).Replace(System.IO.Path.DirectorySeparatorChar, '/');
 
             public DateTime? CreationTime => baseInfo.CreationTimeUtc;
 
