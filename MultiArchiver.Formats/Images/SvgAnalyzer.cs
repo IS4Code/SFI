@@ -7,6 +7,11 @@ namespace IS4.MultiArchiver.Analyzers
 {
     public class SvgAnalyzer : XmlFormatAnalyzer<SvgDocument>
     {
+        public SvgAnalyzer() : base(Common.ImageClasses)
+        {
+
+        }
+
         public override string Analyze(ILinkedNode parent, ILinkedNode node, SvgDocument svg, object source, ILinkedNodeFactory nodeFactory)
         {
             if(svg.Width.Type == SvgUnitType.Pixel)

@@ -19,7 +19,7 @@ namespace IS4.MultiArchiver.Analyzers
             drawAttributes.SetWrapMode(WrapMode.TileFlipXY);
         }
 
-        public ImageAnalyzer() : base(Classes.ImageObject)
+        public ImageAnalyzer() : base(Common.ImageClasses)
         {
 
         }

@@ -11,6 +11,11 @@ namespace IS4.MultiArchiver.Analyzers
     {
         readonly PolarSpectrumGenerator generator = new PolarSpectrumGenerator(512, 512);
 
+        public WaveAnalyzer() : base(Common.AudioClasses)
+        {
+
+        }
+
         public override string Analyze(ILinkedNode parent, ILinkedNode node, WaveStream wave, object source, ILinkedNodeFactory nodeFactory)
         {
             node.Set(Properties.Duration, wave.TotalTime);
