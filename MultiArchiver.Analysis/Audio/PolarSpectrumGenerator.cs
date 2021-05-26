@@ -113,7 +113,7 @@ namespace IS4.MultiArchiver.Analysis.Audio
                     var pt = new Complex((double)x / Width * 2 - 1, (double)y / Height * 2 - 1);
 
                     var mag = pt.Magnitude;
-                    var phase = (pt.Phase / Math.PI + 1) % 1;
+                    var phase = (pt.Phase / Math.PI + 1) / 2 % 1;
 
                     var sx = (int)Math.Round(phase * spectrum.Count);
 
