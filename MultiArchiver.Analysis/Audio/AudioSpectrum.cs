@@ -94,6 +94,8 @@ namespace IS4.MultiArchiver.Analysis
         private void AddFrames()
         {
             int numSteps = (audioFilled - samplesPerFrame) / samplesPerStep;
+            if(numSteps <= 0) return;
+
             var frames = new TComplex[channels][];
             for(int step = 0; step < numSteps; step++)
             {
