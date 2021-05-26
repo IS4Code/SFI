@@ -66,7 +66,8 @@ namespace IS4.MultiArchiver.Services
 
         private TNode CreateNode<T>(IUriFormatter<T> formatter, T value)
         {
-            return CreateNode(formatter.FormatUri(value));
+            var uri = formatter.FormatUri(value);
+            return uri != null ? CreateNode(uri) : null;
         }
 
         public void SetClass(Classes @class)
@@ -242,7 +243,8 @@ namespace IS4.MultiArchiver.Services
         public LinkedNode<TNode> this[IIndividualUriFormatter<Uri> subFormatter] {
             get{
                 if(subFormatter == null) throw new ArgumentNullException(nameof(subFormatter));
-                return CreateNew(CreateNode(subFormatter, GetUri(Subject)));
+                var node = CreateNode(subFormatter, GetUri(Subject));
+                return node != null ? CreateNew(node) : null;
             }
         }
 

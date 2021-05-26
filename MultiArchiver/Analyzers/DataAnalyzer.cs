@@ -321,10 +321,20 @@ namespace IS4.MultiArchiver.Analyzers
                 Task.WaitAny(task);
             }
 
-            ILinkedNode IResultFactory<ILinkedNode>.Invoke<T>(T value, bool unknownFormat)
+            const int MaxResultWaitTime = 100;
+
+            ILinkedNode IResultFactory<ILinkedNode>.Invoke<T>(T value)
             {
-                if(unknownFormat)
+                var formatObj = new FormatObject<T, IBinaryFileFormat>(format, value, streamFactory);
+                if(parent[formatObj] != null)
                 {
+                    var node = nodeFactory.Create<IFormatObject<T, IBinaryFileFormat>>(parent, formatObj);
+                    Extension = formatObj.Extension;
+                    Label = formatObj.Label;
+                    nodeCreated?.TrySetResult(node);
+                    return node;
+                }else{
+                    if(!nodeCreated.Task.Wait(MaxResultWaitTime)) return null;
                     var node = nodeCreated.Task.Result;
                     if(node != null)
                     {
@@ -332,13 +342,6 @@ namespace IS4.MultiArchiver.Analyzers
                         node = nodeFactory.Create<ILinkedObject<T>>(parent, obj);
                         Label = obj.Label;
                     }
-                    return node;
-                }else{
-                    var obj = new FormatObject<T, IBinaryFileFormat>(format, value, streamFactory);
-                    var node = nodeFactory.Create<IFormatObject<T, IBinaryFileFormat>>(parent, obj);
-                    Extension = obj.Extension;
-                    Label = obj.Label;
-                    nodeCreated?.TrySetResult(node);
                     return node;
                 }
             }

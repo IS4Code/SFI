@@ -47,7 +47,7 @@ namespace IS4.MultiArchiver.Services
             if(value.Scheme.Equals("data", StringComparison.OrdinalIgnoreCase))
             {
                 var type = MediaType?.ToLowerInvariant();
-                if(type == null || type.IndexOf('/') == -1) throw new InvalidOperationException();
+                if(type == null || type.IndexOf('/') == -1) return null;
                 var builder = new UriBuilder(value);
                 int rest = builder.Path.IndexOfAny(dataChars);
                 if(rest == -1) throw new ArgumentException(null, nameof(value));
@@ -59,7 +59,7 @@ namespace IS4.MultiArchiver.Services
             if(sub == null)
             {
                 sub = MediaType?.ToLowerInvariant();
-                if(sub == null || sub.IndexOf('/') == -1) throw new InvalidOperationException();
+                if(sub == null || sub.IndexOf('/') == -1) return null;
                 sub = sub.Split(splitChar)[1];
                 if(sub.StartsWith("prs.") || sub.StartsWith("vnd."))
                 {

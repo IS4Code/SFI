@@ -124,7 +124,7 @@ namespace IS4.MultiArchiver.Analyzers
                 this.nodeFactory = nodeFactory;
             }
 
-            ILinkedNode IResultFactory<ILinkedNode>.Invoke<T>(T value, bool unknownFormat)
+            ILinkedNode IResultFactory<ILinkedNode>.Invoke<T>(T value)
             {
                 var obj = new FormatObject<T, IXmlDocumentFormat>(format, value, source);
                 var result = nodeFactory.Create(parent, obj);

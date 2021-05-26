@@ -26,7 +26,7 @@ namespace IS4.MultiArchiver.Formats
         {
             using(var reader = new StreamMediaFoundationReader(stream))
             {
-                return resultFactory(reader, true);
+                return resultFactory(reader);
             }
         }
     }

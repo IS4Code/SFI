@@ -49,10 +49,10 @@ namespace IS4.MultiArchiver.Services
 
     public interface IResultFactory<TResult>
     {
-        TResult Invoke<T>(T value, bool unknownType = false) where T : class;
+        TResult Invoke<T>(T value) where T : class;
     }
 
-    public delegate TResult ResultFactory<T, TResult>(T value, bool unknownType = false) where T : class;
+    public delegate TResult ResultFactory<T, TResult>(T value) where T : class;
 
     public abstract class FileFormat<T> : IFileFormat<T> where T : class
     {
@@ -113,7 +113,7 @@ namespace IS4.MultiArchiver.Services
 
         public TResult Match<TResult>(Stream stream, object source, IResultFactory<TResult> resultFactory) where TResult : class
         {
-            return Match(stream, source, (value, unknownType) => resultFactory.Invoke(value, unknownType));
+            return Match(stream, source, resultFactory.Invoke);
         }
     }
 
