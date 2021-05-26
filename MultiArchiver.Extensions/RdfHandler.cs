@@ -56,10 +56,13 @@ namespace IS4.MultiArchiver.Extensions
 
             protected override void HandleTriple(INode subj, INode pred, INode obj)
             {
-                try{
-                    handler.HandleTriple(new Triple(subj, pred, obj));
-                }catch{
+                lock(handler)
+                {
+                    try{
+                        handler.HandleTriple(new Triple(subj, pred, obj));
+                    }catch{
 
+                    }
                 }
             }
 
