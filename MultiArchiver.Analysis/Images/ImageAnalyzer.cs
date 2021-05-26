@@ -26,45 +26,63 @@ namespace IS4.MultiArchiver.Analyzers
 
         public override string Analyze(ILinkedNode node, Image image, ILinkedNodeFactory nodeFactory)
         {
-            ArraySegment<byte> data;
-            using(var thumbnail = ResizeImage(image, 12, 12, PixelFormat.Format32bppArgb, Color.Transparent))
+            var tag = (image.Tag as IImageTag) ?? DefaultTag;
+
+            if(tag.StoreDimensions)
             {
-                using(var stream = new MemoryStream())
+                node.Set(Properties.Width, image.Width);
+                node.Set(Properties.Height, image.Height);
+                node.Set(Properties.HorizontalResolution, (decimal)image.HorizontalResolution);
+                node.Set(Properties.VerticalResolution, (decimal)image.VerticalResolution);
+            }
+
+            if(tag.MakeThumbnail)
+            {
+                ArraySegment<byte> thumbnailDta;
+                using(var thumbnail = ResizeImage(image, 12, 12, PixelFormat.Format32bppArgb, Color.Transparent))
                 {
-                    thumbnail.Save(stream, ImageFormat.Png);
-                    if(!stream.TryGetBuffer(out data))
+                    using(var stream = new MemoryStream())
                     {
-                        data = new ArraySegment<byte>(stream.ToArray());
-                    }
-                }
-            }
-
-            var thumbNode = nodeFactory.Create(UriTools.DataUriFormatter, ("image/png", data));
-            thumbNode.Set(Properties.AtPrefLabel, "Thumbnail image");
-            node.Set(Properties.Thumbnail, thumbNode);
-
-            byte[] hash;
-            using(var horiz = ResizeImage(image, 9, 8, PixelFormat.Format32bppArgb, gray))
-            {
-                using(var vert = ResizeImage(image, 8, 9, PixelFormat.Format32bppArgb, gray))
-                {
-                    var horizBits = horiz.LockBits(new Rectangle(0, 0, 9, 8), ImageLockMode.ReadOnly, PixelFormat.Format32bppRgb);
-                    try{
-                        var vertBits = vert.LockBits(new Rectangle(0, 0, 8, 9), ImageLockMode.ReadOnly, PixelFormat.Format32bppRgb);
-                        try{
-                            hash = ComputeDHash(horizBits, vertBits);
-                        }finally{
-                            vert.UnlockBits(vertBits);
+                        thumbnail.Save(stream, ImageFormat.Png);
+                        if(!stream.TryGetBuffer(out thumbnailDta))
+                        {
+                            thumbnailDta = new ArraySegment<byte>(stream.ToArray());
                         }
-                    }finally{
-                        horiz.UnlockBits(horizBits);
                     }
                 }
+
+                var thumbNode = nodeFactory.Create(UriTools.DataUriFormatter, ("image/png", thumbnailDta));
+                thumbNode.Set(Properties.AtPrefLabel, "Thumbnail image");
+                node.Set(Properties.Thumbnail, thumbNode);
             }
-            HashAlgorithm.AddHash(node, DHash.Instance, hash, nodeFactory);
+
+            if(tag.ComputeHash)
+            {
+                byte[] hash;
+                using(var horiz = ResizeImage(image, 9, 8, PixelFormat.Format32bppArgb, gray))
+                {
+                    using(var vert = ResizeImage(image, 8, 9, PixelFormat.Format32bppArgb, gray))
+                    {
+                        var horizBits = horiz.LockBits(new Rectangle(0, 0, 9, 8), ImageLockMode.ReadOnly, PixelFormat.Format32bppRgb);
+                        try{
+                            var vertBits = vert.LockBits(new Rectangle(0, 0, 8, 9), ImageLockMode.ReadOnly, PixelFormat.Format32bppRgb);
+                            try{
+                                hash = ComputeDHash(horizBits, vertBits);
+                            }finally{
+                                vert.UnlockBits(vertBits);
+                            }
+                        }finally{
+                            horiz.UnlockBits(horizBits);
+                        }
+                    }
+                }
+                HashAlgorithm.AddHash(node, DHash.Instance, hash, nodeFactory);
+            }
 
             return null;
         }
+
+        static readonly ImageTag DefaultTag = new ImageTag();
 
         static Bitmap ResizeImage(Image image, int width, int height, PixelFormat pixelFormat, Color backgroundColor)
         {

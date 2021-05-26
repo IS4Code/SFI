@@ -104,6 +104,10 @@
         [Uri(Vocabularies.Nfo)]
         ColorDepth,
         [Uri(Vocabularies.Nfo)]
+        HorizontalResolution,
+        [Uri(Vocabularies.Nfo)]
+        VerticalResolution,
+        [Uri(Vocabularies.Nfo)]
         BitsPerSample,
         [Uri(Vocabularies.Nfo)]
         Channels,

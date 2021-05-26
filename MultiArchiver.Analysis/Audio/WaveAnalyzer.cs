@@ -37,10 +37,10 @@ namespace IS4.MultiArchiver.Analyzers
                         return null;
                 }
 
-                if(source is IFileNodeInfo info && info.Name is string name)
+                bmp.Tag = new ImageTag
                 {
-                    bmp.Save("out/" + name + ".png");
-                }
+                    StoreDimensions = false
+                };
 
                 var imageObj = new LinkedObject<Image>(node, source, bmp);
                 nodeFactory.Create<ILinkedObject<Image>>(parent, imageObj);

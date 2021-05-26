@@ -19,6 +19,10 @@ namespace IS4.MultiArchiver.Analyzers
             }
             using(var bmp = svg.Draw())
             {
+                bmp.Tag = new ImageTag
+                {
+                    StoreDimensions = false
+                };
                 var imageObj = new LinkedObject<Image>(node, source, bmp);
                 nodeFactory.Create<ILinkedObject<Image>>(parent, imageObj);
             }
