@@ -126,11 +126,16 @@ namespace IS4.MultiArchiver.Analyzers
 
             ILinkedNode IResultFactory<ILinkedNode>.Invoke<T>(T value)
             {
-                var obj = new FormatObject<T, IXmlDocumentFormat>(format, value, source);
-                var result = nodeFactory.Create(parent, obj);
-                Extension = obj.Extension;
-                Label = obj.Label;
-                return result;
+                try{
+                    var obj = new FormatObject<T, IXmlDocumentFormat>(format, value, source);
+                    var result = nodeFactory.Create(parent, obj);
+                    Extension = obj.Extension;
+                    Label = obj.Label;
+                    return result;
+                }catch(Exception e)
+                {
+                    throw new InternalArchiverException(e);
+                }
             }
         }
 

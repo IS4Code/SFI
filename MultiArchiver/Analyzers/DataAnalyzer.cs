@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
@@ -319,30 +320,54 @@ namespace IS4.MultiArchiver.Analyzers
             public void Wait()
             {
                 Task.WaitAny(task);
+                if(task.IsFaulted)
+                {
+                    var rethrowable = task.Exception.InnerExceptions.OfType<InternalArchiverException>().Select(e => e.InnerException);
+                    var exc = new AggregateException(rethrowable);
+                    switch(exc.InnerExceptions.Count)
+                    {
+                        case 0:
+                            break;
+                        case 1:
+                            ExceptionDispatchInfo.Capture(exc.InnerException).Throw();
+                            throw null;
+                        default:
+                            throw exc;
+                    }
+                }
             }
 
-            const int MaxResultWaitTime = 100;
+            const int MaxResultWaitTime = 1000;
 
             ILinkedNode IResultFactory<ILinkedNode>.Invoke<T>(T value)
             {
-                var formatObj = new FormatObject<T, IBinaryFileFormat>(format, value, streamFactory);
-                if(parent[formatObj] != null)
-                {
-                    var node = nodeFactory.Create<IFormatObject<T, IBinaryFileFormat>>(parent, formatObj);
-                    Extension = formatObj.Extension;
-                    Label = formatObj.Label;
-                    nodeCreated?.TrySetResult(node);
-                    return node;
-                }else{
-                    if(!nodeCreated.Task.Wait(MaxResultWaitTime)) return null;
-                    var node = nodeCreated.Task.Result;
-                    if(node != null)
+                try{
+                    var formatObj = new FormatObject<T, IBinaryFileFormat>(format, value, streamFactory);
+                    if(parent[formatObj] != null)
                     {
-                        var obj = new LinkedObject<T>(node, streamFactory, value);
-                        node = nodeFactory.Create<ILinkedObject<T>>(parent, obj);
-                        Label = obj.Label;
+                        var node = nodeFactory.Create<IFormatObject<T, IBinaryFileFormat>>(parent, formatObj);
+                        Extension = formatObj.Extension;
+                        Label = formatObj.Label;
+                        nodeCreated?.TrySetResult(node);
+                        return node;
+                    }else{
+                        if(!nodeCreated.Task.Wait(MaxResultWaitTime))
+                        {
+                            Console.Error.WriteLine($"There is no node to attach {value} to!");
+                            return null;
+                        }
+                        var node = nodeCreated.Task.Result;
+                        if(node != null)
+                        {
+                            var obj = new LinkedObject<T>(node, streamFactory, value);
+                            node = nodeFactory.Create<ILinkedObject<T>>(parent, obj);
+                            Label = obj.Label;
+                        }
+                        return node;
                     }
-                    return node;
+                }catch(Exception e)
+                {
+                    throw new InternalArchiverException(e);
                 }
             }
 

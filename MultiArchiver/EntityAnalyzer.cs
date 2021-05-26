@@ -2,6 +2,7 @@
 using IS4.MultiArchiver.Tools;
 using System;
 using System.Collections.Generic;
+using System.Runtime.ExceptionServices;
 
 namespace IS4.MultiArchiver
 {
@@ -16,14 +17,17 @@ namespace IS4.MultiArchiver
             {
                 if(obj is IEntityAnalyzer<T> analyzer)
                 {
-                    try
-                    {
+                    try{
                         Console.Error.WriteLine(entity);
                         var result = analyzer.Analyze(parent, entity, nodeFactory);
                         if(result != null)
                         {
                             return result;
                         }
+                    }catch(InternalArchiverException e)
+                    {
+                        ExceptionDispatchInfo.Capture(e).Throw();
+                        throw;
                     }catch(Exception e)
                     {
                         Console.Error.WriteLine("Error in analyzer " + obj);
