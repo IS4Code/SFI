@@ -4,8 +4,6 @@ using IS4.MultiArchiver.Vocabulary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Linq;
 
@@ -175,52 +173,9 @@ namespace IS4.MultiArchiver.Analyzers
                 return base.GetNamespace(value);
             }
 
-            static readonly Regex badCharacters = new Regex(@"://|//|[^a-zA-Z0-9._-]", RegexOptions.Compiled);
-
             public override string GetMediaType(XmlFormat value)
             {
-                var ns = GetNamespace(value);
-                if(ns == null)
-                {
-                    var pub = GetPublicId(value);
-                    if(pub != null)
-                    {
-                        ns = UriTools.CreatePublicId(pub);
-                    }
-                }
-                if(ns == null)
-                {
-                    return $"application/x.ns.{value.RootName.Name}+xml";
-                }
-                if(ns.HostNameType == UriHostNameType.Dns && !String.IsNullOrEmpty(ns.IdnHost))
-                {
-                    var host = ns.IdnHost;
-                    var builder = new UriBuilder(ns);
-                    builder.Host = String.Join(".", host.Split('.').Reverse());
-                    if(!ns.Authority.EndsWith($":{builder.Port}", StringComparison.Ordinal))
-                    {
-                        builder.Port = -1;
-                    }
-                    ns = builder.Uri;
-                }
-                var replaced = badCharacters.Replace(ns.OriginalString, m => {
-                    switch(m.Value)
-                    {
-                        case "[":
-                        case "]": return "";
-                        case "%": return "&";
-                        case ":":
-                        case "/":
-                        case "?":
-                        case ";":
-                        case "&":
-                        case "=":
-                        case "//":
-                        case "://": return ".";
-                        default: return String.Join("", Encoding.UTF8.GetBytes(m.Value).Select(b => $"&{b:X2}"));
-                    }
-                });
-                return $"application/x.ns.{replaced}.{value.RootName.Name}+xml";
+                return DataTools.GetFakeMediaTypeFromXml(GetNamespace(value), GetPublicId(value), value.RootName.Name);
             }
 
             public override TResult Match<TResult>(XmlReader reader, XDocumentType docType, Func<XmlFormat, TResult> resultFactory)
