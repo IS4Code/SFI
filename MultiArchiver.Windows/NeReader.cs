@@ -127,7 +127,7 @@ namespace IS4.MultiArchiver.Windows
                 length = Math.Min(length, Length);
                 stream.Position = this.offset;
                 int read = stream.Read(buffer, offset, length);
-                int minLength = offset + Math.Min(Length - maxAlignment, length);
+                int minLength = offset + Math.Max(0, Math.Min(Length - maxAlignment, length));
                 for(int i = offset + read - 1; i >= minLength; i--)
                 {
                     if(buffer[i] != 0)
