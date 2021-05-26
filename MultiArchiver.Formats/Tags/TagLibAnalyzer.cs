@@ -61,6 +61,7 @@ namespace IS4.MultiArchiver.Analyzers
 
                         foreach(var codec in properties.Codecs)
                         {
+                            if(codec == null) continue;
                             if(!codecCounters.TryGetValue(codec.MediaTypes, out int counter))
                             {
                                 counter = 0;
