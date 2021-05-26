@@ -64,6 +64,9 @@ namespace IS4.MultiArchiver.Services
                 if(sub.StartsWith("prs.") || sub.StartsWith("vnd."))
                 {
                     sub = sub.Substring(4);
+                }else if(sub.StartsWith("x-"))
+                {
+                    sub = sub.Substring(2);
                 }
                 int plus = sub.IndexOf('+');
                 if(plus != -1)
