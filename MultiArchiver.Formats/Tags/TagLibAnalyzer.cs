@@ -44,7 +44,7 @@ namespace IS4.MultiArchiver.Analyzers
                 {
                     if(properties.AudioChannels != 0)
                     {
-                        result = $"{properties.AudioSampleRate} Hz, {properties.AudioChannels} channels";
+                        result = $"{properties.AudioSampleRate} Hz, {properties.AudioChannels} channel{(properties.AudioChannels == 1 ? "" : "s")}";
                     }else{
                         result = $"{properties.AudioSampleRate} Hz";
                     }
@@ -175,7 +175,7 @@ namespace IS4.MultiArchiver.Analyzers
                 {
                     if(audio.AudioChannels != 0)
                     {
-                        result = $"{audio.AudioSampleRate} Hz, {audio.AudioChannels} channels";
+                        result = $"{audio.AudioSampleRate} Hz, {audio.AudioChannels} channel{(audio.AudioChannels == 1 ? "" : "s")}";
                     }else{
                         result = $"{audio.AudioSampleRate} Hz";
                     }

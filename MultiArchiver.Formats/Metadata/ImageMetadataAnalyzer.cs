@@ -179,7 +179,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             if(channels != null)
             {
-                components.Add($"{channels} channels");
+                components.Add($"{channels} channel{(channels == 1 ? "" : "s")}");
             }
 
             return String.Join(", ", components);
