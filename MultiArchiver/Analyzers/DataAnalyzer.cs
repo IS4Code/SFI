@@ -240,9 +240,22 @@ namespace IS4.MultiArchiver.Analyzers
                         return new Uri("data:application/octet-stream" + data, UriKind.Absolute);
                     case "ascii":
                     case "us-ascii":
-                        return new Uri("data:" + data);
+                        return new EncodedUri("data:" + data, UriKind.Absolute);
                     default:
-                        return new Uri("data:;charset=" + CharsetMatch.Charset + data, UriKind.Absolute);
+                        return new EncodedUri("data:;charset=" + CharsetMatch.Charset + data, UriKind.Absolute);
+                }
+            }
+
+            class EncodedUri : Uri
+            {
+                public EncodedUri(string uriString, UriKind uriKind) : base(uriString, uriKind)
+                {
+
+                }
+
+                public override string ToString()
+                {
+                    return IsAbsoluteUri ? AbsoluteUri : OriginalString;
                 }
             }
 
