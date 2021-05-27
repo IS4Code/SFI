@@ -67,6 +67,13 @@ namespace IS4.MultiArchiver.Analyzers
                         await h.writer.WaitToWriteAsync();
                     }).ToArray();
 
+                    length += read;
+
+                    if(couldBeUnicode == null)
+                    {
+                        couldBeUnicode = DataTools.FindBom(buffer.AsSpan()) > 0;
+                    }
+
                     if(!isBinary)
 				    {
 					    if(couldBeUnicode == false && Array.IndexOf<byte>(buffer, 0, 0, read) != -1)
@@ -75,19 +82,15 @@ namespace IS4.MultiArchiver.Analyzers
 					    }else{
                             encodingDetector.Write(new ArraySegment<byte>(buffer, 0, read));
 					    }
-				    }
-				    if(signatureBuffer.Length < signatureBuffer.Capacity)
+                    }
+
+                    if(signatureBuffer.Length < signatureBuffer.Capacity)
 				    {
 					    signatureBuffer.Write(buffer, 0, Math.Min(signatureBuffer.Capacity - (int)signatureBuffer.Length, read));
                     }else{
                         _ = lazyMatch.Value;
                     }
-                    length += read;
 
-                    if(couldBeUnicode == null && length >= DataTools.MaxBomLength && signatureBuffer.TryGetBuffer(out var signature))
-                    {
-                        couldBeUnicode = DataTools.FindBom(signature.AsSpan()) > 0;
-                    }
 
                     Task.WaitAll(writing);
                 }
