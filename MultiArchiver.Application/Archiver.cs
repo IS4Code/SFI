@@ -47,6 +47,7 @@ namespace IS4.MultiArchiver.Extensions
             archiver.DataAnalyzer.Formats.Add(new SevenZipFormat());
             archiver.DataAnalyzer.Formats.Add(new GZipFormat());
             archiver.DataAnalyzer.Formats.Add(new TarFormat());
+            archiver.DataAnalyzer.Formats.Add(new SzFormat());
             archiver.DataAnalyzer.Formats.Add(new ImageMetadataFormat());
             archiver.DataAnalyzer.Formats.Add(new ImageFormat());
             archiver.DataAnalyzer.Formats.Add(new TagLibFormat());
