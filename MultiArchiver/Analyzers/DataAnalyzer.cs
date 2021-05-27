@@ -55,6 +55,8 @@ namespace IS4.MultiArchiver.Analyzers
 
                 var buffer = new byte[16384];
 
+                bool? couldBeUnicode = null;
+
                 int read;
                 while((read = stream.Read(buffer, 0, buffer.Length)) != 0)
                 {
@@ -67,7 +69,7 @@ namespace IS4.MultiArchiver.Analyzers
 
                     if(!isBinary)
 				    {
-					    if(Array.IndexOf<byte>(buffer, 0, 0, read) != -1)
+					    if(couldBeUnicode == false && Array.IndexOf<byte>(buffer, 0, 0, read) != -1)
 					    {
 						    isBinary = true;
 					    }else{
@@ -81,6 +83,11 @@ namespace IS4.MultiArchiver.Analyzers
                         _ = lazyMatch.Value;
                     }
                     length += read;
+
+                    if(couldBeUnicode == null && length >= DataTools.MaxBomLength && signatureBuffer.TryGetBuffer(out var signature))
+                    {
+                        couldBeUnicode = DataTools.FindBom(signature.AsSpan()) > 0;
+                    }
 
                     Task.WaitAll(writing);
                 }
