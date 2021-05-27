@@ -250,6 +250,11 @@ namespace IS4.MultiArchiver.Analyzers
             {
                 if(encoding == null) return null;
                 try{
+                    var preamble = encoding.GetPreamble();
+                    if(preamble?.Length > 0 && data.AsSpan().StartsWith(preamble))
+                    {
+                        return encoding.GetString(data.Array, data.Offset + preamble.Length, data.Count - preamble.Length);
+                    }
                     return encoding.GetString(data.Array, data.Offset, data.Count);
                 }catch(ArgumentException)
                 {
