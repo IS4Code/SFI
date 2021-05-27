@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace IS4.MultiArchiver
 {
-    static class DataTools
+    public static class DataTools
     {
         static readonly string[] units = { "B", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB", "ZiB", "YiB" };
 

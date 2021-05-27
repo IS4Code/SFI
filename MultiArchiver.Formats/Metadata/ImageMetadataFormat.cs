@@ -10,7 +10,7 @@ namespace IS4.MultiArchiver.Formats
 {
     public class ImageMetadataFormat : BinaryFileFormat<IReadOnlyList<MetadataExtractor.Directory>>
     {
-        public ImageMetadataFormat() : base(0, null, null)
+        public ImageMetadataFormat() : base(DataTools.MaxBomLength, null, null)
         {
 
         }
@@ -41,14 +41,9 @@ namespace IS4.MultiArchiver.Formats
             return resultFactory(ImageMetadataReader.ReadMetadata(stream));
         }
 
-        public override bool CheckHeader(ArraySegment<byte> header, bool isBinary, IEncodingDetector encodingDetector)
-        {
-            return true;
-        }
-
         public override bool CheckHeader(Span<byte> header, bool isBinary, IEncodingDetector encodingDetector)
         {
-            return true;
+            return isBinary || DataTools.FindBom(header) == 0;
         }
     }
 }
