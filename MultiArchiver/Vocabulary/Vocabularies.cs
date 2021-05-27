@@ -42,6 +42,8 @@
         Owl,
         [Uri("http://dbpedia.org/datatype/")]
         Dt,
+        [Uri("http://dbpedia.org/ontology/")]
+        Dbo,
         [Uri("https://www.iana.org/assignments/media-types/")]
         Mime,
         [Uri("file:///")]

@@ -21,6 +21,11 @@
         HasFormat,
         [Uri(Vocabularies.Dcterms)]
         Extent,
+        [Uri(Vocabularies.Dcterms)]
+        Creator,
+
+        [Uri(Vocabularies.Dbo)]
+        OriginalName,
 
         [Uri(Vocabularies.Cnt)]
         Bytes,
@@ -56,6 +61,8 @@
         DigestValue,
 
         [Uri(Vocabularies.Schema)]
+        Name,
+        [Uri(Vocabularies.Schema)]
         DownloadUrl,
         [Uri(Vocabularies.Schema)]
         Encoding,
@@ -64,9 +71,13 @@
         [Uri(Vocabularies.Schema)]
         Version,
         [Uri(Vocabularies.Schema)]
+        SoftwareVersion,
+        [Uri(Vocabularies.Schema)]
         Thumbnail,
         [Uri(Vocabularies.Schema)]
         Image,
+        [Uri(Vocabularies.Schema)]
+        CopyrightNotice,
 
         [Uri(Vocabularies.Nie)]
         IsStoredAs,

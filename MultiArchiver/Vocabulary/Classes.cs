@@ -12,6 +12,8 @@
         VideoObject,
         [Uri(Vocabularies.Schema)]
         MediaObject,
+        [Uri(Vocabularies.Schema)]
+        SoftwareApplication,
 
         [Uri(Vocabularies.Cnt)]
         ContentAsText,

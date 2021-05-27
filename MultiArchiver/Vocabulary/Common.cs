@@ -18,5 +18,10 @@ namespace IS4.MultiArchiver.Vocabulary
         {
             Classes.ImageObject, Classes.Image
         };
+
+        public static IEnumerable<Classes> ApplicationClasses = new[]
+        {
+            Classes.SoftwareApplication, Classes.Executable
+        };
     }
 }

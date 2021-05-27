@@ -1,16 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Text;
 using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Vocabulary;
 using IS4.MultiArchiver.Windows;
+using static Vanara.PInvoke.VersionDll;
 
 namespace IS4.MultiArchiver.Analyzers
 {
     public class WinModuleAnalyzer : BinaryFormatAnalyzer<IModule>
     {
+        public WinModuleAnalyzer() : base(Common.ApplicationClasses)
+        {
+
+        }
+
         public override string Analyze(ILinkedNode node, IModule module, ILinkedNodeFactory nodeFactory)
         {
             var cache = new Dictionary<(object, object), ResourceInfo>();
@@ -41,8 +49,10 @@ namespace IS4.MultiArchiver.Analyzers
                         case Win32ResourceType.NameTable:
                         case Win32ResourceType.PlugAndPlay:
                         case Win32ResourceType.String:
-                        case Win32ResourceType.Version:
                         case Win32ResourceType.VXD:
+                            continue;
+                        case Win32ResourceType.Version:
+                            ReadVersion(node, info);
                             continue;
                     }
                     if(info.Type.Equals("MUI"))
@@ -71,6 +81,110 @@ namespace IS4.MultiArchiver.Analyzers
             }
             return null;
         }
+
+        unsafe void ReadVersion(ILinkedNode node, ResourceInfo info)
+        {
+            using(var stream = info.Open())
+            {
+                // Allocate space for ANSI/Unicode conversions
+                var buffer = new byte[stream.Length * 3];
+                int bufferLen = buffer.Length / 3;
+                stream.Read(buffer, bufferLen, bufferLen);
+
+                fixed(byte* dataFixed = buffer)
+                {
+                    var data = dataFixed + stream.Length;
+                    bool useAnsi = true;
+                    if(VerQueryValue(false, (IntPtr)data, bufferLen, @"\", out var rootVal, out var rootLen))
+                    {
+                        ref var version = ref *(VS_FIXEDFILEINFO*)rootVal;
+                        if(version.dwSignature == 0xFEEF04BD)
+                        {
+                            var fileVersion = VerFromDWORDs(version.dwFileVersionMS, version.dwFileVersionLS);
+                            var productVersion = VerFromDWORDs(version.dwProductVersionMS, version.dwProductVersionLS);
+
+                            node.Set(Properties.Version, fileVersion);
+                            node.Set(Properties.SoftwareVersion, productVersion);
+
+                            if((version.dwFileOS & VOS.VOS__WINDOWS32) != 0)
+                            {
+                                useAnsi = false;
+                            }
+                        }
+                    }
+
+                    if(VerQueryValue(false, (IntPtr)data, bufferLen, @"\VarFileInfo\Translation", out var transBlock, out var transLen))
+                    {
+                        var num = transLen / (uint)sizeof(LANGANDCODEPAGE);
+                        var translations = new Span<LANGANDCODEPAGE>((void*)transBlock, unchecked((int)num));
+                        foreach(var trans in translations)
+                        {
+                            var enc = Encoding.GetEncoding(trans.wCodePage, EncoderFallback.ReplacementFallback, DecoderFallback.ReplacementFallback);
+                            var lang = CultureInfo.GetCultureInfo(trans.wLanguage);
+                            var dir = $@"\StringFileInfo\{trans.wLanguage:X4}{trans.wCodePage:X4}\";
+                            foreach(var pair in predefinedProperties)
+                            {
+                                if(VerQueryValue(useAnsi, (IntPtr)data, bufferLen, dir + pair.Key, out var text, out var textLen))
+                                {
+                                    var len = enc.GetMaxByteCount(unchecked((int)textLen));
+                                    var value = enc.GetString((byte*)text, len).Substring(0, unchecked((int)textLen)).TrimEnd('\0');
+                                    if(pair.Value.lang)
+                                    {
+                                        node.Set(pair.Value.prop, value, lang.IetfLanguageTag);
+                                    }else{
+                                        node.Set(pair.Value.prop, value);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        static unsafe bool VerQueryValue(bool ansi, IntPtr pBlock, int length, string lpSubBlock, out IntPtr lplpBuffer, out uint puLen)
+        {
+            bool result;
+            if(ansi) result = VerQueryValueA(pBlock, lpSubBlock, out lplpBuffer, out puLen);
+            else result = Vanara.PInvoke.VersionDll.VerQueryValue(pBlock, lpSubBlock, out lplpBuffer, out puLen);
+            if(result && ((byte*)lplpBuffer < (byte*)pBlock || (byte*)lplpBuffer >= (byte*)pBlock + length))
+            {
+                throw new InvalidOperationException("Version block encoding was not correctly detected.");
+            }
+            return result;
+        }
+
+        [DllImport("Version.dll", SetLastError=false, CharSet=CharSet.Ansi)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool VerQueryValueA(IntPtr pBlock, [MarshalAs(UnmanagedType.LPStr)] string lpSubBlock, out IntPtr lplpBuffer, out uint puLen);
+
+        [StructLayout(LayoutKind.Sequential)]
+        struct LANGANDCODEPAGE
+        {
+            public readonly ushort wLanguage;
+            public readonly ushort wCodePage;
+        }
+
+        static string VerFromDWORDs(uint ms, uint ls)
+        {
+            return $"{(ms >> 16) & 0xffff}.{(ms >> 0) & 0xffff}.{(ls >> 16) & 0xffff}.{(ls >> 0) & 0xffff}";
+        }
+
+        static readonly Dictionary<string, (Properties prop, bool lang)> predefinedProperties = new Dictionary<string, (Properties, bool)>
+        {
+            //{ "Comments", Properties. },
+            { "InternalName", (Properties.Name, false) },
+            //{ "ProductName", Properties. },
+            { "CompanyName", (Properties.Creator, true) },
+            { "LegalCopyright", (Properties.CopyrightNotice, true) },
+            { "ProductVersion", (Properties.SoftwareVersion, false) },
+            { "FileDescription", (Properties.Description, true) },
+            //{ "LegalTrademarks", Properties. },
+            //{ "PrivateBuild", Properties. },
+            { "FileVersion", (Properties.Version, false) },
+            { "OriginalFilename", (Properties.OriginalName, false) },
+            //{ "SpecialBuild", Properties. },
+        };
 
         class ResourceInfo : IFileInfo
         {
