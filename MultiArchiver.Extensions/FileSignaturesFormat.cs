@@ -1,6 +1,5 @@
 ﻿using IS4.MultiArchiver.Services;
 using System;
-using System.Buffers;
 using System.IO;
 
 namespace IS4.MultiArchiver.Formats
@@ -14,31 +13,22 @@ namespace IS4.MultiArchiver.Formats
             Format = format;
         }
 
-        public override bool CheckHeader(Span<byte> header, bool isBinary, IEncodingDetector encodingDetector)
+        public override bool CheckHeader(ArraySegment<byte> header, bool isBinary, IEncodingDetector encodingDetector)
         {
-            using(var stream = new MemoryStream(HeaderLength))
+            using(var stream = new MemoryStream(header.Array, header.Offset, header.Count, false))
             {
-                if(stream.TryGetBuffer(out var buffer))
-                {
-                    header.CopyTo(buffer);
-                }else{
-                    if(HeaderLength < 64)
-                    {
-                        foreach(var b in header)
-                        {
-                            stream.WriteByte(b);
-                        }
-                    }else{
-                        byte[] sharedBuffer = ArrayPool<byte>.Shared.Rent(HeaderLength);
-                        try{
-                            header.CopyTo(sharedBuffer);
-                            stream.Write(sharedBuffer, 0, HeaderLength);
-                        }finally{
-                            ArrayPool<byte>.Shared.Return(sharedBuffer);
-                        }
-                    }
-                }
                 return Format.IsMatch(stream);
+            }
+        }
+
+        public override unsafe bool CheckHeader(Span<byte> header, bool isBinary, IEncodingDetector encodingDetector)
+        {
+            fixed(byte* ptr = header)
+            {
+                using(var stream = new UnmanagedMemoryStream(ptr, header.Length, header.Length, FileAccess.Read))
+                {
+                    return Format.IsMatch(stream);
+                }
             }
         }
 
