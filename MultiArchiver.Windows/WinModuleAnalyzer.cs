@@ -24,6 +24,8 @@ namespace IS4.MultiArchiver.Analyzers
             var cache = new Dictionary<(object, object), ResourceInfo>();
             var groups = new List<ResourceInfo>();
 
+            string label = null;
+
             foreach(var resourceGroup in module.ReadResources().GroupBy(r => $"{r.Type}/{r.Name}"))
             {
                 int ordinal = 0;
@@ -52,7 +54,7 @@ namespace IS4.MultiArchiver.Analyzers
                         case Win32ResourceType.VXD:
                             continue;
                         case Win32ResourceType.Version:
-                            ReadVersion(node, info);
+                            label = ReadVersion(node, info);
                             continue;
                     }
                     if(info.Type.Equals("MUI"))
@@ -79,11 +81,15 @@ namespace IS4.MultiArchiver.Analyzers
                     node.Set(Properties.HasMediaStream, infoNode);
                 }
             }
-            return null;
+            return label;
         }
 
-        unsafe void ReadVersion(ILinkedNode node, ResourceInfo info)
+        static readonly byte[] ansiVersionString = Encoding.ASCII.GetBytes("VS_VERSION_INFO");
+        static readonly byte[] unicodeVersionString = Encoding.Unicode.GetBytes("\0VS_VERSION_INFO");
+
+        unsafe string ReadVersion(ILinkedNode node, ResourceInfo info)
         {
+            string label = null;
             using(var stream = info.Open())
             {
                 // Allocate space for ANSI/Unicode conversions
@@ -91,10 +97,23 @@ namespace IS4.MultiArchiver.Analyzers
                 int bufferLen = buffer.Length / 3;
                 stream.Read(buffer, bufferLen, bufferLen);
 
-                fixed(byte* dataFixed = buffer)
+                var bufferData = buffer.AsSpan().Slice(bufferLen, bufferLen);
+
+                var signature = bufferData.Slice(4);
+
+                bool useAnsi;
+                if(signature.StartsWith(ansiVersionString))
                 {
-                    var data = dataFixed + stream.Length;
-                    bool useAnsi = true;
+                    useAnsi = true;
+                }else if(signature.StartsWith(unicodeVersionString))
+                {
+                    useAnsi = false;
+                }else{
+                    return null;
+                }
+
+                fixed(byte* data = bufferData)
+                {
                     if(VerQueryValue(false, (IntPtr)data, bufferLen, @"\", out var rootVal, out var rootLen))
                     {
                         ref var version = ref *(VS_FIXEDFILEINFO*)rootVal;
@@ -105,11 +124,6 @@ namespace IS4.MultiArchiver.Analyzers
 
                             node.Set(Properties.Version, fileVersion);
                             node.Set(Properties.SoftwareVersion, productVersion);
-
-                            if((version.dwFileOS & VOS.VOS__WINDOWS32) != 0)
-                            {
-                                useAnsi = false;
-                            }
                         }
                     }
 
@@ -134,12 +148,17 @@ namespace IS4.MultiArchiver.Analyzers
                                     }else{
                                         node.Set(pair.Value.prop, value);
                                     }
+                                    if(pair.Value.prop == Properties.Name)
+                                    {
+                                        label = value;
+                                    }
                                 }
                             }
                         }
                     }
                 }
             }
+            return label;
         }
 
         static unsafe bool VerQueryValue(bool ansi, IntPtr pBlock, int length, string lpSubBlock, out IntPtr lplpBuffer, out uint puLen)
