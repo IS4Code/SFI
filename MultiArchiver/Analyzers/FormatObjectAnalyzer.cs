@@ -40,7 +40,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             if(node != null)
             {
-                format.Label = Analyze(parent, node, format.Value, format.Source, nodeFactory);
+                format.Label = format.Label ?? Analyze(parent, node, format.Value, format.Source, nodeFactory);
                 node.SetClass(Classes.MediaObject);
                 foreach(var cls in recognizedClasses)
                 {
@@ -77,7 +77,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         ILinkedNode IEntityAnalyzer<ILinkedObject<T>>.Analyze(ILinkedNode parent, ILinkedObject<T> entity, ILinkedNodeFactory nodeFactory)
         {
-            entity.Label = Analyze(parent, entity.Node, entity.Value, entity.Source, nodeFactory);
+            entity.Label = entity.Label ?? Analyze(parent, entity.Node, entity.Value, entity.Source, nodeFactory);
             return entity.Node;
         }
     }
