@@ -141,7 +141,9 @@ namespace IS4.MultiArchiver.Analyzers
                                 if(VerQueryValue(useAnsi, (IntPtr)data, bufferLen, dir + pair.Key, out var text, out var textLen))
                                 {
                                     var len = enc.GetMaxByteCount(unchecked((int)textLen));
-                                    var value = enc.GetString((byte*)text, len).Substring(0, unchecked((int)textLen)).TrimEnd('\0');
+                                    var value = enc.GetString((byte*)text, len).Substring(0, unchecked((int)textLen));
+                                    int end = value.IndexOf('\0');
+                                    if(end != -1) value = value.Substring(0, end);
                                     if(pair.Value.lang)
                                     {
                                         node.Set(pair.Value.prop, value, lang.IetfLanguageTag);
