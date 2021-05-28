@@ -83,40 +83,81 @@ namespace IS4.MultiArchiver.Formats.Archives
 
         public EntryStream OpenEntryStream()
         {
-            var stream = new EnumeratorStream<EndOfStreamException>(ReadBytes(), Entry.Size);
+            var stream = new EnumeratorStream<NoException>(ReadBytes(), Entry.Size);
             return (EntryStream)ctor.Invoke(new object[] { this, stream });
+        }
+
+        abstract class NoException : Exception
+        {
+            private NoException()
+            {
+
+            }
         }
 
         const int windowSize = 4096;
 
         static readonly byte[] initialWindow = Enumerable.Repeat((byte)0x20, windowSize).ToArray();
 
-        IEnumerator<byte> ReadBytes()
+        IEnumerator<ArraySegment<byte>> ReadBytes()
         {
+            var stream = reader.BaseStream;
             var window = (byte[])initialWindow.Clone();
             const int invert = 0;
 
             int pos = windowSize - (qbFormat ? 18 : 16);
+
+            int initialPos = pos;
+
+            ArraySegment<byte> GetSegment(int? newPos = null)
+            {
+                var result = new ArraySegment<byte>(window, initialPos, pos - initialPos);
+                initialPos = pos = newPos ?? pos;
+                return result;
+            }
+
             while(true)
             {
-                int control = reader.BaseStream.ReadByte();
-                if(control == -1) yield break;
+                int control = stream.ReadByte();
+                if(control == -1)
+                {
+                    yield return GetSegment();
+                    yield break;
+                }
                 control ^= invert;
                 for(int cbit = 0x01; (cbit & 0xFF) != 0; cbit <<= 1)
                 {
                     if((control & cbit) != 0)
                     {
-                        yield return window[pos++] = reader.ReadByte();
-                        pos &= windowSize - 1;
+                        int b = stream.ReadByte();
+                        if(b == -1)
+                        {
+                            yield return GetSegment();
+                            yield break;
+                        }
+                        window[pos++] = unchecked((byte)b);
+                        if(pos >= windowSize)
+                        {
+                            yield return GetSegment(0);
+                        }
                     }else{
-                        int matchpos = reader.ReadByte();
-                        int matchlen = reader.ReadByte();
+                        int matchpos = stream.ReadByte();
+                        int matchlen = stream.ReadByte();
+                        if(matchpos == -1 || matchlen == -1)
+                        {
+                            yield return GetSegment();
+                            yield break;
+                        }
                         matchpos |= (matchlen & 0xF0) << 4;
                         matchlen = (matchlen & 0x0F) + 3;
                         while(matchlen-- != 0)
                         {
-                            yield return window[pos++] = window[matchpos++];
-                            pos &= windowSize - 1; matchpos &= windowSize - 1;
+                            window[pos++] = window[matchpos++];
+                            matchpos &= windowSize - 1;
+                            if(pos >= windowSize)
+                            {
+                                yield return GetSegment(0);
+                            }
                         }
                     }
                 }
@@ -167,9 +208,9 @@ namespace IS4.MultiArchiver.Formats.Archives
 
         class EnumeratorStream<TException> : Stream where TException : Exception
         {
-            readonly IEnumerator<byte> enumerator;
+            readonly IEnumerator<ArraySegment<byte>> enumerator;
 
-            public EnumeratorStream(IEnumerator<byte> enumerator, long length)
+            public EnumeratorStream(IEnumerator<ArraySegment<byte>> enumerator, long length)
             {
                 this.enumerator = enumerator;
                 Length = length;
@@ -190,25 +231,50 @@ namespace IS4.MultiArchiver.Formats.Archives
                 
             }
 
+            ArraySegment<byte> remaining;
+
             public override int Read(byte[] buffer, int offset, int count)
             {
-                for(int i = 0; i < count; i++)
+                int total = 0;
+                while(count > 0)
                 {
-                    int read = ReadByte();
-                    if(read == -1) return i;
-                    buffer[offset + i] = (byte)read;
+                    while(remaining.Count == 0)
+                    {
+                        if(!MoveNext()) return total;
+                    }
+                    int read = Math.Min(remaining.Count, count);
+                    Array.Copy(remaining.Array, remaining.Offset, buffer, offset, read);
+                    remaining = new ArraySegment<byte>(remaining.Array, remaining.Offset + read, remaining.Count - read);
+                    total += read;
+                    offset += read;
+                    count -= read;
                 }
-                return count;
+                return total;
             }
 
             public override int ReadByte()
             {
+                while(remaining.Count == 0)
+                {
+                    if(!MoveNext()) return -1;
+                }
+                var result = remaining.Array[remaining.Offset];
+                remaining = new ArraySegment<byte>(remaining.Array, remaining.Offset + 1, remaining.Count - 1);
+                return result;
+            }
+
+            bool MoveNext()
+            {
                 try{
-                    if(!enumerator.MoveNext()) return -1;
-                    return enumerator.Current;
+                    if(enumerator.MoveNext())
+                    {
+                        remaining = enumerator.Current;
+                        return true;
+                    }
+                    return false;
                 }catch(TException)
                 {
-                    return -1;
+                    return false;
                 }
             }
 
