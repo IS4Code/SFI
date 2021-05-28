@@ -198,7 +198,7 @@ namespace IS4.MultiArchiver.Formats.Archives
                     if(read == -1) return i;
                     buffer[offset + i] = (byte)read;
                 }
-                return 0;
+                return count;
             }
 
             public override int ReadByte()
