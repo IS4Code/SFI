@@ -34,6 +34,11 @@ namespace IS4.MultiArchiver.Formats
             if(finalDigit < '0' || finalDigit > '7') return false;
             // Find the leading digit
             int start = checksumSpan.IndexOfAny(leadingDigits);
+            if(start == -1)
+            {
+                // Checksum not present
+                return false;
+            }
             for(int i = 0; i < start; i++)
             {
                 var digit = checksumSpan[i];
@@ -43,7 +48,7 @@ namespace IS4.MultiArchiver.Formats
                     return false;
                 }
             }
-            // Compute the stored value
+            // Parse the checksum
             int targetChecksum = 0;
             for(int i = start; i < checksumSpan.Length; i++)
             {
