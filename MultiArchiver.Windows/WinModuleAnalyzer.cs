@@ -347,7 +347,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             public object DataKey => null;
 
-            public unsafe Stream Open()
+            public Stream Open()
             {
                 return new MemoryStream(Data.Array, Data.Offset, Data.Count, false);
             }
