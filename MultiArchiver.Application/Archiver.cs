@@ -57,6 +57,7 @@ namespace IS4.MultiArchiver.Extensions
             //archiver.DataAnalyzer.Formats.Add(new WaveFormat());
             //archiver.DataAnalyzer.Formats.Add(new OggFormat());
             archiver.DataAnalyzer.Formats.Add(new WasapiFormat());
+            archiver.DataAnalyzer.Formats.Add(new DelphiFormFormat());
 
             archiver.XmlAnalyzer.XmlFormats.Add(new SvgFormat());
 
@@ -69,6 +70,7 @@ namespace IS4.MultiArchiver.Extensions
             archiver.Analyzers.Add(new WinModuleAnalyzer());
             archiver.Analyzers.Add(new SvgAnalyzer());
             archiver.Analyzers.Add(new WaveAnalyzer());
+            archiver.Analyzers.Add(new DelphiObjectAnalyzer());
 
             return archiver;
         }
