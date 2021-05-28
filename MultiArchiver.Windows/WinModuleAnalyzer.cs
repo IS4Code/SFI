@@ -114,7 +114,7 @@ namespace IS4.MultiArchiver.Analyzers
 
                 fixed(byte* data = bufferData)
                 {
-                    if(VerQueryValue(false, (IntPtr)data, bufferLen, @"\", out var rootVal, out var rootLen))
+                    if(VerQueryValue(useAnsi, (IntPtr)data, bufferLen, @"\", out var rootVal, out var rootLen))
                     {
                         ref var version = ref *(VS_FIXEDFILEINFO*)rootVal;
                         if(version.dwSignature == 0xFEEF04BD)
@@ -127,13 +127,13 @@ namespace IS4.MultiArchiver.Analyzers
                         }
                     }
 
-                    if(VerQueryValue(false, (IntPtr)data, bufferLen, @"\VarFileInfo\Translation", out var transBlock, out var transLen))
+                    if(VerQueryValue(useAnsi, (IntPtr)data, bufferLen, @"\VarFileInfo\Translation", out var transBlock, out var transLen))
                     {
                         var num = transLen / (uint)sizeof(LANGANDCODEPAGE);
                         var translations = new Span<LANGANDCODEPAGE>((void*)transBlock, unchecked((int)num));
                         foreach(var trans in translations)
                         {
-                            var enc = Encoding.GetEncoding(trans.wCodePage, EncoderFallback.ReplacementFallback, DecoderFallback.ReplacementFallback);
+                            var enc = useAnsi ? Encoding.GetEncoding(trans.wCodePage, EncoderFallback.ReplacementFallback, DecoderFallback.ReplacementFallback) : Encoding.Unicode;
                             var lang = CultureInfo.GetCultureInfo(trans.wLanguage);
                             var dir = $@"\StringFileInfo\{trans.wLanguage:X4}{trans.wCodePage:X4}\";
                             foreach(var pair in predefinedProperties)
