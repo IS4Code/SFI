@@ -182,7 +182,7 @@ namespace IS4.MultiArchiver.Analyzers
                 components.Add($"{channels} channel{(channels == 1 ? "" : "s")}");
             }
 
-            return String.Join(", ", components);
+            return components.Count > 0 ? String.Join(", ", components) : null;
         }
 
         public static ImageMetadataAnalyzer CreateDefault()
