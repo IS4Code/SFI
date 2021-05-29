@@ -82,11 +82,18 @@ namespace IS4.MultiArchiver.Analysis.Audio
         public void Finish()
         {
             AddFrames();
-            int overlap = (audioFilled - samplesPerFrame) % samplesPerStep;
-            int added = samplesPerStep - overlap;
-            Array.Clear(audioBuffer, audioFilled, added);
-            audioFilled += added;
-            AddFrames();
+
+            if(audioFilled > 0)
+            {
+                int fill;
+                while((fill = samplesPerStep + samplesPerFrame - audioFilled) > 0)
+                {
+                    fill = Math.Min(fill, audioFilled);
+                    Array.Copy(audioBuffer, 0, audioBuffer, audioFilled, fill);
+                    audioFilled += fill;
+                }
+                AddFrames();
+            }
 
             Process();
         }
