@@ -18,15 +18,54 @@ namespace IS4.MultiArchiver.Analyzers
 
         public override string Analyze(ILinkedNode parent, ILinkedNode node, WaveStream wave, object source, ILinkedNodeFactory nodeFactory)
         {
-            node.Set(Properties.Duration, wave.TotalTime);
-            node.Set(Properties.Channels, wave.WaveFormat.Channels);
-            node.Set(Properties.BitsPerSample, wave.WaveFormat.BitsPerSample);
-            node.Set(Properties.SampleRate, wave.WaveFormat.SampleRate, Datatypes.Hertz);
-
-            if(wave.WaveFormat.Encoding == WaveFormatEncoding.Pcm)
+            if(wave is ICustomWaveFormat customFormat)
             {
-                var provider = new Pcm16BitToSampleProvider(wave);
+                if(customFormat.ChannelCount is int channels)
+                {
+                    node.Set(Properties.Channels, channels);
+                }
+                if(customFormat.BitsPerSample is int bits)
+                {
+                    node.Set(Properties.BitsPerSample, bits);
+                }
+                if(customFormat.SampleRate is int sampleRate)
+                {
+                    node.Set(Properties.SampleRate, sampleRate);
+                }
+            }else{
+                node.Set(Properties.Channels, wave.WaveFormat.Channels);
+                node.Set(Properties.BitsPerSample, wave.WaveFormat.BitsPerSample);
+                node.Set(Properties.SampleRate, wave.WaveFormat.SampleRate, Datatypes.Hertz);
+            }
 
+            node.Set(Properties.Duration, wave.TotalTime);
+
+            ISampleProvider provider = null;
+            switch(wave.WaveFormat.Encoding)
+            {
+                case WaveFormatEncoding.Pcm:
+                    switch(wave.WaveFormat.BitsPerSample)
+                    {
+                        case 8:
+                            provider = new Pcm8BitToSampleProvider(wave);
+                            break;
+                        case 16:
+                            provider = new Pcm16BitToSampleProvider(wave);
+                            break;
+                        case 24:
+                            provider = new Pcm24BitToSampleProvider(wave);
+                            break;
+                        case 32:
+                            provider = new Pcm32BitToSampleProvider(wave);
+                            break;
+                    }
+                    break;
+                case WaveFormatEncoding.IeeeFloat:
+                    provider = new WaveToSampleProvider(wave);
+                    break;
+            }
+            if(provider != null)
+            {
                 var result = generator.CreateSpectrum(wave.WaveFormat.SampleRate, wave.WaveFormat.Channels, provider);
 
                 Bitmap bmp;
