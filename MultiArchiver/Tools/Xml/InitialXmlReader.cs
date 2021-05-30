@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Schema;
 
-namespace IS4.MultiArchiver.Tools
+namespace IS4.MultiArchiver.Tools.Xml
 {
     public class InitialXmlReader : XmlReader
     {
