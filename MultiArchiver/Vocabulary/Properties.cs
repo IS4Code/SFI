@@ -171,5 +171,7 @@
         PathObject,
         [Uri(Vocabularies.At)]
         VolumeLabel,
+        [Uri(Vocabularies.At)]
+        Visited,
     }
 }
