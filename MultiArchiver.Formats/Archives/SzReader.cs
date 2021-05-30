@@ -49,10 +49,6 @@ namespace IS4.MultiArchiver.Formats.Archives
 
         public bool Cancelled { get; private set; }
 
-        public event EventHandler<ReaderExtractionEventArgs<IEntry>> EntryExtractionProgress;
-        public event EventHandler<CompressedBytesReadEventArgs> CompressedBytesRead;
-        public event EventHandler<FilePartExtractionBeginEventArgs> FilePartExtractionBegin;
-
         public void Cancel()
         {
             Cancelled = true;
@@ -159,7 +155,37 @@ namespace IS4.MultiArchiver.Formats.Archives
 
         public void WriteEntryTo(Stream writableStream)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
+        }
+
+        event EventHandler<ReaderExtractionEventArgs<IEntry>> IReader.EntryExtractionProgress {
+            add {
+                throw new NotSupportedException();
+            }
+
+            remove {
+                throw new NotSupportedException();
+            }
+        }
+
+        event EventHandler<CompressedBytesReadEventArgs> IReader.CompressedBytesRead {
+            add {
+                throw new NotSupportedException();
+            }
+
+            remove {
+                throw new NotSupportedException();
+            }
+        }
+
+        event EventHandler<FilePartExtractionBeginEventArgs> IReader.FilePartExtractionBegin {
+            add {
+                throw new NotSupportedException();
+            }
+
+            remove {
+                throw new NotSupportedException();
+            }
         }
 
         class SzEntry : IEntry
