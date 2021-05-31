@@ -35,6 +35,7 @@ namespace IS4.MultiArchiver.Tools.Xml
         {
             var ch = capacity is int i ? Channel.CreateBounded<XmlReaderState>(new BoundedChannelOptions(i)
             {
+                FullMode = BoundedChannelFullMode.Wait,
                 AllowSynchronousContinuations = true,
                 SingleReader = true,
                 SingleWriter = true

@@ -42,15 +42,8 @@ namespace IS4.MultiArchiver.Analyzers
             {
                 foreach(var hash in HashAlgorithms)
                 {
-                    var channel = Channel.CreateBounded<ArraySegment<byte>>(new BoundedChannelOptions(1)
-                    {
-                        AllowSynchronousContinuations = true,
-                        FullMode = BoundedChannelFullMode.Wait,
-                        SingleReader = true,
-                        SingleWriter = true
-                    });
-                    var queue = new QueueStream(channel.Reader);
-                    hashes.Add((hash, channel.Writer, Task.Run(() => hash.ComputeHash(queue, streamFactory))));
+                    var queue = ChannelStream.Create(out var writer);
+                    hashes.Add((hash, writer, Task.Run(() => hash.ComputeHash(queue, streamFactory))));
                 }
 
                 var buffer = new byte[16384];

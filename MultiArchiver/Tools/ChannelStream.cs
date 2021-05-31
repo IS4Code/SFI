@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Tools
 {
-    internal sealed class QueueStream : Stream
+    public sealed class ChannelStream : Stream
     {
         readonly ChannelReader<ArraySegment<byte>> channelReader;
         ArraySegment<byte> current;
@@ -24,14 +24,75 @@ namespace IS4.MultiArchiver.Tools
 
         public override long Position { get => throw new NotSupportedException(); set => throw new NotSupportedException(); }
 
-        public QueueStream(ChannelReader<ArraySegment<byte>> channelReader)
+        public ChannelStream(ChannelReader<ArraySegment<byte>> channelReader)
         {
             this.channelReader = channelReader;
+        }
+
+        public static ChannelStream Create(out ChannelWriter<ArraySegment<byte>> writer, int? capacity = null)
+        {
+            var ch = capacity is int i ? Channel.CreateBounded<ArraySegment<byte>>(new BoundedChannelOptions(i)
+            {
+                FullMode = BoundedChannelFullMode.Wait,
+                AllowSynchronousContinuations = true,
+                SingleReader = true,
+                SingleWriter = true
+            }) : Channel.CreateUnbounded<ArraySegment<byte>>(new UnboundedChannelOptions
+            {
+                AllowSynchronousContinuations = true,
+                SingleReader = true,
+                SingleWriter = true
+            });
+            writer = ch.Writer;
+            return new ChannelStream(ch.Reader);
         }
 
         public override void Close()
         {
             throw new NotSupportedException();
+        }
+
+        private bool TryGetNext()
+        {
+            try{
+                if(current.Array == null)
+                {
+                    if(!channelReader.TryRead(out current))
+                    {
+                        var valueTask = channelReader.ReadAsync();
+                        if(valueTask.IsCompletedSuccessfully)
+                        {
+                            current = valueTask.Result;
+                        }else if(valueTask.IsFaulted)
+                        {
+                            var task = valueTask.AsTask();
+                            if(task.Exception.InnerExceptions.Count == 1)
+                            {
+                                if(task.Exception.InnerException is ChannelClosedException)
+                                {
+                                    return false;
+                                }
+                                ExceptionDispatchInfo.Capture(task.Exception.InnerException).Throw();
+                            }
+                            throw task.Exception;
+                        }else{
+                            current = valueTask.AsTask().Result;
+                        }
+                    }
+                }
+                return true;
+            }catch(ChannelClosedException)
+            {
+                return false;
+            }catch(AggregateException agg) when(agg.InnerExceptions.Count == 1)
+            {
+                if(!(agg.InnerException is ChannelClosedException))
+                {
+                    ExceptionDispatchInfo.Capture(agg.InnerException).Throw();
+                    throw;
+                }
+                return false;
+            }
         }
 
         private int ReadInner(byte[] buffer, ref int offset, ref int count)
@@ -60,34 +121,13 @@ namespace IS4.MultiArchiver.Tools
                 throw new ArgumentOutOfRangeException(nameof(count));
             }
             int read = 0;
-            try{
-                while(read < count)
-                {
-                    if(current.Array == null)
-                    {
-                        if(!channelReader.TryRead(out current))
-                        {
-                            var task = channelReader.ReadAsync();
-                            if(task.IsCompletedSuccessfully)
-                            {
-                                current = task.Result;
-                            }else{
-                                current = task.AsTask().Result;
-                            }
-                        }
-                    }
-                    read += ReadInner(buffer, ref offset, ref count);
-                }
-            }catch(ChannelClosedException)
+            while(read < count)
             {
-
-            }catch(AggregateException agg) when(agg.InnerExceptions.Count == 1)
-            {
-                if(!(agg.InnerException is ChannelClosedException))
+                if(!TryGetNext())
                 {
-                    ExceptionDispatchInfo.Capture(agg.InnerException).Throw();
-                    throw;
+                    break;
                 }
+                read += ReadInner(buffer, ref offset, ref count);
             }
             return read;
         }
@@ -114,13 +154,6 @@ namespace IS4.MultiArchiver.Tools
             }catch(ChannelClosedException)
             {
 
-            }catch(AggregateException agg) when(agg.InnerExceptions.Count == 1)
-            {
-                if(!(agg.InnerException is ChannelClosedException))
-                {
-                    ExceptionDispatchInfo.Capture(agg.InnerException).Throw();
-                    throw;
-                }
             }
             return read;
         }
@@ -163,34 +196,13 @@ namespace IS4.MultiArchiver.Tools
         public override int ReadByte()
         {
             int result = -1;
-            try{
-                while(result == -1)
-                {
-                    if(current.Array == null)
-                    {
-                        if(!channelReader.TryRead(out current))
-                        {
-                            var task = channelReader.ReadAsync();
-                            if(task.IsCompletedSuccessfully)
-                            {
-                                current = task.Result;
-                            }else{
-                                current = task.AsTask().Result;
-                            }
-                        }
-                    }
-                    result = ReadByteInner();
-                }
-            }catch(ChannelClosedException)
+            while(result == -1)
             {
-
-            }catch(AggregateException agg) when(agg.InnerExceptions.Count == 1)
-            {
-                if(!(agg.InnerException is ChannelClosedException))
+                if(!TryGetNext())
                 {
-                    ExceptionDispatchInfo.Capture(agg.InnerException).Throw();
-                    throw;
+                    break;
                 }
+                result = ReadByteInner();
             }
             return -1;
         }
@@ -213,13 +225,6 @@ namespace IS4.MultiArchiver.Tools
             }catch(ChannelClosedException)
             {
 
-            }catch(AggregateException agg) when(agg.InnerExceptions.Count == 1)
-            {
-                if(!(agg.InnerException is ChannelClosedException))
-                {
-                    ExceptionDispatchInfo.Capture(agg.InnerException).Throw();
-                    throw;
-                }
             }
             return result;
         }
