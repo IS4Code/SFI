@@ -96,7 +96,7 @@ namespace IS4.MultiArchiver.Analyzers
                                         result.Set(Properties.PrefLabel, $"{extension.ToUpperInvariant()} object", "en");
                                     }
                                 }
-                                return resultFactory.Label ?? xmlMame;
+                                break;
                             }
                         }
                         return xmlMame;
