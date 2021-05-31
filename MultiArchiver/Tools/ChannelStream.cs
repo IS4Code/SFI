@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.ExceptionServices;
 using System.Threading;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Tools
 {
-    public sealed class ChannelStream : Stream
+    public sealed class ChannelStream : Stream, IEnumerator<ArraySegment<byte>>
     {
         readonly ChannelReader<ArraySegment<byte>> channelReader;
         ArraySegment<byte> current;
@@ -23,6 +25,10 @@ namespace IS4.MultiArchiver.Tools
         public override long Length => throw new NotSupportedException();
 
         public override long Position { get => throw new NotSupportedException(); set => throw new NotSupportedException(); }
+
+        ArraySegment<byte> IEnumerator<ArraySegment<byte>>.Current => current;
+
+        object IEnumerator.Current => current;
 
         public ChannelStream(ChannelReader<ArraySegment<byte>> channelReader)
         {
@@ -55,29 +61,26 @@ namespace IS4.MultiArchiver.Tools
         private bool TryGetNext()
         {
             try{
-                if(current.Array == null)
+                if(!channelReader.TryRead(out current))
                 {
-                    if(!channelReader.TryRead(out current))
+                    var valueTask = channelReader.ReadAsync();
+                    if(valueTask.IsCompletedSuccessfully)
                     {
-                        var valueTask = channelReader.ReadAsync();
-                        if(valueTask.IsCompletedSuccessfully)
+                        current = valueTask.Result;
+                    }else if(valueTask.IsFaulted)
+                    {
+                        var task = valueTask.AsTask();
+                        if(task.Exception.InnerExceptions.Count == 1)
                         {
-                            current = valueTask.Result;
-                        }else if(valueTask.IsFaulted)
-                        {
-                            var task = valueTask.AsTask();
-                            if(task.Exception.InnerExceptions.Count == 1)
+                            if(task.Exception.InnerException is ChannelClosedException)
                             {
-                                if(task.Exception.InnerException is ChannelClosedException)
-                                {
-                                    return false;
-                                }
-                                ExceptionDispatchInfo.Capture(task.Exception.InnerException).Throw();
+                                return false;
                             }
-                            throw task.Exception;
-                        }else{
-                            current = valueTask.AsTask().Result;
+                            ExceptionDispatchInfo.Capture(task.Exception.InnerException).Throw();
                         }
+                        throw task.Exception;
+                    }else{
+                        current = valueTask.AsTask().Result;
                     }
                 }
                 return true;
@@ -123,9 +126,12 @@ namespace IS4.MultiArchiver.Tools
             int read = 0;
             while(read < count)
             {
-                if(!TryGetNext())
+                if(current.Array == null)
                 {
-                    break;
+                    if(!TryGetNext())
+                    {
+                        break;
+                    }
                 }
                 read += ReadInner(buffer, ref offset, ref count);
             }
@@ -198,9 +204,12 @@ namespace IS4.MultiArchiver.Tools
             int result = -1;
             while(result == -1)
             {
-                if(!TryGetNext())
+                if(current.Array == null)
                 {
-                    break;
+                    if(!TryGetNext())
+                    {
+                        break;
+                    }
                 }
                 result = ReadByteInner();
             }
@@ -265,6 +274,16 @@ namespace IS4.MultiArchiver.Tools
         }
 
         public override void SetLength(long value)
+        {
+            throw new NotSupportedException();
+        }
+
+        bool IEnumerator.MoveNext()
+        {
+            return TryGetNext();
+        }
+
+        void IEnumerator.Reset()
         {
             throw new NotSupportedException();
         }
