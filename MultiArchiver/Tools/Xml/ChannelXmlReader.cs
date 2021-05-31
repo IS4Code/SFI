@@ -19,7 +19,7 @@ namespace IS4.MultiArchiver.Tools.Xml
 
         protected override XmlReader GlobalReader { get; }
         protected override XmlReader ScopeReader => attributeValueEnumerator?.Current ?? attributeEnumerator?.Current ?? currentState ?? InitialPrototype;
-        protected override XmlReader QueryReader => null;
+        protected override XmlReader QueryReader => ScopeReader;
         protected override XmlReader ActiveReader => null;
         protected override XmlReader PassiveReader => ScopeReader;
 
