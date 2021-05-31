@@ -8,7 +8,7 @@ using System.Xml.Schema;
 
 namespace IS4.MultiArchiver.Tools.Xml
 {
-    public abstract class DelegatingXmlReader : XmlReader
+    public abstract class DelegatingXmlReader : XmlReader, IXmlLineInfo, IXmlNamespaceResolver
     {
         protected abstract XmlReader ScopeReader { get; }
         protected abstract XmlReader QueryReader { get; }
@@ -316,6 +316,38 @@ namespace IS4.MultiArchiver.Tools.Xml
                 }
             }
             base.Dispose(disposing);
+        }
+
+        public virtual int LineNumber {
+            get {
+                if(!(ScopeReader is IXmlLineInfo info)) return 0;
+                return info.LineNumber;
+            }
+        }
+
+        public virtual int LinePosition {
+            get {
+                if(!(ScopeReader is IXmlLineInfo info)) return 0;
+                return info.LinePosition;
+            }
+        }
+
+        public virtual bool HasLineInfo()
+        {
+            if(!(ScopeReader is IXmlLineInfo info)) return false;
+            return info.HasLineInfo();
+        }
+
+        public virtual IDictionary<string, string> GetNamespacesInScope(XmlNamespaceScope scope)
+        {
+            if(!(QueryReader is IXmlNamespaceResolver resolver)) throw new NotSupportedException();
+            return resolver.GetNamespacesInScope(scope);
+        }
+
+        public virtual string LookupPrefix(string namespaceName)
+        {
+            if(!(QueryReader is IXmlNamespaceResolver resolver)) throw new NotSupportedException();
+            return resolver.LookupPrefix(namespaceName);
         }
 
         class ReferenceEqualityComparer<T> : EqualityComparer<T> where T : class

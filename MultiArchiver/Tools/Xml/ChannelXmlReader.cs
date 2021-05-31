@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Channels;
@@ -7,7 +8,7 @@ using System.Xml;
 
 namespace IS4.MultiArchiver.Tools.Xml
 {
-    public class ChannelXmlReader : DelegatingXmlReader
+    public class ChannelXmlReader : DelegatingXmlReader, IEnumerator<XmlReaderState>
     {
         static readonly XmlReader InitialPrototype = XmlReader.Create(new StringReader(""));
 
@@ -127,6 +128,20 @@ namespace IS4.MultiArchiver.Tools.Xml
                 return true;
             }
             return false;
+        }
+
+        XmlReaderState IEnumerator<XmlReaderState>.Current => currentState ?? throw new InvalidOperationException();
+
+        object IEnumerator.Current => ((IEnumerator<XmlReaderState>)this).Current;
+
+        bool IEnumerator.MoveNext()
+        {
+            return Read();
+        }
+
+        void IEnumerator.Reset()
+        {
+            throw new NotSupportedException();
         }
     }
 }

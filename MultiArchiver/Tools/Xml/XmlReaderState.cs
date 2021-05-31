@@ -7,7 +7,7 @@ using System.Xml.Schema;
 
 namespace IS4.MultiArchiver.Tools.Xml
 {
-    public sealed class XmlReaderState : XmlReader, IXmlSchemaInfo
+    public sealed class XmlReaderState : XmlReader, IXmlSchemaInfo, IXmlLineInfo
     {
         public override int AttributeCount { get; }
 
@@ -73,6 +73,12 @@ namespace IS4.MultiArchiver.Tools.Xml
 
         public IReadOnlyDictionary<string, string> NamespaceMap { get; }
 
+        public int LineNumber { get; }
+
+        public int LinePosition { get; }
+
+        public bool HasLineInfo { get; }
+
         public XmlReaderState(XmlReader reader, IReadOnlyDictionary<string, string> namespaceMap = null) : this(reader, namespaceMap, null)
         {
 
@@ -108,6 +114,13 @@ namespace IS4.MultiArchiver.Tools.Xml
                 SchemaElement = schemaInfo.SchemaElement;
                 SchemaType = schemaInfo.SchemaType;
                 Validity = schemaInfo.Validity;
+            }
+
+            if(reader is IXmlLineInfo lineInfo)
+            {
+                HasLineInfo = lineInfo.HasLineInfo();
+                LineNumber = lineInfo.LineNumber;
+                LinePosition = lineInfo.LinePosition;
             }
 
             if(parentAttributes == null)
@@ -253,6 +266,11 @@ namespace IS4.MultiArchiver.Tools.Xml
 
                 namespaceMap = state.NamespaceMap;
             }
+        }
+
+        bool IXmlLineInfo.HasLineInfo()
+        {
+            return HasLineInfo;
         }
     }
 }
