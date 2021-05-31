@@ -71,7 +71,8 @@ namespace IS4.MultiArchiver.Analyzers
                         {
                             elem.Set(Properties.XmlPrefix, reader.Prefix);
                         }
-                        elem.Set(Properties.XmlName, reader.Name);
+                        var xmlMame = reader.Name;
+                        elem.Set(Properties.XmlName, xmlMame);
                         if(!String.IsNullOrEmpty(reader.NamespaceURI))
                         {
                             elem.Set(Properties.NamespaceName, reader.NamespaceURI, Datatypes.AnyUri);
@@ -95,10 +96,10 @@ namespace IS4.MultiArchiver.Analyzers
                                         result.Set(Properties.PrefLabel, $"{extension.ToUpperInvariant()} object", "en");
                                     }
                                 }
-                                return null;
+                                return resultFactory.Label ?? xmlMame;
                             }
                         }
-                        return null;
+                        return xmlMame;
                 }
             }while(reader.Read());
             return null;
