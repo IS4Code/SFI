@@ -2,6 +2,7 @@
 using IS4.MultiArchiver.Tools;
 using IS4.MultiArchiver.Vocabulary;
 using System;
+using System.Buffers;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -46,51 +47,54 @@ namespace IS4.MultiArchiver.Analyzers
                     hashes.Add((hash, writer, Task.Run(() => hash.ComputeHash(queue, streamFactory))));
                 }
 
-                var buffer = new byte[16384];
-
                 bool? couldBeUnicode = null;
 
-                int read;
-                while((read = stream.Read(buffer, 0, buffer.Length)) != 0)
-                {
-                    var segment = new ArraySegment<byte>(buffer, 0, read);
-                    var writing = hashes.Select(async h => {
-                        await h.writer.WriteAsync(segment);
-                        await h.writer.WriteAsync(default);
-                        await h.writer.WaitToWriteAsync();
-                    }).ToArray();
+                var buffer = ArrayPool<byte>.Shared.Rent(16384);
 
-                    length += read;
-
-                    if(couldBeUnicode == null)
+                try{
+                    int read;
+                    while((read = stream.Read(buffer, 0, buffer.Length)) != 0)
                     {
-                        couldBeUnicode = DataTools.FindBom(buffer.AsSpan()) > 0;
+                        var segment = new ArraySegment<byte>(buffer, 0, read);
+                        var writing = hashes.Select(async h => {
+                            await h.writer.WriteAsync(segment);
+                            await h.writer.WriteAsync(default);
+                            await h.writer.WaitToWriteAsync();
+                        }).ToArray();
+
+                        length += read;
+
+                        if(couldBeUnicode == null)
+                        {
+                            couldBeUnicode = DataTools.FindBom(buffer.AsSpan()) > 0;
+                        }
+
+                        if(!isBinary)
+				        {
+					        if(couldBeUnicode == false && Array.IndexOf<byte>(buffer, 0, 0, read) != -1)
+					        {
+						        isBinary = true;
+					        }else{
+                                encodingDetector.Write(new ArraySegment<byte>(buffer, 0, read));
+					        }
+                        }
+
+                        if(signatureBuffer.Length < signatureBuffer.Capacity)
+				        {
+					        signatureBuffer.Write(buffer, 0, Math.Min(signatureBuffer.Capacity - (int)signatureBuffer.Length, read));
+                        }else{
+                            _ = lazyMatch.Value;
+                        }
+
+                        Task.WaitAll(writing);
                     }
 
-                    if(!isBinary)
-				    {
-					    if(couldBeUnicode == false && Array.IndexOf<byte>(buffer, 0, 0, read) != -1)
-					    {
-						    isBinary = true;
-					    }else{
-                            encodingDetector.Write(new ArraySegment<byte>(buffer, 0, read));
-					    }
+                    foreach(var hash in hashes)
+                    {
+                        hash.writer.Complete();
                     }
-
-                    if(signatureBuffer.Length < signatureBuffer.Capacity)
-				    {
-					    signatureBuffer.Write(buffer, 0, Math.Min(signatureBuffer.Capacity - (int)signatureBuffer.Length, read));
-                    }else{
-                        _ = lazyMatch.Value;
-                    }
-
-
-                    Task.WaitAll(writing);
-                }
-
-                foreach(var hash in hashes)
-                {
-                    hash.writer.Complete();
+                }finally{
+                    ArrayPool<byte>.Shared.Return(buffer);
                 }
 
                 encodingDetector.End();
