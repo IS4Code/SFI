@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.ExceptionServices;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Xml;
@@ -52,20 +53,37 @@ namespace IS4.MultiArchiver.Tools.Xml
             try{
                 if(!channel.TryRead(out currentState))
                 {
-                    var task = channel.ReadAsync();
-                    if(task.IsCompletedSuccessfully)
+                    var valueTask = channel.ReadAsync();
+                    if(valueTask.IsCompletedSuccessfully)
                     {
-                        currentState = task.Result;
+                        currentState = valueTask.Result;
+                    }else if(valueTask.IsFaulted)
+                    {
+                        var task = valueTask.AsTask();
+                        if(task.Exception.InnerExceptions.Count == 1)
+                        {
+                            if(task.Exception.InnerException is ChannelClosedException)
+                            {
+                                return false;
+                            }
+                            ExceptionDispatchInfo.Capture(task.Exception.InnerException).Throw();
+                        }
+                        throw task.Exception;
                     }else{
-                        currentState = task.AsTask().Result;
+                        currentState = valueTask.AsTask().Result;
                     }
                 }
                 return (currentState?.NodeType ?? 0) != 0;
-            }catch(AggregateException e) when(e.InnerExceptions.Count == 1 && e.InnerException is ChannelClosedException)
-            {
-                return false;
             }catch(ChannelClosedException)
             {
+                return false;
+            }catch(AggregateException agg) when(agg.InnerExceptions.Count == 1)
+            {
+                if(!(agg.InnerException is ChannelClosedException))
+                {
+                    ExceptionDispatchInfo.Capture(agg.InnerException).Throw();
+                    throw;
+                }
                 return false;
             }
         }
@@ -78,9 +96,6 @@ namespace IS4.MultiArchiver.Tools.Xml
                     currentState = await channel.ReadAsync();
                 }
                 return (currentState?.NodeType ?? 0) != 0;
-            }catch(AggregateException e) when(e.InnerExceptions.Count == 1 && e.InnerException is ChannelClosedException)
-            {
-                return false;
             }catch(ChannelClosedException)
             {
                 return false;
