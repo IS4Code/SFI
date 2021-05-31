@@ -12,21 +12,22 @@ namespace IS4.MultiArchiver.Tools.Xml
     {
         static readonly XmlReader InitialPrototype = XmlReader.Create(new StringReader(""));
 
+        readonly XmlReader globalReader;
         readonly ChannelReader<XmlReaderState> channel;
         XmlReaderState currentState;
         IEnumerator<XmlReaderState> attributeEnumerator;
         IEnumerator<XmlReaderState> attributeValueEnumerator;
 
-        protected override XmlReader GlobalReader { get; }
+        protected override XmlReader GlobalReader => globalReader ?? ScopeReader;
         protected override XmlReader ScopeReader => attributeValueEnumerator?.Current ?? attributeEnumerator?.Current ?? currentState ?? InitialPrototype;
         protected override XmlReader QueryReader => ScopeReader;
         protected override XmlReader ActiveReader => null;
         protected override XmlReader PassiveReader => ScopeReader;
 
-        public ChannelXmlReader(ChannelReader<XmlReaderState> channel, XmlReader reader)
+        public ChannelXmlReader(ChannelReader<XmlReaderState> channel, XmlReader reader = null)
         {
             this.channel = channel ?? throw new ArgumentNullException(nameof(channel));
-            GlobalReader = reader ?? throw new ArgumentNullException(nameof(reader));
+            globalReader = reader;
         }
 
         public static ChannelXmlReader Create(XmlReader reader, out ChannelWriter<XmlReaderState> writer, int? capacity = null)
@@ -59,7 +60,7 @@ namespace IS4.MultiArchiver.Tools.Xml
                         currentState = task.AsTask().Result;
                     }
                 }
-                return currentState != null;
+                return (currentState?.NodeType ?? 0) != 0;
             }catch(AggregateException e) when(e.InnerExceptions.Count == 1 && e.InnerException is ChannelClosedException)
             {
                 return false;
@@ -76,7 +77,7 @@ namespace IS4.MultiArchiver.Tools.Xml
                 {
                     currentState = await channel.ReadAsync();
                 }
-                return currentState != null;
+                return (currentState?.NodeType ?? 0) != 0;
             }catch(AggregateException e) when(e.InnerExceptions.Count == 1 && e.InnerException is ChannelClosedException)
             {
                 return false;

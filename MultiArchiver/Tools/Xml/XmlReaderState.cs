@@ -266,6 +266,8 @@ namespace IS4.MultiArchiver.Tools.Xml
 
                 namespaceMap = state.NamespaceMap;
             }
+
+            yield return new XmlReaderState(reader, null);
         }
 
         bool IXmlLineInfo.HasLineInfo()

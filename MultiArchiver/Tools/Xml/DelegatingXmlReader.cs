@@ -10,6 +10,8 @@ namespace IS4.MultiArchiver.Tools.Xml
 {
     public abstract class DelegatingXmlReader : XmlReader, IXmlLineInfo, IXmlNamespaceResolver
     {
+        protected bool Closed { get; private set; }
+
         protected abstract XmlReader ScopeReader { get; }
         protected abstract XmlReader QueryReader { get; }
         protected abstract XmlReader GlobalReader { get; }
@@ -103,7 +105,7 @@ namespace IS4.MultiArchiver.Tools.Xml
             }
         }
 
-        public override ReadState ReadState => ScopeReaderNotNull.ReadState;
+        public override ReadState ReadState => Closed ? ReadState.Closed : ScopeReaderNotNull.ReadState;
 
         public override IXmlSchemaInfo SchemaInfo {
             get {
@@ -140,6 +142,13 @@ namespace IS4.MultiArchiver.Tools.Xml
                 if(!(ScopeReader is XmlReader reader)) return base.XmlSpace;
                 return reader.XmlSpace;
             }
+        }
+
+        public override void Close()
+        {
+            base.Close();
+
+            Closed = true;
         }
 
         public override string GetAttribute(int i)
