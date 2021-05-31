@@ -42,7 +42,7 @@ namespace IS4.MultiArchiver.Analyzers
             {
                 foreach(var hash in HashAlgorithms)
                 {
-                    var queue = ChannelStream.Create(out var writer);
+                    var queue = ChannelStream.Create(out var writer, 1);
                     hashes.Add((hash, writer, Task.Run(() => hash.ComputeHash(queue, streamFactory))));
                 }
 
