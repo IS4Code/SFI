@@ -45,6 +45,10 @@ namespace IS4.MultiArchiver.Formats
             using(var reader = XmlReader.Create(stream, ReaderSettings))
             {
                 if(!reader.Read()) return null;
+                while(reader.NodeType == XmlNodeType.Whitespace || reader.NodeType == XmlNodeType.SignificantWhitespace)
+                {
+                    if(!reader.Read()) return null;
+                }
                 return resultFactory(reader);
             }
         }
