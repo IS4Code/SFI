@@ -43,6 +43,12 @@ namespace IS4.MultiArchiver.Windows
         {
             stream.Position = headerOffset + 0x24;
             var resourcesOffset = headerOffset + reader.ReadUInt16();
+            var residentNameOffset = headerOffset + reader.ReadUInt16();
+            if(resourcesOffset == residentNameOffset)
+            {
+                // replaced by the resident-name table
+                yield break;
+            }
             stream.Position = resourcesOffset;
             var shift = reader.ReadUInt16();
             var strnames = new SortedSet<short>();
