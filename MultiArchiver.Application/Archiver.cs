@@ -73,6 +73,7 @@ namespace IS4.MultiArchiver.Extensions
             archiver.Analyzers.Add(new SvgAnalyzer());
             archiver.Analyzers.Add(new WaveAnalyzer());
             archiver.Analyzers.Add(new DelphiObjectAnalyzer());
+            archiver.Analyzers.Add(new CabinetAnalyzer());
 
             return archiver;
         }
