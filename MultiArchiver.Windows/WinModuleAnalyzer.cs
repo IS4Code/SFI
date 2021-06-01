@@ -254,6 +254,11 @@ namespace IS4.MultiArchiver.Analyzers
 
                     int headerLength = BitConverter.ToInt32(buffer, start);
 
+                    if(headerLength < 0)
+                    {
+                        return;
+                    }
+
                     int dataStart = start + headerLength;
 
                     int numColors = BitConverter.ToInt32(buffer, start + 32);
@@ -266,7 +271,17 @@ namespace IS4.MultiArchiver.Analyzers
                         }
                     }
 
+                    if(numColors < 0)
+                    {
+                        return;
+                    }
+
                     dataStart += numColors * sizeof(int);
+
+                    if(dataStart >= resource.Length)
+                    {
+                        return;
+                    }
 
                     if(TypeCode == Win32ResourceType.Icon || TypeCode == Win32ResourceType.Cursor)
                     {
