@@ -53,11 +53,6 @@ namespace IS4.MultiArchiver.Tools
             return ch.Reader;
         }
 
-        public sealed override void Close()
-        {
-            throw new NotSupportedException();
-        }
-
         private bool TryGetNext()
         {
             try{
