@@ -26,18 +26,11 @@ namespace IS4.MultiArchiver.Windows
             fileTask = Task.Run(() => {
                 cabinetStream = stream;
                 cabinetError = default;
-                try
-                {
-                    var result = FDICopy(threadContext.Value, "", "", 0, Notify, IntPtr.Zero, IntPtr.Zero);
-                    readyToOpen.TrySetResult(result);
-                    Dispose();
-                    cabinetStream = null;
-                    return cabinetError;
-                }catch(Exception e)
-                {
-                    Console.WriteLine(e);
-                    return default;
-                }
+                var result = FDICopy(threadContext.Value, "", "", 0, Notify, IntPtr.Zero, IntPtr.Zero);
+                readyToOpen.TrySetResult(result);
+                Dispose();
+                cabinetStream = null;
+                return cabinetError;
             });
             if(!readyToOpen.Task.Result)
             {
