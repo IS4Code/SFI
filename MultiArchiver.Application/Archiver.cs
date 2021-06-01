@@ -59,6 +59,7 @@ namespace IS4.MultiArchiver.Extensions
             archiver.DataAnalyzer.Formats.Add(new WasapiFormat(false));
             archiver.DataAnalyzer.Formats.Add(new WasapiFormat(true));
             archiver.DataAnalyzer.Formats.Add(new DelphiFormFormat());
+            archiver.DataAnalyzer.Formats.Add(new CabinetFormat());
 
             archiver.XmlAnalyzer.XmlFormats.Add(new SvgFormat());
 

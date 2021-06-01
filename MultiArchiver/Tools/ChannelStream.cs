@@ -9,51 +9,51 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Tools
 {
-    public sealed class ChannelStream : Stream, IEnumerator<ArraySegment<byte>>
+    public abstract class ChannelStream<TSequence> : Stream, IEnumerator<TSequence> where TSequence : struct, IReadOnlyCollection<byte>
     {
-        readonly ChannelReader<ArraySegment<byte>> channelReader;
-        ArraySegment<byte> current;
+        readonly ChannelReader<TSequence> channelReader;
+        TSequence current;
 
-        public override bool CanRead => true;
+        public sealed override bool CanRead => true;
 
-        public override bool CanSeek => false;
+        public sealed override bool CanSeek => false;
 
-        public override bool CanWrite => false;
+        public sealed override bool CanWrite => false;
 
-        public override bool CanTimeout => false;
+        public sealed override bool CanTimeout => false;
 
-        public override long Length => throw new NotSupportedException();
+        public sealed override long Length => throw new NotSupportedException();
 
-        public override long Position { get => throw new NotSupportedException(); set => throw new NotSupportedException(); }
+        public sealed override long Position { get => throw new NotSupportedException(); set => throw new NotSupportedException(); }
 
-        ArraySegment<byte> IEnumerator<ArraySegment<byte>>.Current => current;
+        TSequence IEnumerator<TSequence>.Current => current;
 
         object IEnumerator.Current => current;
 
-        public ChannelStream(ChannelReader<ArraySegment<byte>> channelReader)
+        public ChannelStream(ChannelReader<TSequence> channelReader)
         {
             this.channelReader = channelReader;
         }
 
-        public static ChannelStream Create(out ChannelWriter<ArraySegment<byte>> writer, int? capacity = null)
+        protected static ChannelReader<TSequence> CreateReader(out ChannelWriter<TSequence> writer, int? capacity = null)
         {
-            var ch = capacity is int i ? Channel.CreateBounded<ArraySegment<byte>>(new BoundedChannelOptions(i)
+            var ch = capacity is int i ? Channel.CreateBounded<TSequence>(new BoundedChannelOptions(i)
             {
                 FullMode = BoundedChannelFullMode.Wait,
                 AllowSynchronousContinuations = true,
                 SingleReader = true,
                 SingleWriter = true
-            }) : Channel.CreateUnbounded<ArraySegment<byte>>(new UnboundedChannelOptions
+            }) : Channel.CreateUnbounded<TSequence>(new UnboundedChannelOptions
             {
                 AllowSynchronousContinuations = true,
                 SingleReader = true,
                 SingleWriter = true
             });
             writer = ch.Writer;
-            return new ChannelStream(ch.Reader);
+            return ch.Reader;
         }
 
-        public override void Close()
+        public sealed override void Close()
         {
             throw new NotSupportedException();
         }
@@ -98,6 +98,8 @@ namespace IS4.MultiArchiver.Tools
             }
         }
 
+        protected abstract void ReadFrom(ref TSequence current, byte[] buffer, int offset, int len);
+        
         private int ReadInner(byte[] buffer, ref int offset, ref int count)
         {
             if(current.Count == 0)
@@ -106,8 +108,7 @@ namespace IS4.MultiArchiver.Tools
                 return 0;
             }
             int len = Math.Min(count, current.Count);
-            Array.Copy(current.Array, current.Offset, buffer, offset, len);
-            current = new ArraySegment<byte>(current.Array, current.Offset + len, current.Count - len);
+            ReadFrom(ref current, buffer, offset, len);
             if(current.Count == 0)
             {
                 current = default;
@@ -117,7 +118,7 @@ namespace IS4.MultiArchiver.Tools
             return len;
         }
 
-        public override int Read(byte[] buffer, int offset, int count)
+        public sealed override int Read(byte[] buffer, int offset, int count)
         {
             if(count <= 0)
             {
@@ -126,7 +127,7 @@ namespace IS4.MultiArchiver.Tools
             int read = 0;
             while(read < count)
             {
-                if(current.Array == null)
+                if(current.Count == 0)
                 {
                     if(!TryGetNext())
                     {
@@ -138,7 +139,7 @@ namespace IS4.MultiArchiver.Tools
             return read;
         }
 
-        public override async Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
+        public sealed override async Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
         {
             if(count <= 0)
             {
@@ -148,7 +149,7 @@ namespace IS4.MultiArchiver.Tools
             try{
                 while(read < count)
                 {
-                    if(current.Array == null)
+                    if(current.Count == 0)
                     {
                         if(!channelReader.TryRead(out current))
                         {
@@ -164,7 +165,7 @@ namespace IS4.MultiArchiver.Tools
             return read;
         }
 
-        public override IAsyncResult BeginRead(byte[] buffer, int offset, int count, AsyncCallback callback, object state)
+        public sealed override IAsyncResult BeginRead(byte[] buffer, int offset, int count, AsyncCallback callback, object state)
         {
             var task = ReadAsync(buffer, offset, count);
             var completion = new TaskCompletionSource<int>(state);
@@ -178,20 +179,21 @@ namespace IS4.MultiArchiver.Tools
             return completion.Task;
         }
 
-        public override int EndRead(IAsyncResult asyncResult)
+        public sealed override int EndRead(IAsyncResult asyncResult)
         {
             return ((Task<int>)asyncResult).Result;
         }
 
-        private int ReadByteInner()
+        protected abstract byte ReadFrom(ref TSequence current);
+
+        private int ReadByteInner(ref TSequence current)
         {
             if(current.Count == 0)
             {
                 current = default;
                 return -1;
             }
-            var result = current.Array[current.Offset];
-            current = new ArraySegment<byte>(current.Array, current.Offset + 1, current.Count - 1);
+            var result = ReadFrom(ref current);
             if(current.Count == 0)
             {
                 current = default;
@@ -199,19 +201,19 @@ namespace IS4.MultiArchiver.Tools
             return result;
         }
 
-        public override int ReadByte()
+        public sealed override int ReadByte()
         {
             int result = -1;
             while(result == -1)
             {
-                if(current.Array == null)
+                if(current.Count == 0)
                 {
                     if(!TryGetNext())
                     {
                         break;
                     }
                 }
-                result = ReadByteInner();
+                result = ReadByteInner(ref current);
             }
             return -1;
         }
@@ -222,14 +224,14 @@ namespace IS4.MultiArchiver.Tools
             try{
                 while(result != -1)
                 {
-                    if(current.Array == null)
+                    if(current.Count == 0)
                     {
                         if(!channelReader.TryRead(out current))
                         {
                             current = await channelReader.ReadAsync(cancellationToken);
                         }
                     }
-                    result = ReadByteInner();
+                    result = ReadByteInner(ref current);
                 }
             }catch(ChannelClosedException)
             {
@@ -238,42 +240,42 @@ namespace IS4.MultiArchiver.Tools
             return result;
         }
 
-        public override void Write(byte[] buffer, int offset, int count)
+        public sealed override void Write(byte[] buffer, int offset, int count)
         {
             throw new NotSupportedException();
         }
 
-        public override Task WriteAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
+        public sealed override Task WriteAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
         }
 
-        public override IAsyncResult BeginWrite(byte[] buffer, int offset, int count, AsyncCallback callback, object state)
+        public sealed override IAsyncResult BeginWrite(byte[] buffer, int offset, int count, AsyncCallback callback, object state)
         {
             throw new NotSupportedException();
         }
 
-        public override void EndWrite(IAsyncResult asyncResult)
+        public sealed override void EndWrite(IAsyncResult asyncResult)
         {
             throw new NotSupportedException();
         }
 
-        public override void Flush()
+        public sealed override void Flush()
         {
             throw new NotSupportedException();
         }
 
-        public override Task FlushAsync(CancellationToken cancellationToken)
+        public sealed override Task FlushAsync(CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
         }
 
-        public override long Seek(long offset, SeekOrigin origin)
+        public sealed override long Seek(long offset, SeekOrigin origin)
         {
             throw new NotSupportedException();
         }
 
-        public override void SetLength(long value)
+        public sealed override void SetLength(long value)
         {
             throw new NotSupportedException();
         }
