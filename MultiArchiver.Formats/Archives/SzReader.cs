@@ -76,12 +76,10 @@ namespace IS4.MultiArchiver.Formats.Archives
             return false;
         }
 
-        ConstructorInfo ctor = typeof(EntryStream).GetConstructor(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic, null, new[] { typeof(IReader), typeof(Stream) }, null);
-
         public EntryStream OpenEntryStream()
         {
             var stream = new EnumeratorStream<EnumeratorStream<Exception>.NoException>(ReadBytes(), Entry.Size);
-            return (EntryStream)ctor.Invoke(new object[] { this, stream });
+            return SharpCompressExtensions.CreateEntryStream(this, stream);
         }
 
         const int windowSize = 4096;
