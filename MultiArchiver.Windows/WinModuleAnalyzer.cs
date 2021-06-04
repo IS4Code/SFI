@@ -250,6 +250,11 @@ namespace IS4.MultiArchiver.Analyzers
                     read -= 4;
                 }
 
+                void InvalidBitmap()
+                {
+                    Data = new ArraySegment<byte>(buffer, start, read);
+                }
+
                 Data = new ArraySegment<byte>(buffer, 0, start + read);
                 if(TypeCode == Win32ResourceType.Bitmap || TypeCode == Win32ResourceType.Icon || TypeCode == Win32ResourceType.Cursor)
                 {
@@ -262,6 +267,7 @@ namespace IS4.MultiArchiver.Analyzers
 
                     if(headerLength < 0)
                     {
+                        InvalidBitmap();
                         return;
                     }
 
@@ -279,13 +285,15 @@ namespace IS4.MultiArchiver.Analyzers
 
                     if(numColors < 0)
                     {
+                        InvalidBitmap();
                         return;
                     }
 
                     dataStart += numColors * sizeof(int);
 
-                    if(dataStart >= resource.Length)
+                    if(dataStart < start || dataStart >= resource.Length)
                     {
+                        InvalidBitmap();
                         return;
                     }
 
