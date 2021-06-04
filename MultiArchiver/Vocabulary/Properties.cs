@@ -23,6 +23,8 @@
         Extent,
         [Uri(Vocabularies.Dcterms)]
         Creator,
+        [Uri(Vocabularies.Dcterms)]
+        Modified,
 
         [Uri(Vocabularies.Dbo)]
         OriginalName,
