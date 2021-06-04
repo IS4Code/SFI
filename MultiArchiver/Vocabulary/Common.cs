@@ -23,5 +23,10 @@ namespace IS4.MultiArchiver.Vocabulary
         {
             Classes.SoftwareApplication, Classes.Executable
         };
+
+        public static IEnumerable<Classes> ArchiveClasses = new[]
+        {
+            Classes.Archive
+        };
     }
 }

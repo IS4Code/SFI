@@ -11,7 +11,7 @@ namespace IS4.MultiArchiver.Analyzers
 {
     public class ArchiveAnalyzer : BinaryFormatAnalyzer<IArchive>
     {
-        public ArchiveAnalyzer() : base(Classes.Archive)
+        public ArchiveAnalyzer() : base(Common.ArchiveClasses)
         {
 
         }

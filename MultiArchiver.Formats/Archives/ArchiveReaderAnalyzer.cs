@@ -12,7 +12,7 @@ namespace IS4.MultiArchiver.Analyzers
 {
     public class ArchiveReaderAnalyzer : BinaryFormatAnalyzer<IReader>
     {
-        public ArchiveReaderAnalyzer() : base(Classes.Archive)
+        public ArchiveReaderAnalyzer() : base(Common.ArchiveClasses)
         {
 
         }
