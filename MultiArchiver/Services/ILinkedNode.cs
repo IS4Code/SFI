@@ -1,4 +1,5 @@
-﻿using IS4.MultiArchiver.Vocabulary;
+﻿using IS4.MultiArchiver.Tools;
+using IS4.MultiArchiver.Vocabulary;
 using System;
 using System.Globalization;
 
@@ -125,7 +126,7 @@ namespace IS4.MultiArchiver.Services
         public void Set(Properties property, Vocabularies vocabulary, string localName)
         {
             if(localName == null) throw new ArgumentNullException(nameof(localName));
-            HandleTriple(Subject, Cache[property], CreateNode(new Uri(GetUri(Cache[vocabulary]).AbsoluteUri + localName, UriKind.Absolute)));
+            HandleTriple(Subject, Cache[property], CreateNode((Uri)new EncodedUri(GetUri(Cache[vocabulary]).AbsoluteUri + localName, UriKind.Absolute)));
         }
 
         public void Set<T>(Properties property, IIndividualUriFormatter<T> formatter, T value)
@@ -200,7 +201,7 @@ namespace IS4.MultiArchiver.Services
         public void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, Vocabularies vocabulary, string localName)
         {
             if(localName == null) throw new ArgumentNullException(nameof(localName));
-            HandleTriple(Subject, CreateNode(propertyFormatter, propertyValue), CreateNode(new Uri(GetUri(Cache[vocabulary]).AbsoluteUri + localName, UriKind.Absolute)));
+            HandleTriple(Subject, CreateNode(propertyFormatter, propertyValue), CreateNode((Uri)new EncodedUri(GetUri(Cache[vocabulary]).AbsoluteUri + localName, UriKind.Absolute)));
         }
 
         public void Set<TProp, TValue>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, IIndividualUriFormatter<TValue> formatter, TValue value)
@@ -234,7 +235,7 @@ namespace IS4.MultiArchiver.Services
             get{
                 if(subName == null) throw new ArgumentNullException(nameof(subName));
                 var uri = GetUri(Subject);
-                return CreateNew(CreateNode(new Uri(uri.AbsoluteUri + (subName.StartsWith("#") ? "" : String.IsNullOrEmpty(uri.Authority + uri.Fragment) ? "#" : "/") + subName)));
+                return CreateNew(CreateNode((Uri)new EncodedUri(uri.AbsoluteUri + (subName.StartsWith("#") ? "" : String.IsNullOrEmpty(uri.Authority + uri.Fragment) ? "#" : "/") + subName)));
             }
         }
 

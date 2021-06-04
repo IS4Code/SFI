@@ -246,19 +246,6 @@ namespace IS4.MultiArchiver.Analyzers
                 }
             }
 
-            class EncodedUri : Uri
-            {
-                public EncodedUri(string uriString, UriKind uriKind) : base(uriString, uriKind)
-                {
-
-                }
-
-                public override string ToString()
-                {
-                    return IsAbsoluteUri ? AbsoluteUri : OriginalString;
-                }
-            }
-
             private string TryGetString(Encoding encoding, ArraySegment<byte> data)
             {
                 if(encoding == null) return null;

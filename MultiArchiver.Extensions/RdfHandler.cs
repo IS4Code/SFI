@@ -1,4 +1,5 @@
 ﻿using IS4.MultiArchiver.Services;
+using IS4.MultiArchiver.Tools;
 using IS4.MultiArchiver.Vocabulary;
 using Microsoft.CSharp.RuntimeBinder;
 using System;
@@ -30,7 +31,7 @@ namespace IS4.MultiArchiver.Extensions
 
         public ILinkedNode Create(Vocabularies vocabulary, string localName)
         {
-            return new UriNode(handler.CreateUriNode(new Uri(cache[vocabulary] + localName, UriKind.Absolute)), handler, cache);
+            return new UriNode(handler.CreateUriNode(new EncodedUri(cache[vocabulary] + localName, UriKind.Absolute)), handler, cache);
         }
 
         public ILinkedNode Create<T>(IUriFormatter<T> formatter, T value)
