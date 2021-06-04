@@ -73,10 +73,6 @@ namespace IS4.MultiArchiver.Formats
                 }
             }
 
-            [DllImport(Lib.Kernel32, SetLastError = true, ExactSpelling = true, EntryPoint = "K32GetModuleInformation")]
-            [return: MarshalAs(UnmanagedType.Bool)]
-            static extern bool GetModuleInformation(HPROCESS hProcess, HINSTANCE hModule, out MODULEINFO lpmodinfo, uint cb);
-
             public IEnumerable<IModuleResource> ReadResources()
             {
                 var resources = new List<ResourceInfo>();

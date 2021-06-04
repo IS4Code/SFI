@@ -26,7 +26,7 @@ namespace IS4.MultiArchiver.Windows
             fileTask = Task.Run(() => {
                 cabinetStream = stream;
                 cabinetError = default;
-                var result = FDICopy(threadContext.Value, "", "", 0, Notify, IntPtr.Zero, IntPtr.Zero);
+                var result = FDICopy(threadContext.Value, "", "", 0, Notify, null, IntPtr.Zero);
                 readyToOpen.TrySetResult(result);
                 Dispose();
                 cabinetStream = null;
@@ -71,43 +71,43 @@ namespace IS4.MultiArchiver.Windows
             }
         }
 
-        IntPtr Notify(int fdint, ref FDINOTIFICATION pfdin)
+        IntPtr Notify(FDINOTIFICATIONTYPE fdint, ref FDINOTIFICATION pfdin)
         {
             switch(fdint)
             {
-                case 0:
+                case FDINOTIFICATIONTYPE.fdintCABINET_INFO:
                 {
                     fileInfoChannel = new BlockingCollection<FileInfo>();
                     fileControlChannel = new BlockingCollection<bool>();
                     readyToOpen.TrySetResult(true);
                     return (IntPtr)0;
                 }
-                case 1:
+                case FDINOTIFICATIONTYPE.fdintPARTIAL_FILE:
                 {
                     return (IntPtr)0;
                 }
-                case 2:
+                case FDINOTIFICATIONTYPE.fdintCOPY_FILE:
                 {
                     if(!NextFileAllowed()) return (IntPtr)(-1);
                     var info = new FileInfo(ref pfdin, out var writer);
                     fileInfoChannel.Add(info);
                     return GetNewPointer(writer, out _);
                 }
-                case 3:
+                case FDINOTIFICATIONTYPE.fdintCLOSE_FILE_INFO:
                 {
                     var writer = GetWriter(pfdin.hf, out var handle);
                     handle.Free();
                     writer.Complete();
                     return (IntPtr)1;
                 }
-                case 4:
+                case FDINOTIFICATIONTYPE.fdintNEXT_CABINET:
                 {
                     var writer = GetWriter(pfdin.psz2, out var handle);
                     handle.Free();
                     writer.Complete();
                     return (IntPtr)(-1);
                 }
-                case 5:
+                case FDINOTIFICATIONTYPE.fdintENUMERATE:
                 {
                     return (IntPtr)0;
                 }
@@ -129,8 +129,8 @@ namespace IS4.MultiArchiver.Windows
             internal FileInfo(ref FDINOTIFICATION pfdin, out ChannelWriter<UnmanagedMemoryRange> writer)
             {
                 bool utf8 = (pfdin.attribs & 0x80) != 0;
-                Name = utf8 ? PtrToStringUtf8(pfdin.psz1) : Marshal.PtrToStringAnsi(pfdin.psz1);
-                Size = pfdin.cb;
+                Name = utf8 ? PtrToStringUtf8((IntPtr)pfdin.psz1) : pfdin.psz1;
+                Size = unchecked((uint)pfdin.cb);
                 Attributes = (FileAttributes)pfdin.attribs & (FileAttributes.ReadOnly | FileAttributes.Hidden | FileAttributes.System | FileAttributes.Archive);
 
                 if(Kernel32.DosDateTimeToFileTime(pfdin.date, pfdin.time, out var fileTime))
@@ -148,59 +148,6 @@ namespace IS4.MultiArchiver.Windows
             }
         }
 
-        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 0)]
-        internal struct FDINOTIFICATION
-        {
-            public uint cb;
-            public IntPtr psz1;
-            public IntPtr psz2;
-            public IntPtr psz3;
-            public IntPtr pv;
-            public HFILE hf;
-            public ushort date;
-            public ushort time;
-            public ushort attribs;
-            public ushort setID;
-            public ushort iCabinet;
-            public ushort iFolder;
-            public FDIERROR fdie;
-        }
-
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        delegate IntPtr PFNFDINOTIFY(int fdint, ref FDINOTIFICATION pfdin);
-
-        [DllImport("cabinet.dll", CallingConvention = CallingConvention.Cdecl, SetLastError = false, ExactSpelling = true, CharSet = CharSet.Ansi)]
-        static extern bool FDICopy(HFDI hfdi, string pszCabinet, string pszCabPath, int flags, PFNFDINOTIFY pfnfdin, IntPtr pfnfdid, IntPtr pvUser);
-
-        [DllImport("cabinet.dll", CallingConvention = CallingConvention.Cdecl, SetLastError = false, ExactSpelling = true, CharSet = CharSet.Ansi)]
-        unsafe static extern SafeHFDI FDICreate(PFNALLOC pfnalloc, PFNFREE pfnfree, PFNOPEN pfnopen, PFNREAD pfnread, PFNWRITE pfnwrite, PFNCLOSE pfnclose, PFNSEEK pfnseek, int cpuType, out ERF perf);
-
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        delegate IntPtr PFNALLOC(uint cb);
-
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        delegate void PFNFREE(IntPtr memory);
-
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        delegate HFILE PFNOPEN(string pszFile, int oflag, int pmode);
-
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        delegate uint PFNREAD(HFILE hf, IntPtr memory, uint cb);
-
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        delegate int PFNSEEK(HFILE hf, int dist, int seektype);
-
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        delegate uint PFNWRITE(HFILE hf, IntPtr memory, uint cb);
-
-        [StructLayout(LayoutKind.Sequential)]
-        struct ERF
-        {
-            public int erfOper;
-            public int erfType;
-            public int fError;
-        }
-
         [ThreadStatic]
         static ERF cabinetError;
 
@@ -212,9 +159,9 @@ namespace IS4.MultiArchiver.Windows
                 cb => Marshal.AllocHGlobal(unchecked((int)cb)),
                 memory => Marshal.FreeHGlobal(memory),
                 (pszFile, oflag, pmode) => {
-                    if(pszFile != "") return new HFILE(IntPtr.Zero);
+                    if(pszFile != "") return IntPtr.Zero;
                     var stream = new StreamPosition(cabinetStream);
-                    return new HFILE(GetNewPointer(stream, out _));
+                    return GetNewPointer(stream, out _);
                 },
                 (hf, memory, cb) => {
                     var buffer = ArrayPool<byte>.Shared.Rent(unchecked((int)cb));
@@ -247,8 +194,8 @@ namespace IS4.MultiArchiver.Windows
                     var stream = GetStream(hf, out _);
                     return (int)stream.Seek(dist, (SeekOrigin)seektype);
                 },
-                -1,
-                out cabinetError
+                FDICPU.cpuUNKNOWN,
+                ref cabinetError
             )
         );
 
