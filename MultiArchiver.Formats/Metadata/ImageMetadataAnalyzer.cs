@@ -129,20 +129,18 @@ namespace IS4.MultiArchiver.Analyzers
 
             if(TryGetValue<int>(tags, "Bits Per Sample", out var bits))
             {
-                Properties prop;
                 switch(entity.OfType<FileTypeDirectory>().FirstOrDefault()?.GetString(FileTypeDirectory.TagDetectedFileMimeType)?.Substring(0, 6).ToLowerInvariant())
                 {
                     case "audio/":
-                        prop = Properties.BitsPerSample;
+                        node.Set(Properties.BitsPerSample, bits.GetValueOrDefault());
                         break;
                     case "image/":
-                        prop = Properties.ColorDepth;
+                        //node.Set(Properties.ColorDepth, bits.GetValueOrDefault());
                         break;
                     default:
-                        prop = Properties.BitDepth;
+                        node.Set(Properties.BitDepth, bits.GetValueOrDefault());
                         break;
                 }
-                node.Set(prop, bits.GetValueOrDefault());
             }
 
             if(TryGetValue<int>(tags, "Channels", out var channels))
