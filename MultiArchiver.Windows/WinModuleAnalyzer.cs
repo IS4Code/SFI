@@ -1,13 +1,14 @@
-﻿using System;
+﻿using IS4.MultiArchiver.Services;
+using IS4.MultiArchiver.Tags;
+using IS4.MultiArchiver.Vocabulary;
+using IS4.MultiArchiver.Windows;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using IS4.MultiArchiver.Services;
-using IS4.MultiArchiver.Vocabulary;
-using IS4.MultiArchiver.Windows;
 using static Vanara.PInvoke.VersionDll;
 
 namespace IS4.MultiArchiver.Analyzers
@@ -213,7 +214,7 @@ namespace IS4.MultiArchiver.Analyzers
             //{ "SpecialBuild", Properties. },
         };
 
-        class ResourceInfo : IFileInfo
+        class ResourceInfo : IFileInfo, IImageResourceTag
         {
             readonly IModuleResource resource;
             readonly int? ordinal;
@@ -225,6 +226,8 @@ namespace IS4.MultiArchiver.Analyzers
             public int CursorHotspot { get; }
 
             public int OriginalHeight { get; }
+
+            public bool IsTransparent { get; }
 
             public ResourceInfo(IModuleResource resource, int? ordinal)
             {
@@ -302,6 +305,8 @@ namespace IS4.MultiArchiver.Analyzers
                         var bmpHeader = MemoryMarshal.Cast<byte, int>(new Span<byte>(buffer, start, headerLength));
                         OriginalHeight = bmpHeader[2];
                         bmpHeader[2] /= 2;
+
+                        IsTransparent = true;
                     }
 
                     if(TypeCode == Win32ResourceType.Cursor)

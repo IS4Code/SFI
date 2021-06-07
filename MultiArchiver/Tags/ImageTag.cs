@@ -1,4 +1,4 @@
-﻿namespace IS4.MultiArchiver.Services
+﻿namespace IS4.MultiArchiver.Tags
 {
     public interface IImageTag
     {

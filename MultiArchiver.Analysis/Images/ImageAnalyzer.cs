@@ -1,4 +1,5 @@
 ﻿using IS4.MultiArchiver.Services;
+using IS4.MultiArchiver.Tags;
 using IS4.MultiArchiver.Vocabulary;
 using System;
 using System.Collections;
@@ -24,9 +25,14 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override string Analyze(ILinkedNode node, Image image, ILinkedNodeFactory nodeFactory)
+        public override string Analyze(ILinkedNode node, Image image, object source, ILinkedNodeFactory nodeFactory)
         {
             var tag = (image.Tag as IImageTag) ?? DefaultTag;
+
+            if(source is IImageResourceTag imageTag && imageTag.IsTransparent)
+            {
+                (image as Bitmap)?.MakeTransparent();
+            }
 
             if(tag.StoreDimensions)
             {

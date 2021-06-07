@@ -1,4 +1,5 @@
 ﻿using IS4.MultiArchiver.Services;
+using IS4.MultiArchiver.Tags;
 using IS4.MultiArchiver.Vocabulary;
 using Svg;
 using System.Drawing;
