@@ -2,7 +2,9 @@
 using System;
 using System.Buffers;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.IO;
+using System.Runtime.ExceptionServices;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -26,15 +28,27 @@ namespace IS4.MultiArchiver.Windows
             fileTask = Task.Run(() => {
                 cabinetStream = stream;
                 cabinetError = default;
+                var exceptions = currentExceptions = new List<Exception>();
                 var result = FDICopy(threadContext.Value, "", "", 0, Notify, null, IntPtr.Zero);
-                readyToOpen.TrySetResult(result);
+                if(exceptions.Count > 0)
+                {
+                    readyToOpen.TrySetException(exceptions);
+                }else{
+                    readyToOpen.TrySetResult(result);
+                }
                 Dispose();
+                currentExceptions = null;
                 cabinetStream = null;
                 return cabinetError;
             });
-            if(!readyToOpen.Task.Result)
+            try{
+                if(!readyToOpen.Task.Result)
+                {
+                    throw new ArgumentException(null, nameof(stream));
+                }
+            }catch(AggregateException e) when(e.InnerExceptions.Count == 1)
             {
-                throw new ArgumentException(null, nameof(stream));
+                ExceptionDispatchInfo.Capture(e.InnerException).Throw();
             }
         }
 
@@ -73,48 +87,54 @@ namespace IS4.MultiArchiver.Windows
 
         IntPtr Notify(FDINOTIFICATIONTYPE fdint, ref FDINOTIFICATION pfdin)
         {
-            switch(fdint)
+            try{
+                switch(fdint)
+                {
+                    case FDINOTIFICATIONTYPE.fdintCABINET_INFO:
+                    {
+                        fileInfoChannel = new BlockingCollection<FileInfo>();
+                        fileControlChannel = new BlockingCollection<bool>();
+                        readyToOpen.TrySetResult(true);
+                        return (IntPtr)0;
+                    }
+                    case FDINOTIFICATIONTYPE.fdintPARTIAL_FILE:
+                    {
+                        return (IntPtr)0;
+                    }
+                    case FDINOTIFICATIONTYPE.fdintCOPY_FILE:
+                    {
+                        if(!NextFileAllowed()) return (IntPtr)(-1);
+                        var info = new FileInfo(ref pfdin, out var writer);
+                        fileInfoChannel.Add(info);
+                        return GetNewPointer(writer, out _);
+                    }
+                    case FDINOTIFICATIONTYPE.fdintCLOSE_FILE_INFO:
+                    {
+                        var writer = GetWriter(pfdin.hf, out var handle);
+                        handle.Free();
+                        writer.Complete();
+                        return (IntPtr)1;
+                    }
+                    case FDINOTIFICATIONTYPE.fdintNEXT_CABINET:
+                    {
+                        var writer = GetWriter(pfdin.psz2, out var handle);
+                        handle.Free();
+                        writer.Complete();
+                        return (IntPtr)(-1);
+                    }
+                    case FDINOTIFICATIONTYPE.fdintENUMERATE:
+                    {
+                        return (IntPtr)0;
+                    }
+                    default:
+                    {
+                        return (IntPtr)(-1);
+                    }
+                }
+            }catch(Exception e)
             {
-                case FDINOTIFICATIONTYPE.fdintCABINET_INFO:
-                {
-                    fileInfoChannel = new BlockingCollection<FileInfo>();
-                    fileControlChannel = new BlockingCollection<bool>();
-                    readyToOpen.TrySetResult(true);
-                    return (IntPtr)0;
-                }
-                case FDINOTIFICATIONTYPE.fdintPARTIAL_FILE:
-                {
-                    return (IntPtr)0;
-                }
-                case FDINOTIFICATIONTYPE.fdintCOPY_FILE:
-                {
-                    if(!NextFileAllowed()) return (IntPtr)(-1);
-                    var info = new FileInfo(ref pfdin, out var writer);
-                    fileInfoChannel.Add(info);
-                    return GetNewPointer(writer, out _);
-                }
-                case FDINOTIFICATIONTYPE.fdintCLOSE_FILE_INFO:
-                {
-                    var writer = GetWriter(pfdin.hf, out var handle);
-                    handle.Free();
-                    writer.Complete();
-                    return (IntPtr)1;
-                }
-                case FDINOTIFICATIONTYPE.fdintNEXT_CABINET:
-                {
-                    var writer = GetWriter(pfdin.psz2, out var handle);
-                    handle.Free();
-                    writer.Complete();
-                    return (IntPtr)(-1);
-                }
-                case FDINOTIFICATIONTYPE.fdintENUMERATE:
-                {
-                    return (IntPtr)0;
-                }
-                default:
-                {
-                    return (IntPtr)(-1);
-                }
+                currentExceptions.Add(e);
+                return (IntPtr)(-1);
             }
         }
 
@@ -154,45 +174,93 @@ namespace IS4.MultiArchiver.Windows
         [ThreadStatic]
         static Stream cabinetStream;
 
+        [ThreadStatic]
+        static List<Exception> currentExceptions;
+
         static readonly ThreadLocal<SafeHFDI> threadContext = new ThreadLocal<SafeHFDI>(
             () => FDICreate(
-                cb => Marshal.AllocHGlobal(unchecked((int)cb)),
-                memory => Marshal.FreeHGlobal(memory),
-                (pszFile, oflag, pmode) => {
-                    if(pszFile != "") return IntPtr.Zero;
-                    var stream = new StreamPosition(cabinetStream);
-                    return GetNewPointer(stream, out _);
-                },
-                (hf, memory, cb) => {
-                    var buffer = ArrayPool<byte>.Shared.Rent(unchecked((int)cb));
+                cb => {
                     try{
-                        var stream = GetStream(hf, out _);
-                        var read = stream.Read(buffer, 0, unchecked((int)cb));
-                        Marshal.Copy(buffer, 0, memory, read);
-                        return unchecked((uint)read);
-                    }finally{
-                        ArrayPool<byte>.Shared.Return(buffer);
+                        return Marshal.AllocHGlobal(unchecked((int)cb));
+                    }catch(Exception e)
+                    {
+                        currentExceptions.Add(e);
+                        return default;
+                    }
+                },
+                memory => {
+                    try{ 
+                        Marshal.FreeHGlobal(memory);
+                    }catch(Exception e)
+                    {
+                        currentExceptions.Add(e);
+                    }
+                },
+                (pszFile, oflag, pmode) => {
+                    try{
+                        if(pszFile != "") return IntPtr.Zero;
+                        var stream = new StreamPosition(cabinetStream);
+                        return GetNewPointer(stream, out _);
+                    }catch(Exception e)
+                    {
+                        currentExceptions.Add(e);
+                        return default;
                     }
                 },
                 (hf, memory, cb) => {
-                    var writer = GetWriter(hf, out _);
-                    async Task Inner()
+                    try{
+                        var buffer = ArrayPool<byte>.Shared.Rent(unchecked((int)cb));
+                        try{
+                            var stream = GetStream(hf, out _);
+                            var read = stream.Read(buffer, 0, unchecked((int)cb));
+                            Marshal.Copy(buffer, 0, memory, read);
+                            return unchecked((uint)read);
+                        }finally{
+                            ArrayPool<byte>.Shared.Return(buffer);
+                        }
+                    }catch(Exception e)
                     {
-                        await writer.WriteAsync(new UnmanagedMemoryRange(memory, unchecked((int)cb)));
-                        await writer.WriteAsync(default);
-                        await writer.WaitToWriteAsync();
+                        currentExceptions.Add(e);
+                        return default;
                     }
-                    Inner().Wait();
-                    return cb;
+                },
+                (hf, memory, cb) => {
+                    try{
+                        var writer = GetWriter(hf, out _);
+                        async Task Inner()
+                        {
+                            await writer.WriteAsync(new UnmanagedMemoryRange(memory, unchecked((int)cb)));
+                            await writer.WriteAsync(default);
+                            await writer.WaitToWriteAsync();
+                        }
+                        Inner().Wait();
+                        return cb;
+                    }catch(Exception e)
+                    {
+                        currentExceptions.Add(e);
+                        return default;
+                    }
                 },
                 hf => {
-                    GetTarget(hf, out var handle);
-                    handle.Free();
-                    return 0;
+                    try{
+                        GetTarget(hf, out var handle);
+                        handle.Free();
+                        return 0;
+                    }catch(Exception e)
+                    {
+                        currentExceptions.Add(e);
+                        return default;
+                    }
                 },
                 (hf, dist, seektype) => {
-                    var stream = GetStream(hf, out _);
-                    return (int)stream.Seek(dist, (SeekOrigin)seektype);
+                    try{
+                        var stream = GetStream(hf, out _);
+                        return (int)stream.Seek(dist, seektype);
+                    }catch(Exception e)
+                    {
+                        currentExceptions.Add(e);
+                        return default;
+                    }
                 },
                 FDICPU.cpuUNKNOWN,
                 ref cabinetError
