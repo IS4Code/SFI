@@ -16,12 +16,14 @@ namespace IS4.MultiArchiver.Extensions
         public DataAnalyzer DataAnalyzer { get; }
         public XmlAnalyzer XmlAnalyzer { get; }
         public BitTorrentHash BitTorrentHash { get; }
+        public ImageAnalyzer ImageAnalyzer { get; }
 
         public Archiver()
         {
             Analyzers.Add(FileAnalyzer = new FileAnalyzer());
             Analyzers.Add(DataAnalyzer = new DataAnalyzer(() => new UdeEncodingDetector()));
             Analyzers.Add(XmlAnalyzer = new XmlAnalyzer());
+            Analyzers.Add(ImageAnalyzer = new ImageAnalyzer());
             Analyzers.Add(new BinaryFormatAnalyzer<object>());
             Analyzers.Add(new XmlFormatAnalyzer<object>());
 
@@ -30,6 +32,9 @@ namespace IS4.MultiArchiver.Extensions
             DataAnalyzer.HashAlgorithms.Add(new PaddedBlockHash(Vocabulary.Individuals.BSHA1_256, "urn:bsha1-256:", 262144));
 
             FileAnalyzer.HashAlgorithms.Add(BitTorrentHash = new BitTorrentHash());
+
+            ImageAnalyzer.HashAlgorithms.Add(BuiltInHash.MD5);
+            ImageAnalyzer.HashAlgorithms.Add(BuiltInHash.SHA1);
         }
 
         static Archiver()
@@ -68,7 +73,6 @@ namespace IS4.MultiArchiver.Extensions
             archiver.Analyzers.Add(new ArchiveReaderAnalyzer());
             archiver.Analyzers.Add(new FileSystemAnalyzer());
             archiver.Analyzers.Add(ImageMetadataAnalyzer.CreateDefault());
-            archiver.Analyzers.Add(new ImageAnalyzer());
             archiver.Analyzers.Add(new TagLibAnalyzer());
             archiver.Analyzers.Add(new WinModuleAnalyzer());
             archiver.Analyzers.Add(new SvgAnalyzer());

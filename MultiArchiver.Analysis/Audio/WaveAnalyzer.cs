@@ -84,7 +84,9 @@ namespace IS4.MultiArchiver.Analyzers
 
                 bmp.Tag = new ImageTag
                 {
-                    StoreDimensions = false
+                    StoreDimensions = false,
+                    HighFrequencyHash = false,
+                    ByteHash = false
                 };
 
                 var imageObj = new LinkedObject<Image>(node, source, bmp);
