@@ -121,6 +121,8 @@
         [Uri(Vocabularies.Nfo)]
         VerticalResolution,
         [Uri(Vocabularies.Nfo)]
+        PaletteSize,
+        [Uri(Vocabularies.Nfo)]
         BitsPerSample,
         [Uri(Vocabularies.Nfo)]
         Channels,

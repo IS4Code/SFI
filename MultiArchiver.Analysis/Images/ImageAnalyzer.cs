@@ -34,6 +34,8 @@ namespace IS4.MultiArchiver.Analyzers
         {
             var tag = (image.Tag as IImageTag) ?? DefaultTag;
 
+            bool storedAsData = node.Scheme.Equals("data", StringComparison.OrdinalIgnoreCase);
+
             if(source is IImageResourceTag imageTag && imageTag.IsTransparent)
             {
                 (image as Bitmap)?.MakeTransparent();
@@ -51,69 +53,72 @@ namespace IS4.MultiArchiver.Analyzers
                 if(paletteSize > 0) node.Set(Properties.PaletteSize, paletteSize);
             }
 
-            if(tag.MakeThumbnail)
+            if(!storedAsData)
             {
-                ArraySegment<byte> thumbnailDta;
-                using(var thumbnail = ResizeImage(image, 12, 12, PixelFormat.Format32bppArgb, Color.Transparent))
+                if(tag.MakeThumbnail)
                 {
-                    using(var stream = new MemoryStream())
+                    ArraySegment<byte> thumbnailDta;
+                    using(var thumbnail = ResizeImage(image, 12, 12, PixelFormat.Format32bppArgb, Color.Transparent))
                     {
-                        thumbnail.Save(stream, ImageFormat.Png);
-                        if(!stream.TryGetBuffer(out thumbnailDta))
+                        using(var stream = new MemoryStream())
                         {
-                            thumbnailDta = new ArraySegment<byte>(stream.ToArray());
-                        }
-                    }
-                }
-
-                var thumbNode = nodeFactory.Create(UriTools.DataUriFormatter, ("image/png", thumbnailDta));
-                thumbNode.Set(Properties.AtPrefLabel, "Thumbnail image");
-                node.Set(Properties.Thumbnail, thumbNode);
-            }
-
-            if(tag.LowFrequencyHash)
-            {
-                byte[] hash;
-                using(var horiz = ResizeImage(image, 9, 8, PixelFormat.Format32bppArgb, gray))
-                {
-                    using(var vert = ResizeImage(image, 8, 9, PixelFormat.Format32bppArgb, gray))
-                    {
-                        var horizBits = horiz.LockBits(new Rectangle(0, 0, 9, 8), ImageLockMode.ReadOnly, PixelFormat.Format32bppRgb);
-                        try{
-                            var vertBits = vert.LockBits(new Rectangle(0, 0, 8, 9), ImageLockMode.ReadOnly, PixelFormat.Format32bppRgb);
-                            try{
-                                hash = ComputeDHash(horizBits, vertBits);
-                            }finally{
-                                vert.UnlockBits(vertBits);
+                            thumbnail.Save(stream, ImageFormat.Png);
+                            if(!stream.TryGetBuffer(out thumbnailDta))
+                            {
+                                thumbnailDta = new ArraySegment<byte>(stream.ToArray());
                             }
-                        }finally{
-                            horiz.UnlockBits(horizBits);
                         }
                     }
-                }
-                HashAlgorithm.AddHash(node, DHash.Instance, hash, nodeFactory);
-            }
 
-            if(tag.ByteHash && HashAlgorithms.Count > 0 && image is Bitmap bmp)
-            {
-                var format = image.PixelFormat;
-                if(Image.GetPixelFormatSize(format) == 0)
+                    var thumbNode = nodeFactory.Create(UriTools.DataUriFormatter, ("image/png", thumbnailDta));
+                    thumbNode.Set(Properties.AtPrefLabel, "Thumbnail image");
+                    node.Set(Properties.Thumbnail, thumbNode);
+                }
+
+                if(tag.LowFrequencyHash)
                 {
-                    format = PixelFormat.Format32bppArgb;
+                    byte[] hash;
+                    using(var horiz = ResizeImage(image, 9, 8, PixelFormat.Format32bppArgb, gray))
+                    {
+                        using(var vert = ResizeImage(image, 8, 9, PixelFormat.Format32bppArgb, gray))
+                        {
+                            var horizBits = horiz.LockBits(new Rectangle(0, 0, 9, 8), ImageLockMode.ReadOnly, PixelFormat.Format32bppRgb);
+                            try{
+                                var vertBits = vert.LockBits(new Rectangle(0, 0, 8, 9), ImageLockMode.ReadOnly, PixelFormat.Format32bppRgb);
+                                try{
+                                    hash = ComputeDHash(horizBits, vertBits);
+                                }finally{
+                                    vert.UnlockBits(vertBits);
+                                }
+                            }finally{
+                                horiz.UnlockBits(horizBits);
+                            }
+                        }
+                    }
+                    HashAlgorithm.AddHash(node, DHash.Instance, hash, nodeFactory);
                 }
 
-                var data = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.ReadOnly, format);
-                try{
-                    int bpp = Image.GetPixelFormatSize(data.PixelFormat);
-                    Parallel.ForEach(HashAlgorithms, hash => {
-                        using(var stream = new BitmapDataStream(data.Scan0, data.Stride, data.Height, data.Width, bpp))
-                        {
-                            var hashBytes = hash.ComputeHash(stream);
-                            HashAlgorithm.AddHash(node, hash, hashBytes, nodeFactory);
-                        }
-                    });
-                }finally{
-                    bmp.UnlockBits(data);
+                if(tag.ByteHash && HashAlgorithms.Count > 0 && image is Bitmap bmp)
+                {
+                    var format = image.PixelFormat;
+                    if(Image.GetPixelFormatSize(format) == 0)
+                    {
+                        format = PixelFormat.Format32bppArgb;
+                    }
+
+                    var data = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.ReadOnly, format);
+                    try{
+                        int bpp = Image.GetPixelFormatSize(data.PixelFormat);
+                        Parallel.ForEach(HashAlgorithms, hash => {
+                            using(var stream = new BitmapDataStream(data.Scan0, data.Stride, data.Height, data.Width, bpp))
+                            {
+                                var hashBytes = hash.ComputeHash(stream);
+                                HashAlgorithm.AddHash(node, hash, hashBytes, nodeFactory);
+                            }
+                        });
+                    }finally{
+                        bmp.UnlockBits(data);
+                    }
                 }
             }
 

@@ -7,6 +7,8 @@ namespace IS4.MultiArchiver.Services
 {
     public interface ILinkedNode : IEquatable<ILinkedNode>
     {
+        string Scheme { get; }
+
         void SetClass(Classes @class);
         void SetClass<T>(IClassUriFormatter<T> formatter, T value);
 
@@ -70,6 +72,8 @@ namespace IS4.MultiArchiver.Services
             var uri = formatter.FormatUri(value);
             return uri != null ? CreateNode(uri) : null;
         }
+
+        public string Scheme => GetUri(Subject).Scheme;
 
         public void SetClass(Classes @class)
         {
