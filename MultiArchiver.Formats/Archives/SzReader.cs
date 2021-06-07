@@ -1,11 +1,10 @@
-﻿using IS4.MultiArchiver.Tools;
+﻿using IS4.MultiArchiver.Tools.IO;
 using SharpCompress.Common;
 using SharpCompress.Readers;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 
 namespace IS4.MultiArchiver.Formats.Archives

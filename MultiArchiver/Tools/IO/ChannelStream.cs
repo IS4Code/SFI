@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 
-namespace IS4.MultiArchiver.Tools
+namespace IS4.MultiArchiver.Tools.IO
 {
     public abstract class ChannelStream<TSequence> : Stream, IEnumerator<TSequence> where TSequence : struct, IReadOnlyCollection<byte>
     {

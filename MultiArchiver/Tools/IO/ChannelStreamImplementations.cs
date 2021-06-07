@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Threading.Channels;
 
-namespace IS4.MultiArchiver.Tools
+namespace IS4.MultiArchiver.Tools.IO
 {
     public sealed class ChannelArrayStream : ChannelStream<ArraySegment<byte>>
     {

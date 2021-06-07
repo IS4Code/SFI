@@ -2,7 +2,7 @@
 using System.IO;
 using System.Runtime.InteropServices;
 
-namespace IS4.MultiArchiver.Tools
+namespace IS4.MultiArchiver.Tools.IO
 {
     public class BitmapDataStream : Stream
     {

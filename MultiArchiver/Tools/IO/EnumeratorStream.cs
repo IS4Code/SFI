@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
-namespace IS4.MultiArchiver.Tools
+namespace IS4.MultiArchiver.Tools.IO
 {
     public class EnumeratorStream<TException> : Stream where TException : Exception
     {

@@ -3,7 +3,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace IS4.MultiArchiver.Tools
+namespace IS4.MultiArchiver.Tools.IO
 {
     public sealed class ThreadLocalStream : Stream
     {

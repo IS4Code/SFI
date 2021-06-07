@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace IS4.MultiArchiver.Tools
+namespace IS4.MultiArchiver.Tools.IO
 {
     internal class AnalyzingStream : Stream
     {

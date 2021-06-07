@@ -1,4 +1,4 @@
-﻿using IS4.MultiArchiver.Tools;
+﻿using IS4.MultiArchiver.Tools.IO;
 using System;
 using System.Buffers;
 using System.Collections.Concurrent;
