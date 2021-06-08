@@ -138,7 +138,12 @@ namespace IS4.MultiArchiver.Analyzers
                             string lang;
                             if(trans.wLanguage > 0)
                             {
-                                lang = CultureInfo.GetCultureInfo(trans.wLanguage).IetfLanguageTag;
+                                try{
+                                    lang = CultureInfo.GetCultureInfo(trans.wLanguage).IetfLanguageTag;
+                                }catch(CultureNotFoundException)
+                                {
+                                    lang = null;
+                                }
                             }else{
                                 lang = null;
                             }
