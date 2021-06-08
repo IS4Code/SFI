@@ -132,36 +132,20 @@ namespace IS4.MultiArchiver.Analyzers
 
         class ArchiveFileInfo : ArchiveEntryInfo, IFileInfo
         {
-            readonly Lazy<ArraySegment<byte>> data;
-
             public ArchiveFileInfo(IReader reader, IEntry entry) : base(reader, entry)
             {
-                data = new Lazy<ArraySegment<byte>>(() => {
-                    using(var stream = new MemoryStream())
-                    {
-                        using(var input = Reader.OpenEntryStream())
-                        {
-                            input.CopyTo(stream);
-                        }
-                        if(!stream.TryGetBuffer(out var buffer))
-                        {
-                            buffer = new ArraySegment<byte>(stream.ToArray());
-                        }
-                        return buffer;
-                    }
-                });
+
             }
 
             public long Length => Entry.Size;
 
             public bool IsEncrypted => Entry.IsEncrypted;
 
-            public StreamFactoryAccess Access => StreamFactoryAccess.Parallel;
+            public StreamFactoryAccess Access => StreamFactoryAccess.Single;
 
             public Stream Open()
             {
-                var data = this.data.Value;
-                return new MemoryStream(data.Array, data.Offset, data.Count, false);
+                return Reader.OpenEntryStream();
             }
         }
 
