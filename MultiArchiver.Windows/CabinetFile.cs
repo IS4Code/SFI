@@ -26,20 +26,7 @@ namespace IS4.MultiArchiver.Windows
         public CabinetFile(Stream stream)
         {
             fileTask = Task.Run(() => {
-                cabinetStream = stream;
-                cabinetError = default;
-                var exceptions = currentExceptions = new List<Exception>();
-                var result = FDICopy(threadContext.Value, "", "", 0, Notify, null, IntPtr.Zero);
-                if(exceptions.Count > 0)
-                {
-                    readyToOpen.TrySetException(exceptions);
-                }else{
-                    readyToOpen.TrySetResult(result);
-                }
-                Dispose();
-                currentExceptions = null;
-                cabinetStream = null;
-                return cabinetError;
+                return Copy(stream);
             });
             try{
                 if(!readyToOpen.Task.Result)
@@ -50,6 +37,29 @@ namespace IS4.MultiArchiver.Windows
             {
                 ExceptionDispatchInfo.Capture(e.InnerException).Throw();
             }
+        }
+
+        ERF Copy(Stream stream)
+        {
+            cabinetStream = stream;
+            cabinetError = default;
+            var exceptions = currentExceptions = new List<Exception>();
+            try{
+                var result = FDICopy(threadContext.Value, "", "", 0, Notify, null, IntPtr.Zero);
+                if(exceptions.Count > 0)
+                {
+                    readyToOpen.TrySetException(exceptions);
+                }else{
+                    readyToOpen.TrySetResult(result);
+                }
+            }catch(Exception e)
+            {
+                readyToOpen.TrySetException(e);
+            }
+            Dispose();
+            currentExceptions = null;
+            cabinetStream = null;
+            return cabinetError;
         }
 
         public FileInfo GetNextFile()
@@ -117,9 +127,6 @@ namespace IS4.MultiArchiver.Windows
                     }
                     case FDINOTIFICATIONTYPE.fdintNEXT_CABINET:
                     {
-                        var writer = GetWriter(pfdin.psz2, out var handle);
-                        handle.Free();
-                        writer.Complete();
                         return (IntPtr)(-1);
                     }
                     case FDINOTIFICATIONTYPE.fdintENUMERATE:
@@ -243,7 +250,10 @@ namespace IS4.MultiArchiver.Windows
                 },
                 hf => {
                     try{
-                        GetTarget(hf, out var handle);
+                        if(GetTarget(hf, out var handle) is ChannelWriter<UnmanagedMemoryRange> writer)
+                        {
+                            writer.TryComplete();
+                        }
                         handle.Free();
                         return 0;
                     }catch(Exception e)
@@ -302,18 +312,18 @@ namespace IS4.MultiArchiver.Windows
             }
         }
 
-        static object GetTarget(HFILE hf, out GCHandle handle)
+        static object GetTarget(IntPtr hf, out GCHandle handle)
         {
-            handle = (GCHandle)hf.DangerousGetHandle();
+            handle = (GCHandle)hf;
             return handle.Target;
         }
 
-        static StreamPosition GetStream(HFILE hf, out GCHandle handle)
+        static StreamPosition GetStream(IntPtr hf, out GCHandle handle)
         {
             return GetTarget(hf, out handle) as StreamPosition;
         }
 
-        static ChannelWriter<UnmanagedMemoryRange> GetWriter(HFILE hf, out GCHandle handle)
+        static ChannelWriter<UnmanagedMemoryRange> GetWriter(IntPtr hf, out GCHandle handle)
         {
             return GetTarget(hf, out handle) as ChannelWriter<UnmanagedMemoryRange>;
         }
