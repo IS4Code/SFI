@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
@@ -47,7 +48,13 @@ namespace IS4.MultiArchiver.Analyzers
                 node.Set(Properties.Height, image.Height);
                 node.Set(Properties.HorizontalResolution, (decimal)image.HorizontalResolution);
                 node.Set(Properties.VerticalResolution, (decimal)image.VerticalResolution);
-                int paletteSize = image.Palette?.Entries?.Length ?? 0;
+                int paletteSize;
+                try{
+                    paletteSize = image.Palette?.Entries?.Length ?? 0;
+                }catch(ExternalException)
+                {
+                    paletteSize = 0;
+                }
                 int bpp = Image.GetPixelFormatSize(image.PixelFormat);
                 if(bpp != 0) node.Set(paletteSize > 0 ? Properties.BitDepth : Properties.ColorDepth, bpp);
                 if(paletteSize > 0) node.Set(Properties.PaletteSize, paletteSize);
