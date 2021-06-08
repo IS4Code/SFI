@@ -101,8 +101,18 @@ namespace IS4.MultiArchiver.Analyzers
                         }
                         return xmlMame;
                 }
-            }while(reader.Read());
+            }while(ReadSafe(reader));
             return null;
+        }
+
+        static bool ReadSafe(XmlReader reader)
+        {
+            try{
+                return reader.Read();
+            }catch(XmlException)
+            {
+                return false;
+            }
         }
 
         class ResultFactory : IResultFactory<ILinkedNode>
