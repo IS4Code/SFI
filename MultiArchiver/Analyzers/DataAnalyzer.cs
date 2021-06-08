@@ -27,6 +27,8 @@ namespace IS4.MultiArchiver.Analyzers
             EncodingDetectorFactory = encodingDetectorFactory;
         }
 
+        const int fileSizeToWriteToDisk = 524288;
+
 		public ILinkedNode Analyze(ILinkedNode parent, IStreamFactory streamFactory, ILinkedNodeFactory nodeFactory)
         {
             var signatureBuffer = new MemoryStream(Math.Max(MaxDataLengthToStore + 1, Formats.Count == 0 ? 0 : Formats.Max(fmt => fmt.HeaderLength)));
@@ -35,79 +37,124 @@ namespace IS4.MultiArchiver.Analyzers
 
             var isBinary = false;
 
-            var lazyMatch = new Lazy<FileMatch>(() => new FileMatch(Formats, streamFactory, signatureBuffer, MaxDataLengthToStore, encodingDetector, isBinary, nodeFactory), false);
+            IStreamFactory seekableFactory = null;
+
+            var lazyMatch = new Lazy<FileMatch>(() => new FileMatch(Formats, streamFactory, seekableFactory, signatureBuffer, MaxDataLengthToStore, encodingDetector, isBinary, nodeFactory), false);
             
-            long length = 0;
+            long actualLength = 0;
             var hashes = new List<(IDataHashAlgorithm alg, ChannelWriter<ArraySegment<byte>> writer, Task<byte[]> data)>();
 
-            using(var stream = streamFactory.Open())
-            {
-                foreach(var hash in HashAlgorithms)
-                {
-                    var queue = ChannelArrayStream.Create(out var writer, 1);
-                    hashes.Add((hash, writer, Task.Run(() => hash.ComputeHash(queue, streamFactory))));
-                }
+            FileMatch match;
 
-                bool? couldBeUnicode = null;
-
-                var buffer = ArrayPool<byte>.Shared.Rent(16384);
-
+            string tmpPath = null;
+            try{
+                Stream outputStream = null;
                 try{
-                    int read;
-                    while((read = stream.Read(buffer, 0, buffer.Length)) != 0)
+                    using(var stream = streamFactory.Open())
                     {
-                        var segment = new ArraySegment<byte>(buffer, 0, read);
-                        var writing = hashes.Select(async h => {
-                            await h.writer.WriteAsync(segment);
-                            await h.writer.WriteAsync(default);
-                            await h.writer.WaitToWriteAsync();
-                        }).ToArray();
-
-                        length += read;
-
-                        if(couldBeUnicode == null)
+                        if(streamFactory.Access != StreamFactoryAccess.Parallel || !stream.CanSeek)
                         {
-                            couldBeUnicode = DataTools.FindBom(buffer.AsSpan()) > 0;
-                        }
-
-                        if(!isBinary)
-				        {
-					        if(couldBeUnicode == false && Array.IndexOf<byte>(buffer, 0, 0, read) != -1)
-					        {
-						        isBinary = true;
-					        }else{
-                                encodingDetector.Write(new ArraySegment<byte>(buffer, 0, read));
-					        }
-                        }
-
-                        if(signatureBuffer.Length < signatureBuffer.Capacity)
-				        {
-					        signatureBuffer.Write(buffer, 0, Math.Min(signatureBuffer.Capacity - (int)signatureBuffer.Length, read));
+                            if(streamFactory.Length >= fileSizeToWriteToDisk)
+                            {
+                                tmpPath = Path.GetTempPath() + Guid.NewGuid().ToString();
+                                outputStream = new FileStream(tmpPath, FileMode.CreateNew, FileAccess.Write, FileShare.None);
+                            }else{
+                                outputStream = new MemoryStream();
+                            }
                         }else{
-                            _ = lazyMatch.Value;
+                            seekableFactory = streamFactory;
                         }
 
-                        Task.WaitAll(writing);
-                    }
+                        foreach(var hash in HashAlgorithms)
+                        {
+                            var queue = ChannelArrayStream.Create(out var writer, 1);
+                            hashes.Add((hash, writer, Task.Run(() => hash.ComputeHash(queue, streamFactory))));
+                        }
 
-                    foreach(var hash in hashes)
-                    {
-                        hash.writer.Complete();
+                        bool? couldBeUnicode = null;
+
+                        var buffer = ArrayPool<byte>.Shared.Rent(16384);
+
+                        try{
+                            int read;
+                            while((read = stream.Read(buffer, 0, buffer.Length)) != 0)
+                            {
+                                var segment = new ArraySegment<byte>(buffer, 0, read);
+                                var writing = hashes.Select(async h => {
+                                    await h.writer.WriteAsync(segment);
+                                    await h.writer.WriteAsync(default);
+                                    await h.writer.WaitToWriteAsync();
+                                }).ToArray();
+
+                                actualLength += read;
+
+                                if(couldBeUnicode == null)
+                                {
+                                    couldBeUnicode = DataTools.FindBom(buffer.AsSpan()) > 0;
+                                }
+
+                                if(!isBinary)
+                                {
+                                    if(couldBeUnicode == false && Array.IndexOf<byte>(buffer, 0, 0, read) != -1)
+                                    {
+                                        isBinary = true;
+                                    }else{
+                                        encodingDetector.Write(new ArraySegment<byte>(buffer, 0, read));
+                                    }
+                                }
+
+                                outputStream?.Write(buffer, 0, read);
+
+                                if(signatureBuffer.Length < signatureBuffer.Capacity)
+                                {
+                                    signatureBuffer.Write(buffer, 0, Math.Min(signatureBuffer.Capacity - (int)signatureBuffer.Length, read));
+                                }else if(outputStream == null)
+                                {
+                                    _ = lazyMatch.Value;
+                                }
+
+                                Task.WaitAll(writing);
+                            }
+
+                            foreach(var hash in hashes)
+                            {
+                                hash.writer.Complete();
+                            }
+                        }finally{
+                            ArrayPool<byte>.Shared.Return(buffer);
+                        }
+
+                        encodingDetector.End();
                     }
                 }finally{
-                    ArrayPool<byte>.Shared.Return(buffer);
+                    outputStream?.Dispose();
                 }
 
-                encodingDetector.End();
-            }
+                if(tmpPath != null)
+                {
+                    seekableFactory = new FileInfoWrapper(new FileInfo(tmpPath), streamFactory);
+                }else if(outputStream is MemoryStream memoryStream)
+                {
+                    if(!memoryStream.TryGetBuffer(out var buffer))
+                    {
+                        buffer = new ArraySegment<byte>(memoryStream.ToArray());
+                    }
+                    seekableFactory = new MemoryStreamFactory(buffer, streamFactory);
+                }
 
-            var match = lazyMatch.Value;
+                match = lazyMatch.Value;
 
-            isBinary |= match.IsBinary;
+                isBinary |= match.IsBinary;
 
-            foreach(var result in match.Results)
-            {
-                result.Wait();
+                foreach(var result in match.Results)
+                {
+                    result.Wait();
+                }
+            }finally{
+                if(tmpPath != null)
+                {
+                    File.Delete(tmpPath);
+                }
             }
 
             var node = match.Node;
@@ -117,12 +164,12 @@ namespace IS4.MultiArchiver.Analyzers
                 node.Set(Properties.CharacterEncoding, match.CharsetMatch.Charset);
             }
 
-            var label = $"{(isBinary ? "binary data" : "text")} ({DataTools.SizeSuffix(length, 2)})";
+            var label = $"{(isBinary ? "binary data" : "text")} ({DataTools.SizeSuffix(actualLength, 2)})";
 
             node.Set(Properties.PrefLabel, label, "en");
 
             node.SetClass(isBinary ? Classes.ContentAsBase64 : Classes.ContentAsText);
-            node.Set(Properties.Extent, length, Datatypes.Byte);
+            node.Set(Properties.Extent, actualLength, Datatypes.Byte);
 
             if(!match.IdentifyWithData)
             {
@@ -170,7 +217,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             public ArraySegment<byte> Signature { get; }
 
-            public FileMatch(ICollection<IBinaryFileFormat> formats, IStreamFactory streamFactory, MemoryStream signatureBuffer, int maxDataLength, IEncodingDetector encodingDetector, bool isBinary, ILinkedNodeFactory nodeFactory)
+            public FileMatch(ICollection<IBinaryFileFormat> formats, object source, IStreamFactory streamFactory, MemoryStream signatureBuffer, int maxDataLength, IEncodingDetector encodingDetector, bool isBinary, ILinkedNodeFactory nodeFactory)
             {
                 if(!signatureBuffer.TryGetBuffer(out var signature))
                 {
@@ -222,7 +269,7 @@ namespace IS4.MultiArchiver.Analyzers
                 if(Signature.Count > 0)
                 {
                     var nodeCreated = new TaskCompletionSource<ILinkedNode>();
-                    Results = formats.Where(fmt => fmt.CheckHeader(signature, isBinary, encodingDetector)).Select(fmt => new FormatResult(streamFactory, fmt, nodeCreated, Node, nodeFactory)).ToList();
+                    Results = formats.Where(fmt => fmt.CheckHeader(signature, isBinary, encodingDetector)).Select(fmt => new FormatResult(streamFactory, source, fmt, nodeCreated, Node, nodeFactory)).ToList();
                 }else{
                     Results = Array.Empty<FormatResult>();
                 }
@@ -304,6 +351,7 @@ namespace IS4.MultiArchiver.Analyzers
             readonly ILinkedNodeFactory nodeFactory;
             readonly Task<ILinkedNode> task;
             readonly IStreamFactory streamFactory;
+            readonly object source;
             readonly TaskCompletionSource<ILinkedNode> nodeCreated;
 
             public bool IsValid => !task.IsFaulted;
@@ -315,12 +363,13 @@ namespace IS4.MultiArchiver.Analyzers
 
             public ILinkedNode Result => task?.Result;
 
-            public FormatResult(IStreamFactory streamFactory, IBinaryFileFormat format, TaskCompletionSource<ILinkedNode> nodeCreated, ILinkedNode parent, ILinkedNodeFactory nodeFactory)
+            public FormatResult(IStreamFactory streamFactory, object source, IBinaryFileFormat format, TaskCompletionSource<ILinkedNode> nodeCreated, ILinkedNode parent, ILinkedNodeFactory nodeFactory)
 			{
                 this.format = format;
                 this.parent = parent;
                 this.nodeFactory = nodeFactory;
                 this.streamFactory = streamFactory;
+                this.source = source;
                 this.nodeCreated = nodeCreated;
                 task = StartReading(streamFactory, Reader);
             }
@@ -355,7 +404,7 @@ namespace IS4.MultiArchiver.Analyzers
             ILinkedNode IResultFactory<ILinkedNode>.Invoke<T>(T value)
             {
                 try{
-                    var formatObj = new FormatObject<T, IBinaryFileFormat>(format, value, streamFactory);
+                    var formatObj = new FormatObject<T, IBinaryFileFormat>(format, value, source);
                     while(parent[formatObj] == null)
                     {
                         ILinkedNode node;
@@ -368,7 +417,7 @@ namespace IS4.MultiArchiver.Analyzers
                         }
                         if(node != null)
                         {
-                            var obj = new LinkedObject<T>(node, streamFactory, value);
+                            var obj = new LinkedObject<T>(node, source, value);
                             node = nodeFactory.Create<ILinkedObject<T>>(parent, obj);
                             Label = obj.Label;
                         }

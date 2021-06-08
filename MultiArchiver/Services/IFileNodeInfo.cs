@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace IS4.MultiArchiver.Services
 {
@@ -22,5 +24,72 @@ namespace IS4.MultiArchiver.Services
     public interface IDirectoryInfo : IFileNodeInfo
     {
         IEnumerable<IFileNodeInfo> Entries { get; }
+    }
+
+    public abstract class FileSystemInfoWrapper<TInfo> : IFileNodeInfo where TInfo : FileSystemInfo
+    {
+        protected TInfo BaseInfo { get; }
+        readonly IPersistentKey key;
+
+        public FileSystemInfoWrapper(TInfo baseInfo, IPersistentKey key = null)
+        {
+            this.BaseInfo = baseInfo;
+            this.key = key;
+        }
+
+        public string Name => BaseInfo.Name;
+
+        public string SubName => null;
+
+        public string Path => BaseInfo.FullName.Substring(System.IO.Path.GetPathRoot(BaseInfo.FullName).Length).Replace(System.IO.Path.DirectorySeparatorChar, '/');
+
+        public DateTime? CreationTime => BaseInfo.CreationTimeUtc;
+
+        public DateTime? LastWriteTime => BaseInfo.LastWriteTimeUtc;
+
+        public DateTime? LastAccessTime => BaseInfo.LastAccessTimeUtc;
+
+        public int? Revision => null;
+
+        public bool IsEncrypted => false;
+
+        public StreamFactoryAccess Access => StreamFactoryAccess.Parallel;
+
+        object IPersistentKey.ReferenceKey => key != null ? key.ReferenceKey : AppDomain.CurrentDomain;
+
+        object IPersistentKey.DataKey => key != null ? key.DataKey : BaseInfo.FullName;
+        
+        public override string ToString()
+        {
+            return "/" + Path;
+        }
+    }
+
+    public class FileInfoWrapper : FileSystemInfoWrapper<FileInfo>, IFileInfo
+    {
+        public FileInfoWrapper(FileInfo baseInfo, IPersistentKey key = null) : base(baseInfo, key)
+        {
+
+        }
+
+        public long Length => BaseInfo.Length;
+
+        public Stream Open()
+        {
+            return BaseInfo.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete);
+        }
+    }
+
+    public class DirectoryInfoWrapper : FileSystemInfoWrapper<DirectoryInfo>, IDirectoryInfo
+    {
+        public DirectoryInfoWrapper(DirectoryInfo baseInfo, IPersistentKey key = null) : base(baseInfo, key)
+        {
+
+        }
+
+        public IEnumerable<IFileNodeInfo> Entries =>
+            BaseInfo.EnumerateFiles().Select(f => (IFileNodeInfo)new FileInfoWrapper(f)).Concat(
+                BaseInfo.EnumerateDirectories().Select(d => new DirectoryInfoWrapper(d))
+                );
     }
 }
