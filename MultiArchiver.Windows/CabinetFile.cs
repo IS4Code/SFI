@@ -43,6 +43,7 @@ namespace IS4.MultiArchiver.Windows
         {
             cabinetStream = stream;
             cabinetError = default;
+            validHandles = new HashSet<IntPtr>();
             var exceptions = currentExceptions = new List<Exception>();
             try{
                 var result = FDICopy(threadContext.Value, "", "", 0, Notify, null, IntPtr.Zero);
@@ -57,6 +58,7 @@ namespace IS4.MultiArchiver.Windows
                 readyToOpen.TrySetException(e);
             }
             Dispose();
+            validHandles = null;
             currentExceptions = null;
             cabinetStream = null;
             return cabinetError;
@@ -183,6 +185,9 @@ namespace IS4.MultiArchiver.Windows
 
         [ThreadStatic]
         static List<Exception> currentExceptions;
+
+        [ThreadStatic]
+        static HashSet<IntPtr> validHandles;
 
         static readonly ThreadLocal<SafeHFDI> threadContext = new ThreadLocal<SafeHFDI>(
             () => FDICreate(
@@ -314,6 +319,7 @@ namespace IS4.MultiArchiver.Windows
 
         static object GetTarget(IntPtr hf, out GCHandle handle)
         {
+            if(!validHandles.Contains(hf)) throw new ArgumentException(nameof(hf));
             handle = (GCHandle)hf;
             return handle.Target;
         }
@@ -331,7 +337,9 @@ namespace IS4.MultiArchiver.Windows
         static IntPtr GetNewPointer(object target, out GCHandle handle)
         {
             handle = GCHandle.Alloc(target);
-            return (IntPtr)handle;
+            var pointer = (IntPtr)handle;
+            validHandles.Add(pointer);
+            return pointer;
         }
     }
 }
