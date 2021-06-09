@@ -180,9 +180,9 @@ namespace IS4.MultiArchiver.Analyzers
             bool result;
             if(ansi) result = VerQueryValueA(pBlock, lpSubBlock, out lplpBuffer, out puLen);
             else result = Vanara.PInvoke.VersionDll.VerQueryValue(pBlock, lpSubBlock, out lplpBuffer, out puLen);
-            if(result && ((byte*)lplpBuffer < (byte*)pBlock || (byte*)lplpBuffer >= (byte*)pBlock + length))
+            if(result && ((byte*)lplpBuffer < (byte*)pBlock - length || (byte*)lplpBuffer >= (byte*)pBlock + 2 * length))
             {
-                throw new InvalidOperationException("Version block encoding was not correctly detected.");
+                throw new InvalidOperationException("Version block encoding was not correctly detected; unrelated memory has been corrupted as a result.");
             }
             return result;
         }
