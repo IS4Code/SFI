@@ -27,19 +27,17 @@ namespace IS4.MultiArchiver.Formats
                     return resultFactory(new Module(inst));
                 }
             }
-            string tmpPath = Path.GetTempPath() + Guid.NewGuid().ToString();
-            using(var file = new FileStream(tmpPath, FileMode.CreateNew))
+            using(var tmpPath = FileTools.GetTemporaryFile("mz"))
             {
-                stream.CopyTo(file);
-            }
-            try{
+                using(var file = new FileStream(tmpPath, FileMode.CreateNew))
+                {
+                    stream.CopyTo(file);
+                }
                 using(var inst = LoadLibraryEx(tmpPath, LoadLibraryExFlags.LOAD_LIBRARY_AS_IMAGE_RESOURCE | LoadLibraryExFlags.LOAD_LIBRARY_AS_DATAFILE | LoadLibraryExFlags.DONT_RESOLVE_DLL_REFERENCES))
                 {
                     if(inst.IsNull) return null;
                     return resultFactory(new Module(inst));
                 }
-            }finally{
-                File.Delete(tmpPath);
             }
         }
 

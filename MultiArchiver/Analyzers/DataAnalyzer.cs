@@ -46,7 +46,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             FileMatch match;
 
-            string tmpPath = null;
+            var tmpPath = default(FileTools.TemporaryFile);
             try{
                 Stream outputStream = null;
                 try{
@@ -56,7 +56,7 @@ namespace IS4.MultiArchiver.Analyzers
                         {
                             if(streamFactory.Length >= fileSizeToWriteToDisk)
                             {
-                                tmpPath = Path.GetTempPath() + Guid.NewGuid().ToString();
+                                tmpPath = FileTools.GetTemporaryFile("b");
                                 outputStream = new FileStream(tmpPath, FileMode.CreateNew, FileAccess.Write, FileShare.None);
                             }else{
                                 outputStream = new MemoryStream();
@@ -151,10 +151,7 @@ namespace IS4.MultiArchiver.Analyzers
                     result.Wait();
                 }
             }finally{
-                if(tmpPath != null)
-                {
-                    File.Delete(tmpPath);
-                }
+                tmpPath.Dispose();
             }
 
             var node = match.Node;
