@@ -76,7 +76,17 @@ namespace IS4.MultiArchiver.Analyzers
                         if(!String.IsNullOrEmpty(reader.NamespaceURI))
                         {
                             elem.Set(Properties.NamespaceName, reader.NamespaceURI, Datatypes.AnyUri);
-                            elem.Set(Properties.SeeAlso, UriFormatter.Instance, reader.NamespaceURI);
+                            try{
+                                elem.Set(Properties.SeeAlso, UriFormatter.Instance, reader.NamespaceURI);
+                            }catch(UriFormatException)
+                            {
+                                try{
+                                    elem.Set(Properties.SeeAlso, UriTools.PublicIdFormatter, XmlConvert.VerifyPublicId(reader.NamespaceURI));
+                                }catch(XmlException)
+                                {
+
+                                }
+                            }
                         }
                         node.Set(Properties.DocumentElement, elem);
                         foreach(var format in XmlFormats.Concat(new[] { ImprovisedXmlFormat.Instance }))
@@ -177,9 +187,20 @@ namespace IS4.MultiArchiver.Analyzers
 
             public override Uri GetNamespace(XmlFormat value)
             {
-                if(!String.IsNullOrEmpty(value.RootName?.Namespace))
+                var ns = value.RootName?.Namespace;
+                if(!String.IsNullOrEmpty(ns))
                 {
-                    return new Uri(value.RootName.Namespace, UriKind.Absolute);
+                    try{
+                        return new Uri(ns, UriKind.Absolute);
+                    }catch(UriFormatException)
+                    {
+                        try{
+                            return UriTools.CreatePublicId(XmlConvert.VerifyPublicId(ns));
+                        }catch(XmlException)
+                        {
+                            return base.GetNamespace(value);
+                        }
+                    }
                 }
                 return base.GetNamespace(value);
             }
