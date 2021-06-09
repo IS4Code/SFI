@@ -58,9 +58,25 @@ namespace IS4.MultiArchiver.Analyzers
 
             public int? Revision => null;
 
-            public DateTime? CreationTime => Item.CreationDate.ToFileTime() == 0 ? (DateTime?)null : Item.CreationDate.ToUniversalTime();
+            public DateTime? CreationTime {
+                get {
+                    try{
+                        return Item.CreationDate.ToFileTime() == 0 ? (DateTime?)null : Item.CreationDate.ToUniversalTime();
+                    }catch{
+                        return null;
+                    }
+                }
+            }
 
-            public DateTime? LastWriteTime => Item.ModifyDate.ToFileTime() == 0 ? (DateTime?)null : Item.ModifyDate.ToUniversalTime();
+            public DateTime? LastWriteTime {
+                get {
+                    try{
+                        return Item.ModifyDate.ToFileTime() == 0 ? (DateTime?)null : Item.ModifyDate.ToUniversalTime();
+                    }catch{
+                        return null;
+                    }
+                }
+            }
 
             public DateTime? LastAccessTime => null;
 
