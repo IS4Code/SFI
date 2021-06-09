@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.ExceptionServices;
 using System.Runtime.InteropServices;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading;
 using System.Threading.Channels;
@@ -43,7 +44,7 @@ namespace IS4.MultiArchiver.Windows
         {
             cabinetStream = stream;
             cabinetError = default;
-            validHandles = new HashSet<IntPtr>();
+            objectMap = new ObjectMap();
             var exceptions = currentExceptions = new List<Exception>();
             try{
                 var result = FDICopy(threadContext.Value, "", "", 0, Notify, null, IntPtr.Zero);
@@ -58,7 +59,7 @@ namespace IS4.MultiArchiver.Windows
                 readyToOpen.TrySetException(e);
             }
             Dispose();
-            validHandles = null;
+            objectMap = null;
             currentExceptions = null;
             cabinetStream = null;
             return cabinetError;
@@ -118,12 +119,11 @@ namespace IS4.MultiArchiver.Windows
                         if(!NextFileAllowed()) return (IntPtr)(-1);
                         var info = new FileInfo(ref pfdin, out var writer);
                         fileInfoChannel.Add(info);
-                        return GetNewPointer(writer, out _);
+                        return GetNewPointer(writer);
                     }
                     case FDINOTIFICATIONTYPE.fdintCLOSE_FILE_INFO:
                     {
-                        var writer = GetWriter(pfdin.hf, out var handle);
-                        handle.Free();
+                        var writer = GetWriter(pfdin.hf);
                         writer.Complete();
                         return (IntPtr)1;
                     }
@@ -187,7 +187,7 @@ namespace IS4.MultiArchiver.Windows
         static List<Exception> currentExceptions;
 
         [ThreadStatic]
-        static HashSet<IntPtr> validHandles;
+        static ObjectMap objectMap;
 
         static readonly ThreadLocal<SafeHFDI> threadContext = new ThreadLocal<SafeHFDI>(
             () => FDICreate(
@@ -212,7 +212,7 @@ namespace IS4.MultiArchiver.Windows
                     try{
                         if(pszFile != "") return IntPtr.Zero;
                         var stream = new StreamPosition(cabinetStream);
-                        return GetNewPointer(stream, out _);
+                        return GetNewPointer(stream);
                     }catch(Exception e)
                     {
                         currentExceptions.Add(e);
@@ -223,7 +223,7 @@ namespace IS4.MultiArchiver.Windows
                     try{
                         var buffer = ArrayPool<byte>.Shared.Rent(unchecked((int)cb));
                         try{
-                            var stream = GetStream(hf, out _);
+                            var stream = GetStream(hf);
                             var read = stream.Read(buffer, 0, unchecked((int)cb));
                             Marshal.Copy(buffer, 0, memory, read);
                             return unchecked((uint)read);
@@ -238,7 +238,7 @@ namespace IS4.MultiArchiver.Windows
                 },
                 (hf, memory, cb) => {
                     try{
-                        var writer = GetWriter(hf, out _);
+                        var writer = GetWriter(hf);
                         async Task Inner()
                         {
                             await writer.WriteAsync(new UnmanagedMemoryRange(memory, unchecked((int)cb)));
@@ -255,11 +255,10 @@ namespace IS4.MultiArchiver.Windows
                 },
                 hf => {
                     try{
-                        if(GetTarget(hf, out var handle) is ChannelWriter<UnmanagedMemoryRange> writer)
+                        if(GetTarget(hf) is ChannelWriter<UnmanagedMemoryRange> writer)
                         {
                             writer.TryComplete();
                         }
-                        handle.Free();
                         return 0;
                     }catch(Exception e)
                     {
@@ -269,7 +268,7 @@ namespace IS4.MultiArchiver.Windows
                 },
                 (hf, dist, seektype) => {
                     try{
-                        var stream = GetStream(hf, out _);
+                        var stream = GetStream(hf);
                         return (int)stream.Seek(dist, seektype);
                     }catch(Exception e)
                     {
@@ -317,29 +316,44 @@ namespace IS4.MultiArchiver.Windows
             }
         }
 
-        static object GetTarget(IntPtr hf, out GCHandle handle)
+        static object GetTarget(IntPtr hf)
         {
-            if(!validHandles.Contains(hf)) throw new ArgumentException(nameof(hf));
-            handle = (GCHandle)hf;
-            return handle.Target;
+            return objectMap[hf];
         }
 
-        static StreamPosition GetStream(IntPtr hf, out GCHandle handle)
+        static StreamPosition GetStream(IntPtr hf)
         {
-            return GetTarget(hf, out handle) as StreamPosition;
+            return GetTarget(hf) as StreamPosition;
         }
 
-        static ChannelWriter<UnmanagedMemoryRange> GetWriter(IntPtr hf, out GCHandle handle)
+        static ChannelWriter<UnmanagedMemoryRange> GetWriter(IntPtr hf)
         {
-            return GetTarget(hf, out handle) as ChannelWriter<UnmanagedMemoryRange>;
+            return GetTarget(hf) as ChannelWriter<UnmanagedMemoryRange>;
         }
 
-        static IntPtr GetNewPointer(object target, out GCHandle handle)
+        static IntPtr GetNewPointer(object target)
         {
-            handle = GCHandle.Alloc(target);
-            var pointer = (IntPtr)handle;
-            validHandles.Add(pointer);
-            return pointer;
+            return objectMap[target];
+        }
+
+        class ObjectMap
+        {
+            readonly ObjectIDGenerator generator = new ObjectIDGenerator();
+            readonly Dictionary<long, object> map = new Dictionary<long, object>();
+
+            public IntPtr this[object obj] {
+                get {
+                    var id = generator.GetId(obj, out _);
+                    map[id] = obj;
+                    return (IntPtr)id;
+                }
+            }
+
+            public object this[IntPtr id] {
+                get {
+                    return map[(long)id];
+                }
+            }
         }
     }
 }
