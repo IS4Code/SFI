@@ -4,8 +4,11 @@ using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Tools;
 using System;
 using System.IO;
+using System.Linq;
 using VDS.RDF;
 using VDS.RDF.Parsing;
+using VDS.RDF.Query.Datasets;
+using VDS.RDF.Update;
 using VDS.RDF.Writing;
 
 namespace IS4.MultiArchiver.Extensions
@@ -40,6 +43,8 @@ namespace IS4.MultiArchiver.Extensions
         static Archiver()
         {
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+
+            Options.InternUris = false;
         }
 
         public static Archiver CreateDefault()
@@ -86,9 +91,25 @@ namespace IS4.MultiArchiver.Extensions
 
         public void Archive(string file, string output)
         {
+            Console.Error.WriteLine("Reading data...");
+
+            var graph = CreateGraph(file);
+
+            Console.Error.WriteLine("Merging properties...");
+
+            PostProcess(graph);
+
+            Console.Error.WriteLine("Saving...");
+
+            SaveGraph(graph, output);
+        }
+
+        const string root = "http://archive.data.is4.site/.well-known/genid";
+
+        private Graph CreateGraph(string file)
+        {
             var graph = new Graph();
             var graphHandler = new VDS.RDF.Parsing.Handlers.GraphHandler(graph);
-            var root = "http://archive.data.is4.site/.well-known/genid";
             var handler = new RdfHandler(new Uri(root), graphHandler, this);
             graphHandler.StartRdf();
             try{
@@ -125,6 +146,59 @@ namespace IS4.MultiArchiver.Extensions
             graph.NamespaceMap.AddNamespace("dbin", new Uri("data:application/octet-stream,"));
             graph.NamespaceMap.AddNamespace("db64", new Uri("data:application/octet-stream;base64,"));
             graph.NamespaceMap.AddNamespace("exif", new Uri("http://www.w3.org/2003/12/exif/ns#"));
+            return graph;
+        }
+
+        private void PostProcess(Graph graph)
+        {
+            var parser = new SparqlUpdateParser();
+            var ns = graph.NamespaceMap;
+            var prefixes = String.Join(Environment.NewLine, ns.Prefixes.Select(p => $"PREFIX {p}: <{ns.GetNamespaceUri(p).AbsoluteUri}>"));
+            var query = parser.ParseFromString(prefixes + $@"
+DELETE {{
+  ?fieldCopy ?property ?valueCopy .
+}}
+INSERT {{
+  ?field ?property ?value .
+}}
+WHERE {{
+  ?data dcterms:extent ?length .
+  ?data a ?type .
+  VALUES ?type {{cnt:ContentAsText cnt:ContentAsBase64}}
+  FILTER( STRSTARTS(STR(?data), ""{root + "/"}"") )
+  ?data at:digest ?digest .
+  BIND( STR(?data) AS ?root )
+  ?digest sec:digestAlgorithm ds:sha1 .
+  ?data at:visited ?visited .
+  OPTIONAL {{
+    ?digest ^at:digest ?dataPrevious .
+    ?dataPrevious a ?type .
+    ?dataPrevious dcterms:extent ?length .
+    ?dataPrevious at:visited ?previousVisited .
+    FILTER( ?previousVisited < ?visited || (?previousVisited = ?visited && STR(?dataPrevious) < ?root) )
+  }}
+  FILTER( !BOUND(?dataPrevious) )
+  ?digest ^at:digest ?dataCopy .
+  ?dataCopy a ?type .
+  ?dataCopy dcterms:extent ?length .
+  BIND( STR(?dataCopy) AS ?rootCopy )
+  ?dataCopy (!a|!^a)* ?fieldCopy .
+  FILTER( STRSTARTS(STR(?fieldCopy), ?rootCopy) )
+  ?fieldCopy ?property ?valueCopy .
+  BIND( IRI(CONCAT(?root, SUBSTR(STR(?fieldCopy), STRLEN(?rootCopy) + 1))) AS ?field )
+  BIND( IF(isIRI(?valueCopy) && STRSTARTS(STR(?valueCopy), ?rootCopy),
+        IRI(CONCAT(?root, SUBSTR(STR(?valueCopy), STRLEN(?rootCopy) + 1))),
+        ?valueCopy) AS ?value )
+}}
+");
+
+            ISparqlDataset dataset = new InMemoryDataset(graph);
+            ISparqlUpdateProcessor processor = new LeviathanUpdateProcessor(dataset);
+            processor.ProcessCommandSet(query);
+        }
+
+        private void SaveGraph(Graph graph, string output)
+        {
             var writer = new CompressingTurtleWriter(TurtleSyntax.Original);
             writer.PrettyPrintMode = false;
             writer.DefaultNamespaces.Clear();
