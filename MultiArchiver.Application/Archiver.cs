@@ -101,11 +101,11 @@ namespace IS4.MultiArchiver.Extensions
 
             SaveGraph(graph, output);
 
-            PostProcess(graph);
+            /*PostProcess(graph);
 
             Console.Error.WriteLine("Saving merged...");
 
-            SaveGraph(graph, output);
+            SaveGraph(graph, output);*/
         }
 
         const string root = "http://archive.data.is4.site/.well-known/genid";
