@@ -44,8 +44,8 @@
         Dt,
         [Uri("http://dbpedia.org/ontology/")]
         Dbo,
-        [Uri("https://www.iana.org/assignments/media-types/")]
-        Mime,
+        [Uri("http://uri4uri.net/mime/")]
+        Urim,
         [Uri("http://uri4uri.net/suffix/")]
         Uris,
         [Uri("file:///")]

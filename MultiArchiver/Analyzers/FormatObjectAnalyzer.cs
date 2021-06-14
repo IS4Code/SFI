@@ -68,7 +68,7 @@ namespace IS4.MultiArchiver.Analyzers
                             node.SetClass(cls);
                         }
                     }
-                    node.Set(Properties.EncodingFormat, Vocabularies.Mime, Uri.EscapeUriString(type));
+                    node.Set(Properties.EncodingFormat, Vocabularies.Urim, Uri.EscapeUriString(type));
                 }
             }
 
