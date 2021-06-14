@@ -97,9 +97,13 @@ namespace IS4.MultiArchiver.Extensions
 
             Console.Error.WriteLine("Merging properties...");
 
+            Console.Error.WriteLine("Saving...");
+
+            SaveGraph(graph, output);
+
             PostProcess(graph);
 
-            Console.Error.WriteLine("Saving...");
+            Console.Error.WriteLine("Saving merged...");
 
             SaveGraph(graph, output);
         }
@@ -157,14 +161,14 @@ namespace IS4.MultiArchiver.Extensions
             var query = parser.ParseFromString(prefixes + $@"
 DELETE {{
   ?fieldCopy ?property ?valueCopy .
+  ?valueCopy ?propertyInv ?fieldCopy .
 }}
 INSERT {{
   ?field ?property ?value .
+  ?value ?propertyInv ?field .
 }}
 WHERE {{
-  ?data dcterms:extent ?length .
-  ?data a ?type .
-  VALUES ?type {{cnt:ContentAsText cnt:ContentAsBase64}}
+  ?data a at:Root .
   FILTER( STRSTARTS(STR(?data), ""{root + "/"}"") )
   ?data at:digest ?digest .
   BIND( STR(?data) AS ?root )
@@ -172,8 +176,7 @@ WHERE {{
   ?data at:visited ?visited .
   OPTIONAL {{
     ?digest ^at:digest ?dataPrevious .
-    ?dataPrevious a ?type .
-    ?dataPrevious dcterms:extent ?length .
+    ?dataPrevious a at:Root .
     ?dataPrevious at:visited ?previousVisited .
     FILTER( ?previousVisited < ?visited || (?previousVisited = ?visited && STR(?dataPrevious) < ?root) )
   }}
@@ -182,9 +185,13 @@ WHERE {{
   ?dataCopy a ?type .
   ?dataCopy dcterms:extent ?length .
   BIND( STR(?dataCopy) AS ?rootCopy )
-  ?dataCopy (!a|!^a)* ?fieldCopy .
+  ?dataCopy (!(rdf:type|at:pathObject|at:digest|schema:encodingFormat)|^dcterms:hasFormat|^nfo:belongsToContainer|^nie:isStoredAs)* ?fieldCopy .
   FILTER( STRSTARTS(STR(?fieldCopy), ?rootCopy) )
-  ?fieldCopy ?property ?valueCopy .
+  {{
+    ?fieldCopy ?property ?valueCopy .
+  }} UNION {{
+    ?valueCopy ?propertyInv ?fieldCopy .
+  }}
   BIND( IRI(CONCAT(?root, SUBSTR(STR(?fieldCopy), STRLEN(?rootCopy) + 1))) AS ?field )
   BIND( IF(isIRI(?valueCopy) && STRSTARTS(STR(?valueCopy), ?rootCopy),
         IRI(CONCAT(?root, SUBSTR(STR(?valueCopy), STRLEN(?rootCopy) + 1))),
@@ -194,6 +201,8 @@ WHERE {{
 
             ISparqlDataset dataset = new InMemoryDataset(graph);
             ISparqlUpdateProcessor processor = new LeviathanUpdateProcessor(dataset);
+
+            Console.Error.WriteLine("Processing query...");
             processor.ProcessCommandSet(query);
         }
 
