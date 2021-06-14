@@ -174,6 +174,8 @@
         [Uri(Vocabularies.At)]
         PathObject,
         [Uri(Vocabularies.At)]
+        ExtensionObject,
+        [Uri(Vocabularies.At)]
         VolumeLabel,
         [Uri(Vocabularies.At)]
         Visited,

@@ -162,12 +162,29 @@ namespace IS4.MultiArchiver.Analyzers
         {
             if(path == null) return;
             var parts = path.Split('/');
+            if(parts.Length == 0) return;
             for(int i = 0; i < parts.Length; i++)
             {
                 var local = String.Join("/", parts.Skip(i).Select(Uri.EscapeDataString)) + (directory ? "/" : "");
                 var file = nodeFactory.Create(Vocabularies.File, local);
                 initial.Set(Properties.PathObject, file);
                 initial = file;
+            }
+
+            if(!directory)
+            {
+                string ext;
+                try{
+                    ext = Path.GetExtension(parts[parts.Length - 1]);
+                }catch(ArgumentException)
+                {
+                    ext = null;
+                }
+                if(!String.IsNullOrEmpty(ext))
+                {
+                    ext = ext.Substring(1).ToLowerInvariant();
+                    initial.Set(Properties.ExtensionObject, Vocabularies.Uris, Uri.EscapeDataString(ext));
+                }
             }
         }
 

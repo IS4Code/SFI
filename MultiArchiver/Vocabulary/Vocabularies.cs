@@ -46,6 +46,8 @@
         Dbo,
         [Uri("https://www.iana.org/assignments/media-types/")]
         Mime,
+        [Uri("http://uri4uri.net/suffix/")]
+        Uris,
         [Uri("file:///")]
         File,
         [Uri("http://archive.data.is4.site/terms/")]
