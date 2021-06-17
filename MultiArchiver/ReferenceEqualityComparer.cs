@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace IS4.MultiArchiver
 {
-    internal class ReferenceEqualityComparer<T> : EqualityComparer<T> where T : class
+    public class ReferenceEqualityComparer<T> : EqualityComparer<T> where T : class
     {
         public new static readonly IEqualityComparer<T> Default = new ReferenceEqualityComparer<T>();
             

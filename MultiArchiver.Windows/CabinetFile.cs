@@ -6,9 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.ExceptionServices;
 using System.Runtime.InteropServices;
-using System.Runtime.Serialization;
 using System.Text;
-using System.Threading;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 using Vanara.PInvoke;
@@ -23,6 +21,8 @@ namespace IS4.MultiArchiver.Windows
         readonly TaskCompletionSource<bool> readyToOpen = new TaskCompletionSource<bool>();
         BlockingCollection<FileInfo> fileInfoChannel;
         BlockingCollection<bool> fileControlChannel;
+
+        Context context;
 
         public CabinetFile(Stream stream)
         {
@@ -42,27 +42,23 @@ namespace IS4.MultiArchiver.Windows
 
         ERF Copy(Stream stream)
         {
-            cabinetStream = stream;
-            cabinetError = default;
-            objectMap = new ObjectMap();
-            var exceptions = currentExceptions = new List<Exception>();
-            try{
-                var result = FDICopy(threadContext.Value, "", "", 0, Notify, null, IntPtr.Zero);
-                if(exceptions.Count > 0)
-                {
-                    readyToOpen.TrySetException(exceptions);
-                }else{
-                    readyToOpen.TrySetResult(result);
-                }
-            }catch(Exception e)
+            using(context = new Context(stream))
             {
-                readyToOpen.TrySetException(e);
+                try{
+                    var result = FDICopy(context.Handle, "", "", 0, Notify, null, IntPtr.Zero);
+                    if(context.Exceptions.Count > 0)
+                    {
+                        readyToOpen.TrySetException(context.Exceptions);
+                    }else{
+                        readyToOpen.TrySetResult(result);
+                    }
+                }catch(Exception e)
+                {
+                    readyToOpen.TrySetException(e);
+                }
+                Dispose();
+                return context.Error;
             }
-            Dispose();
-            objectMap = null;
-            currentExceptions = null;
-            cabinetStream = null;
-            return cabinetError;
         }
 
         public FileInfo GetNextFile()
@@ -119,11 +115,11 @@ namespace IS4.MultiArchiver.Windows
                         if(!NextFileAllowed()) return (IntPtr)(-1);
                         var info = new FileInfo(ref pfdin, out var writer);
                         fileInfoChannel.Add(info);
-                        return GetNewPointer(writer);
+                        return context.GetNewPointer(writer);
                     }
                     case FDINOTIFICATIONTYPE.fdintCLOSE_FILE_INFO:
                     {
-                        var writer = GetWriter(pfdin.hf);
+                        var writer = context.GetWriter(pfdin.hf);
                         writer.Complete();
                         return (IntPtr)1;
                     }
@@ -142,7 +138,7 @@ namespace IS4.MultiArchiver.Windows
                 }
             }catch(Exception e)
             {
-                currentExceptions.Add(e);
+                context.Exceptions.Add(e);
                 return (IntPtr)(-1);
             }
         }
@@ -177,54 +173,66 @@ namespace IS4.MultiArchiver.Windows
             }
         }
 
-        [ThreadStatic]
-        static ERF cabinetError;
+        class Context : IDisposable
+        {
+            public ERF Error => (ERF)error;
 
-        [ThreadStatic]
-        static Stream cabinetStream;
+            public List<Exception> Exceptions { get; } = new List<Exception>();
 
-        [ThreadStatic]
-        static List<Exception> currentExceptions;
+            public SafeHFDI Handle { get; }
 
-        [ThreadStatic]
-        static ObjectMap objectMap;
+            readonly ObjectMap objectMap = new ObjectMap();
 
-        static readonly ThreadLocal<SafeHFDI> threadContext = new ThreadLocal<SafeHFDI>(
-            () => FDICreate(
-                cb => {
+            readonly object error;
+            GCHandle errorHandle;
+
+            readonly PFNALLOC alloc;
+            readonly PFNFREE free;
+            readonly PFNOPEN open;
+            readonly PFNREAD read;
+            readonly PFNWRITE write;
+            readonly PFNCLOSE close;
+            readonly PFNSEEK seek;
+
+            public Context(Stream stream)
+            {
+                alloc = cb => {
                     try{
                         return Marshal.AllocHGlobal(unchecked((int)cb));
                     }catch(Exception e)
                     {
-                        currentExceptions.Add(e);
+                        Exceptions.Add(e);
                         return default;
                     }
-                },
-                memory => {
-                    try{ 
+                };
+
+                free = memory => {
+                    try{
                         Marshal.FreeHGlobal(memory);
                     }catch(Exception e)
                     {
-                        currentExceptions.Add(e);
+                        Exceptions.Add(e);
                     }
-                },
-                (pszFile, oflag, pmode) => {
+                };
+
+                open = (pszFile, oflag, pmode) => {
                     try{
                         if(pszFile != "") return IntPtr.Zero;
-                        var stream = new StreamPosition(cabinetStream);
-                        return GetNewPointer(stream);
+                        var subStream = new StreamPosition(stream);
+                        return GetNewPointer(subStream);
                     }catch(Exception e)
                     {
-                        currentExceptions.Add(e);
+                        Exceptions.Add(e);
                         return default;
                     }
-                },
-                (hf, memory, cb) => {
+                };
+
+                read = (hf, memory, cb) => {
                     try{
                         var buffer = ArrayPool<byte>.Shared.Rent(unchecked((int)cb));
                         try{
-                            var stream = GetStream(hf);
-                            var read = stream.Read(buffer, 0, unchecked((int)cb));
+                            var subStream = GetStream(hf);
+                            var read = subStream.Read(buffer, 0, unchecked((int)cb));
                             Marshal.Copy(buffer, 0, memory, read);
                             return unchecked((uint)read);
                         }finally{
@@ -232,11 +240,12 @@ namespace IS4.MultiArchiver.Windows
                         }
                     }catch(Exception e)
                     {
-                        currentExceptions.Add(e);
+                        Exceptions.Add(e);
                         return default;
                     }
-                },
-                (hf, memory, cb) => {
+                };
+
+                write = (hf, memory, cb) => {
                     try{
                         var writer = GetWriter(hf);
                         async Task Inner()
@@ -249,109 +258,149 @@ namespace IS4.MultiArchiver.Windows
                         return cb;
                     }catch(Exception e)
                     {
-                        currentExceptions.Add(e);
+                        Exceptions.Add(e);
                         return default;
                     }
-                },
-                hf => {
+                };
+
+                close = hf => {
                     try{
-                        if(GetTarget(hf) is ChannelWriter<UnmanagedMemoryRange> writer)
+                        if(GetTarget(hf, true) is ChannelWriter<UnmanagedMemoryRange> writer)
                         {
                             writer.TryComplete();
                         }
                         return 0;
                     }catch(Exception e)
                     {
-                        currentExceptions.Add(e);
+                        Exceptions.Add(e);
                         return default;
                     }
-                },
-                (hf, dist, seektype) => {
+                };
+
+                seek = (hf, dist, seektype) => {
                     try{
-                        var stream = GetStream(hf);
-                        return (int)stream.Seek(dist, seektype);
+                        var subStream = GetStream(hf);
+                        return (int)subStream.Seek(dist, seektype);
                     }catch(Exception e)
                     {
-                        currentExceptions.Add(e);
+                        Exceptions.Add(e);
                         return default;
                     }
-                },
-                FDICPU.cpuUNKNOWN,
-                ref cabinetError
-            )
-        );
+                };
 
-        class StreamPosition
-        {
-            readonly Stream stream;
-            
-            public long Position { get; private set; }
+                error = default(ERF);
+                errorHandle = GCHandle.Alloc(error, GCHandleType.Pinned);
 
-            public StreamPosition(Stream stream)
-            {
-                this.stream = stream;
+                unsafe{
+                    Handle = FDICreate(alloc, free, open, read, write, close, seek, FDICPU.cpuUNKNOWN, ref *(ERF*)errorHandle.AddrOfPinnedObject());
+                }
             }
 
-            public int Read(byte[] buffer, int offset, int count)
+            protected void Dispose(bool disposing)
             {
-                stream.Position = Position;
-                count = stream.Read(buffer, offset, count);
-                Position += count;
-                return count;
-            }
-
-            public long Seek(long offset, SeekOrigin origin)
-            {
-                switch(origin)
+                if(disposing)
                 {
-                    case SeekOrigin.Begin:
-                        return Position = offset;
-                    case SeekOrigin.Current:
-                        return Position += offset;
-                    case SeekOrigin.End:
-                        return Position = stream.Length + offset;
-                    default:
-                        return Position = stream.Seek(offset, origin);
+                    Handle.Dispose();
                 }
-            }
-        }
 
-        static object GetTarget(IntPtr hf)
-        {
-            return objectMap[hf];
-        }
-
-        static StreamPosition GetStream(IntPtr hf)
-        {
-            return GetTarget(hf) as StreamPosition;
-        }
-
-        static ChannelWriter<UnmanagedMemoryRange> GetWriter(IntPtr hf)
-        {
-            return GetTarget(hf) as ChannelWriter<UnmanagedMemoryRange>;
-        }
-
-        static IntPtr GetNewPointer(object target)
-        {
-            return objectMap[target];
-        }
-
-        class ObjectMap
-        {
-            readonly ObjectIDGenerator generator = new ObjectIDGenerator();
-            readonly Dictionary<long, object> map = new Dictionary<long, object>();
-
-            public IntPtr this[object obj] {
-                get {
-                    var id = generator.GetId(obj, out _);
-                    map[id] = obj;
-                    return (IntPtr)id;
+                if(errorHandle.IsAllocated)
+                {
+                    errorHandle.Free();
                 }
             }
 
-            public object this[IntPtr id] {
-                get {
-                    return map[(long)id];
+            public void Dispose()
+            {
+                Dispose(true);
+                GC.SuppressFinalize(this);
+            }
+
+            ~Context()
+            {
+                Dispose(false);
+            }
+
+            public class StreamPosition
+            {
+                readonly Stream stream;
+            
+                public long Position { get; private set; }
+
+                public StreamPosition(Stream stream)
+                {
+                    this.stream = stream;
+                }
+
+                public int Read(byte[] buffer, int offset, int count)
+                {
+                    stream.Position = Position;
+                    count = stream.Read(buffer, offset, count);
+                    Position += count;
+                    return count;
+                }
+
+                public long Seek(long offset, SeekOrigin origin)
+                {
+                    switch(origin)
+                    {
+                        case SeekOrigin.Begin:
+                            return Position = offset;
+                        case SeekOrigin.Current:
+                            return Position += offset;
+                        case SeekOrigin.End:
+                            return Position = stream.Length + offset;
+                        default:
+                            return Position = stream.Seek(offset, origin);
+                    }
+                }
+            }
+
+            public object GetTarget(IntPtr hf, bool remove = false)
+            {
+                var result = objectMap[hf];
+                if(remove) objectMap[hf] = null;
+                return result;
+            }
+
+            public StreamPosition GetStream(IntPtr hf, bool remove = false)
+            {
+                return GetTarget(hf, remove) as StreamPosition;
+            }
+
+            public ChannelWriter<UnmanagedMemoryRange> GetWriter(IntPtr hf, bool remove = false)
+            {
+                return GetTarget(hf, remove) as ChannelWriter<UnmanagedMemoryRange>;
+            }
+
+            public IntPtr GetNewPointer(object target)
+            {
+                return objectMap[target];
+            }
+
+            class ObjectMap
+            {
+                readonly Dictionary<object, int> positions = new Dictionary<object, int>(ReferenceEqualityComparer<object>.Default);
+                readonly List<object> storage = new List<object>();
+
+                public IntPtr this[object obj] {
+                    get {
+                        if(!positions.TryGetValue(obj, out var pos))
+                        {
+                            pos = storage.Count;
+                            positions[obj] = pos;
+                            storage.Add(obj);
+                        }
+                        return (IntPtr)pos;
+                    }
+                }
+
+                public object this[IntPtr id] {
+                    get {
+                        return storage[(int)id];
+                    }
+                    set {
+                        storage[(int)id] = value;
+                    }
                 }
             }
         }
