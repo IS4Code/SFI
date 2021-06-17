@@ -3,6 +3,7 @@ using IS4.MultiArchiver.Vocabulary;
 using System;
 using System.IO;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 
 namespace IS4.MultiArchiver.Services
@@ -11,7 +12,8 @@ namespace IS4.MultiArchiver.Services
     {
         Hex,
         Base32,
-        Base64
+        Base64,
+        Decimal
     }
 
     public interface IHashAlgorithm : IUriFormatter<byte[]>
@@ -58,22 +60,49 @@ namespace IS4.MultiArchiver.Services
         {
             var sb = new StringBuilder(Prefix.Length + data.Length * 2);
             sb.Append(Prefix);
-            switch(FormattingMethod)
+            if(data.Length > 0)
             {
-                case FormattingMethod.Hex:
-                    foreach(byte b in data)
-                    {
-                        sb.Append(b.ToString("X2"));
-                    }
-                    break;
-                case FormattingMethod.Base32:
-                    Base32(data, sb);
-                    break;
-                case FormattingMethod.Base64:
-                    Base64(data, sb);
-                    break;
-                default:
-                    throw new InvalidOperationException();
+                switch(FormattingMethod)
+                {
+                    case FormattingMethod.Hex:
+                        foreach(byte b in data)
+                        {
+                            sb.Append(b.ToString("X2"));
+                        }
+                        break;
+                    case FormattingMethod.Base32:
+                        Base32(data, sb);
+                        break;
+                    case FormattingMethod.Base64:
+                        Base64(data, sb);
+                        break;
+                    case FormattingMethod.Decimal:
+                        switch(data.Length)
+                        {
+                            case sizeof(byte):
+                                sb.Append(data[0]);
+                                break;
+                            case sizeof(ushort):
+                                sb.Append(BitConverter.ToUInt16(data, 0));
+                                break;
+                            case sizeof(uint):
+                                sb.Append(BitConverter.ToUInt32(data, 0));
+                                break;
+                            case sizeof(ulong):
+                                sb.Append(BitConverter.ToUInt64(data, 0));
+                                break;
+                            default:
+                                if(data[data.Length - 1] > SByte.MaxValue)
+                                {
+                                    Array.Resize(ref data, data.Length + 1);
+                                }
+                                sb.Append(new BigInteger(data).ToString());
+                                break;
+                        }
+                        break;
+                    default:
+                        throw new NotSupportedException();
+                }
             }
             return new Uri(sb.ToString());
         }
