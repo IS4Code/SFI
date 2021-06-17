@@ -9,15 +9,15 @@ namespace IS4.MultiArchiver.Tools
 {
     public class BuiltInHash : DataHashAlgorithm
     {
-        public static readonly IDataHashAlgorithm MD5 = new BuiltInHash(Cryptography.MD5.Create, Individuals.MD5, "urn:md5:", FormattingMethod.Hex);
-        public static readonly IDataHashAlgorithm SHA1 = new BuiltInHash(Cryptography.SHA1.Create, Individuals.SHA1, "urn:sha1:");
-        public static readonly IDataHashAlgorithm SHA256 = new BuiltInHash(Cryptography.SHA256.Create, Individuals.SHA256, "urn:sha256:");
-        public static readonly IDataHashAlgorithm SHA384 = new BuiltInHash(Cryptography.SHA384.Create, Individuals.SHA384, "urn:sha384:");
-        public static readonly IDataHashAlgorithm SHA512 = new BuiltInHash(Cryptography.SHA512.Create, Individuals.SHA512, "urn:sha512:");
+        public static readonly IDataHashAlgorithm MD5 = new BuiltInHash(Cryptography.MD5.Create, Individuals.MD5, 0xd5, "urn:md5:", FormattingMethod.Hex);
+        public static readonly IDataHashAlgorithm SHA1 = new BuiltInHash(Cryptography.SHA1.Create, Individuals.SHA1, 0x11, "urn:sha1:");
+        public static readonly IDataHashAlgorithm SHA256 = new BuiltInHash(Cryptography.SHA256.Create, Individuals.SHA256, 0x12, "urn:sha256:");
+        public static readonly IDataHashAlgorithm SHA384 = new BuiltInHash(Cryptography.SHA384.Create, Individuals.SHA384, null, "urn:sha384:");
+        public static readonly IDataHashAlgorithm SHA512 = new BuiltInHash(Cryptography.SHA512.Create, Individuals.SHA512, 0x13, "urn:sha512:");
 
         readonly ThreadLocal<Cryptography.HashAlgorithm> algorithm;
 
-        public BuiltInHash(Func<Cryptography.HashAlgorithm> factory, Individuals identifier, string prefix, FormattingMethod formattingMethod = FormattingMethod.Base32) : base(identifier, GetHashSize(factory), prefix, formattingMethod)
+        public BuiltInHash(Func<Cryptography.HashAlgorithm> factory, Individuals identifier, int? numericIdentifier, string prefix, FormattingMethod formattingMethod = FormattingMethod.Base32) : base(identifier, numericIdentifier, GetHashSize(factory), prefix, formattingMethod)
         {
             algorithm = new ThreadLocal<Cryptography.HashAlgorithm>(factory);
         }

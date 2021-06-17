@@ -215,7 +215,7 @@ namespace IS4.MultiArchiver.Analyzers
         {
             public static readonly DHash Instance = new DHash();
 
-            public DHash() : base(Individuals.DHash, 16, "urn:dhash:", FormattingMethod.Hex)
+            public DHash() : base(Individuals.DHash, null, 16, "urn:dhash:", FormattingMethod.Hex)
             {
 
             }

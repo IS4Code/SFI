@@ -39,6 +39,11 @@ namespace IS4.MultiArchiver.Services
         byte[] ComputeHash(IDirectoryInfo directory, bool contents);
     }
 
+    public interface IObjectHashAlgorithm<T> : IHashAlgorithm
+    {
+        byte[] ComputeHash(T @object);
+    }
+
     public abstract class HashAlgorithm : IHashAlgorithm
     {
         public string Name { get; }
@@ -46,10 +51,12 @@ namespace IS4.MultiArchiver.Services
         public Individuals Identifier { get; }
         public string Prefix { get; }
         public FormattingMethod FormattingMethod { get; }
+        public int? NumericIdentifier { get; }
 
-        public HashAlgorithm(Individuals identifier, int hashSize, string prefix, FormattingMethod formatting)
+        public HashAlgorithm(Individuals identifier, int? numericIdentifier, int hashSize, string prefix, FormattingMethod formatting)
         {
             Identifier = identifier;
+            NumericIdentifier = numericIdentifier;
             HashSize = hashSize;
             Prefix = prefix;
             FormattingMethod = formatting;
@@ -199,7 +206,7 @@ namespace IS4.MultiArchiver.Services
 
     public abstract class DataHashAlgorithm : HashAlgorithm, IDataHashAlgorithm
     {
-        public DataHashAlgorithm(Individuals identifier, int hashSize, string prefix, FormattingMethod formatting) : base(identifier, hashSize, prefix, formatting)
+        public DataHashAlgorithm(Individuals identifier, int? numericIdentifier, int hashSize, string prefix, FormattingMethod formatting) : base(identifier, numericIdentifier, hashSize, prefix, formatting)
         {
 
         }
@@ -218,12 +225,22 @@ namespace IS4.MultiArchiver.Services
 
     public abstract class FileHashAlgorithm : HashAlgorithm, IFileHashAlgorithm
     {
-        public FileHashAlgorithm(Individuals identifier, int hashSize, string prefix, FormattingMethod formatting) : base(identifier, hashSize, prefix, formatting)
+        public FileHashAlgorithm(Individuals identifier, int? numericIdentifier, int hashSize, string prefix, FormattingMethod formatting) : base(identifier, numericIdentifier, hashSize, prefix, formatting)
         {
 
         }
 
         public abstract byte[] ComputeHash(IFileInfo file);
         public abstract byte[] ComputeHash(IDirectoryInfo directory, bool contents);
+    }
+
+    public abstract class ObjectHashAlgorithm<T> : HashAlgorithm, IObjectHashAlgorithm<T>
+    {
+        public ObjectHashAlgorithm(Individuals identifier, int? numericIdentifier, int hashSize, string prefix, FormattingMethod formatting) : base(identifier, numericIdentifier, hashSize, prefix, formatting)
+        {
+
+        }
+
+        public abstract byte[] ComputeHash(T @object);
     }
 }
