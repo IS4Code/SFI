@@ -12,6 +12,7 @@ namespace IS4.MultiArchiver.Services
     {
         Hex,
         Base32,
+        Base58,
         Base64,
         Decimal
     }
@@ -21,6 +22,7 @@ namespace IS4.MultiArchiver.Services
         string Name { get; }
         int HashSize { get; }
         Individuals Identifier { get; }
+        int? NumericIdentifier { get; }
         string Prefix { get; }
         FormattingMethod FormattingMethod { get; }
     }
@@ -78,10 +80,13 @@ namespace IS4.MultiArchiver.Services
                         }
                         break;
                     case FormattingMethod.Base32:
-                        Base32(data, sb);
+                        DataTools.Base32(data, sb);
+                        break;
+                    case FormattingMethod.Base58:
+                        DataTools.Base58(data, sb);
                         break;
                     case FormattingMethod.Base64:
-                        Base64(data, sb);
+                        DataTools.Base64(data, sb);
                         break;
                     case FormattingMethod.Decimal:
                         switch(data.Length)
@@ -123,8 +128,8 @@ namespace IS4.MultiArchiver.Services
             {
                 var hashHash = BuiltInHash.SHA256.ComputeHash(hash);
                 var sb = new StringBuilder();
-                Base32(hashHash, sb);
-                hashNode = nodeFactory.Create(Vocabularies.Ao, "hashed/" + new Uri(algorithm.Prefix, UriKind.Absolute).AbsolutePath.TrimEnd(':').Replace(':', '-') + "/" + sb);
+                DataTools.Base32(hashHash, sb);
+                hashNode = nodeFactory.Create(Vocabularies.Ah, new Uri(algorithm.Prefix, UriKind.Absolute).AbsolutePath.TrimEnd(':').Replace(':', '-') + "/" + sb);
             }else{
                 hashNode = nodeFactory.Create(algorithm, hash);
             }
@@ -140,67 +145,6 @@ namespace IS4.MultiArchiver.Services
             }
 
             node.Set(Properties.Digest, hashNode);
-        }
-
-        static void Base32(byte[] bytes, StringBuilder sb)
-        {
-            const string chars = "QAZ2WSX3EDC4RFV5TGB6YHN7UJM8K9LP";
-
-            byte index;
-            int hi = 5;
-            int currentByte = 0;
-
-            while(currentByte < bytes.Length)
-            {
-                if(hi > 8)
-                {
-                    index = (byte)(bytes[currentByte++] >> (hi - 5));
-                    if(currentByte != bytes.Length)
-                    {
-                        index = (byte)(((byte)(bytes[currentByte] << (16 - hi)) >> 3) | index);
-                    }
-                    hi -= 3;
-                }else if(hi == 8)
-                { 
-                    index = (byte)(bytes[currentByte++] >> 3);
-                    hi -= 3; 
-                }else{
-                    index = (byte)((byte)(bytes[currentByte] << (8 - hi)) >> 3);
-                    hi += 5;
-                }
-                sb.Append(chars[index]);
-            }
-        }
-        
-        static void Base64(byte[] bytes, StringBuilder sb)
-        {
-            string str = Convert.ToBase64String(bytes);
-
-            int end = 0;
-            for(end = str.Length; end > 0; end--)
-            {
-                if(str[end - 1] != '=')
-                {
-                    break;
-                }
-            }
-
-            for(int i = 0; i < end; i++)
-            {
-                char c = str[i];
-
-                switch (c) {
-                    case '+':
-                        sb.Append('-');
-                        break;
-                    case '/':
-                        sb.Append('_');
-                        break;
-                    default:
-                        sb.Append(c);
-                        break;
-                }
-            }
         }
     }
 

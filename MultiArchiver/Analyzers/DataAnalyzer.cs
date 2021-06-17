@@ -16,6 +16,7 @@ namespace IS4.MultiArchiver.Analyzers
 {
     public sealed class DataAnalyzer : IEntityAnalyzer<IStreamFactory>, IEntityAnalyzer<byte[]>
 	{
+        public IDataHashAlgorithm PrimaryHash { get; set; }
         public ICollection<IDataHashAlgorithm> HashAlgorithms { get; } = new List<IDataHashAlgorithm>();
         public Func<IEncodingDetector> EncodingDetectorFactory { get; set; }
         public ICollection<IBinaryFileFormat> Formats { get; } = new SortedSet<IBinaryFileFormat>(HeaderLengthComparer.Instance);
@@ -39,10 +40,11 @@ namespace IS4.MultiArchiver.Analyzers
 
             IStreamFactory seekableFactory = null;
 
-            var lazyMatch = new Lazy<FileMatch>(() => new FileMatch(Formats, streamFactory, seekableFactory, signatureBuffer, MaxDataLengthToStore, encodingDetector, isBinary, nodeFactory), false);
+            var hashes = new Dictionary<IDataHashAlgorithm, (ChannelWriter<ArraySegment<byte>> writer, Task<byte[]> data)>(ReferenceEqualityComparer<IDataHashAlgorithm>.Default);
+
+            var lazyMatch = new Lazy<FileMatch>(() => new FileMatch(Formats, streamFactory, seekableFactory, signatureBuffer, MaxDataLengthToStore, encodingDetector, isBinary, PrimaryHash != null && hashes.TryGetValue(PrimaryHash, out var primaryHash) ? (PrimaryHash, primaryHash.data) : default, nodeFactory), false);
             
             long actualLength = 0;
-            var hashes = new List<(IDataHashAlgorithm alg, ChannelWriter<ArraySegment<byte>> writer, Task<byte[]> data)>();
 
             FileMatch match;
 
@@ -61,29 +63,41 @@ namespace IS4.MultiArchiver.Analyzers
                             }else{
                                 outputStream = new MemoryStream();
                             }
+                            
+                            foreach(var hash in HashAlgorithms)
+                            {
+                                var queue = ChannelArrayStream.Create(out var writer, 1);
+                                hashes[hash] = (writer, Task.Run(() => hash.ComputeHash(queue, streamFactory)));
+                            }
                         }else{
                             seekableFactory = streamFactory;
-                        }
-
-                        foreach(var hash in HashAlgorithms)
-                        {
-                            var queue = ChannelArrayStream.Create(out var writer, 1);
-                            hashes.Add((hash, writer, Task.Run(() => hash.ComputeHash(queue, streamFactory))));
+                            
+                            foreach(var hash in HashAlgorithms)
+                            {
+                                hashes[hash] = (null, Task.Run(() => {
+                                    using(var hashStream = streamFactory.Open())
+                                    {
+                                        return hash.ComputeHash(hashStream, streamFactory);
+                                    }
+                                }));
+                            }
                         }
 
                         bool? couldBeUnicode = null;
 
                         var buffer = ArrayPool<byte>.Shared.Rent(16384);
 
+                        var writers = hashes.Values.Select(v => v.writer).Where(w => w != null);
+
                         try{
                             int read;
                             while((read = stream.Read(buffer, 0, buffer.Length)) != 0)
                             {
                                 var segment = new ArraySegment<byte>(buffer, 0, read);
-                                var writing = hashes.Select(async h => {
-                                    await h.writer.WriteAsync(segment);
-                                    await h.writer.WriteAsync(default);
-                                    await h.writer.WaitToWriteAsync();
+                                var writing = writers.Select(async writer => {
+                                    await writer.WriteAsync(segment);
+                                    await writer.WriteAsync(default);
+                                    await writer.WaitToWriteAsync();
                                 }).ToArray();
 
                                 actualLength += read;
@@ -116,9 +130,9 @@ namespace IS4.MultiArchiver.Analyzers
                                 Task.WaitAll(writing);
                             }
 
-                            foreach(var hash in hashes)
+                            foreach(var writer in writers)
                             {
-                                hash.writer.Complete();
+                                writer.Complete();
                             }
                         }finally{
                             ArrayPool<byte>.Shared.Return(buffer);
@@ -172,7 +186,7 @@ namespace IS4.MultiArchiver.Analyzers
             {
                 foreach(var hash in hashes)
                 {
-                    HashAlgorithm.AddHash(node, hash.alg, hash.data.Result, nodeFactory);
+                    HashAlgorithm.AddHash(node, hash.Key, hash.Value.data.Result, nodeFactory);
                 }
             }
 
@@ -214,7 +228,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             public ArraySegment<byte> Signature { get; }
 
-            public FileMatch(ICollection<IBinaryFileFormat> formats, object source, IStreamFactory streamFactory, MemoryStream signatureBuffer, int maxDataLength, IEncodingDetector encodingDetector, bool isBinary, ILinkedNodeFactory nodeFactory)
+            public FileMatch(ICollection<IBinaryFileFormat> formats, object source, IStreamFactory streamFactory, MemoryStream signatureBuffer, int maxDataLength, IEncodingDetector encodingDetector, bool isBinary, (IDataHashAlgorithm algorithm, Task<byte[]> result) primaryHash, ILinkedNodeFactory nodeFactory)
             {
                 if(!signatureBuffer.TryGetBuffer(out var signature))
                 {
@@ -258,7 +272,22 @@ namespace IS4.MultiArchiver.Analyzers
 
                     streamFactory = new MemoryStreamFactory(signature, streamFactory);
                 }else{
-                    Node = nodeFactory.NewGuidNode();
+                    if(primaryHash.algorithm?.NumericIdentifier is int id)
+                    {
+                        var hashBytes = primaryHash.result.Result;
+
+                        var identifier = new List<byte>(2 + hashBytes.Length);
+                        identifier.AddRange(DataTools.Varint((ulong)id));
+                        identifier.AddRange(DataTools.Varint((ulong)hashBytes.Length));
+                        identifier.AddRange(hashBytes);
+
+                        var sb = new StringBuilder();
+                        DataTools.Base58(identifier, sb);
+
+                        Node = nodeFactory.Create(Vocabularies.Ad, sb.ToString());
+                    }else{
+                        Node = nodeFactory.NewGuidNode();
+                    }
                 }
 
                 this.isBinary = isBinary;

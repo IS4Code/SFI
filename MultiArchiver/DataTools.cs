@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -147,6 +148,121 @@ namespace IS4.MultiArchiver
         {
             key = pair.Key;
             value = pair.Value;
+        }
+        
+        public static void Base32<TList>(TList bytes, StringBuilder sb) where TList : IReadOnlyList<byte>
+        {
+            const string chars = "QAZ2WSX3EDC4RFV5TGB6YHN7UJM8K9LP";
+
+            byte index;
+            int hi = 5;
+            int currentByte = 0;
+
+            while(currentByte < bytes.Count)
+            {
+                if(hi > 8)
+                {
+                    index = (byte)(bytes[currentByte++] >> (hi - 5));
+                    if(currentByte != bytes.Count)
+                    {
+                        index = (byte)(((byte)(bytes[currentByte] << (16 - hi)) >> 3) | index);
+                    }
+                    hi -= 3;
+                }else if(hi == 8)
+                { 
+                    index = (byte)(bytes[currentByte++] >> 3);
+                    hi -= 3; 
+                }else{
+                    index = (byte)((byte)(bytes[currentByte] << (8 - hi)) >> 3);
+                    hi += 5;
+                }
+                sb.Append(chars[index]);
+            }
+        }
+
+        const string base58Alphabet = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
+        static readonly BigInteger base58AlphabetLength = base58Alphabet.Length;
+
+        public static void Base58<TList>(TList b, StringBuilder sb) where TList : IReadOnlyList<byte>
+        {
+            int pos = 0;
+            while(b[pos] == 0)
+            {
+                sb.Append('1');
+                pos++;
+            }
+            int len = b.Count - pos;
+            if(len == 0) return;
+            var data = new byte[len + (b[pos] > SByte.MaxValue ? 1 : 0)];
+            for(int i = 0; i < len; i++)
+            {
+                data[len - 1 - i] = b[pos + i];
+            }
+            var num = new BigInteger(data);
+            foreach(var c in Base58Bytes(num).Reverse())
+            {
+                sb.Append(base58Alphabet[c]);
+            }
+        }
+
+        static IEnumerable<int> Base58Bytes(BigInteger num)
+        {
+            while(num > 0)
+            {
+                num = BigInteger.DivRem(num, base58AlphabetLength, out var rem);
+                yield return (int)rem;
+            }
+        }
+
+        public static void Base64(ArraySegment<byte> bytes, StringBuilder sb)
+        {
+            string str = Convert.ToBase64String(bytes.Array, bytes.Offset, bytes.Count);
+            UriString(str, sb);
+        }
+
+        public static void Base64(byte[] bytes, StringBuilder sb)
+        {
+            string str = Convert.ToBase64String(bytes);
+            UriString(str, sb);
+        }
+
+        static void UriString(string str, StringBuilder sb)
+        {
+            int end = 0;
+            for(end = str.Length; end > 0; end--)
+            {
+                if(str[end - 1] != '=')
+                {
+                    break;
+                }
+            }
+
+            for(int i = 0; i < end; i++)
+            {
+                char c = str[i];
+
+                switch (c) {
+                    case '+':
+                        sb.Append('-');
+                        break;
+                    case '/':
+                        sb.Append('_');
+                        break;
+                    default:
+                        sb.Append(c);
+                        break;
+                }
+            }
+        }
+
+        public static IEnumerable<byte> Varint(ulong value) 
+        {
+            while(value >= 0x80)
+            {
+                yield return (byte)(value | 0x80);
+                value >>= 7;
+            }
+            yield return (byte)value;
         }
     }
 }

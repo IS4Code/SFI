@@ -52,7 +52,9 @@
         File,
         [Uri("http://archive.data.is4.site/terms/")]
         At,
-        [Uri("http://archive.data.is4.site/objects/")]
-        Ao,
+        [Uri("http://archive.data.is4.site/data/")]
+        Ad,
+        [Uri("http://archive.data.is4.site/hash/")]
+        Ah,
     }
 }

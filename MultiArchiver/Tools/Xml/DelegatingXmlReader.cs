@@ -358,20 +358,5 @@ namespace IS4.MultiArchiver.Tools.Xml
             if(!(QueryReader is IXmlNamespaceResolver resolver)) throw new NotSupportedException();
             return resolver.LookupPrefix(namespaceName);
         }
-
-        class ReferenceEqualityComparer<T> : EqualityComparer<T> where T : class
-        {
-            public new static readonly IEqualityComparer<T> Default = new ReferenceEqualityComparer<T>();
-            
-            public override bool Equals(T x, T y)
-            {
-                return Object.ReferenceEquals(x, y);
-            }
-
-            public override int GetHashCode(T obj)
-            {
-                return RuntimeHelpers.GetHashCode(obj);
-            }
-        }
     }
 }
