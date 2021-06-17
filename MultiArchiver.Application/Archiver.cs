@@ -36,8 +36,9 @@ namespace IS4.MultiArchiver.Extensions
 
             FileAnalyzer.HashAlgorithms.Add(BitTorrentHash = new BitTorrentHash());
 
-            ImageAnalyzer.HashAlgorithms.Add(BuiltInHash.MD5);
-            ImageAnalyzer.HashAlgorithms.Add(BuiltInHash.SHA1);
+            ImageAnalyzer.LowFrequencyImageHashAlgorithms.Add(Analysis.Images.DHash.Instance);
+            ImageAnalyzer.DataHashAlgorithms.Add(BuiltInHash.MD5);
+            ImageAnalyzer.DataHashAlgorithms.Add(BuiltInHash.SHA1);
         }
 
         static Archiver()
