@@ -99,7 +99,12 @@ namespace IS4.MultiArchiver.Analyzers
 
                                 if(resultFactory.Extension is string extension)
                                 {
-                                    if(resultFactory.Label is string formatLabel)
+                                    var formatLabel = resultFactory.Label;
+                                    if(formatLabel == null && source is IStreamFactory streamFactory)
+                                    {
+                                        formatLabel = DataTools.SizeSuffix(streamFactory.Length, 2);
+                                    }
+                                    if(formatLabel != null)
                                     {
                                         result.Set(Properties.PrefLabel, $"{extension.ToUpperInvariant()} object ({formatLabel})", "en");
                                     }else{
@@ -208,6 +213,11 @@ namespace IS4.MultiArchiver.Analyzers
             public override string GetMediaType(XmlFormat value)
             {
                 return DataTools.GetFakeMediaTypeFromXml(GetNamespace(value), GetPublicId(value), value.RootName.Name);
+            }
+
+            public override string GetExtension(XmlFormat value)
+            {
+                return value.RootName?.Name ?? base.GetExtension(value);
             }
 
             public override TResult Match<TResult>(XmlReader reader, XDocumentType docType, Func<XmlFormat, TResult> resultFactory)
