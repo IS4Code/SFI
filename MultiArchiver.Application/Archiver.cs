@@ -99,13 +99,13 @@ namespace IS4.MultiArchiver.Extensions
 
             var graph = CreateGraph(file);
 
-            Console.Error.WriteLine("Merging properties...");
-
             Console.Error.WriteLine("Saving...");
 
             SaveGraph(graph, output);
 
-            /*PostProcess(graph);
+            /*Console.Error.WriteLine("Merging properties...");
+            
+            PostProcess(graph);
 
             Console.Error.WriteLine("Saving merged...");
 
