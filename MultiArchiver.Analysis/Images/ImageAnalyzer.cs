@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
@@ -31,7 +32,23 @@ namespace IS4.MultiArchiver.Analyzers
 
             if(source is IImageResourceTag imageTag && imageTag.IsTransparent)
             {
-                (image as Bitmap)?.MakeTransparent();
+                if(image is Bitmap bmp && bmp.Width > 1 && bmp.Height > 1)
+                {
+                    var colors = new[]
+                    {
+                        (0, 0),
+                        (bmp.Width - 1, 0),
+                        (0, bmp.Height - 1),
+                        (bmp.Width - 1, bmp.Height - 1)
+                    }.GroupBy(p => bmp.GetPixel(p.Item1, p.Item2)).OrderByDescending(g => g.Count());
+                    var common = colors.First();
+                    if(colors.Skip(1).TakeWhile(g => g.Count() == common.Count()).Count() == 0)
+                    {
+                        bmp.MakeTransparent(common.Key);
+                    }else{
+                        bmp.MakeTransparent();
+                    }
+                }
             }
 
             if(tag.StoreDimensions)
