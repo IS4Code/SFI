@@ -3,13 +3,16 @@ using IS4.MultiArchiver.Formats;
 using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Tools;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using VDS.RDF;
 using VDS.RDF.Parsing;
 using VDS.RDF.Query.Datasets;
 using VDS.RDF.Update;
 using VDS.RDF.Writing;
+using VDS.RDF.Writing.Formatting;
 
 namespace IS4.MultiArchiver.Extensions
 {
@@ -93,34 +96,47 @@ namespace IS4.MultiArchiver.Extensions
             return archiver;
         }
 
-        public void Archive(string file, string output)
+        public void Archive(string file, string output, bool direct = false, bool compressed = false)
         {
-            Console.Error.WriteLine("Reading data...");
+            if(direct)
+            {
+                Console.Error.WriteLine("Writing data...");
 
-            var graph = CreateGraph(file);
+                var handler = CreateFileHandler(output, out var mapper, compressed);
 
-            Console.Error.WriteLine("Saving...");
+                SetDefaultNamespaces(mapper);
 
-            SaveGraph(graph, output);
+                AnalyzeFile(file, handler, mapper);
+            }else{
+                Console.Error.WriteLine("Reading data...");
 
-            /*Console.Error.WriteLine("Merging properties...");
-            
-            PostProcess(graph);
+                var handler = CreateGraphHandler(out var graph);
 
-            Console.Error.WriteLine("Saving merged...");
+                SetDefaultNamespaces(graph.NamespaceMap);
 
-            SaveGraph(graph, output);*/
+                AnalyzeFile(file, handler, null);
+
+                Console.Error.WriteLine("Saving...");
+
+                SaveGraph(graph, output, compressed);
+            }
         }
 
         const string root = "http://archive.data.is4.site/.well-known/genid";
 
-        private Graph CreateGraph(string file)
+        private void AnalyzeFile(string file, IRdfHandler rdfHandler, INamespaceMapper mapper)
         {
-            var graph = new Graph();
-            var graphHandler = new VDS.RDF.Parsing.Handlers.GraphHandler(graph);
-            var handler = new RdfHandler(new Uri(root), graphHandler, this);
-            graphHandler.StartRdf();
+            var handler = new RdfHandler(new Uri(root), rdfHandler, this);
+            rdfHandler.StartRdf();
             try{
+                if(mapper != null)
+                {
+                    foreach(var prefix in mapper.Prefixes)
+                    {
+                        rdfHandler.HandleNamespace(prefix, mapper.GetNamespaceUri(prefix));
+                    }
+                }
+
                 if((File.GetAttributes(file) & FileAttributes.Directory) != 0)
                 {
                     FileAnalyzer.Analyze(null, new DirectoryInfo(file), handler);
@@ -128,94 +144,163 @@ namespace IS4.MultiArchiver.Extensions
                     FileAnalyzer.Analyze(null, new FileInfo(file), handler);
                 }
             }finally{
-                graphHandler.EndRdf(true);
+                rdfHandler.EndRdf(true);
             }
-            foreach(var voc in handler.Vocabularies)
+        }
+
+        private TextWriter OpenFile(string file, bool compressed)
+        {
+            Stream stream = new FileStream(file, FileMode.Create, FileAccess.Write, FileShare.Read);
+            if(compressed)
             {
-                graph.NamespaceMap.AddNamespace(voc.Key.ToString().ToLowerInvariant(), new Uri(voc.Value, UriKind.Absolute));
+                stream = new GZipStream(stream, CompressionLevel.Optimal, false);
             }
+            return new StreamWriter(stream);
+        }
+
+        private IRdfHandler CreateFileHandler(string output, out INamespaceMapper mapper, bool compressed)
+        {
+            var writer = OpenFile(output, compressed);
+            var qnameMapper = new QNameOutputMapper();
+            var formatter = new TurtleFormatter(qnameMapper);
+            IRdfHandler handler = new VDS.RDF.Parsing.Handlers.WriteThroughHandler(formatter, writer, true);
+            handler = new NamespaceHandler(handler, qnameMapper);
+            mapper = qnameMapper;
+            return handler;
+        }
+
+        private IRdfHandler CreateGraphHandler(out Graph graph)
+        {
+            graph = new Graph();
+            return new VDS.RDF.Parsing.Handlers.GraphHandler(graph);
+        }
+
+        private void SetDefaultNamespaces(INamespaceMapper mapper)
+        {
             foreach(var hash in DataAnalyzer.HashAlgorithms)
             {
                 if(hash.FormattingMethod != FormattingMethod.Base64)
                 {
-                    graph.NamespaceMap.AddNamespace(hash.Name, hash.FormatUri(Array.Empty<byte>()));
+                    mapper.AddNamespace(hash.Name, hash.FormatUri(Array.Empty<byte>()));
                 }
             }
             foreach(var hash in FileAnalyzer.HashAlgorithms)
             {
                 if(hash.FormattingMethod != FormattingMethod.Base64)
                 {
-                    graph.NamespaceMap.AddNamespace(hash.Name, hash.FormatUri(Array.Empty<byte>()));
+                    mapper.AddNamespace(hash.Name, hash.FormatUri(Array.Empty<byte>()));
                 }
             }
-            graph.NamespaceMap.AddNamespace("id", new Uri(root + "/"));
-            graph.NamespaceMap.AddNamespace("dtxt", new Uri("data:,"));
-            graph.NamespaceMap.AddNamespace("dt64", new Uri("data:;base64,"));
-            graph.NamespaceMap.AddNamespace("dbin", new Uri("data:application/octet-stream,"));
-            graph.NamespaceMap.AddNamespace("db64", new Uri("data:application/octet-stream;base64,"));
-            graph.NamespaceMap.AddNamespace("exif", new Uri("http://www.w3.org/2003/12/exif/ns#"));
-            return graph;
+            mapper.AddNamespace("id", new Uri(root + "/"));
+            mapper.AddNamespace("dtxt", new Uri("data:,"));
+            mapper.AddNamespace("dt64", new Uri("data:;base64,"));
+            mapper.AddNamespace("dbin", new Uri("data:application/octet-stream,"));
+            mapper.AddNamespace("db64", new Uri("data:application/octet-stream;base64,"));
+            mapper.AddNamespace("exif", new Uri("http://www.w3.org/2003/12/exif/ns#"));
         }
 
-        private void PostProcess(Graph graph)
-        {
-            var parser = new SparqlUpdateParser();
-            var ns = graph.NamespaceMap;
-            var prefixes = String.Join(Environment.NewLine, ns.Prefixes.Select(p => $"PREFIX {p}: <{ns.GetNamespaceUri(p).AbsoluteUri}>"));
-            var query = parser.ParseFromString(prefixes + $@"
-DELETE {{
-  ?fieldCopy ?property ?valueCopy .
-  ?valueCopy ?propertyInv ?fieldCopy .
-}}
-INSERT {{
-  ?field ?property ?value .
-  ?value ?propertyInv ?field .
-}}
-WHERE {{
-  ?data a at:Root .
-  FILTER( STRSTARTS(STR(?data), ""{root + "/"}"") )
-  ?data at:digest ?digest .
-  BIND( STR(?data) AS ?root )
-  ?digest sec:digestAlgorithm ds:sha1 .
-  ?data at:visited ?visited .
-  OPTIONAL {{
-    ?digest ^at:digest ?dataPrevious .
-    ?dataPrevious a at:Root .
-    ?dataPrevious at:visited ?previousVisited .
-    FILTER( ?previousVisited < ?visited || (?previousVisited = ?visited && STR(?dataPrevious) < ?root) )
-  }}
-  FILTER( !BOUND(?dataPrevious) )
-  ?digest ^at:digest ?dataCopy .
-  ?dataCopy a ?type .
-  ?dataCopy dcterms:extent ?length .
-  BIND( STR(?dataCopy) AS ?rootCopy )
-  ?dataCopy (!(rdf:type|at:pathObject|at:digest|schema:encodingFormat)|^dcterms:hasFormat|^nfo:belongsToContainer|^nie:isStoredAs)* ?fieldCopy .
-  FILTER( STRSTARTS(STR(?fieldCopy), ?rootCopy) )
-  {{
-    ?fieldCopy ?property ?valueCopy .
-  }} UNION {{
-    ?valueCopy ?propertyInv ?fieldCopy .
-  }}
-  BIND( IRI(CONCAT(?root, SUBSTR(STR(?fieldCopy), STRLEN(?rootCopy) + 1))) AS ?field )
-  BIND( IF(isIRI(?valueCopy) && STRSTARTS(STR(?valueCopy), ?rootCopy),
-        IRI(CONCAT(?root, SUBSTR(STR(?valueCopy), STRLEN(?rootCopy) + 1))),
-        ?valueCopy) AS ?value )
-}}
-");
-
-            ISparqlDataset dataset = new InMemoryDataset(graph);
-            ISparqlUpdateProcessor processor = new LeviathanUpdateProcessor(dataset);
-
-            Console.Error.WriteLine("Processing query...");
-            processor.ProcessCommandSet(query);
-        }
-
-        private void SaveGraph(Graph graph, string output)
+        private void SaveGraph(Graph graph, string output, bool compressed)
         {
             var writer = new CompressingTurtleWriter(TurtleSyntax.Original);
             writer.PrettyPrintMode = false;
             writer.DefaultNamespaces.Clear();
-            graph.SaveToFile(output, writer);
+            using(var textWriter = OpenFile(output, compressed))
+            {
+                graph.SaveToStream(textWriter, writer);
+            }
+        }
+
+        sealed class NamespaceHandler : IRdfHandler
+        {
+            readonly IRdfHandler baseHandler;
+
+            readonly QNameOutputMapper mapper;
+
+            public NamespaceHandler(IRdfHandler baseHandler, QNameOutputMapper mapper)
+            {
+                this.baseHandler = baseHandler;
+                this.mapper = mapper;
+            }
+
+            public bool HandleNamespace(string prefix, Uri namespaceUri)
+            {
+                mapper.AddNamespace(prefix, namespaceUri);
+                return baseHandler.HandleNamespace(prefix, namespaceUri);
+            }
+
+            #region Implementation
+            public bool AcceptsAll => baseHandler.AcceptsAll;
+
+            public IBlankNode CreateBlankNode()
+            {
+                return baseHandler.CreateBlankNode();
+            }
+
+            public IBlankNode CreateBlankNode(string nodeId)
+            {
+                return baseHandler.CreateBlankNode(nodeId);
+            }
+
+            public IGraphLiteralNode CreateGraphLiteralNode()
+            {
+                return baseHandler.CreateGraphLiteralNode();
+            }
+
+            public IGraphLiteralNode CreateGraphLiteralNode(IGraph subgraph)
+            {
+                return baseHandler.CreateGraphLiteralNode(subgraph);
+            }
+
+            public ILiteralNode CreateLiteralNode(string literal, Uri datatype)
+            {
+                return baseHandler.CreateLiteralNode(literal, datatype);
+            }
+
+            public ILiteralNode CreateLiteralNode(string literal)
+            {
+                return baseHandler.CreateLiteralNode(literal);
+            }
+
+            public ILiteralNode CreateLiteralNode(string literal, string langspec)
+            {
+                return baseHandler.CreateLiteralNode(literal, langspec);
+            }
+
+            public IUriNode CreateUriNode(Uri uri)
+            {
+                return baseHandler.CreateUriNode(uri);
+            }
+
+            public IVariableNode CreateVariableNode(string varname)
+            {
+                return baseHandler.CreateVariableNode(varname);
+            }
+
+            public void EndRdf(bool ok)
+            {
+                baseHandler.EndRdf(ok);
+            }
+
+            public string GetNextBlankNodeID()
+            {
+                return baseHandler.GetNextBlankNodeID();
+            }
+
+            public bool HandleBaseUri(Uri baseUri)
+            {
+                return baseHandler.HandleBaseUri(baseUri);
+            }
+
+            public bool HandleTriple(Triple t)
+            {
+                return baseHandler.HandleTriple(t);
+            }
+
+            public void StartRdf()
+            {
+                baseHandler.StartRdf();
+            }
+            #endregion
         }
     }
 }

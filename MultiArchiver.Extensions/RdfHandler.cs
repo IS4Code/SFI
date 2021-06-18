@@ -27,6 +27,13 @@ namespace IS4.MultiArchiver.Extensions
             this.baseAnalyzer = baseAnalyzer;
             cache = new VocabularyCache<IUriNode>(handler.CreateUriNode);
             Root = Create(IdentityUriFormatter.Instance, root);
+
+            cache.VocabularyAdded += (vocabulary, uri) => {
+                lock(handler)
+                {
+                    handler.HandleNamespace(vocabulary.ToString().ToLowerInvariant(), new Uri(uri, UriKind.Absolute));
+                }
+            };
         }
 
         public ILinkedNode Create(Vocabularies vocabulary, string localName)

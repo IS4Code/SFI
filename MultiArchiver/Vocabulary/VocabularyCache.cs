@@ -14,7 +14,7 @@ namespace IS4.MultiArchiver.Vocabulary
         public TNode this[Properties name] => CreateNode(name, true, propertyCache);
         public TNode this[Individuals name] => CreateNode(name, true, individualCache);
         public TNode this[Datatypes name] => CreateNode(name, true, datatypeCache);
-        public TNode this[Vocabularies name] => nodeFactory(new Uri(vocabularyCache.GetOrAdd(name, GetUri)));
+        public TNode this[Vocabularies name] => nodeFactory(new Uri(vocabularyCache.GetOrAdd(name, GetVocabularyUri)));
 
         public IReadOnlyDictionary<Vocabularies, string> Vocabularies => vocabularyCache;
 
@@ -23,6 +23,8 @@ namespace IS4.MultiArchiver.Vocabulary
         readonly ConcurrentDictionary<Individuals, TNode> individualCache = new ConcurrentDictionary<Individuals, TNode>();
         readonly ConcurrentDictionary<Datatypes, TNode> datatypeCache = new ConcurrentDictionary<Datatypes, TNode>();
         readonly ConcurrentDictionary<Vocabularies, string> vocabularyCache = new ConcurrentDictionary<Vocabularies, string>();
+
+        public event Action<Vocabularies, string> VocabularyAdded;
 
         public VocabularyCache(Func<Uri, TNode> nodeFactory)
         {
@@ -36,9 +38,11 @@ namespace IS4.MultiArchiver.Vocabulary
             });
         }
 
-        string GetUri<T>(T name)
+        string GetVocabularyUri(Vocabularies name)
         {
-            return GetUri(name, false);
+            var uri = GetUri(name, false);
+            VocabularyAdded?.Invoke(name, uri);
+            return uri;
         }
 
         string GetUri<T>(T name, bool lowerCase)
@@ -60,7 +64,7 @@ namespace IS4.MultiArchiver.Vocabulary
                 return uriAttribute.Uri;
             }
             var localName = uriAttribute.LocalName ?? (lowerCase ? fieldName.Substring(0, 1).ToLowerInvariant() + fieldName.Substring(1) : fieldName);
-            return vocabularyCache.GetOrAdd(uriAttribute.Vocabulary, GetUri) + localName;
+            return vocabularyCache.GetOrAdd(uriAttribute.Vocabulary, GetVocabularyUri) + localName;
         }
     }
 }
