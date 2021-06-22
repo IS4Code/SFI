@@ -69,7 +69,7 @@ namespace IS4.MultiArchiver.Extensions
             archiver.DataAnalyzer.Formats.Add(new ImageFormat());
             archiver.DataAnalyzer.Formats.Add(new TagLibFormat());
             archiver.DataAnalyzer.Formats.Add(new IsoFormat());
-            archiver.DataAnalyzer.Formats.Add(new WinModuleFormat());
+            archiver.DataAnalyzer.Formats.Add(new Win32ModuleFormat());
             archiver.DataAnalyzer.Formats.Add(new Win16ModuleFormat());
             archiver.DataAnalyzer.Formats.Add(new WaveFormat());
             //archiver.DataAnalyzer.Formats.Add(new OggFormat());
