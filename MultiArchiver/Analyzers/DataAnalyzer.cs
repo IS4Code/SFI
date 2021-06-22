@@ -30,8 +30,6 @@ namespace IS4.MultiArchiver.Analyzers
 
         const int fileSizeToWriteToDisk = 524288;
 
-        const int maxSignatureLength = 8;
-
 		public ILinkedNode Analyze(ILinkedNode parent, IStreamFactory streamFactory, ILinkedNodeFactory nodeFactory)
         {
             var signatureBuffer = new MemoryStream(Math.Max(MaxDataLengthToStore + 1, Formats.Count == 0 ? 0 : Formats.Max(fmt => fmt.HeaderLength)));
@@ -215,34 +213,20 @@ namespace IS4.MultiArchiver.Analyzers
                 }
             }
 
-            if(!any && isBinary)
+            if(!any && isBinary && DataTools.ExtractSignature(match.Signature) is string magicText)
             {
-                var magicSig = match.Signature.Take(maxSignatureLength + 1).TakeWhile(b => validSigBytes.Contains(b)).ToArray();
-                if(magicSig.Length >= 2 && magicSig.Length <= maxSignatureLength && !magicSig.Any(b => b <= 0x20))
+                var signatureFormat = new ImprovisedSignatureFormat.Format(magicText);
+                var formatObj = new FormatObject<ImprovisedSignatureFormat.Format, IBinaryFileFormat>(ImprovisedSignatureFormat.Instance, signatureFormat, streamFactory);
+                var formatNode = nodeFactory.Create<IFormatObject<ImprovisedSignatureFormat.Format, IBinaryFileFormat>>(node, formatObj);
+                if(formatNode != null)
                 {
-                    var magicText = Encoding.ASCII.GetString(magicSig);
-                    var signatureFormat = new ImprovisedSignatureFormat.Format(magicText);
-                    var formatObj = new FormatObject<ImprovisedSignatureFormat.Format, IBinaryFileFormat>(ImprovisedSignatureFormat.Instance, signatureFormat, streamFactory);
-                    var formatNode = nodeFactory.Create<IFormatObject<ImprovisedSignatureFormat.Format, IBinaryFileFormat>>(node, formatObj);
-                    if(formatNode != null)
-                    {
-                        formatNode.Set(Properties.HasFormat, node);
-                        formatNode.Set(Properties.PrefLabel, $"{magicText} object ({sizeSuffix})", "en");
-                    }
+                    formatNode.Set(Properties.HasFormat, node);
+                    formatNode.Set(Properties.PrefLabel, $"{magicText} object ({sizeSuffix})", "en");
                 }
             }
 
 			return node;
 		}
-
-        static readonly ISet<byte> validSigBytes = new SortedSet<byte>(
-            Enumerable.Range('a', 26).Concat(
-                Enumerable.Range('A', 26)
-            ).Concat(
-                Enumerable.Range('0', 10)
-            ).Select(i => (byte)i).Concat(
-                new byte[] { 0x09, 0x0A, 0x0D, 0x20 }
-            ));
 
         class FileMatch : IUriFormatter<bool>
         {
@@ -284,7 +268,7 @@ namespace IS4.MultiArchiver.Analyzers
                     if(!isBinary)
                     {
                         strval = TryGetString(CharsetMatch.Encoding, signature);
-                        if(strval == null || !nodeFactory.IsSafeString(strval))
+                        if(strval == null)
                         {
                             LazyCharsetMatch = null;
                             isBinary = true;
@@ -297,7 +281,7 @@ namespace IS4.MultiArchiver.Analyzers
                     {
                         Node.Set(Properties.Bytes, Convert.ToBase64String(signature.Array, signature.Offset, signature.Count), Datatypes.Base64Binary);
                     }else{
-                        Node.Set(Properties.Chars, strval, Datatypes.String);
+                        Node.Set(Properties.Chars, DataTools.ReplaceControlCharacters(strval, CharsetMatch.Encoding), Datatypes.String);
                     }
 
                     streamFactory = new MemoryStreamFactory(signature, streamFactory);

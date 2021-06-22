@@ -269,5 +269,58 @@ namespace IS4.MultiArchiver
             }
             yield return (byte)value;
         }
+        
+        static readonly ISet<byte> invalidSigBytes = new SortedSet<byte>(
+            new byte[] { 0x09, 0x0A, 0x0D, (byte)' ', (byte)'-', (byte)'_' }
+        );
+
+        static readonly ISet<byte> recognizedSigBytes = new SortedSet<byte>(
+            Enumerable.Range('a', 26).Concat(
+                Enumerable.Range('A', 26)
+            ).Concat(
+                Enumerable.Range('0', 10)
+            ).Select(i => (byte)i).Concat(invalidSigBytes)
+        );
+
+        const int maxSignatureLength = 8;
+
+        public static string ExtractSignature(ArraySegment<byte> header)
+        {
+            var magicSig = header.Take(maxSignatureLength + 1).TakeWhile(b => recognizedSigBytes.Contains(b)).ToArray();
+            if(magicSig.Length >= 2 && magicSig.Length <= maxSignatureLength && !magicSig.Any(b => invalidSigBytes.Contains(b)))
+            {
+                return Encoding.ASCII.GetString(magicSig);
+            }
+            return null;
+        }
+
+        static readonly Regex controlReplacement = new Regex(
+            @"[\x00-\x08\x0B\x0C\x0E-\x1F]"
+            , RegexOptions.Compiled);
+
+        static int GetReplacementChar(char c)
+        {
+            switch(c)
+            {
+                case '\x7F':
+                    return 0x2421;
+                default:
+                    return c + 0x2400;
+            }
+        }
+
+        public static string ReplaceControlCharacters(string str, Encoding originalEncoding)
+        {
+            return controlReplacement.Replace(str, m => {
+                var replacement = ((char)GetReplacementChar(m.Value[0])).ToString();
+                try{
+                    originalEncoding.GetBytes(replacement);
+                }catch(ArgumentException)
+                {
+                    return replacement;
+                }
+                return m.Value;
+            });
+        }
     }
 }
