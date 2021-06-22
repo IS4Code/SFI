@@ -43,11 +43,38 @@ namespace IS4.MultiArchiver.Services
 
         public string Path => BaseInfo.FullName.Substring(System.IO.Path.GetPathRoot(BaseInfo.FullName).Length).Replace(System.IO.Path.DirectorySeparatorChar, '/');
 
-        public DateTime? CreationTime => BaseInfo.CreationTimeUtc;
+        public DateTime? CreationTime {
+            get {
+                try{
+                    return BaseInfo.CreationTimeUtc;
+                }catch(ArgumentOutOfRangeException)
+                {
+                    return null;
+                }
+            }
+        }
 
-        public DateTime? LastWriteTime => BaseInfo.LastWriteTimeUtc;
+        public DateTime? LastWriteTime {
+            get {
+                try{
+                    return BaseInfo.LastWriteTimeUtc;
+                }catch(ArgumentOutOfRangeException)
+                {
+                    return null;
+                }
+            }
+        }
 
-        public DateTime? LastAccessTime => BaseInfo.LastAccessTimeUtc;
+        public DateTime? LastAccessTime {
+            get {
+                try{
+                    return BaseInfo.LastAccessTimeUtc;
+                }catch(ArgumentOutOfRangeException)
+                {
+                    return null;
+                }
+            }
+        }
 
         public int? Revision => null;
 
