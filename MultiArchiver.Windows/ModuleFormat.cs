@@ -11,9 +11,12 @@ namespace IS4.MultiArchiver.Formats
 
         readonly byte[] signature;
 
+        readonly bool isPlain;
+
         public ModuleFormat(string signature, string mediaType, string extension) : base(CommonMaxStubSize + 1, "MZ", mediaType, extension)
         {
-            this.signature = Encoding.ASCII.GetBytes(signature);
+            isPlain = signature == null;
+            this.signature = isPlain ? null : Encoding.ASCII.GetBytes(signature);
         }
 
         public override bool CheckHeader(Span<byte> header, bool isBinary, IEncodingDetector encodingDetector)
@@ -26,20 +29,20 @@ namespace IS4.MultiArchiver.Formats
             if(fields.Length <= 30)
             {
                 // There is no e_lfanew field
-                return false;
+                return isPlain;
             }
             var e_lfanew = fields[30];
             if(e_lfanew <= 1)
             {
                 // MZ is there
-                return false;
+                return isPlain;
             }
             if(header.Length < HeaderLength && e_lfanew >= header.Length - this.signature.Length)
             {
                 // Points past the end of file
-                return false;
+                return isPlain;
             }
-            if(e_lfanew >= header.Length)
+            if(e_lfanew >= header.Length || isPlain)
             {
                 // We didn't read this far
                 return true;

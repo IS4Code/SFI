@@ -69,8 +69,10 @@ namespace IS4.MultiArchiver.Extensions
             archiver.DataAnalyzer.Formats.Add(new ImageFormat());
             archiver.DataAnalyzer.Formats.Add(new TagLibFormat());
             archiver.DataAnalyzer.Formats.Add(new IsoFormat());
-            archiver.DataAnalyzer.Formats.Add(new Win32ModuleFormat());
+            archiver.DataAnalyzer.Formats.Add(new DosModuleFormat());
+            archiver.DataAnalyzer.Formats.Add(new LinearModuleFormat());
             archiver.DataAnalyzer.Formats.Add(new Win16ModuleFormat());
+            archiver.DataAnalyzer.Formats.Add(new Win32ModuleFormat());
             archiver.DataAnalyzer.Formats.Add(new WaveFormat());
             //archiver.DataAnalyzer.Formats.Add(new OggFormat());
             archiver.DataAnalyzer.Formats.Add(new WasapiFormat(false));
@@ -86,6 +88,7 @@ namespace IS4.MultiArchiver.Extensions
             archiver.Analyzers.Add(new FileSystemAnalyzer());
             archiver.Analyzers.Add(ImageMetadataAnalyzer.CreateDefault());
             archiver.Analyzers.Add(new TagLibAnalyzer());
+            archiver.Analyzers.Add(new DosModuleAnalyzer());
             archiver.Analyzers.Add(new WinModuleAnalyzer());
             archiver.Analyzers.Add(new SvgAnalyzer());
             archiver.Analyzers.Add(new WaveAnalyzer());
