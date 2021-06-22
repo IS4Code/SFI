@@ -254,7 +254,7 @@ namespace IS4.MultiArchiver.Analyzers
                     if(!isBinary)
                     {
                         strval = TryGetString(CharsetMatch.Encoding, signature);
-                        if(strval == null)
+                        if(strval == null || !nodeFactory.IsSafeString(strval))
                         {
                             LazyCharsetMatch = null;
                             isBinary = true;

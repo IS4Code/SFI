@@ -9,6 +9,7 @@ namespace IS4.MultiArchiver.Services
         ILinkedNode Create(Vocabularies vocabulary, string localName);
         ILinkedNode Create<T>(IUriFormatter<T> formatter, T value);
         ILinkedNode Create<T>(ILinkedNode parent, T entity) where T : class;
+        bool IsSafeString(string str);
     }
 
     public static class LinkedNodeFactoryExtensions

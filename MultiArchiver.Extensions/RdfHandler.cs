@@ -52,6 +52,27 @@ namespace IS4.MultiArchiver.Extensions
             return baseAnalyzer.Analyze(parent, entity, this);
         }
 
+        static readonly Regex unsafeCharacters = new Regex(@"^\p{M}|[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x84\x86-\x9F]|(^|[^\uD800-\uDBFF])[\uDC00-\uDFFF]|[\uD800-\uDBFF]($|[^\uDC00-\uDFFF])", RegexOptions.Compiled | RegexOptions.Multiline);
+
+        static bool IsSafeString(string str)
+        {
+            if(unsafeCharacters.IsMatch(str)) return false;
+            var e = StringInfo.GetTextElementEnumerator(str);
+            while(e.MoveNext())
+            {
+                if(Char.GetUnicodeCategory(str, e.ElementIndex) == UnicodeCategory.OtherNotAssigned)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        bool ILinkedNodeFactory.IsSafeString(string str)
+        {
+            return IsSafeString(str);
+        }
+
         class UriNode : LinkedNode<INode>
         {
             readonly IRdfHandler handler;
@@ -74,22 +95,6 @@ namespace IS4.MultiArchiver.Extensions
             private void HandleTripleInner(Triple t)
             {
                 handler.HandleTriple(t);
-            }
-
-            static readonly Regex unsafeCharacters = new Regex(@"^\p{M}|[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x84\x86-\x9F]|(^|[^\uD800-\uDBFF])[\uDC00-\uDFFF]|[\uD800-\uDBFF]($|[^\uDC00-\uDFFF])", RegexOptions.Compiled | RegexOptions.Multiline);
-
-            static bool IsSafeString(string str)
-            {
-                if(unsafeCharacters.IsMatch(str)) return false;
-                var e = StringInfo.GetTextElementEnumerator(str);
-                while(e.MoveNext())
-                {
-                    if(Char.GetUnicodeCategory(str, e.ElementIndex) == UnicodeCategory.OtherNotAssigned)
-                    {
-                        return false;
-                    }
-                }
-                return true;
             }
 
             protected override INode CreateNode(Uri uri)
