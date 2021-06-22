@@ -10,7 +10,7 @@ using static Vanara.PInvoke.Kernel32;
 
 namespace IS4.MultiArchiver.Formats
 {
-    public class Win32ModuleFormat : ModuleFormat
+    public class Win32ModuleFormat : WinModuleFormat
     {
         public Win32ModuleFormat() : base("PE\0\0", "application/vnd.microsoft.portable-executable", null)
         {
