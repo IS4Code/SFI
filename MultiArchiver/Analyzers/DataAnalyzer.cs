@@ -30,6 +30,8 @@ namespace IS4.MultiArchiver.Analyzers
 
         const int fileSizeToWriteToDisk = 524288;
 
+        const int maxSignatureLength = 8;
+
 		public ILinkedNode Analyze(ILinkedNode parent, IStreamFactory streamFactory, ILinkedNodeFactory nodeFactory)
         {
             var signatureBuffer = new MemoryStream(Math.Max(MaxDataLengthToStore + 1, Formats.Count == 0 ? 0 : Formats.Max(fmt => fmt.HeaderLength)));
@@ -175,7 +177,9 @@ namespace IS4.MultiArchiver.Analyzers
                 node.Set(Properties.CharacterEncoding, match.CharsetMatch.Charset);
             }
 
-            var label = $"{(isBinary ? "binary data" : "text")} ({DataTools.SizeSuffix(actualLength, 2)})";
+            var sizeSuffix = DataTools.SizeSuffix(actualLength, 2);
+
+            var label = $"{(isBinary ? "binary data" : "text")} ({sizeSuffix})";
 
             node.Set(Properties.PrefLabel, label, "en");
 
@@ -192,27 +196,53 @@ namespace IS4.MultiArchiver.Analyzers
 
             var results = match.Results.Where(result => result.IsValid);
 
+            var any = false;
+
             foreach(var result in results.GroupBy(r => r.Result))
             {
                 if(result.Key != null)
                 {
+                    any = true;
+
                     result.Key.Set(Properties.HasFormat, node);
 
                     var extension = result.Select(r => r.Extension).FirstOrDefault(e => e != null);
                     if(extension != null)
                     {
                         var formatLabel = result.Select(r => r.Label).FirstOrDefault(l => l != null);
-                        if(formatLabel == null)
-                        {
-                            formatLabel = DataTools.SizeSuffix(streamFactory.Length, 2);
-                        }
-                        result.Key.Set(Properties.PrefLabel, $"{extension.ToUpperInvariant()} object ({formatLabel})", "en");
+                        result.Key.Set(Properties.PrefLabel, $"{extension.ToUpperInvariant()} object ({formatLabel ?? sizeSuffix})", "en");
+                    }
+                }
+            }
+
+            if(!any && isBinary)
+            {
+                var magicSig = match.Signature.Take(maxSignatureLength + 1).TakeWhile(b => validSigBytes.Contains(b)).ToArray();
+                if(magicSig.Length >= 2 && magicSig.Length <= maxSignatureLength && !magicSig.Any(b => b <= 0x20))
+                {
+                    var magicText = Encoding.ASCII.GetString(magicSig);
+                    var signatureFormat = new ImprovisedSignatureFormat.Format(magicText);
+                    var formatObj = new FormatObject<ImprovisedSignatureFormat.Format, IBinaryFileFormat>(ImprovisedSignatureFormat.Instance, signatureFormat, streamFactory);
+                    var formatNode = nodeFactory.Create<IFormatObject<ImprovisedSignatureFormat.Format, IBinaryFileFormat>>(node, formatObj);
+                    if(formatNode != null)
+                    {
+                        formatNode.Set(Properties.HasFormat, node);
+                        formatNode.Set(Properties.PrefLabel, $"{magicText} object ({sizeSuffix})", "en");
                     }
                 }
             }
 
 			return node;
 		}
+
+        static readonly ISet<byte> validSigBytes = new SortedSet<byte>(
+            Enumerable.Range('a', 26).Concat(
+                Enumerable.Range('A', 26)
+            ).Concat(
+                Enumerable.Range('0', 10)
+            ).Select(i => (byte)i).Concat(
+                new byte[] { 0x09, 0x0A, 0x0D, 0x20 }
+            ));
 
         class FileMatch : IUriFormatter<bool>
         {
@@ -549,5 +579,46 @@ namespace IS4.MultiArchiver.Analyzers
                 return -x.HeaderLength.CompareTo(y.HeaderLength);
             }
         }
-	}
+
+        class ImprovisedSignatureFormat : BinaryFileFormat<ImprovisedSignatureFormat.Format>
+        {
+            public static readonly ImprovisedSignatureFormat Instance = new ImprovisedSignatureFormat();
+
+            private ImprovisedSignatureFormat() : base(0, null, null)
+            {
+
+            }
+
+
+            public override string GetMediaType(Format value)
+            {
+                return DataTools.GetFakeMediaTypeFromSignature(value.Signature);
+            }
+
+            public override string GetExtension(Format value)
+            {
+                return value.Signature;
+            }
+
+            public override bool CheckHeader(Span<byte> header, bool isBinary, IEncodingDetector encodingDetector)
+            {
+                throw new NotSupportedException();
+            }
+
+            public override TResult Match<TResult>(Stream stream, ResultFactory<Format, TResult> resultFactory)
+            {
+                throw new NotSupportedException();
+            }
+
+            public class Format
+            {
+                public string Signature { get; }
+
+                public Format(string signature)
+                {
+                    Signature = signature;
+                }
+            }
+        }
+    }
 }

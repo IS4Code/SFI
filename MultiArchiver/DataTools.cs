@@ -143,6 +143,11 @@ namespace IS4.MultiArchiver
                 return name;
             }
         }
+        
+        public static string GetFakeMediaTypeFromSignature(string signature)
+        {
+            return "application/x.sig." + signature.ToLowerInvariant();
+        }
 
         public static void Deconstruct<TKey, TValue>(this KeyValuePair<TKey, TValue> pair, out TKey key, out TValue value)
         {
