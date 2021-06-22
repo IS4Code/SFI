@@ -17,10 +17,13 @@ namespace IS4.MultiArchiver.Analyzers
         public override string Analyze(ILinkedNode node, Module module, ILinkedNodeFactory nodeFactory)
         {
             var uncompressed = module.GetCompressedContents();
-            var infoNode = nodeFactory.Create<IFileInfo>(node, uncompressed);
-            if(infoNode != null)
+            if(uncompressed != null)
             {
-                node.Set(Properties.BelongsToContainer, infoNode);
+                var infoNode = nodeFactory.Create<IFileInfo>(node, uncompressed);
+                if(infoNode != null)
+                {
+                    node.Set(Properties.BelongsToContainer, infoNode);
+                }
             }
             return null;
         }
