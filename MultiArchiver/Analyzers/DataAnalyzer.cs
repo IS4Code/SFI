@@ -109,11 +109,12 @@ namespace IS4.MultiArchiver.Analyzers
 
                                 if(!isBinary)
                                 {
-                                    if(couldBeUnicode == false && Array.IndexOf<byte>(buffer, 0, 0, read) != -1)
+                                    var data = new ArraySegment<byte>(buffer, 0, read);
+                                    if(couldBeUnicode == false && DataTools.IsBinary(data))
                                     {
                                         isBinary = true;
                                     }else{
-                                        encodingDetector.Write(new ArraySegment<byte>(buffer, 0, read));
+                                        encodingDetector.Write(data);
                                     }
                                 }
 

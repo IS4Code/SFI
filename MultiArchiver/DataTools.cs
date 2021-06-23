@@ -322,5 +322,21 @@ namespace IS4.MultiArchiver
                 return m.Value;
             });
         }
+
+        public static bool IsBinary(ArraySegment<byte> data)
+        {
+            int index = Array.IndexOf<byte>(data.Array, 0, data.Offset, data.Count);
+            if(index != -1)
+            {
+                for(int i = index + 1; i < data.Offset + data.Count; i++)
+                {
+                    if(data.Array[i] != 0)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
     }
 }
