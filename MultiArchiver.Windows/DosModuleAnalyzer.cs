@@ -41,7 +41,7 @@ namespace IS4.MultiArchiver.Analyzers
                 if(stream.Length < 0x3C + 4) return;
                 stream.Position = 0x3C;
                 var headerOffset = reader.ReadUInt32();
-                if(headerOffset >= stream.Length - 2) return;
+                if(headerOffset <= 1 || headerOffset >= stream.Length - 2) return;
                 stream.Position = headerOffset;
                 var b = reader.ReadByte();
                 if(b < 0x41 || b > 0x5A) return;
