@@ -8,7 +8,7 @@ namespace IS4.MultiArchiver.Formats
 {
     public class SzFormat : SignatureFormat<SzReader>
     {
-        public SzFormat() : base(10, "SZ", "application/x-sz-compressed", "sz")
+        public SzFormat() : base(10, "SZ", null, "sz")
         {
 
         }
@@ -26,6 +26,11 @@ namespace IS4.MultiArchiver.Formats
                 return true;
             }
             return false;
+        }
+
+        public override string GetMediaType(SzReader value)
+        {
+            return value.QBasicVariant ? "application/x-ms-​compress-sz" : "application/x-ms-compress-szdd";
         }
 
         public override TResult Match<TResult>(Stream stream, ResultFactory<SzReader, TResult> resultFactory)

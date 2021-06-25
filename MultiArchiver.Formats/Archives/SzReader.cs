@@ -13,7 +13,7 @@ namespace IS4.MultiArchiver.Formats.Archives
     {
         readonly BinaryReader reader;
 
-        readonly bool qbFormat;
+        public bool QBasicVariant { get; }
 
         public SzReader(Stream stream)
         {
@@ -35,7 +35,7 @@ namespace IS4.MultiArchiver.Formats.Archives
                 var sig2 = reader.ReadUInt32();
                 if(sig2 == 0xD13327F0)
                 {
-                    qbFormat = true;
+                    QBasicVariant = true;
                     return;
                 }
             }
@@ -63,7 +63,7 @@ namespace IS4.MultiArchiver.Formats.Archives
             if(Entry == null)
             {
                 string key = null;
-                if(!qbFormat)
+                if(!QBasicVariant)
                 {
                     var c = reader.ReadChar();
                     if(c != '\0') key = c.ToString();
@@ -91,7 +91,7 @@ namespace IS4.MultiArchiver.Formats.Archives
             var window = (byte[])initialWindow.Clone();
             const int invert = 0;
 
-            int pos = windowSize - (qbFormat ? 18 : 16);
+            int pos = windowSize - (QBasicVariant ? 18 : 16);
 
             int initialPos = pos;
 
