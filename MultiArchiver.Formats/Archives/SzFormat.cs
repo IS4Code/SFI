@@ -30,7 +30,7 @@ namespace IS4.MultiArchiver.Formats
 
         public override string GetMediaType(SzReader value)
         {
-            return value.QBasicVariant ? "application/x-ms-​compress-sz" : "application/x-ms-compress-szdd";
+            return value.QBasicVariant ? "application/x-ms-compress-sz" : "application/x-ms-compress-szdd";
         }
 
         public override TResult Match<TResult>(Stream stream, ResultFactory<SzReader, TResult> resultFactory)
