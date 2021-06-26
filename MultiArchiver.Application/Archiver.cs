@@ -70,6 +70,7 @@ namespace IS4.MultiArchiver.Extensions
             archiver.DataAnalyzer.Formats.Add(new TagLibFormat());
             archiver.DataAnalyzer.Formats.Add(new IsoFormat());
             archiver.DataAnalyzer.Formats.Add(new DosModuleFormat());
+            archiver.DataAnalyzer.Formats.Add(new GenericModuleFormat());
             archiver.DataAnalyzer.Formats.Add(new LinearModuleFormat());
             archiver.DataAnalyzer.Formats.Add(new Win16ModuleFormat());
             archiver.DataAnalyzer.Formats.Add(new Win32ModuleFormat());
