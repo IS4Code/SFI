@@ -313,6 +313,10 @@ namespace IS4.MultiArchiver
         {
             return controlReplacement.Replace(str, m => {
                 var replacement = ((char)GetReplacementChar(m.Value[0])).ToString();
+                if(originalEncoding == null)
+                {
+                    return replacement;
+                }
                 try{
                     originalEncoding.GetBytes(replacement);
                 }catch(ArgumentException)

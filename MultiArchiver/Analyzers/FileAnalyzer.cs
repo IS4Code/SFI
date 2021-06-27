@@ -40,7 +40,7 @@ namespace IS4.MultiArchiver.Analyzers
             {
                 LinkDirectories(node, info.Name, false, nodeFactory);
             }
-            node.Set(Properties.PrefLabel, info.ToString());
+            node.Set(Properties.PrefLabel, DataTools.ReplaceControlCharacters(info.ToString(), null));
 
             if(info.Name != null)
             {
@@ -136,7 +136,7 @@ namespace IS4.MultiArchiver.Analyzers
 
                 folder.Set(Properties.IsStoredAs, parent);
 
-                folder.Set(Properties.PrefLabel, directory.ToString() + "/");
+                folder.Set(Properties.PrefLabel, DataTools.ReplaceControlCharacters(directory.ToString() + "/", null));
 
                 LinkDirectories(folder, directory.Path, true, nodeFactory);
 
