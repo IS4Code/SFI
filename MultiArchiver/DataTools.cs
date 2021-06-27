@@ -326,6 +326,10 @@ namespace IS4.MultiArchiver
         public static bool IsBinary(ArraySegment<byte> data)
         {
             int index = Array.IndexOf<byte>(data.Array, 0, data.Offset, data.Count);
+            if(index == 0)
+            {
+                return true;
+            }
             if(index != -1)
             {
                 for(int i = index + 1; i < data.Offset + data.Count; i++)
