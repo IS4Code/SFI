@@ -48,18 +48,22 @@ namespace IS4.MultiArchiver.Analyzers
                     {
                         if(!directories.TryGetValue(dir, out var dirInfo))
                         {
-                            dirInfo = directories[dir] = new ArchiveDirectoryInfo(reader, null);
+                            dirInfo = directories[dir] = new BlankDirectoryInfo(reader, dir);
                         }
                         dirInfo.Entries.Add(entry.IsDirectory ? info : new ArchiveEntryInfo(reader, entry));
                         dir = GetDirectory(dir);
                         while(dir != null)
                         {
-                            if(directories.TryGetValue(dir, out var parentDirInfo))
+                            var exists = directories.TryGetValue(dir, out var parentDirInfo);
+                            if(!exists)
+                            {
+                                parentDirInfo = directories[dir] = new BlankDirectoryInfo(reader, dir);
+                            }
+                            parentDirInfo.Entries.Add(dirInfo);
+                            if(exists)
                             {
                                 break;
                             }
-                            parentDirInfo = directories[dir] = new ArchiveDirectoryInfo(reader, null);
-                            parentDirInfo.Entries.Add(dirInfo);
                             dir = GetDirectory(dir);
                             dirInfo = parentDirInfo;
                         }
@@ -74,9 +78,11 @@ namespace IS4.MultiArchiver.Analyzers
             {
                 var info = pair.Value;
                 var dir = GetDirectory(info.Path);
-                var container = GetContainer(node, dir);
-                var dirNode = nodeFactory.Create(container, info);
-                if(dir == null) dirNode?.Set(Properties.BelongsToContainer, node);
+                if(dir == null)
+                {
+                    var dirNode = nodeFactory.Create(node, info);
+                    dirNode?.Set(Properties.BelongsToContainer, node);
+                }
             }
 
             return null;
@@ -106,7 +112,7 @@ namespace IS4.MultiArchiver.Analyzers
                 Entry = entry;
             }
 
-            public virtual string Name => Entry != null ? System.IO.Path.GetFileName(Path) : null;
+            public virtual string Name => Path != null ? System.IO.Path.GetFileName(Path) : null;
 
             public string SubName => null;
 
