@@ -44,29 +44,21 @@ namespace IS4.MultiArchiver.Analyzers
                         var fileNode = nodeFactory.Create(container, info);
                         if(dir == null) fileNode?.Set(Properties.BelongsToContainer, node);
                     }
-                    if(dir != null)
+                    if(!entry.IsDirectory)
                     {
-                        if(!directories.TryGetValue(dir, out var dirInfo))
+                        info = new ArchiveEntryInfo(reader, entry);
+                    }
+                    var exists = false;
+                    while(!exists && dir != null)
+                    {
+                        exists = directories.TryGetValue(dir, out var dirInfo);
+                        if(!exists)
                         {
                             dirInfo = directories[dir] = new BlankDirectoryInfo(reader, dir);
                         }
-                        dirInfo.Entries.Add(entry.IsDirectory ? info : new ArchiveEntryInfo(reader, entry));
+                        dirInfo.Entries.Add(info);
                         dir = GetDirectory(dir);
-                        while(dir != null)
-                        {
-                            var exists = directories.TryGetValue(dir, out var parentDirInfo);
-                            if(!exists)
-                            {
-                                parentDirInfo = directories[dir] = new BlankDirectoryInfo(reader, dir);
-                            }
-                            parentDirInfo.Entries.Add(dirInfo);
-                            if(exists)
-                            {
-                                break;
-                            }
-                            dir = GetDirectory(dir);
-                            dirInfo = parentDirInfo;
-                        }
+                        info = dirInfo;
                     }
                 }
             }catch(CryptographicException)
