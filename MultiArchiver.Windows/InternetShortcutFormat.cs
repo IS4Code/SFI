@@ -1,5 +1,5 @@
 ﻿using IS4.MultiArchiver.Services;
-using IS4.MultiArchiver.Windows;
+using IS4.MultiArchiver.Windows.ComTypes;
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Schedulers;
 using static Vanara.PInvoke.Url;
-using IPersistStream = IS4.MultiArchiver.Windows.IPersistStream;
+using IPersistStream = IS4.MultiArchiver.Windows.ComTypes.IPersistStream;
 
 namespace IS4.MultiArchiver.Formats
 {

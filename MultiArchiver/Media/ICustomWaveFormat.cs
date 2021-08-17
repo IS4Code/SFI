@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace IS4.MultiArchiver.Services
+namespace IS4.MultiArchiver.Media
 {
     public interface ICustomWaveFormat
     {

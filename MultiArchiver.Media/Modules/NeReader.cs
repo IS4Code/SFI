@@ -1,10 +1,11 @@
-﻿using System;
+﻿using IS4.MultiArchiver.Media;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace IS4.MultiArchiver.Windows
+namespace IS4.MultiArchiver.Media.Modules
 {
     public class NeReader : IModule
     {

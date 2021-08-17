@@ -1,7 +1,8 @@
-﻿using IS4.MultiArchiver.Services;
+﻿using IS4.MultiArchiver.Media;
+using IS4.MultiArchiver.Media.Modules;
+using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Tags;
 using IS4.MultiArchiver.Vocabulary;
-using IS4.MultiArchiver.Windows;
 using System;
 using System.Collections.Generic;
 using System.Globalization;

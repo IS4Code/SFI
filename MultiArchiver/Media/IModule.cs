@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace IS4.MultiArchiver.Windows
+namespace IS4.MultiArchiver.Media
 {
     public interface IModule
     {

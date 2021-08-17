@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 
-namespace IS4.MultiArchiver.Analyzers.MetadataReaders
+namespace IS4.MultiArchiver.Formats.Metadata.MetadataReaders
 {
     public class ExifReader : IMetadataReader<ExifDirectoryBase>
     {

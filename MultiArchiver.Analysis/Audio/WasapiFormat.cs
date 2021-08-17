@@ -1,4 +1,5 @@
-﻿using IS4.MultiArchiver.Services;
+﻿using IS4.MultiArchiver.Media;
+using IS4.MultiArchiver.Services;
 using NAudio.MediaFoundation;
 using NAudio.Wave;
 using System;

@@ -17,7 +17,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MultiArchiver.Media\MultiArchiver.Media.csproj" />
     <ProjectReference Include="..\MultiArchiver\MultiArchiver.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ComTypes\" />
   </ItemGroup>
 
 </Project>

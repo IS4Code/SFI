@@ -1,5 +1,6 @@
-﻿using IS4.MultiArchiver.Services;
-using IS4.MultiArchiver.Windows;
+﻿using IS4.MultiArchiver.Media;
+using IS4.MultiArchiver.Media.Modules;
+using IS4.MultiArchiver.Services;
 using System.IO;
 
 namespace IS4.MultiArchiver.Formats

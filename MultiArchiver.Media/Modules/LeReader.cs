@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace IS4.MultiArchiver.Windows
+namespace IS4.MultiArchiver.Media.Modules
 {
     public class LeReader : IModule
     {

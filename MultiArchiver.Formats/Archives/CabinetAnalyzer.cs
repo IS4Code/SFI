@@ -1,6 +1,6 @@
 ﻿using IS4.MultiArchiver.Formats.Archives;
+using IS4.MultiArchiver.Media;
 using IS4.MultiArchiver.Services;
-using IS4.MultiArchiver.Windows;
 using SharpCompress.Common;
 using SharpCompress.Readers;
 using System;
@@ -8,14 +8,14 @@ using System.IO;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class CabinetAnalyzer : BinaryFormatAnalyzer<CabinetFile>
+    public class CabinetAnalyzer : BinaryFormatAnalyzer<ICabinetArchive>
     {
         public CabinetAnalyzer()
         {
 
         }
 
-        public override string Analyze(ILinkedNode parent, ILinkedNode node, CabinetFile file, object source, ILinkedNodeFactory nodeFactory)
+        public override string Analyze(ILinkedNode parent, ILinkedNode node, ICabinetArchive file, object source, ILinkedNodeFactory nodeFactory)
         {
             var obj = new LinkedObject<IReader>(node, source, new CabinetAdapter(file));
             if(nodeFactory.Create(parent, obj) != null)
@@ -27,9 +27,9 @@ namespace IS4.MultiArchiver.Analyzers
 
         class CabinetAdapter : IReader
         {
-            readonly CabinetFile cabinet;
+            readonly ICabinetArchive cabinet;
 
-            public CabinetAdapter(CabinetFile cabinet)
+            public CabinetAdapter(ICabinetArchive cabinet)
             {
                 this.cabinet = cabinet;
             }
@@ -69,9 +69,9 @@ namespace IS4.MultiArchiver.Analyzers
             
             protected virtual void Dispose(bool disposing)
             {
-                if(disposing)
+                if(disposing && cabinet is IDisposable disposable)
                 {
-                    cabinet?.Dispose();
+                    disposable.Dispose();
                 }
             }
 
@@ -112,11 +112,11 @@ namespace IS4.MultiArchiver.Analyzers
 
             class CabinetEntry : IEntry
             {
-                readonly CabinetFile.FileInfo info;
+                readonly ICabinetArchiveFile info;
 
                 public Stream Stream => info.Stream;
 
-                public CabinetEntry(CabinetFile.FileInfo info)
+                public CabinetEntry(ICabinetArchiveFile info)
                 {
                     this.info = info;
                 }

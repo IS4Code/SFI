@@ -1,4 +1,4 @@
-﻿using IS4.MultiArchiver.Windows;
+﻿using IS4.MultiArchiver.Media;
 
 namespace IS4.MultiArchiver.Formats
 {

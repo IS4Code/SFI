@@ -1,4 +1,5 @@
-﻿using IS4.MultiArchiver.Tools.IO;
+﻿using IS4.MultiArchiver.Media;
+using IS4.MultiArchiver.Tools.IO;
 using System;
 using System.Buffers;
 using System.Collections.Concurrent;
@@ -14,7 +15,7 @@ using static Vanara.PInvoke.Cabinet;
 
 namespace IS4.MultiArchiver.Windows
 {
-    public sealed class CabinetFile : IDisposable
+    public sealed class CabinetFile : ICabinetArchive, IDisposable
     {
         readonly Task<ERF> fileTask;
 
@@ -61,7 +62,7 @@ namespace IS4.MultiArchiver.Windows
             }
         }
 
-        public FileInfo GetNextFile()
+        public ICabinetArchiveFile GetNextFile()
         {
             try{
                 fileControlChannel.Add(true);
@@ -143,7 +144,7 @@ namespace IS4.MultiArchiver.Windows
             }
         }
 
-        public class FileInfo
+        public class FileInfo : ICabinetArchiveFile
         {
             public string Name { get; }
             public uint Size { get; }

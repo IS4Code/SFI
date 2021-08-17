@@ -1,4 +1,5 @@
-﻿using IS4.MultiArchiver.Analyzers.MetadataReaders;
+﻿using IS4.MultiArchiver.Formats.Metadata;
+using IS4.MultiArchiver.Formats.Metadata.MetadataReaders;
 using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Tools;
 using IS4.MultiArchiver.Vocabulary;

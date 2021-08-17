@@ -4,7 +4,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
 
-namespace IS4.MultiArchiver.Windows
+namespace IS4.MultiArchiver.Windows.ComTypes
 {
     unsafe class StreamWrapper : IStream
 	{

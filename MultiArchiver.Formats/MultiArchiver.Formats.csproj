@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Executables\**" />
+    <EmbeddedResource Remove="Executables\**" />
+    <None Remove="Executables\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MetadataExtractor" Version="2.4.3" />
     <PackageReference Include="OpenMcdf" Version="2.2.1.9" />
     <PackageReference Include="Quamotion.DiscUtils" Version="0.15.4" />

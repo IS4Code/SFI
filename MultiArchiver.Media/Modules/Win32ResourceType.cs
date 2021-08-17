@@ -1,4 +1,4 @@
-﻿namespace IS4.MultiArchiver.Windows
+﻿namespace IS4.MultiArchiver.Media.Modules
 {
     public enum Win32ResourceType : ushort
     {
