@@ -7,14 +7,14 @@ namespace IS4.MultiArchiver.Analyzers
 {
     public abstract class FormatObjectAnalyzer<T, TFormat> : IEntityAnalyzer<IFormatObject<T, TFormat>>, IEntityAnalyzer<ILinkedObject<T>> where T : class where TFormat : class, IFileFormat
     {
-        readonly IEnumerable<Classes> recognizedClasses;
+        readonly IEnumerable<ClassUri> recognizedClasses;
 
-        public FormatObjectAnalyzer(IEnumerable<Classes> recognizedClasses)
+        public FormatObjectAnalyzer(IEnumerable<ClassUri> recognizedClasses)
         {
             this.recognizedClasses = recognizedClasses;
         }
 
-        public FormatObjectAnalyzer(params Classes[] recognizedClasses) : this((IEnumerable<Classes>)recognizedClasses)
+        public FormatObjectAnalyzer(params ClassUri[] recognizedClasses) : this((IEnumerable<ClassUri>)recognizedClasses)
         {
 
         }

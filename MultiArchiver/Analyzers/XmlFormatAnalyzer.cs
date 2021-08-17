@@ -7,12 +7,12 @@ namespace IS4.MultiArchiver.Analyzers
 {
     public class XmlFormatAnalyzer<T> : FormatObjectAnalyzer<T, IXmlDocumentFormat> where T : class
     {
-        public XmlFormatAnalyzer(IEnumerable<Classes> recognizedClasses) : base(recognizedClasses)
+        public XmlFormatAnalyzer(IEnumerable<ClassUri> recognizedClasses) : base(recognizedClasses)
         {
 
         }
 
-        public XmlFormatAnalyzer(params Classes[] recognizedClasses) : base(recognizedClasses)
+        public XmlFormatAnalyzer(params ClassUri[] recognizedClasses) : base(recognizedClasses)
         {
 
         }

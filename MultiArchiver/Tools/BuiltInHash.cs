@@ -17,7 +17,7 @@ namespace IS4.MultiArchiver.Tools
 
         readonly ThreadLocal<Cryptography.HashAlgorithm> algorithm;
 
-        public BuiltInHash(Func<Cryptography.HashAlgorithm> factory, Individuals identifier, int? numericIdentifier, string prefix, FormattingMethod formattingMethod = FormattingMethod.Base32) : base(identifier, numericIdentifier, GetHashSize(factory), prefix, formattingMethod)
+        public BuiltInHash(Func<Cryptography.HashAlgorithm> factory, IndividualUri identifier, int? numericIdentifier, string prefix, FormattingMethod formattingMethod = FormattingMethod.Base32) : base(identifier, numericIdentifier, GetHashSize(factory), prefix, formattingMethod)
         {
             algorithm = new ThreadLocal<Cryptography.HashAlgorithm>(factory);
         }

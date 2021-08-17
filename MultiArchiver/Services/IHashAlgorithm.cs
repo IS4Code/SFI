@@ -17,11 +17,11 @@ namespace IS4.MultiArchiver.Services
         Decimal
     }
 
-    public interface IHashAlgorithm : IUriFormatter<byte[]>
+    public interface IHashAlgorithm : IIndividualUriFormatter<byte[]>
     {
         string Name { get; }
         int HashSize { get; }
-        Individuals Identifier { get; }
+        IndividualUri Identifier { get; }
         int? NumericIdentifier { get; }
         string Prefix { get; }
         FormattingMethod FormattingMethod { get; }
@@ -50,12 +50,12 @@ namespace IS4.MultiArchiver.Services
     {
         public string Name { get; }
         public int HashSize { get; }
-        public Individuals Identifier { get; }
+        public IndividualUri Identifier { get; }
         public string Prefix { get; }
         public FormattingMethod FormattingMethod { get; }
         public int? NumericIdentifier { get; }
 
-        public HashAlgorithm(Individuals identifier, int? numericIdentifier, int hashSize, string prefix, FormattingMethod formatting)
+        public HashAlgorithm(IndividualUri identifier, int? numericIdentifier, int hashSize, string prefix, FormattingMethod formatting)
         {
             Identifier = identifier;
             NumericIdentifier = numericIdentifier;
@@ -150,7 +150,7 @@ namespace IS4.MultiArchiver.Services
 
     public abstract class DataHashAlgorithm : HashAlgorithm, IDataHashAlgorithm
     {
-        public DataHashAlgorithm(Individuals identifier, int? numericIdentifier, int hashSize, string prefix, FormattingMethod formatting) : base(identifier, numericIdentifier, hashSize, prefix, formatting)
+        public DataHashAlgorithm(IndividualUri identifier, int? numericIdentifier, int hashSize, string prefix, FormattingMethod formatting) : base(identifier, numericIdentifier, hashSize, prefix, formatting)
         {
 
         }
@@ -169,7 +169,7 @@ namespace IS4.MultiArchiver.Services
 
     public abstract class FileHashAlgorithm : HashAlgorithm, IFileHashAlgorithm
     {
-        public FileHashAlgorithm(Individuals identifier, int? numericIdentifier, int hashSize, string prefix, FormattingMethod formatting) : base(identifier, numericIdentifier, hashSize, prefix, formatting)
+        public FileHashAlgorithm(IndividualUri identifier, int? numericIdentifier, int hashSize, string prefix, FormattingMethod formatting) : base(identifier, numericIdentifier, hashSize, prefix, formatting)
         {
 
         }
@@ -180,7 +180,7 @@ namespace IS4.MultiArchiver.Services
 
     public abstract class ObjectHashAlgorithm<T> : HashAlgorithm, IObjectHashAlgorithm<T>
     {
-        public ObjectHashAlgorithm(Individuals identifier, int? numericIdentifier, int hashSize, string prefix, FormattingMethod formatting) : base(identifier, numericIdentifier, hashSize, prefix, formatting)
+        public ObjectHashAlgorithm(IndividualUri identifier, int? numericIdentifier, int hashSize, string prefix, FormattingMethod formatting) : base(identifier, numericIdentifier, hashSize, prefix, formatting)
         {
 
         }

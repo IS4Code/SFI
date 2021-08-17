@@ -9,31 +9,31 @@ namespace IS4.MultiArchiver.Services
     {
         string Scheme { get; }
 
-        void SetClass(Classes @class);
-        void SetClass<T>(IClassUriFormatter<T> formatter, T value);
+        void SetClass(ClassUri @class);
+        void SetClass<TClass>(IClassUriFormatter<TClass> formatter, TClass value);
 
-        void Set(Properties property, Individuals value);
-        void Set(Properties property, string value);
-        void Set(Properties property, string value, Datatypes datatype);
-        void Set<TData>(Properties property, string value, IDatatypeUriFormatter<TData> datatypeFormatter, TData datatypeValue);
-        void Set<TValue>(Properties property, TValue value, Datatypes datatype) where TValue : IFormattable;
-        void Set<TValue, TData>(Properties property, TValue value, IDatatypeUriFormatter<TData> datatypeFormatter, TData datatypeValue) where TValue : IFormattable;
-        void Set(Properties property, string value, string language);
-        void Set(Properties property, Vocabularies vocabulary, string localName);
-        void Set<TValue>(Properties property, IIndividualUriFormatter<TValue> formatter, TValue value);
-        void Set(Properties property, Uri value);
-        void Set(Properties property, ILinkedNode value);
-        void Set(Properties property, bool value);
-        void Set<TValue>(Properties property, TValue value) where TValue : struct, IEquatable<TValue>, IFormattable;
+        void Set(PropertyUri property, IndividualUri value);
+        void Set(PropertyUri property, string value);
+        void Set(PropertyUri property, string value, DatatypeUri datatype);
+        void Set<TData>(PropertyUri property, string value, IDatatypeUriFormatter<TData> datatypeFormatter, TData datatypeValue);
+        void Set<TValue>(PropertyUri property, TValue value, DatatypeUri datatype) where TValue : IFormattable;
+        void Set<TValue, TData>(PropertyUri property, TValue value, IDatatypeUriFormatter<TData> datatypeFormatter, TData datatypeValue) where TValue : IFormattable;
+        void Set(PropertyUri property, string value, string language);
+        void Set(PropertyUri property, VocabularyUri vocabulary, string localName);
+        void Set<TValue>(PropertyUri property, IIndividualUriFormatter<TValue> formatter, TValue value);
+        void Set(PropertyUri property, Uri value);
+        void Set(PropertyUri property, ILinkedNode value);
+        void Set(PropertyUri property, bool value);
+        void Set<TValue>(PropertyUri property, TValue value) where TValue : struct, IEquatable<TValue>, IFormattable;
 
-        void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, Individuals value);
+        void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, IndividualUri value);
         void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, string value);
-        void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, string value, Datatypes datatype);
+        void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, string value, DatatypeUri datatype);
         void Set<TProp, TData>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, string value, IDatatypeUriFormatter<TData> datatypeFormatter, TData datatypeValue);
-        void Set<TProp, TValue>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, TValue value, Datatypes datatype) where TValue : IFormattable;
+        void Set<TProp, TValue>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, TValue value, DatatypeUri datatype) where TValue : IFormattable;
         void Set<TProp, TValue, TData>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, TValue value, IDatatypeUriFormatter<TData> datatypeFormatter, TData datatypeValue) where TValue : IFormattable;
         void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, string value, string language);
-        void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, Vocabularies vocabulary, string localName);
+        void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, VocabularyUri vocabulary, string localName);
         void Set<TProp, TValue>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, IIndividualUriFormatter<TValue> formatter, TValue value);
         void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, Uri value);
         void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, ILinkedNode value);
@@ -75,7 +75,7 @@ namespace IS4.MultiArchiver.Services
 
         public string Scheme => GetUri(Subject).Scheme;
 
-        public void SetClass(Classes @class)
+        public void SetClass(ClassUri @class)
         {
             HandleTriple(Subject, Cache[Properties.Type], Cache[@class]);
         }
@@ -85,82 +85,82 @@ namespace IS4.MultiArchiver.Services
             HandleTriple(Subject, Cache[Properties.Type], CreateNode(formatter, value));
         }
 
-        public void Set(Properties property, Individuals value)
+        public void Set(PropertyUri property, IndividualUri value)
         {
             HandleTriple(Subject, Cache[property], Cache[value]);
         }
 
-        public void Set(Properties property, string value)
+        public void Set(PropertyUri property, string value)
         {
             if(value == null) throw new ArgumentNullException(nameof(value));
             HandleTriple(Subject, Cache[property], CreateNode(value));
         }
 
-        public void Set(Properties property, string value, Datatypes datatype)
+        public void Set(PropertyUri property, string value, DatatypeUri datatype)
         {
             if(value == null) throw new ArgumentNullException(nameof(value));
             HandleTriple(Subject, Cache[property], CreateNode(value, Cache[datatype]));
         }
 
-        public void Set<TData>(Properties property, string value, IDatatypeUriFormatter<TData> datatypeFormatter, TData datatypeValue)
+        public void Set<TData>(PropertyUri property, string value, IDatatypeUriFormatter<TData> datatypeFormatter, TData datatypeValue)
         {
             if(value == null) throw new ArgumentNullException(nameof(value));
             HandleTriple(Subject, Cache[property], CreateNode(value, CreateNode(datatypeFormatter, datatypeValue)));
         }
 
-        public void Set<TValue>(Properties property, TValue value, Datatypes datatype) where TValue : IFormattable
+        public void Set<TValue>(PropertyUri property, TValue value, DatatypeUri datatype) where TValue : IFormattable
         {
             if(value == null) throw new ArgumentNullException(nameof(value));
             HandleTriple(Subject, Cache[property], CreateNode(value.ToString(null, CultureInfo.InvariantCulture), Cache[datatype]));
         }
 
-        public void Set<TValue, TData>(Properties property, TValue value, IDatatypeUriFormatter<TData> datatypeFormatter, TData datatypeValue) where TValue : IFormattable
+        public void Set<TValue, TData>(PropertyUri property, TValue value, IDatatypeUriFormatter<TData> datatypeFormatter, TData datatypeValue) where TValue : IFormattable
         {
             if(value == null) throw new ArgumentNullException(nameof(value));
             HandleTriple(Subject, Cache[property], CreateNode(value.ToString(null, CultureInfo.InvariantCulture), CreateNode(datatypeFormatter, datatypeValue)));
         }
 
-        public void Set(Properties property, string value, string language)
+        public void Set(PropertyUri property, string value, string language)
         {
             if(value == null) throw new ArgumentNullException(nameof(value));
             if(language == null) throw new ArgumentNullException(nameof(language));
             HandleTriple(Subject, Cache[property], CreateNode(value, language));
         }
 
-        public void Set(Properties property, Vocabularies vocabulary, string localName)
+        public void Set(PropertyUri property, VocabularyUri vocabulary, string localName)
         {
             if(localName == null) throw new ArgumentNullException(nameof(localName));
             HandleTriple(Subject, Cache[property], CreateNode((Uri)new EncodedUri(GetUri(Cache[vocabulary]).AbsoluteUri + localName, UriKind.Absolute)));
         }
 
-        public void Set<T>(Properties property, IIndividualUriFormatter<T> formatter, T value)
+        public void Set<T>(PropertyUri property, IIndividualUriFormatter<T> formatter, T value)
         {
             HandleTriple(Subject, Cache[property], CreateNode(formatter, value));
         }
 
-        public void Set(Properties property, ILinkedNode value)
+        public void Set(PropertyUri property, ILinkedNode value)
         {
             if(value == null) throw new ArgumentNullException(nameof(value));
             if(!(value is LinkedNode<TNode> node)) throw new ArgumentException(null, nameof(value));
             HandleTriple(Subject, Cache[property], node.Subject);
         }
 
-        public void Set(Properties property, Uri value)
+        public void Set(PropertyUri property, Uri value)
         {
             Set(property, value.IsAbsoluteUri ? value.AbsoluteUri : value.OriginalString, Datatypes.AnyUri);
         }
 
-        public void Set(Properties property, bool value)
+        public void Set(PropertyUri property, bool value)
         {
             HandleTriple(Subject, Cache[property], CreateNode(value));
         }
 
-        public void Set<TValue>(Properties property, TValue value) where TValue : struct, IEquatable<TValue>, IFormattable
+        public void Set<TValue>(PropertyUri property, TValue value) where TValue : struct, IEquatable<TValue>, IFormattable
         {
             HandleTriple(Subject, Cache[property], CreateNode(value));
         }
 
-        public void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, Individuals value)
+        public void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, IndividualUri value)
         {
             HandleTriple(Subject, CreateNode(propertyFormatter, propertyValue), Cache[value]);
         }
@@ -171,7 +171,7 @@ namespace IS4.MultiArchiver.Services
             HandleTriple(Subject, CreateNode(propertyFormatter, propertyValue), CreateNode(value));
         }
 
-        public void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, string value, Datatypes datatype)
+        public void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, string value, DatatypeUri datatype)
         {
             if(value == null) throw new ArgumentNullException(nameof(value));
             HandleTriple(Subject, CreateNode(propertyFormatter, propertyValue), CreateNode(value, Cache[datatype]));
@@ -183,7 +183,7 @@ namespace IS4.MultiArchiver.Services
             HandleTriple(Subject, CreateNode(propertyFormatter, propertyValue), CreateNode(value, CreateNode(datatypeFormatter, datatypeValue)));
         }
 
-        public void Set<TProp, TValue>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, TValue value, Datatypes datatype) where TValue : IFormattable
+        public void Set<TProp, TValue>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, TValue value, DatatypeUri datatype) where TValue : IFormattable
         {
             if(value == null) throw new ArgumentNullException(nameof(value));
             HandleTriple(Subject, CreateNode(propertyFormatter, propertyValue), CreateNode(value.ToString(null, CultureInfo.InvariantCulture), Cache[datatype]));
@@ -202,7 +202,7 @@ namespace IS4.MultiArchiver.Services
             HandleTriple(Subject, CreateNode(propertyFormatter, propertyValue), CreateNode(value, language));
         }
 
-        public void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, Vocabularies vocabulary, string localName)
+        public void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, VocabularyUri vocabulary, string localName)
         {
             if(localName == null) throw new ArgumentNullException(nameof(localName));
             HandleTriple(Subject, CreateNode(propertyFormatter, propertyValue), CreateNode((Uri)new EncodedUri(GetUri(Cache[vocabulary]).AbsoluteUri + localName, UriKind.Absolute)));

@@ -1,35 +1,40 @@
 ﻿namespace IS4.MultiArchiver.Vocabulary
 {
-    public enum Datatypes
+    public static class Datatypes
     {
         [Uri(Vocabularies.Rdf, "XMLLiteral")]
-        XmlLiteral,
+        public static readonly DatatypeUri XmlLiteral;
         [Uri(Vocabularies.Rdf, "HTML")]
-        Html,
+        public static readonly DatatypeUri Html;
         [Uri(Vocabularies.Rdf, "JSON")]
-        Json,
+        public static readonly DatatypeUri Json;
 
         [Uri(Vocabularies.Xsd, "anyURI")]
-        AnyUri,
+        public static readonly DatatypeUri AnyUri;
         [Uri(Vocabularies.Xsd)]
-        HexBinary,
+        public static readonly DatatypeUri HexBinary;
         [Uri(Vocabularies.Xsd)]
-        Base64Binary,
+        public static readonly DatatypeUri Base64Binary;
         [Uri(Vocabularies.Xsd)]
-        Integer,
+        public static readonly DatatypeUri Integer;
         [Uri(Vocabularies.Xsd)]
-        String,
+        public static readonly DatatypeUri String;
 
         [Uri(Vocabularies.Owl)]
-        Rational,
+        public static readonly DatatypeUri Rational;
 
         [Uri(Vocabularies.Dt)]
-        Byte,
+        public static readonly DatatypeUri Byte;
         [Uri(Vocabularies.Dt)]
-        Hertz,
+        public static readonly DatatypeUri Hertz;
         [Uri(Vocabularies.Dt)]
-        BitPerSecond,
+        public static readonly DatatypeUri BitPerSecond;
         [Uri(Vocabularies.Dt)]
-        KilobitPerSecond,
+        public static readonly DatatypeUri KilobitPerSecond;
+
+        static Datatypes()
+        {
+            typeof(Datatypes).InitializeUris();
+        }
     }
 }

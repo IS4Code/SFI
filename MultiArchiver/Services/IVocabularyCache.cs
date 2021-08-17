@@ -5,11 +5,11 @@ namespace IS4.MultiArchiver.Services
 {
     public interface IVocabularyCache<out TNode> where TNode : class
     {
-        TNode this[Classes name] { get; }
-        TNode this[Properties name] { get; }
-        TNode this[Individuals name] { get; }
-        TNode this[Datatypes name] { get; }
-        TNode this[Vocabularies name] { get; }
-        IReadOnlyDictionary<Vocabularies, string> Vocabularies { get; }
+        TNode this[ClassUri name] { get; }
+        TNode this[PropertyUri name] { get; }
+        TNode this[IndividualUri name] { get; }
+        TNode this[DatatypeUri name] { get; }
+        TNode this[VocabularyUri name] { get; }
+        IReadOnlyCollection<VocabularyUri> Vocabularies { get; }
     }
 }

@@ -206,13 +206,13 @@ namespace IS4.MultiArchiver.Analyzers
             return result;
         }
 
-        private void Set<T>(ILinkedNode node, Properties prop, T valueOrDefault) where T : struct, IEquatable<T>, IFormattable
+        private void Set<T>(ILinkedNode node, PropertyUri prop, T valueOrDefault) where T : struct, IEquatable<T>, IFormattable
         {
             if(valueOrDefault.Equals(default)) return;
             node.Set(prop, valueOrDefault);
         }
 
-        private void Set<T>(ILinkedNode node, Properties prop, T valueOrDefault, Datatypes datatype) where T : struct, IEquatable<T>, IFormattable
+        private void Set<T>(ILinkedNode node, PropertyUri prop, T valueOrDefault, DatatypeUri datatype) where T : struct, IEquatable<T>, IFormattable
         {
             if(valueOrDefault.Equals(default)) return;
             node.Set(prop, valueOrDefault, datatype);

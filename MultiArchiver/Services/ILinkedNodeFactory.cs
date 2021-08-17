@@ -6,8 +6,8 @@ namespace IS4.MultiArchiver.Services
     public interface ILinkedNodeFactory
     {
         ILinkedNode Root { get; }
-        ILinkedNode Create(Vocabularies vocabulary, string localName);
-        ILinkedNode Create<T>(IUriFormatter<T> formatter, T value);
+        ILinkedNode Create(VocabularyUri vocabulary, string localName);
+        ILinkedNode Create<T>(IIndividualUriFormatter<T> formatter, T value);
         ILinkedNode Create<T>(ILinkedNode parent, T entity) where T : class;
         bool IsSafeString(string str);
     }

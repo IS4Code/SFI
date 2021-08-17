@@ -204,7 +204,7 @@ namespace IS4.MultiArchiver.Analyzers
             return $"{(ms >> 16) & 0xffff}.{(ms >> 0) & 0xffff}.{(ls >> 16) & 0xffff}.{(ls >> 0) & 0xffff}";
         }
 
-        static readonly Dictionary<string, (Properties prop, bool lang)> predefinedProperties = new Dictionary<string, (Properties, bool)>
+        static readonly Dictionary<string, (PropertyUri prop, bool lang)> predefinedProperties = new Dictionary<string, (PropertyUri, bool)>
         {
             //{ "Comments", Properties. },
             { "InternalName", (Properties.Name, false) },

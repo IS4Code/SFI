@@ -4,27 +4,27 @@ namespace IS4.MultiArchiver.Vocabulary
 {
     public static class Common
     {
-        public static IEnumerable<Classes> AudioClasses = new[]
+        public static IReadOnlyCollection<ClassUri> AudioClasses = new[]
         {
             Classes.AudioObject, Classes.Audio
         };
 
-        public static IEnumerable<Classes> VideoClasses = new[]
+        public static IReadOnlyCollection<ClassUri> VideoClasses = new[]
         {
             Classes.VideoObject, Classes.Video
         };
 
-        public static IEnumerable<Classes> ImageClasses = new[]
+        public static IReadOnlyCollection<ClassUri> ImageClasses = new[]
         {
             Classes.ImageObject, Classes.Image
         };
 
-        public static IEnumerable<Classes> ApplicationClasses = new[]
+        public static IReadOnlyCollection<ClassUri> ApplicationClasses = new[]
         {
             Classes.SoftwareApplication, Classes.Executable
         };
 
-        public static IEnumerable<Classes> ArchiveClasses = new[]
+        public static IReadOnlyCollection<ClassUri> ArchiveClasses = new[]
         {
             Classes.Archive
         };

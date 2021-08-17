@@ -1,183 +1,188 @@
 ﻿namespace IS4.MultiArchiver.Vocabulary
 {
-    public enum Properties
+    public static class Properties
     {
         [Uri(Vocabularies.Rdf)]
-        Type,
+        public static readonly PropertyUri Type;
         [Uri(Vocabularies.Rdf)]
-        Value,
+        public static readonly PropertyUri Value;
 
         [Uri(Vocabularies.Rdfs)]
-        Label,
+        public static readonly PropertyUri Label;
         [Uri(Vocabularies.Rdfs)]
-        SeeAlso,
+        public static readonly PropertyUri SeeAlso;
 
         [Uri(Vocabularies.Owl)]
-        SameAs,
+        public static readonly PropertyUri SameAs;
 
         [Uri(Vocabularies.Dcterms)]
-        Description,
+        public static readonly PropertyUri Description;
         [Uri(Vocabularies.Dcterms)]
-        HasFormat,
+        public static readonly PropertyUri HasFormat;
         [Uri(Vocabularies.Dcterms)]
-        Extent,
+        public static readonly PropertyUri Extent;
         [Uri(Vocabularies.Dcterms)]
-        Creator,
+        public static readonly PropertyUri Creator;
         [Uri(Vocabularies.Dcterms)]
-        Modified,
+        public static readonly PropertyUri Modified;
 
         [Uri(Vocabularies.Dbo)]
-        OriginalName,
+        public static readonly PropertyUri OriginalName;
 
         [Uri(Vocabularies.Cnt)]
-        Bytes,
+        public static readonly PropertyUri Bytes;
         [Uri(Vocabularies.Cnt)]
-        Chars,
+        public static readonly PropertyUri Chars;
         [Uri(Vocabularies.Cnt)]
-        CharacterEncoding,
+        public static readonly PropertyUri CharacterEncoding;
         [Uri(Vocabularies.Cnt)]
-        Rest,
+        public static readonly PropertyUri Rest;
         [Uri(Vocabularies.Cnt)]
-        DoctypeName,
+        public static readonly PropertyUri DoctypeName;
         [Uri(Vocabularies.Cnt)]
-        PublicId,
+        public static readonly PropertyUri PublicId;
         [Uri(Vocabularies.Cnt)]
-        SystemId,
+        public static readonly PropertyUri SystemId;
         [Uri(Vocabularies.Cnt, "version")]
-        XmlVersion,
+        public static readonly PropertyUri XmlVersion;
         [Uri(Vocabularies.Cnt, "declaredEncoding")]
-        XmlEncoding,
+        public static readonly PropertyUri XmlEncoding;
         [Uri(Vocabularies.Cnt, "standalone")]
-        XmlStandalone,
+        public static readonly PropertyUri XmlStandalone;
         [Uri(Vocabularies.Cnt)]
-        DtDecl,
+        public static readonly PropertyUri DtDecl;
 
         [Uri(Vocabularies.Foaf)]
-        Depicts,
+        public static readonly PropertyUri Depicts;
 
         [Uri(Vocabularies.Sec)]
-        CanonicalizationAlgorithm,
+        public static readonly PropertyUri CanonicalizationAlgorithm;
         [Uri(Vocabularies.Sec)]
-        DigestAlgorithm,
+        public static readonly PropertyUri DigestAlgorithm;
         [Uri(Vocabularies.Sec)]
-        DigestValue,
+        public static readonly PropertyUri DigestValue;
 
         [Uri(Vocabularies.Schema)]
-        Name,
+        public static readonly PropertyUri Name;
         [Uri(Vocabularies.Schema)]
-        DownloadUrl,
+        public static readonly PropertyUri DownloadUrl;
         [Uri(Vocabularies.Schema)]
-        Encoding,
+        public static readonly PropertyUri Encoding;
         [Uri(Vocabularies.Schema)]
-        EncodingFormat,
+        public static readonly PropertyUri EncodingFormat;
         [Uri(Vocabularies.Schema)]
-        Version,
+        public static readonly PropertyUri Version;
         [Uri(Vocabularies.Schema)]
-        SoftwareVersion,
+        public static readonly PropertyUri SoftwareVersion;
         [Uri(Vocabularies.Schema)]
-        Thumbnail,
+        public static readonly PropertyUri Thumbnail;
         [Uri(Vocabularies.Schema)]
-        Image,
+        public static readonly PropertyUri Image;
         [Uri(Vocabularies.Schema)]
-        CopyrightNotice,
+        public static readonly PropertyUri CopyrightNotice;
 
         [Uri(Vocabularies.Nie)]
-        IsStoredAs,
+        public static readonly PropertyUri IsStoredAs;
         [Uri(Vocabularies.Nie)]
-        Links,
+        public static readonly PropertyUri Links;
         [Uri(Vocabularies.Nie)]
-        HasPart,
+        public static readonly PropertyUri HasPart;
 
         [Uri(Vocabularies.Nfo)]
-        FileName,
+        public static readonly PropertyUri FileName;
         [Uri(Vocabularies.Nfo)]
-        BelongsToContainer,
+        public static readonly PropertyUri BelongsToContainer;
         [Uri(Vocabularies.Nfo)]
-        FileCreated,
+        public static readonly PropertyUri FileCreated;
         [Uri(Vocabularies.Nfo)]
-        FileLastAccessed,
+        public static readonly PropertyUri FileLastAccessed;
         [Uri(Vocabularies.Nfo)]
-        FileLastModified,
+        public static readonly PropertyUri FileLastModified;
         [Uri(Vocabularies.Nfo)]
-        FileSize,
+        public static readonly PropertyUri FileSize;
         [Uri(Vocabularies.Nfo)]
-        FreeSpace,
+        public static readonly PropertyUri FreeSpace;
         [Uri(Vocabularies.Nfo)]
-        OccupiedSpace,
+        public static readonly PropertyUri OccupiedSpace;
         [Uri(Vocabularies.Nfo)]
-        TotalSpace,
+        public static readonly PropertyUri TotalSpace;
         [Uri(Vocabularies.Nfo)]
-        FilesystemType,
+        public static readonly PropertyUri FilesystemType;
         [Uri(Vocabularies.Nfo)]
-        Width,
+        public static readonly PropertyUri Width;
         [Uri(Vocabularies.Nfo)]
-        Height,
+        public static readonly PropertyUri Height;
         [Uri(Vocabularies.Nfo)]
-        BitDepth,
+        public static readonly PropertyUri BitDepth;
         [Uri(Vocabularies.Nfo)]
-        ColorDepth,
+        public static readonly PropertyUri ColorDepth;
         [Uri(Vocabularies.Nfo)]
-        HorizontalResolution,
+        public static readonly PropertyUri HorizontalResolution;
         [Uri(Vocabularies.Nfo)]
-        VerticalResolution,
+        public static readonly PropertyUri VerticalResolution;
         [Uri(Vocabularies.Nfo)]
-        PaletteSize,
+        public static readonly PropertyUri PaletteSize;
         [Uri(Vocabularies.Nfo)]
-        BitsPerSample,
+        public static readonly PropertyUri BitsPerSample;
         [Uri(Vocabularies.Nfo)]
-        Channels,
+        public static readonly PropertyUri Channels;
         [Uri(Vocabularies.Nfo)]
-        SampleCount,
+        public static readonly PropertyUri SampleCount;
         [Uri(Vocabularies.Nfo)]
-        SampleRate,
+        public static readonly PropertyUri SampleRate;
         [Uri(Vocabularies.Nfo)]
-        Duration,
+        public static readonly PropertyUri Duration;
         [Uri(Vocabularies.Nfo)]
-        HasMediaStream,
+        public static readonly PropertyUri HasMediaStream;
         [Uri(Vocabularies.Nfo)]
-        AverageBitrate,
+        public static readonly PropertyUri AverageBitrate;
         [Uri(Vocabularies.Nfo)]
-        CompressionType,
+        public static readonly PropertyUri CompressionType;
         [Uri(Vocabularies.Nfo)]
-        EncryptionStatus,
+        public static readonly PropertyUri EncryptionStatus;
 
         [Uri(Vocabularies.Skos)]
-        Broader,
+        public static readonly PropertyUri Broader;
         [Uri(Vocabularies.Skos)]
-        ExactMatch,
+        public static readonly PropertyUri ExactMatch;
         [Uri(Vocabularies.Skos)]
-        CloseMatch,
+        public static readonly PropertyUri CloseMatch;
         [Uri(Vocabularies.Skos)]
-        PrefLabel,
+        public static readonly PropertyUri PrefLabel;
         [Uri(Vocabularies.Skos)]
-        AltLabel,
+        public static readonly PropertyUri AltLabel;
 
         [Uri(Vocabularies.Xis)]
-        DocumentElement,
+        public static readonly PropertyUri DocumentElement;
         [Uri(Vocabularies.Xis)]
-        LocalName,
+        public static readonly PropertyUri LocalName;
         [Uri(Vocabularies.Xis, "name")]
-        XmlName,
+        public static readonly PropertyUri XmlName;
         [Uri(Vocabularies.Xis, "prefix")]
-        XmlPrefix,
+        public static readonly PropertyUri XmlPrefix;
         [Uri(Vocabularies.Xis)]
-        NamespaceName,
+        public static readonly PropertyUri NamespaceName;
 
         [Uri(Vocabularies.At)]
-        Digest,
+        public static readonly PropertyUri Digest;
         [Uri(Vocabularies.At)]
-        Source,
+        public static readonly PropertyUri Source;
         [Uri(Vocabularies.At, "prefLabel")]
-        AtPrefLabel,
+        public static readonly PropertyUri AtPrefLabel;
         [Uri(Vocabularies.At, "altLabel")]
-        AtAltLabel,
+        public static readonly PropertyUri AtAltLabel;
         [Uri(Vocabularies.At)]
-        PathObject,
+        public static readonly PropertyUri PathObject;
         [Uri(Vocabularies.At)]
-        ExtensionObject,
+        public static readonly PropertyUri ExtensionObject;
         [Uri(Vocabularies.At)]
-        VolumeLabel,
+        public static readonly PropertyUri VolumeLabel;
         [Uri(Vocabularies.At)]
-        Visited,
+        public static readonly PropertyUri Visited;
+
+        static Properties()
+        {
+            typeof(Properties).InitializeUris();
+        }
     }
 }

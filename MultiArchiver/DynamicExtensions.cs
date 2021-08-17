@@ -19,7 +19,7 @@ namespace IS4.MultiArchiver
             }
         }
 
-        public static bool TrySet(this ILinkedNode node, Properties property, ValueType value)
+        public static bool TrySet(this ILinkedNode node, PropertyUri property, ValueType value)
         {
             try{
                 node.Set(property, (dynamic)value);

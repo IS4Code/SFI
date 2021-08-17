@@ -6,12 +6,12 @@ namespace IS4.MultiArchiver.Analyzers
 {
     public class BinaryFormatAnalyzer<T> : FormatObjectAnalyzer<T, IBinaryFileFormat> where T : class
     {
-        public BinaryFormatAnalyzer(IEnumerable<Classes> recognizedClasses) : base(recognizedClasses)
+        public BinaryFormatAnalyzer(IEnumerable<ClassUri> recognizedClasses) : base(recognizedClasses)
         {
 
         }
 
-        public BinaryFormatAnalyzer(params Classes[] recognizedClasses) : base(recognizedClasses)
+        public BinaryFormatAnalyzer(params ClassUri[] recognizedClasses) : base(recognizedClasses)
         {
 
         }

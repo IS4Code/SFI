@@ -1,63 +1,68 @@
 ﻿namespace IS4.MultiArchiver.Vocabulary
 {
-    public enum Classes
+    public static class Classes
     {
         [Uri(Vocabularies.Schema)]
-        Photograph,
+        public static readonly ClassUri Photograph;
         [Uri(Vocabularies.Schema)]
-        ImageObject,
+        public static readonly ClassUri ImageObject;
         [Uri(Vocabularies.Schema)]
-        AudioObject,
+        public static readonly ClassUri AudioObject;
         [Uri(Vocabularies.Schema)]
-        VideoObject,
+        public static readonly ClassUri VideoObject;
         [Uri(Vocabularies.Schema)]
-        MediaObject,
+        public static readonly ClassUri MediaObject;
         [Uri(Vocabularies.Schema)]
-        SoftwareApplication,
+        public static readonly ClassUri SoftwareApplication;
 
         [Uri(Vocabularies.Cnt)]
-        ContentAsText,
+        public static readonly ClassUri ContentAsText;
         [Uri(Vocabularies.Cnt)]
-        ContentAsBase64,
+        public static readonly ClassUri ContentAsBase64;
         [Uri(Vocabularies.Cnt)]
-        ContentAsXML,
+        public static readonly ClassUri ContentAsXML;
         [Uri(Vocabularies.Cnt)]
-        DoctypeDecl,
+        public static readonly ClassUri DoctypeDecl;
 
         [Uri(Vocabularies.Nfo)]
-        ArchiveItem,
+        public static readonly ClassUri ArchiveItem;
         [Uri(Vocabularies.Nfo)]
-        Archive,
+        public static readonly ClassUri Archive;
         [Uri(Vocabularies.Nfo)]
-        FileDataObject,
+        public static readonly ClassUri FileDataObject;
         [Uri(Vocabularies.Nfo)]
-        FilesystemImage,
+        public static readonly ClassUri FilesystemImage;
         [Uri(Vocabularies.Nfo)]
-        Folder,
+        public static readonly ClassUri Folder;
         [Uri(Vocabularies.Nfo)]
-        Executable,
+        public static readonly ClassUri Executable;
         [Uri(Vocabularies.Nfo)]
-        Audio,
+        public static readonly ClassUri Audio;
         [Uri(Vocabularies.Nfo)]
-        Image,
+        public static readonly ClassUri Image;
         [Uri(Vocabularies.Nfo)]
-        Video,
+        public static readonly ClassUri Video;
         [Uri(Vocabularies.Nfo)]
-        MediaStream,
+        public static readonly ClassUri MediaStream;
         [Uri(Vocabularies.Nfo)]
-        EmbeddedFileDataObject,
+        public static readonly ClassUri EmbeddedFileDataObject;
         [Uri(Vocabularies.Nid3)]
-        ID3Audio,
+        public static readonly ClassUri ID3Audio;
 
         [Uri(Vocabularies.Xis)]
-        Document,
+        public static readonly ClassUri Document;
         [Uri(Vocabularies.Xis)]
-        Element,
+        public static readonly ClassUri Element;
 
         [Uri(Vocabularies.Sec)]
-        Digest,
+        public static readonly ClassUri Digest;
 
         [Uri(Vocabularies.At)]
-        Root,
+        public static readonly ClassUri Root;
+
+        static Classes()
+        {
+            typeof(Classes).InitializeUris();
+        }
     }
 }

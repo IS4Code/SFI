@@ -20,7 +20,7 @@ namespace IS4.MultiArchiver.Formats.Metadata.MetadataReaders
                     continue;
                 }
                 string value;
-                Datatypes datatype;
+                DatatypeUri datatype;
                 switch(directory.GetObject(tag.Type))
                 {
                     case Rational r:

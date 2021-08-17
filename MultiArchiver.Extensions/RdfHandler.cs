@@ -14,10 +14,11 @@ namespace IS4.MultiArchiver.Extensions
     public class RdfHandler : ILinkedNodeFactory
     {
         readonly IRdfHandler handler;
+        int namespaceCounter;
         readonly IEntityAnalyzer baseAnalyzer;
         readonly VocabularyCache<IUriNode> cache;
 
-        public IReadOnlyDictionary<Vocabularies, string> Vocabularies => cache.Vocabularies;
+        public IReadOnlyCollection<VocabularyUri> Vocabularies => cache.Vocabularies;
 
         public ILinkedNode Root { get; }
 
@@ -28,20 +29,20 @@ namespace IS4.MultiArchiver.Extensions
             cache = new VocabularyCache<IUriNode>(handler.CreateUriNode);
             Root = Create(IdentityUriFormatter.Instance, root);
 
-            cache.VocabularyAdded += (vocabulary, uri) => {
+            cache.VocabularyAdded += (vocabulary) => {
                 lock(handler)
                 {
-                    handler.HandleNamespace(vocabulary.ToString().ToLowerInvariant(), new Uri(uri, UriKind.Absolute));
+                    handler.HandleNamespace($"ns{namespaceCounter++}", new Uri(vocabulary.Value, UriKind.Absolute));
                 }
             };
         }
 
-        public ILinkedNode Create(Vocabularies vocabulary, string localName)
+        public ILinkedNode Create(VocabularyUri vocabulary, string localName)
         {
             return new UriNode(handler.CreateUriNode(new EncodedUri(cache[vocabulary] + localName, UriKind.Absolute)), handler, cache);
         }
 
-        public ILinkedNode Create<T>(IUriFormatter<T> formatter, T value)
+        public ILinkedNode Create<T>(IIndividualUriFormatter<T> formatter, T value)
         {
             return new UriNode(handler.CreateUriNode(formatter.FormatUri(value)), handler, cache);
         }

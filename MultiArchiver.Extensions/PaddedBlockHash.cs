@@ -9,7 +9,7 @@ namespace IS4.MultiArchiver
     {
         public int BlockSize { get; }
 
-        public PaddedBlockHash(Individuals identifier, string prefix, int blockSize) : base(identifier, null, sizeof(int) + 2 * BitTorrentHash.HashAlgorithm.HashSize, prefix, FormattingMethod.Base64)
+        public PaddedBlockHash(IndividualUri identifier, string prefix, int blockSize) : base(identifier, null, sizeof(int) + 2 * BitTorrentHash.HashAlgorithm.HashSize, prefix, FormattingMethod.Base64)
         {
             BlockSize = blockSize;
         }

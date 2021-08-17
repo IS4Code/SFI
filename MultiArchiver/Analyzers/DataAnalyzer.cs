@@ -229,7 +229,7 @@ namespace IS4.MultiArchiver.Analyzers
 			return node;
 		}
 
-        class FileMatch : IUriFormatter<bool>
+        class FileMatch : IIndividualUriFormatter<bool>
         {
             readonly bool isBinary;
             public bool IsBinary => isBinary || CharsetMatch?.Charset == null;
