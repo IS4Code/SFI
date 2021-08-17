@@ -102,6 +102,8 @@ namespace IS4.MultiArchiver.Extensions
 
         public void Archive(string file, string output, bool direct = false, bool compressed = false)
         {
+            var graphHandlers = new Dictionary<Uri, IRdfHandler>();
+
             if(direct)
             {
                 Console.Error.WriteLine("Writing data...");
@@ -110,7 +112,7 @@ namespace IS4.MultiArchiver.Extensions
 
                 SetDefaultNamespaces(mapper);
 
-                AnalyzeFile(file, handler, mapper);
+                AnalyzeFile(file, handler, graphHandlers, mapper);
             }else{
                 Console.Error.WriteLine("Reading data...");
 
@@ -118,7 +120,7 @@ namespace IS4.MultiArchiver.Extensions
 
                 SetDefaultNamespaces(graph.NamespaceMap);
 
-                AnalyzeFile(file, handler, null);
+                AnalyzeFile(file, handler, graphHandlers, null);
 
                 Console.Error.WriteLine("Saving...");
 
@@ -128,9 +130,9 @@ namespace IS4.MultiArchiver.Extensions
 
         const string root = "http://archive.data.is4.site/.well-known/genid";
 
-        private void AnalyzeFile(string file, IRdfHandler rdfHandler, INamespaceMapper mapper)
+        private void AnalyzeFile(string file, IRdfHandler rdfHandler, IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers, INamespaceMapper mapper)
         {
-            var handler = new RdfHandler(new Uri(root), rdfHandler, this);
+            var handler = new RdfHandler(new Uri(root), this, rdfHandler, graphHandlers);
             rdfHandler.StartRdf();
             try{
                 if(mapper != null)

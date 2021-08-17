@@ -11,40 +11,50 @@ using VDS.RDF;
 
 namespace IS4.MultiArchiver.Extensions
 {
-    public class RdfHandler : ILinkedNodeFactory
+    public class RdfHandler : VocabularyCache<IUriNode, IRdfHandler>, ILinkedNodeFactory
     {
-        readonly IRdfHandler handler;
+        readonly IRdfHandler defaultHandler;
+        readonly IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers;
         int namespaceCounter;
         readonly IEntityAnalyzer baseAnalyzer;
-        readonly VocabularyCache<IUriNode> cache;
-
-        public IReadOnlyCollection<VocabularyUri> Vocabularies => cache.Vocabularies;
 
         public ILinkedNode Root { get; }
 
-        public RdfHandler(Uri root, IRdfHandler handler, IEntityAnalyzer baseAnalyzer)
+        public RdfHandler(Uri root, IEntityAnalyzer baseAnalyzer, IRdfHandler defaultHandler, IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers)
+            : base(defaultHandler.CreateUriNode, uri => graphHandlers[uri])
         {
-            this.handler = handler;
+            this.defaultHandler = defaultHandler;
+            this.graphHandlers = graphHandlers;
             this.baseAnalyzer = baseAnalyzer;
-            cache = new VocabularyCache<IUriNode>(handler.CreateUriNode);
-            Root = Create(IdentityUriFormatter.Instance, root);
+            Root = Create(UriFormatter.Instance, root);
 
-            cache.VocabularyAdded += (vocabulary) => {
-                lock(handler)
+            VocabularyAdded += (vocabulary) => {
+                var prefix = $"ns{namespaceCounter++}";
+                var uri = new Uri(vocabulary.Value, UriKind.Absolute);
+                AddNamespace(defaultHandler, prefix, uri);
+                foreach(var handler in graphHandlers.Values)
                 {
-                    handler.HandleNamespace($"ns{namespaceCounter++}", new Uri(vocabulary.Value, UriKind.Absolute));
+                    AddNamespace(handler, prefix, uri);
                 }
             };
         }
 
+        private void AddNamespace(IRdfHandler handler, string prefix, Uri uri)
+        {
+            lock(handler)
+            {
+                handler.HandleNamespace(prefix, uri);
+            }
+        }
+
         public ILinkedNode Create(VocabularyUri vocabulary, string localName)
         {
-            return new UriNode(handler.CreateUriNode(new EncodedUri(cache[vocabulary] + localName, UriKind.Absolute)), handler, cache);
+            return new UriNode(defaultHandler.CreateUriNode(new EncodedUri(vocabulary.Value + localName, UriKind.Absolute)), defaultHandler, this);
         }
 
         public ILinkedNode Create<T>(IIndividualUriFormatter<T> formatter, T value)
         {
-            return new UriNode(handler.CreateUriNode(formatter.FormatUri(value)), handler, cache);
+            return new UriNode(defaultHandler.CreateUriNode(formatter.FormatUri(value)), defaultHandler, this);
         }
 
         public ILinkedNode Create<T>(ILinkedNode parent, T entity) where T : class
@@ -74,14 +84,13 @@ namespace IS4.MultiArchiver.Extensions
             return IsSafeString(str);
         }
 
-        class UriNode : LinkedNode<INode>
+        class UriNode : LinkedNode<INode, IRdfHandler>
         {
-            readonly IRdfHandler handler;
+            IRdfHandler handler => Graph;
 
-            public UriNode(INode subject, IRdfHandler handler, IVocabularyCache<INode> cache) : base(subject, cache)
+            public UriNode(INode subject, IRdfHandler handler, IVocabularyCache<INode, IRdfHandler> cache) : base(subject, handler, cache)
             {
                 if(!(subject is IUriNode)) throw new ArgumentException(null, nameof(subject));
-                this.handler = handler;
             }
 
             protected override void HandleTriple(INode subj, INode pred, INode obj)
@@ -142,9 +151,14 @@ namespace IS4.MultiArchiver.Extensions
                 return ((IUriNode)node).Uri;
             }
 
-            protected override LinkedNode<INode> CreateNew(INode subject)
+            protected override LinkedNode<INode, IRdfHandler> CreateNew(INode subject, IRdfHandler graph)
             {
                 return new UriNode(subject, handler, Cache);
+            }
+
+            protected override IRdfHandler CreateGraphNode(Uri uri)
+            {
+                return ((RdfHandler)Cache).graphHandlers[uri];
             }
         }
     }

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace IS4.MultiArchiver.Services
 {
-    public interface IVocabularyCache<out TNode> where TNode : class
+    public interface IVocabularyCache<out TNode, out TGraphNode> where TNode : class where TGraphNode : class
     {
         TNode this[ClassUri name] { get; }
         TNode this[PropertyUri name] { get; }
         TNode this[IndividualUri name] { get; }
         TNode this[DatatypeUri name] { get; }
-        TNode this[VocabularyUri name] { get; }
+        TGraphNode this[GraphUri name] { get; }
         IReadOnlyCollection<VocabularyUri> Vocabularies { get; }
     }
 }

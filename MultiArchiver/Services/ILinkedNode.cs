@@ -42,16 +42,21 @@ namespace IS4.MultiArchiver.Services
 
         ILinkedNode this[string subName] { get; }
         ILinkedNode this[IIndividualUriFormatter<Uri> subFormatter] { get; }
+
+        ILinkedNode In(GraphUri graph);
+        ILinkedNode In<TGraph>(IGraphUriFormatter<TGraph> graphFormatter, TGraph value);
     }
 
-    public abstract class LinkedNode<TNode> : ILinkedNode where TNode : class, IEquatable<TNode>
+    public abstract class LinkedNode<TNode, TGraphNode> : ILinkedNode where TNode : class where TGraphNode : class
     {
-        protected IVocabularyCache<TNode> Cache { get; }
         protected TNode Subject { get; }
+        protected TGraphNode Graph { get; }
+        protected IVocabularyCache<TNode, TGraphNode> Cache { get; }
 
-        public LinkedNode(TNode subject, IVocabularyCache<TNode> cache)
+        public LinkedNode(TNode subject, TGraphNode graph, IVocabularyCache<TNode, TGraphNode> cache)
         {
             Subject = subject ?? throw new ArgumentNullException(nameof(subject));
+            Graph = graph;
             Cache = cache;
         }
 
@@ -64,13 +69,21 @@ namespace IS4.MultiArchiver.Services
         protected abstract TNode CreateNode(bool value);
         protected abstract TNode CreateNode<T>(T value) where T : struct, IEquatable<T>, IFormattable;
 
+        protected abstract TGraphNode CreateGraphNode(Uri uri);
+
         protected abstract Uri GetUri(TNode node);
-        protected abstract LinkedNode<TNode> CreateNew(TNode subject);
+        protected abstract LinkedNode<TNode, TGraphNode> CreateNew(TNode subject, TGraphNode graph);
 
         private TNode CreateNode<T>(IUriFormatter<T> formatter, T value)
         {
             var uri = formatter.FormatUri(value);
             return uri != null ? CreateNode(uri) : null;
+        }
+
+        private TGraphNode CreateGraphNode<T>(IGraphUriFormatter<T> formatter, T value)
+        {
+            var uri = formatter.FormatUri(value);
+            return uri != null ? CreateGraphNode(uri) : null;
         }
 
         public string Scheme => GetUri(Subject).Scheme;
@@ -130,7 +143,7 @@ namespace IS4.MultiArchiver.Services
         public void Set(PropertyUri property, VocabularyUri vocabulary, string localName)
         {
             if(localName == null) throw new ArgumentNullException(nameof(localName));
-            HandleTriple(Subject, Cache[property], CreateNode((Uri)new EncodedUri(GetUri(Cache[vocabulary]).AbsoluteUri + localName, UriKind.Absolute)));
+            HandleTriple(Subject, Cache[property], CreateNode((Uri)new EncodedUri(vocabulary.Value + localName, UriKind.Absolute)));
         }
 
         public void Set<T>(PropertyUri property, IIndividualUriFormatter<T> formatter, T value)
@@ -141,7 +154,7 @@ namespace IS4.MultiArchiver.Services
         public void Set(PropertyUri property, ILinkedNode value)
         {
             if(value == null) throw new ArgumentNullException(nameof(value));
-            if(!(value is LinkedNode<TNode> node)) throw new ArgumentException(null, nameof(value));
+            if(!(value is LinkedNode<TNode, TGraphNode> node)) throw new ArgumentException(null, nameof(value));
             HandleTriple(Subject, Cache[property], node.Subject);
         }
 
@@ -205,7 +218,7 @@ namespace IS4.MultiArchiver.Services
         public void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, VocabularyUri vocabulary, string localName)
         {
             if(localName == null) throw new ArgumentNullException(nameof(localName));
-            HandleTriple(Subject, CreateNode(propertyFormatter, propertyValue), CreateNode((Uri)new EncodedUri(GetUri(Cache[vocabulary]).AbsoluteUri + localName, UriKind.Absolute)));
+            HandleTriple(Subject, CreateNode(propertyFormatter, propertyValue), CreateNode((Uri)new EncodedUri(vocabulary.Value + localName, UriKind.Absolute)));
         }
 
         public void Set<TProp, TValue>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, IIndividualUriFormatter<TValue> formatter, TValue value)
@@ -216,7 +229,7 @@ namespace IS4.MultiArchiver.Services
         public void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, ILinkedNode value)
         {
             if(value == null) throw new ArgumentNullException(nameof(value));
-            if(!(value is LinkedNode<TNode> node)) throw new ArgumentException(null, nameof(value));
+            if(!(value is LinkedNode<TNode, TGraphNode> node)) throw new ArgumentException(null, nameof(value));
             HandleTriple(Subject, CreateNode(propertyFormatter, propertyValue), node.Subject);
         }
 
@@ -235,34 +248,46 @@ namespace IS4.MultiArchiver.Services
             HandleTriple(Subject, CreateNode(propertyFormatter, propertyValue), CreateNode(value));
         }
 
-        public LinkedNode<TNode> this[string subName] {
+        public LinkedNode<TNode, TGraphNode> this[string subName] {
             get{
                 if(subName == null) throw new ArgumentNullException(nameof(subName));
                 var uri = GetUri(Subject);
-                return CreateNew(CreateNode((Uri)new EncodedUri(uri.AbsoluteUri + (subName.StartsWith("#") ? "" : String.IsNullOrEmpty(uri.Authority + uri.Fragment) ? "#" : "/") + subName)));
+                return CreateNew(CreateNode((Uri)new EncodedUri(uri.AbsoluteUri + (subName.StartsWith("#") ? "" : String.IsNullOrEmpty(uri.Authority + uri.Fragment) ? "#" : "/") + subName)), Graph);
             }
         }
 
         ILinkedNode ILinkedNode.this[string subName] => this[subName];
 
-        public LinkedNode<TNode> this[IIndividualUriFormatter<Uri> subFormatter] {
+        public LinkedNode<TNode, TGraphNode> this[IIndividualUriFormatter<Uri> subFormatter] {
             get{
                 if(subFormatter == null) throw new ArgumentNullException(nameof(subFormatter));
                 var node = CreateNode(subFormatter, GetUri(Subject));
-                return node != null ? CreateNew(node) : null;
+                return node != null ? CreateNew(node, Graph) : null;
             }
         }
 
         ILinkedNode ILinkedNode.this[IIndividualUriFormatter<Uri> subFormatter] => this[subFormatter];
 
+        public ILinkedNode In(GraphUri graph)
+        {
+            return CreateNew(Subject, Cache[graph]);
+        }
+
+        public ILinkedNode In<TGraph>(IGraphUriFormatter<TGraph> graphFormatter, TGraph value)
+        {
+            if(graphFormatter == null) throw new ArgumentNullException(nameof(graphFormatter));
+            var node = CreateGraphNode(graphFormatter, value);
+            return CreateNew(Subject, node ?? Graph);
+        }
+
         public bool Equals(ILinkedNode other)
         {
-            return other is LinkedNode<TNode> node && Subject.Equals(node.Subject);
+            return other is LinkedNode<TNode, TGraphNode> node && Subject.Equals(node.Subject);
         }
 
         public override bool Equals(object obj)
         {
-            return obj is LinkedNode<TNode> node && Subject.Equals(node.Subject);
+            return obj is LinkedNode<TNode, TGraphNode> node && Subject.Equals(node.Subject);
         }
 
         public override int GetHashCode()
