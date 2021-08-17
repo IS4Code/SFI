@@ -26,7 +26,6 @@
         public const string Urim = "http://uri4uri.net/mime/";
         public const string Uris = "http://uri4uri.net/suffix/";
         public const string File = "file:///";
-        public const string A = "http://archive.data.is4.site/";
         public const string At = "http://archive.data.is4.site/terms/";
         public const string Ad = "http://archive.data.is4.site/data/";
         public const string Ah = "http://archive.data.is4.site/hash/";

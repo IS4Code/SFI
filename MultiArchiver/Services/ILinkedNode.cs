@@ -47,7 +47,7 @@ namespace IS4.MultiArchiver.Services
         ILinkedNode In<TGraph>(IGraphUriFormatter<TGraph> graphFormatter, TGraph value);
     }
 
-    public abstract class LinkedNode<TNode, TGraphNode> : ILinkedNode where TNode : class where TGraphNode : class
+    public abstract class LinkedNode<TNode, TGraphNode> : ILinkedNode, IEquatable<LinkedNode<TNode, TGraphNode>> where TNode : class, IEquatable<TNode> where TGraphNode : class
     {
         protected TNode Subject { get; }
         protected TGraphNode Graph { get; }
@@ -280,14 +280,19 @@ namespace IS4.MultiArchiver.Services
             return CreateNew(Subject, node ?? Graph);
         }
 
+        public bool Equals(LinkedNode<TNode, TGraphNode> node)
+        {
+            return Subject.Equals(node.Subject) && Object.Equals(Graph, node.Graph);
+        }
+
         public bool Equals(ILinkedNode other)
         {
-            return other is LinkedNode<TNode, TGraphNode> node && Subject.Equals(node.Subject);
+            return other is LinkedNode<TNode, TGraphNode> node && Equals(node);
         }
 
         public override bool Equals(object obj)
         {
-            return obj is LinkedNode<TNode, TGraphNode> node && Subject.Equals(node.Subject);
+            return obj is LinkedNode<TNode, TGraphNode> node && Equals(node);
         }
 
         public override int GetHashCode()

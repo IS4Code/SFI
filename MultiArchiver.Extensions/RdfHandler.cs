@@ -86,8 +86,6 @@ namespace IS4.MultiArchiver.Extensions
 
         class UriNode : LinkedNode<INode, IRdfHandler>
         {
-            IRdfHandler handler => Graph;
-
             public UriNode(INode subject, IRdfHandler handler, IVocabularyCache<INode, IRdfHandler> cache) : base(subject, handler, cache)
             {
                 if(!(subject is IUriNode)) throw new ArgumentException(null, nameof(subject));
@@ -96,49 +94,50 @@ namespace IS4.MultiArchiver.Extensions
             protected override void HandleTriple(INode subj, INode pred, INode obj)
             {
                 var date = DateTime.UtcNow;
-                lock(handler)
+                lock(Graph)
                 {
-                    handler.HandleTriple(new Triple(subj, pred, obj));
+                    Graph.HandleTriple(new Triple(subj, pred, obj));
                 }
-                if(!(pred is IUriNode uriNode) || uriNode.Uri.AbsoluteUri != Properties.Visited.Value)
+                var meta = In(Graphs.Metadata);
+                if(meta != null && (!Equals(meta) || !(pred is IUriNode uriNode) || uriNode.Uri.AbsoluteUri != Properties.Visited.Value))
                 {
-                    In(Graphs.Meta).Set(Properties.Visited, date);
+                    meta.Set(Properties.Visited, date);
                 }
             }
 
             protected override INode CreateNode(Uri uri)
             {
-                return handler.CreateUriNode(uri);
+                return Graph.CreateUriNode(uri);
             }
 
             protected override INode CreateNode(string value)
             {
-                if(IsSafeString(value)) return handler.CreateLiteralNode(value);
-                return handler.CreateLiteralNode($@"{{""@value"":{HttpUtility.JavaScriptStringEncode(value, true)}}}", GetUri(Cache[Datatypes.Json]));
+                if(IsSafeString(value)) return Graph.CreateLiteralNode(value);
+                return Graph.CreateLiteralNode($@"{{""@value"":{HttpUtility.JavaScriptStringEncode(value, true)}}}", GetUri(Cache[Datatypes.Json]));
             }
 
             protected override INode CreateNode(string value, INode datatype)
             {
                 var dt = GetUri(datatype);
-                if(IsSafeString(value)) return handler.CreateLiteralNode(value, dt);
-                return handler.CreateLiteralNode($@"{{""@value"":{HttpUtility.JavaScriptStringEncode(value, true)},""@type"":{HttpUtility.JavaScriptStringEncode(dt.IsAbsoluteUri ? dt.AbsoluteUri : dt.OriginalString, true)}}}", GetUri(Cache[Datatypes.Json]));
+                if(IsSafeString(value)) return Graph.CreateLiteralNode(value, dt);
+                return Graph.CreateLiteralNode($@"{{""@value"":{HttpUtility.JavaScriptStringEncode(value, true)},""@type"":{HttpUtility.JavaScriptStringEncode(dt.IsAbsoluteUri ? dt.AbsoluteUri : dt.OriginalString, true)}}}", GetUri(Cache[Datatypes.Json]));
             }
 
             protected override INode CreateNode(string value, string language)
             {
-                if(IsSafeString(value)) return handler.CreateLiteralNode(value, language);
-                return handler.CreateLiteralNode($@"{{""@value"":{HttpUtility.JavaScriptStringEncode(value, true)},""@language"":{HttpUtility.JavaScriptStringEncode(language, true)}}}", GetUri(Cache[Datatypes.Json]));
+                if(IsSafeString(value)) return Graph.CreateLiteralNode(value, language);
+                return Graph.CreateLiteralNode($@"{{""@value"":{HttpUtility.JavaScriptStringEncode(value, true)},""@language"":{HttpUtility.JavaScriptStringEncode(language, true)}}}", GetUri(Cache[Datatypes.Json]));
             }
 
             protected override INode CreateNode(bool value)
             {
-                return LiteralExtensions.ToLiteral(value, handler);
+                return LiteralExtensions.ToLiteral(value, Graph);
             }
 
             protected override INode CreateNode<T>(T value)
             {
                 try{
-                    return LiteralExtensions.ToLiteral((dynamic)value, handler);
+                    return LiteralExtensions.ToLiteral((dynamic)value, Graph);
                 }catch(RuntimeBinderException e)
                 {
                     throw new ArgumentException(null, nameof(value), e);
@@ -152,7 +151,7 @@ namespace IS4.MultiArchiver.Extensions
 
             protected override LinkedNode<INode, IRdfHandler> CreateNew(INode subject, IRdfHandler graph)
             {
-                return new UriNode(subject, handler, Cache);
+                return new UriNode(subject, Graph, Cache);
             }
 
             protected override IRdfHandler CreateGraphNode(Uri uri)
