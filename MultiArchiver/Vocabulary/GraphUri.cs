@@ -16,7 +16,7 @@ namespace IS4.MultiArchiver.Vocabulary
         }
 
         public GraphUri(UriAttribute uriAttribute, string fieldName)
-            : this(uriAttribute.Vocabulary, uriAttribute.LocalName ?? fieldName)
+            : this(uriAttribute.Vocabulary, uriAttribute.LocalName ?? fieldName.ToCamelCase())
         {
 
         }

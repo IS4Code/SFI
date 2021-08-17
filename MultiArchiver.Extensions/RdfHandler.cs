@@ -21,7 +21,7 @@ namespace IS4.MultiArchiver.Extensions
         public ILinkedNode Root { get; }
 
         public RdfHandler(Uri root, IEntityAnalyzer baseAnalyzer, IRdfHandler defaultHandler, IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers)
-            : base(defaultHandler.CreateUriNode, uri => graphHandlers[uri])
+            : base(defaultHandler.CreateUriNode, uri => graphHandlers.TryGetValue(uri, out var handler) ? handler : defaultHandler)
         {
             this.defaultHandler = defaultHandler;
             this.graphHandlers = graphHandlers;
@@ -95,16 +95,15 @@ namespace IS4.MultiArchiver.Extensions
 
             protected override void HandleTriple(INode subj, INode pred, INode obj)
             {
+                var date = DateTime.UtcNow;
                 lock(handler)
                 {
-                    HandleTripleInner(new Triple(subj, pred, obj));
-                    HandleTripleInner(new Triple(subj, Cache[Properties.Visited], DateTime.UtcNow.ToLiteral(handler, false)));
+                    handler.HandleTriple(new Triple(subj, pred, obj));
                 }
-            }
-
-            private void HandleTripleInner(Triple t)
-            {
-                handler.HandleTriple(t);
+                if(!(pred is IUriNode uriNode) || uriNode.Uri.AbsoluteUri != Properties.Visited.Value)
+                {
+                    In(Graphs.Meta).Set(Properties.Visited, date);
+                }
             }
 
             protected override INode CreateNode(Uri uri)
@@ -158,7 +157,8 @@ namespace IS4.MultiArchiver.Extensions
 
             protected override IRdfHandler CreateGraphNode(Uri uri)
             {
-                return ((RdfHandler)Cache).graphHandlers[uri];
+                var parent = (RdfHandler)Cache;
+                return parent.graphHandlers.TryGetValue(uri, out var handler) ? handler : parent.defaultHandler;
             }
         }
     }
