@@ -1,4 +1,4 @@
-﻿using IS4.MultiArchiver.Formats.Data;
+﻿using IS4.MultiArchiver.Media.Data;
 using IS4.MultiArchiver.Services;
 using System.IO;
 using System.Text;

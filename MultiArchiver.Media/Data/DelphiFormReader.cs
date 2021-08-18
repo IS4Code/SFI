@@ -5,7 +5,7 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace IS4.MultiArchiver.Formats.Data
+namespace IS4.MultiArchiver.Media.Data
 {
     public static class DelphiFormReader
     {
