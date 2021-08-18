@@ -63,11 +63,20 @@ namespace IS4.MultiArchiver.Extensions
             return baseAnalyzer.Analyze(parent, entity, this);
         }
 
-        static readonly Regex unsafeCharacters = new Regex(@"^\p{M}|[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x84\x86-\x9F]|(^|[^\uD800-\uDBFF])[\uDC00-\uDFFF]|[\uD800-\uDBFF]($|[^\uDC00-\uDFFF])", RegexOptions.Compiled | RegexOptions.Multiline);
+        /// <summary>
+        /// Detects a string that is unsafe for embedding or displaying.
+        /// XML 1.0 prohibits C0 control codes and discourages the use of C1, with the exception of line separators;
+        /// such characters cannot be encoded in RDF/XML and are semantically invalid.
+        /// Unpaired surrogate characters are also prohibited (since the input must be a valid UTF-16 string).
+        /// Additionally, a leading combining character or ZWJ could cause troubles
+        /// when displayed.
+        /// Other unassigned or invalid characters are detected later.
+        /// </summary>
+        static readonly Regex unsafeStringRegex = new Regex(@"^[\p{M}\u200D]|[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x84\x86-\x9F]|(^|[^\uD800-\uDBFF])[\uDC00-\uDFFF]|[\uD800-\uDBFF]($|[^\uDC00-\uDFFF])", RegexOptions.Compiled | RegexOptions.Multiline);
 
         static bool IsSafeString(string str)
         {
-            if(unsafeCharacters.IsMatch(str)) return false;
+            if(unsafeStringRegex.IsMatch(str)) return false;
             var e = StringInfo.GetTextElementEnumerator(str);
             while(e.MoveNext())
             {
