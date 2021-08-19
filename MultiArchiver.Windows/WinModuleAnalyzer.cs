@@ -136,17 +136,17 @@ namespace IS4.MultiArchiver.Analyzers
                         foreach(var trans in translations)
                         {
                             var enc = useAnsi ? Encoding.GetEncoding(trans.wCodePage, EncoderFallback.ReplacementFallback, DecoderFallback.ReplacementFallback) : Encoding.Unicode;
-                            string lang;
+                            CultureInfo culture;
                             if(trans.wLanguage > 0)
                             {
                                 try{
-                                    lang = CultureInfo.GetCultureInfo(trans.wLanguage).IetfLanguageTag;
+                                    culture = CultureInfo.GetCultureInfo(trans.wLanguage);
                                 }catch(CultureNotFoundException)
                                 {
-                                    lang = null;
+                                    culture = null;
                                 }
                             }else{
-                                lang = null;
+                                culture = null;
                             }
                             var dir = $@"\StringFileInfo\{trans.wLanguage:X4}{trans.wCodePage:X4}\";
                             foreach(var pair in predefinedProperties)
@@ -157,9 +157,9 @@ namespace IS4.MultiArchiver.Analyzers
                                     var value = enc.GetString((byte*)text, len).Substring(0, unchecked((int)textLen));
                                     int end = value.IndexOf('\0');
                                     if(end != -1) value = value.Substring(0, end);
-                                    if(lang != null && pair.Value.lang)
+                                    if(culture != null && pair.Value.lang)
                                     {
-                                        node.Set(pair.Value.prop, value, lang);
+                                        node.Set(pair.Value.prop, value, new LanguageCode(culture));
                                     }else{
                                         node.Set(pair.Value.prop, value);
                                     }

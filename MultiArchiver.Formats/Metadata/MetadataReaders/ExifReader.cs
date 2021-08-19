@@ -85,10 +85,11 @@ namespace IS4.MultiArchiver.Formats.Metadata.MetadataReaders
 
             }
 
-            public Uri FormatUri(string key)
-            {
-                key = key.Substring(0, 1).ToLowerInvariant() + key.Substring(1);
-                return new Uri("http://www.w3.org/2003/12/exif/ns#" + key, UriKind.Absolute);
+            public Uri this[string key] {
+                get {
+                    key = key.Substring(0, 1).ToLowerInvariant() + key.Substring(1);
+                    return new Uri(Vocabularies.Uri.Exif + key, UriKind.Absolute);
+                }
             }
         }
 

@@ -70,7 +70,8 @@ namespace IS4.MultiArchiver.Extensions
             archiver.DataAnalyzer.Formats.Add(new GenericModuleFormat());
             archiver.DataAnalyzer.Formats.Add(new LinearModuleFormat());
             archiver.DataAnalyzer.Formats.Add(new Win16ModuleFormat());
-            archiver.DataAnalyzer.Formats.Add(new Win32ModuleFormat());
+            //archiver.DataAnalyzer.Formats.Add(new Win32ModuleFormat());
+            archiver.DataAnalyzer.Formats.Add(new Win32ModuleFormatManaged());
             archiver.DataAnalyzer.Formats.Add(new WaveFormat());
             //archiver.DataAnalyzer.Formats.Add(new OggFormat());
             archiver.DataAnalyzer.Formats.Add(new WasapiFormat(false));
@@ -184,14 +185,14 @@ namespace IS4.MultiArchiver.Extensions
             {
                 if(hash.FormattingMethod != FormattingMethod.Base64)
                 {
-                    mapper.AddNamespace(hash.Name, hash.FormatUri(Array.Empty<byte>()));
+                    mapper.AddNamespace(hash.Name, hash[Array.Empty<byte>()]);
                 }
             }
             foreach(var hash in FileAnalyzer.HashAlgorithms)
             {
                 if(hash.FormattingMethod != FormattingMethod.Base64)
                 {
-                    mapper.AddNamespace(hash.Name, hash.FormatUri(Array.Empty<byte>()));
+                    mapper.AddNamespace(hash.Name, hash[Array.Empty<byte>()]);
                 }
             }
             mapper.AddNamespace("id", new Uri(root + "/"));

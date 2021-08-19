@@ -4,7 +4,7 @@ namespace IS4.MultiArchiver.Services
 {
     public interface IUriFormatter<in T>
     {
-        Uri FormatUri(T value);
+        Uri this[T value] { get; }
     }
 
     public interface IIndividualUriFormatter<in T> : IUriFormatter<T>
@@ -43,14 +43,8 @@ namespace IS4.MultiArchiver.Services
 
         }
 
-        public Uri FormatUri(string value)
-        {
-            return new Uri(value, UriKind.Absolute);
-        }
+        public Uri this[string value] => new Uri(value, UriKind.Absolute);
 
-        public Uri FormatUri(Uri value)
-        {
-            return value;
-        }
+        public Uri this[Uri value] => value;
     }
 }

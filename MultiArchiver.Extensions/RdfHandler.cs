@@ -47,14 +47,9 @@ namespace IS4.MultiArchiver.Extensions
             }
         }
 
-        public ILinkedNode Create(VocabularyUri vocabulary, string localName)
-        {
-            return new UriNode(defaultHandler.CreateUriNode(new EncodedUri(vocabulary.Value + localName, UriKind.Absolute)), defaultHandler, this);
-        }
-
         public ILinkedNode Create<T>(IIndividualUriFormatter<T> formatter, T value)
         {
-            return new UriNode(defaultHandler.CreateUriNode(formatter.FormatUri(value)), defaultHandler, this);
+            return new UriNode(defaultHandler.CreateUriNode(formatter[value]), defaultHandler, this);
         }
 
         public ILinkedNode Create<T>(ILinkedNode parent, T entity) where T : class

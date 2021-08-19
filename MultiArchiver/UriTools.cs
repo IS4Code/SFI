@@ -15,20 +15,14 @@ namespace IS4.MultiArchiver
 
         class PublicIdFormatterClass : IIndividualUriFormatter<string>
         {
-            public Uri FormatUri(string value)
-            {
-                return CreatePublicId(value);
-            }
+            public Uri this[string value] => CreatePublicId(value);
         }
 
         public static readonly IIndividualUriFormatter<(string mediaType, ArraySegment<byte> data)> DataUriFormatter = new DataUriFormatterClass();
 
         class DataUriFormatterClass : IIndividualUriFormatter<(string mediaType, ArraySegment<byte> data)>
         {
-            public Uri FormatUri((string mediaType, ArraySegment<byte> data) value)
-            {
-                return new Uri($"data:{value.mediaType};base64,{Convert.ToBase64String(value.data.Array, value.data.Offset, value.data.Count)}", UriKind.Absolute);
-            }
+            public Uri this[(string mediaType, ArraySegment<byte> data) value] => new Uri($"data:{value.mediaType};base64,{Convert.ToBase64String(value.data.Array, value.data.Offset, value.data.Count)}", UriKind.Absolute);
         }
 
         public static Uri CreatePublicId(string id)

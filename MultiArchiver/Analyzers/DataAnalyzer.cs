@@ -180,7 +180,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             var label = $"{(isBinary ? "binary data" : "text")} ({sizeSuffix})";
 
-            node.Set(Properties.PrefLabel, label, "en");
+            node.Set(Properties.PrefLabel, label, LanguageCode.En);
 
             node.SetClass(isBinary ? Classes.ContentAsBase64 : Classes.ContentAsText);
             node.Set(Properties.Extent, actualLength, Datatypes.Byte);
@@ -209,7 +209,7 @@ namespace IS4.MultiArchiver.Analyzers
                     if(extension != null)
                     {
                         var formatLabel = result.Select(r => r.Label).FirstOrDefault(l => l != null);
-                        result.Key.Set(Properties.PrefLabel, $"{extension.ToUpperInvariant()} object ({formatLabel ?? sizeSuffix})", "en");
+                        result.Key.Set(Properties.PrefLabel, $"{extension.ToUpperInvariant()} object ({formatLabel ?? sizeSuffix})", LanguageCode.En);
                     }
                 }
             }
@@ -222,7 +222,7 @@ namespace IS4.MultiArchiver.Analyzers
                 if(formatNode != null)
                 {
                     formatNode.Set(Properties.HasFormat, node);
-                    formatNode.Set(Properties.PrefLabel, $"{magicText} object ({sizeSuffix})", "en");
+                    formatNode.Set(Properties.PrefLabel, $"{magicText} object ({sizeSuffix})", LanguageCode.En);
                 }
             }
 
@@ -316,22 +316,23 @@ namespace IS4.MultiArchiver.Analyzers
                 }
             }
 
-            Uri IUriFormatter<bool>.FormatUri(bool _)
-            {
-                string base64Encoded = ";base64," + Convert.ToBase64String(Signature.Array, Signature.Offset, Signature.Count);
-                string uriEncoded = "," + UriTools.EscapeDataBytes(Signature.Array, Signature.Offset, Signature.Count);
+            Uri IUriFormatter<bool>.this[bool _] {
+                get {
+                    string base64Encoded = ";base64," + Convert.ToBase64String(Signature.Array, Signature.Offset, Signature.Count);
+                    string uriEncoded = "," + UriTools.EscapeDataBytes(Signature.Array, Signature.Offset, Signature.Count);
 
-                string data = uriEncoded.Length <= base64Encoded.Length ? uriEncoded : base64Encoded;
+                    string data = uriEncoded.Length <= base64Encoded.Length ? uriEncoded : base64Encoded;
 
-                switch(CharsetMatch?.Charset.ToLowerInvariant())
-                {
-                    case null:
-                        return new Uri("data:application/octet-stream" + data, UriKind.Absolute);
-                    case "ascii":
-                    case "us-ascii":
-                        return new EncodedUri("data:" + data, UriKind.Absolute);
-                    default:
-                        return new EncodedUri("data:;charset=" + CharsetMatch.Charset + data, UriKind.Absolute);
+                    switch(CharsetMatch?.Charset.ToLowerInvariant())
+                    {
+                        case null:
+                            return new Uri("data:application/octet-stream" + data, UriKind.Absolute);
+                        case "ascii":
+                        case "us-ascii":
+                            return new EncodedUri("data:" + data, UriKind.Absolute);
+                        default:
+                            return new EncodedUri("data:;charset=" + CharsetMatch.Charset + data, UriKind.Absolute);
+                    }
                 }
             }
 

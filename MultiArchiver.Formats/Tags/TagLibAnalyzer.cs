@@ -150,10 +150,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         };
 
-        Uri IUriFormatter<string>.FormatUri(string name)
-        {
-            return new Uri($"http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#{name}", UriKind.Absolute);
-        }
+        Uri IUriFormatter<string>.this[string name] => new Uri(Vocabularies.Uri.Nid3 + name, UriKind.Absolute);
 
         string Analyze(ILinkedNode node, ICodec codec, ILinkedNodeFactory nodeFactory)
         {

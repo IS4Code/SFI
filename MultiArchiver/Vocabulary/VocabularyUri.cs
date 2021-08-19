@@ -1,10 +1,14 @@
-﻿using System;
+﻿using IS4.MultiArchiver.Services;
+using IS4.MultiArchiver.Tools;
+using System;
 
 namespace IS4.MultiArchiver.Vocabulary
 {
-    public struct VocabularyUri : IEquatable<VocabularyUri>
+    public struct VocabularyUri : IEquatable<VocabularyUri>, IClassUriFormatter<string>, IPropertyUriFormatter<string>, IIndividualUriFormatter<string>, IDatatypeUriFormatter<string>, IGraphUriFormatter<string>
     {
         public string Value { get; }
+
+        public Uri this[string value] => new EncodedUri(Value + value, UriKind.Absolute);
 
         public VocabularyUri(string value)
         {
@@ -34,11 +38,6 @@ namespace IS4.MultiArchiver.Vocabulary
         public static bool operator !=(VocabularyUri a, VocabularyUri b)
         {
             return !a.Equals(b);
-        }
-
-        public static implicit operator VocabularyUri(string value)
-        {
-            return new VocabularyUri(value);
         }
     }
 }

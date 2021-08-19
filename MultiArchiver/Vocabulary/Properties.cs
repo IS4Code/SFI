@@ -2,182 +2,182 @@
 {
     public static class Properties
     {
-        [Uri(Vocabularies.Rdf)]
+        [Uri(Vocabularies.Uri.Rdf)]
         public static readonly PropertyUri Type;
-        [Uri(Vocabularies.Rdf)]
+        [Uri(Vocabularies.Uri.Rdf)]
         public static readonly PropertyUri Value;
 
-        [Uri(Vocabularies.Rdfs)]
+        [Uri(Vocabularies.Uri.Rdfs)]
         public static readonly PropertyUri Label;
-        [Uri(Vocabularies.Rdfs)]
+        [Uri(Vocabularies.Uri.Rdfs)]
         public static readonly PropertyUri SeeAlso;
 
-        [Uri(Vocabularies.Owl)]
+        [Uri(Vocabularies.Uri.Owl)]
         public static readonly PropertyUri SameAs;
 
-        [Uri(Vocabularies.Dcterms)]
+        [Uri(Vocabularies.Uri.Dcterms)]
         public static readonly PropertyUri Description;
-        [Uri(Vocabularies.Dcterms)]
+        [Uri(Vocabularies.Uri.Dcterms)]
         public static readonly PropertyUri HasFormat;
-        [Uri(Vocabularies.Dcterms)]
+        [Uri(Vocabularies.Uri.Dcterms)]
         public static readonly PropertyUri Extent;
-        [Uri(Vocabularies.Dcterms)]
+        [Uri(Vocabularies.Uri.Dcterms)]
         public static readonly PropertyUri Creator;
-        [Uri(Vocabularies.Dcterms)]
+        [Uri(Vocabularies.Uri.Dcterms)]
         public static readonly PropertyUri Modified;
 
-        [Uri(Vocabularies.Dbo)]
+        [Uri(Vocabularies.Uri.Dbo)]
         public static readonly PropertyUri OriginalName;
 
-        [Uri(Vocabularies.Cnt)]
+        [Uri(Vocabularies.Uri.Cnt)]
         public static readonly PropertyUri Bytes;
-        [Uri(Vocabularies.Cnt)]
+        [Uri(Vocabularies.Uri.Cnt)]
         public static readonly PropertyUri Chars;
-        [Uri(Vocabularies.Cnt)]
+        [Uri(Vocabularies.Uri.Cnt)]
         public static readonly PropertyUri CharacterEncoding;
-        [Uri(Vocabularies.Cnt)]
+        [Uri(Vocabularies.Uri.Cnt)]
         public static readonly PropertyUri Rest;
-        [Uri(Vocabularies.Cnt)]
+        [Uri(Vocabularies.Uri.Cnt)]
         public static readonly PropertyUri DoctypeName;
-        [Uri(Vocabularies.Cnt)]
+        [Uri(Vocabularies.Uri.Cnt)]
         public static readonly PropertyUri PublicId;
-        [Uri(Vocabularies.Cnt)]
+        [Uri(Vocabularies.Uri.Cnt)]
         public static readonly PropertyUri SystemId;
-        [Uri(Vocabularies.Cnt, "version")]
+        [Uri(Vocabularies.Uri.Cnt, "version")]
         public static readonly PropertyUri XmlVersion;
-        [Uri(Vocabularies.Cnt, "declaredEncoding")]
+        [Uri(Vocabularies.Uri.Cnt, "declaredEncoding")]
         public static readonly PropertyUri XmlEncoding;
-        [Uri(Vocabularies.Cnt, "standalone")]
+        [Uri(Vocabularies.Uri.Cnt, "standalone")]
         public static readonly PropertyUri XmlStandalone;
-        [Uri(Vocabularies.Cnt)]
+        [Uri(Vocabularies.Uri.Cnt)]
         public static readonly PropertyUri DtDecl;
 
-        [Uri(Vocabularies.Foaf)]
+        [Uri(Vocabularies.Uri.Foaf)]
         public static readonly PropertyUri Depicts;
 
-        [Uri(Vocabularies.Sec)]
+        [Uri(Vocabularies.Uri.Sec)]
         public static readonly PropertyUri CanonicalizationAlgorithm;
-        [Uri(Vocabularies.Sec)]
+        [Uri(Vocabularies.Uri.Sec)]
         public static readonly PropertyUri DigestAlgorithm;
-        [Uri(Vocabularies.Sec)]
+        [Uri(Vocabularies.Uri.Sec)]
         public static readonly PropertyUri DigestValue;
 
-        [Uri(Vocabularies.Schema)]
+        [Uri(Vocabularies.Uri.Schema)]
         public static readonly PropertyUri Name;
-        [Uri(Vocabularies.Schema)]
+        [Uri(Vocabularies.Uri.Schema)]
         public static readonly PropertyUri DownloadUrl;
-        [Uri(Vocabularies.Schema)]
+        [Uri(Vocabularies.Uri.Schema)]
         public static readonly PropertyUri Encoding;
-        [Uri(Vocabularies.Schema)]
+        [Uri(Vocabularies.Uri.Schema)]
         public static readonly PropertyUri EncodingFormat;
-        [Uri(Vocabularies.Schema)]
+        [Uri(Vocabularies.Uri.Schema)]
         public static readonly PropertyUri Version;
-        [Uri(Vocabularies.Schema)]
+        [Uri(Vocabularies.Uri.Schema)]
         public static readonly PropertyUri SoftwareVersion;
-        [Uri(Vocabularies.Schema)]
+        [Uri(Vocabularies.Uri.Schema)]
         public static readonly PropertyUri Thumbnail;
-        [Uri(Vocabularies.Schema)]
+        [Uri(Vocabularies.Uri.Schema)]
         public static readonly PropertyUri Image;
-        [Uri(Vocabularies.Schema)]
+        [Uri(Vocabularies.Uri.Schema)]
         public static readonly PropertyUri CopyrightNotice;
 
-        [Uri(Vocabularies.Nie)]
+        [Uri(Vocabularies.Uri.Nie)]
         public static readonly PropertyUri IsStoredAs;
-        [Uri(Vocabularies.Nie)]
+        [Uri(Vocabularies.Uri.Nie)]
         public static readonly PropertyUri Links;
-        [Uri(Vocabularies.Nie)]
+        [Uri(Vocabularies.Uri.Nie)]
         public static readonly PropertyUri HasPart;
 
-        [Uri(Vocabularies.Nfo)]
+        [Uri(Vocabularies.Uri.Nfo)]
         public static readonly PropertyUri FileName;
-        [Uri(Vocabularies.Nfo)]
+        [Uri(Vocabularies.Uri.Nfo)]
         public static readonly PropertyUri BelongsToContainer;
-        [Uri(Vocabularies.Nfo)]
+        [Uri(Vocabularies.Uri.Nfo)]
         public static readonly PropertyUri FileCreated;
-        [Uri(Vocabularies.Nfo)]
+        [Uri(Vocabularies.Uri.Nfo)]
         public static readonly PropertyUri FileLastAccessed;
-        [Uri(Vocabularies.Nfo)]
+        [Uri(Vocabularies.Uri.Nfo)]
         public static readonly PropertyUri FileLastModified;
-        [Uri(Vocabularies.Nfo)]
+        [Uri(Vocabularies.Uri.Nfo)]
         public static readonly PropertyUri FileSize;
-        [Uri(Vocabularies.Nfo)]
+        [Uri(Vocabularies.Uri.Nfo)]
         public static readonly PropertyUri FreeSpace;
-        [Uri(Vocabularies.Nfo)]
+        [Uri(Vocabularies.Uri.Nfo)]
         public static readonly PropertyUri OccupiedSpace;
-        [Uri(Vocabularies.Nfo)]
+        [Uri(Vocabularies.Uri.Nfo)]
         public static readonly PropertyUri TotalSpace;
-        [Uri(Vocabularies.Nfo)]
+        [Uri(Vocabularies.Uri.Nfo)]
         public static readonly PropertyUri FilesystemType;
-        [Uri(Vocabularies.Nfo)]
+        [Uri(Vocabularies.Uri.Nfo)]
         public static readonly PropertyUri Width;
-        [Uri(Vocabularies.Nfo)]
+        [Uri(Vocabularies.Uri.Nfo)]
         public static readonly PropertyUri Height;
-        [Uri(Vocabularies.Nfo)]
+        [Uri(Vocabularies.Uri.Nfo)]
         public static readonly PropertyUri BitDepth;
-        [Uri(Vocabularies.Nfo)]
+        [Uri(Vocabularies.Uri.Nfo)]
         public static readonly PropertyUri ColorDepth;
-        [Uri(Vocabularies.Nfo)]
+        [Uri(Vocabularies.Uri.Nfo)]
         public static readonly PropertyUri HorizontalResolution;
-        [Uri(Vocabularies.Nfo)]
+        [Uri(Vocabularies.Uri.Nfo)]
         public static readonly PropertyUri VerticalResolution;
-        [Uri(Vocabularies.Nfo)]
+        [Uri(Vocabularies.Uri.Nfo)]
         public static readonly PropertyUri PaletteSize;
-        [Uri(Vocabularies.Nfo)]
+        [Uri(Vocabularies.Uri.Nfo)]
         public static readonly PropertyUri BitsPerSample;
-        [Uri(Vocabularies.Nfo)]
+        [Uri(Vocabularies.Uri.Nfo)]
         public static readonly PropertyUri Channels;
-        [Uri(Vocabularies.Nfo)]
+        [Uri(Vocabularies.Uri.Nfo)]
         public static readonly PropertyUri SampleCount;
-        [Uri(Vocabularies.Nfo)]
+        [Uri(Vocabularies.Uri.Nfo)]
         public static readonly PropertyUri SampleRate;
-        [Uri(Vocabularies.Nfo)]
+        [Uri(Vocabularies.Uri.Nfo)]
         public static readonly PropertyUri Duration;
-        [Uri(Vocabularies.Nfo)]
+        [Uri(Vocabularies.Uri.Nfo)]
         public static readonly PropertyUri HasMediaStream;
-        [Uri(Vocabularies.Nfo)]
+        [Uri(Vocabularies.Uri.Nfo)]
         public static readonly PropertyUri AverageBitrate;
-        [Uri(Vocabularies.Nfo)]
+        [Uri(Vocabularies.Uri.Nfo)]
         public static readonly PropertyUri CompressionType;
-        [Uri(Vocabularies.Nfo)]
+        [Uri(Vocabularies.Uri.Nfo)]
         public static readonly PropertyUri EncryptionStatus;
 
-        [Uri(Vocabularies.Skos)]
+        [Uri(Vocabularies.Uri.Skos)]
         public static readonly PropertyUri Broader;
-        [Uri(Vocabularies.Skos)]
+        [Uri(Vocabularies.Uri.Skos)]
         public static readonly PropertyUri ExactMatch;
-        [Uri(Vocabularies.Skos)]
+        [Uri(Vocabularies.Uri.Skos)]
         public static readonly PropertyUri CloseMatch;
-        [Uri(Vocabularies.Skos)]
+        [Uri(Vocabularies.Uri.Skos)]
         public static readonly PropertyUri PrefLabel;
-        [Uri(Vocabularies.Skos)]
+        [Uri(Vocabularies.Uri.Skos)]
         public static readonly PropertyUri AltLabel;
 
-        [Uri(Vocabularies.Xis)]
+        [Uri(Vocabularies.Uri.Xis)]
         public static readonly PropertyUri DocumentElement;
-        [Uri(Vocabularies.Xis)]
+        [Uri(Vocabularies.Uri.Xis)]
         public static readonly PropertyUri LocalName;
-        [Uri(Vocabularies.Xis, "name")]
+        [Uri(Vocabularies.Uri.Xis, "name")]
         public static readonly PropertyUri XmlName;
-        [Uri(Vocabularies.Xis, "prefix")]
+        [Uri(Vocabularies.Uri.Xis, "prefix")]
         public static readonly PropertyUri XmlPrefix;
-        [Uri(Vocabularies.Xis)]
+        [Uri(Vocabularies.Uri.Xis)]
         public static readonly PropertyUri NamespaceName;
 
-        [Uri(Vocabularies.At)]
+        [Uri(Vocabularies.Uri.At)]
         public static readonly PropertyUri Digest;
-        [Uri(Vocabularies.At)]
+        [Uri(Vocabularies.Uri.At)]
         public static readonly PropertyUri Source;
-        [Uri(Vocabularies.At, "prefLabel")]
+        [Uri(Vocabularies.Uri.At, "prefLabel")]
         public static readonly PropertyUri AtPrefLabel;
-        [Uri(Vocabularies.At, "altLabel")]
+        [Uri(Vocabularies.Uri.At, "altLabel")]
         public static readonly PropertyUri AtAltLabel;
-        [Uri(Vocabularies.At)]
+        [Uri(Vocabularies.Uri.At)]
         public static readonly PropertyUri PathObject;
-        [Uri(Vocabularies.At)]
+        [Uri(Vocabularies.Uri.At)]
         public static readonly PropertyUri ExtensionObject;
-        [Uri(Vocabularies.At)]
+        [Uri(Vocabularies.Uri.At)]
         public static readonly PropertyUri VolumeLabel;
-        [Uri(Vocabularies.At)]
+        [Uri(Vocabularies.Uri.At)]
         public static readonly PropertyUri Visited;
 
         static Properties()

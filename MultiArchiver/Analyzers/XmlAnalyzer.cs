@@ -106,9 +106,9 @@ namespace IS4.MultiArchiver.Analyzers
                                     }
                                     if(formatLabel != null)
                                     {
-                                        result.Set(Properties.PrefLabel, $"{extension.ToUpperInvariant()} object ({formatLabel})", "en");
+                                        result.Set(Properties.PrefLabel, $"{extension.ToUpperInvariant()} object ({formatLabel})", LanguageCode.En);
                                     }else{
-                                        result.Set(Properties.PrefLabel, $"{extension.ToUpperInvariant()} object", "en");
+                                        result.Set(Properties.PrefLabel, $"{extension.ToUpperInvariant()} object", LanguageCode.En);
                                     }
                                 }
                                 break;

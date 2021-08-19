@@ -18,8 +18,7 @@ namespace IS4.MultiArchiver.Services
         void Set<TData>(PropertyUri property, string value, IDatatypeUriFormatter<TData> datatypeFormatter, TData datatypeValue);
         void Set<TValue>(PropertyUri property, TValue value, DatatypeUri datatype) where TValue : IFormattable;
         void Set<TValue, TData>(PropertyUri property, TValue value, IDatatypeUriFormatter<TData> datatypeFormatter, TData datatypeValue) where TValue : IFormattable;
-        void Set(PropertyUri property, string value, string language);
-        void Set(PropertyUri property, VocabularyUri vocabulary, string localName);
+        void Set(PropertyUri property, string value, LanguageCode language);
         void Set<TValue>(PropertyUri property, IIndividualUriFormatter<TValue> formatter, TValue value);
         void Set(PropertyUri property, Uri value);
         void Set(PropertyUri property, ILinkedNode value);
@@ -32,8 +31,7 @@ namespace IS4.MultiArchiver.Services
         void Set<TProp, TData>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, string value, IDatatypeUriFormatter<TData> datatypeFormatter, TData datatypeValue);
         void Set<TProp, TValue>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, TValue value, DatatypeUri datatype) where TValue : IFormattable;
         void Set<TProp, TValue, TData>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, TValue value, IDatatypeUriFormatter<TData> datatypeFormatter, TData datatypeValue) where TValue : IFormattable;
-        void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, string value, string language);
-        void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, VocabularyUri vocabulary, string localName);
+        void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, string value, LanguageCode language);
         void Set<TProp, TValue>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, IIndividualUriFormatter<TValue> formatter, TValue value);
         void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, Uri value);
         void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, ILinkedNode value);
@@ -76,13 +74,13 @@ namespace IS4.MultiArchiver.Services
 
         private TNode CreateNode<T>(IUriFormatter<T> formatter, T value)
         {
-            var uri = formatter.FormatUri(value);
+            var uri = formatter[value];
             return uri != null ? CreateNode(uri) : null;
         }
 
         private TGraphNode CreateGraphNode<T>(IGraphUriFormatter<T> formatter, T value)
         {
-            var uri = formatter.FormatUri(value);
+            var uri = formatter[value];
             return uri != null ? CreateGraphNode(uri) : null;
         }
 
@@ -133,17 +131,11 @@ namespace IS4.MultiArchiver.Services
             HandleTriple(Subject, Cache[property], CreateNode(value.ToString(null, CultureInfo.InvariantCulture), CreateNode(datatypeFormatter, datatypeValue)));
         }
 
-        public void Set(PropertyUri property, string value, string language)
+        public void Set(PropertyUri property, string value, LanguageCode language)
         {
             if(value == null) throw new ArgumentNullException(nameof(value));
-            if(language == null) throw new ArgumentNullException(nameof(language));
-            HandleTriple(Subject, Cache[property], CreateNode(value, language));
-        }
-
-        public void Set(PropertyUri property, VocabularyUri vocabulary, string localName)
-        {
-            if(localName == null) throw new ArgumentNullException(nameof(localName));
-            HandleTriple(Subject, Cache[property], CreateNode((Uri)new EncodedUri(vocabulary.Value + localName, UriKind.Absolute)));
+            if(language.Value == null) throw new ArgumentNullException(nameof(language));
+            HandleTriple(Subject, Cache[property], CreateNode(value, language.Value));
         }
 
         public void Set<T>(PropertyUri property, IIndividualUriFormatter<T> formatter, T value)
@@ -208,17 +200,11 @@ namespace IS4.MultiArchiver.Services
             HandleTriple(Subject, CreateNode(propertyFormatter, propertyValue), CreateNode(value.ToString(null, CultureInfo.InvariantCulture), CreateNode(datatypeFormatter, datatypeValue)));
         }
 
-        public void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, string value, string language)
+        public void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, string value, LanguageCode language)
         {
             if(value == null) throw new ArgumentNullException(nameof(value));
-            if(language == null) throw new ArgumentNullException(nameof(language));
-            HandleTriple(Subject, CreateNode(propertyFormatter, propertyValue), CreateNode(value, language));
-        }
-
-        public void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, VocabularyUri vocabulary, string localName)
-        {
-            if(localName == null) throw new ArgumentNullException(nameof(localName));
-            HandleTriple(Subject, CreateNode(propertyFormatter, propertyValue), CreateNode((Uri)new EncodedUri(vocabulary.Value + localName, UriKind.Absolute)));
+            if(language.Value == null) throw new ArgumentNullException(nameof(language));
+            HandleTriple(Subject, CreateNode(propertyFormatter, propertyValue), CreateNode(value, language.Value));
         }
 
         public void Set<TProp, TValue>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, IIndividualUriFormatter<TValue> formatter, TValue value)

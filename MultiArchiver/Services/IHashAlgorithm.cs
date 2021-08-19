@@ -65,58 +65,59 @@ namespace IS4.MultiArchiver.Services
             Name = String.Concat(new Uri(prefix, UriKind.Absolute).AbsolutePath.Where(Char.IsLetterOrDigit));
         }
 
-        public Uri FormatUri(byte[] data)
-        {
-            var sb = new StringBuilder(Prefix.Length + data.Length * 2);
-            sb.Append(Prefix);
-            if(data.Length > 0)
-            {
-                switch(FormattingMethod)
+        public Uri this[byte[] data] {
+            get {
+                var sb = new StringBuilder(Prefix.Length + data.Length * 2);
+                sb.Append(Prefix);
+                if(data.Length > 0)
                 {
-                    case FormattingMethod.Hex:
-                        foreach(byte b in data)
-                        {
-                            sb.Append(b.ToString("X2"));
-                        }
-                        break;
-                    case FormattingMethod.Base32:
-                        DataTools.Base32(data, sb);
-                        break;
-                    case FormattingMethod.Base58:
-                        DataTools.Base58(data, sb);
-                        break;
-                    case FormattingMethod.Base64:
-                        DataTools.Base64(data, sb);
-                        break;
-                    case FormattingMethod.Decimal:
-                        switch(data.Length)
-                        {
-                            case sizeof(byte):
-                                sb.Append(data[0]);
-                                break;
-                            case sizeof(ushort):
-                                sb.Append(BitConverter.ToUInt16(data, 0));
-                                break;
-                            case sizeof(uint):
-                                sb.Append(BitConverter.ToUInt32(data, 0));
-                                break;
-                            case sizeof(ulong):
-                                sb.Append(BitConverter.ToUInt64(data, 0));
-                                break;
-                            default:
-                                if(data[data.Length - 1] > SByte.MaxValue)
-                                {
-                                    Array.Resize(ref data, data.Length + 1);
-                                }
-                                sb.Append(new BigInteger(data).ToString());
-                                break;
-                        }
-                        break;
-                    default:
-                        throw new NotSupportedException();
+                    switch(FormattingMethod)
+                    {
+                        case FormattingMethod.Hex:
+                            foreach(byte b in data)
+                            {
+                                sb.Append(b.ToString("X2"));
+                            }
+                            break;
+                        case FormattingMethod.Base32:
+                            DataTools.Base32(data, sb);
+                            break;
+                        case FormattingMethod.Base58:
+                            DataTools.Base58(data, sb);
+                            break;
+                        case FormattingMethod.Base64:
+                            DataTools.Base64(data, sb);
+                            break;
+                        case FormattingMethod.Decimal:
+                            switch(data.Length)
+                            {
+                                case sizeof(byte):
+                                    sb.Append(data[0]);
+                                    break;
+                                case sizeof(ushort):
+                                    sb.Append(BitConverter.ToUInt16(data, 0));
+                                    break;
+                                case sizeof(uint):
+                                    sb.Append(BitConverter.ToUInt32(data, 0));
+                                    break;
+                                case sizeof(ulong):
+                                    sb.Append(BitConverter.ToUInt64(data, 0));
+                                    break;
+                                default:
+                                    if(data[data.Length - 1] > SByte.MaxValue)
+                                    {
+                                        Array.Resize(ref data, data.Length + 1);
+                                    }
+                                    sb.Append(new BigInteger(data).ToString());
+                                    break;
+                            }
+                            break;
+                        default:
+                            throw new NotSupportedException();
+                    }
                 }
+                return new Uri(sb.ToString());
             }
-            return new Uri(sb.ToString());
         }
 
         public static void AddHash(ILinkedNode node, IHashAlgorithm algorithm, byte[] hash, ILinkedNodeFactory nodeFactory)
@@ -141,7 +142,7 @@ namespace IS4.MultiArchiver.Services
 
             if(tooLong)
             {
-                hashNode.Set(Properties.AtPrefLabel, algorithm.FormatUri(Array.Empty<byte>()).AbsoluteUri + "\u2026 (URI too long)", "en");
+                hashNode.Set(Properties.AtPrefLabel, algorithm[Array.Empty<byte>()].AbsoluteUri + "\u2026 (URI too long)", LanguageCode.En);
             }
 
             node.Set(Properties.Digest, hashNode);

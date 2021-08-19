@@ -10,7 +10,7 @@ namespace IS4.MultiArchiver.Vocabulary
 
         public UriAttribute(string vocabulary, string localName = null)
         {
-            Vocabulary = vocabulary;
+            Vocabulary = new VocabularyUri(vocabulary);
             LocalName = localName;
         }
     }
