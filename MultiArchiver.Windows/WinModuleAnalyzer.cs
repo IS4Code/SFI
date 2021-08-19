@@ -309,6 +309,11 @@ namespace IS4.MultiArchiver.Analyzers
                     if(TypeCode == Win32ResourceType.Icon || TypeCode == Win32ResourceType.Cursor)
                     {
                         var bmpHeader = MemoryMarshal.Cast<byte, int>(new Span<byte>(buffer, start, headerLength));
+                        if(bmpHeader.Length <= 2)
+                        {
+                            InvalidBitmap();
+                            return;
+                        }
                         OriginalHeight = bmpHeader[2];
                         bmpHeader[2] /= 2;
 
