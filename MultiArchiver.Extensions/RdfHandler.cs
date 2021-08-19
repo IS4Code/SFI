@@ -1,8 +1,8 @@
 ﻿using IS4.MultiArchiver.Services;
-using IS4.MultiArchiver.Tools;
 using IS4.MultiArchiver.Vocabulary;
 using Microsoft.CSharp.RuntimeBinder;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text.RegularExpressions;
@@ -15,10 +15,11 @@ namespace IS4.MultiArchiver.Extensions
     {
         readonly IRdfHandler defaultHandler;
         readonly IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers;
-        int namespaceCounter;
         readonly IEntityAnalyzer baseAnalyzer;
 
         public ILinkedNode Root { get; }
+
+        public IDictionary<Uri, string> PrefixMap { get; }
 
         public RdfHandler(Uri root, IEntityAnalyzer baseAnalyzer, IRdfHandler defaultHandler, IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers)
             : base(defaultHandler.CreateUriNode, uri => graphHandlers.TryGetValue(uri, out var handler) ? handler : defaultHandler)
@@ -28,15 +29,25 @@ namespace IS4.MultiArchiver.Extensions
             this.baseAnalyzer = baseAnalyzer;
             Root = Create(UriFormatter.Instance, root);
 
+            PrefixMap = new ConcurrentDictionary<Uri, string>(Vocabulary.Vocabularies.Prefixes, new UriComparer());
+
             VocabularyAdded += (vocabulary) => {
-                var prefix = $"ns{namespaceCounter++}";
                 var uri = new Uri(vocabulary.Value, UriKind.Absolute);
+                var prefix = GetNamespace(uri);
                 AddNamespace(defaultHandler, prefix, uri);
                 foreach(var handler in graphHandlers.Values)
                 {
                     AddNamespace(handler, prefix, uri);
                 }
             };
+        }
+
+        int namespaceCounter;
+
+        private string GetNamespace(Uri uri)
+        {
+            return PrefixMap.TryGetValue(uri, out var prefix) ?
+                prefix : $"ns{System.Threading.Interlocked.Increment(ref namespaceCounter)}";
         }
 
         private void AddNamespace(IRdfHandler handler, string prefix, Uri uri)

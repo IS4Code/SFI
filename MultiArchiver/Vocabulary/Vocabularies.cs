@@ -1,4 +1,7 @@
 ﻿using IS4.MultiArchiver.Services;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace IS4.MultiArchiver.Vocabulary
 {
@@ -40,5 +43,11 @@ namespace IS4.MultiArchiver.Vocabulary
             public const string Ad = "http://archive.data.is4.site/data/";
             public const string Ah = "http://archive.data.is4.site/hash/";
         }
+
+        public static readonly IReadOnlyCollection<KeyValuePair<System.Uri, string>> Prefixes =
+            typeof(Uri).GetFields()
+            .Where(f => f.IsLiteral)
+            .Select(f => new KeyValuePair<System.Uri, string>(new System.Uri(f.GetRawConstantValue().ToString(), UriKind.Absolute), f.Name.ToLowerInvariant()))
+            .ToList();
     }
 }
