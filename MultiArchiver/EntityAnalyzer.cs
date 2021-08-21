@@ -26,7 +26,7 @@ namespace IS4.MultiArchiver
                         }
                     }catch(InternalArchiverException e)
                     {
-                        ExceptionDispatchInfo.Capture(e).Throw();
+                        ExceptionDispatchInfo.Capture(e.InnerException).Throw();
                         throw;
                     }catch(Exception e)
                     {
