@@ -52,11 +52,11 @@ namespace IS4.MultiArchiver.Analyzers
                 label = label ?? DataTools.SizeSuffix(streamFactory.Length, 2);
             }
 
-            if(format is IXmlDocumentFormat xmlFormat)
+            if(format.Format is IXmlDocumentFormat xmlFormat)
             {
                 string pubId;
                 Uri ns;
-                if(format is IXmlDocumentFormat<T> xmlFormat2)
+                if(format.Format is IXmlDocumentFormat<T> xmlFormat2)
                 {
                     pubId = xmlFormat2.GetPublicId(value);
                     ns = xmlFormat2.GetNamespace(value);
