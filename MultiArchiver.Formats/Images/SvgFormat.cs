@@ -19,9 +19,13 @@ namespace IS4.MultiArchiver.Formats
 
         }
 
+        public override bool CheckDocument(XDocumentType docType, XmlReader rootReader)
+        {
+            return rootReader.LocalName.Equals("svg", StringComparison.OrdinalIgnoreCase);
+        }
+
         public override TResult Match<TResult, TArgs>(XmlReader reader, XDocumentType docType, ResultFactory<SvgDocument, TResult, TArgs> resultFactory, TArgs args)
         {
-            if(!reader.LocalName.Equals("svg", StringComparison.OrdinalIgnoreCase)) return default;
             reader = new InitialXmlReader(reader);
             var doc = open(reader);
             if(doc == null) return default;

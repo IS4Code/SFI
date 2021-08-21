@@ -36,6 +36,8 @@ namespace IS4.MultiArchiver.Services
         string GetPublicId(object value);
         string GetSystemId(object value);
         Uri GetNamespace(object value);
+
+        bool CheckDocument(XDocumentType docType, XmlReader rootReader);
         TResult Match<TResult, TArgs>(XmlReader reader, XDocumentType docType, object source, IResultFactory<TResult, TArgs> resultFactory, TArgs args);
     }
 
@@ -129,6 +131,8 @@ namespace IS4.MultiArchiver.Services
             SystemId = systemId;
             Namespace = @namespace;
         }
+
+        public abstract bool CheckDocument(XDocumentType docType, XmlReader rootReader);
 
         public abstract TResult Match<TResult, TArgs>(XmlReader reader, XDocumentType docType, ResultFactory<T, TResult, TArgs> resultFactory, TArgs args);
 

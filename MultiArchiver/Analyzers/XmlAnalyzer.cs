@@ -1,15 +1,18 @@
 ﻿using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Tools;
+using IS4.MultiArchiver.Tools.Xml;
 using IS4.MultiArchiver.Vocabulary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Channels;
+using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class XmlAnalyzer : MediaObjectAnalyzer<XmlReader>
+    public class XmlAnalyzer : MediaObjectAnalyzer<XmlReader>, IResultFactory<AnalysisResult, (IXmlDocumentFormat format, AnalysisContext context, IEntityAnalyzer analyzer)>
     {
         public ICollection<IXmlDocumentFormat> XmlFormats { get; } = new SortedSet<IXmlDocumentFormat>(TypeInheritanceComparer<IXmlDocumentFormat>.Instance);
 
@@ -92,22 +95,58 @@ namespace IS4.MultiArchiver.Analyzers
                         }
                         node.Set(Properties.DocumentElement, elem);
 
+                        context = context.WithParent(node);
+
+                        var rootState = new XmlReaderState(reader);
+
+                        var formats = XmlFormats.Where(fmt => fmt.CheckDocument(docType, rootState)).ToList();
+
                         bool any = false;
-                        foreach(var format in XmlFormats)
+                        if(formats.Count <= 1)
                         {
-                            var resultFactory = new ResultFactory(format, context.WithParent(node), globalAnalyzer);
-
-                            if(format.Match(reader, docType, null, resultFactory, default) is AnalysisResult result)
+                            foreach(var format in XmlFormats)
                             {
-                                any = true;
-                                result.Node.Set(Properties.HasFormat, node);
+                                var result = format.Match(reader, docType, context.Source, this, (format, context, globalAnalyzer));
+                                if(result.Node != null)
+                                {
+                                    any = true;
+                                    result.Node.Set(Properties.HasFormat, node);
+                                }
                             }
-                        }
+                        }else{
+                            var tasks = new Task<bool>[formats.Count];
+                            var writers = new ChannelWriter<XmlReaderState>[formats.Count];
+                            for(int i = 0; i < formats.Count; i++)
+                            {
+                                var channelReader = ChannelXmlReader.Create(reader, out writers[i]);
+                                var format = formats[i];
+                                tasks[i] = Task.Run(() => {
+                                    var result = format.Match(channelReader, docType, context.Source, this, (format, context, globalAnalyzer));
+                                    if(result.Node != null)
+                                    {
+                                        result.Node.Set(Properties.HasFormat, node);
+                                        return true;
+                                    }
+                                    return false;
+                                });
+                            }
 
+                            foreach(var state in new[] { rootState }.Concat(XmlReaderState.ReadFrom(reader)))
+                            {
+                                foreach(var writer in writers)
+                                {
+                                    var task = writer.WriteAsync(state);
+                                    if(!task.IsCompleted) task.AsTask().Wait();
+                                }
+                            }
+
+                            Task.WaitAll(tasks);
+
+                            any = tasks.Any(t => t.Result);
+                        }
                         if(!any)
                         {
-                            var resultFactory = new ResultFactory(ImprovisedXmlFormat.Instance, context.WithParent(node), globalAnalyzer);
-                            var result = ImprovisedXmlFormat.Instance.Match(reader, docType, null, resultFactory, default).Value;
+                            var result = ImprovisedXmlFormat.Instance.Match(reader, docType, context.Source, this, (ImprovisedXmlFormat.Instance, context, globalAnalyzer));
                             result.Node.Set(Properties.HasFormat, node);
                         }
 
@@ -128,28 +167,15 @@ namespace IS4.MultiArchiver.Analyzers
             }
         }
 
-        class ResultFactory : IResultFactory<AnalysisResult?, ValueTuple>
+        AnalysisResult IResultFactory<AnalysisResult, (IXmlDocumentFormat format, AnalysisContext context, IEntityAnalyzer analyzer)>.Invoke<T>(T value, (IXmlDocumentFormat format, AnalysisContext context, IEntityAnalyzer analyzer) args)
         {
-            readonly IXmlDocumentFormat format;
-            readonly AnalysisContext context;
-            readonly IEntityAnalyzer analyzer;
-
-            public ResultFactory(IXmlDocumentFormat format, AnalysisContext context, IEntityAnalyzer analyzer)
+            var (format, context, analyzer) = args;
+            try{
+                var obj = new FormatObject<T>(format, value);
+                return analyzer.Analyze(obj, context);
+            }catch(Exception e)
             {
-                this.format = format;
-                this.context = context;
-                this.analyzer = analyzer;
-            }
-
-            AnalysisResult? IResultFactory<AnalysisResult?, ValueTuple>.Invoke<T>(T value, ValueTuple args)
-            {
-                try{
-                    var obj = new FormatObject<T>(format, value);
-                    return analyzer.Analyze(obj, context);
-                }catch(Exception e)
-                {
-                    throw new InternalArchiverException(e);
-                }
+                throw new InternalArchiverException(e);
             }
         }
 
@@ -208,6 +234,11 @@ namespace IS4.MultiArchiver.Analyzers
             public override string GetExtension(XmlFormat value)
             {
                 return value.RootName?.Name ?? base.GetExtension(value);
+            }
+
+            public override bool CheckDocument(XDocumentType docType, XmlReader rootReader)
+            {
+                return true;
             }
 
             public override TResult Match<TResult, TArgs>(XmlReader reader, XDocumentType docType, ResultFactory<XmlFormat, TResult, TArgs> resultFactory, TArgs args)
