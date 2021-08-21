@@ -71,7 +71,15 @@ namespace IS4.MultiArchiver.Analyzers
                 }
             }
 
-            node.Set(Properties.PrefLabel, $"{format.Extension.ToUpperInvariant()} object ({label})", LanguageCode.En);
+            if(format.Extension != null)
+            {
+                if(label != null)
+                {
+                    node.Set(Properties.PrefLabel, $"{format.Extension.ToUpperInvariant()} object ({label})", LanguageCode.En);
+                }else{
+                    node.Set(Properties.PrefLabel, $"{format.Extension.ToUpperInvariant()} object", LanguageCode.En);
+                }
+            }
 
             result.Node = node;
             return result;
