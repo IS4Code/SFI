@@ -40,16 +40,16 @@ namespace IS4.MultiArchiver.Formats
             }
         }
 
-        public override TResult Match<TResult>(Stream stream, ResultFactory<XmlReader, TResult> resultFactory)
+        public override TResult Match<TResult, TArgs>(Stream stream, ResultFactory<XmlReader, TResult, TArgs> resultFactory, TArgs args)
         {
             using(var reader = XmlReader.Create(stream, ReaderSettings))
             {
-                if(!reader.Read()) return null;
+                if(!reader.Read()) return default;
                 while(reader.NodeType == XmlNodeType.Whitespace || reader.NodeType == XmlNodeType.SignificantWhitespace)
                 {
-                    if(!reader.Read()) return null;
+                    if(!reader.Read()) return default;
                 }
-                return resultFactory(reader);
+                return resultFactory(reader, args);
             }
         }
 

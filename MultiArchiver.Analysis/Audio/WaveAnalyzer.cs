@@ -9,7 +9,7 @@ using System.Drawing;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class WaveAnalyzer : BinaryFormatAnalyzer<WaveStream>
+    public class WaveAnalyzer : MediaObjectAnalyzer<WaveStream>
     {
         readonly PolarSpectrumGenerator generator = new PolarSpectrumGenerator(512, 512);
 
@@ -18,8 +18,9 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override string Analyze(ILinkedNode parent, ILinkedNode node, WaveStream wave, object source, ILinkedNodeFactory nodeFactory)
+        public override AnalysisResult Analyze(WaveStream wave, AnalysisContext context, IEntityAnalyzer globalAnalyzer)
         {
+            var node = GetNode(context);
             if(wave is ICustomWaveFormat customFormat)
             {
                 if(customFormat.ChannelCount is int channels)
@@ -80,7 +81,7 @@ namespace IS4.MultiArchiver.Analyzers
                         bmp = generator.DrawStereo(result[0], result[1]);
                         break;
                     default:
-                        return null;
+                        return default;
                 }
 
                 bmp.Tag = new ImageTag
@@ -90,11 +91,10 @@ namespace IS4.MultiArchiver.Analyzers
                     ByteHash = false
                 };
 
-                var imageObj = new LinkedObject<Image>(node, source, bmp);
-                nodeFactory.Create<ILinkedObject<Image>>(parent, imageObj);
+                globalAnalyzer.Analyze(bmp, context);
             }
 
-            return null;
+            return new AnalysisResult(node);
         }
     }
 }

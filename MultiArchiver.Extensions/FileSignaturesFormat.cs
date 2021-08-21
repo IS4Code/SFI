@@ -32,9 +32,9 @@ namespace IS4.MultiArchiver.Formats
             }
         }
 
-        public override TResult Match<TResult>(Stream stream, ResultFactory<IDisposable, TResult> resultFactory)
+        public override TResult Match<TResult, TArgs>(Stream stream, ResultFactory<IDisposable, TResult, TArgs> resultFactory, TArgs args)
         {
-            return resultFactory(null);
+            return resultFactory(null, args);
         }
 
         public static FileSignaturesFormat Create(FileSignatures.FileFormat format)
@@ -53,11 +53,11 @@ namespace IS4.MultiArchiver.Formats
                 this.reader = reader;
             }
 
-            public override TResult Match<TResult>(Stream stream, ResultFactory<IDisposable, TResult> resultFactory)
+            public override TResult Match<TResult, TArgs>(Stream stream, ResultFactory<IDisposable, TResult, TArgs> resultFactory, TArgs args)
             {
                 using(var result = reader.Read(stream))
                 {
-                    return resultFactory(result);
+                    return resultFactory(result, args);
                 }
             }
         }

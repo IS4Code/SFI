@@ -51,12 +51,12 @@ namespace IS4.MultiArchiver.Formats
             return file.MimeType;
         }
 
-        public override TResult Match<TResult>(Stream stream, ResultFactory<TagLib.File, TResult> resultFactory)
+        public override TResult Match<TResult, TArgs>(Stream stream, ResultFactory<TagLib.File, TResult, TArgs> resultFactory, TArgs args)
         {
-            return Match(stream, null, resultFactory);
+            return Match(stream, null, resultFactory, args);
         }
 
-        public override TResult Match<TResult>(Stream stream, object source, ResultFactory<TagLib.File, TResult> resultFactory)
+        public override TResult Match<TResult, TArgs>(Stream stream, object source, ResultFactory<TagLib.File, TResult, TArgs> resultFactory, TArgs args)
         {
             var file = new File(stream, source);
             if(file.Name != null)
@@ -72,7 +72,7 @@ namespace IS4.MultiArchiver.Formats
 
                             if(tagFile.Properties != null || (tagFile.Tag != null && tagFile.TagTypes != TagTypes.None))
                             {
-                                return resultFactory(tagFile);
+                                return resultFactory(tagFile, args);
                             }
                         }catch(System.Reflection.TargetInvocationException e)
                         {
@@ -82,7 +82,7 @@ namespace IS4.MultiArchiver.Formats
                     }
                 }
             }
-            return null;
+            return default;
         }
 
         public override bool CheckHeader(ArraySegment<byte> header, bool isBinary, IEncodingDetector encodingDetector)

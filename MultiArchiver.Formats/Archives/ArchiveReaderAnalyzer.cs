@@ -1,24 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using IS4.MultiArchiver.Analyzers;
-using IS4.MultiArchiver.Services;
+﻿using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Vocabulary;
 using SharpCompress.Common;
 using SharpCompress.Readers;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class ArchiveReaderAnalyzer : BinaryFormatAnalyzer<IReader>
+    public class ArchiveReaderAnalyzer : MediaObjectAnalyzer<IReader>
     {
         public ArchiveReaderAnalyzer() : base(Common.ArchiveClasses)
         {
 
         }
 
-        public override string Analyze(ILinkedNode node, IReader reader, ILinkedNodeFactory nodeFactory)
+        public override AnalysisResult Analyze(IReader reader, AnalysisContext context, IEntityAnalyzer globalAnalyzer)
         {
+            var node = GetNode(context);
             var directories = new Dictionary<string, ArchiveDirectoryInfo>();
 
             try{
@@ -41,7 +41,7 @@ namespace IS4.MultiArchiver.Analyzers
                         info = new ArchiveFileInfo(reader, entry);
                         dir = GetDirectory(info.Path);
                         var container = GetContainer(node, dir);
-                        var fileNode = nodeFactory.Create(container, info);
+                        var fileNode = globalAnalyzer.Analyze(info, context.WithParent(container)).Node;
                         if(dir == null) fileNode?.Set(Properties.BelongsToContainer, node);
                     }
                     if(!entry.IsDirectory)
@@ -72,12 +72,12 @@ namespace IS4.MultiArchiver.Analyzers
                 var dir = GetDirectory(info.Path);
                 if(dir == null)
                 {
-                    var dirNode = nodeFactory.Create(node, info);
+                    var dirNode = globalAnalyzer.Analyze(info, context.WithParent(node)).Node;
                     dirNode?.Set(Properties.BelongsToContainer, node);
                 }
             }
 
-            return null;
+            return new AnalysisResult(node);
         }
 
         static ILinkedNode GetContainer(ILinkedNode parent, string dir)

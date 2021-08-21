@@ -7,25 +7,26 @@ using System.Text;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class DosModuleAnalyzer : BinaryFormatAnalyzer<DosModuleAnalyzer.Module>
+    public class DosModuleAnalyzer : MediaObjectAnalyzer<DosModuleAnalyzer.Module>
     {
         public DosModuleAnalyzer() : base(Common.ApplicationClasses)
         {
 
         }
 
-        public override string Analyze(ILinkedNode node, Module module, ILinkedNodeFactory nodeFactory)
+        public override AnalysisResult Analyze(Module module, AnalysisContext context, IEntityAnalyzer globalAnalyzer)
         {
+            var node = GetNode(context);
             var uncompressed = module.GetCompressedContents();
             if(uncompressed != null)
             {
-                var infoNode = nodeFactory.Create<IFileInfo>(node, uncompressed);
+                var infoNode = globalAnalyzer.Analyze<IFileInfo>(uncompressed, context.WithParent(node)).Node;
                 if(infoNode != null)
                 {
                     node.Set(Properties.BelongsToContainer, infoNode);
                 }
             }
-            return null;
+            return new AnalysisResult(node);
         }
 
         public class Module

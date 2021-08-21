@@ -7,7 +7,6 @@ namespace IS4.MultiArchiver.Services
     {
         ILinkedNode Root { get; }
         ILinkedNode Create<T>(IIndividualUriFormatter<T> formatter, T value);
-        ILinkedNode Create<T>(ILinkedNode parent, T entity) where T : class;
         bool IsSafeString(string str);
     }
 

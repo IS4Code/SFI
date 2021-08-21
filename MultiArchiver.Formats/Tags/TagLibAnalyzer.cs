@@ -11,10 +11,11 @@ using Properties = IS4.MultiArchiver.Vocabulary.Properties;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class TagLibAnalyzer : BinaryFormatAnalyzer<File>, IPropertyUriFormatter<string>
+    public class TagLibAnalyzer : MediaObjectAnalyzer<File>, IPropertyUriFormatter<string>
     {
-        public override string Analyze(ILinkedNode node, File file, ILinkedNodeFactory nodeFactory)
+        public override AnalysisResult Analyze(File file, AnalysisContext context, IEntityAnalyzer globalAnalyzer)
         {
+            var node = GetNode(context);
             var properties = file.Properties;
             if(properties != null)
             {
@@ -55,7 +56,7 @@ namespace IS4.MultiArchiver.Analyzers
                     if(!properties.Codecs.Skip(1).Any())
                     {
                         var codec = properties.Codecs.First();
-                        result = result ?? Analyze(node, codec, nodeFactory);
+                        result = result ?? Analyze(node, codec, context.NodeFactory);
                     }else{
                         var codecCounters = new Dictionary<MediaTypes, int>();
 
@@ -69,7 +70,7 @@ namespace IS4.MultiArchiver.Analyzers
                             codecCounters[codec.MediaTypes] = counter + 1;
 
                             var codecNode = node[codec.MediaTypes.ToString() + "/" + counter];
-                            var label = Analyze(codecNode, codec, nodeFactory);
+                            var label = Analyze(codecNode, codec, context.NodeFactory);
                             codecNode.SetClass(Classes.MediaStream);
                             node.Set(Properties.HasMediaStream, codecNode);
                             if(label != null)
@@ -122,7 +123,7 @@ namespace IS4.MultiArchiver.Analyzers
                 }
             }
 
-            return null;
+            return new AnalysisResult(node);
         }
 
         static readonly Dictionary<string, string> propertyNames = new Dictionary<string, string>

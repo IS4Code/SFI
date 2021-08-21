@@ -1,5 +1,4 @@
 ﻿using IS4.MultiArchiver.Services;
-using IS4.MultiArchiver.Tools;
 using IS4.MultiArchiver.Vocabulary;
 using System;
 using System.Collections.Generic;
@@ -17,28 +16,29 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        private ILinkedNode CreateNode(ILinkedNode parent, IFileNodeInfo info, ILinkedNodeFactory nodeFactory)
+        private ILinkedNode CreateNode(IFileNodeInfo info, AnalysisContext context, IEntityAnalyzer analyzer)
         {
+            if(context.Node != null) return context.Node;
             var name = Uri.EscapeDataString(info.Name ?? "");
             if(info.SubName is string subName)
             {
                 name += ":" + Uri.EscapeDataString(subName);
             }
-            return parent?[name] ?? nodeFactory.NewGuidNode();
+            return context.Parent?[name] ?? context.NodeFactory.NewGuidNode();
         }
 
-        private ILinkedNode AnalyzeFileNode(ILinkedNode parent, IFileNodeInfo info, ILinkedNodeFactory nodeFactory)
+        private ILinkedNode AnalyzeFileNode(IFileNodeInfo info, AnalysisContext context, IEntityAnalyzer analyzer)
         {
-            var node = CreateNode(parent, info, nodeFactory);
+            var node = CreateNode(info, context, analyzer);
 
             node.SetClass(Classes.FileDataObject);
 
             if(info.Path != null)
             {
-                LinkDirectories(node, info.Path, false, nodeFactory);
+                LinkDirectories(node, info.Path, false, context.NodeFactory);
             }else if(info.Name != null)
             {
-                LinkDirectories(node, info.Name, false, nodeFactory);
+                LinkDirectories(node, info.Name, false, context.NodeFactory);
             }
             node.Set(Properties.PrefLabel, DataTools.ReplaceControlCharacters(info.ToString(), null));
 
@@ -67,9 +67,9 @@ namespace IS4.MultiArchiver.Analyzers
             return node;
         }
 
-        public ILinkedNode Analyze(ILinkedNode parent, IFileInfo file, ILinkedNodeFactory nodeFactory)
+        public AnalysisResult Analyze(IFileInfo file, AnalysisContext context, IEntityAnalyzer analyzer)
         {
-            var node = AnalyzeFileNode(parent, file, nodeFactory);
+            var node = AnalyzeFileNode(file, context, analyzer);
             if(node != null)
             {
                 if(file.Length >= 0)
@@ -81,7 +81,7 @@ namespace IS4.MultiArchiver.Analyzers
                 {
                     node.Set(Properties.EncryptionStatus, Individuals.EncryptedStatus);
                 }else{
-                    var content = nodeFactory.Create<IStreamFactory>(node, file);
+                    var content = analyzer.Analyze<IStreamFactory>(file, context.WithParent(node)).Node;
                     if(content != null)
                     {
                         content.Set(Properties.IsStoredAs, node);
@@ -90,20 +90,20 @@ namespace IS4.MultiArchiver.Analyzers
 
                 foreach(var alg in HashAlgorithms)
                 {
-                    HashAlgorithm.AddHash(node, alg, alg.ComputeHash(file), nodeFactory);
+                    HashAlgorithm.AddHash(node, alg, alg.ComputeHash(file), context.NodeFactory);
                 }
 
                 if(file is IDirectoryInfo directory)
                 {
-                    AnalyzeDirectory(node, directory, nodeFactory);
+                    AnalyzeDirectory(node, directory, context, analyzer);
                 }
             }
-            return node;
+            return new AnalysisResult(node);
         }
 
-        private void AnalyzeDirectory(ILinkedNode node, IDirectoryInfo directory, ILinkedNodeFactory nodeFactory)
+        private void AnalyzeDirectory(ILinkedNode node, IDirectoryInfo directory, AnalysisContext context, IEntityAnalyzer analyzer)
         {
-            var folder = AnalyzeContents(node, directory, nodeFactory);
+            var folder = AnalyzeContents(node, directory, context, analyzer);
 
             if(folder != null)
             {
@@ -112,23 +112,23 @@ namespace IS4.MultiArchiver.Analyzers
 
             foreach(var alg in HashAlgorithms)
             {
-                HashAlgorithm.AddHash(node, alg, alg.ComputeHash(directory, false), nodeFactory);
+                HashAlgorithm.AddHash(node, alg, alg.ComputeHash(directory, false), context.NodeFactory);
             }
         }
 
-        public ILinkedNode Analyze(ILinkedNode parent, IDirectoryInfo directory, ILinkedNodeFactory nodeFactory)
+        public AnalysisResult Analyze(IDirectoryInfo directory, AnalysisContext context, IEntityAnalyzer analyzer)
         {
-            var node = AnalyzeFileNode(parent, directory, nodeFactory);
+            var node = AnalyzeFileNode(directory, context, analyzer);
             if(node != null)
             {
-                AnalyzeDirectory(node, directory, nodeFactory);
+                AnalyzeDirectory(node, directory, context, analyzer);
             }
-            return node;
+            return new AnalysisResult(node);
         }
 
-        private ILinkedNode AnalyzeContents(ILinkedNode parent, IDirectoryInfo directory, ILinkedNodeFactory nodeFactory)
+        private ILinkedNode AnalyzeContents(ILinkedNode parent, IDirectoryInfo directory, AnalysisContext context, IEntityAnalyzer analyzer)
         {
-            var folder = parent?[""] ?? nodeFactory.NewGuidNode();
+            var folder = parent?[""] ?? context.NodeFactory.NewGuidNode();
 
             if(folder != null)
             {
@@ -138,16 +138,16 @@ namespace IS4.MultiArchiver.Analyzers
 
                 folder.Set(Properties.PrefLabel, DataTools.ReplaceControlCharacters(directory.ToString() + "/", null));
 
-                LinkDirectories(folder, directory.Path, true, nodeFactory);
+                LinkDirectories(folder, directory.Path, true, context.NodeFactory);
 
                 foreach(var alg in HashAlgorithms)
                 {
-                    HashAlgorithm.AddHash(folder, alg, alg.ComputeHash(directory, true), nodeFactory);
+                    HashAlgorithm.AddHash(folder, alg, alg.ComputeHash(directory, true), context.NodeFactory);
                 }
 
                 foreach(var entry in directory.Entries)
                 {
-                    var node2 = Analyze(parent, entry, nodeFactory);
+                    var node2 = Analyze(entry, context.WithParent(parent), analyzer).Node;
                     if(node2 != null)
                     {
                         node2.Set(Properties.BelongsToContainer, folder);
@@ -188,23 +188,23 @@ namespace IS4.MultiArchiver.Analyzers
             }
         }
 
-        public ILinkedNode Analyze(ILinkedNode parent, FileInfo entity, ILinkedNodeFactory nodeFactory)
+        public AnalysisResult Analyze(FileInfo entity, AnalysisContext context, IEntityAnalyzer analyzer)
         {
-            return Analyze(parent, new FileInfoWrapper(entity), nodeFactory);
+            return Analyze(new FileInfoWrapper(entity), context, analyzer);
         }
 
-        public ILinkedNode Analyze(ILinkedNode parent, DirectoryInfo entity, ILinkedNodeFactory nodeFactory)
+        public AnalysisResult Analyze(DirectoryInfo entity, AnalysisContext context, IEntityAnalyzer analyzer)
         {
-            return Analyze(parent, new DirectoryInfoWrapper(entity), nodeFactory);
+            return Analyze(new DirectoryInfoWrapper(entity), context, analyzer);
         }
 
-        public ILinkedNode Analyze(ILinkedNode parent, IFileNodeInfo entity, ILinkedNodeFactory nodeFactory)
+        public AnalysisResult Analyze(IFileNodeInfo entity, AnalysisContext context, IEntityAnalyzer analyzer)
         {
             switch(entity)
             {
-                case IFileInfo file: return Analyze(parent, file, nodeFactory);
-                case IDirectoryInfo dir: return Analyze(parent, dir, nodeFactory);
-                default: return CreateNode(parent, entity, nodeFactory);
+                case IFileInfo file: return Analyze(file, context, analyzer);
+                case IDirectoryInfo dir: return Analyze(dir, context, analyzer);
+                default: return new AnalysisResult(CreateNode(entity, context, analyzer));
             }
         }
     }

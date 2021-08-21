@@ -63,12 +63,6 @@ namespace IS4.MultiArchiver.Extensions
             return new UriNode(defaultHandler.CreateUriNode(formatter[value]), defaultHandler, this);
         }
 
-        public ILinkedNode Create<T>(ILinkedNode parent, T entity) where T : class
-        {
-            if(entity is ILinkedNode node) return node;
-            return baseAnalyzer.Analyze(parent, entity, this);
-        }
-
         /// <summary>
         /// Detects a string that is unsafe for embedding or displaying.
         /// XML 1.0 prohibits C0 control codes and discourages the use of C1, with the exception of line separators;

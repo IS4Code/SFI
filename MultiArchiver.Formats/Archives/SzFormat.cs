@@ -33,9 +33,9 @@ namespace IS4.MultiArchiver.Formats
             return value.QBasicVariant ? "application/x-ms-compress-sz" : "application/x-ms-compress-szdd";
         }
 
-        public override TResult Match<TResult>(Stream stream, ResultFactory<SzReader, TResult> resultFactory)
+        public override TResult Match<TResult, TArgs>(Stream stream, ResultFactory<SzReader, TResult, TArgs> resultFactory, TArgs args)
         {
-            return resultFactory(new SzReader(stream));
+            return resultFactory(new SzReader(stream), args);
         }
     }
 }

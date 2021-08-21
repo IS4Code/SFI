@@ -27,8 +27,7 @@ namespace IS4.MultiArchiver.Extensions
             Analyzers.Add(DataAnalyzer = new DataAnalyzer(() => new UdeEncodingDetector()));
             Analyzers.Add(XmlAnalyzer = new XmlAnalyzer());
             Analyzers.Add(ImageAnalyzer = new ImageAnalyzer());
-            Analyzers.Add(new BinaryFormatAnalyzer<object>());
-            Analyzers.Add(new XmlFormatAnalyzer<object>());
+            Analyzers.Add(new FormatObjectAnalyzer());
 
             DataAnalyzer.HashAlgorithms.Add(BuiltInHash.MD5);
             DataAnalyzer.HashAlgorithms.Add(BuiltInHash.SHA1);
@@ -143,9 +142,9 @@ namespace IS4.MultiArchiver.Extensions
 
                 if((File.GetAttributes(file) & FileAttributes.Directory) != 0)
                 {
-                    FileAnalyzer.Analyze(null, new DirectoryInfo(file), handler);
+                    FileAnalyzer.Analyze(new DirectoryInfo(file), new AnalysisContext(nodeFactory: handler), this);
                 }else{
-                    FileAnalyzer.Analyze(null, new FileInfo(file), handler);
+                    FileAnalyzer.Analyze(new FileInfo(file), new AnalysisContext(nodeFactory: handler), this);
                 }
             }finally{
                 rdfHandler.EndRdf(true);

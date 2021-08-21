@@ -95,11 +95,11 @@ namespace IS4.MultiArchiver.Formats
             return true;
         }
 
-        public override TResult Match<TResult>(Stream stream, ResultFactory<TarReader, TResult> resultFactory)
+        public override TResult Match<TResult, TArgs>(Stream stream, ResultFactory<TarReader, TResult, TArgs> resultFactory, TArgs args)
         {
             using(var reader = TarReader.Open(stream))
             {
-                return resultFactory(reader);
+                return resultFactory(reader, args);
             }
         }
     }

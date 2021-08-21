@@ -22,9 +22,9 @@ namespace IS4.MultiArchiver.Formats
             return value.Value.GetMimeType();
         }
 
-        public override TResult Match<TResult>(Stream stream, ResultFactory<FileTypeWrapper, TResult> resultFactory)
+        public override TResult Match<TResult, TArgs>(Stream stream, ResultFactory<FileTypeWrapper, TResult, TArgs> resultFactory, TArgs args)
         {
-            return resultFactory(new FileTypeWrapper(FileTypeDetector.DetectFileType(stream)));
+            return resultFactory(new FileTypeWrapper(FileTypeDetector.DetectFileType(stream)), args);
         }
 
         public override bool CheckHeader(ArraySegment<byte> header, bool isBinary, IEncodingDetector encodingDetector)

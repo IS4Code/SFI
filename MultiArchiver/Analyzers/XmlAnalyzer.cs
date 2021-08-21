@@ -9,7 +9,7 @@ using System.Xml.Linq;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class XmlAnalyzer : BinaryFormatAnalyzer<XmlReader>
+    public class XmlAnalyzer : MediaObjectAnalyzer<XmlReader>
     {
         public ICollection<IXmlDocumentFormat> XmlFormats { get; } = new SortedSet<IXmlDocumentFormat>(TypeInheritanceComparer<IXmlDocumentFormat>.Instance);
 
@@ -18,8 +18,10 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override string Analyze(ILinkedNode parent, ILinkedNode node, XmlReader reader, object source, ILinkedNodeFactory nodeFactory)
+        public override AnalysisResult Analyze(XmlReader reader, AnalysisContext context, IEntityAnalyzer globalAnalyzer)
         {
+            var node = GetNode(context);
+
             XDocumentType docType = null;
             do
             {
@@ -48,7 +50,7 @@ namespace IS4.MultiArchiver.Analyzers
                         var sysid = reader.GetAttribute("SYSTEM");
                         if(!String.IsNullOrEmpty(pubid))
                         {
-                            var dtd = nodeFactory.Create(UriTools.PublicIdFormatter, pubid);
+                            var dtd = context.NodeFactory.Create(UriTools.PublicIdFormatter, pubid);
                             dtd.SetClass(Classes.DoctypeDecl);
                             if(name != null)
                             {
@@ -71,8 +73,8 @@ namespace IS4.MultiArchiver.Analyzers
                         {
                             elem.Set(Properties.XmlPrefix, reader.Prefix);
                         }
-                        var xmlMame = reader.Name;
-                        elem.Set(Properties.XmlName, xmlMame);
+                        var xmlName = reader.Name;
+                        elem.Set(Properties.XmlName, xmlName);
                         if(!String.IsNullOrEmpty(reader.NamespaceURI))
                         {
                             elem.Set(Properties.NamespaceName, reader.NamespaceURI, Datatypes.AnyUri);
@@ -89,35 +91,31 @@ namespace IS4.MultiArchiver.Analyzers
                             }
                         }
                         node.Set(Properties.DocumentElement, elem);
-                        foreach(var format in XmlFormats.Concat(new[] { ImprovisedXmlFormat.Instance }))
-                        {
-                            var resultFactory = new ResultFactory(parent, source, format, nodeFactory);
-                            var result = format.Match(reader, null, docType, resultFactory);
-                            if(result != null)
-                            {
-                                result.Set(Properties.HasFormat, node);
 
-                                if(resultFactory.Extension is string extension)
-                                {
-                                    var formatLabel = resultFactory.Label;
-                                    if(formatLabel == null && source is IStreamFactory streamFactory)
-                                    {
-                                        formatLabel = DataTools.SizeSuffix(streamFactory.Length, 2);
-                                    }
-                                    if(formatLabel != null)
-                                    {
-                                        result.Set(Properties.PrefLabel, $"{extension.ToUpperInvariant()} object ({formatLabel})", LanguageCode.En);
-                                    }else{
-                                        result.Set(Properties.PrefLabel, $"{extension.ToUpperInvariant()} object", LanguageCode.En);
-                                    }
-                                }
-                                break;
+                        bool any = false;
+                        foreach(var format in XmlFormats)
+                        {
+                            var resultFactory = new ResultFactory(format, context.WithParent(node), globalAnalyzer);
+
+                            if(format.Match(reader, docType, null, resultFactory, default) is AnalysisResult result)
+                            {
+                                any = true;
+                                result.Node.Set(Properties.HasFormat, node);
                             }
                         }
-                        return xmlMame;
+
+                        if(!any)
+                        {
+                            var resultFactory = new ResultFactory(ImprovisedXmlFormat.Instance, context.WithParent(node), globalAnalyzer);
+                            var result = ImprovisedXmlFormat.Instance.Match(reader, docType, null, resultFactory, default).Value;
+                            result.Node.Set(Properties.HasFormat, node);
+                        }
+
+                        return new AnalysisResult(node, xmlName);
                 }
             }while(ReadSafe(reader));
-            return null;
+
+            throw new InvalidOperationException();
         }
 
         static bool ReadSafe(XmlReader reader)
@@ -130,32 +128,24 @@ namespace IS4.MultiArchiver.Analyzers
             }
         }
 
-        class ResultFactory : IResultFactory<ILinkedNode>
+        class ResultFactory : IResultFactory<AnalysisResult?, ValueTuple>
         {
-            readonly ILinkedNode parent;
             readonly IXmlDocumentFormat format;
-            readonly ILinkedNodeFactory nodeFactory;
-            readonly object source;
+            readonly AnalysisContext context;
+            readonly IEntityAnalyzer analyzer;
 
-            public string Extension { get; private set; }
-            public string Label { get; private set; }
-
-            public ResultFactory(ILinkedNode parent, object source, IXmlDocumentFormat format, ILinkedNodeFactory nodeFactory)
+            public ResultFactory(IXmlDocumentFormat format, AnalysisContext context, IEntityAnalyzer analyzer)
             {
-                this.parent = parent;
-                this.source = source;
                 this.format = format;
-                this.nodeFactory = nodeFactory;
+                this.context = context;
+                this.analyzer = analyzer;
             }
 
-            ILinkedNode IResultFactory<ILinkedNode>.Invoke<T>(T value)
+            AnalysisResult? IResultFactory<AnalysisResult?, ValueTuple>.Invoke<T>(T value, ValueTuple args)
             {
                 try{
-                    var obj = new FormatObject<T, IXmlDocumentFormat>(format, value, source);
-                    var result = nodeFactory.Create(parent, obj);
-                    Extension = obj.Extension;
-                    Label = obj.Label;
-                    return result;
+                    var obj = new FormatObject<T>(format, value);
+                    return analyzer.Analyze(obj, context);
                 }catch(Exception e)
                 {
                     throw new InternalArchiverException(e);
@@ -220,9 +210,9 @@ namespace IS4.MultiArchiver.Analyzers
                 return value.RootName?.Name ?? base.GetExtension(value);
             }
 
-            public override TResult Match<TResult>(XmlReader reader, XDocumentType docType, Func<XmlFormat, TResult> resultFactory)
+            public override TResult Match<TResult, TArgs>(XmlReader reader, XDocumentType docType, ResultFactory<XmlFormat, TResult, TArgs> resultFactory, TArgs args)
             {
-                return resultFactory(new XmlFormat(reader, docType));
+                return resultFactory(new XmlFormat(reader, docType), args);
             }
 
             public class XmlFormat

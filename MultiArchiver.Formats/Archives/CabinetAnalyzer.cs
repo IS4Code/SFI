@@ -8,21 +8,16 @@ using System.IO;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class CabinetAnalyzer : BinaryFormatAnalyzer<ICabinetArchive>
+    public class CabinetAnalyzer : MediaObjectAnalyzer<ICabinetArchive>
     {
         public CabinetAnalyzer()
         {
 
         }
 
-        public override string Analyze(ILinkedNode parent, ILinkedNode node, ICabinetArchive file, object source, ILinkedNodeFactory nodeFactory)
+        public override AnalysisResult Analyze(ICabinetArchive file, AnalysisContext context, IEntityAnalyzer globalAnalyzer)
         {
-            var obj = new LinkedObject<IReader>(node, source, new CabinetAdapter(file));
-            if(nodeFactory.Create(parent, obj) != null)
-            {
-                return obj.Label;
-            }
-            return null;
+            return globalAnalyzer.Analyze(new CabinetAdapter(file), context);
         }
 
         class CabinetAdapter : IReader

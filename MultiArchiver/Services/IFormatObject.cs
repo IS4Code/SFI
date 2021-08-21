@@ -6,37 +6,32 @@ namespace IS4.MultiArchiver.Services
     {
         string Extension { get; }
         string MediaType { get; }
-        object Source { get; }
+        IFileFormat Format { get; }
 
-        string Label { get; set; }
+        TResult GetValue<TResult, TArgs>(IResultFactory<TResult, TArgs> resultFactory, TArgs args);
     }
 
-    public interface IFormatObject<out T, out TFormat> : IFormatObject where T : class where TFormat : class, IFileFormat
+    public sealed class FormatObject<T> : IFormatObject where T : class
     {
-        TFormat Format { get; }
-        T Value { get; }
-    }
-
-    public sealed class FormatObject<T, TFormat> : IFormatObject<T, TFormat> where T : class where TFormat : class, IFileFormat
-    {
-        public TFormat Format { get; }
+        public IFileFormat Format { get; }
         public string Extension => Format is IFileFormat<T> fmt ? fmt.GetExtension(Value) : Format.GetExtension(Value);
         public string MediaType => Format is IFileFormat<T> fmt ? fmt.GetMediaType(Value) : Format.GetMediaType(Value);
         public T Value { get; }
-        public object Source { get; }
 
-        public string Label { get; set; }
-
-        public FormatObject(TFormat format, T value, object source)
+        public FormatObject(IFileFormat format, T value)
         {
             Format = format;
             Value = value;
-            Source = source;
         }
 
         public override string ToString()
         {
             return MediaType ?? Format?.ToString();
+        }
+
+        TResult IFormatObject.GetValue<TResult, TArgs>(IResultFactory<TResult, TArgs> resultFactory, TArgs args)
+        {
+            return resultFactory.Invoke<T>(Value, args);
         }
 
         static readonly char[] dataChars = { ';', ',' };

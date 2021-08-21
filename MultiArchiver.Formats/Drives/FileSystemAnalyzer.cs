@@ -10,15 +10,17 @@ using System.Text.RegularExpressions;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class FileSystemAnalyzer : BinaryFormatAnalyzer<IFileSystem>
+    public class FileSystemAnalyzer : MediaObjectAnalyzer<IFileSystem>
     {
         public FileSystemAnalyzer() : base(Classes.FilesystemImage)
         {
 
         }
 
-        public override string Analyze(ILinkedNode node, IFileSystem filesystem, ILinkedNodeFactory nodeFactory)
+        public override AnalysisResult Analyze(IFileSystem filesystem, AnalysisContext context, IEntityAnalyzer globalAnalyzer)
         {
+            var node = GetNode(context);
+
             try{ node.Set(Properties.FreeSpace, filesystem.AvailableSpace); }
             catch(NotSupportedException) { }
             try{ node.Set(Properties.OccupiedSpace, filesystem.UsedSpace); }
@@ -35,7 +37,7 @@ namespace IS4.MultiArchiver.Analyzers
             foreach(var file in filesystem.GetFiles(null))
             {
                 var info = filesystem.GetFileInfo(file);
-                var node2 = nodeFactory.Create(node, new FileInfoWrapper(info));
+                var node2 = globalAnalyzer.Analyze(new FileInfoWrapper(info), context.WithParent(node)).Node;
                 if(node2 != null)
                 {
                     node2.Set(Properties.BelongsToContainer, node);
@@ -45,14 +47,14 @@ namespace IS4.MultiArchiver.Analyzers
             foreach(var directory in filesystem.GetDirectories(null))
             {
                 var info = filesystem.GetDirectoryInfo(directory);
-                var node2 = nodeFactory.Create(node, new DirectoryInfoWrapper(info));
+                var node2 = globalAnalyzer.Analyze(new DirectoryInfoWrapper(info), context.WithParent(node)).Node;
                 if(node2 != null)
                 {
                     node2.Set(Properties.BelongsToContainer, node);
                 }
             }
 
-            return null;
+            return new AnalysisResult(node);
         }
 
         abstract class FileSystemInfoWrapper<TInfo> : IFileNodeInfo where TInfo : DiscFileSystemInfo

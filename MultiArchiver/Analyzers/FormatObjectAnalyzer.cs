@@ -1,84 +1,86 @@
 ﻿using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Vocabulary;
 using System;
-using System.Collections.Generic;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public abstract class FormatObjectAnalyzer<T, TFormat> : IEntityAnalyzer<IFormatObject<T, TFormat>>, IEntityAnalyzer<ILinkedObject<T>> where T : class where TFormat : class, IFileFormat
+    public class FormatObjectAnalyzer : EntityAnalyzer<IFormatObject>, IResultFactory<AnalysisResult, (IFormatObject format, AnalysisContext context, IEntityAnalyzer analyzer)>
     {
-        readonly IEnumerable<ClassUri> recognizedClasses;
-
-        public FormatObjectAnalyzer(IEnumerable<ClassUri> recognizedClasses)
+        public sealed override AnalysisResult Analyze(IFormatObject format, AnalysisContext context, IEntityAnalyzer analyzer)
         {
-            this.recognizedClasses = recognizedClasses;
+            return format.GetValue(this, (format, context, analyzer));
         }
 
-        public FormatObjectAnalyzer(params ClassUri[] recognizedClasses) : this((IEnumerable<ClassUri>)recognizedClasses)
+        protected virtual AnalysisResult Analyze<T>(T value, IFormatObject format, AnalysisContext context, IEntityAnalyzer analyzer) where T : class
         {
+            var node = GetNode(format, context);
 
-        }
+            var result = analyzer.Analyze(value, context.WithNode(node));
+            node = result.Node ?? node;
 
-        public virtual string Analyze(ILinkedNode node, T entity, ILinkedNodeFactory nodeFactory)
-        {
-            return null;
-        }
-
-        public virtual string Analyze(ILinkedNode node, T entity, object source, ILinkedNodeFactory nodeFactory)
-        {
-            return Analyze(node, entity, nodeFactory);
-        }
-
-        public virtual string Analyze(ILinkedNode parent, ILinkedNode node, T entity, object source, ILinkedNodeFactory nodeFactory)
-        {
-            return Analyze(node, entity, source, nodeFactory);
-        }
-
-        public virtual ILinkedNode Analyze(ILinkedNode parent, IFormatObject<T, TFormat> format, ILinkedNodeFactory nodeFactory)
-        {
-            var node = parent[format];
-
-            if(node != null)
+            var type = format.MediaType?.ToLowerInvariant();
+            if(type != null)
             {
-                format.Label = format.Label ?? Analyze(parent, node, format.Value, format.Source, nodeFactory);
-                node.SetClass(Classes.MediaObject);
-                foreach(var cls in recognizedClasses)
+                if(type.StartsWith("audio/", StringComparison.Ordinal))
                 {
-                    node.SetClass(cls);
-                }
-                var type = format.MediaType?.ToLowerInvariant();
-                if(type != null)
-                {
-                    if(type.StartsWith("audio/", StringComparison.Ordinal))
+                    foreach(var cls in Common.AudioClasses)
                     {
-                        foreach(var cls in Common.AudioClasses)
-                        {
-                            node.SetClass(cls);
-                        }
-                    }else if(type.StartsWith("video/", StringComparison.Ordinal))
-                    {
-                        foreach(var cls in Common.VideoClasses)
-                        {
-                            node.SetClass(cls);
-                        }
-                    }else if(type.StartsWith("image/", StringComparison.Ordinal))
-                    {
-                        foreach(var cls in Common.ImageClasses)
-                        {
-                            node.SetClass(cls);
-                        }
+                        node.SetClass(cls);
                     }
-                    node.Set(Properties.EncodingFormat, Vocabularies.Urim, Uri.EscapeUriString(type));
+                }else if(type.StartsWith("video/", StringComparison.Ordinal))
+                {
+                    foreach(var cls in Common.VideoClasses)
+                    {
+                        node.SetClass(cls);
+                    }
+                }else if(type.StartsWith("image/", StringComparison.Ordinal))
+                {
+                    foreach(var cls in Common.ImageClasses)
+                    {
+                        node.SetClass(cls);
+                    }
+                }
+                node.Set(Properties.EncodingFormat, Vocabularies.Urim, Uri.EscapeUriString(type));
+            }
+            
+            var label = result.Label;
+            if(context.Stream != null)
+            {
+                label = label ?? DataTools.SizeSuffix(context.Stream.Length, 2);
+            }else if(context.Source is IStreamFactory streamFactory)
+            {
+                label = label ?? DataTools.SizeSuffix(streamFactory.Length, 2);
+            }
+
+            if(format is IXmlDocumentFormat xmlFormat)
+            {
+                string pubId;
+                Uri ns;
+                if(format is IXmlDocumentFormat<T> xmlFormat2)
+                {
+                    pubId = xmlFormat2.GetPublicId(value);
+                    ns = xmlFormat2.GetNamespace(value);
+                }else{
+                    pubId = xmlFormat.GetPublicId(value);
+                    ns = xmlFormat.GetNamespace(value);
+                }
+
+                if(pubId != null)
+                {
+                    node.Set(Properties.EncodingFormat, UriTools.PublicIdFormatter, pubId);
                 }
             }
 
-            return node;
+            node.Set(Properties.PrefLabel, $"{format.Extension.ToUpperInvariant()} object ({label})", LanguageCode.En);
+
+            result.Node = node;
+            return result;
         }
 
-        ILinkedNode IEntityAnalyzer<ILinkedObject<T>>.Analyze(ILinkedNode parent, ILinkedObject<T> entity, ILinkedNodeFactory nodeFactory)
+        AnalysisResult IResultFactory<AnalysisResult, (IFormatObject format, AnalysisContext context, IEntityAnalyzer analyzer)>.Invoke<T>(T value, (IFormatObject format, AnalysisContext context, IEntityAnalyzer analyzer) args)
         {
-            entity.Label = entity.Label ?? Analyze(parent, entity.Node, entity.Value, entity.Source, nodeFactory);
-            return entity.Node;
+            var (format, context, analyzer) = args;
+            return Analyze(value, format, context, analyzer);
         }
     }
 }

@@ -20,6 +20,7 @@ namespace IS4.MultiArchiver.Analyzers
         public ICollection<IDataHashAlgorithm> HashAlgorithms { get; } = new List<IDataHashAlgorithm>();
         public Func<IEncodingDetector> EncodingDetectorFactory { get; set; }
         public ICollection<IBinaryFileFormat> Formats { get; } = new SortedSet<IBinaryFileFormat>(HeaderLengthComparer.Instance);
+        public int FileSizeToWriteToDisk { get; set; } = 524288;
 
         public int MaxDataLengthToStore => Math.Max(64, HashAlgorithms.Sum(h => h.HashSize + 64)) - 16;
 
@@ -28,9 +29,7 @@ namespace IS4.MultiArchiver.Analyzers
             EncodingDetectorFactory = encodingDetectorFactory;
         }
 
-        const int fileSizeToWriteToDisk = 524288;
-
-		public ILinkedNode Analyze(ILinkedNode parent, IStreamFactory streamFactory, ILinkedNodeFactory nodeFactory)
+		public AnalysisResult Analyze(IStreamFactory streamFactory, AnalysisContext context, IEntityAnalyzer globalAnalyzer)
         {
             var signatureBuffer = new MemoryStream(Math.Max(MaxDataLengthToStore + 1, Formats.Count == 0 ? 0 : Formats.Max(fmt => fmt.HeaderLength)));
 
@@ -42,7 +41,9 @@ namespace IS4.MultiArchiver.Analyzers
 
             var hashes = new Dictionary<IDataHashAlgorithm, (ChannelWriter<ArraySegment<byte>> writer, Task<byte[]> data)>(ReferenceEqualityComparer<IDataHashAlgorithm>.Default);
 
-            var lazyMatch = new Lazy<FileMatch>(() => new FileMatch(Formats, streamFactory, seekableFactory, signatureBuffer, MaxDataLengthToStore, encodingDetector, isBinary, PrimaryHash != null && hashes.TryGetValue(PrimaryHash, out var primaryHash) ? (PrimaryHash, primaryHash.data) : default, nodeFactory), false);
+            context = context.WithSource(streamFactory);
+
+            var lazyMatch = new Lazy<FileMatch>(() => new FileMatch(Formats, seekableFactory, signatureBuffer, MaxDataLengthToStore, encodingDetector, isBinary, PrimaryHash != null && hashes.TryGetValue(PrimaryHash, out var primaryHash) ? (PrimaryHash, primaryHash.data) : default, context, globalAnalyzer), false);
             
             long actualLength = 0;
 
@@ -56,7 +57,7 @@ namespace IS4.MultiArchiver.Analyzers
                     {
                         if(streamFactory.Access != StreamFactoryAccess.Parallel || !stream.CanSeek)
                         {
-                            if(streamFactory.Length >= fileSizeToWriteToDisk)
+                            if(streamFactory.Length >= FileSizeToWriteToDisk)
                             {
                                 tmpPath = FileTools.GetTemporaryFile("b");
                                 outputStream = new FileStream(tmpPath, FileMode.CreateNew, FileAccess.Write, FileShare.None);
@@ -189,7 +190,7 @@ namespace IS4.MultiArchiver.Analyzers
             {
                 foreach(var hash in hashes)
                 {
-                    HashAlgorithm.AddHash(node, hash.Key, hash.Value.data.Result, nodeFactory);
+                    HashAlgorithm.AddHash(node, hash.Key, hash.Value.data.Result, context.NodeFactory);
                 }
             }
 
@@ -204,29 +205,21 @@ namespace IS4.MultiArchiver.Analyzers
                     any = true;
 
                     result.Key.Set(Properties.HasFormat, node);
-
-                    var extension = result.Select(r => r.Extension).FirstOrDefault(e => e != null);
-                    if(extension != null)
-                    {
-                        var formatLabel = result.Select(r => r.Label).FirstOrDefault(l => l != null);
-                        result.Key.Set(Properties.PrefLabel, $"{extension.ToUpperInvariant()} object ({formatLabel ?? sizeSuffix})", LanguageCode.En);
-                    }
                 }
             }
 
             if(!any && isBinary && DataTools.ExtractSignature(match.Signature) is string magicText)
             {
                 var signatureFormat = new ImprovisedSignatureFormat.Format(magicText);
-                var formatObj = new FormatObject<ImprovisedSignatureFormat.Format, IBinaryFileFormat>(ImprovisedSignatureFormat.Instance, signatureFormat, streamFactory);
-                var formatNode = nodeFactory.Create<IFormatObject<ImprovisedSignatureFormat.Format, IBinaryFileFormat>>(node, formatObj);
+                var formatObj = new FormatObject<ImprovisedSignatureFormat.Format>(ImprovisedSignatureFormat.Instance, signatureFormat);
+                var formatNode = globalAnalyzer.Analyze(formatObj, context.WithStream(null).WithSource(seekableFactory).WithParent(node)).Node;
                 if(formatNode != null)
                 {
                     formatNode.Set(Properties.HasFormat, node);
-                    formatNode.Set(Properties.PrefLabel, $"{magicText} object ({sizeSuffix})", LanguageCode.En);
                 }
             }
 
-			return node;
+			return new AnalysisResult(node);
 		}
 
         class FileMatch : IIndividualUriFormatter<bool>
@@ -243,7 +236,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             public ArraySegment<byte> Signature { get; }
 
-            public FileMatch(ICollection<IBinaryFileFormat> formats, object source, IStreamFactory streamFactory, MemoryStream signatureBuffer, int maxDataLength, IEncodingDetector encodingDetector, bool isBinary, (IDataHashAlgorithm algorithm, Task<byte[]> result) primaryHash, ILinkedNodeFactory nodeFactory)
+            public FileMatch(ICollection<IBinaryFileFormat> formats, IStreamFactory streamFactory, MemoryStream signatureBuffer, int maxDataLength, IEncodingDetector encodingDetector, bool isBinary, (IDataHashAlgorithm algorithm, Task<byte[]> result) primaryHash, AnalysisContext context, IEntityAnalyzer analyzer)
             {
                 if(!signatureBuffer.TryGetBuffer(out var signature))
                 {
@@ -263,45 +256,50 @@ namespace IS4.MultiArchiver.Analyzers
                     LazyCharsetMatch = new Lazy<CharsetMatch>(() => new CharsetMatch(encodingDetector), false);
                 }
 
-                if(IdentifyWithData)
+                Node = context.Node;
+
+                if(Node == null)
                 {
-                    string strval = null;
-                    if(!isBinary)
+                    if(IdentifyWithData)
                     {
-                        strval = TryGetString(CharsetMatch.Encoding, signature);
-                        if(strval == null)
+                        string strval = null;
+                        if(!isBinary)
                         {
-                            LazyCharsetMatch = null;
-                            isBinary = true;
+                            strval = TryGetString(CharsetMatch.Encoding, signature);
+                            if(strval == null)
+                            {
+                                LazyCharsetMatch = null;
+                                isBinary = true;
+                            }
                         }
-                    }
 
-                    Node = nodeFactory.Create(this, false);
+                        Node = context.NodeFactory.Create(this, false);
 
-                    if(isBinary)
-                    {
-                        Node.Set(Properties.Bytes, Convert.ToBase64String(signature.Array, signature.Offset, signature.Count), Datatypes.Base64Binary);
+                        if(isBinary)
+                        {
+                            Node.Set(Properties.Bytes, Convert.ToBase64String(signature.Array, signature.Offset, signature.Count), Datatypes.Base64Binary);
+                        }else{
+                            Node.Set(Properties.Chars, DataTools.ReplaceControlCharacters(strval, CharsetMatch.Encoding), Datatypes.String);
+                        }
+
+                        streamFactory = new MemoryStreamFactory(signature, streamFactory);
                     }else{
-                        Node.Set(Properties.Chars, DataTools.ReplaceControlCharacters(strval, CharsetMatch.Encoding), Datatypes.String);
-                    }
+                        if(primaryHash.algorithm?.NumericIdentifier is int id)
+                        {
+                            var hashBytes = primaryHash.result.Result;
 
-                    streamFactory = new MemoryStreamFactory(signature, streamFactory);
-                }else{
-                    if(primaryHash.algorithm?.NumericIdentifier is int id)
-                    {
-                        var hashBytes = primaryHash.result.Result;
+                            var identifier = new List<byte>(2 + hashBytes.Length);
+                            identifier.AddRange(DataTools.Varint((ulong)id));
+                            identifier.AddRange(DataTools.Varint((ulong)hashBytes.Length));
+                            identifier.AddRange(hashBytes);
 
-                        var identifier = new List<byte>(2 + hashBytes.Length);
-                        identifier.AddRange(DataTools.Varint((ulong)id));
-                        identifier.AddRange(DataTools.Varint((ulong)hashBytes.Length));
-                        identifier.AddRange(hashBytes);
+                            var sb = new StringBuilder();
+                            DataTools.Base58(identifier, sb);
 
-                        var sb = new StringBuilder();
-                        DataTools.Base58(identifier, sb);
-
-                        Node = nodeFactory.Create(Vocabularies.Ad, sb.ToString());
-                    }else{
-                        Node = nodeFactory.NewGuidNode();
+                            Node = context.NodeFactory.Create(Vocabularies.Ad, sb.ToString());
+                        }else{
+                            Node = context.NodeFactory.NewGuidNode();
+                        }
                     }
                 }
 
@@ -310,7 +308,7 @@ namespace IS4.MultiArchiver.Analyzers
                 if(Signature.Count > 0)
                 {
                     var nodeCreated = new TaskCompletionSource<ILinkedNode>();
-                    Results = formats.Where(fmt => fmt.CheckHeader(signature, isBinary, encodingDetector)).Select(fmt => new FormatResult(streamFactory, source, fmt, nodeCreated, Node, nodeFactory)).ToList();
+                    Results = formats.Where(fmt => fmt.CheckHeader(signature, isBinary, encodingDetector)).Select(fmt => new FormatResult(streamFactory, fmt, nodeCreated, Node, context, analyzer)).ToList();
                 }else{
                     Results = Array.Empty<FormatResult>();
                 }
@@ -381,19 +379,19 @@ namespace IS4.MultiArchiver.Analyzers
             }
         }
 
-		public ILinkedNode Analyze(ILinkedNode parent, byte[] data, ILinkedNodeFactory analyzer)
+		public AnalysisResult Analyze(byte[] data, AnalysisContext context, IEntityAnalyzer globalAnalyzer)
 		{
-			return Analyze(parent, new MemoryStreamFactory(new ArraySegment<byte>(data), data, null), analyzer);
+			return Analyze(new MemoryStreamFactory(new ArraySegment<byte>(data), data, null), context, globalAnalyzer);
 		}
         
-		class FormatResult : IComparable<FormatResult>, IResultFactory<ILinkedNode>
+		class FormatResult : IComparable<FormatResult>, IResultFactory<ILinkedNode, Stream>
 		{
             readonly IBinaryFileFormat format;
             readonly ILinkedNode parent;
-            readonly ILinkedNodeFactory nodeFactory;
+            readonly AnalysisContext context;
+            readonly IEntityAnalyzer analyzer;
             readonly Task<ILinkedNode> task;
             readonly IStreamFactory streamFactory;
-            readonly object source;
             readonly TaskCompletionSource<ILinkedNode> nodeCreated;
 
             public bool IsValid => !task.IsFaulted;
@@ -405,20 +403,20 @@ namespace IS4.MultiArchiver.Analyzers
 
             public ILinkedNode Result => task?.Result;
 
-            public FormatResult(IStreamFactory streamFactory, object source, IBinaryFileFormat format, TaskCompletionSource<ILinkedNode> nodeCreated, ILinkedNode parent, ILinkedNodeFactory nodeFactory)
+            public FormatResult(IStreamFactory streamFactory, IBinaryFileFormat format, TaskCompletionSource<ILinkedNode> nodeCreated, ILinkedNode parent, AnalysisContext context, IEntityAnalyzer analyzer)
 			{
                 this.format = format;
                 this.parent = parent;
-                this.nodeFactory = nodeFactory;
+                this.context = context;
+                this.analyzer = analyzer;
                 this.streamFactory = streamFactory;
-                this.source = source;
                 this.nodeCreated = nodeCreated;
                 task = StartReading(streamFactory, Reader);
             }
 
             private ILinkedNode Reader(Stream stream)
             {
-                return format.Match(stream, streamFactory, this);
+                return format.Match(stream, streamFactory, this, stream);
             }
 
             public void Wait()
@@ -443,34 +441,32 @@ namespace IS4.MultiArchiver.Analyzers
 
             const int MaxResultWaitTime = 1000;
 
-            ILinkedNode IResultFactory<ILinkedNode>.Invoke<T>(T value)
+            ILinkedNode IResultFactory<ILinkedNode, Stream>.Invoke<T>(T value, Stream stream)
             {
+                var streamContext = context.WithStream(stream);
                 try{
-                    var formatObj = new FormatObject<T, IBinaryFileFormat>(format, value, source);
+                    var formatObj = new FormatObject<T>(format, value);
                     while(parent[formatObj] == null)
                     {
                         ILinkedNode node;
                         if(!nodeCreated.Task.Wait(MaxResultWaitTime))
                         {
-                            formatObj = new FormatObject<T, IBinaryFileFormat>(ImprovisedFormat<T>.Instance, value, streamFactory);
+                            formatObj = new FormatObject<T>(ImprovisedFormat<T>.Instance, value);
                             continue;
                         }else{
                             node = nodeCreated.Task.Result;
                         }
                         if(node != null)
                         {
-                            var obj = new LinkedObject<T>(node, source, value);
-                            node = nodeFactory.Create<ILinkedObject<T>>(parent, obj);
-                            Label = obj.Label;
+                            var result = analyzer.Analyze(value, streamContext.WithNode(node));
+                            node = result.Node;
                         }
                         return node;
                     }
                     {
-                        var node = nodeFactory.Create<IFormatObject<T, IBinaryFileFormat>>(parent, formatObj);
-                        Extension = formatObj.Extension;
-                        Label = formatObj.Label;
-                        nodeCreated?.TrySetResult(node);
-                        return node;
+                        var result = analyzer.Analyze(formatObj, streamContext.WithParent(parent));
+                        nodeCreated?.TrySetResult(result.Node);
+                        return result.Node;
                     }
                 }catch(Exception e)
                 {
@@ -544,7 +540,7 @@ namespace IS4.MultiArchiver.Analyzers
                     return DataTools.GetFakeMediaTypeFromType<T>();
                 }
 
-                public override TResult Match<TResult>(Stream stream, ResultFactory<T, TResult> resultFactory)
+                public override TResult Match<TResult, TArgs>(Stream stream, ResultFactory<T, TResult, TArgs> resultFactory, TArgs args)
                 {
                     throw new NotSupportedException();
                 }
@@ -591,7 +587,7 @@ namespace IS4.MultiArchiver.Analyzers
                 throw new NotSupportedException();
             }
 
-            public override TResult Match<TResult>(Stream stream, ResultFactory<Format, TResult> resultFactory)
+            public override TResult Match<TResult, TArgs>(Stream stream, ResultFactory<Format, TResult, TArgs> resultFactory, TArgs args)
             {
                 throw new NotSupportedException();
             }

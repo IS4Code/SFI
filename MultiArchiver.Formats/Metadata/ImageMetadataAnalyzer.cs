@@ -14,16 +14,17 @@ using System.Linq;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class ImageMetadataAnalyzer : BinaryFormatAnalyzer<IReadOnlyList<Directory>>
+    public class ImageMetadataAnalyzer : MediaObjectAnalyzer<IReadOnlyList<Directory>>
     {
         public ICollection<object> MetadataReaders { get; } = new SortedSet<object>(TypeInheritanceComparer<object>.Instance);
 
-        public override string Analyze(ILinkedNode node, IReadOnlyList<Directory> entity, ILinkedNodeFactory nodeFactory)
+        public override AnalysisResult Analyze(IReadOnlyList<Directory> entity, AnalysisContext context, IEntityAnalyzer globalAnalyzer)
         {
+            var node = GetNode(context);
             string result = null;
             foreach(var dir in entity)
             {
-                if(TryDescribe(node, dir, nodeFactory) is string s)
+                if(TryDescribe(node, dir, context.NodeFactory) is string s)
                 {
                     result = s;
                 }
@@ -35,7 +36,7 @@ namespace IS4.MultiArchiver.Analyzers
             {
                 if(streams.Count == 1)
                 {
-                    return result ?? Analyze(node, streams[0].Value, entity, nodeFactory);
+                    return new AnalysisResult(node, result ?? Analyze(node, streams[0].Value, entity, context.NodeFactory));
                 }else{
                     var merged = new Dictionary<string, object>();
 
@@ -43,7 +44,7 @@ namespace IS4.MultiArchiver.Analyzers
                     {
                         var stream = streams[i];
                         var streamNode = node[i.ToString()];
-                        var label = Analyze(streamNode, stream.Value, entity, nodeFactory);
+                        var label = Analyze(streamNode, stream.Value, entity, context.NodeFactory);
                         streamNode.SetClass(Classes.MediaStream);
                         node.Set(Properties.HasMediaStream, streamNode);
                         if(label != null)
@@ -67,11 +68,11 @@ namespace IS4.MultiArchiver.Analyzers
                         }
                     }
 
-                    return result ?? Analyze(node, merged, entity, nodeFactory);
+                    return new AnalysisResult(node, result ?? Analyze(node, merged, entity, context.NodeFactory));
                 }
             }
 
-            return result;
+            return new AnalysisResult(node, result);
         }
 
         static IEnumerable<KeyValuePair<Directory, Dictionary<string, object>>> IdentifyTags(IReadOnlyList<Directory> entity, params string[] tagNames)

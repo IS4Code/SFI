@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class ImageAnalyzer : BinaryFormatAnalyzer<Image>
+    public class ImageAnalyzer : MediaObjectAnalyzer<Image>
     {
         public ICollection<IObjectHashAlgorithm<Image>> LowFrequencyImageHashAlgorithms { get; } = new List<IObjectHashAlgorithm<Image>>();
         public ICollection<IDataHashAlgorithm> DataHashAlgorithms { get; } = new List<IDataHashAlgorithm>();
@@ -24,13 +24,14 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override string Analyze(ILinkedNode node, Image image, object source, ILinkedNodeFactory nodeFactory)
+        public override AnalysisResult Analyze(Image image, AnalysisContext context, IEntityAnalyzer globalAnalyzer)
         {
+            var node = GetNode(context);
             var tag = (image.Tag as IImageTag) ?? DefaultTag;
 
             bool storedAsData = node.Scheme.Equals("data", StringComparison.OrdinalIgnoreCase);
 
-            if(source is IImageResourceTag imageTag && imageTag.IsTransparent)
+            if(context.Source is IImageResourceTag imageTag && imageTag.IsTransparent)
             {
                 if(image is Bitmap bmp && bmp.Width > 1 && bmp.Height > 1)
                 {
@@ -86,7 +87,7 @@ namespace IS4.MultiArchiver.Analyzers
                         }
                     }
 
-                    var thumbNode = nodeFactory.Create(UriTools.DataUriFormatter, ("image/png", thumbnailDta));
+                    var thumbNode = context.NodeFactory.Create(UriTools.DataUriFormatter, ("image/png", thumbnailDta));
                     thumbNode.Set(Properties.AtPrefLabel, "Thumbnail image");
                     node.Set(Properties.Thumbnail, thumbNode);
                 }
@@ -96,7 +97,7 @@ namespace IS4.MultiArchiver.Analyzers
                     foreach(var hash in LowFrequencyImageHashAlgorithms)
                     {
                         var hashBytes = hash.ComputeHash(image);
-                        HashAlgorithm.AddHash(node, hash, hashBytes, nodeFactory);
+                        HashAlgorithm.AddHash(node, hash, hashBytes, context.NodeFactory);
                     }
                 }
 
@@ -115,7 +116,7 @@ namespace IS4.MultiArchiver.Analyzers
                             using(var stream = new BitmapDataStream(data.Scan0, data.Stride, data.Height, data.Width, bpp))
                             {
                                 var hashBytes = hash.ComputeHash(stream);
-                                HashAlgorithm.AddHash(node, hash, hashBytes, nodeFactory);
+                                HashAlgorithm.AddHash(node, hash, hashBytes, context.NodeFactory);
                             }
                         });
                     }finally{
@@ -124,10 +125,9 @@ namespace IS4.MultiArchiver.Analyzers
                 }
             }
 
-            return null;
+            return new AnalysisResult(node);
         }
 
         static readonly ImageTag DefaultTag = new ImageTag();
-
     }
 }

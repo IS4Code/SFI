@@ -14,15 +14,16 @@ using static Vanara.PInvoke.VersionDll;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class WinModuleAnalyzer : BinaryFormatAnalyzer<IModule>
+    public class WinModuleAnalyzer : MediaObjectAnalyzer<IModule>
     {
         public WinModuleAnalyzer() : base(Common.ApplicationClasses)
         {
 
         }
 
-        public override string Analyze(ILinkedNode node, IModule module, ILinkedNodeFactory nodeFactory)
+        public override AnalysisResult Analyze(IModule module, AnalysisContext context, IEntityAnalyzer globalAnalyzer)
         {
+            var node = GetNode(context);
             var cache = new Dictionary<(object, object), ResourceInfo>();
             var groups = new List<ResourceInfo>();
 
@@ -64,7 +65,7 @@ namespace IS4.MultiArchiver.Analyzers
                         continue;
                     }
                     cache[(resource.Type, resource.Name)] = info;
-                    var infoNode = nodeFactory.Create<IFileInfo>(node[info.Type], info);
+                    var infoNode = globalAnalyzer.Analyze<IFileInfo>(info, context.WithParent(node[info.Type])).Node;
                     if(infoNode != null)
                     {
                         infoNode.SetClass(Classes.EmbeddedFileDataObject);
@@ -76,14 +77,14 @@ namespace IS4.MultiArchiver.Analyzers
             foreach(var info in groups)
             {
                 info.MakeGroup(cache);
-                var infoNode = nodeFactory.Create<IFileInfo>(node[info.Type], info);
+                var infoNode = globalAnalyzer.Analyze<IFileInfo>(info, context.WithParent(node[info.Type])).Node;
                 if(infoNode != null)
                 {
                     infoNode.SetClass(Classes.EmbeddedFileDataObject);
                     node.Set(Properties.HasMediaStream, infoNode);
                 }
             }
-            return label;
+            return new AnalysisResult(node, label);
         }
 
         static readonly byte[] ansiVersionString = Encoding.ASCII.GetBytes("VS_VERSION_INFO");

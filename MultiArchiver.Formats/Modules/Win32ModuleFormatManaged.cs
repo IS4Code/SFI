@@ -17,13 +17,13 @@ namespace IS4.MultiArchiver.Formats
 
         }
 
-        public override TResult Match<TResult>(Stream stream, ResultFactory<IModule, TResult> resultFactory)
+        public override TResult Match<TResult, TArgs>(Stream stream, ResultFactory<IModule, TResult, TArgs> resultFactory, TArgs args)
         {
             if(PeFile.TryParse(stream, out var file))
             {
-                return resultFactory(new Module(file, stream));
+                return resultFactory(new Module(file, stream), args);
             }
-            return null;
+            return default;
         }
 
         class Module : IModule

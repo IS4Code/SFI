@@ -11,11 +11,11 @@ namespace IS4.MultiArchiver.Formats
 
         }
 
-        public override TResult Match<TResult>(Stream stream, ResultFactory<RarReader, TResult> resultFactory)
+        public override TResult Match<TResult, TArgs>(Stream stream, ResultFactory<RarReader, TResult, TArgs> resultFactory, TArgs args)
         {
             using(var reader = RarReader.Open(stream))
             {
-                return resultFactory(reader);
+                return resultFactory(reader, args);
             }
         }
     }

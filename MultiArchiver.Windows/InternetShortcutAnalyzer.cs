@@ -6,16 +6,17 @@ using static Vanara.PInvoke.Url;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class InternetShortcutAnalyzer : BinaryFormatAnalyzer<IUniformResourceLocator>
+    public class InternetShortcutAnalyzer : MediaObjectAnalyzer<IUniformResourceLocator>
     {
         static readonly Guid FMTID_Intshcut = Guid.Parse("000214A0-0000-0000-C000-000000000046");
         static readonly PROPSPEC[] PID_IS_URL = { new PROPSPEC(2) };
 
-        public override string Analyze(ILinkedNode node, IUniformResourceLocator shortcut, ILinkedNodeFactory nodeFactory)
+        public override AnalysisResult Analyze(IUniformResourceLocator shortcut, AnalysisContext context, IEntityAnalyzer globalAnalyzer)
         {
+            var node = GetNode(context);
             shortcut.GetUrl(out var url);
             node.Set(Properties.Links, UriFormatter.Instance, url);
-            return null;
+            return new AnalysisResult(node);
         }
     }
 }

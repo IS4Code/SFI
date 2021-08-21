@@ -11,11 +11,11 @@ namespace IS4.MultiArchiver.Formats
 
         }
 
-        public override TResult Match<TResult>(Stream stream, ResultFactory<ZipArchive, TResult> resultFactory)
+        public override TResult Match<TResult, TArgs>(Stream stream, ResultFactory<ZipArchive, TResult, TArgs> resultFactory, TArgs args)
         {
             using(var archive = new ZipArchive(stream, ZipArchiveMode.Read, true))
             {
-                return resultFactory(archive);
+                return resultFactory(archive, args);
             }
         }
     }

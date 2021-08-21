@@ -12,9 +12,9 @@ namespace IS4.MultiArchiver.Formats
 
         }
 
-        public override TResult Match<TResult>(Stream stream, ResultFactory<IModule, TResult> resultFactory)
+        public override TResult Match<TResult, TArgs>(Stream stream, ResultFactory<IModule, TResult, TArgs> resultFactory, TArgs args)
         {
-            return resultFactory(new NeReader(stream));
+            return resultFactory(new NeReader(stream), args);
         }
     }
 }

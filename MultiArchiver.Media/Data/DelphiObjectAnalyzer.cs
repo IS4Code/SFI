@@ -7,20 +7,21 @@ using System.IO;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class DelphiObjectAnalyzer : BinaryFormatAnalyzer<DelphiObject>
+    public class DelphiObjectAnalyzer : MediaObjectAnalyzer<DelphiObject>
     {
-        public override string Analyze(ILinkedNode node, DelphiObject obj, ILinkedNodeFactory nodeFactory)
+        public override AnalysisResult Analyze(DelphiObject obj, AnalysisContext context, IEntityAnalyzer globalAnalyzer)
         {
+            var node = GetNode(context);
             foreach(var (key, value) in FindBlobs(null, obj))
             {
-                var infoNode = nodeFactory.Create<IFileInfo>(node, new BlobInfo(key, value));
+                var infoNode = globalAnalyzer.Analyze<IFileInfo>(new BlobInfo(key, value), context.WithParent(node)).Node;
                 if(infoNode != null)
                 {
                     infoNode.SetClass(Classes.EmbeddedFileDataObject);
                     node.Set(Properties.HasMediaStream, infoNode);
                 }
             }
-            return obj.Name;
+            return new AnalysisResult(node, obj.Name);
         }
 
         IEnumerable<KeyValuePair<string, byte[]>> FindBlobs(string path, DelphiObject obj)

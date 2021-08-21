@@ -11,12 +11,12 @@ namespace IS4.MultiArchiver.Formats
 
         }
 
-        public override TResult Match<TResult>(Stream stream, ResultFactory<SevenZipArchive, TResult> resultFactory)
+        public override TResult Match<TResult, TArgs>(Stream stream, ResultFactory<SevenZipArchive, TResult, TArgs> resultFactory, TArgs args)
         {
             using(var archive = SevenZipArchive.Open(stream))
             {
-                if(!CheckArchive(archive)) return null;
-                return resultFactory(archive);
+                if(!CheckArchive(archive)) return default;
+                return resultFactory(archive, args);
             }
         }
     }

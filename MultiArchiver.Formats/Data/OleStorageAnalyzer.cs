@@ -7,9 +7,9 @@ using System.IO;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class OleStorageAnalyzer : BinaryFormatAnalyzer<CompoundFile>
+    public class OleStorageAnalyzer : MediaObjectAnalyzer<CompoundFile>
     {
-        public override string Analyze(ILinkedNode node, CompoundFile file, ILinkedNodeFactory nodeFactory)
+        public override AnalysisResult Analyze(CompoundFile file, AnalysisContext context, IEntityAnalyzer globalAnalyzer)
         {
             IFileNodeInfo Visitor(string path, CFItem item)
             {
@@ -26,9 +26,11 @@ namespace IS4.MultiArchiver.Analyzers
                 return null;
             }
 
+            var node = GetNode(context);
+
             file.RootStorage.VisitEntries(item => {
                 var info = Visitor(null, item);
-                var fileNode = nodeFactory.Create(node, info);
+                var fileNode = globalAnalyzer.Analyze(info, context.WithParent(node)).Node;
                 if(fileNode != null)
                 {
                     node.Set(Properties.HasMediaStream, fileNode);
@@ -37,7 +39,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             node.Set(Properties.Modified, file.RootStorage.ModifyDate);
 
-            return null;
+            return new AnalysisResult(node);
         }
 
         abstract class ItemEntry<TItem> : IFileNodeInfo where TItem : CFItem

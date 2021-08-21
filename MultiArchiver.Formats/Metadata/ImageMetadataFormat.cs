@@ -36,9 +36,9 @@ namespace IS4.MultiArchiver.Formats
             return default;
         }
 
-        public override TResult Match<TResult>(Stream stream, ResultFactory<IReadOnlyList<MetadataExtractor.Directory>, TResult> resultFactory)
+        public override TResult Match<TResult, TArgs>(Stream stream, ResultFactory<IReadOnlyList<MetadataExtractor.Directory>, TResult, TArgs> resultFactory, TArgs args)
         {
-            return resultFactory(ImageMetadataReader.ReadMetadata(stream));
+            return resultFactory(ImageMetadataReader.ReadMetadata(stream), args);
         }
 
         public override bool CheckHeader(Span<byte> header, bool isBinary, IEncodingDetector encodingDetector)

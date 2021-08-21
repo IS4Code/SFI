@@ -9,15 +9,16 @@ using System.Linq;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class ArchiveAnalyzer : BinaryFormatAnalyzer<IArchive>
+    public class ArchiveAnalyzer : MediaObjectAnalyzer<IArchive>
     {
         public ArchiveAnalyzer() : base(Common.ArchiveClasses)
         {
 
         }
 
-        public override string Analyze(ILinkedNode node, IArchive archive, ILinkedNodeFactory nodeFactory)
+        public override AnalysisResult Analyze(IArchive archive, AnalysisContext context, IEntityAnalyzer globalAnalyzer)
         {
+            var node = GetNode(context);
             try{
                 foreach(var group in DirectoryTools.GroupByDirectories(archive.Entries, ExtractPath))
                 {
@@ -25,7 +26,7 @@ namespace IS4.MultiArchiver.Analyzers
                     {
                         foreach(var entry in group)
                         {
-                            var node2 = nodeFactory.Create(node, new ArchiveFileInfo(entry.Entry));
+                            var node2 = globalAnalyzer.Analyze(new ArchiveFileInfo(entry.Entry), context).Node;
                             if(node2 != null)
                             {
                                 node2.SetClass(Classes.ArchiveItem);
@@ -33,7 +34,7 @@ namespace IS4.MultiArchiver.Analyzers
                             }
                         }
                     }else{
-                        var node2 = nodeFactory.Create(node, ArchiveDirectoryInfo.Create("", group));
+                        var node2 = globalAnalyzer.Analyze(ArchiveDirectoryInfo.Create("", group), context).Node;
                         if(node2 != null)
                         {
                             node2.SetClass(Classes.ArchiveItem);
@@ -45,7 +46,7 @@ namespace IS4.MultiArchiver.Analyzers
             {
                 node.Set(Properties.EncryptionStatus, Individuals.EncryptedStatus);
             }
-            return null;
+            return new AnalysisResult(node);
         }
 
         internal static string ExtractPath(IEntry entry)

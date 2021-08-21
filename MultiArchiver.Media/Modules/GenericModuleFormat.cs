@@ -14,9 +14,9 @@ namespace IS4.MultiArchiver.Formats
 
         }
         
-        public override TResult Match<TResult>(Stream stream, ResultFactory<Module, TResult> resultFactory)
+        public override TResult Match<TResult, TArgs>(Stream stream, ResultFactory<Module, TResult, TArgs> resultFactory, TArgs args)
         {
-            return resultFactory(new Module(stream));
+            return resultFactory(new Module(stream), args);
         }
         
         public override string GetMediaType(Module value)

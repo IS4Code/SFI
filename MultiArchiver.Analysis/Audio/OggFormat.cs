@@ -11,11 +11,11 @@ namespace IS4.MultiArchiver.Formats
 
         }
 
-        public override TResult Match<TResult>(Stream stream, ResultFactory<WaveStream, TResult> resultFactory)
+        public override TResult Match<TResult, TArgs>(Stream stream, ResultFactory<WaveStream, TResult, TArgs> resultFactory, TArgs args)
         {
             using(var reader = new NAudio.Vorbis.VorbisWaveReader(stream, false))
             {
-                return resultFactory(reader);
+                return resultFactory(reader, args);
             }
         }
     }
