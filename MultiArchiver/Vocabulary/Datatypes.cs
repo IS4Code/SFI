@@ -19,6 +19,8 @@
         public static readonly DatatypeUri Integer;
         [Uri(Vocabularies.Uri.Xsd)]
         public static readonly DatatypeUri String;
+        [Uri(Vocabularies.Uri.Xsd)]
+        public static readonly DatatypeUri DateTime;
 
         [Uri(Vocabularies.Uri.Owl)]
         public static readonly DatatypeUri Rational;

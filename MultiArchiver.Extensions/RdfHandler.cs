@@ -110,7 +110,8 @@ namespace IS4.MultiArchiver.Extensions
                 var meta = In(Graphs.Metadata);
                 if(meta != null && (!Equals(meta) || !(pred is IUriNode uriNode) || uriNode.Uri.AbsoluteUri != Properties.Visited.Value))
                 {
-                    meta.Set(Properties.Visited, date);
+                    var dateString = System.Xml.XmlConvert.ToString(date, "yyyy-MM-dd\\THH:mm:ssK");
+                    meta.Set(Properties.Visited, dateString, Datatypes.DateTime);
                 }
             }
 
