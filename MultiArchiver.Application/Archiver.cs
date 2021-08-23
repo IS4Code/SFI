@@ -88,7 +88,8 @@ namespace IS4.MultiArchiver.Extensions
             archiver.Analyzers.Add(new TagLibAnalyzer());
             archiver.Analyzers.Add(new DosModuleAnalyzer());
             archiver.Analyzers.Add(new WinModuleAnalyzer());
-            archiver.Analyzers.Add(new WinVersionAnalyzer());
+            //archiver.Analyzers.Add(new WinVersionAnalyzer());
+            archiver.Analyzers.Add(new WinVersionAnalyzerManaged());
             archiver.Analyzers.Add(new SvgAnalyzer());
             archiver.Analyzers.Add(new WaveAnalyzer());
             archiver.Analyzers.Add(new DelphiObjectAnalyzer());
@@ -100,6 +101,16 @@ namespace IS4.MultiArchiver.Extensions
 
         public void Archive(string file, string output, bool direct = false, bool compressed = false)
         {
+            if((File.GetAttributes(file) & FileAttributes.Directory) != 0)
+            {
+                Archive(new DirectoryInfo(file), output, direct, compressed);
+            }else{
+                Archive(new FileInfo(file), output, direct, compressed);
+            }
+        }
+
+        public void Archive<T>(T entity, string output, bool direct = false, bool compressed = false) where T : class
+        {
             var graphHandlers = new Dictionary<Uri, IRdfHandler>();
 
             if(direct)
@@ -110,7 +121,7 @@ namespace IS4.MultiArchiver.Extensions
 
                 SetDefaultNamespaces(mapper);
 
-                AnalyzeFile(file, handler, graphHandlers, mapper);
+                AnalyzeEntity(entity, handler, graphHandlers, mapper);
             }else{
                 Console.Error.WriteLine("Reading data...");
 
@@ -118,7 +129,7 @@ namespace IS4.MultiArchiver.Extensions
 
                 SetDefaultNamespaces(graph.NamespaceMap);
 
-                AnalyzeFile(file, handler, graphHandlers, null);
+                AnalyzeEntity(entity, handler, graphHandlers, null);
 
                 Console.Error.WriteLine("Saving...");
 
@@ -128,7 +139,7 @@ namespace IS4.MultiArchiver.Extensions
 
         const string root = "http://archive.data.is4.site/.well-known/genid";
 
-        private void AnalyzeFile(string file, IRdfHandler rdfHandler, IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers, INamespaceMapper mapper)
+        private AnalysisResult AnalyzeEntity<T>(T entity, IRdfHandler rdfHandler, IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers, INamespaceMapper mapper) where T : class
         {
             var handler = new RdfHandler(new Uri(root), this, rdfHandler, graphHandlers);
             rdfHandler.StartRdf();
@@ -141,12 +152,7 @@ namespace IS4.MultiArchiver.Extensions
                     }
                 }
 
-                if((File.GetAttributes(file) & FileAttributes.Directory) != 0)
-                {
-                    FileAnalyzer.Analyze(new DirectoryInfo(file), new AnalysisContext(nodeFactory: handler), this);
-                }else{
-                    FileAnalyzer.Analyze(new FileInfo(file), new AnalysisContext(nodeFactory: handler), this);
-                }
+                return Analyze(entity, new AnalysisContext(nodeFactory: handler));
             }finally{
                 rdfHandler.EndRdf(true);
             }
