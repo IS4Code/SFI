@@ -15,6 +15,11 @@ namespace IS4.MultiArchiver.Vocabulary
             Value = value;
         }
 
+        public override string ToString()
+        {
+            return $"<{Value}>";
+        }
+
         public bool Equals(VocabularyUri other)
         {
             return Value == other.Value;

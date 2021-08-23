@@ -21,6 +21,11 @@ namespace IS4.MultiArchiver.Vocabulary
 
         }
 
+        public override string ToString()
+        {
+            return $"<{Value}>";
+        }
+
         public bool Equals(DatatypeUri other)
         {
             return Value == other.Value;

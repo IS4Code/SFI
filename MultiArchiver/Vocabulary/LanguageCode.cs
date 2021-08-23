@@ -19,6 +19,11 @@ namespace IS4.MultiArchiver.Vocabulary
             Value = culture.IetfLanguageTag;
         }
 
+        public override string ToString()
+        {
+            return Value;
+        }
+
         public bool Equals(LanguageCode other)
         {
             return Value.Equals(other.Value, StringComparison.OrdinalIgnoreCase);
