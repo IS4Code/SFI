@@ -46,7 +46,7 @@ namespace IS4.MultiArchiver.Formats
             public IEnumerable<IModuleResource> ReadResources()
             {
                 var rsrc = file.ImageSectionHeaders.FirstOrDefault(h => h.Name == ".rsrc");
-                if(rsrc == null)
+                if(rsrc == null || file.ImageResourceDirectory == null)
                 {
                     return Array.Empty<IModuleResource>();
                 }
