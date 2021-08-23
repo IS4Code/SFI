@@ -106,7 +106,7 @@ namespace IS4.MultiArchiver.Analyzers
                         {
                             foreach(var format in XmlFormats)
                             {
-                                var result = format.Match(reader, docType, context.Source, this, (format, context, globalAnalyzer));
+                                var result = format.Match(reader, docType, context.MatchContext, this, (format, context, globalAnalyzer));
                                 if(result.Node != null)
                                 {
                                     any = true;
@@ -121,7 +121,7 @@ namespace IS4.MultiArchiver.Analyzers
                                 var channelReader = ChannelXmlReader.Create(reader, out writers[i]);
                                 var format = formats[i];
                                 tasks[i] = Task.Run(() => {
-                                    var result = format.Match(channelReader, docType, context.Source, this, (format, context, globalAnalyzer));
+                                    var result = format.Match(channelReader, docType, context.MatchContext, this, (format, context, globalAnalyzer));
                                     if(result.Node != null)
                                     {
                                         result.Node.Set(Properties.HasFormat, node);
@@ -146,7 +146,7 @@ namespace IS4.MultiArchiver.Analyzers
                         }
                         if(!any)
                         {
-                            var result = ImprovisedXmlFormat.Instance.Match(reader, docType, context.Source, this, (ImprovisedXmlFormat.Instance, context, globalAnalyzer));
+                            var result = ImprovisedXmlFormat.Instance.Match(reader, docType, context.MatchContext, this, (ImprovisedXmlFormat.Instance, context, globalAnalyzer));
                             result.Node.Set(Properties.HasFormat, node);
                         }
 
@@ -241,7 +241,7 @@ namespace IS4.MultiArchiver.Analyzers
                 return true;
             }
 
-            public override TResult Match<TResult, TArgs>(XmlReader reader, XDocumentType docType, ResultFactory<XmlFormat, TResult, TArgs> resultFactory, TArgs args)
+            public override TResult Match<TResult, TArgs>(XmlReader reader, XDocumentType docType, MatchContext matchContext, ResultFactory<XmlFormat, TResult, TArgs> resultFactory, TArgs args)
             {
                 return resultFactory(new XmlFormat(reader, docType), args);
             }

@@ -11,7 +11,7 @@ namespace IS4.MultiArchiver.Formats
 
         }
 
-        public override TResult Match<TResult, TArgs>(Stream stream, ResultFactory<GZipReader, TResult, TArgs> resultFactory, TArgs args)
+        public override TResult Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<GZipReader, TResult, TArgs> resultFactory, TArgs args)
         {
             using(var reader = GZipReader.Open(stream))
             {

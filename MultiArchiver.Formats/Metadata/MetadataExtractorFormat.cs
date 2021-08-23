@@ -22,7 +22,7 @@ namespace IS4.MultiArchiver.Formats
             return value.Value.GetMimeType();
         }
 
-        public override TResult Match<TResult, TArgs>(Stream stream, ResultFactory<FileTypeWrapper, TResult, TArgs> resultFactory, TArgs args)
+        public override TResult Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<FileTypeWrapper, TResult, TArgs> resultFactory, TArgs args)
         {
             return resultFactory(new FileTypeWrapper(FileTypeDetector.DetectFileType(stream)), args);
         }

@@ -19,7 +19,7 @@ namespace IS4.MultiArchiver.Formats
             return (fields.Length > 0 && fields[0] == 0x4D5A) || base.CheckSignature(header);
         }
 
-        public override TResult Match<TResult, TArgs>(Stream stream, ResultFactory<DosModuleAnalyzer.Module, TResult, TArgs> resultFactory, TArgs args)
+        public override TResult Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<DosModuleAnalyzer.Module, TResult, TArgs> resultFactory, TArgs args)
         {
             return resultFactory(new DosModuleAnalyzer.Module(stream), args);
         }

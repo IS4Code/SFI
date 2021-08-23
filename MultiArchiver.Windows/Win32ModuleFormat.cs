@@ -18,7 +18,7 @@ namespace IS4.MultiArchiver.Formats
 
         }
 
-        public override TResult Match<TResult, TArgs>(Stream stream, ResultFactory<IModule, TResult, TArgs> resultFactory, TArgs args)
+        public override TResult Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<IModule, TResult, TArgs> resultFactory, TArgs args)
         {
             if(stream is FileStream fileStream)
             {

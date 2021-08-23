@@ -51,14 +51,9 @@ namespace IS4.MultiArchiver.Formats
             return file.MimeType;
         }
 
-        public override TResult Match<TResult, TArgs>(Stream stream, ResultFactory<TagLib.File, TResult, TArgs> resultFactory, TArgs args)
+        public override TResult Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<TagLib.File, TResult, TArgs> resultFactory, TArgs args)
         {
-            return Match(stream, null, resultFactory, args);
-        }
-
-        public override TResult Match<TResult, TArgs>(Stream stream, object source, ResultFactory<TagLib.File, TResult, TArgs> resultFactory, TArgs args)
-        {
-            var file = new File(stream, source);
+            var file = new File(stream, context);
             if(file.Name != null)
             {
                 var ext = Path.GetExtension(file.Name);
@@ -114,7 +109,7 @@ namespace IS4.MultiArchiver.Formats
 
             }
 
-            public File(Stream stream, object source) : this(stream, source as IFileNodeInfo)
+            public File(Stream stream, MatchContext context) : this(stream, context.Source as IFileNodeInfo)
             {
 
             }

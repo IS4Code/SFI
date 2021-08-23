@@ -32,7 +32,7 @@ namespace IS4.MultiArchiver.Formats
             return !isBinary;
         }
 
-        public override TResult Match<TResult, TArgs>(Stream stream, ResultFactory<IUniformResourceLocator, TResult, TArgs> resultFactory, TArgs args)
+        public override TResult Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<IUniformResourceLocator, TResult, TArgs> resultFactory, TArgs args)
         {
             if(InternetShortcut == null) return default;
 

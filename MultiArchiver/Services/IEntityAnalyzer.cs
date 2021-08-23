@@ -18,36 +18,34 @@ namespace IS4.MultiArchiver.Services
         public ILinkedNode Parent { get; }
         public ILinkedNode Node { get; }
         public ILinkedNodeFactory NodeFactory { get; }
-        public object Source { get; }
-        public Stream Stream { get; }
+        public MatchContext MatchContext { get; }
 
-        public AnalysisContext(ILinkedNode parent = null, ILinkedNode node = null, ILinkedNodeFactory nodeFactory = null, object source = null, Stream stream = null)
+        public AnalysisContext(ILinkedNode parent = null, ILinkedNode node = null, ILinkedNodeFactory nodeFactory = null, MatchContext matchContext = default)
         {
             Parent = parent;
             Node = node;
             NodeFactory = nodeFactory;
-            Source = source;
-            Stream = stream;
+            MatchContext = matchContext;
         }
 
         public AnalysisContext WithParent(ILinkedNode parent)
         {
-            return new AnalysisContext(parent, null, NodeFactory, Source, Stream);
+            return new AnalysisContext(parent, null, NodeFactory, MatchContext);
         }
 
         public AnalysisContext WithNode(ILinkedNode node)
         {
-            return new AnalysisContext(null, node, NodeFactory, Source, Stream);
+            return new AnalysisContext(null, node, NodeFactory, MatchContext);
         }
 
-        public AnalysisContext WithSource(object source)
+        public AnalysisContext WithMatchContext(MatchContext matchContext)
         {
-            return new AnalysisContext(Parent, Node, NodeFactory, source, Stream);
+            return new AnalysisContext(Parent, Node, NodeFactory, matchContext);
         }
 
-        public AnalysisContext WithStream(Stream stream)
+        public AnalysisContext WithMatchContext(Func<MatchContext, MatchContext> matchContextTransform)
         {
-            return new AnalysisContext(Parent, Node, NodeFactory, Source, stream);
+            return new AnalysisContext(Parent, Node, NodeFactory, matchContextTransform(MatchContext));
         }
     }
 

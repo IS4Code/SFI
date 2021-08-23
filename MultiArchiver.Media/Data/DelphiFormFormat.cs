@@ -12,7 +12,7 @@ namespace IS4.MultiArchiver.Formats
 
         }
 
-        public override TResult Match<TResult, TArgs>(Stream stream, ResultFactory<DelphiObject, TResult, TArgs> resultFactory, TArgs args)
+        public override TResult Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<DelphiObject, TResult, TArgs> resultFactory, TArgs args)
         {
             var encoding = Encoding.GetEncoding(1252); //TODO guess from context
             return resultFactory(DelphiFormReader.Read(stream, encoding), args);

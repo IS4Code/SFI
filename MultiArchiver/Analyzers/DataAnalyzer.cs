@@ -41,7 +41,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             var hashes = new Dictionary<IDataHashAlgorithm, (ChannelWriter<ArraySegment<byte>> writer, Task<byte[]> data)>(ReferenceEqualityComparer<IDataHashAlgorithm>.Default);
 
-            context = context.WithSource(streamFactory);
+            context = context.WithMatchContext(c => c.WithSource(streamFactory));
 
             var lazyMatch = new Lazy<FileMatch>(() => new FileMatch(Formats, seekableFactory, signatureBuffer, MaxDataLengthToStore, encodingDetector, isBinary, PrimaryHash != null && hashes.TryGetValue(PrimaryHash, out var primaryHash) ? (PrimaryHash, primaryHash.data) : default, context, globalAnalyzer), false);
             
@@ -212,7 +212,7 @@ namespace IS4.MultiArchiver.Analyzers
             {
                 var signatureFormat = new ImprovisedSignatureFormat.Format(magicText);
                 var formatObj = new FormatObject<ImprovisedSignatureFormat.Format>(ImprovisedSignatureFormat.Instance, signatureFormat);
-                var formatNode = globalAnalyzer.Analyze(formatObj, context.WithStream(null).WithSource(seekableFactory).WithParent(node)).Node;
+                var formatNode = globalAnalyzer.Analyze(formatObj, context.WithMatchContext(c => c.WithStream(null).WithSource(seekableFactory)).WithParent(node)).Node;
                 if(formatNode != null)
                 {
                     formatNode.Set(Properties.HasFormat, node);
@@ -384,7 +384,7 @@ namespace IS4.MultiArchiver.Analyzers
 			return Analyze(new MemoryStreamFactory(new ArraySegment<byte>(data), data, null), context, globalAnalyzer);
 		}
         
-		class FormatResult : IComparable<FormatResult>, IResultFactory<ILinkedNode, Stream>
+		class FormatResult : IComparable<FormatResult>, IResultFactory<ILinkedNode, (Stream stream, MatchContext matchContext)>
 		{
             readonly IBinaryFileFormat format;
             readonly ILinkedNode parent;
@@ -416,7 +416,8 @@ namespace IS4.MultiArchiver.Analyzers
 
             private ILinkedNode Reader(Stream stream)
             {
-                return format.Match(stream, streamFactory, this, stream);
+                var streamContext = context.MatchContext.WithStream(stream);
+                return format.Match(stream, streamContext, this, (stream, streamContext));
             }
 
             public void Wait()
@@ -441,9 +442,10 @@ namespace IS4.MultiArchiver.Analyzers
 
             const int MaxResultWaitTime = 1000;
 
-            ILinkedNode IResultFactory<ILinkedNode, Stream>.Invoke<T>(T value, Stream stream)
+            ILinkedNode IResultFactory<ILinkedNode, (Stream stream, MatchContext matchContext)>.Invoke<T>(T value, (Stream stream, MatchContext matchContext) args)
             {
-                var streamContext = context.WithStream(stream);
+                var (stream, matchContext) = args;
+                var streamContext = context.WithMatchContext(matchContext);
                 try{
                     var formatObj = new FormatObject<T>(format, value);
                     while(parent[formatObj] == null)
@@ -540,7 +542,7 @@ namespace IS4.MultiArchiver.Analyzers
                     return DataTools.GetFakeMediaTypeFromType<T>();
                 }
 
-                public override TResult Match<TResult, TArgs>(Stream stream, ResultFactory<T, TResult, TArgs> resultFactory, TArgs args)
+                public override TResult Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<T, TResult, TArgs> resultFactory, TArgs args)
                 {
                     throw new NotSupportedException();
                 }
@@ -587,7 +589,7 @@ namespace IS4.MultiArchiver.Analyzers
                 throw new NotSupportedException();
             }
 
-            public override TResult Match<TResult, TArgs>(Stream stream, ResultFactory<Format, TResult, TArgs> resultFactory, TArgs args)
+            public override TResult Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<Format, TResult, TArgs> resultFactory, TArgs args)
             {
                 throw new NotSupportedException();
             }

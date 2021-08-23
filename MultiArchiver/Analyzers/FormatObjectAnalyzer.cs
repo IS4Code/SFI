@@ -1,6 +1,7 @@
 ﻿using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Vocabulary;
 using System;
+using System.IO;
 
 namespace IS4.MultiArchiver.Analyzers
 {
@@ -44,10 +45,10 @@ namespace IS4.MultiArchiver.Analyzers
             }
             
             var label = result.Label;
-            if(context.Stream != null)
+            if(context.MatchContext.Stream is Stream stream)
             {
-                label = label ?? DataTools.SizeSuffix(context.Stream.Length, 2);
-            }else if(context.Source is IStreamFactory streamFactory)
+                label = label ?? DataTools.SizeSuffix(stream.Length, 2);
+            }else if(context.MatchContext.Source is IStreamFactory streamFactory)
             {
                 label = label ?? DataTools.SizeSuffix(streamFactory.Length, 2);
             }

@@ -36,7 +36,7 @@ namespace IS4.MultiArchiver.Formats
             return default;
         }
 
-        public override TResult Match<TResult, TArgs>(Stream stream, ResultFactory<IReadOnlyList<MetadataExtractor.Directory>, TResult, TArgs> resultFactory, TArgs args)
+        public override TResult Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<IReadOnlyList<MetadataExtractor.Directory>, TResult, TArgs> resultFactory, TArgs args)
         {
             return resultFactory(ImageMetadataReader.ReadMetadata(stream), args);
         }

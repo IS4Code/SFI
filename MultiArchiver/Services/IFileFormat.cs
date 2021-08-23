@@ -23,12 +23,12 @@ namespace IS4.MultiArchiver.Services
 
         bool CheckHeader(ArraySegment<byte> header, bool isBinary, IEncodingDetector encodingDetector);
         bool CheckHeader(Span<byte> header, bool isBinary, IEncodingDetector encodingDetector);
-        TResult Match<TResult, TArgs>(Stream stream, object source, IResultFactory<TResult, TArgs> resultFactory, TArgs args);
+        TResult Match<TResult, TArgs>(Stream stream, MatchContext context, IResultFactory<TResult, TArgs> resultFactory, TArgs args);
     }
 
     public interface IBinaryFileFormat<T> : IFileFormat<T>, IBinaryFileFormat where T : class
     {
-        TResult Match<TResult, TArgs>(Stream stream, object source, ResultFactory<T, TResult, TArgs> resultFactory, TArgs args);
+        TResult Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<T, TResult, TArgs> resultFactory, TArgs args);
     }
 
     public interface IXmlDocumentFormat : IFileFormat
@@ -38,7 +38,7 @@ namespace IS4.MultiArchiver.Services
         Uri GetNamespace(object value);
 
         bool CheckDocument(XDocumentType docType, XmlReader rootReader);
-        TResult Match<TResult, TArgs>(XmlReader reader, XDocumentType docType, object source, IResultFactory<TResult, TArgs> resultFactory, TArgs args);
+        TResult Match<TResult, TArgs>(XmlReader reader, XDocumentType docType, MatchContext context, IResultFactory<TResult, TArgs> resultFactory, TArgs args);
     }
 
     public interface IXmlDocumentFormat<T> : IFileFormat<T>, IXmlDocumentFormat where T : class
@@ -46,7 +46,7 @@ namespace IS4.MultiArchiver.Services
         string GetPublicId(T value);
         string GetSystemId(T value);
         Uri GetNamespace(T value);
-        TResult Match<TResult, TArgs>(XmlReader reader, XDocumentType docType, object source, ResultFactory<T, TResult, TArgs> resultFactory, TArgs args);
+        TResult Match<TResult, TArgs>(XmlReader reader, XDocumentType docType, MatchContext context, ResultFactory<T, TResult, TArgs> resultFactory, TArgs args);
     }
 
     public interface IResultFactory<out TResult, in TArgs>
@@ -55,6 +55,28 @@ namespace IS4.MultiArchiver.Services
     }
 
     public delegate TResult ResultFactory<T, out TResult, in TArgs>(T value, TArgs args) where T : class;
+
+    public struct MatchContext
+    {
+        public object Source { get; }
+        public Stream Stream { get; }
+
+        public MatchContext(object source = null, Stream stream = null)
+        {
+            Source = source;
+            Stream = stream;
+        }
+
+        public MatchContext WithSource(object source)
+        {
+            return new MatchContext(source, Stream);
+        }
+
+        public MatchContext WithStream(Stream stream)
+        {
+            return new MatchContext(Source, stream);
+        }
+    }
 
     public abstract class FileFormat<T> : IFileFormat<T> where T : class
     {
@@ -106,16 +128,11 @@ namespace IS4.MultiArchiver.Services
 
         public abstract bool CheckHeader(Span<byte> header, bool isBinary, IEncodingDetector encodingDetector);
 
-        public abstract TResult Match<TResult, TArgs>(Stream stream, ResultFactory<T, TResult, TArgs> resultFactory, TArgs args);
+        public abstract TResult Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<T, TResult, TArgs> resultFactory, TArgs args);
 
-        public virtual TResult Match<TResult, TArgs>(Stream stream, object source, ResultFactory<T, TResult, TArgs> resultFactory, TArgs args)
+        public TResult Match<TResult, TArgs>(Stream stream, MatchContext context, IResultFactory<TResult, TArgs> resultFactory, TArgs args)
         {
-            return Match(stream, resultFactory, args);
-        }
-
-        public TResult Match<TResult, TArgs>(Stream stream, object source, IResultFactory<TResult, TArgs> resultFactory, TArgs args)
-        {
-            return Match(stream, source, resultFactory.Invoke, args);
+            return Match(stream, context, resultFactory.Invoke, args);
         }
     }
 
@@ -134,16 +151,11 @@ namespace IS4.MultiArchiver.Services
 
         public abstract bool CheckDocument(XDocumentType docType, XmlReader rootReader);
 
-        public abstract TResult Match<TResult, TArgs>(XmlReader reader, XDocumentType docType, ResultFactory<T, TResult, TArgs> resultFactory, TArgs args);
-
-        public virtual TResult Match<TResult, TArgs>(XmlReader reader, XDocumentType docType, object source, ResultFactory<T, TResult, TArgs> resultFactory, TArgs args)
+        public abstract TResult Match<TResult, TArgs>(XmlReader reader, XDocumentType docType, MatchContext context, ResultFactory<T, TResult, TArgs> resultFactory, TArgs args);
+        
+        public TResult Match<TResult, TArgs>(XmlReader reader, XDocumentType docType, MatchContext context, IResultFactory<TResult, TArgs> resultFactory, TArgs args)
         {
-            return Match(reader, docType, resultFactory, args);
-        }
-
-        public TResult Match<TResult, TArgs>(XmlReader reader, XDocumentType docType, object source, IResultFactory<TResult, TArgs> resultFactory, TArgs args)
-        {
-            return Match(reader, docType, source, resultFactory.Invoke, args);
+            return Match(reader, docType, context, resultFactory.Invoke, args);
         }
 
         public virtual string GetPublicId(T value)

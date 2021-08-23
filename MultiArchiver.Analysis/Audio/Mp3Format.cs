@@ -14,7 +14,7 @@ namespace IS4.MultiArchiver.Formats
             this.frameDecompressorBuilder = frameDecompressorBuilder;
         }
 
-        public override TResult Match<TResult, TArgs>(Stream stream, ResultFactory<WaveStream, TResult, TArgs> resultFactory, TArgs args)
+        public override TResult Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<WaveStream, TResult, TArgs> resultFactory, TArgs args)
         {
             using(var reader = new Mp3FileReaderBase(stream, frameDecompressorBuilder))
             {

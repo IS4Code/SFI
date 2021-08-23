@@ -22,7 +22,7 @@ namespace IS4.MultiArchiver.Formats
             return true;
         }
 
-        public override TResult Match<TResult, TArgs>(Stream stream, ResultFactory<CompoundFile, TResult, TArgs> resultFactory, TArgs args)
+        public override TResult Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<CompoundFile, TResult, TArgs> resultFactory, TArgs args)
         {
             using(var file = new CompoundFile(stream, CFSUpdateMode.ReadOnly, CFSConfiguration.NoValidationException))
             {
