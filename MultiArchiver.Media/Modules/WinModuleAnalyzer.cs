@@ -43,7 +43,6 @@ namespace IS4.MultiArchiver.Analyzers
                         case Win32ResourceType.Dialog:
                         case Win32ResourceType.DialogEx:
                         case Win32ResourceType.DialogInclude:
-                        case Win32ResourceType.Font:
                         case Win32ResourceType.FontDirectory:
                         case Win32ResourceType.Menu:
                         case Win32ResourceType.MenuEx:
