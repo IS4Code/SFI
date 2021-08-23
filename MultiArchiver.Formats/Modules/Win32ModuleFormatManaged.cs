@@ -45,12 +45,11 @@ namespace IS4.MultiArchiver.Formats
 
             public IEnumerable<IModuleResource> ReadResources()
             {
-                var index = (int)DataDirectoryType.Resource;
-                if(file.ImageSectionHeaders.Length <= index)
+                var rsrc = file.ImageSectionHeaders.FirstOrDefault(h => h.Name == ".rsrc");
+                if(rsrc == null)
                 {
                     return Array.Empty<IModuleResource>();
                 }
-                var rsrc = file.ImageSectionHeaders[index];
                 return file.ImageResourceDirectory.DirectoryEntries.Where(e => e.DataIsDirectory).SelectMany(e => Resource.Directory(this, e, rsrc));
             }
 
