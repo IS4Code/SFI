@@ -41,7 +41,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             var hashes = new Dictionary<IDataHashAlgorithm, (ChannelWriter<ArraySegment<byte>> writer, Task<byte[]> data)>(ReferenceEqualityComparer<IDataHashAlgorithm>.Default);
 
-            context = context.WithMatchContext(c => c.WithSource(streamFactory));
+            context = context.WithMatchContext(c => c.WithServices(streamFactory));
 
             var lazyMatch = new Lazy<FileMatch>(() => new FileMatch(Formats, seekableFactory, signatureBuffer, MaxDataLengthToStore, encodingDetector, isBinary, PrimaryHash != null && hashes.TryGetValue(PrimaryHash, out var primaryHash) ? (PrimaryHash, primaryHash.data) : default, context, globalAnalyzer), false);
             
@@ -212,7 +212,7 @@ namespace IS4.MultiArchiver.Analyzers
             {
                 var signatureFormat = new ImprovisedSignatureFormat.Format(magicText);
                 var formatObj = new FormatObject<ImprovisedSignatureFormat.Format>(ImprovisedSignatureFormat.Instance, signatureFormat);
-                var formatNode = globalAnalyzer.Analyze(formatObj, context.WithMatchContext(c => c.WithStream(null).WithSource(seekableFactory)).WithParent(node)).Node;
+                var formatNode = globalAnalyzer.Analyze(formatObj, context.WithMatchContext(c => c.WithStream(null).WithService(seekableFactory)).WithParent(node)).Node;
                 if(formatNode != null)
                 {
                     formatNode.Set(Properties.HasFormat, node);

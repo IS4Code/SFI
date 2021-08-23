@@ -109,7 +109,7 @@ namespace IS4.MultiArchiver.Formats
 
             }
 
-            public File(Stream stream, MatchContext context) : this(stream, context.Source as IFileNodeInfo)
+            public File(Stream stream, MatchContext context) : this(stream, context.GetService<IFileNodeInfo>())
             {
 
             }

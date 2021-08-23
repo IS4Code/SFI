@@ -31,7 +31,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             bool storedAsData = node.Scheme.Equals("data", StringComparison.OrdinalIgnoreCase);
 
-            if(context.MatchContext.Source is IImageResourceTag imageTag && imageTag.IsTransparent)
+            if(context.MatchContext.GetService<IImageResourceTag>() is IImageResourceTag imageTag && imageTag.IsTransparent)
             {
                 if(image is Bitmap bmp && bmp.Width > 1 && bmp.Height > 1)
                 {

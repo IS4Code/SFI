@@ -48,7 +48,7 @@ namespace IS4.MultiArchiver.Analyzers
             if(context.MatchContext.Stream is Stream stream)
             {
                 label = label ?? DataTools.SizeSuffix(stream.Length, 2);
-            }else if(context.MatchContext.Source is IStreamFactory streamFactory)
+            }else if(context.MatchContext.GetService<IStreamFactory>() is IStreamFactory streamFactory)
             {
                 label = label ?? DataTools.SizeSuffix(streamFactory.Length, 2);
             }
