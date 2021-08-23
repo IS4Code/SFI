@@ -18,7 +18,12 @@ namespace IS4.MultiArchiver
                 if(obj is IEntityAnalyzer<T> analyzer)
                 {
                     try{
-                        Console.Error.WriteLine(entity);
+                        if(typeof(T).Equals(typeof(IStreamFactory)))
+                        {
+                            Console.Error.WriteLine($"Data ({((IStreamFactory)entity).Length} B)");
+                        }else{
+                            Console.Error.WriteLine(entity);
+                        }
                         var result = analyzer.Analyze(entity, context, this);
                         if(result.Node != null)
                         {

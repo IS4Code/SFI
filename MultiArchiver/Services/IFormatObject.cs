@@ -26,7 +26,7 @@ namespace IS4.MultiArchiver.Services
 
         public override string ToString()
         {
-            return MediaType ?? Format?.ToString();
+            return $"Media object ({MediaType ?? Extension ?? Format?.ToString()})";
         }
 
         TResult IFormatObject.GetValue<TResult, TArgs>(IResultFactory<TResult, TArgs> resultFactory, TArgs args)
