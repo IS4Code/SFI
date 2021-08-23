@@ -11,7 +11,7 @@ namespace IS4.MultiArchiver.Services
         string GetExtension(object value);
     }
 
-    public interface IFileFormat<T> : IFileFormat where T : class
+    public interface IFileFormat<in T> : IFileFormat where T : class
     {
         string GetMediaType(T value);
         string GetExtension(T value);

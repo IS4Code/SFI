@@ -11,7 +11,12 @@ namespace IS4.MultiArchiver.Services
         TResult GetValue<TResult, TArgs>(IResultFactory<TResult, TArgs> resultFactory, TArgs args);
     }
 
-    public sealed class FormatObject<T> : IFormatObject where T : class
+    public interface IFormatObject<out T> : IFormatObject
+    {
+        T Value { get; }
+    }
+
+    public sealed class FormatObject<T> : IFormatObject<T> where T : class
     {
         public IFileFormat Format { get; }
         public string Extension => Format is IFileFormat<T> fmt ? fmt.GetExtension(Value) : Format.GetExtension(Value);

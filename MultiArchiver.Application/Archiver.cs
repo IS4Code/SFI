@@ -184,14 +184,14 @@ namespace IS4.MultiArchiver.Extensions
             {
                 if(hash.FormattingMethod != FormattingMethod.Base64)
                 {
-                    mapper.AddNamespace(hash.Name, hash[Array.Empty<byte>()]);
+                    mapper.AddNamespace(hash.Name, hash[new ArraySegment<byte>(Array.Empty<byte>())]);
                 }
             }
             foreach(var hash in FileAnalyzer.HashAlgorithms)
             {
                 if(hash.FormattingMethod != FormattingMethod.Base64)
                 {
-                    mapper.AddNamespace(hash.Name, hash[Array.Empty<byte>()]);
+                    mapper.AddNamespace(hash.Name, hash[new ArraySegment<byte>(Array.Empty<byte>())]);
                 }
             }
             mapper.AddNamespace("id", new Uri(root + "/"));

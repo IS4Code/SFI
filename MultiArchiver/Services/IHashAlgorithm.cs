@@ -17,7 +17,7 @@ namespace IS4.MultiArchiver.Services
         Decimal
     }
 
-    public interface IHashAlgorithm : IIndividualUriFormatter<byte[]>
+    public interface IHashAlgorithm : IIndividualUriFormatter<ArraySegment<byte>>
     {
         string Name { get; }
         int HashSize { get; }
@@ -65,11 +65,11 @@ namespace IS4.MultiArchiver.Services
             Name = String.Concat(new Uri(prefix, UriKind.Absolute).AbsolutePath.Where(Char.IsLetterOrDigit));
         }
 
-        public Uri this[byte[] data] {
+        public Uri this[ArraySegment<byte> data] {
             get {
-                var sb = new StringBuilder(Prefix.Length + data.Length * 2);
+                var sb = new StringBuilder(Prefix.Length + data.Count * 2);
                 sb.Append(Prefix);
-                if(data.Length > 0)
+                if(data.Count > 0)
                 {
                     switch(FormattingMethod)
                     {
@@ -89,26 +89,24 @@ namespace IS4.MultiArchiver.Services
                             DataTools.Base64(data, sb);
                             break;
                         case FormattingMethod.Decimal:
-                            switch(data.Length)
+                            switch(data.Count)
                             {
                                 case sizeof(byte):
-                                    sb.Append(data[0]);
+                                    sb.Append(data.Array[data.Offset]);
                                     break;
                                 case sizeof(ushort):
-                                    sb.Append(BitConverter.ToUInt16(data, 0));
+                                    sb.Append(BitConverter.ToUInt16(data.Array, data.Offset));
                                     break;
                                 case sizeof(uint):
-                                    sb.Append(BitConverter.ToUInt32(data, 0));
+                                    sb.Append(BitConverter.ToUInt32(data.Array, data.Offset));
                                     break;
                                 case sizeof(ulong):
-                                    sb.Append(BitConverter.ToUInt64(data, 0));
+                                    sb.Append(BitConverter.ToUInt64(data.Array, data.Offset));
                                     break;
                                 default:
-                                    if(data[data.Length - 1] > SByte.MaxValue)
-                                    {
-                                        Array.Resize(ref data, data.Length + 1);
-                                    }
-                                    sb.Append(new BigInteger(data).ToString());
+                                    var dataCopy = new byte[data.Count + 1];
+                                    Array.Copy(data.Array, data.Offset, dataCopy, 0, data.Count);
+                                    sb.Append(new BigInteger(dataCopy).ToString());
                                     break;
                             }
                             break;
@@ -122,8 +120,13 @@ namespace IS4.MultiArchiver.Services
 
         public static void AddHash(ILinkedNode node, IHashAlgorithm algorithm, byte[] hash, ILinkedNodeFactory nodeFactory)
         {
+            AddHash(node, algorithm, new ArraySegment<byte>(hash), nodeFactory);
+        }
+
+        public static void AddHash(ILinkedNode node, IHashAlgorithm algorithm, ArraySegment<byte> hash, ILinkedNodeFactory nodeFactory)
+        {
             if(hash == null) return;
-            bool tooLong = hash.Length >= 1984;
+            bool tooLong = hash.Count >= 1984;
             ILinkedNode hashNode;
             if(tooLong)
             {
@@ -138,11 +141,11 @@ namespace IS4.MultiArchiver.Services
             hashNode.SetClass(Classes.Digest);
 
             hashNode.Set(Properties.DigestAlgorithm, algorithm.Identifier);
-            hashNode.Set(Properties.DigestValue, Convert.ToBase64String(hash), Datatypes.Base64Binary);
+            hashNode.Set(Properties.DigestValue, Convert.ToBase64String(hash.Array, hash.Offset, hash.Count), Datatypes.Base64Binary);
 
             if(tooLong)
             {
-                hashNode.Set(Properties.AtPrefLabel, algorithm[Array.Empty<byte>()].AbsoluteUri + "\u2026 (URI too long)", LanguageCode.En);
+                hashNode.Set(Properties.AtPrefLabel, algorithm[new ArraySegment<byte>(Array.Empty<byte>())].AbsoluteUri + "\u2026 (URI too long)", LanguageCode.En);
             }
 
             node.Set(Properties.Digest, hashNode);
