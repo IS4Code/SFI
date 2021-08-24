@@ -1,52 +1,40 @@
-﻿using IS4.MultiArchiver.Services;
-using IS4.MultiArchiver.Vocabulary;
-using SharpCompress.Archives;
+﻿using IS4.MultiArchiver.Media;
+using IS4.MultiArchiver.Services;
 using SharpCompress.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using ISharpCompressArchiveEntry = SharpCompress.Archives.IArchiveEntry;
 
-namespace IS4.MultiArchiver.Analyzers
+namespace IS4.MultiArchiver.Formats.Archives
 {
-    public class ArchiveAnalyzer : MediaObjectAnalyzer<IArchive>
+    using IArchiveEntryGrouping = IGrouping<string, DirectoryTools.EntryInfo<ISharpCompressArchiveEntry>>;
+
+    public class ArchiveAdapter : IArchiveFile
     {
-        public ArchiveAnalyzer() : base(Common.ArchiveClasses)
-        {
-
-        }
-
-        public override AnalysisResult Analyze(IArchive archive, AnalysisContext context, IEntityAnalyzer globalAnalyzer)
-        {
-            var node = GetNode(context);
-            try{
+        public IEnumerable<IArchiveEntry> Entries {
+            get {
                 foreach(var group in DirectoryTools.GroupByDirectories(archive.Entries, ExtractPath))
                 {
                     if(group.Key == null)
                     {
                         foreach(var entry in group)
                         {
-                            var node2 = globalAnalyzer.Analyze(new ArchiveFileInfo(entry.Entry), context).Node;
-                            if(node2 != null)
-                            {
-                                node2.SetClass(Classes.ArchiveItem);
-                                node2.Set(Properties.BelongsToContainer, node);
-                            }
+                            yield return new ArchiveFileInfo(entry.Entry);
                         }
                     }else{
-                        var node2 = globalAnalyzer.Analyze(ArchiveDirectoryInfo.Create("", group), context).Node;
-                        if(node2 != null)
-                        {
-                            node2.SetClass(Classes.ArchiveItem);
-                            node2.Set(Properties.BelongsToContainer, node);
-                        }
+                        yield return ArchiveDirectoryInfo.Create("", group);
                     }
                 }
-            }catch(CryptographicException)
-            {
-                node.Set(Properties.EncryptionStatus, Individuals.EncryptedStatus);
             }
-            return new AnalysisResult(node);
+        }
+
+        readonly SharpCompress.Archives.IArchive archive;
+
+        public ArchiveAdapter(SharpCompress.Archives.IArchive archive)
+        {
+            this.archive = archive;
         }
 
         internal static string ExtractPath(IEntry entry)
@@ -69,11 +57,11 @@ namespace IS4.MultiArchiver.Analyzers
             return path;
         }
 
-        abstract class ArchiveEntryInfo : IFileNodeInfo
+        abstract class ArchiveEntryInfo : IArchiveEntry
         {
-            protected IArchiveEntry Entry { get; }
+            protected ISharpCompressArchiveEntry Entry { get; }
 
-            public ArchiveEntryInfo(IArchiveEntry entry)
+            public ArchiveEntryInfo(ISharpCompressArchiveEntry entry)
             {
                 Entry = entry;
             }
@@ -89,6 +77,8 @@ namespace IS4.MultiArchiver.Analyzers
             public DateTime? LastWriteTime => Entry?.LastModifiedTime;
 
             public DateTime? LastAccessTime => Entry?.LastAccessedTime;
+
+            public DateTime? ArchivedTime => Entry?.LastAccessedTime;
 
             public int? Revision => null;
 
@@ -106,7 +96,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         class ArchiveDirectoryInfo : ArchiveEntryInfo, IDirectoryInfo
         {
-            readonly IGrouping<string, DirectoryTools.EntryInfo<IArchiveEntry>> entries;
+            readonly IArchiveEntryGrouping entries;
 
             readonly string path;
 
@@ -114,7 +104,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             public override string Path => base.Path ?? path + entries.Key + "/";
 
-            protected ArchiveDirectoryInfo(IArchiveEntry container, string path, IGrouping<string, DirectoryTools.EntryInfo<IArchiveEntry>> entries) : base(container)
+            protected ArchiveDirectoryInfo(ISharpCompressArchiveEntry container, string path, IArchiveEntryGrouping entries) : base(container)
             {
                 this.entries = entries;
                 this.path = path;
@@ -142,7 +132,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             protected override object ReferenceKey => base.ReferenceKey ?? entries.FirstOrDefault().Entry?.Archive;
 
-            public static ArchiveDirectoryInfo Create(string path, IGrouping<string, DirectoryTools.EntryInfo<IArchiveEntry>> group)
+            public static ArchiveDirectoryInfo Create(string path, IArchiveEntryGrouping group)
             {
                 var container = group.FirstOrDefault(p => String.IsNullOrEmpty(p.SubPath));
                 if(container.Entry != null && container.Entry.Size > 0)
@@ -158,7 +148,7 @@ namespace IS4.MultiArchiver.Analyzers
         {
             readonly ArchiveFileInfo entryInfo;
 
-            public ArchiveFileDirectoryInfo(IArchiveEntry container, IGrouping<string, DirectoryTools.EntryInfo<IArchiveEntry>> entries) : base(container, null, entries)
+            public ArchiveFileDirectoryInfo(ISharpCompressArchiveEntry container, IArchiveEntryGrouping entries) : base(container, null, entries)
             {
                 entryInfo = new ArchiveFileInfo(container);
             }
@@ -177,7 +167,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         class ArchiveFileInfo : ArchiveEntryInfo, IFileInfo
         {
-            public ArchiveFileInfo(IArchiveEntry entry) : base(entry)
+            public ArchiveFileInfo(ISharpCompressArchiveEntry entry) : base(entry)
             {
 
             }

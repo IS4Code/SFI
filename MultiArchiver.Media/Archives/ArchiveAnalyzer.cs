@@ -5,23 +5,22 @@ using System.Security.Cryptography;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class ArchiveReaderAnalyzer : MediaObjectAnalyzer<IArchiveReader>
+    public class ArchiveAnalyzer : MediaObjectAnalyzer<IArchiveFile>
     {
-        public ArchiveReaderAnalyzer() : base(Common.ArchiveClasses)
+        public ArchiveAnalyzer() : base(Common.ArchiveClasses)
         {
 
         }
 
-        public override AnalysisResult Analyze(IArchiveReader reader, AnalysisContext context, IEntityAnalyzer globalAnalyzer)
+        public override AnalysisResult Analyze(IArchiveFile archive, AnalysisContext context, IEntityAnalyzer globalAnalyzer)
         {
             var node = GetNode(context);
 
             try{
-                while(reader.MoveNext())
+                foreach(var entry in archive.Entries)
                 {
-                    var entry = reader.Current;
-                    var entryNode = globalAnalyzer.Analyze(entry, context.WithNode(node[entry.Path])).Node;
-                    if(entryNode != null && !entry.Path.Contains("/"))
+                    var entryNode = globalAnalyzer.Analyze(entry, context).Node;
+                    if(entryNode != null)
                     {
                         entryNode.SetClass(Classes.ArchiveItem);
                         entryNode.Set(Properties.BelongsToContainer, node);
@@ -31,7 +30,6 @@ namespace IS4.MultiArchiver.Analyzers
             {
                 node.Set(Properties.EncryptionStatus, Individuals.EncryptedStatus);
             }
-
             return new AnalysisResult(node);
         }
     }

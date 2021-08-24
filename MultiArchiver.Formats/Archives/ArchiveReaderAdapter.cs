@@ -1,5 +1,4 @@
-﻿using IS4.MultiArchiver.Analyzers;
-using IS4.MultiArchiver.Media;
+﻿using IS4.MultiArchiver.Media;
 using IS4.MultiArchiver.Services;
 using SharpCompress.Common;
 using SharpCompress.Readers;
@@ -113,11 +112,6 @@ namespace IS4.MultiArchiver.Formats.Archives
             return Current != null;
         }
 
-        public IArchiveReader OpenReader()
-        {
-            throw new NotSupportedException();
-        }
-
         public void Reset()
         {
             try{
@@ -165,7 +159,7 @@ namespace IS4.MultiArchiver.Formats.Archives
 
             public string SubName => null;
 
-            public virtual string Path => ArchiveAnalyzer.ExtractPathSimple(Entry);
+            public virtual string Path => ArchiveAdapter.ExtractPathSimple(Entry);
 
             public DateTime? CreationTime => Entry?.CreatedTime;
 

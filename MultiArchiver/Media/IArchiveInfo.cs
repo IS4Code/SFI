@@ -6,7 +6,7 @@ namespace IS4.MultiArchiver.Media
 {
     public interface IArchiveInfo
     {
-        IArchiveReader OpenReader();
+
     }
 
     public interface IArchiveFile : IArchiveInfo
