@@ -120,7 +120,14 @@ namespace IS4.MultiArchiver.Services
             Namespace = @namespace;
         }
 
-        public abstract bool CheckDocument(XDocumentType docType, XmlReader rootReader);
+        public virtual bool CheckDocument(XDocumentType docType, XmlReader rootReader)
+        {
+            if(PublicId == null && Namespace == null)
+            {
+                return false;
+            }
+            return (PublicId != null && docType.PublicId == PublicId) || (Namespace != null && rootReader.NamespaceURI == Namespace.AbsoluteUri);
+        }
 
         public abstract TResult Match<TResult, TArgs>(XmlReader reader, XDocumentType docType, MatchContext context, ResultFactory<T, TResult, TArgs> resultFactory, TArgs args);
         
