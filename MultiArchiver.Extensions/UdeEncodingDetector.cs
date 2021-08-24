@@ -34,7 +34,7 @@ namespace IS4.MultiArchiver.Tools
             var array = ArrayPool<byte>.Shared.Rent(data.Length);
             try{
                 data.CopyTo(array);
-                Write(new ArraySegment<byte>(array, 0, data.Length));
+                Write(array.Slice(0, data.Length));
             }finally{
                 ArrayPool<byte>.Shared.Return(array);
             }

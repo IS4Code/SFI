@@ -1,8 +1,8 @@
 ﻿using IS4.MultiArchiver.Services;
+using IS4.MultiArchiver.Tools;
 using OpenMcdf;
 using System;
 using System.IO;
-using System.Runtime.InteropServices;
 
 namespace IS4.MultiArchiver.Formats
 {
@@ -15,7 +15,7 @@ namespace IS4.MultiArchiver.Formats
 
         public override bool CheckHeader(Span<byte> header, bool isBinary, IEncodingDetector encodingDetector)
         {
-            if(header.Length < HeaderLength || MemoryMarshal.Cast<byte, ulong>(header)[0] != 0xE11AB1A1E011CFD0)
+            if(header.Length < HeaderLength || header.MemoryCast<ulong>()[0] != 0xE11AB1A1E011CFD0)
             {
                 return false;
             }

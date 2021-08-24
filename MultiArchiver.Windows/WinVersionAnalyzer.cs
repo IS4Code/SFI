@@ -1,5 +1,6 @@
 ﻿using IS4.MultiArchiver.Media.Modules;
 using IS4.MultiArchiver.Services;
+using IS4.MultiArchiver.Tools;
 using IS4.MultiArchiver.Vocabulary;
 using System;
 using System.Collections.Generic;
@@ -41,7 +42,7 @@ namespace IS4.MultiArchiver.Analyzers
         unsafe string ReadVersion(ILinkedNode node, ArraySegment<byte> versionData)
         {
             string label = null;
-            using(var stream = new MemoryStream(versionData.Array, versionData.Offset, versionData.Count, false))
+            using(var stream = versionData.AsStream(false))
             {
                 // Allocate space for ANSI/Unicode conversions
                 var buffer = new byte[stream.Length * 3];

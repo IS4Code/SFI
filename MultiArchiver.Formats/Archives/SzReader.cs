@@ -1,4 +1,5 @@
-﻿using IS4.MultiArchiver.Tools.IO;
+﻿using IS4.MultiArchiver.Tools;
+using IS4.MultiArchiver.Tools.IO;
 using SharpCompress.Common;
 using SharpCompress.Readers;
 using System;
@@ -97,7 +98,7 @@ namespace IS4.MultiArchiver.Formats.Archives
 
             ArraySegment<byte> GetSegment(int? newPos = null)
             {
-                var result = new ArraySegment<byte>(window, initialPos, pos - initialPos);
+                var result = window.Slice(initialPos, pos - initialPos);
                 initialPos = pos = newPos ?? pos;
                 return result;
             }

@@ -1,4 +1,5 @@
-﻿using NAudio.Wave;
+﻿using IS4.MultiArchiver.Tools;
+using NAudio.Wave;
 using System;
 using System.Buffers;
 using System.Drawing;
@@ -32,7 +33,7 @@ namespace IS4.MultiArchiver.Analysis.Audio
                 int read;
                 while((read = provider.Read(buffer, 0, buffer.Length)) > 0)
                 {
-                    gen.Add(new ArraySegment<float>(buffer, 0, read));
+                    gen.Add(buffer.Slice(0, read));
                 }
                 gen.Finish();
             }finally{

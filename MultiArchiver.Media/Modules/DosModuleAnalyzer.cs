@@ -1,5 +1,6 @@
 ﻿using IS4.MultiArchiver.Media;
 using IS4.MultiArchiver.Services;
+using IS4.MultiArchiver.Tools;
 using IS4.MultiArchiver.Vocabulary;
 using System;
 using System.IO;
@@ -66,11 +67,7 @@ namespace IS4.MultiArchiver.Analyzers
                 {
                     data = new Lazy<ArraySegment<byte>>(() => {
                         var stream = Decompress();
-                        if(!stream.TryGetBuffer(out var buffer))
-                        {
-                            buffer = new ArraySegment<byte>(stream.ToArray());
-                        }
-                        return buffer;
+                        return stream.GetData();
                     });
                 }
 
@@ -100,8 +97,7 @@ namespace IS4.MultiArchiver.Analyzers
 
                 public Stream Open()
                 {
-                    var data = this.data.Value;
-                    return new MemoryStream(data.Array, data.Offset, data.Count, false);
+                    return this.data.Value.AsStream(false);
                 }
 
                 public override string ToString()

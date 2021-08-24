@@ -28,7 +28,7 @@ namespace IS4.MultiArchiver.Tools.IO
         public override int Read(byte[] buffer, int offset, int count)
         {
             int read = baseStream.Read(buffer, offset, count);
-            action(new ArraySegment<byte>(buffer, offset, read));
+            action(buffer.Slice(offset, read));
             return read;
         }
 

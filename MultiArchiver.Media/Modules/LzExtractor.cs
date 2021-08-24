@@ -1,6 +1,6 @@
-﻿using System;
+﻿using IS4.MultiArchiver.Tools;
+using System;
 using System.IO;
-using System.Runtime.InteropServices;
 
 namespace IS4.MultiArchiver.Media
 {
@@ -13,9 +13,9 @@ namespace IS4.MultiArchiver.Media
         readonly byte[] ihead_buffer = new byte[0x10 * sizeof(ushort)], ohead_buffer = new byte[0x10 * sizeof(ushort)], inf_buffer = new byte[8 * sizeof(ushort)];
         readonly byte[] sigbuf = new byte[sig90.Length];
 
-        Span<ushort> ihead => MemoryMarshal.Cast<byte, ushort>(ihead_buffer.AsSpan());
-        Span<ushort> ohead => MemoryMarshal.Cast<byte, ushort>(ohead_buffer.AsSpan());
-        Span<ushort> inf => MemoryMarshal.Cast<byte, ushort>(inf_buffer.AsSpan());
+        Span<ushort> ihead => ihead_buffer.AsSpan().MemoryCast<ushort>();
+        Span<ushort> ohead => ohead_buffer.AsSpan().MemoryCast<ushort>();
+        Span<ushort> inf => inf_buffer.AsSpan().MemoryCast<ushort>();
         long loadsize;
 
         readonly int? ver;

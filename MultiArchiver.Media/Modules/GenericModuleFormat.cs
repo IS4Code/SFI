@@ -1,5 +1,6 @@
 ﻿using IS4.MultiArchiver.Media;
 using IS4.MultiArchiver.Services;
+using IS4.MultiArchiver.Tools;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -39,7 +40,7 @@ namespace IS4.MultiArchiver.Formats
                 }
                 stream.Position = headerPosition;
                 var sigBuffer = new byte[8];
-                var sigBytes = new ArraySegment<byte>(sigBuffer, 0, stream.Read(sigBuffer, 0, sigBuffer.Length));
+                var sigBytes = sigBuffer.Slice(0, stream.Read(sigBuffer, 0, sigBuffer.Length));
                 var sig = DataTools.ExtractSignature(sigBytes);
                 if(sig == null)
                 {

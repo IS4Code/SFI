@@ -1,6 +1,6 @@
 ﻿using IS4.MultiArchiver.Services;
+using IS4.MultiArchiver.Tools;
 using System;
-using System.Runtime.InteropServices;
 using System.Text;
 
 namespace IS4.MultiArchiver.Formats
@@ -25,7 +25,7 @@ namespace IS4.MultiArchiver.Formats
             {
                 return false;
             }
-            var fields = MemoryMarshal.Cast<byte, ushort>(header);
+            var fields = header.MemoryCast<ushort>();
             if(fields.Length <= 30)
             {
                 // There is no e_lfanew field
@@ -48,7 +48,7 @@ namespace IS4.MultiArchiver.Formats
                 return true;
             }
             var signature = header.Slice(e_lfanew);
-            var testSignature = new Span<byte>(this.signature);
+            var testSignature = this.signature.AsSpan();
             int len = Math.Min(signature.Length, testSignature.Length);
             return signature.Slice(0, len).SequenceEqual(testSignature.Slice(0, len));
         }

@@ -82,6 +82,11 @@ namespace IS4.MultiArchiver
 
         static readonly Regex urlRegex = new Regex(@"%[a-f0-9]{2}|\+", RegexOptions.Compiled);
 
+        public static string EscapeDataBytes(ArraySegment<byte> bytes)
+        {
+            return EscapeDataBytes(bytes.Array, bytes.Offset, bytes.Count);
+        }
+
         public static string EscapeDataBytes(byte[] bytes, int offset, int length)
         {
             return urlRegex.Replace(HttpUtility.UrlEncode(bytes, offset, length), m => {

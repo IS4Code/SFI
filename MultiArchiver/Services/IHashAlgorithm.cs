@@ -105,7 +105,7 @@ namespace IS4.MultiArchiver.Services
                                     break;
                                 default:
                                     var dataCopy = new byte[data.Count + 1];
-                                    Array.Copy(data.Array, data.Offset, dataCopy, 0, data.Count);
+                                    data.CopyTo(dataCopy, 0);
                                     sb.Append(new BigInteger(dataCopy).ToString());
                                     break;
                             }
@@ -141,7 +141,7 @@ namespace IS4.MultiArchiver.Services
             hashNode.SetClass(Classes.Digest);
 
             hashNode.Set(Properties.DigestAlgorithm, algorithm.Identifier);
-            hashNode.Set(Properties.DigestValue, Convert.ToBase64String(hash.Array, hash.Offset, hash.Count), Datatypes.Base64Binary);
+            hashNode.Set(Properties.DigestValue, hash.ToBase64String(), Datatypes.Base64Binary);
 
             if(tooLong)
             {

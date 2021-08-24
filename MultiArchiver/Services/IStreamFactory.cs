@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IS4.MultiArchiver.Tools;
+using System;
 using System.IO;
 
 namespace IS4.MultiArchiver.Services
@@ -43,7 +44,7 @@ namespace IS4.MultiArchiver.Services
 
         public Stream Open()
         {
-            return new MemoryStream(buffer.Array, buffer.Offset, buffer.Count, false);
+            return buffer.AsStream(false);
         }
     }
 }

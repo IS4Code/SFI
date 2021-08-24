@@ -1,4 +1,5 @@
-﻿using MathNet.Numerics;
+﻿using IS4.MultiArchiver.Tools;
+using MathNet.Numerics;
 using MathNet.Numerics.IntegralTransforms;
 using System;
 using System.Collections;
@@ -61,14 +62,14 @@ namespace IS4.MultiArchiver.Analysis.Audio
             }
         }
 
-        public void Add(ArraySegment<float> audio)
+        public void Add(ArraySegment<TSample> audio)
         {
             while(audio.Count > 0)
             {
                 int remaining = audioBufferSize - audioFilled;
                 int read = Math.Min(audio.Count, remaining);
-                Array.Copy(audio.Array, audio.Offset, audioBuffer, audioFilled, read);
-                audio = new ArraySegment<float>(audio.Array, audio.Offset + read, audio.Count - read);
+                audio.Slice(0, read).CopyTo(audioBuffer, audioFilled);
+                audio = audio.Slice(read);
                 audioFilled += read;
                 if(audioBufferSize == audioFilled)
                 {
@@ -111,7 +112,7 @@ namespace IS4.MultiArchiver.Analysis.Audio
                     channelFrames[channel].Add(frames[channel] = new TComplex[frameSize]);
                 }
                 int start = step * samplesPerStep;
-                Convert(new ArraySegment<TSample>(audioBuffer, start, samplesPerFrame), frames, channels);
+                Convert(audioBuffer.Slice(start, samplesPerFrame), frames, channels);
             }
             numTotal += numSteps;
 
@@ -127,7 +128,7 @@ namespace IS4.MultiArchiver.Analysis.Audio
             Parallel.For(0, (numTotal - Count) * channels, index => {
                 var frame = channelFrames[index % channels][Count + index / channels];
 
-                Transform(new ArraySegment<TComplex>(frame, offset, Size));
+                Transform(frame.Slice(offset, Size));
             });
             Count = numTotal;
         }
@@ -155,7 +156,7 @@ namespace IS4.MultiArchiver.Analysis.Audio
         readonly List<TComplex[]> data;
         readonly int offset;
 
-        public ArraySegment<TComplex> this[int index] => new ArraySegment<TComplex>(data[index], offset, Size);
+        public ArraySegment<TComplex> this[int index] => data[index].Slice(offset, Size);
 
         public int Count { get; }
 

@@ -1,8 +1,8 @@
 ﻿using IS4.MultiArchiver.Services;
+using IS4.MultiArchiver.Tools;
 using NAudio.Wave;
 using System;
 using System.IO;
-using System.Runtime.InteropServices;
 
 namespace IS4.MultiArchiver.Formats
 {
@@ -19,7 +19,7 @@ namespace IS4.MultiArchiver.Formats
             {
                 return false;
             }
-            return MemoryMarshal.Cast<byte, uint>(header)[2] == 0x45564157;
+            return header.MemoryCast<uint>()[2] == 0x45564157;
         }
 
         public override TResult Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<WaveStream, TResult, TArgs> resultFactory, TArgs args)

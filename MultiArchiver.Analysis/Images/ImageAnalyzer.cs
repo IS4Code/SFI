@@ -1,6 +1,7 @@
 ﻿using IS4.MultiArchiver.Analysis.Images;
 using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Tags;
+using IS4.MultiArchiver.Tools;
 using IS4.MultiArchiver.Tools.IO;
 using IS4.MultiArchiver.Vocabulary;
 using System;
@@ -74,20 +75,17 @@ namespace IS4.MultiArchiver.Analyzers
             {
                 if(tag.MakeThumbnail)
                 {
-                    ArraySegment<byte> thumbnailDta;
+                    ArraySegment<byte> thumbnailData;
                     using(var thumbnail = ImageTools.ResizeImage(image, 12, 12, PixelFormat.Format32bppArgb, Color.Transparent))
                     {
                         using(var stream = new MemoryStream())
                         {
                             thumbnail.Save(stream, ImageFormat.Png);
-                            if(!stream.TryGetBuffer(out thumbnailDta))
-                            {
-                                thumbnailDta = new ArraySegment<byte>(stream.ToArray());
-                            }
+                            thumbnailData = stream.GetData();
                         }
                     }
 
-                    var thumbNode = context.NodeFactory.Create(UriTools.DataUriFormatter, ("image/png", thumbnailDta));
+                    var thumbNode = context.NodeFactory.Create(UriTools.DataUriFormatter, ("image/png", thumbnailData));
                     thumbNode.Set(Properties.AtPrefLabel, "Thumbnail image");
                     node.Set(Properties.Thumbnail, thumbNode);
                 }

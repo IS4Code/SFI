@@ -42,8 +42,8 @@ namespace IS4.MultiArchiver.Tools.IO
                     if(!MoveNext()) return total;
                 }
                 int read = Math.Min(remaining.Count, count);
-                Array.Copy(remaining.Array, remaining.Offset, buffer, offset, read);
-                remaining = new ArraySegment<byte>(remaining.Array, remaining.Offset + read, remaining.Count - read);
+                remaining.Slice(0, read).CopyTo(buffer, offset);
+                remaining = remaining.Slice(read);
                 total += read;
                 offset += read;
                 count -= read;
@@ -58,7 +58,7 @@ namespace IS4.MultiArchiver.Tools.IO
                 if(!MoveNext()) return -1;
             }
             var result = remaining.Array[remaining.Offset];
-            remaining = new ArraySegment<byte>(remaining.Array, remaining.Offset + 1, remaining.Count - 1);
+            remaining = remaining.Slice(1);
             return result;
         }
 

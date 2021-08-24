@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IS4.MultiArchiver.Tools;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -148,12 +149,6 @@ namespace IS4.MultiArchiver
         {
             return "application/x.sig." + signature.ToLowerInvariant();
         }
-
-        public static void Deconstruct<TKey, TValue>(this KeyValuePair<TKey, TValue> pair, out TKey key, out TValue value)
-        {
-            key = pair.Key;
-            value = pair.Value;
-        }
         
         public static void Base32<TList>(TList bytes, StringBuilder sb) where TList : IReadOnlyList<byte>
         {
@@ -221,7 +216,7 @@ namespace IS4.MultiArchiver
 
         public static void Base64(ArraySegment<byte> bytes, StringBuilder sb)
         {
-            string str = Convert.ToBase64String(bytes.Array, bytes.Offset, bytes.Count);
+            string str = bytes.ToBase64String();
             UriString(str, sb);
         }
 
@@ -329,7 +324,7 @@ namespace IS4.MultiArchiver
 
         public static bool IsBinary(ArraySegment<byte> data)
         {
-            int index = Array.IndexOf<byte>(data.Array, 0, data.Offset, data.Count);
+            int index = data.IndexOf((byte)0);
             if(index == 0)
             {
                 return true;

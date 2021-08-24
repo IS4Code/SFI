@@ -15,7 +15,7 @@ namespace IS4.MultiArchiver.Formats
 
         public override bool CheckHeader(ArraySegment<byte> header, bool isBinary, IEncodingDetector encodingDetector)
         {
-            using(var stream = new MemoryStream(header.Array, header.Offset, header.Count, false))
+            using(var stream = header.AsStream(false))
             {
                 return Format.IsMatch(stream);
             }

@@ -1,8 +1,8 @@
 ﻿using IS4.MultiArchiver.Analyzers;
 using IS4.MultiArchiver.Services;
+using IS4.MultiArchiver.Tools;
 using System;
 using System.IO;
-using System.Runtime.InteropServices;
 
 namespace IS4.MultiArchiver.Formats
 {
@@ -15,7 +15,7 @@ namespace IS4.MultiArchiver.Formats
         
         protected override bool CheckSignature(Span<byte> header)
         {
-            var fields = MemoryMarshal.Cast<byte, ushort>(header);
+            var fields = header.MemoryCast<ushort>();
             return (fields.Length > 0 && fields[0] == 0x4D5A) || base.CheckSignature(header);
         }
 

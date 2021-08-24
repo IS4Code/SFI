@@ -1,5 +1,6 @@
 ﻿using IS4.MultiArchiver.Media.Data;
 using IS4.MultiArchiver.Services;
+using IS4.MultiArchiver.Tools;
 using IS4.MultiArchiver.Vocabulary;
 using System;
 using System.Collections.Generic;
@@ -66,7 +67,7 @@ namespace IS4.MultiArchiver.Analyzers
                 offset += sizeof(int);
                 if(len == data.Length - offset)
                 {
-                    Data = new ArraySegment<byte>(data, offset, data.Length - offset);
+                    Data = data.Slice(offset);
                     return;
                 }
                 offset = 0;
@@ -74,7 +75,7 @@ namespace IS4.MultiArchiver.Analyzers
                 offset += sizeof(int);
                 if(len == data.Length - offset)
                 {
-                    Data = new ArraySegment<byte>(data, offset, data.Length - offset);
+                    Data = data.Slice(offset);
                     return;
                 }
                 Data = new ArraySegment<byte>(data);
@@ -90,7 +91,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             public Stream Open()
             {
-                return new MemoryStream(Data.Array, Data.Offset, Data.Count, false);
+                return Data.AsStream(false);
             }
 
             public bool IsEncrypted => false;

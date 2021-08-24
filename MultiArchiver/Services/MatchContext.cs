@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IS4.MultiArchiver.Tools;
+using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.IO;

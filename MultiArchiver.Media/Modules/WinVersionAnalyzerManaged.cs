@@ -1,5 +1,6 @@
 ﻿using IS4.MultiArchiver.Media.Modules;
 using IS4.MultiArchiver.Services;
+using IS4.MultiArchiver.Tools;
 using IS4.MultiArchiver.Vocabulary;
 using System;
 using System.Collections.Generic;
@@ -40,7 +41,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             if(info.Name == "VS_VERSION_INFO")
             {
-                ref var version = ref MemoryMarshal.Cast<byte, VS_FIXEDFILEINFO>(info.Value.AsSpan())[0];
+                ref var version = ref info.Value.AsSpan().MemoryCast<VS_FIXEDFILEINFO>()[0];
                 if(version.dwSignature == 0xFEEF04BD)
                 {
                     var fileVersion = VerFromDWORDs(version.dwFileVersionMS, version.dwFileVersionLS);
@@ -56,7 +57,7 @@ namespace IS4.MultiArchiver.Analyzers
                 children.TryGetValue("VarFileInfo", out var fileInfo) &&
                 fileInfo.Children.TryGetValue("Translation", out var translation) )
             {
-                var transSpan = MemoryMarshal.Cast<byte, LANGANDCODEPAGE>(translation.Value.AsSpan());
+                var transSpan = translation.Value.AsSpan().MemoryCast<LANGANDCODEPAGE>();
                 foreach(var trans in transSpan)
                 {
                     var locKey = $"{trans.wLanguage:X4}{trans.wCodePage:X4}";
@@ -113,22 +114,22 @@ namespace IS4.MultiArchiver.Analyzers
             public EntryInfo(ArraySegment<byte> dataSegment)
             {
                 var data = dataSegment.AsSpan();
-                var header = MemoryMarshal.Cast<byte, ushort>(data);
+                var header = data.MemoryCast<ushort>();
                 var length = header[0];
                 var valueLength = header[1];
                 data = data.Slice(0, length);
-                var nameSpan = MemoryMarshal.Cast<byte, ushort>(data.Slice(4));
+                var nameSpan = data.Slice(4).MemoryCast<ushort>();
                 var dataType = nameSpan[0];
                 var unicode = dataType <= 1;
                 int dataEnd;
                 if(unicode)
                 {
-                    var name = MemoryMarshal.Cast<ushort, char>(nameSpan.Slice(1));
+                    var name = nameSpan.Slice(1).MemoryCast<char>();
                     dataEnd = name.IndexOf('\0');
                     Name = name.Slice(0, dataEnd).ToString();
                     dataEnd = (dataEnd + 1) * sizeof(char) + sizeof(ushort);
                 }else{
-                    var name = MemoryMarshal.Cast<ushort, byte>(nameSpan);
+                    var name = nameSpan.MemoryCast<byte>();
                     dataEnd = name.IndexOf((byte)0);
                     Name = Encoding.ASCII.GetString(dataSegment.Array, dataSegment.Offset + 4, dataEnd);
                     dataEnd += 1;
@@ -141,11 +142,11 @@ namespace IS4.MultiArchiver.Analyzers
                     valueLength *= 2;
                 }
 
-                Value = new ArraySegment<byte>(dataSegment.Array, dataSegment.Offset + dataEnd, valueLength);
+                Value = dataSegment.Slice(dataEnd, valueLength);
 
                 if(unicode && dataType == 1)
                 {
-                    ValueString = MemoryMarshal.Cast<byte, char>(Value.AsSpan()).ToString().TrimEnd('\0');
+                    ValueString = Value.AsSpan().MemoryCast<char>().ToString().TrimEnd('\0');
                 }
 
                 dataEnd += valueLength;
@@ -156,7 +157,7 @@ namespace IS4.MultiArchiver.Analyzers
                 {
                     Align(ref dataEnd);
                     var childLength = BitConverter.ToUInt16(dataSegment.Array, dataSegment.Offset + dataEnd);
-                    var childSegment = new ArraySegment<byte>(dataSegment.Array, dataSegment.Offset + dataEnd, childLength);
+                    var childSegment = dataSegment.Slice(dataEnd, childLength);
                     var info = new EntryInfo(childSegment);
                     children[info.Name] = info;
                     dataEnd += childLength;
@@ -166,7 +167,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             public string GetValue(Encoding encoding)
             {
-                return ValueString ?? encoding.GetString(Value.Array, Value.Offset, Value.Count).TrimEnd('\0');
+                return ValueString ?? encoding.GetString(Value).TrimEnd('\0');
             }
 
             public override string ToString()

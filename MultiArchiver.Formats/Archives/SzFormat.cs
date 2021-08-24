@@ -1,8 +1,8 @@
 ﻿using IS4.MultiArchiver.Formats.Archives;
 using IS4.MultiArchiver.Services;
+using IS4.MultiArchiver.Tools;
 using System;
 using System.IO;
-using System.Runtime.InteropServices;
 
 namespace IS4.MultiArchiver.Formats
 {
@@ -16,7 +16,7 @@ namespace IS4.MultiArchiver.Formats
         public override bool CheckHeader(Span<byte> header, bool isBinary, IEncodingDetector encodingDetector)
         {
             if(header.Length < HeaderLength || !base.CheckHeader(header, isBinary, encodingDetector)) return false;
-            var sig = MemoryMarshal.Cast<byte, uint>(header);
+            var sig = header.MemoryCast<uint>();
             if(sig[0] == 0x44445A53 && sig[1] == 0x3327F088 && header[8] == 0x41)
             {
                 return true;

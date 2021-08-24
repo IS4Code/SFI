@@ -1,9 +1,9 @@
 ﻿using IS4.MultiArchiver.Services;
+using IS4.MultiArchiver.Tools;
 using SharpCompress.Readers.Tar;
 using System;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 
 namespace IS4.MultiArchiver.Formats
 {
@@ -68,7 +68,7 @@ namespace IS4.MultiArchiver.Formats
             // Compute both unsigned and signed checksum
             int unsignedChecksum = 0;
             int signedChecksum = 0;
-            var sheader = MemoryMarshal.Cast<byte, sbyte>(header);
+            var sheader = header.MemoryCast<sbyte>();
             for(int i = 0; i < headerLength; i++)
             {
                 if(i >= 148 && i <= 155)

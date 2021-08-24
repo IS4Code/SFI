@@ -18,14 +18,14 @@ namespace IS4.MultiArchiver.Tools.IO
 
         protected override void ReadFrom(ref ArraySegment<byte> current, byte[] buffer, int offset, int len)
         {
-            Array.Copy(current.Array, current.Offset, buffer, offset, len);
-            current = new ArraySegment<byte>(current.Array, current.Offset + len, current.Count - len);
+            current.Slice(0, len).CopyTo(buffer, offset);
+            current = current.Slice(len);
         }
 
         protected override byte ReadFrom(ref ArraySegment<byte> current)
         {
             var result = current.Array[current.Offset];
-            current = new ArraySegment<byte>(current.Array, current.Offset + 1, current.Count - 1);
+            current = current.Slice(1);
             return result;
         }
     }

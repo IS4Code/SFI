@@ -94,7 +94,7 @@ namespace IS4.MultiArchiver.Analyzers
                             int read;
                             while((read = stream.Read(buffer, 0, buffer.Length)) != 0)
                             {
-                                var segment = new ArraySegment<byte>(buffer, 0, read);
+                                var segment = buffer.Slice(0, read);
                                 var writing = writers.Select(async writer => {
                                     await writer.WriteAsync(segment);
                                     await writer.WriteAsync(default);
@@ -110,7 +110,7 @@ namespace IS4.MultiArchiver.Analyzers
 
                                 if(!isBinary)
                                 {
-                                    var data = new ArraySegment<byte>(buffer, 0, read);
+                                    var data = buffer.Slice(0, read);
                                     if(couldBeUnicode == false && DataTools.IsBinary(data))
                                     {
                                         isBinary = true;
@@ -151,10 +151,7 @@ namespace IS4.MultiArchiver.Analyzers
                     seekableFactory = new FileInfoWrapper(new FileInfo(tmpPath), streamFactory);
                 }else if(outputStream is MemoryStream memoryStream)
                 {
-                    if(!memoryStream.TryGetBuffer(out var buffer))
-                    {
-                        buffer = new ArraySegment<byte>(memoryStream.ToArray());
-                    }
+                    var buffer = memoryStream.GetData();
                     seekableFactory = new MemoryStreamFactory(buffer, streamFactory);
                 }
 
@@ -238,11 +235,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             public FileMatch(ICollection<IBinaryFileFormat> formats, IStreamFactory streamFactory, MemoryStream signatureBuffer, int maxDataLength, IEncodingDetector encodingDetector, bool isBinary, (IDataHashAlgorithm algorithm, Task<byte[]> result) primaryHash, AnalysisContext context, IEntityAnalyzer analyzer)
             {
-                if(!signatureBuffer.TryGetBuffer(out var signature))
-                {
-                    signature = new ArraySegment<byte>(signatureBuffer.ToArray());
-                }
-                Signature = signature;
+                Signature = signatureBuffer.GetData();
 
                 if(Signature.Count == 0)
                 {
@@ -265,7 +258,7 @@ namespace IS4.MultiArchiver.Analyzers
                         string strval = null;
                         if(!isBinary)
                         {
-                            strval = TryGetString(CharsetMatch.Encoding, signature);
+                            strval = TryGetString(CharsetMatch.Encoding, Signature);
                             if(strval == null)
                             {
                                 LazyCharsetMatch = null;
@@ -277,12 +270,12 @@ namespace IS4.MultiArchiver.Analyzers
 
                         if(isBinary)
                         {
-                            Node.Set(Properties.Bytes, Convert.ToBase64String(signature.Array, signature.Offset, signature.Count), Datatypes.Base64Binary);
+                            Node.Set(Properties.Bytes, Signature.ToBase64String(), Datatypes.Base64Binary);
                         }else{
                             Node.Set(Properties.Chars, DataTools.ReplaceControlCharacters(strval, CharsetMatch.Encoding), Datatypes.String);
                         }
 
-                        streamFactory = new MemoryStreamFactory(signature, streamFactory);
+                        streamFactory = new MemoryStreamFactory(Signature, streamFactory);
                     }else{
                         if(primaryHash.algorithm?.NumericIdentifier is int id)
                         {
@@ -308,7 +301,7 @@ namespace IS4.MultiArchiver.Analyzers
                 if(Signature.Count > 0)
                 {
                     var nodeCreated = new TaskCompletionSource<ILinkedNode>();
-                    Results = formats.Where(fmt => fmt.CheckHeader(signature, isBinary, encodingDetector)).Select(fmt => new FormatResult(streamFactory, fmt, nodeCreated, Node, context, analyzer)).ToList();
+                    Results = formats.Where(fmt => fmt.CheckHeader(Signature, isBinary, encodingDetector)).Select(fmt => new FormatResult(streamFactory, fmt, nodeCreated, Node, context, analyzer)).ToList();
                 }else{
                     Results = Array.Empty<FormatResult>();
                 }
@@ -316,8 +309,8 @@ namespace IS4.MultiArchiver.Analyzers
 
             Uri IUriFormatter<bool>.this[bool _] {
                 get {
-                    string base64Encoded = ";base64," + Convert.ToBase64String(Signature.Array, Signature.Offset, Signature.Count);
-                    string uriEncoded = "," + UriTools.EscapeDataBytes(Signature.Array, Signature.Offset, Signature.Count);
+                    string base64Encoded = ";base64," + Signature.ToBase64String();
+                    string uriEncoded = "," + UriTools.EscapeDataBytes(Signature);
 
                     string data = uriEncoded.Length <= base64Encoded.Length ? uriEncoded : base64Encoded;
 
@@ -341,9 +334,9 @@ namespace IS4.MultiArchiver.Analyzers
                     var preamble = encoding.GetPreamble();
                     if(preamble?.Length > 0 && data.AsSpan().StartsWith(preamble))
                     {
-                        return encoding.GetString(data.Array, data.Offset + preamble.Length, data.Count - preamble.Length);
+                        return encoding.GetString(data.Slice(preamble.Length));
                     }
-                    return encoding.GetString(data.Array, data.Offset, data.Count);
+                    return encoding.GetString(data);
                 }catch(ArgumentException)
                 {
                     return null;

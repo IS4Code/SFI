@@ -2,12 +2,12 @@
 using IS4.MultiArchiver.Media.Modules;
 using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Tags;
+using IS4.MultiArchiver.Tools;
 using IS4.MultiArchiver.Vocabulary;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 
 namespace IS4.MultiArchiver.Analyzers
 {
@@ -125,15 +125,15 @@ namespace IS4.MultiArchiver.Analyzers
 
                 void InvalidBitmap()
                 {
-                    Data = new ArraySegment<byte>(buffer, start, read);
+                    Data = buffer.Slice(start, read);
                 }
 
-                Data = new ArraySegment<byte>(buffer, 0, start + read);
+                Data = buffer.Slice(0, start + read);
                 if(TypeCode == Win32ResourceType.Bitmap || TypeCode == Win32ResourceType.Icon || TypeCode == Win32ResourceType.Cursor)
                 {
-                    var header = new Span<byte>(buffer, 0, start);
-                    MemoryMarshal.Cast<byte, short>(header)[0] = 0x4D42;
-                    var fields = MemoryMarshal.Cast<byte, int>(header.Slice(2));
+                    var header = buffer.AsSpan(0, start);
+                    header.MemoryCast<short>()[0] = 0x4D42;
+                    var fields = header.Slice(2).MemoryCast<int>();
                     fields[0] = Data.Count;
 
                     int headerLength = BitConverter.ToInt32(buffer, start);
@@ -172,7 +172,7 @@ namespace IS4.MultiArchiver.Analyzers
 
                     if(TypeCode == Win32ResourceType.Icon || TypeCode == Win32ResourceType.Cursor)
                     {
-                        var bmpHeader = MemoryMarshal.Cast<byte, int>(new Span<byte>(buffer, start, headerLength));
+                        var bmpHeader = buffer.AsSpan(start, headerLength).MemoryCast<int>();
                         if(bmpHeader.Length <= 2)
                         {
                             InvalidBitmap();
@@ -195,8 +195,8 @@ namespace IS4.MultiArchiver.Analyzers
 
             public void MakeGroup(IReadOnlyDictionary<(object, object), ResourceInfo> cache)
             {
-                var data = new Span<byte>(Data.Array, Data.Offset, Data.Count);
-                var header = MemoryMarshal.Cast<byte, short>(data);
+                var data = Data.AsSpan();
+                var header = data.MemoryCast<short>();
                 var type = header[1];
                 var count = header[2];
                 object typeCode;
@@ -219,8 +219,8 @@ namespace IS4.MultiArchiver.Analyzers
                     buffer.Write(Data.Array, Data.Offset, 6);
                     for(int i = 0; i < count; i++)
                     {
-                        var info = new ArraySegment<byte>(Data.Array, Data.Offset + 6 + i * 14, 14);
-                        var span = MemoryMarshal.Cast<byte, short>(new Span<byte>(info.Array, info.Offset, info.Count));
+                        var info = Data.Slice(6 + i * 14, 14);
+                        var span = info.AsSpan().MemoryCast<short>();
                         int id = span[6];
                         buffer.Write(info.Array, info.Offset, info.Count - 2);
 
@@ -240,11 +240,7 @@ namespace IS4.MultiArchiver.Analyzers
                         writer.Write(res.OriginalHeight);
                         buffer.Write(res.Data.Array, res.Data.Offset + 26, res.Data.Count - 26);
                     }
-                    if(!buffer.TryGetBuffer(out var seg))
-                    {
-                        seg = new ArraySegment<byte>(buffer.ToArray());
-                    }
-                    Data = seg;
+                    Data = buffer.GetData();
                 }
             }
 
@@ -258,7 +254,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             public Stream Open()
             {
-                return new MemoryStream(Data.Array, Data.Offset, Data.Count, false);
+                return Data.AsStream(false);
             }
 
             public bool IsEncrypted => false;
