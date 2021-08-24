@@ -7,6 +7,7 @@ using System.Buffers;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Channels;
@@ -17,12 +18,20 @@ namespace IS4.MultiArchiver.Analyzers
     public sealed class DataAnalyzer : IEntityAnalyzer<IStreamFactory>, IEntityAnalyzer<byte[]>
 	{
         public IDataHashAlgorithm PrimaryHash { get; set; }
+
         public ICollection<IDataHashAlgorithm> HashAlgorithms { get; } = new List<IDataHashAlgorithm>();
+
         public Func<IEncodingDetector> EncodingDetectorFactory { get; set; }
-        public ICollection<IBinaryFileFormat> Formats { get; } = new SortedSet<IBinaryFileFormat>(HeaderLengthComparer.Instance);
+
+        public ICollection<IBinaryFileFormat> DataFormats { get; } = new SortedSet<IBinaryFileFormat>(HeaderLengthComparer.Instance);
+
+        public ICollection<IPackageFormat<IStreamFactory>> PackageFormats { get; } = new List<IPackageFormat<IStreamFactory>>();
+
         public int FileSizeToWriteToDisk { get; set; } = 524288;
 
         public int MaxDataLengthToStore => Math.Max(64, HashAlgorithms.Sum(h => h.HashSize + 64)) - 16;
+
+        readonly ConditionalWeakTable<object, List<IEntityAnalyzer<IStreamFactory>>> packageAnalyzers = new ConditionalWeakTable<object, List<IEntityAnalyzer<IStreamFactory>>>();
 
         public DataAnalyzer(Func<IEncodingDetector> encodingDetectorFactory)
 		{
@@ -31,7 +40,7 @@ namespace IS4.MultiArchiver.Analyzers
 
 		public AnalysisResult Analyze(IStreamFactory streamFactory, AnalysisContext context, IEntityAnalyzer globalAnalyzer)
         {
-            var signatureBuffer = new MemoryStream(Math.Max(MaxDataLengthToStore + 1, Formats.Count == 0 ? 0 : Formats.Max(fmt => fmt.HeaderLength)));
+            var signatureBuffer = new MemoryStream(Math.Max(MaxDataLengthToStore + 1, DataFormats.Count == 0 ? 0 : DataFormats.Max(fmt => fmt.HeaderLength)));
 
             var encodingDetector = EncodingDetectorFactory?.Invoke();
 
@@ -43,7 +52,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             context = context.WithMatchContext(c => c.WithServices(streamFactory));
 
-            var lazyMatch = new Lazy<FileMatch>(() => new FileMatch(Formats, seekableFactory, signatureBuffer, MaxDataLengthToStore, encodingDetector, isBinary, PrimaryHash != null && hashes.TryGetValue(PrimaryHash, out var primaryHash) ? (PrimaryHash, primaryHash.data) : default, context, globalAnalyzer), false);
+            var lazyMatch = new Lazy<FileMatch>(() => new FileMatch(DataFormats, seekableFactory, signatureBuffer, MaxDataLengthToStore, encodingDetector, isBinary, PrimaryHash != null && hashes.TryGetValue(PrimaryHash, out var primaryHash) ? (PrimaryHash, primaryHash.data) : default, context, globalAnalyzer), false);
             
             long actualLength = 0;
 
@@ -213,6 +222,29 @@ namespace IS4.MultiArchiver.Analyzers
                 if(formatNode != null)
                 {
                     formatNode.Set(Properties.HasFormat, node);
+                }
+            }
+            
+            if(streamFactory.ReferenceKey != null)
+            {
+                foreach(var packageFormat in PackageFormats)
+                {
+                    var packageAnalyzer = packageFormat.Match(streamFactory, context.MatchContext);
+                    if(packageAnalyzer != null)
+                    {
+                        packageAnalyzers.GetOrCreateValue(streamFactory.ReferenceKey).Add(packageAnalyzer);
+                    }
+                }
+
+                if(packageAnalyzers.TryGetValue(streamFactory.ReferenceKey, out var analyzerList))
+                {
+                    foreach(var packageAnalyzer in analyzerList)
+                    {
+                        using(var stream = seekableFactory.Open())
+                        {
+                            packageAnalyzer.Analyze(streamFactory, context.WithMatchContext(c => c.WithStream(stream)), globalAnalyzer);
+                        }
+                    }
                 }
             }
 

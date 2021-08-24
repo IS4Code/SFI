@@ -54,30 +54,32 @@ namespace IS4.MultiArchiver.Extensions
         {
             var archiver = new Archiver();
 
-            archiver.DataAnalyzer.Formats.Add(new XmlFileFormat());
-            archiver.DataAnalyzer.Formats.Add(new ZipFormat());
-            archiver.DataAnalyzer.Formats.Add(new RarFormat());
-            archiver.DataAnalyzer.Formats.Add(new SevenZipFormat());
-            archiver.DataAnalyzer.Formats.Add(new GZipFormat());
-            archiver.DataAnalyzer.Formats.Add(new TarFormat());
-            archiver.DataAnalyzer.Formats.Add(new SzFormat());
-            archiver.DataAnalyzer.Formats.Add(new ImageMetadataFormat());
-            archiver.DataAnalyzer.Formats.Add(new ImageFormat());
-            archiver.DataAnalyzer.Formats.Add(new TagLibFormat());
-            archiver.DataAnalyzer.Formats.Add(new IsoFormat());
-            archiver.DataAnalyzer.Formats.Add(new DosModuleFormat());
-            archiver.DataAnalyzer.Formats.Add(new GenericModuleFormat());
-            archiver.DataAnalyzer.Formats.Add(new LinearModuleFormat());
-            archiver.DataAnalyzer.Formats.Add(new Win16ModuleFormat());
+            archiver.DataAnalyzer.DataFormats.Add(new XmlFileFormat());
+            archiver.DataAnalyzer.DataFormats.Add(new ZipFormat());
+            archiver.DataAnalyzer.DataFormats.Add(new RarFormat());
+            archiver.DataAnalyzer.DataFormats.Add(new SevenZipFormat());
+            archiver.DataAnalyzer.DataFormats.Add(new GZipFormat());
+            archiver.DataAnalyzer.DataFormats.Add(new TarFormat());
+            archiver.DataAnalyzer.DataFormats.Add(new SzFormat());
+            archiver.DataAnalyzer.DataFormats.Add(new ImageMetadataFormat());
+            archiver.DataAnalyzer.DataFormats.Add(new ImageFormat());
+            archiver.DataAnalyzer.DataFormats.Add(new TagLibFormat());
+            archiver.DataAnalyzer.DataFormats.Add(new IsoFormat());
+            archiver.DataAnalyzer.DataFormats.Add(new DosModuleFormat());
+            archiver.DataAnalyzer.DataFormats.Add(new GenericModuleFormat());
+            archiver.DataAnalyzer.DataFormats.Add(new LinearModuleFormat());
+            archiver.DataAnalyzer.DataFormats.Add(new Win16ModuleFormat());
             //archiver.DataAnalyzer.Formats.Add(new Win32ModuleFormat());
-            archiver.DataAnalyzer.Formats.Add(new Win32ModuleFormatManaged());
-            archiver.DataAnalyzer.Formats.Add(new WaveFormat());
+            archiver.DataAnalyzer.DataFormats.Add(new Win32ModuleFormatManaged());
+            archiver.DataAnalyzer.DataFormats.Add(new WaveFormat());
             //archiver.DataAnalyzer.Formats.Add(new OggFormat());
-            archiver.DataAnalyzer.Formats.Add(new WasapiFormat(false));
-            archiver.DataAnalyzer.Formats.Add(new WasapiFormat(true));
-            archiver.DataAnalyzer.Formats.Add(new DelphiFormFormat());
-            archiver.DataAnalyzer.Formats.Add(new CabinetFormat());
-            archiver.DataAnalyzer.Formats.Add(new OleStorageFormat());
+            archiver.DataAnalyzer.DataFormats.Add(new WasapiFormat(false));
+            archiver.DataAnalyzer.DataFormats.Add(new WasapiFormat(true));
+            archiver.DataAnalyzer.DataFormats.Add(new DelphiFormFormat());
+            archiver.DataAnalyzer.DataFormats.Add(new CabinetFormat());
+            archiver.DataAnalyzer.DataFormats.Add(new OleStorageFormat());
+
+            archiver.DataAnalyzer.PackageFormats.Add(new OpenPackageFormat(null, null));
 
             archiver.XmlAnalyzer.XmlFormats.Add(new SvgFormat());
 
