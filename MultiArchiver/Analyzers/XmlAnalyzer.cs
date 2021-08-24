@@ -101,16 +101,25 @@ namespace IS4.MultiArchiver.Analyzers
 
                         var formats = XmlFormats.Where(fmt => fmt.CheckDocument(docType, rootState)).ToList();
 
+                        bool MatchFormat(IXmlDocumentFormat format, XmlReader localReader)
+                        {
+                            var result = format.Match(localReader, docType, context.MatchContext, this, (format, context, globalAnalyzer));
+                            if(result.Node != null)
+                            {
+                                result.Node.Set(Properties.HasFormat, node);
+                                return true;
+                            }
+                            return false;
+                        }
+
                         bool any = false;
                         if(formats.Count <= 1)
                         {
-                            foreach(var format in XmlFormats)
+                            foreach(var format in formats)
                             {
-                                var result = format.Match(reader, docType, context.MatchContext, this, (format, context, globalAnalyzer));
-                                if(result.Node != null)
+                                if(MatchFormat(format, reader))
                                 {
                                     any = true;
-                                    result.Node.Set(Properties.HasFormat, node);
                                 }
                             }
                         }else{
@@ -120,15 +129,7 @@ namespace IS4.MultiArchiver.Analyzers
                             {
                                 var channelReader = ChannelXmlReader.Create(reader, out writers[i]);
                                 var format = formats[i];
-                                tasks[i] = Task.Run(() => {
-                                    var result = format.Match(channelReader, docType, context.MatchContext, this, (format, context, globalAnalyzer));
-                                    if(result.Node != null)
-                                    {
-                                        result.Node.Set(Properties.HasFormat, node);
-                                        return true;
-                                    }
-                                    return false;
-                                });
+                                tasks[i] = Task.Run(() => MatchFormat(format, channelReader));
                             }
 
                             foreach(var state in new[] { rootState }.Concat(XmlReaderState.ReadFrom(reader)))
@@ -139,6 +140,10 @@ namespace IS4.MultiArchiver.Analyzers
                                     if(!task.IsCompleted) task.AsTask().Wait();
                                 }
                             }
+                            foreach(var writer in writers)
+                            {
+                                writer.TryComplete();
+                            }
 
                             Task.WaitAll(tasks);
 
@@ -146,8 +151,7 @@ namespace IS4.MultiArchiver.Analyzers
                         }
                         if(!any)
                         {
-                            var result = ImprovisedXmlFormat.Instance.Match(reader, docType, context.MatchContext, this, (ImprovisedXmlFormat.Instance, context, globalAnalyzer));
-                            result.Node.Set(Properties.HasFormat, node);
+                            MatchFormat(ImprovisedXmlFormat.Instance, rootState);
                         }
 
                         return new AnalysisResult(node, xmlName);
