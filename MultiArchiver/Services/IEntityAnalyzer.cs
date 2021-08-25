@@ -34,7 +34,7 @@ namespace IS4.MultiArchiver.Services
 
         public AnalysisContext WithNode(ILinkedNode node)
         {
-            return new AnalysisContext(Node != null && node != null ? null : Parent, node, NodeFactory, MatchContext);
+            return new AnalysisContext(Node != null && node != null && !Node.Equals(node) ? null : Parent, node, NodeFactory, MatchContext);
         }
 
         public AnalysisContext WithMatchContext(MatchContext matchContext)

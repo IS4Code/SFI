@@ -1,5 +1,4 @@
 ﻿using IS4.MultiArchiver.Services;
-using IS4.MultiArchiver.Vocabulary;
 using OpenMcdf;
 using System;
 using System.Collections.Generic;

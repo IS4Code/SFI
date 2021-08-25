@@ -5,12 +5,12 @@
         IEntityAnalyzer<TInput> Match(TInput entity, MatchContext context);
     }
 
-    public interface IPackageFormat<in TInput, TAnalyzer> : IFileFormat<TAnalyzer>, IPackageFormat<TInput> where TInput : class where TAnalyzer : class, IEntityAnalyzer<TInput>
+    public interface IPackageFormat<in TInput, in TValue, out TAnalyzer> : IFileFormat<TValue>, IPackageFormat<TInput> where TInput : class where TValue : class where TAnalyzer : class, IEntityAnalyzer<TInput>
     {
         new TAnalyzer Match(TInput entity, MatchContext context);
     }
 
-    public abstract class PackageFormat<TInput, TAnalyzer> : FileFormat<TAnalyzer>, IPackageFormat<TInput, TAnalyzer> where TInput : class where TAnalyzer : class, IEntityAnalyzer<TInput>
+    public abstract class PackageFormat<TInput, TValue, TAnalyzer> : FileFormat<TValue>, IPackageFormat<TInput, TValue, TAnalyzer> where TInput : class where TValue : class where TAnalyzer : class, IEntityAnalyzer<TInput>
     {
         public PackageFormat(string mediaType, string extension) : base(mediaType, extension)
         {

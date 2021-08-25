@@ -11,6 +11,8 @@ namespace IS4.MultiArchiver.Analyzers
     {
         public ICollection<IFileHashAlgorithm> HashAlgorithms { get; } = new List<IFileHashAlgorithm>();
 
+        public ICollection<IPackageFormat<IDirectoryInfo>> PackageFormats { get; } = new List<IPackageFormat<IDirectoryInfo>>();
+
         public FileAnalyzer()
         {
 
@@ -132,6 +134,19 @@ namespace IS4.MultiArchiver.Analyzers
             foreach(var alg in HashAlgorithms)
             {
                 HashAlgorithm.AddHash(node, alg, alg.ComputeHash(directory, false), context.NodeFactory);
+            }
+
+            foreach(var packageFormat in PackageFormats)
+            {
+                var packageAnalyzer = packageFormat.Match(directory, context.MatchContext);
+                if(packageAnalyzer != null)
+                {
+                    var result = packageAnalyzer.Analyze(directory, context.WithNode(node), analyzer).Node;
+                    if(result != null)
+                    {
+                        result.Set(Properties.HasFormat, node);
+                    }
+                }
             }
         }
 

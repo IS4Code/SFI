@@ -7,7 +7,7 @@ using System;
 
 namespace IS4.MultiArchiver.Formats
 {
-    public class OpenPackageFormat : PackageFormat<IStreamFactory, OpenPackageFormat.PackageInfo>
+    public class OpenPackageFormat : PackageFormat<IStreamFactory, OpenPackageFormat.PackageInfo, OpenPackageFormat.PackageInfo>
     {
         public OpenPackageFormat() : base("application/vnd.openxmlformats-package", "ooxml")
         {

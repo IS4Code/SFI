@@ -81,6 +81,9 @@ namespace IS4.MultiArchiver.Extensions
 
             archiver.DataAnalyzer.PackageFormats.Add(new OpenPackageFormat());
 
+            archiver.FileAnalyzer.PackageFormats.Add(new ExcelXmlDocumentFormat());
+            archiver.FileAnalyzer.PackageFormats.Add(new ExcelDocumentFormat());
+
             archiver.XmlAnalyzer.XmlFormats.Add(new SvgFormat());
 
             archiver.Analyzers.Add(new ArchiveAnalyzer());
