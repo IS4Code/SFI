@@ -104,7 +104,7 @@ namespace IS4.MultiArchiver.Formats.Archives
 
             public override string Name => base.Name ?? entries.Key;
 
-            public override string Path => base.Path ?? path + entries.Key + "/";
+            public override string Path => base.Path ?? path + entries.Key;
 
             protected ArchiveDirectoryInfo(ISharpCompressArchiveEntry container, string path, IArchiveEntryGrouping entries) : base(container)
             {
@@ -126,7 +126,7 @@ namespace IS4.MultiArchiver.Formats.Archives
                                 }
                             }
                         }else{
-                            yield return Create(Path, group);
+                            yield return Create(Path + "/", group);
                         }
                     }
                 }
