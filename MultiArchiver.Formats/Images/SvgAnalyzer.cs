@@ -2,6 +2,7 @@
 using IS4.MultiArchiver.Tags;
 using IS4.MultiArchiver.Vocabulary;
 using Svg;
+using System;
 
 namespace IS4.MultiArchiver.Analyzers
 {
@@ -23,19 +24,26 @@ namespace IS4.MultiArchiver.Analyzers
             {
                 node.Set(Properties.Height, (decimal)svg.Height.Value);
             }
-            using(var bmp = svg.Draw())
+            Exception exception = null;
+            try
             {
-                bmp.Tag = new ImageTag
+                using(var bmp = svg.Draw())
                 {
-                    StoreDimensions = false
-                };
-                globalAnalyzer.Analyze(bmp, context);
+                    bmp.Tag = new ImageTag
+                    {
+                        StoreDimensions = false
+                    };
+                    exception = globalAnalyzer.Analyze(bmp, context).Exception;
+                }
+            }catch(Exception e)
+            {
+                exception = e;
             }
             if(!svg.Width.IsEmpty && !svg.Height.IsEmpty)
             {
-                return new AnalysisResult(node, $"{svg.Width.Value}×{svg.Height.Value}");
+                return new AnalysisResult(node, $"{svg.Width.Value}×{svg.Height.Value}", exception);
             }
-            return new AnalysisResult(node);
+            return new AnalysisResult(node, exception: exception);
         }
     }
 }
