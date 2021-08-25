@@ -1,4 +1,6 @@
-﻿using IS4.MultiArchiver.Services;
+﻿using IS4.MultiArchiver.Formats.Archives;
+using IS4.MultiArchiver.Media;
+using IS4.MultiArchiver.Services;
 using SharpCompress.Archives.SevenZip;
 using System.IO;
 
@@ -11,12 +13,12 @@ namespace IS4.MultiArchiver.Formats
 
         }
 
-        public override TResult Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<SevenZipArchive, TResult, TArgs> resultFactory, TArgs args)
+        public override TResult Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<IArchiveFile, TResult, TArgs> resultFactory, TArgs args)
         {
             using(var archive = SevenZipArchive.Open(stream))
             {
                 if(!CheckArchive(archive)) return default;
-                return resultFactory(archive, args);
+                return resultFactory(new ArchiveAdapter(archive), args);
             }
         }
     }

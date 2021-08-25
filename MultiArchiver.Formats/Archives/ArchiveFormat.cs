@@ -1,8 +1,9 @@
-﻿using SharpCompress.Archives;
+﻿using IS4.MultiArchiver.Media;
+using SharpCompress.Archives;
 
 namespace IS4.MultiArchiver.Formats
 {
-    public abstract class ArchiveFormat<TArchive> : SignatureFormat<TArchive> where TArchive : class, IArchive
+    public abstract class ArchiveFormat<TArchive> : SignatureFormat<IArchiveFile> where TArchive : class, IArchive
     {
         public ArchiveFormat(int headerLength, string mediaType, string extension) : base(headerLength, mediaType, extension)
         {
