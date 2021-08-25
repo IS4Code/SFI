@@ -95,7 +95,7 @@ namespace IS4.MultiArchiver.Analyzers
                         }
                         node.Set(Properties.DocumentElement, elem);
 
-                        context = context.WithParent(node);
+                        context = context.WithNode(null);
 
                         var rootState = new XmlReaderState(reader);
 
