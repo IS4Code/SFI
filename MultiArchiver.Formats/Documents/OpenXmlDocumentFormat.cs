@@ -46,11 +46,16 @@ namespace IS4.MultiArchiver.Formats
 
             public AnalysisResult Analyze(IDirectoryInfo entity, AnalysisContext context, IEntityAnalyzer globalAnalyzer)
             {
-                var obj = format.Open(Package);
-                if(obj != null)
+                try{
+                    var obj = format.Open(Package);
+                    if(obj != null)
+                    {
+                        context = context.WithNode(null);
+                        return globalAnalyzer.Analyze(new FormatObject<T>(format, obj), context);
+                    }
+                }catch(Exception e)
                 {
-                    context = context.WithNode(null);
-                    return globalAnalyzer.Analyze(new FormatObject<T>(format, obj), context);
+                    return new AnalysisResult(null, exception: e);
                 }
                 return default;
             }

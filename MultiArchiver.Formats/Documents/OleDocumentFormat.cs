@@ -1,6 +1,7 @@
 ﻿using IS4.MultiArchiver.Services;
 using NPOI.POIFS.EventFileSystem;
 using NPOI.POIFS.FileSystem;
+using System;
 using System.Linq;
 
 namespace IS4.MultiArchiver.Formats
@@ -56,11 +57,16 @@ namespace IS4.MultiArchiver.Formats
                 }
                 Add(fs.Root, root);
 
-                var obj = format.Open(fs);
-                if(obj != null)
+                try{
+                    var obj = format.Open(fs);
+                    if(obj != null)
+                    {
+                        context = context.WithNode(null);
+                        return globalAnalyzer.Analyze(new FormatObject<T>(format, obj), context);
+                    }
+                }catch(Exception e)
                 {
-                    context = context.WithNode(null);
-                    return globalAnalyzer.Analyze(new FormatObject<T>(format, obj), context);
+                    return new AnalysisResult(null, exception: e);
                 }
                 return default;
             }
