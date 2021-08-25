@@ -31,7 +31,21 @@ namespace IS4.MultiArchiver.Analyzers
         {
             var node = CreateNode(info, context, analyzer);
 
-            node.SetClass(Classes.FileDataObject);
+            if(info.Path != "")
+            {
+                // is not root
+                node.SetClass(Classes.FileDataObject);
+            }
+
+            switch(info.Kind)
+            {
+                case FileKind.Embedded:
+                    node.SetClass(Classes.EmbeddedFileDataObject);
+                    break;
+                case FileKind.ArchiveItem:
+                    node.SetClass(Classes.ArchiveItem);
+                    break;
+            }
 
             if(info.Path != null)
             {
@@ -40,7 +54,12 @@ namespace IS4.MultiArchiver.Analyzers
             {
                 LinkDirectories(node, info.Name, false, context.NodeFactory);
             }
-            node.Set(Properties.PrefLabel, DataTools.ReplaceControlCharacters(info.ToString(), null));
+
+            var label = info.ToString();
+            if(!String.IsNullOrEmpty(label))
+            {
+                node.Set(Properties.PrefLabel, DataTools.ReplaceControlCharacters(label, null));
+            }
 
             if(info.Name != null)
             {

@@ -95,6 +95,8 @@ namespace IS4.MultiArchiver.Analyzers
 
                 public object DataKey => null;
 
+                public FileKind Kind => FileKind.Embedded;
+
                 public Stream Open()
                 {
                     return this.data.Value.AsStream(false);

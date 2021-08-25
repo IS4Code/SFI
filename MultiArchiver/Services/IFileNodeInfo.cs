@@ -14,6 +14,14 @@ namespace IS4.MultiArchiver.Services
         DateTime? CreationTime { get; }
         DateTime? LastWriteTime { get; }
         DateTime? LastAccessTime { get; }
+        FileKind Kind { get; }
+    }
+
+    public enum FileKind
+    {
+        None,
+        Embedded,
+        ArchiveItem
     }
 
     public interface IFileInfo : IFileNodeInfo, IStreamFactory
@@ -24,6 +32,36 @@ namespace IS4.MultiArchiver.Services
     public interface IDirectoryInfo : IFileNodeInfo
     {
         IEnumerable<IFileNodeInfo> Entries { get; }
+    }
+
+    public abstract class RootDirectoryInfo : IDirectoryInfo
+    {
+        public abstract IEnumerable<IFileNodeInfo> Entries { get; }
+
+        public virtual string Name => null;
+
+        public virtual string SubName => null;
+
+        public virtual string Path => "";
+
+        public virtual int? Revision => null;
+
+        public virtual DateTime? CreationTime => null;
+
+        public virtual DateTime? LastWriteTime => null;
+
+        public virtual DateTime? LastAccessTime => null;
+
+        public virtual FileKind Kind => FileKind.None;
+
+        public abstract object ReferenceKey { get; }
+
+        public abstract object DataKey { get; }
+
+        public override string ToString()
+        {
+            return "";
+        }
     }
 
     public abstract class FileSystemInfoWrapper<TInfo> : IFileNodeInfo where TInfo : FileSystemInfo
@@ -85,7 +123,9 @@ namespace IS4.MultiArchiver.Services
         object IPersistentKey.ReferenceKey => key != null ? key.ReferenceKey : AppDomain.CurrentDomain;
 
         object IPersistentKey.DataKey => key != null ? key.DataKey : BaseInfo.FullName;
-        
+
+        public FileKind Kind => FileKind.None;
+
         public override string ToString()
         {
             return "/" + Path;

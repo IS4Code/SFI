@@ -18,7 +18,6 @@ namespace IS4.MultiArchiver.Analyzers
                 var infoNode = globalAnalyzer.Analyze<IFileInfo>(new BlobInfo(key, value), context.WithParent(node)).Node;
                 if(infoNode != null)
                 {
-                    infoNode.SetClass(Classes.EmbeddedFileDataObject);
                     node.Set(Properties.HasMediaStream, infoNode);
                 }
             }
@@ -107,6 +106,8 @@ namespace IS4.MultiArchiver.Analyzers
             public DateTime? LastWriteTime => null;
 
             public DateTime? LastAccessTime => null;
+
+            public FileKind Kind => FileKind.Embedded;
 
             public override string ToString()
             {

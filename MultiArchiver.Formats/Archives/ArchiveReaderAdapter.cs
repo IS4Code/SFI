@@ -175,6 +175,8 @@ namespace IS4.MultiArchiver.Formats.Archives
 
             object IPersistentKey.DataKey => Path;
 
+            public FileKind Kind => FileKind.ArchiveItem;
+
             public override string ToString()
             {
                 return "/" + Path;

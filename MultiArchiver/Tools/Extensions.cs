@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -12,6 +13,27 @@ namespace IS4.MultiArchiver.Tools
         {
             key = pair.Key;
             value = pair.Value;
+        }
+
+        public static bool Is<T>(this Exception exception) where T : Exception
+        {
+            if(exception == null)
+            {
+                return false;
+            }
+            if(exception is T)
+            {
+                return true;
+            }
+            if(exception is AggregateException aggr)
+            {
+                 return aggr.InnerExceptions.Any(Is<T>);
+            }
+            if(exception.InnerException != null && exception.InnerException != exception)
+            {
+                return exception.InnerException.Is<T>();
+            }
+            return false;
         }
 
         public static ArraySegment<byte> GetData(this MemoryStream memoryStream)

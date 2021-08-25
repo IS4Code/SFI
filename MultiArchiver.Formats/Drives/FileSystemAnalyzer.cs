@@ -28,33 +28,45 @@ namespace IS4.MultiArchiver.Analyzers
             try{ node.Set(Properties.TotalSpace, filesystem.AvailableSpace + filesystem.UsedSpace); }
             catch(NotSupportedException) { }
 
+            string label = null;
             if(filesystem is DiscFileSystem disc)
             {
-                node.Set(Properties.VolumeLabel, disc.VolumeLabel);
+                node.Set(Properties.VolumeLabel, label = disc.VolumeLabel);
                 node.Set(Properties.FilesystemType, disc.FriendlyName);
             }
 
-            foreach(var file in filesystem.GetFiles(null))
+            var info = new FileSystemWrapper(filesystem);
+            var result = globalAnalyzer.Analyze(info, context.WithNode(node));
+            result.Label = label ?? result.Label;
+            return result;
+        }
+
+        class FileSystemWrapper : RootDirectoryInfo
+        {
+            readonly IFileSystem fileSystem;
+
+            public FileSystemWrapper(IFileSystem fileSystem)
             {
-                var info = filesystem.GetFileInfo(file);
-                var node2 = globalAnalyzer.Analyze(new FileInfoWrapper(info), context.WithParent(node)).Node;
-                if(node2 != null)
-                {
-                    node2.Set(Properties.BelongsToContainer, node);
+                this.fileSystem = fileSystem;
+            }
+
+            public override IEnumerable<IFileNodeInfo> Entries {
+                get {
+                    foreach(var file in fileSystem.GetFiles(null))
+                    {
+                        yield return new FileInfoWrapper(fileSystem.GetFileInfo(file));
+                    }
+
+                    foreach(var directory in fileSystem.GetDirectories(null))
+                    {
+                        yield return new DirectoryInfoWrapper(fileSystem.GetDirectoryInfo(directory));
+                    }
                 }
             }
 
-            foreach(var directory in filesystem.GetDirectories(null))
-            {
-                var info = filesystem.GetDirectoryInfo(directory);
-                var node2 = globalAnalyzer.Analyze(new DirectoryInfoWrapper(info), context.WithParent(node)).Node;
-                if(node2 != null)
-                {
-                    node2.Set(Properties.BelongsToContainer, node);
-                }
-            }
+            public override object ReferenceKey => fileSystem;
 
-            return new AnalysisResult(node);
+            public override object DataKey => null;
         }
 
         abstract class FileSystemInfoWrapper<TInfo> : IFileNodeInfo where TInfo : DiscFileSystemInfo
@@ -95,6 +107,8 @@ namespace IS4.MultiArchiver.Analyzers
             object IPersistentKey.ReferenceKey => info.FileSystem;
 
             object IPersistentKey.DataKey => info.FullName;
+
+            public FileKind Kind => FileKind.None;
 
             public override string ToString()
             {

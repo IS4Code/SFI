@@ -16,11 +16,11 @@ namespace IS4.MultiArchiver.Analyzers
                 if(item.IsStream)
                 {
                     return new FileEntry(path, (CFStream)item);
-                }else if(item.IsStorage)
+                }else if(item.IsStorage || item.IsRoot)
                 {
                     var list = new List<IFileNodeInfo>();
-                    var storage = ((CFStorage)item);
-                    storage.VisitEntries(item2 => list.Add(Visitor(path + item.Name + "/", item2)), false);
+                    var storage = (CFStorage)item;
+                    storage.VisitEntries(item2 => list.Add(Visitor(item.IsRoot ? path : path + item.Name + "/", item2)), false);
                     return new DirectoryEntry(path, storage, list);
                 }
                 return null;
@@ -28,18 +28,9 @@ namespace IS4.MultiArchiver.Analyzers
 
             var node = GetNode(context);
 
-            file.RootStorage.VisitEntries(item => {
-                var info = Visitor(null, item);
-                var fileNode = globalAnalyzer.Analyze(info, context.WithParent(node)).Node;
-                if(fileNode != null)
-                {
-                    node.Set(Properties.HasMediaStream, fileNode);
-                }
-            }, false);
+            var info = Visitor("", file.RootStorage);
 
-            node.Set(Properties.Modified, file.RootStorage.ModifyDate);
-
-            return new AnalysisResult(node);
+            return globalAnalyzer.Analyze(info, context.WithNode(node));
         }
 
         abstract class ItemEntry<TItem> : IFileNodeInfo where TItem : CFItem
@@ -49,10 +40,10 @@ namespace IS4.MultiArchiver.Analyzers
             public ItemEntry(string path, TItem item)
             {
                 Item = item;
-                Path = path + item.Name;
+                Path = IsRoot ? path : path + item.Name;
             }
 
-            public string Name => Item.Name;
+            public string Name => IsRoot ? null : Item.Name;
 
             public string SubName => null;
 
@@ -86,9 +77,13 @@ namespace IS4.MultiArchiver.Analyzers
 
             public object DataKey => null;
 
+            public bool IsRoot => Item.IsRoot;
+
+            public FileKind Kind => FileKind.Embedded;
+
             public override string ToString()
             {
-                return "/" + Path;
+                return IsRoot ? "" : "/" + Path;
             }
         }
 
