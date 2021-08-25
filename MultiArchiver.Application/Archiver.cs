@@ -79,7 +79,7 @@ namespace IS4.MultiArchiver.Extensions
             archiver.DataAnalyzer.DataFormats.Add(new CabinetFormat());
             archiver.DataAnalyzer.DataFormats.Add(new OleStorageFormat());
 
-            archiver.DataAnalyzer.PackageFormats.Add(new OpenPackageFormat(null, null));
+            archiver.DataAnalyzer.PackageFormats.Add(new OpenPackageFormat());
 
             archiver.XmlAnalyzer.XmlFormats.Add(new SvgFormat());
 

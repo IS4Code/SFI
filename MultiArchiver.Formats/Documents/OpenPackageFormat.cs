@@ -9,7 +9,7 @@ namespace IS4.MultiArchiver.Formats
 {
     public class OpenPackageFormat : PackageFormat<IStreamFactory, OpenPackageFormat.PackageInfo>
     {
-        public OpenPackageFormat(string mediaType, string extension) : base(mediaType, extension)
+        public OpenPackageFormat() : base("application/vnd.openxmlformats-package", "ooxml")
         {
 
         }
