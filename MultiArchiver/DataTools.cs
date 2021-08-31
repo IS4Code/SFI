@@ -48,7 +48,61 @@ namespace IS4.MultiArchiver
             return 0;
         }
 
-        static readonly Regex badCharacters = new Regex(@"://|//|[^a-zA-Z0-9._-]", RegexOptions.Compiled);
+        static readonly char[] hostSplitChars = { '.' };
+        static readonly char[] slashSplitChars = { '/' };
+        static readonly char[] colonSplitChars = { ':' };
+
+        static IEnumerable<string> GetUriMediaTypeComponents(Uri uri)
+        {
+            yield return uri.Scheme;
+            switch(uri.HostNameType)
+            {
+                case UriHostNameType.Dns:
+                    if(!String.IsNullOrEmpty(uri.IdnHost))
+                    {
+                        foreach(var name in uri.IdnHost.Split(hostSplitChars).Reverse())
+                        {
+                            yield return name;
+                        }
+                    }
+                    break;
+                case UriHostNameType.IPv4:
+                    if(!String.IsNullOrEmpty(uri.Host))
+                    {
+                        foreach(var component in uri.Host.Split(hostSplitChars))
+                        {
+                            yield return component;
+                        }
+                    }
+                    break;
+                case UriHostNameType.Unknown:
+                    break;
+                default:
+                    if(!String.IsNullOrEmpty(uri.Host))
+                    {
+                        yield return uri.Host;
+                    }
+                    break;
+            }
+            if(!uri.IsDefaultPort)
+            {
+                yield return uri.Port.ToString();
+            }
+            foreach(var segment in uri.AbsolutePath.Split(uri.HostNameType != UriHostNameType.Unknown ? slashSplitChars : colonSplitChars))
+            {
+                yield return segment;
+            }
+            if(!String.IsNullOrEmpty(uri.Query))
+            {
+                yield return uri.Query;
+            }
+            if(!String.IsNullOrEmpty(uri.Fragment))
+            {
+                yield return uri.Fragment;
+            }
+        }
+
+        static readonly Regex badCharacters = new Regex(@"[^a-zA-Z0-9_-]+", RegexOptions.Compiled);
 
         public static string GetFakeMediaTypeFromXml(Uri ns, string publicId, string rootName)
         {
@@ -61,34 +115,15 @@ namespace IS4.MultiArchiver
                     return $"application/x.ns.{rootName}+xml";
                 }
             }
-            if(ns.HostNameType == UriHostNameType.Dns && !String.IsNullOrEmpty(ns.IdnHost))
-            {
-                var host = ns.IdnHost;
-                var builder = new UriBuilder(ns);
-                builder.Host = String.Join(".", host.Split('.').Reverse());
-                if(!ns.Authority.EndsWith($":{builder.Port}", StringComparison.Ordinal))
-                {
-                    builder.Port = -1;
-                }
-                ns = builder.Uri;
-            }
-            var replaced = badCharacters.Replace(ns.OriginalString, m => {
-                switch(m.Value)
-                {
-                    case "[":
-                    case "]": return "";
-                    case "%": return "&";
-                    case ":":
-                    case "/":
-                    case "?":
-                    case ";":
-                    case "&":
-                    case "=":
-                    case "//":
-                    case "://": return ".";
-                    default: return String.Join("", Encoding.UTF8.GetBytes(m.Value).Select(b => $"&{b:X2}"));
-                }
-            });
+            var replaced = String.Join(".",
+                GetUriMediaTypeComponents(ns)
+                .Select(c => badCharacters.Replace(c, m => {
+                    switch(m.Value)
+                    {
+                        //case "%": return "&";
+                        default: return String.Join("", Encoding.UTF8.GetBytes(m.Value).Select(b => $"&{b:X2}"));
+                    }
+                })));
             return $"application/x.ns.{replaced}.{rootName}+xml";
         }
 
