@@ -110,59 +110,73 @@ namespace IS4.MultiArchiver.Analyzers
             public string ValueString { get; }
             public IReadOnlyDictionary<string, EntryInfo> Children { get; }
             public int Length => Value.Count;
+            public Exception Exception { get; }
+
+            static readonly char[] nullCharEnd = { '\0' };
 
             public EntryInfo(ArraySegment<byte> dataSegment)
             {
-                var data = dataSegment.AsSpan();
-                var header = data.MemoryCast<ushort>();
-                var length = header[0];
-                var valueLength = header[1];
-                data = data.Slice(0, length);
-                var nameSpan = data.Slice(4).MemoryCast<ushort>();
-                var dataType = nameSpan[0];
-                var unicode = dataType <= 1;
-                int dataEnd;
-                if(unicode)
-                {
-                    var name = nameSpan.Slice(1).MemoryCast<char>();
-                    dataEnd = name.IndexOf('\0');
-                    Name = name.Slice(0, dataEnd).ToString();
-                    dataEnd = (dataEnd + 1) * sizeof(char) + sizeof(ushort);
-                }else{
-                    var name = nameSpan.MemoryCast<byte>();
-                    dataEnd = name.IndexOf((byte)0);
-                    Name = Encoding.ASCII.GetString(dataSegment.Array, dataSegment.Offset + 4, dataEnd);
-                    dataEnd += 1;
-                }
-                dataEnd += 4;
-                Align(ref dataEnd);
-
-                if(unicode && dataType == 1)
-                {
-                    valueLength *= 2;
-                }
-
-                Value = dataSegment.Slice(dataEnd, valueLength);
-
-                if(unicode && dataType == 1)
-                {
-                    ValueString = Value.AsSpan().MemoryCast<char>().ToString().TrimEnd('\0');
-                }
-
-                dataEnd += valueLength;
-
-                var children = new Dictionary<string, EntryInfo>();
-                
-                while(dataEnd < length)
-                {
-                    Align(ref dataEnd);
-                    var childLength = BitConverter.ToUInt16(dataSegment.Array, dataSegment.Offset + dataEnd);
-                    var childSegment = dataSegment.Slice(dataEnd, childLength);
-                    var info = new EntryInfo(childSegment);
-                    children[info.Name] = info;
-                    dataEnd += childLength;
-                }
+                var children = new Dictionary<string, EntryInfo>(StringComparer.OrdinalIgnoreCase);
                 Children = children;
+
+                try{ 
+                    var data = dataSegment.AsSpan();
+                    var header = data.MemoryCast<ushort>();
+                    var length = header[0];
+                    var valueLength = header[1];
+                    data = data.Slice(0, length);
+                    var nameSpan = data.Slice(4).MemoryCast<ushort>();
+                    var dataType = nameSpan[0];
+                    int dataEnd;
+                    if(dataType <= 1)
+                    {
+                        var name = nameSpan.Slice(1).MemoryCast<char>();
+                        dataEnd = name.IndexOf('\0');
+                        Name = name.Slice(0, dataEnd).ToString();
+                        dataEnd = (dataEnd + 1) * sizeof(char) + sizeof(ushort);
+                    }else{
+                        dataType = 0;
+                        var name = nameSpan.MemoryCast<byte>();
+                        dataEnd = name.IndexOf((byte)0);
+                        Name = Encoding.ASCII.GetString(dataSegment.Array, dataSegment.Offset + 4, dataEnd);
+                        dataEnd += 1;
+                    }
+                    dataEnd += 4;
+                    Align(ref dataEnd);
+
+                    Value = dataSegment.Slice(dataEnd, valueLength);
+
+                    if(dataType == 1 &&
+                        valueLength > 0 &&
+                        dataEnd + valueLength * 2 <= dataSegment.Count &&
+                        (valueLength % 2 == 1 || !Value.AsSpan().MemoryCast<char>().EndsWith(nullCharEnd.AsSpan()))
+                        )
+                    {
+                        valueLength *= 2;
+                        Value = dataSegment.Slice(dataEnd, valueLength);
+                    }
+
+                    if(dataType == 1)
+                    {
+                        ValueString = Value.AsSpan().MemoryCast<char>().ToString().TrimEnd('\0');
+                    }
+
+                    dataEnd += valueLength;
+
+                    Align(ref dataEnd);
+                    while(dataEnd < length)
+                    {
+                        var childLength = BitConverter.ToUInt16(dataSegment.Array, dataSegment.Offset + dataEnd);
+                        var childSegment = dataSegment.Slice(dataEnd, childLength);
+                        var info = new EntryInfo(childSegment);
+                        children[info.Name] = info;
+                        dataEnd += childLength;
+                        Align(ref dataEnd);
+                    }
+                }catch(Exception e)
+                {
+                    Exception = e;
+                }
             }
 
             public string GetValue(Encoding encoding)
