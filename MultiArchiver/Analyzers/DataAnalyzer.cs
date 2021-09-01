@@ -295,7 +295,7 @@ namespace IS4.MultiArchiver.Analyzers
                 if(ByteValue.Count > 0)
                 {
                     var nodeCreated = new TaskCompletionSource<ILinkedNode>();
-                    Results = formats.Where(fmt => fmt.CheckHeader(ByteValue, isBinary, encodingDetector)).Select(fmt => new FormatResult(streamFactory, fmt, nodeCreated, Node, context, analyzer)).ToList();
+                    Results = formats.Where(fmt => fmt.CheckHeader(ByteValue, isBinary, encodingDetector)).Select(fmt => new FormatResult(this, streamFactory, fmt, nodeCreated, Node, context, analyzer)).ToList();
                 }else{
                     Results = Array.Empty<FormatResult>();
                 }
@@ -352,6 +352,7 @@ namespace IS4.MultiArchiver.Analyzers
         
 		class FormatResult : IComparable<FormatResult>, IResultFactory<ILinkedNode, (Stream stream, MatchContext matchContext)>
 		{
+            readonly FileMatch fileMatch;
             readonly IBinaryFileFormat format;
             readonly ILinkedNode parent;
             readonly AnalysisContext context;
@@ -369,8 +370,9 @@ namespace IS4.MultiArchiver.Analyzers
 
             public ILinkedNode Result => task?.Result;
 
-            public FormatResult(IStreamFactory streamFactory, IBinaryFileFormat format, TaskCompletionSource<ILinkedNode> nodeCreated, ILinkedNode parent, AnalysisContext context, IEntityAnalyzerProvider analyzer)
+            public FormatResult(FileMatch fileMatch, IStreamFactory streamFactory, IBinaryFileFormat format, TaskCompletionSource<ILinkedNode> nodeCreated, ILinkedNode parent, AnalysisContext context, IEntityAnalyzerProvider analyzer)
 			{
+                this.fileMatch = fileMatch;
                 this.format = format;
                 this.parent = parent;
                 this.context = context;
@@ -413,13 +415,13 @@ namespace IS4.MultiArchiver.Analyzers
                 var (stream, matchContext) = args;
                 var streamContext = context.WithMatchContext(matchContext);
                 try{
-                    var formatObj = new FormatObject<T>(format, value);
+                    var formatObj = new BinaryFormatObject<T>(fileMatch, format, value);
                     while(parent[formatObj] == null)
                     {
                         ILinkedNode node;
                         if(!nodeCreated.Task.Wait(MaxResultWaitTime))
                         {
-                            formatObj = new FormatObject<T>(ImprovisedFormat<T>.Instance, value);
+                            formatObj = new BinaryFormatObject<T>(fileMatch, ImprovisedFormat<T>.Instance, value);
                             continue;
                         }else{
                             node = nodeCreated.Task.Result;

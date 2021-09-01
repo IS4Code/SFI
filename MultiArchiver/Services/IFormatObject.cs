@@ -17,7 +17,17 @@ namespace IS4.MultiArchiver.Services
         T Value { get; }
     }
 
-    public sealed class FormatObject<T> : IFormatObject<T> where T : class
+    public interface IBinaryFormatObject : IFormatObject
+    {
+        IDataObject Data { get; }
+    }
+
+    public interface IBinaryFormatObject<out T> : IBinaryFormatObject, IFormatObject<T>
+    {
+
+    }
+
+    public class FormatObject<T> : IFormatObject<T> where T : class
     {
         public IFileFormat Format { get; }
         public string Extension => Format is IFileFormat<T> fmt ? fmt.GetExtension(Value) : Format.GetExtension(Value);
@@ -77,6 +87,18 @@ namespace IS4.MultiArchiver.Services
                 }
                 return new Uri(value.AbsoluteUri + "/" + sub);
             }
+        }
+    }
+
+    public sealed class BinaryFormatObject<T> : FormatObject<T>, IBinaryFormatObject<T> where T : class
+    {
+        public IDataObject Data { get; }
+
+        public new IBinaryFileFormat Format => (IBinaryFileFormat)base.Format;
+
+        public BinaryFormatObject(IDataObject data, IBinaryFileFormat format, T value) : base(format, value)
+        {
+            Data = data;
         }
     }
 }

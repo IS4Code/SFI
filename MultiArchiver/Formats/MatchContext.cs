@@ -10,9 +10,8 @@ namespace IS4.MultiArchiver.Formats
     public struct MatchContext
     {
         readonly ImmutableDictionary<Type, object> serviceMap;
-        public Stream Stream { get; }
 
-        private MatchContext(ImmutableDictionary<Type, object> serviceMap, Type serviceType, object services, Stream stream)
+        private MatchContext(ImmutableDictionary<Type, object> serviceMap, Type serviceType, object services)
         {
             if(serviceMap == null)
             {
@@ -35,7 +34,6 @@ namespace IS4.MultiArchiver.Formats
                     this.serviceMap = builder.ToImmutable();
                 }
             }
-            Stream = stream;
         }
 
         public MatchContext(object services = null, Stream stream = null)
@@ -46,7 +44,6 @@ namespace IS4.MultiArchiver.Formats
             }else{
                 serviceMap = ImmutableDictionary.CreateRange(GetServices(null, services));
             }
-            Stream = stream;
         }
 
         public T GetService<T>() where T : class
@@ -56,12 +53,12 @@ namespace IS4.MultiArchiver.Formats
 
         public MatchContext WithService<T>(T service)
         {
-            return new MatchContext(serviceMap, typeof(T), service, Stream);
+            return new MatchContext(serviceMap, typeof(T), service);
         }
 
         public MatchContext WithServices(object services)
         {
-            return new MatchContext(serviceMap, null, services, Stream);
+            return new MatchContext(serviceMap, null, services);
         }
 
         public MatchContext WithStream(Stream stream)

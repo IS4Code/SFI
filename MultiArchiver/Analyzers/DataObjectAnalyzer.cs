@@ -48,7 +48,7 @@ namespace IS4.MultiArchiver.Analyzers
             if(!dataObject.Recognized && isBinary && DataTools.ExtractSignature(dataObject.ByteValue) is string magicText)
             {
                 var signatureFormat = new ImprovisedSignatureFormat.Format(magicText);
-                var formatObj = new FormatObject<ImprovisedSignatureFormat.Format>(ImprovisedSignatureFormat.Instance, signatureFormat);
+                var formatObj = new BinaryFormatObject<ImprovisedSignatureFormat.Format>(dataObject, ImprovisedSignatureFormat.Instance, signatureFormat);
                 var formatNode = analyzers.Analyze(formatObj, context.WithParent(node)).Node;
                 if(formatNode != null)
                 {

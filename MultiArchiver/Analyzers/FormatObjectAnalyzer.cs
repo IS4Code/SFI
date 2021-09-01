@@ -46,12 +46,9 @@ namespace IS4.MultiArchiver.Analyzers
             }
             
             var label = result.Label;
-            if(context.MatchContext.Stream is Stream stream)
+            if(format is IBinaryFormatObject binaryFormat)
             {
-                label = label ?? DataTools.SizeSuffix(stream.Length, 2);
-            }else if(context.MatchContext.GetService<IStreamFactory>() is IStreamFactory streamFactory)
-            {
-                label = label ?? DataTools.SizeSuffix(streamFactory.Length, 2);
+                label = label ?? DataTools.SizeSuffix(binaryFormat.Data.StreamFactory.Length, 2);
             }
 
             if(format.Format is IXmlDocumentFormat xmlFormat)
