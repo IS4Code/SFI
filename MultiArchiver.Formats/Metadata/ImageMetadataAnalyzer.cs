@@ -18,7 +18,7 @@ namespace IS4.MultiArchiver.Analyzers
     {
         public ICollection<object> MetadataReaders { get; } = new SortedSet<object>(TypeInheritanceComparer<object>.Instance);
 
-        public override AnalysisResult Analyze(IReadOnlyList<Directory> entity, AnalysisContext context, IEntityAnalyzer globalAnalyzer)
+        public override AnalysisResult Analyze(IReadOnlyList<Directory> entity, AnalysisContext context, IEntityAnalyzerProvider globalAnalyzer)
         {
             var node = GetNode(context);
             string result = null;

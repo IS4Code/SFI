@@ -13,7 +13,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override AnalysisResult Analyze(SvgDocument svg, AnalysisContext context, IEntityAnalyzer globalAnalyzer)
+        public override AnalysisResult Analyze(SvgDocument svg, AnalysisContext context, IEntityAnalyzerProvider globalAnalyzer)
         {
             var node = GetNode(context);
             if(svg.Width.Type == SvgUnitType.Pixel)

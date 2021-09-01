@@ -2,45 +2,17 @@
 using IS4.MultiArchiver.Tools;
 using System;
 using System.Collections.Generic;
-using System.Runtime.ExceptionServices;
+using System.Linq;
 
 namespace IS4.MultiArchiver
 {
-    public class EntityAnalyzer : IEntityAnalyzer
+    public class EntityAnalyzer : IEntityAnalyzerProvider
     {
         public ICollection<object> Analyzers { get; } = new SortedSet<object>(EntityAnalyzerComparer.Instance);
 
-        public AnalysisResult Analyze<T>(T entity, AnalysisContext context) where T : class
+        public IEnumerable<IEntityAnalyzer<T>> GetAnalyzers<T>() where T : class
         {
-            if(entity == null) return default;
-            foreach(var obj in Analyzers)
-            {
-                if(obj is IEntityAnalyzer<T> analyzer)
-                {
-                    try{
-                        if(typeof(T).Equals(typeof(IStreamFactory)))
-                        {
-                            Console.Error.WriteLine($"Data ({((IStreamFactory)entity).Length} B)");
-                        }else{
-                            Console.Error.WriteLine(entity);
-                        }
-                        var result = analyzer.Analyze(entity, context, this);
-                        if(result.Node != null)
-                        {
-                            return result;
-                        }
-                    }catch(InternalArchiverException e)
-                    {
-                        ExceptionDispatchInfo.Capture(e.InnerException).Throw();
-                        throw;
-                    }catch(Exception e)
-                    {
-                        Console.Error.WriteLine("Error in analyzer " + obj);
-                        Console.Error.WriteLine(e);
-                    }
-                }
-            }
-            return default;
+            return Analyzers.OfType<IEntityAnalyzer<T>>();
         }
 
         class EntityAnalyzerComparer : TypeInheritanceComparer<object>

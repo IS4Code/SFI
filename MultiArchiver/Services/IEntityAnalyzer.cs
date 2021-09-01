@@ -1,15 +1,50 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Runtime.ExceptionServices;
 
 namespace IS4.MultiArchiver.Services
 {
-    public interface IEntityAnalyzer
+    public interface IEntityAnalyzerProvider
     {
-        AnalysisResult Analyze<T>(T entity, AnalysisContext context) where T : class;
+        IEnumerable<IEntityAnalyzer<T>> GetAnalyzers<T>() where T : class;
+    }
+
+    public static class EntityAnalyzerExtensions
+    {
+        public static AnalysisResult Analyze<T>(this IEntityAnalyzerProvider analyzers, T entity, AnalysisContext context, IEntityAnalyzerProvider customAnalyzer = null) where T : class
+        {
+            if(entity == null) return default;
+            foreach(var analyzer in analyzers.GetAnalyzers<T>())
+            {
+                try{
+                    if(typeof(T).Equals(typeof(IStreamFactory)))
+                    {
+                        Console.Error.WriteLine($"Data ({((IStreamFactory)entity).Length} B)");
+                    }else{
+                        Console.Error.WriteLine(entity);
+                    }
+                    var result = analyzer.Analyze(entity, context, customAnalyzer ?? analyzers);
+                    if(result.Node != null)
+                    {
+                        return result;
+                    }
+                }catch(InternalArchiverException e)
+                {
+                    ExceptionDispatchInfo.Capture(e.InnerException).Throw();
+                    throw;
+                }catch(Exception e)
+                {
+                    Console.Error.WriteLine("Error in analyzer " + analyzer);
+                    Console.Error.WriteLine(e);
+                }
+            }
+            return default;
+        }
     }
 
     public interface IEntityAnalyzer<in T> where T : class
     {
-        AnalysisResult Analyze(T entity, AnalysisContext context, IEntityAnalyzer globalAnalyzer);
+        AnalysisResult Analyze(T entity, AnalysisContext context, IEntityAnalyzerProvider globalAnalyzer);
     }
 
     public struct AnalysisContext
@@ -62,7 +97,7 @@ namespace IS4.MultiArchiver.Services
         }
     }
 
-    public abstract class EntityAnalyzer<T> : IEntityAnalyzer<T> where T : class
+    public abstract class EntityAnalyzerBase
     {
         protected ILinkedNode GetNode(AnalysisContext context)
         {
@@ -89,7 +124,5 @@ namespace IS4.MultiArchiver.Services
         {
 
         }
-
-        public abstract AnalysisResult Analyze(T entity, AnalysisContext context, IEntityAnalyzer globalAnalyzer);
     }
 }

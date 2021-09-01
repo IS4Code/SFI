@@ -17,7 +17,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override AnalysisResult Analyze(IFileSystem filesystem, AnalysisContext context, IEntityAnalyzer globalAnalyzer)
+        public override AnalysisResult Analyze(IFileSystem filesystem, AnalysisContext context, IEntityAnalyzerProvider globalAnalyzer)
         {
             var node = GetNode(context);
 

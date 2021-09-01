@@ -11,14 +11,16 @@ namespace IS4.MultiArchiver.Analyzers
     {
         public ICollection<IFileHashAlgorithm> HashAlgorithms { get; } = new List<IFileHashAlgorithm>();
 
-        public ICollection<IPackageFormat<IDirectoryInfo>> PackageFormats { get; } = new List<IPackageFormat<IDirectoryInfo>>();
+        public ICollection<IPackageFormat<IDirectoryInfo>> PackageDirectoryFormats { get; } = new List<IPackageFormat<IDirectoryInfo>>();
+
+        public ICollection<IPackageFormat<IFileNodeInfo>> PackageFileFormats { get; } = new List<IPackageFormat<IFileNodeInfo>>();
 
         public FileAnalyzer()
         {
 
         }
 
-        private ILinkedNode CreateNode(IFileNodeInfo info, AnalysisContext context, IEntityAnalyzer analyzer)
+        private ILinkedNode CreateNode(IFileNodeInfo info, AnalysisContext context)
         {
             if(context.Node != null) return context.Node;
             var name = Uri.EscapeDataString(info.Name ?? "");
@@ -29,9 +31,9 @@ namespace IS4.MultiArchiver.Analyzers
             return context.Parent?[name] ?? context.NodeFactory.NewGuidNode();
         }
 
-        private ILinkedNode AnalyzeFileNode(IFileNodeInfo info, AnalysisContext context, IEntityAnalyzer analyzer)
+        private ILinkedNode AnalyzeFileNode(IFileNodeInfo info, AnalysisContext context, IEntityAnalyzerProvider analyzer)
         {
-            var node = CreateNode(info, context, analyzer);
+            var node = CreateNode(info, context);
 
             if(info.Path != "")
             {
@@ -88,7 +90,7 @@ namespace IS4.MultiArchiver.Analyzers
             return node;
         }
 
-        public AnalysisResult Analyze(IFileInfo file, AnalysisContext context, IEntityAnalyzer analyzer)
+        public AnalysisResult Analyze(IFileInfo file, AnalysisContext context, IEntityAnalyzerProvider analyzer)
         {
             var node = AnalyzeFileNode(file, context, analyzer);
             if(node != null)
@@ -122,8 +124,31 @@ namespace IS4.MultiArchiver.Analyzers
             return new AnalysisResult(node);
         }
 
-        private void AnalyzeDirectory(ILinkedNode node, IDirectoryInfo directory, AnalysisContext context, IEntityAnalyzer analyzer)
+        private void MatchPackages<T>(ref List<IEntityAnalyzerProvider> fromPackages, IEnumerable<IPackageFormat<T>> formats, IDirectoryInfo directory, T entity, AnalysisContext context, ref IEntityAnalyzerProvider analyzer) where T : class
         {
+            foreach(var packageFormat in formats)
+            {
+                var packageAnalyzer = packageFormat.Match(entity, context.MatchContext);
+                if(packageAnalyzer != null)
+                {
+                    if(fromPackages == null)
+                    {
+                        fromPackages = new List<IEntityAnalyzerProvider>();
+                        analyzer = new PackageAnalyzer(analyzer, fromPackages);
+                    }
+                    fromPackages.Add(packageAnalyzer);
+
+                    var result = packageAnalyzer.Analyze(directory, context, analyzer).Node;
+                    result?.Set(Properties.HasFormat, context.Node);
+                }
+            }
+        }
+
+        private void AnalyzeDirectory(ILinkedNode node, IDirectoryInfo directory, AnalysisContext context, IEntityAnalyzerProvider analyzer)
+        {
+            List<IEntityAnalyzerProvider> fromPackages = null;
+            MatchPackages(ref fromPackages, PackageDirectoryFormats, directory, directory, context.WithNode(node), ref analyzer);
+
             var folder = AnalyzeContents(node, directory, context, analyzer);
 
             if(folder != null)
@@ -135,22 +160,9 @@ namespace IS4.MultiArchiver.Analyzers
             {
                 HashAlgorithm.AddHash(node, alg, alg.ComputeHash(directory, false), context.NodeFactory);
             }
-
-            foreach(var packageFormat in PackageFormats)
-            {
-                var packageAnalyzer = packageFormat.Match(directory, context.MatchContext);
-                if(packageAnalyzer != null)
-                {
-                    var result = packageAnalyzer.Analyze(directory, context.WithNode(node), analyzer).Node;
-                    if(result != null)
-                    {
-                        result.Set(Properties.HasFormat, node);
-                    }
-                }
-            }
         }
 
-        public AnalysisResult Analyze(IDirectoryInfo directory, AnalysisContext context, IEntityAnalyzer analyzer)
+        public AnalysisResult Analyze(IDirectoryInfo directory, AnalysisContext context, IEntityAnalyzerProvider analyzer)
         {
             var node = AnalyzeFileNode(directory, context, analyzer);
             if(node != null)
@@ -160,8 +172,10 @@ namespace IS4.MultiArchiver.Analyzers
             return new AnalysisResult(node);
         }
 
-        private ILinkedNode AnalyzeContents(ILinkedNode parent, IDirectoryInfo directory, AnalysisContext context, IEntityAnalyzer analyzer)
+        private ILinkedNode AnalyzeContents(ILinkedNode parent, IDirectoryInfo directory, AnalysisContext context, IEntityAnalyzerProvider analyzer)
         {
+            List<IEntityAnalyzerProvider> fromPackages = null;
+
             var folder = parent?[""] ?? context.NodeFactory.NewGuidNode();
 
             if(folder != null)
@@ -179,13 +193,16 @@ namespace IS4.MultiArchiver.Analyzers
                     HashAlgorithm.AddHash(folder, alg, alg.ComputeHash(directory, true), context.NodeFactory);
                 }
 
+                context = context.WithParent(parent);
+
                 foreach(var entry in directory.Entries)
                 {
-                    var node2 = Analyze(entry, context.WithParent(parent), analyzer).Node;
-                    if(node2 != null)
-                    {
-                        node2.Set(Properties.BelongsToContainer, folder);
-                    }
+                    var node = CreateNode(entry, context);
+
+                    MatchPackages(ref fromPackages, PackageFileFormats, directory, entry, context, ref analyzer);
+
+                    analyzer.Analyze(entry, context.WithNode(node));
+                    node.Set(Properties.BelongsToContainer, folder);
                 }
             }
 
@@ -222,23 +239,50 @@ namespace IS4.MultiArchiver.Analyzers
             }
         }
 
-        public AnalysisResult Analyze(FileInfo entity, AnalysisContext context, IEntityAnalyzer analyzer)
+        public AnalysisResult Analyze(FileInfo entity, AnalysisContext context, IEntityAnalyzerProvider analyzer)
         {
             return Analyze(new FileInfoWrapper(entity), context, analyzer);
         }
 
-        public AnalysisResult Analyze(DirectoryInfo entity, AnalysisContext context, IEntityAnalyzer analyzer)
+        public AnalysisResult Analyze(DirectoryInfo entity, AnalysisContext context, IEntityAnalyzerProvider analyzer)
         {
             return Analyze(new DirectoryInfoWrapper(entity), context, analyzer);
         }
 
-        public AnalysisResult Analyze(IFileNodeInfo entity, AnalysisContext context, IEntityAnalyzer analyzer)
+        public AnalysisResult Analyze(IFileNodeInfo entity, AnalysisContext context, IEntityAnalyzerProvider analyzer)
         {
             switch(entity)
             {
                 case IFileInfo file: return Analyze(file, context, analyzer);
                 case IDirectoryInfo dir: return Analyze(dir, context, analyzer);
-                default: return new AnalysisResult(CreateNode(entity, context, analyzer));
+                default: return new AnalysisResult(CreateNode(entity, context));
+            }
+        }
+
+        class PackageAnalyzer : IEntityAnalyzerProvider
+        {
+            readonly IEntityAnalyzerProvider baseProvider;
+            readonly IEnumerable<IEntityAnalyzerProvider> additionalAnalyzers;
+
+            public PackageAnalyzer(IEntityAnalyzerProvider baseProvider, IEnumerable<IEntityAnalyzerProvider> additionalAnalyzers)
+            {
+                this.baseProvider = baseProvider;
+                this.additionalAnalyzers = additionalAnalyzers;
+            }
+
+            public IEnumerable<IEntityAnalyzer<T>> GetAnalyzers<T>() where T : class
+            {
+                foreach(var provider in additionalAnalyzers)
+                {
+                    foreach(var analyzer in provider.GetAnalyzers<T>())
+                    {
+                        yield return analyzer;
+                    }
+                }
+                foreach(var analyzer in baseProvider.GetAnalyzers<T>())
+                {
+                    yield return analyzer;
+                }
             }
         }
     }

@@ -10,9 +10,9 @@ using System.Text;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class WinVersionAnalyzerManaged : EntityAnalyzer<WinVersionInfo>
+    public class WinVersionAnalyzerManaged : EntityAnalyzerBase, IEntityAnalyzer<WinVersionInfo>
     {
-        public override AnalysisResult Analyze(WinVersionInfo entity, AnalysisContext context, IEntityAnalyzer globalAnalyzer)
+        public AnalysisResult Analyze(WinVersionInfo entity, AnalysisContext context, IEntityAnalyzerProvider globalAnalyzer)
         {
             var node = GetNode(context);
             return new AnalysisResult(node, ReadVersion(node, entity.Data));

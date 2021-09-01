@@ -25,6 +25,7 @@ namespace IS4.MultiArchiver.Extensions
         {
             Analyzers.Add(FileAnalyzer = new FileAnalyzer());
             Analyzers.Add(DataAnalyzer = new DataAnalyzer(() => new UdeEncodingDetector()));
+            Analyzers.Add(new DataObjectAnalyzer());
             Analyzers.Add(XmlAnalyzer = new XmlAnalyzer());
             Analyzers.Add(ImageAnalyzer = new ImageAnalyzer());
             Analyzers.Add(new FormatObjectAnalyzer());
@@ -79,11 +80,10 @@ namespace IS4.MultiArchiver.Extensions
             archiver.DataAnalyzer.DataFormats.Add(new CabinetFormat());
             archiver.DataAnalyzer.DataFormats.Add(new OleStorageFormat());
 
-            archiver.DataAnalyzer.PackageFormats.Add(new OpenPackageFormat());
-
-            archiver.FileAnalyzer.PackageFormats.Add(new ExcelXmlDocumentFormat());
-            archiver.FileAnalyzer.PackageFormats.Add(new ExcelDocumentFormat());
-            archiver.FileAnalyzer.PackageFormats.Add(new WordXmlDocumentFormat());
+            archiver.FileAnalyzer.PackageFileFormats.Add(new OpenPackageFormat());
+            archiver.FileAnalyzer.PackageDirectoryFormats.Add(new ExcelXmlDocumentFormat());
+            archiver.FileAnalyzer.PackageDirectoryFormats.Add(new ExcelDocumentFormat());
+            archiver.FileAnalyzer.PackageDirectoryFormats.Add(new WordXmlDocumentFormat());
 
             archiver.XmlAnalyzer.XmlFormats.Add(new SvgFormat());
 
@@ -158,7 +158,7 @@ namespace IS4.MultiArchiver.Extensions
                     }
                 }
 
-                return Analyze(entity, new AnalysisContext(nodeFactory: handler));
+                return this.Analyze(entity, new AnalysisContext(nodeFactory: handler));
             }finally{
                 rdfHandler.EndRdf(true);
             }

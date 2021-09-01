@@ -1,7 +1,7 @@
 ﻿using IS4.MultiArchiver.Services;
-using NPOI.POIFS.EventFileSystem;
 using NPOI.POIFS.FileSystem;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace IS4.MultiArchiver.Formats
@@ -24,7 +24,7 @@ namespace IS4.MultiArchiver.Formats
 
         protected abstract T Open(NPOIFSFileSystem fileSystem);
 
-        public class PackageInfo : IEntityAnalyzer<IDirectoryInfo>
+        public class PackageInfo : IEntityAnalyzer<IDirectoryInfo>, IEntityAnalyzerProvider
         {
             readonly OleDocumentFormat<T> format;
 
@@ -33,7 +33,7 @@ namespace IS4.MultiArchiver.Formats
                 this.format = format;
             }
 
-            public AnalysisResult Analyze(IDirectoryInfo root, AnalysisContext context, IEntityAnalyzer globalAnalyzer)
+            public AnalysisResult Analyze(IDirectoryInfo root, AnalysisContext context, IEntityAnalyzerProvider globalAnalyzer)
             {
                 var fs = new NPOIFSFileSystem();
 
@@ -69,6 +69,14 @@ namespace IS4.MultiArchiver.Formats
                     return new AnalysisResult(null, exception: e);
                 }
                 return default;
+            }
+
+            IEnumerable<IEntityAnalyzer<T1>> IEntityAnalyzerProvider.GetAnalyzers<T1>()
+            {
+                if(this is IEntityAnalyzer<T1> analyzer)
+                {
+                    yield return analyzer;
+                }
             }
         }
     }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public abstract class MediaObjectAnalyzer<T> : EntityAnalyzer<T> where T : class
+    public abstract class MediaObjectAnalyzer<T> : EntityAnalyzerBase, IEntityAnalyzer<T> where T : class
     {
         readonly IEnumerable<ClassUri> classes;
 
@@ -17,6 +17,8 @@ namespace IS4.MultiArchiver.Analyzers
         {
 
         }
+
+        public abstract AnalysisResult Analyze(T entity, AnalysisContext context, IEntityAnalyzerProvider globalAnalyzer);
 
         protected override void InitNode(ILinkedNode node, AnalysisContext context)
         {

@@ -10,7 +10,7 @@ namespace IS4.MultiArchiver.Analyzers
 {
     public class DelphiObjectAnalyzer : MediaObjectAnalyzer<DelphiObject>
     {
-        public override AnalysisResult Analyze(DelphiObject obj, AnalysisContext context, IEntityAnalyzer globalAnalyzer)
+        public override AnalysisResult Analyze(DelphiObject obj, AnalysisContext context, IEntityAnalyzerProvider globalAnalyzer)
         {
             var node = GetNode(context);
             foreach(var (key, value) in FindBlobs(null, obj))

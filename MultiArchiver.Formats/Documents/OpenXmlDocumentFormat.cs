@@ -21,43 +21,51 @@ namespace IS4.MultiArchiver.Formats
 
         public sealed override PackageInfo Match(IDirectoryInfo root, MatchContext context)
         {
-            if(root.Entries.Any(e => e.Name.Equals(ContentTypeManager.CONTENT_TYPES_PART_NAME, StringComparison.OrdinalIgnoreCase)))
+            if(root.Entries.Any(e => ContentTypeManager.CONTENT_TYPES_PART_NAME.Equals(e.Name, StringComparison.OrdinalIgnoreCase)))
             {
                 var entrySource = new EntrySource(root);
                 var package = new ZipPackage(entrySource, PackageAccess.READ);
-                return new PackageInfo(this, package);
+                return new PackageInfo(this, root, package);
             }
             return null;
         }
 
         protected abstract T Open(OPCPackage package);
 
-        public class PackageInfo : IEntityAnalyzer<IDirectoryInfo>
+        public class PackageInfo : IEntityAnalyzer<IFileNodeInfo>, IEntityAnalyzerProvider
         {
             readonly OpenXmlDocumentFormat<T> format;
+            readonly IDirectoryInfo root;
             public OPCPackage Package { get; }
 
-            public PackageInfo(OpenXmlDocumentFormat<T> format, OPCPackage package)
+            public PackageInfo(OpenXmlDocumentFormat<T> format, IDirectoryInfo root, OPCPackage package)
             {
                 this.format = format;
+                this.root = root;
                 Package = package;
                 package.GetParts();
             }
 
-            public AnalysisResult Analyze(IDirectoryInfo entity, AnalysisContext context, IEntityAnalyzer globalAnalyzer)
+            public AnalysisResult Analyze(IFileNodeInfo entity, AnalysisContext context, IEntityAnalyzerProvider globalAnalyzer)
             {
-                try{
+                if(entity == root)
+                {
                     var obj = format.Open(Package);
                     if(obj != null)
                     {
                         context = context.WithNode(null);
                         return globalAnalyzer.Analyze(new FormatObject<T>(format, obj), context);
                     }
-                }catch(Exception e)
-                {
-                    return new AnalysisResult(null, exception: e);
                 }
                 return default;
+            }
+
+            IEnumerable<IEntityAnalyzer<T1>> IEntityAnalyzerProvider.GetAnalyzers<T1>()
+            {
+                if(this is IEntityAnalyzer<T1> analyzer)
+                {
+                    yield return analyzer;
+                }
             }
         }
 

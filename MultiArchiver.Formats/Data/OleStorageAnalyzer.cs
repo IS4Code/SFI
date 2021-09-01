@@ -8,7 +8,7 @@ namespace IS4.MultiArchiver.Analyzers
 {
     public class OleStorageAnalyzer : MediaObjectAnalyzer<CompoundFile>
     {
-        public override AnalysisResult Analyze(CompoundFile file, AnalysisContext context, IEntityAnalyzer globalAnalyzer)
+        public override AnalysisResult Analyze(CompoundFile file, AnalysisContext context, IEntityAnalyzerProvider globalAnalyzer)
         {
             IFileNodeInfo Visitor(string path, CFItem item)
             {

@@ -15,13 +15,13 @@ namespace IS4.MultiArchiver.Extensions
     {
         readonly IRdfHandler defaultHandler;
         readonly IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers;
-        readonly IEntityAnalyzer baseAnalyzer;
+        readonly IEntityAnalyzerProvider baseAnalyzer;
 
         public ILinkedNode Root { get; }
 
         public IDictionary<Uri, string> PrefixMap { get; }
 
-        public RdfHandler(Uri root, IEntityAnalyzer baseAnalyzer, IRdfHandler defaultHandler, IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers)
+        public RdfHandler(Uri root, IEntityAnalyzerProvider baseAnalyzer, IRdfHandler defaultHandler, IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers)
             : base(defaultHandler.CreateUriNode, uri => graphHandlers.TryGetValue(uri, out var handler) ? handler : defaultHandler)
         {
             this.defaultHandler = defaultHandler;

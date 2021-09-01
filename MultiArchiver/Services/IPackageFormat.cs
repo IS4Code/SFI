@@ -1,25 +1,20 @@
 ﻿namespace IS4.MultiArchiver.Services
 {
-    public interface IPackageFormat<in TInput> : IFileFormat where TInput : class
+    public interface IPackageFormat<in TEntity> : IFileFormat where TEntity : class
     {
-        IEntityAnalyzer<TInput> Match(TInput entity, MatchContext context);
+        IEntityAnalyzerProvider Match(TEntity entity, MatchContext context);
     }
 
-    public interface IPackageFormat<in TInput, in TValue, out TAnalyzer> : IFileFormat<TValue>, IPackageFormat<TInput> where TInput : class where TValue : class where TAnalyzer : class, IEntityAnalyzer<TInput>
-    {
-        new TAnalyzer Match(TInput entity, MatchContext context);
-    }
-
-    public abstract class PackageFormat<TInput, TValue, TAnalyzer> : FileFormat<TValue>, IPackageFormat<TInput, TValue, TAnalyzer> where TInput : class where TValue : class where TAnalyzer : class, IEntityAnalyzer<TInput>
+    public abstract class PackageFormat<TEntity, TValue, TAnalyzer> : FileFormat<TValue>, IPackageFormat<TEntity> where TEntity : class where TValue : class where TAnalyzer : IEntityAnalyzerProvider
     {
         public PackageFormat(string mediaType, string extension) : base(mediaType, extension)
         {
 
         }
 
-        public abstract TAnalyzer Match(TInput entity, MatchContext context);
+        public abstract TAnalyzer Match(TEntity entity, MatchContext context);
 
-        IEntityAnalyzer<TInput> IPackageFormat<TInput>.Match(TInput entity, MatchContext context)
+        IEntityAnalyzerProvider IPackageFormat<TEntity>.Match(TEntity entity, MatchContext context)
         {
             return Match(entity, context);
         }

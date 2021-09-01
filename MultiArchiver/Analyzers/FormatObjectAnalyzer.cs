@@ -5,14 +5,14 @@ using System.IO;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class FormatObjectAnalyzer : EntityAnalyzer<IFormatObject>, IResultFactory<AnalysisResult, (IFormatObject format, AnalysisContext context, IEntityAnalyzer analyzer)>
+    public class FormatObjectAnalyzer : EntityAnalyzerBase, IEntityAnalyzer<IFormatObject>, IResultFactory<AnalysisResult, (IFormatObject format, AnalysisContext context, IEntityAnalyzerProvider analyzer)>
     {
-        public sealed override AnalysisResult Analyze(IFormatObject format, AnalysisContext context, IEntityAnalyzer analyzer)
+        public AnalysisResult Analyze(IFormatObject format, AnalysisContext context, IEntityAnalyzerProvider analyzer)
         {
             return format.GetValue(this, (format, context, analyzer));
         }
 
-        protected virtual AnalysisResult Analyze<T>(T value, IFormatObject format, AnalysisContext context, IEntityAnalyzer analyzer) where T : class
+        protected virtual AnalysisResult Analyze<T>(T value, IFormatObject format, AnalysisContext context, IEntityAnalyzerProvider analyzer) where T : class
         {
             var node = GetNode(format, context);
 
@@ -86,7 +86,7 @@ namespace IS4.MultiArchiver.Analyzers
             return result;
         }
 
-        AnalysisResult IResultFactory<AnalysisResult, (IFormatObject format, AnalysisContext context, IEntityAnalyzer analyzer)>.Invoke<T>(T value, (IFormatObject format, AnalysisContext context, IEntityAnalyzer analyzer) args)
+        AnalysisResult IResultFactory<AnalysisResult, (IFormatObject format, AnalysisContext context, IEntityAnalyzerProvider analyzer)>.Invoke<T>(T value, (IFormatObject format, AnalysisContext context, IEntityAnalyzerProvider analyzer) args)
         {
             var (format, context, analyzer) = args;
             return Analyze(value, format, context, analyzer);
