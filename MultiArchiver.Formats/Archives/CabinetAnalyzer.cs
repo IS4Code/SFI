@@ -15,9 +15,9 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override AnalysisResult Analyze(ICabinetArchive file, AnalysisContext context, IEntityAnalyzerProvider globalAnalyzer)
+        public override AnalysisResult Analyze(ICabinetArchive file, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
-            return globalAnalyzer.Analyze(new ArchiveReaderAdapter(new CabinetAdapter(file)), context);
+            return analyzers.Analyze(new ArchiveReaderAdapter(new CabinetAdapter(file)), context);
         }
 
         class CabinetAdapter : IReader

@@ -24,7 +24,7 @@ namespace IS4.MultiArchiver.Formats
             return null;
         }
 
-        public class PackageInfo : EntityAnalyzerBase, IEntityAnalyzer<IFileNodeInfo>, IEntityAnalyzer<IDataObject>, IEntityAnalyzerProvider
+        public class PackageInfo : EntityAnalyzer, IEntityAnalyzer<IFileNodeInfo>, IEntityAnalyzer<IDataObject>, IEntityAnalyzerProvider
         {
             public string Root { get; }
             public ContentTypeManager ContentTypeManager { get; private set; }
@@ -34,7 +34,7 @@ namespace IS4.MultiArchiver.Formats
                 Root = contentTypes.Path.Substring(0, contentTypes.Path.Length - contentTypes.Name.Length);
             }
 
-            public AnalysisResult Analyze(IFileNodeInfo file, AnalysisContext context, IEntityAnalyzerProvider globalAnalyzer)
+            public AnalysisResult Analyze(IFileNodeInfo file, AnalysisContext context, IEntityAnalyzerProvider analyzers)
             {
                 if(file.Path.StartsWith(Root) && ContentTypeManager != null)
                 {
@@ -59,7 +59,7 @@ namespace IS4.MultiArchiver.Formats
                 return default;
             }
 
-            public AnalysisResult Analyze(IDataObject dataObject, AnalysisContext context, IEntityAnalyzerProvider globalAnalyzer)
+            public AnalysisResult Analyze(IDataObject dataObject, AnalysisContext context, IEntityAnalyzerProvider analyzers)
             {
                 if(dataObject.Source is IFileNodeInfo file)
                 {

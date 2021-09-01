@@ -46,7 +46,7 @@ namespace IS4.MultiArchiver.Formats
                 package.GetParts();
             }
 
-            public AnalysisResult Analyze(IFileNodeInfo entity, AnalysisContext context, IEntityAnalyzerProvider globalAnalyzer)
+            public AnalysisResult Analyze(IFileNodeInfo entity, AnalysisContext context, IEntityAnalyzerProvider analyzers)
             {
                 if(entity == root)
                 {
@@ -54,7 +54,7 @@ namespace IS4.MultiArchiver.Formats
                     if(obj != null)
                     {
                         context = context.WithNode(null);
-                        return globalAnalyzer.Analyze(new FormatObject<T>(format, obj), context);
+                        return analyzers.Analyze(new FormatObject<T>(format, obj), context);
                     }
                 }
                 return default;

@@ -5,7 +5,7 @@ using System.IO;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class FormatObjectAnalyzer : EntityAnalyzerBase, IEntityAnalyzer<IFormatObject>, IResultFactory<AnalysisResult, (IFormatObject format, AnalysisContext context, IEntityAnalyzerProvider analyzer)>
+    public class FormatObjectAnalyzer : EntityAnalyzer, IEntityAnalyzer<IFormatObject>, IResultFactory<AnalysisResult, (IFormatObject format, AnalysisContext context, IEntityAnalyzerProvider analyzer)>
     {
         public AnalysisResult Analyze(IFormatObject format, AnalysisContext context, IEntityAnalyzerProvider analyzer)
         {

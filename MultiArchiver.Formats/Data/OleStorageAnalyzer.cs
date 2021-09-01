@@ -8,7 +8,7 @@ namespace IS4.MultiArchiver.Analyzers
 {
     public class OleStorageAnalyzer : MediaObjectAnalyzer<CompoundFile>
     {
-        public override AnalysisResult Analyze(CompoundFile file, AnalysisContext context, IEntityAnalyzerProvider globalAnalyzer)
+        public override AnalysisResult Analyze(CompoundFile file, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
             IFileNodeInfo Visitor(string path, CFItem item)
             {
@@ -29,7 +29,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             var info = Visitor("", file.RootStorage);
 
-            return globalAnalyzer.Analyze(info, context.WithNode(node));
+            return analyzers.Analyze(info, context.WithNode(node));
         }
 
         abstract class ItemEntry<TItem> : IFileNodeInfo where TItem : CFItem

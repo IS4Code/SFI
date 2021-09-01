@@ -13,7 +13,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override AnalysisResult Analyze(SvgDocument svg, AnalysisContext context, IEntityAnalyzerProvider globalAnalyzer)
+        public override AnalysisResult Analyze(SvgDocument svg, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
             var node = GetNode(context);
             if(svg.Width.Type == SvgUnitType.Pixel)
@@ -33,7 +33,7 @@ namespace IS4.MultiArchiver.Analyzers
                     {
                         StoreDimensions = false
                     };
-                    exception = globalAnalyzer.Analyze(bmp, context).Exception;
+                    exception = analyzers.Analyze(bmp, context).Exception;
                 }
             }catch(Exception e)
             {

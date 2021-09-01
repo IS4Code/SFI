@@ -13,7 +13,7 @@ using VDS.RDF.Writing.Formatting;
 
 namespace IS4.MultiArchiver.Extensions
 {
-    public class Archiver : EntityAnalyzer
+    public class Archiver : EntityAnalyzerProvider
     {
         public FileAnalyzer FileAnalyzer { get; }
         public DataAnalyzer DataAnalyzer { get; }

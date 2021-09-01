@@ -12,7 +12,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override AnalysisResult Analyze(IArchiveReader reader, AnalysisContext context, IEntityAnalyzerProvider globalAnalyzer)
+        public override AnalysisResult Analyze(IArchiveReader reader, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
             var node = GetNode(context);
 
@@ -20,7 +20,7 @@ namespace IS4.MultiArchiver.Analyzers
                 while(reader.MoveNext())
                 {
                     var entry = reader.Current;
-                    var entryNode = globalAnalyzer.Analyze(entry, context.WithNode(node[entry.Path])).Node;
+                    var entryNode = analyzers.Analyze(entry, context.WithNode(node[entry.Path])).Node;
                     if(entryNode != null && !entry.Path.Contains("/"))
                     {
                         entryNode.SetClass(Classes.ArchiveItem);

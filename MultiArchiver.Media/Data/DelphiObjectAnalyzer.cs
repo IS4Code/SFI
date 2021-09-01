@@ -10,12 +10,12 @@ namespace IS4.MultiArchiver.Analyzers
 {
     public class DelphiObjectAnalyzer : MediaObjectAnalyzer<DelphiObject>
     {
-        public override AnalysisResult Analyze(DelphiObject obj, AnalysisContext context, IEntityAnalyzerProvider globalAnalyzer)
+        public override AnalysisResult Analyze(DelphiObject obj, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
             var node = GetNode(context);
             foreach(var (key, value) in FindBlobs(null, obj))
             {
-                var infoNode = globalAnalyzer.Analyze<IFileInfo>(new BlobInfo(key, value), context.WithParent(node)).Node;
+                var infoNode = analyzers.Analyze<IFileInfo>(new BlobInfo(key, value), context.WithParent(node)).Node;
                 if(infoNode != null)
                 {
                     node.Set(Properties.HasMediaStream, infoNode);

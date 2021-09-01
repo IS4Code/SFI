@@ -34,9 +34,9 @@ namespace IS4.MultiArchiver.Analyzers
             EncodingDetectorFactory = encodingDetectorFactory;
         }
 
-		public AnalysisResult Analyze(IStreamFactory streamFactory, AnalysisContext context, IEntityAnalyzerProvider globalAnalyzer)
+		public AnalysisResult Analyze(IStreamFactory streamFactory, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
-            var match = GetFileMatch(streamFactory, context, globalAnalyzer);
+            var match = GetFileMatch(streamFactory, context, analyzers);
             var node = match.Node;
 
             var results = match.Results.Where(result => result.IsValid);
@@ -50,10 +50,10 @@ namespace IS4.MultiArchiver.Analyzers
                 }
             }
 
-            return globalAnalyzer.Analyze<IDataObject>(match, context.WithNode(node));
+            return analyzers.Analyze<IDataObject>(match, context.WithNode(node));
 		}
 
-        FileMatch GetFileMatch(IStreamFactory streamFactory, AnalysisContext context, IEntityAnalyzerProvider globalAnalyzer)
+        FileMatch GetFileMatch(IStreamFactory streamFactory, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
             var signatureBuffer = new MemoryStream(Math.Max(MaxDataLengthToStore + 1, DataFormats.Count == 0 ? 0 : DataFormats.Max(fmt => fmt.HeaderLength)));
 
@@ -67,7 +67,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             context = context.WithMatchContext(c => c.WithServices(streamFactory));
 
-            var lazyMatch = new Lazy<FileMatch>(() => new FileMatch(DataFormats, streamFactory, seekableFactory, signatureBuffer, MaxDataLengthToStore, encodingDetector, isBinary, PrimaryHash != null && hashes.TryGetValue(PrimaryHash, out var primaryHash) ? (PrimaryHash, primaryHash.data) : default, context, globalAnalyzer), false);
+            var lazyMatch = new Lazy<FileMatch>(() => new FileMatch(DataFormats, streamFactory, seekableFactory, signatureBuffer, MaxDataLengthToStore, encodingDetector, isBinary, PrimaryHash != null && hashes.TryGetValue(PrimaryHash, out var primaryHash) ? (PrimaryHash, primaryHash.data) : default, context, analyzers), false);
             
             long actualLength = 0;
 
@@ -370,9 +370,9 @@ namespace IS4.MultiArchiver.Analyzers
             }
         }
 
-		public AnalysisResult Analyze(byte[] data, AnalysisContext context, IEntityAnalyzerProvider globalAnalyzer)
+		public AnalysisResult Analyze(byte[] data, AnalysisContext context, IEntityAnalyzerProvider analyzers)
 		{
-			return Analyze(new MemoryStreamFactory(new ArraySegment<byte>(data), data, null), context, globalAnalyzer);
+			return Analyze(new MemoryStreamFactory(new ArraySegment<byte>(data), data, null), context, analyzers);
 		}
         
 		class FormatResult : IComparable<FormatResult>, IResultFactory<ILinkedNode, (Stream stream, MatchContext matchContext)>

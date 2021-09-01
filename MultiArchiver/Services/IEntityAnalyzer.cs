@@ -44,7 +44,7 @@ namespace IS4.MultiArchiver.Services
 
     public interface IEntityAnalyzer<in T> where T : class
     {
-        AnalysisResult Analyze(T entity, AnalysisContext context, IEntityAnalyzerProvider globalAnalyzer);
+        AnalysisResult Analyze(T entity, AnalysisContext context, IEntityAnalyzerProvider analyzers);
     }
 
     public struct AnalysisContext
@@ -97,7 +97,7 @@ namespace IS4.MultiArchiver.Services
         }
     }
 
-    public abstract class EntityAnalyzerBase
+    public abstract class EntityAnalyzer
     {
         protected ILinkedNode GetNode(AnalysisContext context)
         {

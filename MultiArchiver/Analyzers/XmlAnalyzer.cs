@@ -21,7 +21,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override AnalysisResult Analyze(XmlReader reader, AnalysisContext context, IEntityAnalyzerProvider globalAnalyzer)
+        public override AnalysisResult Analyze(XmlReader reader, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
             var node = GetNode(context);
 
@@ -103,7 +103,7 @@ namespace IS4.MultiArchiver.Analyzers
 
                         bool MatchFormat(IXmlDocumentFormat format, XmlReader localReader)
                         {
-                            var result = format.Match(localReader, docType, context.MatchContext, this, (format, context, globalAnalyzer));
+                            var result = format.Match(localReader, docType, context.MatchContext, this, (format, context, analyzers));
                             if(result.Node != null)
                             {
                                 result.Node.Set(Properties.HasFormat, node);

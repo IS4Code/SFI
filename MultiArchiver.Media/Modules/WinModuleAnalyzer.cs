@@ -18,7 +18,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override AnalysisResult Analyze(IModule module, AnalysisContext context, IEntityAnalyzerProvider globalAnalyzer)
+        public override AnalysisResult Analyze(IModule module, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
             var node = GetNode(context);
             var cache = new Dictionary<(object, object), ResourceInfo>();
@@ -54,7 +54,7 @@ namespace IS4.MultiArchiver.Analyzers
                             continue;
                         case Win32ResourceType.Version:
                             var versionInfo = new WinVersionInfo(info.Data);
-                            label = globalAnalyzer.Analyze(versionInfo, context.WithNode(node)).Label;
+                            label = analyzers.Analyze(versionInfo, context.WithNode(node)).Label;
                             continue;
                     }
                     if(info.Type.Equals("MUI"))
@@ -62,7 +62,7 @@ namespace IS4.MultiArchiver.Analyzers
                         continue;
                     }
                     cache[(resource.Type, resource.Name)] = info;
-                    var infoNode = globalAnalyzer.Analyze<IFileInfo>(info, context.WithParent(node[info.Type])).Node;
+                    var infoNode = analyzers.Analyze<IFileInfo>(info, context.WithParent(node[info.Type])).Node;
                     if(infoNode != null)
                     {
                         node.Set(Properties.HasMediaStream, infoNode);
@@ -73,7 +73,7 @@ namespace IS4.MultiArchiver.Analyzers
             foreach(var info in groups)
             {
                 info.MakeGroup(cache);
-                var infoNode = globalAnalyzer.Analyze<IFileInfo>(info, context.WithParent(node[info.Type])).Node;
+                var infoNode = analyzers.Analyze<IFileInfo>(info, context.WithParent(node[info.Type])).Node;
                 if(infoNode != null)
                 {
                     node.Set(Properties.HasMediaStream, infoNode);

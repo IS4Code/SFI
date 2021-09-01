@@ -15,13 +15,13 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override AnalysisResult Analyze(Module module, AnalysisContext context, IEntityAnalyzerProvider globalAnalyzer)
+        public override AnalysisResult Analyze(Module module, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
             var node = GetNode(context);
             var uncompressed = module.GetCompressedContents();
             if(uncompressed != null)
             {
-                var infoNode = globalAnalyzer.Analyze<IFileInfo>(uncompressed, context.WithParent(node)).Node;
+                var infoNode = analyzers.Analyze<IFileInfo>(uncompressed, context.WithParent(node)).Node;
                 if(infoNode != null)
                 {
                     node.Set(Properties.BelongsToContainer, infoNode);

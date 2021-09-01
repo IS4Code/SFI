@@ -18,7 +18,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override AnalysisResult Analyze(WaveStream wave, AnalysisContext context, IEntityAnalyzerProvider globalAnalyzer)
+        public override AnalysisResult Analyze(WaveStream wave, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
             var node = GetNode(context);
             if(wave is ICustomWaveFormat customFormat)
@@ -91,7 +91,7 @@ namespace IS4.MultiArchiver.Analyzers
                     ByteHash = false
                 };
 
-                globalAnalyzer.Analyze(bmp, context);
+                analyzers.Analyze(bmp, context);
             }
 
             return new AnalysisResult(node);

@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace IS4.MultiArchiver
 {
-    public class EntityAnalyzer : IEntityAnalyzerProvider
+    public class EntityAnalyzerProvider : IEntityAnalyzerProvider
     {
         public ICollection<object> Analyzers { get; } = new SortedSet<object>(EntityAnalyzerComparer.Instance);
 

@@ -14,13 +14,13 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override AnalysisResult Analyze(IArchiveFile archive, AnalysisContext context, IEntityAnalyzerProvider globalAnalyzer)
+        public override AnalysisResult Analyze(IArchiveFile archive, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
             var node = GetNode(context);
 
             var info = new ArchiveRoot(archive);
 
-            var result = globalAnalyzer.Analyze(info, context.WithNode(node));
+            var result = analyzers.Analyze(info, context.WithNode(node));
 
             if(result.Exception.Is<CryptographicException>())
             {

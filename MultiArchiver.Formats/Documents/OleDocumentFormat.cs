@@ -33,7 +33,7 @@ namespace IS4.MultiArchiver.Formats
                 this.format = format;
             }
 
-            public AnalysisResult Analyze(IDirectoryInfo root, AnalysisContext context, IEntityAnalyzerProvider globalAnalyzer)
+            public AnalysisResult Analyze(IDirectoryInfo root, AnalysisContext context, IEntityAnalyzerProvider analyzers)
             {
                 var fs = new NPOIFSFileSystem();
 
@@ -62,7 +62,7 @@ namespace IS4.MultiArchiver.Formats
                     if(obj != null)
                     {
                         context = context.WithNode(null);
-                        return globalAnalyzer.Analyze(new FormatObject<T>(format, obj), context);
+                        return analyzers.Analyze(new FormatObject<T>(format, obj), context);
                     }
                 }catch(Exception e)
                 {

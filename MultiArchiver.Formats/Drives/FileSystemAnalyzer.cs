@@ -17,7 +17,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override AnalysisResult Analyze(IFileSystem filesystem, AnalysisContext context, IEntityAnalyzerProvider globalAnalyzer)
+        public override AnalysisResult Analyze(IFileSystem filesystem, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
             var node = GetNode(context);
 
@@ -36,7 +36,7 @@ namespace IS4.MultiArchiver.Analyzers
             }
 
             var info = new FileSystemWrapper(filesystem);
-            var result = globalAnalyzer.Analyze(info, context.WithNode(node));
+            var result = analyzers.Analyze(info, context.WithNode(node));
             result.Label = label ?? result.Label;
             return result;
         }

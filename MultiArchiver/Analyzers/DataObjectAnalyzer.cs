@@ -6,9 +6,9 @@ using System.IO;
 
 namespace IS4.MultiArchiver.Analyzers
 {
-    public class DataObjectAnalyzer : EntityAnalyzerBase, IEntityAnalyzer<IDataObject>
+    public class DataObjectAnalyzer : EntityAnalyzer, IEntityAnalyzer<IDataObject>
     {
-        public AnalysisResult Analyze(IDataObject dataObject, AnalysisContext context, IEntityAnalyzerProvider globalAnalyzer)
+        public AnalysisResult Analyze(IDataObject dataObject, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
             var node = GetNode(context);
 
@@ -37,7 +37,7 @@ namespace IS4.MultiArchiver.Analyzers
             {
                 var signatureFormat = new ImprovisedSignatureFormat.Format(magicText);
                 var formatObj = new FormatObject<ImprovisedSignatureFormat.Format>(ImprovisedSignatureFormat.Instance, signatureFormat);
-                var formatNode = globalAnalyzer.Analyze(formatObj, context.WithParent(node)).Node;
+                var formatNode = analyzers.Analyze(formatObj, context.WithParent(node)).Node;
                 if(formatNode != null)
                 {
                     formatNode.Set(Properties.HasFormat, node);
