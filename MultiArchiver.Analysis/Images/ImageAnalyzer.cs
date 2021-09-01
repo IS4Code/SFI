@@ -85,7 +85,7 @@ namespace IS4.MultiArchiver.Analyzers
                         }
                     }
 
-                    var thumbNode = context.NodeFactory.Create(UriTools.DataUriFormatter, ("image/png", thumbnailData));
+                    var thumbNode = context.NodeFactory.Create(UriTools.DataUriFormatter, ("image/png", null, thumbnailData));
                     thumbNode.Set(Properties.AtPrefLabel, "Thumbnail image");
                     node.Set(Properties.Thumbnail, thumbNode);
                 }

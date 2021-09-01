@@ -1,4 +1,5 @@
 ﻿using IS4.MultiArchiver.Services;
+using IS4.MultiArchiver.Tools;
 using System;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -18,11 +19,30 @@ namespace IS4.MultiArchiver
             public Uri this[string value] => CreatePublicId(value);
         }
 
-        public static readonly IIndividualUriFormatter<(string mediaType, ArraySegment<byte> data)> DataUriFormatter = new DataUriFormatterClass();
+        public static readonly IIndividualUriFormatter<(string mediaType, string charset, ArraySegment<byte> data)> DataUriFormatter = new DataUriFormatterClass();
 
-        class DataUriFormatterClass : IIndividualUriFormatter<(string mediaType, ArraySegment<byte> data)>
+        class DataUriFormatterClass : IIndividualUriFormatter<(string, string, ArraySegment<byte>)>
         {
-            public Uri this[(string mediaType, ArraySegment<byte> data) value] => new Uri($"data:{value.mediaType};base64,{Convert.ToBase64String(value.data.Array, value.data.Offset, value.data.Count)}", UriKind.Absolute);
+            public Uri this[(string, string, ArraySegment<byte>) value] {
+                get {
+                    var (mediaType, charset, bytes) = value;
+                    string base64Encoded = ";base64," + bytes.ToBase64String();
+                    string uriEncoded = "," + EscapeDataBytes(bytes);
+
+                    string data = uriEncoded.Length <= base64Encoded.Length ? uriEncoded : base64Encoded;
+
+                    switch(charset?.ToLowerInvariant())
+                    {
+                        case null:
+                            return new Uri("data:" + (mediaType ?? "application/octet-stream") + data, UriKind.Absolute);
+                        case "ascii":
+                        case "us-ascii":
+                            return new EncodedUri("data:" + mediaType + data, UriKind.Absolute);
+                        default:
+                            return new EncodedUri("data:" + mediaType + ";charset=" + charset + data, UriKind.Absolute);
+                    }
+                }
+            }
         }
 
         public static Uri CreatePublicId(string id)

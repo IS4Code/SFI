@@ -191,7 +191,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             match.ActualLength = actualLength;
 
-            if(!match.IdentifyWithData)
+            if(!match.IsComplete)
             {
                 foreach(var hash in hashes)
                 {
@@ -202,18 +202,19 @@ namespace IS4.MultiArchiver.Analyzers
             return match;
         }
 
-        class FileMatch : Dictionary<IDataHashAlgorithm, byte[]>, IDataObject, IIndividualUriFormatter<bool>
+        class FileMatch : Dictionary<IDataHashAlgorithm, byte[]>, IDataObject
         {
             readonly bool isBinary;
             public bool IsBinary => isBinary || charsetMatch?.Charset == null;
             public IReadOnlyList<FormatResult> Results { get; }
             public ILinkedNode Node { get; }
-            public bool IdentifyWithData { get; }
+            public bool IsComplete { get; }
 
-            readonly Lazy<CharsetMatch> lazyCharsetMatch;
-            CharsetMatch charsetMatch => lazyCharsetMatch?.Value;
+            readonly CharsetMatch charsetMatch;
 
-            public ArraySegment<byte> Signature { get; }
+            public ArraySegment<byte> ByteValue { get; }
+
+            public string StringValue { get; }
 
             public IStreamFactory Source { get; }
 
@@ -221,7 +222,9 @@ namespace IS4.MultiArchiver.Analyzers
 
             public long ActualLength { get; set; }
 
-            public string Charset => charsetMatch.Charset;
+            public string Charset => charsetMatch?.Charset;
+
+            public Encoding Encoding => charsetMatch?.Encoding;
 
             public bool Recognized { get; set; }
 
@@ -233,47 +236,40 @@ namespace IS4.MultiArchiver.Analyzers
 
                 StreamFactory = streamFactory;
 
-                Signature = signatureBuffer.GetData();
+                ByteValue = signatureBuffer.GetData();
 
-                if(Signature.Count == 0)
+                if(ByteValue.Count == 0)
                 {
+                    // empty file is always binary
                     isBinary = true;
                 }
 
-                IdentifyWithData = Signature.Count <= maxDataLength;
+                IsComplete = ByteValue.Count <= maxDataLength;
 
                 if(!isBinary)
                 {
-                    lazyCharsetMatch = new Lazy<CharsetMatch>(() => new CharsetMatch(encodingDetector), false);
+                    // obtain the encoding from the detector and try to convert the data
+                    charsetMatch = new CharsetMatch(encodingDetector);
+
+                    if(charsetMatch.Encoding != null)
+                    {
+                        StringValue = TryGetString(charsetMatch.Encoding, ByteValue);
+
+                        if(IsComplete && StringValue == null)
+                        {
+                            // the file is corrupted, revert to binary
+                            isBinary = true;
+                        }
+                    }
                 }
 
                 Node = context.Node;
 
                 if(Node == null)
                 {
-                    if(IdentifyWithData)
+                    if(IsComplete)
                     {
-                        string strval = null;
-                        if(!isBinary)
-                        {
-                            strval = TryGetString(charsetMatch.Encoding, Signature);
-                            if(strval == null)
-                            {
-                                lazyCharsetMatch = null;
-                                isBinary = true;
-                            }
-                        }
-
-                        Node = context.NodeFactory.Create(this, false);
-
-                        if(isBinary)
-                        {
-                            Node.Set(Properties.Bytes, Signature.ToBase64String(), Datatypes.Base64Binary);
-                        }else{
-                            Node.Set(Properties.Chars, DataTools.ReplaceControlCharacters(strval, charsetMatch.Encoding), Datatypes.String);
-                        }
-
-                        streamFactory = new MemoryStreamFactory(Signature, streamFactory);
+                        Node = context.NodeFactory.Create(UriTools.DataUriFormatter, (null, encodingDetector?.Charset, ByteValue));
                     }else{
                         if(primaryHash.algorithm?.NumericIdentifier is int id)
                         {
@@ -296,38 +292,17 @@ namespace IS4.MultiArchiver.Analyzers
 
                 this.isBinary = isBinary;
 
-                if(Signature.Count > 0)
+                if(ByteValue.Count > 0)
                 {
                     var nodeCreated = new TaskCompletionSource<ILinkedNode>();
-                    Results = formats.Where(fmt => fmt.CheckHeader(Signature, isBinary, encodingDetector)).Select(fmt => new FormatResult(streamFactory, fmt, nodeCreated, Node, context, analyzer)).ToList();
+                    Results = formats.Where(fmt => fmt.CheckHeader(ByteValue, isBinary, encodingDetector)).Select(fmt => new FormatResult(streamFactory, fmt, nodeCreated, Node, context, analyzer)).ToList();
                 }else{
                     Results = Array.Empty<FormatResult>();
                 }
             }
 
-            Uri IUriFormatter<bool>.this[bool _] {
-                get {
-                    string base64Encoded = ";base64," + Signature.ToBase64String();
-                    string uriEncoded = "," + UriTools.EscapeDataBytes(Signature);
-
-                    string data = uriEncoded.Length <= base64Encoded.Length ? uriEncoded : base64Encoded;
-
-                    switch(charsetMatch?.Charset.ToLowerInvariant())
-                    {
-                        case null:
-                            return new Uri("data:application/octet-stream" + data, UriKind.Absolute);
-                        case "ascii":
-                        case "us-ascii":
-                            return new EncodedUri("data:" + data, UriKind.Absolute);
-                        default:
-                            return new EncodedUri("data:;charset=" + charsetMatch.Charset + data, UriKind.Absolute);
-                    }
-                }
-            }
-
             private string TryGetString(Encoding encoding, ArraySegment<byte> data)
             {
-                if(encoding == null) return null;
                 try{
                     var preamble = encoding.GetPreamble();
                     if(preamble?.Length > 0 && data.AsSpan().StartsWith(preamble))

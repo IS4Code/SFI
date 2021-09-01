@@ -19,6 +19,17 @@ namespace IS4.MultiArchiver.Analyzers
                 node.Set(Properties.CharacterEncoding, dataObject.Charset);
             }
 
+            if(dataObject.IsComplete)
+            {
+                if(isBinary)
+                {
+                    node.Set(Properties.Bytes, dataObject.ByteValue.ToBase64String(), Datatypes.Base64Binary);
+                }else if(dataObject.StringValue != null)
+                {
+                    node.Set(Properties.Chars, DataTools.ReplaceControlCharacters(dataObject.StringValue, dataObject.Encoding), Datatypes.String);
+                }
+            }
+
             var sizeSuffix = DataTools.SizeSuffix(dataObject.ActualLength, 2);
 
             var label = $"{(isBinary ? "binary data" : "text")} ({sizeSuffix})";
@@ -33,7 +44,7 @@ namespace IS4.MultiArchiver.Analyzers
                 HashAlgorithm.AddHash(node, algorithm, value, context.NodeFactory);
             }
 
-            if(!dataObject.Recognized && isBinary && DataTools.ExtractSignature(dataObject.Signature) is string magicText)
+            if(!dataObject.Recognized && isBinary && DataTools.ExtractSignature(dataObject.ByteValue) is string magicText)
             {
                 var signatureFormat = new ImprovisedSignatureFormat.Format(magicText);
                 var formatObj = new FormatObject<ImprovisedSignatureFormat.Format>(ImprovisedSignatureFormat.Instance, signatureFormat);
