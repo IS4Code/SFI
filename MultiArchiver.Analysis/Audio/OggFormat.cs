@@ -1,5 +1,4 @@
-﻿using IS4.MultiArchiver.Services;
-using NAudio.Wave;
+﻿using NAudio.Wave;
 using System.IO;
 
 namespace IS4.MultiArchiver.Formats

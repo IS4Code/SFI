@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IS4.MultiArchiver.Formats;
+using System;
 
 namespace IS4.MultiArchiver.Services
 {

@@ -5,7 +5,7 @@ using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
 
-namespace IS4.MultiArchiver.Services
+namespace IS4.MultiArchiver.Formats
 {
     public struct MatchContext
     {

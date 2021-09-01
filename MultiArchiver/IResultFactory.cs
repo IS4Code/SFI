@@ -1,4 +1,4 @@
-﻿namespace IS4.MultiArchiver.Services
+﻿namespace IS4.MultiArchiver
 {
     public interface IResultFactory<out TResult, in TArgs>
     {

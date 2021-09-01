@@ -1,6 +1,5 @@
 ﻿using IS4.MultiArchiver.Formats.Archives;
 using IS4.MultiArchiver.Media;
-using IS4.MultiArchiver.Services;
 using SharpCompress.Archives.SevenZip;
 using System.IO;
 

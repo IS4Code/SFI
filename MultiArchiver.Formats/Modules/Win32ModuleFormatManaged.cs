@@ -1,6 +1,5 @@
 ﻿using IS4.MultiArchiver.Media;
 using IS4.MultiArchiver.Media.Modules;
-using IS4.MultiArchiver.Services;
 using PeNet;
 using PeNet.Header.Pe;
 using System;

@@ -1,5 +1,4 @@
-﻿using IS4.MultiArchiver.Services;
-using System.IO;
+﻿using System.IO;
 using System.IO.Compression;
 
 namespace IS4.MultiArchiver.Formats

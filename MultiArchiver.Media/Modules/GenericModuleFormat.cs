@@ -1,5 +1,4 @@
 ﻿using IS4.MultiArchiver.Media;
-using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Tools;
 using System;
 using System.Collections.Generic;

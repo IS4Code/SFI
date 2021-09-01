@@ -1,5 +1,4 @@
-﻿using IS4.MultiArchiver.Services;
-using IS4.MultiArchiver.Tools.Xml;
+﻿using IS4.MultiArchiver.Tools.Xml;
 using Svg;
 using System;
 using System.Reflection;

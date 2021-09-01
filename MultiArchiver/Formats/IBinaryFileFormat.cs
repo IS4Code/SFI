@@ -1,7 +1,8 @@
-﻿using System;
+﻿using IS4.MultiArchiver.Services;
+using System;
 using System.IO;
 
-namespace IS4.MultiArchiver.Services
+namespace IS4.MultiArchiver.Formats
 {
     public interface IBinaryFileFormat : IFileFormat
     {

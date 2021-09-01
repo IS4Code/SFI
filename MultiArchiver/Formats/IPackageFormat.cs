@@ -1,4 +1,6 @@
-﻿namespace IS4.MultiArchiver.Services
+﻿using IS4.MultiArchiver.Services;
+
+namespace IS4.MultiArchiver.Formats
 {
     public interface IPackageFormat<in TEntity> : IFileFormat where TEntity : class
     {
