@@ -194,16 +194,17 @@ namespace IS4.MultiArchiver.Analyzers
                     HashAlgorithm.AddHash(folder, alg, alg.ComputeHash(directory, true), context.NodeFactory);
                 }
 
-                context = context.WithParent(parent);
+                var entryContext = context.WithParent(parent);
+                var packageContext = context.WithNode(parent);
 
                 foreach(var entry in directory.Entries)
                 {
-                    var node = CreateNode(entry, context);
+                    var entryNode = CreateNode(entry, entryContext);
 
-                    MatchPackages(ref fromPackages, PackageFileFormats, directory, entry, context, ref analyzer);
+                    MatchPackages(ref fromPackages, PackageFileFormats, directory, entry, packageContext, ref analyzer);
 
-                    analyzer.Analyze(entry, context.WithNode(node));
-                    node.Set(Properties.BelongsToContainer, folder);
+                    analyzer.Analyze(entry, entryContext.WithNode(entryNode));
+                    entryNode.Set(Properties.BelongsToContainer, folder);
                 }
             }
 

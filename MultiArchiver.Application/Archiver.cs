@@ -81,6 +81,7 @@ namespace IS4.MultiArchiver.Extensions
             archiver.DataAnalyzer.DataFormats.Add(new OleStorageFormat());
 
             archiver.FileAnalyzer.PackageFileFormats.Add(new OpenPackageFormat());
+            archiver.FileAnalyzer.PackageFileFormats.Add(new PackageDescriptionFormat());
             archiver.FileAnalyzer.PackageDirectoryFormats.Add(new ExcelXmlDocumentFormat());
             archiver.FileAnalyzer.PackageDirectoryFormats.Add(new ExcelDocumentFormat());
             archiver.FileAnalyzer.PackageDirectoryFormats.Add(new WordXmlDocumentFormat());
@@ -101,6 +102,7 @@ namespace IS4.MultiArchiver.Extensions
             archiver.Analyzers.Add(new DelphiObjectAnalyzer());
             archiver.Analyzers.Add(new CabinetAnalyzer());
             archiver.Analyzers.Add(new OleStorageAnalyzer());
+            archiver.Analyzers.Add(new PackageDescriptionAnalyzer());
 
             return archiver;
         }
