@@ -12,7 +12,7 @@ using System.Runtime.CompilerServices;
 
 namespace IS4.MultiArchiver.Formats
 {
-    public abstract class OpenXmlDocumentFormat<T> : PackageFormat<IDirectoryInfo, T, OpenXmlDocumentFormat<T>.PackageInfo> where T : class
+    public abstract class OpenXmlDocumentFormat<T> : LegacyPackageFileFormat<IDirectoryInfo, T, OpenXmlDocumentFormat<T>.PackageInfo> where T : class
     {
         public OpenXmlDocumentFormat(string mediaType, string extension) : base(mediaType, extension)
         {
@@ -32,7 +32,7 @@ namespace IS4.MultiArchiver.Formats
 
         protected abstract T Open(OPCPackage package);
 
-        public class PackageInfo : IEntityAnalyzer<IFileNodeInfo>, IEntityAnalyzerProvider
+        public class PackageInfo : IContainerAnalyzer<IContainerNode, IFileNodeInfo>, IContainerAnalyzer
         {
             readonly OpenXmlDocumentFormat<T> format;
             readonly IDirectoryInfo root;
@@ -46,7 +46,7 @@ namespace IS4.MultiArchiver.Formats
                 package.GetParts();
             }
 
-            public AnalysisResult Analyze(IFileNodeInfo entity, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+            public AnalysisResult Analyze(IContainerNode parentNode, IFileNodeInfo entity, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzerProvider analyzers)
             {
                 if(entity == root)
                 {
@@ -54,18 +54,19 @@ namespace IS4.MultiArchiver.Formats
                     if(obj != null)
                     {
                         context = context.WithNode(null);
-                        return analyzers.Analyze(new FormatObject<T>(format, obj), context);
+                        analyzers.Analyze(new FormatObject<T>(format, obj), context);
                     }
                 }
-                return default;
+                return inner(ContainerBehaviour.None);
             }
-
-            IEnumerable<IEntityAnalyzer<T1>> IEntityAnalyzerProvider.GetAnalyzers<T1>()
+            
+            AnalysisResult IContainerAnalyzer.Analyze<TParent, TEntity>(TParent parentNode, TEntity entity, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzerProvider analyzers)
             {
-                if(this is IEntityAnalyzer<T1> analyzer)
+                if(this is IContainerAnalyzer<TParent, TEntity> analyzer)
                 {
-                    yield return analyzer;
+                    return analyzer.Analyze(parentNode, entity, context, inner, analyzers);
                 }
+                return inner(ContainerBehaviour.None);
             }
         }
 

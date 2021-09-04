@@ -4,11 +4,10 @@ using NPOI.OpenXml4Net.Exceptions;
 using NPOI.OpenXml4Net.OPC;
 using NPOI.OpenXml4Net.OPC.Internal;
 using System;
-using System.Collections.Generic;
 
 namespace IS4.MultiArchiver.Formats
 {
-    public sealed class OpenPackageFormat : PackageFormat<IFileNodeInfo, OpenPackageFormat.PackageInfo, OpenPackageFormat.PackageInfo>
+    public sealed class OpenPackageFormat : LegacyPackageFileFormat<IFileNodeInfo, OpenPackageFormat.PackageInfo, OpenPackageFormat.PackageInfo>
     {
         public OpenPackageFormat() : base("application/vnd.openxmlformats-package", "ooxml")
         {
@@ -24,7 +23,10 @@ namespace IS4.MultiArchiver.Formats
             return null;
         }
 
-        public class PackageInfo : EntityAnalyzer, IEntityAnalyzer<IFileNodeInfo>, IEntityAnalyzer<IDataObject>, IEntityAnalyzerProvider
+        public class PackageInfo : EntityAnalyzer,
+            IContainerAnalyzer<IContainerNode, IFileNodeInfo>,
+            IContainerAnalyzer<IContainerNode, IDataObject>,
+            IContainerAnalyzer
         {
             public string Root { get; }
             public ContentTypeManager ContentTypeManager { get; private set; }
@@ -34,7 +36,7 @@ namespace IS4.MultiArchiver.Formats
                 Root = contentTypes.Path.Substring(0, contentTypes.Path.Length - contentTypes.Name.Length);
             }
 
-            public AnalysisResult Analyze(IFileNodeInfo file, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+            public AnalysisResult Analyze(IContainerNode parentNode, IFileNodeInfo file, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzerProvider analyzers)
             {
                 if(file.Path.StartsWith(Root) && ContentTypeManager != null)
                 {
@@ -56,10 +58,10 @@ namespace IS4.MultiArchiver.Formats
 
                     }
                 }
-                return default;
+                return inner(ContainerBehaviour.FollowChildren);
             }
 
-            public AnalysisResult Analyze(IDataObject dataObject, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+            public AnalysisResult Analyze(IContainerNode parentNode, IDataObject dataObject, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzerProvider analyzers)
             {
                 if(dataObject.Source is IFileNodeInfo file)
                 {
@@ -71,15 +73,16 @@ namespace IS4.MultiArchiver.Formats
                         }
                     }
                 }
-                return default;
+                return inner(ContainerBehaviour.None);
             }
 
-            IEnumerable<IEntityAnalyzer<T>> IEntityAnalyzerProvider.GetAnalyzers<T>()
+            AnalysisResult IContainerAnalyzer.Analyze<TParent, TEntity>(TParent parentNode, TEntity entity, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzerProvider analyzers)
             {
-                if(this is IEntityAnalyzer<T> analyzer)
+                if(this is IContainerAnalyzer<TParent, TEntity> analyzer)
                 {
-                    yield return analyzer;
+                    return analyzer.Analyze(parentNode, entity, context, inner, analyzers);
                 }
+                return inner(ContainerBehaviour.None);
             }
         }
     }

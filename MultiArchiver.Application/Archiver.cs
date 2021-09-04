@@ -80,11 +80,11 @@ namespace IS4.MultiArchiver.Extensions
             archiver.DataAnalyzer.DataFormats.Add(new CabinetFormat());
             archiver.DataAnalyzer.DataFormats.Add(new OleStorageFormat());
 
-            archiver.FileAnalyzer.PackageFileFormats.Add(new OpenPackageFormat());
-            archiver.FileAnalyzer.PackageFileFormats.Add(new PackageDescriptionFormat());
-            archiver.FileAnalyzer.PackageDirectoryFormats.Add(new ExcelXmlDocumentFormat());
-            archiver.FileAnalyzer.PackageDirectoryFormats.Add(new ExcelDocumentFormat());
-            archiver.FileAnalyzer.PackageDirectoryFormats.Add(new WordXmlDocumentFormat());
+            archiver.ContainerProviders.Add(new OpenPackageFormat());
+            archiver.ContainerProviders.Add(new PackageDescriptionFormat());
+            archiver.ContainerProviders.Add(new ExcelXmlDocumentFormat());
+            archiver.ContainerProviders.Add(new ExcelDocumentFormat());
+            archiver.ContainerProviders.Add(new WordXmlDocumentFormat());
 
             archiver.XmlAnalyzer.XmlFormats.Add(new SvgFormat());
 

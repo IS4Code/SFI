@@ -1,12 +1,10 @@
 ﻿using IS4.MultiArchiver.Services;
 using NPOI.POIFS.FileSystem;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace IS4.MultiArchiver.Formats
 {
-    public abstract class OleDocumentFormat<T> : PackageFormat<IDirectoryInfo, T, OleDocumentFormat<T>.PackageInfo> where T : class
+    public abstract class OleDocumentFormat<T> : LegacyPackageFileFormat<IDirectoryInfo, T, OleDocumentFormat<T>.PackageInfo> where T : class
     {
         public OleDocumentFormat(string mediaType, string extension) : base(mediaType, extension)
         {
@@ -24,7 +22,7 @@ namespace IS4.MultiArchiver.Formats
 
         protected abstract T Open(NPOIFSFileSystem fileSystem);
 
-        public class PackageInfo : IEntityAnalyzer<IDirectoryInfo>, IEntityAnalyzerProvider
+        public class PackageInfo : IContainerAnalyzer<IContainerNode, IDirectoryInfo>, IContainerAnalyzer
         {
             readonly OleDocumentFormat<T> format;
 
@@ -33,7 +31,7 @@ namespace IS4.MultiArchiver.Formats
                 this.format = format;
             }
 
-            public AnalysisResult Analyze(IDirectoryInfo root, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+            public AnalysisResult Analyze(IContainerNode parentNode, IDirectoryInfo root, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzerProvider analyzers)
             {
                 var fs = new NPOIFSFileSystem();
 
@@ -57,26 +55,22 @@ namespace IS4.MultiArchiver.Formats
                 }
                 Add(fs.Root, root);
 
-                try{
-                    var obj = format.Open(fs);
-                    if(obj != null)
-                    {
-                        context = context.WithNode(null);
-                        return analyzers.Analyze(new FormatObject<T>(format, obj), context);
-                    }
-                }catch(Exception e)
+                var obj = format.Open(fs);
+                if(obj != null)
                 {
-                    return new AnalysisResult(null, exception: e);
+                    context = context.WithNode(null);
+                    analyzers.Analyze(new FormatObject<T>(format, obj), context);
                 }
-                return default;
+                return inner(ContainerBehaviour.None);
             }
 
-            IEnumerable<IEntityAnalyzer<T1>> IEntityAnalyzerProvider.GetAnalyzers<T1>()
+            AnalysisResult IContainerAnalyzer.Analyze<TParent, TEntity>(TParent parentNode, TEntity entity, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzerProvider analyzers)
             {
-                if(this is IEntityAnalyzer<T1> analyzer)
+                if(this is IContainerAnalyzer<TParent, TEntity> analyzer)
                 {
-                    yield return analyzer;
+                    return analyzer.Analyze(parentNode, entity, context, inner, analyzers);
                 }
+                return inner(ContainerBehaviour.None);
             }
         }
     }

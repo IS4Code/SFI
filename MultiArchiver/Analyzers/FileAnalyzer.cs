@@ -1,5 +1,4 @@
-﻿using IS4.MultiArchiver.Formats;
-using IS4.MultiArchiver.Services;
+﻿using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Vocabulary;
 using System;
 using System.Collections.Generic;
@@ -11,10 +10,6 @@ namespace IS4.MultiArchiver.Analyzers
     public sealed class FileAnalyzer : IEntityAnalyzer<FileInfo>, IEntityAnalyzer<DirectoryInfo>, IEntityAnalyzer<IFileInfo>, IEntityAnalyzer<IDirectoryInfo>, IEntityAnalyzer<IFileNodeInfo>
     {
         public ICollection<IFileHashAlgorithm> HashAlgorithms { get; } = new List<IFileHashAlgorithm>();
-
-        public ICollection<IPackageFormat<IDirectoryInfo>> PackageDirectoryFormats { get; } = new List<IPackageFormat<IDirectoryInfo>>();
-
-        public ICollection<IPackageFormat<IFileNodeInfo>> PackageFileFormats { get; } = new List<IPackageFormat<IFileNodeInfo>>();
 
         public FileAnalyzer()
         {
@@ -125,31 +120,8 @@ namespace IS4.MultiArchiver.Analyzers
             return new AnalysisResult(node);
         }
 
-        private void MatchPackages<T>(ref List<IEntityAnalyzerProvider> fromPackages, IEnumerable<IPackageFormat<T>> formats, IDirectoryInfo directory, T entity, AnalysisContext context, ref IEntityAnalyzerProvider analyzer) where T : class
-        {
-            foreach(var packageFormat in formats)
-            {
-                var packageAnalyzer = packageFormat.Match(entity, context.MatchContext);
-                if(packageAnalyzer != null)
-                {
-                    if(fromPackages == null)
-                    {
-                        fromPackages = new List<IEntityAnalyzerProvider>();
-                        analyzer = new PackageAnalyzer(analyzer, fromPackages);
-                    }
-                    fromPackages.Add(packageAnalyzer);
-
-                    var result = packageAnalyzer.Analyze(directory, context, analyzer).Node;
-                    result?.Set(Properties.HasFormat, context.Node);
-                }
-            }
-        }
-
         private void AnalyzeDirectory(ILinkedNode node, IDirectoryInfo directory, AnalysisContext context, IEntityAnalyzerProvider analyzer)
         {
-            List<IEntityAnalyzerProvider> fromPackages = null;
-            MatchPackages(ref fromPackages, PackageDirectoryFormats, directory, directory, context.WithNode(node), ref analyzer);
-
             var folder = AnalyzeContents(node, directory, context, analyzer);
 
             if(folder != null)
@@ -175,8 +147,6 @@ namespace IS4.MultiArchiver.Analyzers
 
         private ILinkedNode AnalyzeContents(ILinkedNode parent, IDirectoryInfo directory, AnalysisContext context, IEntityAnalyzerProvider analyzer)
         {
-            List<IEntityAnalyzerProvider> fromPackages = null;
-
             var folder = parent?[""] ?? context.NodeFactory.NewGuidNode();
 
             if(folder != null)
@@ -194,16 +164,13 @@ namespace IS4.MultiArchiver.Analyzers
                     HashAlgorithm.AddHash(folder, alg, alg.ComputeHash(directory, true), context.NodeFactory);
                 }
 
-                var entryContext = context.WithParent(parent);
-                var packageContext = context.WithNode(parent);
+                context = context.WithParent(parent);
 
                 foreach(var entry in directory.Entries)
                 {
-                    var entryNode = CreateNode(entry, entryContext);
+                    var entryNode = CreateNode(entry, context);
 
-                    MatchPackages(ref fromPackages, PackageFileFormats, directory, entry, packageContext, ref analyzer);
-
-                    analyzer.Analyze(entry, entryContext.WithNode(entryNode));
+                    analyzer.Analyze(entry, context.WithNode(entryNode));
                     entryNode.Set(Properties.BelongsToContainer, folder);
                 }
             }
@@ -243,12 +210,12 @@ namespace IS4.MultiArchiver.Analyzers
 
         public AnalysisResult Analyze(FileInfo entity, AnalysisContext context, IEntityAnalyzerProvider analyzer)
         {
-            return Analyze(new FileInfoWrapper(entity), context, analyzer);
+            return analyzer.Analyze<IFileInfo>(new FileInfoWrapper(entity), context);
         }
 
         public AnalysisResult Analyze(DirectoryInfo entity, AnalysisContext context, IEntityAnalyzerProvider analyzer)
         {
-            return Analyze(new DirectoryInfoWrapper(entity), context, analyzer);
+            return analyzer.Analyze<IDirectoryInfo>(new DirectoryInfoWrapper(entity), context);
         }
 
         public AnalysisResult Analyze(IFileNodeInfo entity, AnalysisContext context, IEntityAnalyzerProvider analyzer)
@@ -258,33 +225,6 @@ namespace IS4.MultiArchiver.Analyzers
                 case IFileInfo file: return Analyze(file, context, analyzer);
                 case IDirectoryInfo dir: return Analyze(dir, context, analyzer);
                 default: return new AnalysisResult(CreateNode(entity, context));
-            }
-        }
-
-        class PackageAnalyzer : IEntityAnalyzerProvider
-        {
-            readonly IEntityAnalyzerProvider baseProvider;
-            readonly IEnumerable<IEntityAnalyzerProvider> additionalAnalyzers;
-
-            public PackageAnalyzer(IEntityAnalyzerProvider baseProvider, IEnumerable<IEntityAnalyzerProvider> additionalAnalyzers)
-            {
-                this.baseProvider = baseProvider;
-                this.additionalAnalyzers = additionalAnalyzers;
-            }
-
-            public IEnumerable<IEntityAnalyzer<T>> GetAnalyzers<T>() where T : class
-            {
-                foreach(var provider in additionalAnalyzers)
-                {
-                    foreach(var analyzer in provider.GetAnalyzers<T>())
-                    {
-                        yield return analyzer;
-                    }
-                }
-                foreach(var analyzer in baseProvider.GetAnalyzers<T>())
-                {
-                    yield return analyzer;
-                }
             }
         }
     }

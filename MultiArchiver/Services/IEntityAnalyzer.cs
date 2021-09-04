@@ -1,46 +1,11 @@
 ﻿using IS4.MultiArchiver.Formats;
 using System;
-using System.Collections.Generic;
-using System.Runtime.ExceptionServices;
 
 namespace IS4.MultiArchiver.Services
 {
     public interface IEntityAnalyzerProvider
     {
-        IEnumerable<IEntityAnalyzer<T>> GetAnalyzers<T>() where T : class;
-    }
-
-    public static class EntityAnalyzerExtensions
-    {
-        public static AnalysisResult Analyze<T>(this IEntityAnalyzerProvider analyzers, T entity, AnalysisContext context, IEntityAnalyzerProvider customAnalyzer = null) where T : class
-        {
-            if(entity == null) return default;
-            foreach(var analyzer in analyzers.GetAnalyzers<T>())
-            {
-                try{
-                    if(typeof(T).Equals(typeof(IStreamFactory)))
-                    {
-                        Console.Error.WriteLine($"Data ({((IStreamFactory)entity).Length} B)");
-                    }else{
-                        Console.Error.WriteLine(entity);
-                    }
-                    var result = analyzer.Analyze(entity, context, customAnalyzer ?? analyzers);
-                    if(result.Node != null)
-                    {
-                        return result;
-                    }
-                }catch(InternalArchiverException e)
-                {
-                    ExceptionDispatchInfo.Capture(e.InnerException).Throw();
-                    throw;
-                }catch(Exception e)
-                {
-                    Console.Error.WriteLine("Error in analyzer " + analyzer);
-                    Console.Error.WriteLine(e);
-                }
-            }
-            return default;
-        }
+        AnalysisResult Analyze<T>(T entity, AnalysisContext context) where T : class;
     }
 
     public interface IEntityAnalyzer<in T> where T : class
