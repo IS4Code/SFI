@@ -2,12 +2,17 @@
 using IS4.MultiArchiver.Vocabulary;
 using System;
 using System.Globalization;
+using System.Threading.Tasks;
+using System.Xml;
 
 namespace IS4.MultiArchiver.Services
 {
     public interface ILinkedNode : IEquatable<ILinkedNode>
     {
         string Scheme { get; }
+
+        void Describe(XmlReader rdfXmlReader);
+        Task DescribeAsync(XmlReader rdfXmlReader);
 
         void SetClass(ClassUri @class);
         void SetClass<TClass>(IClassUriFormatter<TClass> formatter, TClass value);
@@ -85,6 +90,10 @@ namespace IS4.MultiArchiver.Services
         }
 
         public string Scheme => GetUri(Subject).Scheme;
+
+        public abstract void Describe(XmlReader rdfXmlReader);
+
+        public abstract Task DescribeAsync(XmlReader rdfXmlReader);
 
         public void SetClass(ClassUri @class)
         {

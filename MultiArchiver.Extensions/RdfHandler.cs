@@ -6,7 +6,9 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Web;
+using System.Xml;
 using VDS.RDF;
 
 namespace IS4.MultiArchiver.Extensions
@@ -168,6 +170,105 @@ namespace IS4.MultiArchiver.Extensions
             {
                 var parent = (RdfHandler)Cache;
                 return parent.graphHandlers.TryGetValue(uri, out var handler) ? handler : parent.defaultHandler;
+            }
+
+            private XmlDocument PrepareXmlDocument(XmlReader rdfXmlReader)
+            {
+                if(rdfXmlReader.NodeType != XmlNodeType.Element || rdfXmlReader.NamespaceURI != "http://www.w3.org/1999/02/22-rdf-syntax-ns#" || rdfXmlReader.LocalName != "RDF")
+                {
+                    throw new ArgumentException("The XML reader must be positioned on a rdf:RDF element.", nameof(rdfXmlReader));
+                }
+                return new BaseXmlDocument(this, rdfXmlReader.NameTable);
+            }
+
+            class BaseXmlDocument : XmlDocument
+            {
+                readonly string baseUri;
+
+                public override string BaseURI => baseUri;
+
+                public BaseXmlDocument(UriNode baseUriNode, XmlNameTable nameTable) : base(nameTable)
+                {
+                    baseUri = baseUriNode.GetUri(baseUriNode.Subject).AbsoluteUri;
+                }
+            }
+
+            public override void Describe(XmlReader rdfXmlReader)
+            {
+                var doc = PrepareXmlDocument(rdfXmlReader);
+                doc.Load(rdfXmlReader);
+                Parse(doc);
+            }
+
+            public override async Task DescribeAsync(XmlReader rdfXmlReader)
+            {
+                var doc = PrepareXmlDocument(rdfXmlReader);
+                using(XmlWriter writer = doc.CreateNavigator().AppendChild())
+                {
+                    do{
+                        switch(rdfXmlReader.NodeType)
+                        {
+                            case XmlNodeType.Element:
+                                writer.WriteStartElement(rdfXmlReader.Prefix, rdfXmlReader.LocalName, rdfXmlReader.NamespaceURI);
+                                writer.WriteAttributes(rdfXmlReader, true);
+                                if(rdfXmlReader.IsEmptyElement)
+                                {
+                                    writer.WriteEndElement();
+                                }
+                                break;
+                            case XmlNodeType.Text:
+                                writer.WriteString(await rdfXmlReader.GetValueAsync());
+                                break;
+                            case XmlNodeType.CDATA:
+                                writer.WriteCData(rdfXmlReader.Value);
+                                break;
+                            case XmlNodeType.EntityReference:
+                                writer.WriteEntityRef(rdfXmlReader.Name);
+                                break;
+                            case XmlNodeType.ProcessingInstruction:
+                                writer.WriteProcessingInstruction(rdfXmlReader.Name, rdfXmlReader.Value);
+                                break;
+                            case XmlNodeType.Comment:
+                                writer.WriteComment(rdfXmlReader.Value);
+                                break;
+                            case XmlNodeType.Whitespace:
+                            case XmlNodeType.SignificantWhitespace:
+                                writer.WriteWhitespace(await rdfXmlReader.GetValueAsync());
+                                break;
+                            case XmlNodeType.EndElement:
+                                writer.WriteFullEndElement();
+                                break;
+                        }
+                    }while(await rdfXmlReader.ReadAsync());
+                }
+                Parse(doc);
+            }
+
+            private void Parse(XmlDocument document)
+            {
+                var graph = new DataGraph(this);
+                var parser = new VDS.RDF.Parsing.RdfXmlParser();
+                parser.Load(graph, document);
+            }
+
+            class DataGraph : Graph
+            {
+                readonly UriNode describingNode;
+
+                public DataGraph(UriNode describingNode) : base(true)
+                {
+                    this.describingNode = describingNode;
+                }
+
+                public override bool Assert(Triple t)
+                {
+                    if(describingNode.Subject.Equals(t.Subject) && !(t.Object is IBlankNode))
+                    {
+                        describingNode.HandleTriple(t.Subject, t.Predicate, t.Object);
+                        return true;
+                    }
+                    return false;
+                }
             }
         }
     }
