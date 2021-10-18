@@ -28,6 +28,8 @@ namespace IS4.MultiArchiver.Formats
         {
             public string Signature { get; }
 
+            IModuleSignature IModule.Signature => null;
+
             public Module(Stream stream)
             {
                 var reader = new BinaryReader(stream, Encoding.ASCII, true);

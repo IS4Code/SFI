@@ -1,11 +1,14 @@
 ﻿using IS4.MultiArchiver.Media;
 using IS4.MultiArchiver.Media.Modules;
+using IS4.MultiArchiver.Tools;
 using PeNet;
+using PeNet.Header.Authenticode;
 using PeNet.Header.Pe;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace IS4.MultiArchiver.Formats
 {
@@ -40,6 +43,17 @@ namespace IS4.MultiArchiver.Formats
             {
                 this.file = file;
                 this.stream = stream;
+            }
+
+            public IModuleSignature Signature {
+                get {
+                    var sig = file.Authenticode;
+                    if(sig != null && sig.IsAuthenticodeValid)
+                    {
+                        return new SignatureInfo(sig);
+                    }
+                    return null;
+                }
             }
 
             public IEnumerable<IModuleResource> ReadResources()
@@ -90,6 +104,50 @@ namespace IS4.MultiArchiver.Formats
                 public static IEnumerable<Resource> DirectoryEntry(Module module, object type, ImageResourceDirectoryEntry entry, ImageSectionHeader rsrc)
                 {
                     return entry.ResourceDirectory.DirectoryEntries.Where(e => !e.DataIsDirectory).Select(e => new Resource(module, type, entry, e.ResourceDataEntry, rsrc));
+                }
+            }
+
+            class SignatureInfo : IModuleSignature
+            {
+                readonly AuthenticodeInfo info;
+
+                public SignatureInfo(AuthenticodeInfo info)
+                {
+                    this.info = info;
+                }
+
+                public BuiltInHash HashAlgorithm {
+                    get {
+                        switch(info.SignedHash.Length)
+                        {
+                            case 16:
+                                return BuiltInHash.MD5;
+                            case 20:
+                                return BuiltInHash.SHA1;
+                            case 32:
+                                return BuiltInHash.SHA256;
+                            case 48:
+                                return BuiltInHash.SHA384;
+                            case 64:
+                                return BuiltInHash.SHA512;
+                            default:
+                                return null;
+                        }
+                    }
+                }
+
+                public byte[] Hash => info.SignedHash;
+
+                public string SignerSerialNumber => info.SignerSerialNumber;
+
+                public X509Certificate2 Certificate => info.SigningCertificate;
+
+                public byte[] ComputeHash(BuiltInHash hash)
+                {
+                    var algorithm = hash.Algorithm;
+                    algorithm.Initialize();
+                    info.ComputeAuthenticodeHashFromPeFile(algorithm);
+                    return algorithm.Hash;
                 }
             }
         }

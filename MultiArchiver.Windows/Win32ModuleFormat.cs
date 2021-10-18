@@ -45,6 +45,8 @@ namespace IS4.MultiArchiver.Formats
         {
             readonly SafeHINSTANCE module;
 
+            IModuleSignature IModule.Signature => null;
+
             public Module(SafeHINSTANCE value)
             {
                 this.module = value;

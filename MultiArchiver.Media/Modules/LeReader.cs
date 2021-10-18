@@ -24,6 +24,8 @@ namespace IS4.MultiArchiver.Media.Modules
             }
         }
 
+        IModuleSignature IModule.Signature => null;
+
         public LeReader(Stream stream)
         {
             this.stream = stream;

@@ -25,6 +25,8 @@ namespace IS4.MultiArchiver.Media.Modules
             }
         }
 
+        IModuleSignature IModule.Signature => null;
+
         public NeReader(Stream stream)
         {
             this.stream = stream;
