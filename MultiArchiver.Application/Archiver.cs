@@ -28,6 +28,7 @@ namespace IS4.MultiArchiver.Extensions
             Analyzers.Add(new DataObjectAnalyzer());
             Analyzers.Add(XmlAnalyzer = new XmlAnalyzer());
             Analyzers.Add(ImageAnalyzer = new ImageAnalyzer());
+            Analyzers.Add(new X509CertificateAnalyzer());
             Analyzers.Add(new FormatObjectAnalyzer());
 
             DataAnalyzer.HashAlgorithms.Add(BuiltInHash.MD5);
@@ -79,6 +80,7 @@ namespace IS4.MultiArchiver.Extensions
             archiver.DataAnalyzer.DataFormats.Add(new DelphiFormFormat());
             archiver.DataAnalyzer.DataFormats.Add(new CabinetFormat());
             archiver.DataAnalyzer.DataFormats.Add(new OleStorageFormat());
+            archiver.DataAnalyzer.DataFormats.Add(new X509CertificateFormat());
 
             archiver.ContainerProviders.Add(new OpenPackageFormat());
             archiver.ContainerProviders.Add(new PackageDescriptionFormat());

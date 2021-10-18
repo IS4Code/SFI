@@ -22,6 +22,11 @@ namespace IS4.MultiArchiver.Services
 
     }
 
+    public interface IGenericUriFormatter<in T> : IIndividualUriFormatter<T>, IPropertyUriFormatter<T>, IClassUriFormatter<T>
+    {
+
+    }
+
     public interface IDatatypeUriFormatter<in T> : IUriFormatter<T>
     {
 

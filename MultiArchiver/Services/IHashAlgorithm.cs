@@ -125,7 +125,7 @@ namespace IS4.MultiArchiver.Services
 
         public static void AddHash(ILinkedNode node, IHashAlgorithm algorithm, ArraySegment<byte> hash, ILinkedNodeFactory nodeFactory)
         {
-            if(hash == null) return;
+            if(algorithm == null || hash == null) return;
             bool tooLong = hash.Count >= 1984;
             ILinkedNode hashNode;
             if(tooLong)
@@ -149,6 +149,25 @@ namespace IS4.MultiArchiver.Services
             }
 
             node.Set(Properties.Digest, hashNode);
+        }
+
+        public static BuiltInHash FromLength(int length)
+        {
+            switch(length)
+            {
+                case 16:
+                    return BuiltInHash.MD5;
+                case 20:
+                    return BuiltInHash.SHA1;
+                case 32:
+                    return BuiltInHash.SHA256;
+                case 48:
+                    return BuiltInHash.SHA384;
+                case 64:
+                    return BuiltInHash.SHA512;
+                default:
+                    return null;
+            }
         }
     }
 

@@ -25,6 +25,8 @@
         public static readonly PropertyUri Creator;
         [Uri(Vocabularies.Uri.Dcterms)]
         public static readonly PropertyUri Modified;
+        [Uri(Vocabularies.Uri.Dcterms)]
+        public static readonly PropertyUri Provenance;
 
         [Uri(Vocabularies.Uri.Dbo)]
         public static readonly PropertyUri OriginalName;
@@ -151,6 +153,8 @@
         public static readonly PropertyUri PrefLabel;
         [Uri(Vocabularies.Uri.Skos)]
         public static readonly PropertyUri AltLabel;
+        [Uri(Vocabularies.Uri.Skos)]
+        public static readonly PropertyUri Notation;
 
         [Uri(Vocabularies.Uri.Xis)]
         public static readonly PropertyUri DocumentElement;

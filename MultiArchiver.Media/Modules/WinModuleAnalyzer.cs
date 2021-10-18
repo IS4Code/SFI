@@ -21,10 +21,16 @@ namespace IS4.MultiArchiver.Analyzers
         public override AnalysisResult Analyze(IModule module, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
             var node = GetNode(context);
+            AnalyzeSignature(node, module.Signature, context, analyzers);
+            AnalyzeResources(node, module, context, analyzers, out var label);
+            return new AnalysisResult(node, label);
+        }
+
+        void AnalyzeResources(ILinkedNode node, IModule module, AnalysisContext context, IEntityAnalyzerProvider analyzers, out string label)
+        {
             var cache = new Dictionary<(object, object), ResourceInfo>();
             var groups = new List<ResourceInfo>();
-
-            string label = null;
+            label = null;
 
             foreach(var resourceGroup in module.ReadResources().GroupBy(r => $"{r.Type}/{r.Name}"))
             {
@@ -79,7 +85,20 @@ namespace IS4.MultiArchiver.Analyzers
                     node.Set(Properties.HasMediaStream, infoNode);
                 }
             }
-            return new AnalysisResult(node, label);
+        }
+
+        void AnalyzeSignature(ILinkedNode node, IModuleSignature signature, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        {
+            if(signature == null) return;
+            HashAlgorithm.AddHash(node, signature.HashAlgorithm, signature.Hash, context.NodeFactory);
+
+            var data = signature.Certificate.GetRawCertData();
+            var result = analyzers.Analyze(data, context.WithParent(node)).Node;
+
+            if(result != null)
+            {
+                node.Set(Properties.HasPart, result);
+            }
         }
 
         class ResourceInfo : IFileInfo, IImageResourceTag

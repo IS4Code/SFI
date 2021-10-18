@@ -57,6 +57,9 @@
         [Uri(Vocabularies.Uri.Sec)]
         public static readonly ClassUri Digest;
 
+        [Uri(Vocabularies.Uri.Cert)]
+        public static readonly ClassUri X509Certificate;
+
         [Uri(Vocabularies.Uri.At)]
         public static readonly ClassUri Root;
 

@@ -1,6 +1,7 @@
 ﻿using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Tools;
 using System;
+using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Web;
 
@@ -113,6 +114,13 @@ namespace IS4.MultiArchiver
                 if(m.Value == "+") return "%20";
                 return m.Value.ToUpperInvariant();
             });
+        }
+
+        public static readonly IGenericUriFormatter<Oid> OidUriFormatter = new OidUriFormatterClass();
+
+        public class OidUriFormatterClass : IGenericUriFormatter<Oid>
+        {
+            public Uri this[Oid value] => new Uri("urn:oid:" + value.Value, UriKind.Absolute);
         }
     }
 }

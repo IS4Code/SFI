@@ -38,6 +38,7 @@ namespace IS4.MultiArchiver.Vocabulary
             public const string Dbo = "http://dbpedia.org/ontology/";
             public const string Urim = "http://uri4uri.net/mime/";
             public const string Uris = "http://uri4uri.net/suffix/";
+            public const string Cert = "http://www.w3.org/ns/auth/cert#";
             public const string File = "file:///";
             public const string At = "http://archive.data.is4.site/terms/";
             public const string Ad = "http://archive.data.is4.site/data/";

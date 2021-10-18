@@ -116,29 +116,9 @@ namespace IS4.MultiArchiver.Formats
                     this.info = info;
                 }
 
-                public BuiltInHash HashAlgorithm {
-                    get {
-                        switch(info.SignedHash.Length)
-                        {
-                            case 16:
-                                return BuiltInHash.MD5;
-                            case 20:
-                                return BuiltInHash.SHA1;
-                            case 32:
-                                return BuiltInHash.SHA256;
-                            case 48:
-                                return BuiltInHash.SHA384;
-                            case 64:
-                                return BuiltInHash.SHA512;
-                            default:
-                                return null;
-                        }
-                    }
-                }
+                public BuiltInHash HashAlgorithm => Services.HashAlgorithm.FromLength(info.SignedHash.Length);
 
                 public byte[] Hash => info.SignedHash;
-
-                public string SignerSerialNumber => info.SignerSerialNumber;
 
                 public X509Certificate2 Certificate => info.SigningCertificate;
 

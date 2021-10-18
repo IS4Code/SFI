@@ -29,10 +29,9 @@ namespace IS4.MultiArchiver.Media
 
     public interface IModuleSignature
     {
+        byte[] Hash { get; }
         BuiltInHash HashAlgorithm { get; }
         byte[] ComputeHash(BuiltInHash hash);
-        byte[] Hash { get; }
-        string SignerSerialNumber { get; }
         X509Certificate2 Certificate { get; }
     }
 }
