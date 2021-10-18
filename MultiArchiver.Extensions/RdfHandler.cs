@@ -117,6 +117,16 @@ namespace IS4.MultiArchiver.Extensions
                 }
             }
 
+            private bool HandleExternalTriple(INode subj, INode pred, INode obj)
+            {
+                if(Subject.Equals(subj) && !(obj is IBlankNode))
+                {
+                    HandleTriple(subj, pred, obj);
+                    return true;
+                }
+                return false;
+            }
+
             protected override INode CreateNode(Uri uri)
             {
                 return Graph.CreateUriNode(uri);
@@ -262,12 +272,7 @@ namespace IS4.MultiArchiver.Extensions
 
                 public override bool Assert(Triple t)
                 {
-                    if(describingNode.Subject.Equals(t.Subject) && !(t.Object is IBlankNode))
-                    {
-                        describingNode.HandleTriple(t.Subject, t.Predicate, t.Object);
-                        return true;
-                    }
-                    return false;
+                    return describingNode.HandleExternalTriple(t.Subject, t.Predicate, t.Object);
                 }
             }
         }
