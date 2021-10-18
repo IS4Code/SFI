@@ -1,4 +1,5 @@
 ﻿using IS4.MultiArchiver.Services;
+using IS4.MultiArchiver.Tools.Xml;
 using IS4.MultiArchiver.Vocabulary;
 using Microsoft.CSharp.RuntimeBinder;
 using System;
@@ -112,7 +113,7 @@ namespace IS4.MultiArchiver.Extensions
                 var meta = In(Graphs.Metadata);
                 if(meta != null && (!Equals(meta) || !(pred is IUriNode uriNode) || uriNode.Uri.AbsoluteUri != Properties.Visited.Value))
                 {
-                    var dateString = System.Xml.XmlConvert.ToString(date, "yyyy-MM-dd\\THH:mm:ssK");
+                    var dateString = XmlConvert.ToString(date, "yyyy-MM-dd\\THH:mm:ssK");
                     meta.Set(Properties.Visited, dateString, Datatypes.DateTime);
                 }
             }
@@ -188,19 +189,7 @@ namespace IS4.MultiArchiver.Extensions
                 {
                     throw new ArgumentException("The XML reader must be positioned on a rdf:RDF element.", nameof(rdfXmlReader));
                 }
-                return new BaseXmlDocument(this, rdfXmlReader.NameTable);
-            }
-
-            class BaseXmlDocument : XmlDocument
-            {
-                readonly string baseUri;
-
-                public override string BaseURI => baseUri;
-
-                public BaseXmlDocument(UriNode baseUriNode, XmlNameTable nameTable) : base(nameTable)
-                {
-                    baseUri = baseUriNode.GetUri(baseUriNode.Subject).AbsoluteUri;
-                }
+                return new BaseXmlDocument(GetUri(Subject).AbsoluteUri, rdfXmlReader.NameTable);
             }
 
             public override void Describe(XmlReader rdfXmlReader)
@@ -213,44 +202,7 @@ namespace IS4.MultiArchiver.Extensions
             public override async Task DescribeAsync(XmlReader rdfXmlReader)
             {
                 var doc = PrepareXmlDocument(rdfXmlReader);
-                using(XmlWriter writer = doc.CreateNavigator().AppendChild())
-                {
-                    do{
-                        switch(rdfXmlReader.NodeType)
-                        {
-                            case XmlNodeType.Element:
-                                writer.WriteStartElement(rdfXmlReader.Prefix, rdfXmlReader.LocalName, rdfXmlReader.NamespaceURI);
-                                writer.WriteAttributes(rdfXmlReader, true);
-                                if(rdfXmlReader.IsEmptyElement)
-                                {
-                                    writer.WriteEndElement();
-                                }
-                                break;
-                            case XmlNodeType.Text:
-                                writer.WriteString(await rdfXmlReader.GetValueAsync());
-                                break;
-                            case XmlNodeType.CDATA:
-                                writer.WriteCData(rdfXmlReader.Value);
-                                break;
-                            case XmlNodeType.EntityReference:
-                                writer.WriteEntityRef(rdfXmlReader.Name);
-                                break;
-                            case XmlNodeType.ProcessingInstruction:
-                                writer.WriteProcessingInstruction(rdfXmlReader.Name, rdfXmlReader.Value);
-                                break;
-                            case XmlNodeType.Comment:
-                                writer.WriteComment(rdfXmlReader.Value);
-                                break;
-                            case XmlNodeType.Whitespace:
-                            case XmlNodeType.SignificantWhitespace:
-                                writer.WriteWhitespace(await rdfXmlReader.GetValueAsync());
-                                break;
-                            case XmlNodeType.EndElement:
-                                writer.WriteFullEndElement();
-                                break;
-                        }
-                    }while(await rdfXmlReader.ReadAsync());
-                }
+                await doc.LoadAsync(rdfXmlReader);
                 Parse(doc);
             }
 
