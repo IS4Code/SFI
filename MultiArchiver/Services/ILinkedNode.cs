@@ -13,6 +13,7 @@ namespace IS4.MultiArchiver.Services
 
         void Describe(XmlReader rdfXmlReader);
         Task DescribeAsync(XmlReader rdfXmlReader);
+        void Describe(XmlDocument rdfXmlDocument);
 
         void SetClass(ClassUri @class);
         void SetClass<TClass>(IClassUriFormatter<TClass> formatter, TClass value);
@@ -94,6 +95,8 @@ namespace IS4.MultiArchiver.Services
         public abstract void Describe(XmlReader rdfXmlReader);
 
         public abstract Task DescribeAsync(XmlReader rdfXmlReader);
+
+        public abstract void Describe(XmlDocument rdfXmlDocument);
 
         public void SetClass(ClassUri @class)
         {

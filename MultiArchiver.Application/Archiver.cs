@@ -87,6 +87,7 @@ namespace IS4.MultiArchiver.Extensions
             archiver.ContainerProviders.Add(new WordXmlDocumentFormat());
 
             archiver.XmlAnalyzer.XmlFormats.Add(new SvgFormat());
+            archiver.XmlAnalyzer.XmlFormats.Add(new RdfXmlFormat());
 
             archiver.Analyzers.Add(new ArchiveAnalyzer());
             archiver.Analyzers.Add(new ArchiveReaderAnalyzer());
@@ -103,6 +104,7 @@ namespace IS4.MultiArchiver.Extensions
             archiver.Analyzers.Add(new CabinetAnalyzer());
             archiver.Analyzers.Add(new OleStorageAnalyzer());
             archiver.Analyzers.Add(new PackageDescriptionAnalyzer());
+            archiver.Analyzers.Add(new RdfXmlAnalyzer());
 
             return archiver;
         }

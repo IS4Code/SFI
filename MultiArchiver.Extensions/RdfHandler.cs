@@ -196,21 +196,25 @@ namespace IS4.MultiArchiver.Extensions
             {
                 var doc = PrepareXmlDocument(rdfXmlReader);
                 doc.Load(rdfXmlReader);
-                Parse(doc);
+                Describe(doc);
             }
 
             public override async Task DescribeAsync(XmlReader rdfXmlReader)
             {
                 var doc = PrepareXmlDocument(rdfXmlReader);
                 await doc.LoadAsync(rdfXmlReader);
-                Parse(doc);
+                Describe(doc);
             }
 
-            private void Parse(XmlDocument document)
+            public override void Describe(XmlDocument rdfXmlDocument)
             {
+                if(rdfXmlDocument is BaseXmlDocument baseXmlDocument && baseXmlDocument.BaseURI == null)
+                {
+                    baseXmlDocument.SetBaseURI(GetUri(Subject).AbsoluteUri);
+                }
                 var graph = new DataGraph(this);
                 var parser = new VDS.RDF.Parsing.RdfXmlParser();
-                parser.Load(graph, document);
+                parser.Load(graph, rdfXmlDocument);
             }
 
             class DataGraph : Graph

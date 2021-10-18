@@ -4,16 +4,23 @@ namespace IS4.MultiArchiver.Tools.Xml
 {
     public class BaseXmlDocument : XmlDocument
     {
-        public override string BaseURI { get; }
+        string baseUri;
+
+        public override string BaseURI => baseUri;
 
         public BaseXmlDocument(string baseUri)
         {
-            BaseURI = baseUri;
+            this.baseUri = baseUri;
         }
 
         public BaseXmlDocument(string baseUri, XmlNameTable nameTable) : base(nameTable)
         {
-            BaseURI = baseUri;
+            this.baseUri = baseUri;
+        }
+
+        public void SetBaseURI(string baseUri)
+        {
+            this.baseUri = baseUri;
         }
     }
 }
