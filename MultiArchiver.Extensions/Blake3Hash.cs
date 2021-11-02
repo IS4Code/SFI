@@ -12,7 +12,9 @@ namespace IS4.MultiArchiver
     {
         public static readonly Blake3Hash Instance = new Blake3Hash();
 
-        public Blake3Hash() : base(Individuals.Blake3, 0x1e, 32, "urn:blake3:", FormattingMethod.Base32)
+        public override int? NumericIdentifier => 0x1e;
+
+        public Blake3Hash() : base(Individuals.Blake3, 32, "urn:blake3:", FormattingMethod.Base32)
         {
 
         }

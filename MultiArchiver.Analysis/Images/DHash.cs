@@ -13,7 +13,7 @@ namespace IS4.MultiArchiver.Analysis.Images
 
         static readonly Color gray = Color.FromArgb(0xBC, 0xBC, 0xBC);
 
-        public DHash() : base(Individuals.DHash, null, 16, "urn:dhash:", FormattingMethod.Hex)
+        public DHash() : base(Individuals.DHash, 16, "urn:dhash:", FormattingMethod.Hex)
         {
 
         }

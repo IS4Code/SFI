@@ -12,7 +12,7 @@ namespace IS4.MultiArchiver
     {
         public static readonly Crc32Hash Instance = new Crc32Hash();
 
-        public Crc32Hash() : base(Individuals.Crc32, null, 4, "urn:crc32:", FormattingMethod.Hex)
+        public Crc32Hash() : base(Individuals.Crc32, 4, "urn:crc32:", FormattingMethod.Hex)
         {
 
         }

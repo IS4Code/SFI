@@ -18,7 +18,7 @@ namespace IS4.MultiArchiver
 
         public event InfoCreatedDelegate InfoCreated;
 
-        public BitTorrentHash() : base(Individuals.BTIH, null, HashAlgorithm.HashSize, "urn:btih:", FormattingMethod.Hex)
+        public BitTorrentHash() : base(Individuals.BTIH, HashAlgorithm.HashSize, "urn:btih:", FormattingMethod.Hex)
         {
 
         }
