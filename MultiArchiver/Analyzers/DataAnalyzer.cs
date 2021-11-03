@@ -17,7 +17,7 @@ namespace IS4.MultiArchiver.Analyzers
 {
     public sealed class DataAnalyzer : IEntityAnalyzer<IStreamFactory>, IEntityAnalyzer<byte[]>
 	{
-        public IDataHashAlgorithm PrimaryHash { get; set; }
+        public IHashedContentUriFormatter ContentUriFormatter { get; set; }
 
         public ICollection<IDataHashAlgorithm> HashAlgorithms { get; } = new List<IDataHashAlgorithm>();
 
@@ -36,7 +36,7 @@ namespace IS4.MultiArchiver.Analyzers
 
 		public AnalysisResult Analyze(IStreamFactory streamFactory, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
-            var match = GetFileMatch(streamFactory, context, analyzers);
+            var match = new DataAnalysis(this, streamFactory, context, analyzers).Match();
             var node = match.Node;
 
             var results = match.Results.Where(result => result.IsValid);
@@ -53,156 +53,175 @@ namespace IS4.MultiArchiver.Analyzers
             return analyzers.Analyze<IDataObject>(match, context.WithNode(node));
 		}
 
-        FileMatch GetFileMatch(IStreamFactory streamFactory, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        class DataAnalysis
         {
-            var signatureBuffer = new MemoryStream(Math.Max(MaxDataLengthToStore + 1, DataFormats.Count == 0 ? 0 : DataFormats.Max(fmt => fmt.HeaderLength)));
+            readonly DataAnalyzer analyzer;
 
-            var encodingDetector = EncodingDetectorFactory?.Invoke();
+            readonly MemoryStream signatureBuffer;
+            readonly IEncodingDetector encodingDetector;
+            readonly IStreamFactory streamFactory;
+            readonly AnalysisContext context;
+            readonly IEntityAnalyzerProvider analyzers;
+            readonly Dictionary<IDataHashAlgorithm, (ChannelWriter<ArraySegment<byte>> writer, Task<byte[]> data)> hashes = new Dictionary<IDataHashAlgorithm, (ChannelWriter<ArraySegment<byte>> writer, Task<byte[]> data)>(ReferenceEqualityComparer<IDataHashAlgorithm>.Default);
 
-            var isBinary = false;
+            IStreamFactory seekableFactory;
+            bool isBinary;
 
-            IStreamFactory seekableFactory = null;
+            public DataAnalysis(DataAnalyzer analyzer, IStreamFactory streamFactory, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+            {
+                this.analyzer = analyzer;
+                signatureBuffer = new MemoryStream(Math.Max(analyzer.MaxDataLengthToStore + 1, analyzer.DataFormats.Select(fmt => fmt.HeaderLength).DefaultIfEmpty(0).Max()));
+                encodingDetector = analyzer.EncodingDetectorFactory?.Invoke();
 
-            var hashes = new Dictionary<IDataHashAlgorithm, (ChannelWriter<ArraySegment<byte>> writer, Task<byte[]> data)>(ReferenceEqualityComparer<IDataHashAlgorithm>.Default);
+                this.streamFactory = streamFactory;
+                this.context = context.WithMatchContext(c => c.WithServices(this.streamFactory));
+                this.analyzers = analyzers;
+            }
 
-            context = context.WithMatchContext(c => c.WithServices(streamFactory));
+            DataMatch MatchFactory()
+            {
+                return new DataMatch(analyzer, streamFactory, seekableFactory, signatureBuffer, encodingDetector, isBinary, context, analyzers);
+            }
 
-            var lazyMatch = new Lazy<FileMatch>(() => new FileMatch(DataFormats, streamFactory, seekableFactory, signatureBuffer, MaxDataLengthToStore, encodingDetector, isBinary, PrimaryHash != null && hashes.TryGetValue(PrimaryHash, out var primaryHash) ? (PrimaryHash, primaryHash.data) : default, context, analyzers), false);
+            public DataMatch Match()
+            {
+                var lazyMatch = new Lazy<DataMatch>(MatchFactory, false);
             
-            long actualLength = 0;
+                long actualLength = 0;
 
-            FileMatch match;
+                DataMatch match;
 
-            var tmpPath = default(FileTools.TemporaryFile);
-            try{
-                Stream outputStream = null;
+                var tmpPath = default(FileTools.TemporaryFile);
                 try{
-                    using(var stream = streamFactory.Open())
-                    {
-                        if(streamFactory.Access != StreamFactoryAccess.Parallel || !stream.CanSeek)
+                    Stream outputStream = null;
+                    try{
+                        using(var stream = streamFactory.Open())
                         {
-                            if(streamFactory.Length >= FileSizeToWriteToDisk)
+                            if(streamFactory.Access != StreamFactoryAccess.Parallel || !stream.CanSeek)
                             {
-                                tmpPath = FileTools.GetTemporaryFile("b");
-                                outputStream = new FileStream(tmpPath, FileMode.CreateNew, FileAccess.Write, FileShare.None);
+                                if(streamFactory.Length >= analyzer.FileSizeToWriteToDisk)
+                                {
+                                    tmpPath = FileTools.GetTemporaryFile("b");
+                                    outputStream = new FileStream(tmpPath, FileMode.CreateNew, FileAccess.Write, FileShare.None);
+                                }else{
+                                    outputStream = new MemoryStream();
+                                }
+                            
+                                foreach(var hash in analyzer.HashAlgorithms)
+                                {
+                                    var queue = ChannelArrayStream.Create(out var writer, 1);
+                                    hashes[hash] = (writer, Task.Run(() => hash.ComputeHash(queue, streamFactory)));
+                                }
                             }else{
-                                outputStream = new MemoryStream();
-                            }
+                                seekableFactory = streamFactory;
                             
-                            foreach(var hash in HashAlgorithms)
-                            {
-                                var queue = ChannelArrayStream.Create(out var writer, 1);
-                                hashes[hash] = (writer, Task.Run(() => hash.ComputeHash(queue, streamFactory)));
+                                foreach(var hash in analyzer.HashAlgorithms)
+                                {
+                                    hashes[hash] = (null, Task.Run(() => {
+                                        using(var hashStream = streamFactory.Open())
+                                        {
+                                            return hash.ComputeHash(hashStream, streamFactory);
+                                        }
+                                    }));
+                                }
                             }
-                        }else{
-                            seekableFactory = streamFactory;
-                            
-                            foreach(var hash in HashAlgorithms)
-                            {
-                                hashes[hash] = (null, Task.Run(() => {
-                                    using(var hashStream = streamFactory.Open())
+
+                            bool? couldBeUnicode = null;
+
+                            var buffer = ArrayPool<byte>.Shared.Rent(16384);
+
+                            var writers = hashes.Values.Select(v => v.writer).Where(w => w != null);
+
+                            try{
+                                int read;
+                                while((read = stream.Read(buffer, 0, buffer.Length)) != 0)
+                                {
+                                    var segment = buffer.Slice(0, read);
+                                    var writing = writers.Select(async writer => {
+                                        await writer.WriteAsync(segment);
+                                        await writer.WriteAsync(default);
+                                        await writer.WaitToWriteAsync();
+                                    }).ToArray();
+
+                                    actualLength += read;
+
+                                    if(couldBeUnicode == null)
                                     {
-                                        return hash.ComputeHash(hashStream, streamFactory);
+                                        couldBeUnicode = DataTools.FindBom(buffer.AsSpan()) > 0;
                                     }
-                                }));
-                            }
-                        }
 
-                        bool? couldBeUnicode = null;
-
-                        var buffer = ArrayPool<byte>.Shared.Rent(16384);
-
-                        var writers = hashes.Values.Select(v => v.writer).Where(w => w != null);
-
-                        try{
-                            int read;
-                            while((read = stream.Read(buffer, 0, buffer.Length)) != 0)
-                            {
-                                var segment = buffer.Slice(0, read);
-                                var writing = writers.Select(async writer => {
-                                    await writer.WriteAsync(segment);
-                                    await writer.WriteAsync(default);
-                                    await writer.WaitToWriteAsync();
-                                }).ToArray();
-
-                                actualLength += read;
-
-                                if(couldBeUnicode == null)
-                                {
-                                    couldBeUnicode = DataTools.FindBom(buffer.AsSpan()) > 0;
-                                }
-
-                                if(!isBinary)
-                                {
-                                    var data = buffer.Slice(0, read);
-                                    if(couldBeUnicode == false && DataTools.IsBinary(data))
+                                    if(!isBinary)
                                     {
-                                        isBinary = true;
-                                    }else{
-                                        encodingDetector.Write(data);
+                                        var data = buffer.Slice(0, read);
+                                        if(couldBeUnicode == false && DataTools.IsBinary(data))
+                                        {
+                                            isBinary = true;
+                                        }else{
+                                            encodingDetector.Write(data);
+                                        }
                                     }
+
+                                    outputStream?.Write(buffer, 0, read);
+
+                                    if(signatureBuffer.Length < signatureBuffer.Capacity)
+                                    {
+                                        signatureBuffer.Write(buffer, 0, Math.Min(signatureBuffer.Capacity - (int)signatureBuffer.Length, read));
+                                    }else if(outputStream == null)
+                                    {
+                                        _ = lazyMatch.Value;
+                                    }
+
+                                    Task.WaitAll(writing);
                                 }
 
-                                outputStream?.Write(buffer, 0, read);
-
-                                if(signatureBuffer.Length < signatureBuffer.Capacity)
+                                foreach(var writer in writers)
                                 {
-                                    signatureBuffer.Write(buffer, 0, Math.Min(signatureBuffer.Capacity - (int)signatureBuffer.Length, read));
-                                }else if(outputStream == null)
-                                {
-                                    _ = lazyMatch.Value;
+                                    writer.Complete();
                                 }
-
-                                Task.WaitAll(writing);
+                            }finally{
+                                ArrayPool<byte>.Shared.Return(buffer);
                             }
 
-                            foreach(var writer in writers)
-                            {
-                                writer.Complete();
-                            }
-                        }finally{
-                            ArrayPool<byte>.Shared.Return(buffer);
+                            encodingDetector.End();
                         }
+                    }finally{
+                        outputStream?.Dispose();
+                    }
 
-                        encodingDetector.End();
+                    if(tmpPath != null)
+                    {
+                        seekableFactory = new FileInfoWrapper(new FileInfo(tmpPath), streamFactory);
+                    }else if(outputStream is MemoryStream memoryStream)
+                    {
+                        var buffer = memoryStream.GetData();
+                        seekableFactory = new MemoryStreamFactory(buffer, streamFactory);
+                    }
+
+                    match = lazyMatch.Value;
+
+                    foreach(var result in match.Results)
+                    {
+                        result.Wait();
                     }
                 }finally{
-                    outputStream?.Dispose();
+                    tmpPath.Dispose();
                 }
 
-                if(tmpPath != null)
+                match.ActualLength = actualLength;
+
+                if(!match.IsComplete)
                 {
-                    seekableFactory = new FileInfoWrapper(new FileInfo(tmpPath), streamFactory);
-                }else if(outputStream is MemoryStream memoryStream)
-                {
-                    var buffer = memoryStream.GetData();
-                    seekableFactory = new MemoryStreamFactory(buffer, streamFactory);
+                    foreach(var hash in hashes)
+                    {
+                        match[hash.Key] = hash.Value.data.Result;
+                    }
                 }
 
-                match = lazyMatch.Value;
-
-                foreach(var result in match.Results)
-                {
-                    result.Wait();
-                }
-            }finally{
-                tmpPath.Dispose();
+                return match;
             }
-
-            match.ActualLength = actualLength;
-
-            if(!match.IsComplete)
-            {
-                foreach(var hash in hashes)
-                {
-                    match[hash.Key] = hash.Value.data.Result;
-                }
-            }
-
-            return match;
         }
 
-        class FileMatch : Dictionary<IDataHashAlgorithm, byte[]>, IDataObject
+        class DataMatch : Dictionary<IDataHashAlgorithm, byte[]>, IDataObject
         {
             readonly bool isBinary;
             public bool IsBinary => isBinary || charsetMatch?.Charset == null;
@@ -230,7 +249,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             IReadOnlyDictionary<IDataHashAlgorithm, byte[]> IDataObject.Hashes => this;
 
-            public FileMatch(ICollection<IBinaryFileFormat> formats, IStreamFactory source, IStreamFactory streamFactory, MemoryStream signatureBuffer, int maxDataLength, IEncodingDetector encodingDetector, bool isBinary, (IDataHashAlgorithm algorithm, Task<byte[]> result) primaryHash, AnalysisContext context, IEntityAnalyzerProvider analyzer)
+            public DataMatch(DataAnalyzer analyzer, IStreamFactory source, IStreamFactory streamFactory, MemoryStream signatureBuffer, IEncodingDetector encodingDetector, bool isBinary, AnalysisContext context, IEntityAnalyzerProvider analyzers)
             {
                 Source = source;
 
@@ -244,7 +263,7 @@ namespace IS4.MultiArchiver.Analyzers
                     isBinary = true;
                 }
 
-                IsComplete = ByteValue.Count <= maxDataLength;
+                IsComplete = ByteValue.Count <= analyzer.MaxDataLengthToStore;
 
                 if(!isBinary)
                 {
@@ -271,22 +290,7 @@ namespace IS4.MultiArchiver.Analyzers
                     {
                         Node = context.NodeFactory.Create(UriTools.DataUriFormatter, (null, encodingDetector?.Charset, ByteValue));
                     }else{
-                        if(primaryHash.algorithm?.NumericIdentifier is int id)
-                        {
-                            var hashBytes = primaryHash.result.Result;
-
-                            var identifier = new List<byte>(2 + hashBytes.Length);
-                            identifier.AddRange(DataTools.Varint((ulong)id));
-                            identifier.AddRange(DataTools.Varint((ulong)hashBytes.Length));
-                            identifier.AddRange(hashBytes);
-
-                            var sb = new StringBuilder();
-                            DataTools.Base58(identifier, sb);
-
-                            Node = context.NodeFactory.Create(Vocabularies.Ad, sb.ToString());
-                        }else{
-                            Node = context.NodeFactory.NewGuidNode();
-                        }
+                        Node = GetContentNode(context.NodeFactory, analyzer.ContentUriFormatter);
                     }
                 }
 
@@ -295,7 +299,7 @@ namespace IS4.MultiArchiver.Analyzers
                 if(ByteValue.Count > 0)
                 {
                     var nodeCreated = new TaskCompletionSource<ILinkedNode>();
-                    Results = formats.Where(fmt => fmt.CheckHeader(ByteValue, isBinary, encodingDetector)).Select(fmt => new FormatResult(this, streamFactory, fmt, nodeCreated, Node, context, analyzer)).ToList();
+                    Results = analyzer.DataFormats.Where(fmt => fmt.CheckHeader(ByteValue, isBinary, encodingDetector)).Select(fmt => new FormatResult(this, streamFactory, fmt, nodeCreated, Node, context, analyzers)).ToList();
                 }else{
                     Results = Array.Empty<FormatResult>();
                 }
@@ -314,6 +318,25 @@ namespace IS4.MultiArchiver.Analyzers
                 {
                     return null;
                 }
+            }
+
+            private ILinkedNode GetContentNode(ILinkedNodeFactory nodeFactory, IHashedContentUriFormatter formatter)
+            {
+                if(formatter != null)
+                {
+                    foreach(var algorithm in formatter.SupportedAlgorithms.OfType<IDataHashAlgorithm>())
+                    {
+                        if(TryGetValue(algorithm, out var hash))
+                        {
+                            var node = nodeFactory.Create(formatter, (algorithm, hash, IsBinary));
+                            if(node != null)
+                            {
+                                return node;
+                            }
+                        }
+                    }
+                }
+                return nodeFactory.NewGuidNode();
             }
         }
 
@@ -352,7 +375,7 @@ namespace IS4.MultiArchiver.Analyzers
         
 		class FormatResult : IComparable<FormatResult>, IResultFactory<ILinkedNode, (Stream stream, MatchContext matchContext)>
 		{
-            readonly FileMatch fileMatch;
+            readonly DataMatch fileMatch;
             readonly IBinaryFileFormat format;
             readonly ILinkedNode parent;
             readonly AnalysisContext context;
@@ -370,7 +393,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             public ILinkedNode Result => task?.Result;
 
-            public FormatResult(FileMatch fileMatch, IStreamFactory streamFactory, IBinaryFileFormat format, TaskCompletionSource<ILinkedNode> nodeCreated, ILinkedNode parent, AnalysisContext context, IEntityAnalyzerProvider analyzer)
+            public FormatResult(DataMatch fileMatch, IStreamFactory streamFactory, IBinaryFileFormat format, TaskCompletionSource<ILinkedNode> nodeCreated, ILinkedNode parent, AnalysisContext context, IEntityAnalyzerProvider analyzer)
 			{
                 this.fileMatch = fileMatch;
                 this.format = format;

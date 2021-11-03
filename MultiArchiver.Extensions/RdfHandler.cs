@@ -63,7 +63,12 @@ namespace IS4.MultiArchiver.Extensions
 
         public ILinkedNode Create<T>(IIndividualUriFormatter<T> formatter, T value)
         {
-            return new UriNode(defaultHandler.CreateUriNode(formatter[value]), defaultHandler, this);
+            var uri = formatter[value];
+            if(uri == null)
+            {
+                return null;
+            }
+            return new UriNode(defaultHandler.CreateUriNode(uri), defaultHandler, this);
         }
 
         /// <summary>

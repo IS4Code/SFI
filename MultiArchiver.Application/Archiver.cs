@@ -36,7 +36,7 @@ namespace IS4.MultiArchiver.Extensions
             DataAnalyzer.HashAlgorithms.Add(new PaddedBlockHash(Vocabulary.Individuals.BSHA1_256, "urn:bsha1-256:", 262144));
             DataAnalyzer.HashAlgorithms.Add(Blake3Hash.Instance);
             DataAnalyzer.HashAlgorithms.Add(Crc32Hash.Instance);
-            DataAnalyzer.PrimaryHash = Blake3Hash.Instance;
+            DataAnalyzer.ContentUriFormatter = new AdHashedContentUriFormatter(Blake3Hash.Instance);
 
             FileAnalyzer.HashAlgorithms.Add(BitTorrentHash = new BitTorrentHash());
 

@@ -1,5 +1,6 @@
 ﻿using IS4.MultiArchiver.Formats;
 using System;
+using System.Web;
 
 namespace IS4.MultiArchiver.Services
 {
@@ -63,6 +64,15 @@ namespace IS4.MultiArchiver.Services
                     int rest = builder.Path.IndexOfAny(dataChars);
                     if(rest == -1) throw new ArgumentException(null, nameof(value));
                     builder.Path = type + builder.Path.Substring(rest);
+                    return builder.Uri;
+                }else if(value.Scheme.Equals("ni", StringComparison.OrdinalIgnoreCase))
+                {
+                    var type = MediaType?.ToLowerInvariant();
+                    if(type == null || type.IndexOf('/') == -1) return null;
+                    var builder = new UriBuilder(value);
+                    var parameters = HttpUtility.ParseQueryString(builder.Query);
+                    parameters["ct"] = type;
+                    builder.Query = parameters.ToString();
                     return builder.Uri;
                 }
                 if(String.IsNullOrEmpty(value.Authority)) throw new ArgumentException(null, nameof(value));
