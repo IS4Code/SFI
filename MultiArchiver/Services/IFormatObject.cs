@@ -1,5 +1,6 @@
 ﻿using IS4.MultiArchiver.Formats;
 using System;
+using System.Text.RegularExpressions;
 using System.Web;
 
 namespace IS4.MultiArchiver.Services
@@ -51,7 +52,7 @@ namespace IS4.MultiArchiver.Services
             return resultFactory.Invoke<T>(Value, args);
         }
 
-        static readonly char[] dataChars = { ';', ',' };
+        static readonly Regex dataRegex = new Regex(@"^(.*?)(?:;[^=]*)?,", RegexOptions.Compiled);
         static readonly char[] splitChar = { '/' };
 
         public Uri this[Uri value] {
@@ -61,9 +62,9 @@ namespace IS4.MultiArchiver.Services
                     var type = MediaType?.ToLowerInvariant();
                     if(type == null || type.IndexOf('/') == -1) return null;
                     var builder = new UriBuilder(value);
-                    int rest = builder.Path.IndexOfAny(dataChars);
-                    if(rest == -1) throw new ArgumentException(null, nameof(value));
-                    builder.Path = type + builder.Path.Substring(rest);
+                    var match = dataRegex.Match(builder.Path);
+                    if(!match.Success) throw new ArgumentException(null, nameof(value));
+                    builder.Path = type + builder.Path.Substring(match.Groups[1].Length);
                     return builder.Uri;
                 }else if(value.Scheme.Equals("ni", StringComparison.OrdinalIgnoreCase))
                 {
