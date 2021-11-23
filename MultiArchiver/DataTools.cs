@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Numerics;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -375,6 +377,33 @@ namespace IS4.MultiArchiver
                 }
             }
             return false;
+        }
+        
+        public static Guid GuidFromName(byte[] namespaceBytes, string name)
+        {
+            byte[] hash;
+            using(var buffer = new MemoryStream())
+            {
+                buffer.Write(namespaceBytes, 0, namespaceBytes.Length);
+                using(var writer = new StreamWriter(buffer, Encoding.UTF8))
+                {
+                    writer.Write(name);
+                    writer.Flush();
+                    buffer.Position = 0;
+                    hash = BuiltInHash.SHA1.ComputeHash(buffer, null);
+                }
+            }
+            hash[6] = (byte)((hash[7] & 0x0F) | (5 << 4));
+            hash[8] = (byte)((hash[8] & 0x3F) | 0x80);
+
+            var span = hash.AsSpan();
+            var f4 = span.MemoryCast<int>();
+            f4[0] = (hash[0] << 24) | (hash[1] << 16) | (hash[2] << 8) | hash[3];
+            var f2 = f4.Slice(1).MemoryCast<short>();
+            f2[0] = unchecked((short)((hash[4] << 8) | hash[5]));
+            f2[1] = unchecked((short)((hash[6] << 8) | hash[7]));
+
+            return span.MemoryCast<Guid>()[0];
         }
     }
 }

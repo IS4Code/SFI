@@ -139,6 +139,16 @@ namespace IS4.MultiArchiver.Tools
             return MemoryMarshal.Cast<ushort, T>(span);
         }
 
+        public static Span<T> MemoryCast<T>(this Span<int> span) where T : struct
+        {
+            return MemoryMarshal.Cast<int, T>(span);
+        }
+
+        public static Span<T> MemoryCast<T>(this Span<uint> span) where T : struct
+        {
+            return MemoryMarshal.Cast<uint, T>(span);
+        }
+
         public static Span<T> MemoryCast<T>(this Span<long> span) where T : struct
         {
             return MemoryMarshal.Cast<long, T>(span);
@@ -192,6 +202,16 @@ namespace IS4.MultiArchiver.Tools
         public static ReadOnlySpan<T> MemoryCast<T>(this ReadOnlySpan<ushort> span) where T : struct
         {
             return MemoryMarshal.Cast<ushort, T>(span);
+        }
+
+        public static ReadOnlySpan<T> MemoryCast<T>(this ReadOnlySpan<int> span) where T : struct
+        {
+            return MemoryMarshal.Cast<int, T>(span);
+        }
+
+        public static ReadOnlySpan<T> MemoryCast<T>(this ReadOnlySpan<uint> span) where T : struct
+        {
+            return MemoryMarshal.Cast<uint, T>(span);
         }
 
         public static ReadOnlySpan<T> MemoryCast<T>(this ReadOnlySpan<long> span) where T : struct

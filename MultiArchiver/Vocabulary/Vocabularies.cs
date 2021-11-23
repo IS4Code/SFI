@@ -8,7 +8,6 @@ namespace IS4.MultiArchiver.Vocabulary
     public static class Vocabularies
     {
         public static readonly IIndividualUriFormatter<string> Ad = new VocabularyUri(Uri.Ad);
-        public static readonly IIndividualUriFormatter<string> Ah = new VocabularyUri(Uri.Ah);
         public static readonly IIndividualUriFormatter<string> File = new VocabularyUri(Uri.File);
         public static readonly IIndividualUriFormatter<string> Urim = new VocabularyUri(Uri.Urim);
         public static readonly IIndividualUriFormatter<string> Uris = new VocabularyUri(Uri.Uris);
@@ -42,7 +41,6 @@ namespace IS4.MultiArchiver.Vocabulary
             public const string File = "file:///";
             public const string At = "http://archive.data.is4.site/terms/";
             public const string Ad = "http://archive.data.is4.site/data/";
-            public const string Ah = "http://archive.data.is4.site/hash/";
         }
 
         public static readonly IReadOnlyCollection<KeyValuePair<System.Uri, string>> Prefixes =

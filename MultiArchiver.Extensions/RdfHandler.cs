@@ -24,6 +24,9 @@ namespace IS4.MultiArchiver.Extensions
 
         public IDictionary<Uri, string> PrefixMap { get; }
 
+        public int MaxUriLength { get; set; } = 4096 - 128;
+        public int UriPartShortened { get; set; } = 64;
+
         public RdfHandler(Uri root, IEntityAnalyzerProvider baseAnalyzer, IRdfHandler defaultHandler, IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers)
             : base(defaultHandler.CreateUriNode, uri => graphHandlers.TryGetValue(uri, out var handler) ? handler : defaultHandler)
         {
@@ -61,12 +64,38 @@ namespace IS4.MultiArchiver.Extensions
             }
         }
 
+        static readonly byte[] urlNamespace = { 0x6b, 0xa7, 0xb8, 0x11, 0x9d, 0xad, 0x11, 0xd1, 0x80, 0xb4, 0x00, 0xc0, 0x4f, 0xd4, 0x30, 0xc8 };
+
+        string ShortenUriPart(string str)
+        {
+            if(str.Length > UriPartShortened)
+            {
+                var first = UriPartShortened / 2;
+                var last = UriPartShortened - first - 1;
+                return $"{str.Substring(0, first)}\u2026{str.Substring(str.Length - last)}";
+            }
+            return str;
+        }
+
         public ILinkedNode Create<T>(IIndividualUriFormatter<T> formatter, T value)
         {
             var uri = formatter[value];
             if(uri == null)
             {
                 return null;
+            }
+            if(uri.OriginalString.Length > MaxUriLength)
+            {
+                var builder = new UriBuilder(uri);
+                builder.Path = ShortenUriPart(builder.Path);
+                builder.Query = ShortenUriPart(builder.Query);
+                builder.Fragment = "(URI\u00A0too\u00A0long)";
+
+                uri = UriTools.CreateUuid(DataTools.GuidFromName(urlNamespace, uri.AbsoluteUri));
+                var node = new UriNode(defaultHandler.CreateUriNode(uri), defaultHandler, this);
+
+                node.Set(Properties.AtPrefLabel, builder.Uri.ToString(), Datatypes.AnyUri);
+                return node;
             }
             return new UriNode(defaultHandler.CreateUriNode(uri), defaultHandler, this);
         }

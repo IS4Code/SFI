@@ -127,27 +127,13 @@ namespace IS4.MultiArchiver.Services
         public static void AddHash(ILinkedNode node, IHashAlgorithm algorithm, ArraySegment<byte> hash, ILinkedNodeFactory nodeFactory)
         {
             if(algorithm == null || hash == null) return;
-            bool tooLong = hash.Count >= 1984;
-            ILinkedNode hashNode;
-            if(tooLong)
-            {
-                var hashHash = BuiltInHash.SHA256.ComputeHash(hash);
-                var sb = new StringBuilder();
-                DataTools.Base32(hashHash, sb);
-                hashNode = nodeFactory.Create(Vocabularies.Ah, new Uri(algorithm.Prefix, UriKind.Absolute).AbsolutePath.TrimEnd(':').Replace(':', '-') + "/" + sb);
-            }else{
-                hashNode = nodeFactory.Create(algorithm, hash);
-            }
+
+            var hashNode = nodeFactory.Create(algorithm, hash);
 
             hashNode.SetClass(Classes.Digest);
 
             hashNode.Set(Properties.DigestAlgorithm, algorithm.Identifier);
             hashNode.Set(Properties.DigestValue, hash.ToBase64String(), Datatypes.Base64Binary);
-
-            if(tooLong)
-            {
-                hashNode.Set(Properties.AtPrefLabel, algorithm[new ArraySegment<byte>(Array.Empty<byte>())].AbsoluteUri + "\u2026 (URI too long)", LanguageCode.En);
-            }
 
             node.Set(Properties.Digest, hashNode);
         }
