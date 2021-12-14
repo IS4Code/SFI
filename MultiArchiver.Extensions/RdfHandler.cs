@@ -89,7 +89,7 @@ namespace IS4.MultiArchiver.Extensions
                 var builder = new UriBuilder(uri);
                 builder.Path = ShortenUriPart(builder.Path);
                 builder.Query = ShortenUriPart(builder.Query);
-                builder.Fragment = "(URI\u00A0too\u00A0long)";
+                builder.Fragment = ShortenUriPart(builder.Fragment) + "\u00A0(URI\u00A0too\u00A0long)";
 
                 uri = UriTools.CreateUuid(DataTools.GuidFromName(urlNamespace, uri.AbsoluteUri));
                 var node = new UriNode(defaultHandler.CreateUriNode(uri), defaultHandler, this);
