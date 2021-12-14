@@ -6,6 +6,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
@@ -66,6 +67,8 @@ namespace IS4.MultiArchiver.Extensions
 
         static readonly byte[] urlNamespace = { 0x6b, 0xa7, 0xb8, 0x11, 0x9d, 0xad, 0x11, 0xd1, 0x80, 0xb4, 0x00, 0xc0, 0x4f, 0xd4, 0x30, 0xc8 };
 
+        static readonly ConditionalWeakTable<INode, Uri> longUriCache = new ConditionalWeakTable<INode, Uri>();
+
         string ShortenUriPart(string str)
         {
             if(str.Length > UriPartShortened)
@@ -91,9 +94,10 @@ namespace IS4.MultiArchiver.Extensions
                 builder.Query = ShortenUriPart(builder.Query);
                 builder.Fragment = ShortenUriPart(builder.Fragment) + "\u00A0(URI\u00A0too\u00A0long)";
 
-                uri = UriTools.CreateUuid(DataTools.GuidFromName(urlNamespace, uri.AbsoluteUri));
-                var node = new UriNode(defaultHandler.CreateUriNode(uri), defaultHandler, this);
-
+                var newUri = UriTools.CreateUuid(DataTools.GuidFromName(urlNamespace, uri.AbsoluteUri));
+                var subject = defaultHandler.CreateUriNode(newUri);
+                longUriCache.Add(subject, uri);
+                var node = new UriNode(subject, defaultHandler, this);
                 node.Set(Properties.AtPrefLabel, builder.Uri.ToString(), Datatypes.AnyUri);
                 return node;
             }
@@ -203,7 +207,7 @@ namespace IS4.MultiArchiver.Extensions
 
             protected override Uri GetUri(INode node)
             {
-                return ((IUriNode)node).Uri;
+                return longUriCache.TryGetValue(node, out var uri) ? uri : ((IUriNode)node).Uri;
             }
 
             protected override LinkedNode<INode, IRdfHandler> CreateNew(INode subject, IRdfHandler graph)
