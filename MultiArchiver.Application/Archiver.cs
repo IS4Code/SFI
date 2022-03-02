@@ -189,7 +189,7 @@ namespace IS4.MultiArchiver.Extensions
 
         private async ValueTask<AnalysisResult> AnalyzeEntity<T>(T entity, IRdfHandler rdfHandler, IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers, INamespaceMapper mapper) where T : class
         {
-            var handler = new RdfHandler(new Uri(root), this, rdfHandler, graphHandlers);
+            var handler = new RdfHandler(new Uri(root), rdfHandler, graphHandlers);
             rdfHandler.StartRdf();
             try{
                 if(mapper != null)

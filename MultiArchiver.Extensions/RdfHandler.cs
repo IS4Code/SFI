@@ -19,7 +19,6 @@ namespace IS4.MultiArchiver.Extensions
     {
         readonly IRdfHandler defaultHandler;
         readonly IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers;
-        readonly IEntityAnalyzerProvider baseAnalyzer;
 
         public ILinkedNode Root { get; }
 
@@ -28,12 +27,11 @@ namespace IS4.MultiArchiver.Extensions
         public int MaxUriLength { get; set; } = 4096 - 128;
         public int UriPartShortened { get; set; } = 64;
 
-        public RdfHandler(Uri root, IEntityAnalyzerProvider baseAnalyzer, IRdfHandler defaultHandler, IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers)
+        public RdfHandler(Uri root, IRdfHandler defaultHandler, IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers)
             : base(defaultHandler.CreateUriNode, uri => graphHandlers.TryGetValue(uri, out var handler) ? handler : defaultHandler)
         {
             this.defaultHandler = defaultHandler;
             this.graphHandlers = graphHandlers;
-            this.baseAnalyzer = baseAnalyzer;
             Root = Create(UriFormatter.Instance, root);
 
             PrefixMap = new ConcurrentDictionary<Uri, string>(Vocabulary.Vocabularies.Prefixes, new UriComparer());
