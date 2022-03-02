@@ -54,12 +54,7 @@ namespace IS4.MultiArchiver.Services
                 {
                     return null;
                 }
-                var sb = new StringBuilder("ni:///");
-                sb.Append(Uri.EscapeDataString(name));
-                sb.Append(';');
-                DataTools.Base64(hash, sb);
-                sb.Append(isBinary ? "?ct=application/octet-stream" : "?ct=text/plain");
-                return new Uri(sb.ToString(), UriKind.Absolute);
+                return new NiUri(name, hash, isBinary ? "application/octet-stream" : "text/plain");
             }
         }
 
@@ -71,6 +66,36 @@ namespace IS4.MultiArchiver.Services
         public NiHashedContentUriFormatter(IEnumerable<IHashAlgorithm> supportedAlgorithms)
         {
             SupportedAlgorithms = supportedAlgorithms;
+        }
+
+        class NiUri : Uri, IIndividualUriFormatter<IFormatObject>
+        {
+            readonly string hashName;
+            readonly byte[] hashValue;
+
+            public NiUri(string hashName, byte[] hashValue, string type) : base(CreateUri(hashName, hashValue, type), UriKind.Absolute)
+            {
+                this.hashName = hashName;
+                this.hashValue = hashValue;
+            }
+
+            static string CreateUri(string hashName, byte[] hashValue, string type)
+            {
+                var sb = new StringBuilder("ni:///");
+                sb.Append(Uri.EscapeDataString(hashName));
+                sb.Append(';');
+                DataTools.Base64(hashValue, sb);
+                sb.Append("?ct=");
+                sb.Append(type);
+                return sb.ToString();
+            }
+
+            public Uri this[IFormatObject value] {
+                get {
+                    var type = value.MediaType;
+                    return type == null ? null : new NiUri(hashName, hashValue, value.MediaType);
+                }
+            }
         }
     }
 }

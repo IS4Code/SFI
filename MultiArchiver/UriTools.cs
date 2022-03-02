@@ -2,6 +2,7 @@
 using IS4.MultiArchiver.Tools;
 using System;
 using System.Security.Cryptography;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 
@@ -36,13 +37,38 @@ namespace IS4.MultiArchiver
                     switch(charset?.ToLowerInvariant())
                     {
                         case null:
-                            return new Uri("data:" + (mediaType ?? "application/octet-stream") + data, UriKind.Absolute);
+                            return new DataUri(mediaType ?? "application/octet-stream", data);
                         case "ascii":
                         case "us-ascii":
-                            return new EncodedUri("data:" + mediaType + data, UriKind.Absolute);
+                            return new DataUri(mediaType, data);
                         default:
-                            return new EncodedUri("data:" + mediaType + ";charset=" + charset + data, UriKind.Absolute);
+                            return new DataUri(mediaType + ";charset=" + charset, data);
                     }
+                }
+            }
+
+            class DataUri : EncodedUri, IIndividualUriFormatter<IFormatObject>
+            {
+                readonly string data;
+
+                public DataUri(string type, string data) : base(CreateUri(type, data), UriKind.Absolute)
+                {
+                    this.data = data;
+                }
+
+                public Uri this[IFormatObject value] {
+                    get {
+                        var type = value.MediaType;
+                        return type == null ? null : new DataUri(type, data);
+                    }
+                }
+
+                static string CreateUri(string type, string data)
+                {
+                    var sb = new StringBuilder("data:");
+                    sb.Append(type);
+                    sb.Append(data);
+                    return sb.ToString();
                 }
             }
         }

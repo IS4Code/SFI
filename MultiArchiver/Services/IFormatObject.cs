@@ -1,8 +1,6 @@
 ﻿using IS4.MultiArchiver.Formats;
 using System;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Web;
 
 namespace IS4.MultiArchiver.Services
 {
@@ -53,29 +51,16 @@ namespace IS4.MultiArchiver.Services
             return await resultFactory.Invoke<T>(Value, args);
         }
 
-        static readonly Regex dataRegex = new Regex(@"^(.*?)(?:;[^=]*)?,", RegexOptions.Compiled);
         static readonly char[] splitChar = { '/' };
 
         public Uri this[Uri value] {
             get {
-                if(value.Scheme.Equals("data", StringComparison.OrdinalIgnoreCase))
+                if(value is IIndividualUriFormatter<IFormatObject> formatter)
                 {
-                    var type = MediaType?.ToLowerInvariant();
-                    if(type == null || type.IndexOf('/') == -1) return null;
-                    var builder = new UriBuilder(value);
-                    var match = dataRegex.Match(builder.Path);
-                    if(!match.Success) throw new ArgumentException(null, nameof(value));
-                    builder.Path = type + builder.Path.Substring(match.Groups[1].Length);
-                    return builder.Uri;
-                }else if(value.Scheme.Equals("ni", StringComparison.OrdinalIgnoreCase))
-                {
-                    var type = MediaType?.ToLowerInvariant();
-                    if(type == null || type.IndexOf('/') == -1) return null;
-                    var builder = new UriBuilder(value);
-                    var parameters = HttpUtility.ParseQueryString(builder.Query);
-                    parameters["ct"] = type;
-                    builder.Query = parameters.ToString();
-                    return builder.Uri;
+                    if(formatter[this] is Uri result)
+                    {
+                        return result;
+                    }
                 }
                 if(String.IsNullOrEmpty(value.Authority)) throw new ArgumentException(null, nameof(value));
                 var sub = Extension?.ToLowerInvariant();

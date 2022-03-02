@@ -2,7 +2,7 @@
 
 namespace IS4.MultiArchiver.Tools
 {
-    public sealed class EncodedUri : Uri
+    public class EncodedUri : Uri
     {
         public EncodedUri(string uriString) : base(uriString)
         {
