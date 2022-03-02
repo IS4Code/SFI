@@ -152,20 +152,20 @@ namespace IS4.MultiArchiver.Analyzers
                         }
                         if(!any)
                         {
-                            MatchFormat(ImprovisedXmlFormat.Instance, rootState);
+                            await MatchFormat(ImprovisedXmlFormat.Instance, rootState);
                         }
 
                         return new AnalysisResult(node, xmlName);
                 }
-            }while(ReadSafe(reader));
+            }while(await ReadSafe(reader));
 
             throw new InvalidOperationException();
         }
 
-        static bool ReadSafe(XmlReader reader)
+        static async ValueTask<bool> ReadSafe(XmlReader reader)
         {
             try{
-                return reader.Read();
+                return await reader.ReadAsync();
             }catch(XmlException)
             {
                 return false;

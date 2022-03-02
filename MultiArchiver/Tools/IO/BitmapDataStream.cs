@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Tools.IO
 {
@@ -70,6 +72,12 @@ namespace IS4.MultiArchiver.Tools.IO
                 }
             }
             return read;
+        }
+
+        public override Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            return Task.FromResult(Read(buffer, offset, count));
         }
 
         public override long Seek(long offset, SeekOrigin origin)

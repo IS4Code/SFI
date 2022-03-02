@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Tools.IO
 {
@@ -49,6 +51,12 @@ namespace IS4.MultiArchiver.Tools.IO
                 count -= read;
             }
             return total;
+        }
+
+        public override Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            return Task.FromResult(Read(buffer, offset, count));
         }
 
         public override int ReadByte()

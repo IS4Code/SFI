@@ -134,7 +134,7 @@ namespace IS4.MultiArchiver.Analyzers
 
                             try{
                                 int read;
-                                while((read = stream.Read(buffer, 0, buffer.Length)) != 0)
+                                while((read = await stream.ReadAsync(buffer, 0, buffer.Length)) != 0)
                                 {
                                     var segment = buffer.Slice(0, read);
                                     var writing = writers.Select(async writer => {

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Tools.IO
 {
@@ -28,6 +30,13 @@ namespace IS4.MultiArchiver.Tools.IO
         public override int Read(byte[] buffer, int offset, int count)
         {
             int read = baseStream.Read(buffer, offset, count);
+            action(buffer.Slice(offset, read));
+            return read;
+        }
+
+        public override async Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
+        {
+            int read = await baseStream.ReadAsync(buffer, offset, count, cancellationToken);
             action(buffer.Slice(offset, read));
             return read;
         }

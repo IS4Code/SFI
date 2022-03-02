@@ -45,10 +45,10 @@ namespace IS4.MultiArchiver.Formats
         {
             using(var reader = XmlReader.Create(stream, ReaderSettings))
             {
-                if(!reader.Read()) return default;
+                if(!await reader.ReadAsync()) return default;
                 while(reader.NodeType == XmlNodeType.Whitespace || reader.NodeType == XmlNodeType.SignificantWhitespace)
                 {
-                    if(!reader.Read()) return default;
+                    if(!await reader.ReadAsync()) return default;
                 }
                 return await resultFactory(reader, args);
             }
