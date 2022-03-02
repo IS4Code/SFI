@@ -1,18 +1,21 @@
 ﻿using IS4.MultiArchiver.Analyzers;
+using IS4.MultiArchiver.Extensions;
 using IS4.MultiArchiver.Formats;
 using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Tools;
+using IS4.MultiArchiver.Vocabulary;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
+using System.Linq;
 using System.Threading.Tasks;
 using VDS.RDF;
 using VDS.RDF.Parsing;
 using VDS.RDF.Writing;
 using VDS.RDF.Writing.Formatting;
 
-namespace IS4.MultiArchiver.Extensions
+namespace IS4.MultiArchiver
 {
     public class Archiver : EntityAnalyzerProvider
     {
@@ -121,45 +124,52 @@ namespace IS4.MultiArchiver.Extensions
             return archiver;
         }
 
-        public ValueTask Archive(string file, string output, bool direct = false, bool compressed = false)
+        public ValueTask Archive(string file, string output, ArchiverOptions options)
         {
             if((File.GetAttributes(file) & FileAttributes.Directory) != 0)
             {
-                return Archive(new DirectoryInfo(file), output, direct, compressed);
+                return Archive(new DirectoryInfo(file), output, options);
             }else{
-                return Archive(new FileInfo(file), output, direct, compressed);
+                return Archive(new FileInfo(file), output, options);
             }
         }
 
-        public ValueTask Archive<T>(T entity, string output, bool direct = false, bool compressed = false) where T : class
+        public ValueTask Archive<T>(T entity, string output, ArchiverOptions options) where T : class
         {
-            return Archive(new[] { entity }, () => new FileStream(output, FileMode.Create, FileAccess.Write, FileShare.Read), direct, compressed);
+            return Archive(new[] { entity }, () => new FileStream(output, FileMode.Create, FileAccess.Write, FileShare.Read), options);
         }
 
-        public ValueTask Archive<T>(T entity, Stream output, bool direct = false, bool compressed = false) where T : class
+        public ValueTask Archive<T>(T entity, Stream output, ArchiverOptions options) where T : class
         {
-            return Archive(new[] { entity }, () => output, direct, compressed);
+            return Archive(new[] { entity }, () => output, options);
         }
 
-        public ValueTask Archive<T>(IEnumerable<T> entities, string output, bool direct = false, bool compressed = false) where T : class
+        public ValueTask Archive<T>(IEnumerable<T> entities, string output, ArchiverOptions options) where T : class
         {
-            return Archive(entities, () => new FileStream(output, FileMode.Create, FileAccess.Write, FileShare.Read), direct, compressed);
+            return Archive(entities, () => new FileStream(output, FileMode.Create, FileAccess.Write, FileShare.Read), options);
         }
 
-        public ValueTask Archive<T>(IEnumerable<T> entities, Stream output, bool direct = false, bool compressed = false) where T : class
+        public ValueTask Archive<T>(IEnumerable<T> entities, Stream output, ArchiverOptions options) where T : class
         {
-            return Archive(entities, () => output, direct, compressed);
+            return Archive(entities, () => output, options);
         }
 
-        public async ValueTask Archive<T>(IEnumerable<T> entities, Func<Stream> outputFactory, bool direct = false, bool compressed = false) where T : class
+        public async ValueTask Archive<T>(IEnumerable<T> entities, Func<Stream> outputFactory, ArchiverOptions options) where T : class
         {
-            var graphHandlers = new Dictionary<Uri, IRdfHandler>();
+            if(options == null) throw new ArgumentNullException(nameof(options));
 
-            if(direct)
+            var graphHandlers = new Dictionary<Uri, IRdfHandler>(new UriComparer());
+
+            if(options.HideMetadata)
+            {
+                graphHandlers[new Uri(Graphs.Metadata.Value)] = new VDS.RDF.Parsing.Handlers.NullHandler();
+            }
+
+            if(options.DirectOutput)
             {
                 OutputLog.WriteLine("Writing data...");
 
-                var handler = CreateFileHandler(outputFactory, out var mapper, compressed);
+                var handler = CreateFileHandler(outputFactory, out var mapper, options.CompressedOutput);
 
                 SetDefaultNamespaces(mapper);
 
@@ -181,7 +191,7 @@ namespace IS4.MultiArchiver.Extensions
 
                 OutputLog.WriteLine("Saving...");
 
-                SaveGraph(graph, outputFactory, compressed);
+                SaveGraph(graph, outputFactory, options.CompressedOutput);
             }
         }
 
@@ -191,6 +201,10 @@ namespace IS4.MultiArchiver.Extensions
         {
             var handler = new RdfHandler(new Uri(root), rdfHandler, graphHandlers);
             rdfHandler.StartRdf();
+            foreach(var graphHandler in graphHandlers)
+            {
+                graphHandler.Value?.StartRdf();
+            }
             try{
                 if(mapper != null)
                 {
@@ -203,6 +217,10 @@ namespace IS4.MultiArchiver.Extensions
                 return await this.Analyze(entity, new AnalysisContext(nodeFactory: handler));
             }finally{
                 rdfHandler.EndRdf(true);
+                foreach(var graphHandler in graphHandlers)
+                {
+                    graphHandler.Value?.EndRdf(true);
+                }
             }
         }
 
