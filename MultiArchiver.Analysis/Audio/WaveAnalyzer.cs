@@ -13,6 +13,8 @@ namespace IS4.MultiArchiver.Analyzers
     {
         readonly PolarSpectrumGenerator generator = new PolarSpectrumGenerator(512, 512);
 
+        public bool CreateSpectrum { get; set; } = true;
+
         public WaveAnalyzer() : base(Common.AudioClasses)
         {
 
@@ -67,7 +69,7 @@ namespace IS4.MultiArchiver.Analyzers
                     provider = new WaveToSampleProvider(wave);
                     break;
             }
-            if(provider != null)
+            if(provider != null && CreateSpectrum && PolarSpectrumGenerator.IsSupported)
             {
                 var result = generator.CreateSpectrum(wave.WaveFormat.SampleRate, wave.WaveFormat.Channels, provider);
 
