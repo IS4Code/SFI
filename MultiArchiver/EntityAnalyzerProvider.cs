@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.ExceptionServices;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver
 {
@@ -13,7 +14,7 @@ namespace IS4.MultiArchiver
 
         public ICollection<IContainerAnalyzerProvider> ContainerProviders { get; } = new List<IContainerAnalyzerProvider>();
 
-        private AnalysisResult Analyze<T>(T entity, AnalysisContext context, IEntityAnalyzerProvider analyzers) where T : class
+        private async ValueTask<AnalysisResult> Analyze<T>(T entity, AnalysisContext context, IEntityAnalyzerProvider analyzers) where T : class
         {
             foreach(var analyzer in Analyzers.OfType<IEntityAnalyzer<T>>())
             {
@@ -24,7 +25,7 @@ namespace IS4.MultiArchiver
                     }else{
                         Console.Error.WriteLine(entity);
                     }
-                    var result = analyzer.Analyze(entity, context, analyzers);
+                    var result = await analyzer.Analyze(entity, context, analyzers);
                     if(result.Node != null)
                     {
                         return result;
@@ -67,17 +68,17 @@ namespace IS4.MultiArchiver
             return null;
         }
 
-        public AnalysisResult Analyze<T>(T entity, AnalysisContext context) where T : class
+        public async ValueTask<AnalysisResult> Analyze<T>(T entity, AnalysisContext context) where T : class
         {
             if(entity == null) return default;
 
             var wrapper = MatchRoot(entity, context, this, null);
             if(wrapper != null)
             {
-                return wrapper.Analyze(entity, context);
+                return await wrapper.Analyze(entity, context);
             }
 
-            return Analyze(entity, context, this);
+            return await Analyze(entity, context, this);
         }
 
         class ContainerNode<TValue, TParent> : IEntityAnalyzerProvider, IContainerNode<TValue, TParent> where TValue : class where TParent : IContainerNode
@@ -101,14 +102,14 @@ namespace IS4.MultiArchiver
 
             object IContainerNode.Value => Value;
 
-            public AnalysisResult Analyze<TEntity>(TEntity entity, AnalysisContext context) where TEntity : class
+            public async ValueTask<AnalysisResult> Analyze<TEntity>(TEntity entity, AnalysisContext context) where TEntity : class
             {
                 List<ContainerAnalysisInfo> followedAnalyzers = null;
                 List<IContainerAnalyzerProvider> blocked = null;
 
                 var enumerator = activeAnalyzers.GetEnumerator();
 
-                AnalysisResult GetResult(ContainerBehaviour behaviour)
+                async ValueTask<AnalysisResult> GetResult(ContainerBehaviour behaviour)
                 {
                     if((behaviour & ContainerBehaviour.FollowChildren) != 0)
                     {
@@ -123,11 +124,11 @@ namespace IS4.MultiArchiver
                     var path = Value != null ? this : null;
                     if(enumerator.MoveNext())
                     {
-                        return enumerator.Current.Analyzer.Analyze(path, entity, context, GetResult, analyzers);
+                        return await enumerator.Current.Analyzer.Analyze(path, entity, context, GetResult, analyzers);
                     }
                     if(followedAnalyzers == null && blocked == null && Value != null)
                     {
-                        return analyzers.Analyze(entity, context);
+                        return await analyzers.Analyze(entity, context);
                     }
                     var innerAnalyzer = analyzers;
                     if(Value != null)
@@ -137,10 +138,10 @@ namespace IS4.MultiArchiver
                     }else{
                         innerAnalyzer = new ContainerNode<TEntity, IContainerNode>(path, entity, followedAnalyzers, baseProvider, innerAnalyzer);
                     }
-                    return baseProvider.Analyze(entity, context, innerAnalyzer);
+                    return await baseProvider.Analyze(entity, context, innerAnalyzer);
                 }
 
-                return GetResult(0);
+                return await GetResult(0);
             }
 
             public override string ToString()

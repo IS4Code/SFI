@@ -32,21 +32,23 @@ namespace IS4.MultiArchiver.Formats
             return !isBinary;
         }
 
-        public override TResult Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<IUniformResourceLocator, TResult, TArgs> resultFactory, TArgs args)
+        public override async ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<IUniformResourceLocator, TResult, TArgs> resultFactory, TArgs args)
         {
             if(InternetShortcut == null) return default;
 
-            return Task.Factory.StartNew(() => {
+            var result = await Task.Factory.StartNew(() => {
                 var shortcut = (IUniformResourceLocator)Activator.CreateInstance(InternetShortcut);
                 try{
                     if(((IPersistStream)shortcut).Load(new StreamWrapper(stream)) < 0) return default;
                     shortcut.GetUrl(out var str);
-                    if(String.IsNullOrEmpty(str)) return default;
+                    if(String.IsNullOrEmpty(str)) return null;
                     return resultFactory(shortcut, args);
                 }finally{
                     Marshal.FinalReleaseComObject(shortcut);
                 }
-            }, CancellationToken.None, 0, StaTaskScheduler).Result;
+            }, CancellationToken.None, 0, StaTaskScheduler);
+            if(result == null) return default;
+            return await result;
         }
     }
 }

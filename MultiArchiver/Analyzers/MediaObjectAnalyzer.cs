@@ -1,6 +1,7 @@
 ﻿using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Vocabulary;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
@@ -18,7 +19,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public abstract AnalysisResult Analyze(T entity, AnalysisContext context, IEntityAnalyzerProvider analyzers);
+        public abstract ValueTask<AnalysisResult> Analyze(T entity, AnalysisContext context, IEntityAnalyzerProvider analyzers);
 
         protected override void InitNode(ILinkedNode node, AnalysisContext context)
         {

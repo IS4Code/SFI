@@ -6,6 +6,7 @@ using IS4.MultiArchiver.Vocabulary;
 using NAudio.Wave;
 using NAudio.Wave.SampleProviders;
 using System.Drawing;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
@@ -20,7 +21,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override AnalysisResult Analyze(WaveStream wave, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        public override async ValueTask<AnalysisResult> Analyze(WaveStream wave, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
             var node = GetNode(context);
             if(wave is ICustomWaveFormat customFormat)
@@ -93,7 +94,7 @@ namespace IS4.MultiArchiver.Analyzers
                     ByteHash = false
                 };
 
-                analyzers.Analyze(bmp, context);
+                await analyzers.Analyze(bmp, context);
             }
 
             return new AnalysisResult(node);

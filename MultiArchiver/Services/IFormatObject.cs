@@ -1,6 +1,7 @@
 ﻿using IS4.MultiArchiver.Formats;
 using System;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace IS4.MultiArchiver.Services
@@ -11,7 +12,7 @@ namespace IS4.MultiArchiver.Services
         string MediaType { get; }
         IFileFormat Format { get; }
 
-        TResult GetValue<TResult, TArgs>(IResultFactory<TResult, TArgs> resultFactory, TArgs args);
+        ValueTask<TResult> GetValue<TResult, TArgs>(IResultFactory<TResult, TArgs> resultFactory, TArgs args);
     }
 
     public interface IFormatObject<out T> : IFormatObject
@@ -47,9 +48,9 @@ namespace IS4.MultiArchiver.Services
             return $"Media object ({MediaType ?? Extension ?? Format?.ToString()})";
         }
 
-        TResult IFormatObject.GetValue<TResult, TArgs>(IResultFactory<TResult, TArgs> resultFactory, TArgs args)
+        async ValueTask<TResult> IFormatObject.GetValue<TResult, TArgs>(IResultFactory<TResult, TArgs> resultFactory, TArgs args)
         {
-            return resultFactory.Invoke<T>(Value, args);
+            return await resultFactory.Invoke<T>(Value, args);
         }
 
         static readonly Regex dataRegex = new Regex(@"^(.*?)(?:;[^=]*)?,", RegexOptions.Compiled);

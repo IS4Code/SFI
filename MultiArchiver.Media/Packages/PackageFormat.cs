@@ -1,5 +1,6 @@
 ﻿using IS4.MultiArchiver.Media;
 using IS4.MultiArchiver.Services;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
@@ -38,9 +39,9 @@ namespace IS4.MultiArchiver.Formats
         {
             public string Root { get; private set; }
 
-            protected abstract AnalysisResult Analyze<TPath, TNode>(TPath parentPath, TNode node, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzerProvider analyzers) where TNode : class where TPath : IContainerNode;
+            protected abstract ValueTask<AnalysisResult> Analyze<TPath, TNode>(TPath parentPath, TNode node, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzerProvider analyzers) where TNode : class where TPath : IContainerNode;
 
-            AnalysisResult IContainerAnalyzer.Analyze<TPath, TNode>(TPath parentPath, TNode node, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzerProvider analyzers)
+            ValueTask<AnalysisResult> IContainerAnalyzer.Analyze<TPath, TNode>(TPath parentPath, TNode node, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzerProvider analyzers)
             {
                 if(node is IDirectoryInfo dir)
                 {

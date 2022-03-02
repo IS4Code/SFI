@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
@@ -19,11 +20,11 @@ namespace IS4.MultiArchiver.Formats
 
         }
 
-        public override TResult Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<IModule, TResult, TArgs> resultFactory, TArgs args)
+        public override async ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<IModule, TResult, TArgs> resultFactory, TArgs args)
         {
             if(PeFile.TryParse(stream, out var file))
             {
-                return resultFactory(new Module(file, stream), args);
+                return await resultFactory(new Module(file, stream), args);
             }
             return default;
         }

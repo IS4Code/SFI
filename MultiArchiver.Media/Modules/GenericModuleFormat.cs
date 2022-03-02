@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
@@ -14,9 +15,9 @@ namespace IS4.MultiArchiver.Formats
 
         }
         
-        public override TResult Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<Module, TResult, TArgs> resultFactory, TArgs args)
+        public override async ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<Module, TResult, TArgs> resultFactory, TArgs args)
         {
-            return resultFactory(new Module(stream), args);
+            return await resultFactory(new Module(stream), args);
         }
         
         public override string GetMediaType(Module value)

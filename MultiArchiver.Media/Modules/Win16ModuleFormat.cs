@@ -1,6 +1,7 @@
 ﻿using IS4.MultiArchiver.Media;
 using IS4.MultiArchiver.Media.Modules;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
@@ -11,9 +12,9 @@ namespace IS4.MultiArchiver.Formats
 
         }
 
-        public override TResult Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<IModule, TResult, TArgs> resultFactory, TArgs args)
+        public override async ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<IModule, TResult, TArgs> resultFactory, TArgs args)
         {
-            return resultFactory(new NeReader(stream), args);
+            return await resultFactory(new NeReader(stream), args);
         }
     }
 }

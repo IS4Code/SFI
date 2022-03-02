@@ -3,6 +3,7 @@ using IS4.MultiArchiver.Tags;
 using IS4.MultiArchiver.Vocabulary;
 using Svg;
 using System;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
@@ -13,7 +14,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override AnalysisResult Analyze(SvgDocument svg, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        public override async ValueTask<AnalysisResult> Analyze(SvgDocument svg, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
             var node = GetNode(context);
             if(svg.Width.Type == SvgUnitType.Pixel)
@@ -33,7 +34,7 @@ namespace IS4.MultiArchiver.Analyzers
                     {
                         StoreDimensions = false
                     };
-                    exception = analyzers.Analyze(bmp, context).Exception;
+                    exception = (await analyzers.Analyze(bmp, context)).Exception;
                 }
             }catch(Exception e)
             {

@@ -4,6 +4,7 @@ using IS4.MultiArchiver.Tools;
 using IS4.MultiArchiver.Vocabulary;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
@@ -14,13 +15,13 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override AnalysisResult Analyze(IArchiveFile archive, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        public override async ValueTask<AnalysisResult> Analyze(IArchiveFile archive, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
             var node = GetNode(context);
 
             var info = new ArchiveRoot(archive);
 
-            var result = analyzers.Analyze(info, context.WithNode(node));
+            var result = await analyzers.Analyze(info, context.WithNode(node));
 
             if(result.Exception.Is<CryptographicException>())
             {

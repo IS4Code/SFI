@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
@@ -86,7 +87,7 @@ namespace IS4.MultiArchiver.Analyzers
             return node;
         }
 
-        public AnalysisResult Analyze(IFileInfo file, AnalysisContext context, IEntityAnalyzerProvider analyzer)
+        public async ValueTask<AnalysisResult> Analyze(IFileInfo file, AnalysisContext context, IEntityAnalyzerProvider analyzer)
         {
             var node = AnalyzeFileNode(file, context, analyzer);
             if(node != null)
@@ -100,7 +101,7 @@ namespace IS4.MultiArchiver.Analyzers
                 {
                     node.Set(Properties.EncryptionStatus, Individuals.EncryptedStatus);
                 }else{
-                    var content = analyzer.Analyze<IStreamFactory>(file, context.WithParent(node)).Node;
+                    var content = (await analyzer.Analyze<IStreamFactory>(file, context.WithParent(node))).Node;
                     if(content != null)
                     {
                         content.Set(Properties.IsStoredAs, node);
@@ -114,15 +115,15 @@ namespace IS4.MultiArchiver.Analyzers
 
                 if(file is IDirectoryInfo directory)
                 {
-                    AnalyzeDirectory(node, directory, context, analyzer);
+                    await AnalyzeDirectory(node, directory, context, analyzer);
                 }
             }
             return new AnalysisResult(node);
         }
 
-        private void AnalyzeDirectory(ILinkedNode node, IDirectoryInfo directory, AnalysisContext context, IEntityAnalyzerProvider analyzer)
+        private async ValueTask AnalyzeDirectory(ILinkedNode node, IDirectoryInfo directory, AnalysisContext context, IEntityAnalyzerProvider analyzer)
         {
-            var folder = AnalyzeContents(node, directory, context, analyzer);
+            var folder = await AnalyzeContents(node, directory, context, analyzer);
 
             if(folder != null)
             {
@@ -135,17 +136,17 @@ namespace IS4.MultiArchiver.Analyzers
             }
         }
 
-        public AnalysisResult Analyze(IDirectoryInfo directory, AnalysisContext context, IEntityAnalyzerProvider analyzer)
+        public async ValueTask<AnalysisResult> Analyze(IDirectoryInfo directory, AnalysisContext context, IEntityAnalyzerProvider analyzer)
         {
             var node = AnalyzeFileNode(directory, context, analyzer);
             if(node != null)
             {
-                AnalyzeDirectory(node, directory, context, analyzer);
+                await AnalyzeDirectory(node, directory, context, analyzer);
             }
             return new AnalysisResult(node);
         }
 
-        private ILinkedNode AnalyzeContents(ILinkedNode parent, IDirectoryInfo directory, AnalysisContext context, IEntityAnalyzerProvider analyzer)
+        private async ValueTask<ILinkedNode> AnalyzeContents(ILinkedNode parent, IDirectoryInfo directory, AnalysisContext context, IEntityAnalyzerProvider analyzer)
         {
             var folder = parent?[""] ?? context.NodeFactory.NewGuidNode();
 
@@ -170,7 +171,7 @@ namespace IS4.MultiArchiver.Analyzers
                 {
                     var entryNode = CreateNode(entry, context);
 
-                    analyzer.Analyze(entry, context.WithNode(entryNode));
+                    await analyzer.Analyze(entry, context.WithNode(entryNode));
                     entryNode.Set(Properties.BelongsToContainer, folder);
                 }
             }
@@ -208,23 +209,23 @@ namespace IS4.MultiArchiver.Analyzers
             }
         }
 
-        public AnalysisResult Analyze(FileInfo entity, AnalysisContext context, IEntityAnalyzerProvider analyzer)
+        public ValueTask<AnalysisResult> Analyze(FileInfo entity, AnalysisContext context, IEntityAnalyzerProvider analyzer)
         {
             return analyzer.Analyze<IFileInfo>(new FileInfoWrapper(entity), context);
         }
 
-        public AnalysisResult Analyze(DirectoryInfo entity, AnalysisContext context, IEntityAnalyzerProvider analyzer)
+        public ValueTask<AnalysisResult> Analyze(DirectoryInfo entity, AnalysisContext context, IEntityAnalyzerProvider analyzer)
         {
             return analyzer.Analyze<IDirectoryInfo>(new DirectoryInfoWrapper(entity), context);
         }
 
-        public AnalysisResult Analyze(IFileNodeInfo entity, AnalysisContext context, IEntityAnalyzerProvider analyzer)
+        public ValueTask<AnalysisResult> Analyze(IFileNodeInfo entity, AnalysisContext context, IEntityAnalyzerProvider analyzer)
         {
             switch(entity)
             {
                 case IFileInfo file: return Analyze(file, context, analyzer);
                 case IDirectoryInfo dir: return Analyze(dir, context, analyzer);
-                default: return new AnalysisResult(CreateNode(entity, context));
+                default: return new ValueTask<AnalysisResult>(new AnalysisResult(CreateNode(entity, context)));
             }
         }
     }

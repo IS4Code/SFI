@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
@@ -18,19 +19,19 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override AnalysisResult Analyze(IModule module, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        public override async ValueTask<AnalysisResult> Analyze(IModule module, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
             var node = GetNode(context);
-            AnalyzeSignature(node, module.Signature, context, analyzers);
-            AnalyzeResources(node, module, context, analyzers, out var label);
+            await AnalyzeSignature(node, module.Signature, context, analyzers);
+            var label = await AnalyzeResources(node, module, context, analyzers);
             return new AnalysisResult(node, label);
         }
 
-        void AnalyzeResources(ILinkedNode node, IModule module, AnalysisContext context, IEntityAnalyzerProvider analyzers, out string label)
+        async ValueTask<string> AnalyzeResources(ILinkedNode node, IModule module, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
             var cache = new Dictionary<(object, object), ResourceInfo>();
             var groups = new List<ResourceInfo>();
-            label = null;
+            string label = null;
 
             foreach(var resourceGroup in module.ReadResources().GroupBy(r => $"{r.Type}/{r.Name}"))
             {
@@ -60,7 +61,7 @@ namespace IS4.MultiArchiver.Analyzers
                             continue;
                         case Win32ResourceType.Version:
                             var versionInfo = new WinVersionInfo(info.Data);
-                            label = analyzers.Analyze(versionInfo, context.WithNode(node)).Label;
+                            label = (await analyzers.Analyze(versionInfo, context.WithNode(node))).Label;
                             continue;
                     }
                     if(info.Type.Equals("MUI"))
@@ -68,7 +69,7 @@ namespace IS4.MultiArchiver.Analyzers
                         continue;
                     }
                     cache[(resource.Type, resource.Name)] = info;
-                    var infoNode = analyzers.Analyze<IFileInfo>(info, context.WithParent(node[info.Type])).Node;
+                    var infoNode = (await analyzers.Analyze<IFileInfo>(info, context.WithParent(node[info.Type]))).Node;
                     if(infoNode != null)
                     {
                         node.Set(Properties.HasMediaStream, infoNode);
@@ -79,21 +80,22 @@ namespace IS4.MultiArchiver.Analyzers
             foreach(var info in groups)
             {
                 info.MakeGroup(cache);
-                var infoNode = analyzers.Analyze<IFileInfo>(info, context.WithParent(node[info.Type])).Node;
+                var infoNode = (await analyzers.Analyze<IFileInfo>(info, context.WithParent(node[info.Type]))).Node;
                 if(infoNode != null)
                 {
                     node.Set(Properties.HasMediaStream, infoNode);
                 }
             }
+            return label;
         }
 
-        void AnalyzeSignature(ILinkedNode node, IModuleSignature signature, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        async ValueTask AnalyzeSignature(ILinkedNode node, IModuleSignature signature, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
             if(signature == null) return;
             HashAlgorithm.AddHash(node, signature.HashAlgorithm, signature.Hash, context.NodeFactory);
 
             var data = signature.Certificate.GetRawCertData();
-            var result = analyzers.Analyze(data, context.WithParent(node)).Node;
+            var result = (await analyzers.Analyze(data, context.WithParent(node))).Node;
 
             if(result != null)
             {

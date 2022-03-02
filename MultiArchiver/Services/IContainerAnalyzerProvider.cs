@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Services
 {
@@ -7,7 +8,7 @@ namespace IS4.MultiArchiver.Services
         IContainerAnalyzer MatchRoot<TRoot>(TRoot root, AnalysisContext context) where TRoot : class;
     }
 
-    public delegate AnalysisResult AnalyzeInner(ContainerBehaviour behaviour);
+    public delegate ValueTask<AnalysisResult> AnalyzeInner(ContainerBehaviour behaviour);
 
     [Flags]
     public enum ContainerBehaviour
@@ -19,12 +20,12 @@ namespace IS4.MultiArchiver.Services
 
     public interface IContainerAnalyzer
     {
-        AnalysisResult Analyze<TParent, TEntity>(TParent parentNode, TEntity entity, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzerProvider analyzers) where TEntity : class where TParent : IContainerNode;
+        ValueTask<AnalysisResult> Analyze<TParent, TEntity>(TParent parentNode, TEntity entity, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzerProvider analyzers) where TEntity : class where TParent : IContainerNode;
     }
 
     public interface IContainerAnalyzer<in TParent, in TEntity> where TEntity : class where TParent : IContainerNode
     {
-        AnalysisResult Analyze(TParent parentNode, TEntity entity, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzerProvider analyzers);
+        ValueTask<AnalysisResult> Analyze(TParent parentNode, TEntity entity, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzerProvider analyzers);
     }
 
     public interface IContainerNode

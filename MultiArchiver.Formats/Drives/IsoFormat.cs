@@ -2,6 +2,7 @@
 using IS4.MultiArchiver.Services;
 using System;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
@@ -22,11 +23,11 @@ namespace IS4.MultiArchiver.Formats
             return isBinary;
         }
 
-        public override TResult Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<CDReader, TResult, TArgs> resultFactory, TArgs args)
+        public override async ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<CDReader, TResult, TArgs> resultFactory, TArgs args)
         {
             using(var reader = new CDReader(stream, true))
             {
-                return resultFactory(reader, args);
+                return await resultFactory(reader, args);
             }
         }
     }

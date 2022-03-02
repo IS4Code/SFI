@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
@@ -18,7 +19,7 @@ namespace IS4.MultiArchiver.Analyzers
     {
         public ICollection<object> MetadataReaders { get; } = new SortedSet<object>(TypeInheritanceComparer<object>.Instance);
 
-        public override AnalysisResult Analyze(IReadOnlyList<Directory> entity, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        public override  ValueTask<AnalysisResult> Analyze(IReadOnlyList<Directory> entity, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
             var node = GetNode(context);
             string result = null;
@@ -36,7 +37,7 @@ namespace IS4.MultiArchiver.Analyzers
             {
                 if(streams.Count == 1)
                 {
-                    return new AnalysisResult(node, result ?? Analyze(node, streams[0].Value, entity, context.NodeFactory));
+                    return new ValueTask<AnalysisResult>(new AnalysisResult(node, result ?? Analyze(node, streams[0].Value, entity, context.NodeFactory)));
                 }else{
                     var merged = new Dictionary<string, object>();
 
@@ -68,11 +69,11 @@ namespace IS4.MultiArchiver.Analyzers
                         }
                     }
 
-                    return new AnalysisResult(node, result ?? Analyze(node, merged, entity, context.NodeFactory));
+                    return new ValueTask<AnalysisResult>(new AnalysisResult(node, result ?? Analyze(node, merged, entity, context.NodeFactory)));
                 }
             }
 
-            return new AnalysisResult(node, result);
+            return new ValueTask<AnalysisResult>(new AnalysisResult(node, result));
         }
 
         static IEnumerable<KeyValuePair<Directory, Dictionary<string, object>>> IdentifyTags(IReadOnlyList<Directory> entity, params string[] tagNames)

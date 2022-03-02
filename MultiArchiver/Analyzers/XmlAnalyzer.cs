@@ -3,6 +3,7 @@ using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Tools;
 using IS4.MultiArchiver.Tools.Xml;
 using IS4.MultiArchiver.Vocabulary;
+using MorseCode.ITask;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override AnalysisResult Analyze(XmlReader reader, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        public override async ValueTask<AnalysisResult> Analyze(XmlReader reader, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
             var node = GetNode(context);
 
@@ -102,9 +103,9 @@ namespace IS4.MultiArchiver.Analyzers
 
                         var formats = XmlFormats.Where(fmt => fmt.CheckDocument(docType, rootState)).ToList();
 
-                        bool MatchFormat(IXmlDocumentFormat format, XmlReader localReader)
+                        async Task<bool> MatchFormat(IXmlDocumentFormat format, XmlReader localReader)
                         {
-                            var result = format.Match(localReader, docType, context.MatchContext, this, (format, context, analyzers));
+                            var result = await format.Match(localReader, docType, context.MatchContext, this, (format, context, analyzers));
                             if(result.Node != null)
                             {
                                 result.Node.Set(Properties.HasFormat, node);
@@ -118,7 +119,7 @@ namespace IS4.MultiArchiver.Analyzers
                         {
                             foreach(var format in formats)
                             {
-                                if(MatchFormat(format, reader))
+                                if(await MatchFormat(format, reader))
                                 {
                                     any = true;
                                 }
@@ -137,8 +138,7 @@ namespace IS4.MultiArchiver.Analyzers
                             {
                                 foreach(var writer in writers)
                                 {
-                                    var task = writer.WriteAsync(state);
-                                    if(!task.IsCompleted) task.AsTask().Wait();
+                                    await writer.WriteAsync(state);
                                 }
                             }
                             foreach(var writer in writers)
@@ -146,7 +146,7 @@ namespace IS4.MultiArchiver.Analyzers
                                 writer.TryComplete();
                             }
 
-                            Task.WaitAll(tasks);
+                            await Task.WhenAll(tasks);
 
                             any = tasks.Any(t => t.Result);
                         }
@@ -172,12 +172,12 @@ namespace IS4.MultiArchiver.Analyzers
             }
         }
 
-        AnalysisResult IResultFactory<AnalysisResult, (IXmlDocumentFormat format, AnalysisContext context, IEntityAnalyzerProvider analyzer)>.Invoke<T>(T value, (IXmlDocumentFormat format, AnalysisContext context, IEntityAnalyzerProvider analyzer) args)
+        async ITask<AnalysisResult> IResultFactory<AnalysisResult, (IXmlDocumentFormat format, AnalysisContext context, IEntityAnalyzerProvider analyzer)>.Invoke<T>(T value, (IXmlDocumentFormat format, AnalysisContext context, IEntityAnalyzerProvider analyzer) args)
         {
             var (format, context, analyzer) = args;
             try{
                 var obj = new FormatObject<T>(format, value);
-                return analyzer.Analyze(obj, context);
+                return await analyzer.Analyze(obj, context);
             }catch(Exception e)
             {
                 throw new InternalArchiverException(e);
@@ -246,9 +246,9 @@ namespace IS4.MultiArchiver.Analyzers
                 return true;
             }
 
-            public override TResult Match<TResult, TArgs>(XmlReader reader, XDocumentType docType, MatchContext matchContext, ResultFactory<XmlFormat, TResult, TArgs> resultFactory, TArgs args)
+            public override async ValueTask<TResult> Match<TResult, TArgs>(XmlReader reader, XDocumentType docType, MatchContext matchContext, ResultFactory<XmlFormat, TResult, TArgs> resultFactory, TArgs args)
             {
-                return resultFactory(new XmlFormat(reader, docType), args);
+                return await resultFactory(new XmlFormat(reader, docType), args);
             }
 
             public class XmlFormat

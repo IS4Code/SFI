@@ -2,6 +2,7 @@
 using IS4.MultiArchiver.Services;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
@@ -29,7 +30,7 @@ namespace IS4.MultiArchiver.Formats
                 this.format = format;
             }
 
-            protected override AnalysisResult Analyze<TPath, TNode>(TPath parentPath, TNode node, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzerProvider analyzers)
+            protected override async ValueTask<AnalysisResult> Analyze<TPath, TNode>(TPath parentPath, TNode node, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzerProvider analyzers)
             {
                 if(parentPath != null)
                 {
@@ -42,11 +43,11 @@ namespace IS4.MultiArchiver.Formats
                                 dataObjects.Add(dataObject);
                             }
                         }
-                        return inner(ContainerBehaviour.None);
+                        return await inner(ContainerBehaviour.None);
                     }
-                    return inner(ContainerBehaviour.FollowChildren);
+                    return await inner(ContainerBehaviour.FollowChildren);
                 }
-                var result = inner(ContainerBehaviour.FollowChildren);
+                var result = await inner(ContainerBehaviour.FollowChildren);
                 if(result.Node != null)
                 {
                     foreach(var dataObject in dataObjects)

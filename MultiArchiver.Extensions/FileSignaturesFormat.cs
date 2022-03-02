@@ -2,6 +2,7 @@
 using IS4.MultiArchiver.Tools;
 using System;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
@@ -33,9 +34,9 @@ namespace IS4.MultiArchiver.Formats
             }
         }
 
-        public override TResult Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<IDisposable, TResult, TArgs> resultFactory, TArgs args)
+        public override async ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<IDisposable, TResult, TArgs> resultFactory, TArgs args)
         {
-            return resultFactory(null, args);
+            return await resultFactory(null, args);
         }
 
         public static FileSignaturesFormat Create(FileSignatures.FileFormat format)
@@ -54,11 +55,11 @@ namespace IS4.MultiArchiver.Formats
                 this.reader = reader;
             }
 
-            public override TResult Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<IDisposable, TResult, TArgs> resultFactory, TArgs args)
+            public override async ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<IDisposable, TResult, TArgs> resultFactory, TArgs args)
             {
                 using(var result = reader.Read(stream))
                 {
-                    return resultFactory(result, args);
+                    return await resultFactory(result, args);
                 }
             }
         }

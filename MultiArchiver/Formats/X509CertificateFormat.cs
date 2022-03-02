@@ -4,6 +4,7 @@ using System.Buffers;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
@@ -30,26 +31,26 @@ namespace IS4.MultiArchiver.Formats
             }
         }
 
-        public override TResult Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<X509Certificate2, TResult, TArgs> resultFactory, TArgs args)
+        public override async ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<X509Certificate2, TResult, TArgs> resultFactory, TArgs args)
         {
             if(stream is MemoryStream memoryStream)
             {
                 var data = memoryStream.ToArray();
                 var cert = new X509Certificate2(data);
                 storedTypes.Add(cert, X509Certificate2.GetCertContentType(data));
-                return resultFactory(cert, args);
+                return await resultFactory(cert, args);
             }else if(stream is FileStream fileStream)
             {
                 var type = X509Certificate2.GetCertContentType(fileStream.Name);
                 if(type == X509ContentType.Authenticode) return default;
                 var cert = new X509Certificate2(fileStream.Name);
                 storedTypes.Add(cert, type);
-                return resultFactory(cert, args);
+                return await resultFactory(cert, args);
             }
             using(var buffer = new MemoryStream())
             {
                 stream.CopyTo(buffer);
-                return Match(buffer, context, resultFactory, args);
+                return await Match(buffer, context, resultFactory, args);
             }
         }
 

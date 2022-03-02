@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
@@ -36,9 +37,9 @@ namespace IS4.MultiArchiver.Formats
             return default;
         }
 
-        public override TResult Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<IReadOnlyList<MetadataExtractor.Directory>, TResult, TArgs> resultFactory, TArgs args)
+        public override async ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<IReadOnlyList<MetadataExtractor.Directory>, TResult, TArgs> resultFactory, TArgs args)
         {
-            return resultFactory(ImageMetadataReader.ReadMetadata(stream), args);
+            return await resultFactory(ImageMetadataReader.ReadMetadata(stream), args);
         }
 
         public override bool CheckHeader(Span<byte> header, bool isBinary, IEncodingDetector encodingDetector)

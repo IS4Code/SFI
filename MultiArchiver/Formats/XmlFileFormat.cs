@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace IS4.MultiArchiver.Formats
@@ -40,7 +41,7 @@ namespace IS4.MultiArchiver.Formats
             }
         }
 
-        public override TResult Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<XmlReader, TResult, TArgs> resultFactory, TArgs args)
+        public override async ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<XmlReader, TResult, TArgs> resultFactory, TArgs args)
         {
             using(var reader = XmlReader.Create(stream, ReaderSettings))
             {
@@ -49,7 +50,7 @@ namespace IS4.MultiArchiver.Formats
                 {
                     if(!reader.Read()) return default;
                 }
-                return resultFactory(reader, args);
+                return await resultFactory(reader, args);
             }
         }
 

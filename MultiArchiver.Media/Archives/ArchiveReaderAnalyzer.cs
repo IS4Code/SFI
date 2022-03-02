@@ -2,6 +2,7 @@
 using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Vocabulary;
 using System.Security.Cryptography;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
@@ -12,7 +13,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override AnalysisResult Analyze(IArchiveReader reader, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        public override async ValueTask<AnalysisResult> Analyze(IArchiveReader reader, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
             var node = GetNode(context);
 
@@ -20,7 +21,7 @@ namespace IS4.MultiArchiver.Analyzers
                 while(reader.MoveNext())
                 {
                     var entry = reader.Current;
-                    var entryNode = analyzers.Analyze(entry, context.WithNode(node[entry.Path])).Node;
+                    var entryNode = (await analyzers.Analyze(entry, context.WithNode(node[entry.Path]))).Node;
                     if(entryNode != null && !entry.Path.Contains("/"))
                     {
                         entryNode.SetClass(Classes.ArchiveItem);

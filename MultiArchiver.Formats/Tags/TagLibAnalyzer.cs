@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using TagLib;
 using Properties = IS4.MultiArchiver.Vocabulary.Properties;
 
@@ -13,7 +14,7 @@ namespace IS4.MultiArchiver.Analyzers
 {
     public class TagLibAnalyzer : MediaObjectAnalyzer<File>, IPropertyUriFormatter<string>
     {
-        public override AnalysisResult Analyze(File file, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        public override ValueTask<AnalysisResult> Analyze(File file, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
             var node = GetNode(context);
             var properties = file.Properties;
@@ -123,7 +124,7 @@ namespace IS4.MultiArchiver.Analyzers
                 }
             }
 
-            return new AnalysisResult(node);
+            return new ValueTask<AnalysisResult>(new AnalysisResult(node));
         }
 
         static readonly Dictionary<string, string> propertyNames = new Dictionary<string, string>

@@ -2,6 +2,7 @@
 using MetadataExtractor.Util;
 using System;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
@@ -22,9 +23,9 @@ namespace IS4.MultiArchiver.Formats
             return value.Value.GetMimeType();
         }
 
-        public override TResult Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<FileTypeWrapper, TResult, TArgs> resultFactory, TArgs args)
+        public override async ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<FileTypeWrapper, TResult, TArgs> resultFactory, TArgs args)
         {
-            return resultFactory(new FileTypeWrapper(FileTypeDetector.DetectFileType(stream)), args);
+            return await resultFactory(new FileTypeWrapper(FileTypeDetector.DetectFileType(stream)), args);
         }
 
         public override bool CheckHeader(ArraySegment<byte> header, bool isBinary, IEncodingDetector encodingDetector)

@@ -7,16 +7,17 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading.Tasks;
 using static Vanara.PInvoke.VersionDll;
 
 namespace IS4.MultiArchiver.Analyzers
 {
     public class WinVersionAnalyzer : EntityAnalyzer, IEntityAnalyzer<WinVersionInfo>
     {
-        public AnalysisResult Analyze(WinVersionInfo entity, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        public ValueTask<AnalysisResult> Analyze(WinVersionInfo entity, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
             var node = GetNode(context);
-            return new AnalysisResult(node, ReadVersion(node, entity.Data));
+            return new ValueTask<AnalysisResult>(new AnalysisResult(node, ReadVersion(node, entity.Data)));
         }
         
         static readonly byte[] ansiVersionString = Encoding.ASCII.GetBytes("VS_VERSION_INFO");

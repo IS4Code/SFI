@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using Vanara.PInvoke;
 using static Vanara.PInvoke.DbgHelp;
 using static Vanara.PInvoke.Kernel32;
@@ -17,14 +18,14 @@ namespace IS4.MultiArchiver.Formats
 
         }
 
-        public override TResult Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<IModule, TResult, TArgs> resultFactory, TArgs args)
+        public override async ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<IModule, TResult, TArgs> resultFactory, TArgs args)
         {
             if(stream is FileStream fileStream)
             {
                 using(var inst = LoadLibraryEx(fileStream.Name, LoadLibraryExFlags.LOAD_LIBRARY_AS_IMAGE_RESOURCE | LoadLibraryExFlags.LOAD_LIBRARY_AS_DATAFILE | LoadLibraryExFlags.DONT_RESOLVE_DLL_REFERENCES))
                 {
                     if(inst.IsNull) return default;
-                    return resultFactory(new Module(inst), args);
+                    return await resultFactory(new Module(inst), args);
                 }
             }
             using(var tmpPath = FileTools.GetTemporaryFile("mz"))
@@ -36,7 +37,7 @@ namespace IS4.MultiArchiver.Formats
                 using(var inst = LoadLibraryEx(tmpPath, LoadLibraryExFlags.LOAD_LIBRARY_AS_IMAGE_RESOURCE | LoadLibraryExFlags.LOAD_LIBRARY_AS_DATAFILE | LoadLibraryExFlags.DONT_RESOLVE_DLL_REFERENCES))
                 {
                     if(inst.IsNull) return default;
-                    return resultFactory(new Module(inst), args);
+                    return await resultFactory(new Module(inst), args);
                 }
             }
         }

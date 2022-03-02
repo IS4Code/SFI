@@ -3,6 +3,7 @@ using IS4.MultiArchiver.Tools;
 using NAudio.Wave;
 using System;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
@@ -22,11 +23,11 @@ namespace IS4.MultiArchiver.Formats
             return header.MemoryCast<uint>()[2] == 0x45564157;
         }
 
-        public override TResult Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<WaveStream, TResult, TArgs> resultFactory, TArgs args)
+        public override async ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<WaveStream, TResult, TArgs> resultFactory, TArgs args)
         {
             using(var reader = new WaveFileReader(stream))
             {
-                return resultFactory(reader, args);
+                return await resultFactory(reader, args);
             }
         }
     }

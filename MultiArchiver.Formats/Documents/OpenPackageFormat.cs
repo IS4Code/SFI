@@ -4,6 +4,7 @@ using NPOI.OpenXml4Net.Exceptions;
 using NPOI.OpenXml4Net.OPC;
 using NPOI.OpenXml4Net.OPC.Internal;
 using System;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
@@ -36,7 +37,7 @@ namespace IS4.MultiArchiver.Formats
                 Root = contentTypes.Path.Substring(0, contentTypes.Path.Length - contentTypes.Name.Length);
             }
 
-            public AnalysisResult Analyze(IContainerNode parentNode, IFileNodeInfo file, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzerProvider analyzers)
+            public async ValueTask<AnalysisResult> Analyze(IContainerNode parentNode, IFileNodeInfo file, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzerProvider analyzers)
             {
                 if(file.Path.StartsWith(Root) && ContentTypeManager != null)
                 {
@@ -58,10 +59,10 @@ namespace IS4.MultiArchiver.Formats
 
                     }
                 }
-                return inner(ContainerBehaviour.FollowChildren);
+                return await inner(ContainerBehaviour.FollowChildren);
             }
 
-            public AnalysisResult Analyze(IContainerNode parentNode, IDataObject dataObject, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzerProvider analyzers)
+            public async ValueTask<AnalysisResult> Analyze(IContainerNode parentNode, IDataObject dataObject, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzerProvider analyzers)
             {
                 if(dataObject.Source is IFileNodeInfo file)
                 {
@@ -73,10 +74,10 @@ namespace IS4.MultiArchiver.Formats
                         }
                     }
                 }
-                return inner(ContainerBehaviour.None);
+                return await inner(ContainerBehaviour.None);
             }
 
-            AnalysisResult IContainerAnalyzer.Analyze<TParent, TEntity>(TParent parentNode, TEntity entity, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzerProvider analyzers)
+            ValueTask<AnalysisResult> IContainerAnalyzer.Analyze<TParent, TEntity>(TParent parentNode, TEntity entity, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzerProvider analyzers)
             {
                 if(this is IContainerAnalyzer<TParent, TEntity> analyzer)
                 {

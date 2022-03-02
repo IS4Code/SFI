@@ -6,6 +6,7 @@ using SharpCompress.Readers.Tar;
 using System;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
@@ -97,11 +98,11 @@ namespace IS4.MultiArchiver.Formats
             return true;
         }
 
-        public override TResult Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<IArchiveReader, TResult, TArgs> resultFactory, TArgs args)
+        public override async ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<IArchiveReader, TResult, TArgs> resultFactory, TArgs args)
         {
             using(var reader = TarReader.Open(stream))
             {
-                return resultFactory(new ArchiveReaderAdapter(reader), args);
+                return await resultFactory(new ArchiveReaderAdapter(reader), args);
             }
         }
     }

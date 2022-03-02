@@ -1,16 +1,17 @@
 ﻿using IS4.MultiArchiver.Formats;
 using System;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Services
 {
     public interface IEntityAnalyzerProvider
     {
-        AnalysisResult Analyze<T>(T entity, AnalysisContext context) where T : class;
+        ValueTask<AnalysisResult> Analyze<T>(T entity, AnalysisContext context) where T : class;
     }
 
     public interface IEntityAnalyzer<in T> where T : class
     {
-        AnalysisResult Analyze(T entity, AnalysisContext context, IEntityAnalyzerProvider analyzers);
+        ValueTask<AnalysisResult> Analyze(T entity, AnalysisContext context, IEntityAnalyzerProvider analyzers);
     }
 
     public struct AnalysisContext

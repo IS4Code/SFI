@@ -3,12 +3,13 @@ using OpenMcdf;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
     public class OleStorageAnalyzer : MediaObjectAnalyzer<CompoundFile>
     {
-        public override AnalysisResult Analyze(CompoundFile file, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        public override async ValueTask<AnalysisResult> Analyze(CompoundFile file, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
             IFileNodeInfo Visitor(string path, CFItem item)
             {
@@ -29,7 +30,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             var info = Visitor("", file.RootStorage);
 
-            return analyzers.Analyze(info, context.WithNode(node));
+            return await analyzers.Analyze(info, context.WithNode(node));
         }
 
         abstract class ItemEntry<TItem> : IFileNodeInfo where TItem : CFItem

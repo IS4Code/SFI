@@ -1,23 +1,24 @@
 ﻿using IS4.MultiArchiver.Formats;
 using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Vocabulary;
+using MorseCode.ITask;
 using System;
-using System.IO;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
     public class FormatObjectAnalyzer : EntityAnalyzer, IEntityAnalyzer<IFormatObject>, IResultFactory<AnalysisResult, (IFormatObject format, AnalysisContext context, IEntityAnalyzerProvider analyzer)>
     {
-        public AnalysisResult Analyze(IFormatObject format, AnalysisContext context, IEntityAnalyzerProvider analyzer)
+        public ValueTask<AnalysisResult> Analyze(IFormatObject format, AnalysisContext context, IEntityAnalyzerProvider analyzer)
         {
             return format.GetValue(this, (format, context, analyzer));
         }
 
-        protected virtual AnalysisResult Analyze<T>(T value, IFormatObject format, AnalysisContext context, IEntityAnalyzerProvider analyzer) where T : class
+        protected virtual async ValueTask<AnalysisResult> Analyze<T>(T value, IFormatObject format, AnalysisContext context, IEntityAnalyzerProvider analyzer) where T : class
         {
             var node = GetNode(format, context);
 
-            var result = analyzer.Analyze(value, context.WithNode(node));
+            var result = await analyzer.Analyze(value, context.WithNode(node));
             node = result.Node ?? node;
 
             var type = format.MediaType?.ToLowerInvariant();
@@ -84,10 +85,10 @@ namespace IS4.MultiArchiver.Analyzers
             return result;
         }
 
-        AnalysisResult IResultFactory<AnalysisResult, (IFormatObject format, AnalysisContext context, IEntityAnalyzerProvider analyzer)>.Invoke<T>(T value, (IFormatObject format, AnalysisContext context, IEntityAnalyzerProvider analyzer) args)
+        async ITask<AnalysisResult> IResultFactory<AnalysisResult, (IFormatObject format, AnalysisContext context, IEntityAnalyzerProvider analyzer)>.Invoke<T>(T value, (IFormatObject format, AnalysisContext context, IEntityAnalyzerProvider analyzer) args)
         {
             var (format, context, analyzer) = args;
-            return Analyze(value, format, context, analyzer);
+            return await Analyze(value, format, context, analyzer);
         }
     }
 }

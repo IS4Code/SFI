@@ -1,6 +1,7 @@
 ﻿using IS4.MultiArchiver.Analyzers;
 using IS4.MultiArchiver.Tools.Xml;
 using System;
+using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
 
@@ -13,11 +14,11 @@ namespace IS4.MultiArchiver.Formats
 
         }
 
-        public override TResult Match<TResult, TArgs>(XmlReader reader, XDocumentType docType, MatchContext context, ResultFactory<RdfXmlAnalyzer.Document, TResult, TArgs> resultFactory, TArgs args)
+        public override async ValueTask<TResult> Match<TResult, TArgs>(XmlReader reader, XDocumentType docType, MatchContext context, ResultFactory<RdfXmlAnalyzer.Document, TResult, TArgs> resultFactory, TArgs args)
         {
             var document = new BaseXmlDocument(null, reader.NameTable);
             document.Load(reader);
-            return resultFactory.Invoke(new RdfXmlAnalyzer.Document(document), args);
+            return await resultFactory.Invoke(new RdfXmlAnalyzer.Document(document), args);
         }
     }
 }

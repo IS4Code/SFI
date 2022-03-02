@@ -3,12 +3,12 @@ using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Tools;
 using IS4.MultiArchiver.Tools.IO;
 using IS4.MultiArchiver.Vocabulary;
+using MorseCode.ITask;
 using System;
 using System.Buffers;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
@@ -34,9 +34,9 @@ namespace IS4.MultiArchiver.Analyzers
             EncodingDetectorFactory = encodingDetectorFactory;
         }
 
-		public AnalysisResult Analyze(IStreamFactory streamFactory, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+		public async ValueTask<AnalysisResult> Analyze(IStreamFactory streamFactory, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
-            var match = new DataAnalysis(this, streamFactory, context, analyzers).Match();
+            var match = await new DataAnalysis(this, streamFactory, context, analyzers).Match();
             var node = match.Node;
 
             var results = match.Results.Where(result => result.IsValid);
@@ -50,7 +50,7 @@ namespace IS4.MultiArchiver.Analyzers
                 }
             }
 
-            return analyzers.Analyze<IDataObject>(match, context.WithNode(node));
+            return await analyzers.Analyze<IDataObject>(match, context.WithNode(node));
 		}
 
         class DataAnalysis
@@ -83,7 +83,7 @@ namespace IS4.MultiArchiver.Analyzers
                 return new DataMatch(analyzer, streamFactory, seekableFactory, signatureBuffer, encodingDetector, isBinary, context, analyzers);
             }
 
-            public DataMatch Match()
+            public async Task<DataMatch> Match()
             {
                 var lazyMatch = new Lazy<DataMatch>(MatchFactory, false);
             
@@ -171,7 +171,7 @@ namespace IS4.MultiArchiver.Analyzers
                                         _ = lazyMatch.Value;
                                     }
 
-                                    Task.WaitAll(writing);
+                                    await Task.WhenAll(writing);
                                 }
 
                                 foreach(var writer in writers)
@@ -199,10 +199,7 @@ namespace IS4.MultiArchiver.Analyzers
 
                     match = lazyMatch.Value;
 
-                    foreach(var result in match.Results)
-                    {
-                        result.Wait();
-                    }
+                    await Task.WhenAll(match.Results.Select(r => r.Finish()));
                 }finally{
                     tmpPath.Dispose();
                 }
@@ -368,7 +365,7 @@ namespace IS4.MultiArchiver.Analyzers
             }
         }
 
-		public AnalysisResult Analyze(byte[] data, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+		public ValueTask<AnalysisResult> Analyze(byte[] data, AnalysisContext context, IEntityAnalyzerProvider analyzers)
 		{
 			return Analyze(new MemoryStreamFactory(new ArraySegment<byte>(data), data, null), context, analyzers);
 		}
@@ -405,35 +402,27 @@ namespace IS4.MultiArchiver.Analyzers
                 task = StartReading(streamFactory, Reader);
             }
 
-            private ILinkedNode Reader(Stream stream)
+            private async ValueTask<ILinkedNode> Reader(Stream stream)
             {
                 var streamContext = context.MatchContext.WithStream(stream);
-                return format.Match(stream, streamContext, this, (stream, streamContext));
+                return await format.Match(stream, streamContext, this, (stream, streamContext));
             }
 
-            public void Wait()
+            public async Task Finish()
             {
-                Task.WaitAny(task);
-                if(task.IsFaulted)
+                try{
+                    await task;
+                }catch(InternalArchiverException)
                 {
-                    var rethrowable = task.Exception.InnerExceptions.OfType<InternalArchiverException>().Select(e => e.InnerException);
-                    var exc = new AggregateException(rethrowable);
-                    switch(exc.InnerExceptions.Count)
-                    {
-                        case 0:
-                            break;
-                        case 1:
-                            ExceptionDispatchInfo.Capture(exc.InnerException).Throw();
-                            throw null;
-                        default:
-                            throw exc;
-                    }
+                    throw;
+                }catch{
+
                 }
             }
 
             const int MaxResultWaitTime = 1000;
 
-            ILinkedNode IResultFactory<ILinkedNode, (Stream stream, MatchContext matchContext)>.Invoke<T>(T value, (Stream stream, MatchContext matchContext) args)
+            async ITask<ILinkedNode> IResultFactory<ILinkedNode, (Stream stream, MatchContext matchContext)>.Invoke<T>(T value, (Stream stream, MatchContext matchContext) args)
             {
                 var (stream, matchContext) = args;
                 var streamContext = context.WithMatchContext(matchContext);
@@ -442,7 +431,8 @@ namespace IS4.MultiArchiver.Analyzers
                     while(parent[formatObj] == null)
                     {
                         ILinkedNode node;
-                        if(!nodeCreated.Task.Wait(MaxResultWaitTime))
+                        var timeout = Task.Delay(MaxResultWaitTime);
+                        if(await Task.WhenAny(nodeCreated.Task) == timeout)
                         {
                             formatObj = new BinaryFormatObject<T>(fileMatch, ImprovisedFormat<T>.Instance, value);
                             continue;
@@ -451,13 +441,13 @@ namespace IS4.MultiArchiver.Analyzers
                         }
                         if(node != null)
                         {
-                            var result = analyzer.Analyze(value, streamContext.WithNode(node));
+                            var result = await analyzer.Analyze(value, streamContext.WithNode(node));
                             node = result.Node;
                         }
                         return node;
                     }
                     {
-                        var result = analyzer.Analyze(formatObj, streamContext.WithParent(parent));
+                        var result = await analyzer.Analyze(formatObj, streamContext.WithParent(parent));
                         nodeCreated?.TrySetResult(result.Node);
                         return result.Node;
                     }
@@ -467,14 +457,14 @@ namespace IS4.MultiArchiver.Analyzers
                 }
             }
 
-            private Task<ILinkedNode> StartReading(IStreamFactory streamFactory, Func<Stream, ILinkedNode> reader)
+            private Task<ILinkedNode> StartReading(IStreamFactory streamFactory, Func<Stream, ValueTask<ILinkedNode>> reader)
             {
                 if(streamFactory.Access == StreamFactoryAccess.Parallel)
                 {
                     return Task.Run(() => StartReadingInner(streamFactory, reader));
                 }else{
                     try{
-                        return Task.FromResult(StartReadingInner(streamFactory, reader));
+                        return StartReadingInner(streamFactory, reader);
                     }catch(Exception e)
                     {
                         return Task.FromException<ILinkedNode>(e);
@@ -482,11 +472,11 @@ namespace IS4.MultiArchiver.Analyzers
                 }
             }
 
-            private ILinkedNode StartReadingInner(IStreamFactory streamFactory, Func<Stream, ILinkedNode> reader)
+            private async Task<ILinkedNode> StartReadingInner(IStreamFactory streamFactory, Func<Stream, ValueTask<ILinkedNode>> reader)
             {
                 var stream = streamFactory.Open();
                 try{
-                    return reader(stream);
+                    return await reader(stream);
                 }finally{
                     try{
                         stream.Dispose();
@@ -533,7 +523,7 @@ namespace IS4.MultiArchiver.Analyzers
                     return DataTools.GetFakeMediaTypeFromType<T>();
                 }
 
-                public override TResult Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<T, TResult, TArgs> resultFactory, TArgs args)
+                public override ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<T, TResult, TArgs> resultFactory, TArgs args)
                 {
                     throw new NotSupportedException();
                 }

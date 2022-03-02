@@ -5,17 +5,18 @@ using IS4.MultiArchiver.Vocabulary;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
     public class DelphiObjectAnalyzer : MediaObjectAnalyzer<DelphiObject>
     {
-        public override AnalysisResult Analyze(DelphiObject obj, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        public override async ValueTask<AnalysisResult> Analyze(DelphiObject obj, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
             var node = GetNode(context);
             foreach(var (key, value) in FindBlobs(null, obj))
             {
-                var infoNode = analyzers.Analyze<IFileInfo>(new BlobInfo(key, value), context.WithParent(node)).Node;
+                var infoNode = (await analyzers.Analyze<IFileInfo>(new BlobInfo(key, value), context.WithParent(node))).Node;
                 if(infoNode != null)
                 {
                     node.Set(Properties.HasMediaStream, infoNode);

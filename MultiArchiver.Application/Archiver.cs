@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
+using System.Threading.Tasks;
 using VDS.RDF;
 using VDS.RDF.Parsing;
 using VDS.RDF.Writing;
@@ -120,37 +121,37 @@ namespace IS4.MultiArchiver.Extensions
             return archiver;
         }
 
-        public void Archive(string file, string output, bool direct = false, bool compressed = false)
+        public ValueTask Archive(string file, string output, bool direct = false, bool compressed = false)
         {
             if((File.GetAttributes(file) & FileAttributes.Directory) != 0)
             {
-                Archive(new DirectoryInfo(file), output, direct, compressed);
+                return Archive(new DirectoryInfo(file), output, direct, compressed);
             }else{
-                Archive(new FileInfo(file), output, direct, compressed);
+                return Archive(new FileInfo(file), output, direct, compressed);
             }
         }
 
-        public void Archive<T>(T entity, string output, bool direct = false, bool compressed = false) where T : class
+        public ValueTask Archive<T>(T entity, string output, bool direct = false, bool compressed = false) where T : class
         {
-            Archive(new[] { entity }, () => new FileStream(output, FileMode.Create, FileAccess.Write, FileShare.Read), direct, compressed);
+            return Archive(new[] { entity }, () => new FileStream(output, FileMode.Create, FileAccess.Write, FileShare.Read), direct, compressed);
         }
 
-        public void Archive<T>(T entity, Stream output, bool direct = false, bool compressed = false) where T : class
+        public ValueTask Archive<T>(T entity, Stream output, bool direct = false, bool compressed = false) where T : class
         {
-            Archive(new[] { entity }, () => output, direct, compressed);
+            return Archive(new[] { entity }, () => output, direct, compressed);
         }
 
-        public void Archive<T>(IEnumerable<T> entities, string output, bool direct = false, bool compressed = false) where T : class
+        public ValueTask Archive<T>(IEnumerable<T> entities, string output, bool direct = false, bool compressed = false) where T : class
         {
-            Archive(entities, () => new FileStream(output, FileMode.Create, FileAccess.Write, FileShare.Read), direct, compressed);
+            return Archive(entities, () => new FileStream(output, FileMode.Create, FileAccess.Write, FileShare.Read), direct, compressed);
         }
 
-        public void Archive<T>(IEnumerable<T> entities, Stream output, bool direct = false, bool compressed = false) where T : class
+        public ValueTask Archive<T>(IEnumerable<T> entities, Stream output, bool direct = false, bool compressed = false) where T : class
         {
-            Archive(entities, () => output, direct, compressed);
+            return Archive(entities, () => output, direct, compressed);
         }
 
-        public void Archive<T>(IEnumerable<T> entities, Func<Stream> outputFactory, bool direct = false, bool compressed = false) where T : class
+        public async ValueTask Archive<T>(IEnumerable<T> entities, Func<Stream> outputFactory, bool direct = false, bool compressed = false) where T : class
         {
             var graphHandlers = new Dictionary<Uri, IRdfHandler>();
 
@@ -164,7 +165,7 @@ namespace IS4.MultiArchiver.Extensions
 
                 foreach(var entity in entities)
                 {
-                    AnalyzeEntity(entity, handler, graphHandlers, mapper);
+                    await AnalyzeEntity(entity, handler, graphHandlers, mapper);
                 }
             }else{
                 Console.Error.WriteLine("Reading data...");
@@ -175,7 +176,7 @@ namespace IS4.MultiArchiver.Extensions
                 
                 foreach(var entity in entities)
                 {
-                    AnalyzeEntity(entity, handler, graphHandlers, null);
+                    await AnalyzeEntity(entity, handler, graphHandlers, null);
                 }
 
                 Console.Error.WriteLine("Saving...");
@@ -186,7 +187,7 @@ namespace IS4.MultiArchiver.Extensions
 
         const string root = "http://archive.data.is4.site/.well-known/genid";
 
-        private AnalysisResult AnalyzeEntity<T>(T entity, IRdfHandler rdfHandler, IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers, INamespaceMapper mapper) where T : class
+        private async ValueTask<AnalysisResult> AnalyzeEntity<T>(T entity, IRdfHandler rdfHandler, IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers, INamespaceMapper mapper) where T : class
         {
             var handler = new RdfHandler(new Uri(root), this, rdfHandler, graphHandlers);
             rdfHandler.StartRdf();
@@ -199,7 +200,7 @@ namespace IS4.MultiArchiver.Extensions
                     }
                 }
 
-                return this.Analyze(entity, new AnalysisContext(nodeFactory: handler));
+                return await this.Analyze(entity, new AnalysisContext(nodeFactory: handler));
             }finally{
                 rdfHandler.EndRdf(true);
             }

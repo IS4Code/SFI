@@ -5,6 +5,7 @@ using IS4.MultiArchiver.Vocabulary;
 using System;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
@@ -15,13 +16,13 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override AnalysisResult Analyze(Module module, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        public override async ValueTask<AnalysisResult> Analyze(Module module, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
             var node = GetNode(context);
             var uncompressed = module.GetCompressedContents();
             if(uncompressed != null)
             {
-                var infoNode = analyzers.Analyze<IFileInfo>(uncompressed, context.WithParent(node)).Node;
+                var infoNode = (await analyzers.Analyze<IFileInfo>(uncompressed, context.WithParent(node))).Node;
                 if(infoNode != null)
                 {
                     node.Set(Properties.BelongsToContainer, infoNode);

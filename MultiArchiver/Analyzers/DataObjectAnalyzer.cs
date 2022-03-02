@@ -4,12 +4,13 @@ using IS4.MultiArchiver.Tools;
 using IS4.MultiArchiver.Vocabulary;
 using System;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
     public class DataObjectAnalyzer : EntityAnalyzer, IEntityAnalyzer<IDataObject>
     {
-        public AnalysisResult Analyze(IDataObject dataObject, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        public async ValueTask<AnalysisResult> Analyze(IDataObject dataObject, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
             var node = GetNode(context);
 
@@ -49,7 +50,7 @@ namespace IS4.MultiArchiver.Analyzers
             {
                 var signatureFormat = new ImprovisedSignatureFormat.Format(magicText);
                 var formatObj = new BinaryFormatObject<ImprovisedSignatureFormat.Format>(dataObject, ImprovisedSignatureFormat.Instance, signatureFormat);
-                var formatNode = analyzers.Analyze(formatObj, context.WithParent(node)).Node;
+                var formatNode = (await analyzers.Analyze(formatObj, context.WithParent(node))).Node;
                 if(formatNode != null)
                 {
                     formatNode.Set(Properties.HasFormat, node);
@@ -84,7 +85,7 @@ namespace IS4.MultiArchiver.Analyzers
                 throw new NotSupportedException();
             }
 
-            public override TResult Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<Format, TResult, TArgs> resultFactory, TArgs args)
+            public override ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<Format, TResult, TArgs> resultFactory, TArgs args)
             {
                 throw new NotSupportedException();
             }

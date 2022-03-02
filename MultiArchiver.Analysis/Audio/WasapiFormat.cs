@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
@@ -63,12 +64,12 @@ namespace IS4.MultiArchiver.Formats
             return false;
         }
 
-        public override TResult Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<WaveStream, TResult, TArgs> resultFactory, TArgs args)
+        public override async ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<WaveStream, TResult, TArgs> resultFactory, TArgs args)
         {
             readerAllowMp3 = allowMp3;
             using(var reader = new CustomStreamMediaFoundationReader(stream, settings))
             {
-                return resultFactory(reader, args);
+                return await resultFactory(reader, args);
             }
         }
 

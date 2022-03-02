@@ -5,6 +5,7 @@ using SharpCompress.Common;
 using SharpCompress.Readers;
 using System;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
@@ -15,7 +16,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override AnalysisResult Analyze(ICabinetArchive file, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        public override ValueTask<AnalysisResult> Analyze(ICabinetArchive file, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
             return analyzers.Analyze(new ArchiveReaderAdapter(new CabinetAdapter(file)), context);
         }

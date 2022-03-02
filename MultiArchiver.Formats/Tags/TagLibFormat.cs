@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using TagLib;
 
 namespace IS4.MultiArchiver.Formats
@@ -51,7 +52,7 @@ namespace IS4.MultiArchiver.Formats
             return file.MimeType;
         }
 
-        public override TResult Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<TagLib.File, TResult, TArgs> resultFactory, TArgs args)
+        public override async ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<TagLib.File, TResult, TArgs> resultFactory, TArgs args)
         {
             var file = new File(stream, context);
             if(file.Name != null)
@@ -67,7 +68,7 @@ namespace IS4.MultiArchiver.Formats
 
                             if(tagFile.Properties != null || (tagFile.Tag != null && tagFile.TagTypes != TagTypes.None))
                             {
-                                return resultFactory(tagFile, args);
+                                return await resultFactory(tagFile, args);
                             }
                         }catch(System.Reflection.TargetInvocationException e)
                         {

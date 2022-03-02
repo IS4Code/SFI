@@ -7,6 +7,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
@@ -17,7 +18,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override AnalysisResult Analyze(IFileSystem filesystem, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        public override async ValueTask<AnalysisResult> Analyze(IFileSystem filesystem, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
             var node = GetNode(context);
 
@@ -36,7 +37,7 @@ namespace IS4.MultiArchiver.Analyzers
             }
 
             var info = new FileSystemWrapper(filesystem);
-            var result = analyzers.Analyze(info, context.WithNode(node));
+            var result = await analyzers.Analyze(info, context.WithNode(node));
             result.Label = label ?? result.Label;
             return result;
         }

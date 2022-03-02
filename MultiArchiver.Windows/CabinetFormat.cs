@@ -1,5 +1,6 @@
 ﻿using IS4.MultiArchiver.Windows;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
@@ -10,11 +11,11 @@ namespace IS4.MultiArchiver.Formats
 
         }
 
-        public override TResult Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<CabinetFile, TResult, TArgs> resultFactory, TArgs args)
+        public override async ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<CabinetFile, TResult, TArgs> resultFactory, TArgs args)
         {
             using(var file = new CabinetFile(stream))
             {
-                return resultFactory(file, args);
+                return await resultFactory(file, args);
             }
         }
     }
