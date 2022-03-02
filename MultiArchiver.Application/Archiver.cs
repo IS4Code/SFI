@@ -31,9 +31,18 @@ namespace IS4.MultiArchiver.Extensions
             Analyzers.Add(new X509CertificateAnalyzer());
             Analyzers.Add(new FormatObjectAnalyzer());
 
-            DataAnalyzer.HashAlgorithms.Add(BuiltInHash.MD5);
-            DataAnalyzer.HashAlgorithms.Add(BuiltInHash.SHA1);
-            DataAnalyzer.HashAlgorithms.Add(new PaddedBlockHash(Vocabulary.Individuals.BSHA1_256, "urn:bsha1-256:", 262144));
+            if(BuiltInHash.MD5 != null)
+            {
+                DataAnalyzer.HashAlgorithms.Add(BuiltInHash.MD5);
+            }
+            if(BuiltInHash.SHA1 != null)
+            {
+                DataAnalyzer.HashAlgorithms.Add(BuiltInHash.SHA1);
+            }
+            if(BitTorrentHash.HashAlgorithm != null)
+            {
+                DataAnalyzer.HashAlgorithms.Add(new PaddedBlockHash(Vocabulary.Individuals.BSHA1_256, "urn:bsha1-256:", 262144));
+            }
             DataAnalyzer.HashAlgorithms.Add(Blake3Hash.Instance);
             DataAnalyzer.HashAlgorithms.Add(Crc32Hash.Instance);
             DataAnalyzer.ContentUriFormatter = new AdHashedContentUriFormatter(Blake3Hash.Instance);
@@ -52,7 +61,7 @@ namespace IS4.MultiArchiver.Extensions
             Options.InternUris = false;
         }
 
-        public static Archiver CreateDefault()
+        public static Archiver CreateDefault(bool analysis = true)
         {
             var archiver = new Archiver();
 
@@ -123,29 +132,55 @@ namespace IS4.MultiArchiver.Extensions
 
         public void Archive<T>(T entity, string output, bool direct = false, bool compressed = false) where T : class
         {
+            Archive(new[] { entity }, () => new FileStream(output, FileMode.Create, FileAccess.Write, FileShare.Read), direct, compressed);
+        }
+
+        public void Archive<T>(T entity, Stream output, bool direct = false, bool compressed = false) where T : class
+        {
+            Archive(new[] { entity }, () => output, direct, compressed);
+        }
+
+        public void Archive<T>(IEnumerable<T> entities, string output, bool direct = false, bool compressed = false) where T : class
+        {
+            Archive(entities, () => new FileStream(output, FileMode.Create, FileAccess.Write, FileShare.Read), direct, compressed);
+        }
+
+        public void Archive<T>(IEnumerable<T> entities, Stream output, bool direct = false, bool compressed = false) where T : class
+        {
+            Archive(entities, () => output, direct, compressed);
+        }
+
+        public void Archive<T>(IEnumerable<T> entities, Func<Stream> outputFactory, bool direct = false, bool compressed = false) where T : class
+        {
             var graphHandlers = new Dictionary<Uri, IRdfHandler>();
 
             if(direct)
             {
                 Console.Error.WriteLine("Writing data...");
 
-                var handler = CreateFileHandler(output, out var mapper, compressed);
+                var handler = CreateFileHandler(outputFactory, out var mapper, compressed);
 
                 SetDefaultNamespaces(mapper);
 
-                AnalyzeEntity(entity, handler, graphHandlers, mapper);
+                foreach(var entity in entities)
+                {
+                    AnalyzeEntity(entity, handler, graphHandlers, mapper);
+                }
             }else{
                 Console.Error.WriteLine("Reading data...");
 
                 var handler = CreateGraphHandler(out var graph);
 
                 SetDefaultNamespaces(graph.NamespaceMap);
-
-                AnalyzeEntity(entity, handler, graphHandlers, null);
+                
+                foreach(var entity in entities)
+                {
+                    AnalyzeEntity(entity, handler, graphHandlers, null);
+                }
 
                 Console.Error.WriteLine("Saving...");
 
-                SaveGraph(graph, output, compressed);
+                SaveGraph(graph, outputFactory, compressed);
             }
         }
 
@@ -170,9 +205,9 @@ namespace IS4.MultiArchiver.Extensions
             }
         }
 
-        private TextWriter OpenFile(string file, bool compressed)
+        private TextWriter OpenFile(Func<Stream> fileFactory, bool compressed)
         {
-            Stream stream = new FileStream(file, FileMode.Create, FileAccess.Write, FileShare.Read);
+            var stream = fileFactory();
             if(compressed)
             {
                 stream = new GZipStream(stream, CompressionLevel.Optimal, false);
@@ -180,9 +215,9 @@ namespace IS4.MultiArchiver.Extensions
             return new StreamWriter(stream);
         }
 
-        private IRdfHandler CreateFileHandler(string output, out INamespaceMapper mapper, bool compressed)
+        private IRdfHandler CreateFileHandler(Func<Stream> outputFactory, out INamespaceMapper mapper, bool compressed)
         {
-            var writer = OpenFile(output, compressed);
+            var writer = OpenFile(outputFactory, compressed);
             var qnameMapper = new QNameOutputMapper();
             var formatter = new TurtleFormatter(qnameMapper);
             IRdfHandler handler = new VDS.RDF.Parsing.Handlers.WriteThroughHandler(formatter, writer, true);
@@ -221,12 +256,12 @@ namespace IS4.MultiArchiver.Extensions
             mapper.AddNamespace("exif", new Uri("http://www.w3.org/2003/12/exif/ns#"));
         }
 
-        private void SaveGraph(Graph graph, string output, bool compressed)
+        private void SaveGraph(Graph graph, Func<Stream> outputFactory, bool compressed)
         {
             var writer = new CompressingTurtleWriter(TurtleSyntax.Original);
             writer.PrettyPrintMode = false;
             writer.DefaultNamespaces.Clear();
-            using(var textWriter = OpenFile(output, compressed))
+            using(var textWriter = OpenFile(outputFactory, compressed))
             {
                 graph.SaveToStream(textWriter, writer);
             }
