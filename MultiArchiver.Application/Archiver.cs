@@ -157,7 +157,7 @@ namespace IS4.MultiArchiver.Extensions
 
             if(direct)
             {
-                Console.Error.WriteLine("Writing data...");
+                OutputLog.WriteLine("Writing data...");
 
                 var handler = CreateFileHandler(outputFactory, out var mapper, compressed);
 
@@ -168,7 +168,7 @@ namespace IS4.MultiArchiver.Extensions
                     await AnalyzeEntity(entity, handler, graphHandlers, mapper);
                 }
             }else{
-                Console.Error.WriteLine("Reading data...");
+                OutputLog.WriteLine("Reading data...");
 
                 var handler = CreateGraphHandler(out var graph);
 
@@ -179,7 +179,7 @@ namespace IS4.MultiArchiver.Extensions
                     await AnalyzeEntity(entity, handler, graphHandlers, null);
                 }
 
-                Console.Error.WriteLine("Saving...");
+                OutputLog.WriteLine("Saving...");
 
                 SaveGraph(graph, outputFactory, compressed);
             }

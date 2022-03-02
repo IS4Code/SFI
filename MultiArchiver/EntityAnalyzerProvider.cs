@@ -2,6 +2,7 @@
 using IS4.MultiArchiver.Tools;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.ExceptionServices;
 using System.Threading.Tasks;
@@ -14,6 +15,8 @@ namespace IS4.MultiArchiver
 
         public ICollection<IContainerAnalyzerProvider> ContainerProviders { get; } = new List<IContainerAnalyzerProvider>();
 
+        public TextWriter OutputLog { get; set; } = Console.Error;
+
         private async ValueTask<AnalysisResult> Analyze<T>(T entity, AnalysisContext context, IEntityAnalyzerProvider analyzers) where T : class
         {
             foreach(var analyzer in Analyzers.OfType<IEntityAnalyzer<T>>())
@@ -21,9 +24,9 @@ namespace IS4.MultiArchiver
                 try{
                     if(typeof(T).Equals(typeof(IStreamFactory)))
                     {
-                        Console.Error.WriteLine($"Data ({((IStreamFactory)entity).Length} B)");
+                        OutputLog.WriteLine($"Data ({((IStreamFactory)entity).Length} B)");
                     }else{
-                        Console.Error.WriteLine(entity);
+                        OutputLog.WriteLine(entity);
                     }
                     var result = await analyzer.Analyze(entity, context, analyzers);
                     if(result.Node != null)
@@ -36,8 +39,8 @@ namespace IS4.MultiArchiver
                     throw;
                 }catch(Exception e)
                 {
-                    Console.Error.WriteLine("Error in analyzer " + analyzer);
-                    Console.Error.WriteLine(e);
+                    OutputLog.WriteLine("Error in analyzer " + analyzer);
+                    OutputLog.WriteLine(e);
                 }
             }
             return default;
