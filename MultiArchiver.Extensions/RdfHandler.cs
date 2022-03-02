@@ -210,7 +210,7 @@ namespace IS4.MultiArchiver.Extensions
 
             protected override LinkedNode<INode, IRdfHandler> CreateNew(INode subject, IRdfHandler graph)
             {
-                return new UriNode(subject, Graph, Cache);
+                return new UriNode(subject, graph, Cache);
             }
 
             protected override IRdfHandler CreateGraphNode(Uri uri)
