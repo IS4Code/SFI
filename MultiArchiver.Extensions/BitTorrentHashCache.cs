@@ -4,6 +4,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver
 {
@@ -11,57 +12,62 @@ namespace IS4.MultiArchiver
     {
         static IDataHashAlgorithm HashAlgorithm => BitTorrentHash.HashAlgorithm;
 
-        static readonly ConcurrentDictionary<int, PersistenceStore<IPersistentKey, FileInfo>> cache = new ConcurrentDictionary<int, PersistenceStore<IPersistentKey, FileInfo>>();
+        static readonly ConcurrentDictionary<int, PersistenceStore<IPersistentKey, Task<FileInfo>>> cache = new ConcurrentDictionary<int, PersistenceStore<IPersistentKey, Task<FileInfo>>>();
 
-        static PersistenceStore<IPersistentKey, FileInfo> GetCache(int blockSize)
+        static PersistenceStore<IPersistentKey, Task<FileInfo>> GetCache(int blockSize)
         {
-            return cache.GetOrAdd(blockSize, l => new PersistenceStore<IPersistentKey, FileInfo>(f => FileInfo.Create(l, f)));
+            return cache.GetOrAdd(blockSize, l => new PersistenceStore<IPersistentKey, Task<FileInfo>>(f => FileInfo.Create(l, f)));
         }
 
-        public static FileInfo GetCachedInfo(int blockSize, IFileNodeInfo file)
+        public static Task<FileInfo> GetCachedInfo(int blockSize, IFileNodeInfo file)
         {
             return GetCache(blockSize)[file];
         }
 
-        public static FileInfo GetCachedInfo(int blockSize, Stream stream, IPersistentKey key)
+        public static Task<FileInfo> GetCachedInfo(int blockSize, Stream stream, IPersistentKey key)
         {
-            var info = new FileInfo(blockSize, stream);
+            async Task<FileInfo> Inner()
+            {
+                return new FileInfo(blockSize, await HashData(blockSize, stream));
+            }
+            var task = Inner();
             if(key != null)
             {
-                GetCache(blockSize)[key] = info;
+                GetCache(blockSize)[key] = task;
             }
-            return info;
+            return task;
         }
 
-        static List<byte[]> HashData(int blockSize, Stream stream, out int padding, out long length)
+        static async Task<(List<byte[]> list, int padding, long length)> HashData(int blockSize, Stream stream)
         {
             var hashAlgorithm = HashAlgorithm;
             var buffer = new byte[blockSize];
             var list = new List<byte[]>();
             int read;
             int pos = 0;
-            length = 0;
-            while((read = stream.Read(buffer, pos, buffer.Length - pos)) > 0)
+            int padding = 0;
+            long length = 0;
+            while((read = await stream.ReadAsync(buffer, pos, buffer.Length - pos)) > 0)
             {
                 pos += read;
                 length += read;
                 if(pos == buffer.Length)
                 {
-                    list.Add(hashAlgorithm.ComputeHash(buffer, 0, pos));
+                    list.Add(await hashAlgorithm.ComputeHash(buffer, 0, pos));
                     pos = 0;
                 }
             }
             if(pos > 0)
             {
                 Array.Clear(buffer, pos, buffer.Length - pos);
-                list.Add(hashAlgorithm.ComputeHash(buffer));
-                list.Add(hashAlgorithm.ComputeHash(buffer, 0, pos));
+                list.Add(await hashAlgorithm.ComputeHash(buffer));
+                list.Add(await hashAlgorithm.ComputeHash(buffer, 0, pos));
                 padding = buffer.Length - pos;
             }else{
                 list.Add(null);
                 padding = 0;
             }
-            return list;
+            return (list, padding, length);
         }
 
         public class FileInfo
@@ -72,9 +78,9 @@ namespace IS4.MultiArchiver
             public int Padding { get; }
             public long Length { get; }
 
-            public FileInfo(int blockSize, Stream stream)
+            public FileInfo(int blockSize, (List<byte[]> list, int padding, long length) hashData)
             {
-                var list = HashData(blockSize, stream, out var padding, out var length);
+                var (list, padding, length) = hashData;
                 Padding = padding;
                 Length = length;
 
@@ -93,12 +99,12 @@ namespace IS4.MultiArchiver
                 BlockHashes = list;
             }
 
-            public static FileInfo Create(int blockSize, IPersistentKey key)
+            public static async Task<FileInfo> Create(int blockSize, IPersistentKey key)
             {
                 if(!(key is IStreamFactory file)) throw new ArgumentException(null, nameof(key));
                 using(var stream = file.Open())
                 {
-                    return new FileInfo(blockSize, stream);
+                    return new FileInfo(blockSize, await HashData(blockSize, stream));
                 }
             }
         }

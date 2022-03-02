@@ -5,6 +5,7 @@ using System;
 using System.Buffers;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver
 {
@@ -17,7 +18,7 @@ namespace IS4.MultiArchiver
 
         }
 
-        public override byte[] ComputeHash(Stream input, IPersistentKey key = null)
+        public override async ValueTask<byte[]> ComputeHash(Stream input, IPersistentKey key = null)
         {
             uint aggregate = 0;
             if(input is IEnumerator<ArraySegment<byte>> collection)
@@ -34,7 +35,7 @@ namespace IS4.MultiArchiver
                 var buffer = ArrayPool<byte>.Shared.Rent(16384);
                 try{
                     int read;
-                    while((read = input.Read(buffer, 0, buffer.Length)) != 0)
+                    while((read = await input.ReadAsync(buffer, 0, buffer.Length)) != 0)
                     {
                         aggregate = Crc32Algorithm.Append(aggregate, buffer, 0, read);
                     }
@@ -45,14 +46,14 @@ namespace IS4.MultiArchiver
             return BitConverter.GetBytes(aggregate);
         }
 
-        public override byte[] ComputeHash(byte[] data, IPersistentKey key = null)
+        public override ValueTask<byte[]> ComputeHash(byte[] data, IPersistentKey key = null)
         {
-            return BitConverter.GetBytes(Crc32Algorithm.Compute(data));
+            return new ValueTask<byte[]>(BitConverter.GetBytes(Crc32Algorithm.Compute(data)));
         }
 
-        public override byte[] ComputeHash(byte[] data, int offset, int count, IPersistentKey key = null)
+        public override ValueTask<byte[]> ComputeHash(byte[] data, int offset, int count, IPersistentKey key = null)
         {
-            return BitConverter.GetBytes(Crc32Algorithm.Compute(data, offset, count));
+            return new ValueTask<byte[]>(BitConverter.GetBytes(Crc32Algorithm.Compute(data, offset, count)));
         }
     }
 }

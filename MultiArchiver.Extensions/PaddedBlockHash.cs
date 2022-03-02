@@ -2,6 +2,7 @@
 using IS4.MultiArchiver.Vocabulary;
 using System;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver
 {
@@ -14,11 +15,11 @@ namespace IS4.MultiArchiver
             BlockSize = blockSize;
         }
 
-        public override byte[] ComputeHash(Stream input, IPersistentKey key = null)
+        public override async ValueTask<byte[]> ComputeHash(Stream input, IPersistentKey key = null)
         {
             using(var output = new MemoryStream())
             {
-                var info = BitTorrentHashCache.GetCachedInfo(BlockSize, input, key);
+                var info = await BitTorrentHashCache.GetCachedInfo(BlockSize, input, key);
                 var enc = BitConverter.GetBytes(info.Padding);
                 output.Write(enc, 0, enc.Length);
                 foreach(var block in info.BlockHashes)
@@ -31,19 +32,19 @@ namespace IS4.MultiArchiver
             }
         }
 
-        public override byte[] ComputeHash(byte[] data, IPersistentKey key = null)
+        public override async ValueTask<byte[]> ComputeHash(byte[] data, IPersistentKey key = null)
         {
             using(var stream = new MemoryStream(data, false))
             {
-                return ComputeHash(stream, key);
+                return await ComputeHash(stream, key);
             }
         }
 
-        public override byte[] ComputeHash(byte[] data, int offset, int count, IPersistentKey key = null)
+        public override async ValueTask<byte[]> ComputeHash(byte[] data, int offset, int count, IPersistentKey key = null)
         {
             using(var stream = new MemoryStream(data, offset, count, false))
             {
-                return ComputeHash(stream, key);
+                return await ComputeHash(stream, key);
             }
         }
     }

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Services
 {
@@ -30,21 +31,21 @@ namespace IS4.MultiArchiver.Services
 
     public interface IDataHashAlgorithm : IHashAlgorithm
     {
-        byte[] ComputeHash(Stream input, IPersistentKey key = null);
-        byte[] ComputeHash(byte[] buffer, IPersistentKey key = null);
-        byte[] ComputeHash(byte[] buffer, int offset, int count, IPersistentKey key = null);
-        byte[] ComputeHash(ArraySegment<byte> buffer, IPersistentKey key = null);
+        ValueTask<byte[]> ComputeHash(Stream input, IPersistentKey key = null);
+        ValueTask<byte[]> ComputeHash(byte[] buffer, IPersistentKey key = null);
+        ValueTask<byte[]> ComputeHash(byte[] buffer, int offset, int count, IPersistentKey key = null);
+        ValueTask<byte[]> ComputeHash(ArraySegment<byte> buffer, IPersistentKey key = null);
     }
 
     public interface IFileHashAlgorithm : IHashAlgorithm
     {
-        byte[] ComputeHash(IFileInfo file);
-        byte[] ComputeHash(IDirectoryInfo directory, bool contents);
+        ValueTask<byte[]> ComputeHash(IFileInfo file);
+        ValueTask<byte[]> ComputeHash(IDirectoryInfo directory, bool contents);
     }
 
     public interface IObjectHashAlgorithm<T> : IHashAlgorithm
     {
-        byte[] ComputeHash(T @object);
+        ValueTask<byte[]> ComputeHash(T @object);
     }
 
     public abstract class HashAlgorithm : IHashAlgorithm
@@ -165,13 +166,13 @@ namespace IS4.MultiArchiver.Services
 
         }
 
-        public abstract byte[] ComputeHash(Stream input, IPersistentKey key = null);
+        public abstract ValueTask<byte[]> ComputeHash(Stream input, IPersistentKey key = null);
 
-        public abstract byte[] ComputeHash(byte[] data, IPersistentKey key = null);
+        public abstract ValueTask<byte[]> ComputeHash(byte[] data, IPersistentKey key = null);
 
-        public abstract byte[] ComputeHash(byte[] data, int offset, int count, IPersistentKey key = null);
+        public abstract ValueTask<byte[]> ComputeHash(byte[] data, int offset, int count, IPersistentKey key = null);
 
-        public byte[] ComputeHash(ArraySegment<byte> buffer, IPersistentKey key = null)
+        public ValueTask<byte[]> ComputeHash(ArraySegment<byte> buffer, IPersistentKey key = null)
         {
             return ComputeHash(buffer.Array, buffer.Offset, buffer.Count);
         }
@@ -184,8 +185,8 @@ namespace IS4.MultiArchiver.Services
 
         }
 
-        public abstract byte[] ComputeHash(IFileInfo file);
-        public abstract byte[] ComputeHash(IDirectoryInfo directory, bool contents);
+        public abstract ValueTask<byte[]> ComputeHash(IFileInfo file);
+        public abstract ValueTask<byte[]> ComputeHash(IDirectoryInfo directory, bool contents);
     }
 
     public abstract class ObjectHashAlgorithm<T> : HashAlgorithm, IObjectHashAlgorithm<T>
@@ -195,6 +196,6 @@ namespace IS4.MultiArchiver.Services
 
         }
 
-        public abstract byte[] ComputeHash(T @object);
+        public abstract ValueTask<byte[]> ComputeHash(T @object);
     }
 }

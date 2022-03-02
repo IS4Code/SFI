@@ -5,7 +5,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Numerics;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -390,9 +389,14 @@ namespace IS4.MultiArchiver
                     writer.Write(name);
                     writer.Flush();
                     buffer.Position = 0;
-                    hash = BuiltInHash.SHA1.ComputeHash(buffer, null);
+                    hash = BuiltInHash.SHA1.ComputeHash(buffer, null).Result;
                 }
             }
+            return GuidFromHash(hash);
+        }
+
+        static Guid GuidFromHash(byte[] hash)
+        {
             hash[6] = (byte)((hash[7] & 0x0F) | (5 << 4));
             hash[8] = (byte)((hash[8] & 0x3F) | 0x80);
 

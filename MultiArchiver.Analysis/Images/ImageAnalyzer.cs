@@ -94,7 +94,7 @@ namespace IS4.MultiArchiver.Analyzers
                 {
                     foreach(var hash in LowFrequencyImageHashAlgorithms)
                     {
-                        var hashBytes = hash.ComputeHash(image);
+                        var hashBytes = await hash.ComputeHash(image);
                         HashAlgorithm.AddHash(node, hash, hashBytes, context.NodeFactory);
                     }
                 }
@@ -110,13 +110,13 @@ namespace IS4.MultiArchiver.Analyzers
                     var data = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.ReadOnly, format);
                     try{
                         int bpp = Image.GetPixelFormatSize(data.PixelFormat);
-                        Parallel.ForEach(DataHashAlgorithms, hash => {
+                        await Task.WhenAll(DataHashAlgorithms.Select(hash => Task.Run(async () => {
                             using(var stream = new BitmapDataStream(data.Scan0, data.Stride, data.Height, data.Width, bpp))
                             {
-                                var hashBytes = hash.ComputeHash(stream);
+                                var hashBytes = await hash.ComputeHash(stream);
                                 HashAlgorithm.AddHash(node, hash, hashBytes, context.NodeFactory);
                             }
-                        });
+                        })));
                     }finally{
                         bmp.UnlockBits(data);
                     }

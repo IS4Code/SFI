@@ -3,6 +3,7 @@ using IS4.MultiArchiver.Vocabulary;
 using System;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
 using Cryptography = System.Security.Cryptography;
 
 namespace IS4.MultiArchiver.Tools
@@ -48,19 +49,33 @@ namespace IS4.MultiArchiver.Tools
             }
         }
 
-        public override byte[] ComputeHash(Stream input, IPersistentKey key)
+        public override async ValueTask<byte[]> ComputeHash(Stream input, IPersistentKey key)
         {
-            return Algorithm.ComputeHash(input);
+            var algorithm = Algorithm;
+
+            try{
+                const int bufferSize = 4096;
+                var buffer = new byte[bufferSize];
+                int bytesRead;
+                while((bytesRead = await input.ReadAsync(buffer, 0, bufferSize)) != 0)
+                {
+                    algorithm.TransformBlock(buffer, 0, bytesRead, buffer, 0);
+                }
+                algorithm.TransformFinalBlock(buffer, 0, bytesRead);
+                return (byte[])algorithm.Hash.Clone();
+            }finally{
+                algorithm.Initialize();
+            }
         }
 
-        public override byte[] ComputeHash(byte[] data, IPersistentKey key)
+        public override ValueTask<byte[]> ComputeHash(byte[] data, IPersistentKey key)
         {
-            return Algorithm.ComputeHash(data);
+            return new ValueTask<byte[]>(Algorithm.ComputeHash(data));
         }
 
-        public override byte[] ComputeHash(byte[] data, int offset, int count, IPersistentKey key)
+        public override ValueTask<byte[]> ComputeHash(byte[] data, int offset, int count, IPersistentKey key)
         {
-            return Algorithm.ComputeHash(data, offset, count);
+            return new ValueTask<byte[]>(Algorithm.ComputeHash(data, offset, count));
         }
     }
 }

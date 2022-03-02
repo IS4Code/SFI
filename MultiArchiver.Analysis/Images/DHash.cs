@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analysis.Images
 {
@@ -18,7 +19,7 @@ namespace IS4.MultiArchiver.Analysis.Images
 
         }
 
-        public override byte[] ComputeHash(Image image)
+        public override ValueTask<byte[]> ComputeHash(Image image)
         {
             using(var horiz = ImageTools.ResizeImage(image, 9, 8, PixelFormat.Format32bppArgb, gray))
             {
@@ -28,7 +29,7 @@ namespace IS4.MultiArchiver.Analysis.Images
                     try{
                         var vertBits = vert.LockBits(new Rectangle(0, 0, 8, 9), ImageLockMode.ReadOnly, PixelFormat.Format32bppRgb);
                         try{
-                            return ComputeDHash(horizBits, vertBits);
+                            return new ValueTask<byte[]>(ComputeDHash(horizBits, vertBits));
                         }finally{
                             vert.UnlockBits(vertBits);
                         }

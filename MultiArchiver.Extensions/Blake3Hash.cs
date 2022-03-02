@@ -5,6 +5,7 @@ using System;
 using System.Buffers;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver
 {
@@ -19,7 +20,7 @@ namespace IS4.MultiArchiver
 
         }
 
-        public override byte[] ComputeHash(Stream input, IPersistentKey key = null)
+        public override async ValueTask<byte[]> ComputeHash(Stream input, IPersistentKey key = null)
         {
             using(var hasher = Hasher.New())
             {
@@ -37,7 +38,7 @@ namespace IS4.MultiArchiver
                     var buffer = ArrayPool<byte>.Shared.Rent(16384);
                     try{
                         int read;
-                        while((read = input.Read(buffer, 0, 16384)) != 0)
+                        while((read = await input.ReadAsync(buffer, 0, 16384)) != 0)
                         {
                             hasher.Update(new ReadOnlySpan<byte>(buffer, 0, read));
                         }
@@ -50,16 +51,16 @@ namespace IS4.MultiArchiver
             }
         }
 
-        public override byte[] ComputeHash(byte[] data, IPersistentKey key = null)
+        public override ValueTask<byte[]> ComputeHash(byte[] data, IPersistentKey key = null)
         {
             var hash = Hasher.Hash(new ReadOnlySpan<byte>(data));
-            return hash.AsSpan().ToArray();
+            return new ValueTask<byte[]>(hash.AsSpan().ToArray());
         }
 
-        public override byte[] ComputeHash(byte[] data, int offset, int count, IPersistentKey key = null)
+        public override ValueTask<byte[]> ComputeHash(byte[] data, int offset, int count, IPersistentKey key = null)
         {
             var hash = Hasher.Hash(new ReadOnlySpan<byte>(data, offset, count));
-            return hash.AsSpan().ToArray();
+            return new ValueTask<byte[]>(hash.AsSpan().ToArray());
         }
     }
 }

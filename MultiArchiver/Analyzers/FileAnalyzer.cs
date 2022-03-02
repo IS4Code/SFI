@@ -110,7 +110,7 @@ namespace IS4.MultiArchiver.Analyzers
 
                 foreach(var alg in HashAlgorithms)
                 {
-                    HashAlgorithm.AddHash(node, alg, alg.ComputeHash(file), context.NodeFactory);
+                    HashAlgorithm.AddHash(node, alg, await alg.ComputeHash(file), context.NodeFactory);
                 }
 
                 if(file is IDirectoryInfo directory)
@@ -132,7 +132,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             foreach(var alg in HashAlgorithms)
             {
-                HashAlgorithm.AddHash(node, alg, alg.ComputeHash(directory, false), context.NodeFactory);
+                HashAlgorithm.AddHash(node, alg, await alg.ComputeHash(directory, false), context.NodeFactory);
             }
         }
 
@@ -162,7 +162,7 @@ namespace IS4.MultiArchiver.Analyzers
 
                 foreach(var alg in HashAlgorithms)
                 {
-                    HashAlgorithm.AddHash(folder, alg, alg.ComputeHash(directory, true), context.NodeFactory);
+                    HashAlgorithm.AddHash(folder, alg, await alg.ComputeHash(directory, true), context.NodeFactory);
                 }
 
                 context = context.WithParent(parent);

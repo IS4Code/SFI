@@ -5,6 +5,7 @@ using IS4.MultiArchiver.Vocabulary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver
 {
@@ -23,23 +24,23 @@ namespace IS4.MultiArchiver
 
         }
 
-        public override byte[] ComputeHash(IFileInfo file)
+        public override async ValueTask<byte[]> ComputeHash(IFileInfo file)
         {
-            var dict = CreateDictionary(file, true);
-            var hash = HashAlgorithm.ComputeHash(dict.EncodeAsBytes());
+            var dict = await CreateDictionary(file, true);
+            var hash = await HashAlgorithm.ComputeHash(dict.EncodeAsBytes());
             InfoCreated?.Invoke(dict, hash);
             return hash;
         }
 
-        public override byte[] ComputeHash(IDirectoryInfo directory, bool content)
+        public override async ValueTask<byte[]> ComputeHash(IDirectoryInfo directory, bool content)
         {
-            var dict = CreateDictionary(directory, content);
-            var hash = HashAlgorithm.ComputeHash(dict.EncodeAsBytes());
+            var dict = await CreateDictionary(directory, content);
+            var hash = await HashAlgorithm.ComputeHash(dict.EncodeAsBytes());
             InfoCreated?.Invoke(dict, hash);
             return hash;
         }
 
-        private BDictionary CreateDictionary(IFileNodeInfo fileNode, bool content)
+        private async Task<BDictionary> CreateDictionary(IFileNodeInfo fileNode, bool content)
         {
             var dict = new BDictionary();
             byte[] buffer;
@@ -48,7 +49,7 @@ namespace IS4.MultiArchiver
             switch(fileNode)
             {
                 case IFileInfo file:
-                    var info = BitTorrentHashCache.GetCachedInfo(BlockSize, file);
+                    var info = await BitTorrentHashCache.GetCachedInfo(BlockSize, file);
                     dict["length"] = new BNumber(file.Length);
                     buffer = new byte[info.BlockHashes.Count * HashAlgorithm.HashSize + info.LastHash.Length];
                     for(int i = 0; i < info.BlockHashes.Count; i++)
@@ -67,7 +68,7 @@ namespace IS4.MultiArchiver
                     }
                     foreach(var (file, path) in FindFiles(directory, root))
                     {
-                        var cachedInfo = BitTorrentHashCache.GetCachedInfo(BlockSize, file);
+                        var cachedInfo = await BitTorrentHashCache.GetCachedInfo(BlockSize, file);
                         files.Add((cachedInfo, path));
                         bufferLength += cachedInfo.BlockHashes.Count * HashAlgorithm.HashSize + cachedInfo.LastHashPadded.Length;
                     }
