@@ -13,6 +13,8 @@ namespace IS4.MultiArchiver.Analysis.Audio
         public int Width { get; }
         public int Height { get; }
 
+        public static bool IsSupported { get; } = true;
+
         public PolarSpectrumGenerator(int width, int height)
         {
             Width = width;
@@ -21,7 +23,13 @@ namespace IS4.MultiArchiver.Analysis.Audio
 
         static PolarSpectrumGenerator()
         {
-            MathNet.Numerics.Control.UseNativeMKL();
+            try
+            {
+                MathNet.Numerics.Control.UseNativeMKL();
+            }catch(NotSupportedException)
+            {
+                IsSupported = false;
+            }
         }
 
         public Complex[][] CreateSpectrum(int sampleRate, int channels, ISampleProvider provider)
