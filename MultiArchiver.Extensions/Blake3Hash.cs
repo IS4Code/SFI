@@ -2,14 +2,11 @@
 using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Vocabulary;
 using System;
-using System.Buffers;
-using System.Collections.Generic;
-using System.IO;
 using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver
 {
-    public class Blake3Hash : DataHashAlgorithm
+    public class Blake3Hash : StreamDataHash<Hasher>
     {
         public static readonly Blake3Hash Instance = new Blake3Hash();
 
@@ -20,35 +17,25 @@ namespace IS4.MultiArchiver
 
         }
 
-        public override async ValueTask<byte[]> ComputeHash(Stream input, IPersistentKey key = null)
+        protected override Hasher Initialize()
         {
-            using(var hasher = Hasher.New())
-            {
-                if(input is IEnumerator<ArraySegment<byte>> collection)
-                {
-                    while(collection.MoveNext())
-                    {
-                        var segment = collection.Current;
-                        if(segment.Count > 0)
-                        {
-                            hasher.Update(segment.AsSpan());
-                        }
-                    }
-                }else{
-                    var buffer = ArrayPool<byte>.Shared.Rent(16384);
-                    try{
-                        int read;
-                        while((read = await input.ReadAsync(buffer, 0, 16384)) != 0)
-                        {
-                            hasher.Update(new ReadOnlySpan<byte>(buffer, 0, read));
-                        }
-                    }finally{
-                        ArrayPool<byte>.Shared.Return(buffer);
-                    }
-                }
-                var hash = hasher.Finalize();
-                return hash.AsSpan().ToArray();
-            }
+            return Hasher.New();
+        }
+
+        protected override void Append(ref Hasher instance, ArraySegment<byte> segment)
+        {
+            instance.Update(segment.AsSpan());
+        }
+
+        protected override byte[] Output(Hasher instance)
+        {
+            var hash = instance.Finalize();
+            return hash.AsSpan().ToArray();
+        }
+
+        protected override void Finalize(Hasher instance)
+        {
+            instance.Dispose();
         }
 
         public override ValueTask<byte[]> ComputeHash(byte[] data, IPersistentKey key = null)

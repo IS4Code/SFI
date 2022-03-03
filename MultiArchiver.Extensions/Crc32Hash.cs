@@ -2,14 +2,11 @@
 using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Vocabulary;
 using System;
-using System.Buffers;
-using System.Collections.Generic;
-using System.IO;
 using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver
 {
-    public class Crc32Hash : DataHashAlgorithm
+    public class Crc32Hash : StreamDataHash<uint>
     {
         public static readonly Crc32Hash Instance = new Crc32Hash();
 
@@ -18,32 +15,24 @@ namespace IS4.MultiArchiver
 
         }
 
-        public override async ValueTask<byte[]> ComputeHash(Stream input, IPersistentKey key = null)
+        protected override uint Initialize()
         {
-            uint aggregate = 0;
-            if(input is IEnumerator<ArraySegment<byte>> collection)
-            {
-                while(collection.MoveNext())
-                {
-                    var segment = collection.Current;
-                    if(segment.Count > 0)
-                    {
-                        aggregate = Crc32Algorithm.Append(aggregate, segment.Array, segment.Offset, segment.Count);
-                    }
-                }
-            }else{
-                var buffer = ArrayPool<byte>.Shared.Rent(16384);
-                try{
-                    int read;
-                    while((read = await input.ReadAsync(buffer, 0, buffer.Length)) != 0)
-                    {
-                        aggregate = Crc32Algorithm.Append(aggregate, buffer, 0, read);
-                    }
-                }finally{
-                    ArrayPool<byte>.Shared.Return(buffer);
-                }
-            }
-            return BitConverter.GetBytes(aggregate);
+            return 0;
+        }
+
+        protected override void Append(ref uint instance, ArraySegment<byte> segment)
+        {
+            instance = Crc32Algorithm.Append(instance, segment.Array, segment.Offset, segment.Count);
+        }
+
+        protected override byte[] Output(uint instance)
+        {
+            return BitConverter.GetBytes(instance);
+        }
+
+        protected override void Finalize(uint instance)
+        {
+
         }
 
         public override ValueTask<byte[]> ComputeHash(byte[] data, IPersistentKey key = null)

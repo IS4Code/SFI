@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Tools.IO
 {
-    public abstract class ChannelStream<TSequence> : Stream, IEnumerator<TSequence> where TSequence : struct, IReadOnlyCollection<byte>
+    public abstract class ChannelStream<TSequence> : Stream, IEnumerator<TSequence>, IAsyncEnumerator<TSequence> where TSequence : struct, IReadOnlyCollection<byte>
     {
         readonly ChannelReader<TSequence> channelReader;
         TSequence current;
@@ -27,6 +27,8 @@ namespace IS4.MultiArchiver.Tools.IO
         public sealed override long Position { get => throw new NotSupportedException(); set => throw new NotSupportedException(); }
 
         TSequence IEnumerator<TSequence>.Current => current;
+
+        TSequence IAsyncEnumerator<TSequence>.Current => current;
 
         object IEnumerator.Current => current;
 
@@ -278,6 +280,26 @@ namespace IS4.MultiArchiver.Tools.IO
         bool IEnumerator.MoveNext()
         {
             return TryGetNext();
+        }
+
+        async ValueTask<bool> IAsyncEnumerator<TSequence>.MoveNextAsync()
+        {
+            try{
+                if(!channelReader.TryRead(out current))
+                {
+                    current = await channelReader.ReadAsync();
+                }
+                return true;
+            }catch(ChannelClosedException)
+            {
+                return false;
+            }
+        }
+
+        ValueTask IAsyncDisposable.DisposeAsync()
+        {
+            Dispose();
+            return default;
         }
 
         void IEnumerator.Reset()
