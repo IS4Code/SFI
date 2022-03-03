@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
-using System.Linq;
 using System.Threading.Tasks;
 using VDS.RDF;
 using VDS.RDF.Parsing;
@@ -17,7 +16,7 @@ using VDS.RDF.Writing.Formatting;
 
 namespace IS4.MultiArchiver
 {
-    public class Archiver : EntityAnalyzerProvider
+    public abstract class Archiver : EntityAnalyzerProvider
     {
         public FileAnalyzer FileAnalyzer { get; }
         public DataAnalyzer DataAnalyzer { get; }
@@ -140,11 +139,11 @@ namespace IS4.MultiArchiver
             }
         }
 
-        const string root = "http://archive.data.is4.site/.well-known/genid";
+        public abstract string Root { get; }
 
         private async ValueTask<AnalysisResult> AnalyzeEntity<T>(T entity, IRdfHandler rdfHandler, IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers, INamespaceMapper mapper) where T : class
         {
-            var handler = new RdfHandler(new Uri(root), rdfHandler, graphHandlers);
+            var handler = new RdfHandler(new Uri(Root), rdfHandler, graphHandlers);
             rdfHandler.StartRdf();
             foreach(var graphHandler in graphHandlers)
             {
@@ -198,7 +197,7 @@ namespace IS4.MultiArchiver
 
         private void SetDefaultNamespaces(INamespaceMapper mapper)
         {
-            foreach(var hash in DataAnalyzer.HashAlgorithms)
+            /*foreach(var hash in DataAnalyzer.HashAlgorithms)
             {
                 if(hash.FormattingMethod != FormattingMethod.Base64)
                 {
@@ -212,11 +211,11 @@ namespace IS4.MultiArchiver
                     mapper.AddNamespace(hash.Name, hash[new ArraySegment<byte>(Array.Empty<byte>())]);
                 }
             }
-            mapper.AddNamespace("id", new Uri(root + "/"));
+            mapper.AddNamespace("id", new Uri(Root + "/"));
             mapper.AddNamespace("dtxt", new Uri("data:,"));
             mapper.AddNamespace("dt64", new Uri("data:;base64,"));
             mapper.AddNamespace("dbin", new Uri("data:application/octet-stream,"));
-            mapper.AddNamespace("db64", new Uri("data:application/octet-stream;base64,"));
+            mapper.AddNamespace("db64", new Uri("data:application/octet-stream;base64,"));*/
             mapper.AddNamespace("exif", new Uri("http://www.w3.org/2003/12/exif/ns#"));
         }
 
