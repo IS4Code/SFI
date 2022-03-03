@@ -114,7 +114,7 @@ namespace IS4.MultiArchiver
             {
                 OutputLog.WriteLine("Writing data...");
 
-                var handler = CreateFileHandler(outputFactory, out var mapper, options.CompressedOutput);
+                var handler = CreateFileHandler(outputFactory, out var mapper, options);
 
                 SetDefaultNamespaces(mapper);
 
@@ -136,7 +136,7 @@ namespace IS4.MultiArchiver
 
                 OutputLog.WriteLine("Saving...");
 
-                SaveGraph(graph, outputFactory, options.CompressedOutput);
+                SaveGraph(graph, outputFactory, options);
             }
         }
 
@@ -179,9 +179,9 @@ namespace IS4.MultiArchiver
             return new StreamWriter(stream);
         }
 
-        private IRdfHandler CreateFileHandler(Func<Stream> outputFactory, out INamespaceMapper mapper, bool compressed)
+        private IRdfHandler CreateFileHandler(Func<Stream> outputFactory, out INamespaceMapper mapper, ArchiverOptions options)
         {
-            var writer = OpenFile(outputFactory, compressed);
+            var writer = OpenFile(outputFactory, options.CompressedOutput);
             var qnameMapper = new QNameOutputMapper();
             var formatter = new TurtleFormatter(qnameMapper);
             IRdfHandler handler = new VDS.RDF.Parsing.Handlers.WriteThroughHandler(formatter, writer, true);
@@ -220,12 +220,12 @@ namespace IS4.MultiArchiver
             mapper.AddNamespace("exif", new Uri("http://www.w3.org/2003/12/exif/ns#"));
         }
 
-        private void SaveGraph(Graph graph, Func<Stream> outputFactory, bool compressed)
+        private void SaveGraph(Graph graph, Func<Stream> outputFactory, ArchiverOptions options)
         {
             var writer = new CompressingTurtleWriter(TurtleSyntax.Original);
-            writer.PrettyPrintMode = false;
+            writer.PrettyPrintMode = options.PrettyPrint;
             writer.DefaultNamespaces.Clear();
-            using(var textWriter = OpenFile(outputFactory, compressed))
+            using(var textWriter = OpenFile(outputFactory, options.CompressedOutput))
             {
                 graph.SaveToStream(textWriter, writer);
             }

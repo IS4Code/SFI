@@ -5,5 +5,6 @@
         public bool DirectOutput { get; set; }
         public bool CompressedOutput { get; set; }
         public bool HideMetadata { get; set; }
+        public bool PrettyPrint { get; set; }
     }
 }

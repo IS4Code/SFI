@@ -238,6 +238,11 @@ namespace IS4.MultiArchiver.Analyzers
 
                 public IReadOnlyList<FormatResult> Results { get; private set; }
 
+                public override string ToString()
+                {
+                    return $"{(IsBinary ? "Binary" : $"Text ({Charset})")} ({ActualLength} B)";
+                }
+
                 private DataMatch(DataAnalysis analysis)
                 {
                     Source = analysis.streamFactory;
