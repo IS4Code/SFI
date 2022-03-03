@@ -57,6 +57,11 @@ namespace IS4.MultiArchiver.Formats
                 }
             }
 
+            public override string ToString()
+            {
+                return file.ToString();
+            }
+
             public IEnumerable<IModuleResource> ReadResources()
             {
                 var rsrc = file.ImageSectionHeaders.FirstOrDefault(h => h.Name == ".rsrc");

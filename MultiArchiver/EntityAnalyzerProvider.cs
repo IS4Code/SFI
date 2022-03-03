@@ -19,18 +19,23 @@ namespace IS4.MultiArchiver
 
         private async ValueTask<AnalysisResult> Analyze<T>(T entity, AnalysisContext context, IEntityAnalyzerProvider analyzers) where T : class
         {
+            var entityName = typeof(T).Equals(typeof(IStreamFactory))
+                ? $"Data ({((IStreamFactory)entity).Length} B)" : entity.ToString();
+
+            var type = Type.GetType(entityName, false);
+            if(type != null)
+            {
+                entityName = type.Name;
+            }
+
             foreach(var analyzer in Analyzers.OfType<IEntityAnalyzer<T>>())
             {
                 try{
-                    if(typeof(T).Equals(typeof(IStreamFactory)))
-                    {
-                        OutputLog.WriteLine($"Data ({((IStreamFactory)entity).Length} B)");
-                    }else{
-                        OutputLog.WriteLine(entity);
-                    }
+                    OutputLog.WriteLine("Analyzing " + entityName);
                     var result = await analyzer.Analyze(entity, context, analyzers);
                     if(result.Node != null)
                     {
+                        OutputLog.WriteLine("Finished " + entityName);
                         return result;
                     }
                 }catch(InternalArchiverException e)
@@ -39,10 +44,12 @@ namespace IS4.MultiArchiver
                     throw;
                 }catch(Exception e)
                 {
-                    OutputLog.WriteLine("Error in analyzer " + analyzer);
+                    OutputLog.WriteLine("Error in analyzer " + analyzer.GetType().Name);
                     OutputLog.WriteLine(e);
+                    return default;
                 }
             }
+            OutputLog.WriteLine("No analyzer for entity");
             return default;
         }
 

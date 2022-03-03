@@ -37,6 +37,11 @@ namespace IS4.MultiArchiver.Formats.Archives
             this.archive = archive;
         }
 
+        public override string ToString()
+        {
+            return archive.ToString();
+        }
+
         internal static string ExtractPath(IEntry entry)
         {
             var path = ExtractPathSimple(entry);
