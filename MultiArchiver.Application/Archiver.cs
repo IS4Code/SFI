@@ -23,7 +23,6 @@ namespace IS4.MultiArchiver
         public DataAnalyzer DataAnalyzer { get; }
         public XmlAnalyzer XmlAnalyzer { get; }
         public BitTorrentHash BitTorrentHash { get; }
-        public ImageAnalyzer ImageAnalyzer { get; }
 
         public Archiver()
         {
@@ -31,7 +30,6 @@ namespace IS4.MultiArchiver
             Analyzers.Add(DataAnalyzer = new DataAnalyzer(() => new UdeEncodingDetector()));
             Analyzers.Add(new DataObjectAnalyzer());
             Analyzers.Add(XmlAnalyzer = new XmlAnalyzer());
-            Analyzers.Add(ImageAnalyzer = new ImageAnalyzer());
             Analyzers.Add(new X509CertificateAnalyzer());
             Analyzers.Add(new FormatObjectAnalyzer());
 
@@ -52,10 +50,16 @@ namespace IS4.MultiArchiver
             DataAnalyzer.ContentUriFormatter = new AdHashedContentUriFormatter(Blake3Hash.Instance);
 
             FileAnalyzer.HashAlgorithms.Add(BitTorrentHash = new BitTorrentHash());
+        }
 
-            ImageAnalyzer.LowFrequencyImageHashAlgorithms.Add(Analysis.Images.DHash.Instance);
-            ImageAnalyzer.DataHashAlgorithms.Add(BuiltInHash.MD5);
-            ImageAnalyzer.DataHashAlgorithms.Add(BuiltInHash.SHA1);
+        public virtual void AddDefault()
+        {
+            DataAnalyzer.DataFormats.Add(new XmlFileFormat());
+            DataAnalyzer.DataFormats.Add(new X509CertificateFormat());
+
+            XmlAnalyzer.XmlFormats.Add(new RdfXmlFormat());
+
+            Analyzers.Add(new RdfXmlAnalyzer());
         }
 
         static Archiver()
@@ -63,65 +67,6 @@ namespace IS4.MultiArchiver
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
 
             Options.InternUris = false;
-        }
-
-        public static Archiver CreateDefault(bool analysis = true)
-        {
-            var archiver = new Archiver();
-
-            archiver.DataAnalyzer.DataFormats.Add(new XmlFileFormat());
-            archiver.DataAnalyzer.DataFormats.Add(new ZipFormat());
-            archiver.DataAnalyzer.DataFormats.Add(new RarFormat());
-            archiver.DataAnalyzer.DataFormats.Add(new SevenZipFormat());
-            archiver.DataAnalyzer.DataFormats.Add(new GZipFormat());
-            archiver.DataAnalyzer.DataFormats.Add(new TarFormat());
-            archiver.DataAnalyzer.DataFormats.Add(new SzFormat());
-            archiver.DataAnalyzer.DataFormats.Add(new ImageMetadataFormat());
-            archiver.DataAnalyzer.DataFormats.Add(new ImageFormat());
-            archiver.DataAnalyzer.DataFormats.Add(new TagLibFormat());
-            archiver.DataAnalyzer.DataFormats.Add(new IsoFormat());
-            archiver.DataAnalyzer.DataFormats.Add(new DosModuleFormat());
-            archiver.DataAnalyzer.DataFormats.Add(new GenericModuleFormat());
-            archiver.DataAnalyzer.DataFormats.Add(new LinearModuleFormat());
-            archiver.DataAnalyzer.DataFormats.Add(new Win16ModuleFormat());
-            //archiver.DataAnalyzer.Formats.Add(new Win32ModuleFormat());
-            archiver.DataAnalyzer.DataFormats.Add(new Win32ModuleFormatManaged());
-            archiver.DataAnalyzer.DataFormats.Add(new WaveFormat());
-            //archiver.DataAnalyzer.Formats.Add(new OggFormat());
-            archiver.DataAnalyzer.DataFormats.Add(new WasapiFormat(false));
-            archiver.DataAnalyzer.DataFormats.Add(new WasapiFormat(true));
-            archiver.DataAnalyzer.DataFormats.Add(new DelphiFormFormat());
-            archiver.DataAnalyzer.DataFormats.Add(new CabinetFormat());
-            archiver.DataAnalyzer.DataFormats.Add(new OleStorageFormat());
-            archiver.DataAnalyzer.DataFormats.Add(new X509CertificateFormat());
-
-            archiver.ContainerProviders.Add(new OpenPackageFormat());
-            archiver.ContainerProviders.Add(new PackageDescriptionFormat());
-            archiver.ContainerProviders.Add(new ExcelXmlDocumentFormat());
-            archiver.ContainerProviders.Add(new ExcelDocumentFormat());
-            archiver.ContainerProviders.Add(new WordXmlDocumentFormat());
-
-            archiver.XmlAnalyzer.XmlFormats.Add(new SvgFormat());
-            archiver.XmlAnalyzer.XmlFormats.Add(new RdfXmlFormat());
-
-            archiver.Analyzers.Add(new ArchiveAnalyzer());
-            archiver.Analyzers.Add(new ArchiveReaderAnalyzer());
-            archiver.Analyzers.Add(new FileSystemAnalyzer());
-            archiver.Analyzers.Add(ImageMetadataAnalyzer.CreateDefault());
-            archiver.Analyzers.Add(new TagLibAnalyzer());
-            archiver.Analyzers.Add(new DosModuleAnalyzer());
-            archiver.Analyzers.Add(new WinModuleAnalyzer());
-            //archiver.Analyzers.Add(new WinVersionAnalyzer());
-            archiver.Analyzers.Add(new WinVersionAnalyzerManaged());
-            archiver.Analyzers.Add(new SvgAnalyzer());
-            archiver.Analyzers.Add(new WaveAnalyzer());
-            archiver.Analyzers.Add(new DelphiObjectAnalyzer());
-            archiver.Analyzers.Add(new CabinetAnalyzer());
-            archiver.Analyzers.Add(new OleStorageAnalyzer());
-            archiver.Analyzers.Add(new PackageDescriptionAnalyzer());
-            archiver.Analyzers.Add(new RdfXmlAnalyzer());
-
-            return archiver;
         }
 
         public ValueTask Archive(string file, string output, ArchiverOptions options)
