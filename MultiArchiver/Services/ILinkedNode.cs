@@ -250,7 +250,21 @@ namespace IS4.MultiArchiver.Services
             get{
                 if(subName == null) throw new ArgumentNullException(nameof(subName));
                 var uri = GetUri(Subject);
-                return CreateNew(CreateNode((Uri)new EncodedUri(uri.AbsoluteUri + (subName.StartsWith("#") ? "" : String.IsNullOrEmpty(uri.Authority + uri.Fragment) ? "#" : "/") + subName)), Graph);
+                string prefix;
+                if(subName.StartsWith("#"))
+                {
+                    prefix = "";
+                }else if(uri.Scheme.Equals("urn", StringComparison.OrdinalIgnoreCase))
+                {
+                    prefix = ":";
+                }else if(String.IsNullOrEmpty(uri.Authority + uri.Fragment))
+                {
+                    prefix = "#";
+                }else{
+                    prefix = "/";
+                }
+                uri = new EncodedUri(uri.AbsoluteUri + prefix + subName);
+                return CreateNew(CreateNode(uri), Graph);
             }
         }
 
