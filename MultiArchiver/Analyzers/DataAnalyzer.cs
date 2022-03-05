@@ -29,6 +29,8 @@ namespace IS4.MultiArchiver.Analyzers
 
         public int MaxDataLengthToStore => Math.Max(64, HashAlgorithms.Sum(h => h.HashSize + 64)) - 16;
 
+        public TextWriter OutputLog { get; set; } = Console.Error;
+
         public DataAnalyzer(Func<IEncodingDetector> encodingDetectorFactory)
 		{
             EncodingDetectorFactory = encodingDetectorFactory;
@@ -344,7 +346,21 @@ namespace IS4.MultiArchiver.Analyzers
                         }
                     }
 
-                    await Task.WhenAll(match.Results.Select(r => r.Finish()));
+                    foreach(var result in match.Results)
+                    {
+                        try{
+                            await result.Finish();
+                        }catch(InternalArchiverException)
+                        {
+                            throw;
+                        }catch(PlatformNotSupportedException e)
+                        {
+                            analysis.analyzer.OutputLog.WriteLine($"{result.Format.GetType().Name}: {e.Message}");
+                            analysis.analyzer.DataFormats.Remove(result.Format);
+                        }catch{
+
+                        }
+                    }
 
                     return match;
                 }
@@ -397,7 +413,7 @@ namespace IS4.MultiArchiver.Analyzers
 		class FormatResult : IComparable<FormatResult>, IResultFactory<ILinkedNode, MatchContext>
 		{
             readonly DataAnalysis.DataMatch fileMatch;
-            readonly IBinaryFileFormat format;
+            public IBinaryFileFormat Format { get; }
             readonly ValueTask<ILinkedNode> parentTask;
             readonly AnalysisContext context;
             readonly IEntityAnalyzerProvider analyzer;
@@ -406,7 +422,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             public bool IsValid => !task.IsFaulted;
 
-            public int MaxReadBytes => format.HeaderLength;
+            public int MaxReadBytes => Format.HeaderLength;
 
             public string Extension { get; private set; }
             public string Label { get; private set; }
@@ -416,7 +432,7 @@ namespace IS4.MultiArchiver.Analyzers
             public FormatResult(DataAnalysis.DataMatch fileMatch, IStreamFactory streamFactory, IBinaryFileFormat format, TaskCompletionSource<ILinkedNode> nodeCreated, ValueTask<ILinkedNode> parent, AnalysisContext context, IEntityAnalyzerProvider analyzer)
 			{
                 this.fileMatch = fileMatch;
-                this.format = format;
+                this.Format = format;
                 this.parentTask = parent;
                 this.context = context;
                 this.analyzer = analyzer;
@@ -460,16 +476,9 @@ namespace IS4.MultiArchiver.Analyzers
                 }
             }
 
-            public async Task Finish()
+            public Task Finish()
             {
-                try{
-                    await task;
-                }catch(InternalArchiverException)
-                {
-                    throw;
-                }catch{
-
-                }
+                return task;
             }
 
             const int MaxResultWaitTime = 1000;
@@ -479,7 +488,7 @@ namespace IS4.MultiArchiver.Analyzers
                 var streamContext = context.WithMatchContext(matchContext);
                 var parent = await parentTask;
                 try{
-                    var formatObj = new BinaryFormatObject<T>(fileMatch, format, value);
+                    var formatObj = new BinaryFormatObject<T>(fileMatch, Format, value);
                     while(parent[formatObj] == null)
                     {
                         ILinkedNode node;
