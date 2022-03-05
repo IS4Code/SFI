@@ -22,6 +22,16 @@ namespace IS4.MultiArchiver
         public DataAnalyzer DataAnalyzer { get; }
         public XmlAnalyzer XmlAnalyzer { get; }
         public BitTorrentHash BitTorrentHash { get; }
+        
+        public new TextWriter OutputLog {
+            get {
+                return base.OutputLog;
+            }
+            set {
+                base.OutputLog = value;
+                DataAnalyzer.OutputLog = value;
+            }
+        }
 
         public Archiver()
         {
