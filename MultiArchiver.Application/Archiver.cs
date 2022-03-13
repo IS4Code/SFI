@@ -232,7 +232,6 @@ namespace IS4.MultiArchiver
             mapper.AddNamespace("dt64", new Uri("data:;base64,"));
             mapper.AddNamespace("dbin", new Uri("data:application/octet-stream,"));
             mapper.AddNamespace("db64", new Uri("data:application/octet-stream;base64,"));*/
-            mapper.AddNamespace("exif", new Uri("http://www.w3.org/2003/12/exif/ns#"));
         }
 
         private void SaveGraph(Graph graph, Func<Stream> outputFactory, ArchiverOptions options)

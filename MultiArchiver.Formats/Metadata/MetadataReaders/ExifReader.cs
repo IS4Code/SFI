@@ -21,13 +21,14 @@ namespace IS4.MultiArchiver.Formats.Metadata.MetadataReaders
                 }
                 string value;
                 DatatypeUri datatype;
+                var property = GetProperty(id);
                 switch(directory.GetObject(tag.Type))
                 {
                     case Rational r:
                         r = r.GetSimplifiedInstance();
                         if(r.Denominator == 1)
                         {
-                            node.Set(ExifFormatter.Instance, id, r.Numerator);
+                            node.Set(property, r.Numerator);
                             continue;
                         }
                         value = r.GetSimplifiedInstance().ToString();
@@ -53,13 +54,13 @@ namespace IS4.MultiArchiver.Formats.Metadata.MetadataReaders
                         }
                         break;
                     case ValueType v:
-                        node.TrySet(ExifFormatter.Instance, id, v);
+                        node.TrySet(property, v);
                         continue;
                     case object o:
                         var node2 = nodeFactory.TryCreate(null, o);
                         if(node2 != null)
                         {
-                            node.Set(ExifFormatter.Instance, id, node2);
+                            node.Set(property, node2);
                         }
                         continue;
                     default:
@@ -68,29 +69,20 @@ namespace IS4.MultiArchiver.Formats.Metadata.MetadataReaders
                 if(String.IsNullOrWhiteSpace(value)) continue;
                 if(datatype == Datatypes.String && DateTime.TryParseExact(value, "yyyy:MM:dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out var dateTime))
                 {
-                    node.Set(ExifFormatter.Instance, id, dateTime);
+                    node.Set(property, dateTime);
                 }else{
-                    node.Set(ExifFormatter.Instance, id, value, datatype);
+                    node.Set(property, value, datatype);
                 }
             }
             return null;
         }
 
-        class ExifFormatter : IPropertyUriFormatter<string>
+        static readonly VocabularyUri exifVocabulary = new VocabularyUri(Vocabularies.Uri.Exif);
+
+        static PropertyUri GetProperty(string key)
         {
-            public static readonly IPropertyUriFormatter<string> Instance = new ExifFormatter();
-
-            private ExifFormatter()
-            {
-
-            }
-
-            public Uri this[string key] {
-                get {
-                    key = key.Substring(0, 1).ToLowerInvariant() + key.Substring(1);
-                    return new Uri(Vocabularies.Uri.Exif + key, UriKind.Absolute);
-                }
-            }
+            key = key.Substring(0, 1).ToLowerInvariant() + key.Substring(1);
+            return new PropertyUri(exifVocabulary, key);
         }
 
         static readonly Dictionary<int, string> exifFields = new Dictionary<int, string>
