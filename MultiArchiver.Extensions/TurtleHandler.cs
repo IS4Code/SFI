@@ -61,9 +61,9 @@ namespace IS4.MultiArchiver.Extensions
 
         protected override bool HandleTripleInternal(Triple t)
         {
-            var subj = formatter.Format(t.Subject, TripleSegment.Subject);
-            var pred = formatter.Format(t.Predicate, TripleSegment.Predicate);
-            var obj = formatter.Format(t.Object, TripleSegment.Object);
+            var subj = formatter.Format(t.Subject, TripleSegment.Subject).Trim();
+            var pred = formatter.Format(t.Predicate, TripleSegment.Predicate).Trim();
+            var obj = formatter.Format(t.Object, TripleSegment.Object).Trim();
             if(lastSubject != subj)
             {
                 EndSubject(null);
