@@ -193,8 +193,14 @@ namespace IS4.MultiArchiver
             var writer = OpenFile(outputFactory, options.CompressedOutput);
             var qnameMapper = new QNameOutputMapper();
             var formatter = new TurtleFormatter(qnameMapper);
-            IRdfHandler handler = new VDS.RDF.Parsing.Handlers.WriteThroughHandler(formatter, writer, true);
-            handler = new NamespaceHandler(handler, qnameMapper);
+            IRdfHandler handler;
+            if(options.PrettyPrint)
+            {
+                handler = new TurtleHandler<TurtleFormatter>(writer, formatter, qnameMapper);
+            }else{
+                handler = new VDS.RDF.Parsing.Handlers.WriteThroughHandler(formatter, writer, true);
+                handler = new NamespaceHandler(handler, qnameMapper);
+            }
             mapper = qnameMapper;
             return handler;
         }
