@@ -290,7 +290,7 @@ namespace IS4.MultiArchiver.Analyzers
                     {
                         if(IsComplete)
                         {
-                            node = context.NodeFactory.Create(UriTools.DataUriFormatter, (null, encodingDetector?.Charset, ByteValue));
+                            node = context.NodeFactory.Create(UriTools.DataUriFormatter, (null, charsetMatch?.Charset, ByteValue));
                             NodeTask = new ValueTask<ILinkedNode>(node);
                         }else{
                             async ValueTask<ILinkedNode> HashNode()
@@ -394,7 +394,7 @@ namespace IS4.MultiArchiver.Analyzers
                 if(Confidence > 0)
                 {
                     Encoding = TryGetEncoding(encodingDetector.Charset);
-                    Charset = Encoding?.WebName ?? encodingDetector.Charset;
+                    Charset = Encoding?.WebName ?? encodingDetector.Charset.ToLowerInvariant();
                 }
             }
 
