@@ -1,4 +1,6 @@
-﻿namespace IS4.MultiArchiver
+﻿using System;
+
+namespace IS4.MultiArchiver
 {
     public class ArchiverOptions
     {
@@ -6,5 +8,6 @@
         public bool CompressedOutput { get; set; }
         public bool HideMetadata { get; set; }
         public bool PrettyPrint { get; set; }
+        public Uri Node { get; set; }
     }
 }

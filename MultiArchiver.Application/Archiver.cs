@@ -123,13 +123,14 @@ namespace IS4.MultiArchiver
             {
                 OutputLog.WriteLine("Writing data...");
 
-                var handler = CreateFileHandler(outputFactory, out var mapper, options);
-
-                SetDefaultNamespaces(mapper);
-
-                foreach(var entity in entities)
+                using(var disposable = CreateFileHandler(outputFactory, out var mapper, options, out var handler))
                 {
-                    await AnalyzeEntity(entity, handler, graphHandlers, mapper);
+                    SetDefaultNamespaces(mapper);
+
+                    foreach(var entity in entities)
+                    {
+                        await AnalyzeEntity(entity, handler, graphHandlers, mapper, options);
+                    }
                 }
             }else{
                 OutputLog.WriteLine("Reading data...");
@@ -140,7 +141,7 @@ namespace IS4.MultiArchiver
                 
                 foreach(var entity in entities)
                 {
-                    await AnalyzeEntity(entity, handler, graphHandlers, null);
+                    await AnalyzeEntity(entity, handler, graphHandlers, null, options);
                 }
 
                 OutputLog.WriteLine("Saving...");
@@ -151,7 +152,7 @@ namespace IS4.MultiArchiver
 
         public abstract string Root { get; }
 
-        private async ValueTask<AnalysisResult> AnalyzeEntity<T>(T entity, IRdfHandler rdfHandler, IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers, INamespaceMapper mapper) where T : class
+        private async ValueTask<AnalysisResult> AnalyzeEntity<T>(T entity, IRdfHandler rdfHandler, IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers, INamespaceMapper mapper, ArchiverOptions options) where T : class
         {
             var handler = new RdfHandler(new Uri(Root), rdfHandler, graphHandlers);
             rdfHandler.StartRdf();
@@ -168,7 +169,8 @@ namespace IS4.MultiArchiver
                     }
                 }
 
-                return await this.Analyze(entity, new AnalysisContext(nodeFactory: handler));
+                var node = options.Node != null ? handler.Create(UriFormatter.Instance, options.Node) : null;
+                return await this.Analyze(entity, new AnalysisContext(nodeFactory: handler, node: node));
             }finally{
                 rdfHandler.EndRdf(true);
                 foreach(var graphHandler in graphHandlers)
@@ -188,12 +190,11 @@ namespace IS4.MultiArchiver
             return new StreamWriter(stream);
         }
 
-        private IRdfHandler CreateFileHandler(Func<Stream> outputFactory, out INamespaceMapper mapper, ArchiverOptions options)
+        private IDisposable CreateFileHandler(Func<Stream> outputFactory, out INamespaceMapper mapper, ArchiverOptions options, out IRdfHandler handler)
         {
             var writer = OpenFile(outputFactory, options.CompressedOutput);
             var qnameMapper = new QNameOutputMapper();
             var formatter = new TurtleFormatter(qnameMapper);
-            IRdfHandler handler;
             if(options.PrettyPrint)
             {
                 handler = new TurtleHandler<TurtleFormatter>(writer, formatter, qnameMapper);
@@ -202,7 +203,7 @@ namespace IS4.MultiArchiver
                 handler = new NamespaceHandler(handler, qnameMapper);
             }
             mapper = qnameMapper;
-            return handler;
+            return writer;
         }
 
         private IRdfHandler CreateGraphHandler(out Graph graph)
