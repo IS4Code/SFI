@@ -164,6 +164,14 @@ namespace IS4.MultiArchiver.Extensions
                 return false;
             }
 
+            public override void SetAsBase()
+            {
+                lock(Graph)
+                {
+                    Graph.HandleBaseUri(((IUriNode)Subject).Uri);
+                }
+            }
+
             protected override INode CreateNode(Uri uri)
             {
                 return Graph.CreateUriNode(uri);

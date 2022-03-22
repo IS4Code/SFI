@@ -117,6 +117,8 @@ namespace IS4.MultiArchiver.Analyzers
                 {
                     await AnalyzeDirectory(node, directory, context, analyzer);
                 }
+
+                node.SetAsBase();
             }
             return new AnalysisResult(node);
         }

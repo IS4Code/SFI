@@ -47,6 +47,8 @@ namespace IS4.MultiArchiver.Services
         ILinkedNode this[string subName] { get; }
         ILinkedNode this[IIndividualUriFormatter<Uri> subFormatter] { get; }
 
+        void SetAsBase();
+
         ILinkedNode In(GraphUri graph);
         ILinkedNode In<TGraph>(IGraphUriFormatter<TGraph> graphFormatter, TGraph value);
     }
@@ -97,6 +99,8 @@ namespace IS4.MultiArchiver.Services
         public abstract Task DescribeAsync(XmlReader rdfXmlReader);
 
         public abstract void Describe(XmlDocument rdfXmlDocument);
+
+        public abstract void SetAsBase();
 
         public void SetClass(ClassUri @class)
         {

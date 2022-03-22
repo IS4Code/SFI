@@ -18,6 +18,8 @@ namespace IS4.MultiArchiver.Analyzers
         {
             var node = GetNode(format, context);
 
+            node.SetAsBase();
+
             var result = await analyzer.Analyze(value, context.WithNode(node));
             node = result.Node ?? node;
 

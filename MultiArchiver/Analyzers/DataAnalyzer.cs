@@ -46,6 +46,8 @@ namespace IS4.MultiArchiver.Analyzers
             var match = await new DataAnalysis(this, streamFactory, context, analyzers).Match();
             var node = await match.NodeTask;
 
+            node.SetAsBase();
+
             var results = match.Results.Where(result => result.IsValid);
 
             foreach(var result in results.GroupBy(r => r.Result))
