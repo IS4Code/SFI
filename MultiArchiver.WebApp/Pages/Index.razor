@@ -1,0 +1,67 @@
+﻿@page "/"
+@using IS4.MultiArchiver;
+@inject IJSRuntime js
+
+<h1>MultiArchiver</h1>
+
+<form @onsubmit="OnSubmit">
+    <p><textarea @onchange="OnInputChange" /></p>
+    <InputFile OnChange="OnInputFileChange" multiple />
+    <button type="submit">Execute</button>
+</form>
+
+<ul>
+    @foreach(var file in outputFiles)
+    {
+        <li><a href="@CreateBlob(file.Value)" download="@file.Key">@file.Key</a></li>
+    }
+</ul>
+
+<pre>
+    @foreach(var chunk in outputChunks)
+    {
+    <span>@chunk</span>
+    }
+</pre>
+
+@code {
+    Dictionary<string, IBrowserFile> inputFiles;
+    Dictionary<string, IJSInProcessObjectReference> outputFiles = new Dictionary<string, IJSInProcessObjectReference>();
+    string[] commandArgs = Array.Empty<string>();
+    List<string> outputChunks = new List<string>();
+
+    void OnInputFileChange(InputFileChangeEventArgs e)
+    {
+        inputFiles = e.GetMultipleFiles().ToDictionary(f => f.Name, f => f, StringComparer.OrdinalIgnoreCase);
+    }
+
+    void OnInputChange(ChangeEventArgs args)
+    {
+        commandArgs = args.Value.ToString().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+    }
+
+    async void OnSubmit()
+    {
+        outputChunks.Clear();
+        var logWriter = new EventWriter();
+        logWriter.Written += sb => {
+            outputChunks.Add(sb.ToString());
+        };
+        outputFiles.Clear();
+
+        this.StateHasChanged();
+
+        var env = new WebEnvironment((IJSInProcessRuntime)js, logWriter, inputFiles, outputFiles);
+
+        var application = new Application<WebArchiver>(env);
+
+        await application.Run(commandArgs);
+
+        this.StateHasChanged();
+    }
+
+    string CreateBlob(IJSInProcessObjectReference array)
+    {
+        return ((IJSInProcessRuntime)js).Invoke<string>("finalizeBlob", array);
+    }
+}

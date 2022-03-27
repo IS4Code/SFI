@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>MultiArchiver.WebApp</AssemblyName>
+    <RootNamespace>IS4.MultiArchiver.WebApp</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.2" PrivateAssets="all" />
+    <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MultiArchiver.Application\MultiArchiver.Application.csproj" />
+    <ProjectReference Include="..\MultiArchiver.Extensions\MultiArchiver.Extensions.csproj" />
+    <ProjectReference Include="..\MultiArchiver.Formats\MultiArchiver.Formats.csproj" />
+    <ProjectReference Include="..\MultiArchiver.Media\MultiArchiver.Media.csproj" />
+    <ProjectReference Include="..\MultiArchiver\MultiArchiver.csproj" />
+  </ItemGroup>
+
+</Project>
