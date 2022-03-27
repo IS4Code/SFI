@@ -134,18 +134,20 @@ namespace IS4.MultiArchiver.Analyzers
 
                             var buffer = ArrayPool<byte>.Shared.Rent(16384);
 
-                            var writers = hashes.Values.Select(v => v.writer).Where(w => w != null);
+                            var activeHashes = hashes.Values.Where(v => v.writer != null);
 
                             try{
                                 int read;
                                 while((read = await stream.ReadAsync(buffer, 0, buffer.Length)) != 0)
                                 {
                                     var segment = buffer.Slice(0, read);
-                                    var writing = writers.Select(async writer => {
+                                    async Task WriteToHasher(ChannelWriter<ArraySegment<byte>> writer)
+                                    {
                                         await writer.WriteAsync(segment);
                                         await writer.WriteAsync(default);
                                         await writer.WaitToWriteAsync();
-                                    }).ToArray();
+                                    }
+                                    var writing = activeHashes.Select(hash => Task.WhenAny(WriteToHasher(hash.writer), hash.data)).ToArray();
 
                                     actualLength += read;
 
@@ -178,9 +180,9 @@ namespace IS4.MultiArchiver.Analyzers
                                     await Task.WhenAll(writing);
                                 }
 
-                                foreach(var writer in writers)
+                                foreach(var hash in activeHashes)
                                 {
-                                    writer.Complete();
+                                    hash.writer.Complete();
                                 }
                             }finally{
                                 ArrayPool<byte>.Shared.Return(buffer);
