@@ -150,11 +150,9 @@ namespace IS4.MultiArchiver
             }
         }
 
-        public abstract string Root { get; }
-
         private async ValueTask<AnalysisResult> AnalyzeEntity<T>(T entity, IRdfHandler rdfHandler, IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers, INamespaceMapper mapper, ArchiverOptions options) where T : class
         {
-            var handler = new RdfHandler(new Uri(Root), rdfHandler, graphHandlers);
+            var handler = new RdfHandler(new Uri(options.Root), rdfHandler, graphHandlers);
             rdfHandler.StartRdf();
             foreach(var graphHandler in graphHandlers)
             {
