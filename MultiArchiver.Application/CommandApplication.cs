@@ -88,8 +88,8 @@ namespace IS4.MultiArchiver
 			}
 			
 			Notes();
-			
-			Environment.Exit(0);
+
+			throw new ApplicationExitException();
 		}
 		
 		protected virtual void Notes()
@@ -347,6 +347,11 @@ namespace IS4.MultiArchiver
 				Description = description;
 			}
 		}
+
+		public class ApplicationExitException : Exception
+        {
+
+        }
 	}
 	
 	public enum OptionArgument

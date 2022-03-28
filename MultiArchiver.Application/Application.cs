@@ -21,6 +21,8 @@ namespace IS4.MultiArchiver
 
 		readonly ArchiverOptions options;
 
+		static readonly IEnumerable<string> modeNames = Enum.GetNames(typeof(Mode)).Select(n => n.ToLowerInvariant());
+
 		public Application(IApplicationEnvironment environment)
         {
             this.environment = environment;
@@ -54,7 +56,6 @@ namespace IS4.MultiArchiver
 
 				if(mode == null)
 				{
-					var modeNames = Enum.GetNames(typeof(Mode)).Select(n => n.ToLowerInvariant());
 					throw new ApplicationException($"Mode must be specified (one of {String.Join(", ", modeNames)})!");
 				}
 
@@ -118,6 +119,9 @@ namespace IS4.MultiArchiver
 						await archiver.Archive(inputFiles, outputStream, options);
 					}
 				}
+			}catch(ApplicationExitException)
+			{
+
 			}catch(Exception e) when(!Debugger.IsAttached)
 			{
 				Log(e.Message);
@@ -157,7 +161,7 @@ namespace IS4.MultiArchiver
             }
         }
 
-        protected override string Usage => "mode [options] input... output";
+        protected override string Usage => $"({String.Join("|", modeNames)}) [options] input... output";
 
         public override void Description()
 		{
@@ -200,7 +204,7 @@ namespace IS4.MultiArchiver
             {
 				if(!Enum.TryParse<Mode>(operand, true, out var mode))
                 {
-					throw new ApplicationException("Invalid mode.");
+					throw new ApplicationException($"Invalid mode (must be one of {String.Join(", ", modeNames)}).");
 				}
 				this.mode = mode;
 				return OperandState.ContinueOptions;
