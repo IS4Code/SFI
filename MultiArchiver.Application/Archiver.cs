@@ -35,6 +35,8 @@ namespace IS4.MultiArchiver
 
         public virtual string OutputMediaType => "text/turtle;charset=utf-8";
 
+        public virtual ICollection<IDataHashAlgorithm> ImageDataHashAlgorithms => Array.Empty<IDataHashAlgorithm>();
+
         public Archiver()
         {
             Analyzers.Add(FileAnalyzer = new FileAnalyzer());
@@ -52,13 +54,23 @@ namespace IS4.MultiArchiver
             {
                 DataAnalyzer.HashAlgorithms.Add(BuiltInHash.SHA1);
             }
+            if(BuiltInHash.SHA256 != null)
+            {
+                DataAnalyzer.HashAlgorithms.Add(BuiltInHash.SHA256);
+            }
+            if(BuiltInHash.SHA384 != null)
+            {
+                DataAnalyzer.HashAlgorithms.Add(BuiltInHash.SHA384);
+            }
+            if(BuiltInHash.SHA512 != null)
+            {
+                DataAnalyzer.HashAlgorithms.Add(BuiltInHash.SHA512);
+            }
             if(BitTorrentHash.HashAlgorithm != null)
             {
-                DataAnalyzer.HashAlgorithms.Add(new PaddedBlockHash(Vocabulary.Individuals.BSHA1_256, "urn:bsha1-256:", 262144));
+                DataAnalyzer.HashAlgorithms.Add(new PaddedBlockHash(Individuals.BSHA1_256, "urn:bsha1-256:", 262144));
             }
-            DataAnalyzer.HashAlgorithms.Add(Blake3Hash.Instance);
             DataAnalyzer.HashAlgorithms.Add(Crc32Hash.Instance);
-            DataAnalyzer.ContentUriFormatter = new AdHashedContentUriFormatter(Blake3Hash.Instance);
 
             FileAnalyzer.HashAlgorithms.Add(BitTorrentHash = new BitTorrentHash());
         }

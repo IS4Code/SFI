@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver
@@ -28,10 +29,14 @@ namespace IS4.MultiArchiver
 			options.PrettyPrint = true;
 			options.DirectOutput = true;
 			options.NewLine = environment.NewLine;
+			options.HideMetadata = true;
 		}
 
 		Mode? mode;
 		List<string> inputs = new List<string>();
+		List<Regex> analyzerMatches = new List<Regex>();
+		List<Regex> formatMatches = new List<Regex>();
+		List<Regex> hashMatches = new List<Regex>();
 		string output;
 
 		bool quiet;
@@ -47,25 +52,48 @@ namespace IS4.MultiArchiver
 
 				if(mode == null)
 				{
-					throw new ApplicationException("Mode must be specified!");
-				}
-				if(inputs.Count == 0)
-				{
-					throw new ApplicationException("Input must be specified!");
-				}
-				if(output == null)
-				{
-					throw new ApplicationException("Output must be specified!");
-				}
-
-				if(quiet)
-				{
-					writer = TextWriter.Null;
+					var modeNames = Enum.GetNames(typeof(Mode)).Select(n => n.ToLowerInvariant());
+					throw new ApplicationException($"Mode must be specified (one of {String.Join(", ", modeNames)})!");
 				}
 
 				var archiver = new TArchiver();
 				archiver.OutputLog = writer;
 				archiver.AddDefault();
+
+				switch(mode)
+				{
+					case Mode.Analyzers:
+						PrintList("analyzers", archiver.Analyzers);
+						return;
+					case Mode.Formats:
+						PrintList("data formats", archiver.DataAnalyzer.DataFormats);
+						PrintList("XML formats", archiver.XmlAnalyzer.XmlFormats);
+						PrintList("container formats", archiver.ContainerProviders);
+						return;
+					case Mode.Hashes:
+						PrintList("data hashes", archiver.DataAnalyzer.HashAlgorithms);
+						PrintList("file hashes", archiver.FileAnalyzer.HashAlgorithms);
+						PrintList("image data hashes", archiver.ImageDataHashAlgorithms);
+						return;
+				}
+
+				if(inputs.Count == 0 || output == null)
+				{
+					throw new ApplicationException("At least one input and an output must be specified!");
+				}
+
+				FilterList(archiver.Analyzers, analyzerMatches);
+				FilterList(archiver.DataAnalyzer.DataFormats, formatMatches);
+				FilterList(archiver.XmlAnalyzer.XmlFormats, formatMatches);
+				FilterList(archiver.ContainerProviders, formatMatches);
+				FilterList(archiver.DataAnalyzer.HashAlgorithms, hashMatches);
+				FilterList(archiver.FileAnalyzer.HashAlgorithms, hashMatches);
+				FilterList(archiver.ImageDataHashAlgorithms, hashMatches);
+
+				if(quiet)
+				{
+					writer = TextWriter.Null;
+				}
 
 				var inputFiles = inputs.Select(input => environment.GetFile(input));
 
@@ -84,6 +112,39 @@ namespace IS4.MultiArchiver
 			}
         }
 
+		void PrintList<T>(string type, IEnumerable<T> values)
+        {
+			bool first = true;
+			foreach(var value in values)
+            {
+				if(first)
+                {
+					LogWriter.WriteLine();
+					LogWriter.WriteLine($"Available {type}:");
+					first = false;
+				}
+				LogWriter.WriteLine(" - " + DataTools.GetUserFriendlyName(value));
+            }
+        }
+
+		void FilterList<T>(ICollection<T> list, IEnumerable<Regex> matches)
+        {
+			var filtered = new List<T>();
+			foreach(var item in list)
+			{
+				var name = DataTools.GetUserFriendlyName(item);
+				if(!matches.Any(m => m.IsMatch(name)))
+                {
+					filtered.Add(item);
+                }
+            }
+
+			foreach(var item in filtered)
+            {
+				list.Remove(item);
+            }
+        }
+
         protected override string Usage => "mode [options] input output";
 
         public override void Description()
@@ -96,16 +157,22 @@ namespace IS4.MultiArchiver
 
 		enum Mode
 		{
-			Describe
+			Describe,
+			Formats,
+			Analyzers,
+			Hashes
 		}
 
 		public override IList<OptionInfo> GetOptions()
 		{
 			return new OptionInfoCollection{
 				{"q", "quiet", null, "do not print any additional messages"},
+				{"a", "analyzer", "pattern", "enable given analyzers"},
+				{"f", "format", "pattern", "enable given formats"},
+				{"h", "hash", "pattern", "enable given hashes"},
 				{"c", "compress", null, "perform gzip compression on the output"},
-				{"s", "stable", null, "produce the same output every time"},
-				{"d", "data-only", null, "do not store input file metadata"},
+				{"m", "metadata", null, "add annotation metadata to output"},
+				{"d", "data-only", null, "do not store input file information"},
 				{"?", "help", null, "displays this help message"},
 			};
 		}
@@ -156,13 +223,13 @@ namespace IS4.MultiArchiver
 					}
 					options.CompressedOutput = true;
 					return OptionArgument.None;
-				case "s":
-				case "stable":
-					if(options.HideMetadata)
+				case "m":
+				case "metadata":
+					if(!options.HideMetadata)
 					{
 						throw OptionAlreadySpecified(option);
 					}
-					options.HideMetadata = true;
+					options.HideMetadata = false;
 					return OptionArgument.None;
 				case "d":
 				case "data-only":
@@ -174,6 +241,15 @@ namespace IS4.MultiArchiver
 					return OptionArgument.None;
 				case "r":
 				case "root":
+					return OptionArgument.Required;
+				case "h":
+				case "hash":
+					return OptionArgument.Required;
+				case "a":
+				case "analyzer":
+					return OptionArgument.Required;
+				case "f":
+				case "format":
 					return OptionArgument.Required;
 				case "?":
 				case "help":
@@ -196,6 +272,18 @@ namespace IS4.MultiArchiver
 					}
 					options.Root = argument;
 					rootSpecified = true;
+					break;
+				case "a":
+				case "analyzer":
+					analyzerMatches.Add(DataTools.ConvertWildcardToRegex(argument));
+					break;
+				case "f":
+				case "format":
+					formatMatches.Add(DataTools.ConvertWildcardToRegex(argument));
+					break;
+				case "h":
+				case "hash":
+					hashMatches.Add(DataTools.ConvertWildcardToRegex(argument));
 					break;
 			}
 		}

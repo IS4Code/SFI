@@ -1,6 +1,7 @@
 ﻿using IS4.MultiArchiver.Analyzers;
 using IS4.MultiArchiver.Formats;
-using IS4.MultiArchiver.Tools;
+using IS4.MultiArchiver.Services;
+using System.Collections.Generic;
 
 namespace IS4.MultiArchiver.ConsoleApp
 {
@@ -8,13 +9,20 @@ namespace IS4.MultiArchiver.ConsoleApp
     {
         public ImageAnalyzer ImageAnalyzer { get; }
 
+        public override ICollection<IDataHashAlgorithm> ImageDataHashAlgorithms => ImageAnalyzer.DataHashAlgorithms;
+
         public ConsoleArchiver()
         {
             Analyzers.Add(ImageAnalyzer = new ImageAnalyzer());
 
-            ImageAnalyzer.LowFrequencyImageHashAlgorithms.Add(IS4.MultiArchiver.Analysis.Images.DHash.Instance);
-            ImageAnalyzer.DataHashAlgorithms.Add(BuiltInHash.MD5);
-            ImageAnalyzer.DataHashAlgorithms.Add(BuiltInHash.SHA1);
+            ImageAnalyzer.LowFrequencyImageHashAlgorithms.Add(Analysis.Images.DHash.Instance);
+
+            var algorithms = ImageAnalyzer.DataHashAlgorithms;
+            DataAnalyzer.HashAlgorithms.Add(Blake3Hash.Instance);
+            foreach(var algorithm in DataAnalyzer.HashAlgorithms)
+            {
+                algorithms.Add(algorithm);
+            }
         }
 
         public override void AddDefault()
@@ -35,7 +43,6 @@ namespace IS4.MultiArchiver.ConsoleApp
             DataAnalyzer.DataFormats.Add(new GenericModuleFormat());
             DataAnalyzer.DataFormats.Add(new LinearModuleFormat());
             DataAnalyzer.DataFormats.Add(new Win16ModuleFormat());
-            //DataAnalyzer.Formats.Add(new Win32ModuleFormat());
             DataAnalyzer.DataFormats.Add(new Win32ModuleFormatManaged());
             DataAnalyzer.DataFormats.Add(new WaveFormat());
             //DataAnalyzer.Formats.Add(new OggFormat());
@@ -60,7 +67,6 @@ namespace IS4.MultiArchiver.ConsoleApp
             Analyzers.Add(new TagLibAnalyzer());
             Analyzers.Add(new DosModuleAnalyzer());
             Analyzers.Add(new WinModuleAnalyzer());
-            //Analyzers.Add(new WinVersionAnalyzer());
             Analyzers.Add(new WinVersionAnalyzerManaged());
             Analyzers.Add(new SvgAnalyzer());
             Analyzers.Add(new WaveAnalyzer());

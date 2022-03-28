@@ -43,7 +43,7 @@ namespace IS4.MultiArchiver.Services
         ValueTask<byte[]> ComputeHash(IDirectoryInfo directory, bool contents);
     }
 
-    public interface IObjectHashAlgorithm<T> : IHashAlgorithm
+    public interface IObjectHashAlgorithm<in T> : IHashAlgorithm
     {
         ValueTask<byte[]> ComputeHash(T @object);
     }
@@ -156,6 +156,11 @@ namespace IS4.MultiArchiver.Services
                 default:
                     return null;
             }
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 

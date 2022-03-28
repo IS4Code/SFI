@@ -19,14 +19,7 @@ namespace IS4.MultiArchiver
 
         private async ValueTask<AnalysisResult> Analyze<T>(T entity, AnalysisContext context, IEntityAnalyzerProvider analyzers) where T : class
         {
-            var entityName = typeof(T).Equals(typeof(IStreamFactory))
-                ? $"Data ({((IStreamFactory)entity).Length} B)" : entity.ToString();
-
-            var type = Type.GetType(entityName, false);
-            if(type != null)
-            {
-                entityName = type.Name;
-            }
+            var entityName = DataTools.GetUserFriendlyName<T>(entity);
 
             foreach(var analyzer in Analyzers.OfType<IEntityAnalyzer<T>>())
             {
@@ -49,7 +42,7 @@ namespace IS4.MultiArchiver
                     return default;
                 }
             }
-            OutputLog.WriteLine("No analyzer for entity");
+            OutputLog.WriteLine("No analyzer for entity " + entityName);
             return default;
         }
 

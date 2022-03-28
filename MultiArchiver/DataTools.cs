@@ -1,10 +1,12 @@
-﻿using IS4.MultiArchiver.Tools;
+﻿using IS4.MultiArchiver.Services;
+using IS4.MultiArchiver.Tools;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Numerics;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -449,6 +451,41 @@ namespace IS4.MultiArchiver
         public static string CreateLiteralJsonLd(string value, string language)
         {
             return $@"{{""@value"":{HttpUtility.JavaScriptStringEncode(value, true)},""@language"":{HttpUtility.JavaScriptStringEncode(language, true)}}}";
+        }
+
+        public static string GetUserFriendlyName<T>(T entity)
+        {
+            var name = typeof(T).Equals(typeof(IStreamFactory))
+                ? $"Data ({((IStreamFactory)entity).Length} B)" : entity.ToString();
+
+            var type = AppDomain.CurrentDomain.GetAssemblies().Select(asm => asm.GetType(name, false)).FirstOrDefault(t => t != null);
+            if(type != null)
+            {
+                name = type.Name;
+            }
+            return name;
+        }
+
+        static readonly Regex wildcardRegex = new Regex(@"(\*+|\?)|[^*?]+", RegexOptions.Compiled);
+
+        public static Regex ConvertWildcardToRegex(string pattern)
+        {
+            string Replacer(Match match)
+            {
+                if(match.Groups[1].Success)
+                {
+                    switch(match.Groups[1].Value[0])
+                    {
+                        case '*':
+                            return ".*";
+                        case '?':
+                            return ".";
+                    }
+                }
+                return Regex.Escape(match.Value);
+            }
+
+            return new Regex($"^{wildcardRegex.Replace(pattern, Replacer)}$", RegexOptions.Singleline);
         }
     }
 }
