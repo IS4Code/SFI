@@ -1,4 +1,5 @@
 ﻿using IS4.MultiArchiver.Services;
+using System.Collections.Generic;
 using System.IO;
 
 namespace IS4.MultiArchiver
@@ -11,7 +12,7 @@ namespace IS4.MultiArchiver
 
         TextWriter LogWriter { get; }
 
-        IFileInfo GetFile(string path);
+        IEnumerable<IFileInfo> GetFiles(string path);
         Stream CreateFile(string path, string mediaType);
     }
 }

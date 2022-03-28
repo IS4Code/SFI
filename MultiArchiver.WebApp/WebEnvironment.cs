@@ -4,6 +4,7 @@ using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace IS4.MultiArchiver.WebApp
 {
@@ -28,13 +29,14 @@ namespace IS4.MultiArchiver.WebApp
             NewLine = js.Invoke<string>("getNewline");
         }
 
-        public IFileInfo GetFile(string path)
+        public IEnumerable<IFileInfo> GetFiles(string path)
         {
-            if(inputFiles == null || !inputFiles.TryGetValue(path, out var file))
+            if(inputFiles == null)
             {
-                throw new FileNotFoundException();
+                return Array.Empty<IFileInfo>();
             }
-            return new BrowserFileInfo(file);
+            var match = DataTools.ConvertWildcardToRegex(path);
+            return inputFiles.Where(f => match.IsMatch(f.Key)).Select(f => new BrowserFileInfo(f.Value));
         }
 
         public Stream CreateFile(string path, string mediaType)

@@ -95,7 +95,7 @@ namespace IS4.MultiArchiver
 					writer = TextWriter.Null;
 				}
 
-				var inputFiles = inputs.Select(input => environment.GetFile(input));
+				var inputFiles = inputs.SelectMany(input => environment.GetFiles(input));
 
 				using(var outputStream = environment.CreateFile(output, archiver.OutputMediaType))
                 {
@@ -145,14 +145,14 @@ namespace IS4.MultiArchiver
             }
         }
 
-        protected override string Usage => "mode [options] input output";
+        protected override string Usage => "mode [options] input... output";
 
         public override void Description()
 		{
 			base.Description();
 			LogWriter.WriteLine();
 			LogWriter.Write(" ");
-			OutputWrapPad("This software extracts metadata from a specific file.", 1);
+			OutputWrapPad("This software analyzes the formats of given files and outputs RDF description of their contents.", 1);
 		}
 
 		enum Mode

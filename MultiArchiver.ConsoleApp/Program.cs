@@ -1,7 +1,9 @@
 ﻿using IS4.MultiArchiver.Services;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.ConsoleApp
@@ -23,10 +25,17 @@ namespace IS4.MultiArchiver.ConsoleApp
             await application.Run(args);
         }
 
-        public IFileInfo GetFile(string path)
+        public IEnumerable<IFileInfo> GetFiles(string path)
         {
-            if(path == "-") return new StandardInput();
-            return new FileInfoWrapper(new FileInfo(path));
+            if(path == "-") return new IFileInfo[] { new StandardInput() };
+            var fileName = Path.GetFileName(path);
+            if(fileName.Contains('*') || fileName.Contains('?'))
+            {
+                var directory = Path.GetDirectoryName(path);
+                var files = Directory.GetFiles(String.IsNullOrEmpty(directory) ? Environment.CurrentDirectory : directory, fileName);
+                return files.Select(f => new FileInfoWrapper(new FileInfo(f)));
+            }
+            return new IFileInfo[] { new FileInfoWrapper(new FileInfo(path)) };
         }
 
         public Stream CreateFile(string path, string mediaType)
