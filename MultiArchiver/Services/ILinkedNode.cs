@@ -264,12 +264,9 @@ namespace IS4.MultiArchiver.Services
                 if(subName.StartsWith("#"))
                 {
                     prefix = "";
-                }else if(uri.Scheme.Equals("urn", StringComparison.OrdinalIgnoreCase))
-                {
-                    prefix = ":";
                 }else if(String.IsNullOrEmpty(uri.Authority + uri.Fragment))
                 {
-                    prefix = "#";
+                    prefix = "#!";
                 }else{
                     prefix = "/";
                 }

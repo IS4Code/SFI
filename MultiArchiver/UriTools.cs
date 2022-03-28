@@ -11,7 +11,18 @@ namespace IS4.MultiArchiver
     public static class UriTools
     {
         const string publicid = "publicid:";
-        const string uuid = "uuid:";
+
+        public class PrefixFormatter : IIndividualUriFormatter<string>
+        {
+            readonly string prefix;
+
+            public PrefixFormatter(string prefix)
+            {
+                this.prefix = prefix;
+            }
+
+            public Uri this[string value] => new Uri(prefix + value, UriKind.Absolute);
+        }
 
         static readonly Regex pubIdRegex = new Regex(@"(^\s+|\s+$)|(\s+)|(\/\/)|(::)|([+:\/;'?#%])", RegexOptions.Compiled);
 
@@ -152,7 +163,7 @@ namespace IS4.MultiArchiver
 
         public static Uri CreateUuid(Guid guid)
         {
-            return new Uri("urn:" + uuid + guid.ToString(), UriKind.Absolute);
+            return new Uri("urn:uuid:" + guid.ToString("D"), UriKind.Absolute);
         }
 
         static string ShortenUriPart(string str, int maxPartLength)

@@ -20,14 +20,14 @@ namespace IS4.MultiArchiver.Extensions
         readonly ConcurrentDictionary<GraphUri, IRdfHandler> graphUriCache = new ConcurrentDictionary<GraphUri, IRdfHandler>();
         readonly ConcurrentDictionary<IRdfHandler, VocabularyCache<IUriNode>> graphCaches = new ConcurrentDictionary<IRdfHandler, VocabularyCache<IUriNode>>();
 
-        public ILinkedNode Root { get; }
+        public IIndividualUriFormatter<string> Root { get; }
 
         public IDictionary<Uri, string> PrefixMap { get; }
 
         public int MaxUriLength { get; set; } = 4096 - 128;
         public int UriPartShortened { get; set; } = 64;
 
-        public RdfHandler(Uri root, IRdfHandler defaultHandler, IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers)
+        public RdfHandler(IIndividualUriFormatter<string> root, IRdfHandler defaultHandler, IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers)
             : base(defaultHandler.CreateUriNode)
         {
             this.defaultHandler = defaultHandler;
@@ -35,7 +35,7 @@ namespace IS4.MultiArchiver.Extensions
 
             graphCaches[defaultHandler] = this;
 
-            Root = Create(UriFormatter.Instance, root);
+            Root = root;
 
             PrefixMap = new ConcurrentDictionary<Uri, string>(Vocabulary.Vocabularies.Prefixes, new UriComparer());
 
