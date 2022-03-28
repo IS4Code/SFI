@@ -84,7 +84,7 @@
         public static readonly PropertyUri CopyrightNotice;
 
         [Uri(Vocabularies.Uri.Nie)]
-        public static readonly PropertyUri IsStoredAs;
+        public static readonly PropertyUri InterpretedAs;
         [Uri(Vocabularies.Uri.Nie)]
         public static readonly PropertyUri Links;
         [Uri(Vocabularies.Uri.Nie)]

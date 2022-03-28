@@ -104,7 +104,7 @@ namespace IS4.MultiArchiver.Analyzers
                     var content = (await analyzer.Analyze<IStreamFactory>(file, context.WithParent(node))).Node;
                     if(content != null)
                     {
-                        content.Set(Properties.IsStoredAs, node);
+                        node.Set(Properties.InterpretedAs, content);
                     }
                 }
 
@@ -129,7 +129,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             if(folder != null)
             {
-                folder.Set(Properties.IsStoredAs, node);
+                node.Set(Properties.InterpretedAs, folder);
             }
 
             foreach(var alg in HashAlgorithms)
@@ -156,7 +156,7 @@ namespace IS4.MultiArchiver.Analyzers
             {
                 folder.SetClass(Classes.Folder);
 
-                folder.Set(Properties.IsStoredAs, parent);
+                parent.Set(Properties.InterpretedAs, folder);
 
                 folder.Set(Properties.PrefLabel, DataTools.ReplaceControlCharacters(directory.ToString() + "/", null));
 
