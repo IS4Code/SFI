@@ -36,6 +36,7 @@ namespace IS4.MultiArchiver
 
 		bool quiet;
 		bool rootSpecified;
+		bool dataOnly;
 
 		public async ValueTask Run(params string[] args)
         {
@@ -66,48 +67,21 @@ namespace IS4.MultiArchiver
 				archiver.OutputLog = writer;
 				archiver.AddDefault();
 
-				var inputFiles = inputs.Select(input => new InputFile(environment, input));
+				var inputFiles = inputs.Select(input => environment.GetFile(input));
 
-				using(var outputStream = environment.OpenOutputFile(output))
+				using(var outputStream = environment.CreateFile(output, archiver.OutputMediaType))
                 {
-					await archiver.Archive(inputFiles, outputStream, options);
+					if(dataOnly)
+                    {
+						await archiver.Archive<IStreamFactory>(inputFiles, outputStream, options);
+                    }else{
+						await archiver.Archive(inputFiles, outputStream, options);
+					}
 				}
 			}catch(Exception e)
 			{
 				Log(e.Message);
 			}
-        }
-
-        class InputFile : IStreamFactory
-        {
-			readonly IApplicationEnvironment environment;
-			readonly string path;
-
-			public InputFile(IApplicationEnvironment environment, string path)
-            {
-				this.environment = environment;
-				this.path = path;
-            }
-
-            public long Length {
-				get {
-					using(var file = environment.OpenInputFile(path))
-                    {
-						return file.Length;
-                    }
-				}
-			}
-
-			public StreamFactoryAccess Access => StreamFactoryAccess.Reentrant;
-
-            public object ReferenceKey => this;
-
-            public object DataKey => null;
-
-            public Stream Open()
-            {
-				return environment.OpenInputFile(path);
-            }
         }
 
         protected override string Usage => "mode [options] input output";
@@ -131,6 +105,7 @@ namespace IS4.MultiArchiver
 				{"q", "quiet", null, "do not print any additional messages"},
 				{"c", "compress", null, "perform gzip compression on the output"},
 				{"s", "stable", null, "produce the same output every time"},
+				{"d", "data-only", null, "do not store input file metadata"},
 				{"?", "help", null, "displays this help message"},
 			};
 		}
@@ -188,6 +163,14 @@ namespace IS4.MultiArchiver
 						throw OptionAlreadySpecified(option);
 					}
 					options.HideMetadata = true;
+					return OptionArgument.None;
+				case "d":
+				case "data-only":
+					if(dataOnly)
+					{
+						throw OptionAlreadySpecified(option);
+					}
+					dataOnly = true;
 					return OptionArgument.None;
 				case "r":
 				case "root":

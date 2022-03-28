@@ -18,7 +18,7 @@ function appendBytes(array, data) {
     array.push(new Uint8Array(data));
 }
 
-function finalizeBlob(array) {
-    var blob = new Blob(array, { type: 'text/plain', endings: 'native' });
+function finalizeBlob(array, mediaType) {
+    var blob = new Blob(array, { type: mediaType });
     return URL.createObjectURL(blob);
 }

@@ -33,6 +33,8 @@ namespace IS4.MultiArchiver
             }
         }
 
+        public virtual string OutputMediaType => "text/turtle;charset=utf-8";
+
         public Archiver()
         {
             Analyzers.Add(FileAnalyzer = new FileAnalyzer());

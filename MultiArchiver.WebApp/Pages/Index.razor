@@ -13,7 +13,7 @@
 <ul>
     @foreach(var file in outputFiles)
     {
-        <li><a href="@CreateBlob(file.Value)" download="@file.Key">@file.Key</a></li>
+        <li><a href="@file.Value.CreateBlob()" download="@file.Key">@file.Key</a></li>
     }
 </ul>
 
@@ -26,7 +26,7 @@
 
 @code {
     Dictionary<string, IBrowserFile> inputFiles;
-    Dictionary<string, IJSInProcessObjectReference> outputFiles = new Dictionary<string, IJSInProcessObjectReference>();
+    Dictionary<string, BlobArrayStream> outputFiles = new Dictionary<string, BlobArrayStream>();
     string[] commandArgs = Array.Empty<string>();
     List<string> outputChunks = new List<string>();
 
@@ -58,10 +58,5 @@
         await application.Run(commandArgs);
 
         this.StateHasChanged();
-    }
-
-    string CreateBlob(IJSInProcessObjectReference array)
-    {
-        return ((IJSInProcessRuntime)js).Invoke<string>("finalizeBlob", array);
     }
 }
