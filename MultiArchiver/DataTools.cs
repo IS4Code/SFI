@@ -7,6 +7,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Web;
 
 namespace IS4.MultiArchiver
 {
@@ -408,6 +409,46 @@ namespace IS4.MultiArchiver
             f2[1] = unchecked((short)((hash[6] << 8) | hash[7]));
 
             return span.MemoryCast<Guid>()[0];
+        }
+
+        /// <summary>
+        /// Detects a string that is unsafe for embedding or displaying.
+        /// XML 1.0 prohibits C0 control codes and discourages the use of C1, with the exception of line separators;
+        /// such characters cannot be encoded in RDF/XML and are semantically invalid.
+        /// Unpaired surrogate characters are also prohibited (since the input must be a valid UTF-16 string).
+        /// Additionally, a leading combining character or ZWJ could cause troubles
+        /// when displayed.
+        /// Other unassigned or invalid characters are detected later.
+        /// </summary>
+        static readonly Regex unsafeStringRegex = new Regex(@"^[\p{M}\u200D]|[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x84\x86-\x9F]|(^|[^\uD800-\uDBFF])[\uDC00-\uDFFF]|[\uD800-\uDBFF]($|[^\uDC00-\uDFFF])", RegexOptions.Compiled | RegexOptions.Multiline);
+
+        public static bool IsSafeString(string str)
+        {
+            if(unsafeStringRegex.IsMatch(str)) return false;
+            var e = StringInfo.GetTextElementEnumerator(str);
+            while(e.MoveNext())
+            {
+                if(Char.GetUnicodeCategory(str, e.ElementIndex) == UnicodeCategory.OtherNotAssigned)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public static string CreateLiteralJsonLd(string value)
+        {
+            return $@"{{""@value"":{HttpUtility.JavaScriptStringEncode(value, true)}}}";
+        }
+
+        public static string CreateLiteralJsonLd(string value, Uri datatype)
+        {
+            return $@"{{""@value"":{HttpUtility.JavaScriptStringEncode(value, true)},""@type"":{HttpUtility.JavaScriptStringEncode(datatype.AbsoluteUri, true)}}}";
+        }
+
+        public static string CreateLiteralJsonLd(string value, string language)
+        {
+            return $@"{{""@value"":{HttpUtility.JavaScriptStringEncode(value, true)},""@language"":{HttpUtility.JavaScriptStringEncode(language, true)}}}";
         }
     }
 }

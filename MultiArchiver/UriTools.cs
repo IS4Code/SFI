@@ -154,5 +154,32 @@ namespace IS4.MultiArchiver
         {
             return new Uri("urn:" + uuid + guid.ToString(), UriKind.Absolute);
         }
+
+        static string ShortenUriPart(string str, int maxPartLength)
+        {
+            if(str.Length > maxPartLength)
+            {
+                var first = maxPartLength / 2;
+                var last = maxPartLength - first - 1;
+                return $"{str.Substring(0, first)}\u2026{str.Substring(str.Length - last)}";
+            }
+            return str;
+        }
+
+        public static Uri ShortenUri(Uri uri, int maxPartLength, string additionalFragment)
+        {
+            var builder = new UriBuilder(uri);
+            builder.Path = ShortenUriPart(builder.Path, maxPartLength);
+            builder.Query = ShortenUriPart(builder.Query, maxPartLength);
+            builder.Fragment = ShortenUriPart(builder.Fragment, maxPartLength) + additionalFragment;
+            return builder.Uri;
+        }
+
+        static readonly byte[] urlNamespace = { 0x6b, 0xa7, 0xb8, 0x11, 0x9d, 0xad, 0x11, 0xd1, 0x80, 0xb4, 0x00, 0xc0, 0x4f, 0xd4, 0x30, 0xc8 };
+
+        public static Uri UriToGuidUri(Uri uri)
+        {
+            return CreateUuid(DataTools.GuidFromName(urlNamespace, uri.AbsoluteUri));
+        }
     }
 }
