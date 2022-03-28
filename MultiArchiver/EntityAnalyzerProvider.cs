@@ -2,6 +2,7 @@
 using IS4.MultiArchiver.Tools;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.ExceptionServices;
@@ -35,7 +36,7 @@ namespace IS4.MultiArchiver
                 {
                     ExceptionDispatchInfo.Capture(e.InnerException).Throw();
                     throw;
-                }catch(Exception e)
+                }catch(Exception e) when(!Debugger.IsAttached)
                 {
                     OutputLog.WriteLine("Error in analyzer " + analyzer.GetType().Name);
                     OutputLog.WriteLine(e);

@@ -62,7 +62,7 @@ namespace IS4.MultiArchiver.Services
                         return result;
                     }
                 }
-                if(String.IsNullOrEmpty(value.Authority)) throw new ArgumentException(null, nameof(value));
+                if(String.IsNullOrEmpty(value.Authority)) return UriTools.CreateUuid(Guid.NewGuid());
                 var sub = Extension?.ToLowerInvariant();
                 if(sub == null)
                 {

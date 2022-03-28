@@ -80,7 +80,7 @@ namespace IS4.MultiArchiver.Extensions
             {
                 var shortUriLabel = UriTools.ShortenUri(uri, UriPartShortened, "\u00A0(URI\u00A0too\u00A0long)");
 
-                var newUri = UriTools.UriToGuidUri(uri);
+                var newUri = UriTools.UriToUuidUri(uri);
                 var subject = defaultHandler.CreateUriNode(newUri);
                 longUriCache.Add(subject, uri);
                 var node = new UriNode(subject, defaultHandler, GetGraphCache(defaultHandler));

@@ -1,6 +1,7 @@
 ﻿using IS4.MultiArchiver.Services;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -106,7 +107,7 @@ namespace IS4.MultiArchiver
 						await archiver.Archive(inputFiles, outputStream, options);
 					}
 				}
-			}catch(Exception e)
+			}catch(Exception e) when(!Debugger.IsAttached)
 			{
 				Log(e.Message);
 			}
