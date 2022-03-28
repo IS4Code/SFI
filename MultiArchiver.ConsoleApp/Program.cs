@@ -11,6 +11,8 @@ namespace IS4.MultiArchiver.ConsoleApp
 
         public TextWriter LogWriter => Console.Error;
 
+        public string NewLine => Environment.NewLine;
+
         static async Task Main(string[] args)
         {
             CultureInfo.DefaultThreadCurrentCulture = CultureInfo.CurrentCulture =

@@ -20,7 +20,7 @@
 <pre>
     @foreach(var chunk in outputChunks)
     {
-    <span>@chunk</span>
+<span>@chunk</span>
     }
 </pre>
 
@@ -50,7 +50,7 @@
         outputFiles.Clear();
 
         this.StateHasChanged();
-
+        
         var env = new WebEnvironment((IJSInProcessRuntime)js, logWriter, inputFiles, outputFiles);
 
         var application = new Application<WebArchiver>(env);

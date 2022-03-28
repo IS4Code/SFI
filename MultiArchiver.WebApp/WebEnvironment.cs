@@ -1,5 +1,4 @@
-﻿using IS4.MultiArchiver;
-using Microsoft.AspNetCore.Components.Forms;
+﻿using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
@@ -17,12 +16,15 @@ namespace IS4.MultiArchiver.WebApp
 
         public TextWriter LogWriter { get; }
 
+        public string NewLine { get; }
+
         public WebEnvironment(IJSInProcessRuntime js, TextWriter writer, IReadOnlyDictionary<string, IBrowserFile> inputFiles, IDictionary<string, IJSInProcessObjectReference> outputFiles)
         {
             this.js = js;
             LogWriter = writer;
             this.inputFiles = inputFiles;
             this.outputFiles = outputFiles;
+            NewLine = js.Invoke<string>("getNewline");
         }
 
         public Stream OpenInputFile(string path)

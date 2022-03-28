@@ -26,6 +26,8 @@ namespace IS4.MultiArchiver
 
 			options = new ArchiverOptions();
 			options.PrettyPrint = true;
+			options.DirectOutput = true;
+			options.NewLine = environment.NewLine;
 		}
 
 		Mode? mode;

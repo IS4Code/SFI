@@ -1,4 +1,16 @@
-﻿function createArray() {
+﻿(function () {
+    var newline = "\n";
+
+    new Blob([newline], { endings: 'native' }).text().then(value => {
+        newline = value;
+    });
+
+    getNewline = function() {
+        return newline;
+    }
+})();
+
+function createArray() {
     return [];
 }
 
@@ -7,6 +19,6 @@ function appendBytes(array, data) {
 }
 
 function finalizeBlob(array) {
-    var blob = new Blob(array, { type: 'application/octet-stream' });
+    var blob = new Blob(array, { type: 'text/plain', endings: 'native' });
     return URL.createObjectURL(blob);
 }

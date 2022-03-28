@@ -9,6 +9,7 @@ namespace IS4.MultiArchiver
         public bool HideMetadata { get; set; }
         public bool PrettyPrint { get; set; }
         public string Root { get; set; } = "urn:uuid";
+        public string NewLine { get; set; } = Environment.NewLine;
         public Uri Node { get; set; }
     }
 }

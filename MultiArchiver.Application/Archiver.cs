@@ -178,19 +178,22 @@ namespace IS4.MultiArchiver
             }
         }
 
-        private TextWriter OpenFile(Func<Stream> fileFactory, bool compressed)
+        private TextWriter OpenFile(Func<Stream> fileFactory, bool compressed, ArchiverOptions options)
         {
             var stream = fileFactory();
             if(compressed)
             {
                 stream = new GZipStream(stream, CompressionLevel.Optimal, false);
             }
-            return new StreamWriter(stream);
+            return new StreamWriter(stream)
+            {
+                NewLine = options.NewLine
+            };
         }
 
         private IDisposable CreateFileHandler(Func<Stream> outputFactory, out INamespaceMapper mapper, ArchiverOptions options, out IRdfHandler handler)
         {
-            var writer = OpenFile(outputFactory, options.CompressedOutput);
+            var writer = OpenFile(outputFactory, options.CompressedOutput, options);
             var qnameMapper = new QNameOutputMapper();
             var formatter = new TurtleFormatter(qnameMapper);
             if(options.PrettyPrint)
@@ -238,7 +241,7 @@ namespace IS4.MultiArchiver
             var writer = new CompressingTurtleWriter(TurtleSyntax.Original);
             writer.PrettyPrintMode = options.PrettyPrint;
             writer.DefaultNamespaces.Clear();
-            using(var textWriter = OpenFile(outputFactory, options.CompressedOutput))
+            using(var textWriter = OpenFile(outputFactory, options.CompressedOutput, options))
             {
                 graph.SaveToStream(textWriter, writer);
             }
