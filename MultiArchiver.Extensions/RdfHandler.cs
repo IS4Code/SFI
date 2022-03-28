@@ -15,10 +15,13 @@ using VDS.RDF;
 
 namespace IS4.MultiArchiver.Extensions
 {
-    public class RdfHandler : VocabularyCache<IUriNode, IRdfHandler>, ILinkedNodeFactory
+    public class RdfHandler : VocabularyCache<IUriNode>, ILinkedNodeFactory
     {
         readonly IRdfHandler defaultHandler;
         readonly IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers;
+
+        readonly ConcurrentDictionary<GraphUri, IRdfHandler> graphUriCache = new ConcurrentDictionary<GraphUri, IRdfHandler>();
+        readonly ConcurrentDictionary<IRdfHandler, VocabularyCache<IUriNode>> graphCaches = new ConcurrentDictionary<IRdfHandler, VocabularyCache<IUriNode>>();
 
         public ILinkedNode Root { get; }
 
@@ -28,10 +31,13 @@ namespace IS4.MultiArchiver.Extensions
         public int UriPartShortened { get; set; } = 64;
 
         public RdfHandler(Uri root, IRdfHandler defaultHandler, IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers)
-            : base(defaultHandler.CreateUriNode, uri => graphHandlers.TryGetValue(uri, out var handler) ? handler : defaultHandler)
+            : base(defaultHandler.CreateUriNode)
         {
             this.defaultHandler = defaultHandler;
             this.graphHandlers = graphHandlers;
+
+            graphCaches[defaultHandler] = this;
+
             Root = Create(UriFormatter.Instance, root);
 
             PrefixMap = new ConcurrentDictionary<Uri, string>(Vocabulary.Vocabularies.Prefixes, new UriComparer());
@@ -95,11 +101,11 @@ namespace IS4.MultiArchiver.Extensions
                 var newUri = UriTools.CreateUuid(DataTools.GuidFromName(urlNamespace, uri.AbsoluteUri));
                 var subject = defaultHandler.CreateUriNode(newUri);
                 longUriCache.Add(subject, uri);
-                var node = new UriNode(subject, defaultHandler, this);
+                var node = new UriNode(subject, defaultHandler, GetGraphCache(defaultHandler));
                 node.Set(Properties.AtPrefLabel, builder.Uri.ToString(), Datatypes.AnyUri);
                 return node;
             }
-            return new UriNode(defaultHandler.CreateUriNode(uri), defaultHandler, this);
+            return new UriNode(defaultHandler.CreateUriNode(uri), defaultHandler, GetGraphCache(defaultHandler));
         }
 
         /// <summary>
@@ -131,10 +137,59 @@ namespace IS4.MultiArchiver.Extensions
         {
             return IsSafeString(str);
         }
-
-        class UriNode : LinkedNode<INode, IRdfHandler>
+        
+        Cache GetGraphCache(IRdfHandler handler)
         {
-            public UriNode(INode subject, IRdfHandler handler, IVocabularyCache<INode, IRdfHandler> cache) : base(subject, handler, cache)
+            var cache = graphCaches.GetOrAdd(handler, h => new VocabularyCache<IUriNode>(h.CreateUriNode));
+            return new Cache(this, cache);
+        }
+
+        IRdfHandler GetGraphHandler(GraphUri name)
+        {
+            if(graphUriCache.TryGetValue(name, out var handler))
+            {
+                return handler;
+            }
+            var uri = new Uri(name.Value, UriKind.Absolute);
+            return graphUriCache[name] = GetGraphHandler(uri);
+        }
+
+        IRdfHandler GetGraphHandler(Uri uri)
+        {
+            if(graphHandlers.TryGetValue(uri, out var handler))
+            {
+                return handler;
+            }
+            return defaultHandler;
+        }
+
+        struct Cache :
+            IVocabularyCache<ClassUri, IUriNode>, IVocabularyCache<PropertyUri, IUriNode>,
+            IVocabularyCache<IndividualUri, IUriNode>, IVocabularyCache<DatatypeUri, IUriNode>,
+            IVocabularyCache<GraphUri, IRdfHandler>
+        {
+            public RdfHandler Parent { get; }
+            public VocabularyCache<IUriNode> Inner { get; }
+
+            public Cache(RdfHandler handler, VocabularyCache<IUriNode> cache)
+            {
+                Parent = handler;
+                Inner = cache;
+            }
+
+            public IUriNode this[ClassUri name] => Inner[name];
+            public IUriNode this[PropertyUri name] => Inner[name];
+            public IUriNode this[IndividualUri name] => Inner[name];
+            public IUriNode this[DatatypeUri name] => Inner[name];
+            public IRdfHandler this[GraphUri name] => Parent.GetGraphHandler(name);
+            public IReadOnlyCollection<VocabularyUri> Vocabularies => Inner.Vocabularies;
+        }
+
+        class UriNode : LinkedNode<INode, IRdfHandler, Cache>
+        {
+            public new IUriNode Subject => (IUriNode)base.Subject;
+
+            public UriNode(INode subject, IRdfHandler handler, Cache cache) : base(subject, handler, cache)
             {
                 if(!(subject is IUriNode)) throw new ArgumentException(null, nameof(subject));
             }
@@ -147,7 +202,7 @@ namespace IS4.MultiArchiver.Extensions
                     Graph.HandleTriple(new Triple(subj, pred, obj));
                 }
                 var meta = In(Graphs.Metadata);
-                if(meta != null && (!Equals(meta) || !(pred is IUriNode uriNode) || uriNode.Uri.AbsoluteUri != Properties.Visited.Value))
+                if(meta != null && !Equals(meta))
                 {
                     var dateString = XmlConvert.ToString(date, "yyyy-MM-dd\\THH:mm:ssK");
                     meta.Set(Properties.Visited, dateString, Datatypes.DateTime);
@@ -168,7 +223,7 @@ namespace IS4.MultiArchiver.Extensions
             {
                 lock(Graph)
                 {
-                    Graph.HandleBaseUri(((IUriNode)Subject).Uri);
+                    Graph.HandleBaseUri(Subject.Uri);
                 }
             }
 
@@ -216,15 +271,19 @@ namespace IS4.MultiArchiver.Extensions
                 return longUriCache.TryGetValue(node, out var uri) ? uri : ((IUriNode)node).Uri;
             }
 
-            protected override LinkedNode<INode, IRdfHandler> CreateNew(INode subject, IRdfHandler graph)
+            protected override LinkedNode<INode, IRdfHandler, Cache> CreateNew(INode subject)
             {
-                return new UriNode(subject, graph, Cache);
+                return new UriNode(subject, Graph, Cache);
+            }
+
+            protected override LinkedNode<INode, IRdfHandler, Cache> CreateInGraph(IRdfHandler graph)
+            {
+                return new UriNode(VDS.RDF.Tools.CopyNode(Subject, graph), graph, Cache.Parent.GetGraphCache(graph));
             }
 
             protected override IRdfHandler CreateGraphNode(Uri uri)
             {
-                var parent = (RdfHandler)Cache;
-                return parent.graphHandlers.TryGetValue(uri, out var handler) ? handler : parent.defaultHandler;
+                return Cache.Parent.GetGraphHandler(uri);
             }
 
             private XmlDocument PrepareXmlDocument(XmlReader rdfXmlReader)
