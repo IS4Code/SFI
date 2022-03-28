@@ -326,9 +326,8 @@ namespace IS4.MultiArchiver.Analyzers
 
                     if(ByteValue.Count != 0)
                     {
-                        var nodeCreated = new TaskCompletionSource<ILinkedNode>();
                         var matchingFormats = analyzer.DataFormats.Where(fmt => fmt.CheckHeader(ByteValue, isBinary, encodingDetector));
-                        Results = matchingFormats.Select(fmt => new FormatResult(this, StreamFactory, fmt, nodeCreated, NodeTask, context, analysis.analyzers)).ToList();
+                        Results = matchingFormats.Select(fmt => new FormatResult(this, StreamFactory, fmt, NodeTask, context, analysis.analyzers)).ToList();
                     }else{
                         Results = Array.Empty<FormatResult>();
                     }
@@ -422,7 +421,6 @@ namespace IS4.MultiArchiver.Analyzers
             readonly AnalysisContext context;
             readonly IEntityAnalyzerProvider analyzer;
             readonly Task<ILinkedNode> task;
-            readonly TaskCompletionSource<ILinkedNode> nodeCreated;
 
             public bool IsValid => !task.IsFaulted;
 
@@ -433,14 +431,13 @@ namespace IS4.MultiArchiver.Analyzers
 
             public ILinkedNode Result => task?.Result;
 
-            public FormatResult(DataAnalysis.DataMatch fileMatch, IStreamFactory streamFactory, IBinaryFileFormat format, TaskCompletionSource<ILinkedNode> nodeCreated, ValueTask<ILinkedNode> parent, AnalysisContext context, IEntityAnalyzerProvider analyzer)
+            public FormatResult(DataAnalysis.DataMatch fileMatch, IStreamFactory streamFactory, IBinaryFileFormat format, ValueTask<ILinkedNode> parent, AnalysisContext context, IEntityAnalyzerProvider analyzer)
 			{
                 this.fileMatch = fileMatch;
                 this.Format = format;
                 this.parentTask = parent;
                 this.context = context;
                 this.analyzer = analyzer;
-                this.nodeCreated = nodeCreated;
 
                 task = StartReading();
 
@@ -485,37 +482,14 @@ namespace IS4.MultiArchiver.Analyzers
                 return task;
             }
 
-            const int MaxResultWaitTime = 1000;
-
             async ITask<ILinkedNode> IResultFactory<ILinkedNode, MatchContext>.Invoke<T>(T value, MatchContext matchContext)
             {
                 var streamContext = context.WithMatchContext(matchContext);
                 var parent = await parentTask;
                 try{
                     var formatObj = new BinaryFormatObject<T>(fileMatch, Format, value);
-                    while(parent[formatObj] == null)
-                    {
-                        ILinkedNode node;
-                        var timeout = Task.Delay(MaxResultWaitTime);
-                        if(await Task.WhenAny(nodeCreated.Task) == timeout)
-                        {
-                            formatObj = new BinaryFormatObject<T>(fileMatch, ImprovisedFormat<T>.Instance, value);
-                            continue;
-                        }else{
-                            node = nodeCreated.Task.Result;
-                        }
-                        if(node != null)
-                        {
-                            var result = await analyzer.Analyze(value, streamContext.WithNode(node));
-                            node = result.Node;
-                        }
-                        return node;
-                    }
-                    {
-                        var result = await analyzer.Analyze(formatObj, streamContext.WithParent(parent));
-                        nodeCreated?.TrySetResult(result.Node);
-                        return result.Node;
-                    }
+                    var result = await analyzer.Analyze(formatObj, streamContext.WithParent(parent));
+                    return result.Node;
                 }catch(Exception e)
                 {
                     throw new InternalArchiverException(e);
@@ -533,7 +507,6 @@ namespace IS4.MultiArchiver.Analyzers
                 var t2 = b.GetType();
                 return t1.IsAssignableFrom(t2) ? 1 : t2.IsAssignableFrom(t1) ? -1 : 0;
             }
-
 
             class ImprovisedFormat<T> : BinaryFileFormat<T> where T : class
             {
