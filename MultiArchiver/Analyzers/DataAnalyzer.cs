@@ -25,7 +25,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         public ICollection<IBinaryFileFormat> DataFormats { get; } = new SortedSet<IBinaryFileFormat>(HeaderLengthComparer.Instance);
 
-        public int FileSizeToWriteToDisk { get; set; } = 524288;
+        public long FileSizeToWriteToDisk { get; set; } = 524288;
 
         public int MaxDataLengthToStore => Math.Max(64, HashAlgorithms.Sum(h => h.HashSize + 64)) - 16;
 

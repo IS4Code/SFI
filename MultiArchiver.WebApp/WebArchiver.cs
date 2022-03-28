@@ -1,10 +1,16 @@
 ﻿using IS4.MultiArchiver.Analyzers;
 using IS4.MultiArchiver.Formats;
+using System;
 
 namespace IS4.MultiArchiver.WebApp
 {
     public class WebArchiver : Archiver
     {
+        public WebArchiver()
+        {
+            DataAnalyzer.FileSizeToWriteToDisk = Int64.MaxValue;
+        }
+
         public override void AddDefault()
         {
             base.AddDefault();
