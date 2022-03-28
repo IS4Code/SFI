@@ -1,5 +1,4 @@
-﻿using IS4.MultiArchiver.Vocabulary;
-using System;
+﻿using System;
 
 namespace IS4.MultiArchiver.Services
 {
@@ -14,12 +13,7 @@ namespace IS4.MultiArchiver.Services
     {
         public static ILinkedNode NewGuidNode(this ILinkedNodeFactory factory)
         {
-            var node = factory.Root[Guid.NewGuid().ToString("D")];
-            if(node != null)
-            {
-                node.SetClass(Classes.Root);
-            }
-            return node;
+            return factory.Root[Guid.NewGuid().ToString("D")];
         }
     }
 }
