@@ -38,6 +38,7 @@ namespace IS4.MultiArchiver
 		List<Regex> analyzerMatches = new List<Regex>();
 		List<Regex> formatMatches = new List<Regex>();
 		List<Regex> hashMatches = new List<Regex>();
+		Regex mainHash;
 		string output;
 
 		bool quiet;
@@ -90,6 +91,16 @@ namespace IS4.MultiArchiver
 				FilterList(archiver.DataAnalyzer.HashAlgorithms, hashMatches);
 				FilterList(archiver.FileAnalyzer.HashAlgorithms, hashMatches);
 				FilterList(archiver.ImageDataHashAlgorithms, hashMatches);
+
+				if(mainHash != null)
+                {
+					var hash = archiver.DataAnalyzer.HashAlgorithms.FirstOrDefault(h => mainHash.IsMatch(DataTools.GetUserFriendlyName(h)));
+					if(hash == null)
+                    {
+						throw new ApplicationException("Main hash cannot be found!");
+					}
+					archiver.DataAnalyzer.ContentUriFormatter = new NiHashedContentUriFormatter(hash);
+                }
 
 				if(quiet)
 				{
@@ -284,7 +295,12 @@ namespace IS4.MultiArchiver
 					break;
 				case "h":
 				case "hash":
-					hashMatches.Add(DataTools.ConvertWildcardToRegex(argument));
+					var match = DataTools.ConvertWildcardToRegex(argument);
+					if(mainHash == null)
+					{
+						mainHash = match;
+					}
+					hashMatches.Add(match);
 					break;
 			}
 		}
