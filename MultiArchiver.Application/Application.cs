@@ -93,7 +93,7 @@ namespace IS4.MultiArchiver
 
 				if(quiet)
 				{
-					writer = TextWriter.Null;
+					archiver.OutputLog = writer = TextWriter.Null;
 				}
 
 				var inputFiles = inputs.SelectMany(input => environment.GetFiles(input));
