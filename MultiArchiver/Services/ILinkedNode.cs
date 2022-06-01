@@ -1,6 +1,7 @@
 ﻿using IS4.MultiArchiver.Tools;
 using IS4.MultiArchiver.Vocabulary;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Threading.Tasks;
 using System.Xml;
@@ -48,6 +49,7 @@ namespace IS4.MultiArchiver.Services
         ILinkedNode this[IIndividualUriFormatter<Uri> subFormatter] { get; }
 
         void SetAsBase();
+        bool Match(out IReadOnlyDictionary<string, object> properties);
 
         ILinkedNode In(GraphUri graph);
         ILinkedNode In<TGraph>(IGraphUriFormatter<TGraph> graphFormatter, TGraph value);
@@ -107,6 +109,8 @@ namespace IS4.MultiArchiver.Services
         public abstract void Describe(XmlDocument rdfXmlDocument);
 
         public abstract void SetAsBase();
+
+        public abstract bool Match(out IReadOnlyDictionary<string, object> properties);
 
         public void SetClass(ClassUri @class)
         {

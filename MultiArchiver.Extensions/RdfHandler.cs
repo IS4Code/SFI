@@ -20,6 +20,8 @@ namespace IS4.MultiArchiver.Extensions
         readonly ConcurrentDictionary<GraphUri, IRdfHandler> graphUriCache = new ConcurrentDictionary<GraphUri, IRdfHandler>();
         readonly ConcurrentDictionary<IRdfHandler, VocabularyCache<IUriNode>> graphCaches = new ConcurrentDictionary<IRdfHandler, VocabularyCache<IUriNode>>();
 
+        readonly NodeQueryTester queryTester;
+
         public IIndividualUriFormatter<string> Root { get; }
 
         public IDictionary<Uri, string> PrefixMap { get; }
@@ -27,11 +29,12 @@ namespace IS4.MultiArchiver.Extensions
         public int MaxUriLength { get; set; } = 4096 - 128;
         public int UriPartShortened { get; set; } = 64;
 
-        public RdfHandler(IIndividualUriFormatter<string> root, IRdfHandler defaultHandler, IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers)
+        public RdfHandler(IIndividualUriFormatter<string> root, IRdfHandler defaultHandler, IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers, NodeQueryTester queryTester)
             : base(defaultHandler.CreateUriNode)
         {
             this.defaultHandler = defaultHandler;
             this.graphHandlers = graphHandlers;
+            this.queryTester = queryTester;
 
             graphCaches[defaultHandler] = this;
 
@@ -46,6 +49,10 @@ namespace IS4.MultiArchiver.Extensions
                 foreach(var handler in graphHandlers.Values)
                 {
                     AddNamespace(handler, prefix, uri);
+                }
+                foreach(var query in this.queryTester.Queries)
+                {
+                    query.NamespaceMap.AddNamespace(prefix, uri);
                 }
             };
         }
@@ -83,11 +90,11 @@ namespace IS4.MultiArchiver.Extensions
                 var newUri = UriTools.UriToUuidUri(uri);
                 var subject = defaultHandler.CreateUriNode(newUri);
                 longUriCache.Add(subject, uri);
-                var node = new UriNode(subject, defaultHandler, GetGraphCache(defaultHandler));
+                var node = new UriNode(subject, defaultHandler, GetGraphCache(defaultHandler), queryTester);
                 node.Set(Properties.AtPrefLabel, shortUriLabel.ToString(), Datatypes.AnyUri);
                 return node;
             }
-            return new UriNode(defaultHandler.CreateUriNode(uri), defaultHandler, GetGraphCache(defaultHandler));
+            return new UriNode(defaultHandler.CreateUriNode(uri), defaultHandler, GetGraphCache(defaultHandler), queryTester);
         }
 
 
@@ -147,9 +154,12 @@ namespace IS4.MultiArchiver.Extensions
         {
             public new IUriNode Subject => (IUriNode)base.Subject;
 
-            public UriNode(INode subject, IRdfHandler handler, Cache cache) : base(subject, handler, cache)
+            readonly NodeQueryTester queryTester;
+
+            public UriNode(INode subject, IRdfHandler handler, Cache cache, NodeQueryTester queryTester) : base(subject, handler, cache)
             {
                 if(!(subject is IUriNode)) throw new ArgumentException(null, nameof(subject));
+                this.queryTester = queryTester;
             }
 
             protected override void HandleTriple(INode subj, INode pred, INode obj)
@@ -183,6 +193,11 @@ namespace IS4.MultiArchiver.Extensions
                 {
                     Graph.HandleBaseUri(Subject.Uri);
                 }
+            }
+
+            public override bool Match(out IReadOnlyDictionary<string, object> properties)
+            {
+                return queryTester.Match(Subject.Uri, out properties);
             }
 
             protected override INode CreateNode(Uri uri)
@@ -231,12 +246,12 @@ namespace IS4.MultiArchiver.Extensions
 
             protected override LinkedNode<INode, IRdfHandler, Cache> CreateNew(INode subject)
             {
-                return new UriNode(subject, Graph, Cache);
+                return new UriNode(subject, Graph, Cache, queryTester);
             }
 
             protected override LinkedNode<INode, IRdfHandler, Cache> CreateInGraph(IRdfHandler graph)
             {
-                return new UriNode(VDS.RDF.Tools.CopyNode(Subject, graph), graph, Cache.Parent.GetGraphCache(graph));
+                return new UriNode(VDS.RDF.Tools.CopyNode(Subject, graph), graph, Cache.Parent.GetGraphCache(graph), queryTester);
             }
 
             protected override IRdfHandler CreateGraphNode(Uri uri)

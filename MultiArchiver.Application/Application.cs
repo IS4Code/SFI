@@ -37,6 +37,7 @@ namespace IS4.MultiArchiver
 
 		Mode? mode;
 		List<string> inputs = new List<string>();
+		List<string> queries = new List<string>();
 		List<Regex> analyzerMatches = new List<Regex>();
 		List<Regex> formatMatches = new List<Regex>();
 		List<Regex> hashMatches = new List<Regex>();
@@ -109,6 +110,8 @@ namespace IS4.MultiArchiver
 				}
 
 				var inputFiles = inputs.SelectMany(input => environment.GetFiles(input));
+				
+				options.Queries = queries.SelectMany(query => environment.GetFiles(query));
 
 				using(var outputStream = environment.CreateFile(output, archiver.OutputMediaType))
                 {
@@ -189,6 +192,7 @@ namespace IS4.MultiArchiver
 				{"c", "compress", null, "perform gzip compression on the output"},
 				{"m", "metadata", null, "add annotation metadata to output"},
 				{"d", "data-only", null, "do not store input file information"},
+				{"s", "sparql-query", "file", "perform a SPARQL query on the result"},
 				{"?", "help", null, "displays this help message"},
 			};
 		}
@@ -267,6 +271,9 @@ namespace IS4.MultiArchiver
 				case "f":
 				case "format":
 					return OptionArgument.Required;
+				case "s":
+				case "sparql-query":
+					return OptionArgument.Required;
 				case "?":
 				case "help":
 					Help();
@@ -305,6 +312,10 @@ namespace IS4.MultiArchiver
 						mainHash = match;
 					}
 					hashMatches.Add(match);
+					break;
+				case "s":
+				case "sparql-query":
+					queries.Add(argument);
 					break;
 			}
 		}

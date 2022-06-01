@@ -8,9 +8,11 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
+using System.Text;
 using System.Threading.Tasks;
 using VDS.RDF;
 using VDS.RDF.Parsing;
+using VDS.RDF.Query;
 using VDS.RDF.Writing;
 using VDS.RDF.Writing.Formatting;
 
@@ -133,17 +135,27 @@ namespace IS4.MultiArchiver
                 graphHandlers[new Uri(Graphs.Metadata.Value)] = new VDS.RDF.Parsing.Handlers.NullHandler();
             }
 
+            var queries = GetQueries(options);
+
             if(options.DirectOutput)
             {
                 OutputLog.WriteLine("Writing data...");
 
                 using(var disposable = CreateFileHandler(outputFactory, out var mapper, options, out var handler))
                 {
+                    Graph queryGraph = null;
+                    if(queries.Count > 0)
+                    {
+                        handler = new TemporaryGraphHandler(handler, out queryGraph);
+                    }
+
                     SetDefaultNamespaces(mapper);
+
+                    var tester = new NodeQueryTester(queryGraph, queries);
 
                     foreach(var entity in entities)
                     {
-                        await AnalyzeEntity(entity, handler, graphHandlers, mapper, options);
+                        await AnalyzeEntity(entity, handler, graphHandlers, mapper, tester, options);
                     }
                 }
             }else{
@@ -152,10 +164,12 @@ namespace IS4.MultiArchiver
                 var handler = CreateGraphHandler(out var graph);
 
                 SetDefaultNamespaces(graph.NamespaceMap);
-                
+
+                var tester = new NodeQueryTester(graph, queries);
+
                 foreach(var entity in entities)
                 {
-                    await AnalyzeEntity(entity, handler, graphHandlers, null, options);
+                    await AnalyzeEntity(entity, handler, graphHandlers, null, tester, options);
                 }
 
                 OutputLog.WriteLine("Saving...");
@@ -164,9 +178,45 @@ namespace IS4.MultiArchiver
             }
         }
 
-        private async ValueTask<AnalysisResult> AnalyzeEntity<T>(T entity, IRdfHandler rdfHandler, IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers, INamespaceMapper mapper, ArchiverOptions options) where T : class
+        private IReadOnlyCollection<SparqlQuery> GetQueries(ArchiverOptions options)
         {
-            var handler = new RdfHandler(new UriTools.PrefixFormatter(options.Root), rdfHandler, graphHandlers);
+            SparqlQueryParser queryParser = null;
+            var results = new List<SparqlQuery>();
+            foreach(var file in options.Queries)
+            {
+                if(queryParser == null)
+                {
+                    queryParser = new SparqlQueryParser(SparqlQuerySyntax.Extended);
+                    queryParser.DefaultBaseUri = new Uri(options.Root, UriKind.Absolute);
+                    queryParser.Warning += OutputLog.WriteLine;
+                }
+                using(var stream = file.Open())
+                {
+                    using(var reader = new StreamReader(stream, Encoding.UTF8, true, 4096, true))
+                    {
+                        var query = queryParser.Parse(reader);
+                        switch(query.QueryType)
+                        {
+                            case SparqlQueryType.Construct:
+                            case SparqlQueryType.Select:
+                            case SparqlQueryType.SelectAll:
+                            case SparqlQueryType.SelectAllDistinct:
+                            case SparqlQueryType.SelectDistinct:
+                            case SparqlQueryType.SelectReduced:
+                                break;
+                            default:
+                                throw new ApplicationException($"Query in {file.Name} has an unsupported type ({query.QueryType}), only SELECT or CONSTRUCT queries are allowed.");
+                        }
+                        results.Add(query);
+                    }
+                }
+            }
+            return results;
+        }
+
+        private async ValueTask<AnalysisResult> AnalyzeEntity<T>(T entity, IRdfHandler rdfHandler, IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers, INamespaceMapper mapper, NodeQueryTester queryTester, ArchiverOptions options) where T : class
+        {
+            var handler = new RdfHandler(new UriTools.PrefixFormatter(options.Root), rdfHandler, graphHandlers, queryTester);
             rdfHandler.StartRdf();
             foreach(var graphHandler in graphHandlers)
             {
@@ -259,99 +309,6 @@ namespace IS4.MultiArchiver
             {
                 graph.SaveToStream(textWriter, writer);
             }
-        }
-
-        sealed class NamespaceHandler : IRdfHandler
-        {
-            readonly IRdfHandler baseHandler;
-
-            readonly QNameOutputMapper mapper;
-
-            public NamespaceHandler(IRdfHandler baseHandler, QNameOutputMapper mapper)
-            {
-                this.baseHandler = baseHandler;
-                this.mapper = mapper;
-            }
-
-            public bool HandleNamespace(string prefix, Uri namespaceUri)
-            {
-                mapper.AddNamespace(prefix, namespaceUri);
-                return baseHandler.HandleNamespace(prefix, namespaceUri);
-            }
-
-            #region Implementation
-            public bool AcceptsAll => baseHandler.AcceptsAll;
-
-            public IBlankNode CreateBlankNode()
-            {
-                return baseHandler.CreateBlankNode();
-            }
-
-            public IBlankNode CreateBlankNode(string nodeId)
-            {
-                return baseHandler.CreateBlankNode(nodeId);
-            }
-
-            public IGraphLiteralNode CreateGraphLiteralNode()
-            {
-                return baseHandler.CreateGraphLiteralNode();
-            }
-
-            public IGraphLiteralNode CreateGraphLiteralNode(IGraph subgraph)
-            {
-                return baseHandler.CreateGraphLiteralNode(subgraph);
-            }
-
-            public ILiteralNode CreateLiteralNode(string literal, Uri datatype)
-            {
-                return baseHandler.CreateLiteralNode(literal, datatype);
-            }
-
-            public ILiteralNode CreateLiteralNode(string literal)
-            {
-                return baseHandler.CreateLiteralNode(literal);
-            }
-
-            public ILiteralNode CreateLiteralNode(string literal, string langspec)
-            {
-                return baseHandler.CreateLiteralNode(literal, langspec);
-            }
-
-            public IUriNode CreateUriNode(Uri uri)
-            {
-                return baseHandler.CreateUriNode(uri);
-            }
-
-            public IVariableNode CreateVariableNode(string varname)
-            {
-                return baseHandler.CreateVariableNode(varname);
-            }
-
-            public void EndRdf(bool ok)
-            {
-                baseHandler.EndRdf(ok);
-            }
-
-            public string GetNextBlankNodeID()
-            {
-                return baseHandler.GetNextBlankNodeID();
-            }
-
-            public bool HandleBaseUri(Uri baseUri)
-            {
-                return baseHandler.HandleBaseUri(baseUri);
-            }
-
-            public bool HandleTriple(Triple t)
-            {
-                return baseHandler.HandleTriple(t);
-            }
-
-            public void StartRdf()
-            {
-                baseHandler.StartRdf();
-            }
-            #endregion
         }
     }
 }
