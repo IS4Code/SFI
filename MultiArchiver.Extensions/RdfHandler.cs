@@ -50,10 +50,6 @@ namespace IS4.MultiArchiver.Extensions
                 {
                     AddNamespace(handler, prefix, uri);
                 }
-                foreach(var query in this.queryTester.Queries)
-                {
-                    query.NamespaceMap.AddNamespace(prefix, uri);
-                }
             };
         }
 

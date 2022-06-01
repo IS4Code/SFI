@@ -1,5 +1,6 @@
 ﻿using IS4.MultiArchiver.Formats;
 using System;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Services
@@ -50,6 +51,8 @@ namespace IS4.MultiArchiver.Services
         }
     }
 
+    public delegate ValueTask AnalysisOutputFile(string name, Func<Stream, ValueTask> writer);
+
     public struct AnalysisResult
     {
         public ILinkedNode Node { get; set; }
@@ -66,6 +69,13 @@ namespace IS4.MultiArchiver.Services
 
     public abstract class EntityAnalyzer
     {
+        public event AnalysisOutputFile OutputFile;
+
+        protected ValueTask OnOutputFile(string name, Func<Stream, ValueTask> writer)
+        {
+            return (OutputFile?.Invoke(name, writer)).GetValueOrDefault();
+        }
+
         protected ILinkedNode GetNode(AnalysisContext context)
         {
             var node = context.Node ?? context.NodeFactory.NewGuidNode();

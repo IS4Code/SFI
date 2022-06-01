@@ -151,7 +151,7 @@ namespace IS4.MultiArchiver
 
                     SetDefaultNamespaces(mapper);
 
-                    var tester = new NodeQueryTester(queryGraph, queries);
+                    var tester = new NodeQueryTester(handler, queryGraph, queries);
 
                     foreach(var entity in entities)
                     {
@@ -165,7 +165,7 @@ namespace IS4.MultiArchiver
 
                 SetDefaultNamespaces(graph.NamespaceMap);
 
-                var tester = new NodeQueryTester(graph, queries);
+                var tester = new NodeQueryTester(handler, graph, queries);
 
                 foreach(var entity in entities)
                 {
