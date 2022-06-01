@@ -5,7 +5,7 @@
 <h1>MultiArchiver</h1>
 
 <form @onsubmit="OnSubmit">
-    <p><textarea @onchange="OnInputChange" /></p>
+    <p><textarea @bind="Command"/></p>
     <InputFile OnChange="OnInputFileChange" multiple />
     <button type="submit">Execute</button>
 </form>
@@ -27,7 +27,7 @@
 @code {
     Dictionary<string, IBrowserFile> inputFiles;
     Dictionary<string, BlobArrayStream> outputFiles = new Dictionary<string, BlobArrayStream>();
-    string[] commandArgs = Array.Empty<string>();
+    string Command { get; set; } = "describe -d -f * -a * -h sha256 * output.ttl";
     List<string> outputChunks = new List<string>();
 
     void OnInputFileChange(InputFileChangeEventArgs e)
@@ -35,13 +35,10 @@
         inputFiles = e.GetMultipleFiles().ToDictionary(f => f.Name, f => f, StringComparer.OrdinalIgnoreCase);
     }
 
-    void OnInputChange(ChangeEventArgs args)
-    {
-        commandArgs = args.Value.ToString().Split(' ', StringSplitOptions.RemoveEmptyEntries);
-    }
-
     async void OnSubmit()
     {
+        var args = Command.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
         outputChunks.Clear();
         var logWriter = new EventWriter();
         logWriter.Written += sb => {
@@ -50,12 +47,12 @@
         outputFiles.Clear();
 
         this.StateHasChanged();
-        
+
         var env = new WebEnvironment((IJSInProcessRuntime)js, logWriter, inputFiles, outputFiles);
 
         var application = new Application<WebArchiver>(env);
 
-        await application.Run(commandArgs);
+        await application.Run(args);
 
         this.StateHasChanged();
     }
