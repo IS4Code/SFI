@@ -48,7 +48,7 @@ namespace IS4.MultiArchiver
                                 success = true;
                                 if(variables == null)
                                 {
-                                    variables = new Dictionary<string, object>();
+                                    variables = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
                                 }
                                 foreach(var pair in result)
                                 {

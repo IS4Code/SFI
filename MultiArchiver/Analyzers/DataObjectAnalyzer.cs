@@ -59,7 +59,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             if(node.Match(out var properties))
             {
-                await OnOutputFile(label, async stream => {
+                await OnOutputFile(label, dataObject.IsBinary, properties, async stream => {
                     using(var input = dataObject.StreamFactory.Open())
                     {
                         await input.CopyToAsync(stream);

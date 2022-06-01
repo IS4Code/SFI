@@ -22,6 +22,7 @@ namespace IS4.MultiArchiver
     {
         public FileAnalyzer FileAnalyzer { get; }
         public DataAnalyzer DataAnalyzer { get; }
+        public DataObjectAnalyzer DataObjectAnalyzer { get; }
         public XmlAnalyzer XmlAnalyzer { get; }
         public BitTorrentHash BitTorrentHash { get; }
         
@@ -43,7 +44,7 @@ namespace IS4.MultiArchiver
         {
             Analyzers.Add(FileAnalyzer = new FileAnalyzer());
             Analyzers.Add(DataAnalyzer = new DataAnalyzer(() => new UdeEncodingDetector()));
-            Analyzers.Add(new DataObjectAnalyzer());
+            Analyzers.Add(DataObjectAnalyzer = new DataObjectAnalyzer());
             Analyzers.Add(XmlAnalyzer = new XmlAnalyzer());
             Analyzers.Add(new X509CertificateAnalyzer());
             Analyzers.Add(new FormatObjectAnalyzer());

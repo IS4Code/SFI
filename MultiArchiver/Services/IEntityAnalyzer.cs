@@ -1,5 +1,6 @@
 ﻿using IS4.MultiArchiver.Formats;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -51,8 +52,6 @@ namespace IS4.MultiArchiver.Services
         }
     }
 
-    public delegate ValueTask AnalysisOutputFile(string name, Func<Stream, ValueTask> writer);
-
     public struct AnalysisResult
     {
         public ILinkedNode Node { get; set; }
@@ -67,13 +66,13 @@ namespace IS4.MultiArchiver.Services
         }
     }
 
-    public abstract class EntityAnalyzer
+    public abstract class EntityAnalyzer : IHasFileOutput
     {
-        public event AnalysisOutputFile OutputFile;
+        public event OutputFileDelegate OutputFile;
 
-        protected ValueTask OnOutputFile(string name, Func<Stream, ValueTask> writer)
+        protected ValueTask OnOutputFile(string name, bool isBinary, IReadOnlyDictionary<string, object> properties, Func<Stream, ValueTask> writer)
         {
-            return (OutputFile?.Invoke(name, writer)).GetValueOrDefault();
+            return (OutputFile?.Invoke(name, isBinary, properties, writer)).GetValueOrDefault();
         }
 
         protected ILinkedNode GetNode(AnalysisContext context)

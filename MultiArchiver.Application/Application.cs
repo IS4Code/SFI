@@ -113,6 +113,11 @@ namespace IS4.MultiArchiver
 				
 				options.Queries = queries.SelectMany(query => environment.GetFiles(query));
 
+				foreach(var analyzer in archiver.Analyzers)
+                {
+					analyzer.OutputFile += OnOutputFile;
+				}
+
 				using(var outputStream = environment.CreateFile(output, archiver.OutputMediaType))
                 {
 					if(dataOnly)
@@ -131,7 +136,24 @@ namespace IS4.MultiArchiver
 			}
         }
 
-		void PrintList<T>(string type, IEnumerable<T> values)
+        private async ValueTask OnOutputFile(string name, bool isBinary, IReadOnlyDictionary<string, object> properties, Func<Stream, ValueTask> writer)
+        {
+			if(properties.TryGetValue("path", out var pathObject) && pathObject is string path)
+            {
+				if(path.EndsWith("/"))
+                {
+					name = path + name;
+                }else{
+					name = path;
+                }
+            }
+			using(var stream = environment.CreateFile(name, isBinary ? "application/octet-stream" : "text/plain"))
+            {
+				await writer(stream);
+            }
+        }
+
+        void PrintList<T>(string type, IEnumerable<T> values)
         {
 			bool first = true;
 			foreach(var value in values)
