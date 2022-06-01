@@ -4,6 +4,8 @@ namespace IS4.MultiArchiver.Tools
 {
     public class EncodedUri : Uri
     {
+        public static bool Enabled { get; set; } = true;
+
         public EncodedUri(string uriString) : base(uriString)
         {
 
@@ -16,7 +18,7 @@ namespace IS4.MultiArchiver.Tools
 
         public override string ToString()
         {
-            return IsAbsoluteUri ? AbsoluteUri : OriginalString;
+            return Enabled ? (IsAbsoluteUri ? AbsoluteUri : OriginalString) : base.ToString();
         }
     }
 }
