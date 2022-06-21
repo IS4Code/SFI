@@ -108,7 +108,7 @@ namespace IS4.MultiArchiver.Analyzers
                             var result = await format.Match(localReader, docType, context.MatchContext, this, (format, context, analyzers));
                             if(result.Node != null)
                             {
-                                result.Node.Set(Properties.HasFormat, node);
+                                node.Set(Properties.HasFormat, result.Node);
                                 return true;
                             }
                             return false;

@@ -53,7 +53,7 @@ namespace IS4.MultiArchiver.Analyzers
                 var formatNode = (await analyzers.Analyze(formatObj, context.WithParent(node))).Node;
                 if(formatNode != null)
                 {
-                    formatNode.Set(Properties.HasFormat, node);
+                    node.Set(Properties.HasFormat, formatNode);
                 }
             }
 

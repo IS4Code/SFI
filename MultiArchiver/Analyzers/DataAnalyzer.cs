@@ -55,7 +55,7 @@ namespace IS4.MultiArchiver.Analyzers
                 if(result.Key != null)
                 {
                     match.Recognized = true;
-                    result.Key.Set(Properties.HasFormat, node);
+                    node.Set(Properties.HasFormat, result.Key);
                 }
             }
 
