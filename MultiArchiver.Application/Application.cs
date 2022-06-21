@@ -113,7 +113,7 @@ namespace IS4.MultiArchiver
 				
 				options.Queries = queries.SelectMany(query => environment.GetFiles(query));
 
-				foreach(var analyzer in archiver.Analyzers)
+				foreach(var analyzer in archiver.Analyzers.OfType<EntityAnalyzer>())
                 {
 					analyzer.OutputFile += OnOutputFile;
 				}
