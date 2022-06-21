@@ -188,7 +188,9 @@ namespace IS4.MultiArchiver.Analyzers
             if(parts.Length == 0) return;
             for(int i = 0; i < parts.Length; i++)
             {
-                var local = String.Join("/", parts.Skip(i).Select(Uri.EscapeDataString)) + (directory ? "/" : "");
+                var escapedParts = parts.Skip(i).Select(Uri.EscapeDataString);
+                if(directory) escapedParts = escapedParts.DefaultIfEmpty(".");
+                var local = String.Join("/", escapedParts) + (directory ? "/" : "");
                 var file = nodeFactory.Create(Vocabularies.File, local);
                 initial.Set(Properties.PathObject, file);
                 initial = file;
