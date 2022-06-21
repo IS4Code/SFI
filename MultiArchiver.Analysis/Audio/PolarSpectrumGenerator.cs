@@ -135,7 +135,7 @@ namespace IS4.MultiArchiver.Analysis.Audio
                             c = Complex.Zero;
                         }else{
                             var coef = 1 / mag / Math.PI;
-                            c = row.Array[row.Offset + sy] / 256;
+                            c = row.At(sy) / 256;
                             if(c.Magnitude > 1) c /= c.Magnitude;
                             c = coef * c;
                         }

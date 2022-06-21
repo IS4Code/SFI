@@ -370,9 +370,9 @@ namespace IS4.MultiArchiver
             }
             if(index != -1)
             {
-                for(int i = index + 1; i < data.Offset + data.Count; i++)
+                for(int i = index + 1; i < data.Count; i++)
                 {
-                    if(data.Array[i] != 0)
+                    if(data.At(i) != 0)
                     {
                         return true;
                     }

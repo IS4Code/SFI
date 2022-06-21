@@ -54,17 +54,27 @@ namespace IS4.MultiArchiver.Tools
 
         public static int IndexOf<T>(this ArraySegment<T> segment, T value)
         {
-            return Array.IndexOf(segment.Array, value);
+            return Array.IndexOf(segment.Array, value, segment.Offset, segment.Count) - segment.Offset;
         }
 
         public static int IndexOf<T>(this ArraySegment<T> segment, T value, int startIndex)
         {
-            return Array.IndexOf(segment.Array, value, startIndex);
+            return Array.IndexOf(segment.Array, value, segment.Offset + startIndex, segment.Count) - segment.Offset;
         }
 
         public static int IndexOf<T>(this ArraySegment<T> segment, T value, int startIndex, int count)
         {
-            return Array.IndexOf(segment.Array, value, startIndex, count);
+            return Array.IndexOf(segment.Array, value, segment.Offset + startIndex, Math.Min(segment.Count, count)) - segment.Offset;
+        }
+
+        public static T At<T>(this ArraySegment<T> segment, int index)
+        {
+            return AtList<ArraySegment<T>, T>(segment, index);
+        }
+
+        private static T AtList<TList, T>(TList list, int index) where TList : struct, IReadOnlyList<T>
+        {
+            return list[index];
         }
 
         public static void CopyTo<T>(this ArraySegment<T> segment, T[] array, int index = 0)

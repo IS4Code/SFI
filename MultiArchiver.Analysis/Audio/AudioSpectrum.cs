@@ -222,7 +222,7 @@ namespace IS4.MultiArchiver.Analysis.Audio
             {
                 int channel = i % channels;
                 int frameIndex = i / channels;
-                frames[channel][frameIndex] = samples.Array[samples.Offset + i] * sampleScale * window[frameIndex];
+                frames[channel][frameIndex] = samples.At(i) * sampleScale * window[frameIndex];
             }
         }
     }
