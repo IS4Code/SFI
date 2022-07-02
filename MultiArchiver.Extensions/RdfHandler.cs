@@ -193,6 +193,11 @@ namespace IS4.MultiArchiver.Extensions
 
             public override bool Match(out IReadOnlyDictionary<string, object> properties)
             {
+                if(queryTester == null)
+                {
+                    properties = null;
+                    return false;
+                }
                 return queryTester.Match(Subject.Uri, out properties);
             }
 
