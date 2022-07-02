@@ -72,7 +72,7 @@ namespace IS4.MultiArchiver.Extensions
             if(lastBase != null)
             {
                 var relative = lastBase.MakeRelativeUri(uri);
-                if(!relative.IsAbsoluteUri && uriComparer.Equals(uri, new Uri(lastBase, relative)))
+                if(!relative.IsAbsoluteUri && uriComparer.Equals(uri, new Uri(lastBase, relative)) && relative.OriginalString.Length < uri.AbsoluteUri.Length)
                 {
                     return new FakeUri(uri.AbsoluteUri, relative.OriginalString);
                 }
