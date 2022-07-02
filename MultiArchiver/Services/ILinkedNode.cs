@@ -262,7 +262,7 @@ namespace IS4.MultiArchiver.Services
 
         public LinkedNode<TNode, TGraphNode, TVocabularyCache> this[string subName] {
             get{
-                if(subName == null) throw new ArgumentNullException(nameof(subName));
+                subName = subName ?? "";
                 var uri = GetUri(Subject);
                 string prefix;
                 if(subName.StartsWith("#"))

@@ -22,7 +22,7 @@ namespace IS4.MultiArchiver.Analyzers
                 {
                     var entry = reader.Current;
                     var entryNode = (await analyzers.Analyze(entry, context.WithNode(node[entry.Path]))).Node;
-                    if(entryNode != null && !entry.Path.Contains("/"))
+                    if(entryNode != null && (entry.Path == null || !entry.Path.Contains("/")))
                     {
                         entryNode.SetClass(Classes.ArchiveItem);
                         entryNode.Set(Properties.BelongsToContainer, node);
