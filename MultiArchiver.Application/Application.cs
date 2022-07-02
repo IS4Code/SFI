@@ -168,8 +168,12 @@ namespace IS4.MultiArchiver
             }
         }
 
-		void FilterList<T>(ICollection<T> list, IEnumerable<Regex> matches)
+		void FilterList<T>(ICollection<T> list, ICollection<Regex> matches)
         {
+			if(matches.Count == 0)
+            {
+				matches.Add(new Regex("."));
+            }
 			var filtered = new List<T>();
 			foreach(var item in list)
 			{
