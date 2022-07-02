@@ -20,35 +20,42 @@ namespace IS4.MultiArchiver.Services
     {
         public ILinkedNode Parent { get; }
         public ILinkedNode Node { get; }
+        public bool Initialized { get; }
         public ILinkedNodeFactory NodeFactory { get; }
         public MatchContext MatchContext { get; }
 
-        public AnalysisContext(ILinkedNode parent = null, ILinkedNode node = null, ILinkedNodeFactory nodeFactory = null, MatchContext matchContext = default)
+        public AnalysisContext(ILinkedNode parent = null, ILinkedNode node = null, bool initialized = false, ILinkedNodeFactory nodeFactory = null, MatchContext matchContext = default)
         {
             Parent = parent;
             Node = node;
+            Initialized = initialized;
             NodeFactory = nodeFactory;
             MatchContext = matchContext;
         }
 
         public AnalysisContext WithParent(ILinkedNode parent)
         {
-            return new AnalysisContext(parent, null, NodeFactory, MatchContext);
+            return new AnalysisContext(parent, null, false, NodeFactory, MatchContext);
         }
 
         public AnalysisContext WithNode(ILinkedNode node)
         {
-            return new AnalysisContext(Node != null && node != null && !Node.Equals(node) ? null : Parent, node, NodeFactory, MatchContext);
+            return new AnalysisContext(Node != null && node != null && !Node.Equals(node) ? null : Parent, node, false, NodeFactory, MatchContext);
         }
 
         public AnalysisContext WithMatchContext(MatchContext matchContext)
         {
-            return new AnalysisContext(Parent, Node, NodeFactory, matchContext);
+            return new AnalysisContext(Parent, Node, false, NodeFactory, matchContext);
         }
 
         public AnalysisContext WithMatchContext(Func<MatchContext, MatchContext> matchContextTransform)
         {
-            return new AnalysisContext(Parent, Node, NodeFactory, matchContextTransform(MatchContext));
+            return new AnalysisContext(Parent, Node, false, NodeFactory, matchContextTransform(MatchContext));
+        }
+
+        public AnalysisContext AsInitialized()
+        {
+            return new AnalysisContext(Parent, Node, true, NodeFactory, MatchContext);
         }
     }
 
@@ -77,22 +84,25 @@ namespace IS4.MultiArchiver.Services
 
         protected ILinkedNode GetNode(AnalysisContext context)
         {
-            var node = context.Node ?? context.NodeFactory.NewGuidNode();
-            InitNode(node, context);
-            return node;
+            return
+                InitNewNode(context.Node ?? context.NodeFactory.NewGuidNode(), context);
         }
 
         protected ILinkedNode GetNode(string subName, AnalysisContext context)
         {
-            var node = context.Node ?? context.Parent?[subName] ?? context.NodeFactory.NewGuidNode();
-            InitNode(node, context);
-            return node;
+            return
+                InitNewNode(context.Node ?? context.Parent?[subName] ?? context.NodeFactory.NewGuidNode(), context);
         }
 
         protected ILinkedNode GetNode(IIndividualUriFormatter<Uri> formatter, AnalysisContext context)
         {
-            var node = context.Node ?? context.Parent?[formatter] ?? context.NodeFactory.NewGuidNode();
-            InitNode(node, context);
+            return
+                InitNewNode(context.Node ?? context.Parent?[formatter] ?? context.NodeFactory.NewGuidNode(), context);
+        }
+
+        private ILinkedNode InitNewNode(ILinkedNode node, AnalysisContext context)
+        {
+            if(!context.Initialized) InitNode(node, context);
             return node;
         }
 

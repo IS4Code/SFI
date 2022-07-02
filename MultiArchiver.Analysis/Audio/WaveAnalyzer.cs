@@ -94,7 +94,7 @@ namespace IS4.MultiArchiver.Analyzers
                     ByteHash = false
                 };
 
-                await analyzers.Analyze(bmp, context);
+                await analyzers.Analyze(bmp, context.AsInitialized());
             }
 
             return new AnalysisResult(node);
