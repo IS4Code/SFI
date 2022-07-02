@@ -458,10 +458,27 @@ namespace IS4.MultiArchiver
             var name = typeof(T).Equals(typeof(IStreamFactory))
                 ? $"Data ({((IStreamFactory)entity).Length} B)" : entity.ToString();
 
-            var type = AppDomain.CurrentDomain.GetAssemblies().Select(asm => asm.GetType(name, false)).FirstOrDefault(t => t != null);
-            if(type != null)
+            var type = entity.GetType();
+            if(String.IsNullOrWhiteSpace(name))
             {
-                name = type.Name;
+                // no useful name
+                return type.Name;
+            }
+
+            if(name == type.ToString())
+            {
+                // ToString is not overridden
+                return type.Name;
+            }
+
+            try{
+                type = AppDomain.CurrentDomain.GetAssemblies().Select(asm => asm.GetType(name, false)).FirstOrDefault(t => t != null);
+                if(type != null)
+                {
+                    name = type.Name;
+                }
+            }catch{
+                // name is not a valid type name
             }
             return name;
         }
