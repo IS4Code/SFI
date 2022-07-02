@@ -14,6 +14,7 @@ namespace IS4.MultiArchiver.Formats
             CloseInput = false,
             DtdProcessing = DtdProcessing.Parse,
             ValidationType = ValidationType.None,
+            Async = true,
             XmlResolver = new XmlPlaceholderResolver()
         };
 
