@@ -36,7 +36,7 @@ namespace IS4.MultiArchiver.Formats
             }
         }
 
-        public MatchContext(object services = null, Stream stream = null)
+        public MatchContext(object services = null)
         {
             if(services == null)
             {
@@ -59,11 +59,6 @@ namespace IS4.MultiArchiver.Formats
         public MatchContext WithServices(object services)
         {
             return new MatchContext(serviceMap, null, services);
-        }
-
-        public MatchContext WithStream(Stream stream)
-        {
-            return new MatchContext(serviceMap, stream);
         }
 
         private static IEnumerable<KeyValuePair<Type, object>> GetServices(Type serviceType, object services)

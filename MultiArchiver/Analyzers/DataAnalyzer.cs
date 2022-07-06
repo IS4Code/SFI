@@ -443,8 +443,8 @@ namespace IS4.MultiArchiver.Analyzers
 
                 async ValueTask<ILinkedNode> Reader(Stream stream)
                 {
-                    var streamContext = this.context.MatchContext.WithStream(stream);
-                    return await format.Match(stream, streamContext, this, streamContext);
+                    var matchContext = this.context.MatchContext;
+                    return await format.Match(stream, matchContext, this, matchContext);
                 }
 
                 Task<ILinkedNode> StartReading()
