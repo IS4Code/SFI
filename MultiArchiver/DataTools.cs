@@ -455,27 +455,55 @@ namespace IS4.MultiArchiver
 
         public static string GetUserFriendlyName<T>(T entity)
         {
+            if(entity is Type type)
+            {
+                if(!type.IsGenericType) return type.Name;
+                var sb = new StringBuilder();
+                var typeName = type.Name;
+                var index = typeName.IndexOf('`');
+                if(index != -1)
+                {
+                    sb.Append(type.Name, 0, index);
+                }else{
+                    sb.Append(type.Name);
+                }
+                sb.Append("<");
+                bool first = true;
+                foreach(var typeArg in type.GetGenericArguments())
+                {
+                    if(first)
+                    {
+                        first = false;
+                    }else{
+                        sb.Append(", ");
+                    }
+                    sb.Append(GetUserFriendlyName(typeArg));
+                }
+                sb.Append(">");
+                return sb.ToString();
+            }
+
             var name = typeof(T).Equals(typeof(IStreamFactory))
                 ? $"Data ({((IStreamFactory)entity).Length} B)" : entity.ToString();
 
-            var type = entity.GetType();
+            type = entity.GetType();
             if(String.IsNullOrWhiteSpace(name))
             {
                 // no useful name
-                return type.Name;
+                return GetUserFriendlyName(type);
             }
 
             if(name == type.ToString())
             {
                 // ToString is not overridden
-                return type.Name;
+                return GetUserFriendlyName(type);
             }
 
             try{
                 type = AppDomain.CurrentDomain.GetAssemblies().Select(asm => asm.GetType(name, false)).FirstOrDefault(t => t != null);
                 if(type != null)
                 {
-                    name = type.Name;
+                    return GetUserFriendlyName(type);
                 }
             }catch{
                 // name is not a valid type name
