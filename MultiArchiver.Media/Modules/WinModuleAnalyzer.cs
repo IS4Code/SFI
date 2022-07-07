@@ -72,7 +72,7 @@ namespace IS4.MultiArchiver.Analyzers
                     var infoNode = (await analyzers.Analyze<IFileInfo>(info, context.WithParent(node[info.Type]))).Node;
                     if(infoNode != null)
                     {
-                        node.Set(Properties.HasMediaStream, infoNode);
+                        node.Set(Properties.HasPart, infoNode);
                     }
                     ordinal++;
                 }
@@ -83,7 +83,7 @@ namespace IS4.MultiArchiver.Analyzers
                 var infoNode = (await analyzers.Analyze<IFileInfo>(info, context.WithParent(node[info.Type]))).Node;
                 if(infoNode != null)
                 {
-                    node.Set(Properties.HasMediaStream, infoNode);
+                    node.Set(Properties.HasPart, infoNode);
                 }
             }
             return label;

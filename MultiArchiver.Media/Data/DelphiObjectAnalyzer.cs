@@ -19,7 +19,7 @@ namespace IS4.MultiArchiver.Analyzers
                 var infoNode = (await analyzers.Analyze<IFileInfo>(new BlobInfo(key, value), context.WithParent(node))).Node;
                 if(infoNode != null)
                 {
-                    node.Set(Properties.HasMediaStream, infoNode);
+                    node.Set(Properties.HasPart, infoNode);
                 }
             }
             return new AnalysisResult(node, obj.Name);
