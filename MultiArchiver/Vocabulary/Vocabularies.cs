@@ -35,8 +35,8 @@ namespace IS4.MultiArchiver.Vocabulary
             public const string Owl = "http://www.w3.org/2002/07/owl#";
             public const string Dt = "http://dbpedia.org/datatype/";
             public const string Dbo = "http://dbpedia.org/ontology/";
-            public const string Urim = "http://uri4uri.net/mime/";
-            public const string Uris = "http://uri4uri.net/suffix/";
+            public const string Urim = "http://purl.org/uri4uri/mime/";
+            public const string Uris = "http://purl.org/uri4uri/suffix/";
             public const string Cert = "http://www.w3.org/ns/auth/cert#";
             public const string File = "file:///";
             public const string At = "http://archive.data.is4.site/terms/";
