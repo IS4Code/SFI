@@ -181,6 +181,8 @@ namespace IS4.MultiArchiver.Analyzers
             return folder;
         }
 
+        static readonly string[] directoryEnding = { "" };
+
         private void LinkDirectories(ILinkedNode initial, string path, bool directory, ILinkedNodeFactory nodeFactory)
         {
             if(path == null) return;
@@ -189,9 +191,18 @@ namespace IS4.MultiArchiver.Analyzers
             for(int i = 0; i < parts.Length; i++)
             {
                 var escapedParts = parts.Skip(i).Select(Uri.EscapeDataString);
-                if(directory) escapedParts = escapedParts.DefaultIfEmpty(".");
-                var local = String.Join("/", escapedParts) + (directory ? "/" : "");
-                var file = nodeFactory.Create(Vocabularies.File, local);
+                if(directory)
+                {
+                    escapedParts = escapedParts.Concat(directoryEnding);
+                }
+                var local = String.Join("/", escapedParts);
+                ILinkedNode file;
+                if(directory && local == "/")
+                {
+                    file = nodeFactory.Create(RootDirectoryUri.Instance, default);
+                }else{
+                    file = nodeFactory.Create(Vocabularies.File, local);
+                }
                 initial.Set(Properties.PathObject, file);
                 initial = file;
             }
@@ -230,6 +241,25 @@ namespace IS4.MultiArchiver.Analyzers
                 case IFileInfo file: return Analyze(file, context, analyzer);
                 case IDirectoryInfo dir: return Analyze(dir, context, analyzer);
                 default: return new ValueTask<AnalysisResult>(new AnalysisResult(CreateNode(entity, context)));
+            }
+        }
+
+        class RootDirectoryUri : Uri, IIndividualUriFormatter<ValueTuple>
+        {
+            public const string Value = "file:///./";
+
+            public static readonly RootDirectoryUri Instance = new RootDirectoryUri();
+
+            private RootDirectoryUri() : base(Value, UriKind.Absolute)
+            {
+
+            }
+
+            public Uri this[ValueTuple value] => this;
+
+            public override string ToString()
+            {
+                return Value;
             }
         }
     }
