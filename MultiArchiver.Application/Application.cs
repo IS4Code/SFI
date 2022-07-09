@@ -168,11 +168,13 @@ namespace IS4.MultiArchiver
             }
         }
 
+		static readonly Regex anyRegex = new Regex(".", RegexOptions.Compiled);
+
 		void FilterList<T>(ICollection<T> list, ICollection<Regex> matches)
         {
 			if(matches.Count == 0)
             {
-				matches.Add(new Regex("."));
+				matches.Add(anyRegex);
             }
 			var filtered = new List<T>();
 			foreach(var item in list)
