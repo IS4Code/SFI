@@ -26,7 +26,7 @@ namespace IS4.MultiArchiver.Extensions
 
         public IDictionary<Uri, string> PrefixMap { get; }
 
-        public int MaxUriLength { get; set; } = 4096 - 128;
+        public int MaxUriLength { get; set; } = 1900 - 20; // limit for OpenLink Virtuoso
         public int UriPartShortened { get; set; } = 64;
 
         public RdfHandler(IIndividualUriFormatter<string> root, IRdfHandler defaultHandler, IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers, NodeQueryTester queryTester)
