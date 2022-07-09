@@ -46,14 +46,28 @@ namespace IS4.MultiArchiver.Analyzers
                 HashAlgorithm.AddHash(node, algorithm, value, context.NodeFactory);
             }
 
-            if(!dataObject.Recognized && isBinary && DataTools.ExtractSignature(dataObject.ByteValue) is string magicText)
+            if(!dataObject.Recognized)
             {
-                var signatureFormat = new ImprovisedSignatureFormat.Format(magicText);
-                var formatObj = new BinaryFormatObject<ImprovisedSignatureFormat.Format>(dataObject, ImprovisedSignatureFormat.Instance, signatureFormat);
-                var formatNode = (await analyzers.Analyze(formatObj, context.WithParent(node))).Node;
-                if(formatNode != null)
+                ImprovisedFormat.Format improvisedFormat = null;
+
+                if(isBinary && DataTools.ExtractSignature(dataObject.ByteValue) is string magicText)
                 {
-                    node.Set(Properties.HasFormat, formatNode);
+                    improvisedFormat = new SignatureFormat(magicText);
+                }
+
+                if(!isBinary && dataObject.StringValue != null && DataTools.ExtractInterpreter(dataObject.StringValue) is string interpreter)
+                {
+                    improvisedFormat = new InterpreterFormat(interpreter);
+                }
+
+                if(improvisedFormat != null)
+                {
+                    var formatObj = new BinaryFormatObject<ImprovisedFormat.Format>(dataObject, ImprovisedFormat.Instance, improvisedFormat);
+                    var formatNode = (await analyzers.Analyze(formatObj, context.WithParent(node))).Node;
+                    if(formatNode != null)
+                    {
+                        node.Set(Properties.HasFormat, formatNode);
+                    }
                 }
             }
 
@@ -70,11 +84,35 @@ namespace IS4.MultiArchiver.Analyzers
             return new AnalysisResult(node);
         }
 
-        class ImprovisedSignatureFormat : BinaryFileFormat<ImprovisedSignatureFormat.Format>
+        class SignatureFormat : ImprovisedFormat.Format
         {
-            public static readonly ImprovisedSignatureFormat Instance = new ImprovisedSignatureFormat();
+            public override string Extension { get; }
 
-            private ImprovisedSignatureFormat() : base(0, null, null)
+            public override string MediaType => DataTools.GetFakeMediaTypeFromSignature(Extension);
+
+            public SignatureFormat(string signature)
+            {
+                Extension = signature;
+            }
+        }
+
+        class InterpreterFormat : ImprovisedFormat.Format
+        {
+            public override string Extension { get; }
+
+            public override string MediaType => DataTools.GetFakeMediaTypeFromInterpreter(Extension);
+
+            public InterpreterFormat(string interpreter)
+            {
+                Extension = interpreter;
+            }
+        }
+
+        class ImprovisedFormat : BinaryFileFormat<ImprovisedFormat.Format>
+        {
+            public static readonly ImprovisedFormat Instance = new ImprovisedFormat();
+
+            private ImprovisedFormat() : base(0, null, null)
             {
 
             }
@@ -82,12 +120,12 @@ namespace IS4.MultiArchiver.Analyzers
 
             public override string GetMediaType(Format value)
             {
-                return DataTools.GetFakeMediaTypeFromSignature(value.Signature);
+                return value.MediaType;
             }
 
             public override string GetExtension(Format value)
             {
-                return value.Signature;
+                return value.Extension;
             }
 
             public override bool CheckHeader(Span<byte> header, bool isBinary, IEncodingDetector encodingDetector)
@@ -100,14 +138,11 @@ namespace IS4.MultiArchiver.Analyzers
                 throw new NotSupportedException();
             }
 
-            public class Format
+            public abstract class Format
             {
-                public string Signature { get; }
+                public abstract string Extension { get; }
 
-                public Format(string signature)
-                {
-                    Signature = signature;
-                }
+                public abstract string MediaType { get; }
             }
         }
     }

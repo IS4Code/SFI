@@ -188,7 +188,12 @@ namespace IS4.MultiArchiver
         {
             return "application/x.sig." + signature.ToLowerInvariant();
         }
-        
+
+        public static string GetFakeMediaTypeFromInterpreter(string interpreter)
+        {
+            return "application/x.exec." + interpreter.ToLowerInvariant();
+        }
+
         public static void Base32<TList>(TList bytes, StringBuilder sb) where TList : IReadOnlyList<byte>
         {
             const string chars = "QAZ2WSX3EDC4RFV5TGB6YHN7UJM8K9LP";
@@ -324,6 +329,31 @@ namespace IS4.MultiArchiver
             if(magicSig.Length >= 2 && magicSig.Length <= maxSignatureLength && !magicSig.Any(b => invalidSigBytes.Contains(b)))
             {
                 return Encoding.ASCII.GetString(magicSig);
+            }
+            return null;
+        }
+
+        static readonly Regex firstLineRegex = new Regex(@"^(.*?)(?m)\r?$", RegexOptions.Compiled);
+
+        public static string ExtractFirstLine(string text)
+        {
+            var match = firstLineRegex.Match(text);
+            if(match.Success)
+            {
+                return match.Groups[1].Value;
+            }
+            return null;
+        }
+
+
+        static readonly Regex interpreterRegex = new Regex(@"^#!(?:[^ /]*/|env\s+)*([^ /]+)(?:\s.*)?(?m)\r?$", RegexOptions.Compiled);
+
+        public static string ExtractInterpreter(string text)
+        {
+            var match = interpreterRegex.Match(text);
+            if(match.Success)
+            {
+                return match.Groups[1].Value;
             }
             return null;
         }
