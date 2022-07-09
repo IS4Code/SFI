@@ -58,7 +58,6 @@ namespace IS4.MultiArchiver
 
         static IEnumerable<string> GetUriMediaTypeComponents(Uri uri)
         {
-            yield return uri.Scheme;
             switch(uri.HostNameType)
             {
                 case UriHostNameType.Dns:
@@ -88,11 +87,12 @@ namespace IS4.MultiArchiver
                     }
                     break;
             }
+            yield return uri.Scheme;
             if(!uri.IsDefaultPort)
             {
                 yield return uri.Port.ToString();
             }
-            foreach(var segment in uri.AbsolutePath.Split(uri.HostNameType != UriHostNameType.Unknown ? slashSplitChars : colonSplitChars))
+            foreach(var segment in uri.AbsolutePath.Split(uri.HostNameType != UriHostNameType.Unknown ? slashSplitChars : colonSplitChars, StringSplitOptions.RemoveEmptyEntries))
             {
                 yield return segment;
             }
@@ -122,11 +122,7 @@ namespace IS4.MultiArchiver
             var replaced = String.Join(".",
                 GetUriMediaTypeComponents(ns)
                 .Select(c => badCharacters.Replace(c, m => {
-                    switch(m.Value)
-                    {
-                        //case "%": return "&";
-                        default: return String.Join("", Encoding.UTF8.GetBytes(m.Value).Select(b => $"&{b:X2}"));
-                    }
+                    return String.Join("", Encoding.UTF8.GetBytes(m.Value).Select(b => $"&{b:X2}"));
                 })));
             return $"application/x.ns.{replaced}.{rootName}+xml";
         }
