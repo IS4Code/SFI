@@ -21,10 +21,8 @@ namespace IS4.MultiArchiver.Services
                 {
                     return null;
                 }
-                var identifier = new List<byte>(2 + hash.Length);
-                identifier.AddRange(DataTools.Varint((ulong)id));
-                identifier.AddRange(DataTools.Varint((ulong)hash.Length));
-                identifier.AddRange(hash);
+
+                var identifier = DataTools.EncodeMultihash((ulong)id, hash);
 
                 var sb = new StringBuilder();
                 DataTools.Base58(identifier, sb);
@@ -50,11 +48,17 @@ namespace IS4.MultiArchiver.Services
         public Uri this[(IHashAlgorithm, byte[], bool) value] {
             get {
                 var (algorithm, hash, isBinary) = value;
-                if(!(algorithm.NiName is string name))
+                var mimeType = isBinary ? "application/octet-stream" : "text/plain";
+                if(algorithm.NiName is string name)
                 {
-                    return null;
+                    return new NiUri(name, hash, mimeType);
                 }
-                return new NiUri(name, hash, isBinary ? "application/octet-stream" : "text/plain");
+                if(algorithm.NumericIdentifier is int id)
+                {
+                    var identifier = DataTools.EncodeMultihash((ulong)id, hash);
+                    return new NiUri("mh", identifier.ToArray(), mimeType);
+                }
+                return null;
             }
         }
 

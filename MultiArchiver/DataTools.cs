@@ -308,6 +308,15 @@ namespace IS4.MultiArchiver
             }
             yield return (byte)value;
         }
+
+        public static List<byte> EncodeMultihash(ulong id, byte[] hash)
+        {
+            var multihash = new List<byte>(2 + hash.Length);
+            multihash.AddRange(Varint(id));
+            multihash.AddRange(Varint((ulong)hash.Length));
+            multihash.AddRange(hash);
+            return multihash;
+        }
         
         static readonly ISet<byte> invalidSigBytes = new SortedSet<byte>(
             new byte[] { 0x09, 0x0A, 0x0D, (byte)' ', (byte)'-', (byte)'_' }
