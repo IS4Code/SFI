@@ -346,7 +346,7 @@ namespace IS4.MultiArchiver
         }
 
 
-        static readonly Regex interpreterRegex = new Regex(@"^#!(?:[^ /]*/|env\s+)*([^ /]+)(?:\s.*)?(?m)\r?$", RegexOptions.Compiled);
+        static readonly Regex interpreterRegex = new Regex(@"^#!(?:[^\s/]*/|env\s+)*([^\s/]+)(?:\s.*)?(?m)\r?$", RegexOptions.Compiled);
 
         public static string ExtractInterpreter(string text)
         {

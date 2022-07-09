@@ -30,6 +30,14 @@ namespace IS4.MultiArchiver.Analyzers
                 {
                     node.Set(Properties.Chars, DataTools.ReplaceControlCharacters(dataObject.StringValue, dataObject.Encoding), Datatypes.String);
                 }
+            }else if(!isBinary && dataObject.StringValue != null && dataObject.Encoding != null && DataTools.ExtractFirstLine(dataObject.StringValue) is string firstLine)
+            {
+                var firstLineNode = node["#line=,1"];
+                if(firstLineNode != null)
+                {
+                    firstLineNode.Set(Properties.Value, firstLine);
+                    node.Set(Properties.HasPart, firstLineNode);
+                }
             }
 
             var sizeSuffix = DataTools.SizeSuffix(dataObject.ActualLength, 2);
