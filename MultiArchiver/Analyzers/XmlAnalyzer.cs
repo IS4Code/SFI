@@ -63,7 +63,7 @@ namespace IS4.MultiArchiver.Analyzers
                                 dtd.Set(Properties.DoctypeName, name);
                             }
                             dtd.Set(Properties.PublicId, pubid);
-                            dtd.Set(Properties.IsDefinedBy, dtdParent);
+                            dtd.Set(Properties.SeeAlso, dtdParent);
                             if(sysid != null)
                             {
                                 dtd.Set(Properties.SystemId, sysid, Datatypes.AnyUri);
