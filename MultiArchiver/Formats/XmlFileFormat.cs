@@ -90,12 +90,19 @@ namespace IS4.MultiArchiver.Formats
                 if(type == null || type.IsAssignableFrom(typeof(MemoryStream)))
                 {
                     return GetEntityAsStream(absoluteUri, role);
-                } else if(type.IsAssignableFrom(typeof(StringReader)))
+                }else if(type.IsAssignableFrom(typeof(StringReader)))
                 {
                     return GetEntityAsReader(absoluteUri, role);
                 }
                 throw new XmlException(null, new NotSupportedException());
             }
+
+#pragma warning disable 1998
+            public override async Task<object> GetEntityAsync(Uri absoluteUri, string role, Type ofObjectToReturn)
+            {
+                return GetEntity(absoluteUri, role, ofObjectToReturn);
+            }
+#pragma warning restore 1998
 
             public virtual MemoryStream GetEntityAsStream(Uri absoluteUri, string role)
             {
