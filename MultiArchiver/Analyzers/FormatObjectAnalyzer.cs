@@ -26,6 +26,7 @@ namespace IS4.MultiArchiver.Analyzers
             var type = format.MediaType?.ToLowerInvariant();
             if(type != null)
             {
+                node.SetClass(Classes.MediaObject);
                 if(type.StartsWith("audio/", StringComparison.Ordinal))
                 {
                     foreach(var cls in Common.AudioClasses)
