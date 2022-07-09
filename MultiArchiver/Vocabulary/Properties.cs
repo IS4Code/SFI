@@ -11,6 +11,8 @@
         public static readonly PropertyUri Label;
         [Uri(Vocabularies.Uri.Rdfs)]
         public static readonly PropertyUri SeeAlso;
+        [Uri(Vocabularies.Uri.Rdfs)]
+        public static readonly PropertyUri IsDefinedBy;
 
         [Uri(Vocabularies.Uri.Owl)]
         public static readonly PropertyUri SameAs;

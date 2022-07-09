@@ -55,16 +55,23 @@ namespace IS4.MultiArchiver.Analyzers
                         var sysid = reader.GetAttribute("SYSTEM");
                         if(!String.IsNullOrEmpty(pubid))
                         {
-                            var dtd = context.NodeFactory.Create(UriTools.PublicIdFormatter, pubid);
+                            var dtdParent = context.NodeFactory.Create(UriTools.PublicIdFormatter, pubid);
+                            var dtd = dtdParent[$"#{name}"];
                             dtd.SetClass(Classes.DoctypeDecl);
                             if(name != null)
                             {
                                 dtd.Set(Properties.DoctypeName, name);
                             }
                             dtd.Set(Properties.PublicId, pubid);
+                            dtd.Set(Properties.IsDefinedBy, dtdParent);
                             if(sysid != null)
                             {
                                 dtd.Set(Properties.SystemId, sysid, Datatypes.AnyUri);
+                                var definedNode = context.NodeFactory.Create(UriFormatter.Instance, sysid);
+                                if(definedNode != null)
+                                {
+                                    dtdParent.Set(Properties.IsDefinedBy, definedNode);
+                                }
                             }
                             node.Set(Properties.DtDecl, dtd);
                         }
