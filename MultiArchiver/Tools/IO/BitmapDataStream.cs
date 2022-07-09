@@ -74,11 +74,13 @@ namespace IS4.MultiArchiver.Tools.IO
             return read;
         }
 
-        public override Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
+#pragma warning disable 1998
+        public override async Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            return Task.FromResult(Read(buffer, offset, count));
+            return Read(buffer, offset, count);
         }
+#pragma warning restore 1998
 
         public override long Seek(long offset, SeekOrigin origin)
         {
