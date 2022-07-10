@@ -16,6 +16,9 @@ namespace IS4.MultiArchiver.Vocabulary
         [Uri(Vocabularies.Uri.At)]
         public static readonly GraphUri Metadata;
 
+        [Uri(Vocabularies.Uri.At)]
+        public static readonly GraphUri ShortenedLinks;
+
         static Graphs()
         {
             typeof(Graphs).InitializeUris();

@@ -48,7 +48,10 @@ namespace IS4.MultiArchiver.Extensions
                 AddNamespace(defaultHandler, prefix, uri);
                 foreach(var handler in graphHandlers.Values)
                 {
-                    AddNamespace(handler, prefix, uri);
+                    if(handler != null)
+                    {
+                        AddNamespace(handler, prefix, uri);
+                    }
                 }
             };
         }
@@ -88,6 +91,11 @@ namespace IS4.MultiArchiver.Extensions
                 longUriCache.Add(subject, uri);
                 var node = new UriNode(subject, defaultHandler, GetGraphCache(defaultHandler), queryTester);
                 node.Set(Properties.AtPrefLabel, shortUriLabel.ToString(), Datatypes.AnyUri);
+                var linked = node.In(Graphs.ShortenedLinks);
+                if(linked != null)
+                {
+                    linked.Set(Properties.SameAs, UriFormatter.Instance, uri);
+                }
                 return node;
             }
             return new UriNode(defaultHandler.CreateUriNode(uri), defaultHandler, GetGraphCache(defaultHandler), queryTester);
@@ -252,6 +260,10 @@ namespace IS4.MultiArchiver.Extensions
 
             protected override LinkedNode<INode, IRdfHandler, Cache> CreateInGraph(IRdfHandler graph)
             {
+                if(graph == null)
+                {
+                    return null;
+                }
                 return new UriNode(VDS.RDF.Tools.CopyNode(Subject, graph), graph, Cache.Parent.GetGraphCache(graph), queryTester);
             }
 

@@ -136,6 +136,8 @@ namespace IS4.MultiArchiver
                 graphHandlers[new Uri(Graphs.Metadata.Value)] = new VDS.RDF.Parsing.Handlers.NullHandler();
             }
 
+            graphHandlers[new Uri(Graphs.ShortenedLinks.Value)] = null;
+
             var queries = GetQueries(options);
 
             if(options.DirectOutput)
