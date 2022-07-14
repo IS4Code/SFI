@@ -11,7 +11,7 @@ namespace IS4.MultiArchiver.Services
 
     public static class LinkedNodeFactoryExtensions
     {
-        public static ILinkedNode NewGuidNode(this ILinkedNodeFactory factory)
+        public static ILinkedNode CreateUnique(this ILinkedNodeFactory factory)
         {
             return factory.Create(factory.Root, Guid.NewGuid().ToString("D"));
         }

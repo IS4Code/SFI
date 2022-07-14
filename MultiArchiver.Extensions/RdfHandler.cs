@@ -24,6 +24,8 @@ namespace IS4.MultiArchiver.Extensions
 
         public IIndividualUriFormatter<string> Root { get; }
 
+        public const string BlankUriScheme = "x.blank";
+
         public IDictionary<Uri, string> PrefixMap { get; }
 
         public int MaxUriLength { get; set; } = 1900 - 20; // limit for OpenLink Virtuoso
@@ -72,8 +74,7 @@ namespace IS4.MultiArchiver.Extensions
             }
         }
 
-        static readonly ConditionalWeakTable<INode, Uri> longUriCache = new ConditionalWeakTable<INode, Uri>();
-
+        static readonly ConditionalWeakTable<INode, Uri> realUriCache = new ConditionalWeakTable<INode, Uri>();
 
         public ILinkedNode Create<T>(IIndividualUriFormatter<T> formatter, T value)
         {
@@ -82,13 +83,18 @@ namespace IS4.MultiArchiver.Extensions
             {
                 return null;
             }
+            if(uri.Scheme == BlankUriScheme)
+            {
+                var bnode = CreateBlankNode(uri, defaultHandler);
+                return new UriNode(bnode, defaultHandler, GetGraphCache(defaultHandler), queryTester);
+            }
             if(uri.OriginalString.Length > MaxUriLength)
             {
                 var shortUriLabel = UriTools.ShortenUri(uri, UriPartShortened, "\u00A0(URI\u00A0too\u00A0long)");
 
                 var newUri = UriTools.UriToUuidUri(uri);
                 var subject = defaultHandler.CreateUriNode(newUri);
-                longUriCache.Add(subject, uri);
+                realUriCache.Add(subject, uri);
                 var node = new UriNode(subject, defaultHandler, GetGraphCache(defaultHandler), queryTester);
                 node.Set(Properties.AtPrefLabel, shortUriLabel.ToString(), Datatypes.AnyUri);
                 var linked = node.In(Graphs.ShortenedLinks);
@@ -101,6 +107,13 @@ namespace IS4.MultiArchiver.Extensions
             return new UriNode(defaultHandler.CreateUriNode(uri), defaultHandler, GetGraphCache(defaultHandler), queryTester);
         }
 
+        private INode CreateBlankNode(Uri blankUri, IRdfHandler handler)
+        {
+            var identifier = $"b{UriTools.UuidFromUri(blankUri):N}";
+            var bnode = handler.CreateBlankNode(identifier);
+            realUriCache.Add(bnode, blankUri);
+            return bnode;
+        }
 
         bool ILinkedNodeFactory.IsSafeString(string str)
         {
@@ -156,13 +169,11 @@ namespace IS4.MultiArchiver.Extensions
 
         class UriNode : LinkedNode<INode, IRdfHandler, Cache>
         {
-            public new IUriNode Subject => (IUriNode)base.Subject;
-
             readonly NodeQueryTester queryTester;
 
             public UriNode(INode subject, IRdfHandler handler, Cache cache, NodeQueryTester queryTester) : base(subject, handler, cache)
             {
-                if(!(subject is IUriNode)) throw new ArgumentException(null, nameof(subject));
+                if(!(subject is IUriNode || subject is IBlankNode)) throw new ArgumentException(null, nameof(subject));
                 this.queryTester = queryTester;
             }
 
@@ -193,9 +204,12 @@ namespace IS4.MultiArchiver.Extensions
 
             public override void SetAsBase()
             {
-                lock(Graph)
+                if(Subject is IUriNode subject)
                 {
-                    Graph.HandleBaseUri(Subject.Uri);
+                    lock(Graph)
+                    {
+                        Graph.HandleBaseUri(subject.Uri);
+                    }
                 }
             }
 
@@ -206,11 +220,15 @@ namespace IS4.MultiArchiver.Extensions
                     properties = null;
                     return false;
                 }
-                return queryTester.Match(Subject.Uri, out properties);
+                return queryTester.Match(Subject, out properties);
             }
 
             protected override INode CreateNode(Uri uri)
             {
+                if(uri.Scheme == BlankUriScheme)
+                {
+                    return Cache.Parent.CreateBlankNode(uri, Graph);
+                }
                 return Graph.CreateUriNode(uri);
             }
 
@@ -250,7 +268,7 @@ namespace IS4.MultiArchiver.Extensions
 
             protected override Uri GetUri(INode node)
             {
-                return longUriCache.TryGetValue(node, out var uri) ? uri : ((IUriNode)node).Uri;
+                return realUriCache.TryGetValue(node, out var uri) ? uri : ((IUriNode)node).Uri;
             }
 
             protected override LinkedNode<INode, IRdfHandler, Cache> CreateNew(INode subject)

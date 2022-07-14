@@ -190,7 +190,12 @@ namespace IS4.MultiArchiver
 
         public static Uri UriToUuidUri(Uri uri)
         {
-            return CreateUuid(DataTools.GuidFromName(urlNamespace, uri.AbsoluteUri));
+            return CreateUuid(UuidFromUri(uri));
+        }
+
+        public static Guid UuidFromUri(Uri uri)
+        {
+            return DataTools.GuidFromName(urlNamespace, uri.AbsoluteUri);
         }
     }
 }

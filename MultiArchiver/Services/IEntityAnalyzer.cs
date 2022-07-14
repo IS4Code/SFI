@@ -85,19 +85,19 @@ namespace IS4.MultiArchiver.Services
         protected ILinkedNode GetNode(AnalysisContext context)
         {
             return
-                InitNewNode(context.Node ?? context.NodeFactory.NewGuidNode(), context);
+                InitNewNode(context.Node ?? context.NodeFactory.CreateUnique(), context);
         }
 
         protected ILinkedNode GetNode(string subName, AnalysisContext context)
         {
             return
-                InitNewNode(context.Node ?? context.Parent?[subName] ?? context.NodeFactory.NewGuidNode(), context);
+                InitNewNode(context.Node ?? context.Parent?[subName] ?? context.NodeFactory.CreateUnique(), context);
         }
 
         protected ILinkedNode GetNode(IIndividualUriFormatter<Uri> formatter, AnalysisContext context)
         {
             return
-                InitNewNode(context.Node ?? context.Parent?[formatter] ?? context.NodeFactory.NewGuidNode(), context);
+                InitNewNode(context.Node ?? context.Parent?[formatter] ?? context.NodeFactory.CreateUnique(), context);
         }
 
         private ILinkedNode InitNewNode(ILinkedNode node, AnalysisContext context)

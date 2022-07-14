@@ -14,8 +14,6 @@ namespace IS4.MultiArchiver
         readonly IRdfHandler rdfHandler;
         readonly LeviathanQueryProcessor processor;
 
-        static readonly UriComparer uriComparer = new UriComparer();
-
         public NodeQueryTester(IRdfHandler rdfHandler, Graph queryGraph, IReadOnlyCollection<SparqlQuery> queries)
         {
             QueryGraph = queryGraph;
@@ -26,7 +24,7 @@ namespace IS4.MultiArchiver
             processor = new LeviathanQueryProcessor(dataset);
         }
 
-        public bool Match(Uri subject, out IReadOnlyDictionary<string, object> properties)
+        public bool Match(INode subject, out IReadOnlyDictionary<string, object> properties)
         {
             Dictionary<string, object> variables = null;
             var success = false;
@@ -43,7 +41,7 @@ namespace IS4.MultiArchiver
                     case IEnumerable<SparqlResult> resultSet:
                         foreach(var result in resultSet)
                         {
-                            if(result["node"] is IUriNode uriNode && uriComparer.Equals(uriNode.Uri, subject))
+                            if(result.TryGetValue("node", out var node) && node.Equals(subject))
                             {
                                 success = true;
                                 if(variables == null)

@@ -316,7 +316,7 @@ namespace IS4.MultiArchiver.Analyzers
                                         }
                                     }
                                 }
-                                return nodeFactory.NewGuidNode();
+                                return nodeFactory.CreateUnique();
                             }
                             NodeTask = HashNode();
                         }

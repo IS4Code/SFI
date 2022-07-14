@@ -1,4 +1,5 @@
-﻿using IS4.MultiArchiver.Services;
+﻿using IS4.MultiArchiver.Extensions;
+using IS4.MultiArchiver.Services;
 using System;
 using System.Collections.Generic;
 
@@ -11,7 +12,7 @@ namespace IS4.MultiArchiver
         public bool HideMetadata { get; set; }
         public bool PrettyPrint { get; set; }
         public IEnumerable<IFileInfo> Queries { get; set; } = Array.Empty<IFileInfo>();
-        public string Root { get; set; } = "urn:uuid:";
+        public string Root { get; set; } = RdfHandler.BlankUriScheme + ":";
         public string NewLine { get; set; } = Environment.NewLine;
         public Uri Node { get; set; }
     }

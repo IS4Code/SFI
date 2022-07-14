@@ -25,7 +25,7 @@ namespace IS4.MultiArchiver.Analyzers
             {
                 name += ":" + Uri.EscapeDataString(subName);
             }
-            return context.Parent?[name] ?? context.NodeFactory.NewGuidNode();
+            return context.Parent?[name] ?? context.NodeFactory.CreateUnique();
         }
 
         private ILinkedNode AnalyzeFileNode(IFileNodeInfo info, AnalysisContext context, IEntityAnalyzerProvider analyzer)
@@ -150,7 +150,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         private async ValueTask<ILinkedNode> AnalyzeContents(ILinkedNode parent, IDirectoryInfo directory, AnalysisContext context, IEntityAnalyzerProvider analyzer)
         {
-            var folder = parent?[""] ?? context.NodeFactory.NewGuidNode();
+            var folder = parent?[""] ?? context.NodeFactory.CreateUnique();
 
             if(folder != null)
             {
