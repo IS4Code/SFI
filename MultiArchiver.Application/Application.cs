@@ -1,7 +1,6 @@
 ﻿using IS4.MultiArchiver.Services;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -130,7 +129,7 @@ namespace IS4.MultiArchiver
 			}catch(ApplicationExitException)
 			{
 
-			}catch(Exception e) when(!Debugger.IsAttached)
+			}catch(Exception e) when(!GlobalOptions.SuppressNonCriticalExceptions)
 			{
 				Log(e.Message);
 			}
@@ -335,11 +334,15 @@ namespace IS4.MultiArchiver
 				case "h":
 				case "hash":
 					var match = DataTools.ConvertWildcardToRegex(argument);
+					hashMatches.Add(match);
+					break;
+				case "mh":
+				case "main-hash":
+					var match2 = DataTools.ConvertWildcardToRegex(argument);
 					if(mainHash == null)
 					{
-						mainHash = match;
+						mainHash = match2;
 					}
-					hashMatches.Add(match);
 					break;
 				case "s":
 				case "sparql-query":
