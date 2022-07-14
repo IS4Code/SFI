@@ -90,14 +90,24 @@ namespace IS4.MultiArchiver.Services
 
         private TNode CreateNode<T>(IUriFormatter<T> formatter, T value)
         {
-            var uri = formatter[value];
-            return uri != null ? CreateNode(uri) : null;
+            try{
+                var uri = formatter[value];
+                return uri != null ? CreateNode(uri) : null;
+            }catch(UriFormatException) when(GlobalOptions.SuppressNonCriticalExceptions)
+            {
+                return null;
+            }
         }
 
         private TGraphNode CreateGraphNode<T>(IGraphUriFormatter<T> formatter, T value)
         {
-            var uri = formatter[value];
-            return uri != null ? CreateGraphNode(uri) : null;
+            try{
+                var uri = formatter[value];
+                return uri != null ? CreateGraphNode(uri) : null;
+            }catch(UriFormatException) when(GlobalOptions.SuppressNonCriticalExceptions)
+            {
+                return null;
+            }
         }
 
         public string Scheme => GetUri(Subject).Scheme;

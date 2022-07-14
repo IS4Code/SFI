@@ -57,9 +57,14 @@ namespace IS4.MultiArchiver.Services
             get {
                 if(value is IIndividualUriFormatter<IFormatObject> formatter)
                 {
-                    if(formatter[this] is Uri result)
+                    try{
+                        if(formatter[this] is Uri result)
+                        {
+                            return result;
+                        }
+                    }catch(UriFormatException) when(GlobalOptions.SuppressNonCriticalExceptions)
                     {
-                        return result;
+                        return null;
                     }
                 }
                 if(String.IsNullOrEmpty(value.Authority)) return null;

@@ -90,7 +90,7 @@ namespace IS4.MultiArchiver
 
         static Archiver()
         {
-            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
             Options.InternUris = false;
         }

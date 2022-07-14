@@ -46,16 +46,19 @@ namespace IS4.MultiArchiver.Analyzers
             var match = await new DataAnalysis(this, streamFactory, context, analyzers).Match();
             var node = await match.NodeTask;
 
-            node.SetAsBase();
-
-            var results = match.Results.Where(result => result.IsValid);
-
-            foreach(var result in results.GroupBy(r => r.Result))
+            if(node != null)
             {
-                if(result.Key != null)
+                node.SetAsBase();
+
+                var results = match.Results.Where(result => result.IsValid);
+
+                foreach(var result in results.GroupBy(r => r.Result))
                 {
-                    match.Recognized = true;
-                    node.Set(Properties.HasFormat, result.Key);
+                    if(result.Key != null)
+                    {
+                        match.Recognized = true;
+                        node.Set(Properties.HasFormat, result.Key);
+                    }
                 }
             }
 

@@ -78,36 +78,51 @@ namespace IS4.MultiArchiver.Extensions
 
         public ILinkedNode Create<T>(IIndividualUriFormatter<T> formatter, T value)
         {
-            var uri = formatter[value];
+            Uri uri;
+            try{
+                uri = formatter[value];
+            }catch(UriFormatException) when(GlobalOptions.SuppressNonCriticalExceptions)
+            {
+                uri = new Uri($"{BlankUriScheme}:{Guid.NewGuid():D}", UriKind.Absolute);
+            }
+            var node = CreateNode(uri, defaultHandler);
+            if(node == null)
+            {
+                return null;
+            }
+            return new UriNode(node, defaultHandler, GetGraphCache(defaultHandler), queryTester);
+        }
+
+        private INode CreateNode(Uri uri, IRdfHandler handler)
+        {
             if(uri == null)
             {
                 return null;
             }
             if(uri.Scheme == BlankUriScheme)
             {
-                var bnode = CreateBlankNode(uri, defaultHandler);
-                return new UriNode(bnode, defaultHandler, GetGraphCache(defaultHandler), queryTester);
+                return CreateBlankNode(uri, handler);
             }
             if(uri.OriginalString.Length > MaxUriLength)
             {
                 var shortUriLabel = UriTools.ShortenUri(uri, UriPartShortened, "\u00A0(URI\u00A0too\u00A0long)");
 
                 var newUri = UriTools.UriToUuidUri(uri);
-                var subject = defaultHandler.CreateUriNode(newUri);
+                var subject = handler.CreateUriNode(newUri);
                 realUriCache.Add(subject, uri);
-                var node = new UriNode(subject, defaultHandler, GetGraphCache(defaultHandler), queryTester);
+                var node = new UriNode(subject, handler, GetGraphCache(handler), queryTester);
                 node.Set(Properties.AtPrefLabel, shortUriLabel.ToString(), Datatypes.AnyUri);
                 var linked = node.In(Graphs.ShortenedLinks);
                 if(linked != null)
                 {
                     linked.Set(Properties.SameAs, UriFormatter.Instance, uri);
                 }
-                return node;
+                return subject;
             }
-            return new UriNode(defaultHandler.CreateUriNode(uri), defaultHandler, GetGraphCache(defaultHandler), queryTester);
+            return defaultHandler.CreateUriNode(uri);
         }
 
-        private INode CreateBlankNode(Uri blankUri, IRdfHandler handler)
+        private IBlankNode CreateBlankNode(Uri blankUri, IRdfHandler handler)
         {
             var identifier = $"b{UriTools.UuidFromUri(blankUri):N}";
             var bnode = handler.CreateBlankNode(identifier);
@@ -225,11 +240,7 @@ namespace IS4.MultiArchiver.Extensions
 
             protected override INode CreateNode(Uri uri)
             {
-                if(uri.Scheme == BlankUriScheme)
-                {
-                    return Cache.Parent.CreateBlankNode(uri, Graph);
-                }
-                return Graph.CreateUriNode(uri);
+                return Cache.Parent.CreateNode(uri, Graph);
             }
 
             protected override INode CreateNode(string value)
