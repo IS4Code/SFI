@@ -510,36 +510,6 @@ namespace IS4.MultiArchiver.Analyzers
                 var t2 = b.GetType();
                 return t1.IsAssignableFrom(t2) ? 1 : t2.IsAssignableFrom(t1) ? -1 : 0;
             }
-
-            class ImprovisedFormat<T> : BinaryFileFormat<T> where T : class
-            {
-                public static readonly ImprovisedFormat<T> Instance = new ImprovisedFormat<T>();
-
-                private ImprovisedFormat() : base(0, null, null)
-                {
-
-                }
-
-                public override bool CheckHeader(ArraySegment<byte> header, bool isBinary, IEncodingDetector encodingDetector)
-                {
-                    return true;
-                }
-
-                public override bool CheckHeader(Span<byte> header, bool isBinary, IEncodingDetector encodingDetector)
-                {
-                    return true;
-                }
-
-                public override string GetMediaType(T value)
-                {
-                    return DataTools.GetFakeMediaTypeFromType<T>();
-                }
-
-                public override ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<T, TResult, TArgs> resultFactory, TArgs args)
-                {
-                    throw new NotSupportedException();
-                }
-            }
         }
 
         class HeaderLengthComparer : GlobalObjectComparer<IBinaryFileFormat>
