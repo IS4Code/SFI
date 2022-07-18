@@ -424,6 +424,7 @@ namespace IS4.MultiArchiver.Analyzers
             readonly AnalysisContext context;
             readonly IEntityAnalyzerProvider analyzer;
             readonly Task<ILinkedNode> task;
+            ILinkedNode taskResult;
 
             public bool IsValid => !task.IsFaulted;
 
@@ -432,7 +433,7 @@ namespace IS4.MultiArchiver.Analyzers
             public string Extension { get; private set; }
             public string Label { get; private set; }
 
-            public ILinkedNode Result => task?.Result;
+            public ILinkedNode Result => taskResult ?? task?.Result;
 
             public FormatResult(DataAnalysis.DataMatch fileMatch, IStreamFactory streamFactory, IBinaryFileFormat format, ValueTask<ILinkedNode> parent, AnalysisContext context, IEntityAnalyzerProvider analyzer)
 			{
@@ -456,7 +457,10 @@ namespace IS4.MultiArchiver.Analyzers
                     {
                         var stream = streamFactory.Open();
                         try{
-                            return await Reader(stream);
+                            taskResult = await Reader(stream);
+                        }catch when(taskResult != null)
+                        {
+                            // An error occurred but Analyze got to run.
                         }finally{
                             try{
                                 stream.Dispose();
@@ -464,6 +468,7 @@ namespace IS4.MultiArchiver.Analyzers
 
                             }
                         }
+                        return taskResult;
                     }
 
                     if(streamFactory.Access == StreamFactoryAccess.Parallel)
@@ -492,6 +497,7 @@ namespace IS4.MultiArchiver.Analyzers
                 try{
                     var formatObj = new BinaryFormatObject<T>(fileMatch, Format, value);
                     var result = await analyzer.Analyze(formatObj, streamContext.WithParent(parent));
+                    taskResult = result.Node;
                     return result.Node;
                 }catch(Exception e)
                 {
