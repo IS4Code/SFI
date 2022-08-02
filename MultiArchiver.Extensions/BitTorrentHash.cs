@@ -19,9 +19,14 @@ namespace IS4.MultiArchiver
 
         public event InfoCreatedDelegate InfoCreated;
 
-        public BitTorrentHash() : base(Individuals.BTIH, HashAlgorithm.HashSize, "urn:btih:", FormattingMethod.Hex)
+        public BitTorrentHash() : base(Individuals.BTIH, HashAlgorithm.GetHashSize(0), "urn:btih:", FormattingMethod.Hex)
         {
 
+        }
+
+        public override int GetHashSize(long fileSize)
+        {
+            return HashAlgorithm.GetHashSize(fileSize);
         }
 
         public override async ValueTask<byte[]> ComputeHash(IFileInfo file)
@@ -51,10 +56,10 @@ namespace IS4.MultiArchiver
                 case IFileInfo file:
                     var info = await BitTorrentHashCache.GetCachedInfo(BlockSize, file);
                     dict["length"] = new BNumber(file.Length);
-                    buffer = new byte[info.BlockHashes.Count * HashAlgorithm.HashSize + info.LastHash.Length];
+                    buffer = new byte[info.BlockHashes.Count * HashAlgorithm.GetHashSize(file.Length) + info.LastHash.Length];
                     for(int i = 0; i < info.BlockHashes.Count; i++)
                     {
-                        info.BlockHashes[i].CopyTo(buffer, i * HashAlgorithm.HashSize);
+                        info.BlockHashes[i].CopyTo(buffer, i * HashAlgorithm.GetHashSize(file.Length));
                     }
                     info.LastHash.CopyTo(buffer, buffer.Length - info.LastHash.Length);
                     break;
@@ -70,7 +75,7 @@ namespace IS4.MultiArchiver
                     {
                         var cachedInfo = await BitTorrentHashCache.GetCachedInfo(BlockSize, file);
                         files.Add((cachedInfo, path));
-                        bufferLength += cachedInfo.BlockHashes.Count * HashAlgorithm.HashSize + cachedInfo.LastHashPadded.Length;
+                        bufferLength += cachedInfo.BlockHashes.Count * HashAlgorithm.GetHashSize((file as IFileInfo)?.Length ?? 0) + cachedInfo.LastHashPadded.Length;
                     }
                     buffer = new byte[bufferLength];
                     int pos = 0;

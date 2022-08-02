@@ -10,7 +10,7 @@ namespace IS4.MultiArchiver
     {
         public int BlockSize { get; }
 
-        public PaddedBlockHash(IndividualUri identifier, string prefix, int blockSize) : base(identifier, sizeof(int) + 2 * BitTorrentHash.HashAlgorithm.HashSize, prefix, FormattingMethod.Base64)
+        public PaddedBlockHash(IndividualUri identifier, string prefix, int blockSize) : base(identifier, BitTorrentHash.HashAlgorithm.GetHashSize(blockSize), prefix, FormattingMethod.Base64)
         {
             BlockSize = blockSize;
         }
@@ -46,6 +46,11 @@ namespace IS4.MultiArchiver
             {
                 return await ComputeHash(stream, key);
             }
+        }
+
+        public override int GetHashSize(long fileSize)
+        {
+            return sizeof(int) + (int)(fileSize / BlockSize + 1) * HashSize;
         }
     }
 }

@@ -8,6 +8,7 @@ namespace IS4.MultiArchiver.Services
     public interface IHashedContentUriFormatter : IIndividualUriFormatter<(IHashAlgorithm algorithm, byte[] hash, bool isBinary)>
     {
         IEnumerable<IHashAlgorithm> SupportedAlgorithms { get; }
+        int? EstimateUriSize(IHashAlgorithm algorithm, int hashSize);
     }
 
     public class AdHashedContentUriFormatter : IHashedContentUriFormatter
@@ -28,6 +29,18 @@ namespace IS4.MultiArchiver.Services
                 DataTools.Base58(identifier, sb);
                 return Vocabularies.Ad[sb.ToString()];
             }
+        }
+
+        static readonly double log58byte = Math.Log(256, 58);
+
+        public int? EstimateUriSize(IHashAlgorithm algorithm, int hashSize)
+        {
+            if(algorithm.NumericIdentifier is int id)
+            {
+                var identifier = DataTools.EncodeMultihash((ulong)id, Array.Empty<byte>(), hashSize);
+                return Vocabularies.Uri.Ad.Length + (int)Math.Ceiling((hashSize + identifier.Count) * log58byte);
+            }
+            return null;
         }
 
         public AdHashedContentUriFormatter(params IHashAlgorithm[] supportedAlgorithms) : this((IEnumerable<IHashAlgorithm>)supportedAlgorithms)
@@ -60,6 +73,20 @@ namespace IS4.MultiArchiver.Services
                 }
                 return null;
             }
+        }
+
+        public int? EstimateUriSize(IHashAlgorithm algorithm, int hashSize)
+        {
+            if(algorithm.NiName is string name)
+            {
+                return "ni:///;?ct=".Length + name.Length + (hashSize + 2) / 3 * 4;
+            }
+            if(algorithm.NumericIdentifier is int id)
+            {
+                var identifier = DataTools.EncodeMultihash((ulong)id, Array.Empty<byte>(), hashSize);
+                return "ni:///mh;?ct=".Length + (hashSize + identifier.Count + 2) / 3 * 4;
+            }
+            return null;
         }
 
         public NiHashedContentUriFormatter(params IHashAlgorithm[] supportedAlgorithms) : this((IEnumerable<IHashAlgorithm>)supportedAlgorithms)

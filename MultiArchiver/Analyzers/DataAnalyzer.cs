@@ -27,7 +27,38 @@ namespace IS4.MultiArchiver.Analyzers
 
         public long FileSizeToWriteToDisk { get; set; } = 524288;
 
-        public int MaxDataLengthToStore => Math.Max(64, HashAlgorithms.Sum(h => h.HashSize + 64)) - 16;
+        public int MinDataLengthToStore { get; set; } = 48;
+
+        public int TripleSizeEstimate { get; set; } = 32;
+
+        public int GetMaxDataLengthToStore(long fileSize)
+        {
+            var min = MinDataLengthToStore;
+            var hashedSize = 0;
+            var formatter = ContentUriFormatter;
+            if(formatter != null)
+            {
+                foreach(var algorithm in formatter.SupportedAlgorithms.OfType<IDataHashAlgorithm>())
+                {
+                    if(HashAlgorithms.Contains(algorithm))
+                    {
+                        var size = algorithm.GetHashSize(fileSize);
+                        if(formatter.EstimateUriSize(algorithm, size) is int uriSize)
+                        {
+                            hashedSize = uriSize;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            hashedSize += HashAlgorithms.Sum(h => {
+                var hashSize = h.GetHashSize(fileSize);
+                return HashAlgorithm.TriplesPerHash * TripleSizeEstimate + h.EstimateUriSize(hashSize) + (hashSize + 2) / 3 * 4;
+            });
+
+            return Math.Max(min, (hashedSize - "data:;base64,".Length - TripleSizeEstimate) * 3 / 8);
+        }
 
         public TextWriter OutputLog { get; set; } = Console.Error;
 
@@ -69,6 +100,7 @@ namespace IS4.MultiArchiver.Analyzers
         {
             readonly DataAnalyzer analyzer;
 
+            readonly int maxDataLengthToStore;
             readonly MemoryStream signatureBuffer;
             readonly IEncodingDetector encodingDetector;
             readonly IStreamFactory streamFactory;
@@ -82,7 +114,8 @@ namespace IS4.MultiArchiver.Analyzers
             public DataAnalysis(DataAnalyzer analyzer, IStreamFactory streamFactory, AnalysisContext context, IEntityAnalyzerProvider analyzers)
             {
                 this.analyzer = analyzer;
-                signatureBuffer = new MemoryStream(Math.Max(analyzer.MaxDataLengthToStore + 1, analyzer.DataFormats.Select(fmt => fmt.HeaderLength).DefaultIfEmpty(0).Max()));
+                maxDataLengthToStore = analyzer.GetMaxDataLengthToStore(streamFactory.Length);
+                signatureBuffer = new MemoryStream(Math.Max(maxDataLengthToStore + 1, analyzer.DataFormats.Select(fmt => fmt.HeaderLength).DefaultIfEmpty(0).Max()));
                 encodingDetector = analyzer.EncodingDetectorFactory?.Invoke();
 
                 this.streamFactory = streamFactory;
@@ -272,7 +305,7 @@ namespace IS4.MultiArchiver.Analyzers
                     var context = analysis.context;
                     var encodingDetector = analysis.encodingDetector;
 
-                    IsComplete = ByteValue.Count <= analyzer.MaxDataLengthToStore;
+                    IsComplete = ByteValue.Count <= analysis.maxDataLengthToStore;
 
                     if(!isBinary)
                     {

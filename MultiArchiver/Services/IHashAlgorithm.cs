@@ -21,7 +21,8 @@ namespace IS4.MultiArchiver.Services
     public interface IHashAlgorithm : IIndividualUriFormatter<ArraySegment<byte>>
     {
         string Name { get; }
-        int HashSize { get; }
+        int GetHashSize(long fileSize);
+        int EstimateUriSize(int hashSize);
         IndividualUri Identifier { get; }
         int? NumericIdentifier { get; }
         string Prefix { get; }
@@ -67,9 +68,37 @@ namespace IS4.MultiArchiver.Services
             Name = String.Concat(new Uri(prefix, UriKind.Absolute).AbsolutePath.Where(Char.IsLetterOrDigit));
         }
 
+        public virtual int GetHashSize(long fileSize)
+        {
+            return HashSize;
+        }
+
+        static readonly double log10byte = Math.Log10(256);
+        static readonly double log58byte = Math.Log(256, 58);
+
+        public virtual int EstimateUriSize(int hashSize)
+        {
+            var prefix = Prefix.Length;
+            switch(FormattingMethod)
+            {
+                case FormattingMethod.Hex:
+                    return prefix + hashSize * 2;
+                case FormattingMethod.Base32:
+                    return prefix + (hashSize + 4) / 5 * 8;
+                case FormattingMethod.Base58:
+                    return prefix + (int)Math.Ceiling(hashSize * log58byte);
+                case FormattingMethod.Base64:
+                    return prefix + (hashSize + 2) / 3 * 4;
+                case FormattingMethod.Decimal:
+                    return prefix + (int)Math.Ceiling(hashSize * log10byte);
+                default:
+                    throw new NotSupportedException();
+            }
+        }
+
         public Uri this[ArraySegment<byte> data] {
             get {
-                var sb = new StringBuilder(Prefix.Length + data.Count * 2);
+                var sb = new StringBuilder(EstimateUriSize(data.Count));
                 sb.Append(Prefix);
                 if(data.Count > 0)
                 {
@@ -124,6 +153,8 @@ namespace IS4.MultiArchiver.Services
         {
             AddHash(node, algorithm, new ArraySegment<byte>(hash), nodeFactory);
         }
+
+        public const int TriplesPerHash = 4;
 
         public static void AddHash(ILinkedNode node, IHashAlgorithm algorithm, ArraySegment<byte> hash, ILinkedNodeFactory nodeFactory)
         {

@@ -305,11 +305,11 @@ namespace IS4.MultiArchiver
             yield return (byte)value;
         }
 
-        public static List<byte> EncodeMultihash(ulong id, byte[] hash)
+        public static List<byte> EncodeMultihash(ulong id, byte[] hash, int? hashLength = 0)
         {
             var multihash = new List<byte>(2 + hash.Length);
             multihash.AddRange(Varint(id));
-            multihash.AddRange(Varint((ulong)hash.Length));
+            multihash.AddRange(Varint((ulong)(hashLength ?? hash.Length)));
             multihash.AddRange(hash);
             return multihash;
         }
