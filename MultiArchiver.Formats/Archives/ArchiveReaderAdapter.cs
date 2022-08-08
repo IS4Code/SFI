@@ -17,6 +17,10 @@ namespace IS4.MultiArchiver.Formats.Archives
         readonly Dictionary<string, ArchiveDirectoryInfo> directories = new Dictionary<string, ArchiveDirectoryInfo>();
         IEnumerator<KeyValuePair<string, ArchiveDirectoryInfo>> directoryEnumerator;
 
+        public bool IsComplete { get; private set; } = true;
+
+        public bool IsSolid => false;
+
         public ArchiveReaderAdapter(IReader reader)
         {
             this.reader = reader;
@@ -50,6 +54,10 @@ namespace IS4.MultiArchiver.Formats.Archives
             }catch(SharpCompressCryptoException e)
             {
                 throw new CryptographicException(e.Message, e);
+            }catch(IncompleteArchiveException)
+            {
+                IsComplete = false;
+                throw;
             }
         }
 

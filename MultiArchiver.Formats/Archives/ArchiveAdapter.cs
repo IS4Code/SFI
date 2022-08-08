@@ -32,6 +32,10 @@ namespace IS4.MultiArchiver.Formats.Archives
 
         readonly SharpCompress.Archives.IArchive archive;
 
+        public bool IsComplete => archive.IsComplete;
+
+        public bool IsSolid => archive.IsSolid;
+
         public ArchiveAdapter(SharpCompress.Archives.IArchive archive)
         {
             this.archive = archive;

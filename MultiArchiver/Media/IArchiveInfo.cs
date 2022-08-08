@@ -6,7 +6,8 @@ namespace IS4.MultiArchiver.Media
 {
     public interface IArchiveInfo
     {
-
+        bool IsComplete { get; }
+        bool IsSolid { get; }
     }
 
     public interface IArchiveFile : IArchiveInfo
