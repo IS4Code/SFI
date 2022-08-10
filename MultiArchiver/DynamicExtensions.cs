@@ -2,23 +2,24 @@
 using IS4.MultiArchiver.Vocabulary;
 using Microsoft.CSharp.RuntimeBinder;
 using System;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver
 {
     /// <summary>
-    /// Stores extension methods for operations on a <see cref="ILinkedNodeFactory"/> or <see cref="ILinkedNode"/>.
+    /// Stores extension methods for operations on a <see cref="ILinkedNode"/> or <see cref="IEntityAnalyzerProvider"/>.
     /// </summary>
     public static class DynamicExtensions
     {
-        public static ILinkedNode TryCreate(this ILinkedNodeFactory factory, ILinkedNode parent, object value)
+        public static async ValueTask<AnalysisResult> TryAnalyze(this IEntityAnalyzerProvider analyzers, object entity, AnalysisContext context)
         {
-            if(value == null) return null;
+            if(entity == null) return default;
             try
             {
-                return factory.Create(parent, (dynamic)value);
+                return await analyzers.Analyze((dynamic)entity, context);
             }catch(RuntimeBinderException)
             {
-                return null;
+                return default;
             }
         }
 

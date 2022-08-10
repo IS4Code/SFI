@@ -6,12 +6,13 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats.Metadata.MetadataReaders
 {
     public class ExifReader : IMetadataReader<ExifDirectoryBase>
     {
-        public string Describe(ILinkedNode node, ExifDirectoryBase directory, ILinkedNodeFactory nodeFactory)
+        public async ValueTask<string> Describe(ILinkedNode node, ExifDirectoryBase directory, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
             foreach(var tag in directory.Tags)
             {
@@ -57,7 +58,7 @@ namespace IS4.MultiArchiver.Formats.Metadata.MetadataReaders
                         node.TrySet(property, v);
                         continue;
                     case object o:
-                        var node2 = nodeFactory.TryCreate(null, o);
+                        var node2 = (await analyzers.TryAnalyze(o, context)).Node;
                         if(node2 != null)
                         {
                             node.Set(property, node2);

@@ -19,13 +19,13 @@ namespace IS4.MultiArchiver.Analyzers
     {
         public ICollection<object> MetadataReaders { get; } = new SortedSet<object>(TypeInheritanceComparer<object>.Instance);
 
-        public override  ValueTask<AnalysisResult> Analyze(IReadOnlyList<Directory> entity, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        public async override ValueTask<AnalysisResult> Analyze(IReadOnlyList<Directory> entity, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
             var node = GetNode(context);
             string result = null;
             foreach(var dir in entity)
             {
-                if(TryDescribe(node, dir, context.NodeFactory) is string s)
+                if(await TryDescribe(node, dir, context.WithNode(node), analyzers) is string s)
                 {
                     result = s;
                 }
@@ -37,7 +37,7 @@ namespace IS4.MultiArchiver.Analyzers
             {
                 if(streams.Count == 1)
                 {
-                    return new ValueTask<AnalysisResult>(new AnalysisResult(node, result ?? Analyze(node, streams[0].Value, entity, context.NodeFactory)));
+                    return new AnalysisResult(node, result ?? Analyze(node, streams[0].Value, entity, context.NodeFactory));
                 }else{
                     var merged = new Dictionary<string, object>();
 
@@ -69,11 +69,11 @@ namespace IS4.MultiArchiver.Analyzers
                         }
                     }
 
-                    return new ValueTask<AnalysisResult>(new AnalysisResult(node, result ?? Analyze(node, merged, entity, context.NodeFactory)));
+                    return new AnalysisResult(node, result ?? Analyze(node, merged, entity, context.NodeFactory));
                 }
             }
 
-            return new ValueTask<AnalysisResult>(new AnalysisResult(node, result));
+            return new AnalysisResult(node, result);
         }
 
         static IEnumerable<KeyValuePair<Directory, Dictionary<string, object>>> IdentifyTags(IReadOnlyList<Directory> entity, params string[] tagNames)
@@ -195,13 +195,13 @@ namespace IS4.MultiArchiver.Analyzers
             return analyzer;
         }
 
-        private string Describe<T>(ILinkedNode node, T dir, ILinkedNodeFactory nodeFactory) where T : Directory
+        private async ValueTask<string> Describe<T>(ILinkedNode node, T dir, AnalysisContext context, IEntityAnalyzerProvider analyzers) where T : Directory
         {
             foreach(var obj in MetadataReaders)
             {
                 if(obj is IMetadataReader<T> reader)
                 {
-                    if(reader.Describe(node, dir, nodeFactory) is string s)
+                    if(await reader.Describe(node, dir, context, analyzers) is string s)
                     {
                         return s;
                     }
@@ -210,11 +210,11 @@ namespace IS4.MultiArchiver.Analyzers
             return null;
         }
 
-        private string TryDescribe(ILinkedNode node, Directory dir, ILinkedNodeFactory nodeFactory)
+        private async ValueTask<string> TryDescribe(ILinkedNode node, Directory dir, AnalysisContext context, IEntityAnalyzerProvider analyzers)
         {
             try
             {
-                return Describe(node, (dynamic)dir, nodeFactory);
+                return await Describe(node, (dynamic)dir, context, analyzers);
             }catch(RuntimeBinderException)
             {
                 return null;
