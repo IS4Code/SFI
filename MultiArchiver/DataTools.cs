@@ -437,7 +437,7 @@ namespace IS4.MultiArchiver
         /// <param name="hash">An array storing the bytes of the hash.</param>
         /// <param name="hashLength">The length of the hash as stored in the result.</param>
         /// <returns>A list of bytes representing the multihash.</returns>
-        public static List<byte> EncodeMultihash(ulong id, byte[] hash, int? hashLength = 0)
+        public static List<byte> EncodeMultihash(ulong id, byte[] hash, int? hashLength = null)
         {
             var multihash = new List<byte>(2 + hash.Length);
             multihash.AddRange(Varint(id));
