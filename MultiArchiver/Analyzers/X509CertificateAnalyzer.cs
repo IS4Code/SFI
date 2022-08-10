@@ -5,8 +5,14 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
+    /// <summary>
+    /// An analyzer of X.509 certificates, expressed as instances of <see cref="X509Certificate"/>.
+    /// </summary>
     public class X509CertificateAnalyzer : MediaObjectAnalyzer<X509Certificate>
     {
+        /// <summary>
+        /// Creates a new instance of the analyzer.
+        /// </summary>
         public X509CertificateAnalyzer() : base(Classes.X509Certificate)
         {
 

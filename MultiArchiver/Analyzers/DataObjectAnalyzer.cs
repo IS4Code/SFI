@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
+    /// <summary>
+    /// An analyzer describing instances of <see cref="IDataObject"/>.
+    /// </summary>
     public class DataObjectAnalyzer : EntityAnalyzer, IEntityAnalyzer<IDataObject>
     {
         public async ValueTask<AnalysisResult> Analyze(IDataObject dataObject, AnalysisContext context, IEntityAnalyzerProvider analyzers)
@@ -56,6 +59,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             if(!dataObject.Recognized)
             {
+                // Prepare an improvised format if no other format was recognized
                 ImprovisedFormat.Format improvisedFormat = null;
 
                 if(isBinary && DataTools.ExtractSignature(dataObject.ByteValue) is string magicText)
@@ -92,10 +96,20 @@ namespace IS4.MultiArchiver.Analyzers
             return new AnalysisResult(node);
         }
 
+        /// <summary>
+        /// This improvised format is used for binary files when the signature can be extracted
+        /// via <see cref="DataTools.ExtractSignature(ArraySegment{byte})"/>.
+        /// </summary>
         class SignatureFormat : ImprovisedFormat.Format
         {
+            /// <summary>
+            /// The extension is the signature of the file.
+            /// </summary>
             public override string Extension { get; }
 
+            /// <summary>
+            /// The media type is produced by <see cref="DataTools.GetFakeMediaTypeFromSignature(string)"/>.
+            /// </summary>
             public override string MediaType => DataTools.GetFakeMediaTypeFromSignature(Extension);
 
             public SignatureFormat(string signature)
@@ -104,10 +118,20 @@ namespace IS4.MultiArchiver.Analyzers
             }
         }
 
+        /// <summary>
+        /// This improvised format is used for text files when the interpreter command can be extracted
+        /// via <see cref="DataTools.ExtractInterpreter(string)"/>.
+        /// </summary>
         class InterpreterFormat : ImprovisedFormat.Format
         {
+            /// <summary>
+            /// The extension is the interpreter command.
+            /// </summary>
             public override string Extension { get; }
 
+            /// <summary>
+            /// The media type is produced by <see cref="DataTools.GetFakeMediaTypeFromInterpreter(string)"/>.
+            /// </summary>
             public override string MediaType => DataTools.GetFakeMediaTypeFromInterpreter(Extension);
 
             public InterpreterFormat(string interpreter)
@@ -116,6 +140,11 @@ namespace IS4.MultiArchiver.Analyzers
             }
         }
 
+        /// <summary>
+        /// An improvised format is created when there are no other formats detectable from the input.
+        /// Its properties are implied based on the data itself and serve to link data likely in the same format
+        /// even when the format is unknown.
+        /// </summary>
         class ImprovisedFormat : BinaryFileFormat<ImprovisedFormat.Format>
         {
             public static readonly ImprovisedFormat Instance = new ImprovisedFormat();

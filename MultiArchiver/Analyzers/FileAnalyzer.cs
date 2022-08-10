@@ -8,10 +8,22 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
+    /// <summary>
+    /// An analyzer of files and directories, as instances of <see cref="IFileNodeInfo"/>,
+    /// <see cref="IFileInfo"/>, <see cref="IDirectoryInfo"/>, <see cref="FileInfo"/> or
+    /// <see cref="DirectoryInfo"/>.
+    /// </summary>
     public sealed class FileAnalyzer : IEntityAnalyzer<FileInfo>, IEntityAnalyzer<DirectoryInfo>, IEntityAnalyzer<IFileInfo>, IEntityAnalyzer<IDirectoryInfo>, IEntityAnalyzer<IFileNodeInfo>
     {
+        /// <summary>
+        /// A collection of used hash algorithms, as instances of <see cref="IFileHashAlgorithm"/>,
+        /// whose output is used to describe the file object.
+        /// </summary>
         public ICollection<IFileHashAlgorithm> HashAlgorithms { get; } = new List<IFileHashAlgorithm>();
 
+        /// <summary>
+        /// Creates a new instance of the analyzer.
+        /// </summary>
         public FileAnalyzer()
         {
 
@@ -244,6 +256,10 @@ namespace IS4.MultiArchiver.Analyzers
             }
         }
 
+        /// <summary>
+        /// This class is used to provide a fake URI with the value of
+        /// <see cref="RootDirectoryUri.Value"/> when .NET would like to change it.
+        /// </summary>
         class RootDirectoryUri : Uri, IIndividualUriFormatter<ValueTuple>
         {
             public const string Value = "file:///./";

@@ -5,15 +5,27 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
+    /// <summary>
+    /// An analyzer of objects of type <typeparamref name="T"/>.
+    /// </summary>
+    /// <typeparam name="T">The type of objects supported by this analyzer.</typeparam>
     public abstract class MediaObjectAnalyzer<T> : EntityAnalyzer, IEntityAnalyzer<T> where T : class
     {
         readonly IEnumerable<ClassUri> classes;
 
+        /// <summary>
+        /// Creates a new instance of the analyzer from a collection of classes applicable to the type.
+        /// </summary>
+        /// <param name="classes">The collection of classes.</param>
         public MediaObjectAnalyzer(IEnumerable<ClassUri> classes)
         {
             this.classes = classes;
         }
 
+        /// <summary>
+        /// Creates a new instance of the analyzer from a collection of classes applicable to the type.
+        /// </summary>
+        /// <param name="classes">The collection of classes.</param>
         public MediaObjectAnalyzer(params ClassUri[] classes) : this((IEnumerable<ClassUri>)classes)
         {
 
@@ -21,6 +33,10 @@ namespace IS4.MultiArchiver.Analyzers
 
         public abstract ValueTask<AnalysisResult> Analyze(T entity, AnalysisContext context, IEntityAnalyzerProvider analyzers);
 
+        /// <summary>
+        /// Assigns the classes specified during construction of the analyzer to newly
+        /// constructed nodes.
+        /// </summary>
         protected override void InitNode(ILinkedNode node, AnalysisContext context)
         {
             base.InitNode(node, context);

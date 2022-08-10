@@ -115,7 +115,7 @@ namespace IS4.MultiArchiver.Services
                 var sb = new StringBuilder("ni:///");
                 sb.Append(Uri.EscapeDataString(hashName));
                 sb.Append(';');
-                DataTools.Base64(hashValue, sb);
+                DataTools.Base64Url(hashValue, sb);
                 sb.Append("?ct=");
                 sb.Append(type);
                 return sb.ToString();

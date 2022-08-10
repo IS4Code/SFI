@@ -117,7 +117,7 @@ namespace IS4.MultiArchiver.Services
                             DataTools.Base58(data, sb);
                             break;
                         case FormattingMethod.Base64:
-                            DataTools.Base64(data, sb);
+                            DataTools.Base64Url(data, sb);
                             break;
                         case FormattingMethod.Decimal:
                             switch(data.Count)

@@ -14,10 +14,20 @@ using System.Xml.Linq;
 
 namespace IS4.MultiArchiver.Analyzers
 {
+    /// <summary>
+    /// An analyzer of XML documents, expressed using the common class <see cref="XmlReader"/>.
+    /// </summary>
     public class XmlAnalyzer : MediaObjectAnalyzer<XmlReader>, IResultFactory<AnalysisResult, (IXmlDocumentFormat format, AnalysisContext context, IEntityAnalyzerProvider analyzer)>
     {
+        /// <summary>
+        /// A collection of XML formats, as instances of <see cref="IXmlDocumentFormat"/>,
+        /// to use when recognizing the format of the document.
+        /// </summary>
         public ICollection<IXmlDocumentFormat> XmlFormats { get; } = new SortedSet<IXmlDocumentFormat>(TypeInheritanceComparer<IXmlDocumentFormat>.Instance);
 
+        /// <summary>
+        /// Creates a new instance of the analyzer.
+        /// </summary>
         public XmlAnalyzer() : base(Classes.ContentAsXML, Classes.Document)
         {
 
@@ -55,6 +65,7 @@ namespace IS4.MultiArchiver.Analyzers
                         var sysid = reader.GetAttribute("SYSTEM");
                         if(!String.IsNullOrEmpty(pubid))
                         {
+                            // A URI is created from the PUBLIC identifier and the name of the root element
                             var dtdParent = context.NodeFactory.Create(UriTools.PublicIdFormatter, pubid);
                             var dtd = dtdParent[$"#{name}"];
                             dtd.SetClass(Classes.DoctypeDecl);
@@ -70,6 +81,7 @@ namespace IS4.MultiArchiver.Analyzers
                                 var definedNode = context.NodeFactory.Create(UriFormatter.Instance, sysid);
                                 if(definedNode != null)
                                 {
+                                    // The SYSTEM identifier can be used to define the DTD
                                     dtdParent.Set(Properties.IsDefinedBy, definedNode);
                                 }
                             }
@@ -78,6 +90,7 @@ namespace IS4.MultiArchiver.Analyzers
                         docType = new XDocumentType(name, pubid, sysid, reader.Value);
                         break;
                     case XmlNodeType.Element:
+                        // Describe the root element using the XIS vocabulary
                         var elem = node[reader.LocalName];
                         elem.SetClass(Classes.Element);
                         elem.Set(Properties.LocalName, reader.LocalName);
@@ -106,8 +119,10 @@ namespace IS4.MultiArchiver.Analyzers
 
                         context = context.WithNode(null);
 
+                        // Capture the state of the XmlReader
                         var rootState = new XmlReaderState(reader);
 
+                        // Filter out formats not matching the DTD or root element
                         var formats = XmlFormats.Where(fmt => fmt.CheckDocument(docType, rootState)).ToList();
 
                         async Task<bool> MatchFormat(IXmlDocumentFormat format, XmlReader localReader)
@@ -126,12 +141,14 @@ namespace IS4.MultiArchiver.Analyzers
                         {
                             foreach(var format in formats)
                             {
+                                // For a single XML format, just give the reader to it
                                 if(await MatchFormat(format, reader))
                                 {
                                     any = true;
                                 }
                             }
                         }else{
+                            // For multiple formats, each shall get its own channel of replicated XML states
                             var tasks = new Task<bool>[formats.Count];
                             var writers = new ChannelWriter<XmlReaderState>[formats.Count];
                             for(int i = 0; i < formats.Count; i++)
@@ -191,6 +208,10 @@ namespace IS4.MultiArchiver.Analyzers
             }
         }
 
+        /// <summary>
+        /// This is an improvised format implied by the root namespace or PUBLIC identifier
+        /// referenced by the document.
+        /// </summary>
         class ImprovisedXmlFormat : XmlDocumentFormat<ImprovisedXmlFormat.XmlFormat>
         {
             public static readonly ImprovisedXmlFormat Instance = new ImprovisedXmlFormat();
@@ -238,11 +259,17 @@ namespace IS4.MultiArchiver.Analyzers
                 return base.GetNamespace(value);
             }
 
+            /// <summary>
+            /// The media type is produced by <see cref="DataTools.GetFakeMediaTypeFromXml(Uri, string, string)"/>.
+            /// </summary>
             public override string GetMediaType(XmlFormat value)
             {
                 return DataTools.GetFakeMediaTypeFromXml(GetNamespace(value), GetPublicId(value), value.RootName.Name);
             }
 
+            /// <summary>
+            /// The extension is the local name of the root element.
+            /// </summary>
             public override string GetExtension(XmlFormat value)
             {
                 return value.RootName?.Name ?? base.GetExtension(value);
@@ -258,6 +285,10 @@ namespace IS4.MultiArchiver.Analyzers
                 return await resultFactory(new XmlFormat(reader, docType), args);
             }
 
+            /// <summary>
+            /// A class storing all the necessary information to identify an
+            /// implied XML format from the DTD and the name of the root element.
+            /// </summary>
             public class XmlFormat
             {
                 public XDocumentType DocType { get; }

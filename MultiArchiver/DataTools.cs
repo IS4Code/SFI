@@ -13,10 +13,19 @@ using System.Web;
 
 namespace IS4.MultiArchiver
 {
+    /// <summary>
+    /// Stores many utility methods for manipulating data any deriving information from it.
+    /// </summary>
     public static class DataTools
     {
         static readonly string[] units = { "B", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB", "ZiB", "YiB" };
 
+        /// <summary>
+        /// Creates a human-friendly size string using standard 1024-based size units.
+        /// </summary>
+        /// <param name="value">The size to be formatted.</param>
+        /// <param name="decimalPlaces">How many decimal places to include in the size.</param>
+        /// <returns>The size formatted as "[-]{value} {unit_prefix}B"</returns>
         public static string SizeSuffix(long value, int decimalPlaces)
         {
             if(value < 0) return "-" + SizeSuffix(-value, decimalPlaces);
@@ -41,8 +50,16 @@ namespace IS4.MultiArchiver
             new UTF32Encoding(false, true)
         }.Select(e => e.GetPreamble()).ToArray();
 
+        /// <summary>
+        /// The maximum length of a BOM in all Unicode encodings.
+        /// </summary>
         public static readonly int MaxBomLength = knownBoms.Max(b => b.Length);
 
+        /// <summary>
+        /// Determines if the input starts with a Unicode BOM and returns its length.
+        /// </summary>
+        /// <param name="data">The input as a span of bytes.</param>
+        /// <returns>The length of the BOM, if any, or 0.</returns>
         public static int FindBom(Span<byte> data)
         {
             foreach(var bom in knownBoms)
@@ -52,15 +69,33 @@ namespace IS4.MultiArchiver
             return 0;
         }
 
+        /// <summary>
+        /// Used to split the domain name or IP in the host portion of a URI.
+        /// </summary>
         static readonly char[] hostSplitChars = { '.' };
+
+        /// <summary>
+        /// Used to split the path portion of a URI if the host is specified.
+        /// </summary>
         static readonly char[] slashSplitChars = { '/' };
+
+        /// <summary>
+        /// Used to split the path portion of a URI if the host is not specified.
+        /// </summary>
         static readonly char[] colonSplitChars = { ':' };
 
+        /// <summary>
+        /// Breaks down a URI according to its components in a natural hierarchy,
+        /// from the top-level domain name, towards its fragment.
+        /// </summary>
+        /// <param name="uri">The URI to dissect.</param>
+        /// <returns>The sequence of all URI components in order.</returns>
         static IEnumerable<string> GetUriMediaTypeComponents(Uri uri)
         {
             switch(uri.HostNameType)
             {
                 case UriHostNameType.Dns:
+                    // A domain is split into its individual domain names, starting from the TLD
                     if(!String.IsNullOrEmpty(uri.IdnHost))
                     {
                         foreach(var name in uri.IdnHost.Split(hostSplitChars).Reverse())
@@ -70,6 +105,7 @@ namespace IS4.MultiArchiver
                     }
                     break;
                 case UriHostNameType.IPv4:
+                    // An IPv4 is split into its component octets
                     if(!String.IsNullOrEmpty(uri.Host))
                     {
                         foreach(var component in uri.Host.Split(hostSplitChars))
@@ -81,21 +117,25 @@ namespace IS4.MultiArchiver
                 case UriHostNameType.Unknown:
                     break;
                 default:
+                    // Any other type of host is returned as is
                     if(!String.IsNullOrEmpty(uri.Host))
                     {
                         yield return uri.Host;
                     }
                     break;
             }
+            // The scheme and port are next
             yield return uri.Scheme;
             if(!uri.IsDefaultPort)
             {
                 yield return uri.Port.ToString();
             }
+            // The path is split by : or / based on the presence of the host (it usually corresponds)
             foreach(var segment in uri.AbsolutePath.Split(uri.HostNameType != UriHostNameType.Unknown ? slashSplitChars : colonSplitChars, StringSplitOptions.RemoveEmptyEntries))
             {
                 yield return segment;
             }
+            // Followed by the query and fragment
             if(!String.IsNullOrEmpty(uri.Query))
             {
                 yield return uri.Query;
@@ -106,8 +146,23 @@ namespace IS4.MultiArchiver
             }
         }
 
-        static readonly Regex badCharacters = new Regex(@"[^a-zA-Z0-9_-]+", RegexOptions.Compiled);
+        /// <summary>
+        /// These characters are not allowed in a MIME type. The &amp; is allowed, but is used for other purposes.
+        /// </summary>
+        static readonly Regex badMimeCharacters = new Regex(@"[^a-zA-Z0-9_-]+", RegexOptions.Compiled);
 
+        /// <summary>
+        /// Creates a fake media type from a namespace URI, PUBLIC identifier,
+        /// and the root element name in an XML document.
+        /// </summary>
+        /// <param name="ns">The root namespace URI (may be null).</param>
+        /// <param name="publicId">The PUBLIC identifier (may be null).</param>
+        /// <param name="rootName">The name of the root element.</param>
+        /// <returns>A MIME type in the form of "application/x.ns.{path}+xml", where path
+        /// is formed from the individual components of <paramref name="ns"/>, ending with <paramref name="rootName"/>.
+        /// If <paramref name="ns"/> is null and <paramref name="publicId"/> is provided,
+        /// the namespace URI is created via <see cref="UriTools.CreatePublicId(string)"/>.
+        /// </returns>
         public static string GetFakeMediaTypeFromXml(Uri ns, string publicId, string rootName)
         {
             if(ns == null)
@@ -121,17 +176,28 @@ namespace IS4.MultiArchiver
             }
             var replaced = String.Join(".",
                 GetUriMediaTypeComponents(ns)
-                .Select(c => badCharacters.Replace(c, m => {
+                .Select(c => badMimeCharacters.Replace(c, m => {
                     return String.Join("", Encoding.UTF8.GetBytes(m.Value).Select(b => $"&{b:X2}"));
                 })));
             return $"application/x.ns.{replaced}.{rootName}+xml";
         }
 
+        /// <summary>
+        /// Creates a fake media type from a .NET type.
+        /// </summary>
+        /// <typeparam name="T">The type to use for the media type.</typeparam>
+        /// <returns>A MIME type in the form of "application/x.obj.{name}", where name
+        /// is formed from the concatenation of the name of the type and names of all
+        /// its generic arguments.
+        /// </returns>
         public static string GetFakeMediaTypeFromType<T>()
         {
             return FakeTypeNameCache<T>.Name;
         }
 
+        /// <summary>
+        /// Matches a capital letter before which a hyphen could be placed.
+        /// </summary>
         static readonly Regex hyphenCharacters = new Regex(@"\p{Lu}+($|(?=\p{Lu}))|\p{Lu}(?!\p{Lu})", RegexOptions.Compiled);
 
         class FakeTypeNameCache<T>
@@ -145,23 +211,31 @@ namespace IS4.MultiArchiver
 
             static string GetTypeFriendlyName(Type type)
             {
-                var components = new List<string>();
                 string name;
                 if(String.IsNullOrEmpty(type.Namespace))
                 {
                     name = type.Name;
                 }else{
+                    // Get all similarly named types in the assembly
                     var similarTypes = type.Assembly.GetTypes().Where(t => t.IsPublic && !t.Equals(type) && t.Name.Equals(type.Name, StringComparison.OrdinalIgnoreCase));
+                    // Get the length of the namespace prefix shared by all these types
                     int prefix = similarTypes.Select(t => CommonPrefix(t.Namespace, type.Namespace)).DefaultIfEmpty(type.Namespace.Length).Max();
+                    // Prepend the determining part of the namespace to the name
                     name = (prefix == type.Namespace.Length ? "" : type.Namespace.Substring(prefix)) + type.Name;
                 }
+                // Strip the arity
                 int index = name.IndexOf('`');
                 if(index != -1) name = name.Substring(0, index);
+                // Produce components from the encoded name and its generic arguments
+                var components = new List<string>();
                 components.Add(FormatName(name));
                 components.AddRange(type.GetGenericArguments().Select(GetTypeFriendlyName));
                 return String.Join(".", components);
             }
 
+            /// <summary>
+            /// Returns the length of the common prefix of <paramref name="a"/> and <paramref name="b"/>.
+            /// </summary>
             static int CommonPrefix(string a, string b)
             {
                 int max = Math.Min(a.Length, b.Length);
@@ -172,24 +246,48 @@ namespace IS4.MultiArchiver
                 return max;
             }
 
+            /// <summary>
+            /// Produces a MIME-friendly name by hyphenating the name, converting to lowercase and encoding unsafe characters.
+            /// </summary>
             static string FormatName(string name)
             {
                 name = hyphenCharacters.Replace(name, m => (m.Index > 0 ? "-" : "") + m.Value.ToLower());
-                name = badCharacters.Replace(name, m =>  String.Join("", Encoding.UTF8.GetBytes(m.Value).Select(b => $"&{b:X2}")));
+                name = badMimeCharacters.Replace(name, m =>  String.Join("", Encoding.UTF8.GetBytes(m.Value).Select(b => $"&{b:X2}")));
                 return name;
             }
         }
-        
+
+        /// <summary>
+        /// Creates a fake media type from a file signature characters.
+        /// </summary>
+        /// <param name="signature">The signature of the file.</param>
+        /// <returns>A MIME type in the form of "application/x.sig.{<paramref name="signature"/>}"
+        /// (converted to lowercase).
+        /// </returns>
         public static string GetFakeMediaTypeFromSignature(string signature)
         {
             return "application/x.sig." + signature.ToLowerInvariant();
         }
 
+        /// <summary>
+        /// Creates a fake media type from an interpreter command.
+        /// </summary>
+        /// <param name="interpreter">The interpreter command.</param>
+        /// <returns>A MIME type in the form of "application/x.exec.{<paramref name="interpreter"/>}"
+        /// (converted to lowercase).
+        /// </returns>
         public static string GetFakeMediaTypeFromInterpreter(string interpreter)
         {
             return "application/x.exec." + interpreter.ToLowerInvariant();
         }
 
+        /// <summary>
+        /// Computes a base32-encoded string from a sequence of bytes.
+        /// The alphabet is "QAZ2WSX3EDC4RFV5TGB6YHN7UJM8K9LP".
+        /// </summary>
+        /// <typeparam name="TList">The type of the byte sequence.</typeparam>
+        /// <param name="bytes">The sequence to compute from.</param>
+        /// <param name="sb">An instance of <see cref="StringBuilder"/> that receives the output.</param>
         public static void Base32<TList>(TList bytes, StringBuilder sb) where TList : IReadOnlyList<byte>
         {
             const string chars = "QAZ2WSX3EDC4RFV5TGB6YHN7UJM8K9LP";
@@ -223,20 +321,27 @@ namespace IS4.MultiArchiver
         const string base58Alphabet = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
         static readonly BigInteger base58AlphabetLength = base58Alphabet.Length;
 
-        public static void Base58<TList>(TList b, StringBuilder sb) where TList : IReadOnlyList<byte>
+        /// <summary>
+        /// Computes a base58-encoded string from a sequence of bytes.
+        /// The alphabet is "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz".
+        /// </summary>
+        /// <typeparam name="TList">The type of the byte sequence.</typeparam>
+        /// <param name="bytes">The sequence to compute from.</param>
+        /// <param name="sb">An instance of <see cref="StringBuilder"/> that receives the output.</param>
+        public static void Base58<TList>(TList bytes, StringBuilder sb) where TList : IReadOnlyList<byte>
         {
             int pos = 0;
-            while(b[pos] == 0)
+            while(bytes[pos] == 0)
             {
                 sb.Append('1');
                 pos++;
             }
-            int len = b.Count - pos;
+            int len = bytes.Count - pos;
             if(len == 0) return;
-            var data = new byte[len + (b[pos] > SByte.MaxValue ? 1 : 0)];
+            var data = new byte[len + (bytes[pos] > SByte.MaxValue ? 1 : 0)];
             for(int i = 0; i < len; i++)
             {
-                data[len - 1 - i] = b[pos + i];
+                data[len - 1 - i] = bytes[pos + i];
             }
             var num = new BigInteger(data);
             foreach(var c in Base58Bytes(num).Reverse())
@@ -254,13 +359,25 @@ namespace IS4.MultiArchiver
             }
         }
 
-        public static void Base64(ArraySegment<byte> bytes, StringBuilder sb)
+        /// <summary>
+        /// Computes a base64url-encoded string from a sequence of bytes.
+        /// The "+/" characters are replaced with "-_" in the alphabet. Trailing "=" is stripped.
+        /// </summary>
+        /// <param name="bytes">The sequence to compute from.</param>
+        /// <param name="sb">An instance of <see cref="StringBuilder"/> that receives the output.</param>
+        public static void Base64Url(ArraySegment<byte> bytes, StringBuilder sb)
         {
             string str = bytes.ToBase64String();
             UriString(str, sb);
         }
 
-        public static void Base64(byte[] bytes, StringBuilder sb)
+        /// <summary>
+        /// Computes a base64url-encoded string from a sequence of bytes.
+        /// The "+/" characters are replaced with "-_" in the alphabet. Trailing "=" is stripped.
+        /// </summary>
+        /// <param name="bytes">The sequence to compute from.</param>
+        /// <param name="sb">An instance of <see cref="StringBuilder"/> that receives the output.</param>
+        public static void Base64Url(byte[] bytes, StringBuilder sb)
         {
             string str = Convert.ToBase64String(bytes);
             UriString(str, sb);
@@ -295,6 +412,14 @@ namespace IS4.MultiArchiver
             }
         }
 
+        /// <summary>
+        /// Encodes a <see cref="UInt64"/> value as a variable-length integer.
+        /// </summary>
+        /// <param name="value">The input value to encode.</param>
+        /// <returns>
+        /// A collection of bytes encoding <paramref name="value"/>,
+        /// in the form described by https://github.com/multiformats/unsigned-varint.
+        /// </returns>
         public static IEnumerable<byte> Varint(ulong value) 
         {
             while(value >= 0x80)
@@ -305,6 +430,13 @@ namespace IS4.MultiArchiver
             yield return (byte)value;
         }
 
+        /// <summary>
+        /// Encodes a multihash value. See https://github.com/multiformats/multihash for details.
+        /// </summary>
+        /// <param name="id">The identifier of the particular hash.</param>
+        /// <param name="hash">An array storing the bytes of the hash.</param>
+        /// <param name="hashLength">The length of the hash as stored in the result.</param>
+        /// <returns>A list of bytes representing the multihash.</returns>
         public static List<byte> EncodeMultihash(ulong id, byte[] hash, int? hashLength = 0)
         {
             var multihash = new List<byte>(2 + hash.Length);
@@ -314,10 +446,16 @@ namespace IS4.MultiArchiver
             return multihash;
         }
         
+        /// <summary>
+        /// Text characters whose presence invalidates a signature.
+        /// </summary>
         static readonly ISet<byte> invalidSigBytes = new SortedSet<byte>(
             new byte[] { 0x09, 0x0A, 0x0D, (byte)' ', (byte)'-', (byte)'_' }
         );
 
+        /// <summary>
+        /// Characters that are allowed to be recognized as part of a signature.
+        /// </summary>
         static readonly ISet<byte> recognizedSigBytes = new SortedSet<byte>(
             Enumerable.Range('a', 26).Concat(
                 Enumerable.Range('A', 26)
@@ -328,18 +466,37 @@ namespace IS4.MultiArchiver
 
         const int maxSignatureLength = 8;
 
+        /// <summary>
+        /// Extracts the first initial bytes of <paramref name="header"/> and returns them
+        /// as a string if they could correspond to a valid signature.
+        /// </summary>
+        /// <param name="header">The initial part of a file's data.</param>
+        /// <returns>The signature bytes as an ASCII string, or null if there is no valid signature.</returns>
+        /// <remarks>
+        /// The signature is the portion at the beginning of the header between 2 and 8 characters,
+        /// allowing to contain characters a-zA-Z0-9. If a whitespace character, a hyphen or an underscore
+        /// character occurs after the signature, it is invalidated.
+        /// </remarks>
         public static string ExtractSignature(ArraySegment<byte> header)
         {
-            var magicSig = header.Take(maxSignatureLength + 1).TakeWhile(b => recognizedSigBytes.Contains(b)).ToArray();
-            if(magicSig.Length >= 2 && magicSig.Length <= maxSignatureLength && !magicSig.Any(b => invalidSigBytes.Contains(b)))
+            var magicSig = header.Take(maxSignatureLength + 1).TakeWhile(recognizedSigBytes.Contains).ToArray();
+            if(magicSig.Length >= 2 && magicSig.Length <= maxSignatureLength && !magicSig.Any(invalidSigBytes.Contains))
             {
                 return Encoding.ASCII.GetString(magicSig);
             }
             return null;
         }
 
+        /// <summary>
+        /// Matches the first line of a string.
+        /// </summary>
         static readonly Regex firstLineRegex = new Regex(@"^(.*?)(?m)\r?$", RegexOptions.Compiled);
 
+        /// <summary>
+        /// Extracts the first line from <paramref name="text"/>.
+        /// </summary>
+        /// <param name="text">The input string.</param>
+        /// <returns>The first line, not counting the trailing CR or LF character..</returns>
         public static string ExtractFirstLine(string text)
         {
             var match = firstLineRegex.Match(text);
@@ -351,8 +508,19 @@ namespace IS4.MultiArchiver
         }
 
 
+        /// <summary>
+        /// Matches the first line of a string, capturing the command after a shebang sequence.
+        /// </summary>
         static readonly Regex interpreterRegex = new Regex(@"^#!(?:[^\s/]*/|env\s+)*([^\s/]+)(?:\s.*)?(?m)\r?$", RegexOptions.Compiled);
 
+        /// <summary>
+        /// Extracts the interpreter command from a shebang sequence at the beginning of <paramref name="text"/>.
+        /// </summary>
+        /// <param name="text">The input string, expected to begin with a shebang (#!) sequence.</param>
+        /// <returns>
+        /// The command part of the shebang sequence, in the form "#!{path}/{command} {arguments}"
+        /// or "#!{path}/env {command} {arguments}".
+        /// </returns>
         public static string ExtractInterpreter(string text)
         {
             var match = interpreterRegex.Match(text);
@@ -363,10 +531,18 @@ namespace IS4.MultiArchiver
             return null;
         }
 
+
+        /// <summary>
+        /// Matches a C0 control character that can't be displayed in a text.
+        /// </summary>
         static readonly Regex controlReplacement = new Regex(
             @"[\x00-\x08\x0B\x0C\x0E-\x1F]"
             , RegexOptions.Compiled);
 
+        /// <summary>
+        /// Returns a replacement character for a C0 control character, in
+        /// the Unicode block starting from U+2400.
+        /// </summary>
         static int GetReplacementChar(char c)
         {
             switch(c)
@@ -378,6 +554,19 @@ namespace IS4.MultiArchiver
             }
         }
 
+        /// <summary>
+        /// Replaces undisplayable control characters in <paramref name="str"/> in a way
+        /// that is reversible, based on the capabilities of <paramref name="originalEncoding"/>.
+        /// </summary>
+        /// <param name="str">The string to replace characters in.</param>
+        /// <param name="originalEncoding">The original encoding in which the string was decoded, or null.</param>
+        /// <returns>
+        /// A string formed from the characters in <paramref name="str"/>, but with control characters
+        /// replaced with their respective Unicode replacement characters starting from U+2400.
+        /// If <paramref name="originalEncoding"/> is a Unicode encoding or other encoding
+        /// that can encode the replacement characters, the characters are left unchanged,
+        /// because it would be ambiguous whether they were a part of the original text or not.
+        /// </returns>
         public static string ReplaceControlCharacters(string str, Encoding originalEncoding)
         {
             return controlReplacement.Replace(str, m => {
@@ -396,6 +585,17 @@ namespace IS4.MultiArchiver
             });
         }
 
+        /// <summary>
+        /// Determines whether a byte sequence encodes binary, or non-textual, data.
+        /// </summary>
+        /// <param name="data">A complete sequence of bytes to be checked.</param>
+        /// <returns>True if the data is not textual, false otherwise.</returns>
+        /// <remarks>
+        /// Usually, text is not allowed to contain the NUL character.
+        /// This condition is loosened a bit here: a text may end with
+        /// any number of NUL characters, but it cannot contain a non-NUL character
+        /// after a NUL character, and it cannot start with a NUL character.
+        /// </remarks>
         public static bool IsBinary(ArraySegment<byte> data)
         {
             int index = data.IndexOf((byte)0);
@@ -416,6 +616,16 @@ namespace IS4.MultiArchiver
             return false;
         }
         
+        /// <summary>
+        /// Creates a v5 (SHA1-encoded) UUID from a namespace UUID and a name.
+        /// </summary>
+        /// <param name="namespaceBytes">The UUID of the namespaces, encoded in bytes.</param>
+        /// <param name="name">The name in a form specific to the namespaces.</param>
+        /// <returns>
+        /// An instance of <see cref="Guid"/> formed by hashing the
+        /// <paramref name="namespaceBytes"/> followed by <paramref name="name"/>,
+        /// encoded in UTF-8, wrapped in a UUID structure.
+        /// </returns>
         public static Guid GuidFromName(byte[] namespaceBytes, string name)
         {
             byte[] hash;
@@ -435,30 +645,42 @@ namespace IS4.MultiArchiver
 
         static Guid GuidFromHash(byte[] hash)
         {
+            // Variant 5
             hash[6] = (byte)((hash[7] & 0x0F) | (5 << 4));
+            // Version 1
             hash[8] = (byte)((hash[8] & 0x3F) | 0x80);
 
             var span = hash.AsSpan();
             var f4 = span.MemoryCast<int>();
+            // Flip time_low
             f4[0] = (hash[0] << 24) | (hash[1] << 16) | (hash[2] << 8) | hash[3];
             var f2 = f4.Slice(1).MemoryCast<short>();
+            // Flip time_mid
             f2[0] = unchecked((short)((hash[4] << 8) | hash[5]));
+            // Flip time_hi_and_version
             f2[1] = unchecked((short)((hash[6] << 8) | hash[7]));
 
+            // This should match the internal Guid structure
             return span.MemoryCast<Guid>()[0];
         }
 
         /// <summary>
-        /// Detects a string that is unsafe for embedding or displaying.
-        /// XML 1.0 prohibits C0 control codes and discourages the use of C1, with the exception of line separators;
-        /// such characters cannot be encoded in RDF/XML and are semantically invalid.
-        /// Unpaired surrogate characters are also prohibited (since the input must be a valid UTF-16 string).
-        /// Additionally, a leading combining character or ZWJ could cause troubles
-        /// when displayed.
-        /// Other unassigned or invalid characters are detected later.
+        /// Matches a string that is unsafe for embedding or displaying. See <see cref="IsSafeString"/> for details.
         /// </summary>
         static readonly Regex unsafeStringRegex = new Regex(@"^[\p{M}\u200D]|[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x84\x86-\x9F]|(^|[^\uD800-\uDBFF])[\uDC00-\uDFFF]|[\uD800-\uDBFF]($|[^\uDC00-\uDFFF])", RegexOptions.Compiled | RegexOptions.Multiline);
 
+        /// <summary>
+        /// Determines whether <paramref name="str"/> is a string safe for displaying or storing as text.
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns>True if the string contains unsafe characters, false otherwise.</returns>
+        /// <remarks>
+        /// XML 1.0 prohibits C0 control codes and discourages the use of C1, with the exception of line separators;
+        /// such characters cannot be encoded in RDF/XML and therefore are semantically invalid.
+        /// Unpaired surrogate characters are also prohibited (since the input must be a valid UTF-16 string).
+        /// Additionally, a leading combining character or ZWJ could cause troubles when displayed.
+        /// The string also shall not contain any unassigned Unicode characters.
+        /// </remarks>
         public static bool IsSafeString(string str)
         {
             if(unsafeStringRegex.IsMatch(str)) return false;
@@ -473,21 +695,58 @@ namespace IS4.MultiArchiver
             return true;
         }
 
+        /// <summary>
+        /// Creates a JSON-LD literal from a string value.
+        /// </summary>
+        /// <param name="value">The value of the literal.</param>
+        /// <returns>A valid JSON string with the @value field.</returns>
         public static string CreateLiteralJsonLd(string value)
         {
             return $@"{{""@value"":{HttpUtility.JavaScriptStringEncode(value, true)}}}";
         }
 
+        /// <summary>
+        /// Creates a JSON-LD literal from a string value and its datatype.
+        /// </summary>
+        /// <param name="value">The value of the literal.</param>
+        /// <param name="datatype">The datatype of the literal.</param>
+        /// <returns>A valid JSON string with the @value and @type fields.</returns>
         public static string CreateLiteralJsonLd(string value, Uri datatype)
         {
             return $@"{{""@value"":{HttpUtility.JavaScriptStringEncode(value, true)},""@type"":{HttpUtility.JavaScriptStringEncode(datatype.AbsoluteUri, true)}}}";
         }
 
+        /// <summary>
+        /// Creates a JSON-LD literal from a string value and its language tag.
+        /// </summary>
+        /// <param name="value">The value of the literal.</param>
+        /// <param name="language">The language tag of the literal.</param>
+        /// <returns>A valid JSON string with the @value and @language fields.</returns>
         public static string CreateLiteralJsonLd(string value, string language)
         {
             return $@"{{""@value"":{HttpUtility.JavaScriptStringEncode(value, true)},""@language"":{HttpUtility.JavaScriptStringEncode(language, true)}}}";
         }
 
+        /// <summary>
+        /// Returns a user-friendly string representation of an object.
+        /// </summary>
+        /// <typeparam name="T">The type of the object.</typeparam>
+        /// <param name="entity">The object to retrieve the name from.</param>
+        /// <returns>
+        /// <para>
+        /// If <paramref name="entity"/> is an instance of <see cref="Type"/>,
+        /// returns its name expressed in a C#-like syntax.
+        /// </para>
+        /// <para>
+        /// If <typeparamref name="T"/> is <see cref="IStreamFactory"/>,
+        /// returns the <see cref="IStreamFactory.Length"/> of <paramref name="entity"/>.
+        /// </para>
+        /// <para>
+        /// Otherwise calls <see cref="Object.ToString"/>; if the returned string
+        /// is empty or a result of the default implementation of <see cref="Object.ToString"/>,
+        /// calls <see cref="GetUserFriendlyName{T}(T)"/> on the type of <paramref name="entity"/>.
+        /// </para>
+        /// </returns>
         public static string GetUserFriendlyName<T>(T entity)
         {
             if(entity is Type type)
@@ -546,8 +805,20 @@ namespace IS4.MultiArchiver
             return name;
         }
 
+        /// <summary>
+        /// Matches any sequence of '*', a single occurence of '?', or a sequence of any other characters.
+        /// </summary>
         static readonly Regex wildcardRegex = new Regex(@"(\*+|\?)|[^*?]+", RegexOptions.Compiled);
 
+        /// <summary>
+        /// Creates an instance of <see cref="Regex"/> from a wildcard pattern.
+        /// </summary>
+        /// <param name="pattern">The pattern, using * and ? as special characters.</param>
+        /// <returns>
+        /// A regular expression matching the whole string, where each occurence of '*'
+        /// in <paramref name="pattern"/> is replaced by ".*", each occurence of '?'
+        /// is replaced by ".", and the remaining portions are escaped with <see cref="Regex.Escape(string)"/>.
+        /// </returns>
         public static Regex ConvertWildcardToRegex(string pattern)
         {
             string Replacer(Match match)

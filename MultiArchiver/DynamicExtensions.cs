@@ -5,6 +5,9 @@ using System;
 
 namespace IS4.MultiArchiver
 {
+    /// <summary>
+    /// Stores extension methods for operations on a <see cref="ILinkedNodeFactory"/> or <see cref="ILinkedNode"/>.
+    /// </summary>
     public static class DynamicExtensions
     {
         public static ILinkedNode TryCreate(this ILinkedNodeFactory factory, ILinkedNode parent, object value)

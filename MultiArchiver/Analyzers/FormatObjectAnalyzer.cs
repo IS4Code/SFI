@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
+    /// <summary>
+    /// An analyzer of format objects as instances of <see cref="IFormatObject"/>.
+    /// </summary>
     public class FormatObjectAnalyzer : EntityAnalyzer, IEntityAnalyzer<IFormatObject>, IResultFactory<AnalysisResult, (IFormatObject format, AnalysisContext context, IEntityAnalyzerProvider analyzer)>
     {
         public ValueTask<AnalysisResult> Analyze(IFormatObject format, AnalysisContext context, IEntityAnalyzerProvider analyzer)
@@ -18,6 +21,7 @@ namespace IS4.MultiArchiver.Analyzers
         {
             var node = GetNode(format, context);
 
+            // The media object node should be used as base in Turtle.
             node.SetAsBase();
 
             var result = await analyzer.Analyze(value, context.WithNode(node));
@@ -27,6 +31,7 @@ namespace IS4.MultiArchiver.Analyzers
             if(type != null)
             {
                 node.SetClass(Classes.MediaObject);
+                // Some classes are set automatically based on the media type
                 if(type.StartsWith("audio/", StringComparison.Ordinal))
                 {
                     foreach(var cls in Common.AudioClasses)
@@ -70,6 +75,7 @@ namespace IS4.MultiArchiver.Analyzers
 
                 if(pubId != null)
                 {
+                    // The PUBLIC identifier can also specify the format of the document
                     node.Set(Properties.EncodingFormat, UriTools.PublicIdFormatter, pubId);
                 }
             }

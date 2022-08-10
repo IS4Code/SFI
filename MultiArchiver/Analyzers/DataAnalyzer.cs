@@ -15,34 +15,103 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
+    /// <summary>
+    /// This analyzer accepts instances of <see cref="IStreamFactory"/> or <see cref="System.Byte"/> arrays.
+    /// It uses the available properties to describe properties such as hashes, guess the encoding, and derive more specific data formats.
+    /// It produces an instance of <see cref="IDataObject"/> storing the general information derived from the data,
+    /// and an instance of <see cref="IBinaryFormatObject{T}"/> for each of the recognized format, for further analysis.
+    /// </summary>
     public sealed class DataAnalyzer : IEntityAnalyzer<IStreamFactory>, IEntityAnalyzer<byte[]>
 	{
+        /// <summary>
+        /// Stores an instance of <see cref="IHashedContentUriFormatter"/> to be used to
+        /// assign hash-derived URIs to analyzed data objects. If no formatter is provided,
+        /// <see cref="LinkedNodeFactoryExtensions.CreateUnique(ILinkedNodeFactory)"/> is used
+        /// to create a unique node.
+        /// </summary>
         public IHashedContentUriFormatter ContentUriFormatter { get; set; }
 
+        /// <summary>
+        /// A collection of used hash algorithms, as instances of <see cref="IDataHashAlgorithm"/>,
+        /// whose output is used to describe the data object or to create its URI if it is too long.
+        /// </summary>
         public ICollection<IDataHashAlgorithm> HashAlgorithms { get; } = new List<IDataHashAlgorithm>();
 
+        /// <summary>
+        /// A factory of instances of <see cref="IEncodingDetector"/> which is used
+        /// to guess the encoding of the data, if stored as text.
+        /// </summary>
         public Func<IEncodingDetector> EncodingDetectorFactory { get; set; }
 
+        /// <summary>
+        /// A collection of recognized formats, as instances of <see cref="IBinaryFileFormat"/>.
+        /// They are sorted based on descending <see cref="IBinaryFileFormat.HeaderLength"/>.
+        /// </summary>
         public ICollection<IBinaryFileFormat> DataFormats { get; } = new SortedSet<IBinaryFileFormat>(HeaderLengthComparer.Instance);
 
+        /// <summary>
+        /// The minimum size at which the data is written to a temporary file on disk
+        /// instead of storing in memory, when a seekable stream cannot be produced
+        /// otherwise.
+        /// </summary>
         public long FileSizeToWriteToDisk { get; set; } = 524288;
 
+        /// <summary>
+        /// The minimum size at which to consider storing data directly in a URI
+        /// instead of using one of its hashes; see <see cref="GetMaxDataLengthToStore(long)"/>
+        /// for details.
+        /// </summary>
         public int MinDataLengthToStore { get; set; } = 48;
 
+        /// <summary>
+        /// An estimate of the size of a triple in a data store, used in <see cref="GetMaxDataLengthToStore(long)"/>.
+        /// </summary>
         public int TripleSizeEstimate { get; set; } = 32;
 
-        public int GetMaxDataLengthToStore(long fileSize)
+        /// <summary>
+        /// An instace of <see cref="TextWriter"/> to use for logging.
+        /// </summary>
+        public TextWriter OutputLog { get; set; } = Console.Error;
+
+        /// <summary>
+        /// Calculates the maximum allowed length of input above which the node
+        /// for the data object should not be identified by the data itself.
+        /// The length is not less than <see cref="MinDataLengthToStore"/>.
+        /// See remarks for the description of how the estimate is chosen.
+        /// </summary>
+        /// <param name="dataSize">The size of the input data.</param>
+        /// <returns>The minimum length of the input at which using hashes to identify it becomes more efficient.</returns>
+        /// <remarks>
+        /// <para>
+        /// A data object is identified either by its actual content as a "data:" URI,
+        /// or through the collection of its hashes as determined by <see cref="HashAlgorithms"/>.
+        /// Since there is no need to store the hashes when the data itself is present,
+        /// there is a minimum size at which using a "data:" URI becomes inefficient.
+        /// This is estimated based on the number of triples required to store one hash,
+        /// taken from <see cref="TripleSizeEstimate"/> and <see cref="HashAlgorithm.TriplesPerHash"/>,
+        /// the size of URI identifying each has, as returned by <see cref="IHashAlgorithm.EstimateUriSize(int)"/>,
+        /// If the <see cref="ContentUriFormatter"/> it specified, <see cref="IHashedContentUriFormatter.EstimateUriSize(IHashAlgorithm, int)"/>
+        /// is called to estimate the size of the URI identifying the data using its primary hash.
+        /// </para>
+        /// <para>
+        /// The parameter <paramref name="dataSize"/> is used only when calling <see cref="IHashAlgorithm.GetHashSize(long)"/>,
+        /// since some hash algorithms may have a variable hash size depending upon the size of the input.
+        /// An estimate of the input size may be provided instead of the precise size.
+        /// </para>
+        /// </remarks>
+        public int GetMaxDataLengthToStore(long dataSize)
         {
             var min = MinDataLengthToStore;
             var hashedSize = 0;
             var formatter = ContentUriFormatter;
             if(formatter != null)
             {
+                // The first supported algorithm used by this analyzer will be chosen
                 foreach(var algorithm in formatter.SupportedAlgorithms.OfType<IDataHashAlgorithm>())
                 {
                     if(HashAlgorithms.Contains(algorithm))
                     {
-                        var size = algorithm.GetHashSize(fileSize);
+                        var size = algorithm.GetHashSize(dataSize);
                         if(formatter.EstimateUriSize(algorithm, size) is int uriSize)
                         {
                             hashedSize = uriSize;
@@ -53,15 +122,18 @@ namespace IS4.MultiArchiver.Analyzers
             }
 
             hashedSize += HashAlgorithms.Sum(h => {
-                var hashSize = h.GetHashSize(fileSize);
+                var hashSize = h.GetHashSize(dataSize);
+                // Each hash contributes several triples, its URI, and its value in base64 (a 4/3 increase)
                 return HashAlgorithm.TriplesPerHash * TripleSizeEstimate + h.EstimateUriSize(hashSize) + (hashSize + 2) / 3 * 4;
             });
 
             return Math.Max(min, (hashedSize - "data:;base64,".Length - TripleSizeEstimate) * 3 / 8);
         }
 
-        public TextWriter OutputLog { get; set; } = Console.Error;
-
+        /// <summary>
+        /// Creates a new instance using a factory of <see cref="IEncodingDetector"/>.
+        /// </summary>
+        /// <param name="encodingDetectorFactory">The factory to use when the detection of input text encoding is needed.</param>
         public DataAnalyzer(Func<IEncodingDetector> encodingDetectorFactory)
 		{
             EncodingDetectorFactory = encodingDetectorFactory;
