@@ -14,7 +14,7 @@ namespace IS4.MultiArchiver.Formats
     {
         /// <summary>
         /// The default settings used with <see cref="XmlReader.Create(Stream, XmlReaderSettings)"/>.
-        /// The default value are the following:
+        /// The updated values are the following:
         /// <list type="bullet">
         /// <item>
         ///     <term><see cref="XmlReaderSettings.CloseInput"/></term>

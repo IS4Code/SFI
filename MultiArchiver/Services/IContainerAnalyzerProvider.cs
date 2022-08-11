@@ -3,8 +3,22 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Services
 {
+    /// <summary>
+    /// Produces an instance of <see cref="IContainerAnalyzer"/> from the root
+    /// of a container encountered during analysis.
+    /// </summary>
     public interface IContainerAnalyzerProvider
     {
+        /// <summary>
+        /// Attempts to match an object as a root of the container hierarchy.
+        /// </summary>
+        /// <typeparam name="TRoot">The type of <paramref name="root"/>.</typeparam>
+        /// <param name="root">The root of the hierarchy, of an arbitrary type.</param>
+        /// <param name="context">Additional context of the analysis.</param>
+        /// <returns>
+        /// An instance of <see cref="IContainerAnalyzer"/> if the root is
+        /// recognized, null otherwise.
+        /// </returns>
         IContainerAnalyzer MatchRoot<TRoot>(TRoot root, AnalysisContext context) where TRoot : class;
     }
 
