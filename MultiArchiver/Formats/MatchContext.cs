@@ -2,11 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.IO;
 using System.Linq;
 
 namespace IS4.MultiArchiver.Formats
 {
+    /// <summary>
+    /// Stores additional parameters relevant when matching formats.
+    /// The parameters are stored as services implementing specific
+    /// interfaces, retrievable via <see cref="GetService{T}"/>.
+    /// </summary>
     public struct MatchContext
     {
         readonly ImmutableDictionary<Type, object> serviceMap;
@@ -36,6 +40,10 @@ namespace IS4.MultiArchiver.Formats
             }
         }
 
+        /// <summary>
+        /// Creates a new instance from an object and its base or implemented types.
+        /// </summary>
+        /// <param name="services">The object to use as a basis for the services.</param>
         public MatchContext(object services = null)
         {
             if(services == null)
@@ -46,16 +54,42 @@ namespace IS4.MultiArchiver.Formats
             }
         }
 
+        /// <summary>
+        /// Attempts to retrieve a service based on its type,
+        /// provided via <typeparamref name="T"/>.
+        /// </summary>
+        /// <typeparam name="T">The type of the service to retrieve.</typeparam>
+        /// <returns>
+        /// An instance of <typeparamref name="T"/>,
+        /// if stored in the context, or null otherwise.
+        /// </returns>
         public T GetService<T>() where T : class
         {
             return serviceMap != null && serviceMap.TryGetValue(typeof(T), out var value) ? (T)value : null;
         }
 
+        /// <summary>
+        /// Adds a new service to the collection of existing ones,
+        /// based on its type <typeparamref name="T"/>,
+        /// and returns a new instance of <see cref="MatchContext"/>
+        /// with the updated collection of services.
+        /// </summary>
+        /// <typeparam name="T">The type implemented by the service.</typeparam>
+        /// <param name="service">The implementing service.</param>
+        /// <returns>A new context with the service.</returns>
         public MatchContext WithService<T>(T service)
         {
             return new MatchContext(serviceMap, typeof(T), service);
         }
 
+        /// <summary>
+        /// Adds a new service to the collection of existing ones,
+        /// based on all types of <paramref name="services"/>,
+        /// and returns a new instance of <see cref="MatchContext"/>
+        /// with the updated collection of services.
+        /// </summary>
+        /// <param name="service">The implementing service.</param>
+        /// <returns>A new context with the service.</returns>
         public MatchContext WithServices(object services)
         {
             return new MatchContext(serviceMap, null, services);

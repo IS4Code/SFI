@@ -8,10 +8,23 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
+    /// <summary>
+    /// A format representing X.509 certificates, as instances of
+    /// <see cref="X509Certificate2"/>. All known certificate types
+    /// can be loaded from files, with the exception of
+    /// <see cref="X509ContentType.Authenticode"/>.
+    /// </summary>
     public class X509CertificateFormat : BinaryFileFormat<X509Certificate2>
     {
+        /// <summary>
+        /// The certificate itself does not remember the format it was loaded from,
+        /// so we have to store its <see cref="X509ContentType"/> here.
+        /// </summary>
         static readonly ConditionalWeakTable<X509Certificate2, ValueType> storedTypes = new ConditionalWeakTable<X509Certificate2, ValueType>();
 
+        /// <summary>
+        /// Creates a new instance of the format.
+        /// </summary>
         public X509CertificateFormat() : base(0, null, null)
         {
 

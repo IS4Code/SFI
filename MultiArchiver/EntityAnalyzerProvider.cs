@@ -9,14 +9,33 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver
 {
+    /// <summary>
+    /// This class implements <see cref="IEntityAnalyzerProvider"/>, storing a collection of
+    /// type-based analyzers in <see cref="Analyzers"/>.
+    /// </summary>
     public class EntityAnalyzerProvider : IEntityAnalyzerProvider
     {
+        /// <summary>
+        /// A collection of analyzers, each implementing <see cref="IEntityAnalyzer{T}"/>.
+        /// </summary>
         public ICollection<object> Analyzers { get; } = new SortedSet<object>(EntityAnalyzerComparer.Instance);
 
+        /// <summary>
+        /// A collection of instances of <see cref="IContainerAnalyzerProvider"/> to use to
+        /// process the hierarchy.
+        /// </summary>
         public ICollection<IContainerAnalyzerProvider> ContainerProviders { get; } = new List<IContainerAnalyzerProvider>();
 
+        /// <summary>
+        /// An instace of <see cref="TextWriter"/> to use for logging.
+        /// </summary>
         public TextWriter OutputLog { get; set; } = Console.Error;
 
+        /// <summary>
+        /// Traverses the <see cref="Analyzers"/> and picks the first to implement
+        /// <see cref="IEntityAnalyzer{T}"/> of <typeparamref name="T"/> to analyze
+        /// <paramref name="entity"/>.
+        /// </summary>
         private async ValueTask<AnalysisResult> Analyze<T>(T entity, AnalysisContext context, IEntityAnalyzerProvider analyzers) where T : class
         {
             var entityName = DataTools.GetUserFriendlyName<T>(entity);
@@ -46,6 +65,11 @@ namespace IS4.MultiArchiver
             return default;
         }
 
+        /// <summary>
+        /// Selects the <see cref="ContainerProviders"/> based on the result of
+        /// <see cref="IContainerAnalyzerProvider.MatchRoot{TRoot}(TRoot, AnalysisContext)"/>
+        /// of the particular <paramref name="root"/>.
+        /// </summary>
         private ContainerNode<object, IContainerNode> MatchRoot<TRoot>(TRoot root, AnalysisContext context, IEntityAnalyzerProvider analyzers, IReadOnlyCollection<IContainerAnalyzerProvider> blocked) where TRoot : class
         {
             List<ContainerAnalysisInfo> analyzerList = null;

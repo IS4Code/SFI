@@ -7,8 +7,37 @@ using System.Xml;
 
 namespace IS4.MultiArchiver.Formats
 {
+    /// <summary>
+    /// Represents the XML file format, producing instances of <see cref="XmlReader"/>.
+    /// </summary>
     public class XmlFileFormat : BinaryFileFormat<XmlReader>
     {
+        /// <summary>
+        /// The default settings used with <see cref="XmlReader.Create(Stream, XmlReaderSettings)"/>.
+        /// The default value are the following:
+        /// <list type="bullet">
+        /// <item>
+        ///     <term><see cref="XmlReaderSettings.CloseInput"/></term>
+        ///     <description>false</description>
+        /// </item>
+        /// <item>
+        ///     <term><see cref="XmlReaderSettings.DtdProcessing"/></term>
+        ///     <description><see cref="DtdProcessing.Parse"/></description>
+        /// </item>
+        /// <item>
+        ///     <term><see cref="XmlReaderSettings.ValidationType"/></term>
+        ///     <description><see cref="ValidationType.None"/></description>
+        /// </item>
+        /// <item>
+        ///     <term><see cref="XmlReaderSettings.Async"/></term>
+        ///     <description>true</description>
+        /// </item>
+        /// <item>
+        ///     <term><see cref="XmlReaderSettings.XmlResolver"/></term>
+        ///     <description>A custom resolver which does not open any external resources.</description>
+        /// </item>
+        /// </list>
+        /// </summary>
         public XmlReaderSettings ReaderSettings { get; } = new XmlReaderSettings
         {
             CloseInput = false,
@@ -18,6 +47,11 @@ namespace IS4.MultiArchiver.Formats
             XmlResolver = new XmlPlaceholderResolver()
         };
 
+        /// <summary>
+        /// Creates a new instance of the format.
+        /// </summary>
+        /// <param name="mediaType">The common media type of the format.</param>
+        /// <param name="extension">The common extension of the format.</param>
         public XmlFileFormat(string mediaType = "application/xml", string extension = "xml") : base(DataTools.MaxBomLength + 1, mediaType, extension)
         {
 
