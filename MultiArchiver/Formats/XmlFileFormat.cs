@@ -91,18 +91,6 @@ namespace IS4.MultiArchiver.Formats
 
         class XmlPlaceholderResolver : XmlResolver
         {
-            public string InstructionTarget { get; }
-
-            readonly string resourcestring;
-            readonly byte[] resource;
-
-            public XmlPlaceholderResolver()
-            {
-                InstructionTarget = $"entity{Guid.NewGuid():N}";
-                resourcestring = $"<?{InstructionTarget}?>";
-                resource = Encoding.UTF8.GetBytes(resourcestring);
-            }
-
             public override bool SupportsType(Uri absoluteUri, Type type)
             {
                 return type == null || type.IsAssignableFrom(typeof(MemoryStream)) || type.IsAssignableFrom(typeof(StringReader));
@@ -140,12 +128,18 @@ namespace IS4.MultiArchiver.Formats
 
             public virtual MemoryStream GetEntityAsStream(Uri absoluteUri, string role)
             {
-                return new MemoryStream(resource, false);
+                return new MemoryStream(Encoding.UTF8.GetBytes(GetEntityAsString(absoluteUri, role)), false);
             }
 
             public virtual StringReader GetEntityAsReader(Uri absoluteUri, string role)
             {
-                return new StringReader(resourcestring);
+                return new StringReader(GetEntityAsString(absoluteUri, role));
+            }
+
+            public virtual string GetEntityAsString(Uri absoluteUri, string role)
+            {
+                var target = $"entity{UriTools.UuidFromUri(absoluteUri):N}";
+                return $"<?{target}?>";
             }
         }
     }
