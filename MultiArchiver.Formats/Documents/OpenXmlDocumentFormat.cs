@@ -47,7 +47,7 @@ namespace IS4.MultiArchiver.Formats
                 package.GetParts();
             }
 
-            public async ValueTask<AnalysisResult> Analyze(IContainerNode parentNode, IFileNodeInfo entity, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzerProvider analyzers)
+            public async ValueTask<AnalysisResult> Analyze(IContainerNode parentNode, IFileNodeInfo entity, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzers analyzers)
             {
                 if(entity == root)
                 {
@@ -61,7 +61,7 @@ namespace IS4.MultiArchiver.Formats
                 return await inner(ContainerBehaviour.None);
             }
             
-            ValueTask<AnalysisResult> IContainerAnalyzer.Analyze<TParent, TEntity>(TParent parentNode, TEntity entity, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzerProvider analyzers)
+            ValueTask<AnalysisResult> IContainerAnalyzer.Analyze<TParent, TEntity>(TParent parentNode, TEntity entity, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzers analyzers)
             {
                 if(this is IContainerAnalyzer<TParent, TEntity> analyzer)
                 {

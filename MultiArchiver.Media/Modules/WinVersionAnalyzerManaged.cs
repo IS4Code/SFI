@@ -13,7 +13,7 @@ namespace IS4.MultiArchiver.Analyzers
 {
     public class WinVersionAnalyzerManaged : EntityAnalyzer, IEntityAnalyzer<WinVersionInfo>
     {
-        public ValueTask<AnalysisResult> Analyze(WinVersionInfo entity, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        public ValueTask<AnalysisResult> Analyze(WinVersionInfo entity, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var node = GetNode(context);
             return new ValueTask<AnalysisResult>(new AnalysisResult(node, ReadVersion(node, entity.Data)));

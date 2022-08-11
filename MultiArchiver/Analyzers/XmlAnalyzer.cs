@@ -17,7 +17,7 @@ namespace IS4.MultiArchiver.Analyzers
     /// <summary>
     /// An analyzer of XML documents, expressed using the common class <see cref="XmlReader"/>.
     /// </summary>
-    public class XmlAnalyzer : MediaObjectAnalyzer<XmlReader>, IResultFactory<AnalysisResult, (IXmlDocumentFormat format, AnalysisContext context, IEntityAnalyzerProvider analyzer)>
+    public class XmlAnalyzer : MediaObjectAnalyzer<XmlReader>, IResultFactory<AnalysisResult, (IXmlDocumentFormat format, AnalysisContext context, IEntityAnalyzers analyzer)>
     {
         /// <summary>
         /// A collection of XML formats, as instances of <see cref="IXmlDocumentFormat"/>,
@@ -33,7 +33,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override async ValueTask<AnalysisResult> Analyze(XmlReader reader, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        public override async ValueTask<AnalysisResult> Analyze(XmlReader reader, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var node = GetNode(context);
 
@@ -196,7 +196,7 @@ namespace IS4.MultiArchiver.Analyzers
             }
         }
 
-        async ITask<AnalysisResult> IResultFactory<AnalysisResult, (IXmlDocumentFormat format, AnalysisContext context, IEntityAnalyzerProvider analyzer)>.Invoke<T>(T value, (IXmlDocumentFormat format, AnalysisContext context, IEntityAnalyzerProvider analyzer) args)
+        async ITask<AnalysisResult> IResultFactory<AnalysisResult, (IXmlDocumentFormat format, AnalysisContext context, IEntityAnalyzers analyzer)>.Invoke<T>(T value, (IXmlDocumentFormat format, AnalysisContext context, IEntityAnalyzers analyzer) args)
         {
             var (format, context, analyzer) = args;
             try{

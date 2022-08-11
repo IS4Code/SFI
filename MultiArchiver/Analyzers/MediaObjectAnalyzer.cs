@@ -31,7 +31,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public abstract ValueTask<AnalysisResult> Analyze(T entity, AnalysisContext context, IEntityAnalyzerProvider analyzers);
+        public abstract ValueTask<AnalysisResult> Analyze(T entity, AnalysisContext context, IEntityAnalyzers analyzers);
 
         /// <summary>
         /// Assigns the classes specified during construction of the analyzer to newly

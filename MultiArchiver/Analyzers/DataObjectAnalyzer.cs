@@ -13,7 +13,7 @@ namespace IS4.MultiArchiver.Analyzers
     /// </summary>
     public class DataObjectAnalyzer : EntityAnalyzer, IEntityAnalyzer<IDataObject>
     {
-        public async ValueTask<AnalysisResult> Analyze(IDataObject dataObject, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        public async ValueTask<AnalysisResult> Analyze(IDataObject dataObject, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var node = GetNode(context);
 

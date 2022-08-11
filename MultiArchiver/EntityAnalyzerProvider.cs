@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 namespace IS4.MultiArchiver
 {
     /// <summary>
-    /// This class implements <see cref="IEntityAnalyzerProvider"/>, storing a collection of
+    /// This class implements <see cref="IEntityAnalyzers"/>, storing a collection of
     /// type-based analyzers in <see cref="Analyzers"/>.
     /// </summary>
-    public class EntityAnalyzerProvider : IEntityAnalyzerProvider
+    public class EntityAnalyzerProvider : IEntityAnalyzers
     {
         /// <summary>
         /// A collection of analyzers, each implementing <see cref="IEntityAnalyzer{T}"/>.
@@ -36,7 +36,7 @@ namespace IS4.MultiArchiver
         /// <see cref="IEntityAnalyzer{T}"/> of <typeparamref name="T"/> to analyze
         /// <paramref name="entity"/>.
         /// </summary>
-        private async ValueTask<AnalysisResult> Analyze<T>(T entity, AnalysisContext context, IEntityAnalyzerProvider analyzers) where T : class
+        private async ValueTask<AnalysisResult> Analyze<T>(T entity, AnalysisContext context, IEntityAnalyzers analyzers) where T : class
         {
             var entityName = DataTools.GetUserFriendlyName<T>(entity);
 
@@ -70,7 +70,7 @@ namespace IS4.MultiArchiver
         /// <see cref="IContainerAnalyzerProvider.MatchRoot{TRoot}(TRoot, AnalysisContext)"/>
         /// of the particular <paramref name="root"/>.
         /// </summary>
-        private ContainerNode<object, IContainerNode> MatchRoot<TRoot>(TRoot root, AnalysisContext context, IEntityAnalyzerProvider analyzers, IReadOnlyCollection<IContainerAnalyzerProvider> blocked) where TRoot : class
+        private ContainerNode<object, IContainerNode> MatchRoot<TRoot>(TRoot root, AnalysisContext context, IEntityAnalyzers analyzers, IReadOnlyCollection<IContainerAnalyzerProvider> blocked) where TRoot : class
         {
             List<ContainerAnalysisInfo> analyzerList = null;
             foreach(var containerProvider in ContainerProviders)
@@ -108,15 +108,15 @@ namespace IS4.MultiArchiver
             return await Analyze(entity, context, this);
         }
 
-        class ContainerNode<TValue, TParent> : IEntityAnalyzerProvider, IContainerNode<TValue, TParent> where TValue : class where TParent : IContainerNode
+        class ContainerNode<TValue, TParent> : IEntityAnalyzers, IContainerNode<TValue, TParent> where TValue : class where TParent : IContainerNode
         {
             public TParent ParentNode { get; }
             public TValue Value { get; }
             readonly EntityAnalyzerProvider baseProvider;
-            readonly IEntityAnalyzerProvider analyzers;
+            readonly IEntityAnalyzers analyzers;
             readonly IEnumerable<ContainerAnalysisInfo> activeAnalyzers;
 
-            public ContainerNode(TParent parentNode, TValue value, IEnumerable<ContainerAnalysisInfo> activeAnalyzers, EntityAnalyzerProvider baseProvider, IEntityAnalyzerProvider analyzers)
+            public ContainerNode(TParent parentNode, TValue value, IEnumerable<ContainerAnalysisInfo> activeAnalyzers, EntityAnalyzerProvider baseProvider, IEntityAnalyzers analyzers)
             {
                 ParentNode = parentNode;
                 Value = value;

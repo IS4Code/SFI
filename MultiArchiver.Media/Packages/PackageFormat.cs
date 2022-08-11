@@ -39,9 +39,9 @@ namespace IS4.MultiArchiver.Formats
         {
             public string Root { get; private set; }
 
-            protected abstract ValueTask<AnalysisResult> Analyze<TPath, TNode>(TPath parentPath, TNode node, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzerProvider analyzers) where TNode : class where TPath : IContainerNode;
+            protected abstract ValueTask<AnalysisResult> Analyze<TPath, TNode>(TPath parentPath, TNode node, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzers analyzers) where TNode : class where TPath : IContainerNode;
 
-            ValueTask<AnalysisResult> IContainerAnalyzer.Analyze<TPath, TNode>(TPath parentPath, TNode node, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzerProvider analyzers)
+            ValueTask<AnalysisResult> IContainerAnalyzer.Analyze<TPath, TNode>(TPath parentPath, TNode node, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzers analyzers)
             {
                 if(node is IDirectoryInfo dir)
                 {

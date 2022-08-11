@@ -18,7 +18,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override async ValueTask<AnalysisResult> Analyze(IFileSystem filesystem, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        public override async ValueTask<AnalysisResult> Analyze(IFileSystem filesystem, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var node = GetNode(context);
 

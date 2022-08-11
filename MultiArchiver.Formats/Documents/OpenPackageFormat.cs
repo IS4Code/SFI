@@ -37,7 +37,7 @@ namespace IS4.MultiArchiver.Formats
                 Root = contentTypes.Path.Substring(0, contentTypes.Path.Length - contentTypes.Name.Length);
             }
 
-            public async ValueTask<AnalysisResult> Analyze(IContainerNode parentNode, IFileNodeInfo file, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzerProvider analyzers)
+            public async ValueTask<AnalysisResult> Analyze(IContainerNode parentNode, IFileNodeInfo file, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzers analyzers)
             {
                 if(file.Path.StartsWith(Root) && ContentTypeManager != null)
                 {
@@ -62,7 +62,7 @@ namespace IS4.MultiArchiver.Formats
                 return await inner(ContainerBehaviour.FollowChildren);
             }
 
-            public async ValueTask<AnalysisResult> Analyze(IContainerNode parentNode, IDataObject dataObject, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzerProvider analyzers)
+            public async ValueTask<AnalysisResult> Analyze(IContainerNode parentNode, IDataObject dataObject, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzers analyzers)
             {
                 if(dataObject.Source is IFileNodeInfo file)
                 {
@@ -77,7 +77,7 @@ namespace IS4.MultiArchiver.Formats
                 return await inner(ContainerBehaviour.None);
             }
 
-            ValueTask<AnalysisResult> IContainerAnalyzer.Analyze<TParent, TEntity>(TParent parentNode, TEntity entity, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzerProvider analyzers)
+            ValueTask<AnalysisResult> IContainerAnalyzer.Analyze<TParent, TEntity>(TParent parentNode, TEntity entity, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzers analyzers)
             {
                 if(this is IContainerAnalyzer<TParent, TEntity> analyzer)
                 {

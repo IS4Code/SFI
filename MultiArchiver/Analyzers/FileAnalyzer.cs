@@ -40,7 +40,7 @@ namespace IS4.MultiArchiver.Analyzers
             return context.Parent?[name] ?? context.NodeFactory.CreateUnique();
         }
 
-        private ILinkedNode AnalyzeFileNode(IFileNodeInfo info, AnalysisContext context, IEntityAnalyzerProvider analyzer)
+        private ILinkedNode AnalyzeFileNode(IFileNodeInfo info, AnalysisContext context, IEntityAnalyzers analyzer)
         {
             var node = CreateNode(info, context);
 
@@ -99,7 +99,7 @@ namespace IS4.MultiArchiver.Analyzers
             return node;
         }
 
-        public async ValueTask<AnalysisResult> Analyze(IFileInfo file, AnalysisContext context, IEntityAnalyzerProvider analyzer)
+        public async ValueTask<AnalysisResult> Analyze(IFileInfo file, AnalysisContext context, IEntityAnalyzers analyzer)
         {
             var node = AnalyzeFileNode(file, context, analyzer);
             if(node != null)
@@ -135,7 +135,7 @@ namespace IS4.MultiArchiver.Analyzers
             return new AnalysisResult(node);
         }
 
-        private async ValueTask AnalyzeDirectory(ILinkedNode node, IDirectoryInfo directory, AnalysisContext context, IEntityAnalyzerProvider analyzer)
+        private async ValueTask AnalyzeDirectory(ILinkedNode node, IDirectoryInfo directory, AnalysisContext context, IEntityAnalyzers analyzer)
         {
             var folder = await AnalyzeContents(node, directory, context, analyzer);
 
@@ -150,7 +150,7 @@ namespace IS4.MultiArchiver.Analyzers
             }
         }
 
-        public async ValueTask<AnalysisResult> Analyze(IDirectoryInfo directory, AnalysisContext context, IEntityAnalyzerProvider analyzer)
+        public async ValueTask<AnalysisResult> Analyze(IDirectoryInfo directory, AnalysisContext context, IEntityAnalyzers analyzer)
         {
             var node = AnalyzeFileNode(directory, context, analyzer);
             if(node != null)
@@ -160,7 +160,7 @@ namespace IS4.MultiArchiver.Analyzers
             return new AnalysisResult(node);
         }
 
-        private async ValueTask<ILinkedNode> AnalyzeContents(ILinkedNode parent, IDirectoryInfo directory, AnalysisContext context, IEntityAnalyzerProvider analyzer)
+        private async ValueTask<ILinkedNode> AnalyzeContents(ILinkedNode parent, IDirectoryInfo directory, AnalysisContext context, IEntityAnalyzers analyzer)
         {
             var folder = parent?[""] ?? context.NodeFactory.CreateUnique();
 
@@ -236,17 +236,17 @@ namespace IS4.MultiArchiver.Analyzers
             }
         }
 
-        public ValueTask<AnalysisResult> Analyze(FileInfo entity, AnalysisContext context, IEntityAnalyzerProvider analyzer)
+        public ValueTask<AnalysisResult> Analyze(FileInfo entity, AnalysisContext context, IEntityAnalyzers analyzer)
         {
             return analyzer.Analyze<IFileInfo>(new FileInfoWrapper(entity), context);
         }
 
-        public ValueTask<AnalysisResult> Analyze(DirectoryInfo entity, AnalysisContext context, IEntityAnalyzerProvider analyzer)
+        public ValueTask<AnalysisResult> Analyze(DirectoryInfo entity, AnalysisContext context, IEntityAnalyzers analyzer)
         {
             return analyzer.Analyze<IDirectoryInfo>(new DirectoryInfoWrapper(entity), context);
         }
 
-        public ValueTask<AnalysisResult> Analyze(IFileNodeInfo entity, AnalysisContext context, IEntityAnalyzerProvider analyzer)
+        public ValueTask<AnalysisResult> Analyze(IFileNodeInfo entity, AnalysisContext context, IEntityAnalyzers analyzer)
         {
             switch(entity)
             {

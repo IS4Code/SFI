@@ -16,7 +16,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override async ValueTask<AnalysisResult> Analyze(Module module, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        public override async ValueTask<AnalysisResult> Analyze(Module module, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var node = GetNode(context);
             var uncompressed = module.GetCompressedContents();

@@ -19,7 +19,7 @@ namespace IS4.MultiArchiver.Analyzers
     {
         public ICollection<object> MetadataReaders { get; } = new SortedSet<object>(TypeInheritanceComparer<object>.Instance);
 
-        public async override ValueTask<AnalysisResult> Analyze(IReadOnlyList<Directory> entity, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        public async override ValueTask<AnalysisResult> Analyze(IReadOnlyList<Directory> entity, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var node = GetNode(context);
             string result = null;
@@ -195,7 +195,7 @@ namespace IS4.MultiArchiver.Analyzers
             return analyzer;
         }
 
-        private async ValueTask<string> Describe<T>(ILinkedNode node, T dir, AnalysisContext context, IEntityAnalyzerProvider analyzers) where T : Directory
+        private async ValueTask<string> Describe<T>(ILinkedNode node, T dir, AnalysisContext context, IEntityAnalyzers analyzers) where T : Directory
         {
             foreach(var obj in MetadataReaders)
             {
@@ -210,7 +210,7 @@ namespace IS4.MultiArchiver.Analyzers
             return null;
         }
 
-        private async ValueTask<string> TryDescribe(ILinkedNode node, Directory dir, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        private async ValueTask<string> TryDescribe(ILinkedNode node, Directory dir, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             try
             {

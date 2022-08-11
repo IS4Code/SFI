@@ -139,12 +139,12 @@ namespace IS4.MultiArchiver.Analyzers
             EncodingDetectorFactory = encodingDetectorFactory;
         }
 
-        public ValueTask<AnalysisResult> Analyze(byte[] data, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        public ValueTask<AnalysisResult> Analyze(byte[] data, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             return Analyze(new MemoryStreamFactory(new ArraySegment<byte>(data), data, null), context, analyzers);
         }
 
-        public async ValueTask<AnalysisResult> Analyze(IStreamFactory streamFactory, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        public async ValueTask<AnalysisResult> Analyze(IStreamFactory streamFactory, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var match = await new DataAnalysis(this, streamFactory, context, analyzers).Match();
             var node = await match.NodeTask;
@@ -177,13 +177,13 @@ namespace IS4.MultiArchiver.Analyzers
             readonly IEncodingDetector encodingDetector;
             readonly IStreamFactory streamFactory;
             readonly AnalysisContext context;
-            readonly IEntityAnalyzerProvider analyzers;
+            readonly IEntityAnalyzers analyzers;
             readonly Dictionary<IDataHashAlgorithm, (ChannelWriter<ArraySegment<byte>> writer, Task<byte[]> data)> hashes = new Dictionary<IDataHashAlgorithm, (ChannelWriter<ArraySegment<byte>> writer, Task<byte[]> data)>(ReferenceEqualityComparer<IDataHashAlgorithm>.Default);
 
             IStreamFactory seekableFactory;
             bool isBinary;
 
-            public DataAnalysis(DataAnalyzer analyzer, IStreamFactory streamFactory, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+            public DataAnalysis(DataAnalyzer analyzer, IStreamFactory streamFactory, AnalysisContext context, IEntityAnalyzers analyzers)
             {
                 this.analyzer = analyzer;
                 maxDataLengthToStore = analyzer.GetMaxDataLengthToStore(streamFactory.Length);
@@ -527,7 +527,7 @@ namespace IS4.MultiArchiver.Analyzers
             public IBinaryFileFormat Format { get; }
             readonly ValueTask<ILinkedNode> parentTask;
             readonly AnalysisContext context;
-            readonly IEntityAnalyzerProvider analyzer;
+            readonly IEntityAnalyzers analyzer;
             readonly Task<ILinkedNode> task;
             ILinkedNode taskResult;
 
@@ -540,7 +540,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             public ILinkedNode Result => taskResult ?? task?.Result;
 
-            public FormatResult(DataAnalysis.DataMatch fileMatch, IStreamFactory streamFactory, IBinaryFileFormat format, ValueTask<ILinkedNode> parent, AnalysisContext context, IEntityAnalyzerProvider analyzer)
+            public FormatResult(DataAnalysis.DataMatch fileMatch, IStreamFactory streamFactory, IBinaryFileFormat format, ValueTask<ILinkedNode> parent, AnalysisContext context, IEntityAnalyzers analyzer)
 			{
                 this.fileMatch = fileMatch;
                 this.Format = format;

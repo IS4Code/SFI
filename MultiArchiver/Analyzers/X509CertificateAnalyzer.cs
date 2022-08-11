@@ -18,7 +18,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override ValueTask<AnalysisResult> Analyze(X509Certificate certificate, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        public override ValueTask<AnalysisResult> Analyze(X509Certificate certificate, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var node = GetNode(context);
 

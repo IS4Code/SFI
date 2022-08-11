@@ -10,14 +10,14 @@ namespace IS4.MultiArchiver.Analyzers
     /// <summary>
     /// An analyzer of format objects as instances of <see cref="IFormatObject"/>.
     /// </summary>
-    public class FormatObjectAnalyzer : EntityAnalyzer, IEntityAnalyzer<IFormatObject>, IResultFactory<AnalysisResult, (IFormatObject format, AnalysisContext context, IEntityAnalyzerProvider analyzer)>
+    public class FormatObjectAnalyzer : EntityAnalyzer, IEntityAnalyzer<IFormatObject>, IResultFactory<AnalysisResult, (IFormatObject format, AnalysisContext context, IEntityAnalyzers analyzer)>
     {
-        public ValueTask<AnalysisResult> Analyze(IFormatObject format, AnalysisContext context, IEntityAnalyzerProvider analyzer)
+        public ValueTask<AnalysisResult> Analyze(IFormatObject format, AnalysisContext context, IEntityAnalyzers analyzer)
         {
             return format.GetValue(this, (format, context, analyzer));
         }
 
-        protected virtual async ValueTask<AnalysisResult> Analyze<T>(T value, IFormatObject format, AnalysisContext context, IEntityAnalyzerProvider analyzer) where T : class
+        protected virtual async ValueTask<AnalysisResult> Analyze<T>(T value, IFormatObject format, AnalysisContext context, IEntityAnalyzers analyzer) where T : class
         {
             var node = GetNode(format, context);
 
@@ -94,7 +94,7 @@ namespace IS4.MultiArchiver.Analyzers
             return result;
         }
 
-        async ITask<AnalysisResult> IResultFactory<AnalysisResult, (IFormatObject format, AnalysisContext context, IEntityAnalyzerProvider analyzer)>.Invoke<T>(T value, (IFormatObject format, AnalysisContext context, IEntityAnalyzerProvider analyzer) args)
+        async ITask<AnalysisResult> IResultFactory<AnalysisResult, (IFormatObject format, AnalysisContext context, IEntityAnalyzers analyzer)>.Invoke<T>(T value, (IFormatObject format, AnalysisContext context, IEntityAnalyzers analyzer) args)
         {
             var (format, context, analyzer) = args;
             return await Analyze(value, format, context, analyzer);

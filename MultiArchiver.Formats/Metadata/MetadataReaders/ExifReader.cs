@@ -12,7 +12,7 @@ namespace IS4.MultiArchiver.Formats.Metadata.MetadataReaders
 {
     public class ExifReader : IMetadataReader<ExifDirectoryBase>
     {
-        public async ValueTask<string> Describe(ILinkedNode node, ExifDirectoryBase directory, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        public async ValueTask<string> Describe(ILinkedNode node, ExifDirectoryBase directory, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             foreach(var tag in directory.Tags)
             {

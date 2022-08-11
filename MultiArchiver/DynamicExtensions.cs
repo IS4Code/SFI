@@ -7,19 +7,19 @@ using System.Threading.Tasks;
 namespace IS4.MultiArchiver
 {
     /// <summary>
-    /// Stores extension methods for operations on a <see cref="ILinkedNode"/> or <see cref="IEntityAnalyzerProvider"/>.
+    /// Stores extension methods for operations on a <see cref="ILinkedNode"/> or <see cref="IEntityAnalyzers"/>.
     /// </summary>
     public static class DynamicExtensions
     {
         /// <summary>
-        /// Dynamically calls <see cref="IEntityAnalyzerProvider.Analyze{T}(T, AnalysisContext)"/>
+        /// Dynamically calls <see cref="IEntityAnalyzers.Analyze{T}(T, AnalysisContext)"/>
         /// based on the runtime type of <paramref name="entity"/>.
         /// </summary>
-        /// <param name="analyzers">The instance of <see cref="IEntityAnalyzerProvider"/> to use.</param>
+        /// <param name="analyzers">The instance of <see cref="IEntityAnalyzers"/> to use.</param>
         /// <param name="entity">The entity to analyze.</param>
-        /// <param name="context">The context to be passed to <see cref="IEntityAnalyzerProvider.Analyze{T}(T, AnalysisContext)"/>.</param>
+        /// <param name="context">The context to be passed to <see cref="IEntityAnalyzers.Analyze{T}(T, AnalysisContext)"/>.</param>
         /// <returns>The result from the method, or the default value of <see cref="AnalysisResult"/> on failure.</returns>
-        public static async ValueTask<AnalysisResult> TryAnalyze(this IEntityAnalyzerProvider analyzers, object entity, AnalysisContext context)
+        public static async ValueTask<AnalysisResult> TryAnalyze(this IEntityAnalyzers analyzers, object entity, AnalysisContext context)
         {
             if(entity == null) return default;
             try{

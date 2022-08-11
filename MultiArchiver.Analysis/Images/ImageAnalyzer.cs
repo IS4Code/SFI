@@ -25,7 +25,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override async ValueTask<AnalysisResult> Analyze(Image image, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        public override async ValueTask<AnalysisResult> Analyze(Image image, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var node = GetNode(context);
             var tag = (image.Tag as IImageTag) ?? DefaultTag;

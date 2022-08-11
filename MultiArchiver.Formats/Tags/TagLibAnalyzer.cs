@@ -14,7 +14,7 @@ namespace IS4.MultiArchiver.Analyzers
 {
     public class TagLibAnalyzer : MediaObjectAnalyzer<File>, IPropertyUriFormatter<string>
     {
-        public override ValueTask<AnalysisResult> Analyze(File file, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        public override ValueTask<AnalysisResult> Analyze(File file, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var node = GetNode(context);
             var properties = file.Properties;

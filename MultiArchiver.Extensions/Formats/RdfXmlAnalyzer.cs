@@ -6,7 +6,7 @@ namespace IS4.MultiArchiver.Analyzers
 {
     public class RdfXmlAnalyzer : MediaObjectAnalyzer<RdfXmlAnalyzer.Document>
     {
-        public override ValueTask<AnalysisResult> Analyze(Document entity, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        public override ValueTask<AnalysisResult> Analyze(Document entity, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var node = GetNode(context);
             node.Describe(entity.RdfDocument);

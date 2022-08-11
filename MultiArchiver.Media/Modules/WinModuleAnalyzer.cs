@@ -19,7 +19,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override async ValueTask<AnalysisResult> Analyze(IModule module, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        public override async ValueTask<AnalysisResult> Analyze(IModule module, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var node = GetNode(context);
             await AnalyzeSignature(node, module.Signature, context, analyzers);
@@ -27,7 +27,7 @@ namespace IS4.MultiArchiver.Analyzers
             return new AnalysisResult(node, label);
         }
 
-        async ValueTask<string> AnalyzeResources(ILinkedNode node, IModule module, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        async ValueTask<string> AnalyzeResources(ILinkedNode node, IModule module, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var cache = new Dictionary<(object, object), ResourceInfo>();
             var groups = new List<ResourceInfo>();
@@ -89,7 +89,7 @@ namespace IS4.MultiArchiver.Analyzers
             return label;
         }
 
-        async ValueTask AnalyzeSignature(ILinkedNode node, IModuleSignature signature, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        async ValueTask AnalyzeSignature(ILinkedNode node, IModuleSignature signature, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             if(signature == null) return;
             HashAlgorithm.AddHash(node, signature.HashAlgorithm, signature.Hash, context.NodeFactory);

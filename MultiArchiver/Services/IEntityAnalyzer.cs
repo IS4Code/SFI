@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Services
 {
-    public interface IEntityAnalyzerProvider
+    public interface IEntityAnalyzers
     {
         ValueTask<AnalysisResult> Analyze<T>(T entity, AnalysisContext context) where T : class;
     }
 
     public interface IEntityAnalyzer<in T> where T : class
     {
-        ValueTask<AnalysisResult> Analyze(T entity, AnalysisContext context, IEntityAnalyzerProvider analyzers);
+        ValueTask<AnalysisResult> Analyze(T entity, AnalysisContext context, IEntityAnalyzers analyzers);
     }
 
     public struct AnalysisContext

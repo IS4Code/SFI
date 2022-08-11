@@ -34,12 +34,12 @@ namespace IS4.MultiArchiver.Services
 
     public interface IContainerAnalyzer
     {
-        ValueTask<AnalysisResult> Analyze<TParent, TEntity>(TParent parentNode, TEntity entity, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzerProvider analyzers) where TEntity : class where TParent : IContainerNode;
+        ValueTask<AnalysisResult> Analyze<TParent, TEntity>(TParent parentNode, TEntity entity, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzers analyzers) where TEntity : class where TParent : IContainerNode;
     }
 
     public interface IContainerAnalyzer<in TParent, in TEntity> where TEntity : class where TParent : IContainerNode
     {
-        ValueTask<AnalysisResult> Analyze(TParent parentNode, TEntity entity, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzerProvider analyzers);
+        ValueTask<AnalysisResult> Analyze(TParent parentNode, TEntity entity, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzers analyzers);
     }
 
     public interface IContainerNode

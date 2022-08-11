@@ -12,7 +12,7 @@ namespace IS4.MultiArchiver.Analyzers
         static readonly Guid FMTID_Intshcut = Guid.Parse("000214A0-0000-0000-C000-000000000046");
         static readonly PROPSPEC[] PID_IS_URL = { new PROPSPEC(2) };
 
-        public override ValueTask<AnalysisResult> Analyze(IUniformResourceLocator shortcut, AnalysisContext context, IEntityAnalyzerProvider analyzers)
+        public override ValueTask<AnalysisResult> Analyze(IUniformResourceLocator shortcut, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var node = GetNode(context);
             shortcut.GetUrl(out var url);
