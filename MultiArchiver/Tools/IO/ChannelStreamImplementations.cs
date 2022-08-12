@@ -41,7 +41,7 @@ namespace IS4.MultiArchiver.Tools.IO
 
         protected override byte ReadFrom(ref ArraySegment<byte> current)
         {
-            var result = current.Array[current.Offset];
+            var result = current.At(0);
             current = current.Slice(1);
             return result;
         }

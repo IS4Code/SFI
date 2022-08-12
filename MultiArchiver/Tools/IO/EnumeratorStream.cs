@@ -80,7 +80,7 @@ namespace IS4.MultiArchiver.Tools.IO
                 // Try get another sequence if this one is depleted
                 if(!MoveNext()) return -1;
             }
-            var result = remaining.Array[remaining.Offset];
+            var result = remaining.At(0);
             remaining = remaining.Slice(1);
             return result;
         }
