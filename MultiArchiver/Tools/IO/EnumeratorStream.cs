@@ -7,10 +7,23 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Tools.IO
 {
+    /// <summary>
+    /// Provides implementation for a stream reading data from an instance of
+    /// <see cref="IEnumerator{T}"/> of <see cref="ArraySegment{T}"/> of
+    /// <see cref="Byte"/>.
+    /// </summary>
+    /// <typeparam name="TException">The exception type to catch in <see cref="MoveNext"/>.</typeparam>
     public class EnumeratorStream<TException> : Stream where TException : Exception
     {
         readonly IEnumerator<ArraySegment<byte>> enumerator;
 
+        ArraySegment<byte> remaining;
+
+        /// <summary>
+        /// Creates a new instance of the stream.
+        /// </summary>
+        /// <param name="enumerator">The enumerator to take the data from.</param>
+        /// <param name="length">The expected length of the stream.</param>
         public EnumeratorStream(IEnumerator<ArraySegment<byte>> enumerator, long length)
         {
             this.enumerator = enumerator;
@@ -32,8 +45,6 @@ namespace IS4.MultiArchiver.Tools.IO
                 
         }
 
-        ArraySegment<byte> remaining;
-
         public override int Read(byte[] buffer, int offset, int count)
         {
             int total = 0;
@@ -41,6 +52,7 @@ namespace IS4.MultiArchiver.Tools.IO
             {
                 while(remaining.Count == 0)
                 {
+                    // Try get another sequence if this one is depleted
                     if(!MoveNext()) return total;
                 }
                 int read = Math.Min(remaining.Count, count);
@@ -65,6 +77,7 @@ namespace IS4.MultiArchiver.Tools.IO
         {
             while(remaining.Count == 0)
             {
+                // Try get another sequence if this one is depleted
                 if(!MoveNext()) return -1;
             }
             var result = remaining.Array[remaining.Offset];
@@ -72,6 +85,11 @@ namespace IS4.MultiArchiver.Tools.IO
             return result;
         }
 
+        /// <summary>
+        /// Retrieves the next sequence from the enumerator and stores it in
+        /// <see cref="remaining"/>.
+        /// </summary>
+        /// <returns>True if a sequence was retrieved.</returns>
         bool MoveNext()
         {
             try{

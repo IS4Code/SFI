@@ -9,9 +9,19 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Tools.IO
 {
+    /// <summary>
+    /// Provides a read-only stream using an instance of <see cref="ChannelReader{T}"/>
+    /// using an arbitrary sequence of bytes as the source of data.
+    /// </summary>
+    /// <typeparam name="TSequence">The collection of bytes provided by the channel.</typeparam>
     public abstract class ChannelStream<TSequence> : Stream, IEnumerator<TSequence>, IAsyncEnumerator<TSequence> where TSequence : struct, IReadOnlyCollection<byte>
     {
         readonly ChannelReader<TSequence> channelReader;
+
+        /// <summary>
+        /// The current element in the sequence.
+        /// It is sliced when it is not read as a whole.
+        /// </summary>
         TSequence current;
 
         public sealed override bool CanRead => true;
@@ -32,11 +42,42 @@ namespace IS4.MultiArchiver.Tools.IO
 
         object IEnumerator.Current => current;
 
+        /// <summary>
+        /// Creates a new stream instance from a channel reader.
+        /// </summary>
+        /// <param name="channelReader">
+        /// The reader for the channel providing the byte sequences to read.
+        /// </param>
         public ChannelStream(ChannelReader<TSequence> channelReader)
         {
             this.channelReader = channelReader;
         }
 
+        /// <summary>
+        /// Creates a new channel and retrieve its reader and writer.
+        /// The channel is created with the following settings:
+        /// <list type="bullet">
+        /// <item>
+        ///     <term><see cref="ChannelOptions.AllowSynchronousContinuations"/></term>
+        ///     <description>true</description>
+        /// </item>
+        /// <item>
+        ///     <term><see cref="ChannelOptions.SingleReader"/></term>
+        ///     <description>true</description>
+        /// </item>
+        /// <item>
+        ///     <term><see cref="ChannelOptions.SingleWriter"/></term>
+        ///     <description>true</description>
+        /// </item>
+        /// <item>
+        ///     <term><see cref="BoundedChannelOptions.FullMode"/> (if <paramref name="capacity"/> is provided)</term>
+        ///     <description><see cref="BoundedChannelFullMode.Wait"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="writer">The variable to receive the writer for the created channel.</param>
+        /// <param name="capacity">The capacity of the channel, if it should be bounded.</param>
+        /// <returns>The reader for the created channel.</returns>
         protected static ChannelReader<TSequence> CreateReader(out ChannelWriter<TSequence> writer, int? capacity = null)
         {
             var ch = capacity is int i ? Channel.CreateBounded<TSequence>(new BoundedChannelOptions(i)
@@ -55,11 +96,17 @@ namespace IS4.MultiArchiver.Tools.IO
             return ch.Reader;
         }
 
+        /// <summary>
+        /// Synchronously retrieves the next byte sequence from
+        /// the channel and stores it in <see cref="current"/>.
+        /// </summary>
+        /// <returns>True if a sequence was retrieved.</returns>
         private bool TryGetNext()
         {
             try{
                 if(!channelReader.TryRead(out current))
                 {
+                    // An element is not readily available; get it from the task
                     var valueTask = channelReader.ReadAsync();
                     if(valueTask.IsCompletedSuccessfully)
                     {
@@ -71,6 +118,7 @@ namespace IS4.MultiArchiver.Tools.IO
                         {
                             if(task.Exception.InnerException is ChannelClosedException)
                             {
+                                // The channel was closed from the other side
                                 return false;
                             }
                             ExceptionDispatchInfo.Capture(task.Exception.InnerException).Throw();
@@ -95,12 +143,30 @@ namespace IS4.MultiArchiver.Tools.IO
             }
         }
 
+        /// <summary>
+        /// When overriden in a derived type, copies <paramref name="len"/> bytes from the sequence
+        /// <paramref name="current"/> into <paramref name="buffer"/>, and adjusts it to
+        /// start with the bytes after that.
+        /// </summary>
+        /// <param name="current">The variable storing the byte sequence to copy from.</param>
+        /// <param name="buffer">The target array to receive the bytes.</param>
+        /// <param name="offset">The offset in <paramref name="buffer"/> to start copying to.</param>
+        /// <param name="len">The number of bytes to copy.</param>
         protected abstract void ReadFrom(ref TSequence current, byte[] buffer, int offset, int len);
         
+        /// <summary>
+        /// Reads from the current byte sequence stored in <see cref="current"/>
+        /// into <paramref name="buffer"/>, calling <see cref="ReadFrom(ref TSequence, byte[], int, int)"/>.
+        /// </summary>
+        /// <param name="buffer">The array to receive the bytes.</param>
+        /// <param name="offset">The offset to write the data to, increased by its length after the operation.</param>
+        /// <param name="count">The number of bytes to store, decreased by its length after the operation.</param>
+        /// <returns>The number of copied bytes, or 0 if there are no more bytes in the current sequence.</returns>
         private int ReadInner(byte[] buffer, ref int offset, ref int count)
         {
             if(current.Count == 0)
             {
+                // No data left; invalidate it and return 0
                 current = default;
                 return 0;
             }
@@ -108,6 +174,7 @@ namespace IS4.MultiArchiver.Tools.IO
             ReadFrom(ref current, buffer, offset, len);
             if(current.Count == 0)
             {
+                // No data remained, invalidate it
                 current = default;
             }
             offset += len;
@@ -126,6 +193,7 @@ namespace IS4.MultiArchiver.Tools.IO
             {
                 if(current.Count == 0)
                 {
+                    // The current sequence was depleted, get the next one
                     if(!TryGetNext())
                     {
                         break;
@@ -148,6 +216,7 @@ namespace IS4.MultiArchiver.Tools.IO
                 {
                     if(current.Count == 0)
                     {
+                        // The current sequence was depleted, get the next one
                         if(!channelReader.TryRead(out current))
                         {
                             current = await channelReader.ReadAsync(cancellationToken);
@@ -166,11 +235,16 @@ namespace IS4.MultiArchiver.Tools.IO
         {
             var task = ReadAsync(buffer, offset, count);
             var completion = new TaskCompletionSource<int>(state);
-            task.ContinueWith(t =>
-            {
-                if(t.IsFaulted) completion.TrySetException(t.Exception.InnerExceptions);
-                else if(t.IsCanceled) completion.TrySetCanceled();
-                else completion.TrySetResult(t.Result);
+            task.ContinueWith(t => {
+                if(t.IsFaulted)
+                {
+                    completion.TrySetException(t.Exception.InnerExceptions);
+                }else if(t.IsCanceled)
+                {
+                    completion.TrySetCanceled();
+                }else{
+                    completion.TrySetResult(t.Result);
+                }
                 callback?.Invoke(completion.Task);
             }, TaskScheduler.Default);
             return completion.Task;
@@ -181,18 +255,30 @@ namespace IS4.MultiArchiver.Tools.IO
             return ((Task<int>)asyncResult).Result;
         }
 
+        /// <summary>
+        /// Reads a single byte from <paramref name="current"/> and modifies it
+        /// to start on the next byte.
+        /// </summary>
+        /// <param name="current">The variable to provide the input sequence.</param>
+        /// <returns>The first byte of the sequence.</returns>
         protected abstract byte ReadFrom(ref TSequence current);
 
-        private int ReadByteInner(ref TSequence current)
+        /// <summary>
+        /// Reads a single byte from <see cref="current"/> and adjusts it.
+        /// </summary>
+        /// <returns>The next byte, or -1 if the sequence is empty.</returns>
+        private int ReadByteInner()
         {
             if(current.Count == 0)
             {
+                // No data left; invalidate it and return -1
                 current = default;
                 return -1;
             }
             var result = ReadFrom(ref current);
             if(current.Count == 0)
             {
+                // No data remaining; invalidate it
                 current = default;
             }
             return result;
@@ -205,12 +291,13 @@ namespace IS4.MultiArchiver.Tools.IO
             {
                 if(current.Count == 0)
                 {
+                    // The current sequence was depleted, get the next one
                     if(!TryGetNext())
                     {
                         break;
                     }
                 }
-                result = ReadByteInner(ref current);
+                result = ReadByteInner();
             }
             return -1;
         }
@@ -223,12 +310,13 @@ namespace IS4.MultiArchiver.Tools.IO
                 {
                     if(current.Count == 0)
                     {
+                        // The current sequence was depleted, get the next one
                         if(!channelReader.TryRead(out current))
                         {
                             current = await channelReader.ReadAsync(cancellationToken);
                         }
                     }
-                    result = ReadByteInner(ref current);
+                    result = ReadByteInner();
                 }
             }catch(ChannelClosedException)
             {

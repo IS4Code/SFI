@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Tools.IO
 {
+    /// <summary>
+    /// Provides a read-only stream capable of reading from a memory-backed bitmap data
+    /// (such as provided by System.Drawing.Imaging.BitmapData). The bytes are
+    /// read starting from the first row of the image in sequence.
+    /// </summary>
     public class BitmapDataStream : Stream
     {
         readonly IntPtr scan0;
@@ -17,6 +22,16 @@ namespace IS4.MultiArchiver.Tools.IO
         int row;
         int columnOffset;
 
+        /// <summary>
+        /// Creates a new instance of the stream.
+        /// </summary>
+        /// <param name="scan0">The pointer to the beginning of the first row of the image in memory.</param>
+        /// <param name="stride">
+        /// The number of bytes between the first pixels on two consecutive rows;
+        /// could be negative to indicate that the rows go in reverse order in memory.
+        /// </param>
+        /// <param name="height">The number of rows in the image.</param>
+        /// <param name="rowBytes"></param>
         public BitmapDataStream(IntPtr scan0, int stride, int height, int rowBytes)
         {
             this.scan0 = scan0;
@@ -26,6 +41,17 @@ namespace IS4.MultiArchiver.Tools.IO
             length = rowBytes * height;
         }
 
+        /// <summary>
+        /// Creates a new instance of the stream.
+        /// </summary>
+        /// <param name="scan0">The pointer to the beginning of the first row of the image in memory.</param>
+        /// <param name="stride">
+        /// The number of bytes between the first pixels on two consecutive rows;
+        /// could be negative to indicate that the rows go in reverse order in memory.
+        /// </param>
+        /// <param name="height">The number of rows in the image.</param>
+        /// <param name="width">The number of pixels on a row.</param>
+        /// <param name="bpp">The number of bits representing a single pixel.</param>
         public BitmapDataStream(IntPtr scan0, int stride, int height, int width, int bpp) : this(scan0, stride, height, (width * bpp + 7) / 8)
         {
 
