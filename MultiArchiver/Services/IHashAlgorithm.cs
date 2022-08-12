@@ -9,56 +9,195 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Services
 {
+    /// <summary>
+    /// Specifies the formatting method used when converting the hash output
+    /// to a URI.
+    /// </summary>
     public enum FormattingMethod
     {
+        /// <summary>
+        /// The bytes of the output are convered to uppercase hex characters.
+        /// </summary>
         Hex,
+
+        /// <summary>
+        /// <see cref="DataTools.Base32{TList}(TList, StringBuilder)"/> is used to format the bytes.
+        /// </summary>
         Base32,
+
+        /// <summary>
+        /// <see cref="DataTools.Base58{TList}(TList, StringBuilder)"/> is used to format the bytes.
+        /// </summary>
         Base58,
+
+        /// <summary>
+        /// <see cref="DataTools.Base64Url(ArraySegment{byte}, StringBuilder)"/> is used to format the bytes.
+        /// </summary>
         Base64,
+
+        /// <summary>
+        /// The bytes are formatted as an unsigned decimal value.
+        /// </summary>
         Decimal
     }
 
+    /// <summary>
+    /// Describes the properties of a hash algorithm.
+    /// </summary>
     public interface IHashAlgorithm : IIndividualUriFormatter<ArraySegment<byte>>
     {
+        /// <summary>
+        /// The human-readable name of the algorithm.
+        /// </summary>
         string Name { get; }
-        int GetHashSize(long fileSize);
+
+        /// <summary>
+        /// Calculates the estimated size of the digest depending on the size of the input data.
+        /// </summary>
+        /// <param name="dataSize">The size of the input data.</param>
+        /// <returns>The hash size in bytes.</returns>
+        int GetHashSize(long dataSize);
+
+        /// <summary>
+        /// Estimates the length of the URI that would be formatted from the hash of a particular length.
+        /// </summary>
+        /// <param name="hashSize">The length of the hash.</param>
+        /// <returns>The size of the URI in characters.</returns>
         int EstimateUriSize(int hashSize);
+
+        /// <summary>
+        /// The individual identifier of this hash algorithm.
+        /// </summary>
         IndividualUri Identifier { get; }
+
+        /// <summary>
+        /// The multihash identifier of the algorithm; see
+        /// https://github.com/multiformats/multicodec/blob/master/table.csv.
+        /// </summary>
         int? NumericIdentifier { get; }
+
+        /// <summary>
+        /// The URI prefix for producing URIs of individual hashes.
+        /// </summary>
         string Prefix { get; }
+
+        /// <summary>
+        /// The formatting method to use when appending the hash to
+        /// <see cref="Prefix"/>.
+        /// </summary>
         FormattingMethod FormattingMethod { get; }
+
+        /// <summary>
+        /// The name of the algorithm in the Named Information Hash Algorithm Registry
+        /// (https://www.iana.org/assignments/named-information/named-information.xhtml).
+        /// </summary>
         string NiName { get; }
     }
 
+    /// <summary>
+    /// Represents a hash algorithm that accepts raw data as input.
+    /// </summary>
     public interface IDataHashAlgorithm : IHashAlgorithm
     {
+        /// <summary>
+        /// Computes the value of the hash from an input stream.
+        /// </summary>
+        /// <param name="input">The input stream to compute the hash from.</param>
+        /// <param name="key">The <see cref="IPersistentKey"/> identifying the data, if needed for caching.</param>
+        /// <returns>The bytes of the hash.</returns>
         ValueTask<byte[]> ComputeHash(Stream input, IPersistentKey key = null);
+
+        /// <summary>
+        /// Computes the value of the hash from a byte buffer.
+        /// </summary>
+        /// <param name="buffer">The array of bytes to compute the hash from.</param>
+        /// <param name="key">The <see cref="IPersistentKey"/> identifying the data, if needed for caching.</param>
+        /// <returns>The bytes of the hash.</returns>
         ValueTask<byte[]> ComputeHash(byte[] buffer, IPersistentKey key = null);
+
+        /// <summary>
+        /// Computes the value of the hash from a byte buffer.
+        /// </summary>
+        /// <param name="buffer">The array of bytes to compute the hash from.</param>
+        /// <param name="offset">The index in the array to start reading.</param>
+        /// <param name="count">The number of bytes to read from the array.</param>
+        /// <param name="key">The <see cref="IPersistentKey"/> identifying the data, if needed for caching.</param>
+        /// <returns>The bytes of the hash.</returns>
+        /// <returns></returns>
         ValueTask<byte[]> ComputeHash(byte[] buffer, int offset, int count, IPersistentKey key = null);
+
+        /// <summary>
+        /// Computes the value of the hash from a byte buffer.
+        /// </summary>
+        /// <param name="buffer">The sequence of bytes to compute the hash from.</param>
+        /// <param name="key">The <see cref="IPersistentKey"/> identifying the data, if needed for caching.</param>
+        /// <returns>The bytes of the hash.</returns>
         ValueTask<byte[]> ComputeHash(ArraySegment<byte> buffer, IPersistentKey key = null);
     }
 
+    /// <summary>
+    /// Represents a hash algorithm that accepts files or directories as input.
+    /// </summary>
     public interface IFileHashAlgorithm : IHashAlgorithm
     {
+        /// <summary>
+        /// Computes the value of the hash from a file, described by <see cref="IFileInfo"/>.
+        /// </summary>
+        /// <param name="file">The file to compute the hash from.</param>
+        /// <returns>The bytes of the hash.</returns>
         ValueTask<byte[]> ComputeHash(IFileInfo file);
+
+        /// <summary>
+        /// Computes the value of the hash from a directory, described by <see cref="IDirectoryInfo"/>.
+        /// </summary>
+        /// <param name="directory">The directory to compute the hash from.</param>
+        /// <param name="contents">
+        /// True if the directory should be used only as container of its entries
+        /// and not be itself a part in the hashed hierarchy.
+        /// </param>
+        /// <returns>The bytes of the hash.</returns>
         ValueTask<byte[]> ComputeHash(IDirectoryInfo directory, bool contents);
     }
 
+    /// <summary>
+    /// Represents a hash algorithm that accepts arbitrary objects as input.
+    /// </summary>
+    /// <typeparam name="T">The type of the accepted objects.</typeparam>
     public interface IObjectHashAlgorithm<in T> : IHashAlgorithm
     {
+        /// <summary>
+        /// Computes the value of the hash from <paramref name="object"/>.
+        /// </summary>
+        /// <param name="object">The object to compute the hash from.</param>
+        /// <returns>The bytes of the hash.</returns>
         ValueTask<byte[]> ComputeHash(T @object);
     }
 
+    /// <summary>
+    /// A base implementation of <see cref="IHashAlgorithm"/>.
+    /// </summary>
     public abstract class HashAlgorithm : IHashAlgorithm
     {
         public string Name { get; }
+
+        /// <summary>
+        /// The usual size of the hash.
+        /// </summary>
         public int HashSize { get; }
+
         public IndividualUri Identifier { get; }
         public string Prefix { get; }
         public FormattingMethod FormattingMethod { get; }
         public virtual int? NumericIdentifier { get; }
         public virtual string NiName { get; }
 
+        /// <summary>
+        /// Creates a new instance of the hash algorithm.
+        /// </summary>
+        /// <param name="identifier">The value of <see cref="Identifier"/>.</param>
+        /// <param name="hashSize">The value of <see cref="HashSize"/>.</param>
+        /// <param name="prefix">The value of <see cref="Prefix"/>.</param>
+        /// <param name="formatting">The value of <see cref="FormattingMethod"/>.</param>
         public HashAlgorithm(IndividualUri identifier, int hashSize, string prefix, FormattingMethod formatting)
         {
             Identifier = identifier;
@@ -96,6 +235,15 @@ namespace IS4.MultiArchiver.Services
             }
         }
 
+        /// <summary>
+        /// Produces a URI identifying the result of the hashing.
+        /// </summary>
+        /// <param name="data">The bytes of the hash.</param>
+        /// <returns>
+        /// A new <see cref="Uri"/> instance, using the
+        /// <see cref="Prefix"/> property alongside <see cref="FormattingMethod"/>
+        /// to format <paramref name="data"/>.
+        /// </returns>
         public Uri this[ArraySegment<byte> data] {
             get {
                 var sb = new StringBuilder(EstimateUriSize(data.Count));
@@ -148,17 +296,42 @@ namespace IS4.MultiArchiver.Services
                 return new Uri(sb.ToString());
             }
         }
-
-        public static void AddHash(ILinkedNode node, IHashAlgorithm algorithm, byte[] hash, ILinkedNodeFactory nodeFactory)
-        {
-            AddHash(node, algorithm, new ArraySegment<byte>(hash), nodeFactory);
-        }
-
+        
+        /// <summary>
+        /// An estimate on the number of triples used in
+        /// <see cref="AddHash(ILinkedNode, IHashAlgorithm, ArraySegment{byte}, ILinkedNodeFactory)"/>
+        /// to initialize the hash node and assign it to a node. 
+        /// </summary>
         public const int TriplesPerHash = 4;
 
-        public static void AddHash(ILinkedNode node, IHashAlgorithm algorithm, ArraySegment<byte> hash, ILinkedNodeFactory nodeFactory)
+        /// <summary>
+        /// Creates a <see cref="ILinkedNode"/> representing a particular hash
+        /// and assigns it to <paramref name="node"/>, via
+        /// <see cref="Properties.Digest"/>.
+        /// </summary>
+        /// <param name="node">The node to assign the hash to.</param>
+        /// <param name="algorithm">The particular algorithm used to produce the hash.</param>
+        /// <param name="hash">The bytes of the hash.</param>
+        /// <param name="nodeFactory">The factory to use when creating the <see cref="ILinkedNode"/>.</param>
+        /// <returns>The node for the hash.</returns>
+        public static ILinkedNode AddHash(ILinkedNode node, IHashAlgorithm algorithm, byte[] hash, ILinkedNodeFactory nodeFactory)
         {
-            if(algorithm == null || hash == null) return;
+            return AddHash(node, algorithm, new ArraySegment<byte>(hash), nodeFactory);
+        }
+
+        /// <summary>
+        /// Creates a <see cref="ILinkedNode"/> representing a particular hash
+        /// and assigns it to <paramref name="node"/>, via
+        /// <see cref="Properties.Digest"/>.
+        /// </summary>
+        /// <param name="node">The node to assign the hash to.</param>
+        /// <param name="algorithm">The particular algorithm used to produce the hash.</param>
+        /// <param name="hash">The bytes of the hash.</param>
+        /// <param name="nodeFactory">The factory to use when creating the <see cref="ILinkedNode"/>.</param>
+        /// <returns>The node for the hash.</returns>
+        public static ILinkedNode AddHash(ILinkedNode node, IHashAlgorithm algorithm, ArraySegment<byte> hash, ILinkedNodeFactory nodeFactory)
+        {
+            if(algorithm == null || hash == null) return null;
 
             var hashNode = nodeFactory.Create(algorithm, hash);
 
@@ -168,8 +341,16 @@ namespace IS4.MultiArchiver.Services
             hashNode.Set(Properties.DigestValue, hash.ToBase64String(), Datatypes.Base64Binary);
 
             node.Set(Properties.Digest, hashNode);
+
+            return hashNode;
         }
 
+        /// <summary>
+        /// Returns a particular instance of a <see cref="BuiltInHash"/>
+        /// that has the provided size of the output.
+        /// </summary>
+        /// <param name="length">The hash size in bytes.</param>
+        /// <returns>The respective instance, or null if there is none.</returns>
         public static BuiltInHash FromLength(int length)
         {
             switch(length)
@@ -195,8 +376,18 @@ namespace IS4.MultiArchiver.Services
         }
     }
 
+    /// <summary>
+    /// A base implementation of <see cref="IDataHashAlgorithm"/>.
+    /// </summary>
     public abstract class DataHashAlgorithm : HashAlgorithm, IDataHashAlgorithm
     {
+        /// <summary>
+        /// Creates a new instance of the hash algorithm.
+        /// </summary>
+        /// <param name="identifier">The individual identifier of the algorithm.</param>
+        /// <param name="hashSize">The usual size of the hash.</param>
+        /// <param name="prefix">The URI prefix used when creating URIs of hashes.</param>
+        /// <param name="formatting">The formatting method for creating URIs.</param>
         public DataHashAlgorithm(IndividualUri identifier, int hashSize, string prefix, FormattingMethod formatting) : base(identifier, hashSize, prefix, formatting)
         {
 
@@ -214,8 +405,18 @@ namespace IS4.MultiArchiver.Services
         }
     }
 
+    /// <summary>
+    /// A base implementation of <see cref="IFileHashAlgorithm"/>.
+    /// </summary>
     public abstract class FileHashAlgorithm : HashAlgorithm, IFileHashAlgorithm
     {
+        /// <summary>
+        /// Creates a new instance of the hash algorithm.
+        /// </summary>
+        /// <param name="identifier">The individual identifier of the algorithm.</param>
+        /// <param name="hashSize">The usual size of the hash.</param>
+        /// <param name="prefix">The URI prefix used when creating URIs of hashes.</param>
+        /// <param name="formatting">The formatting method for creating URIs.</param>
         public FileHashAlgorithm(IndividualUri identifier, int hashSize, string prefix, FormattingMethod formatting) : base(identifier, hashSize, prefix, formatting)
         {
 
@@ -225,8 +426,19 @@ namespace IS4.MultiArchiver.Services
         public abstract ValueTask<byte[]> ComputeHash(IDirectoryInfo directory, bool contents);
     }
 
+    /// <summary>
+    /// A base implementation of <see cref="IObjectHashAlgorithm{T}"/>.
+    /// </summary>
+    /// <typeparam name="T">The type of the accepted objects.</typeparam>
     public abstract class ObjectHashAlgorithm<T> : HashAlgorithm, IObjectHashAlgorithm<T>
     {
+        /// <summary>
+        /// Creates a new instance of the hash algorithm.
+        /// </summary>
+        /// <param name="identifier">The individual identifier of the algorithm.</param>
+        /// <param name="hashSize">The usual size of the hash.</param>
+        /// <param name="prefix">The URI prefix used when creating URIs of hashes.</param>
+        /// <param name="formatting">The formatting method for creating URIs.</param>
         public ObjectHashAlgorithm(IndividualUri identifier, int hashSize, string prefix, FormattingMethod formatting) : base(identifier, hashSize, prefix, formatting)
         {
 

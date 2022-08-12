@@ -107,7 +107,7 @@ namespace IS4.MultiArchiver.Analyzers
             if(formatter != null)
             {
                 // The first supported algorithm used by this analyzer will be chosen
-                foreach(var algorithm in formatter.SupportedAlgorithms.OfType<IDataHashAlgorithm>())
+                foreach(var algorithm in formatter.SuitableAlgorithms.OfType<IDataHashAlgorithm>())
                 {
                     if(HashAlgorithms.Contains(algorithm))
                     {
@@ -412,7 +412,7 @@ namespace IS4.MultiArchiver.Analyzers
                                 var hashes = analysis.hashes;
                                 if(formatter != null)
                                 {
-                                    foreach(var algorithm in formatter.SupportedAlgorithms.OfType<IDataHashAlgorithm>())
+                                    foreach(var algorithm in formatter.SuitableAlgorithms.OfType<IDataHashAlgorithm>())
                                     {
                                         if(hashes.TryGetValue(algorithm, out var info))
                                         {

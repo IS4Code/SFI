@@ -5,17 +5,44 @@ using System.Text;
 
 namespace IS4.MultiArchiver.Services
 {
+    /// <summary>
+    /// A formatter for creating URIs for resources identified by a particular hash,
+    /// via its <see cref="IIndividualUriFormatter{T}"/> implementation.
+    /// </summary>
     public interface IHashedContentUriFormatter : IIndividualUriFormatter<(IHashAlgorithm algorithm, byte[] hash, bool isBinary)>
     {
-        IEnumerable<IHashAlgorithm> SupportedAlgorithms { get; }
+        /// <summary>
+        /// Stores the collection of algorithms that are suitable to use
+        /// for producing the URI (because they are safe for collisions).
+        /// </summary>
+        IEnumerable<IHashAlgorithm> SuitableAlgorithms { get; }
+
+        /// <summary>
+        /// Estimates the size of the resulting URI from a hash algorithm and its output size.
+        /// </summary>
+        /// <param name="algorithm">The used hash algorithm.</param>
+        /// <param name="hashSize">The size of the hash in bytes.</param>
+        /// <returns>The size of the URI in characters.</returns>
         int? EstimateUriSize(IHashAlgorithm algorithm, int hashSize);
     }
 
+    /// <summary>
+    /// Formats URIs using their multihash representation,
+    /// in the <see cref="Vocabularies.Ad"/> vocabulary.
+    /// </summary>
     public class AdHashedContentUriFormatter : IHashedContentUriFormatter
     {
-        public IEnumerable<IHashAlgorithm> SupportedAlgorithms { get; }
+        public IEnumerable<IHashAlgorithm> SuitableAlgorithms { get; }
 
-        public Uri this[(IHashAlgorithm, byte[], bool) value] {
+        /// <summary>
+        /// Creates a new URI from a tuple storing the information about the hash.
+        /// </summary>
+        /// <param name="value">
+        /// A tuple storing the hash algorithm, the hash bytes, and whether
+        /// the resource is binary or not.
+        /// </param>
+        /// <returns>The URI identifying the resource.</returns>
+        public Uri this[(IHashAlgorithm algorithm, byte[] hash, bool isBinary) value] {
             get {
                 var (algorithm, hash, _) = value;
                 if(!(algorithm.NumericIdentifier is int id))
@@ -43,22 +70,42 @@ namespace IS4.MultiArchiver.Services
             return null;
         }
 
-        public AdHashedContentUriFormatter(params IHashAlgorithm[] supportedAlgorithms) : this((IEnumerable<IHashAlgorithm>)supportedAlgorithms)
+        /// <summary>
+        /// Creates a new instance of the formatter from a collection of suitable algorithms.
+        /// </summary>
+        /// <param name="suitableAlgorithms">The collecion of algorithms suitable for using.</param>
+        public AdHashedContentUriFormatter(params IHashAlgorithm[] suitableAlgorithms) : this((IEnumerable<IHashAlgorithm>)suitableAlgorithms)
         {
 
         }
 
-        public AdHashedContentUriFormatter(IEnumerable<IHashAlgorithm> supportedAlgorithms)
+        /// <summary>
+        /// Creates a new instance of the formatter from a collection of suitable algorithms.
+        /// </summary>
+        /// <param name="suitableAlgorithms">The collecion of algorithms suitable for using.</param>
+        public AdHashedContentUriFormatter(IEnumerable<IHashAlgorithm> suitableAlgorithms)
         {
-            SupportedAlgorithms = supportedAlgorithms;
+            SuitableAlgorithms = suitableAlgorithms;
         }
     }
 
+    /// <summary>
+    /// Creates ni: URIs, either using the <see cref="IHashAlgorithm.NiName"/>
+    /// or via its multihash representation.
+    /// </summary>
     public class NiHashedContentUriFormatter : IHashedContentUriFormatter
     {
-        public IEnumerable<IHashAlgorithm> SupportedAlgorithms { get; }
+        public IEnumerable<IHashAlgorithm> SuitableAlgorithms { get; }
 
-        public Uri this[(IHashAlgorithm, byte[], bool) value] {
+        /// <summary>
+        /// Creates a new URI from a tuple storing the information about the hash.
+        /// </summary>
+        /// <param name="value">
+        /// A tuple storing the hash algorithm, the hash bytes, and whether
+        /// the resource is binary or not.
+        /// </param>
+        /// <returns>The URI identifying the resource.</returns>
+        public Uri this[(IHashAlgorithm algorithm, byte[] hash, bool isBinary) value] {
             get {
                 var (algorithm, hash, isBinary) = value;
                 var mimeType = isBinary ? "application/octet-stream" : "text/plain";
@@ -89,16 +136,28 @@ namespace IS4.MultiArchiver.Services
             return null;
         }
 
-        public NiHashedContentUriFormatter(params IHashAlgorithm[] supportedAlgorithms) : this((IEnumerable<IHashAlgorithm>)supportedAlgorithms)
+        /// <summary>
+        /// Creates a new instance of the formatter from a collection of suitable algorithms.
+        /// </summary>
+        /// <param name="suitableAlgorithms">The collecion of algorithms suitable for using.</param>
+        public NiHashedContentUriFormatter(params IHashAlgorithm[] suitableAlgorithms) : this((IEnumerable<IHashAlgorithm>)suitableAlgorithms)
         {
 
         }
 
-        public NiHashedContentUriFormatter(IEnumerable<IHashAlgorithm> supportedAlgorithms)
+        /// <summary>
+        /// Creates a new instance of the formatter from a collection of suitable algorithms.
+        /// </summary>
+        /// <param name="suitableAlgorithms">The collecion of algorithms suitable for using.</param>
+        public NiHashedContentUriFormatter(IEnumerable<IHashAlgorithm> suitableAlgorithms)
         {
-            SupportedAlgorithms = supportedAlgorithms;
+            SuitableAlgorithms = suitableAlgorithms;
         }
 
+        /// <summary>
+        /// The ni: URI supports individual formatting based on an instance of <see cref="IFormatObject"/>
+        /// to use instead of the default media type specified as part of the URI (via ct).
+        /// </summary>
         class NiUri : Uri, IIndividualUriFormatter<IFormatObject>
         {
             readonly string hashName;
