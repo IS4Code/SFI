@@ -7,6 +7,9 @@ using System.Xml.Schema;
 
 namespace IS4.MultiArchiver.Tools.Xml
 {
+    /// <summary>
+    /// Stores the immediate state from an XML reader.
+    /// </summary>
     public sealed class XmlReaderState : XmlReader, IXmlSchemaInfo, IXmlLineInfo
     {
         public override int AttributeCount { get; }
@@ -67,18 +70,39 @@ namespace IS4.MultiArchiver.Tools.Xml
 
         public XmlSchemaValidity Validity { get; }
 
+        /// <summary>
+        /// The collection of instances of <see cref="XmlReaderState"/>
+        /// for the attributes of the current element or the element
+        /// storing this attribute.
+        /// </summary>
         public IReadOnlyList<XmlReaderState> Attributes { get; }
 
+        /// <summary>
+        /// The collection of contents of the current attribute,
+        /// as instances of <see cref="XmlReaderState"/>.
+        /// </summary>
         public IReadOnlyList<XmlReaderState> AttributeContents { get; }
 
+        /// <summary>
+        /// The map of namespace prefix to value for namespaces valid in the current position.
+        /// </summary>
         public IReadOnlyDictionary<string, string> NamespaceMap { get; }
 
         public int LineNumber { get; }
 
         public int LinePosition { get; }
 
+        /// <summary>
+        /// True if the current state provides <see cref="LineNumber"/>
+        /// and <see cref="LinePosition"/>.
+        /// </summary>
         public bool HasLineInfo { get; }
 
+        /// <summary>
+        /// Creates a new state from the current node in an XML reader.
+        /// </summary>
+        /// <param name="reader">The reader to capture the state from.</param>
+        /// <param name="namespaceMap">The map of namespace prefix to value for namespaces valid in the current position.</param>
         public XmlReaderState(XmlReader reader, IReadOnlyDictionary<string, string> namespaceMap = null) : this(reader, namespaceMap, null)
         {
 
@@ -125,6 +149,7 @@ namespace IS4.MultiArchiver.Tools.Xml
 
             if(parentAttributes == null)
             {
+                // This is not an attribute node
                 ImmutableDictionary<string, string>.Builder nsBuilder;
                 switch(namespaceMap)
                 {
@@ -163,6 +188,7 @@ namespace IS4.MultiArchiver.Tools.Xml
                 NamespaceMap = nsBuilder.ToImmutable();
                 AttributeContents = Array.Empty<XmlReaderState>();
             }else{
+                // This is an attribute node among parentAttributes
                 Attributes = parentAttributes;
 
                 if(NodeType == XmlNodeType.Attribute)
@@ -244,6 +270,13 @@ namespace IS4.MultiArchiver.Tools.Xml
             throw new InvalidOperationException();
         }
 
+        /// <summary>
+        /// Produces a collection of instances of <see cref="XmlReaderState"/>
+        /// from all the nodes returned by <paramref name="reader"/>,
+        /// by enumerating them using <see cref="XmlReader.Read"/>.
+        /// </summary>
+        /// <param name="reader">The reader to capture the states from.</param>
+        /// <returns>The collection of states representing each point of the reading.</returns>
         public static IEnumerable<XmlReaderState> ReadFrom(XmlReader reader)
         {
             var namespaceFrames = new Stack<IReadOnlyDictionary<string, string>>();

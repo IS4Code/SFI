@@ -69,7 +69,7 @@ namespace IS4.MultiArchiver.Analyzers
         public int TripleSizeEstimate { get; set; } = 32;
 
         /// <summary>
-        /// An instace of <see cref="TextWriter"/> to use for logging.
+        /// An instance of <see cref="TextWriter"/> to use for logging.
         /// </summary>
         public TextWriter OutputLog { get; set; } = Console.Error;
 

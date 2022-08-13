@@ -7,8 +7,14 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
+    /// <summary>
+    /// Represents the WAV format.
+    /// </summary>
     public class WaveFormat : SignatureFormat<WaveStream>
     {
+        /// <summary>
+        /// Creates a new instance of the format.
+        /// </summary>
         public WaveFormat() : base(17, "RIFF", "audio/vnd.wave", "wav")
         {
 

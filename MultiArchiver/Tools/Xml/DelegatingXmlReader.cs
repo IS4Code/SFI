@@ -7,14 +7,43 @@ using System.Xml.Schema;
 
 namespace IS4.MultiArchiver.Tools.Xml
 {
+    /// <summary>
+    /// An implementation of <see cref="XmlReader"/>, <see cref="IXmlLineInfo"/>,
+    /// and <see cref="IXmlNamespaceResolver"/> that delegates all calls
+    /// to a series of other readers to specific categories of tasks.
+    /// </summary>
     public abstract class DelegatingXmlReader : XmlReader, IXmlLineInfo, IXmlNamespaceResolver
     {
+        /// <summary>
+        /// True if <see cref="Close"/> has been called.
+        /// </summary>
         protected bool Closed { get; private set; }
 
+        /// <summary>
+        /// The reader used to provide information about the current node
+        /// or position in the document.
+        /// </summary>
         protected abstract XmlReader ScopeReader { get; }
+
+        /// <summary>
+        /// The reader used to query information about the current node,
+        /// such as the attributes of the current element.
+        /// </summary>
         protected abstract XmlReader QueryReader { get; }
+
+        /// <summary>
+        /// The reader used for global information about the document.
+        /// </summary>
         protected abstract XmlReader GlobalReader { get; }
+
+        /// <summary>
+        /// The reader used to move in the XML data.
+        /// </summary>
         protected abstract XmlReader ActiveReader { get; }
+
+        /// <summary>
+        /// The reader used for inquiries about general capabilities.
+        /// </summary>
         protected abstract XmlReader PassiveReader { get; }
 
         private XmlReader ScopeReaderNotNull => ScopeReader ?? throw new NotSupportedException();
@@ -22,11 +51,6 @@ namespace IS4.MultiArchiver.Tools.Xml
         private XmlReader GlobalReaderNotNull => GlobalReader ?? throw new NotSupportedException();
         private XmlReader ActiveReaderNotNull => ActiveReader ?? throw new NotSupportedException();
         private XmlReader PassiveReaderNotNull => PassiveReader ?? throw new NotSupportedException();
-
-        public DelegatingXmlReader()
-        {
-
-        }
 
         public override int AttributeCount => ScopeReaderNotNull.AttributeCount;
 
@@ -99,7 +123,7 @@ namespace IS4.MultiArchiver.Tools.Xml
 
         public override char QuoteChar {
             get {
-                if(!(GlobalReader is XmlReader reader)) return base.QuoteChar;
+                if(!(ScopeReader is XmlReader reader)) return base.QuoteChar;
                 return reader.QuoteChar;
             }
         }

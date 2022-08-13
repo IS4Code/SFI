@@ -12,7 +12,11 @@ namespace IS4.MultiArchiver.Tools.IO
     /// <see cref="IEnumerator{T}"/> of <see cref="ArraySegment{T}"/> of
     /// <see cref="Byte"/>.
     /// </summary>
-    /// <typeparam name="TException">The exception type to catch in <see cref="MoveNext"/>.</typeparam>
+    /// <typeparam name="TException">
+    /// The exception type to catch from 
+    /// <see cref="IEnumerator.MoveNext"/> during reading; use
+    /// <see cref="NoException"/> if nothing should be caught.
+    /// </typeparam>
     public class EnumeratorStream<TException> : Stream where TException : Exception
     {
         readonly IEnumerator<ArraySegment<byte>> enumerator;
@@ -120,6 +124,10 @@ namespace IS4.MultiArchiver.Tools.IO
             throw new NotSupportedException();
         }
 
+        /// <summary>
+        /// This exception should never be thrown; instead its use indicates that no
+        /// exceptions should be caught in <see cref="MoveNext"/>.
+        /// </summary>
         public abstract class NoException : Exception
         {
             private NoException()

@@ -332,7 +332,7 @@ namespace IS4.MultiArchiver.Services
         /// by <paramref name="graph"/>.
         /// </summary>
         /// <param name="graph">The graph to use for storing the description of the resource.</param>
-        /// <returns>A new version of the node.</returns>
+        /// <returns>A new version of the node, or null if the graph is disabled.</returns>
         ILinkedNode In(GraphUri graph);
 
         /// <summary>
@@ -342,7 +342,7 @@ namespace IS4.MultiArchiver.Services
         /// <typeparam name="TGraph">The type of <paramref name="value"/>.</typeparam>
         /// <param name="graphFormatter">The formatter to use for storing the description of the resource.</param>
         /// <param name="value">The value to format using <paramref name="graphFormatter"/>.</param>
-        /// <returns>A new version of the node.</returns>
+        /// <returns>A new version of the node, or null if the graph is disabled.</returns>
         ILinkedNode In<TGraph>(IGraphUriFormatter<TGraph> graphFormatter, TGraph value);
     }
 

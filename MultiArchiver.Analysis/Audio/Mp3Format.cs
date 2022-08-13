@@ -6,10 +6,21 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
+    /// <summary>
+    /// The MP3 audio format.
+    /// </summary>
     public class Mp3Format : BinaryFileFormat<WaveStream>
     {
         readonly Mp3FileReaderBase.FrameDecompressorBuilder frameDecompressorBuilder;
 
+        /// <summary>
+        /// Creates a new instance of the format.
+        /// </summary>
+        /// <param name="frameDecompressorBuilder">
+        /// The instance of <see cref="Mp3FileReaderBase.FrameDecompressorBuilder"/> to
+        /// use during decompression by the internal
+        /// <see cref="Mp3FileReaderBase.Mp3FileReaderBase(Stream, Mp3FileReaderBase.FrameDecompressorBuilder)"/>.
+        /// </param>
         public Mp3Format(Mp3FileReaderBase.FrameDecompressorBuilder frameDecompressorBuilder) : base(0, "audio/mpeg", "mp3")
         {
             this.frameDecompressorBuilder = frameDecompressorBuilder;

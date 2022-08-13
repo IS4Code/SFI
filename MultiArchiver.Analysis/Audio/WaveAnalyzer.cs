@@ -10,12 +10,21 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
+    /// <summary>
+    /// An analyzer of audio as instances of <see cref="WaveStream"/>.
+    /// </summary>
     public class WaveAnalyzer : MediaObjectAnalyzer<WaveStream>
     {
         readonly PolarSpectrumGenerator generator = new PolarSpectrumGenerator(512, 512);
 
+        /// <summary>
+        /// Whether to produce spectrograms from the audio.
+        /// </summary>
         public bool CreateSpectrum { get; set; } = true;
 
+        /// <summary>
+        /// Creates a new instance of the analyzer.
+        /// </summary>
         public WaveAnalyzer() : base(Common.AudioClasses)
         {
 

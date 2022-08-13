@@ -8,13 +8,32 @@ using System.Numerics;
 
 namespace IS4.MultiArchiver.Analysis.Audio
 {
+    /// <summary>
+    /// Generates polar spectrum images.
+    /// </summary>
     public class PolarSpectrumGenerator
     {
+        /// <summary>
+        /// The width of the image.
+        /// </summary>
         public int Width { get; }
+
+        /// <summary>
+        /// The height of the image.
+        /// </summary>
         public int Height { get; }
 
+        /// <summary>
+        /// Whether <see cref="MathNet.Numerics.IntegralTransforms.Fourier.Inverse2D(Complex[], int, int, MathNet.Numerics.IntegralTransforms.FourierOptions)"/>
+        /// is supported and therefore this class could be used.
+        /// </summary>
         public static bool IsSupported { get; } = true;
 
+        /// <summary>
+        /// Creates a new instance of the generator.
+        /// </summary>
+        /// <param name="width">The value of <see cref="Width"/>.</param>
+        /// <param name="height">The value of <see cref="Height"/>.</param>
         public PolarSpectrumGenerator(int width, int height)
         {
             Width = width;
@@ -32,6 +51,18 @@ namespace IS4.MultiArchiver.Analysis.Audio
             }
         }
 
+        /// <summary>
+        /// Computes a polar spectrogram from an audio provider.
+        /// </summary>
+        /// <param name="sampleRate">The sample rate of the audio.</param>
+        /// <param name="channels">The number of channels in the audio.</param>
+        /// <param name="provider">The audio sample provider.</param>
+        /// <returns>
+        /// An array of <see cref="Complex"/> arrays for each channel in the audio.
+        /// Each spectrum is formed by applying the inverse Fourier transformation on
+        /// the polar coordinate conversion (via <see cref="CreatePolarMatrix(ChannelSpectrum{Complex})"/>)
+        /// of each spectrogram.
+        /// </returns>
         public Complex[][] CreateSpectrum(int sampleRate, int channels, ISampleProvider provider)
         {
             var gen = new AudioSpectrumSingle(sampleRate, channels, 2048, 1536, maxFreq: 4000);
@@ -58,6 +89,13 @@ namespace IS4.MultiArchiver.Analysis.Audio
             return result;
         }
 
+        /// <summary>
+        /// Creates a new instance of <see cref="Bitmap"/> as a visualisation
+        /// of two <see cref="Complex"/> arrays for each stereo audio channel.
+        /// </summary>
+        /// <param name="m1">The left channel.</param>
+        /// <param name="m2">The right channel.</param>
+        /// <returns>A bitmap combining the left and right channel</returns>
         public unsafe Bitmap DrawStereo(Complex[] m1, Complex[] m2)
         {
             var bmp = new Bitmap(Width, Height, PixelFormat.Format32bppArgb);
@@ -81,6 +119,12 @@ namespace IS4.MultiArchiver.Analysis.Audio
             return bmp;
         }
 
+        /// <summary>
+        /// Creates a new instance of <see cref="Bitmap"/> as a visualisation of
+        /// the <see cref="Complex"/> array.
+        /// </summary>
+        /// <param name="m">The array to draw.</param>
+        /// <returns>A bitmap created from <paramref name="m"/>.</returns>
         public unsafe Bitmap DrawMono(Complex[] m)
         {
             var bmp = new Bitmap(Width, Height, PixelFormat.Format32bppArgb);
@@ -109,6 +153,16 @@ namespace IS4.MultiArchiver.Analysis.Audio
             return (int)Math.Round(Math.Min(Math.Max(pt, 0), 255));
         }
 
+        /// <summary>
+        /// Produces an array of <see cref="Complex"/> values representing a spectrogram
+        /// transformed from cartesian to polar coordinates.
+        /// </summary>
+        /// <param name="spectrum">The spectrum to transform.</param>
+        /// <returns>
+        /// An array of <see cref="Width"/>×<see cref="Height"/> <see cref="Complex"/>
+        /// values taken from <paramref name="spectrum"/>, with the lower frequencies
+        /// closer to the center and higher frequencies further from the center.
+        /// </returns>
         public Complex[] CreatePolarMatrix(ChannelSpectrum<Complex> spectrum)
         {
             var matrix = new Complex[Width * Height];

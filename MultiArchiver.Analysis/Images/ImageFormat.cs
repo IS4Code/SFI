@@ -8,8 +8,14 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
+    /// <summary>
+    /// An image format, producing instances of <see cref="Image"/>.
+    /// </summary>
     public class ImageFormat : BinaryFileFormat<Image>
     {
+        /// <summary>
+        /// Creates a new instance of the format.
+        /// </summary>
         public ImageFormat() : base(0, null, null)
         {
 

@@ -5,6 +5,12 @@ namespace IS4.MultiArchiver.Tools.Xml
 {
     public static class XmlExtensions
     {
+        /// <summary>
+        /// Asynchronously initializes an instance of <see cref="XmlDocument"/>
+        /// from an XML reader, similarly to <see cref="XmlDocument.Load(XmlReader)"/>.
+        /// </summary>
+        /// <param name="document">The XML document instance to use.</param>
+        /// <param name="reader">The XML reader to read the data from.</param>
         public static async Task LoadAsync(this XmlDocument document, XmlReader reader)
         {
             using(XmlWriter writer = document.CreateNavigator().AppendChild())

@@ -27,7 +27,7 @@ namespace IS4.MultiArchiver
         public ICollection<IContainerAnalyzerProvider> ContainerProviders { get; } = new List<IContainerAnalyzerProvider>();
 
         /// <summary>
-        /// An instace of <see cref="TextWriter"/> to use for logging.
+        /// An instance of <see cref="TextWriter"/> to use for logging.
         /// </summary>
         public TextWriter OutputLog { get; set; } = Console.Error;
 

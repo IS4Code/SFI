@@ -4,8 +4,14 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
+    /// <summary>
+    /// The OGG audio format.
+    /// </summary>
     public class OggFormat : SignatureFormat<WaveStream>
     {
+        /// <summary>
+        /// Creates a new instance of the format.
+        /// </summary>
         public OggFormat() : base("OggS", "application/ogg", "ogg")
         {
 

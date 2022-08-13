@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver
 {
+	/// <summary>
+	/// The main application for analyzing input files and producing output.
+	/// </summary>
+	/// <typeparam name="TArchiver">The type of archiver to use.</typeparam>
     public class Application<TArchiver> : CommandApplication where TArchiver : Archiver, new()
     {
         readonly IApplicationEnvironment environment;
@@ -22,6 +26,13 @@ namespace IS4.MultiArchiver
 
 		static readonly IEnumerable<string> modeNames = Enum.GetNames(typeof(Mode)).Select(n => n.ToLowerInvariant());
 
+		/// <summary>
+		/// Creates a new instance of the application from the supplied environment.
+		/// </summary>
+		/// <param name="environment">
+		/// An instance of <see cref="IApplicationEnvironment"/>
+		/// providing manipulation with the environment.
+		/// </param>
 		public Application(IApplicationEnvironment environment)
         {
             this.environment = environment;
@@ -47,6 +58,10 @@ namespace IS4.MultiArchiver
 		bool rootSpecified;
 		bool dataOnly;
 
+		/// <summary>
+		/// Runs the application with the supplied arguments.
+		/// </summary>
+		/// <param name="args">The arguments to the application.</param>
 		public async ValueTask Run(params string[] args)
         {
 			try{
@@ -63,6 +78,7 @@ namespace IS4.MultiArchiver
 				archiver.OutputLog = writer;
 				archiver.AddDefault();
 
+				// Print the available components
 				switch(mode)
 				{
 					case Mode.Analyzers:
@@ -85,6 +101,8 @@ namespace IS4.MultiArchiver
 					throw new ApplicationException("At least one input and an output must be specified!");
 				}
 
+				// Filter out the components based on arguments
+
 				FilterList(archiver.Analyzers, analyzerMatches);
 				FilterList(archiver.DataAnalyzer.DataFormats, formatMatches);
 				FilterList(archiver.XmlAnalyzer.XmlFormats, formatMatches);
@@ -95,6 +113,7 @@ namespace IS4.MultiArchiver
 
 				if(mainHash != null)
                 {
+					// Set the primary ni: hash
 					var hash = archiver.DataAnalyzer.HashAlgorithms.FirstOrDefault(h => mainHash.IsMatch(DataTools.GetUserFriendlyName(h)));
 					if(hash == null)
                     {
@@ -108,19 +127,23 @@ namespace IS4.MultiArchiver
 					archiver.OutputLog = writer = TextWriter.Null;
 				}
 
+
+				// Load the input files from the environment
 				var inputFiles = inputs.SelectMany(input => environment.GetFiles(input));
 				
 				options.Queries = queries.SelectMany(query => environment.GetFiles(query));
 
-				foreach(var analyzer in archiver.Analyzers.OfType<EntityAnalyzer>())
+				foreach(var analyzer in archiver.Analyzers.OfType<IHasFileOutput>())
                 {
 					analyzer.OutputFile += OnOutputFile;
 				}
 
+				// Open the output RDF file
 				using(var outputStream = environment.CreateFile(output, archiver.OutputMediaType))
                 {
 					if(dataOnly)
                     {
+						// The input should be treated as a byte sequence without file metadata
 						await archiver.Archive<IStreamFactory>(inputFiles, outputStream, options);
                     }else{
 						await archiver.Archive(inputFiles, outputStream, options);
@@ -135,6 +158,9 @@ namespace IS4.MultiArchiver
 			}
         }
 
+		/// <summary>
+		/// Called from an analyzer when an output file should be created.
+		/// </summary>
         private async ValueTask OnOutputFile(string name, bool isBinary, IReadOnlyDictionary<string, object> properties, Func<Stream, ValueTask> writer)
         {
 			if(properties.TryGetValue("path", out var pathObject) && pathObject is string path)
@@ -152,6 +178,9 @@ namespace IS4.MultiArchiver
             }
         }
 
+		/// <summary>
+		/// Writes a list of configurable components.
+		/// </summary>
         void PrintList<T>(string type, IEnumerable<T> values)
         {
 			bool first = true;
@@ -169,6 +198,10 @@ namespace IS4.MultiArchiver
 
 		static readonly Regex anyRegex = new Regex(".", RegexOptions.Compiled);
 
+		/// <summary>
+		/// Filters a list of configurable components, removing everything not matched
+		/// by <paramref name="matches"/>.
+		/// </summary>
 		void FilterList<T>(ICollection<T> list, ICollection<Regex> matches)
         {
 			if(matches.Count == 0)
@@ -201,11 +234,29 @@ namespace IS4.MultiArchiver
 			OutputWrapPad("This software analyzes the formats of given files and outputs RDF description of their contents.", 1);
 		}
 
+		/// <summary>
+		/// The operating mode of the application.
+		/// </summary>
 		enum Mode
 		{
+			/// <summary>
+			/// The application should describe the input files in RDF.
+			/// </summary>
 			Describe,
+
+			/// <summary>
+			/// The application should list the available formats.
+			/// </summary>
 			Formats,
+
+			/// <summary>
+			/// The application should list the available analyzers.
+			/// </summary>
 			Analyzers,
+
+			/// <summary>
+			/// The application should list the available hashes.
+			/// </summary>
 			Hashes
 		}
 
@@ -224,11 +275,6 @@ namespace IS4.MultiArchiver
 			};
 		}
 		
-		protected override void Notes()
-		{
-
-		}
-
 		protected override OperandState OnOperandFound(string operand)
 		{
 			if(mode == null)

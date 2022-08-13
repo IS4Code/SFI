@@ -1,63 +1,167 @@
 ﻿namespace IS4.MultiArchiver.Vocabulary
 {
+    using static Vocabularies.Uri;
+
+    /// <summary>
+    /// Contains common RDF classes, with vocabulary prefixes
+    /// taken from <see cref="Vocabularies.Uri"/>.
+    /// </summary>
     public static class Classes
     {
-        [Uri(Vocabularies.Uri.Schema)]
+        /// <summary>
+        /// <see cref="Schema"/>:Photograph.
+        /// </summary>
+        [Uri(Schema)]
         public static readonly ClassUri Photograph;
-        [Uri(Vocabularies.Uri.Schema)]
+
+        /// <summary>
+        /// <see cref="Schema"/>:ImageObject.
+        /// </summary>
+        [Uri(Schema)]
         public static readonly ClassUri ImageObject;
-        [Uri(Vocabularies.Uri.Schema)]
+
+        /// <summary>
+        /// <see cref="Schema"/>:AudioObject.
+        /// </summary>
+        [Uri(Schema)]
         public static readonly ClassUri AudioObject;
-        [Uri(Vocabularies.Uri.Schema)]
+
+        /// <summary>
+        /// <see cref="Schema"/>:VideoObject.
+        /// </summary>
+        [Uri(Schema)]
         public static readonly ClassUri VideoObject;
-        [Uri(Vocabularies.Uri.Schema)]
+
+        /// <summary>
+        /// <see cref="Schema"/>:MediaObject.
+        /// </summary>
+        [Uri(Schema)]
         public static readonly ClassUri MediaObject;
-        [Uri(Vocabularies.Uri.Schema)]
+
+        /// <summary>
+        /// <see cref="Schema"/>:SoftwareApplication.
+        /// </summary>
+        [Uri(Schema)]
         public static readonly ClassUri SoftwareApplication;
 
-        [Uri(Vocabularies.Uri.Cnt)]
+        /// <summary>
+        /// <see cref="Cnt"/>:ContentAsText.
+        /// </summary>
+        [Uri(Cnt)]
         public static readonly ClassUri ContentAsText;
-        [Uri(Vocabularies.Uri.Cnt)]
+
+        /// <summary>
+        /// <see cref="Cnt"/>:ContentAsBase64.
+        /// </summary>
+        [Uri(Cnt)]
         public static readonly ClassUri ContentAsBase64;
-        [Uri(Vocabularies.Uri.Cnt)]
+
+        /// <summary>
+        /// <see cref="Cnt"/>:ContentAsXML.
+        /// </summary>
+        [Uri(Cnt)]
         public static readonly ClassUri ContentAsXML;
-        [Uri(Vocabularies.Uri.Cnt)]
+
+        /// <summary>
+        /// <see cref="Cnt"/>:DoctypeDecl.
+        /// </summary>
+        [Uri(Cnt)]
         public static readonly ClassUri DoctypeDecl;
 
-        [Uri(Vocabularies.Uri.Nfo)]
+        /// <summary>
+        /// <see cref="Nfo"/>:ArchiveItem.
+        /// </summary>
+        [Uri(Nfo)]
         public static readonly ClassUri ArchiveItem;
-        [Uri(Vocabularies.Uri.Nfo)]
+
+        /// <summary>
+        /// <see cref="Nfo"/>:Archive.
+        /// </summary>
+        [Uri(Nfo)]
         public static readonly ClassUri Archive;
-        [Uri(Vocabularies.Uri.Nfo)]
+
+        /// <summary>
+        /// <see cref="Nfo"/>:FileDataObject.
+        /// </summary>
+        [Uri(Nfo)]
         public static readonly ClassUri FileDataObject;
-        [Uri(Vocabularies.Uri.Nfo)]
+
+        /// <summary>
+        /// <see cref="Nfo"/>:FilesystemImage.
+        /// </summary>
+        [Uri(Nfo)]
         public static readonly ClassUri FilesystemImage;
-        [Uri(Vocabularies.Uri.Nfo)]
+
+        /// <summary>
+        /// <see cref="Nfo"/>:Folder.
+        /// </summary>
+        [Uri(Nfo)]
         public static readonly ClassUri Folder;
-        [Uri(Vocabularies.Uri.Nfo)]
+
+        /// <summary>
+        /// <see cref="Nfo"/>:Executable.
+        /// </summary>
+        [Uri(Nfo)]
         public static readonly ClassUri Executable;
-        [Uri(Vocabularies.Uri.Nfo)]
+
+        /// <summary>
+        /// <see cref="Nfo"/>:Audio.
+        /// </summary>
+        [Uri(Nfo)]
         public static readonly ClassUri Audio;
-        [Uri(Vocabularies.Uri.Nfo)]
+
+        /// <summary>
+        /// <see cref="Nfo"/>:Image.
+        /// </summary>
+        [Uri(Nfo)]
         public static readonly ClassUri Image;
-        [Uri(Vocabularies.Uri.Nfo)]
+
+        /// <summary>
+        /// <see cref="Nfo"/>:Video.
+        /// </summary>
+        [Uri(Nfo)]
         public static readonly ClassUri Video;
-        [Uri(Vocabularies.Uri.Nfo)]
+
+        /// <summary>
+        /// <see cref="Nfo"/>:MediaStream.
+        /// </summary>
+        [Uri(Nfo)]
         public static readonly ClassUri MediaStream;
-        [Uri(Vocabularies.Uri.Nfo)]
+
+        /// <summary>
+        /// <see cref="Nfo"/>:EmbeddedFileDataObject.
+        /// </summary>
+        [Uri(Nfo)]
         public static readonly ClassUri EmbeddedFileDataObject;
-        [Uri(Vocabularies.Uri.Nid3)]
+
+        /// <summary>
+        /// <see cref="Nid3"/>:ID3Audio.
+        /// </summary>
+        [Uri(Nid3)]
         public static readonly ClassUri ID3Audio;
 
-        [Uri(Vocabularies.Uri.Xis)]
+        /// <summary>
+        /// <see cref="Xis"/>:Document.
+        /// </summary>
+        [Uri(Xis)]
         public static readonly ClassUri Document;
-        [Uri(Vocabularies.Uri.Xis)]
+
+        /// <summary>
+        /// <see cref="Xis"/>:Element.
+        /// </summary>
+        [Uri(Xis)]
         public static readonly ClassUri Element;
 
-        [Uri(Vocabularies.Uri.Sec)]
+        /// <summary>
+        /// <see cref="Sec"/>:Digest.
+        /// </summary>
+        [Uri(Sec)]
         public static readonly ClassUri Digest;
 
-        [Uri(Vocabularies.Uri.Cert)]
+        /// <summary>
+        /// <see cref="Cert"/>:X509Certificate.
+        /// </summary>
+        [Uri(Cert)]
         public static readonly ClassUri X509Certificate;
 
         static Classes()

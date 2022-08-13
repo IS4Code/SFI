@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
+    /// <summary>
+    /// Represents an audio format backed by the WASAPI layer.
+    /// </summary>
     public class WasapiFormat : BinaryFileFormat<WaveStream>
     {
         static readonly MediaFoundationReader.MediaFoundationReaderSettings settings = new MediaFoundationReader.MediaFoundationReaderSettings
@@ -42,7 +45,11 @@ namespace IS4.MultiArchiver.Formats
             return GuidTypes.TryGetValue((value as CustomStreamMediaFoundationReader)?.SubType ?? default, out var info)
                 ? info.type : null;
         }
-
+        
+        /// <summary>
+        /// Craetes a new instance of the format.
+        /// </summary>
+        /// <param name="allowMp3">Whether to allow the MP3 format to be recognized.</param>
         public WasapiFormat(bool allowMp3) : base(allowMp3 ? 4 : 0, null, null)
         {
             this.allowMp3 = allowMp3;

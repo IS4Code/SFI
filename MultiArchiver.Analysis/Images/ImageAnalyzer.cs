@@ -15,15 +15,32 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
+    /// <summary>
+    /// An analyzer of images as instances of <see cref="Image"/>.
+    /// </summary>
     public class ImageAnalyzer : MediaObjectAnalyzer<Image>
     {
+        /// <summary>
+        /// A collection of <see cref="Image"/>-based hash algorithms that produce
+        /// hashes from the low-detail form of the image.
+        /// </summary>
         public ICollection<IObjectHashAlgorithm<Image>> LowFrequencyImageHashAlgorithms { get; } = new List<IObjectHashAlgorithm<Image>>();
+
+        /// <summary>
+        /// A collection of byte-based hash algorithms producing hashes
+        /// from the individual pixels of the image.
+        /// </summary>
         public ICollection<IDataHashAlgorithm> DataHashAlgorithms { get; } = new List<IDataHashAlgorithm>();
 
+        /// <summary>
+        /// Creates a new instance of the analyzer.
+        /// </summary>
         public ImageAnalyzer() : base(Common.ImageClasses)
         {
 
         }
+
+        static readonly ImageTag DefaultTag = new ImageTag();
 
         public override async ValueTask<AnalysisResult> Analyze(Image image, AnalysisContext context, IEntityAnalyzers analyzers)
         {
@@ -125,7 +142,5 @@ namespace IS4.MultiArchiver.Analyzers
 
             return new AnalysisResult(node);
         }
-
-        static readonly ImageTag DefaultTag = new ImageTag();
     }
 }

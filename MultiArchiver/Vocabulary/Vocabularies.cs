@@ -5,13 +5,35 @@ using System.Linq;
 
 namespace IS4.MultiArchiver.Vocabulary
 {
+    /// <summary>
+    /// Contains common RDF vocabularies.
+    /// </summary>
     public static class Vocabularies
     {
+        /// <summary>
+        /// The vocabulary storing hash-identified objects identified
+        /// using <see cref="AdHashedContentUriFormatter"/>.
+        /// </summary>
         public static readonly IIndividualUriFormatter<string> Ad = new VocabularyUri(Uri.Ad);
+
+        /// <summary>
+        /// The vocabulary of all local file: URIs.
+        /// </summary>
         public static readonly IIndividualUriFormatter<string> File = new VocabularyUri(Uri.File);
+
+        /// <summary>
+        /// The vocabulary for MIME types from uri4uri.
+        /// </summary>
         public static readonly IIndividualUriFormatter<string> Urim = new VocabularyUri(Uri.Urim);
+
+        /// <summary>
+        /// The vocabulary for suffixes/file extensions from uri4uri.
+        /// </summary>
         public static readonly IIndividualUriFormatter<string> Uris = new VocabularyUri(Uri.Uris);
 
+        /// <summary>
+        /// Stores raw URIs of all used vocabularies.
+        /// </summary>
         public static class Uri
         {
             public const string Rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
@@ -43,6 +65,9 @@ namespace IS4.MultiArchiver.Vocabulary
             public const string Ad = "http://archive.data.is4.site/data/";
         }
 
+        /// <summary>
+        /// Contains a collection of all URIs from <see cref="Uri"/> and their common prefix.
+        /// </summary>
         public static readonly IReadOnlyCollection<KeyValuePair<System.Uri, string>> Prefixes =
             typeof(Uri).GetFields()
             .Where(f => f.IsLiteral)

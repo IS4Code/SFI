@@ -9,8 +9,15 @@ using System.Xml;
 
 namespace IS4.MultiArchiver.Tools.Xml
 {
+    /// <summary>
+    /// Provides support for reading XML data from a channel of
+    /// snapshots as instances of <see cref="XmlReaderState"/>.
+    /// </summary>
     public class ChannelXmlReader : DelegatingXmlReader, IEnumerator<XmlReaderState>
     {
+        /// <summary>
+        /// The reader serving as the prototype when reading has not yet started.
+        /// </summary>
         static readonly XmlReader InitialPrototype = XmlReader.Create(new StringReader(""));
 
         readonly XmlReader globalReader;
@@ -25,12 +32,43 @@ namespace IS4.MultiArchiver.Tools.Xml
         protected override XmlReader ActiveReader => null;
         protected override XmlReader PassiveReader => ScopeReader;
 
+        /// <summary>
+        /// Creates a new instance of the XML reader from the given channel reader.
+        /// </summary>
+        /// <param name="channel">The channel to read the XML states from.</param>
+        /// <param name="reader">The reader to use for properties about the document.</param>
         public ChannelXmlReader(ChannelReader<XmlReaderState> channel, XmlReader reader = null)
         {
             this.channel = channel ?? throw new ArgumentNullException(nameof(channel));
             globalReader = reader;
         }
 
+        /// <summary>
+        /// Creates a new channel and retrieve its XML reader and writer.
+        /// The channel is created with the following settings:
+        /// <list type="bullet">
+        /// <item>
+        ///     <term><see cref="ChannelOptions.AllowSynchronousContinuations"/></term>
+        ///     <description>true</description>
+        /// </item>
+        /// <item>
+        ///     <term><see cref="ChannelOptions.SingleReader"/></term>
+        ///     <description>true</description>
+        /// </item>
+        /// <item>
+        ///     <term><see cref="ChannelOptions.SingleWriter"/></term>
+        ///     <description>true</description>
+        /// </item>
+        /// <item>
+        ///     <term><see cref="BoundedChannelOptions.FullMode"/> (if <paramref name="capacity"/> is provided)</term>
+        ///     <description><see cref="BoundedChannelFullMode.Wait"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="reader">The reader to use for properties about the document.</param>
+        /// <param name="writer">The variable to receive the writer for the created channel.</param>
+        /// <param name="capacity">The capacity of the channel, if it should be bounded.</param>
+        /// <returns>The XML reader using the created channel.</returns>
         public static ChannelXmlReader Create(XmlReader reader, out ChannelWriter<XmlReaderState> writer, int? capacity = null)
         {
             var ch = capacity is int i ? Channel.CreateBounded<XmlReaderState>(new BoundedChannelOptions(i)

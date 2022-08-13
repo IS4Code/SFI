@@ -1,37 +1,95 @@
 ﻿namespace IS4.MultiArchiver.Vocabulary
 {
+    using static Vocabularies.Uri;
+
+    /// <summary>
+    /// Contains common RDF datatypes, with vocabulary prefixes
+    /// taken from <see cref="Vocabularies.Uri"/>.
+    /// </summary>
     public static class Datatypes
     {
-        [Uri(Vocabularies.Uri.Rdf, "XMLLiteral")]
+        /// <summary>
+        /// <see cref="Rdf"/>:XMLLiteral.
+        /// </summary>
+        [Uri(Rdf, "XMLLiteral")]
         public static readonly DatatypeUri XmlLiteral;
-        [Uri(Vocabularies.Uri.Rdf, "HTML")]
+
+        /// <summary>
+        /// <see cref="Rdf"/>:HTML.
+        /// </summary>
+        [Uri(Rdf, "HTML")]
         public static readonly DatatypeUri Html;
-        [Uri(Vocabularies.Uri.Rdf, "JSON")]
+
+        /// <summary>
+        /// <see cref="Rdf"/>:JSON.
+        /// </summary>
+        [Uri(Rdf, "JSON")]
         public static readonly DatatypeUri Json;
 
-        [Uri(Vocabularies.Uri.Xsd, "anyURI")]
+        /// <summary>
+        /// <see cref="Xsd"/>:anyURI.
+        /// </summary>
+        [Uri(Xsd, "anyURI")]
         public static readonly DatatypeUri AnyUri;
-        [Uri(Vocabularies.Uri.Xsd)]
+
+        /// <summary>
+        /// <see cref="Xsd"/>:hexBinary.
+        /// </summary>
+        [Uri(Xsd)]
         public static readonly DatatypeUri HexBinary;
-        [Uri(Vocabularies.Uri.Xsd)]
+
+        /// <summary>
+        /// <see cref="Xsd"/>:base64Binary.
+        /// </summary>
+        [Uri(Xsd)]
         public static readonly DatatypeUri Base64Binary;
-        [Uri(Vocabularies.Uri.Xsd)]
+
+        /// <summary>
+        /// <see cref="Xsd"/>:integer.
+        /// </summary>
+        [Uri(Xsd)]
         public static readonly DatatypeUri Integer;
-        [Uri(Vocabularies.Uri.Xsd)]
+
+        /// <summary>
+        /// <see cref="Xsd"/>:string.
+        /// </summary>
+        [Uri(Xsd)]
         public static readonly DatatypeUri String;
-        [Uri(Vocabularies.Uri.Xsd)]
+
+        /// <summary>
+        /// <see cref="Xsd"/>:dateTime.
+        /// </summary>
+        [Uri(Xsd)]
         public static readonly DatatypeUri DateTime;
 
-        [Uri(Vocabularies.Uri.Owl)]
+        /// <summary>
+        /// <see cref="Owl"/>:rational.
+        /// </summary>
+        [Uri(Owl)]
         public static readonly DatatypeUri Rational;
 
-        [Uri(Vocabularies.Uri.Dt)]
+        /// <summary>
+        /// <see cref="dt"/>:byte.
+        /// </summary>
+        [Uri(Dt)]
         public static readonly DatatypeUri Byte;
-        [Uri(Vocabularies.Uri.Dt)]
+
+        /// <summary>
+        /// <see cref="dt"/>:hertz.
+        /// </summary>
+        [Uri(Dt)]
         public static readonly DatatypeUri Hertz;
-        [Uri(Vocabularies.Uri.Dt)]
+
+        /// <summary>
+        /// <see cref="dt"/>:bitPerSecond.
+        /// </summary>
+        [Uri(Dt)]
         public static readonly DatatypeUri BitPerSecond;
-        [Uri(Vocabularies.Uri.Dt)]
+
+        /// <summary>
+        /// <see cref="dt"/>:kilobitPerSecond.
+        /// </summary>
+        [Uri(Dt)]
         public static readonly DatatypeUri KilobitPerSecond;
 
         static Datatypes()

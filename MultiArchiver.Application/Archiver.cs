@@ -18,14 +18,40 @@ using VDS.RDF.Writing.Formatting;
 
 namespace IS4.MultiArchiver
 {
+    /// <summary>
+    /// Provides the support for describing input files
+    /// and configuring analyzer components.
+    /// </summary>
     public abstract class Archiver : EntityAnalyzerProvider
     {
+        /// <summary>
+        /// The default file analyzer.
+        /// </summary>
         public FileAnalyzer FileAnalyzer { get; }
+
+        /// <summary>
+        /// The default data analyzer.
+        /// </summary>
         public DataAnalyzer DataAnalyzer { get; }
+
+        /// <summary>
+        /// The default <see cref="IDataObject"/> analyzer.
+        /// </summary>
         public DataObjectAnalyzer DataObjectAnalyzer { get; }
+
+        /// <summary>
+        /// The default XML analyzer.
+        /// </summary>
         public XmlAnalyzer XmlAnalyzer { get; }
+
+        /// <summary>
+        /// The BitTorrent Info-hash algorithm.
+        /// </summary>
         public BitTorrentHash BitTorrentHash { get; }
-        
+
+        /// <summary>
+        /// An instance of <see cref="TextWriter"/> to use for logging.
+        /// </summary>
         public new TextWriter OutputLog {
             get {
                 return base.OutputLog;
@@ -36,10 +62,21 @@ namespace IS4.MultiArchiver
             }
         }
 
+        /// <summary>
+        /// The media type assigned to the output RDF file.
+        /// </summary>
         public virtual string OutputMediaType => "text/turtle;charset=utf-8";
 
+        /// <summary>
+        /// Provides the collection of data hash algorithms used by the
+        /// default image analyzer, if there is any.
+        /// </summary>
         public virtual ICollection<IDataHashAlgorithm> ImageDataHashAlgorithms => Array.Empty<IDataHashAlgorithm>();
 
+        /// <summary>
+        /// Creates a new instance of the archiver and adds several
+        /// default analyzers.
+        /// </summary>
         public Archiver()
         {
             Analyzers.Add(FileAnalyzer = new FileAnalyzer());
@@ -78,6 +115,9 @@ namespace IS4.MultiArchiver
             FileAnalyzer.HashAlgorithms.Add(BitTorrentHash = new BitTorrentHash());
         }
 
+        /// <summary>
+        /// Adds the default formats and analyzers.
+        /// </summary>
         public virtual void AddDefault()
         {
             DataAnalyzer.DataFormats.Add(new XmlFileFormat());
@@ -92,9 +132,16 @@ namespace IS4.MultiArchiver
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
+            // Not desirable due to EncodedUri and similar; vocabulary URIs are cached anyway
             Options.InternUris = false;
         }
 
+        /// <summary>
+        /// Describes a file on the local drive.
+        /// </summary>
+        /// <param name="file">The input file to describe.</param>
+        /// <param name="output">The output file where to store the RDF description.</param>
+        /// <param name="options">Additional options.</param>
         public ValueTask Archive(string file, string output, ArchiverOptions options)
         {
             if((File.GetAttributes(file) & FileAttributes.Directory) != 0)
@@ -105,30 +152,66 @@ namespace IS4.MultiArchiver
             }
         }
 
+        /// <summary>
+        /// Describes an entity.
+        /// </summary>
+        /// <typeparam name="T">The type of <paramref name="entity"/>.</typeparam>
+        /// <param name="entity">The entity to describe.</param>
+        /// <param name="output">The output file where to store the RDF description.</param>
+        /// <param name="options">Additional options.</param>
         public ValueTask Archive<T>(T entity, string output, ArchiverOptions options) where T : class
         {
             return Archive(new[] { entity }, () => new FileStream(output, FileMode.Create, FileAccess.Write, FileShare.Read), options);
         }
 
+        /// <summary>
+        /// Describes an entity.
+        /// </summary>
+        /// <typeparam name="T">The type of <paramref name="entity"/>.</typeparam>
+        /// <param name="entity">The entity to describe.</param>
+        /// <param name="output">The output stream where to store the RDF description.</param>
+        /// <param name="options">Additional options.</param>
         public ValueTask Archive<T>(T entity, Stream output, ArchiverOptions options) where T : class
         {
             return Archive(new[] { entity }, () => output, options);
         }
 
+        /// <summary>
+        /// Describes a collection of entities.
+        /// </summary>
+        /// <typeparam name="T">The types of <paramref name="entities"/>.</typeparam>
+        /// <param name="entities">The entities to describe.</param>
+        /// <param name="output">The output file where to store the RDF description.</param>
+        /// <param name="options">Additional options.</param>
         public ValueTask Archive<T>(IEnumerable<T> entities, string output, ArchiverOptions options) where T : class
         {
             return Archive(entities, () => new FileStream(output, FileMode.Create, FileAccess.Write, FileShare.Read), options);
         }
 
+        /// <summary>
+        /// Describes a collection of entities.
+        /// </summary>
+        /// <typeparam name="T">The types of <paramref name="entities"/>.</typeparam>
+        /// <param name="entities">The entities to describe.</param>
+        /// <param name="output">The output stream where to store the RDF description.</param>
+        /// <param name="options">Additional options.</param>
         public ValueTask Archive<T>(IEnumerable<T> entities, Stream output, ArchiverOptions options) where T : class
         {
             return Archive(entities, () => output, options);
         }
 
+        /// <summary>
+        /// Describes a collection of entities.
+        /// </summary>
+        /// <typeparam name="T">The types of <paramref name="entities"/>.</typeparam>
+        /// <param name="entities">The entities to describe.</param>
+        /// <param name="outputFactory">A function producing the output stream where to store the RDF description.</param>
+        /// <param name="options">Additional options.</param>
         public async ValueTask Archive<T>(IEnumerable<T> entities, Func<Stream> outputFactory, ArchiverOptions options) where T : class
         {
             if(options == null) throw new ArgumentNullException(nameof(options));
 
+            // Each custom graph can have a specific handler
             var graphHandlers = new Dictionary<Uri, IRdfHandler>(new UriComparer());
 
             if(options.HideMetadata)

@@ -4,8 +4,15 @@ using System.Xml;
 
 namespace IS4.MultiArchiver.Tools.Xml
 {
+    /// <summary>
+    /// An XML reader that simulates the initial state before using another reader for the
+    /// rest of operations.
+    /// </summary>
     public class InitialXmlReader : DelegatingXmlReader
     {
+        /// <summary>
+        /// The reader serving as the prototype when reading has not yet started.
+        /// </summary>
         static readonly XmlReader InitialPrototype = XmlReader.Create(new StringReader(""));
 
         bool started;
@@ -25,6 +32,10 @@ namespace IS4.MultiArchiver.Tools.Xml
 
         protected override XmlReader PassiveReader => GlobalReader;
 
+        /// <summary>
+        /// Creates a new instance of the reader.
+        /// </summary>
+        /// <param name="reader">The underlying reader to use after one call to <see cref="Read"/>.</param>
         public InitialXmlReader(XmlReader reader)
         {
             GlobalReader = reader;

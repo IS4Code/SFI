@@ -6,18 +6,39 @@ using System.Reflection;
 
 namespace IS4.MultiArchiver
 {
+	/// <summary>
+	/// An abstract command-based application.
+	/// </summary>
     public abstract class CommandApplication
 	{
+		/// <summary>
+		/// The assembly of the current program.
+		/// </summary>
 		protected Assembly Assembly => Assembly.GetExecutingAssembly();
 
+		/// <summary>
+		/// The name of the application.
+		/// </summary>
 		protected virtual string ApplicationName => Assembly.GetName().Name;
 
+		/// <summary>
+		/// The name of the executable.
+		/// </summary>
 		protected virtual string ExecutableName => Path.GetFileNameWithoutExtension(Assembly.Location);
 
+		/// <summary>
+		/// The writer to use for writing messages for the user.
+		/// </summary>
 		protected abstract TextWriter LogWriter { get; }
 
+		/// <summary>
+		/// The expected window width.
+		/// </summary>
 		protected abstract int WindowWidth { get; }
 
+		/// <summary>
+		/// Writes a short text about the application.
+		/// </summary>
 		public virtual void Banner()
 		{
 			var asm = Assembly;
@@ -47,6 +68,9 @@ namespace IS4.MultiArchiver
 			LogWriter.WriteLine(msg);
 		}
 		
+		/// <summary>
+		/// Writes the description of the application.
+		/// </summary>
 		public virtual void Description()
 		{
 			foreach(AssemblyDescriptionAttribute desc in Assembly.GetCustomAttributes(typeof(AssemblyDescriptionAttribute), false))
@@ -55,17 +79,31 @@ namespace IS4.MultiArchiver
 			}
 		}
 		
+		/// <summary>
+		/// Returns the list of available options, for example
+		/// as <see cref="OptionInfoCollection"/>.
+		/// </summary>
+		/// <returns>The list of options available to use.</returns>
 		public virtual IList<OptionInfo> GetOptions()
 		{
 			return new OptionInfoCollection();
 		}
 		
+		/// <summary>
+		/// The command usage of the application.
+		/// </summary>
 		protected virtual string Usage{
 			get{
 				return "";
 			}
 		}
-		
+
+		/// <summary>
+		/// Writes the help screen and terminates the application.
+		/// </summary>
+		/// <exception cref="ApplicationExitException">
+		/// Thrown at the end of the method.
+		/// </exception>
 		protected void Help()
 		{
 			Banner();
@@ -92,16 +130,32 @@ namespace IS4.MultiArchiver
 			throw new ApplicationExitException();
 		}
 		
+		/// <summary>
+		/// Writes additional notes about the application or its usage.
+		/// </summary>
 		protected virtual void Notes()
 		{
 			
 		}
 		
-		public void OutputWrapPad(string text, int padLeft)
+		/// <summary>
+		/// Writes text to the output, padded by <paramref name="pad"/> spaces
+		/// from both sides of the window, wrapping it if necessary.
+		/// </summary>
+		/// <param name="text">The text to write.</param>
+		/// <param name="pad">The number of spaces to pad with.</param>
+		public void OutputWrapPad(string text, int pad)
 		{
-			OutputWrapPad(text, padLeft, WindowWidth - padLeft);
+			OutputWrapPad(text, pad, WindowWidth - pad);
 		}
-		
+
+		/// <summary>
+		/// Writes text to the output, padded by <paramref name="padLeft"/> spaces
+		/// from both sides of the window, wrapping it if necessary.
+		/// </summary>
+		/// <param name="text">The text to write.</param>
+		/// <param name="padLeft">The number of spaces to pad with.</param>
+		/// <param name="textWidth">The maximum characters allowed on a line.</param>
 		public void OutputWrapPad(string text, int padLeft, int textWidth)
 		{
 			int totalLength = 0;
@@ -132,36 +186,93 @@ namespace IS4.MultiArchiver
 			}
 		}
 		
+		/// <summary>
+		/// Produces a log message with the application name.
+		/// </summary>
+		/// <param name="message">The text of the message.</param>
 		public void Log(string message)
 		{
 			LogWriter.WriteLine("[{0}] {1}", ApplicationName, message);
 		}
 		
+		/// <summary>
+		/// Called internally from <see cref="Parse(string[])"/> when
+		/// an option is found.
+		/// </summary>
+		/// <param name="option">The name of the option, without any delimiter characters.</param>
+		/// <returns>
+		/// One of the values of <see cref="OptionArgument"/> specifying
+		/// the argument handling for this option.
+		/// </returns>
 		protected abstract OptionArgument OnOptionFound(string option);
+
+		/// <summary>
+		/// Called internally from <see cref="Parse(string[])"/> when
+		/// an argument for an option is found.
+		/// </summary>
+		/// <param name="option">The name of the option, without any delimiter characters.</param>
+		/// <param name="argument">The argument of the option.</param>
 		protected abstract void OnOptionArgumentFound(string option, string argument);
+
+		/// <summary>
+		/// Called internally from <see cref="Parse(string[])"/> when
+		/// the command's operand is found.
+		/// </summary>
+		/// <param name="operand">The value of the operand.</param>
+		/// <returns>
+		/// One of the values of <see cref="OperandState"/> specifying
+		/// the state of the parser after this operand.
+		/// </returns>
 		protected abstract OperandState OnOperandFound(string operand);
-		
+
+		/// <summary>
+		/// Called internally from <see cref="Parse(string[])"/> when
+		/// a short option is found. The default implementation
+		/// calls <see cref="OnOptionFound(string)"/>.
+		/// </summary>
+		/// <param name="option">The name of the option, without any delimiter characters.</param>
+		/// <returns>
+		/// One of the values of <see cref="OptionArgument"/> specifying
+		/// the argument handling for this option.
+		/// </returns>
 		protected virtual OptionArgument OnShortOptionFound(char option)
 		{
 			return OnOptionFound(option.ToString());
 		}
-		
+
+		/// <summary>
+		/// Called internally from <see cref="Parse(string[])"/> when
+		/// an argument for a short option is found. The default implementation
+		/// calls <see cref="OnOptionArgumentFound(string, string)"/>.
+		/// </summary>
+		/// <param name="option">The name of the option, without any delimiter characters.</param>
+		/// <param name="argument">The argument of the option.</param>
 		protected virtual void OnShortOptionArgumentFound(char option, string argument)
 		{
 			OnOptionArgumentFound(option.ToString(), argument);
 		}
 		
-		
-		public CommandApplication()
-		{
-			
-		}
-		
+		/// <summary>
+		/// Modifies the input argument in a desirable way
+		/// before it is parsed by <see cref="Parse(string[])"/>.
+		/// </summary>
+		/// <param name="arg">The input argument.</param>
+		/// <returns>The modified value.</returns>
 		public virtual string ProcessArg(string arg)
 		{
 			return arg;
 		}
-		
+
+		/// <summary>
+		/// Parses the arguments provided to the application
+		/// and initializes it with the values specified
+		/// by the arguments.
+		/// </summary>
+		/// <param name="args"></param>
+		/// <exception cref="ApplicationExitException">
+		/// Could be thrown from one of the option or operand handler
+		/// to indicate that the application should be terminated.
+		/// </exception>
 		public void Parse(string[] args)
 		{
 			bool operands = false;
@@ -253,92 +364,199 @@ namespace IS4.MultiArchiver
 			return c == '?' || Char.IsLetter(c);
 		}
 		
+		/// <summary>
+		/// Produces an exception when an unrecognized option is found.
+		/// </summary>
+		/// <param name="option">The name of the option.</param>
+		/// <returns>The exception for this situation.</returns>
 		public ApplicationException UnrecognizedOption(char option)
 		{
 			return UnrecognizedOption(option.ToString());
 		}
-		
+
+		/// <summary>
+		/// Produces an exception when an unrecognized option is found.
+		/// </summary>
+		/// <param name="option">The name of the option.</param>
+		/// <returns>The exception for this situation.</returns>
 		public ApplicationException UnrecognizedOption(string option)
 		{
 			return new ApplicationException("Unrecognized option '"+option+"'.");
 		}
-		
+
+		/// <summary>
+		/// Produces an exception when an option should
+		/// have an argument, but none is found in the input.
+		/// </summary>
+		/// <param name="option">The name of the option.</param>
+		/// <returns>The exception for this situation.</returns>
 		public ApplicationException ArgumentExpected(char option)
 		{
 			return ArgumentExpected(option.ToString());
 		}
-		
+
+		/// <summary>
+		/// Produces an exception when an option should
+		/// have an argument, but none is found in the input.
+		/// </summary>
+		/// <param name="option">The name of the option.</param>
+		/// <returns>The exception for this situation.</returns>
 		public ApplicationException ArgumentExpected(string option)
 		{
 			return new ApplicationException("Argument expected for option '"+option+"'.");
 		}
-		
+
+		/// <summary>
+		/// Produces an exception when an option should not
+		/// have an argument, but one is assigned to it.
+		/// </summary>
+		/// <param name="option">The name of the option.</param>
+		/// <returns>The exception for this situation.</returns>
 		public ApplicationException ArgumentNotExpected(char option)
 		{
 			return ArgumentNotExpected(option.ToString());
 		}
-		
+
+		/// <summary>
+		/// Produces an exception when an option should not
+		/// have an argument, but one is assigned to it.
+		/// </summary>
+		/// <param name="option">The name of the option.</param>
+		/// <returns>The exception for this situation.</returns>
 		public ApplicationException ArgumentNotExpected(string option)
 		{
 			return new ApplicationException("Argument not expected for option '"+option+"'.");
 		}
-		
+
+		/// <summary>
+		/// Produces an exception when an option has
+		/// an argument in an invalid form.
+		/// </summary>
+		/// <param name="option">The name of the option.</param>
+		/// <param name="expected">The expected form of the argument.</param>
+		/// <returns>The exception for this situation.</returns>
 		public ApplicationException ArgumentInvalid(char option, string expected)
 		{
 			return ArgumentInvalid(option.ToString(), expected);
 		}
-		
+
+		/// <summary>
+		/// Produces an exception when an option has
+		/// an argument in an invalid form.
+		/// </summary>
+		/// <param name="option">The name of the option.</param>
+		/// <param name="expected">The expected form of the argument.</param>
+		/// <returns>The exception for this situation.</returns>
 		public ApplicationException ArgumentInvalid(string option, string expected)
 		{
 			return new ApplicationException("Invalid argument provided for option '"+option+"', "+expected+" expected.");
 		}
-		
+
+		/// <summary>
+		/// Produces an exception when an option should
+		/// be specified only once, but it was used multiple times.
+		/// </summary>
+		/// <param name="option">The name of the option.</param>
+		/// <returns>The exception for this situation.</returns>
 		public ApplicationException OptionAlreadySpecified(char option)
 		{
 			return OptionAlreadySpecified(option.ToString());
 		}
-		
+
+		/// <summary>
+		/// Produces an exception when an option should
+		/// be specified only once, but it was used multiple times.
+		/// </summary>
+		/// <param name="option">The name of the option.</param>
+		/// <returns>The exception for this situation.</returns>
 		public ApplicationException OptionAlreadySpecified(string option)
 		{
 			return new ApplicationException("Option '"+option+"' has been already specified.");
 		}
 		
+		/// <summary>
+		/// Provides a collection of instances of <see cref="OptionInfo"/>
+		/// with a convenient <see cref="Add(string, string, string, string)"/>
+		/// method.
+		/// </summary>
 		public class OptionInfoCollection : List<OptionInfo>
 		{
+			/// <summary>
+			/// Creates a new instance of the collection.
+			/// </summary>
 			public OptionInfoCollection()
 			{
 				
 			}
 			
+			/// <summary>
+			/// Creates a new instance of the collection with a given capacity.
+			/// </summary>
+			/// <param name="capacity">The capacity of the collection.</param>
 			public OptionInfoCollection(int capacity) : base(capacity)
 			{
 				
 			}
 			
+			/// <summary>
+			/// Creates a new instance of the collection from existing members.
+			/// </summary>
+			/// <param name="collection">The members of the collection.</param>
 			public OptionInfoCollection(IEnumerable<OptionInfo> collection) : base(collection)
 			{
 				
 			}
 			
+			/// <summary>
+			/// Adds a new option to the collection.
+			/// </summary>
+			/// <param name="shortName">The short name of the option.</param>
+			/// <param name="longName">The long name of the option.</param>
+			/// <param name="argument">The type of the argument for the option.</param>
+			/// <param name="description">The description of the option.</param>
 			public void Add(string shortName, string longName, string argument, string description)
 			{
 				Add(new OptionInfo(shortName, longName, argument, description));
 			}
 		}
 		
+		/// <summary>
+		/// Represents a single option.
+		/// </summary>
 		public struct OptionInfo
 		{
-			public string ShortName{get; private set;}
-			public string LongName{get; private set;}
-			public string Argument{get; private set;}
-			public string Description{get; private set;}
+			/// <summary>
+			/// The short name of the option.
+			/// </summary>
+			public string ShortName { get; }
+
+			/// <summary>
+			/// The long name of the option.
+			/// </summary>
+			public string LongName { get; }
+
+			/// <summary>
+			/// The type of the argument for the option.
+			/// </summary>
+			public string Argument { get; }
+
+			/// <summary>
+			/// The description of the option.
+			/// </summary>
+			public string Description { get; }
 			
-			public string ArgumentText{
-				get{
-					return Argument == null ? "" : Argument+" ";
-				}
-			}
-			
+			/// <summary>
+			/// A text when the argument should be displayed.
+			/// </summary>
+			public string ArgumentText => Argument == null ? "" : Argument+" ";
+
+			/// <summary>
+			/// Creates a new instance of the option.
+			/// </summary>
+			/// <param name="shortName">The value of <see cref="ShortName"/>.</param>
+			/// <param name="longName">The value of <see cref="LongName"/>.</param>
+			/// <param name="argument">The value of <see cref="Argument"/>.</param>
+			/// <param name="description">The value of <see cref="Description"/>.</param>
 			public OptionInfo(string shortName, string longName, string argument, string description) : this()
 			{
 				ShortName = shortName;
@@ -348,19 +566,50 @@ namespace IS4.MultiArchiver
 			}
 		}
 
+		/// <summary>
+		/// Thrown from within one of the methods to indicate that the
+		/// application should be terminated.
+		/// </summary>
 		public class ApplicationExitException : Exception
         {
 
         }
 	}
 	
+	/// <summary>
+	/// Specifies the argument handling for an encountered option.
+	/// </summary>
 	public enum OptionArgument
 	{
-		None, Optional, Required
+		/// <summary>
+		/// The option should not have any argument.
+		/// </summary>
+		None,
+
+		/// <summary>
+		/// The option has an optional argument.
+		/// </summary>
+		Optional,
+
+		/// <summary>
+		/// The option has a required argument.
+		/// </summary>
+		Required
 	}
 	
+	/// <summary>
+	/// Specifies the state of the parser after an operand is encountered.
+	/// </summary>
 	public enum OperandState
 	{
-		ContinueOptions, OnlyOperands
+		/// <summary>
+		/// The options may still be provided.
+		/// </summary>
+		ContinueOptions,
+		
+		/// <summary>
+		/// Only operands are accepted after this point.
+		/// </summary>
+		OnlyOperands
 	}
 }
