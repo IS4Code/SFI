@@ -37,9 +37,9 @@ namespace IS4.MultiArchiver
         public IEnumerable<IFileInfo> Queries { get; set; } = Array.Empty<IFileInfo>();
 
         /// <summary>
-        /// The root of the URI hierarchy; by default <see cref="RdfHandler.BlankUriScheme"/>.
+        /// The root of the URI hierarchy; by default <see cref="LinkedNodeHandler.BlankUriScheme"/>.
         /// </summary>
-        public string Root { get; set; } = RdfHandler.BlankUriScheme + ":";
+        public string Root { get; set; } = LinkedNodeHandler.BlankUriScheme + ":";
 
         /// <summary>
         /// The sequence of characters used for separating lines in text output.

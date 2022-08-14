@@ -327,7 +327,7 @@ namespace IS4.MultiArchiver
         private async ValueTask<AnalysisResult> AnalyzeEntity<T>(T entity, IRdfHandler rdfHandler, IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers, INamespaceMapper mapper, NodeQueryTester queryTester, ArchiverOptions options) where T : class
         {
             // The node factory/handler
-            var handler = new RdfHandler(new UriTools.PrefixFormatter(options.Root), rdfHandler, graphHandlers, queryTester);
+            var handler = new LinkedNodeHandler(new UriTools.PrefixFormatter(options.Root), rdfHandler, graphHandlers, queryTester);
             rdfHandler.StartRdf();
             foreach(var graphHandler in graphHandlers)
             {

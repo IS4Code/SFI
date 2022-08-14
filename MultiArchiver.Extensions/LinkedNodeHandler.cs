@@ -12,7 +12,7 @@ using VDS.RDF;
 
 namespace IS4.MultiArchiver.Extensions
 {
-    public class RdfHandler : VocabularyCache<IUriNode>, ILinkedNodeFactory
+    public class LinkedNodeHandler : VocabularyCache<IUriNode>, ILinkedNodeFactory
     {
         readonly IRdfHandler defaultHandler;
         readonly IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers;
@@ -31,7 +31,7 @@ namespace IS4.MultiArchiver.Extensions
         public int MaxUriLength { get; set; } = 1900 - 20; // limit for OpenLink Virtuoso
         public int UriPartShortened { get; set; } = 64;
 
-        public RdfHandler(IIndividualUriFormatter<string> root, IRdfHandler defaultHandler, IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers, NodeQueryTester queryTester)
+        public LinkedNodeHandler(IIndividualUriFormatter<string> root, IRdfHandler defaultHandler, IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers, NodeQueryTester queryTester)
             : base(defaultHandler.CreateUriNode)
         {
             this.defaultHandler = defaultHandler;
@@ -165,10 +165,10 @@ namespace IS4.MultiArchiver.Extensions
             IVocabularyCache<IndividualUri, IUriNode>, IVocabularyCache<DatatypeUri, IUriNode>,
             IVocabularyCache<GraphUri, IRdfHandler>
         {
-            public RdfHandler Parent { get; }
+            public LinkedNodeHandler Parent { get; }
             public VocabularyCache<IUriNode> Inner { get; }
 
-            public Cache(RdfHandler handler, VocabularyCache<IUriNode> cache)
+            public Cache(LinkedNodeHandler handler, VocabularyCache<IUriNode> cache)
             {
                 Parent = handler;
                 Inner = cache;
