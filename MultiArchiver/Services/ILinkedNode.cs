@@ -710,7 +710,7 @@ namespace IS4.MultiArchiver.Services
         {
             if(graphFormatter == null) throw new ArgumentNullException(nameof(graphFormatter));
             var node = CreateGraphNode(graphFormatter, value);
-            return CreateInGraph(node ?? Graph);
+            return CreateInGraph(node);
         }
 
         public bool Equals(LinkedNode<TNode, TGraphNode, TVocabularyCache> node)

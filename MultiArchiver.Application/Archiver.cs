@@ -216,7 +216,7 @@ namespace IS4.MultiArchiver
 
             if(options.HideMetadata)
             {
-                graphHandlers[new Uri(Graphs.Metadata.Value)] = new VDS.RDF.Parsing.Handlers.NullHandler();
+                graphHandlers[new Uri(Graphs.Metadata.Value)] = null;
             }
 
             graphHandlers[new Uri(Graphs.ShortenedLinks.Value)] = null;
