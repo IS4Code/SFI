@@ -12,15 +12,13 @@ namespace IS4.MultiArchiver
     /// <summary>
     /// The hash algorithm that produces urn:btih: hashes.
     /// </summary>
-    public class BitTorrentHash : FileHashAlgorithm
+    public class BitTorrentHash : FileHashAlgorithm, IHasFileOutput
     {
         public static readonly IDataHashAlgorithm HashAlgorithm = BuiltInHash.SHA1;
 
         public int BlockSize { get; set; } = 262144;
 
-        public delegate void InfoCreatedDelegate(BDictionary info, byte[] hash);
-
-        public event InfoCreatedDelegate InfoCreated;
+        public event OutputFileDelegate OutputFile;
 
         /// <summary>
         /// Creates a new instance of the algorithm.
@@ -39,7 +37,7 @@ namespace IS4.MultiArchiver
         {
             var dict = await CreateDictionary(file, true);
             var hash = await HashAlgorithm.ComputeHash(dict.EncodeAsBytes());
-            InfoCreated?.Invoke(dict, hash);
+            OnOutputFile(dict, hash);
             return hash;
         }
 
@@ -47,8 +45,18 @@ namespace IS4.MultiArchiver
         {
             var dict = await CreateDictionary(directory, content);
             var hash = await HashAlgorithm.ComputeHash(dict.EncodeAsBytes());
-            InfoCreated?.Invoke(dict, hash);
+            OnOutputFile(dict, hash);
             return hash;
+        }
+
+        protected virtual void OnOutputFile(BDictionary info, byte[] hash)
+        {
+            var name = $"{BitConverter.ToString(hash).Replace("-", "")}.torrent";
+            OutputFile?.Invoke(name, true, null, async stream => {
+                var dict = new BDictionary();
+                dict["info"] = info;
+                await dict.EncodeToAsync(stream);
+            });
         }
 
         private async Task<BDictionary> CreateDictionary(IFileNodeInfo fileNode, bool content)
