@@ -30,6 +30,10 @@ namespace IS4.MultiArchiver.Services
         /// shall describe the node by using a blank relative URI,
         /// i.e. &lt;rdf:Description rdf:about=""&gt;
         /// </param>
+        /// <exception cref="ArgumentException">
+        /// <paramref name="rdfXmlReader"/> is not positioned on an
+        /// {http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF element.
+        /// </exception>
         void Describe(XmlReader rdfXmlReader);
 
         /// <summary>

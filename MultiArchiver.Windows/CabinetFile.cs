@@ -15,6 +15,9 @@ using static Vanara.PInvoke.Cabinet;
 
 namespace IS4.MultiArchiver.Windows
 {
+    /// <summary>
+    /// Represents a Cabinet archive, manipulated using P/Invoke.
+    /// </summary>
     public sealed class CabinetFile : ICabinetArchive, IDisposable
     {
         readonly Task<ERF> fileTask;
@@ -25,6 +28,10 @@ namespace IS4.MultiArchiver.Windows
 
         Context context;
 
+        /// <summary>
+        /// Creates a new instance of Cabinet from a stream.
+        /// </summary>
+        /// <param name="stream">The stream to load from.</param>
         public CabinetFile(Stream stream)
         {
             fileTask = Task.Run(() => {
@@ -144,7 +151,7 @@ namespace IS4.MultiArchiver.Windows
             }
         }
 
-        public class FileInfo : ICabinetArchiveFile
+        class FileInfo : ICabinetArchiveFile
         {
             public string Name { get; }
             public uint Size { get; }
@@ -152,7 +159,7 @@ namespace IS4.MultiArchiver.Windows
             public FileAttributes Attributes { get; }
             public Stream Stream { get; }
 
-            internal FileInfo(ref FDINOTIFICATION pfdin, out ChannelWriter<UnmanagedMemoryRange> writer)
+            public FileInfo(ref FDINOTIFICATION pfdin, out ChannelWriter<UnmanagedMemoryRange> writer)
             {
                 bool utf8 = (pfdin.attribs & 0x80) != 0;
                 Name = utf8 ? PtrToStringUtf8((IntPtr)pfdin.psz1) : pfdin.psz1;

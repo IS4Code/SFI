@@ -4,8 +4,15 @@ using System.Text;
 
 namespace IS4.MultiArchiver.WebApp
 {
+    /// <summary>
+    /// An implementation of <see cref="TextWriter"/> which reports the written
+    /// strings via an event.
+    /// </summary>
     public class EventWriter : StringWriter
     {
+        /// <summary>
+        /// This event is fired each time text is written to the writer.
+        /// </summary>
         public event Action<StringBuilder> Written;
 
         public override void Flush()

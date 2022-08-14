@@ -11,8 +11,14 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
+    /// <summary>
+    /// Analyzer of file systems, as instances of <see cref="IFileSystem"/>.
+    /// </summary>
     public class FileSystemAnalyzer : MediaObjectAnalyzer<IFileSystem>
     {
+        /// <summary>
+        /// Creates a new instance of the analyzer.
+        /// </summary>
         public FileSystemAnalyzer() : base(Classes.FilesystemImage)
         {
 

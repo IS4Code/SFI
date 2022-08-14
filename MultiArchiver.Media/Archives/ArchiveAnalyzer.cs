@@ -8,8 +8,14 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
+    /// <summary>
+    /// Analyzes archives as instances of <see cref="IArchiveFile"/>.
+    /// </summary>
     public class ArchiveAnalyzer : MediaObjectAnalyzer<IArchiveFile>
     {
+        /// <summary>
+        /// Creates a new instance of the analyzer.
+        /// </summary>
         public ArchiveAnalyzer() : base(Common.ArchiveClasses)
         {
 

@@ -12,8 +12,14 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
+    /// <summary>
+    /// Analyzes Windows modules, as instances of <see cref="IModule"/>.
+    /// </summary>
     public class WinModuleAnalyzer : MediaObjectAnalyzer<IModule>
     {
+        /// <summary>
+        /// Creates a new instance of the module.
+        /// </summary>
         public WinModuleAnalyzer() : base(Common.ApplicationClasses)
         {
 

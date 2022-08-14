@@ -4,8 +4,12 @@ using System;
 
 namespace IS4.MultiArchiver.WebApp
 {
+    /// <summary>
+    /// The specific implementation of <see cref="Archiver"/> for the web application.
+    /// </summary>
     public class WebArchiver : Archiver
     {
+        /// <inheritdoc/>
         public WebArchiver()
         {
             DataAnalyzer.FileSizeToWriteToDisk = Int64.MaxValue;

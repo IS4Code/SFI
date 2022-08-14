@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
+    /// <summary>
+    /// An analyzer of OLE compound files as instances of <see cref="CompoundFile"/>.
+    /// </summary>
     public class OleStorageAnalyzer : MediaObjectAnalyzer<CompoundFile>
     {
         public override async ValueTask<AnalysisResult> Analyze(CompoundFile file, AnalysisContext context, IEntityAnalyzers analyzers)

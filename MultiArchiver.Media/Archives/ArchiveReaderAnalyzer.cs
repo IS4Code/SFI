@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
+    /// <summary>
+    /// Analyzes archives as instances of <see cref="IArchiveReader"/>.
+    /// </summary>
     public class ArchiveReaderAnalyzer : MediaObjectAnalyzer<IArchiveReader>
     {
+        /// <summary>
+        /// Creates a new instance of the analyzer.
+        /// </summary>
         public ArchiveReaderAnalyzer() : base(Common.ArchiveClasses)
         {
 

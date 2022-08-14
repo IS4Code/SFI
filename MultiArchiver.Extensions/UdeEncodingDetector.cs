@@ -5,15 +5,26 @@ using Ude;
 
 namespace IS4.MultiArchiver.Tools
 {
+    /// <summary>
+    /// An implementation of <see cref="IEncodingDetector"/>
+    /// using <see cref="CharsetDetector"/>.
+    /// </summary>
     public class UdeEncodingDetector : IEncodingDetector
     {
         readonly CharsetDetector detector;
 
+        /// <summary>
+        /// Creates a new instance of the detector.
+        /// </summary>
         public UdeEncodingDetector() : this(new CharsetDetector())
         {
 
         }
 
+        /// <summary>
+        /// Creates a new instance of the detector.
+        /// </summary>
+        /// <param name="detector">The inner detector to use.</param>
         public UdeEncodingDetector(CharsetDetector detector)
         {
             this.detector = detector;

@@ -4,11 +4,12 @@ using System.IO;
 
 namespace IS4.MultiArchiver.Media
 {
-    class LzExtractor
+    /// <summary>
+    /// Extracts LZEXE-compressed executables.
+    /// </summary>
+    public class LzExtractor
     {
         readonly BinaryReader ifile;
-
-        protected BinaryReader Reader => ifile;
 
         readonly byte[] ihead_buffer = new byte[0x10 * sizeof(ushort)], ohead_buffer = new byte[0x10 * sizeof(ushort)], inf_buffer = new byte[8 * sizeof(ushort)];
         readonly byte[] sigbuf = new byte[sig90.Length];
@@ -20,8 +21,15 @@ namespace IS4.MultiArchiver.Media
 
         readonly int? ver;
 
+        /// <summary>
+        /// True if the executable is valid.
+        /// </summary>
         public bool Valid => ver != null;
 
+        /// <summary>
+        /// Creates a new instance of the extractor from <see cref="BinaryReader"/>.
+        /// </summary>
+        /// <param name="reader">The object to read the data from.</param>
         public LzExtractor(BinaryReader reader)
         {
             ifile = reader;
@@ -37,6 +45,10 @@ namespace IS4.MultiArchiver.Media
         // Updated by Stian Sebastian Skjelstad (mywave82)
         // LZEXE was written by Fabrice Bellard, fabrice.bellard at free.fr.
 
+        /// <summary>
+        /// Decompresses the data into a stream.
+        /// </summary>
+        /// <returns>The stream containing the decompressed executable.</returns>
         public MemoryStream Decompress()
         {
             var stream = new MemoryStream();

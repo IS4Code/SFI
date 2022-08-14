@@ -11,6 +11,11 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
+    /// <summary>
+    /// Analyzes a Windows version resources, as an instance of <see cref="WinVersionInfo"/>
+    /// storing the VS_VERSIONINFO structure. The parsing of the structure is done
+    /// in purely managed code.
+    /// </summary>
     public class WinVersionAnalyzerManaged : EntityAnalyzer, IEntityAnalyzer<WinVersionInfo>
     {
         public ValueTask<AnalysisResult> Analyze(WinVersionInfo entity, AnalysisContext context, IEntityAnalyzers analyzers)

@@ -7,8 +7,17 @@ using System.Text.RegularExpressions;
 
 namespace IS4.MultiArchiver.Media.Data
 {
+    /// <summary>
+    /// Provides methods for reading Delphi objects.
+    /// </summary>
     public static class DelphiFormReader
     {
+        /// <summary>
+        /// Reads an instance of <see cref="DelphiObject"/> from an input stream.
+        /// </summary>
+        /// <param name="input">The input stream.</param>
+        /// <param name="encoding">The encoding for strings in the file.</param>
+        /// <returns>An instance representing the contents of the stream.</returns>
         public static DelphiObject Read(Stream input, Encoding encoding)
         {
             var reader = new BinaryReader(input, encoding);
@@ -20,17 +29,40 @@ namespace IS4.MultiArchiver.Media.Data
         }
     }
 
+    /// <summary>
+    /// Represents a Delphi object.
+    /// </summary>
     public class DelphiObject : IReadOnlyDictionary<string, object>
     {
+        /// <summary>
+        /// The name of the object.
+        /// </summary>
         public string Name { get; }
+
+        /// <summary>
+        /// The type of the object.
+        /// </summary>
         public string BaseType { get; }
 
+        /// <summary>
+        /// Stores the properties of the object.
+        /// </summary>
         public IDictionary<string, object> Properties { get; } = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
 
         static readonly Regex validIdentifier = new Regex(@"^[a-zA-Z_][a-zA-Z_0-9]*(\.[a-zA-Z_][a-zA-Z_0-9])*$", RegexOptions.Compiled);
 
         static readonly object end = new object();
 
+        /// <summary>
+        /// Creates a new instance of the object from <see cref="BinaryReader"/>.
+        /// </summary>
+        /// <param name="reader">The object to read the data from.</param>
+        /// <exception cref="ArgumentException">
+        /// The input is not a valid serialization of a Delphi object.
+        /// </exception>
+        /// <exception cref="NotSupportedException">
+        /// The input uses field types unsupported by this implementation.
+        /// </exception>
         public DelphiObject(BinaryReader reader)
         {
             string ReadString(bool validate = false)

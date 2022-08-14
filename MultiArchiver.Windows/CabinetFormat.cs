@@ -4,8 +4,14 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
+    /// <summary>
+    /// Represents the Cabinet archive format, producing instances of <see cref="CabinetFile"/>.
+    /// </summary>
     public class CabinetFormat : SignatureFormat<CabinetFile>
     {
+        /// <summary>
+        /// Creates a new instance of the format.
+        /// </summary>
         public CabinetFormat() : base("MSCF", "application/vnd.ms-cab-compressed", "cab")
         {
 

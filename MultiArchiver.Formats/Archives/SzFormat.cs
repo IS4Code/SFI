@@ -7,8 +7,14 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
+    /// <summary>
+    /// Represents the SZ archive format.
+    /// </summary>
     public class SzFormat : SignatureFormat<SzReader>
     {
+        /// <summary>
+        /// Creates a new instance of the format.
+        /// </summary>
         public SzFormat() : base(10, "SZ", null, "sz")
         {
 

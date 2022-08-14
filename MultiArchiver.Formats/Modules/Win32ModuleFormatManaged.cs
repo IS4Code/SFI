@@ -13,8 +13,14 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
+    /// <summary>
+    /// Represents the Windows PE module format, backed by <see cref="PeFile"/>.
+    /// </summary>
     public class Win32ModuleFormatManaged : WinModuleFormat
     {
+        /// <summary>
+        /// Creates a new instance of the format.
+        /// </summary>
         public Win32ModuleFormatManaged() : base("PE\0\0", "application/vnd.microsoft.portable-executable", null)
         {
 

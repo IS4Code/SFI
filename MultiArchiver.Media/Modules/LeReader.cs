@@ -5,12 +5,18 @@ using System.Text;
 
 namespace IS4.MultiArchiver.Media.Modules
 {
+    /// <summary>
+    /// Reads extended MZ modules in the LE (Linear Executable) sub-format.
+    /// </summary>
     public class LeReader : IModule
     {
         readonly Stream stream;
         readonly BinaryReader reader;
         readonly uint headerOffset;
 
+        /// <summary>
+        /// The flags in the header of the module.
+        /// </summary>
         public ushort Flags {
             get {
                 stream.Position = headerOffset + 0x0C;
@@ -26,6 +32,10 @@ namespace IS4.MultiArchiver.Media.Modules
 
         IModuleSignature IModule.Signature => null;
 
+        /// <summary>
+        /// Creates a new instance of the reader from an input stream.
+        /// </summary>
+        /// <param name="stream">The input stream.</param>
         public LeReader(Stream stream)
         {
             this.stream = stream;

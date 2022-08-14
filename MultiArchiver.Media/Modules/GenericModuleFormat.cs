@@ -8,8 +8,14 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
+    /// <summary>
+    /// Represents a general format for extended MZ modules.
+    /// </summary>
     public class GenericModuleFormat : ModuleFormat<GenericModuleFormat.Module>
     {
+        /// <summary>
+        /// Creates a new instance of the format.
+        /// </summary>
         public GenericModuleFormat() : base("", null, "exe")
         {
 
@@ -25,8 +31,15 @@ namespace IS4.MultiArchiver.Formats
             return $"application/x-msdownload;format={value.Signature.ToLowerInvariant()}";
         }
 
+        /// <summary>
+        /// An implementation of <see cref="IModule"/> storing the signature
+        /// of the extended MZ module.
+        /// </summary>
         public class Module : IModule
         {
+            /// <summary>
+            /// The signature of the module.
+            /// </summary>
             public string Signature { get; }
 
             IModuleSignature IModule.Signature => null;

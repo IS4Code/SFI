@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
+    /// <summary>
+    /// Represents the 7zip archive format.
+    /// </summary>
     public class SevenZipFormat : ArchiveFormat<SevenZipArchive>
     {
+        /// <summary>
+        /// Creates a new instance of the format.
+        /// </summary>
         public SevenZipFormat() : base("7z", "application/x-7z-compressed", "7z")
         {
 

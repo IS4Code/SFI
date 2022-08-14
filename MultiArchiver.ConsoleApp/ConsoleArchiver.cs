@@ -17,9 +17,7 @@ namespace IS4.MultiArchiver.ConsoleApp
 
         public override ICollection<IDataHashAlgorithm> ImageDataHashAlgorithms => ImageAnalyzer.DataHashAlgorithms;
 
-        /// <summary>
-        /// Creates a new instance of the archiver.
-        /// </summary>
+        /// <inheritdoc/>
         public ConsoleArchiver()
         {
             Analyzers.Add(ImageAnalyzer = new ImageAnalyzer());

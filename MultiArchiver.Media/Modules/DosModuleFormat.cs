@@ -6,8 +6,15 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
+    /// <summary>
+    /// Represents the MS-DOS MZ module format, producing instances of
+    /// <see cref="DosModuleAnalyzer.Module"/>.
+    /// </summary>
     public class DosModuleFormat : ModuleFormat<DosModuleAnalyzer.Module>
     {
+        /// <summary>
+        /// Creates a new instance of the format.
+        /// </summary>
         public DosModuleFormat() : base(null, "application/x-dosexec", "exe")
         {
 

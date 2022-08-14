@@ -10,8 +10,15 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.WebApp
 {
+    /// <summary>
+    /// The main class of the web application.
+    /// </summary>
     public class Program
     {
+        /// <summary>
+        /// The entry point of the web application.
+        /// </summary>
+        /// <param name="args">The arguments to the program.</param>
         public static async Task Main(string[] args)
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);

@@ -8,6 +8,9 @@ using TagLib;
 
 namespace IS4.MultiArchiver.Formats
 {
+    /// <summary>
+    /// Represents tagged formats, as instances of <see cref="TagLib.File"/>.
+    /// </summary>
     public class TagLibFormat : BinaryFileFormat<TagLib.File>
     {
         public TagLibFormat() : base(0, null, null)

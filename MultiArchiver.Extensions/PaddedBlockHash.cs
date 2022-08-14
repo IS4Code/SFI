@@ -6,10 +6,29 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver
 {
+    /// <summary>
+    /// Represents a chunked hash that stores a variable number of SHA-1 hashes
+    /// to use to produce BitTorrent files. The hash has a specific structure,
+    /// starting with 4 bytes storing the (int32) size of the padding
+    /// (<see cref="BitTorrentHashCache.FileInfo.Padding"/>), followed by each
+    /// block hash (<see cref="BitTorrentHashCache.FileInfo.BlockHashes"/>) and
+    /// the hash of the last block, padded and unpadded
+    /// (<see cref="BitTorrentHashCache.FileInfo.LastHashPadded"/> and
+    /// <see cref="BitTorrentHashCache.FileInfo.LastHash"/>)
+    /// </summary>
     public class PaddedBlockHash : DataHashAlgorithm
     {
+        /// <summary>
+        /// The size of the individually hashed blocks.
+        /// </summary>
         public int BlockSize { get; }
 
+        /// <summary>
+        /// Creates a new instance of the hash algorithm.
+        /// </summary>
+        /// <param name="identifier">The individual identifier of the algorithm.</param>
+        /// <param name="prefix">The URI prefix used when creating URIs of hashes.</param>
+        /// <param name="blockSize">The value of <see cref="BlockSize"/>.</param>
         public PaddedBlockHash(IndividualUri identifier, string prefix, int blockSize) : base(identifier, BitTorrentHash.HashAlgorithm.GetHashSize(blockSize), prefix, FormattingMethod.Base64)
         {
             BlockSize = blockSize;

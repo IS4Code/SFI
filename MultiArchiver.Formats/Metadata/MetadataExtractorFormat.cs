@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
+    /// <summary>
+    /// Represents a format using <see cref="FileTypeDetector.DetectFileType(Stream)"/>
+    /// to detect the format, producing instances of <see cref="FileTypeWrapper"/>.
+    /// </summary>
     public class MetadataExtractorFormat : BinaryFileFormat<MetadataExtractorFormat.FileTypeWrapper>
     {
         public MetadataExtractorFormat() : base(0, null, null)
@@ -38,10 +42,20 @@ namespace IS4.MultiArchiver.Formats
             return true;
         }
 
+        /// <summary>
+        /// Wraps a <see cref="FileType"/>
+        /// </summary>
         public class FileTypeWrapper
         {
+            /// <summary>
+            /// The recognized type of the file.
+            /// </summary>
             public FileType Value { get; }
 
+            /// <summary>
+            /// Creates a new instance of the wrapper.
+            /// </summary>
+            /// <param name="value">The value of <see cref="Value"/>.</param>
             public FileTypeWrapper(FileType value)
             {
                 Value = value;

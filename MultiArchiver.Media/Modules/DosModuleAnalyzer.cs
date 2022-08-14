@@ -9,8 +9,14 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
+    /// <summary>
+    /// An analyzer of MS-DOS modules, as instances of <see cref="Module"/>.
+    /// </summary>
     public class DosModuleAnalyzer : MediaObjectAnalyzer<DosModuleAnalyzer.Module>
     {
+        /// <summary>
+        /// Creates a new instance of the analyzer.
+        /// </summary>
         public DosModuleAnalyzer() : base(Common.ApplicationClasses)
         {
 
@@ -33,12 +39,10 @@ namespace IS4.MultiArchiver.Analyzers
 
         public class Module
         {
-            readonly Stream stream;
             readonly BinaryReader reader;
 
             public Module(Stream stream)
             {
-                this.stream = stream;
                 reader = new BinaryReader(stream, Encoding.ASCII, true);
 
                 if(stream.Length < 0x3C + 4) return;
@@ -92,7 +96,7 @@ namespace IS4.MultiArchiver.Analyzers
 
                 public StreamFactoryAccess Access => StreamFactoryAccess.Parallel;
 
-                public object ReferenceKey => Reader;
+                public object ReferenceKey => this;
 
                 public object DataKey => null;
 

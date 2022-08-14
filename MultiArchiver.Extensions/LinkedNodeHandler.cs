@@ -12,6 +12,10 @@ using VDS.RDF;
 
 namespace IS4.MultiArchiver.Extensions
 {
+    /// <summary>
+    /// Provides an implementation of <see cref="ILinkedNodeFactory"/>
+    /// based on instances of <see cref="IUriNode"/>.
+    /// </summary>
     public class LinkedNodeHandler : VocabularyCache<IUriNode>, ILinkedNodeFactory
     {
         readonly IRdfHandler defaultHandler;
@@ -24,13 +28,37 @@ namespace IS4.MultiArchiver.Extensions
 
         public IIndividualUriFormatter<string> Root { get; }
 
+        /// <summary>
+        /// The fake URI scheme used for URIs denoting blank nodes.
+        /// URIs using this prefix are specially recognized,
+        /// creating blank nodes instead of URI nodes in RDF.
+        /// </summary>
         public const string BlankUriScheme = "x.blank";
 
+        /// <summary>
+        /// A map storing prefixes of used namespaces.
+        /// </summary>
         public IDictionary<Uri, string> PrefixMap { get; }
 
+        /// <summary>
+        /// The maximum allowed length of generated URIs; longer
+        /// URIs will be shortened using <see cref="UriTools.UriToUuidUri(Uri)"/>.
+        /// </summary>
         public int MaxUriLength { get; set; } = 1900 - 20; // limit for OpenLink Virtuoso
+
+        /// <summary>
+        /// The maximum length of individual URI parts when a string representation of
+        /// a shortened URI is stored, for <see cref="UriTools.ShortenUri(Uri, int, string)"/>.
+        /// </summary>
         public int UriPartShortened { get; set; } = 64;
 
+        /// <summary>
+        /// Creates a new instance of the handler.
+        /// </summary>
+        /// <param name="root">The root of the node hierarchy.</param>
+        /// <param name="defaultHandler">The default RDF handler to write triples to.</param>
+        /// <param name="graphHandlers">The additional handlers for each custom graph.</param>
+        /// <param name="queryTester">The instance of <see cref="NodeQueryTester"/> that is used to match nodes.</param>
         public LinkedNodeHandler(IIndividualUriFormatter<string> root, IRdfHandler defaultHandler, IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers, NodeQueryTester queryTester)
             : base(defaultHandler.CreateUriNode)
         {
@@ -45,6 +73,7 @@ namespace IS4.MultiArchiver.Extensions
             PrefixMap = new ConcurrentDictionary<Uri, string>(Vocabulary.Vocabularies.Prefixes, new UriComparer());
 
             VocabularyAdded += (vocabulary) => {
+                // When a new vocabulary is added, register it in all RDF handlers
                 var uri = new Uri(vocabulary.Value, UriKind.Absolute);
                 var prefix = GetNamespace(uri);
                 AddNamespace(defaultHandler, prefix, uri);
@@ -60,12 +89,18 @@ namespace IS4.MultiArchiver.Extensions
 
         int namespaceCounter;
 
+        /// <summary>
+        /// Retrieves the prefix of an added namespace, or creates a new one.
+        /// </summary>
         private string GetNamespace(Uri uri)
         {
             return PrefixMap.TryGetValue(uri, out var prefix) ?
                 prefix : $"ns{System.Threading.Interlocked.Increment(ref namespaceCounter)}";
         }
 
+        /// <summary>
+        /// Handles a new namespace.
+        /// </summary>
         private void AddNamespace(IRdfHandler handler, string prefix, Uri uri)
         {
             lock(handler)
@@ -74,6 +109,10 @@ namespace IS4.MultiArchiver.Extensions
             }
         }
 
+        /// <summary>
+        /// A map of "real" URIs of <see cref="INode"/> instances, in cases
+        /// the URI was shortened or denoted a blank node.
+        /// </summary>
         static readonly ConditionalWeakTable<INode, Uri> realUriCache = new ConditionalWeakTable<INode, Uri>();
 
         public ILinkedNode Create<T>(IIndividualUriFormatter<T> formatter, T value)
@@ -93,6 +132,10 @@ namespace IS4.MultiArchiver.Extensions
             return new UriNode(node, defaultHandler, GetGraphCache(defaultHandler), queryTester);
         }
 
+        /// <summary>
+        /// Creates a new RDF node for the given URI using the specified handler
+        /// as the node factory.
+        /// </summary>
         private INode CreateNode(Uri uri, IRdfHandler handler)
         {
             if(uri == null)
@@ -105,6 +148,7 @@ namespace IS4.MultiArchiver.Extensions
             }
             if(uri.OriginalString.Length > MaxUriLength)
             {
+                // Shorten the URI for displaying
                 var shortUriLabel = UriTools.ShortenUri(uri, UriPartShortened, "\u00A0(URI\u00A0too\u00A0long)");
 
                 var newUri = UriTools.UriToUuidUri(uri);
@@ -115,6 +159,7 @@ namespace IS4.MultiArchiver.Extensions
                 var linked = node.In(Graphs.ShortenedLinks);
                 if(linked != null)
                 {
+                    // Link the individuals in the ShortenedLinks graph
                     linked.Set(Properties.SameAs, UriFormatter.Instance, uri);
                 }
                 return subject;
@@ -122,6 +167,9 @@ namespace IS4.MultiArchiver.Extensions
             return defaultHandler.CreateUriNode(uri);
         }
 
+        /// <summary>
+        /// Creates a blank node identified by a URI.
+        /// </summary>
         private IBlankNode CreateBlankNode(Uri blankUri, IRdfHandler handler)
         {
             var identifier = $"b{UriTools.UuidFromUri(blankUri):N}";
@@ -135,12 +183,19 @@ namespace IS4.MultiArchiver.Extensions
             return DataTools.IsSafeString(str);
         }
         
+        /// <summary>
+        /// Returns the <see cref="VocabularyCache{TNode}"/> for a given RDF handler.
+        /// </summary>
         Cache GetGraphCache(IRdfHandler handler)
         {
             var cache = graphCaches.GetOrAdd(handler, h => new VocabularyCache<IUriNode>(h.CreateUriNode));
             return new Cache(this, cache);
         }
 
+        /// <summary>
+        /// Returns the RDF handler for a given named graph, or the default handler
+        /// if the named graph is not defined.
+        /// </summary>
         IRdfHandler GetGraphHandler(GraphUri name)
         {
             if(graphUriCache.TryGetValue(name, out var handler))
@@ -151,6 +206,10 @@ namespace IS4.MultiArchiver.Extensions
             return graphUriCache[name] = GetGraphHandler(uri);
         }
 
+        /// <summary>
+        /// Returns the RDF handler for a given named graph, or the default handler
+        /// if the named graph is not defined.
+        /// </summary>
         IRdfHandler GetGraphHandler(Uri uri)
         {
             if(graphHandlers.TryGetValue(uri, out var handler))
@@ -160,6 +219,10 @@ namespace IS4.MultiArchiver.Extensions
             return defaultHandler;
         }
 
+        /// <summary>
+        /// Implements <see cref="IVocabularyCache{TTerm, TNode}"/> for all RDF terms,
+        /// based on a shared instance of <see cref="VocabularyCache{TNode}"/>.
+        /// </summary>
         struct Cache :
             IVocabularyCache<ClassUri, IUriNode>, IVocabularyCache<PropertyUri, IUriNode>,
             IVocabularyCache<IndividualUri, IUriNode>, IVocabularyCache<DatatypeUri, IUriNode>,
@@ -182,10 +245,21 @@ namespace IS4.MultiArchiver.Extensions
             public IReadOnlyCollection<VocabularyUri> Vocabularies => Inner.Vocabularies;
         }
 
+        /// <summary>
+        /// An implementation of <see cref="LinkedNode{TNode, TGraphNode, TVocabularyCache}"/>
+        /// for <see cref="INode"/>.
+        /// </summary>
         class UriNode : LinkedNode<INode, IRdfHandler, Cache>
         {
             readonly NodeQueryTester queryTester;
 
+            /// <summary>
+            /// Creates a new instance of the node.
+            /// </summary>
+            /// <param name="subject">The <see cref="INode"/> instance to wrap.</param>
+            /// <param name="handler">The RDF handler for asserting triples.</param>
+            /// <param name="cache">The vocabulary cache.</param>
+            /// <param name="queryTester">The instance of <see cref="NodeQueryTester"/> for <see cref="Match(out IReadOnlyDictionary{string, object})"/>.</param>
             public UriNode(INode subject, IRdfHandler handler, Cache cache, NodeQueryTester queryTester) : base(subject, handler, cache)
             {
                 if(!(subject is IUriNode || subject is IBlankNode)) throw new ArgumentException(null, nameof(subject));
@@ -202,15 +276,21 @@ namespace IS4.MultiArchiver.Extensions
                 var meta = In(Graphs.Metadata);
                 if(meta != null && !Equals(meta))
                 {
+                    // Add at:visited to the metadata graph (if this is not the metadata graph)
                     var dateString = XmlConvert.ToString(date, "yyyy-MM-dd\\THH:mm:ssK");
                     meta.Set(Properties.Visited, dateString, Datatypes.DateTime);
                 }
             }
 
+            /// <summary>
+            /// Called when a triple from an external graph describing the current node
+            /// is encountered.
+            /// </summary>
             private bool HandleExternalTriple(INode subj, INode pred, INode obj)
             {
                 if(Subject.Equals(subj) && !(obj is IBlankNode))
                 {
+                    // The triple is accepted only if it fully described the current node
                     HandleTriple(subj, pred, obj);
                     return true;
                 }
@@ -301,6 +381,10 @@ namespace IS4.MultiArchiver.Extensions
                 return Cache.Parent.GetGraphHandler(uri);
             }
 
+            /// <summary>
+            /// Ensures that the argument stores an rdf:RDF element, and returns a document
+            /// with the base set to the current URI.
+            /// </summary>
             private XmlDocument PrepareXmlDocument(XmlReader rdfXmlReader)
             {
                 if(rdfXmlReader.NodeType != XmlNodeType.Element || rdfXmlReader.NamespaceURI != "http://www.w3.org/1999/02/22-rdf-syntax-ns#" || rdfXmlReader.LocalName != "RDF")
@@ -335,6 +419,9 @@ namespace IS4.MultiArchiver.Extensions
                 parser.Load(graph, rdfXmlDocument);
             }
 
+            /// <summary>
+            /// The graph holding the external description, used by <see cref="Describe(XmlDocument)"/>.
+            /// </summary>
             class DataGraph : Graph
             {
                 readonly UriNode describingNode;

@@ -3,8 +3,14 @@ using NPOI.POIFS.FileSystem;
 
 namespace IS4.MultiArchiver.Formats
 {
+    /// <summary>
+    /// Represents the Excel (XLS) document format, producing instances of <see cref="HSSFWorkbook"/>.
+    /// </summary>
     public class ExcelDocumentFormat : OleDocumentFormat<HSSFWorkbook>
     {
+        /// <summary>
+        /// Creates a new instance of the format.
+        /// </summary>
         public ExcelDocumentFormat() : base("application/vnd.ms-excel", "xls")
         {
 

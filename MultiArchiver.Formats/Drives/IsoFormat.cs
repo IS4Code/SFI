@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
+    /// <summary>
+    /// Represents the ISO CD image format, as an instance of <see cref="CDReader"/>.
+    /// </summary>
     public class IsoFormat : BinaryFileFormat<CDReader>
     {
+        /// <summary>
+        /// Creates a new instance of the format.
+        /// </summary>
         public IsoFormat() : base(0, "application/x-iso9660-image", "iso")
         {
 

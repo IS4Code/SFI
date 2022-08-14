@@ -4,6 +4,10 @@ using System.IO;
 
 namespace IS4.MultiArchiver.WebApp
 {
+    /// <summary>
+    /// A writeable stream serializing the input data
+    /// to a JavaScript array and producing a blob.
+    /// </summary>
     public class BlobArrayStream : Stream
     {
         const string createArray = "createArray";
@@ -26,6 +30,11 @@ namespace IS4.MultiArchiver.WebApp
         readonly string mediaType;
         readonly IJSInProcessObjectReference data;
 
+        /// <summary>
+        /// Creates a new instance of the stream.
+        /// </summary>
+        /// <param name="js">The JavaScript instance to use.</param>
+        /// <param name="mediaType">The media type of the resulting blob.</param>
         public BlobArrayStream(IJSInProcessRuntime js, string mediaType)
         {
             this.js = js;

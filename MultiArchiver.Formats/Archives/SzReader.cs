@@ -10,12 +10,19 @@ using System.Text;
 
 namespace IS4.MultiArchiver.Formats.Archives
 {
+    /// <summary>
+    /// Provides the reader for SZ-archived files.
+    /// </summary>
     public class SzReader : IReader
     {
         readonly BinaryReader reader;
 
         public bool QBasicVariant { get; }
 
+        /// <summary>
+        /// Creates a new instance of the reader from an input stream.
+        /// </summary>
+        /// <param name="stream">The input stream to use.</param>
         public SzReader(Stream stream)
         {
             reader = new BinaryReader(stream, Encoding.ASCII, true);
@@ -79,7 +86,7 @@ namespace IS4.MultiArchiver.Formats.Archives
         public EntryStream OpenEntryStream()
         {
             var stream = new EnumeratorStream<EnumeratorStream<Exception>.NoException>(ReadBytes(), Entry.Size);
-            return SharpCompressExtensions.CreateEntryStream(this, stream);
+            return this.CreateEntryStream(stream);
         }
 
         const int windowSize = 4096;

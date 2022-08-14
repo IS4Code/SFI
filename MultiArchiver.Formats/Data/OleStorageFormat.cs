@@ -7,8 +7,14 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
+    /// <summary>
+    /// Represents the OLE storage format, producing instances of <see cref="CompoundFile"/>.
+    /// </summary>
     public class OleStorageFormat : BinaryFileFormat<CompoundFile>
     {
+        /// <summary>
+        /// Creates a new instance of the format.
+        /// </summary>
         public OleStorageFormat() : base(8, "application/x-ole-storage", "ole")
         {
 

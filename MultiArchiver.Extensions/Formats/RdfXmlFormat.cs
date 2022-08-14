@@ -7,8 +7,14 @@ using System.Xml.Linq;
 
 namespace IS4.MultiArchiver.Formats
 {
+    /// <summary>
+    /// Represents the RDF/XML format, producing instances of <see cref="RdfXmlAnalyzer.Document"/>.
+    /// </summary>
     public class RdfXmlFormat : XmlDocumentFormat<RdfXmlAnalyzer.Document>
     {
+        /// <summary>
+        /// Creates a new instance of the format.
+        /// </summary>
         public RdfXmlFormat() : base(null, null, new Uri("http://www.w3.org/1999/02/22-rdf-syntax-ns#"), "application/rdf+xml", "rdf")
         {
 

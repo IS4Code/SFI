@@ -5,10 +5,18 @@ using System.IO;
 
 namespace IS4.MultiArchiver.WebApp
 {
+    /// <summary>
+    /// Provides an implementation of <see cref="IFileInfo"/> for
+    /// an instance of <see cref="IBrowserFile"/>.
+    /// </summary>
     public class BrowserFileInfo : IFileInfo
     {
         readonly IBrowserFile file;
 
+        /// <summary>
+        /// Creates a new instance of the file info from a file in a browser.
+        /// </summary>
+        /// <param name="file">The underlying file to wrap.</param>
         public BrowserFileInfo(IBrowserFile file)
         {
             this.file = file;

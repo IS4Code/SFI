@@ -11,6 +11,10 @@ using SharpCompressCryptoException = SharpCompress.Common.CryptographicException
 
 namespace IS4.MultiArchiver.Formats.Archives
 {
+    /// <summary>
+    /// Adapts an instance of <see cref="IReader"/> using
+    /// an implementation of <see cref="IArchiveReader"/>.
+    /// </summary>
     public class ArchiveReaderAdapter : IArchiveReader
     {
         readonly IReader reader;
@@ -21,6 +25,10 @@ namespace IS4.MultiArchiver.Formats.Archives
 
         public bool IsSolid => false;
 
+        /// <summary>
+        /// Creates a new instance of the reader.
+        /// </summary>
+        /// <param name="reader">The underlying reader to use.</param>
         public ArchiveReaderAdapter(IReader reader)
         {
             this.reader = reader;
@@ -143,7 +151,6 @@ namespace IS4.MultiArchiver.Formats.Archives
             }
         }
         
-
         static string GetDirectory(string path)
         {
             if(path == null) return null;

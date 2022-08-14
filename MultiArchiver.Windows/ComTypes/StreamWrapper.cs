@@ -6,10 +6,18 @@ using System.Runtime.InteropServices.ComTypes;
 
 namespace IS4.MultiArchiver.Windows.ComTypes
 {
+	/// <summary>
+	/// Wraps an instance of <see cref="Stream"/> in an
+	/// implementation of the COM <see cref="IStream"/> interface.
+	/// </summary>
     unsafe class StreamWrapper : IStream
 	{
 		private readonly Stream baseStream;
 		
+		/// <summary>
+		/// Creates a new instance of the stream.
+		/// </summary>
+		/// <param name="baseStream">The underlying stream to access.</param>
 		public StreamWrapper(Stream baseStream)
 		{
 			this.baseStream = baseStream;

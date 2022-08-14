@@ -6,12 +6,18 @@ using System.Text;
 
 namespace IS4.MultiArchiver.Media.Modules
 {
+    /// <summary>
+    /// Reads Windows New Executable (NE) modules.
+    /// </summary>
     public class NeReader : IModule
     {
         readonly Stream stream;
         readonly BinaryReader reader;
         readonly uint headerOffset;
 
+        /// <summary>
+        /// The flags in the module's header.
+        /// </summary>
         public ushort Flags {
             get {
                 stream.Position = headerOffset + 0x0C;
@@ -27,6 +33,10 @@ namespace IS4.MultiArchiver.Media.Modules
 
         IModuleSignature IModule.Signature => null;
 
+        /// <summary>
+        /// Creates a new instance of the reader.
+        /// </summary>
+        /// <param name="stream">The input stream.</param>
         public NeReader(Stream stream)
         {
             this.stream = stream;
@@ -109,6 +119,9 @@ namespace IS4.MultiArchiver.Media.Modules
             }
         }
 
+        /// <summary>
+        /// Represents a resource in an NE module.
+        /// </summary>
         public class Resource : IModuleResource
         {
             public object Type { get; }
@@ -120,6 +133,18 @@ namespace IS4.MultiArchiver.Media.Modules
 
             readonly Stream stream;
 
+            /// <summary>
+            /// Creates a new instance of the resource.
+            /// </summary>
+            /// <param name="stream">The input stream.</param>
+            /// <param name="type">The value of <see cref="Type"/>.</param>
+            /// <param name="name">The value of <see cref="Name"/>.</param>
+            /// <param name="offset">The offset of the resource.</param>
+            /// <param name="length">The stored length of the resource.</param>
+            /// <param name="maxAlignment">
+            /// The maximum possible difference between the stored and real length of the resource,
+            /// as a result of the shift encoding of the length.
+            /// </param>
             public Resource(Stream stream, object type, object name, long offset, int length, int maxAlignment)
             {
                 Type = type;

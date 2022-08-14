@@ -8,6 +8,10 @@ using System.Linq;
 
 namespace IS4.MultiArchiver.WebApp
 {
+    /// <summary>
+    /// The implementation of <see cref="IApplicationEnvironment"/>
+    /// for the web environment.
+    /// </summary>
     public class WebEnvironment : IApplicationEnvironment
     {
         readonly IJSInProcessRuntime js;
@@ -20,6 +24,13 @@ namespace IS4.MultiArchiver.WebApp
 
         public string NewLine { get; }
 
+        /// <summary>
+        /// Creates a new instance of the environment.
+        /// </summary>
+        /// <param name="js">The JavaScript runtime to use.</param>
+        /// <param name="writer">The writer for logging.</param>
+        /// <param name="inputFiles">The collection of input files.</param>
+        /// <param name="outputFiles">The collection of output files, which may be modified during the lifetime of the instance.</param>
         public WebEnvironment(IJSInProcessRuntime js, TextWriter writer, IReadOnlyDictionary<string, IBrowserFile> inputFiles, IDictionary<string, BlobArrayStream> outputFiles)
         {
             this.js = js;

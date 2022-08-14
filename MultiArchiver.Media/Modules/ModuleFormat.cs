@@ -5,6 +5,12 @@ using System.Text;
 
 namespace IS4.MultiArchiver.Formats
 {
+    /// <summary>
+    /// Represents a format of DOS/Windows MZ modules as instances of <typeparamref name="T"/>.
+    /// The implementation of <see cref="CheckHeader(Span{byte}, bool, IEncodingDetector)"/>
+    /// checks the signature in the extended MZ header.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public abstract class ModuleFormat<T> : SignatureFormat<T> where T : class
     {
         const int CommonMaxStubSize = 256;
@@ -13,6 +19,7 @@ namespace IS4.MultiArchiver.Formats
 
         readonly bool isPlain;
 
+        /// <inheritdoc/>
         public ModuleFormat(string signature, string mediaType, string extension) : base(CommonMaxStubSize + 1, "MZ", mediaType, extension)
         {
             isPlain = signature == null;
@@ -37,7 +44,7 @@ namespace IS4.MultiArchiver.Formats
                 // MZ is there
                 return isPlain;
             }
-            if(header.Length < HeaderLength && e_lfanew >= header.Length - this.signature.Length)
+            if(header.Length < HeaderLength && e_lfanew >= header.Length - (this.signature?.Length ?? 0))
             {
                 // Points past the end of file
                 return isPlain;

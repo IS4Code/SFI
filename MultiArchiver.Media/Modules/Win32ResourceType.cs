@@ -1,5 +1,8 @@
 ﻿namespace IS4.MultiArchiver.Media.Modules
 {
+    /// <summary>
+    /// A Win32 module resource type.
+    /// </summary>
     public enum Win32ResourceType : ushort
     {
         Cursor = 1,

@@ -5,8 +5,13 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
+    /// <summary>
+    /// Represents a container format based on the OLE file structure.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public abstract class OleDocumentFormat<T> : LegacyPackageFileFormat<IDirectoryInfo, T, OleDocumentFormat<T>.PackageInfo> where T : class
     {
+        /// <inheritdoc/>
         public OleDocumentFormat(string mediaType, string extension) : base(mediaType, extension)
         {
 

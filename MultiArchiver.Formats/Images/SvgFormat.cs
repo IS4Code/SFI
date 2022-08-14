@@ -8,6 +8,9 @@ using System.Xml.Linq;
 
 namespace IS4.MultiArchiver.Formats
 {
+    /// <summary>
+    /// Represents the SVG image format, producing instances of <see cref="SvgDocument"/>.
+    /// </summary>
     public class SvgFormat : XmlDocumentFormat<SvgDocument>
     {
         static readonly Func<XmlReader, SvgDocument> open = (Func<XmlReader, SvgDocument>)Delegate.CreateDelegate(typeof(Func<XmlReader, SvgDocument>), null,

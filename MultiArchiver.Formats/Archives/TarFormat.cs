@@ -10,8 +10,14 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
+    /// <summary>
+    /// Represents the tar archive format.
+    /// </summary>
     public class TarFormat : SignatureFormat<IArchiveReader>
     {
+        /// <summary>
+        /// Creates a new instance of the format.
+        /// </summary>
         public TarFormat() : base(headerLength, "application/x-tar", "tar")
         {
 

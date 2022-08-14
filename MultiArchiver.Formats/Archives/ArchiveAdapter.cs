@@ -11,6 +11,10 @@ namespace IS4.MultiArchiver.Formats.Archives
 {
     using IArchiveEntryGrouping = IGrouping<string, DirectoryTools.EntryInfo<ISharpCompressArchiveEntry>>;
 
+    /// <summary>
+    /// Adapts an instance of <see cref="SharpCompress.Archives.IArchive"/> using
+    /// an implementation of <see cref="IArchiveFile"/>.
+    /// </summary>
     public class ArchiveAdapter : IArchiveFile
     {
         public IEnumerable<IArchiveEntry> Entries {
@@ -36,6 +40,10 @@ namespace IS4.MultiArchiver.Formats.Archives
 
         public bool IsSolid => archive.IsSolid;
 
+        /// <summary>
+        /// Creates a new instance of the archive.
+        /// </summary>
+        /// <param name="archive">The underlying archive to use.</param>
         public ArchiveAdapter(SharpCompress.Archives.IArchive archive)
         {
             this.archive = archive;
@@ -46,6 +54,14 @@ namespace IS4.MultiArchiver.Formats.Archives
             return archive.ToString();
         }
 
+        /// <summary>
+        /// Extracts the path of an archive entry.
+        /// </summary>
+        /// <param name="entry">The entry to retrieve the path from.</param>
+        /// <returns>
+        /// The normalized value of <see cref="IEntry.Key"/>. If the entry
+        /// is a directory, the path ends on '/'.
+        /// </returns>
         internal static string ExtractPath(IEntry entry)
         {
             var path = ExtractPathSimple(entry);
@@ -58,6 +74,14 @@ namespace IS4.MultiArchiver.Formats.Archives
 
         static readonly char[] trimChars = { '/' };
 
+        /// <summary>
+        /// Extracts the path of an archive entry.
+        /// </summary>
+        /// <param name="entry">The entry to retrieve the path from.</param>
+        /// <returns>
+        /// The normalized value of <see cref="IEntry.Key"/>. If the entry
+        /// is a directory, the path doesn't end on '/'.
+        /// </returns>
         internal static string ExtractPathSimple(IEntry entry)
         {
             if(entry?.Key == null) return null;

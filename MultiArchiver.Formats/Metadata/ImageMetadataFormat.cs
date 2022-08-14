@@ -9,8 +9,15 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
+    /// <summary>
+    /// Represents a format for images with metadata, producing instances of
+    /// <see cref="IReadOnlyList{T}"/> of <see cref="MetadataExtractor.Directory"/>.
+    /// </summary>
     public class ImageMetadataFormat : BinaryFileFormat<IReadOnlyList<MetadataExtractor.Directory>>
     {
+        /// <summary>
+        /// Creates a new instance of the format.
+        /// </summary>
         public ImageMetadataFormat() : base(DataTools.MaxBomLength, null, null)
         {
 

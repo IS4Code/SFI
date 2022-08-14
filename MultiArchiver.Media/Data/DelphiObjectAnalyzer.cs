@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
+    /// <summary>
+    /// An analyzer of Delphi objects, as instances of <see cref="DelphiObject"/>.
+    /// </summary>
     public class DelphiObjectAnalyzer : MediaObjectAnalyzer<DelphiObject>
     {
         public override async ValueTask<AnalysisResult> Analyze(DelphiObject obj, AnalysisContext context, IEntityAnalyzers analyzers)

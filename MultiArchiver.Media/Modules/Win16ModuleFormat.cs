@@ -5,8 +5,14 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
+    /// <summary>
+    /// Represents the Win16 New Executable (NE) module format.
+    /// </summary>
     public class Win16ModuleFormat : WinModuleFormat
     {
+        /// <summary>
+        /// Creates a new instance of the format.
+        /// </summary>
         public Win16ModuleFormat() : base("NE", "application/x-msdownload;format=ne", null)
         {
 

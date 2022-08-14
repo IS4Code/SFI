@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
+    /// <summary>
+    /// Represents the RAR archive format.
+    /// </summary>
     public class RarFormat : SignatureFormat<IArchiveReader>
     {
+        /// <summary>
+        /// Creates a new instance of the format.
+        /// </summary>
         public RarFormat() : base("Rar!", "application/vnd.rar", "rar")
         {
 

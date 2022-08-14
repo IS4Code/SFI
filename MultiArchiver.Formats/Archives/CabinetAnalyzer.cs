@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
+    /// <summary>
+    /// Analyzes Cabinet archives, as instances of <see cref="ICabinetArchive"/>.
+    /// The analysis itself is performed by analyzing <see cref="IArchiveReader"/>
+    /// on an adapted instance of the archive.
+    /// </summary>
     public class CabinetAnalyzer : MediaObjectAnalyzer<ICabinetArchive>
     {
-        public CabinetAnalyzer()
-        {
-
-        }
-
         public override ValueTask<AnalysisResult> Analyze(ICabinetArchive file, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             return analyzers.Analyze(new ArchiveReaderAdapter(new CabinetAdapter(file)), context);
@@ -55,7 +55,7 @@ namespace IS4.MultiArchiver.Analyzers
 
             public EntryStream OpenEntryStream()
             {
-                return SharpCompressExtensions.CreateEntryStream(this, ((CabinetEntry)Entry).Stream);
+                return this.CreateEntryStream(((CabinetEntry)Entry).Stream);
             }
 
             public void WriteEntryTo(Stream writableStream)

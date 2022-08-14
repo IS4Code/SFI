@@ -11,6 +11,9 @@ using IPersistStream = IS4.MultiArchiver.Windows.ComTypes.IPersistStream;
 
 namespace IS4.MultiArchiver.Formats
 {
+    /// <summary>
+    /// Represents the URL shortcut format, producing instances of <see cref="IUniformResourceLocator"/>.
+    /// </summary>
     public class InternetShortcutFormat : BinaryFileFormat<IUniformResourceLocator>
     {
         static readonly Type InternetShortcut = Type.GetTypeFromCLSID(new Guid(0xFBF23B40, 0xE3F0, 0x101B, 0x84, 0x88, 0x00, 0xAA, 0x00, 0x3E, 0x56, 0xF8));

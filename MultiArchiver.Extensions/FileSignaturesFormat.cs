@@ -6,10 +6,17 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
+    /// <summary>
+    /// A format storing an instance of <see cref="FileSignatures.FileFormat"/>.
+    /// </summary>
     public class FileSignaturesFormat : BinaryFileFormat<IDisposable>
     {
         public FileSignatures.FileFormat Format { get; }
 
+        /// <summary>
+        /// Creates a new instance of the format.
+        /// </summary>
+        /// <param name="format">The value of <see cref="Format"/>.</param>
         protected FileSignaturesFormat(FileSignatures.FileFormat format) : base(Math.Max(format.HeaderLength == Int32.MaxValue ? 0 : format.HeaderLength, format.Offset + format.Signature.Count), format.MediaType, format.Extension)
         {
             Format = format;
@@ -39,6 +46,11 @@ namespace IS4.MultiArchiver.Formats
             return await resultFactory(null, args);
         }
 
+        /// <summary>
+        /// Creates a new instance of <see cref="FileSignaturesFormat"/>.
+        /// </summary>
+        /// <param name="format">The format to use.</param>
+        /// <returns>A new instance enclosing <paramref name="format"/>.</returns>
         public static FileSignaturesFormat Create(FileSignatures.FileFormat format)
         {
             return format is FileSignatures.IFileFormatReader reader ?

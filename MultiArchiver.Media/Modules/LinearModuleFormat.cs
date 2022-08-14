@@ -5,8 +5,14 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
+    /// <summary>
+    /// Represents the Linear Executable (LE) MZ module format.
+    /// </summary>
     public class LinearModuleFormat : WinModuleFormat
     {
+        /// <summary>
+        /// Creates a new instance of the format.
+        /// </summary>
         public LinearModuleFormat() : base("L", "application/x-msdownload;format=le", null)
         {
 

@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
+    /// <summary>
+    /// Represents the gzip archive format.
+    /// </summary>
     public class GZipFormat : SignatureFormat<IArchiveReader>
     {
+        /// <summary>
+        /// Creates a new instance of the format.
+        /// </summary>
         public GZipFormat() : base(new byte[] { 0x1F, 0x8B }, "application/gzip", "gz")
         {
 

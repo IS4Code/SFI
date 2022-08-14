@@ -13,8 +13,13 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
+    /// <summary>
+    /// Represents a format based on the OOXML package format.
+    /// </summary>
+    /// <typeparam name="T">The type of the instances created by the format.</typeparam>
     public abstract class OpenXmlDocumentFormat<T> : LegacyPackageFileFormat<IDirectoryInfo, T, OpenXmlDocumentFormat<T>.PackageInfo> where T : class
     {
+        /// <inheritdoc/>
         public OpenXmlDocumentFormat(string mediaType, string extension) : base(mediaType, extension)
         {
 

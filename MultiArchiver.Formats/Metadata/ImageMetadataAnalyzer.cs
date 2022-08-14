@@ -15,8 +15,15 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
+    /// <summary>
+    /// Analyzes image metadata represented by collections of <see cref="Directory"/>.
+    /// </summary>
     public class ImageMetadataAnalyzer : MediaObjectAnalyzer<IReadOnlyList<Directory>>
     {
+        /// <summary>
+        /// Stores a collection of instances of <see cref="IMetadataReader{T}"/> used
+        /// for reading directories of specific types.
+        /// </summary>
         public ICollection<object> MetadataReaders { get; } = new SortedSet<object>(TypeInheritanceComparer<object>.Instance);
 
         public async override ValueTask<AnalysisResult> Analyze(IReadOnlyList<Directory> entity, AnalysisContext context, IEntityAnalyzers analyzers)

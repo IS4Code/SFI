@@ -8,6 +8,12 @@ using VDS.RDF.Writing.Formatting;
 
 namespace IS4.MultiArchiver.Extensions
 {
+    /// <summary>
+    /// A custom RDF handler that writes Turtle output to a file.
+    /// </summary>
+    /// <typeparam name="TFormatter">
+    /// The Turtle formatter used for nodes, usually <see cref="TurtleFormatter"/>.
+    /// </typeparam>
     public class TurtleHandler<TFormatter> : BaseRdfHandler where TFormatter : INodeFormatter, ITripleFormatter, IUriFormatter, INamespaceFormatter, IBaseUriFormatter
     {
         readonly TextWriter output;
@@ -18,6 +24,13 @@ namespace IS4.MultiArchiver.Extensions
         string lastSubject;
         Uri lastBase;
 
+        /// <summary>
+        /// Creates a new instance of the Turtle handler.
+        /// </summary>
+        /// <param name="output">The output writer to write Turtle to.</param>
+        /// <param name="formatter">The formatter of Turtle nodes.</param>
+        /// <param name="namespaceMapper">The namespace mapper to register namespaces to.</param>
+        /// <param name="uriComparer">The comparer of <see cref="Uri"/> instances.</param>
         public TurtleHandler(TextWriter output, TFormatter formatter, INamespaceMapper namespaceMapper, IEqualityComparer<Uri> uriComparer = null)
         {
             this.output = output;
@@ -112,6 +125,10 @@ namespace IS4.MultiArchiver.Extensions
             return true;
         }
 
+        /// <summary>
+        /// A fake <see cref="Uri"/> that has a custom <see cref="ToString"/> value,
+        /// to give to the <typeparamref name="TFormatter"/>.
+        /// </summary>
         class FakeUri : Uri
         {
             readonly string stringValue;

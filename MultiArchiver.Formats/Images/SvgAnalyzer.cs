@@ -7,8 +7,14 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
+    /// <summary>
+    /// Analyzes SVG images as instances of <see cref="SvgDocument"/>.
+    /// </summary>
     public class SvgAnalyzer : MediaObjectAnalyzer<SvgDocument>
     {
+        /// <summary>
+        /// Creates a new instance of the analyzer.
+        /// </summary>
         public SvgAnalyzer() : base(Common.ImageClasses)
         {
 

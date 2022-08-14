@@ -3,6 +3,9 @@ using NPOI.XSSF.UserModel;
 
 namespace IS4.MultiArchiver.Formats
 {
+    /// <summary>
+    /// Represents the Excel (XSLT) document format, producing instances of <see cref="XSSFWorkbook"/>.
+    /// </summary>
     public class ExcelXmlDocumentFormat : OpenXmlDocumentFormat<XSSFWorkbook>
     {
         public ExcelXmlDocumentFormat() : base("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "xlsx")

@@ -12,6 +12,9 @@ using Properties = IS4.MultiArchiver.Vocabulary.Properties;
 
 namespace IS4.MultiArchiver.Analyzers
 {
+    /// <summary>
+    /// Analyzes instances of <see cref="File"/> as containers of tags.
+    /// </summary>
     public class TagLibAnalyzer : MediaObjectAnalyzer<File>, IPropertyUriFormatter<string>
     {
         public override ValueTask<AnalysisResult> Analyze(File file, AnalysisContext context, IEntityAnalyzers analyzers)

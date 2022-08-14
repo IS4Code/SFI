@@ -11,8 +11,14 @@ using static Vanara.PInvoke.Kernel32;
 
 namespace IS4.MultiArchiver.Formats
 {
+    /// <summary>
+    /// Represents the Windows PE module format, loaded using P/Invoke.
+    /// </summary>
     public class Win32ModuleFormat : WinModuleFormat
     {
+        /// <summary>
+        /// Creates a new instance of the format.
+        /// </summary>
         public Win32ModuleFormat() : base("PE\0\0", "application/vnd.microsoft.portable-executable", null)
         {
 

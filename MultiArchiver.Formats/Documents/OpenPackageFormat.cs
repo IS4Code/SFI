@@ -8,8 +8,14 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Formats
 {
+    /// <summary>
+    /// Represents the OOXML package format.
+    /// </summary>
     public sealed class OpenPackageFormat : LegacyPackageFileFormat<IFileNodeInfo, OpenPackageFormat.PackageInfo, OpenPackageFormat.PackageInfo>
     {
+        /// <summary>
+        /// Creates a new instance of the format.
+        /// </summary>
         public OpenPackageFormat() : base("application/vnd.openxmlformats-package", "ooxml")
         {
 
