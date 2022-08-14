@@ -5,15 +5,50 @@ using System.Collections.Generic;
 
 namespace IS4.MultiArchiver
 {
+    /// <summary>
+    /// Additional options and configuration of <see cref="Archiver"/>.
+    /// </summary>
     public class ArchiverOptions
     {
+        /// <summary>
+        /// Whether to write the output directly or use an intermediate graph.
+        /// </summary>
         public bool DirectOutput { get; set; }
+
+        /// <summary>
+        /// Whether to compress the output file with gzip.
+        /// </summary>
         public bool CompressedOutput { get; set; }
+
+        /// <summary>
+        /// Whether to hide metadata properties, such as
+        /// <see cref="Vocabulary.Properties.Visited"/>, from the output.
+        /// </summary>
         public bool HideMetadata { get; set; }
+
+        /// <summary>
+        /// Whether to prettify the text output.
+        /// </summary>
         public bool PrettyPrint { get; set; }
+
+        /// <summary>
+        /// Input SPARQL queries to be used to search in the description.
+        /// </summary>
         public IEnumerable<IFileInfo> Queries { get; set; } = Array.Empty<IFileInfo>();
+
+        /// <summary>
+        /// The root of the URI hierarchy; by default <see cref="RdfHandler.BlankUriScheme"/>.
+        /// </summary>
         public string Root { get; set; } = RdfHandler.BlankUriScheme + ":";
+
+        /// <summary>
+        /// The sequence of characters used for separating lines in text output.
+        /// </summary>
         public string NewLine { get; set; } = Environment.NewLine;
+
+        /// <summary>
+        /// The URI of the described node.
+        /// </summary>
         public Uri Node { get; set; }
     }
 }

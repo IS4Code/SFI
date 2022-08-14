@@ -3,12 +3,22 @@ using VDS.RDF;
 
 namespace IS4.MultiArchiver
 {
+    /// <summary>
+    /// An implementation of <see cref="IRdfHandler"/> that wraps
+    /// another <see cref="IRdfHandler"/> and also registers each namespace
+    /// in an instance of <see cref="QNameOutputMapper"/>.
+    /// </summary>
     sealed class NamespaceHandler : IRdfHandler
     {
         readonly IRdfHandler baseHandler;
 
         readonly QNameOutputMapper mapper;
 
+        /// <summary>
+        /// Creates a new instance of the handler.
+        /// </summary>
+        /// <param name="baseHandler">The base RDF handler to delegate the calls to.</param>
+        /// <param name="mapper">A namespace mapper for registering namespaces from <see cref="HandleNamespace(string, Uri)"/>.</param>
         public NamespaceHandler(IRdfHandler baseHandler, QNameOutputMapper mapper)
         {
             this.baseHandler = baseHandler;

@@ -221,10 +221,12 @@ namespace IS4.MultiArchiver
 
             graphHandlers[new Uri(Graphs.ShortenedLinks.Value)] = null;
 
+            // Loads SPARQL queries to evaluate on the RDF
             var queries = GetQueries(options);
 
             if(options.DirectOutput)
             {
+                // The data is immediately saved to output without an intermediate storage
                 OutputLog.WriteLine("Writing data...");
 
                 using(var disposable = CreateFileHandler(outputFactory, out var mapper, options, out var handler))
@@ -249,6 +251,7 @@ namespace IS4.MultiArchiver
                     }
                 }
             }else{
+                // The data is first stored in a graph and then saved
                 OutputLog.WriteLine("Reading data...");
 
                 var handler = CreateGraphHandler(out var graph);
@@ -272,6 +275,9 @@ namespace IS4.MultiArchiver
             }
         }
 
+        /// <summary>
+        /// Loads SPARQL queries from options.
+        /// </summary>
         private IReadOnlyCollection<SparqlQuery> GetQueries(ArchiverOptions options)
         {
             SparqlQueryParser queryParser = null;
@@ -307,9 +313,20 @@ namespace IS4.MultiArchiver
             }
             return results;
         }
-
+        /// <summary>
+        /// Analyzes a single entity.
+        /// </summary>
+        /// <typeparam name="T">The type of <paramref name="entity"/>.</typeparam>
+        /// <param name="entity">The entity to analyze.</param>
+        /// <param name="rdfHandler">The RDF handler to receive the description of the entity.</param>
+        /// <param name="graphHandlers">A collection of RDF handlers for other graphs.</param>
+        /// <param name="mapper">The mapper storing default namespaces to add to <paramref name="rdfHandler"/>..</param>
+        /// <param name="queryTester">An instance of <see cref="NodeQueryTester"/> to match nodes using user-provided queries.</param>
+        /// <param name="options">Additional options.</param>
+        /// <returns>The result of the analysis.</returns>
         private async ValueTask<AnalysisResult> AnalyzeEntity<T>(T entity, IRdfHandler rdfHandler, IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers, INamespaceMapper mapper, NodeQueryTester queryTester, ArchiverOptions options) where T : class
         {
+            // The node factory/handler
             var handler = new RdfHandler(new UriTools.PrefixFormatter(options.Root), rdfHandler, graphHandlers, queryTester);
             rdfHandler.StartRdf();
             foreach(var graphHandler in graphHandlers)
@@ -336,6 +353,13 @@ namespace IS4.MultiArchiver
             }
         }
 
+        /// <summary>
+        /// Opens an output file as text.
+        /// </summary>
+        /// <param name="fileFactory">The function to provide the output stream.</param>
+        /// <param name="compressed">Whether to compress the output with gzip.</param>
+        /// <param name="options">Additional options.</param>
+        /// <returns>Text writer to the output file.</returns>
         private TextWriter OpenFile(Func<Stream> fileFactory, bool compressed, ArchiverOptions options)
         {
             var stream = fileFactory();
@@ -349,14 +373,24 @@ namespace IS4.MultiArchiver
             };
         }
 
+        /// <summary>
+        /// Creates an RDF handler for writing directly to the output file.
+        /// </summary>
+        /// <param name="outputFactory">The function to provide the output stream.</param>
+        /// <param name="mapper">A variable that receives the instance of <see cref="INamespaceMapper"/> representing the namespaces in use by the handler.</param>
+        /// <param name="options">Additional options.</param>
+        /// <param name="handler">A variable that receives the RDF handler to use.</param>
+        /// <returns>An instance of <see cref="IDisposable"/> representing the open file.</returns>
         private IDisposable CreateFileHandler(Func<Stream> outputFactory, out INamespaceMapper mapper, ArchiverOptions options, out IRdfHandler handler)
         {
             var writer = OpenFile(outputFactory, options.CompressedOutput, options);
             var qnameMapper = new QNameOutputMapper();
+            //TODO: Support for other output formats
             var formatter = new TurtleFormatter(qnameMapper);
-            if(options.PrettyPrint)
+            if(options.PrettyPrint && formatter is TurtleFormatter turtleFormatter)
             {
-                handler = new TurtleHandler<TurtleFormatter>(writer, formatter, qnameMapper);
+                // Use the custom Turtle handler with @base support
+                handler = new TurtleHandler<TurtleFormatter>(writer, turtleFormatter, qnameMapper);
             }else{
                 handler = new VDS.RDF.Parsing.Handlers.WriteThroughHandler(formatter, writer, true);
                 handler = new NamespaceHandler(handler, qnameMapper);
@@ -365,15 +399,26 @@ namespace IS4.MultiArchiver
             return writer;
         }
 
+        /// <summary>
+        /// Creates an RDF handler for asserting triples into a graph.
+        /// </summary>
+        /// <param name="graph">The variable that receives the created graph.</param>
+        /// <returns>The RDF handler to use.</returns>
         private IRdfHandler CreateGraphHandler(out Graph graph)
         {
             graph = new Graph();
             return new VDS.RDF.Parsing.Handlers.GraphHandler(graph);
         }
 
-        private void SetDefaultNamespaces(INamespaceMapper mapper)
+        /// <summary>
+        /// Registers default namespaces that are always in use.
+        /// </summary>
+        /// <param name="mapper">The mapper that receives the namespaces.</param>
+        protected virtual void SetDefaultNamespaces(INamespaceMapper mapper)
         {
-            /*foreach(var hash in DataAnalyzer.HashAlgorithms)
+            /*
+            // These namespaces are better unused since some formatters don't escape invalid characters correctly
+            foreach(var hash in DataAnalyzer.HashAlgorithms)
             {
                 if(hash.FormattingMethod != FormattingMethod.Base64)
                 {
@@ -391,11 +436,19 @@ namespace IS4.MultiArchiver
             mapper.AddNamespace("dtxt", new Uri("data:,"));
             mapper.AddNamespace("dt64", new Uri("data:;base64,"));
             mapper.AddNamespace("dbin", new Uri("data:application/octet-stream,"));
-            mapper.AddNamespace("db64", new Uri("data:application/octet-stream;base64,"));*/
+            mapper.AddNamespace("db64", new Uri("data:application/octet-stream;base64,"));
+            */
         }
 
+        /// <summary>
+        /// Saves a graph to the output.
+        /// </summary>
+        /// <param name="graph">The graph to save.</param>
+        /// <param name="outputFactory">The function to provide the output stream.</param>
+        /// <param name="options">Additional options.</param>
         private void SaveGraph(Graph graph, Func<Stream> outputFactory, ArchiverOptions options)
         {
+            //TODO: Support for other output formats
             var writer = new CompressingTurtleWriter(TurtleSyntax.Original);
             writer.PrettyPrintMode = options.PrettyPrint;
             writer.DefaultNamespaces.Clear();

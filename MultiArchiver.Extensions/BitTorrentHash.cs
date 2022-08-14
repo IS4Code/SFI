@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver
 {
+    /// <summary>
+    /// The hash algorithm that produces urn:btih: hashes.
+    /// </summary>
     public class BitTorrentHash : FileHashAlgorithm
     {
         public static readonly IDataHashAlgorithm HashAlgorithm = BuiltInHash.SHA1;
@@ -19,6 +22,9 @@ namespace IS4.MultiArchiver
 
         public event InfoCreatedDelegate InfoCreated;
 
+        /// <summary>
+        /// Creates a new instance of the algorithm.
+        /// </summary>
         public BitTorrentHash() : base(Individuals.BTIH, HashAlgorithm.GetHashSize(0), "urn:btih:", FormattingMethod.Hex)
         {
 

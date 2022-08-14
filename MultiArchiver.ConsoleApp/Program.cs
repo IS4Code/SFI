@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.ConsoleApp
 {
+    /// <summary>
+    /// The main console application class and its environment.
+    /// </summary>
     class Program : IApplicationEnvironment
     {
         public int WindowWidth => Console.WindowWidth;
@@ -16,6 +19,10 @@ namespace IS4.MultiArchiver.ConsoleApp
 
         public string NewLine => Environment.NewLine;
 
+        /// <summary>
+        /// The entry point of the program.
+        /// </summary>
+        /// <param name="args">The arguments to the application.</param>
         static async Task Main(string[] args)
         {
             CultureInfo.DefaultThreadCurrentCulture = CultureInfo.CurrentCulture =
@@ -44,6 +51,9 @@ namespace IS4.MultiArchiver.ConsoleApp
             return File.Create(path);
         }
 
+        /// <summary>
+        /// This class represents the standard input as a file.
+        /// </summary>
         class StandardInput : IFileInfo
         {
             public bool IsEncrypted => false;
@@ -68,7 +78,7 @@ namespace IS4.MultiArchiver.ConsoleApp
 
             public StreamFactoryAccess Access => StreamFactoryAccess.Single;
 
-            public object ReferenceKey => null;
+            public object ReferenceKey => this;
 
             public object DataKey => null;
 

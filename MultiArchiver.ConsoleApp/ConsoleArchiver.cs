@@ -5,12 +5,21 @@ using System.Collections.Generic;
 
 namespace IS4.MultiArchiver.ConsoleApp
 {
+    /// <summary>
+    /// The specific implementation of <see cref="Archiver"/> for the console application.
+    /// </summary>
     class ConsoleArchiver : Archiver
     {
+        /// <summary>
+        /// The default image analyzer.
+        /// </summary>
         public ImageAnalyzer ImageAnalyzer { get; }
 
         public override ICollection<IDataHashAlgorithm> ImageDataHashAlgorithms => ImageAnalyzer.DataHashAlgorithms;
 
+        /// <summary>
+        /// Creates a new instance of the archiver.
+        /// </summary>
         public ConsoleArchiver()
         {
             Analyzers.Add(ImageAnalyzer = new ImageAnalyzer());

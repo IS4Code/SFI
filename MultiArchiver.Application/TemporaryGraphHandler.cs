@@ -3,12 +3,24 @@ using VDS.RDF;
 
 namespace IS4.MultiArchiver
 {
+    /// <summary>
+    /// An RDF handler that asserts triples in a temporary graph
+    /// which is regularly cleared.
+    /// </summary>
     sealed class TemporaryGraphHandler : IRdfHandler
     {
         readonly IRdfHandler baseHandler;
 
         readonly Graph graph;
 
+        /// <summary>
+        /// Creates a new instance of the handler.
+        /// </summary>
+        /// <param name="baseHandler">The base RDF handler to delegate the calls to.</param>
+        /// <param name="graph">
+        /// The variable which receives the graph for the intermediate results.
+        /// This graph is cleared on calls to <see cref="HandleBaseUri(Uri)"/>.
+        /// </param>
         public TemporaryGraphHandler(IRdfHandler baseHandler, out Graph graph)
         {
             this.baseHandler = baseHandler;
