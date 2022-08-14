@@ -8,20 +8,52 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver
 {
+    /// <summary>
+    /// Represents an incremental hash algorithm that uses a value of
+    /// type <typeparamref name="T"/> to build the hash.
+    /// </summary>
+    /// <typeparam name="T">The type of the aggregation value.</typeparam>
     public abstract class StreamDataHash<T> : DataHashAlgorithm
     {
+        /// <summary>
+        /// Creates a new instance of the hash algorithm.
+        /// </summary>
+        /// <param name="identifier">The individual identifier of the algorithm.</param>
+        /// <param name="hashSize">The usual size of the hash.</param>
+        /// <param name="prefix">The URI prefix used when creating URIs of hashes.</param>
+        /// <param name="formatting">The formatting method for creating URIs.</param>
         public StreamDataHash(IndividualUri identifier, int hashSize, string prefix, FormattingMethod formatting) : base(identifier, hashSize, prefix, formatting)
         {
 
         }
 
+        /// <summary>
+        /// Creates a new instance of <typeparamref name="T"/> and
+        /// initializes it for new hashing.
+        /// </summary>
+        /// <returns></returns>
         protected abstract T Initialize();
 
-        protected abstract void Finalize(T instance);
+        /// <summary>
+        /// Performs cleanup on an instance of <typeparamref name="T"/>
+        /// when it is no longer required.
+        /// </summary>
+        /// <param name="instance">The variable storing the instance to dispose.</param>
+        protected abstract void Finalize(ref T instance);
 
+        /// <summary>
+        /// Appends new data to an instance of <typeparamref name="T"/>.
+        /// </summary>
+        /// <param name="instance">The variable storing the instance to use.</param>
+        /// <param name="segment">The new data to append.</param>
         protected abstract void Append(ref T instance, ArraySegment<byte> segment);
 
-        protected abstract byte[] Output(T instance);
+        /// <summary>
+        /// Retrieves the hash as a byte array from an instance of <typeparamref name="T"/>.
+        /// </summary>
+        /// <param name="instance">The variable storing the instance to use.</param>
+        /// <returns>The hash stored in the instance.</returns>
+        protected abstract byte[] Output(ref T instance);
 
         public override async ValueTask<byte[]> ComputeHash(Stream input, IPersistentKey key = null)
         {
@@ -68,9 +100,9 @@ namespace IS4.MultiArchiver
                         break;
                     }
                 }
-                return Output(instance);
+                return Output(ref instance);
             }finally{
-                Finalize(instance);
+                Finalize(ref instance);
             }
         }
     }

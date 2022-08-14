@@ -10,12 +10,32 @@ using System.Threading.Tasks;
 namespace IS4.MultiArchiver
 {
     /// <summary>
-    /// The hash algorithm that produces urn:btih: hashes.
+    /// The hash algorithm that produces urn:btih: hashes. This algorithm collects
+    /// information about files and directories and uses it to create the "info"
+    /// section used normally in .torrent files. This section is hashed to produce
+    /// the final output of the algorithm.
+    /// The .torrent files are also available through its
+    /// <see cref="IHasFileOutput"/> implementation.
     /// </summary>
+    /// <remarks>
+    /// The BitTorrent hashing splits the input data into sections of <see cref="BlockSize"/>
+    /// bytes and hashes each of them individually. In the case of directories,
+    /// the files inside are concatenated without any padding, which would break any sort
+    /// of caching of hashes necessary for the proper and efficient function of this algorithm.
+    /// Instead, .pad/{size} files are introduced (see https://www.bittorrent.org/beps/bep_0047.html)
+    /// when hashing directories. These files logically contain zeros and are added after each
+    /// file whose size is not a multiple of <see cref="BlockSize"/>.
+    /// </remarks>
     public class BitTorrentHash : FileHashAlgorithm, IHasFileOutput
     {
+        /// <summary>
+        /// The hash algorithm used for hashing the info section.
+        /// </summary>
         public static readonly IDataHashAlgorithm HashAlgorithm = BuiltInHash.SHA1;
 
+        /// <summary>
+        /// The size of individually hashed blocks of input files.
+        /// </summary>
         public int BlockSize { get; set; } = 262144;
 
         public event OutputFileDelegate OutputFile;

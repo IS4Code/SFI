@@ -6,11 +6,17 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver
 {
+    /// <summary>
+    /// The CRC32 checksum algorithm, using <see cref="Crc32Algorithm"/>.
+    /// </summary>
     public class Crc32Hash : StreamDataHash<uint>
     {
+        /// <summary>
+        /// The singleton instance of the algorithm.
+        /// </summary>
         public static readonly Crc32Hash Instance = new Crc32Hash();
 
-        public Crc32Hash() : base(Individuals.Crc32, 4, "urn:crc32:", FormattingMethod.Hex)
+        private Crc32Hash() : base(Individuals.Crc32, 4, "urn:crc32:", FormattingMethod.Hex)
         {
 
         }
@@ -25,12 +31,12 @@ namespace IS4.MultiArchiver
             instance = Crc32Algorithm.Append(instance, segment.Array, segment.Offset, segment.Count);
         }
 
-        protected override byte[] Output(uint instance)
+        protected override byte[] Output(ref uint instance)
         {
             return BitConverter.GetBytes(instance);
         }
 
-        protected override void Finalize(uint instance)
+        protected override void Finalize(ref uint instance)
         {
 
         }

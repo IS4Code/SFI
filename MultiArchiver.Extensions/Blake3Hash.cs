@@ -6,13 +6,19 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver
 {
+    /// <summary>
+    /// The BLAKE3 hash algorithm, using <see cref="Blake3.Hasher"/>.
+    /// </summary>
     public class Blake3Hash : StreamDataHash<Hasher>
     {
+        /// <summary>
+        /// The singleton instance of the algorithm.
+        /// </summary>
         public static readonly Blake3Hash Instance = new Blake3Hash();
 
         public override int? NumericIdentifier => 0x1e;
 
-        public Blake3Hash() : base(Individuals.Blake3, 32, "urn:blake3:", FormattingMethod.Base32)
+        private Blake3Hash() : base(Individuals.Blake3, 32, "urn:blake3:", FormattingMethod.Base32)
         {
 
         }
@@ -27,13 +33,13 @@ namespace IS4.MultiArchiver
             instance.Update(segment.AsSpan());
         }
 
-        protected override byte[] Output(Hasher instance)
+        protected override byte[] Output(ref Hasher instance)
         {
             var hash = instance.Finalize();
             return hash.AsSpan().ToArray();
         }
 
-        protected override void Finalize(Hasher instance)
+        protected override void Finalize(ref Hasher instance)
         {
             instance.Dispose();
         }

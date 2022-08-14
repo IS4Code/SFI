@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver
 {
+    /// <summary>
+    /// The cache of file hashes shared by <see cref="BitTorrentHash"/> and
+    /// <see cref="PaddedBlockHash"/>.
+    /// </summary>
     public static class BitTorrentHashCache
     {
         static IDataHashAlgorithm HashAlgorithm => BitTorrentHash.HashAlgorithm;
@@ -19,11 +23,24 @@ namespace IS4.MultiArchiver
             return cache.GetOrAdd(blockSize, l => new PersistenceStore<IPersistentKey, Task<FileInfo>>(f => FileInfo.Create(l, f)));
         }
 
+        /// <summary>
+        /// Retrieves the cached info for a given file.
+        /// </summary>
+        /// <param name="blockSize">The block size of individually hashed sections.</param>
+        /// <param name="file">The file to hash.</param>
+        /// <returns>The information about the file.</returns>
         public static Task<FileInfo> GetCachedInfo(int blockSize, IFileNodeInfo file)
         {
             return GetCache(blockSize)[file];
         }
 
+        /// <summary>
+        /// Retrieves the cached info for a given file.
+        /// </summary>
+        /// <param name="blockSize">The block size of individually hashed sections.</param>
+        /// <param name="stream">To stream to hash.</param>
+        /// <param name="key">The key in the cache.</param>
+        /// <returns>The information about the file.</returns>
         public static Task<FileInfo> GetCachedInfo(int blockSize, Stream stream, IPersistentKey key)
         {
             async Task<FileInfo> Inner()
@@ -70,12 +87,34 @@ namespace IS4.MultiArchiver
             return (list, padding, length);
         }
 
+        /// <summary>
+        /// The information about the hash of a file.
+        /// </summary>
         public class FileInfo
         {
+            /// <summary>
+            /// The list of hashes for the consecutive whole blocks in the file.
+            /// </summary>
             public IReadOnlyList<byte[]> BlockHashes { get; }
+
+            /// <summary>
+            /// The hash of the last block with its original size.
+            /// </summary>
             public byte[] LastHash { get; }
+
+            /// <summary>
+            /// The hash of the last block padded with zeros.
+            /// </summary>
             public byte[] LastHashPadded { get; }
+
+            /// <summary>
+            /// The length of the padding in bytes.
+            /// </summary>
             public int Padding { get; }
+
+            /// <summary>
+            /// The length of the file.
+            /// </summary>
             public long Length { get; }
 
             public FileInfo(int blockSize, (List<byte[]> list, int padding, long length) hashData)
