@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace IS4.MultiArchiver
+namespace IS4.MultiArchiver.Tools
 {
     /// <summary>
     /// Represents an incremental hash algorithm that uses a value of

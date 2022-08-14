@@ -1,5 +1,6 @@
 ﻿using Blake3;
 using IS4.MultiArchiver.Services;
+using IS4.MultiArchiver.Tools;
 using IS4.MultiArchiver.Vocabulary;
 using System;
 using System.Threading.Tasks;
