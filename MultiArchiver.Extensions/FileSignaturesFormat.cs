@@ -13,10 +13,8 @@ namespace IS4.MultiArchiver.Formats
     {
         public FileSignatures.FileFormat Format { get; }
 
-        /// <summary>
-        /// Creates a new instance of the format.
-        /// </summary>
         /// <param name="format">The value of <see cref="Format"/>.</param>
+        /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         protected FileSignaturesFormat(FileSignatures.FileFormat format) : base(Math.Max(format.HeaderLength == Int32.MaxValue ? 0 : format.HeaderLength, format.Offset + format.Signature.Count), format.MediaType, format.Extension)
         {
             Format = format;

@@ -45,6 +45,12 @@ namespace IS4.MultiArchiver.Tools.Xml
 
         /// <summary>
         /// Creates a new channel and retrieve its XML reader and writer.
+        /// </summary>
+        /// <param name="reader">The reader to use for properties about the document.</param>
+        /// <param name="writer">The variable to receive the writer for the created channel.</param>
+        /// <param name="capacity">The capacity of the channel, if it should be bounded.</param>
+        /// <returns>The XML reader using the created channel.</returns>
+        /// <remarks>
         /// The channel is created with the following settings:
         /// <list type="bullet">
         /// <item>
@@ -64,11 +70,7 @@ namespace IS4.MultiArchiver.Tools.Xml
         ///     <description><see cref="BoundedChannelFullMode.Wait"/></description>
         /// </item>
         /// </list>
-        /// </summary>
-        /// <param name="reader">The reader to use for properties about the document.</param>
-        /// <param name="writer">The variable to receive the writer for the created channel.</param>
-        /// <param name="capacity">The capacity of the channel, if it should be bounded.</param>
-        /// <returns>The XML reader using the created channel.</returns>
+        /// </remarks>
         public static ChannelXmlReader Create(XmlReader reader, out ChannelWriter<XmlReaderState> writer, int? capacity = null)
         {
             var ch = capacity is int i ? Channel.CreateBounded<XmlReaderState>(new BoundedChannelOptions(i)

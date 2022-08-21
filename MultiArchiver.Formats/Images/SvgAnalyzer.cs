@@ -12,9 +12,7 @@ namespace IS4.MultiArchiver.Analyzers
     /// </summary>
     public class SvgAnalyzer : MediaObjectAnalyzer<SvgDocument>
     {
-        /// <summary>
-        /// Creates a new instance of the analyzer.
-        /// </summary>
+        /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>
         public SvgAnalyzer() : base(Common.ImageClasses)
         {
 

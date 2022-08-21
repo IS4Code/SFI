@@ -13,14 +13,12 @@ namespace IS4.MultiArchiver.Formats
     {
         readonly Mp3FileReaderBase.FrameDecompressorBuilder frameDecompressorBuilder;
 
-        /// <summary>
-        /// Creates a new instance of the format.
-        /// </summary>
         /// <param name="frameDecompressorBuilder">
         /// The instance of <see cref="Mp3FileReaderBase.FrameDecompressorBuilder"/> to
         /// use during decompression by the internal
         /// <see cref="Mp3FileReaderBase.Mp3FileReaderBase(Stream, Mp3FileReaderBase.FrameDecompressorBuilder)"/>.
         /// </param>
+        /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public Mp3Format(Mp3FileReaderBase.FrameDecompressorBuilder frameDecompressorBuilder) : base(0, "audio/mpeg", "mp3")
         {
             this.frameDecompressorBuilder = frameDecompressorBuilder;

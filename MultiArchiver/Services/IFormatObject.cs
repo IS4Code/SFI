@@ -164,12 +164,8 @@ namespace IS4.MultiArchiver.Services
 
         public new IBinaryFileFormat Format => (IBinaryFileFormat)base.Format;
 
-        /// <summary>
-        /// Creates a new instance of the format object.
-        /// </summary>
         /// <param name="data">The value of <see cref="Data"/>.</param>
-        /// <param name="format">The value of <see cref="Format"/>.</param>
-        /// <param name="value">The value of <see cref="Value"/>.</param>
+        /// <inheritdoc cref="FormatObject{T}.FormatObject(IFileFormat, T)"/>
         public BinaryFormatObject(IDataObject data, IBinaryFileFormat format, T value) : base(format, value)
         {
             Data = data;

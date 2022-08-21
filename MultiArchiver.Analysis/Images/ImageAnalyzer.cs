@@ -32,9 +32,7 @@ namespace IS4.MultiArchiver.Analyzers
         /// </summary>
         public ICollection<IDataHashAlgorithm> DataHashAlgorithms { get; } = new List<IDataHashAlgorithm>();
 
-        /// <summary>
-        /// Creates a new instance of the analyzer.
-        /// </summary>
+        /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>
         public ImageAnalyzer() : base(Common.ImageClasses)
         {
 

@@ -8,9 +8,7 @@ namespace IS4.MultiArchiver.Formats
     /// </summary>
     public class ExcelDocumentFormat : OleDocumentFormat<HSSFWorkbook>
     {
-        /// <summary>
-        /// Creates a new instance of the format.
-        /// </summary>
+        /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public ExcelDocumentFormat() : base("application/vnd.ms-excel", "xls")
         {
 

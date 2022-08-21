@@ -47,11 +47,7 @@ namespace IS4.MultiArchiver.Formats
             XmlResolver = new XmlPlaceholderResolver()
         };
 
-        /// <summary>
-        /// Creates a new instance of the format.
-        /// </summary>
-        /// <param name="mediaType">The common media type of the format.</param>
-        /// <param name="extension">The common extension of the format.</param>
+        /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public XmlFileFormat(string mediaType = "application/xml", string extension = "xml") : base(DataTools.MaxBomLength + 1, mediaType, extension)
         {
 

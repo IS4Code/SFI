@@ -12,9 +12,7 @@ namespace IS4.MultiArchiver.Formats
     /// </summary>
     public class SzFormat : SignatureFormat<SzReader>
     {
-        /// <summary>
-        /// Creates a new instance of the format.
-        /// </summary>
+        /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public SzFormat() : base(10, "SZ", null, "sz")
         {
 

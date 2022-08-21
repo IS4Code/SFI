@@ -201,9 +201,14 @@ namespace IS4.MultiArchiver
 
             static readonly Type analyzerType = typeof(IEntityAnalyzer<>);
 
-            protected override IEnumerable<Type> SelectType(Type t)
+            /// <summary>
+            /// Retrieves all implemented interfaces of <paramref name="initial"/> that
+            /// are generic instantiations of <see cref="IEntityAnalyzer{T}"/>.
+            /// </summary>
+            /// <inheritdoc/>
+            protected override IEnumerable<Type> SelectType(Type initial)
             {
-                foreach(var i in t.GetInterfaces())
+                foreach(var i in initial.GetInterfaces())
                 {
                     if(i.IsGenericType && i.GetGenericTypeDefinition().Equals(analyzerType))
                     {

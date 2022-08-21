@@ -9,9 +9,7 @@ namespace IS4.MultiArchiver.Formats
     /// </summary>
     public class CabinetFormat : SignatureFormat<CabinetFile>
     {
-        /// <summary>
-        /// Creates a new instance of the format.
-        /// </summary>
+        /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public CabinetFormat() : base("MSCF", "application/vnd.ms-cab-compressed", "cab")
         {
 

@@ -15,9 +15,7 @@ namespace IS4.MultiArchiver.Formats
     /// </summary>
     public class TarFormat : SignatureFormat<IArchiveReader>
     {
-        /// <summary>
-        /// Creates a new instance of the format.
-        /// </summary>
+        /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public TarFormat() : base(headerLength, "application/x-tar", "tar")
         {
 

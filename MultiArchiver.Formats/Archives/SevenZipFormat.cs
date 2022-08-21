@@ -11,9 +11,7 @@ namespace IS4.MultiArchiver.Formats
     /// </summary>
     public class SevenZipFormat : ArchiveFormat<SevenZipArchive>
     {
-        /// <summary>
-        /// Creates a new instance of the format.
-        /// </summary>
+        /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public SevenZipFormat() : base("7z", "application/x-7z-compressed", "7z")
         {
 

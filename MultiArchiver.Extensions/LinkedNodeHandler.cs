@@ -253,14 +253,9 @@ namespace IS4.MultiArchiver.Extensions
         {
             readonly NodeQueryTester queryTester;
 
-            /// <summary>
-            /// Creates a new instance of the node.
-            /// </summary>
-            /// <param name="subject">The <see cref="INode"/> instance to wrap.</param>
-            /// <param name="handler">The RDF handler for asserting triples.</param>
-            /// <param name="cache">The vocabulary cache.</param>
             /// <param name="queryTester">The instance of <see cref="NodeQueryTester"/> for <see cref="Match(out IReadOnlyDictionary{string, object})"/>.</param>
-            public UriNode(INode subject, IRdfHandler handler, Cache cache, NodeQueryTester queryTester) : base(subject, handler, cache)
+            /// <inheritdoc cref="LinkedNode{TNode, TGraphNode, TVocabularyCache}.LinkedNode(TNode, TGraphNode, TVocabularyCache)"/>
+            public UriNode(INode subject, IRdfHandler graph, Cache cache, NodeQueryTester queryTester) : base(subject, graph, cache)
             {
                 if(!(subject is IUriNode || subject is IBlankNode)) throw new ArgumentException(null, nameof(subject));
                 this.queryTester = queryTester;

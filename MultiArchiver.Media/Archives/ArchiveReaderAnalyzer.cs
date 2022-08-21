@@ -11,9 +11,7 @@ namespace IS4.MultiArchiver.Analyzers
     /// </summary>
     public class ArchiveReaderAnalyzer : MediaObjectAnalyzer<IArchiveReader>
     {
-        /// <summary>
-        /// Creates a new instance of the analyzer.
-        /// </summary>
+        /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>
         public ArchiveReaderAnalyzer() : base(Common.ArchiveClasses)
         {
 

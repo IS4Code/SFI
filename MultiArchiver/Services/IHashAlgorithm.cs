@@ -304,16 +304,7 @@ namespace IS4.MultiArchiver.Services
         /// </summary>
         public const int TriplesPerHash = 4;
 
-        /// <summary>
-        /// Creates a <see cref="ILinkedNode"/> representing a particular hash
-        /// and assigns it to <paramref name="node"/>, via
-        /// <see cref="Properties.Digest"/>.
-        /// </summary>
-        /// <param name="node">The node to assign the hash to.</param>
-        /// <param name="algorithm">The particular algorithm used to produce the hash.</param>
-        /// <param name="hash">The bytes of the hash.</param>
-        /// <param name="nodeFactory">The factory to use when creating the <see cref="ILinkedNode"/>.</param>
-        /// <returns>The node for the hash.</returns>
+        /// <inheritdoc cref="AddHash(ILinkedNode, IHashAlgorithm, ArraySegment{byte}, ILinkedNodeFactory)"/>
         public static ILinkedNode AddHash(ILinkedNode node, IHashAlgorithm algorithm, byte[] hash, ILinkedNodeFactory nodeFactory)
         {
             return AddHash(node, algorithm, new ArraySegment<byte>(hash), nodeFactory);
@@ -381,13 +372,7 @@ namespace IS4.MultiArchiver.Services
     /// </summary>
     public abstract class DataHashAlgorithm : HashAlgorithm, IDataHashAlgorithm
     {
-        /// <summary>
-        /// Creates a new instance of the hash algorithm.
-        /// </summary>
-        /// <param name="identifier">The individual identifier of the algorithm.</param>
-        /// <param name="hashSize">The usual size of the hash.</param>
-        /// <param name="prefix">The URI prefix used when creating URIs of hashes.</param>
-        /// <param name="formatting">The formatting method for creating URIs.</param>
+        /// <inheritdoc/>
         public DataHashAlgorithm(IndividualUri identifier, int hashSize, string prefix, FormattingMethod formatting) : base(identifier, hashSize, prefix, formatting)
         {
 
@@ -410,13 +395,7 @@ namespace IS4.MultiArchiver.Services
     /// </summary>
     public abstract class FileHashAlgorithm : HashAlgorithm, IFileHashAlgorithm
     {
-        /// <summary>
-        /// Creates a new instance of the hash algorithm.
-        /// </summary>
-        /// <param name="identifier">The individual identifier of the algorithm.</param>
-        /// <param name="hashSize">The usual size of the hash.</param>
-        /// <param name="prefix">The URI prefix used when creating URIs of hashes.</param>
-        /// <param name="formatting">The formatting method for creating URIs.</param>
+        /// <inheritdoc/>
         public FileHashAlgorithm(IndividualUri identifier, int hashSize, string prefix, FormattingMethod formatting) : base(identifier, hashSize, prefix, formatting)
         {
 
@@ -432,13 +411,7 @@ namespace IS4.MultiArchiver.Services
     /// <typeparam name="T">The type of the accepted objects.</typeparam>
     public abstract class ObjectHashAlgorithm<T> : HashAlgorithm, IObjectHashAlgorithm<T>
     {
-        /// <summary>
-        /// Creates a new instance of the hash algorithm.
-        /// </summary>
-        /// <param name="identifier">The individual identifier of the algorithm.</param>
-        /// <param name="hashSize">The usual size of the hash.</param>
-        /// <param name="prefix">The URI prefix used when creating URIs of hashes.</param>
-        /// <param name="formatting">The formatting method for creating URIs.</param>
+        /// <inheritdoc/>
         public ObjectHashAlgorithm(IndividualUri identifier, int hashSize, string prefix, FormattingMethod formatting) : base(identifier, hashSize, prefix, formatting)
         {
 

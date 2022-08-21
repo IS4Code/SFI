@@ -11,9 +11,7 @@ namespace IS4.MultiArchiver.Formats
     /// </summary>
     public class ZipFormat : ArchiveFormat<ZipArchive>
     {
-        /// <summary>
-        /// Creates a new instance of the format.
-        /// </summary>
+        /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public ZipFormat() : base("PK", "application/zip", "zip")
         {
 

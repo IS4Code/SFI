@@ -12,9 +12,7 @@ namespace IS4.MultiArchiver.Formats
     /// </summary>
     public class DosModuleFormat : ModuleFormat<DosModuleAnalyzer.Module>
     {
-        /// <summary>
-        /// Creates a new instance of the format.
-        /// </summary>
+        /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public DosModuleFormat() : base(null, "application/x-dosexec", "exe")
         {
 

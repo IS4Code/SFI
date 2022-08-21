@@ -22,9 +22,7 @@ namespace IS4.MultiArchiver.Analyzers
         /// </summary>
         public bool CreateSpectrum { get; set; } = true;
 
-        /// <summary>
-        /// Creates a new instance of the analyzer.
-        /// </summary>
+        /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>
         public WaveAnalyzer() : base(Common.AudioClasses)
         {
 

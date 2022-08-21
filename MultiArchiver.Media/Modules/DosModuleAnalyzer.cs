@@ -14,9 +14,7 @@ namespace IS4.MultiArchiver.Analyzers
     /// </summary>
     public class DosModuleAnalyzer : MediaObjectAnalyzer<DosModuleAnalyzer.Module>
     {
-        /// <summary>
-        /// Creates a new instance of the analyzer.
-        /// </summary>
+        /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>
         public DosModuleAnalyzer() : base(Common.ApplicationClasses)
         {
 
@@ -37,10 +35,17 @@ namespace IS4.MultiArchiver.Analyzers
             return new AnalysisResult(node);
         }
 
+        /// <summary>
+        /// Represents an MS-DOS executable module.
+        /// </summary>
         public class Module
         {
             readonly BinaryReader reader;
 
+            /// <summary>
+            /// Creates a new instance of the module.
+            /// </summary>
+            /// <param name="stream">The stream storing the module in the MZ format.</param>
             public Module(Stream stream)
             {
                 reader = new BinaryReader(stream, Encoding.ASCII, true);
@@ -57,6 +62,13 @@ namespace IS4.MultiArchiver.Analyzers
                 throw new ArgumentException("This file uses an extended executable format.", nameof(stream));
             }
 
+            /// <summary>
+            /// Decompresses the executable.
+            /// </summary>
+            /// <returns>
+            /// The decompressed equivalent of the executable, as an instance
+            /// of <see cref="IFileInfo"/>.
+            /// </returns>
             public IFileInfo GetCompressedContents()
             {
                 var lzex = new LzExtractedFile(reader);

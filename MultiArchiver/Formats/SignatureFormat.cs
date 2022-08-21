@@ -17,8 +17,7 @@ namespace IS4.MultiArchiver.Formats
         /// Creates a new instance of the format from an empty signature.
         /// </summary>
         /// <param name="headerLength">The minimum required length of the header.</param>
-        /// <param name="mediaType">The common media type of the format.</param>
-        /// <param name="extension">The common extension of the format.</param>
+        /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public SignatureFormat(int headerLength, string mediaType, string extension) : base(headerLength, mediaType, extension)
         {
             signature = Array.Empty<byte>();
@@ -29,8 +28,7 @@ namespace IS4.MultiArchiver.Formats
         /// </summary>
         /// <param name="headerLength">The minimum required length of the header.</param>
         /// <param name="signature">A string representation of the signature, converted to ASCII.</param>
-        /// <param name="mediaType">The common media type of the format.</param>
-        /// <param name="extension">The common extension of the format.</param>
+        /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public SignatureFormat(int headerLength, string signature, string mediaType, string extension) : base(headerLength, mediaType, extension)
         {
             this.signature = Encoding.ASCII.GetBytes(signature);
@@ -41,8 +39,7 @@ namespace IS4.MultiArchiver.Formats
         /// </summary>
         /// <param name="headerLength">The minimum required length of the header.</param>
         /// <param name="signature">The raw bytes of the signature.</param>
-        /// <param name="mediaType">The common media type of the format.</param>
-        /// <param name="extension">The common extension of the format.</param>
+        /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public SignatureFormat(int headerLength, byte[] signature, string mediaType, string extension) : base(headerLength, mediaType, extension)
         {
             this.signature = (byte[])signature.Clone();
@@ -52,8 +49,7 @@ namespace IS4.MultiArchiver.Formats
         /// Creates a new instance of the format from a <see cref="String"/> signature.
         /// </summary>
         /// <param name="signature">A string representation of the signature, converted to ASCII.</param>
-        /// <param name="mediaType">The common media type of the format.</param>
-        /// <param name="extension">The common extension of the format.</param>
+        /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public SignatureFormat(string signature, string mediaType, string extension) : base(signature.Length + 1, mediaType, extension)
         {
             this.signature = Encoding.ASCII.GetBytes(signature);
@@ -63,8 +59,7 @@ namespace IS4.MultiArchiver.Formats
         /// Creates a new instance of the format from a <see cref="Byte"/> array signature.
         /// </summary>
         /// <param name="signature">The raw bytes of the signature.</param>
-        /// <param name="mediaType">The common media type of the format.</param>
-        /// <param name="extension">The common extension of the format.</param>
+        /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public SignatureFormat(byte[] signature, string mediaType, string extension) : base(signature.Length + 1, mediaType, extension)
         {
             this.signature = (byte[])signature.Clone();

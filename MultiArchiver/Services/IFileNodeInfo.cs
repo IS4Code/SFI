@@ -142,6 +142,7 @@ namespace IS4.MultiArchiver.Services
         /// The underlying info instance.
         /// </summary>
         protected TInfo BaseInfo { get; }
+
         readonly IPersistentKey key;
 
         /// <summary>
@@ -221,13 +222,7 @@ namespace IS4.MultiArchiver.Services
     /// </summary>
     public class FileInfoWrapper : FileSystemInfoWrapper<FileInfo>, IFileInfo
     {
-        /// <summary>
-        /// Creates a new instance of the wrapper.
-        /// </summary>
-        /// <param name="baseInfo">The underlying object to use when delegating properties.</param>
-        /// <param name="key">
-        /// The implementation of <see cref="IPersistentKey"/> to use.
-        /// </param>
+        /// <inheritdoc/>
         public FileInfoWrapper(FileInfo baseInfo, IPersistentKey key = null) : base(baseInfo, key)
         {
 
@@ -246,13 +241,7 @@ namespace IS4.MultiArchiver.Services
     /// </summary>
     public class DirectoryInfoWrapper : FileSystemInfoWrapper<DirectoryInfo>, IDirectoryInfo
     {
-        /// <summary>
-        /// Creates a new instance of the wrapper.
-        /// </summary>
-        /// <param name="baseInfo">The underlying object to use when delegating properties.</param>
-        /// <param name="key">
-        /// The implementation of <see cref="IPersistentKey"/> to use.
-        /// </param>
+        /// <inheritdoc/>
         public DirectoryInfoWrapper(DirectoryInfo baseInfo, IPersistentKey key = null) : base(baseInfo, key)
         {
 

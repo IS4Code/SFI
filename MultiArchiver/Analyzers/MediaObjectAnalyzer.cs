@@ -37,6 +37,7 @@ namespace IS4.MultiArchiver.Analyzers
         /// Assigns the classes specified during construction of the analyzer to newly
         /// constructed nodes.
         /// </summary>
+        /// <inheritdoc/>
         protected override void InitNode(ILinkedNode node, AnalysisContext context)
         {
             base.InitNode(node, context);

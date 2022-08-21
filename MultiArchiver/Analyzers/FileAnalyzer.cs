@@ -21,9 +21,7 @@ namespace IS4.MultiArchiver.Analyzers
         /// </summary>
         public ICollection<IFileHashAlgorithm> HashAlgorithms { get; } = new List<IFileHashAlgorithm>();
 
-        /// <summary>
-        /// Creates a new instance of the analyzer.
-        /// </summary>
+        /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>
         public FileAnalyzer()
         {
 

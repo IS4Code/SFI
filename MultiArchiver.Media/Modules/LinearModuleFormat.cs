@@ -10,9 +10,7 @@ namespace IS4.MultiArchiver.Formats
     /// </summary>
     public class LinearModuleFormat : WinModuleFormat
     {
-        /// <summary>
-        /// Creates a new instance of the format.
-        /// </summary>
+        /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public LinearModuleFormat() : base("L", "application/x-msdownload;format=le", null)
         {
 

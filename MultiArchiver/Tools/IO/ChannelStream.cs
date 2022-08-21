@@ -55,6 +55,11 @@ namespace IS4.MultiArchiver.Tools.IO
 
         /// <summary>
         /// Creates a new channel and retrieve its reader and writer.
+        /// </summary>
+        /// <param name="writer">The variable to receive the writer for the created channel.</param>
+        /// <param name="capacity">The capacity of the channel, if it should be bounded.</param>
+        /// <returns>The reader for the created channel.</returns>
+        /// <remarks>
         /// The channel is created with the following settings:
         /// <list type="bullet">
         /// <item>
@@ -74,10 +79,7 @@ namespace IS4.MultiArchiver.Tools.IO
         ///     <description><see cref="BoundedChannelFullMode.Wait"/></description>
         /// </item>
         /// </list>
-        /// </summary>
-        /// <param name="writer">The variable to receive the writer for the created channel.</param>
-        /// <param name="capacity">The capacity of the channel, if it should be bounded.</param>
-        /// <returns>The reader for the created channel.</returns>
+        /// </remarks>
         protected static ChannelReader<TSequence> CreateReader(out ChannelWriter<TSequence> writer, int? capacity = null)
         {
             var ch = capacity is int i ? Channel.CreateBounded<TSequence>(new BoundedChannelOptions(i)

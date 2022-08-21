@@ -10,12 +10,7 @@ namespace IS4.MultiArchiver.Tools.IO
     /// </summary>
     public sealed class ChannelArrayStream : ChannelStream<ArraySegment<byte>>
     {
-        /// <summary>
-        /// Creates a new stream instance from a channel reader.
-        /// </summary>
-        /// <param name="channelReader">
-        /// The reader for the channel providing the byte sequences to read.
-        /// </param>
+        /// <inheritdoc/>
         public ChannelArrayStream(ChannelReader<ArraySegment<byte>> channelReader) : base(channelReader)
         {
 
@@ -25,9 +20,8 @@ namespace IS4.MultiArchiver.Tools.IO
         /// Creates a new instance of <see cref="ChannelArrayStream"/> and retrieves
         /// the writer to its underlying channel.
         /// </summary>
-        /// <param name="writer">The variable to receive the writer for the created channel.</param>
-        /// <param name="capacity">The capacity of the channel, if it should be bounded.</param>
         /// <returns>The stream to read from the channel.</returns>
+        /// <inheritdoc cref="ChannelStream{TSequence}.CreateReader(out ChannelWriter{TSequence}, int?)"/>
         public static ChannelArrayStream Create(out ChannelWriter<ArraySegment<byte>> writer, int? capacity = null)
         {
             return new ChannelArrayStream(CreateReader(out writer, capacity));
@@ -53,12 +47,7 @@ namespace IS4.MultiArchiver.Tools.IO
     /// </summary>
     public sealed class ChannelMemoryStream : ChannelStream<UnmanagedMemoryRange>
     {
-        /// <summary>
-        /// Creates a new stream instance from a channel reader.
-        /// </summary>
-        /// <param name="channelReader">
-        /// The reader for the channel providing the byte sequences to read.
-        /// </param>
+        /// <inheritdoc/>
         public ChannelMemoryStream(ChannelReader<UnmanagedMemoryRange> channelReader) : base(channelReader)
         {
 
@@ -68,9 +57,8 @@ namespace IS4.MultiArchiver.Tools.IO
         /// Creates a new instance of <see cref="ChannelMemoryStream"/> and retrieves
         /// the writer to its underlying channel.
         /// </summary>
-        /// <param name="writer">The variable to receive the writer for the created channel.</param>
-        /// <param name="capacity">The capacity of the channel, if it should be bounded.</param>
         /// <returns>The stream to read from the channel.</returns>
+        /// <inheritdoc cref="ChannelStream{TSequence}.CreateReader(out ChannelWriter{TSequence}, int?)"/>
         public static ChannelMemoryStream Create(out ChannelWriter<UnmanagedMemoryRange> writer, int? capacity = null)
         {
             return new ChannelMemoryStream(CreateReader(out writer, capacity));

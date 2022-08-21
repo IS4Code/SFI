@@ -25,9 +25,7 @@ namespace IS4.MultiArchiver.Analyzers
         /// </summary>
         public ICollection<IXmlDocumentFormat> XmlFormats { get; } = new SortedSet<IXmlDocumentFormat>(TypeInheritanceComparer<IXmlDocumentFormat>.Instance);
 
-        /// <summary>
-        /// Creates a new instance of the analyzer.
-        /// </summary>
+        /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>
         public XmlAnalyzer() : base(Classes.ContentAsXML, Classes.Document)
         {
 

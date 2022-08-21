@@ -11,9 +11,7 @@ namespace IS4.MultiArchiver.Formats
     /// </summary>
     public class GZipFormat : SignatureFormat<IArchiveReader>
     {
-        /// <summary>
-        /// Creates a new instance of the format.
-        /// </summary>
+        /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public GZipFormat() : base(new byte[] { 0x1F, 0x8B }, "application/gzip", "gz")
         {
 

@@ -115,6 +115,7 @@ namespace IS4.MultiArchiver.Formats.Archives
 
             public int? Revision => null;
 
+            /// <inheritdoc cref="IPersistentKey.ReferenceKey"/>
             protected virtual object ReferenceKey => Entry?.Archive;
 
             object IPersistentKey.ReferenceKey => ReferenceKey;

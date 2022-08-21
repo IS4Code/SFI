@@ -12,19 +12,26 @@ namespace IS4.MultiArchiver.Analyzers
     /// </summary>
     public class FormatObjectAnalyzer : EntityAnalyzer, IEntityAnalyzer<IFormatObject>, IResultFactory<AnalysisResult, (IFormatObject format, AnalysisContext context, IEntityAnalyzers analyzer)>
     {
-        public ValueTask<AnalysisResult> Analyze(IFormatObject format, AnalysisContext context, IEntityAnalyzers analyzer)
+        public ValueTask<AnalysisResult> Analyze(IFormatObject format, AnalysisContext context, IEntityAnalyzers analyzers)
         {
-            return format.GetValue(this, (format, context, analyzer));
+            return format.GetValue(this, (format, context, analyzers));
         }
 
-        protected virtual async ValueTask<AnalysisResult> Analyze<T>(T value, IFormatObject format, AnalysisContext context, IEntityAnalyzers analyzer) where T : class
+        /// <summary>
+        /// Analyzes <paramref name="format"/> and the value obtained from it.
+        /// </summary>
+        /// <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
+        /// <param name="value">The value extracted from <paramref name="format"/>.</param>
+        /// <param name="format">The format object to analyze.</param>
+        /// <inheritdoc cref="Analyze(IFormatObject, AnalysisContext, IEntityAnalyzers)"/>
+        protected virtual async ValueTask<AnalysisResult> Analyze<T>(T value, IFormatObject format, AnalysisContext context, IEntityAnalyzers analyzers) where T : class
         {
             var node = GetNode(format, context);
 
             // The media object node should be used as base in Turtle.
             node.SetAsBase();
 
-            var result = await analyzer.Analyze(value, context.WithNode(node));
+            var result = await analyzers.Analyze(value, context.WithNode(node));
             node = result.Node ?? node;
 
             var type = format.MediaType?.ToLowerInvariant();

@@ -9,9 +9,7 @@ namespace IS4.MultiArchiver.Formats
     /// </summary>
     public class OggFormat : SignatureFormat<WaveStream>
     {
-        /// <summary>
-        /// Creates a new instance of the format.
-        /// </summary>
+        /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public OggFormat() : base("OggS", "application/ogg", "ogg")
         {
 

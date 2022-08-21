@@ -10,9 +10,7 @@ namespace IS4.MultiArchiver.Formats
     /// </summary>
     public class Win16ModuleFormat : WinModuleFormat
     {
-        /// <summary>
-        /// Creates a new instance of the format.
-        /// </summary>
+        /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public Win16ModuleFormat() : base("NE", "application/x-msdownload;format=ne", null)
         {
 

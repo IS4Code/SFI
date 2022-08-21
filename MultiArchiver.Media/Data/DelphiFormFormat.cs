@@ -10,9 +10,7 @@ namespace IS4.MultiArchiver.Formats
     /// </summary>
     public class DelphiFormFormat : SignatureFormat<DelphiObject>
     {
-        /// <summary>
-        /// Creates a new instance of the format.
-        /// </summary>
+        /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public DelphiFormFormat() : base("TPF0", "application/x-delphi-form", "dfm")
         {
 

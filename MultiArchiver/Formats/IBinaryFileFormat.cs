@@ -101,12 +101,8 @@ namespace IS4.MultiArchiver.Formats
     {
         public int HeaderLength { get; }
 
-        /// <summary>
-        /// Creates a new instance of the format.
-        /// </summary>
         /// <param name="headerLength">The value of <see cref="HeaderLength"/>.</param>
-        /// <param name="mediaType">The common media type of the format.</param>
-        /// <param name="extension">The common extension of the format.</param>
+        /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public BinaryFileFormat(int headerLength, string mediaType, string extension) : base(mediaType, extension)
         {
             HeaderLength = headerLength;

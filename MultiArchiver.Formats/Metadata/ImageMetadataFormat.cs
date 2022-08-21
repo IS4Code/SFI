@@ -15,9 +15,7 @@ namespace IS4.MultiArchiver.Formats
     /// </summary>
     public class ImageMetadataFormat : BinaryFileFormat<IReadOnlyList<MetadataExtractor.Directory>>
     {
-        /// <summary>
-        /// Creates a new instance of the format.
-        /// </summary>
+        /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public ImageMetadataFormat() : base(DataTools.MaxBomLength, null, null)
         {
 

@@ -11,9 +11,7 @@ namespace IS4.MultiArchiver.Formats
     /// </summary>
     public class IsoFormat : BinaryFileFormat<CDReader>
     {
-        /// <summary>
-        /// Creates a new instance of the format.
-        /// </summary>
+        /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public IsoFormat() : base(0, "application/x-iso9660-image", "iso")
         {
 

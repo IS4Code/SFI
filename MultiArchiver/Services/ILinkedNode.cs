@@ -36,15 +36,7 @@ namespace IS4.MultiArchiver.Services
         /// </exception>
         void Describe(XmlReader rdfXmlReader);
 
-        /// <summary>
-        /// Describes the node using the RDF/XML description provided
-        /// through <paramref name="rdfXmlReader"/>.
-        /// </summary>
-        /// <param name="rdfXmlReader">
-        /// An XML reader for a valid RDF/XML document. The document
-        /// shall describe the node by using a blank relative URI,
-        /// i.e. &lt;rdf:Description rdf:about=""&gt;
-        /// </param>
+        /// <inheritdoc cref="Describe(XmlReader)"/>
         Task DescribeAsync(XmlReader rdfXmlReader);
 
         /// <summary>
@@ -90,47 +82,40 @@ namespace IS4.MultiArchiver.Services
         /// <summary>
         /// Sets one of the properties to a literal with a particular datatype.
         /// </summary>
-        /// <param name="property">The property to set.</param>
-        /// <param name="value">The literal value to assign.</param>
         /// <param name="datatype">The datatype of the literal.</param>
+        /// <inheritdoc cref="Set(PropertyUri, string)"/>
         void Set(PropertyUri property, string value, DatatypeUri datatype);
 
         /// <summary>
         /// Sets one of the properties to a literal with a datatype produced from a formatter.
         /// </summary>
         /// <typeparam name="TData">The type supported by <paramref name="datatypeFormatter"/>.</typeparam>
-        /// <param name="property">The property to set.</param>
-        /// <param name="value">The literal value to assign.</param>
         /// <param name="datatypeFormatter">The formatter to use for the datatype.</param>
         /// <param name="datatypeValue">The value to format for the datatype.</param>
+        /// <inheritdoc cref="Set(PropertyUri, string)"/>
         void Set<TData>(PropertyUri property, string value, IDatatypeUriFormatter<TData> datatypeFormatter, TData datatypeValue);
 
         /// <summary>
         /// Sets one of the properties to the string value of a literal with a particular datatype.
         /// </summary>
         /// <typeparam name="TValue">The type of the literal.</typeparam>
-        /// <param name="property">The property to set.</param>
-        /// <param name="value">The literal value to assign.</param>
-        /// <param name="datatype">The datatype of the literal.</param>
+        /// <inheritdoc cref="Set(PropertyUri, string, DatatypeUri)"/>
         void Set<TValue>(PropertyUri property, TValue value, DatatypeUri datatype) where TValue : IFormattable;
 
         /// <summary>
         /// Sets one of the properties to the string value of a literal with a datatype produced from a formatter.
         /// </summary>
-        /// <typeparam name="TValue">The type of the literal.</typeparam>
         /// <typeparam name="TData">The type supported by <paramref name="datatypeFormatter"/>.</typeparam>
-        /// <param name="property">The property to set.</param>
-        /// <param name="value">The literal value to assign.</param>
         /// <param name="datatypeFormatter">The formatter to use for the datatype.</param>
         /// <param name="datatypeValue">The value to format for the datatype.</param>
+        /// <inheritdoc cref="Set{TValue}(PropertyUri, TValue, DatatypeUri)"/>
         void Set<TValue, TData>(PropertyUri property, TValue value, IDatatypeUriFormatter<TData> datatypeFormatter, TData datatypeValue) where TValue : IFormattable;
 
         /// <summary>
         /// Sets one of the properties to a literal with a particular language.
         /// </summary>
-        /// <param name="property">The property to set.</param>
-        /// <param name="value">The literal value to assign.</param>
         /// <param name="language">The language of the literal.</param>
+        /// <inheritdoc cref="Set(PropertyUri, string)"/>
         void Set(PropertyUri property, string value, LanguageCode language);
 
         /// <summary>
@@ -160,7 +145,7 @@ namespace IS4.MultiArchiver.Services
         /// Sets one of the properties to a boolean value.
         /// </summary>
         /// <param name="property">The property to set.</param>
-        /// <param name="value">The value to assign.</param>
+        /// <param name="value">The boolean value to assign.</param>
         void Set(PropertyUri property, bool value);
 
         /// <summary>
@@ -174,129 +159,54 @@ namespace IS4.MultiArchiver.Services
         /// </exception>
         void Set<TValue>(PropertyUri property, TValue value) where TValue : struct, IEquatable<TValue>, IFormattable;
 
-        /// <summary>
-        /// Sets one of the properties to an individual resource.
-        /// </summary>
         /// <typeparam name="TProp">The type of <paramref name="propertyValue"/>.</typeparam>
         /// <param name="propertyFormatter">The formatter to use for the property.</param>
         /// <param name="propertyValue">The value formatted with <paramref name="propertyFormatter"/>.</param>
-        /// <param name="value">The individual value to assign.</param>
+        /// <inheritdoc cref="Set(PropertyUri, IndividualUri)"/>
         void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, IndividualUri value);
 
-        /// <summary>
-        /// Sets one of the properties to a plain literal.
-        /// </summary>
-        /// <typeparam name="TProp">The type of <paramref name="propertyValue"/>.</typeparam>
-        /// <param name="propertyFormatter">The formatter to use for the property.</param>
-        /// <param name="propertyValue">The value formatted with <paramref name="propertyFormatter"/>.</param>
-        /// <param name="value">The literal value to assign.</param>
+        /// <inheritdoc cref="Set(PropertyUri, string)"/>
+        /// <inheritdoc cref="Set{TProp}(IPropertyUriFormatter{TProp}, TProp, IndividualUri)"/>
         void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, string value);
 
-        /// <summary>
-        /// Sets one of the properties to a literal with a particular datatype.
-        /// </summary>
-        /// <typeparam name="TProp">The type of <paramref name="propertyValue"/>.</typeparam>
-        /// <param name="propertyFormatter">The formatter to use for the property.</param>
-        /// <param name="propertyValue">The value formatted with <paramref name="propertyFormatter"/>.</param>
-        /// <param name="value">The literal value to assign.</param>
-        /// <param name="datatype">The datatype of the literal.</param>
+        /// <inheritdoc cref="Set(PropertyUri, string, DatatypeUri)"/>
+        /// <inheritdoc cref="Set{TProp}(IPropertyUriFormatter{TProp}, TProp, IndividualUri)"/>
         void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, string value, DatatypeUri datatype);
 
-        /// <summary>
-        /// Sets one of the properties to a literal with a datatype produced from a formatter.
-        /// </summary>
-        /// <typeparam name="TData">The type supported by <paramref name="datatypeFormatter"/>.</typeparam>
-        /// <typeparam name="TProp">The type of <paramref name="propertyValue"/>.</typeparam>
-        /// <param name="propertyFormatter">The formatter to use for the property.</param>
-        /// <param name="propertyValue">The value formatted with <paramref name="propertyFormatter"/>.</param>
-        /// <param name="value">The literal value to assign.</param>
-        /// <param name="datatypeFormatter">The formatter to use for the datatype.</param>
-        /// <param name="datatypeValue">The value to format for the datatype.</param>
+        /// <inheritdoc cref="Set{TValue, TData}(PropertyUri, TValue, IDatatypeUriFormatter{TData}, TData)"/>
+        /// <inheritdoc cref="Set{TProp}(IPropertyUriFormatter{TProp}, TProp, IndividualUri)"/>
         void Set<TProp, TData>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, string value, IDatatypeUriFormatter<TData> datatypeFormatter, TData datatypeValue);
 
-        /// <summary>
-        /// Sets one of the properties to the string value of a literal with a particular datatype.
-        /// </summary>
-        /// <typeparam name="TValue">The type of the literal.</typeparam>
-        /// <typeparam name="TProp">The type of <paramref name="propertyValue"/>.</typeparam>
-        /// <param name="propertyFormatter">The formatter to use for the property.</param>
-        /// <param name="propertyValue">The value formatted with <paramref name="propertyFormatter"/>.</param>
-        /// <param name="value">The literal value to assign.</param>
-        /// <param name="datatype">The datatype of the literal.</param>
+        /// <inheritdoc cref="Set{TValue}(PropertyUri, TValue, DatatypeUri)"/>
+        /// <inheritdoc cref="Set{TProp}(IPropertyUriFormatter{TProp}, TProp, IndividualUri)"/>
         void Set<TProp, TValue>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, TValue value, DatatypeUri datatype) where TValue : IFormattable;
 
-        /// <summary>
-        /// Sets one of the properties to the string value of a literal with a datatype produced from a formatter.
-        /// </summary>
-        /// <typeparam name="TValue">The type of the literal.</typeparam>
-        /// <typeparam name="TData">The type supported by <paramref name="datatypeFormatter"/>.</typeparam>
-        /// <typeparam name="TProp">The type of <paramref name="propertyValue"/>.</typeparam>
-        /// <param name="propertyFormatter">The formatter to use for the property.</param>
-        /// <param name="propertyValue">The value formatted with <paramref name="propertyFormatter"/>.</param>
-        /// <param name="value">The literal value to assign.</param>
-        /// <param name="datatypeFormatter">The formatter to use for the datatype.</param>
-        /// <param name="datatypeValue">The value to format for the datatype.</param>
+        /// <inheritdoc cref="Set{TValue, TData}(PropertyUri, TValue, IDatatypeUriFormatter{TData}, TData)"/>
+        /// <inheritdoc cref="Set{TProp}(IPropertyUriFormatter{TProp}, TProp, IndividualUri)"/>
         void Set<TProp, TValue, TData>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, TValue value, IDatatypeUriFormatter<TData> datatypeFormatter, TData datatypeValue) where TValue : IFormattable;
 
-        /// <summary>
-        /// Sets one of the properties to a literal with a particular language.
-        /// </summary>
-        /// <typeparam name="TProp">The type of <paramref name="propertyValue"/>.</typeparam>
-        /// <param name="propertyFormatter">The formatter to use for the property.</param>
-        /// <param name="propertyValue">The value formatted with <paramref name="propertyFormatter"/>.</param>
-        /// <param name="value">The literal value to assign.</param>
-        /// <param name="language">The language of the literal.</param>
+        /// <inheritdoc cref="Set(PropertyUri, string, LanguageCode)"/>
+        /// <inheritdoc cref="Set{TProp}(IPropertyUriFormatter{TProp}, TProp, IndividualUri)"/>
         void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, string value, LanguageCode language);
 
-        /// <summary>
-        /// Sets one of the properties to an individual produced from a formatter.
-        /// </summary>
-        /// <typeparam name="TValue">The type of <paramref name="value"/>.</typeparam>
-        /// <typeparam name="TProp">The type of <paramref name="propertyValue"/>.</typeparam>
-        /// <param name="propertyFormatter">The formatter to use for the property.</param>
-        /// <param name="propertyValue">The value formatted with <paramref name="propertyFormatter"/>.</param>
-        /// <param name="formatter">The formatter to use.</param>
-        /// <param name="value">The value to format.</param>
+        /// <inheritdoc cref="Set{TValue}(PropertyUri, IIndividualUriFormatter{TValue}, TValue)"/>
+        /// <inheritdoc cref="Set{TProp}(IPropertyUriFormatter{TProp}, TProp, IndividualUri)"/>
         void Set<TProp, TValue>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, IIndividualUriFormatter<TValue> formatter, TValue value);
 
-        /// <summary>
-        /// Sets one of the properties to a URI literal.
-        /// </summary>
-        /// <typeparam name="TProp">The type of <paramref name="propertyValue"/>.</typeparam>
-        /// <param name="propertyFormatter">The formatter to use for the property.</param>
-        /// <param name="propertyValue">The value formatted with <paramref name="propertyFormatter"/>.</param>
-        /// <param name="value">The URI value to assign.</param>
+        /// <inheritdoc cref="Set(PropertyUri, Uri)"/>
+        /// <inheritdoc cref="Set{TProp}(IPropertyUriFormatter{TProp}, TProp, IndividualUri)"/>
         void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, Uri value);
 
-        /// <summary>
-        /// Sets one of the properties to a resource identified by another <see cref="ILinkedNode"/>.
-        /// </summary>
-        /// <typeparam name="TProp">The type of <paramref name="propertyValue"/>.</typeparam>
-        /// <param name="propertyFormatter">The formatter to use for the property.</param>
-        /// <param name="propertyValue">The value formatted with <paramref name="propertyFormatter"/>.</param>
-        /// <param name="value">The node to assign.</param>
+        /// <inheritdoc cref="Set(PropertyUri, ILinkedNode)"/>
+        /// <inheritdoc cref="Set{TProp}(IPropertyUriFormatter{TProp}, TProp, IndividualUri)"/>
         void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, ILinkedNode value);
 
-        /// <summary>
-        /// Sets one of the properties to a boolean value.
-        /// </summary>
-        /// <typeparam name="TProp">The type of <paramref name="propertyValue"/>.</typeparam>
-        /// <param name="propertyFormatter">The formatter to use for the property.</param>
-        /// <param name="propertyValue">The value formatted with <paramref name="propertyFormatter"/>.</param>
-        /// <param name="value">The value to assign.</param>
+        /// <inheritdoc cref="Set(PropertyUri, bool)"/>
+        /// <inheritdoc cref="Set{TProp}(IPropertyUriFormatter{TProp}, TProp, IndividualUri)"/>
         void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, bool value);
 
-        /// <summary>
-        /// Sets one of the properties to a literal value with an automatically recognized type.
-        /// </summary>
-        /// <typeparam name="TValue">The type of the literal.</typeparam>
-        /// <typeparam name="TProp">The type of <paramref name="propertyValue"/>.</typeparam>
-        /// <param name="propertyFormatter">The formatter to use for the property.</param>
-        /// <param name="propertyValue">The value formatted with <paramref name="propertyFormatter"/>.</param>
-        /// <param name="value">The value to assign.</param>
-        /// <exception cref="ArgumentException">
-        /// Thrown when <paramref name="value"/> doesn't have a recognized datatype.
-        /// </exception>
+        /// <inheritdoc cref="Set{TValue}(PropertyUri, TValue)"/>
+        /// <inheritdoc cref="Set{TProp}(IPropertyUriFormatter{TProp}, TProp, IndividualUri)"/>
         void Set<TProp, TValue>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, TValue value) where TValue : struct, IEquatable<TValue>, IFormattable;
 
         /// <summary>

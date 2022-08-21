@@ -12,9 +12,7 @@ namespace IS4.MultiArchiver.Formats
     /// </summary>
     public class WaveFormat : SignatureFormat<WaveStream>
     {
-        /// <summary>
-        /// Creates a new instance of the format.
-        /// </summary>
+        /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public WaveFormat() : base(17, "RIFF", "audio/vnd.wave", "wav")
         {
 

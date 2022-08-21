@@ -15,13 +15,7 @@ namespace IS4.MultiArchiver.Tools
     /// <typeparam name="T">The type of the aggregation value.</typeparam>
     public abstract class StreamDataHash<T> : DataHashAlgorithm
     {
-        /// <summary>
-        /// Creates a new instance of the hash algorithm.
-        /// </summary>
-        /// <param name="identifier">The individual identifier of the algorithm.</param>
-        /// <param name="hashSize">The usual size of the hash.</param>
-        /// <param name="prefix">The URI prefix used when creating URIs of hashes.</param>
-        /// <param name="formatting">The formatting method for creating URIs.</param>
+        /// <inheritdoc/>
         public StreamDataHash(IndividualUri identifier, int hashSize, string prefix, FormattingMethod formatting) : base(identifier, hashSize, prefix, formatting)
         {
 

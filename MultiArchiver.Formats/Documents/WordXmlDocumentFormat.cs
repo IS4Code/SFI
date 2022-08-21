@@ -8,9 +8,7 @@ namespace IS4.MultiArchiver.Formats
     /// </summary>
     public class WordXmlDocumentFormat : OpenXmlDocumentFormat<XWPFDocument>
     {
-        /// <summary>
-        /// Creates a new instance of the format.
-        /// </summary>
+        /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public WordXmlDocumentFormat() : base("application/vnd.openxmlformats-officedocument.wordprocessingml.document", "docx")
         {
 

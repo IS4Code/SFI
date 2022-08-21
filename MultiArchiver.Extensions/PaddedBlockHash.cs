@@ -23,12 +23,8 @@ namespace IS4.MultiArchiver
         /// </summary>
         public int BlockSize { get; }
 
-        /// <summary>
-        /// Creates a new instance of the hash algorithm.
-        /// </summary>
-        /// <param name="identifier">The individual identifier of the algorithm.</param>
-        /// <param name="prefix">The URI prefix used when creating URIs of hashes.</param>
         /// <param name="blockSize">The value of <see cref="BlockSize"/>.</param>
+        /// <inheritdoc cref="DataHashAlgorithm.DataHashAlgorithm(IndividualUri, int, string, FormattingMethod)"/>
         public PaddedBlockHash(IndividualUri identifier, string prefix, int blockSize) : base(identifier, BitTorrentHash.HashAlgorithm.GetHashSize(blockSize), prefix, FormattingMethod.Base64)
         {
             BlockSize = blockSize;

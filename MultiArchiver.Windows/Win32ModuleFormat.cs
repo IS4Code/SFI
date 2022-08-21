@@ -16,9 +16,7 @@ namespace IS4.MultiArchiver.Formats
     /// </summary>
     public class Win32ModuleFormat : WinModuleFormat
     {
-        /// <summary>
-        /// Creates a new instance of the format.
-        /// </summary>
+        /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public Win32ModuleFormat() : base("PE\0\0", "application/vnd.microsoft.portable-executable", null)
         {
 

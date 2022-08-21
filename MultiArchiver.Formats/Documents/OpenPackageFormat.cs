@@ -13,9 +13,7 @@ namespace IS4.MultiArchiver.Formats
     /// </summary>
     public sealed class OpenPackageFormat : LegacyPackageFileFormat<IFileNodeInfo, OpenPackageFormat.PackageInfo, OpenPackageFormat.PackageInfo>
     {
-        /// <summary>
-        /// Creates a new instance of the format.
-        /// </summary>
+        /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public OpenPackageFormat() : base("application/vnd.openxmlformats-package", "ooxml")
         {
 

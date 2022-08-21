@@ -10,9 +10,7 @@ namespace IS4.MultiArchiver.Analyzers
     /// </summary>
     public class X509CertificateAnalyzer : MediaObjectAnalyzer<X509Certificate>
     {
-        /// <summary>
-        /// Creates a new instance of the analyzer.
-        /// </summary>
+        /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>
         public X509CertificateAnalyzer() : base(Classes.X509Certificate)
         {
 

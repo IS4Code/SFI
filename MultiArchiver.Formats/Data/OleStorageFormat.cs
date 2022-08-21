@@ -12,9 +12,7 @@ namespace IS4.MultiArchiver.Formats
     /// </summary>
     public class OleStorageFormat : BinaryFileFormat<CompoundFile>
     {
-        /// <summary>
-        /// Creates a new instance of the format.
-        /// </summary>
+        /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public OleStorageFormat() : base(8, "application/x-ole-storage", "ole")
         {
 

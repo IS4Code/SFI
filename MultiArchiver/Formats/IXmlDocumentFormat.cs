@@ -173,14 +173,10 @@ namespace IS4.MultiArchiver.Formats
         /// </summary>
         public Uri Namespace { get; }
 
-        /// <summary>
-        /// Creates a new instance of the format.
-        /// </summary>
         /// <param name="publicId">The value of <see cref="PublicId"/>.</param>
         /// <param name="systemId">The value of <see cref="SystemId"/>.</param>
         /// <param name="namespace">The value of <see cref="Namespace"/>.</param>
-        /// <param name="mediaType">The common media type of the format.</param>
-        /// <param name="extension">The common extension of the format.</param>
+        /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public XmlDocumentFormat(string publicId, string systemId, Uri @namespace, string mediaType, string extension) : base(mediaType, extension)
         {
             PublicId = publicId;

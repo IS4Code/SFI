@@ -204,6 +204,14 @@ namespace IS4.MultiArchiver.Services
         public event OutputFileDelegate OutputFile;
 
         /// <summary>
+        /// Creates a new instance of the analyzer.
+        /// </summary>
+        public EntityAnalyzer()
+        {
+
+        }
+
+        /// <summary>
         /// Calls the <see cref="OutputFile"/> event, if any handler is subscribed,
         /// when a file could be produced in the analysis.
         /// </summary>
@@ -231,32 +239,26 @@ namespace IS4.MultiArchiver.Services
                 InitNewNode(context.Node ?? context.NodeFactory.CreateUnique(), context);
         }
 
-        /// <summary>
-        /// Obtains or creates a new node from <see cref="AnalysisContext"/>.
-        /// </summary>
         /// <param name="subName">The name of the node relative to its parent.</param>
-        /// <param name="context">The context to use.</param>
         /// <returns>
         /// The value of <see cref="AnalysisContext.Node"/>, the result of indexing
         /// <see cref="AnalysisContext.Parent"/> with <paramref name="subName"/>,
         /// or the result of <see cref="LinkedNodeFactoryExtensions.CreateUnique(ILinkedNodeFactory)"/>.
         /// </returns>
+        /// <inheritdoc cref="GetNode(AnalysisContext)"/>
         protected ILinkedNode GetNode(string subName, AnalysisContext context)
         {
             return
                 InitNewNode(context.Node ?? context.Parent?[subName] ?? context.NodeFactory.CreateUnique(), context);
         }
 
-        /// <summary>
-        /// Obtains or creates a new node from <see cref="AnalysisContext"/>.
-        /// </summary>
         /// <param name="formatter">The formatter to use to produce the node from its parent.</param>
-        /// <param name="context">The context to use.</param>
         /// <returns>
         /// The value of <see cref="AnalysisContext.Node"/>, the result of indexing
         /// <see cref="AnalysisContext.Parent"/> with <paramref name="formatter"/>,
         /// or the result of <see cref="LinkedNodeFactoryExtensions.CreateUnique(ILinkedNodeFactory)"/>.
         /// </returns>
+        /// <inheritdoc cref="GetNode(AnalysisContext)"/>
         protected ILinkedNode GetNode(IIndividualUriFormatter<Uri> formatter, AnalysisContext context)
         {
             return

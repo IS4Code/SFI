@@ -22,9 +22,7 @@ namespace IS4.MultiArchiver.Formats
         /// </summary>
         static readonly ConditionalWeakTable<X509Certificate2, ValueType> storedTypes = new ConditionalWeakTable<X509Certificate2, ValueType>();
 
-        /// <summary>
-        /// Creates a new instance of the format.
-        /// </summary>
+        /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public X509CertificateFormat() : base(0, null, null)
         {
 

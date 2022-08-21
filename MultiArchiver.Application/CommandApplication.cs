@@ -88,15 +88,11 @@ namespace IS4.MultiArchiver
 		{
 			return new OptionInfoCollection();
 		}
-		
+
 		/// <summary>
 		/// The command usage of the application.
 		/// </summary>
-		protected virtual string Usage{
-			get{
-				return "";
-			}
-		}
+		protected virtual string Usage => "";
 
 		/// <summary>
 		/// Writes the help screen and terminates the application.

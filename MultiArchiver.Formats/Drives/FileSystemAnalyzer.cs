@@ -16,9 +16,7 @@ namespace IS4.MultiArchiver.Analyzers
     /// </summary>
     public class FileSystemAnalyzer : MediaObjectAnalyzer<IFileSystem>
     {
-        /// <summary>
-        /// Creates a new instance of the analyzer.
-        /// </summary>
+        /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>
         public FileSystemAnalyzer() : base(Classes.FilesystemImage)
         {
 
