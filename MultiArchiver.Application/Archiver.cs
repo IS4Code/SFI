@@ -49,9 +49,7 @@ namespace IS4.MultiArchiver
         /// </summary>
         public BitTorrentHash BitTorrentHash { get; }
 
-        /// <summary>
-        /// An instance of <see cref="TextWriter"/> to use for logging.
-        /// </summary>
+        /// <inheritdoc cref="EntityAnalyzerProvider.OutputLog"/>
         public new TextWriter OutputLog {
             get {
                 return base.OutputLog;

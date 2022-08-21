@@ -8,8 +8,8 @@ namespace IS4.MultiArchiver.Formats
     /// <summary>
     /// Represents a container format based on the OLE file structure.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public abstract class OleDocumentFormat<T> : LegacyPackageFileFormat<IDirectoryInfo, T, OleDocumentFormat<T>.PackageInfo> where T : class
+    /// <typeparam name="T">The entity type produced by the format.</typeparam>
+    public abstract class OleDocumentFormat<T> : ContainerFileFormat<IDirectoryInfo, T> where T : class
     {
         /// <inheritdoc/>
         public OleDocumentFormat(string mediaType, string extension) : base(mediaType, extension)
@@ -17,7 +17,7 @@ namespace IS4.MultiArchiver.Formats
 
         }
 
-        public sealed override PackageInfo Match(IDirectoryInfo root, MatchContext context)
+        protected sealed override IContainerAnalyzer Match(IDirectoryInfo root, MatchContext context)
         {
             if(root.Entries.OfType<IFileInfo>().Any(f => f.Name == "\x05SummaryInformation"))
             {
@@ -26,9 +26,15 @@ namespace IS4.MultiArchiver.Formats
             return null;
         }
 
+        /// <summary>
+        /// Opens an instance of <see cref="NPOIFSFileSystem"/> and interprets
+        /// it as the package-specific type <typeparamref name="T"/>.
+        /// </summary>
+        /// <param name="fileSystem">The OLE file system.</param>
+        /// <returns>The media object representing the package.</returns>
         protected abstract T Open(NPOIFSFileSystem fileSystem);
 
-        public class PackageInfo : IContainerAnalyzer<IContainerNode, IDirectoryInfo>, IContainerAnalyzer
+        class PackageInfo : IContainerAnalyzer<IContainerNode, IDirectoryInfo>, IContainerAnalyzer
         {
             readonly OleDocumentFormat<T> format;
 

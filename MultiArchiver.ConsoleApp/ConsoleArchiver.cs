@@ -60,7 +60,7 @@ namespace IS4.MultiArchiver.ConsoleApp
             DataAnalyzer.DataFormats.Add(new OleStorageFormat());
 
             ContainerProviders.Add(new OpenPackageFormat());
-            ContainerProviders.Add(new PackageDescriptionFormat());
+            ContainerProviders.Add(new PackageDescriptionProvider());
             ContainerProviders.Add(new ExcelXmlDocumentFormat());
             ContainerProviders.Add(new ExcelDocumentFormat());
             ContainerProviders.Add(new WordXmlDocumentFormat());

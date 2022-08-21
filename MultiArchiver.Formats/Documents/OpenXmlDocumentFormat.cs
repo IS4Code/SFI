@@ -17,7 +17,7 @@ namespace IS4.MultiArchiver.Formats
     /// Represents a format based on the OOXML package format.
     /// </summary>
     /// <typeparam name="T">The type of the instances created by the format.</typeparam>
-    public abstract class OpenXmlDocumentFormat<T> : LegacyPackageFileFormat<IDirectoryInfo, T, OpenXmlDocumentFormat<T>.PackageInfo> where T : class
+    public abstract class OpenXmlDocumentFormat<T> : ContainerFileFormat<IDirectoryInfo, T> where T : class
     {
         /// <inheritdoc/>
         public OpenXmlDocumentFormat(string mediaType, string extension) : base(mediaType, extension)
@@ -25,7 +25,7 @@ namespace IS4.MultiArchiver.Formats
 
         }
 
-        public sealed override PackageInfo Match(IDirectoryInfo root, MatchContext context)
+        protected sealed override IContainerAnalyzer Match(IDirectoryInfo root, MatchContext context)
         {
             if(root.Entries.Any(e => ContentTypeManager.CONTENT_TYPES_PART_NAME.Equals(e.Name, StringComparison.OrdinalIgnoreCase)))
             {
@@ -36,9 +36,15 @@ namespace IS4.MultiArchiver.Formats
             return null;
         }
 
+        /// <summary>
+        /// Opens an instance of <see cref="OPCPackage"/> and interprets
+        /// it as the package-specific type <typeparamref name="T"/>.
+        /// </summary>
+        /// <param name="package">The OOXML package.</param>
+        /// <returns>The media object representing the package.</returns>
         protected abstract T Open(OPCPackage package);
 
-        public class PackageInfo : IContainerAnalyzer<IContainerNode, IFileNodeInfo>, IContainerAnalyzer
+        class PackageInfo : IContainerAnalyzer<IContainerNode, IFileNodeInfo>, IContainerAnalyzer
         {
             readonly OpenXmlDocumentFormat<T> format;
             readonly IDirectoryInfo root;

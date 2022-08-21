@@ -80,6 +80,7 @@ namespace IS4.MultiArchiver
                     var analyzer = containerProvider.MatchRoot(root, context);
                     if(analyzer != null)
                     {
+                        // If the provider is not blocked and the root matches, add it to the collection
                         if(analyzerList == null)
                         {
                             analyzerList = new List<ContainerAnalysisInfo>();
@@ -90,6 +91,7 @@ namespace IS4.MultiArchiver
             }
             if(analyzerList != null)
             {
+                // Return a new analyzer collection representing the matching providers
                 return new ContainerNode<object, IContainerNode>(null, null, analyzerList, this, analyzers);
             }
             return null;
@@ -102,12 +104,20 @@ namespace IS4.MultiArchiver
             var wrapper = MatchRoot(entity, context, this, null);
             if(wrapper != null)
             {
+                // The root was matched by one container formats, delegate the call to it
                 return await wrapper.Analyze(entity, context);
             }
 
             return await Analyze(entity, context, this);
         }
 
+        /// <summary>
+        /// Provides an implementation of <see cref="IEntityAnalyzers"/>
+        /// and <see cref="IContainerNode{TValue, TParent}"/> that is used
+        /// to describe and analyze a node in a container hierarchy.
+        /// </summary>
+        /// <typeparam name="TValue">The type of <see cref="Value"/>.</typeparam>
+        /// <typeparam name="TParent">The type of <see cref="ParentNode"/>.</typeparam>
         class ContainerNode<TValue, TParent> : IEntityAnalyzers, IContainerNode<TValue, TParent> where TValue : class where TParent : IContainerNode
         {
             public TParent ParentNode { get; }
@@ -116,6 +126,14 @@ namespace IS4.MultiArchiver
             readonly IEntityAnalyzers analyzers;
             readonly IEnumerable<ContainerAnalysisInfo> activeAnalyzers;
 
+            /// <summary>
+            /// Creates a new instance of the node.
+            /// </summary>
+            /// <param name="parentNode">The value of <see cref="ParentNode"/>.</param>
+            /// <param name="value">The value of <see cref="Value"/>.</param>
+            /// <param name="activeAnalyzers">The collection of analyzers that should be used to process the node.</param>
+            /// <param name="baseProvider">The instance of <see cref="EntityAnalyzerProvider"/> that initiated the analysis.</param>
+            /// <param name="analyzers">The base collection of analyzers.</param>
             public ContainerNode(TParent parentNode, TValue value, IEnumerable<ContainerAnalysisInfo> activeAnalyzers, EntityAnalyzerProvider baseProvider, IEntityAnalyzers analyzers)
             {
                 ParentNode = parentNode;
@@ -134,36 +152,47 @@ namespace IS4.MultiArchiver
                 List<ContainerAnalysisInfo> followedAnalyzers = null;
                 List<IContainerAnalyzerProvider> blocked = null;
 
+                // Start traversing the collection of active analyzers
                 var enumerator = activeAnalyzers.GetEnumerator();
 
+                // The implementation of AnalyzeInner
                 async ValueTask<AnalysisResult> GetResult(ContainerBehaviour behaviour)
                 {
                     if((behaviour & ContainerBehaviour.FollowChildren) != 0)
                     {
+                        // The current analyzer should be followed into children
                         (followedAnalyzers ?? (followedAnalyzers = new List<ContainerAnalysisInfo>()))
                             .Add(enumerator.Current);
                     }
                     if((behaviour & ContainerBehaviour.BlockOther) != 0)
                     {
+                        // The current analyzer's provider is blocked for root matches
                         (blocked ?? (blocked = new List<IContainerAnalyzerProvider>()))
                             .Add(enumerator.Current.Provider);
                     }
-                    var path = Value != null ? this : null;
+                    // The parent is null only for the root of the hierarchy
+                    var parent = Value != null ? this : null;
                     if(enumerator.MoveNext())
                     {
-                        return await enumerator.Current.Analyzer.Analyze(path, entity, context, GetResult, analyzers);
+                        // There is a next analyzer; use it
+                        return await enumerator.Current.Analyzer.Analyze(parent, entity, context, GetResult, analyzers);
                     }
+                    // There are no more analyzers
                     if(followedAnalyzers == null && blocked == null && Value != null)
                     {
+                        // No special handling required, just use the stored IEntityAnalyzers
                         return await analyzers.Analyze(entity, context);
                     }
                     var innerAnalyzer = analyzers;
-                    if(Value != null)
+                    if(parent != null)
                     {
-                        innerAnalyzer = new ContainerNode<TEntity, IContainerNode<TValue, TParent>>(path, entity, followedAnalyzers, baseProvider, innerAnalyzer);
+                        // Analyzing a new node
+                        innerAnalyzer = new ContainerNode<TEntity, IContainerNode<TValue, TParent>>(parent, entity, followedAnalyzers, baseProvider, innerAnalyzer);
+                        // Try matchin the node as a root for other analyzers
                         innerAnalyzer = baseProvider.MatchRoot(entity, context, innerAnalyzer, blocked) ?? innerAnalyzer;
                     }else{
-                        innerAnalyzer = new ContainerNode<TEntity, IContainerNode>(path, entity, followedAnalyzers, baseProvider, innerAnalyzer);
+                        // Nested nodes will use this analyzer
+                        innerAnalyzer = new ContainerNode<TEntity, IContainerNode>(parent, entity, followedAnalyzers, baseProvider, innerAnalyzer);
                     }
                     return await baseProvider.Analyze(entity, context, innerAnalyzer);
                 }
@@ -178,11 +207,26 @@ namespace IS4.MultiArchiver
             }
         }
 
+        /// <summary>
+        /// Stores information about an instance of <see cref="IContainerAnalyzer"/>.
+        /// </summary>
         struct ContainerAnalysisInfo
         {
+            /// <summary>
+            /// The stored analyzer.
+            /// </summary>
             public IContainerAnalyzer Analyzer { get; }
+
+            /// <summary>
+            /// The provider that was used to obtain <see cref="Analyzer"/>.
+            /// </summary>
             public IContainerAnalyzerProvider Provider { get; }
 
+            /// <summary>
+            /// Creates a new instance of the type.
+            /// </summary>
+            /// <param name="analyzer">The value of <see cref="Analyzer"/>.</param>
+            /// <param name="provider">The value of <see cref="Provider"/>.</param>
             public ContainerAnalysisInfo(IContainerAnalyzer analyzer, IContainerAnalyzerProvider provider)
             {
                 Analyzer = analyzer;

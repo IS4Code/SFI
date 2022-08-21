@@ -162,6 +162,7 @@ namespace IS4.MultiArchiver.Services
     {
         public IDataObject Data { get; }
 
+        /// <inheritdoc cref="FormatObject{T}.Format"/>
         public new IBinaryFileFormat Format => (IBinaryFileFormat)base.Format;
 
         /// <param name="data">The value of <see cref="Data"/>.</param>
