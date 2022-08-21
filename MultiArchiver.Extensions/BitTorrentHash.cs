@@ -57,7 +57,7 @@ namespace IS4.MultiArchiver
         {
             var dict = await CreateDictionary(file, true);
             var hash = await HashAlgorithm.ComputeHash(dict.EncodeAsBytes());
-            OnOutputFile(dict, hash);
+            await OnOutputFile(dict, hash);
             return hash;
         }
 
@@ -65,18 +65,25 @@ namespace IS4.MultiArchiver
         {
             var dict = await CreateDictionary(directory, content);
             var hash = await HashAlgorithm.ComputeHash(dict.EncodeAsBytes());
-            OnOutputFile(dict, hash);
+            await OnOutputFile(dict, hash);
             return hash;
         }
 
-        protected virtual void OnOutputFile(BDictionary info, byte[] hash)
+        /// <summary>
+        /// Called internally when an instance of <see cref="BDictionary"/> representing
+        /// the info section in a .torrent file is produced, with a specific hash. The default
+        /// implementation invokes <see cref="OutputFile"/>, producing a .torrent file.
+        /// </summary>
+        /// <param name="info">The info section.</param>
+        /// <param name="hash">The hash of <paramref name="info"/> produced by <see cref="HashAlgorithm"/>.</param>
+        protected virtual ValueTask OnOutputFile(BDictionary info, byte[] hash)
         {
-            var name = $"{BitConverter.ToString(hash).Replace("-", "")}.torrent";
-            OutputFile?.Invoke(name, true, null, async stream => {
+            return (OutputFile?.Invoke($"{BitConverter.ToString(hash).Replace("-", "")}.torrent",
+                true, null, async stream => {
                 var dict = new BDictionary();
                 dict["info"] = info;
                 await dict.EncodeToAsync(stream);
-            });
+            })).GetValueOrDefault();
         }
 
         private async Task<BDictionary> CreateDictionary(IFileNodeInfo fileNode, bool content)
