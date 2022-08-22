@@ -22,6 +22,14 @@ namespace IS4.MultiArchiver.Services
         IContainerAnalyzer MatchRoot<TRoot>(TRoot root, AnalysisContext context) where TRoot : class;
     }
 
+    /// <typeparam name="TRoot">The root object type recognized by the provider.</typeparam>
+    /// <inheritdoc cref="IContainerAnalyzerProvider"/>
+    public interface IContainerAnalyzerProvider<TRoot> : IContainerAnalyzerProvider where TRoot : class
+    {
+        /// <inheritdoc cref="IContainerAnalyzerProvider.MatchRoot{TRoot}(TRoot, AnalysisContext)"/>
+        IContainerAnalyzer MatchRoot(TRoot root, AnalysisContext context);
+    }
+
     /// <summary>
     /// The delegate provided to <see cref="IContainerAnalyzer.Analyze{TParent, TEntity}(TParent, TEntity, AnalysisContext, AnalyzeInner, IEntityAnalyzers)"/>
     /// and <see cref="IContainerAnalyzer{TParent, TEntity}.Analyze(TParent, TEntity, AnalysisContext, AnalyzeInner, IEntityAnalyzers)"/>

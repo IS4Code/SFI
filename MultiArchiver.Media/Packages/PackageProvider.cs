@@ -11,19 +11,10 @@ namespace IS4.MultiArchiver.Formats
     /// </summary>
     /// <typeparam name="TAnalyzer">The concrete analyzer type used by the implementation.</typeparam>
     public abstract class PackageProvider<TAnalyzer> : IContainerAnalyzerProvider,
-        PackageProvider<TAnalyzer>.IProvider<IDirectoryInfo>,
-        PackageProvider<TAnalyzer>.IProvider<IArchiveInfo>
+        IContainerAnalyzerProvider<IDirectoryInfo>,
+        IContainerAnalyzerProvider<IArchiveInfo>
         where TAnalyzer : PackageProvider<TAnalyzer>.Analyzer
     {
-        IContainerAnalyzer IContainerAnalyzerProvider.MatchRoot<TRoot>(TRoot root, AnalysisContext context)
-        {
-            if(this is IProvider<TRoot> provider)
-            {
-                return provider.MatchRoot(root, context);
-            }
-            return null;
-        }
-
         /// <summary>
         /// When implemented, creates an instance of <typeparamref name="TAnalyzer"/> to analyze
         /// the entities logically contained in a hierarchy starting at <paramref name="root"/>.
@@ -37,25 +28,23 @@ namespace IS4.MultiArchiver.Formats
         /// </returns>
         protected abstract TAnalyzer MatchRoot(object root, AnalysisContext context);
 
-        IContainerAnalyzer IProvider<IDirectoryInfo>.MatchRoot(IDirectoryInfo root, AnalysisContext context)
+        IContainerAnalyzer IContainerAnalyzerProvider<IDirectoryInfo>.MatchRoot(IDirectoryInfo root, AnalysisContext context)
         {
             return MatchRoot(root, context);
         }
 
-        IContainerAnalyzer IProvider<IArchiveInfo>.MatchRoot(IArchiveInfo root, AnalysisContext context)
+        IContainerAnalyzer IContainerAnalyzerProvider<IArchiveInfo>.MatchRoot(IArchiveInfo root, AnalysisContext context)
         {
             return MatchRoot(root, context);
         }
 
-        /// <summary>
-        /// Implementing this interface ensures that <see cref="IContainerAnalyzerProvider.MatchRoot{TRoot}(TRoot, AnalysisContext)"/>
-        /// succeeds when the argument is compatible with type <typeparamref name="TRoot"/>.
-        /// </summary>
-        /// <typeparam name="TRoot">The root type recognized by the provider.</typeparam>
-        protected interface IProvider<in TRoot> where TRoot : class
+        IContainerAnalyzer IContainerAnalyzerProvider.MatchRoot<TRoot>(TRoot root, AnalysisContext context)
         {
-            /// <inheritdoc cref="IContainerAnalyzerProvider.MatchRoot{TRoot}(TRoot, AnalysisContext)"/>
-            IContainerAnalyzer MatchRoot(TRoot root, AnalysisContext context);
+            if(this is IContainerAnalyzerProvider<TRoot> provider)
+            {
+                return provider.MatchRoot(root, context);
+            }
+            return null;
         }
 
         /// <summary>

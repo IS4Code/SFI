@@ -10,8 +10,7 @@ namespace IS4.MultiArchiver.Formats
     /// <typeparam name="TRoot">The root type of the package.</typeparam>
     /// <typeparam name="TEntity">The type of of the produced entities.</typeparam>
     public abstract class ContainerFileFormat<TRoot, TEntity> : FileFormat<TEntity>,
-        IContainerAnalyzerProvider,
-        ContainerFileFormat<TRoot, TEntity>.IMatcher<TRoot>
+        IContainerAnalyzerProvider<TRoot>
         where TRoot : class
         where TEntity : class
     {
@@ -28,23 +27,18 @@ namespace IS4.MultiArchiver.Formats
         /// <inheritdoc cref="IContainerAnalyzerProvider.MatchRoot{TRoot}(TRoot, AnalysisContext)"/>
         protected abstract IContainerAnalyzer Match(TRoot root, MatchContext context);
 
-        IContainerAnalyzer IMatcher<TRoot>.Match(TRoot root, MatchContext context)
+        IContainerAnalyzer IContainerAnalyzerProvider<TRoot>.MatchRoot(TRoot root, AnalysisContext context)
         {
-            return Match(root, context);
+            return Match(root, context.MatchContext);
         }
 
         IContainerAnalyzer IContainerAnalyzerProvider.MatchRoot<TRoot2>(TRoot2 root, AnalysisContext context)
         {
-            if(this is IMatcher<TRoot2> matcher)
+            if(this is IContainerAnalyzerProvider<TRoot2> provider)
             {
-                return matcher.Match(root, context.MatchContext);
+                return provider.MatchRoot(root, context);
             }
             return null;
-        }
-
-        interface IMatcher<in TRoot2>
-        {
-            IContainerAnalyzer Match(TRoot2 root, MatchContext context);
         }
     }
 }
