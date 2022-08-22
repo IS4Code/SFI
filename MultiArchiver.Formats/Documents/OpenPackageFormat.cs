@@ -20,7 +20,7 @@ namespace IS4.MultiArchiver.Formats
 
         }
 
-        protected override IContainerAnalyzer Match(IFileNodeInfo file, MatchContext context)
+        protected override IContainerAnalyzer MatchRoot(IFileNodeInfo file, AnalysisContext context)
         {
             if(ContentTypeManager.CONTENT_TYPES_PART_NAME.Equals(file.Name, StringComparison.OrdinalIgnoreCase))
             {

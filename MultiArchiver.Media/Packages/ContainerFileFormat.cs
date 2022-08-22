@@ -25,11 +25,11 @@ namespace IS4.MultiArchiver.Formats
         /// when the type parameter is compatible with <typeparamref name="TRoot"/>.
         /// </summary>
         /// <inheritdoc cref="IContainerAnalyzerProvider.MatchRoot{TRoot}(TRoot, AnalysisContext)"/>
-        protected abstract IContainerAnalyzer Match(TRoot root, MatchContext context);
+        protected abstract IContainerAnalyzer MatchRoot(TRoot root, AnalysisContext context);
 
         IContainerAnalyzer IContainerAnalyzerProvider<TRoot>.MatchRoot(TRoot root, AnalysisContext context)
         {
-            return Match(root, context.MatchContext);
+            return MatchRoot(root, context);
         }
 
         IContainerAnalyzer IContainerAnalyzerProvider.MatchRoot<TRoot2>(TRoot2 root, AnalysisContext context)

@@ -25,7 +25,7 @@ namespace IS4.MultiArchiver.Formats
 
         }
 
-        protected sealed override IContainerAnalyzer Match(IDirectoryInfo root, MatchContext context)
+        protected sealed override IContainerAnalyzer MatchRoot(IDirectoryInfo root, AnalysisContext context)
         {
             if(root.Entries.Any(e => ContentTypeManager.CONTENT_TYPES_PART_NAME.Equals(e.Name, StringComparison.OrdinalIgnoreCase)))
             {

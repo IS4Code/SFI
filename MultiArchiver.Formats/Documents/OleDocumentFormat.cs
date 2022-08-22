@@ -17,7 +17,7 @@ namespace IS4.MultiArchiver.Formats
 
         }
 
-        protected sealed override IContainerAnalyzer Match(IDirectoryInfo root, MatchContext context)
+        protected sealed override IContainerAnalyzer MatchRoot(IDirectoryInfo root, AnalysisContext context)
         {
             if(root.Entries.OfType<IFileInfo>().Any(f => f.Name == "\x05SummaryInformation"))
             {
