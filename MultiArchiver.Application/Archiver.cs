@@ -72,8 +72,8 @@ namespace IS4.MultiArchiver
         public virtual ICollection<IDataHashAlgorithm> ImageDataHashAlgorithms => Array.Empty<IDataHashAlgorithm>();
 
         /// <summary>
-        /// Creates a new instance of the archiver and adds several
-        /// default analyzers.
+        /// Creates a new instance of the archiver and initializes several
+        /// core analyzers.
         /// </summary>
         public Archiver()
         {
