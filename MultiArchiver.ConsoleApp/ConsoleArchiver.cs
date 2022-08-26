@@ -77,7 +77,7 @@ namespace IS4.MultiArchiver.ConsoleApp
                                 try
                                 {
                                     instance = ActivatorUtilities.CreateInstance(serviceProvider, type);
-                                }catch(Exception e)
+                                }catch(Exception e) when(GlobalOptions.SuppressNonCriticalExceptions)
                                 {
                                     OutputLog?.WriteLine($"An exception occurred while creating an instance of type {type} from plugin {pluginName}: {e}");
                                     error = true;

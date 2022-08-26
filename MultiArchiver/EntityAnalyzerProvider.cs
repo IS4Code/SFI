@@ -54,7 +54,7 @@ namespace IS4.MultiArchiver
                 {
                     ExceptionDispatchInfo.Capture(e.InnerException).Throw();
                     throw;
-                }catch(Exception e) when(!GlobalOptions.SuppressNonCriticalExceptions)
+                }catch(Exception e) when(GlobalOptions.SuppressNonCriticalExceptions)
                 {
                     OutputLog.WriteLine("Error in analyzer " + analyzer.GetType().Name);
                     OutputLog.WriteLine(e);

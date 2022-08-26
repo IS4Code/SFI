@@ -152,7 +152,7 @@ namespace IS4.MultiArchiver
 			}catch(ApplicationExitException)
 			{
 
-			}catch(Exception e) when(!GlobalOptions.SuppressNonCriticalExceptions)
+			}catch(Exception e) when(GlobalOptions.SuppressNonCriticalExceptions)
 			{
 				Log(e.Message);
 			}
