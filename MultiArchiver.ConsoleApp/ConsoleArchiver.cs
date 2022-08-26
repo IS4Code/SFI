@@ -1,7 +1,15 @@
 ﻿using IS4.MultiArchiver.Analyzers;
 using IS4.MultiArchiver.Formats;
 using IS4.MultiArchiver.Services;
+using IS4.MultiArchiver.Tools;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Loader;
 
 namespace IS4.MultiArchiver.ConsoleApp
 {
@@ -29,6 +37,118 @@ namespace IS4.MultiArchiver.ConsoleApp
             foreach(var algorithm in DataAnalyzer.HashAlgorithms)
             {
                 algorithms.Add(algorithm);
+            }
+        }
+
+        public IDictionary<AssemblyName, AssemblyLoadContext> LoadedPlugins { get; } = new Dictionary<AssemblyName, AssemblyLoadContext>();
+
+        void AddPlugins()
+        {
+            var services = new ServiceCollection();
+            services.AddSingleton<Archiver>(this);
+            services.AddSingleton(OutputLog);
+            var serviceProvider = services.BuildServiceProvider();
+
+            var baseDir = AppContext.BaseDirectory;
+            var plugins = Path.Combine(baseDir, "plugins");
+            foreach(var pluginPath in Directory.EnumerateFiles(plugins, "*.dll"))
+            {
+                var pluginName = Path.GetFileNameWithoutExtension(pluginPath);
+                var pluginDir = Path.Combine(plugins, pluginName);
+                var context = new PluginLoadContext();
+                context.AddDirectory(pluginDir);
+                context.AddDirectory(plugins);
+                context.AddDirectory(baseDir);
+
+                int count = 0;
+
+                var asm = context.LoadFromAssemblyPath(pluginPath);
+                foreach(var type in asm.ExportedTypes)
+                {
+                    if(!type.IsAbstract && type.IsClass && !type.IsGenericTypeDefinition)
+                    {
+                        object instance = null;
+                        bool error = false;
+
+                        bool CreateInstance<T>(out T result) where T : class
+                        {
+                            if(instance == null && !error)
+                            {
+                                try
+                                {
+                                    instance = ActivatorUtilities.CreateInstance(serviceProvider, type);
+                                }catch(Exception e)
+                                {
+                                    OutputLog?.WriteLine($"An exception occurred while creating an instance of type {type} from plugin {pluginName}: {e}");
+                                    error = true;
+                                }
+                            }
+                            result = instance as T;
+                            return result != null;
+                        }
+
+                        if(type.IsEntityAnalyzerType())
+                        {
+                            if(CreateInstance<object>(out var analyzer))
+                            {
+                                Analyzers.Add(analyzer);
+                            }
+                        }
+                        if(type.IsAssignableTo(typeof(IBinaryFileFormat)))
+                        {
+                            if(CreateInstance<IBinaryFileFormat>(out var format))
+                            {
+                                DataAnalyzer.DataFormats.Add(format);
+                            }
+                        }
+                        if(type.IsAssignableTo(typeof(IXmlDocumentFormat)))
+                        {
+                            if(CreateInstance<IXmlDocumentFormat>(out var format))
+                            {
+                                XmlAnalyzer.XmlFormats.Add(format);
+                            }
+                        }
+                        if(type.IsAssignableTo(typeof(IContainerAnalyzerProvider)))
+                        {
+                            if(CreateInstance<IContainerAnalyzerProvider>(out var provider))
+                            {
+                                ContainerProviders.Add(provider);
+                            }
+                        }
+                        if(type.IsAssignableTo(typeof(IDataHashAlgorithm)))
+                        {
+                            if(CreateInstance<IDataHashAlgorithm>(out var hash))
+                            {
+                                DataAnalyzer.HashAlgorithms.Add(hash);
+                                ImageAnalyzer.DataHashAlgorithms.Add(hash);
+                            }
+                        }
+                        if(type.IsAssignableTo(typeof(IFileHashAlgorithm)))
+                        {
+                            if(CreateInstance<IFileHashAlgorithm>(out var hash))
+                            {
+                                FileAnalyzer.HashAlgorithms.Add(hash);
+                            }
+                        }
+                        if(type.IsAssignableTo(typeof(IObjectHashAlgorithm<Image>)))
+                        {
+                            if(CreateInstance<IObjectHashAlgorithm<Image>>(out var hash))
+                            {
+                                ImageAnalyzer.LowFrequencyImageHashAlgorithms.Add(hash);
+                            }
+                        }
+
+                        if(instance != null)
+                        {
+                            count++;
+                        }
+                    }
+                }
+
+                if(count > 0)
+                {
+                    OutputLog?.WriteLine($"Loaded {count} component{(count == 1 ? "" : "s")} from plugin {pluginName}.");
+                }
             }
         }
 
@@ -81,6 +201,8 @@ namespace IS4.MultiArchiver.ConsoleApp
             Analyzers.Add(new CabinetAnalyzer());
             Analyzers.Add(new OleStorageAnalyzer());
             Analyzers.Add(new PackageDescriptionAnalyzer());
+
+            AddPlugins();
         }
     }
 }

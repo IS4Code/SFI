@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IS4.MultiArchiver.Services;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -290,6 +291,22 @@ namespace IS4.MultiArchiver.Tools
             if(start < 0) throw new ArgumentOutOfRangeException(nameof(start));
             if(start + length > array.Length) throw new ArgumentOutOfRangeException(nameof(length));
             return new ArraySegment<T>(array, start, length);
+        }
+
+        static readonly Type entityAnalyzerType = typeof(IEntityAnalyzer<>);
+
+        /// <summary>
+        /// Checks whether <paramref name="type"/> implements a concrete
+        /// <see cref="IEntityAnalyzer{T}"/> type.
+        /// </summary>
+        /// <param name="type">The type instance to check.</param>
+        /// <returns>
+        /// True if one of the implemented interfaces is a concrete type
+        /// instantiated from <see cref="IEntityAnalyzer{T}"/>.
+        /// </returns>
+        public static bool IsEntityAnalyzerType(this Type type)
+        {
+            return type.GetInterfaces().Any(i => i.IsGenericType && entityAnalyzerType.Equals(i.GetGenericTypeDefinition()));
         }
 
         #region MemoryCast overloads
