@@ -87,6 +87,12 @@
         public static readonly ClassUri FileDataObject;
 
         /// <summary>
+        /// <see cref="Nfo"/>:Filesystem.
+        /// </summary>
+        [Uri(Nfo)]
+        public static readonly ClassUri Filesystem;
+
+        /// <summary>
         /// <see cref="Nfo"/>:FilesystemImage.
         /// </summary>
         [Uri(Nfo)]
