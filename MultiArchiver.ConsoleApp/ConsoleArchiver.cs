@@ -60,94 +60,100 @@ namespace IS4.MultiArchiver.ConsoleApp
                 context.AddDirectory(plugins);
                 context.AddDirectory(baseDir);
 
-                int count = 0;
-
-                var asm = context.LoadFromAssemblyPath(pluginPath);
-                foreach(var type in asm.ExportedTypes)
+                try
                 {
-                    if(!type.IsAbstract && type.IsClass && !type.IsGenericTypeDefinition)
-                    {
-                        object instance = null;
-                        bool error = false;
+                    int count = 0;
 
-                        bool CreateInstance<T>(out T result) where T : class
+                    var asm = context.LoadFromAssemblyPath(pluginPath);
+                    foreach(var type in asm.ExportedTypes)
+                    {
+                        if(!type.IsAbstract && type.IsClass && !type.IsGenericTypeDefinition)
                         {
-                            if(instance == null && !error)
+                            object instance = null;
+                            bool error = false;
+
+                            bool CreateInstance<T>(out T result) where T : class
                             {
-                                try
+                                if(instance == null && !error)
                                 {
-                                    instance = ActivatorUtilities.CreateInstance(serviceProvider, type);
-                                }catch(Exception e) when(GlobalOptions.SuppressNonCriticalExceptions)
+                                    try
+                                    {
+                                        instance = ActivatorUtilities.CreateInstance(serviceProvider, type);
+                                    } catch(Exception e) when(GlobalOptions.SuppressNonCriticalExceptions)
+                                    {
+                                        OutputLog?.WriteLine($"An exception occurred while creating an instance of type {type} from plugin {pluginName}: {e}");
+                                        error = true;
+                                    }
+                                }
+                                result = instance as T;
+                                return result != null;
+                            }
+
+                            if(type.IsEntityAnalyzerType())
+                            {
+                                if(CreateInstance<object>(out var analyzer))
                                 {
-                                    OutputLog?.WriteLine($"An exception occurred while creating an instance of type {type} from plugin {pluginName}: {e}");
-                                    error = true;
+                                    Analyzers.Add(analyzer);
                                 }
                             }
-                            result = instance as T;
-                            return result != null;
-                        }
+                            if(type.IsAssignableTo(typeof(IBinaryFileFormat)))
+                            {
+                                if(CreateInstance<IBinaryFileFormat>(out var format))
+                                {
+                                    DataAnalyzer.DataFormats.Add(format);
+                                }
+                            }
+                            if(type.IsAssignableTo(typeof(IXmlDocumentFormat)))
+                            {
+                                if(CreateInstance<IXmlDocumentFormat>(out var format))
+                                {
+                                    XmlAnalyzer.XmlFormats.Add(format);
+                                }
+                            }
+                            if(type.IsAssignableTo(typeof(IContainerAnalyzerProvider)))
+                            {
+                                if(CreateInstance<IContainerAnalyzerProvider>(out var provider))
+                                {
+                                    ContainerProviders.Add(provider);
+                                }
+                            }
+                            if(type.IsAssignableTo(typeof(IDataHashAlgorithm)))
+                            {
+                                if(CreateInstance<IDataHashAlgorithm>(out var hash))
+                                {
+                                    DataAnalyzer.HashAlgorithms.Add(hash);
+                                    ImageAnalyzer.DataHashAlgorithms.Add(hash);
+                                }
+                            }
+                            if(type.IsAssignableTo(typeof(IFileHashAlgorithm)))
+                            {
+                                if(CreateInstance<IFileHashAlgorithm>(out var hash))
+                                {
+                                    FileAnalyzer.HashAlgorithms.Add(hash);
+                                }
+                            }
+                            if(type.IsAssignableTo(typeof(IObjectHashAlgorithm<Image>)))
+                            {
+                                if(CreateInstance<IObjectHashAlgorithm<Image>>(out var hash))
+                                {
+                                    ImageAnalyzer.LowFrequencyImageHashAlgorithms.Add(hash);
+                                }
+                            }
 
-                        if(type.IsEntityAnalyzerType())
-                        {
-                            if(CreateInstance<object>(out var analyzer))
+                            if(instance != null)
                             {
-                                Analyzers.Add(analyzer);
+                                count++;
                             }
-                        }
-                        if(type.IsAssignableTo(typeof(IBinaryFileFormat)))
-                        {
-                            if(CreateInstance<IBinaryFileFormat>(out var format))
-                            {
-                                DataAnalyzer.DataFormats.Add(format);
-                            }
-                        }
-                        if(type.IsAssignableTo(typeof(IXmlDocumentFormat)))
-                        {
-                            if(CreateInstance<IXmlDocumentFormat>(out var format))
-                            {
-                                XmlAnalyzer.XmlFormats.Add(format);
-                            }
-                        }
-                        if(type.IsAssignableTo(typeof(IContainerAnalyzerProvider)))
-                        {
-                            if(CreateInstance<IContainerAnalyzerProvider>(out var provider))
-                            {
-                                ContainerProviders.Add(provider);
-                            }
-                        }
-                        if(type.IsAssignableTo(typeof(IDataHashAlgorithm)))
-                        {
-                            if(CreateInstance<IDataHashAlgorithm>(out var hash))
-                            {
-                                DataAnalyzer.HashAlgorithms.Add(hash);
-                                ImageAnalyzer.DataHashAlgorithms.Add(hash);
-                            }
-                        }
-                        if(type.IsAssignableTo(typeof(IFileHashAlgorithm)))
-                        {
-                            if(CreateInstance<IFileHashAlgorithm>(out var hash))
-                            {
-                                FileAnalyzer.HashAlgorithms.Add(hash);
-                            }
-                        }
-                        if(type.IsAssignableTo(typeof(IObjectHashAlgorithm<Image>)))
-                        {
-                            if(CreateInstance<IObjectHashAlgorithm<Image>>(out var hash))
-                            {
-                                ImageAnalyzer.LowFrequencyImageHashAlgorithms.Add(hash);
-                            }
-                        }
-
-                        if(instance != null)
-                        {
-                            count++;
                         }
                     }
-                }
 
-                if(count > 0)
+                    if(count > 0)
+                    {
+                        OutputLog?.WriteLine($"Loaded {count} component{(count == 1 ? "" : "s")} from plugin {pluginName}.");
+                    }
+                }catch(Exception e)
                 {
-                    OutputLog?.WriteLine($"Loaded {count} component{(count == 1 ? "" : "s")} from plugin {pluginName}.");
+                    OutputLog?.WriteLine($"An error occurred while loading plugin plugin {pluginName}: " + e);
                 }
             }
         }
