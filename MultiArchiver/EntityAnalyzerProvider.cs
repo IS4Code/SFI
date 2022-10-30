@@ -188,8 +188,12 @@ namespace IS4.MultiArchiver
                     {
                         // Analyzing a new node
                         innerAnalyzer = new ContainerNode<TEntity, IContainerNode<TValue, TParent>>(parent, entity, followedAnalyzers, baseProvider, innerAnalyzer);
-                        // Try matchin the node as a root for other analyzers
-                        innerAnalyzer = baseProvider.MatchRoot(entity, context, innerAnalyzer, blocked) ?? innerAnalyzer;
+                        // Try matching the node as a root for other analyzers
+                        var wrapper = baseProvider.MatchRoot(entity, context, innerAnalyzer, blocked);
+                        if(wrapper != null)
+                        {
+                            return await wrapper.Analyze(entity, context);
+                        }
                     }else{
                         // Nested nodes will use this analyzer
                         innerAnalyzer = new ContainerNode<TEntity, IContainerNode>(parent, entity, followedAnalyzers, baseProvider, innerAnalyzer);
