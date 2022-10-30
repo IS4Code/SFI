@@ -57,6 +57,8 @@ namespace IS4.MultiArchiver.WebApp
             Analyzers.Add(new CabinetAnalyzer());
             Analyzers.Add(new OleStorageAnalyzer());
             Analyzers.Add(new PackageDescriptionAnalyzer());
+            Analyzers.Add(new OleDocumentAnalyzer());
+            Analyzers.Add(new OpenXmlDocumentAnalyzer());
         }
     }
 }

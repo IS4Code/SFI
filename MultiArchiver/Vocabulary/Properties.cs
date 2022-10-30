@@ -69,10 +69,40 @@
         public static readonly PropertyUri Creator;
 
         /// <summary>
+        /// <see cref="Dcterms"/>:creator.
+        /// </summary>
+        [Uri(Dcterms)]
+        public static readonly PropertyUri Subject;
+
+        /// <summary>
+        /// <see cref="Dcterms"/>:identifier.
+        /// </summary>
+        [Uri(Dcterms)]
+        public static readonly PropertyUri Identifier;
+
+        /// <summary>
+        /// <see cref="Dcterms"/>:title.
+        /// </summary>
+        [Uri(Dcterms)]
+        public static readonly PropertyUri Title;
+
+        /// <summary>
+        /// <see cref="Dcterms"/>:language.
+        /// </summary>
+        [Uri(Dcterms)]
+        public static readonly PropertyUri Language;
+
+        /// <summary>
         /// <see cref="Dcterms"/>:modified.
         /// </summary>
         [Uri(Dcterms)]
         public static readonly PropertyUri Modified;
+
+        /// <summary>
+        /// <see cref="Dcterms"/>:created.
+        /// </summary>
+        [Uri(Dcterms)]
+        public static readonly PropertyUri Created;
 
         /// <summary>
         /// <see cref="Dcterms"/>:provenance.
@@ -229,6 +259,18 @@
         /// </summary>
         [Uri(Schema)]
         public static readonly PropertyUri CopyrightNotice;
+
+        /// <summary>
+        /// <see cref="Schema"/>:keywords.
+        /// </summary>
+        [Uri(Schema)]
+        public static readonly PropertyUri Keywords;
+
+        /// <summary>
+        /// <see cref="Schema"/>:category.
+        /// </summary>
+        [Uri(Schema)]
+        public static readonly PropertyUri Category;
 
         /// <summary>
         /// <see cref="Nie"/>:interpretedAs.
@@ -403,6 +445,30 @@
         /// </summary>
         [Uri(Nfo)]
         public static readonly PropertyUri EncryptionStatus;
+
+        /// <summary>
+        /// <see cref="Nfo"/>:characterCount.
+        /// </summary>
+        [Uri(Nfo)]
+        public static readonly PropertyUri CharacterCount;
+
+        /// <summary>
+        /// <see cref="Nfo"/>:lineCount.
+        /// </summary>
+        [Uri(Nfo)]
+        public static readonly PropertyUri LineCount;
+
+        /// <summary>
+        /// <see cref="Nfo"/>:wordCount.
+        /// </summary>
+        [Uri(Nfo)]
+        public static readonly PropertyUri WordCount;
+
+        /// <summary>
+        /// <see cref="Nfo"/>:pageCount.
+        /// </summary>
+        [Uri(Nfo)]
+        public static readonly PropertyUri PageCount;
 
         /// <summary>
         /// <see cref="Skos"/>:broader.

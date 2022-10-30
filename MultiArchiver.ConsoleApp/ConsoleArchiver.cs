@@ -207,6 +207,8 @@ namespace IS4.MultiArchiver.ConsoleApp
             Analyzers.Add(new CabinetAnalyzer());
             Analyzers.Add(new OleStorageAnalyzer());
             Analyzers.Add(new PackageDescriptionAnalyzer());
+            Analyzers.Add(new OleDocumentAnalyzer());
+            Analyzers.Add(new OpenXmlDocumentAnalyzer());
 
             AddPlugins();
         }
