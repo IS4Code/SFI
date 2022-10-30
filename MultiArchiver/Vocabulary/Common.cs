@@ -46,5 +46,13 @@ namespace IS4.MultiArchiver.Vocabulary
         {
             Classes.Archive
         };
+
+        /// <summary>
+        /// Classes denoting documents.
+        /// </summary>
+        public static IReadOnlyCollection<ClassUri> DocumentClasses = new[]
+        {
+            Classes.DigitalDocument, Classes.Document
+        };
     }
 }

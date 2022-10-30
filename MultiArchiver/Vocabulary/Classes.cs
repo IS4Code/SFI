@@ -45,6 +45,12 @@
         public static readonly ClassUri SoftwareApplication;
 
         /// <summary>
+        /// <see cref="Schema"/>:DigitalDocument.
+        /// </summary>
+        [Uri(Schema)]
+        public static readonly ClassUri DigitalDocument;
+
+        /// <summary>
         /// <see cref="Cnt"/>:ContentAsText.
         /// </summary>
         [Uri(Cnt)]
@@ -129,6 +135,12 @@
         public static readonly ClassUri Video;
 
         /// <summary>
+        /// <see cref="Nfo"/>:Document.
+        /// </summary>
+        [Uri(Nfo)]
+        public static readonly ClassUri Document;
+
+        /// <summary>
         /// <see cref="Nfo"/>:MediaStream.
         /// </summary>
         [Uri(Nfo)]
@@ -149,8 +161,8 @@
         /// <summary>
         /// <see cref="Xis"/>:Document.
         /// </summary>
-        [Uri(Xis)]
-        public static readonly ClassUri Document;
+        [Uri(Xis, "Document")]
+        public static readonly ClassUri XmlDocument;
 
         /// <summary>
         /// <see cref="Xis"/>:Element.
