@@ -25,43 +25,43 @@ namespace IS4.MultiArchiver.Analyzers
             var core = properties.CoreProperties;
             if(core != null)
             {
-                if(core.Creator is string creator)
+                if(IsDefined(core.Creator, out var creator))
                 {
                     node.Set(Properties.Creator, creator);
                 }
-                if(core.Subject is string subject)
+                if(IsDefined(core.Subject, out var subject))
                 {
                     node.Set(Properties.Subject, subject);
                 }
-                if(core.Modified is DateTime modified)
+                if(IsDefined(core.Modified, out var modified))
                 {
                     node.Set(Properties.Modified, modified);
                 }
-                if(core.Keywords is string keywords)
+                if(IsDefined(core.Keywords, out var keywords))
                 {
                     node.Set(Properties.Keywords, keywords);
                 }
-                if(core.Identifier is string identifier)
+                if(IsDefined(core.Identifier, out var identifier))
                 {
                     node.Set(Properties.Identifier, identifier);
                 }
-                if(core.Description is string description)
+                if(IsDefined(core.Description, out var description))
                 {
                     node.Set(Properties.Description, description);
                 }
-                if(core.Revision is string revision)
+                if(IsDefined(core.Revision, out var revision))
                 {
                     node.Set(Properties.Version, revision);
                 }
-                if(core.Created is DateTime created)
+                if(IsDefined(core.Created, out var created))
                 {
                     node.Set(Properties.Created, created);
                 }
-                if(core.Category is string category)
+                if(IsDefined(core.Category, out var category))
                 {
                     node.Set(Properties.Category, category);
                 }
-                if(core.Title is string title)
+                if(IsDefined(core.Title, out var title))
                 {
                     node.Set(Properties.Title, title);
                 }
@@ -69,27 +69,44 @@ namespace IS4.MultiArchiver.Analyzers
             var ext = properties.ExtendedProperties;
             if(ext != null)
             {
-                if(ext.CharactersWithSpaces > 0)
+                if(
+                    IsDefined(ext.CharactersWithSpaces, out var chars) ||
+                    IsDefined(ext.Characters, out chars))
                 {
-                    node.Set(Properties.CharacterCount, ext.CharactersWithSpaces);
-                }else if(ext.Characters > 0)
-                {
-                    node.Set(Properties.CharacterCount, ext.Characters);
+                    node.Set(Properties.CharacterCount, chars);
                 }
-                if(ext.Words > 0)
+                if(IsDefined(ext.Words, out var words))
                 {
-                    node.Set(Properties.WordCount, ext.Words);
+                    node.Set(Properties.WordCount, words);
                 }
-                if(ext.Lines > 0)
+                if(IsDefined(ext.Lines, out var lines))
                 {
-                    node.Set(Properties.LineCount, ext.Lines);
+                    node.Set(Properties.LineCount, lines);
                 }
-                if(ext.Pages > 0)
+                if(IsDefined(ext.Pages, out var pages))
                 {
-                    node.Set(Properties.PageCount, ext.Pages);
+                    node.Set(Properties.PageCount, pages);
                 }
             }
             return new AnalysisResult(node);
+        }
+
+        static bool IsDefined(string value, out string result)
+        {
+            result = value;
+            return String.IsNullOrEmpty(value);
+        }
+
+        static bool IsDefined(int value, out int result)
+        {
+            result = value;
+            return value > 0;
+        }
+
+        static bool IsDefined<T>(T? value, out T result) where T : struct
+        {
+            result = value.GetValueOrDefault();
+            return value != null;
         }
     }
 }

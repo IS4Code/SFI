@@ -23,64 +23,82 @@ namespace IS4.MultiArchiver.Analyzers
             var sum = document.SummaryInformation;
             if(sum != null)
             {
-                if(sum.Author is string creator)
+                if(IsDefined(sum.Author, out var creator))
                 {
                     node.Set(Properties.Creator, creator);
                 }
-                if(sum.Subject is string subject)
+                if(IsDefined(sum.Subject, out var subject))
                 {
                     node.Set(Properties.Subject, subject);
                 }
-                if(sum.LastSaveDateTime is DateTime modified)
+                if(IsDefined(sum.LastSaveDateTime, out var modified))
                 {
                     node.Set(Properties.Modified, modified);
                 }
-                if(sum.Keywords is string keywords)
+                if(IsDefined(sum.Keywords, out var keywords))
                 {
                     node.Set(Properties.Keywords, keywords);
                 }
-                if(sum.RevNumber is string revision)
+                if(IsDefined(sum.RevNumber, out var revision))
                 {
                     node.Set(Properties.Version, revision);
                 }
-                if(sum.CreateDateTime is DateTime created)
+                if(IsDefined(sum.CreateDateTime, out var created))
                 {
                     node.Set(Properties.Created, created);
                 }
-                if(sum.Title is string title)
+                if(IsDefined(sum.Title, out var title))
                 {
                     node.Set(Properties.Title, title);
                 }
-                if(sum.CharCount > 0)
+                if(IsDefined(sum.CharCount, out var charCount))
                 {
-                    node.Set(Properties.CharacterCount, sum.CharCount);
+                    node.Set(Properties.CharacterCount, charCount);
                 }
-                if(sum.WordCount > 0)
+                if(IsDefined(sum.WordCount, out var wordCount))
                 {
-                    node.Set(Properties.WordCount, sum.WordCount);
+                    node.Set(Properties.WordCount, wordCount);
                 }
-                if(sum.PageCount > 0)
+                if(IsDefined(sum.PageCount, out var pageCount))
                 {
-                    node.Set(Properties.PageCount, sum.PageCount);
+                    node.Set(Properties.PageCount, pageCount);
                 }
             }
             var doc = document.DocumentSummaryInformation;
             if(doc != null)
             {
-                if(doc.Category is string category)
+                if(IsDefined(doc.Category, out var category))
                 {
                     node.Set(Properties.Category, category);
                 }
-                if(doc.Language is string language)
+                if(IsDefined(doc.Language, out var language))
                 {
                     node.Set(Properties.Language, language);
                 }
-                if(doc.LineCount > 0)
+                if(IsDefined(doc.LineCount, out var lineCount))
                 {
-                    node.Set(Properties.LineCount, doc.LineCount);
+                    node.Set(Properties.LineCount, lineCount);
                 }
             }
             return new AnalysisResult(node);
+        }
+
+        static bool IsDefined(string value, out string result)
+        {
+            result = value;
+            return String.IsNullOrEmpty(value);
+        }
+
+        static bool IsDefined(int value, out int result)
+        {
+            result = value;
+            return value > 0;
+        }
+
+        static bool IsDefined<T>(T? value, out T result) where T : struct
+        {
+            result = value.GetValueOrDefault();
+            return value != null;
         }
     }
 }
