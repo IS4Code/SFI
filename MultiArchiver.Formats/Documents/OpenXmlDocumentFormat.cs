@@ -44,6 +44,18 @@ namespace IS4.MultiArchiver.Formats
         /// <returns>The media object representing the package.</returns>
         protected abstract T Open(OPCPackage package);
 
+        private T TryOpen(OPCPackage package)
+        {
+            try{
+                return Open(package);
+            }catch(InternalArchiverException)
+            {
+                throw;
+            }catch{
+                return null;
+            }
+        }
+
         class PackageInfo : IContainerAnalyzer<IContainerNode, IFileNodeInfo>, IContainerAnalyzer
         {
             readonly OpenXmlDocumentFormat<T> format;
@@ -62,7 +74,7 @@ namespace IS4.MultiArchiver.Formats
             {
                 if(entity == root)
                 {
-                    var obj = format.Open(Package);
+                    var obj = format.TryOpen(Package);
                     if(obj != null)
                     {
                         context = context.WithNode(null);

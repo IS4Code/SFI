@@ -33,6 +33,18 @@ namespace IS4.MultiArchiver.Formats
         /// <param name="fileSystem">The OLE file system.</param>
         /// <returns>The media object representing the package.</returns>
         protected abstract T Open(NPOIFSFileSystem fileSystem);
+        
+        private T TryOpen(NPOIFSFileSystem fileSystem)
+        {
+            try{
+                return Open(fileSystem);
+            }catch(InternalArchiverException)
+            {
+                throw;
+            }catch{
+                return null;
+            }
+        }
 
         class PackageInfo : IContainerAnalyzer<IContainerNode, IDirectoryInfo>, IContainerAnalyzer
         {
@@ -67,7 +79,7 @@ namespace IS4.MultiArchiver.Formats
                 }
                 Add(fs.Root, root);
 
-                var obj = format.Open(fs);
+                var obj = format.TryOpen(fs);
                 if(obj != null)
                 {
                     context = context.WithNode(null);
