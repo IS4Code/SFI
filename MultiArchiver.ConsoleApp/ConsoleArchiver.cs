@@ -190,6 +190,7 @@ namespace IS4.MultiArchiver.ConsoleApp
             ContainerProviders.Add(new ExcelXmlDocumentFormat());
             ContainerProviders.Add(new ExcelDocumentFormat());
             ContainerProviders.Add(new WordXmlDocumentFormat());
+            ContainerProviders.Add(new WordDocumentFormat());
 
             XmlAnalyzer.XmlFormats.Add(new SvgFormat());
 
