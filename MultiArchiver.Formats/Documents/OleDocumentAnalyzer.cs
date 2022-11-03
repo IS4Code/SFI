@@ -20,6 +20,7 @@ namespace IS4.MultiArchiver.Analyzers
         public async override ValueTask<AnalysisResult> Analyze(POIDocument document, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var node = GetNode(context);
+            string label = null;
             var sum = document.SummaryInformation;
             if(sum != null)
             {
@@ -50,6 +51,7 @@ namespace IS4.MultiArchiver.Analyzers
                 if(IsDefined(sum.Title, out var title))
                 {
                     node.Set(Properties.Title, title);
+                    label = title;
                 }
                 if(IsDefined(sum.CharCount, out var charCount))
                 {
@@ -80,7 +82,7 @@ namespace IS4.MultiArchiver.Analyzers
                     node.Set(Properties.LineCount, lineCount);
                 }
             }
-            return new AnalysisResult(node);
+            return new AnalysisResult(node, label);
         }
 
         static bool IsDefined(string value, out string result)

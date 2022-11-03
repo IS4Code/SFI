@@ -21,7 +21,7 @@ namespace IS4.MultiArchiver.Analyzers
         {
             var node = GetNode(context);
             var properties = document.GetProperties();
-
+            string label = null;
             var core = properties.CoreProperties;
             if(core != null)
             {
@@ -64,6 +64,7 @@ namespace IS4.MultiArchiver.Analyzers
                 if(IsDefined(core.Title, out var title))
                 {
                     node.Set(Properties.Title, title);
+                    label = title;
                 }
             }
             var ext = properties.ExtendedProperties;
@@ -88,7 +89,7 @@ namespace IS4.MultiArchiver.Analyzers
                     node.Set(Properties.PageCount, pages);
                 }
             }
-            return new AnalysisResult(node);
+            return new AnalysisResult(node, label);
         }
 
         static bool IsDefined(string value, out string result)
