@@ -94,7 +94,7 @@ namespace IS4.MultiArchiver.Analyzers
         static bool IsDefined(string value, out string result)
         {
             result = value;
-            return String.IsNullOrEmpty(value);
+            return !String.IsNullOrEmpty(value);
         }
 
         static bool IsDefined(int value, out int result)
