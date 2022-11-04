@@ -14,25 +14,28 @@ namespace IS4.MultiArchiver.Formats
     /// <summary>
     /// Represents the URL shortcut format, producing instances of <see cref="IUniformResourceLocator"/>.
     /// </summary>
-    public class InternetShortcutFormat : BinaryFileFormat<IUniformResourceLocator>
+    public class InternetShortcutFormat : SignatureFormat<IUniformResourceLocator>
     {
         static readonly Type InternetShortcut = Type.GetTypeFromCLSID(new Guid(0xFBF23B40, 0xE3F0, 0x101B, 0x84, 0x88, 0x00, 0xAA, 0x00, 0x3E, 0x56, 0xF8));
 
         public TaskScheduler StaTaskScheduler = new StaTaskScheduler(1);
 
-        public InternetShortcutFormat() : base(0, "text/x-uri", "url")
+        /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
+        public InternetShortcutFormat() : base("[InternetShortcut]", "text/x-uri", "url")
         {
 
         }
 
         public override bool CheckHeader(ArraySegment<byte> header, bool isBinary, IEncodingDetector encodingDetector)
         {
-            return !isBinary;
+            if(InternetShortcut == null) return false;
+            return base.CheckHeader(header, isBinary, encodingDetector);
         }
 
         public override bool CheckHeader(Span<byte> header, bool isBinary, IEncodingDetector encodingDetector)
         {
-            return !isBinary;
+            if(InternetShortcut == null) return false;
+            return base.CheckHeader(header, isBinary, encodingDetector);
         }
 
         public override async ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<IUniformResourceLocator, TResult, TArgs> resultFactory, TArgs args)
