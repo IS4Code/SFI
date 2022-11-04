@@ -30,7 +30,7 @@ namespace IS4.MultiArchiver
             BlockSize = blockSize;
         }
 
-        public override async ValueTask<byte[]> ComputeHash(Stream input, IPersistentKey key = null)
+        public async override ValueTask<byte[]> ComputeHash(Stream input, IPersistentKey key = null)
         {
             using(var output = new MemoryStream())
             {
@@ -47,7 +47,7 @@ namespace IS4.MultiArchiver
             }
         }
 
-        public override async ValueTask<byte[]> ComputeHash(byte[] data, IPersistentKey key = null)
+        public async override ValueTask<byte[]> ComputeHash(byte[] data, IPersistentKey key = null)
         {
             using(var stream = new MemoryStream(data, false))
             {
@@ -55,7 +55,7 @@ namespace IS4.MultiArchiver
             }
         }
 
-        public override async ValueTask<byte[]> ComputeHash(byte[] data, int offset, int count, IPersistentKey key = null)
+        public async override ValueTask<byte[]> ComputeHash(byte[] data, int offset, int count, IPersistentKey key = null)
         {
             using(var stream = new MemoryStream(data, offset, count, false))
             {

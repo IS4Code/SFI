@@ -49,7 +49,7 @@ namespace IS4.MultiArchiver.Tools
         /// <returns>The hash stored in the instance.</returns>
         protected abstract byte[] Output(ref T instance);
 
-        public override async ValueTask<byte[]> ComputeHash(Stream input, IPersistentKey key = null)
+        public async override ValueTask<byte[]> ComputeHash(Stream input, IPersistentKey key = null)
         {
             var instance = Initialize();
             try{

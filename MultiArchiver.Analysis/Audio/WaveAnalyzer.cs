@@ -28,7 +28,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override async ValueTask<AnalysisResult> Analyze(WaveStream wave, AnalysisContext context, IEntityAnalyzers analyzers)
+        public async override ValueTask<AnalysisResult> Analyze(WaveStream wave, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var node = GetNode(context);
             if(wave is ICustomWaveFormat customFormat)

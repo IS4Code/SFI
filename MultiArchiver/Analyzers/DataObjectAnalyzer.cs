@@ -170,7 +170,7 @@ namespace IS4.MultiArchiver.Analyzers
                 throw new NotSupportedException();
             }
 
-            public override ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<Format, TResult, TArgs> resultFactory, TArgs args)
+            public async override ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<Format, TResult, TArgs> resultFactory, TArgs args)
             {
                 throw new NotSupportedException();
             }

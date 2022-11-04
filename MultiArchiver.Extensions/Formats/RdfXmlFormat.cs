@@ -18,7 +18,7 @@ namespace IS4.MultiArchiver.Formats
 
         }
 
-        public override async ValueTask<TResult> Match<TResult, TArgs>(XmlReader reader, XDocumentType docType, MatchContext context, ResultFactory<RdfXmlAnalyzer.Document, TResult, TArgs> resultFactory, TArgs args)
+        public async override ValueTask<TResult> Match<TResult, TArgs>(XmlReader reader, XDocumentType docType, MatchContext context, ResultFactory<RdfXmlAnalyzer.Document, TResult, TArgs> resultFactory, TArgs args)
         {
             var document = new BaseXmlDocument(null, reader.NameTable);
             document.Load(reader);

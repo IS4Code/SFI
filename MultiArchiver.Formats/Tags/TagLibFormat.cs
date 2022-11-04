@@ -55,7 +55,7 @@ namespace IS4.MultiArchiver.Formats
             return file.MimeType;
         }
 
-        public override async ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<TagLib.File, TResult, TArgs> resultFactory, TArgs args)
+        public async override ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<TagLib.File, TResult, TArgs> resultFactory, TArgs args)
         {
             var file = new File(stream, context);
             if(file.Name != null)

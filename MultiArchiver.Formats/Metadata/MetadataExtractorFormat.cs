@@ -27,7 +27,7 @@ namespace IS4.MultiArchiver.Formats
             return value.Value.GetMimeType();
         }
 
-        public override async ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<FileTypeWrapper, TResult, TArgs> resultFactory, TArgs args)
+        public async override ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<FileTypeWrapper, TResult, TArgs> resultFactory, TArgs args)
         {
             return await resultFactory(new FileTypeWrapper(FileTypeDetector.DetectFileType(stream)), args);
         }

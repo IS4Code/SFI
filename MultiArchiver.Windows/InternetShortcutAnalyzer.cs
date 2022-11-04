@@ -10,12 +10,12 @@ namespace IS4.MultiArchiver.Analyzers
     /// </summary>
     public class InternetShortcutAnalyzer : MediaObjectAnalyzer<IUniformResourceLocator>
     {
-        public override ValueTask<AnalysisResult> Analyze(IUniformResourceLocator shortcut, AnalysisContext context, IEntityAnalyzers analyzers)
+        public async override ValueTask<AnalysisResult> Analyze(IUniformResourceLocator shortcut, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var node = GetNode(context);
             shortcut.GetUrl(out var url);
             node.Set(Properties.Links, UriFormatter.Instance, url);
-            return new ValueTask<AnalysisResult>(new AnalysisResult(node));
+            return new AnalysisResult(node);
         }
     }
 }

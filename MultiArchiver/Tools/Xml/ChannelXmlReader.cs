@@ -129,7 +129,7 @@ namespace IS4.MultiArchiver.Tools.Xml
             }
         }
 
-        public override async Task<bool> ReadAsync()
+        public async override Task<bool> ReadAsync()
         {
             try{
                 if(!channel.TryRead(out currentState))

@@ -24,7 +24,7 @@ namespace IS4.MultiArchiver.Formats
 
         }
 
-        public override async ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<IModule, TResult, TArgs> resultFactory, TArgs args)
+        public async override ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<IModule, TResult, TArgs> resultFactory, TArgs args)
         {
             if(PeFile.TryParse(stream, out var file))
             {

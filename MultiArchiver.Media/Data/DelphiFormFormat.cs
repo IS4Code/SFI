@@ -16,7 +16,7 @@ namespace IS4.MultiArchiver.Formats
 
         }
 
-        public override async ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<DelphiObject, TResult, TArgs> resultFactory, TArgs args)
+        public async override ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<DelphiObject, TResult, TArgs> resultFactory, TArgs args)
         {
             var encoding = Encoding.GetEncoding(1252); //TODO: guess from context
             return await resultFactory(DelphiFormReader.Read(stream, encoding), args);

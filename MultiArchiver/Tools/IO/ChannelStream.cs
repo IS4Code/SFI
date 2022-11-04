@@ -206,7 +206,7 @@ namespace IS4.MultiArchiver.Tools.IO
             return read;
         }
 
-        public sealed override async Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
+        public sealed async override Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
         {
             if(count <= 0)
             {

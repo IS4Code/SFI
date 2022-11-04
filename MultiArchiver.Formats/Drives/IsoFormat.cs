@@ -27,7 +27,7 @@ namespace IS4.MultiArchiver.Formats
             return isBinary;
         }
 
-        public override async ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<CDReader, TResult, TArgs> resultFactory, TArgs args)
+        public async override ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<CDReader, TResult, TArgs> resultFactory, TArgs args)
         {
             using(var reader = new CDReader(stream, true))
             {

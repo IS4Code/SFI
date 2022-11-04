@@ -53,7 +53,7 @@ namespace IS4.MultiArchiver
             return HashAlgorithm.GetHashSize(fileSize);
         }
 
-        public override async ValueTask<byte[]> ComputeHash(IFileInfo file)
+        public async override ValueTask<byte[]> ComputeHash(IFileInfo file)
         {
             var dict = await CreateDictionary(file, true);
             var hash = await HashAlgorithm.ComputeHash(dict.EncodeAsBytes());
@@ -61,7 +61,7 @@ namespace IS4.MultiArchiver
             return hash;
         }
 
-        public override async ValueTask<byte[]> ComputeHash(IDirectoryInfo directory, bool content)
+        public async override ValueTask<byte[]> ComputeHash(IDirectoryInfo directory, bool content)
         {
             var dict = await CreateDictionary(directory, content);
             var hash = await HashAlgorithm.ComputeHash(dict.EncodeAsBytes());

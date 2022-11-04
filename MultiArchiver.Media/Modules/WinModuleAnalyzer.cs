@@ -25,7 +25,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override async ValueTask<AnalysisResult> Analyze(IModule module, AnalysisContext context, IEntityAnalyzers analyzers)
+        public async override ValueTask<AnalysisResult> Analyze(IModule module, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var node = GetNode(context);
             await AnalyzeSignature(node, module.Signature, context, analyzers);

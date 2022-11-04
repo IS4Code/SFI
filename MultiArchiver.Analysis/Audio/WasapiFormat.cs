@@ -71,7 +71,7 @@ namespace IS4.MultiArchiver.Formats
             return false;
         }
 
-        public override async ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<WaveStream, TResult, TArgs> resultFactory, TArgs args)
+        public async override ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<WaveStream, TResult, TArgs> resultFactory, TArgs args)
         {
             readerAllowMp3 = allowMp3;
             using(var reader = new CustomStreamMediaFoundationReader(stream, settings))

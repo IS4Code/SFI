@@ -72,7 +72,7 @@ namespace IS4.MultiArchiver.Formats
             }
         }
 
-        public override async ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<XmlReader, TResult, TArgs> resultFactory, TArgs args)
+        public async override ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<XmlReader, TResult, TArgs> resultFactory, TArgs args)
         {
             using(var reader = XmlReader.Create(stream, ReaderSettings))
             {
@@ -115,12 +115,10 @@ namespace IS4.MultiArchiver.Formats
                 throw new XmlException(null, new NotSupportedException());
             }
 
-#pragma warning disable 1998
-            public override async Task<object> GetEntityAsync(Uri absoluteUri, string role, Type ofObjectToReturn)
+            public async override Task<object> GetEntityAsync(Uri absoluteUri, string role, Type ofObjectToReturn)
             {
                 return GetEntity(absoluteUri, role, ofObjectToReturn);
             }
-#pragma warning restore 1998
 
             public virtual MemoryStream GetEntityAsStream(Uri absoluteUri, string role)
             {

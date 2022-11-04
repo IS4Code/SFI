@@ -396,7 +396,7 @@ namespace IS4.MultiArchiver.Extensions
                 Describe(doc);
             }
 
-            public override async Task DescribeAsync(XmlReader rdfXmlReader)
+            public async override Task DescribeAsync(XmlReader rdfXmlReader)
             {
                 var doc = PrepareXmlDocument(rdfXmlReader);
                 await doc.LoadAsync(rdfXmlReader);

@@ -48,7 +48,7 @@ namespace IS4.MultiArchiver.Formats
                 this.provider = provider;
             }
 
-            protected override async ValueTask<AnalysisResult> Analyze<TPath, TNode>(TPath parentPath, TNode node, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzers analyzers)
+            protected async override ValueTask<AnalysisResult> Analyze<TPath, TNode>(TPath parentPath, TNode node, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzers analyzers)
             {
                 if(parentPath != null)
                 {

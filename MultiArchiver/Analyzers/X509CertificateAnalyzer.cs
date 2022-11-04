@@ -16,7 +16,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override ValueTask<AnalysisResult> Analyze(X509Certificate certificate, AnalysisContext context, IEntityAnalyzers analyzers)
+        public async override ValueTask<AnalysisResult> Analyze(X509Certificate certificate, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var node = GetNode(context);
 
@@ -25,7 +25,7 @@ namespace IS4.MultiArchiver.Analyzers
             var hash = certificate.GetCertHash();
             Services.HashAlgorithm.AddHash(node, Services.HashAlgorithm.FromLength(hash.Length), hash, context.NodeFactory);
 
-            return new ValueTask<AnalysisResult>(new AnalysisResult(node));
+            return new AnalysisResult(node);
         }
     }
 }

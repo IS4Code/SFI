@@ -27,7 +27,7 @@ namespace IS4.MultiArchiver.Formats
             return true;
         }
 
-        public override async ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<CompoundFile, TResult, TArgs> resultFactory, TArgs args)
+        public async override ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<CompoundFile, TResult, TArgs> resultFactory, TArgs args)
         {
             using(var file = new CompoundFile(stream, CFSUpdateMode.ReadOnly, CFSConfiguration.NoValidationException))
             {

@@ -42,14 +42,14 @@ namespace IS4.MultiArchiver
 
         }
 
-        public override ValueTask<byte[]> ComputeHash(byte[] data, IPersistentKey key = null)
+        public async override ValueTask<byte[]> ComputeHash(byte[] data, IPersistentKey key = null)
         {
-            return new ValueTask<byte[]>(BitConverter.GetBytes(Crc32Algorithm.Compute(data)));
+            return BitConverter.GetBytes(Crc32Algorithm.Compute(data));
         }
 
-        public override ValueTask<byte[]> ComputeHash(byte[] data, int offset, int count, IPersistentKey key = null)
+        public async override ValueTask<byte[]> ComputeHash(byte[] data, int offset, int count, IPersistentKey key = null)
         {
-            return new ValueTask<byte[]>(BitConverter.GetBytes(Crc32Algorithm.Compute(data, offset, count)));
+            return BitConverter.GetBytes(Crc32Algorithm.Compute(data, offset, count));
         }
     }
 }

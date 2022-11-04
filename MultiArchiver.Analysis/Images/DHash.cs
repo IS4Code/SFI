@@ -31,7 +31,7 @@ namespace IS4.MultiArchiver.Analysis.Images
 
         }
 
-        public override ValueTask<byte[]> ComputeHash(Image image)
+        public async override ValueTask<byte[]> ComputeHash(Image image)
         {
             using(var horiz = ImageTools.ResizeImage(image, 9, 8, PixelFormat.Format32bppArgb, gray))
             {
@@ -41,7 +41,7 @@ namespace IS4.MultiArchiver.Analysis.Images
                     try{
                         var vertBits = vert.LockBits(new Rectangle(0, 0, 8, 9), ImageLockMode.ReadOnly, PixelFormat.Format32bppRgb);
                         try{
-                            return new ValueTask<byte[]>(ComputeDHash(horizBits, vertBits));
+                            return ComputeDHash(horizBits, vertBits);
                         }finally{
                             vert.UnlockBits(vertBits);
                         }

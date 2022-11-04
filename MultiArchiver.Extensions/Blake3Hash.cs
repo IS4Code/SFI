@@ -45,16 +45,16 @@ namespace IS4.MultiArchiver
             instance.Dispose();
         }
 
-        public override ValueTask<byte[]> ComputeHash(byte[] data, IPersistentKey key = null)
+        public async override ValueTask<byte[]> ComputeHash(byte[] data, IPersistentKey key = null)
         {
             var hash = Hasher.Hash(new ReadOnlySpan<byte>(data));
-            return new ValueTask<byte[]>(hash.AsSpan().ToArray());
+            return hash.AsSpan().ToArray();
         }
 
-        public override ValueTask<byte[]> ComputeHash(byte[] data, int offset, int count, IPersistentKey key = null)
+        public async override ValueTask<byte[]> ComputeHash(byte[] data, int offset, int count, IPersistentKey key = null)
         {
             var hash = Hasher.Hash(new ReadOnlySpan<byte>(data, offset, count));
-            return new ValueTask<byte[]>(hash.AsSpan().ToArray());
+            return hash.AsSpan().ToArray();
         }
     }
 }

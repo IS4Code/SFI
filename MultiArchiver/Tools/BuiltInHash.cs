@@ -86,7 +86,7 @@ namespace IS4.MultiArchiver.Tools
             }
         }
 
-        public override async ValueTask<byte[]> ComputeHash(Stream input, IPersistentKey key)
+        public async override ValueTask<byte[]> ComputeHash(Stream input, IPersistentKey key)
         {
             var algorithm = Algorithm;
 
@@ -105,14 +105,14 @@ namespace IS4.MultiArchiver.Tools
             }
         }
 
-        public override ValueTask<byte[]> ComputeHash(byte[] data, IPersistentKey key)
+        public async override ValueTask<byte[]> ComputeHash(byte[] data, IPersistentKey key)
         {
-            return new ValueTask<byte[]>(Algorithm.ComputeHash(data));
+            return Algorithm.ComputeHash(data);
         }
 
-        public override ValueTask<byte[]> ComputeHash(byte[] data, int offset, int count, IPersistentKey key)
+        public async override ValueTask<byte[]> ComputeHash(byte[] data, int offset, int count, IPersistentKey key)
         {
-            return new ValueTask<byte[]>(Algorithm.ComputeHash(data, offset, count));
+            return Algorithm.ComputeHash(data, offset, count);
         }
     }
 }

@@ -16,9 +16,9 @@ namespace IS4.MultiArchiver.Analyzers
     /// </summary>
     public class CabinetAnalyzer : MediaObjectAnalyzer<ICabinetArchive>
     {
-        public override ValueTask<AnalysisResult> Analyze(ICabinetArchive file, AnalysisContext context, IEntityAnalyzers analyzers)
+        public async override ValueTask<AnalysisResult> Analyze(ICabinetArchive file, AnalysisContext context, IEntityAnalyzers analyzers)
         {
-            return analyzers.Analyze(new ArchiveReaderAdapter(new CabinetAdapter(file)), context);
+            return await analyzers.Analyze(new ArchiveReaderAdapter(new CabinetAdapter(file)), context);
         }
 
         class CabinetAdapter : IReader

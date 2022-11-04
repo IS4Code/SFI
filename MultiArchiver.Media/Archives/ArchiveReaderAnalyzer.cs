@@ -17,7 +17,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public override async ValueTask<AnalysisResult> Analyze(IArchiveReader reader, AnalysisContext context, IEntityAnalyzers analyzers)
+        public async override ValueTask<AnalysisResult> Analyze(IArchiveReader reader, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var node = GetNode(context);
 

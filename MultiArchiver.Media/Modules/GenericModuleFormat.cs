@@ -19,7 +19,7 @@ namespace IS4.MultiArchiver.Formats
 
         }
         
-        public override async ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<Module, TResult, TArgs> resultFactory, TArgs args)
+        public async override ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<Module, TResult, TArgs> resultFactory, TArgs args)
         {
             return await resultFactory(new Module(stream), args);
         }

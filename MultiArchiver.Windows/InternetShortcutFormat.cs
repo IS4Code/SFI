@@ -38,7 +38,7 @@ namespace IS4.MultiArchiver.Formats
             return base.CheckHeader(header, isBinary, encodingDetector);
         }
 
-        public override async ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<IUniformResourceLocator, TResult, TArgs> resultFactory, TArgs args)
+        public async override ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<IUniformResourceLocator, TResult, TArgs> resultFactory, TArgs args)
         {
             if(InternetShortcut == null) return default;
 

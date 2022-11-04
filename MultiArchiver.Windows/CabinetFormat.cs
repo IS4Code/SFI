@@ -15,7 +15,7 @@ namespace IS4.MultiArchiver.Formats
 
         }
 
-        public override async ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<CabinetFile, TResult, TArgs> resultFactory, TArgs args)
+        public async override ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<CabinetFile, TResult, TArgs> resultFactory, TArgs args)
         {
             using(var file = new CabinetFile(stream))
             {

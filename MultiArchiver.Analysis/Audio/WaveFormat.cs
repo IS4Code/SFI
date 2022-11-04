@@ -27,7 +27,7 @@ namespace IS4.MultiArchiver.Formats
             return header.MemoryCast<uint>()[2] == 0x45564157;
         }
 
-        public override async ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<WaveStream, TResult, TArgs> resultFactory, TArgs args)
+        public async override ValueTask<TResult> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<WaveStream, TResult, TArgs> resultFactory, TArgs args)
         {
             using(var reader = new WaveFileReader(stream))
             {
