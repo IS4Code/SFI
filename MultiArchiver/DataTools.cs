@@ -781,15 +781,14 @@ namespace IS4.MultiArchiver
                 ? $"Data ({((IStreamFactory)entity).Length} B)" : entity.ToString();
 
             type = entity.GetType();
-            if(String.IsNullOrWhiteSpace(name))
+            if(String.IsNullOrWhiteSpace(name) || name == type.ToString())
             {
-                // no useful name
-                return GetUserFriendlyName(type);
-            }
-
-            if(name == type.ToString())
-            {
-                // ToString is not overridden
+                // no useful name, or ToString is not overriden
+                if(type.IsCOMObject)
+                {
+                    // Use provided the COM interface instead
+                    type = typeof(T);
+                }
                 return GetUserFriendlyName(type);
             }
 
