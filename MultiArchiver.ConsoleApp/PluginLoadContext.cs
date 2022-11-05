@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using IS4.MultiArchiver.Services;
+using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.Loader;
 
@@ -7,7 +10,7 @@ namespace IS4.MultiArchiver.ConsoleApp
 {
     class PluginLoadContext : AssemblyLoadContext
     {
-        readonly List<string> directories = new List<string>();
+        readonly List<IDirectoryInfo> directories = new List<IDirectoryInfo>();
 
         public PluginLoadContext()
         {
@@ -16,7 +19,29 @@ namespace IS4.MultiArchiver.ConsoleApp
 
         public void AddDirectory(string dir)
         {
-            directories.Add(dir);
+            directories.Add(new DirectoryInfoWrapper(new DirectoryInfo(dir)));
+        }
+
+        public void AddDirectory(IDirectoryInfo info)
+        {
+            directories.Add(info);
+        }
+
+        public Assembly LoadFromFile(IFileInfo fileInfo)
+        {
+            return LoadFromFile(this, fileInfo);
+        }
+
+        static Assembly LoadFromFile(AssemblyLoadContext context, IFileInfo fileInfo)
+        {
+            if(fileInfo is FileInfoWrapper wrapper)
+            {
+                return context.LoadFromAssemblyPath(wrapper.BaseInfo.FullName);
+            }
+            using(var stream = fileInfo.Open())
+            {
+                return context.LoadFromStream(stream);
+            }
         }
 
         protected override Assembly Load(AssemblyName assemblyName)
@@ -28,10 +53,11 @@ namespace IS4.MultiArchiver.ConsoleApp
         {
             foreach(var dir in directories)
             {
-                var path = Path.Combine(dir, name.Name + ".dll");
-                if(File.Exists(path))
+                var fileName = name.Name + ".dll";
+                var entry = dir.Entries.OfType<IFileInfo>().FirstOrDefault(e => fileName.Equals(e.Name, StringComparison.OrdinalIgnoreCase));
+                if(entry != null)
                 {
-                    return context.LoadFromAssemblyPath(Path.GetFullPath(path));
+                    return LoadFromFile(context, entry);
                 }
             }
             return null;

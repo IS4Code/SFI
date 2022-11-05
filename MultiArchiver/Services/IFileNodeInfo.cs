@@ -141,7 +141,7 @@ namespace IS4.MultiArchiver.Services
         /// <summary>
         /// The underlying info instance.
         /// </summary>
-        protected TInfo BaseInfo { get; }
+        public TInfo BaseInfo { get; }
 
         readonly IPersistentKey key;
 
