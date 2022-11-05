@@ -48,9 +48,7 @@ namespace IS4.MultiArchiver
 		Mode? mode;
 		List<string> inputs = new List<string>();
 		List<string> queries = new List<string>();
-		List<Regex> analyzerMatches = new List<Regex>();
-		List<Regex> formatMatches = new List<Regex>();
-		List<Regex> hashMatches = new List<Regex>();
+		List<Regex> matches = new List<Regex>();
 		Regex mainHash;
 		string output;
 
@@ -81,18 +79,15 @@ namespace IS4.MultiArchiver
 				// Print the available components
 				switch(mode)
 				{
-					case Mode.Analyzers:
-						PrintList("analyzers", archiver.Analyzers);
-						return;
-					case Mode.Formats:
-						PrintList("data formats", archiver.DataAnalyzer.DataFormats);
-						PrintList("XML formats", archiver.XmlAnalyzer.XmlFormats);
-						PrintList("container formats", archiver.ContainerProviders);
-						return;
-					case Mode.Hashes:
-						PrintList("data hashes", archiver.DataAnalyzer.HashAlgorithms);
-						PrintList("file hashes", archiver.FileAnalyzer.HashAlgorithms);
-						PrintList("image data hashes", archiver.ImageDataHashAlgorithms);
+					case Mode.List:
+						PrintList("analyzer", archiver.Analyzers, matches);
+						PrintList("data-format", archiver.DataAnalyzer.DataFormats, matches);
+						PrintList("xml-format", archiver.XmlAnalyzer.XmlFormats, matches);
+						PrintList("container-format", archiver.ContainerProviders, matches);
+						PrintList("data-hash", archiver.DataAnalyzer.HashAlgorithms, matches);
+						PrintList("file-hash", archiver.FileAnalyzer.HashAlgorithms, matches);
+						PrintList("pixel-hash", archiver.ImageDataHashAlgorithms, matches);
+						PrintList("image-hash", archiver.ImageHashAlgorithms, matches);
 						return;
 				}
 
@@ -101,15 +96,24 @@ namespace IS4.MultiArchiver
 					throw new ApplicationException("At least one input and an output must be specified!");
 				}
 
+				if(quiet)
+				{
+					archiver.OutputLog = writer = TextWriter.Null;
+				}
+
 				// Filter out the components based on arguments
 
-				FilterList(archiver.Analyzers, analyzerMatches);
-				FilterList(archiver.DataAnalyzer.DataFormats, formatMatches);
-				FilterList(archiver.XmlAnalyzer.XmlFormats, formatMatches);
-				FilterList(archiver.ContainerProviders, formatMatches);
-				FilterList(archiver.DataAnalyzer.HashAlgorithms, hashMatches);
-				FilterList(archiver.FileAnalyzer.HashAlgorithms, hashMatches);
-				FilterList(archiver.ImageDataHashAlgorithms, hashMatches);
+				int componentCount = 0;
+				FilterList("analyzer", archiver.Analyzers, matches, ref componentCount);
+				FilterList("data-format", archiver.DataAnalyzer.DataFormats, matches, ref componentCount);
+				FilterList("xml-format", archiver.XmlAnalyzer.XmlFormats, matches, ref componentCount);
+				FilterList("container-format", archiver.ContainerProviders, matches, ref componentCount);
+				FilterList("data-hash", archiver.DataAnalyzer.HashAlgorithms, matches, ref componentCount);
+				FilterList("file-hash", archiver.FileAnalyzer.HashAlgorithms, matches, ref componentCount);
+				FilterList("pixel-hash", archiver.ImageDataHashAlgorithms, matches, ref componentCount);
+				FilterList("image-hash", archiver.ImageHashAlgorithms, matches, ref componentCount);
+
+				writer.WriteLine($"Loaded {componentCount} components in total.");
 
 				if(mainHash != null)
                 {
@@ -121,12 +125,6 @@ namespace IS4.MultiArchiver
 					}
 					archiver.DataAnalyzer.ContentUriFormatter = new NiHashedContentUriFormatter(hash);
                 }
-
-				if(quiet)
-				{
-					archiver.OutputLog = writer = TextWriter.Null;
-				}
-
 
 				// Load the input files from the environment
 				var inputFiles = inputs.SelectMany(input => environment.GetFiles(input));
@@ -179,20 +177,22 @@ namespace IS4.MultiArchiver
         }
 
 		/// <summary>
-		/// Writes a list of configurable components.
+		/// Outputs the list of configurable components.
 		/// </summary>
-        void PrintList<T>(string type, IEnumerable<T> values)
-        {
+        void PrintList<T>(string prefix, IEnumerable<T> list, ICollection<Regex> matches)
+		{
+			if(matches.Count == 0)
+			{
+				matches.Add(anyRegex);
+			}
 			bool first = true;
-			foreach(var value in values)
-            {
-				if(first)
-                {
-					LogWriter.WriteLine();
-					LogWriter.WriteLine($"Available {type}:");
-					first = false;
+			foreach(var item in list)
+			{
+				var name = $"{prefix}:{DataTools.GetUserFriendlyName(item)}";
+				if(matches.Any(m => m.IsMatch(name)))
+				{
+					LogWriter.WriteLine(" - " + name);
 				}
-				LogWriter.WriteLine(" - " + DataTools.GetUserFriendlyName(value));
             }
         }
 
@@ -202,7 +202,7 @@ namespace IS4.MultiArchiver
 		/// Filters a list of configurable components, removing everything not matched
 		/// by <paramref name="matches"/>.
 		/// </summary>
-		void FilterList<T>(ICollection<T> list, ICollection<Regex> matches)
+		void FilterList<T>(string prefix, ICollection<T> list, ICollection<Regex> matches, ref int count)
         {
 			if(matches.Count == 0)
             {
@@ -211,7 +211,7 @@ namespace IS4.MultiArchiver
 			var filtered = new List<T>();
 			foreach(var item in list)
 			{
-				var name = DataTools.GetUserFriendlyName(item);
+				var name = $"{prefix}:{DataTools.GetUserFriendlyName(item)}";
 				if(!matches.Any(m => m.IsMatch(name)))
                 {
 					filtered.Add(item);
@@ -222,6 +222,8 @@ namespace IS4.MultiArchiver
             {
 				list.Remove(item);
             }
+
+			count += list.Count;
         }
 
         protected override string Usage => $"({String.Join("|", modeNames)}) [options] input... output";
@@ -245,28 +247,16 @@ namespace IS4.MultiArchiver
 			Describe,
 
 			/// <summary>
-			/// The application should list the available formats.
+			/// The application should list all available components.
 			/// </summary>
-			Formats,
-
-			/// <summary>
-			/// The application should list the available analyzers.
-			/// </summary>
-			Analyzers,
-
-			/// <summary>
-			/// The application should list the available hashes.
-			/// </summary>
-			Hashes
+			List,
 		}
 
 		public override IList<OptionInfo> GetOptions()
 		{
 			return new OptionInfoCollection{
 				{"q", "quiet", null, "do not print any additional messages"},
-				{"a", "analyzer", "pattern", "enable given analyzers"},
-				{"f", "format", "pattern", "enable given formats"},
-				{"h", "hash", "pattern", "enable given hashes"},
+				{"i", "include", "pattern", "include given components"},
 				{"c", "compress", null, "perform gzip compression on the output"},
 				{"m", "metadata", null, "add annotation metadata to output"},
 				{"d", "data-only", null, "do not store input file information"},
@@ -335,14 +325,8 @@ namespace IS4.MultiArchiver
 				case "r":
 				case "root":
 					return OptionArgument.Required;
-				case "h":
-				case "hash":
-					return OptionArgument.Required;
-				case "a":
-				case "analyzer":
-					return OptionArgument.Required;
-				case "f":
-				case "format":
+				case "i":
+				case "include":
 					return OptionArgument.Required;
 				case "s":
 				case "sparql-query":
@@ -369,18 +353,9 @@ namespace IS4.MultiArchiver
 					options.Root = argument;
 					rootSpecified = true;
 					break;
-				case "a":
-				case "analyzer":
-					analyzerMatches.Add(DataTools.ConvertWildcardToRegex(argument));
-					break;
-				case "f":
-				case "format":
-					formatMatches.Add(DataTools.ConvertWildcardToRegex(argument));
-					break;
-				case "h":
-				case "hash":
-					var match = DataTools.ConvertWildcardToRegex(argument);
-					hashMatches.Add(match);
+				case "i":
+				case "include":
+					matches.Add(DataTools.ConvertWildcardToRegex(argument));
 					break;
 				case "mh":
 				case "main-hash":
