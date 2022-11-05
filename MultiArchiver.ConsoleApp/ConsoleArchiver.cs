@@ -184,6 +184,8 @@ namespace IS4.MultiArchiver.ConsoleApp
             DataAnalyzer.DataFormats.Add(new DelphiFormFormat());
             DataAnalyzer.DataFormats.Add(new CabinetFormat());
             DataAnalyzer.DataFormats.Add(new OleStorageFormat());
+            DataAnalyzer.DataFormats.Add(new InternetShortcutFormat());
+            DataAnalyzer.DataFormats.Add(new ShellLinkFormat());
 
             ContainerProviders.Add(new OpenPackageFormat());
             ContainerProviders.Add(new PackageDescriptionProvider());
@@ -210,6 +212,8 @@ namespace IS4.MultiArchiver.ConsoleApp
             Analyzers.Add(new PackageDescriptionAnalyzer());
             Analyzers.Add(new OleDocumentAnalyzer());
             Analyzers.Add(new OpenXmlDocumentAnalyzer());
+            Analyzers.Add(new InternetShortcutAnalyzer());
+            Analyzers.Add(new ShellLinkAnalyzer());
 
             AddPlugins();
         }
