@@ -21,6 +21,8 @@ namespace IS4.MultiArchiver.ConsoleApp
 
         public override ICollection<IDataHashAlgorithm> ImageDataHashAlgorithms => ImageAnalyzer.DataHashAlgorithms;
 
+        public override ICollection<IHashAlgorithm> ImageHashAlgorithms => new ConcreteCollectionWrapper<IHashAlgorithm, IObjectHashAlgorithm<Image>>(ImageAnalyzer.LowFrequencyImageHashAlgorithms);
+
         readonly Plugins plugins;
 
         /// <inheritdoc/>
