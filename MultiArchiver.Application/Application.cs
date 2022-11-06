@@ -115,7 +115,7 @@ namespace IS4.MultiArchiver
 				FilterComponents("pixel-hash", archiver.ImageDataHashAlgorithms, ref componentCount);
 				FilterComponents("image-hash", archiver.ImageHashAlgorithms, ref componentCount);
 
-				writer.WriteLine($"Loaded {componentCount} components in total.");
+				writer.WriteLine($"Included {componentCount} components in total.");
 
 				if(mainHash != null)
                 {
