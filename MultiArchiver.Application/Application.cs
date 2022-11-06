@@ -82,6 +82,7 @@ namespace IS4.MultiArchiver
 				switch(mode)
 				{
 					case Mode.List:
+						LogWriter.WriteLine("Included components:");
 						PrintComponents("analyzer", archiver.Analyzers);
 						PrintComponents("data-format", archiver.DataAnalyzer.DataFormats);
 						PrintComponents("xml-format", archiver.XmlAnalyzer.XmlFormats);
@@ -200,7 +201,7 @@ namespace IS4.MultiArchiver
 			{
 				if(IsIncluded(prefix, item, out var name))
 				{
-					LogWriter.WriteLine(" - " + name);
+					LogWriter.WriteLine($" - {name} ({DataTools.GetUserFriendlyName(item.GetType())})");
 				}
             }
         }
