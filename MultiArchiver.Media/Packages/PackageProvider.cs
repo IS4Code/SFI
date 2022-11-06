@@ -47,6 +47,11 @@ namespace IS4.MultiArchiver.Formats
             return null;
         }
 
+        public override string ToString()
+        {
+            return DataTools.GetFakeMediaTypeFromType<TAnalyzer>() ?? base.ToString();
+        }
+
         /// <summary>
         /// Provides an implementation of <see cref="IContainerAnalyzer"/>
         /// which stores the root of the file hierarchy in <see cref="Root"/>.

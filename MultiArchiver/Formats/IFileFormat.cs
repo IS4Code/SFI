@@ -106,5 +106,10 @@ namespace IS4.MultiArchiver.Formats
             if(!(value is T obj)) throw new ArgumentException(null, nameof(value));
             return GetMediaType(obj);
         }
+
+        public override string ToString()
+        {
+            return MediaType ?? DataTools.GetFakeMediaTypeFromType<T>() ?? base.ToString();
+        }
     }
 }

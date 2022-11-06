@@ -149,7 +149,7 @@ namespace IS4.MultiArchiver
         /// <summary>
         /// These characters are not allowed in a MIME type. The &amp; is allowed, but is used for other purposes.
         /// </summary>
-        static readonly Regex badMimeCharacters = new Regex(@"[^a-zA-Z0-9_-]+", RegexOptions.Compiled);
+        static readonly Regex badMimeCharacters = new Regex(@"[^a-zA-Z0-9_.-]+", RegexOptions.Compiled);
 
         /// <summary>
         /// Creates a fake media type from a namespace URI, PUBLIC identifier,
@@ -187,8 +187,7 @@ namespace IS4.MultiArchiver
         /// </summary>
         /// <typeparam name="T">The type to use for the media type.</typeparam>
         /// <returns>A MIME type in the form of "application/x.obj.{name}", where name
-        /// is formed from the concatenation of the name of the type and names of all
-        /// its generic arguments.
+        /// is the result of <see cref="GetIdentifierFromType{T}"/>.
         /// </returns>
         public static string GetFakeMediaTypeFromType<T>()
         {
@@ -196,38 +195,75 @@ namespace IS4.MultiArchiver
         }
 
         /// <summary>
-        /// Matches a capital letter before which a hyphen could be placed.
+        /// Creates an (MIME-safe) identifier from a .NET type.
         /// </summary>
-        static readonly Regex hyphenCharacters = new Regex(@"\p{Lu}+($|(?=\p{Lu}))|\p{Lu}(?!\p{Lu})", RegexOptions.Compiled);
+        /// <typeparam name="T">The type to use for the identifier.</typeparam>
+        /// <returns>A concatenation of the name of the type and names of all
+        /// its generic arguments.
+        /// </returns>
+        public static string GetIdentifierFromType<T>()
+        {
+            return FakeTypeNameCache<T>.ShortName;
+        }
+
+        /// <inheritdoc cref="GetIdentifierFromType{T}"/>
+        /// <param name="type">The type to use for the identifier.</param>
+        public static string GetIdentifierFromType(Type type)
+        {
+            return FakeTypeNameCache<object>.GetTypeFriendlyName(type);
+        }
+
+        /// <summary>
+        /// Matches a letter after which a hyphen could be placed, as either a lowercase letter followed
+        /// by an uppercase letter, or an uppercase letter followed by an uppercase letter and a lowercase letter.
+        /// </summary>
+        static readonly Regex hyphenCharacters = new Regex(@"\p{Ll}(?=\p{Lu})|\p{Lu}(?=\p{Lu}\p{Ll})", RegexOptions.Compiled);
+
+        /// <summary>
+        /// Matches any namespace that is located within <see cref="System"/> or <see cref="MultiArchiver"/>.
+        /// </summary>
+        static readonly Regex friendNamespace = new Regex($@"^(?:{nameof(System)}|{nameof(IS4)}\.{nameof(MultiArchiver)})(?:$|\.)", RegexOptions.Compiled);
+
+        /// <summary>
+        /// Matches a letter I followed a capital letter, denoting interfaces by convention.
+        /// </summary>
+        static readonly Regex interfaceLetter = new Regex(@"^I(?=\p{Lu})", RegexOptions.Compiled);
 
         class FakeTypeNameCache<T>
         {
-            public static readonly string Name = GetName();
+            public static readonly string ShortName = GetTypeFriendlyName(typeof(T));
+            public static readonly string Name = "application/x.obj." + ShortName;
 
-            static string GetName()
+            public static string GetTypeFriendlyName(Type type)
             {
-                return "application/x.obj." + GetTypeFriendlyName(typeof(T));
-            }
-
-            static string GetTypeFriendlyName(Type type)
-            {
-                string name;
-                if(String.IsNullOrEmpty(type.Namespace))
+                // Strip leading I for interfaces
+                string name = type.IsInterface ? interfaceLetter.Replace(type.Name, "") : type.Name;
+                var components = new List<string>();
+                if(type.IsNested)
                 {
-                    name = type.Name;
+                    // Always include the name of the declaring type
+                    components.Add(GetTypeFriendlyName(type.DeclaringType));
                 }else{
-                    // Get all similarly named types in the assembly
-                    var similarTypes = type.Assembly.GetTypes().Where(t => t.IsPublic && !t.Equals(type) && t.Name.Equals(type.Name, StringComparison.OrdinalIgnoreCase));
-                    // Get the length of the namespace prefix shared by all these types
-                    int prefix = similarTypes.Select(t => CommonPrefix(t.Namespace, type.Namespace)).DefaultIfEmpty(type.Namespace.Length).Max();
-                    // Prepend the determining part of the namespace to the name
-                    name = (prefix == type.Namespace.Length ? "" : type.Namespace.Substring(prefix)) + type.Name;
+                    if(!String.IsNullOrEmpty(type.Namespace))
+                    {
+                        // Get all similarly named types in the assembly
+                        var similarTypes = type.Assembly.GetTypes().Where(t => t.IsPublic && !t.Equals(type) && t.Name.Equals(type.Name, StringComparison.OrdinalIgnoreCase));
+                        // Get the length of the namespace prefix shared by all these types
+                        int prefix = similarTypes.Select(t => CommonPrefix(t.Namespace, type.Namespace)).DefaultIfEmpty(type.Namespace.Length).Max();
+                        // Prepend the determining part of the namespace to the name
+                        name = (prefix == type.Namespace.Length ? "" : type.Namespace.Substring(prefix)) + name;
+                    }
+                    // Produce components from the encoded name and its generic arguments
+                    if(!friendNamespace.IsMatch(type.Namespace))
+                    {
+                        // If this is in an external assembly, distinguish it by the assembly name
+                        components.Add(FormatName(type.Assembly.GetName().Name));
+                    }
                 }
                 // Strip the arity
                 int index = name.IndexOf('`');
                 if(index != -1) name = name.Substring(0, index);
-                // Produce components from the encoded name and its generic arguments
-                var components = new List<string>();
+                // Add the base name and generic arguments
                 components.Add(FormatName(name));
                 components.AddRange(type.GetGenericArguments().Select(GetTypeFriendlyName));
                 return String.Join(".", components);
@@ -251,7 +287,7 @@ namespace IS4.MultiArchiver
             /// </summary>
             static string FormatName(string name)
             {
-                name = hyphenCharacters.Replace(name, m => (m.Index > 0 ? "-" : "") + m.Value.ToLower());
+                name = hyphenCharacters.Replace(name, "$0-").ToLowerInvariant();
                 name = badMimeCharacters.Replace(name, m =>  String.Join("", Encoding.UTF8.GetBytes(m.Value).Select(b => $"&{b:X2}")));
                 return name;
             }

@@ -306,7 +306,19 @@ namespace IS4.MultiArchiver.Tools
         /// </returns>
         public static bool IsEntityAnalyzerType(this Type type)
         {
-            return type.GetInterfaces().Any(i => i.IsGenericType && entityAnalyzerType.Equals(i.GetGenericTypeDefinition()));
+            return GetEntityAnalyzerTypes(type).Any();
+        }
+
+        /// <summary>
+        /// Returns the type parameters of all implementations of
+        /// <see cref="IEntityAnalyzer{T}"/> on a type.
+        /// </summary>
+        /// <param name="type">The type instance to check.</param>
+        /// <returns>A collection of types that can be analyzed
+        /// by the analyzer.</returns>
+        public static IEnumerable<Type> GetEntityAnalyzerTypes(this Type type)
+        {
+            return type.GetInterfaces().Where(i => i.IsGenericType && entityAnalyzerType.Equals(i.GetGenericTypeDefinition())).Select(t => t.GetGenericArguments()[0]);
         }
 
         #region MemoryCast overloads

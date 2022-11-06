@@ -1,7 +1,9 @@
 ﻿using IS4.MultiArchiver.Formats;
+using IS4.MultiArchiver.Tools;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Services
@@ -283,6 +285,12 @@ namespace IS4.MultiArchiver.Services
         protected virtual void InitNode(ILinkedNode node, AnalysisContext context)
         {
 
+        }
+
+        public override string ToString()
+        {
+            var typesId = String.Join("+", GetType().GetEntityAnalyzerTypes().Select(DataTools.GetIdentifierFromType).Distinct().Take(1));
+            return String.IsNullOrEmpty(typesId) ? base.ToString() : typesId;
         }
     }
 }

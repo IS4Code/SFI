@@ -13,7 +13,7 @@ namespace IS4.MultiArchiver.Analyzers
     /// <see cref="IFileInfo"/>, <see cref="IDirectoryInfo"/>, <see cref="FileInfo"/> or
     /// <see cref="DirectoryInfo"/>.
     /// </summary>
-    public sealed class FileAnalyzer : IEntityAnalyzer<FileInfo>, IEntityAnalyzer<DirectoryInfo>, IEntityAnalyzer<IFileInfo>, IEntityAnalyzer<IDirectoryInfo>, IEntityAnalyzer<IFileNodeInfo>
+    public sealed class FileAnalyzer : EntityAnalyzer, IEntityAnalyzer<IFileNodeInfo>, IEntityAnalyzer<FileInfo>, IEntityAnalyzer<DirectoryInfo>, IEntityAnalyzer<IFileInfo>, IEntityAnalyzer<IDirectoryInfo>
     {
         /// <summary>
         /// A collection of used hash algorithms, as instances of <see cref="IFileHashAlgorithm"/>,
@@ -21,7 +21,7 @@ namespace IS4.MultiArchiver.Analyzers
         /// </summary>
         public ICollection<IFileHashAlgorithm> HashAlgorithms { get; } = new List<IFileHashAlgorithm>();
 
-        /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>
+        /// <inheritdoc/>
         public FileAnalyzer()
         {
 

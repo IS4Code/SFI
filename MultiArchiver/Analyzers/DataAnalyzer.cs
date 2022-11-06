@@ -21,7 +21,7 @@ namespace IS4.MultiArchiver.Analyzers
     /// It produces an instance of <see cref="IDataObject"/> storing the general information derived from the data,
     /// and an instance of <see cref="IBinaryFormatObject{T}"/> for each of the recognized format, for further analysis.
     /// </summary>
-    public sealed class DataAnalyzer : IEntityAnalyzer<IStreamFactory>, IEntityAnalyzer<byte[]>
+    public sealed class DataAnalyzer : EntityAnalyzer, IEntityAnalyzer<IStreamFactory>, IEntityAnalyzer<byte[]>
 	{
         /// <summary>
         /// Stores an instance of <see cref="IHashedContentUriFormatter"/> to be used to

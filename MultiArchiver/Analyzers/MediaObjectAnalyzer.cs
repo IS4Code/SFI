@@ -48,5 +48,10 @@ namespace IS4.MultiArchiver.Analyzers
                 node.SetClass(cls);
             }
         }
+
+        public override string ToString()
+        {
+            return DataTools.GetIdentifierFromType<T>() ?? base.ToString();
+        }
     }
 }
