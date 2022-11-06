@@ -47,9 +47,9 @@ namespace IS4.MultiArchiver.Extensions
             {
                 if(lastSubject != "@base" && lastSubject != "@prefix")
                 {
-                    output.WriteLine(" .");
+                    WriteLine(" .");
                 }
-                output.WriteLine();
+                WriteLine();
             }
             lastSubject = test;
         }
@@ -57,7 +57,7 @@ namespace IS4.MultiArchiver.Extensions
         protected override bool HandleNamespaceInternal(string prefix, Uri namespaceUri)
         {
             EndSubject("@prefix");
-            output.WriteLine(formatter.FormatNamespace(prefix, ResolveUri(namespaceUri)));
+            WriteLine(formatter.FormatNamespace(prefix, ResolveUri(namespaceUri)));
             namespaceMapper.AddNamespace(prefix, namespaceUri);
             return true;
         }
@@ -67,7 +67,7 @@ namespace IS4.MultiArchiver.Extensions
             if(lastBase == null || !uriComparer.Equals(baseUri, lastBase))
             {
                 EndSubject("@base");
-                output.WriteLine(formatter.FormatBaseUri(ResolveUri(baseUri)));
+                WriteLine(formatter.FormatBaseUri(ResolveUri(baseUri)));
                 lastBase = baseUri;
             }
             return true;
@@ -77,7 +77,7 @@ namespace IS4.MultiArchiver.Extensions
         {
             base.EndRdfInternal(ok);
             EndSubject(null);
-            output.Flush();
+            Flush();
         }
 
         private Uri ResolveUri(Uri uri)
@@ -112,17 +112,36 @@ namespace IS4.MultiArchiver.Extensions
                 EndSubject(null);
                 if(pred == "a")
                 {
-                    output.Write($"{subj} a {obj}");
+                    Write($"{subj} a {obj}");
                 }else{
-                    output.WriteLine(subj);
-                    output.Write($"  {pred} {obj}");
+                    WriteLine(subj);
+                    Write($"  {pred} {obj}");
                 }
                 lastSubject = subj;
             }else{
-                output.WriteLine(" ;");
-                output.Write($"  {pred} {obj}");
+                WriteLine(" ;");
+                Write($"  {pred} {obj}");
             }
             return true;
+        }
+
+        string linePart = "";
+        void Write(string str)
+        {
+            linePart += str;
+        }
+
+        void WriteLine(string str = null)
+        {
+            output.WriteLine(linePart + str);
+            linePart = "";
+        }
+
+        void Flush()
+        {
+            output.Write(linePart);
+            output.Flush();
+            linePart = "";
         }
 
         /// <summary>
