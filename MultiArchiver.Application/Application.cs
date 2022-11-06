@@ -48,8 +48,7 @@ namespace IS4.MultiArchiver
 		Mode? mode;
 		List<string> inputs = new List<string>();
 		List<string> queries = new List<string>();
-		List<Regex> includeMatches = new List<Regex>();
-		List<Regex> excludeMatches = new List<Regex>();
+		List<(bool result, Regex regex)> componentMatches = new List<(bool result, Regex regex)>();
 		Regex mainHash;
 		string output;
 
@@ -78,11 +77,6 @@ namespace IS4.MultiArchiver
 				var archiver = new TArchiver();
 				archiver.OutputLog = writer;
 				archiver.AddDefault();
-
-				if(includeMatches.Count == 0)
-				{
-					includeMatches.Add(anyRegex);
-				}
 
 				// Print the available components
 				switch(mode)
@@ -186,12 +180,19 @@ namespace IS4.MultiArchiver
 
 		bool IsIncluded<T>(string prefix, T item, out string name)
 		{
-			var n = name = $"{prefix}:{DataTools.GetUserFriendlyName(item)}";
-			return includeMatches.Any(m => m.IsMatch(n)) && !excludeMatches.Any(m => m.IsMatch(n));
+			name = $"{prefix}:{DataTools.GetUserFriendlyName(item)}";
+			foreach(var (result, regex) in componentMatches)
+            {
+				if(regex.IsMatch(name) != result)
+                {
+					return false;
+                }
+            }
+			return true;
 		}
 
 		/// <summary>
-		/// Outputs the list of configurable components.
+		/// Outputs a list of configurable components.
 		/// </summary>
         void PrintComponents<T>(string prefix, IEnumerable<T> list)
 		{
@@ -370,11 +371,11 @@ namespace IS4.MultiArchiver
 					break;
 				case "i":
 				case "include":
-					includeMatches.Add(DataTools.ConvertWildcardToRegex(argument));
+					componentMatches.Add((true, DataTools.ConvertWildcardToRegex(argument)));
 					break;
 				case "x":
 				case "exclude":
-					excludeMatches.Add(DataTools.ConvertWildcardToRegex(argument));
+					componentMatches.Add((false, DataTools.ConvertWildcardToRegex(argument)));
 					break;
 				case "mh":
 				case "main-hash":
