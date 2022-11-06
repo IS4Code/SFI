@@ -273,6 +273,7 @@ namespace IS4.MultiArchiver
 				{"c", "compress", null, "perform gzip compression on the output"},
 				{"m", "metadata", null, "add annotation metadata to output"},
 				{"d", "data-only", null, "do not store input file information"},
+				{"r", "root", "uri", "set the hierarchy root URI"},
 				{"s", "sparql-query", "file", "perform a SPARQL query on the result"},
 				{"?", "help", null, "displays this help message"},
 			};
