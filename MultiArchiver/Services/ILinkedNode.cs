@@ -586,9 +586,9 @@ namespace IS4.MultiArchiver.Services
                 if(subName.StartsWith("#"))
                 {
                     prefix = "";
-                }else if(String.IsNullOrEmpty(uri.Authority + uri.Fragment))
+                }else if(String.IsNullOrEmpty(uri.Fragment) && (String.IsNullOrEmpty(uri.Authority) || !String.IsNullOrEmpty(uri.Query)))
                 {
-                    prefix = "#!";
+                    prefix = "#/";
                 }else{
                     prefix = "/";
                 }
