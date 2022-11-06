@@ -48,9 +48,12 @@ namespace IS4.MultiArchiver
 		Mode? mode;
 		List<string> inputs = new List<string>();
 		List<string> queries = new List<string>();
-		List<Regex> matches = new List<Regex>();
+		List<Regex> includeMatches = new List<Regex>();
+		List<Regex> excludeMatches = new List<Regex>();
 		Regex mainHash;
 		string output;
+
+		static readonly Regex anyRegex = new Regex(".", RegexOptions.Compiled);
 
 		bool quiet;
 		bool rootSpecified;
@@ -76,18 +79,23 @@ namespace IS4.MultiArchiver
 				archiver.OutputLog = writer;
 				archiver.AddDefault();
 
+				if(includeMatches.Count == 0)
+				{
+					includeMatches.Add(anyRegex);
+				}
+
 				// Print the available components
 				switch(mode)
 				{
 					case Mode.List:
-						PrintList("analyzer", archiver.Analyzers, matches);
-						PrintList("data-format", archiver.DataAnalyzer.DataFormats, matches);
-						PrintList("xml-format", archiver.XmlAnalyzer.XmlFormats, matches);
-						PrintList("container-format", archiver.ContainerProviders, matches);
-						PrintList("data-hash", archiver.DataAnalyzer.HashAlgorithms, matches);
-						PrintList("file-hash", archiver.FileAnalyzer.HashAlgorithms, matches);
-						PrintList("pixel-hash", archiver.ImageDataHashAlgorithms, matches);
-						PrintList("image-hash", archiver.ImageHashAlgorithms, matches);
+						PrintComponents("analyzer", archiver.Analyzers);
+						PrintComponents("data-format", archiver.DataAnalyzer.DataFormats);
+						PrintComponents("xml-format", archiver.XmlAnalyzer.XmlFormats);
+						PrintComponents("container-format", archiver.ContainerProviders);
+						PrintComponents("data-hash", archiver.DataAnalyzer.HashAlgorithms);
+						PrintComponents("file-hash", archiver.FileAnalyzer.HashAlgorithms);
+						PrintComponents("pixel-hash", archiver.ImageDataHashAlgorithms);
+						PrintComponents("image-hash", archiver.ImageHashAlgorithms);
 						return;
 				}
 
@@ -104,14 +112,14 @@ namespace IS4.MultiArchiver
 				// Filter out the components based on arguments
 
 				int componentCount = 0;
-				FilterList("analyzer", archiver.Analyzers, matches, ref componentCount);
-				FilterList("data-format", archiver.DataAnalyzer.DataFormats, matches, ref componentCount);
-				FilterList("xml-format", archiver.XmlAnalyzer.XmlFormats, matches, ref componentCount);
-				FilterList("container-format", archiver.ContainerProviders, matches, ref componentCount);
-				FilterList("data-hash", archiver.DataAnalyzer.HashAlgorithms, matches, ref componentCount);
-				FilterList("file-hash", archiver.FileAnalyzer.HashAlgorithms, matches, ref componentCount);
-				FilterList("pixel-hash", archiver.ImageDataHashAlgorithms, matches, ref componentCount);
-				FilterList("image-hash", archiver.ImageHashAlgorithms, matches, ref componentCount);
+				FilterComponents("analyzer", archiver.Analyzers, ref componentCount);
+				FilterComponents("data-format", archiver.DataAnalyzer.DataFormats, ref componentCount);
+				FilterComponents("xml-format", archiver.XmlAnalyzer.XmlFormats, ref componentCount);
+				FilterComponents("container-format", archiver.ContainerProviders, ref componentCount);
+				FilterComponents("data-hash", archiver.DataAnalyzer.HashAlgorithms, ref componentCount);
+				FilterComponents("file-hash", archiver.FileAnalyzer.HashAlgorithms, ref componentCount);
+				FilterComponents("pixel-hash", archiver.ImageDataHashAlgorithms, ref componentCount);
+				FilterComponents("image-hash", archiver.ImageHashAlgorithms, ref componentCount);
 
 				writer.WriteLine($"Loaded {componentCount} components in total.");
 
@@ -176,54 +184,57 @@ namespace IS4.MultiArchiver
             }
         }
 
+		bool IsIncluded<T>(string prefix, T item, out string name)
+		{
+			var n = name = $"{prefix}:{DataTools.GetUserFriendlyName(item)}";
+			return includeMatches.Any(m => m.IsMatch(n)) && !excludeMatches.Any(m => m.IsMatch(n));
+		}
+
 		/// <summary>
 		/// Outputs the list of configurable components.
 		/// </summary>
-        void PrintList<T>(string prefix, IEnumerable<T> list, ICollection<Regex> matches)
+        void PrintComponents<T>(string prefix, IEnumerable<T> list)
 		{
-			if(matches.Count == 0)
-			{
-				matches.Add(anyRegex);
-			}
-			bool first = true;
 			foreach(var item in list)
 			{
-				var name = $"{prefix}:{DataTools.GetUserFriendlyName(item)}";
-				if(matches.Any(m => m.IsMatch(name)))
+				if(IsIncluded(prefix, item, out var name))
 				{
 					LogWriter.WriteLine(" - " + name);
 				}
             }
         }
 
-		static readonly Regex anyRegex = new Regex(".", RegexOptions.Compiled);
-
 		/// <summary>
 		/// Filters a list of configurable components, removing everything not matched
 		/// by <paramref name="matches"/>.
 		/// </summary>
-		void FilterList<T>(string prefix, ICollection<T> list, ICollection<Regex> matches, ref int count)
+		void FilterComponents<T>(string prefix, ICollection<T> collection, ref int count)
         {
-			if(matches.Count == 0)
+			switch(collection)
             {
-				matches.Add(anyRegex);
-            }
-			var filtered = new List<T>();
-			foreach(var item in list)
-			{
-				var name = $"{prefix}:{DataTools.GetUserFriendlyName(item)}";
-				if(!matches.Any(m => m.IsMatch(name)))
-                {
-					filtered.Add(item);
-                }
+				case SortedSet<T> sortedSet:
+					sortedSet.RemoveWhere(item => !IsIncluded(prefix, item, out _));
+					break;
+				case List<T> list:
+					list.RemoveAll(item => !IsIncluded(prefix, item, out _));
+					break;
+				default:
+					var filtered = new List<T>();
+					foreach(var item in collection)
+					{
+						if(!IsIncluded(prefix, item, out _))
+						{
+							filtered.Add(item);
+						}
+					}
+					foreach(var item in filtered)
+					{
+						collection.Remove(item);
+					}
+					break;
             }
 
-			foreach(var item in filtered)
-            {
-				list.Remove(item);
-            }
-
-			count += list.Count;
+			count += collection.Count;
         }
 
         protected override string Usage => $"({String.Join("|", modeNames)}) [options] input... output";
@@ -257,6 +268,7 @@ namespace IS4.MultiArchiver
 			return new OptionInfoCollection{
 				{"q", "quiet", null, "do not print any additional messages"},
 				{"i", "include", "pattern", "include given components"},
+				{"x", "exclude", "pattern", "exclude given components"},
 				{"c", "compress", null, "perform gzip compression on the output"},
 				{"m", "metadata", null, "add annotation metadata to output"},
 				{"d", "data-only", null, "do not store input file information"},
@@ -328,6 +340,9 @@ namespace IS4.MultiArchiver
 				case "i":
 				case "include":
 					return OptionArgument.Required;
+				case "x":
+				case "exclude":
+					return OptionArgument.Required;
 				case "s":
 				case "sparql-query":
 					return OptionArgument.Required;
@@ -355,14 +370,18 @@ namespace IS4.MultiArchiver
 					break;
 				case "i":
 				case "include":
-					matches.Add(DataTools.ConvertWildcardToRegex(argument));
+					includeMatches.Add(DataTools.ConvertWildcardToRegex(argument));
+					break;
+				case "x":
+				case "exclude":
+					excludeMatches.Add(DataTools.ConvertWildcardToRegex(argument));
 					break;
 				case "mh":
 				case "main-hash":
-					var match2 = DataTools.ConvertWildcardToRegex(argument);
+					var match = DataTools.ConvertWildcardToRegex(argument);
 					if(mainHash == null)
 					{
-						mainHash = match2;
+						mainHash = match;
 					}
 					break;
 				case "s":
