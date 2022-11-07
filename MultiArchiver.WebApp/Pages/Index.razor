@@ -7,7 +7,7 @@
 <h1>MultiArchiver</h1>
 
 <form @onsubmit="OnSubmit">
-    <p><textarea @bind="Command" /></p>
+    <p><textarea @bind="Command" style="resize: both;" rows="4" cols="80" /></p>
     <InputFile OnChange="OnInputFileChange" multiple />
     <button type="submit">Execute</button>
 </form>
