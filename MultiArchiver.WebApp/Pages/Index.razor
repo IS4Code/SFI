@@ -29,7 +29,7 @@
 @code {
     Dictionary<string, IBrowserFile> inputFiles;
     Dictionary<string, BlobArrayStream> outputFiles = new Dictionary<string, BlobArrayStream>();
-    string Command { get; set; } = "describe -d -x *-hash:* -i *-hash:sha256 * output.ttl";
+    string Command { get; set; } = "describe -r urn:uuid: -d -x *-hash:* -i *-hash:sha256 * output.ttl";
     List<string> outputChunks = new List<string>();
 
     void OnInputFileChange(InputFileChangeEventArgs e)
