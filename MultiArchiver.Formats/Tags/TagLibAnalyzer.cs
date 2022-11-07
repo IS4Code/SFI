@@ -8,6 +8,8 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using TagLib;
+using TagLib.Image;
+using File = TagLib.File;
 using Properties = IS4.MultiArchiver.Vocabulary.Properties;
 
 namespace IS4.MultiArchiver.Analyzers
@@ -142,11 +144,15 @@ namespace IS4.MultiArchiver.Analyzers
 
         static IEnumerable<Tag> GetTags(Tag tag)
         {
-            if(tag is CombinedTag combined)
+            switch(tag)
             {
-                return combined.Tags;
+                case CombinedTag combined:
+                    return combined.Tags.SelectMany(GetTags);
+                case CombinedImageTag combinedImage:
+                    return combinedImage.AllTags.SelectMany(GetTags);
+                default:
+                    return new[] { tag };
             }
-            return new[] { tag };
         }
 
         static readonly Dictionary<string, string> propertyNames = new Dictionary<string, string>
