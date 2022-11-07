@@ -35,6 +35,9 @@ namespace IS4.MultiArchiver.Formats
                 header.CopyTo(buffer);
                 var type = X509Certificate2.GetCertContentType(buffer);
                 return type != X509ContentType.Unknown && type != X509ContentType.Authenticode;
+            }catch(PlatformNotSupportedException)
+            {
+                return false;
             }catch{
                 return true;
             }finally{
