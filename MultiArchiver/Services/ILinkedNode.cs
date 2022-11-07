@@ -30,14 +30,17 @@ namespace IS4.MultiArchiver.Services
         /// shall describe the node by using a blank relative URI,
         /// i.e. &lt;rdf:Description rdf:about=""&gt;
         /// </param>
+        /// <param name="rootUris">
+        /// Stores a collection of URIs that represent this node.
+        /// </param>
         /// <exception cref="ArgumentException">
         /// <paramref name="rdfXmlReader"/> is not positioned on an
         /// {http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF element.
         /// </exception>
-        void Describe(XmlReader rdfXmlReader);
+        void Describe(XmlReader rdfXmlReader, IReadOnlyCollection<Uri> subjectUris = null);
 
         /// <inheritdoc cref="Describe(XmlReader)"/>
-        Task DescribeAsync(XmlReader rdfXmlReader);
+        Task DescribeAsync(XmlReader rdfXmlReader, IReadOnlyCollection<Uri> subjectUris = null);
 
         /// <summary>
         /// Describes the node using the RDF/XML description provided
@@ -48,7 +51,10 @@ namespace IS4.MultiArchiver.Services
         /// shall describe the node by using a blank relative URI,
         /// i.e. &lt;rdf:Description rdf:about=""&gt;
         /// </param>
-        void Describe(XmlDocument rdfXmlDocument);
+        /// <param name="rootUris">
+        /// Stores a collection of URIs that represent this node.
+        /// </param>
+        void Describe(XmlDocument rdfXmlDocument, IReadOnlyCollection<Uri> subjectUris = null);
 
         /// <summary>
         /// Sets one of the classes of the resource to be <paramref name="class"/>.
@@ -414,11 +420,11 @@ namespace IS4.MultiArchiver.Services
 
         public string Scheme => GetUri(Subject).Scheme;
 
-        public abstract void Describe(XmlReader rdfXmlReader);
+        public abstract void Describe(XmlReader rdfXmlReader, IReadOnlyCollection<Uri> subjectUris = null);
 
-        public abstract Task DescribeAsync(XmlReader rdfXmlReader);
+        public abstract Task DescribeAsync(XmlReader rdfXmlReader, IReadOnlyCollection<Uri> subjectUris = null);
 
-        public abstract void Describe(XmlDocument rdfXmlDocument);
+        public abstract void Describe(XmlDocument rdfXmlDocument, IReadOnlyCollection<Uri> subjectUris = null);
 
         public abstract void SetAsBase();
 

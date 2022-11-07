@@ -5,6 +5,7 @@ using Microsoft.CSharp.RuntimeBinder;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Xml;
@@ -389,27 +390,27 @@ namespace IS4.MultiArchiver.Extensions
                 return new BaseXmlDocument(GetUri(Subject).AbsoluteUri, rdfXmlReader.NameTable);
             }
 
-            public override void Describe(XmlReader rdfXmlReader)
+            public override void Describe(XmlReader rdfXmlReader, IReadOnlyCollection<Uri> subjectUris = null)
             {
                 var doc = PrepareXmlDocument(rdfXmlReader);
                 doc.Load(rdfXmlReader);
-                Describe(doc);
+                Describe(doc, subjectUris);
             }
 
-            public async override Task DescribeAsync(XmlReader rdfXmlReader)
+            public async override Task DescribeAsync(XmlReader rdfXmlReader, IReadOnlyCollection<Uri> subjectUris = null)
             {
                 var doc = PrepareXmlDocument(rdfXmlReader);
                 await doc.LoadAsync(rdfXmlReader);
-                Describe(doc);
+                Describe(doc, subjectUris);
             }
 
-            public override void Describe(XmlDocument rdfXmlDocument)
+            public override void Describe(XmlDocument rdfXmlDocument, IReadOnlyCollection<Uri> subjectUris = null)
             {
                 if(rdfXmlDocument is BaseXmlDocument baseXmlDocument && baseXmlDocument.BaseURI == null)
                 {
                     baseXmlDocument.SetBaseURI(GetUri(Subject).AbsoluteUri);
                 }
-                var graph = new DataGraph(this);
+                var graph = new DataGraph(this, subjectUris);
                 var parser = new VDS.RDF.Parsing.RdfXmlParser();
                 parser.Load(graph, rdfXmlDocument);
             }
@@ -420,15 +421,28 @@ namespace IS4.MultiArchiver.Extensions
             class DataGraph : Graph
             {
                 readonly UriNode describingNode;
+                readonly IReadOnlyCollection<Uri> subjectUris;
 
-                public DataGraph(UriNode describingNode) : base(true)
+                static readonly UriComparer comparer = new UriComparer();
+
+                public DataGraph(UriNode describingNode, IReadOnlyCollection<Uri> subjectUris) : base(true)
                 {
                     this.describingNode = describingNode;
+                    this.subjectUris = subjectUris ?? Array.Empty<Uri>();
                 }
 
                 public override bool Assert(Triple t)
                 {
-                    return describingNode.HandleExternalTriple(t.Subject, t.Predicate, t.Object);
+                    return describingNode.HandleExternalTriple(ReplaceNode(t.Subject), t.Predicate, ReplaceNode(t.Object));
+                }
+
+                private INode ReplaceNode(INode node)
+                {
+                    if(node is IUriNode uriNode && subjectUris.Any(uri => comparer.Equals(uriNode.Uri, uri)))
+                    {
+                        return describingNode.Subject;
+                    }
+                    return node;
                 }
             }
         }

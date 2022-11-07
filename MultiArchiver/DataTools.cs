@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
+using System.Xml;
 
 namespace IS4.MultiArchiver
 {
@@ -872,6 +873,43 @@ namespace IS4.MultiArchiver
             }
 
             return new Regex($"^{wildcardRegex.Replace(pattern, Replacer)}$", RegexOptions.Singleline);
+        }
+
+        static readonly XmlQualifiedName MetaName = new XmlQualifiedName("xmpmeta", "adobe:ns:meta/");
+        static readonly XmlQualifiedName RdfName = new XmlQualifiedName("RDF", "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
+
+        /// <summary>
+        /// Describes <paramref name="node"/> using RDF/XML data stored in an XMP stream.
+        /// </summary>
+        /// <param name="node">The node to describe.</param>
+        /// <param name="stream">The XMP stream.</param>
+        /// <param name="subjectUris">A collection of URIs that represent the subject.</param>
+        public static void DescribeAsXmp(ILinkedNode node, Stream stream, IReadOnlyCollection<Uri> subjectUris = null)
+        {
+            using(var reader = XmlReader.Create(stream))
+            {
+                if(reader.MoveToContent() == XmlNodeType.Element)
+                {
+                    if(reader.NamespaceURI == MetaName.Namespace && reader.LocalName == MetaName.Name)
+                    {
+                        // The root element is <x:xmpmeta>
+                        while(reader.Read())
+                        {
+                            if(reader.MoveToContent() == XmlNodeType.Element)
+                            {
+                                if(reader.NamespaceURI == RdfName.Namespace && reader.LocalName == RdfName.Name)
+                                {
+                                    // Found an <rdf:RDF> element
+                                    node.Describe(reader, subjectUris);
+                                    continue;
+                                }
+                                // Found an unknown element, skip
+                                reader.Skip();
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
