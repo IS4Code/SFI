@@ -48,11 +48,9 @@ namespace IS4.MultiArchiver
 		Mode? mode;
 		List<string> inputs = new List<string>();
 		List<string> queries = new List<string>();
-		List<(bool result, Regex regex)> componentMatches = new List<(bool result, Regex regex)>();
+		List<(bool result, Predicate<string> matcher)> componentMatchers = new List<(bool result, Predicate<string> matcher)>();
 		Regex mainHash;
 		string output;
-
-		static readonly Regex anyRegex = new Regex(".", RegexOptions.Compiled);
 
 		bool quiet;
 		bool rootSpecified;
@@ -182,14 +180,14 @@ namespace IS4.MultiArchiver
 		bool IsIncluded<T>(string prefix, T item, out string name)
 		{
 			name = $"{prefix}:{DataTools.GetUserFriendlyName(item)}";
-			foreach(var (result, regex) in componentMatches)
+			var included = true;
+			foreach(var (result, matcher) in componentMatchers)
             {
-				if(regex.IsMatch(name) != result)
-                {
-					return false;
-                }
+				included = result ?
+					included || matcher(name) :
+					included && !matcher(name);
             }
-			return true;
+			return included;
 		}
 
 		/// <summary>
@@ -373,11 +371,11 @@ namespace IS4.MultiArchiver
 					break;
 				case "i":
 				case "include":
-					componentMatches.Add((true, DataTools.ConvertWildcardToRegex(argument)));
+					componentMatchers.Add((true, DataTools.ConvertWildcardToRegex(argument).IsMatch));
 					break;
 				case "x":
 				case "exclude":
-					componentMatches.Add((false, DataTools.ConvertWildcardToRegex(argument)));
+					componentMatchers.Add((false, DataTools.ConvertWildcardToRegex(argument).IsMatch));
 					break;
 				case "mh":
 				case "main-hash":
