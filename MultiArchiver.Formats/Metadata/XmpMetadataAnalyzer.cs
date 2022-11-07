@@ -6,13 +6,13 @@ using System.Xml;
 using XmpCore.Impl;
 using XmpCore.Options;
 
-namespace IS4.MultiArchiver.Formats.Metadata.MetadataReaders
+namespace IS4.MultiArchiver.Analyzers
 {
     /// <summary>
-    /// An implementation of <see cref="IMetadataReader{T}"/>
+    /// An analyzer of XMP metadata, as instances
     /// of <see cref="XmpDirectory"/>.
     /// </summary>
-    public class XmpReader : MetadataReader<XmpDirectory>
+    public class XmpMetadataAnalyzer : EntityAnalyzer<XmpDirectory>
     {
         static readonly XmlQualifiedName MetaName = new XmlQualifiedName("xmpmeta", "adobe:ns:meta/");
         static readonly XmlQualifiedName RdfName = new XmlQualifiedName("RDF", "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
@@ -23,8 +23,9 @@ namespace IS4.MultiArchiver.Formats.Metadata.MetadataReaders
             Newline = " "
         };
 
-        public async override ValueTask<string> Describe(ILinkedNode node, XmpDirectory directory, AnalysisContext context, IEntityAnalyzers analyzers)
+        public async override ValueTask<AnalysisResult> Analyze(XmpDirectory directory, AnalysisContext context, IEntityAnalyzers analyzers)
         {
+            var node = GetNode(context);
             var serializer = new XmpSerializerRdf();
             using(var stream = new MemoryStream())
             {
@@ -56,7 +57,7 @@ namespace IS4.MultiArchiver.Formats.Metadata.MetadataReaders
                     }
                 }
             }
-            return null;
+            return new AnalysisResult(node);
         }
     }
 }

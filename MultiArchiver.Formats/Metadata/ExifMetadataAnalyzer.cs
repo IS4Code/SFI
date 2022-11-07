@@ -8,16 +8,17 @@ using System.Globalization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IS4.MultiArchiver.Formats.Metadata.MetadataReaders
+namespace IS4.MultiArchiver.Analyzers
 {
     /// <summary>
-    /// An implementation of <see cref="IMetadataReader{T}"/>
+    /// An analyzer of EXIF metadata, as instances
     /// of <see cref="ExifDirectoryBase"/>.
     /// </summary>
-    public class ExifReader : MetadataReader<ExifDirectoryBase>
+    public class ExifMetadataAnalyzer : EntityAnalyzer<ExifDirectoryBase>
     {
-        public async override ValueTask<string> Describe(ILinkedNode node, ExifDirectoryBase directory, AnalysisContext context, IEntityAnalyzers analyzers)
+        public async override ValueTask<AnalysisResult> Analyze(ExifDirectoryBase directory, AnalysisContext context, IEntityAnalyzers analyzers)
         {
+            var node = GetNode(context);
             foreach(var tag in directory.Tags)
             {
                 if(!exifFields.TryGetValue(tag.Type, out var id))
@@ -79,7 +80,7 @@ namespace IS4.MultiArchiver.Formats.Metadata.MetadataReaders
                     node.Set(property, value, datatype);
                 }
             }
-            return null;
+            return new AnalysisResult(node);
         }
 
         static readonly VocabularyUri exifVocabulary = new VocabularyUri(Vocabularies.Uri.Exif);

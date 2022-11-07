@@ -82,7 +82,9 @@ namespace IS4.MultiArchiver.ConsoleApp
             Analyzers.Add(new ArchiveAnalyzer());
             Analyzers.Add(new ArchiveReaderAnalyzer());
             Analyzers.Add(new FileSystemAnalyzer());
-            Analyzers.Add(ImageMetadataAnalyzer.CreateDefault());
+            Analyzers.Add(new ImageMetadataAnalyzer());
+            Analyzers.Add(new ExifMetadataAnalyzer());
+            Analyzers.Add(new XmpMetadataAnalyzer());
             Analyzers.Add(new TagLibAnalyzer());
             Analyzers.Add(new DosModuleAnalyzer());
             Analyzers.Add(new WinModuleAnalyzer());

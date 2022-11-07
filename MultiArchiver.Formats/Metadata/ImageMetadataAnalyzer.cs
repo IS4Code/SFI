@@ -1,6 +1,4 @@
-﻿using IS4.MultiArchiver.Formats.Metadata;
-using IS4.MultiArchiver.Formats.Metadata.MetadataReaders;
-using IS4.MultiArchiver.Services;
+﻿using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Tools;
 using IS4.MultiArchiver.Vocabulary;
 using MetadataExtractor;
@@ -20,12 +18,6 @@ namespace IS4.MultiArchiver.Analyzers
     /// </summary>
     public class ImageMetadataAnalyzer : MediaObjectAnalyzer<IReadOnlyList<Directory>>
     {
-        /// <summary>
-        /// Stores a collection of instances of <see cref="IMetadataReader{T}"/> used
-        /// for reading directories of specific types.
-        /// </summary>
-        public ICollection<object> MetadataReaders { get; } = new SortedSet<object>(TypeInheritanceComparer<object>.Instance);
-
         public async override ValueTask<AnalysisResult> Analyze(IReadOnlyList<Directory> entity, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var node = GetNode(context);
@@ -193,35 +185,15 @@ namespace IS4.MultiArchiver.Analyzers
             return components.Count > 0 ? String.Join(", ", components) : null;
         }
 
-        public static ImageMetadataAnalyzer CreateDefault()
-        {
-            var analyzer = new ImageMetadataAnalyzer();
-
-            analyzer.MetadataReaders.Add(new ExifReader());
-            analyzer.MetadataReaders.Add(new XmpReader());
-
-            return analyzer;
-        }
-
         private async ValueTask<string> Describe<T>(ILinkedNode node, T dir, AnalysisContext context, IEntityAnalyzers analyzers) where T : Directory
         {
-            foreach(var obj in MetadataReaders)
-            {
-                if(obj is IMetadataReader<T> reader)
-                {
-                    if(await reader.Describe(node, dir, context, analyzers) is string s)
-                    {
-                        return s;
-                    }
-                }
-            }
-            return null;
+            var result = await analyzers.Analyze(dir, context.WithNode(node));
+            return result.Label;
         }
 
         private async ValueTask<string> TryDescribe(ILinkedNode node, Directory dir, AnalysisContext context, IEntityAnalyzers analyzers)
         {
-            try
-            {
+            try{
                 return await Describe(node, (dynamic)dir, context, analyzers);
             }catch(RuntimeBinderException)
             {
