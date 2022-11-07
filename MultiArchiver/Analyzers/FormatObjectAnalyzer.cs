@@ -91,10 +91,14 @@ namespace IS4.MultiArchiver.Analyzers
             {
                 if(label != null)
                 {
-                    node.Set(Properties.PrefLabel, $"{format.Extension.ToUpperInvariant()} object ({label})", LanguageCode.En);
+                    label = $"{format.Extension.ToUpperInvariant()} object ({label})";
                 }else{
-                    node.Set(Properties.PrefLabel, $"{format.Extension.ToUpperInvariant()} object", LanguageCode.En);
+                    label = $"{format.Extension.ToUpperInvariant()} object";
                 }
+                result.Label = label;
+                node.Set(Properties.PrefLabel, label, LanguageCode.En);
+            }else{
+                result.Label = null;
             }
 
             result.Node = node;

@@ -321,6 +321,12 @@ namespace IS4.MultiArchiver.Tools
             return type.GetInterfaces().Where(i => i.IsGenericType && entityAnalyzerType.Equals(i.GetGenericTypeDefinition())).Select(t => t.GetGenericArguments()[0]);
         }
 
+        public static string JoinAsLabel(this IEnumerable<string> components, string separator = ", ")
+        {
+            var label = String.Join(separator, components.Where(c => !String.IsNullOrWhiteSpace(c)).Distinct());
+            return label != "" ? label : null;
+        }
+
         #region MemoryCast overloads
 
         /// <summary>

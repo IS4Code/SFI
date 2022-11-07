@@ -1,4 +1,5 @@
 ﻿using IS4.MultiArchiver.Services;
+using IS4.MultiArchiver.Tools;
 using IS4.MultiArchiver.Vocabulary;
 using Microsoft.CSharp.RuntimeBinder;
 using System;
@@ -22,6 +23,9 @@ namespace IS4.MultiArchiver.Analyzers
         public async override ValueTask<AnalysisResult> Analyze(File file, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var node = GetNode(context);
+
+            var components = new List<string>();
+
             var properties = file.Properties;
             if(properties != null)
             {
@@ -34,35 +38,35 @@ namespace IS4.MultiArchiver.Analyzers
                 Set(node, Properties.Channels, properties.AudioChannels);
                 Set(node, Properties.Duration, properties.Duration);
 
-                string result = null;
-
+                string typeLabel = null;
                 if(properties.PhotoWidth != 0 && properties.PhotoHeight != 0)
                 {
                     if(properties.BitsPerSample != 0)
                     {
-                        result = $"{properties.PhotoWidth}×{properties.PhotoHeight}, {properties.BitsPerSample} bpp";
+                        typeLabel = $"{properties.PhotoWidth}×{properties.PhotoHeight}, {properties.BitsPerSample} bpp";
                     }else{
-                        result = $"{properties.PhotoWidth}×{properties.PhotoHeight}";
+                        typeLabel = $"{properties.PhotoWidth}×{properties.PhotoHeight}";
                     }
                 }else if(properties.VideoWidth != 0 && properties.VideoHeight != 0)
                 {
-                    result = $"{properties.VideoWidth}×{properties.VideoHeight}";
+                    typeLabel = $"{properties.VideoWidth}×{properties.VideoHeight}";
                 }else if(properties.AudioSampleRate != 0)
                 {
                     if(properties.AudioChannels != 0)
                     {
-                        result = $"{properties.AudioSampleRate} Hz, {properties.AudioChannels} channel{(properties.AudioChannels == 1 ? "" : "s")}";
+                        typeLabel = $"{properties.AudioSampleRate} Hz, {properties.AudioChannels} channel{(properties.AudioChannels == 1 ? "" : "s")}";
                     }else{
-                        result = $"{properties.AudioSampleRate} Hz";
+                        typeLabel = $"{properties.AudioSampleRate} Hz";
                     }
                 }
+                components.Add(typeLabel);
 
                 if(properties.Codecs.Any())
                 {
                     if(!properties.Codecs.Skip(1).Any())
                     {
                         var codec = properties.Codecs.First();
-                        result = result ?? Analyze(node, codec);
+                        components.Add(Analyze(node, codec));
                     }else{
                         var codecCounters = new Dictionary<MediaTypes, int>();
 
@@ -100,10 +104,10 @@ namespace IS4.MultiArchiver.Analyzers
                 }
             }
 
-            string label = null;
-
             if(file.Tag is Tag tag)
             {
+                components.Add(tag.Title);
+
                 foreach(var prop in tag.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance))
                 {
                     if(!propertyNames.TryGetValue(prop.Name, out var name)) continue;
@@ -134,12 +138,12 @@ namespace IS4.MultiArchiver.Analyzers
                 {
                     if((await analyzers.TryAnalyze(inner, context.WithNode(node))).Label is string s)
                     {
-                        label = s;
+                        components.Add(s);
                     }
                 }
             }
 
-            return new AnalysisResult(node, label);
+            return new AnalysisResult(node, components.JoinAsLabel());
         }
 
         static IEnumerable<Tag> GetTags(Tag tag)

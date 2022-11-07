@@ -3,7 +3,6 @@ using IS4.MultiArchiver.Tools;
 using IS4.MultiArchiver.Vocabulary;
 using MetadataExtractor;
 using MetadataExtractor.Formats.FileType;
-using Microsoft.CSharp.RuntimeBinder;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,14 +20,8 @@ namespace IS4.MultiArchiver.Analyzers
         public async override ValueTask<AnalysisResult> Analyze(IReadOnlyList<Directory> entity, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var node = GetNode(context);
-            string label = null;
-            foreach(var dir in entity)
-            {
-                if((await analyzers.TryAnalyze(dir, context.WithNode(node))).Label is string s)
-                {
-                    label = s;
-                }
-            }
+
+            var components = new List<string>();
 
             var streams = IdentifyTags(entity, "Width", "Height", "Bits Per Sample", "Channels", "Sampling Rate", "Duration").ToList();
             
@@ -36,7 +29,7 @@ namespace IS4.MultiArchiver.Analyzers
             {
                 if(streams.Count == 1)
                 {
-                    return new AnalysisResult(node, label ?? Analyze(node, streams[0].Value, entity, context.NodeFactory));
+                    components.Add(Analyze(node, streams[0].Value, entity, context.NodeFactory));
                 }else{
                     var merged = new Dictionary<string, object>();
 
@@ -68,11 +61,19 @@ namespace IS4.MultiArchiver.Analyzers
                         }
                     }
 
-                    return new AnalysisResult(node, label ?? Analyze(node, merged, entity, context.NodeFactory));
+                    components.Add(Analyze(node, merged, entity, context.NodeFactory));
                 }
             }
 
-            return new AnalysisResult(node, label);
+            foreach(var dir in entity)
+            {
+                if((await analyzers.TryAnalyze(dir, context.WithNode(node))).Label is string s)
+                {
+                    components.Add(s);
+                }
+            }
+
+            return new AnalysisResult(node, components.JoinAsLabel());
         }
 
         static IEnumerable<KeyValuePair<Directory, Dictionary<string, object>>> IdentifyTags(IReadOnlyList<Directory> entity, params string[] tagNames)
@@ -182,7 +183,7 @@ namespace IS4.MultiArchiver.Analyzers
                 components.Add($"{channels} channel{(channels == 1 ? "" : "s")}");
             }
 
-            return components.Count > 0 ? String.Join(", ", components) : null;
+            return components.JoinAsLabel();
         }
     }
 }
