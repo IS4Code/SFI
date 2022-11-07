@@ -47,6 +47,12 @@ namespace IS4.MultiArchiver.Tools
         /// </summary>
         public Cryptography.HashAlgorithm Algorithm => algorithm.Value;
 
+        /// <summary>
+        /// Stores the base type of <see cref="Algorithm"/>,
+        /// inheriting from <see cref="Cryptography.HashAlgorithm"/>.
+        /// </summary>
+        public virtual Type AlgorithmType => typeof(Cryptography.HashAlgorithm);
+
         public override int? NumericIdentifier { get; }
 
         public override string NiName { get; }
@@ -68,10 +74,10 @@ namespace IS4.MultiArchiver.Tools
             NiName = niName;
         }
 
-        private static BuiltInHash Create(Func<Cryptography.HashAlgorithm> factory, IndividualUri identifier, string prefix, int? numericIdentifier = null, string niName = null, FormattingMethod formattingMethod = FormattingMethod.Base32)
+        private static BuiltInHash Create<THash>(Func<THash> factory, IndividualUri identifier, string prefix, int? numericIdentifier = null, string niName = null, FormattingMethod formattingMethod = FormattingMethod.Base32) where THash : Cryptography.HashAlgorithm
         {
             try{
-                return new BuiltInHash(factory, identifier, prefix, numericIdentifier, niName, formattingMethod);
+                return new BuiltInHash<THash>(factory, identifier, prefix, numericIdentifier, niName, formattingMethod);
             }catch(PlatformNotSupportedException)
             {
                 return null;
@@ -113,6 +119,27 @@ namespace IS4.MultiArchiver.Tools
         public async override ValueTask<byte[]> ComputeHash(byte[] data, int offset, int count, IPersistentKey key)
         {
             return Algorithm.ComputeHash(data, offset, count);
+        }
+    }
+
+    /// <summary>
+    /// Represents a hash algorithm backed using a native <typeparamref name="THash"/>
+    /// instance, inheriting from <see cref="Cryptography.HashAlgorithm"/>.
+    /// </summary>
+    /// <typeparam name="THash">
+    /// The base type of the inner hash algorithm, also exposed as <see cref="AlgorithmType"/>.
+    /// </typeparam>
+    public class BuiltInHash<THash> : BuiltInHash where THash : Cryptography.HashAlgorithm
+    {
+        public override Type AlgorithmType { get; } = typeof(THash);
+
+        /// <inheritdoc cref="BuiltInHash.Algorithm">
+        public new THash Algorithm => (THash)base.Algorithm;
+
+        /// <inheritdoc cref="BuiltInHash.BuiltInHash(Func{Cryptography.HashAlgorithm}, IndividualUri, string, int?, string, FormattingMethod)"/>
+        public BuiltInHash(Func<THash> factory, IndividualUri identifier, string prefix, int? numericIdentifier, string niName, FormattingMethod formattingMethod) : base(factory, identifier, prefix, numericIdentifier, niName, formattingMethod)
+        {
+
         }
     }
 }
