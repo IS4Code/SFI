@@ -66,7 +66,7 @@ namespace IS4.MultiArchiver.WebApp
 
         public async ValueTask Update()
         {
-            if(Disposed) throw new InternalArchiverException(new OperationCanceledException());
+            if(Disposed) throw new InternalApplicationException(new OperationCanceledException());
             stateChanged?.Invoke();
             await Task.Delay(1);
         }

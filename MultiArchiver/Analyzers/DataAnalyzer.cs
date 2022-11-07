@@ -461,7 +461,7 @@ namespace IS4.MultiArchiver.Analyzers
                     {
                         try{
                             await result.Finish();
-                        }catch(InternalArchiverException)
+                        }catch(InternalApplicationException)
                         {
                             throw;
                         }catch(PlatformNotSupportedException e)
@@ -606,7 +606,7 @@ namespace IS4.MultiArchiver.Analyzers
                     return result.Node;
                 }catch(Exception e)
                 {
-                    throw new InternalArchiverException(e);
+                    throw new InternalApplicationException(e);
                 }
             }
 

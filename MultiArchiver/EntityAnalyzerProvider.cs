@@ -68,7 +68,7 @@ namespace IS4.MultiArchiver
                         return result;
                     }
                     OutputLog.WriteLine($"[{nameShort}] No result!");
-                }catch(InternalArchiverException e)
+                }catch(InternalApplicationException e)
                 {
                     ExceptionDispatchInfo.Capture(e.InnerException).Throw();
                     throw;

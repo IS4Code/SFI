@@ -9,14 +9,14 @@ namespace IS4.MultiArchiver
     /// (such as when a format cannot be matched), indicating that a failure
     /// occured within the application itself.
     /// </summary>
-    public class InternalArchiverException : Exception
+    public class InternalApplicationException : Exception
     {
-        public InternalArchiverException(Exception innerException) : base(null, innerException)
+        public InternalApplicationException(Exception innerException) : base(null, innerException)
         {
 
         }
 
-        protected InternalArchiverException(SerializationInfo info, StreamingContext context) : base(info, context)
+        protected InternalApplicationException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
 
         }

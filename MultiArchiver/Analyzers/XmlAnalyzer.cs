@@ -202,7 +202,7 @@ namespace IS4.MultiArchiver.Analyzers
                 return await analyzer.Analyze(obj, context);
             }catch(Exception e)
             {
-                throw new InternalArchiverException(e);
+                throw new InternalApplicationException(e);
             }
         }
 

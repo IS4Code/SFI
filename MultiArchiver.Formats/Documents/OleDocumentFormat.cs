@@ -38,7 +38,7 @@ namespace IS4.MultiArchiver.Formats
         {
             try{
                 return Open(fileSystem);
-            }catch(InternalArchiverException)
+            }catch(InternalApplicationException)
             {
                 throw;
             }catch{
