@@ -875,8 +875,15 @@ namespace IS4.MultiArchiver
             return new Regex($"^{wildcardRegex.Replace(pattern, Replacer)}$", RegexOptions.Singleline);
         }
 
-        static readonly XmlQualifiedName MetaName = new XmlQualifiedName("xmpmeta", "adobe:ns:meta/");
-        static readonly XmlQualifiedName RdfName = new XmlQualifiedName("RDF", "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
+        /// <summary>
+        /// Stores the qualified name of the &lt;x:xmpmeta&gt; element.
+        /// </summary>
+        public static readonly XmlQualifiedName XmpMetaName = new XmlQualifiedName("xmpmeta", "adobe:ns:meta/");
+
+        /// <summary>
+        /// Stores the qualified name of the &lt;rdf:RDF&gt; element.
+        /// </summary>
+        public static readonly XmlQualifiedName RdfName = new XmlQualifiedName("RDF", "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
 
         /// <summary>
         /// Describes <paramref name="node"/> using RDF/XML data stored in an XMP stream.
@@ -908,7 +915,7 @@ namespace IS4.MultiArchiver
         {
             if(xmlReader.MoveToContent() == XmlNodeType.Element)
             {
-                if(xmlReader.NamespaceURI == MetaName.Namespace && xmlReader.LocalName == MetaName.Name)
+                if(xmlReader.NamespaceURI == XmpMetaName.Namespace && xmlReader.LocalName == XmpMetaName.Name)
                 {
                     // The root element is <x:xmpmeta>
                     while(xmlReader.Read())
