@@ -19,6 +19,7 @@ namespace IS4.MultiArchiver.Analyzers
         public async override ValueTask<AnalysisResult> Analyze(ExifDirectoryBase directory, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var node = GetNode(context);
+            node.SetClass(Classes.IFD);
             foreach(var tag in directory.Tags)
             {
                 if(!exifFields.TryGetValue(tag.Type, out var id))

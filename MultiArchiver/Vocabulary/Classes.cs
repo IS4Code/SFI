@@ -159,6 +159,12 @@
         public static readonly ClassUri ID3Audio;
 
         /// <summary>
+        /// <see cref="Exif"/>:IFD.
+        /// </summary>
+        [Uri(Exif)]
+        public static readonly ClassUri IFD;
+
+        /// <summary>
         /// <see cref="Xis"/>:Document.
         /// </summary>
         [Uri(Xis, "Document")]
