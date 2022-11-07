@@ -39,30 +39,36 @@ namespace IS4.MultiArchiver
         private async ValueTask<AnalysisResult> Analyze<T>(T entity, AnalysisContext context, IEntityAnalyzers analyzers) where T : class
         {
             var nameShort = DataTools.GetIdentifierFromType<T>();
-            var nameLong = $"{nameShort} ({DataTools.GetUserFriendlyName(entity)})";
+            var nameLong = DataTools.GetUserFriendlyName(entity);
 
             foreach(var analyzer in Analyzers.OfType<IEntityAnalyzer<T>>())
             {
                 try{
-                    OutputLog.WriteLine("Analyzing " + nameLong);
+                    OutputLog.WriteLine($"[{nameShort}] Analyzing: {nameLong}...");
                     var result = await analyzer.Analyze(entity, context, analyzers);
                     if(result.Node != null)
                     {
-                        OutputLog.WriteLine("Finished " + nameShort);
+                        if(!String.IsNullOrEmpty(result.Label))
+                        {
+                            OutputLog.WriteLine($"[{nameShort}] OK! {result.Label}");
+                        }else{
+                            OutputLog.WriteLine($"[{nameShort}] OK!");
+                        }
                         return result;
                     }
-                }catch(InternalArchiverException e)
+                    OutputLog.WriteLine($"[{nameShort}] No result!");
+                } catch(InternalArchiverException e)
                 {
                     ExceptionDispatchInfo.Capture(e.InnerException).Throw();
                     throw;
                 }catch(Exception e) when(GlobalOptions.SuppressNonCriticalExceptions)
                 {
-                    OutputLog.WriteLine("Error in analyzer " + DataTools.GetUserFriendlyName(analyzer));
+                    OutputLog.WriteLine($"[{nameShort}] Error!");
                     OutputLog.WriteLine(e);
                     return default;
                 }
             }
-            OutputLog.WriteLine("No analyzer for " + nameLong);
+            OutputLog.WriteLine($"[{nameShort}] No analyzer for {nameLong}.");
             return default;
         }
 
