@@ -1,7 +1,6 @@
 ﻿using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Tools;
 using IS4.MultiArchiver.Vocabulary;
-using Microsoft.CSharp.RuntimeBinder;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -116,22 +115,12 @@ namespace IS4.MultiArchiver.Analyzers
                     {
                         foreach(var elem in collection)
                         {
-                            try{
-                                node.Set(this, name, (dynamic)elem);
-                            }catch(RuntimeBinderException)
-                            {
-
-                            }
+                            Set(node, name, elem);
                         }
                         continue;
                     }
                     if(value == null || "".Equals(value) || Double.NaN.Equals(value) || 0.Equals(value) || 0u.Equals(value) || false.Equals(value)) continue;
-                    try{
-                        node.Set(this, name, (dynamic)value);
-                    }catch(RuntimeBinderException)
-                    {
-
-                    }
+                    Set(node, name, value);
                 }
 
                 foreach(var inner in GetTags(tag))
@@ -144,6 +133,22 @@ namespace IS4.MultiArchiver.Analyzers
             }
 
             return new AnalysisResult(node, components.JoinAsLabel());
+        }
+
+        void Set(ILinkedNode node, string name, object value)
+        {
+            switch(value)
+            {
+                case ValueType simpleValue:
+                    node.TrySet(this, name, simpleValue);
+                    break;
+                case Uri uriValue:
+                    node.Set(this, name, uriValue);
+                    break;
+                case string stringValue:
+                    node.Set(this, name, stringValue);
+                    break;
+            }
         }
 
         static IEnumerable<Tag> GetTags(Tag tag)
