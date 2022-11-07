@@ -888,24 +888,41 @@ namespace IS4.MultiArchiver
         {
             using(var reader = XmlReader.Create(stream))
             {
-                if(reader.MoveToContent() == XmlNodeType.Element)
+                DescribeAsXmp(node, reader, subjectUris);
+            }
+        }
+
+        /// <inheritdoc cref="DescribeAsXmp(ILinkedNode, Stream, IReadOnlyCollection{Uri})"/>
+        /// <param name="reader">The XML text stream reader.</param>
+        public static void DescribeAsXmp(ILinkedNode node, TextReader reader, IReadOnlyCollection<Uri> subjectUris = null)
+        {
+            using(var xmlReader = XmlReader.Create(reader))
+            {
+                DescribeAsXmp(node, xmlReader, subjectUris);
+            }
+        }
+
+        /// <inheritdoc cref="DescribeAsXmp(ILinkedNode, Stream, IReadOnlyCollection{Uri})"/>
+        /// <param name="xmlReader">The XML reader, positioned at the beginning of the document.</param>
+        public static void DescribeAsXmp(ILinkedNode node, XmlReader xmlReader, IReadOnlyCollection<Uri> subjectUris = null)
+        {
+            if(xmlReader.MoveToContent() == XmlNodeType.Element)
+            {
+                if(xmlReader.NamespaceURI == MetaName.Namespace && xmlReader.LocalName == MetaName.Name)
                 {
-                    if(reader.NamespaceURI == MetaName.Namespace && reader.LocalName == MetaName.Name)
+                    // The root element is <x:xmpmeta>
+                    while(xmlReader.Read())
                     {
-                        // The root element is <x:xmpmeta>
-                        while(reader.Read())
+                        if(xmlReader.MoveToContent() == XmlNodeType.Element)
                         {
-                            if(reader.MoveToContent() == XmlNodeType.Element)
+                            if(xmlReader.NamespaceURI == RdfName.Namespace && xmlReader.LocalName == RdfName.Name)
                             {
-                                if(reader.NamespaceURI == RdfName.Namespace && reader.LocalName == RdfName.Name)
-                                {
-                                    // Found an <rdf:RDF> element
-                                    node.Describe(reader, subjectUris);
-                                    continue;
-                                }
-                                // Found an unknown element, skip
-                                reader.Skip();
+                                // Found an <rdf:RDF> element
+                                node.Describe(xmlReader, subjectUris);
+                                continue;
                             }
+                            // Found an unknown element, skip
+                            xmlReader.Skip();
                         }
                     }
                 }
