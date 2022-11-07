@@ -27,6 +27,7 @@ namespace IS4.MultiArchiver.WebApp
             DataAnalyzer.DataFormats.Add(new SzFormat());
             DataAnalyzer.DataFormats.Add(new ImageMetadataFormat());
             DataAnalyzer.DataFormats.Add(new TagLibFormat());
+            DataAnalyzer.DataFormats.Add(new PdfFormat());
             DataAnalyzer.DataFormats.Add(new IsoFormat());
             DataAnalyzer.DataFormats.Add(new DosModuleFormat());
             DataAnalyzer.DataFormats.Add(new GenericModuleFormat());
@@ -62,6 +63,7 @@ namespace IS4.MultiArchiver.WebApp
             Analyzers.Add(new PackageDescriptionAnalyzer());
             Analyzers.Add(new OleDocumentAnalyzer());
             Analyzers.Add(new OpenXmlDocumentAnalyzer());
+            Analyzers.Add(new PdfAnalyzer());
         }
     }
 }
