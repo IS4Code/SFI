@@ -1,11 +1,13 @@
 ﻿@page "/"
 @using IS4.MultiArchiver;
+@using System.IO;
+@using Microsoft.VisualBasic.FileIO;
 @inject IJSRuntime js
 
 <h1>MultiArchiver</h1>
 
 <form @onsubmit="OnSubmit">
-    <p><textarea @bind="Command"/></p>
+    <p><textarea @bind="Command" /></p>
     <InputFile OnChange="OnInputFileChange" multiple />
     <button type="submit">Execute</button>
 </form>
@@ -37,8 +39,6 @@
 
     async void OnSubmit()
     {
-        var args = Command.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-
         outputChunks.Clear();
         var logWriter = new EventWriter();
         logWriter.Written += sb => {
@@ -46,14 +46,44 @@
         };
         outputFiles.Clear();
 
-        this.StateHasChanged();
+        try{
+            var invocations = new List<string[]>();
+            using(var parser = new TextFieldParser(new StringReader(Command))
+            {
+                TextFieldType = FieldType.Delimited,
+                CommentTokens = new[] { "#" },
+                Delimiters = new[] { " " },
+                HasFieldsEnclosedInQuotes = true,
+                TrimWhiteSpace = false
+            })
+            {
+                try{
+                    while(!parser.EndOfData)
+                    {
+                        invocations.Add(parser.ReadFields());
+                    }
+                }catch(MalformedLineException)
+                {
+                    logWriter.WriteLine($"Error: Arguments ({parser.ErrorLine}) could not be parsed!");
+                    return;
+                }
+            }
 
-        var env = new WebEnvironment((IJSInProcessRuntime)js, logWriter, inputFiles, outputFiles);
+            this.StateHasChanged();
 
-        var application = new Application<WebArchiver>(env);
+            var env = new WebEnvironment((IJSInProcessRuntime)js, logWriter, inputFiles, outputFiles);
 
-        await application.Run(args);
-
-        this.StateHasChanged();
+            foreach(var args in invocations)
+            {
+                var application = new Application<WebArchiver>(env);
+                await application.Run(args);
+                this.StateHasChanged();
+            }
+        }catch(Exception e) when (GlobalOptions.SuppressNonCriticalExceptions)
+        {
+            logWriter.WriteLine("Unexpected error: " + e);
+        }finally{
+            this.StateHasChanged();
+        }
     }
 }
