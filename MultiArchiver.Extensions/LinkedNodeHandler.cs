@@ -243,7 +243,7 @@ namespace IS4.MultiArchiver.Extensions
             public IUriNode this[IndividualUri name] => Inner[name];
             public IUriNode this[DatatypeUri name] => Inner[name];
             public IRdfHandler this[GraphUri name] => Parent.GetGraphHandler(name);
-            public IReadOnlyCollection<VocabularyUri> Vocabularies => Inner.Vocabularies;
+            public ICollection<VocabularyUri> Vocabularies => Inner.Vocabularies;
         }
 
         /// <summary>

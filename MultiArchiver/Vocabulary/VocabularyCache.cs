@@ -22,9 +22,9 @@ namespace IS4.MultiArchiver.Vocabulary
         public TNode this[IndividualUri name] => CreateNode(name, individualCache, nodeFactory);
         public TNode this[DatatypeUri name] => CreateNode(name, datatypeCache, nodeFactory);
         
-        readonly HashSet<VocabularyUri> vocabularies = new HashSet<VocabularyUri>();
+        readonly ConcurrentDictionary<VocabularyUri, bool> vocabularies = new ConcurrentDictionary<VocabularyUri, bool>();
 
-        public IReadOnlyCollection<VocabularyUri> Vocabularies => vocabularies;
+        public ICollection<VocabularyUri> Vocabularies => vocabularies.Keys;
 
         readonly ConcurrentDictionary<ClassUri, TNode> classCache = new ConcurrentDictionary<ClassUri, TNode>();
         readonly ConcurrentDictionary<PropertyUri, TNode> propertyCache = new ConcurrentDictionary<PropertyUri, TNode>();
@@ -50,7 +50,7 @@ namespace IS4.MultiArchiver.Vocabulary
 
         TValue CreateNode<TKey, TValue>(TKey name, ConcurrentDictionary<TKey, TValue> cache, Func<Uri, TValue> factory) where TKey : struct, ITermUri
         {
-            if(vocabularies.Add(name.Vocabulary))
+            if(vocabularies.TryAdd(name.Vocabulary, false))
             {
                 VocabularyAdded?.Invoke(name.Vocabulary);
             }

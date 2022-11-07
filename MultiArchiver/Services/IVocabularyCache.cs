@@ -13,7 +13,7 @@ namespace IS4.MultiArchiver.Services
         /// Stores a collection of used vocabularies
         /// as instances of <see cref="VocabularyUri"/>.
         /// </summary>
-        IReadOnlyCollection<VocabularyUri> Vocabularies { get; }
+        ICollection<VocabularyUri> Vocabularies { get; }
     }
 
     /// <summary>
