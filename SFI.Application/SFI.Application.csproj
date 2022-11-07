@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>SemanticFileInspector.Application</AssemblyName>
+    <LangVersion>9.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <RootNamespace>IS4.SFI</RootNamespace>
+    <Authors>IS4</Authors>
+    <DocumentationFile>bin\SemanticFileInspector.Application.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SFI.Extensions\SFI.Extensions.csproj" />
+    <ProjectReference Include="..\SFI\SFI.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <AssemblyName>SemanticFileInspector.Tests</AssemblyName>
+    <LangVersion>9.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <Authors>IS4</Authors>
+    <RootNamespace>IS4.SFI.Tests</RootNamespace>
+    <NoWarn>1701;1702;1998</NoWarn>
+    <DocumentationFile>bin\SemanticFileInspector.Tests.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.2.3" />
+    <PackageReference Include="MSTest.TestFramework" Version="2.2.3" />
+    <PackageReference Include="coverlet.collector" Version="3.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SFI.Analysis\SFI.Analysis.csproj" />
+    <ProjectReference Include="..\SFI.Application\SFI.Application.csproj" />
+    <ProjectReference Include="..\SFI.Extensions\SFI.Extensions.csproj" />
+    <ProjectReference Include="..\SFI.Formats\SFI.Formats.csproj" />
+    <ProjectReference Include="..\SFI.Media\SFI.Media.csproj" />
+    <ProjectReference Include="..\SFI.Windows\SFI.Windows.csproj" />
+    <ProjectReference Include="..\SFI\SFI.csproj" />
+  </ItemGroup>
+
+</Project>

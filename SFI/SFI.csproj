@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>SemanticFileInspector</AssemblyName>
+    <RootNamespace>IS4.SFI</RootNamespace>
+    <LangVersion>9.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <NoWarn>1701;1702;1998</NoWarn>
+    <Authors>IS4</Authors>
+    <DocumentationFile>bin\SemanticFileInspector.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="6.0.0" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="MorseCode.ITask" Version="2.0.3" />
+    <PackageReference Include="System.Collections.Immutable" Version="5.0.0" />
+    <PackageReference Include="System.Memory" Version="4.5.4" />
+    <PackageReference Include="System.Threading.Channels" Version="5.0.0" />
+  </ItemGroup>
+
+</Project>

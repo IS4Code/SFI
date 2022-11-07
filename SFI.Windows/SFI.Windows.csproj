@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>SemanticFileInspector.Windows</AssemblyName>
+    <RootNamespace>IS4.SFI.Windows</RootNamespace>
+    <LangVersion>9.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <NoWarn>1701;1702;1998</NoWarn>
+    <Authors>IS4</Authors>
+    <DocumentationFile>bin\SemanticFileInspector.Windows.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ParallelExtensionsExtras.CrossPlatform" Version="1.0.0" />
+    <PackageReference Include="Vanara.PInvoke.Cabinet" Version="3.3.10" />
+    <PackageReference Include="Vanara.PInvoke.DbgHelp" Version="3.3.10" />
+    <PackageReference Include="Vanara.PInvoke.Kernel32" Version="3.3.10" />
+    <PackageReference Include="Vanara.PInvoke.Ole" Version="3.3.10" />
+    <PackageReference Include="Vanara.PInvoke.Shell32" Version="3.3.10" />
+    <PackageReference Include="Vanara.PInvoke.Version" Version="3.3.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SFI.Media\SFI.Media.csproj" />
+    <ProjectReference Include="..\SFI\SFI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ComTypes\" />
+  </ItemGroup>
+
+</Project>

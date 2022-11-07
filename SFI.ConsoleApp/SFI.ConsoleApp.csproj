@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <LangVersion>9.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <AssemblyName>SemanticFileInspector.ConsoleApp</AssemblyName>
+    <RootNamespace>IS4.SFI.ConsoleApp</RootNamespace>
+    <Authors>IS4</Authors>
+    <DocumentationFile>bin\SemanticFileInspector.ConsoleApp.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SFI.Analysis\SFI.Analysis.csproj" />
+    <ProjectReference Include="..\SFI.Application\SFI.Application.csproj" />
+    <ProjectReference Include="..\SFI.Formats\SFI.Formats.csproj" />
+    <ProjectReference Include="..\SFI.Extensions\SFI.Extensions.csproj" />
+    <ProjectReference Include="..\SFI.Media\SFI.Media.csproj" />
+    <ProjectReference Include="..\SFI.Windows\SFI.Windows.csproj" />
+    <ProjectReference Include="..\SFI\SFI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+  </ItemGroup>
+
+</Project>

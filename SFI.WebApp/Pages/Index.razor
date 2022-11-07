@@ -1,0 +1,94 @@
+﻿@page "/"
+@using IS4.SFI;
+@using System.IO;
+@using Microsoft.VisualBasic.FileIO;
+@inject IJSRuntime js
+
+<h1>Semantic File Inspector</h1>
+
+<form @onsubmit="OnSubmit">
+    <p><textarea @bind="Command" style="resize: both;" rows="4" cols="80" /></p>
+    <InputFile OnChange="OnInputFileChange" multiple />
+    <button type="submit">Execute</button>
+</form>
+
+<ul>
+    @foreach(var file in outputFiles)
+    {
+        <li><a href="@file.Value.CreateBlob()" download="@file.Key">@file.Key</a></li>
+    }
+</ul>
+
+<pre>
+    @foreach(var chunk in outputChunks)
+    {
+<span>@chunk</span>
+    }
+</pre>
+
+@code {
+    Dictionary<string, IBrowserFile> inputFiles = new Dictionary<string, IBrowserFile>();
+    Dictionary<string, BlobArrayStream> outputFiles = new Dictionary<string, BlobArrayStream>();
+    string Command { get; set; } = "describe -r urn:uuid: -d -x *-hash:* -h sha256 * output.ttl";
+    List<string> outputChunks = new List<string>();
+    WebEnvironment? webEnvironment;
+
+    void OnInputFileChange(InputFileChangeEventArgs e)
+    {
+        inputFiles = e.GetMultipleFiles().ToDictionary(f => f.Name, f => f, StringComparer.OrdinalIgnoreCase);
+    }
+
+    async void OnSubmit()
+    {
+        var output = outputChunks = new List<string>();
+        var logWriter = new EventWriter();
+        logWriter.Written += sb => {
+            output.Add(sb.ToString());
+        };
+        outputFiles = new Dictionary<string, BlobArrayStream>();
+
+        webEnvironment?.Dispose();
+
+        try{
+            var invocations = new List<string[]>();
+            using(var parser = new TextFieldParser(new StringReader(Command))
+            {
+                TextFieldType = FieldType.Delimited,
+                CommentTokens = new[] { "#" },
+                Delimiters = new[] { " " },
+                HasFieldsEnclosedInQuotes = true,
+                TrimWhiteSpace = false
+            })
+            {
+                try{
+                    while(!parser.EndOfData)
+                    {
+                        invocations.Add(parser.ReadFields()!);
+                    }
+                }catch(MalformedLineException)
+                {
+                    logWriter.WriteLine($"Error: Arguments ({parser.ErrorLine}) could not be parsed!");
+                    return;
+                }
+            }
+
+            this.StateHasChanged();
+
+            var env = new WebEnvironment((IJSInProcessRuntime)js, logWriter, inputFiles, outputFiles, this.StateHasChanged);
+            webEnvironment = env;
+
+            foreach(var args in invocations)
+            {
+                if(env.Disposed) break;
+                var application = new Application<WebInspector>(env);
+                await application.Run(args);
+                this.StateHasChanged();
+            }
+        }catch(Exception e) when (GlobalOptions.SuppressNonCriticalExceptions)
+        {
+            logWriter.WriteLine("Unexpected error: " + e);
+        }finally{
+            this.StateHasChanged();
+        }
+    }
+}

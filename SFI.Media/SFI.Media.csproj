@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>SemanticFileInspector.Media</AssemblyName>
+    <RootNamespace>IS4.SFI.Media</RootNamespace>
+    <LangVersion>9.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <NoWarn>1701;1702;1998</NoWarn>
+    <Authors>IS4</Authors>
+    <DocumentationFile>bin\SemanticFileInspector.Media.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SFI\SFI.csproj" />
+  </ItemGroup>
+
+</Project>
