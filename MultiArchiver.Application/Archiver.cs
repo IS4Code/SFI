@@ -146,13 +146,13 @@ namespace IS4.MultiArchiver
         /// <param name="file">The input file to describe.</param>
         /// <param name="output">The output file where to store the RDF description.</param>
         /// <param name="options">Additional options.</param>
-        public ValueTask Archive(string file, string output, ArchiverOptions options)
+        public async ValueTask Archive(string file, string output, ArchiverOptions options)
         {
             if((File.GetAttributes(file) & FileAttributes.Directory) != 0)
             {
-                return Archive(new DirectoryInfo(file), output, options);
+                await Archive(new DirectoryInfo(file), output, options);
             }else{
-                return Archive(new FileInfo(file), output, options);
+                await Archive(new FileInfo(file), output, options);
             }
         }
 
