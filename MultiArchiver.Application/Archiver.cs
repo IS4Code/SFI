@@ -277,6 +277,8 @@ namespace IS4.MultiArchiver
 
                 SaveGraph(graph, outputFactory, options);
             }
+
+            OutputLog.WriteLine("Done!");
         }
 
         /// <summary>
