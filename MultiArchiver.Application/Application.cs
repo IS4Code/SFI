@@ -272,6 +272,7 @@ namespace IS4.MultiArchiver
 				{"c", "compress", null, "perform gzip compression on the output"},
 				{"m", "metadata", null, "add annotation metadata to output"},
 				{"d", "data-only", null, "do not store input file information"},
+				{"h", "hash", "pattern", "set the main binary hash"},
 				{"r", "root", "uri", "set the hierarchy root URI prefix"},
 				{"s", "sparql-query", "file", "perform a SPARQL query on the result"},
 				{"?", "help", null, "displays this help message"},
@@ -344,6 +345,9 @@ namespace IS4.MultiArchiver
 				case "x":
 				case "exclude":
 					return OptionArgument.Required;
+				case "h":
+				case "hash":
+					return OptionArgument.Required;
 				case "s":
 				case "sparql-query":
 					return OptionArgument.Required;
@@ -377,12 +381,15 @@ namespace IS4.MultiArchiver
 				case "exclude":
 					componentMatchers.Add((false, DataTools.ConvertWildcardToRegex(argument).IsMatch));
 					break;
-				case "mh":
-				case "main-hash":
+				case "h":
+				case "hash":
 					var match = DataTools.ConvertWildcardToRegex(argument);
 					if(mainHash == null)
 					{
 						mainHash = match;
+						componentMatchers.Add((true, DataTools.ConvertWildcardToRegex("data-hash:" + argument).IsMatch));
+					}else{
+						throw OptionAlreadySpecified(option);
 					}
 					break;
 				case "s":
