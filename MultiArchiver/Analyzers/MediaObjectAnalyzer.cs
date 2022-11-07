@@ -1,12 +1,11 @@
 ﻿using IS4.MultiArchiver.Services;
 using IS4.MultiArchiver.Vocabulary;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.Analyzers
 {
     /// <summary>
-    /// An analyzer of objects of type <typeparamref name="T"/>.
+    /// An analyzer of media objects of type <typeparamref name="T"/>.
     /// </summary>
     /// <typeparam name="T">The type of objects supported by this analyzer.</typeparam>
     public abstract class MediaObjectAnalyzer<T> : EntityAnalyzer<T> where T : class
