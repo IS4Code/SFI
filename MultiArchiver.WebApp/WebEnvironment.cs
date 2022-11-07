@@ -13,7 +13,7 @@ namespace IS4.MultiArchiver.WebApp
     /// The implementation of <see cref="IApplicationEnvironment"/>
     /// for the web environment.
     /// </summary>
-    public class WebEnvironment : IApplicationEnvironment
+    public class WebEnvironment : IApplicationEnvironment, IDisposable
     {
         readonly IJSInProcessRuntime js;
         readonly IReadOnlyDictionary<string, IBrowserFile> inputFiles;
@@ -25,6 +25,11 @@ namespace IS4.MultiArchiver.WebApp
         public TextWriter LogWriter { get; }
 
         public string NewLine { get; }
+
+        /// <summary>
+        /// True if <see cref="Dispose"/> has been called.
+        /// </summary>
+        public bool Disposed { get; private set; }
 
         /// <summary>
         /// Creates a new instance of the environment.
@@ -61,8 +66,14 @@ namespace IS4.MultiArchiver.WebApp
 
         public async ValueTask Update()
         {
+            if(Disposed) throw new InternalArchiverException(new OperationCanceledException());
             stateChanged?.Invoke();
             await Task.Delay(1);
+        }
+
+        public void Dispose()
+        {
+            Disposed = true;
         }
     }
 }

@@ -53,9 +53,9 @@ namespace IS4.MultiArchiver
 
             foreach(var analyzer in Analyzers.OfType<IEntityAnalyzer<T>>())
             {
+                OutputLog.WriteLine($"[{nameShort}] Analyzing: {nameLong}...");
+                await Update();
                 try{
-                    OutputLog.WriteLine($"[{nameShort}] Analyzing: {nameLong}...");
-                    await Update();
                     var result = await analyzer.Analyze(entity, context, analyzers);
                     if(result.Node != null)
                     {
@@ -68,7 +68,7 @@ namespace IS4.MultiArchiver
                         return result;
                     }
                     OutputLog.WriteLine($"[{nameShort}] No result!");
-                } catch(InternalArchiverException e)
+                }catch(InternalArchiverException e)
                 {
                     ExceptionDispatchInfo.Capture(e.InnerException).Throw();
                     throw;
