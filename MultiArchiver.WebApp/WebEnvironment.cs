@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.WebApp
 {
@@ -17,6 +18,7 @@ namespace IS4.MultiArchiver.WebApp
         readonly IJSInProcessRuntime js;
         readonly IReadOnlyDictionary<string, IBrowserFile> inputFiles;
         readonly IDictionary<string, BlobArrayStream> outputFiles;
+        readonly Action stateChanged;
 
         public int WindowWidth => Int32.MaxValue;
 
@@ -31,12 +33,14 @@ namespace IS4.MultiArchiver.WebApp
         /// <param name="writer">The writer for logging.</param>
         /// <param name="inputFiles">The collection of input files.</param>
         /// <param name="outputFiles">The collection of output files, which may be modified during the lifetime of the instance.</param>
-        public WebEnvironment(IJSInProcessRuntime js, TextWriter writer, IReadOnlyDictionary<string, IBrowserFile> inputFiles, IDictionary<string, BlobArrayStream> outputFiles)
+        /// <param name="stateChanged">An action that causes the page to be updated.</param>
+        public WebEnvironment(IJSInProcessRuntime js, TextWriter writer, IReadOnlyDictionary<string, IBrowserFile> inputFiles, IDictionary<string, BlobArrayStream> outputFiles, Action stateChanged)
         {
             this.js = js;
-            LogWriter = writer;
             this.inputFiles = inputFiles;
             this.outputFiles = outputFiles;
+            this.stateChanged = stateChanged;
+            LogWriter = writer;
             NewLine = js.Invoke<string>("getNewline");
         }
 
@@ -53,6 +57,12 @@ namespace IS4.MultiArchiver.WebApp
         public Stream CreateFile(string path, string mediaType)
         {
             return outputFiles[path] = new BlobArrayStream(js, mediaType);
+        }
+
+        public async ValueTask Update()
+        {
+            stateChanged?.Invoke();
+            await Task.Delay(1);
         }
     }
 }

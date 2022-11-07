@@ -1,6 +1,7 @@
 ﻿using IS4.MultiArchiver.Analyzers;
 using IS4.MultiArchiver.Formats;
 using System;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.WebApp
 {

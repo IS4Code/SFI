@@ -71,7 +71,7 @@
 
             this.StateHasChanged();
 
-            var env = new WebEnvironment((IJSInProcessRuntime)js, logWriter, inputFiles, outputFiles);
+            var env = new WebEnvironment((IJSInProcessRuntime)js, logWriter, inputFiles, outputFiles, this.StateHasChanged);
 
             foreach(var args in invocations)
             {

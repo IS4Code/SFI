@@ -51,6 +51,11 @@ namespace IS4.MultiArchiver.ConsoleApp
             return File.Create(path);
         }
 
+        public ValueTask Update()
+        {
+            return default(ValueTask);
+        }
+
         /// <summary>
         /// This class represents the standard input as a file.
         /// </summary>

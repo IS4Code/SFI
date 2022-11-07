@@ -32,6 +32,16 @@ namespace IS4.MultiArchiver
         public TextWriter OutputLog { get; set; } = Console.Error;
 
         /// <summary>
+        /// Called when a new entity is or was analyzed.
+        /// </summary>
+        public event Func<ValueTask> Updated;
+
+        private ValueTask Update()
+        {
+            return (Updated?.Invoke()).GetValueOrDefault();
+        }
+
+        /// <summary>
         /// Traverses the <see cref="Analyzers"/> and picks the first to implement
         /// <see cref="IEntityAnalyzer{T}"/> of <typeparamref name="T"/> to analyze
         /// <paramref name="entity"/>.
@@ -45,6 +55,7 @@ namespace IS4.MultiArchiver
             {
                 try{
                     OutputLog.WriteLine($"[{nameShort}] Analyzing: {nameLong}...");
+                    await Update();
                     var result = await analyzer.Analyze(entity, context, analyzers);
                     if(result.Node != null)
                     {
@@ -66,9 +77,12 @@ namespace IS4.MultiArchiver
                     OutputLog.WriteLine($"[{nameShort}] Error!");
                     OutputLog.WriteLine(e);
                     return default;
+                }finally{
+                    await Update();
                 }
             }
             OutputLog.WriteLine($"[{nameShort}] No analyzer for {nameLong}.");
+            await Update();
             return default;
         }
 

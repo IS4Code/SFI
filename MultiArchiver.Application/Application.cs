@@ -137,6 +137,13 @@ namespace IS4.MultiArchiver
 					analyzer.OutputFile += OnOutputFile;
 				}
 
+				var update = environment.Update();
+				if(!update.IsCompleted)
+				{
+					await update;
+					archiver.Updated += environment.Update;
+				}
+
 				// Open the output RDF file
 				using(var outputStream = environment.CreateFile(output, archiver.OutputMediaType))
                 {

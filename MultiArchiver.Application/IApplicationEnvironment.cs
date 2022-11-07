@@ -1,6 +1,7 @@
 ﻿using IS4.MultiArchiver.Services;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver
 {
@@ -38,5 +39,10 @@ namespace IS4.MultiArchiver
         /// <param name="mediaType">The media type of the file.</param>
         /// <returns>A stream to the newly created file.</returns>
         Stream CreateFile(string path, string mediaType);
+
+        /// <summary>
+        /// Updates the application with new results.
+        /// </summary>
+        ValueTask Update();
     }
 }
