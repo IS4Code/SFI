@@ -14,13 +14,17 @@ namespace IS4.MultiArchiver.ConsoleApp
     /// </summary>
     class Plugins
     {
-        readonly Archiver archiver;
+        readonly Inspector inspector;
 
-        TextWriter OutputLog => archiver.OutputLog;
+        TextWriter OutputLog => inspector.OutputLog;
 
-        public Plugins(Archiver archiver)
+        /// <summary>
+        /// Creates a new instance of the class.
+        /// </summary>
+        /// <param name="inspector">The instance of <see cref="Inspector"/> to use.</param>
+        public Plugins(Inspector inspector)
         {
-            this.archiver = archiver;
+            this.inspector = inspector;
         }
 
         /// <summary>
@@ -76,7 +80,7 @@ namespace IS4.MultiArchiver.ConsoleApp
         {
             // Add DI services:
             var services = new ServiceCollection();
-            services.AddSingleton(archiver);
+            services.AddSingleton(inspector);
             services.AddSingleton(OutputLog);
             services.AddSingleton(mainDirectory);
             var serviceProvider = services.BuildServiceProvider();

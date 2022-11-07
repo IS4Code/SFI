@@ -28,7 +28,7 @@ namespace IS4.MultiArchiver.ConsoleApp
             CultureInfo.DefaultThreadCurrentCulture = CultureInfo.CurrentCulture =
                 CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
 
-            var application = new Application<ConsoleArchiver>(new Program());
+            var application = new Application<ConsoleInspector>(new Program());
             await application.Run(args);
         }
 

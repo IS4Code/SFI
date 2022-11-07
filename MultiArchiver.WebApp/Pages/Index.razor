@@ -80,7 +80,7 @@
             foreach(var args in invocations)
             {
                 if(env.Disposed) break;
-                var application = new Application<WebArchiver>(env);
+                var application = new Application<WebInspector>(env);
                 await application.Run(args);
                 this.StateHasChanged();
             }

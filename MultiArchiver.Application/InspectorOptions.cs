@@ -6,9 +6,9 @@ using System.Collections.Generic;
 namespace IS4.MultiArchiver
 {
     /// <summary>
-    /// Additional options and configuration of <see cref="Archiver"/>.
+    /// Additional options and configuration of <see cref="Inspector"/>.
     /// </summary>
-    public class ArchiverOptions
+    public class InspectorOptions
     {
         /// <summary>
         /// Whether to write the output directly or use an intermediate graph.

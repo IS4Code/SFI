@@ -11,8 +11,8 @@ namespace IS4.MultiArchiver
 	/// <summary>
 	/// The main application for analyzing input files and producing output.
 	/// </summary>
-	/// <typeparam name="TArchiver">The type of archiver to use.</typeparam>
-    public class Application<TArchiver> : CommandApplication where TArchiver : Archiver, new()
+	/// <typeparam name="TInspector">The type of <see cref="Inspector"/> to use.</typeparam>
+    public class Application<TInspector> : CommandApplication where TInspector : Inspector, new()
     {
         readonly IApplicationEnvironment environment;
 
@@ -22,7 +22,7 @@ namespace IS4.MultiArchiver
 
 		protected override int WindowWidth => environment.WindowWidth;
 
-		readonly ArchiverOptions options;
+		readonly InspectorOptions options;
 
 		static readonly IEnumerable<string> modeNames = Enum.GetNames(typeof(Mode)).Select(n => n.ToLowerInvariant());
 
@@ -38,7 +38,7 @@ namespace IS4.MultiArchiver
             this.environment = environment;
 			writer = environment.LogWriter;
 
-			options = new ArchiverOptions();
+			options = new InspectorOptions();
 			options.PrettyPrint = true;
 			options.DirectOutput = true;
 			options.NewLine = environment.NewLine;
@@ -72,23 +72,23 @@ namespace IS4.MultiArchiver
 					throw new ApplicationException($"Mode must be specified (one of {String.Join(", ", modeNames)})!");
 				}
 
-				var archiver = new TArchiver();
-				archiver.OutputLog = writer;
-				archiver.AddDefault();
+				var inspector = new TInspector();
+				inspector.OutputLog = writer;
+				inspector.AddDefault();
 
 				// Print the available components
 				switch(mode)
 				{
 					case Mode.List:
 						LogWriter.WriteLine("Included components:");
-						PrintComponents("analyzer", archiver.Analyzers);
-						PrintComponents("data-format", archiver.DataAnalyzer.DataFormats);
-						PrintComponents("xml-format", archiver.XmlAnalyzer.XmlFormats);
-						PrintComponents("container-format", archiver.ContainerProviders);
-						PrintComponents("data-hash", archiver.DataAnalyzer.HashAlgorithms);
-						PrintComponents("file-hash", archiver.FileAnalyzer.HashAlgorithms);
-						PrintComponents("pixel-hash", archiver.ImageDataHashAlgorithms);
-						PrintComponents("image-hash", archiver.ImageHashAlgorithms);
+						PrintComponents("analyzer", inspector.Analyzers);
+						PrintComponents("data-format", inspector.DataAnalyzer.DataFormats);
+						PrintComponents("xml-format", inspector.XmlAnalyzer.XmlFormats);
+						PrintComponents("container-format", inspector.ContainerProviders);
+						PrintComponents("data-hash", inspector.DataAnalyzer.HashAlgorithms);
+						PrintComponents("file-hash", inspector.FileAnalyzer.HashAlgorithms);
+						PrintComponents("pixel-hash", inspector.ImageDataHashAlgorithms);
+						PrintComponents("image-hash", inspector.ImageHashAlgorithms);
 						return;
 				}
 
@@ -99,32 +99,32 @@ namespace IS4.MultiArchiver
 
 				if(quiet)
 				{
-					archiver.OutputLog = writer = TextWriter.Null;
+					inspector.OutputLog = writer = TextWriter.Null;
 				}
 
 				// Filter out the components based on arguments
 
 				int componentCount = 0;
-				FilterComponents("analyzer", archiver.Analyzers, ref componentCount);
-				FilterComponents("data-format", archiver.DataAnalyzer.DataFormats, ref componentCount);
-				FilterComponents("xml-format", archiver.XmlAnalyzer.XmlFormats, ref componentCount);
-				FilterComponents("container-format", archiver.ContainerProviders, ref componentCount);
-				FilterComponents("data-hash", archiver.DataAnalyzer.HashAlgorithms, ref componentCount);
-				FilterComponents("file-hash", archiver.FileAnalyzer.HashAlgorithms, ref componentCount);
-				FilterComponents("pixel-hash", archiver.ImageDataHashAlgorithms, ref componentCount);
-				FilterComponents("image-hash", archiver.ImageHashAlgorithms, ref componentCount);
+				FilterComponents("analyzer", inspector.Analyzers, ref componentCount);
+				FilterComponents("data-format", inspector.DataAnalyzer.DataFormats, ref componentCount);
+				FilterComponents("xml-format", inspector.XmlAnalyzer.XmlFormats, ref componentCount);
+				FilterComponents("container-format", inspector.ContainerProviders, ref componentCount);
+				FilterComponents("data-hash", inspector.DataAnalyzer.HashAlgorithms, ref componentCount);
+				FilterComponents("file-hash", inspector.FileAnalyzer.HashAlgorithms, ref componentCount);
+				FilterComponents("pixel-hash", inspector.ImageDataHashAlgorithms, ref componentCount);
+				FilterComponents("image-hash", inspector.ImageHashAlgorithms, ref componentCount);
 
 				writer.WriteLine($"Included {componentCount} components in total.");
 
 				if(mainHash != null)
                 {
 					// Set the primary ni: hash
-					var hash = archiver.DataAnalyzer.HashAlgorithms.FirstOrDefault(h => mainHash.IsMatch(DataTools.GetUserFriendlyName(h)));
+					var hash = inspector.DataAnalyzer.HashAlgorithms.FirstOrDefault(h => mainHash.IsMatch(DataTools.GetUserFriendlyName(h)));
 					if(hash == null)
                     {
 						throw new ApplicationException("Main hash cannot be found!");
 					}
-					archiver.DataAnalyzer.ContentUriFormatter = new NiHashedContentUriFormatter(hash);
+					inspector.DataAnalyzer.ContentUriFormatter = new NiHashedContentUriFormatter(hash);
                 }
 
 				// Load the input files from the environment
@@ -132,7 +132,7 @@ namespace IS4.MultiArchiver
 				
 				options.Queries = queries.SelectMany(query => environment.GetFiles(query));
 
-				foreach(var analyzer in archiver.Analyzers.OfType<IHasFileOutput>())
+				foreach(var analyzer in inspector.Analyzers.OfType<IHasFileOutput>())
                 {
 					analyzer.OutputFile += OnOutputFile;
 				}
@@ -141,18 +141,18 @@ namespace IS4.MultiArchiver
 				if(!update.IsCompleted)
 				{
 					await update;
-					archiver.Updated += environment.Update;
+					inspector.Updated += environment.Update;
 				}
 
 				// Open the output RDF file
-				using(var outputStream = environment.CreateFile(output, archiver.OutputMediaType))
+				using(var outputStream = environment.CreateFile(output, inspector.OutputMediaType))
                 {
 					if(dataOnly)
                     {
 						// The input should be treated as a byte sequence without file metadata
-						await archiver.Archive<IStreamFactory>(inputFiles, outputStream, options);
+						await inspector.Archive<IStreamFactory>(inputFiles, outputStream, options);
                     }else{
-						await archiver.Archive(inputFiles, outputStream, options);
+						await inspector.Archive(inputFiles, outputStream, options);
 					}
 				}
 			}catch(ApplicationExitException)

@@ -22,7 +22,7 @@ namespace IS4.MultiArchiver
     /// Provides the support for describing input files
     /// and configuring analyzer components.
     /// </summary>
-    public abstract class Archiver : EntityAnalyzerProvider
+    public abstract class Inspector : EntityAnalyzerProvider
     {
         /// <summary>
         /// The default file analyzer.
@@ -78,10 +78,10 @@ namespace IS4.MultiArchiver
         public virtual ICollection<IHashAlgorithm> ImageHashAlgorithms => Array.Empty<IHashAlgorithm>();
 
         /// <summary>
-        /// Creates a new instance of the archiver and initializes several
+        /// Creates a new instance of the inspector and initializes several
         /// core analyzers.
         /// </summary>
-        public Archiver()
+        public Inspector()
         {
             Analyzers.Add(FileAnalyzer = new FileAnalyzer());
             Analyzers.Add(DataAnalyzer = new DataAnalyzer(() => new UdeEncodingDetector()));
@@ -132,7 +132,7 @@ namespace IS4.MultiArchiver
             Analyzers.Add(new RdfXmlAnalyzer());
         }
 
-        static Archiver()
+        static Inspector()
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
@@ -146,7 +146,7 @@ namespace IS4.MultiArchiver
         /// <param name="file">The input file to describe.</param>
         /// <param name="output">The output file where to store the RDF description.</param>
         /// <param name="options">Additional options.</param>
-        public async ValueTask Archive(string file, string output, ArchiverOptions options)
+        public async ValueTask Archive(string file, string output, InspectorOptions options)
         {
             if((File.GetAttributes(file) & FileAttributes.Directory) != 0)
             {
@@ -163,7 +163,7 @@ namespace IS4.MultiArchiver
         /// <param name="entity">The entity to describe.</param>
         /// <param name="output">The output file where to store the RDF description.</param>
         /// <param name="options">Additional options.</param>
-        public ValueTask Archive<T>(T entity, string output, ArchiverOptions options) where T : class
+        public ValueTask Archive<T>(T entity, string output, InspectorOptions options) where T : class
         {
             return Archive(new[] { entity }, () => new FileStream(output, FileMode.Create, FileAccess.Write, FileShare.Read), options);
         }
@@ -175,7 +175,7 @@ namespace IS4.MultiArchiver
         /// <param name="entity">The entity to describe.</param>
         /// <param name="output">The output stream where to store the RDF description.</param>
         /// <param name="options">Additional options.</param>
-        public ValueTask Archive<T>(T entity, Stream output, ArchiverOptions options) where T : class
+        public ValueTask Archive<T>(T entity, Stream output, InspectorOptions options) where T : class
         {
             return Archive(new[] { entity }, () => output, options);
         }
@@ -187,7 +187,7 @@ namespace IS4.MultiArchiver
         /// <param name="entities">The entities to describe.</param>
         /// <param name="output">The output file where to store the RDF description.</param>
         /// <param name="options">Additional options.</param>
-        public ValueTask Archive<T>(IEnumerable<T> entities, string output, ArchiverOptions options) where T : class
+        public ValueTask Archive<T>(IEnumerable<T> entities, string output, InspectorOptions options) where T : class
         {
             return Archive(entities, () => new FileStream(output, FileMode.Create, FileAccess.Write, FileShare.Read), options);
         }
@@ -199,7 +199,7 @@ namespace IS4.MultiArchiver
         /// <param name="entities">The entities to describe.</param>
         /// <param name="output">The output stream where to store the RDF description.</param>
         /// <param name="options">Additional options.</param>
-        public ValueTask Archive<T>(IEnumerable<T> entities, Stream output, ArchiverOptions options) where T : class
+        public ValueTask Archive<T>(IEnumerable<T> entities, Stream output, InspectorOptions options) where T : class
         {
             return Archive(entities, () => output, options);
         }
@@ -211,7 +211,7 @@ namespace IS4.MultiArchiver
         /// <param name="entities">The entities to describe.</param>
         /// <param name="outputFactory">A function producing the output stream where to store the RDF description.</param>
         /// <param name="options">Additional options.</param>
-        public async ValueTask Archive<T>(IEnumerable<T> entities, Func<Stream> outputFactory, ArchiverOptions options) where T : class
+        public async ValueTask Archive<T>(IEnumerable<T> entities, Func<Stream> outputFactory, InspectorOptions options) where T : class
         {
             if(options == null) throw new ArgumentNullException(nameof(options));
 
@@ -284,7 +284,7 @@ namespace IS4.MultiArchiver
         /// <summary>
         /// Loads SPARQL queries from options.
         /// </summary>
-        private IReadOnlyCollection<SparqlQuery> GetQueries(ArchiverOptions options)
+        private IReadOnlyCollection<SparqlQuery> GetQueries(InspectorOptions options)
         {
             SparqlQueryParser queryParser = null;
             var results = new List<SparqlQuery>();
@@ -330,7 +330,7 @@ namespace IS4.MultiArchiver
         /// <param name="queryTester">An instance of <see cref="NodeQueryTester"/> to match nodes using user-provided queries.</param>
         /// <param name="options">Additional options.</param>
         /// <returns>The result of the analysis.</returns>
-        private async ValueTask<AnalysisResult> AnalyzeEntity<T>(T entity, IRdfHandler rdfHandler, IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers, INamespaceMapper mapper, NodeQueryTester queryTester, ArchiverOptions options) where T : class
+        private async ValueTask<AnalysisResult> AnalyzeEntity<T>(T entity, IRdfHandler rdfHandler, IReadOnlyDictionary<Uri, IRdfHandler> graphHandlers, INamespaceMapper mapper, NodeQueryTester queryTester, InspectorOptions options) where T : class
         {
             // The node factory/handler
             var handler = new LinkedNodeHandler(new UriTools.PrefixFormatter(options.Root), rdfHandler, graphHandlers, queryTester);
@@ -366,7 +366,7 @@ namespace IS4.MultiArchiver
         /// <param name="compressed">Whether to compress the output with gzip.</param>
         /// <param name="options">Additional options.</param>
         /// <returns>Text writer to the output file.</returns>
-        private TextWriter OpenFile(Func<Stream> fileFactory, bool compressed, ArchiverOptions options)
+        private TextWriter OpenFile(Func<Stream> fileFactory, bool compressed, InspectorOptions options)
         {
             var stream = fileFactory();
             if(compressed)
@@ -387,7 +387,7 @@ namespace IS4.MultiArchiver
         /// <param name="options">Additional options.</param>
         /// <param name="handler">A variable that receives the RDF handler to use.</param>
         /// <returns>An instance of <see cref="IDisposable"/> representing the open file.</returns>
-        private IDisposable CreateFileHandler(Func<Stream> outputFactory, out INamespaceMapper mapper, ArchiverOptions options, out IRdfHandler handler)
+        private IDisposable CreateFileHandler(Func<Stream> outputFactory, out INamespaceMapper mapper, InspectorOptions options, out IRdfHandler handler)
         {
             var writer = OpenFile(outputFactory, options.CompressedOutput, options);
             var qnameMapper = new QNameOutputMapper();
@@ -452,7 +452,7 @@ namespace IS4.MultiArchiver
         /// <param name="graph">The graph to save.</param>
         /// <param name="outputFactory">The function to provide the output stream.</param>
         /// <param name="options">Additional options.</param>
-        private void SaveGraph(Graph graph, Func<Stream> outputFactory, ArchiverOptions options)
+        private void SaveGraph(Graph graph, Func<Stream> outputFactory, InspectorOptions options)
         {
             //TODO: Support for other output formats
             var writer = new CompressingTurtleWriter(TurtleSyntax.Original);

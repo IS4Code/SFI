@@ -10,9 +10,9 @@ using System.Reflection;
 namespace IS4.MultiArchiver.ConsoleApp
 {
     /// <summary>
-    /// The specific implementation of <see cref="Archiver"/> for the console application.
+    /// The specific implementation of <see cref="Inspector"/> for the console application.
     /// </summary>
-    class ConsoleArchiver : Archiver
+    class ConsoleInspector : Inspector
     {
         /// <summary>
         /// The default image analyzer.
@@ -26,7 +26,7 @@ namespace IS4.MultiArchiver.ConsoleApp
         readonly Plugins plugins;
 
         /// <inheritdoc/>
-        public ConsoleArchiver()
+        public ConsoleInspector()
         {
             plugins = new Plugins(this);
 

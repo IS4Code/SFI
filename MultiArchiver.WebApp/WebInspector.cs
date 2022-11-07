@@ -1,17 +1,16 @@
 ﻿using IS4.MultiArchiver.Analyzers;
 using IS4.MultiArchiver.Formats;
 using System;
-using System.Threading.Tasks;
 
 namespace IS4.MultiArchiver.WebApp
 {
     /// <summary>
-    /// The specific implementation of <see cref="Archiver"/> for the web application.
+    /// The specific implementation of <see cref="Inspector"/> for the web application.
     /// </summary>
-    public class WebArchiver : Archiver
+    public class WebInspector : Inspector
     {
         /// <inheritdoc/>
-        public WebArchiver()
+        public WebInspector()
         {
             DataAnalyzer.FileSizeToWriteToDisk = Int64.MaxValue;
         }
