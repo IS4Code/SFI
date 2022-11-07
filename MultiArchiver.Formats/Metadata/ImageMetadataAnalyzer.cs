@@ -198,6 +198,7 @@ namespace IS4.MultiArchiver.Analyzers
             var analyzer = new ImageMetadataAnalyzer();
 
             analyzer.MetadataReaders.Add(new ExifReader());
+            analyzer.MetadataReaders.Add(new XmpReader());
 
             return analyzer;
         }

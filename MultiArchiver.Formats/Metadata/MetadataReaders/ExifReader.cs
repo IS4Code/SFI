@@ -14,9 +14,9 @@ namespace IS4.MultiArchiver.Formats.Metadata.MetadataReaders
     /// An implementation of <see cref="IMetadataReader{T}"/>
     /// of <see cref="ExifDirectoryBase"/>.
     /// </summary>
-    public class ExifReader : IMetadataReader<ExifDirectoryBase>
+    public class ExifReader : MetadataReader<ExifDirectoryBase>
     {
-        public async ValueTask<string> Describe(ILinkedNode node, ExifDirectoryBase directory, AnalysisContext context, IEntityAnalyzers analyzers)
+        public async override ValueTask<string> Describe(ILinkedNode node, ExifDirectoryBase directory, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             foreach(var tag in directory.Tags)
             {

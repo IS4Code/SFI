@@ -21,4 +21,18 @@ namespace IS4.MultiArchiver.Formats.Metadata
         /// <returns>The label of the directory.</returns>
         ValueTask<string> Describe(ILinkedNode node, T directory, AnalysisContext context, IEntityAnalyzers analyzers);
     }
+
+    /// <summary>
+    /// An abstract implementation of <see cref="IMetadataReader{T}"/>.
+    /// </summary>
+    /// <typeparam name="T">The supported type.</typeparam>
+    public abstract class MetadataReader<T> : IMetadataReader<T> where T : Directory
+    {
+        public abstract ValueTask<string> Describe(ILinkedNode node, T directory, AnalysisContext context, IEntityAnalyzers analyzers);
+
+        public override string ToString()
+        {
+            return DataTools.GetIdentifierFromType<T>() ?? base.ToString();
+        }
+    }
 }
