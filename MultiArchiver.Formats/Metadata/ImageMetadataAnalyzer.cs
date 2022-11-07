@@ -21,12 +21,12 @@ namespace IS4.MultiArchiver.Analyzers
         public async override ValueTask<AnalysisResult> Analyze(IReadOnlyList<Directory> entity, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var node = GetNode(context);
-            string result = null;
+            string label = null;
             foreach(var dir in entity)
             {
-                if(await TryDescribe(node, dir, context.WithNode(node), analyzers) is string s)
+                if((await analyzers.TryAnalyze(dir, context.WithNode(node))).Label is string s)
                 {
-                    result = s;
+                    label = s;
                 }
             }
 
@@ -36,7 +36,7 @@ namespace IS4.MultiArchiver.Analyzers
             {
                 if(streams.Count == 1)
                 {
-                    return new AnalysisResult(node, result ?? Analyze(node, streams[0].Value, entity, context.NodeFactory));
+                    return new AnalysisResult(node, label ?? Analyze(node, streams[0].Value, entity, context.NodeFactory));
                 }else{
                     var merged = new Dictionary<string, object>();
 
@@ -44,12 +44,12 @@ namespace IS4.MultiArchiver.Analyzers
                     {
                         var stream = streams[i];
                         var streamNode = node[i.ToString()];
-                        var label = Analyze(streamNode, stream.Value, entity, context.NodeFactory);
+                        var streamLabel = Analyze(streamNode, stream.Value, entity, context.NodeFactory);
                         streamNode.SetClass(Classes.MediaStream);
                         node.Set(Properties.HasMediaStream, streamNode);
-                        if(label != null)
+                        if(streamLabel != null)
                         {
-                            streamNode.Set(Properties.PrefLabel, $"{i}:{stream.Key.Name} ({label})");
+                            streamNode.Set(Properties.PrefLabel, $"{i}:{stream.Key.Name} ({streamLabel})");
                         }else{
                             streamNode.Set(Properties.PrefLabel, $"{i}:{stream.Key.Name}");
                         }
@@ -68,11 +68,11 @@ namespace IS4.MultiArchiver.Analyzers
                         }
                     }
 
-                    return new AnalysisResult(node, result ?? Analyze(node, merged, entity, context.NodeFactory));
+                    return new AnalysisResult(node, label ?? Analyze(node, merged, entity, context.NodeFactory));
                 }
             }
 
-            return new AnalysisResult(node, result);
+            return new AnalysisResult(node, label);
         }
 
         static IEnumerable<KeyValuePair<Directory, Dictionary<string, object>>> IdentifyTags(IReadOnlyList<Directory> entity, params string[] tagNames)
@@ -183,22 +183,6 @@ namespace IS4.MultiArchiver.Analyzers
             }
 
             return components.Count > 0 ? String.Join(", ", components) : null;
-        }
-
-        private async ValueTask<string> Describe<T>(ILinkedNode node, T dir, AnalysisContext context, IEntityAnalyzers analyzers) where T : Directory
-        {
-            var result = await analyzers.Analyze(dir, context.WithNode(node));
-            return result.Label;
-        }
-
-        private async ValueTask<string> TryDescribe(ILinkedNode node, Directory dir, AnalysisContext context, IEntityAnalyzers analyzers)
-        {
-            try{
-                return await Describe(node, (dynamic)dir, context, analyzers);
-            }catch(RuntimeBinderException)
-            {
-                return null;
-            }
         }
     }
 }

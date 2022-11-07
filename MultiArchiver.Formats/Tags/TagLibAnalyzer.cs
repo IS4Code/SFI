@@ -60,7 +60,7 @@ namespace IS4.MultiArchiver.Analyzers
                     if(!properties.Codecs.Skip(1).Any())
                     {
                         var codec = properties.Codecs.First();
-                        result = result ?? Analyze(node, codec, context.NodeFactory);
+                        result = result ?? Analyze(node, codec);
                     }else{
                         var codecCounters = new Dictionary<MediaTypes, int>();
 
@@ -74,12 +74,12 @@ namespace IS4.MultiArchiver.Analyzers
                             codecCounters[codec.MediaTypes] = counter + 1;
 
                             var codecNode = node[codec.MediaTypes.ToString() + "/" + counter];
-                            var label = Analyze(codecNode, codec, context.NodeFactory);
+                            var codecLabel = Analyze(codecNode, codec);
                             codecNode.SetClass(Classes.MediaStream);
                             node.Set(Properties.HasMediaStream, codecNode);
-                            if(label != null)
+                            if(codecLabel != null)
                             {
-                                codecNode.Set(Properties.PrefLabel, $"{counter}:{codec.MediaTypes} ({label})");
+                                codecNode.Set(Properties.PrefLabel, $"{counter}:{codec.MediaTypes} ({codecLabel})");
                             }else{
                                 codecNode.Set(Properties.PrefLabel, $"{counter}:{codec.MediaTypes}");
                             }
@@ -98,12 +98,14 @@ namespace IS4.MultiArchiver.Analyzers
                 }
             }
 
-            if(file.Tag != null)
+            string label = null;
+
+            if(file.Tag is Tag tag)
             {
-                foreach(var prop in file.Tag.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance))
+                foreach(var prop in tag.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance))
                 {
                     if(!propertyNames.TryGetValue(prop.Name, out var name)) continue;
-                    var value = prop.GetValue(file.Tag);
+                    var value = prop.GetValue(tag);
                     if(value is ICollection collection)
                     {
                         foreach(var elem in collection)
@@ -125,9 +127,26 @@ namespace IS4.MultiArchiver.Analyzers
 
                     }
                 }
+
+                foreach(var inner in GetTags(tag))
+                {
+                    if((await analyzers.TryAnalyze(inner, context.WithNode(node))).Label is string s)
+                    {
+                        label = s;
+                    }
+                }
             }
 
-            return new AnalysisResult(node);
+            return new AnalysisResult(node, label);
+        }
+
+        static IEnumerable<Tag> GetTags(Tag tag)
+        {
+            if(tag is CombinedTag combined)
+            {
+                return combined.Tags;
+            }
+            return new[] { tag };
         }
 
         static readonly Dictionary<string, string> propertyNames = new Dictionary<string, string>
@@ -157,7 +176,7 @@ namespace IS4.MultiArchiver.Analyzers
 
         Uri IUriFormatter<string>.this[string name] => new Uri(Vocabularies.Uri.Nid3 + name, UriKind.Absolute);
 
-        string Analyze(ILinkedNode node, ICodec codec, ILinkedNodeFactory nodeFactory)
+        string Analyze(ILinkedNode node, ICodec codec)
         {
             string result = null;
             Set(node, Properties.Duration, codec.Duration);

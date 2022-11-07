@@ -13,20 +13,36 @@ namespace IS4.MultiArchiver
     {
         /// <summary>
         /// Dynamically calls <see cref="IEntityAnalyzers.Analyze{T}(T, AnalysisContext)"/>
-        /// based on the runtime type of <paramref name="entity"/>.
+        /// based on the runtime type of <paramref name="entity"/> constrained to type <typeparamref name="TConstraint"/>.
         /// </summary>
         /// <param name="analyzers">The instance of <see cref="IEntityAnalyzers"/> to use.</param>
         /// <param name="entity">The entity to analyze.</param>
         /// <param name="context">The context to be passed to <see cref="IEntityAnalyzers.Analyze{T}(T, AnalysisContext)"/>.</param>
+        /// <typeparam name="TConstraint">The constraining type to affect the selected runtime type.</typeparam>
         /// <returns>The result from the method, or the default value of <see cref="AnalysisResult"/> on failure.</returns>
-        public static async ValueTask<AnalysisResult> TryAnalyze(this IEntityAnalyzers analyzers, object entity, AnalysisContext context)
+        public static async ValueTask<AnalysisResult> TryAnalyze<TConstraint>(this IEntityAnalyzers analyzers, TConstraint entity, AnalysisContext context) where TConstraint : class
         {
             if(entity == null) return default;
             try{
-                return await analyzers.Analyze((dynamic)entity, context);
+                return await Constrained<TConstraint>.Analyze(analyzers, (dynamic)entity, context);
             }catch(RuntimeBinderException)
             {
                 return default;
+            }
+        }
+
+        /// <summary>
+        /// Helper class to constrain the <see cref="Analyze{T}(IEntityAnalyzers, T, AnalysisContext)"/> method
+        /// to an argument compatible with <typeparamref name="TConstraint"/>.
+        /// </summary>
+        /// <typeparam name="TConstraint">The constraining type.</typeparam>
+        static class Constrained<TConstraint>
+        {
+            /// <inheritdoc cref="IEntityAnalyzers.Analyze{T}(T, AnalysisContext)"/>
+            /// <param name="analyzers">The instance of <see cref="IEntityAnalyzers"/> to use.</param>
+            public static ValueTask<AnalysisResult> Analyze<T>(IEntityAnalyzers analyzers, T entity, AnalysisContext context) where T : class, TConstraint
+            {
+                return analyzers.Analyze(entity, context);
             }
         }
 
