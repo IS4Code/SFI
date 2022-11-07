@@ -10,9 +10,9 @@ namespace IS4.MultiArchiver.Analyzers
     /// <summary>
     /// An analyzer of format objects as instances of <see cref="IFormatObject"/>.
     /// </summary>
-    public class FormatObjectAnalyzer : EntityAnalyzer, IEntityAnalyzer<IFormatObject>, IResultFactory<AnalysisResult, (IFormatObject format, AnalysisContext context, IEntityAnalyzers analyzer)>
+    public class FormatObjectAnalyzer : EntityAnalyzer<IFormatObject>, IResultFactory<AnalysisResult, (IFormatObject format, AnalysisContext context, IEntityAnalyzers analyzer)>
     {
-        public ValueTask<AnalysisResult> Analyze(IFormatObject format, AnalysisContext context, IEntityAnalyzers analyzers)
+        public override ValueTask<AnalysisResult> Analyze(IFormatObject format, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             return format.GetValue(this, (format, context, analyzers));
         }

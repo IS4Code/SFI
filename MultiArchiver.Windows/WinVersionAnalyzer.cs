@@ -17,12 +17,12 @@ namespace IS4.MultiArchiver.Analyzers
     /// storing the VS_VERSIONINFO structure. The parsing of the structure is done
     /// through P/Invoke.
     /// </summary>
-    public class WinVersionAnalyzer : EntityAnalyzer, IEntityAnalyzer<WinVersionInfo>
+    public class WinVersionAnalyzer : EntityAnalyzer<WinVersionInfo>
     {
-        public ValueTask<AnalysisResult> Analyze(WinVersionInfo entity, AnalysisContext context, IEntityAnalyzers analyzers)
+        public async override ValueTask<AnalysisResult> Analyze(WinVersionInfo entity, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var node = GetNode(context);
-            return new ValueTask<AnalysisResult>(new AnalysisResult(node, ReadVersion(node, entity.Data)));
+            return new AnalysisResult(node, ReadVersion(node, entity.Data));
         }
         
         static readonly byte[] ansiVersionString = Encoding.ASCII.GetBytes("VS_VERSION_INFO");

@@ -21,7 +21,7 @@ namespace IS4.MultiArchiver.Analyzers
     /// It produces an instance of <see cref="IDataObject"/> storing the general information derived from the data,
     /// and an instance of <see cref="IBinaryFormatObject{T}"/> for each of the recognized format, for further analysis.
     /// </summary>
-    public sealed class DataAnalyzer : EntityAnalyzer, IEntityAnalyzer<IStreamFactory>, IEntityAnalyzer<byte[]>
+    public sealed class DataAnalyzer : EntityAnalyzer<IStreamFactory>, IEntityAnalyzer<byte[]>
 	{
         /// <summary>
         /// Stores an instance of <see cref="IHashedContentUriFormatter"/> to be used to
@@ -144,7 +144,7 @@ namespace IS4.MultiArchiver.Analyzers
             return Analyze(new MemoryStreamFactory(new ArraySegment<byte>(data), data, null), context, analyzers);
         }
 
-        public async ValueTask<AnalysisResult> Analyze(IStreamFactory streamFactory, AnalysisContext context, IEntityAnalyzers analyzers)
+        public async override ValueTask<AnalysisResult> Analyze(IStreamFactory streamFactory, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var match = await new DataAnalysis(this, streamFactory, context, analyzers).Match();
             var node = await match.NodeTask;

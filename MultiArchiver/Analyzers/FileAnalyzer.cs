@@ -13,7 +13,7 @@ namespace IS4.MultiArchiver.Analyzers
     /// <see cref="IFileInfo"/>, <see cref="IDirectoryInfo"/>, <see cref="FileInfo"/> or
     /// <see cref="DirectoryInfo"/>.
     /// </summary>
-    public sealed class FileAnalyzer : EntityAnalyzer, IEntityAnalyzer<IFileNodeInfo>, IEntityAnalyzer<FileInfo>, IEntityAnalyzer<DirectoryInfo>, IEntityAnalyzer<IFileInfo>, IEntityAnalyzer<IDirectoryInfo>
+    public sealed class FileAnalyzer : EntityAnalyzer<IFileNodeInfo>, IEntityAnalyzer<FileInfo>, IEntityAnalyzer<DirectoryInfo>, IEntityAnalyzer<IFileInfo>, IEntityAnalyzer<IDirectoryInfo>
     {
         /// <summary>
         /// A collection of used hash algorithms, as instances of <see cref="IFileHashAlgorithm"/>,
@@ -244,13 +244,13 @@ namespace IS4.MultiArchiver.Analyzers
             return analyzer.Analyze<IDirectoryInfo>(new DirectoryInfoWrapper(entity), context);
         }
 
-        public ValueTask<AnalysisResult> Analyze(IFileNodeInfo entity, AnalysisContext context, IEntityAnalyzers analyzer)
+        public async override ValueTask<AnalysisResult> Analyze(IFileNodeInfo entity, AnalysisContext context, IEntityAnalyzers analyzer)
         {
             switch(entity)
             {
-                case IFileInfo file: return Analyze(file, context, analyzer);
-                case IDirectoryInfo dir: return Analyze(dir, context, analyzer);
-                default: return new ValueTask<AnalysisResult>(new AnalysisResult(CreateNode(entity, context)));
+                case IFileInfo file: return await Analyze(file, context, analyzer);
+                case IDirectoryInfo dir: return await Analyze(dir, context, analyzer);
+                default: return new AnalysisResult(CreateNode(entity, context));
             }
         }
 

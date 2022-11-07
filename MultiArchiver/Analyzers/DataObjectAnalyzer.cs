@@ -11,9 +11,9 @@ namespace IS4.MultiArchiver.Analyzers
     /// <summary>
     /// An analyzer describing instances of <see cref="IDataObject"/>.
     /// </summary>
-    public class DataObjectAnalyzer : EntityAnalyzer, IEntityAnalyzer<IDataObject>
+    public class DataObjectAnalyzer : EntityAnalyzer<IDataObject>
     {
-        public async ValueTask<AnalysisResult> Analyze(IDataObject dataObject, AnalysisContext context, IEntityAnalyzers analyzers)
+        public async override ValueTask<AnalysisResult> Analyze(IDataObject dataObject, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var node = GetNode(context);
 

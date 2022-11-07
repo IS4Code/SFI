@@ -196,7 +196,7 @@ namespace IS4.MultiArchiver.Services
     }
 
     /// <summary>
-    /// A usual implementation of an analyzer, containing useful
+    /// A base implementation of an analyzer, containing useful
     /// functions for obtaining and initializing the node.
     /// It is still necessary to implement the concrete
     /// <see cref="IEntityAnalyzer{T}"/> type.
@@ -289,8 +289,23 @@ namespace IS4.MultiArchiver.Services
 
         public override string ToString()
         {
-            var typesId = String.Join("+", GetType().GetEntityAnalyzerTypes().Select(DataTools.GetIdentifierFromType).Distinct().Take(1));
+            var typesId = String.Join("+", GetType().GetEntityAnalyzerTypes().Select(DataTools.GetIdentifierFromType).Distinct());
             return String.IsNullOrEmpty(typesId) ? base.ToString() : typesId;
+        }
+    }
+
+    /// <summary>
+    /// An implementation of <see cref="IEntityAnalyzer{T}"/> where
+    /// <typeparamref name="T"/> is the primary analyzable type.
+    /// </summary>
+    /// <typeparam name="T">The primary type of entities accepted by this analyzer.</typeparam>
+    public abstract class EntityAnalyzer<T> : EntityAnalyzer, IEntityAnalyzer<T> where T : class
+    {
+        public abstract ValueTask<AnalysisResult> Analyze(T entity, AnalysisContext context, IEntityAnalyzers analyzers);
+
+        public override string ToString()
+        {
+            return DataTools.GetIdentifierFromType<T>() ?? base.ToString();
         }
     }
 }

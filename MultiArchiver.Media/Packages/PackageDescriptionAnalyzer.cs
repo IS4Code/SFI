@@ -9,13 +9,13 @@ namespace IS4.MultiArchiver.Analyzers
     /// Analyzes instances of <see cref="PackageDescription"/>, describing a directory or archive
     /// storing its description as metadata.
     /// </summary>
-    public class PackageDescriptionAnalyzer : EntityAnalyzer, IEntityAnalyzer<PackageDescription>
+    public class PackageDescriptionAnalyzer : EntityAnalyzer<PackageDescription>
     {
-        public ValueTask<AnalysisResult> Analyze(PackageDescription desc, AnalysisContext context, IEntityAnalyzers analyzers)
+        public async override ValueTask<AnalysisResult> Analyze(PackageDescription desc, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var node = GetNode(context);
             node.Set(Properties.Description, desc.Value);
-            return new ValueTask<AnalysisResult>(default(AnalysisResult));
+            return default(AnalysisResult);
         }
     }
 }

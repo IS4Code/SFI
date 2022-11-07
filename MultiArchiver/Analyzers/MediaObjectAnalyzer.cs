@@ -9,7 +9,7 @@ namespace IS4.MultiArchiver.Analyzers
     /// An analyzer of objects of type <typeparamref name="T"/>.
     /// </summary>
     /// <typeparam name="T">The type of objects supported by this analyzer.</typeparam>
-    public abstract class MediaObjectAnalyzer<T> : EntityAnalyzer, IEntityAnalyzer<T> where T : class
+    public abstract class MediaObjectAnalyzer<T> : EntityAnalyzer<T> where T : class
     {
         readonly IEnumerable<ClassUri> classes;
 
@@ -31,8 +31,6 @@ namespace IS4.MultiArchiver.Analyzers
 
         }
 
-        public abstract ValueTask<AnalysisResult> Analyze(T entity, AnalysisContext context, IEntityAnalyzers analyzers);
-
         /// <summary>
         /// Assigns the classes specified during construction of the analyzer to newly
         /// constructed nodes.
@@ -47,11 +45,6 @@ namespace IS4.MultiArchiver.Analyzers
             {
                 node.SetClass(cls);
             }
-        }
-
-        public override string ToString()
-        {
-            return DataTools.GetIdentifierFromType<T>() ?? base.ToString();
         }
     }
 }
