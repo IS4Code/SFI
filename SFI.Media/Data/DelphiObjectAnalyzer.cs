@@ -35,7 +35,7 @@ namespace IS4.SFI.Analyzers
             {
                 string? GetPath()
                 {
-                    return path == null ? key : path + "." + key;
+                    return path == null ? key : path + "/" + key;
                 }
 
                 switch(value)
