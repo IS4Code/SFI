@@ -14,16 +14,18 @@ namespace IS4.SFI.Formats
     public class GenericModuleFormat : ModuleFormat<GenericModuleFormat.Module>
     {
         /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
-        public GenericModuleFormat() : base("", null, "exe")
+        public GenericModuleFormat() : base("", "application/x-msdownload", "exe")
         {
 
         }
         
+        /// <inheritdoc/>
         public async override ValueTask<TResult?> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<Module, TResult, TArgs> resultFactory, TArgs args) where TResult : default
         {
             return await resultFactory(new Module(stream), args);
         }
-        
+
+        /// <inheritdoc/>
         public override string? GetMediaType(Module value)
         {
             return $"application/x-msdownload;format={value.Signature.ToLowerInvariant()}";
@@ -40,8 +42,12 @@ namespace IS4.SFI.Formats
             /// </summary>
             public string Signature { get; }
 
-            IModuleSignature IModule.Signature => null;
+            IModuleSignature? IModule.Signature => null;
 
+            /// <summary>
+            /// Loads the module from a stream.
+            /// </summary>
+            /// <param name="stream">The input stream in the MZ format.</param>
             public Module(Stream stream)
             {
                 var reader = new BinaryReader(stream, Encoding.ASCII, true);
@@ -66,8 +72,10 @@ namespace IS4.SFI.Formats
                 Signature = sig;
             }
 
+            /// <inheritdoc/>
             public ModuleType Type => ModuleType.Unknown;
 
+            /// <inheritdoc/>
             public IEnumerable<IModuleResource> ReadResources()
             {
                 return Array.Empty<IModuleResource>();
