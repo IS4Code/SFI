@@ -19,6 +19,7 @@ namespace IS4.SFI.Analyzers
         /// A collection of used hash algorithms, as instances of <see cref="IFileHashAlgorithm"/>,
         /// whose output is used to describe the file object.
         /// </summary>
+        [ComponentCollection("file-hash")]
         public ICollection<IFileHashAlgorithm> HashAlgorithms { get; } = new List<IFileHashAlgorithm>();
 
         /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>

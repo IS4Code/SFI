@@ -8,8 +8,9 @@
 
 <form @onsubmit="OnSubmit">
     <p><textarea @bind="Command" style="resize: both;" rows="4" cols="80" /></p>
-    <InputFile OnChange="OnInputFileChange" multiple />
-    <button type="submit">Execute</button>
+    <p><label>Input files: <InputFile OnChange="OnInputFileChange" multiple /></label></p>
+    <p><label>Plugins: <InputFile OnChange="OnPluginFileChange" multiple /></label></p>
+    <p><button type="submit">Execute</button></p>
 </form>
 
 <ul>
@@ -27,15 +28,21 @@
 </pre>
 
 @code {
-    Dictionary<string, IBrowserFile> inputFiles = new Dictionary<string, IBrowserFile>();
-    Dictionary<string, BlobArrayStream> outputFiles = new Dictionary<string, BlobArrayStream>();
+    Dictionary<string, IBrowserFile> inputFiles = new();
+    public static Dictionary<string, IBrowserFile> PluginFiles { get; private set; } = new();
+    Dictionary<string, BlobArrayStream> outputFiles = new();
     string Command { get; set; } = "describe -r urn:uuid: -d -x *-hash:* -h sha256 * output.ttl";
     List<string> outputChunks = new List<string>();
     WebEnvironment? webEnvironment;
 
     void OnInputFileChange(InputFileChangeEventArgs e)
     {
-        inputFiles = e.GetMultipleFiles().ToDictionary(f => f.Name, f => f, StringComparer.OrdinalIgnoreCase);
+        inputFiles = e.GetMultipleFiles().ToDictionary(f => f.Name, f => f, StringComparer.Ordinal);
+    }
+
+    void OnPluginFileChange(InputFileChangeEventArgs e)
+    {
+        PluginFiles = e.GetMultipleFiles().ToDictionary(f => f.Name, f => f, StringComparer.Ordinal);
     }
 
     async void OnSubmit()

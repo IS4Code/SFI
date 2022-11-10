@@ -18,12 +18,14 @@ namespace IS4.SFI
         /// <summary>
         /// A collection of analyzers, each implementing <see cref="IEntityAnalyzer{T}"/>.
         /// </summary>
+        [ComponentCollection("analyzer", typeof(IEntityAnalyzer<>))]
         public ICollection<object> Analyzers { get; } = new SortedSet<object>(EntityAnalyzerComparer.Instance);
 
         /// <summary>
         /// A collection of instances of <see cref="IContainerAnalyzerProvider"/> to use to
         /// process the hierarchy.
         /// </summary>
+        [ComponentCollection("container-format")]
         public ICollection<IContainerAnalyzerProvider> ContainerProviders { get; } = new List<IContainerAnalyzerProvider>();
 
         /// <summary>

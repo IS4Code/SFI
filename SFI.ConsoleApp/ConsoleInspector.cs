@@ -1,35 +1,31 @@
 ﻿using IS4.SFI.Analyzers;
+using IS4.SFI.Application;
 using IS4.SFI.Formats;
 using IS4.SFI.Services;
-using IS4.SFI.Tools;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using System.IO;
+using System.IO.Compression;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace IS4.SFI.ConsoleApp
 {
     /// <summary>
     /// The specific implementation of <see cref="Inspector"/> for the console application.
     /// </summary>
-    class ConsoleInspector : Inspector
+    class ConsoleInspector : ExtensibleInspector
     {
+        string baseDirectory = Path.Combine(AppContext.BaseDirectory, "plugins");
+
         /// <summary>
         /// The default image analyzer.
         /// </summary>
         public ImageAnalyzer ImageAnalyzer { get; }
 
-        public override ICollection<IDataHashAlgorithm> ImageDataHashAlgorithms => ImageAnalyzer.DataHashAlgorithms;
-
-        public override ICollection<IHashAlgorithm> ImageHashAlgorithms => new ConcreteCollectionWrapper<IHashAlgorithm, IObjectHashAlgorithm<Image>>(ImageAnalyzer.LowFrequencyImageHashAlgorithms);
-
-        readonly Plugins plugins;
-
         /// <inheritdoc/>
         public ConsoleInspector()
         {
-            plugins = new Plugins(this);
-
             Analyzers.Add(ImageAnalyzer = new ImageAnalyzer());
 
             ImageAnalyzer.LowFrequencyImageHashAlgorithms.Add(Analysis.Images.DHash.Instance);
@@ -42,10 +38,8 @@ namespace IS4.SFI.ConsoleApp
             }
         }
 
-        public override void AddDefault()
+        public async override ValueTask AddDefault()
         {
-            base.AddDefault();
-
             DataAnalyzer.DataFormats.Add(new ZipFormat());
             DataAnalyzer.DataFormats.Add(new RarFormat());
             DataAnalyzer.DataFormats.Add(new SevenZipFormat());
@@ -103,97 +97,59 @@ namespace IS4.SFI.ConsoleApp
             Analyzers.Add(new InternetShortcutAnalyzer());
             Analyzers.Add(new ShellLinkAnalyzer());
 
-            LoadPlugins();
+            Plugins.Clear();
+            foreach(var plugin in LoadPlugins())
+            {
+                Plugins.Add(plugin);
+            }
+
+            await base.AddDefault();
         }
 
-        void LoadPlugins()
+        IEnumerable<Plugin> LoadPlugins()
         {
-            var loaded = new Dictionary<Assembly, int>();
-
-            foreach(var (type, ctor) in plugins.LoadPlugins("plugins"))
+            foreach(var dir in Directory.EnumerateDirectories(baseDirectory))
             {
-                object? instance = null;
-                bool error = false;
-
-                bool CreateInstance<T>(out T result) where T : class
-                {
-                    // Re-use instance if already created for different types
-                    if(instance == null && !error)
-                    {
-                        try{
-                            instance = ctor();
-                            if(!loaded.TryGetValue(type.Assembly, out var count))
-                            {
-                                count = 0;
-                            }
-                            loaded[type.Assembly] = count + 1;
-                        }catch(Exception e) when(GlobalOptions.SuppressNonCriticalExceptions)
-                        {
-                            OutputLog?.WriteLine($"An exception occurred while creating an instance of type {type} from assembly {type.Assembly.GetName().Name}: {e}");
-                            // Prevents attempting to create the instance next time
-                            error = true;
-                        }
-                    }
-                    result = (instance as T)!;
-                    return result != null;
-                }
-
-                if(type.IsEntityAnalyzerType())
-                {
-                    if(CreateInstance<object>(out var analyzer))
-                    {
-                        Analyzers.Add(analyzer);
-                    }
-                }
-                if(type.IsAssignableTo(typeof(IBinaryFileFormat)))
-                {
-                    if(CreateInstance<IBinaryFileFormat>(out var format))
-                    {
-                        DataAnalyzer.DataFormats.Add(format);
-                    }
-                }
-                if(type.IsAssignableTo(typeof(IXmlDocumentFormat)))
-                {
-                    if(CreateInstance<IXmlDocumentFormat>(out var format))
-                    {
-                        XmlAnalyzer.XmlFormats.Add(format);
-                    }
-                }
-                if(type.IsAssignableTo(typeof(IContainerAnalyzerProvider)))
-                {
-                    if(CreateInstance<IContainerAnalyzerProvider>(out var provider))
-                    {
-                        ContainerProviders.Add(provider);
-                    }
-                }
-                if(type.IsAssignableTo(typeof(IDataHashAlgorithm)))
-                {
-                    if(CreateInstance<IDataHashAlgorithm>(out var hash))
-                    {
-                        DataAnalyzer.HashAlgorithms.Add(hash);
-                        ImageAnalyzer.DataHashAlgorithms.Add(hash);
-                    }
-                }
-                if(type.IsAssignableTo(typeof(IFileHashAlgorithm)))
-                {
-                    if(CreateInstance<IFileHashAlgorithm>(out var hash))
-                    {
-                        FileAnalyzer.HashAlgorithms.Add(hash);
-                    }
-                }
-                if(type.IsAssignableTo(typeof(IObjectHashAlgorithm<Image>)))
-                {
-                    if(CreateInstance<IObjectHashAlgorithm<Image>>(out var hash))
-                    {
-                        ImageAnalyzer.LowFrequencyImageHashAlgorithms.Add(hash);
-                    }
-                }
+                yield return GetPluginFromDirectory(dir);
             }
 
-            foreach(var (asm, count) in loaded)
+            foreach(var zip in Directory.EnumerateFiles(baseDirectory, "*.zip"))
             {
-                OutputLog?.WriteLine($"Loaded {count} component{(count == 1 ? "" : "s")} from assembly {asm.GetName().Name}.");
+                yield return GetPluginFromZip(zip);
             }
+        }
+
+        Plugin GetPluginFromDirectory(string dir)
+        {
+            // Look for a file with .dll and the same name as the directory
+            var name = Path.GetFileName(dir) + ".dll";
+            var info = new DirectoryInfo(dir);
+            return new Plugin(GetDirectory(info), name);
+        }
+
+        Plugin GetPluginFromZip(string file)
+        {
+            // Look for a file with .zip changed to .dll
+            var name = Path.ChangeExtension(Path.GetFileName(file), "dll");
+            ZipArchive archive;
+            try{
+                archive = ZipFile.OpenRead(file);
+            }catch(Exception e)
+            {
+                OutputLog?.WriteLine($"An error occurred while opening plugin archive {Path.GetFileName(file)}: " + e);
+                return default;
+            }
+            return new Plugin(GetDirectory(archive), name);
+        }
+
+        protected override Assembly LoadFromFile(IFileInfo file, IDirectoryInfo mainDirectory)
+        {
+            // Add directories for assembly lookup:
+            var context = new PluginLoadContext();
+            context.AddDirectory(mainDirectory);
+            context.AddDirectory(baseDirectory);
+            context.AddDirectory(AppContext.BaseDirectory);
+            return context.LoadFromFile(file);
         }
     }
 }

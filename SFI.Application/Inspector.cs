@@ -66,18 +66,6 @@ namespace IS4.SFI
         public virtual string OutputMediaType => "text/turtle;charset=utf-8";
 
         /// <summary>
-        /// Provides the collection of data hash algorithms used by the
-        /// default image analyzer, if there is any.
-        /// </summary>
-        public virtual ICollection<IDataHashAlgorithm> ImageDataHashAlgorithms => Array.Empty<IDataHashAlgorithm>();
-
-        /// <summary>
-        /// Provides the collection of image hash algorithms used by the
-        /// default image analyzer, if there is any.
-        /// </summary>
-        public virtual ICollection<IHashAlgorithm> ImageHashAlgorithms => Array.Empty<IHashAlgorithm>();
-
-        /// <summary>
         /// Creates a new instance of the inspector and initializes several
         /// core analyzers.
         /// </summary>
@@ -122,7 +110,7 @@ namespace IS4.SFI
         /// <summary>
         /// Adds the default formats and analyzers.
         /// </summary>
-        public virtual void AddDefault()
+        public virtual async ValueTask AddDefault()
         {
             DataAnalyzer.DataFormats.Add(new XmlFileFormat());
             DataAnalyzer.DataFormats.Add(new X509CertificateFormat());
@@ -459,88 +447,6 @@ namespace IS4.SFI
             using(var textWriter = OpenFile(outputFactory, options.CompressedOutput, options))
             {
                 graph.SaveToStream(textWriter, writer);
-            }
-        }
-
-        /// <summary>
-        /// A wrapper collection used to implement members such as <see cref="ImageHashAlgorithms"/>
-        /// using a general type while operating on a collection with a more specific type.
-        /// </summary>
-        /// <typeparam name="TGeneral">
-        /// The general element type, affecting the concrete type of <see cref="ICollection{T}"/>
-        /// implemented by this type.
-        /// </typeparam>
-        /// <typeparam name="TSpecific">
-        /// The specific element type, determining the type of the underlying instance of <see cref="ICollection{T}"/>.
-        /// </typeparam>
-        protected class ConcreteCollectionWrapper<TGeneral, TSpecific>
-            : ICollection<TGeneral>, IPersistentKey
-            where TGeneral : notnull
-            where TSpecific : TGeneral
-        {
-            readonly ICollection<TSpecific> inner;
-
-            /// <summary>
-            /// Creates a new instance of the wrapper.
-            /// </summary>
-            /// <param name="inner">The underlying collection.</param>
-            public ConcreteCollectionWrapper(ICollection<TSpecific> inner)
-            {
-                this.inner = inner;
-            }
-
-            /// <inheritdoc/>
-            public int Count => inner.Count;
-
-            /// <inheritdoc/>
-            public bool IsReadOnly => inner.IsReadOnly;
-
-            object? IPersistentKey.ReferenceKey => inner;
-
-            object? IPersistentKey.DataKey => null;
-
-            /// <inheritdoc/>
-            public void Add(TGeneral item)
-            {
-                inner.Add((TSpecific)item);
-            }
-
-            /// <inheritdoc/>
-            public void Clear()
-            {
-                inner.Clear();
-            }
-
-            /// <inheritdoc/>
-            public bool Contains(TGeneral item)
-            {
-                return item is TSpecific item2 && inner.Contains(item2);
-            }
-
-            /// <inheritdoc/>
-            public void CopyTo(TGeneral[] array, int arrayIndex)
-            {
-                foreach(var specific in inner)
-                {
-                    array[arrayIndex++] = specific;
-                }
-            }
-
-            /// <inheritdoc/>
-            public IEnumerator<TGeneral> GetEnumerator()
-            {
-                foreach(var specific in inner) yield return specific;
-            }
-
-            /// <inheritdoc/>
-            public bool Remove(TGeneral item)
-            {
-                return item is TSpecific item2 && inner.Remove(item2);
-            }
-
-            System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-            {
-                return inner.GetEnumerator();
             }
         }
     }

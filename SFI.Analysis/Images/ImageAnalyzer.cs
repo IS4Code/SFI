@@ -24,12 +24,14 @@ namespace IS4.SFI.Analyzers
         /// A collection of <see cref="Image"/>-based hash algorithms that produce
         /// hashes from the low-detail form of the image.
         /// </summary>
+        [ComponentCollection("image-hash")]
         public ICollection<IObjectHashAlgorithm<Image>> LowFrequencyImageHashAlgorithms { get; } = new List<IObjectHashAlgorithm<Image>>();
 
         /// <summary>
         /// A collection of byte-based hash algorithms producing hashes
         /// from the individual pixels of the image.
         /// </summary>
+        [ComponentCollection("pixel-hash")]
         public ICollection<IDataHashAlgorithm> DataHashAlgorithms { get; } = new List<IDataHashAlgorithm>();
 
         /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>

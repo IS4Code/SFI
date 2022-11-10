@@ -1,4 +1,6 @@
-﻿using IS4.SFI.Services;
+﻿using IS4.SFI.Application;
+using IS4.SFI.Services;
+using MorseCode.ITask;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,7 +14,7 @@ namespace IS4.SFI
 	/// The main application for analyzing input files and producing output.
 	/// </summary>
 	/// <typeparam name="TInspector">The type of <see cref="Inspector"/> to use.</typeparam>
-    public class Application<TInspector> : CommandApplication where TInspector : Inspector, new()
+    public class Application<TInspector> : CommandApplication, IResultFactory<ValueTuple, string>, IResultFactory<bool, string> where TInspector : ComponentInspector, new()
     {
         readonly IApplicationEnvironment environment;
 
@@ -78,21 +80,17 @@ namespace IS4.SFI
 
 				var inspector = new TInspector();
 				inspector.OutputLog = writer;
-				inspector.AddDefault();
+				await inspector.AddDefault();
 
 				// Print the available components
 				switch(mode)
 				{
 					case Mode.List:
 						LogWriter.WriteLine("Included components:");
-						PrintComponents("analyzer", inspector.Analyzers);
-						PrintComponents("data-format", inspector.DataAnalyzer.DataFormats);
-						PrintComponents("xml-format", inspector.XmlAnalyzer.XmlFormats);
-						PrintComponents("container-format", inspector.ContainerProviders);
-						PrintComponents("data-hash", inspector.DataAnalyzer.HashAlgorithms);
-						PrintComponents("file-hash", inspector.FileAnalyzer.HashAlgorithms);
-						PrintComponents("pixel-hash", inspector.ImageDataHashAlgorithms);
-						PrintComponents("image-hash", inspector.ImageHashAlgorithms);
+						foreach(var collection in inspector.ComponentCollections)
+						{
+							await collection.ForEach(this);
+						}
 						return;
 				}
 
@@ -109,14 +107,10 @@ namespace IS4.SFI
 				// Filter out the components based on arguments
 
 				int componentCount = 0;
-				FilterComponents("analyzer", inspector.Analyzers, ref componentCount);
-				FilterComponents("data-format", inspector.DataAnalyzer.DataFormats, ref componentCount);
-				FilterComponents("xml-format", inspector.XmlAnalyzer.XmlFormats, ref componentCount);
-				FilterComponents("container-format", inspector.ContainerProviders, ref componentCount);
-				FilterComponents("data-hash", inspector.DataAnalyzer.HashAlgorithms, ref componentCount);
-				FilterComponents("file-hash", inspector.FileAnalyzer.HashAlgorithms, ref componentCount);
-				FilterComponents("pixel-hash", inspector.ImageDataHashAlgorithms, ref componentCount);
-				FilterComponents("image-hash", inspector.ImageHashAlgorithms, ref componentCount);
+				foreach(var collection in inspector.ComponentCollections)
+				{
+					componentCount += await collection.Filter(this);
+				}
 
 				writer.WriteLine($"Included {componentCount} components in total.");
 
@@ -189,9 +183,15 @@ namespace IS4.SFI
             }
         }
 
-		bool IsIncluded<T>(string prefix, T item, out string name)
+		/// <summary>
+		/// Checks whether a component is matched by the inner list of matchers.
+		/// </summary>
+		/// <typeparam name="T">The type of the component.</typeparam>
+		/// <param name="component">The component object.</param>
+		/// <param name="name">The name of the component.</param>
+		/// <returns>Whether the component should be included.</returns>
+		bool IsIncluded<T>(T component, string name)
 		{
-			name = $"{prefix}:{DataTools.GetUserFriendlyName(item)}";
 			var included = true;
 			foreach(var (result, matcher) in componentMatchers)
             {
@@ -202,53 +202,16 @@ namespace IS4.SFI
 			return included;
 		}
 
-		/// <summary>
-		/// Outputs a list of configurable components, removing everything not matched
-		/// by <see cref="IsIncluded{T}(string, T, out string)"/>.
-		/// </summary>
-		void PrintComponents<T>(string prefix, IEnumerable<T> list) where T : notnull
+		async ITask<ValueTuple> IResultFactory<ValueTuple, string>.Invoke<T>(T value, string name)
 		{
-			foreach(var item in list)
-			{
-				if(IsIncluded(prefix, item, out var name))
-				{
-					LogWriter.WriteLine($" - {name} ({DataTools.GetUserFriendlyName(item.GetType())})");
-				}
-            }
-        }
+			LogWriter?.WriteLine($" - {name} ({DataTools.GetUserFriendlyName(value.GetType())})");
+			return default;
+		}
 
-		/// <summary>
-		/// Filters a list of configurable components, removing everything not matched
-		/// by <see cref="IsIncluded{T}(string, T, out string)"/>.
-		/// </summary>
-		void FilterComponents<T>(string prefix, ICollection<T> collection, ref int count)
-        {
-			switch(collection)
-            {
-				case SortedSet<T> sortedSet:
-					sortedSet.RemoveWhere(item => !IsIncluded(prefix, item, out _));
-					break;
-				case List<T> list:
-					list.RemoveAll(item => !IsIncluded(prefix, item, out _));
-					break;
-				default:
-					var filtered = new List<T>();
-					foreach(var item in collection)
-					{
-						if(!IsIncluded(prefix, item, out _))
-						{
-							filtered.Add(item);
-						}
-					}
-					foreach(var item in filtered)
-					{
-						collection.Remove(item);
-					}
-					break;
-            }
-
-			count += collection.Count;
-        }
+		async ITask<bool> IResultFactory<bool, string>.Invoke<T>(T value, string name)
+		{
+			return IsIncluded(value, name);
+		}
 
 		/// <inheritdoc/>
 		protected override string Usage => $"({String.Join("|", modeNames)}) [options] input... output";

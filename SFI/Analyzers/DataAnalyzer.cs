@@ -35,6 +35,7 @@ namespace IS4.SFI.Analyzers
         /// A collection of used hash algorithms, as instances of <see cref="IDataHashAlgorithm"/>,
         /// whose output is used to describe the data object or to create its URI if it is too long.
         /// </summary>
+        [ComponentCollection("data-hash")]
         public ICollection<IDataHashAlgorithm> HashAlgorithms { get; } = new List<IDataHashAlgorithm>();
 
         /// <summary>
@@ -47,6 +48,7 @@ namespace IS4.SFI.Analyzers
         /// A collection of recognized formats, as instances of <see cref="IBinaryFileFormat"/>.
         /// They are sorted based on descending <see cref="IBinaryFileFormat.HeaderLength"/>.
         /// </summary>
+        [ComponentCollection("data-format")]
         public ICollection<IBinaryFileFormat> DataFormats { get; } = new SortedSet<IBinaryFileFormat>(HeaderLengthComparer.Instance);
 
         /// <summary>

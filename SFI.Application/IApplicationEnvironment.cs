@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace IS4.SFI
+namespace IS4.SFI.Application
 {
     /// <summary>
     /// Provides environment-specific properties and methods.
