@@ -1,10 +1,13 @@
 ﻿using IS4.SFI.Services;
 using IS4.SFI.Tools;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.ExceptionServices;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace IS4.SFI
@@ -38,10 +41,18 @@ namespace IS4.SFI
         /// </summary>
         public event Func<ValueTask>? Updated;
 
+        /// <summary>
+        /// Invokes the <see cref="Updated"/> event.
+        /// </summary>
         private ValueTask Update()
         {
             return (Updated?.Invoke()).GetValueOrDefault();
         }
+
+        /// <summary>
+        /// Stores a counter for every encountered entity type identifier.
+        /// </summary>
+        readonly ConcurrentDictionary<string, StrongBox<long>> typeCounters = new(StringComparer.OrdinalIgnoreCase);
 
         /// <summary>
         /// Traverses the <see cref="Analyzers"/> and picks the first to implement
@@ -51,6 +62,8 @@ namespace IS4.SFI
         private async ValueTask<AnalysisResult> Analyze<T>(T entity, AnalysisContext context, IEntityAnalyzers analyzers) where T : class
         {
             var nameShort = DataTools.GetIdentifierFromType<T>();
+            var id = Interlocked.Increment(ref typeCounters.GetOrAdd(nameShort, _ => new StrongBox<long>(0)).Value);
+            nameShort += "#" + id;
             var nameLong = DataTools.GetUserFriendlyName(entity);
 
             foreach(var analyzer in Analyzers.OfType<IEntityAnalyzer<T>>())
