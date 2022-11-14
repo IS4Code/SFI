@@ -108,14 +108,17 @@ namespace IS4.SFI.ConsoleApp
 
         IEnumerable<Plugin> LoadPlugins()
         {
-            foreach(var dir in Directory.EnumerateDirectories(baseDirectory))
+            if(Directory.Exists(baseDirectory))
             {
-                yield return GetPluginFromDirectory(dir);
-            }
+                foreach(var dir in Directory.EnumerateDirectories(baseDirectory))
+                {
+                    yield return GetPluginFromDirectory(dir);
+                }
 
-            foreach(var zip in Directory.EnumerateFiles(baseDirectory, "*.zip"))
-            {
-                yield return GetPluginFromZip(zip);
+                foreach(var zip in Directory.EnumerateFiles(baseDirectory, "*.zip"))
+                {
+                    yield return GetPluginFromZip(zip);
+                }
             }
         }
 
