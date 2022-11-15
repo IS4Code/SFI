@@ -165,14 +165,6 @@ namespace IS4.SFI.Application
         {
             switch(Collection)
             {
-                case SortedSet<T> sortedSet:
-                    try{
-                        sortedSet.RemoveWhere(item => !resultFactory.Invoke(item, GetIdentifier(item)).Result);
-                    }catch(SynchronizationLockException)
-                    {
-                        goto default;
-                    }
-                    break;
                 case List<T> list:
                     try{
                         list.RemoveAll(item => !resultFactory.Invoke(item, GetIdentifier(item)).Result);
@@ -182,17 +174,21 @@ namespace IS4.SFI.Application
                     }
                     break;
                 default:
-                    var filtered = new List<T>();
+                    var remaining = new List<T>();
                     foreach(var item in Collection)
                     {
-                        if(!await resultFactory.Invoke(item, GetIdentifier(item)))
+                        if(await resultFactory.Invoke(item, GetIdentifier(item)))
                         {
-                            filtered.Add(item);
+                            remaining.Add(item);
                         }
                     }
-                    foreach(var item in filtered)
+                    if(remaining.Count < Collection.Count)
                     {
-                        Collection.Remove(item);
+                        Collection.Clear();
+                        foreach(var item in remaining)
+                        {
+                            Collection.Add(item);
+                        }
                     }
                     break;
             }
