@@ -145,7 +145,7 @@ namespace IS4.SFI.Tools.Xml
             try{
                 if(!channel.TryRead(out currentState))
                 {
-                    currentState = await channel.ReadAsync();
+                    currentState = await channel.ReadAsync().ConfigureAwait(false);
                 }
                 return (currentState?.NodeType ?? 0) != 0;
             }catch(ChannelClosedException)

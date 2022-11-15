@@ -20,11 +20,11 @@ namespace IS4.SFI
         /// <param name="context">The context to be passed to <see cref="IEntityAnalyzers.Analyze{T}(T, AnalysisContext)"/>.</param>
         /// <typeparam name="TConstraint">The constraining type to affect the selected runtime type.</typeparam>
         /// <returns>The result from the method, or the default value of <see cref="AnalysisResult"/> on failure.</returns>
-        public static async ValueTask<AnalysisResult> TryAnalyze<TConstraint>(this IEntityAnalyzers analyzers, TConstraint entity, AnalysisContext context) where TConstraint : class
+        public static ValueTask<AnalysisResult> TryAnalyze<TConstraint>(this IEntityAnalyzers analyzers, TConstraint entity, AnalysisContext context) where TConstraint : class
         {
             if(entity == null) return default;
             try{
-                return await Constrained<TConstraint>.Analyze(analyzers, (dynamic)entity, context);
+                return Constrained<TConstraint>.Analyze(analyzers, (dynamic)entity, context);
             }catch(RuntimeBinderException)
             {
                 return default;

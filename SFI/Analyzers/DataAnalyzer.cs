@@ -255,9 +255,9 @@ namespace IS4.SFI.Analyzers
                                 var segment = buffer.Slice(0, read);
                                 async Task WriteToHasher(ChannelWriter<ArraySegment<byte>> writer)
                                 {
-                                    await writer.WriteAsync(segment);
-                                    await writer.WriteAsync(default);
-                                    await writer.WaitToWriteAsync();
+                                    await writer.WriteAsync(segment).ConfigureAwait(false);
+                                    await writer.WriteAsync(default).ConfigureAwait(false);
+                                    await writer.WaitToWriteAsync().ConfigureAwait(false);
                                 }
                                 var writing = activeHashes.Select(hash => Task.WhenAny(WriteToHasher(hash.writer), hash.data)).ToArray();
 

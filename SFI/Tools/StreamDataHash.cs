@@ -58,7 +58,7 @@ namespace IS4.SFI.Tools
                 {
                     case IAsyncEnumerator<ArraySegment<byte>> collection:
                     {
-                        while(await collection.MoveNextAsync())
+                        while(await collection.MoveNextAsync().ConfigureAwait(false))
                         {
                             var segment = collection.Current;
                             if(segment.Count > 0)

@@ -229,7 +229,7 @@ namespace IS4.SFI.Tools.IO
                         // The current sequence was depleted, get the next one
                         if(!channelReader.TryRead(out current))
                         {
-                            current = await channelReader.ReadAsync(cancellationToken);
+                            current = await channelReader.ReadAsync(cancellationToken).ConfigureAwait(false);
                         }
                     }
                     read += ReadInner(buffer, ref offset, ref count);
@@ -327,7 +327,7 @@ namespace IS4.SFI.Tools.IO
                         // The current sequence was depleted, get the next one
                         if(!channelReader.TryRead(out current))
                         {
-                            current = await channelReader.ReadAsync(cancellationToken);
+                            current = await channelReader.ReadAsync(cancellationToken).ConfigureAwait(false);
                         }
                     }
                     result = ReadByteInner();
@@ -397,7 +397,7 @@ namespace IS4.SFI.Tools.IO
             try{
                 if(!channelReader.TryRead(out current))
                 {
-                    current = await channelReader.ReadAsync();
+                    current = await channelReader.ReadAsync().ConfigureAwait(false);
                 }
                 return true;
             }catch(ChannelClosedException)

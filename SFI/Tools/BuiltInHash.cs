@@ -102,7 +102,7 @@ namespace IS4.SFI.Tools
                 const int bufferSize = 4096;
                 var buffer = new byte[bufferSize];
                 int bytesRead;
-                while((bytesRead = await input.ReadAsync(buffer, 0, bufferSize)) != 0)
+                while((bytesRead = await input.ReadAsync(buffer, 0, bufferSize).ConfigureAwait(false)) != 0)
                 {
                     algorithm.TransformBlock(buffer, 0, bytesRead, buffer, 0);
                 }

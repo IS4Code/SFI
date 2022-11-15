@@ -260,9 +260,9 @@ namespace IS4.SFI.Windows
                         var writer = GetWriter(hf)!;
                         async Task Inner()
                         {
-                            await writer.WriteAsync(new UnmanagedMemoryRange(memory, unchecked((int)cb)));
-                            await writer.WriteAsync(default);
-                            await writer.WaitToWriteAsync();
+                            await writer.WriteAsync(new UnmanagedMemoryRange(memory, unchecked((int)cb))).ConfigureAwait(false);
+                            await writer.WriteAsync(default).ConfigureAwait(false);
+                            await writer.WaitToWriteAsync().ConfigureAwait(false);
                         }
                         Inner().Wait();
                         return cb;

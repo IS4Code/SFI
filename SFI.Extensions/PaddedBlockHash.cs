@@ -55,7 +55,7 @@ namespace IS4.SFI
         {
             using(var stream = new MemoryStream(data, false))
             {
-                return await ComputeHash(stream, key);
+                return await ComputeHash(stream, key).ConfigureAwait(false);
             }
         }
 
@@ -64,7 +64,7 @@ namespace IS4.SFI
         {
             using(var stream = new MemoryStream(data, offset, count, false))
             {
-                return await ComputeHash(stream, key);
+                return await ComputeHash(stream, key).ConfigureAwait(false);
             }
         }
 
