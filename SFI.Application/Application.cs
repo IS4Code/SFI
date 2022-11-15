@@ -209,9 +209,12 @@ namespace IS4.SFI
 			return included;
 		}
 
-		async ITask<ValueTuple> IResultFactory<ValueTuple, string>.Invoke<T>(T value, string name)
+		async ITask<ValueTuple> IResultFactory<ValueTuple, string>.Invoke<T>(T component, string name)
 		{
-			LogWriter?.WriteLine($" - {name} ({DataTools.GetUserFriendlyName(value.GetType())})");
+			if(IsIncluded(component, name))
+			{
+				LogWriter?.WriteLine($" - {name} ({DataTools.GetUserFriendlyName(component.GetType())})");
+			}
 			return default;
 		}
 
