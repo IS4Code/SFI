@@ -247,8 +247,8 @@ namespace IS4.SFI
                 }else{
                     if(!String.IsNullOrEmpty(type.Namespace))
                     {
-                        // Get all similarly named types in the assembly
-                        var similarTypes = type.Assembly.GetTypes().Where(t => t.IsPublic && !t.Equals(type) && t.Name.Equals(type.Name, StringComparison.OrdinalIgnoreCase));
+                        // Get all similarly named visible types in the assembly
+                        var similarTypes = type.Assembly.ExportedTypes.Where(t => t.Name.Equals(type.Name, StringComparison.OrdinalIgnoreCase) && !t.Equals(type));
                         // Get the length of the namespace prefix shared by all these types
                         int prefix = similarTypes.Select(t => CommonPrefix(t.Namespace, type.Namespace)).DefaultIfEmpty(type.Namespace.Length).Max();
                         // Prepend the determining part of the namespace to the name
