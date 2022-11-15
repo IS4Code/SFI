@@ -2,6 +2,7 @@
 using IS4.SFI.Services;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -14,11 +15,17 @@ namespace IS4.SFI.ConsoleApp
     /// </summary>
     class Program : IApplicationEnvironment
     {
+        /// <inheritdoc/>
         public int WindowWidth => Console.WindowWidth;
 
+        /// <inheritdoc/>
         public TextWriter LogWriter => Console.Error;
 
+        /// <inheritdoc/>
         public string NewLine => Environment.NewLine;
+
+        /// <inheritdoc/>
+        public string? ExecutableName => Path.GetFileNameWithoutExtension(Process.GetCurrentProcess().MainModule?.ModuleName);
 
         /// <summary>
         /// The entry point of the program.

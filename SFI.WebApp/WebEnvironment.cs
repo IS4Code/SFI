@@ -35,6 +35,9 @@ namespace IS4.SFI.WebApp
         /// </summary>
         public bool Disposed { get; private set; }
 
+        /// <inheritdoc/>
+        public string? ExecutableName => "";
+
         /// <summary>
         /// Creates a new instance of the environment.
         /// </summary>

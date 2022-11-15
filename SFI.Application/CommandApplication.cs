@@ -105,7 +105,12 @@ namespace IS4.SFI
 			Banner();
 			Description();
 			LogWriter.WriteLine();
-			LogWriter.WriteLine("Usage: {0} {1}", ExecutableName, Usage);
+			if(String.IsNullOrWhiteSpace(ExecutableName))
+			{
+				LogWriter.WriteLine("Usage: {1}", Usage);
+			}else{
+				LogWriter.WriteLine("Usage: {0} {1}", ExecutableName, Usage);
+			}
 			LogWriter.WriteLine();
 			
 			string optFormat = " -{0} [ --{1} ] {2} ";
@@ -180,15 +185,6 @@ namespace IS4.SFI
 			{
 				LogWriter.WriteLine();
 			}
-		}
-		
-		/// <summary>
-		/// Produces a log message with the application name.
-		/// </summary>
-		/// <param name="message">The text of the message.</param>
-		public void Log(string message)
-		{
-			LogWriter.WriteLine("[{0}] {1}", ApplicationName, message);
 		}
 		
 		/// <summary>

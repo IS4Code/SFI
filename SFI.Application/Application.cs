@@ -26,7 +26,10 @@ namespace IS4.SFI
 		/// <inheritdoc/>
 		protected override int WindowWidth => environment.WindowWidth;
 
-		readonly InspectorOptions options;
+		/// <inheritdoc/>
+		protected override string ExecutableName => environment.ExecutableName ?? base.ExecutableName;
+
+        readonly InspectorOptions options;
 
 		static readonly IEnumerable<string> modeNames = Enum.GetNames(typeof(Mode)).Select(n => n.ToLowerInvariant());
 
@@ -158,7 +161,7 @@ namespace IS4.SFI
 
 			}catch(Exception e) when(GlobalOptions.SuppressNonCriticalExceptions)
 			{
-				Log(e.Message);
+				LogWriter.WriteLine(e.Message);
 			}
         }
 

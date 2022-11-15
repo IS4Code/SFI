@@ -26,6 +26,11 @@ namespace IS4.SFI.Application
         TextWriter LogWriter { get; }
 
         /// <summary>
+        /// The name of the executable.
+        /// </summary>
+        string? ExecutableName { get; }
+
+        /// <summary>
         /// Retrieves a collection of files identified by <paramref name="path"/>.
         /// </summary>
         /// <param name="path">The path to the files, supporting wildcard.</param>
