@@ -113,6 +113,14 @@ namespace IS4.SFI
 				foreach(var collection in inspector.ComponentCollections)
 				{
 					componentCount += await collection.Filter(this);
+					foreach(var component in collection.Collection)
+					{
+						// Subscribe to the OutputFile event
+						if(component is IHasFileOutput fileOutput)
+						{
+							fileOutput.OutputFile += OnOutputFile;
+						}
+					}
 				}
 
 				writer.WriteLine($"Included {componentCount} components in total.");
@@ -133,14 +141,10 @@ namespace IS4.SFI
 				
 				options.Queries = queries.SelectMany(query => environment.GetFiles(query));
 
-				foreach(var analyzer in inspector.Analyzers.OfType<IHasFileOutput>())
-                {
-					analyzer.OutputFile += OnOutputFile;
-				}
-
 				var update = environment.Update();
 				if(!update.IsCompleted)
 				{
+					// Only subscribe when the operation is asynchronous
 					await update;
 					inspector.Updated += environment.Update;
 				}
