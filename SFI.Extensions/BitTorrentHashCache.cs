@@ -29,9 +29,9 @@ namespace IS4.SFI
         /// <param name="blockSize">The block size of individually hashed sections.</param>
         /// <param name="file">The file to hash.</param>
         /// <returns>The information about the file.</returns>
-        public static Task<FileInfo> GetCachedInfo(int blockSize, IFileNodeInfo file)
+        public static async ValueTask<FileInfo> GetCachedInfo(int blockSize, IFileNodeInfo file)
         {
-            return GetCache(blockSize)[file];
+            return await GetCache(blockSize)[file];
         }
 
         /// <summary>

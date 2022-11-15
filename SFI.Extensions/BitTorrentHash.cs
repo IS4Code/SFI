@@ -90,7 +90,7 @@ namespace IS4.SFI
             })).GetValueOrDefault();
         }
 
-        private async Task<BDictionary> CreateDictionary(IFileNodeInfo fileNode, bool content)
+        private async ValueTask<BDictionary> CreateDictionary(IFileNodeInfo fileNode, bool content)
         {
             var dict = new BDictionary();
             byte[] buffer;
