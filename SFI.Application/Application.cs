@@ -57,7 +57,7 @@ namespace IS4.SFI
 		Mode? mode;
 		readonly List<string> inputs = new();
 		readonly List<string> queries = new();
-		readonly List<(bool result, Predicate<string> matcher)> componentMatchers = new();
+		readonly List<Matcher> componentMatchers = new();
 		Regex? mainHash;
 		string? output;
 
@@ -122,6 +122,14 @@ namespace IS4.SFI
 						}
 					}
 				}
+
+				foreach(var matcher in componentMatchers)
+                {
+					if(!matcher.HadEffect && matcher.Pattern != null)
+					{
+						writer.WriteLine($"Warning: Pattern '{matcher.Pattern}' did not {(matcher.Result ? "include" : "exclude")} any components!");
+					}
+                }
 
 				writer.WriteLine($"Included {componentCount} components in total.");
 
@@ -200,11 +208,14 @@ namespace IS4.SFI
 		bool IsIncluded<T>(T component, string name)
 		{
 			var included = true;
-			foreach(var (result, matcher) in componentMatchers)
+			for(int i = 0; i < componentMatchers.Count; i++)
             {
-				included = result ?
-					included || matcher(name) :
-					included && !matcher(name);
+				var matcher = componentMatchers[i];
+				if(included != matcher.Result && matcher.Predicate(name))
+				{
+					included = matcher.Result;
+					matcher.HadEffect = true;
+				}
             }
 			return included;
 		}
@@ -367,11 +378,11 @@ namespace IS4.SFI
 					break;
 				case "i":
 				case "include":
-					componentMatchers.Add((true, DataTools.ConvertWildcardToRegex(argument!).IsMatch));
+					componentMatchers.Add(new Matcher(true, argument!));
 					break;
 				case "x":
 				case "exclude":
-					componentMatchers.Add((false, DataTools.ConvertWildcardToRegex(argument!).IsMatch));
+					componentMatchers.Add(new Matcher(false, argument!));
 					break;
 				case "h":
 				case "hash":
@@ -379,7 +390,7 @@ namespace IS4.SFI
 					if(mainHash == null)
 					{
 						mainHash = match;
-						componentMatchers.Add((true, DataTools.ConvertWildcardToRegex("data-hash:" + argument!).IsMatch));
+						componentMatchers.Add(new Matcher(true, "data-hash:" + argument!, true));
 					}else{
 						throw OptionAlreadySpecified(option);
 					}
@@ -390,5 +401,20 @@ namespace IS4.SFI
 					break;
 			}
 		}
+
+		class Matcher
+        {
+			public bool Result { get; }
+			public string Pattern { get; }
+			public Predicate<string> Predicate { get; }
+			public bool HadEffect { get; set; }
+
+			public Matcher(bool result, string pattern, bool forgetPattern = false)
+            {
+				Result = result;
+				Pattern = forgetPattern ? null : pattern;
+				Predicate = DataTools.ConvertWildcardToRegex(pattern).IsMatch;
+			}
+        }
     }
 }
