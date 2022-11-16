@@ -39,6 +39,8 @@ namespace IS4.SFI.Formats
             readonly PeFile file;
             readonly Stream stream;
 
+            bool? verified;
+
             public ModuleType Type =>
                 file.IsDriver ? ModuleType.System :
                 file.IsDll ? ModuleType.Library :
@@ -54,11 +56,41 @@ namespace IS4.SFI.Formats
             public IModuleSignature? Signature {
                 get {
                     var sig = file.Authenticode;
-                    if(sig != null && sig.IsAuthenticodeValid)
+                    if(sig != null && sig.SignedHash != null)
                     {
-                        return new SignatureInfo(sig);
+                        if(verified ?? (verified = VerifySignatureHash() && VerifyHash(sig)).GetValueOrDefault())
+                        {
+                            return new SignatureInfo(sig);
+                        }
                     }
                     return null;
+                }
+            }
+            
+            bool VerifySignatureHash()
+            {
+                var cert = file.WinCertificate?.BCertificate.ToArray();
+                if(cert == null) return false;
+                var cms = new System.Security.Cryptography.Pkcs.SignedCms();
+                cms.Decode(cert);
+                try{
+                    cms.CheckHash();
+                }catch{
+                    return false;
+                }
+                return true;
+            }
+            
+            bool VerifyHash(AuthenticodeInfo sig)
+            {
+                var hash = BuiltInHash.FromLength(sig.SignedHash!.Length);
+                if(hash == null) return false;
+                var algorithm = hash.Algorithm;
+                try{
+                    var computed = sig.ComputeAuthenticodeHashFromPeFile(algorithm);
+                    return computed != null && computed.SequenceEqual(sig.SignedHash);
+                }finally{
+                    algorithm.Initialize();
                 }
             }
 
