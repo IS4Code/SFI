@@ -65,7 +65,7 @@ namespace IS4.SFI.Formats
             }
             using(var buffer = new MemoryStream())
             {
-                stream.CopyTo(buffer);
+                await stream.CopyToAsync(buffer);
                 return await Match(buffer, context, resultFactory, args);
             }
         }
