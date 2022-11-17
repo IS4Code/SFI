@@ -68,6 +68,10 @@ namespace IS4.SFI.Analyzers
 
             foreach(var dir in entity)
             {
+                if(dir is FileTypeDirectory)
+                {
+                    continue;
+                }
                 if((await analyzers.TryAnalyze(dir, context.WithNode(node))).Label is string s)
                 {
                     components.Add(s);
