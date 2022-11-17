@@ -1,5 +1,7 @@
 ﻿using IS4.SFI.Services;
 using IS4.SFI.Vocabulary;
+using System;
+using System.Globalization;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
@@ -17,14 +19,48 @@ namespace IS4.SFI.Analyzers
         }
 
         /// <inheritdoc/>
-        public async override ValueTask<AnalysisResult> Analyze(X509Certificate certificate, AnalysisContext context, IEntityAnalyzers analyzers)
+        public async override ValueTask<AnalysisResult> Analyze(X509Certificate cert, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var node = GetNode(context);
 
-            node.Set(Properties.Notation, certificate.ToString());
+            node.Set(Properties.Notation, cert.ToString());
 
-            var hash = certificate.GetCertHash();
-            Services.HashAlgorithm.AddHash(node, Services.HashAlgorithm.FromLength(hash.Length), hash, context.NodeFactory);
+            var hash = cert.GetCertHash();
+            HashAlgorithm.AddHash(node, HashAlgorithm.FromLength(hash.Length), hash, context.NodeFactory);
+
+            if(!String.IsNullOrWhiteSpace(cert.Subject))
+            {
+                node.Set(Properties.Subject, cert.Subject);
+            }
+            if(!String.IsNullOrWhiteSpace(cert.Issuer))
+            {
+                node.Set(Properties.Creator, cert.Issuer);
+            }
+
+            if(cert is X509Certificate2 cert2)
+            {
+                if(!String.IsNullOrWhiteSpace(cert2.FriendlyName))
+                {
+                    node.Set(Properties.Name, cert2.FriendlyName);
+                }
+                node.Set(Properties.Created, cert2.NotBefore);
+                node.Set(Properties.Expiration, cert2.NotAfter);
+
+                var language = new LanguageCode(CultureInfo.InstalledUICulture);
+                foreach(var extension in cert2.Extensions)
+                {
+                    var value = extension.Format(false);
+                    node.Set(UriTools.OidUriFormatter, extension.Oid, value, language);
+                }
+                foreach(var extension in cert2.Extensions)
+                {
+                    var propNode = context.NodeFactory?.Create(UriTools.OidUriFormatter, extension.Oid);
+                    if(propNode != null)
+                    {
+                        propNode.Set(Properties.Label, extension.Oid.FriendlyName, language);
+                    }
+                }
+            }
 
             return new AnalysisResult(node);
         }

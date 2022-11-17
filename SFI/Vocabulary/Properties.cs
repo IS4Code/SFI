@@ -207,6 +207,12 @@
         public static readonly PropertyUri DigestValue;
 
         /// <summary>
+        /// <see cref="Sec"/>:expiration.
+        /// </summary>
+        [Uri(Sec)]
+        public static readonly PropertyUri Expiration;
+
+        /// <summary>
         /// <see cref="Schema"/>:name.
         /// </summary>
         [Uri(Schema)]
