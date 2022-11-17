@@ -26,4 +26,21 @@ namespace IS4.SFI.Services
         /// </summary>
         event OutputFileDelegate OutputFile;
     }
+
+    /// <summary>
+    /// Supports description of arbitrary entites through an instance of <see cref="OutputFileDelegate"/>.
+    /// </summary>
+    /// <typeparam name="T">The supported entity type.</typeparam>
+    public interface IEntityOutputProvider<T> where T : class
+    {
+        /// <summary>
+        /// If <paramref name="entity"/> can be described, invokes <paramref name="output"/>,
+        /// providing data related to the entity.
+        /// </summary>
+        /// <param name="entity">The entity to describe.</param>
+        /// <param name="output">The instance of <see cref="OutputFileDelegate"/> for storing the data.</param>
+        /// <param name="properties">Additional properties passed to <paramref name="output"/>.</param>
+        /// <returns>Whether the entity was recognized.</returns>
+        ValueTask<bool> DescribeEntity(T entity, OutputFileDelegate? output, IReadOnlyDictionary<string, object>? properties);
+    }
 }

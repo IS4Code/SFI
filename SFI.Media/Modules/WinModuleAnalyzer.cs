@@ -99,7 +99,7 @@ namespace IS4.SFI.Analyzers
         async ValueTask AnalyzeSignature(ILinkedNode node, IModuleSignature? signature, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             if(signature == null) return;
-            HashAlgorithm.AddHash(node, signature.HashAlgorithm, signature.Hash, context.NodeFactory);
+            await HashAlgorithm.AddHash(node, signature.HashAlgorithm, signature.Hash, context.NodeFactory, OnOutputFile);
 
             var data = signature.Certificate.GetRawCertData();
             var result = (await analyzers.Analyze(data, context.WithParent(node))).Node;

@@ -56,7 +56,7 @@ namespace IS4.SFI.Analyzers
             
             foreach(var (algorithm, value) in dataObject.Hashes)
             {
-                HashAlgorithm.AddHash(node, algorithm, value, context.NodeFactory);
+                await HashAlgorithm.AddHash(node, algorithm, value, context.NodeFactory, OnOutputFile);
             }
 
             if(!dataObject.Recognized)

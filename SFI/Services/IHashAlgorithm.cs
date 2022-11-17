@@ -308,18 +308,18 @@ namespace IS4.SFI.Services
                 return new Uri(sb.ToString());
             }
         }
-        
+
         /// <summary>
         /// An estimate on the number of triples used in
-        /// <see cref="AddHash(ILinkedNode, IHashAlgorithm, ArraySegment{byte}, ILinkedNodeFactory)"/>
+        /// <see cref="AddHash(ILinkedNode, IHashAlgorithm, ArraySegment{byte}, ILinkedNodeFactory, OutputFileDelegate)"/>
         /// to initialize the hash node and assign it to a node. 
         /// </summary>
         public const int TriplesPerHash = 4;
 
-        /// <inheritdoc cref="AddHash(ILinkedNode, IHashAlgorithm, ArraySegment{byte}, ILinkedNodeFactory)"/>
-        public static ILinkedNode? AddHash(ILinkedNode node, IHashAlgorithm? algorithm, byte[] hash, ILinkedNodeFactory nodeFactory)
+        /// <inheritdoc cref="AddHash(ILinkedNode, IHashAlgorithm, ArraySegment{byte}, ILinkedNodeFactory, OutputFileDelegate)"/>
+        public static ValueTask<ILinkedNode?> AddHash(ILinkedNode node, IHashAlgorithm? algorithm, byte[] hash, ILinkedNodeFactory nodeFactory, OutputFileDelegate? output)
         {
-            return AddHash(node, algorithm, new ArraySegment<byte>(hash), nodeFactory);
+            return AddHash(node, algorithm, new ArraySegment<byte>(hash), nodeFactory, output);
         }
 
         /// <summary>
@@ -331,8 +331,9 @@ namespace IS4.SFI.Services
         /// <param name="algorithm">The particular algorithm used to produce the hash.</param>
         /// <param name="hash">The bytes of the hash.</param>
         /// <param name="nodeFactory">The factory to use when creating the <see cref="ILinkedNode"/>.</param>
+        /// <param name="output">An instance of <see cref="OutputFileDelegate"/> handling arbitrary files related to the hash.</param>
         /// <returns>The node for the hash.</returns>
-        public static ILinkedNode? AddHash(ILinkedNode node, IHashAlgorithm? algorithm, ArraySegment<byte> hash, ILinkedNodeFactory nodeFactory)
+        public static async ValueTask<ILinkedNode?> AddHash(ILinkedNode node, IHashAlgorithm? algorithm, ArraySegment<byte> hash, ILinkedNodeFactory nodeFactory, OutputFileDelegate? output)
         {
             if(algorithm == null || hash.Count == 0) return null;
 
@@ -344,6 +345,14 @@ namespace IS4.SFI.Services
             hashNode.Set(Properties.DigestValue, hash.ToBase64String(), Datatypes.Base64Binary);
 
             node.Set(Properties.Digest, hashNode);
+
+            if(algorithm is IEntityOutputProvider<byte[]> descProvider && output != null)
+            {
+                if(hashNode.Match(out var properties))
+                {
+                    await descProvider.DescribeEntity(hash.Array, output, properties);
+                }
+            }
 
             return hashNode;
         }

@@ -113,7 +113,7 @@ namespace IS4.SFI.Analyzers
                     foreach(var hash in LowFrequencyImageHashAlgorithms)
                     {
                         var hashBytes = await hash.ComputeHash(image);
-                        HashAlgorithm.AddHash(node, hash, hashBytes, context.NodeFactory);
+                        await HashAlgorithm.AddHash(node, hash, hashBytes, context.NodeFactory, OnOutputFile);
                     }
                 }
 
@@ -132,7 +132,7 @@ namespace IS4.SFI.Analyzers
                             using(var stream = new BitmapDataStream(data.Scan0, data.Stride, data.Height, data.Width, bpp))
                             {
                                 var hashBytes = await hash.ComputeHash(stream);
-                                HashAlgorithm.AddHash(node, hash, hashBytes, context.NodeFactory);
+                                await HashAlgorithm.AddHash(node, hash, hashBytes, context.NodeFactory, OnOutputFile);
                             }
                         })));
                     }finally{

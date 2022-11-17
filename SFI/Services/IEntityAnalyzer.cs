@@ -206,26 +206,19 @@ namespace IS4.SFI.Services
         /// <inheritdoc/>
         public event OutputFileDelegate? OutputFile;
 
+        static readonly OutputFileDelegate defaultOutputFile = delegate { return default(ValueTask); };
+
+        /// <summary>
+        /// Retrieves the <see cref="OutputFile"/> event caller.
+        /// </summary>
+        protected OutputFileDelegate OnOutputFile => OutputFile ?? defaultOutputFile;
+
         /// <summary>
         /// Creates a new instance of the analyzer.
         /// </summary>
         public EntityAnalyzer()
         {
 
-        }
-
-        /// <summary>
-        /// Calls the <see cref="OutputFile"/> event, if any handler is subscribed,
-        /// when a file could be produced in the analysis.
-        /// </summary>
-        /// <param name="name">The name of the file.</param>
-        /// <param name="isBinary">Whether the file is binary or textual.</param>
-        /// <param name="properties">Additional user-defined properties of the file.</param>
-        /// <param name="writer">If the file is opened, a stream is created and provided to this function to write the file.</param>
-        /// <returns>The result of <paramref name="writer"/>.</returns>
-        protected ValueTask OnOutputFile(string name, bool isBinary, IReadOnlyDictionary<string, object>? properties, Func<Stream, ValueTask> writer)
-        {
-            return (OutputFile?.Invoke(name, isBinary, properties, writer)).GetValueOrDefault();
         }
 
         /// <summary>

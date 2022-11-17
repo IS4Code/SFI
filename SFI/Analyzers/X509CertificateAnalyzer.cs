@@ -26,7 +26,7 @@ namespace IS4.SFI.Analyzers
             node.Set(Properties.Notation, cert.ToString());
 
             var hash = cert.GetCertHash();
-            HashAlgorithm.AddHash(node, HashAlgorithm.FromLength(hash.Length), hash, context.NodeFactory);
+            await HashAlgorithm.AddHash(node, HashAlgorithm.FromLength(hash.Length), hash, context.NodeFactory, OnOutputFile);
 
             if(!String.IsNullOrWhiteSpace(cert.Subject))
             {
