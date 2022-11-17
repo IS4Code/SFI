@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace IS4.SFI.WebApp
@@ -70,6 +72,14 @@ namespace IS4.SFI.WebApp
         /// <inheritdoc/>
         public Stream CreateFile(string path, string mediaType)
         {
+            if(path == "-")
+            {
+                return new TextStream(LogWriter, Encoding.UTF8);
+            }
+            if(path.Equals("nul", StringComparison.OrdinalIgnoreCase) || path == "/dev/null")
+            {
+                return Stream.Null;
+            }
             return outputFiles[path] = new BlobArrayStream(js, mediaType);
         }
 
@@ -85,6 +95,67 @@ namespace IS4.SFI.WebApp
         public void Dispose()
         {
             Disposed = true;
+        }
+
+        class TextStream : Stream
+        {
+            readonly TextWriter writer;
+            readonly Encoding encoding;
+
+            public TextStream(TextWriter writer, Encoding encoding)
+            {
+                this.writer = writer;
+                this.encoding = encoding;
+            }
+
+            public override bool CanRead => false;
+
+            public override bool CanSeek => false;
+
+            public override bool CanWrite => true;
+
+            public override long Length => throw new NotSupportedException();
+
+            public override long Position { get => throw new NotSupportedException(); set => throw new NotSupportedException(); }
+
+            public override void Flush()
+            {
+                writer.Flush();
+            }
+
+            public override Task FlushAsync(CancellationToken cancellationToken)
+            {
+                if(cancellationToken.IsCancellationRequested) return Task.FromCanceled(cancellationToken);
+                return writer.FlushAsync();
+            }
+
+            public override int Read(byte[] buffer, int offset, int count)
+            {
+                throw new NotSupportedException();
+            }
+
+            public override long Seek(long offset, SeekOrigin origin)
+            {
+                throw new NotSupportedException();
+            }
+
+            public override void SetLength(long value)
+            {
+                throw new NotSupportedException();
+            }
+
+            public override void Write(byte[] buffer, int offset, int count)
+            {
+                var text = encoding.GetString(buffer, offset, count);
+                writer.Write(text);
+            }
+
+            public override Task WriteAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
+            {
+                if(cancellationToken.IsCancellationRequested) return Task.FromCanceled(cancellationToken);
+                var text = encoding.GetString(buffer, offset, count);
+                return writer.WriteAsync(text);
+            }
         }
     }
 }

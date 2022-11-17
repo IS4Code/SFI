@@ -55,7 +55,14 @@ namespace IS4.SFI.ConsoleApp
 
         public Stream CreateFile(string path, string mediaType)
         {
-            if(path == "-") return Console.OpenStandardOutput();
+            if(path == "-")
+            {
+                return Console.OpenStandardOutput();
+            }
+            if(path.Equals("nul", StringComparison.OrdinalIgnoreCase) || path == "/dev/null")
+            {
+                return Stream.Null;
+            }
             return File.Create(path);
         }
 
