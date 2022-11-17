@@ -5,6 +5,7 @@ using IS4.SFI.Vocabulary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace IS4.SFI
@@ -15,7 +16,7 @@ namespace IS4.SFI
     /// section used normally in .torrent files. This section is hashed to produce
     /// the final output of the algorithm.
     /// The .torrent files are also available through its
-    /// <see cref="IHasFileOutput"/> implementation.
+    /// <see cref="IEntityOutputProvider{T}"/> implementation.
     /// </summary>
     /// <remarks>
     /// The BitTorrent hashing splits the input data into sections of <see cref="BlockSize"/>
@@ -26,7 +27,7 @@ namespace IS4.SFI
     /// when hashing directories. These files logically contain zeros and are added after each
     /// file whose size is not a multiple of <see cref="BlockSize"/>.
     /// </remarks>
-    public class BitTorrentHash : FileHashAlgorithm, IHasFileOutput
+    public class BitTorrentHash : FileHashAlgorithm, IEntityOutputProvider<byte[]>
     {
         /// <summary>
         /// The hash algorithm used for hashing the info section.
@@ -34,12 +35,14 @@ namespace IS4.SFI
         public static readonly IDataHashAlgorithm HashAlgorithm = BuiltInHash.SHA1 ?? throw new NotSupportedException();
 
         /// <summary>
+        /// Caches the original <see cref="BDictionary"/> instance for a given hash.
+        /// </summary>
+        readonly ConditionalWeakTable<byte[], BDictionary> bDictCache = new();
+
+        /// <summary>
         /// The size of individually hashed blocks of input files.
         /// </summary>
         public int BlockSize { get; set; } = 262144;
-
-        /// <inheritdoc/>
-        public event OutputFileDelegate? OutputFile;
 
         /// <summary>
         /// Creates a new instance of the algorithm.
@@ -60,7 +63,7 @@ namespace IS4.SFI
         {
             var dict = await CreateDictionary(file, true);
             var hash = await HashAlgorithm.ComputeHash(dict.EncodeAsBytes());
-            await OnOutputFile(dict, hash);
+            bDictCache.Add(hash, dict);
             return hash;
         }
 
@@ -69,25 +72,33 @@ namespace IS4.SFI
         {
             var dict = await CreateDictionary(directory, content);
             var hash = await HashAlgorithm.ComputeHash(dict.EncodeAsBytes());
-            await OnOutputFile(dict, hash);
+            bDictCache.Add(hash, dict);
             return hash;
         }
 
         /// <summary>
-        /// Called internally when an instance of <see cref="BDictionary"/> representing
-        /// the info section in a .torrent file is produced, with a specific hash. The default
-        /// implementation invokes <see cref="OutputFile"/>, producing a .torrent file.
+        /// If <paramref name="hash"/> was previously created as a result of
+        /// <see cref="ComputeHash(IFileInfo)"/> or <see cref="ComputeHash(IDirectoryInfo, bool)"/>,
+        /// invokes the provided <paramref name="output"/> to produce a .torrent file corresponding
+        /// to the hash.
         /// </summary>
-        /// <param name="info">The info section.</param>
-        /// <param name="hash">The hash of <paramref name="info"/> produced by <see cref="HashAlgorithm"/>.</param>
-        protected virtual ValueTask OnOutputFile(BDictionary info, byte[] hash)
+        /// <param name="hash">The result of hashing a .torrent "info" section with <see cref="HashAlgorithm"/>.</param>
+        /// <param name="output">The instance of <see cref="OutputFileDelegate"/> to receive the file.</param>
+        /// <param name="properties">Additional properties passed to <paramref name="output"/>.</param>
+        /// <returns>Whether a description of the hash was properly retrieved.</returns>
+        public async ValueTask<bool> DescribeEntity(byte[] hash, OutputFileDelegate? output, IReadOnlyDictionary<string, object>? properties)
         {
-            return (OutputFile?.Invoke($"{BitConverter.ToString(hash).Replace("-", "")}.torrent",
-                true, null, async stream => {
-                var dict = new BDictionary();
-                dict["info"] = info;
-                await dict.EncodeToAsync(stream);
-            })).GetValueOrDefault();
+            if(bDictCache.TryGetValue(hash, out var info))
+            {
+                await (output?.Invoke($"{BitConverter.ToString(hash).Replace("-", "")}.torrent",
+                    true, properties, async stream => {
+                    var dict = new BDictionary();
+                    dict["info"] = info;
+                    await dict.EncodeToAsync(stream);
+                })).GetValueOrDefault();
+                return true;
+            }
+            return false;
         }
 
         private async ValueTask<BDictionary> CreateDictionary(IFileNodeInfo fileNode, bool content)
