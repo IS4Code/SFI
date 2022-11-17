@@ -150,7 +150,7 @@ namespace IS4.SFI
 				options.Queries = queries.SelectMany(query => environment.GetFiles(query));
 
 				var update = environment.Update();
-				if(!update.IsCompleted)
+				if(!update.Equals(default(ValueTask)))
 				{
 					// Only subscribe when the operation is asynchronous
 					await update;
