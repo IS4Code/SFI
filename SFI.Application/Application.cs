@@ -82,7 +82,7 @@ namespace IS4.SFI
 				}
 
 				var inspector = new TInspector();
-				inspector.OutputLog = writer;
+				inspector.OutputLog = quiet ? TextWriter.Null : writer;
 				await inspector.AddDefault();
 
 				// Print the available components
@@ -104,7 +104,7 @@ namespace IS4.SFI
 
 				if(quiet)
 				{
-					inspector.OutputLog = writer = TextWriter.Null;
+					writer = TextWriter.Null;
 				}
 
 				// Filter out the components based on arguments
