@@ -74,7 +74,7 @@ namespace IS4.SFI
 			try{
 				Parse(args);
 
-				Banner();
+				if(!quiet) Banner();
 
 				if(mode == null)
 				{
@@ -405,7 +405,7 @@ namespace IS4.SFI
 		class Matcher
         {
 			public bool Result { get; }
-			public string Pattern { get; }
+			public string? Pattern { get; }
 			public Predicate<string> Predicate { get; }
 			public bool HadEffect { get; set; }
 
