@@ -74,7 +74,7 @@ namespace IS4.SFI.WebApp
         {
             if(path == "-")
             {
-                return new TextStream(LogWriter, Encoding.UTF8);
+                return new TextStream(LogWriter, Encoding.UTF8, this);
             }
             if(path.Equals("nul", StringComparison.OrdinalIgnoreCase) || path == "/dev/null")
             {
@@ -101,11 +101,13 @@ namespace IS4.SFI.WebApp
         {
             readonly TextWriter writer;
             readonly Encoding encoding;
+            readonly IApplicationEnvironment? environment;
 
-            public TextStream(TextWriter writer, Encoding encoding)
+            public TextStream(TextWriter writer, Encoding encoding, IApplicationEnvironment? environment)
             {
                 this.writer = writer;
                 this.encoding = encoding;
+                this.environment = environment;
             }
 
             public override bool CanRead => false;
@@ -121,12 +123,18 @@ namespace IS4.SFI.WebApp
             public override void Flush()
             {
                 writer.Flush();
+                environment?.Update();
             }
 
             public override Task FlushAsync(CancellationToken cancellationToken)
             {
                 if(cancellationToken.IsCancellationRequested) return Task.FromCanceled(cancellationToken);
-                return writer.FlushAsync();
+                return Inner();
+                async Task Inner()
+                {
+                    await writer.FlushAsync();
+                    await (environment?.Update()).GetValueOrDefault();
+                }
             }
 
             public override int Read(byte[] buffer, int offset, int count)
