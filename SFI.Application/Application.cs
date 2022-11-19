@@ -193,7 +193,7 @@ namespace IS4.SFI
 
 			}catch(Exception e) when(GlobalOptions.SuppressNonCriticalExceptions)
 			{
-				LogWriter.WriteLine(e.Message);
+				environment.LogWriter.WriteLine(e.Message);
 			}
         }
 
