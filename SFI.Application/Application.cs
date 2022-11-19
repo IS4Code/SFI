@@ -278,9 +278,12 @@ namespace IS4.SFI
 				{"q", "quiet", null, "do not print any additional messages"},
 				{"i", "include", "pattern", "include given components"},
 				{"x", "exclude", "pattern", "exclude given components"},
+				{"f", "format", "extension|mime", "the RDF serialization format of the output"},
 				{"c", "compress", null, "perform gzip compression on the output"},
 				{"m", "metadata", null, "add annotation metadata to output"},
 				{"d", "data-only", null, "do not store input file information"},
+				{"u", "ugly", null, "do not use pretty print"},
+				{"b", "buffered", null, "buffer all data in a graph before writing"},
 				{"h", "hash", "pattern", "set the main binary hash"},
 				{"r", "root", "uri", "set the hierarchy root URI prefix"},
 				{"s", "sparql-query", "file", "perform a SPARQL query on the result"},
@@ -346,6 +349,22 @@ namespace IS4.SFI
 						throw OptionAlreadySpecified(option);
 					}
 					dataOnly = true;
+					return OptionArgument.None;
+				case "b":
+				case "buffered":
+					if(!options.DirectOutput)
+					{
+						throw OptionAlreadySpecified(option);
+					}
+					options.DirectOutput = false;
+					return OptionArgument.None;
+				case "u":
+				case "ugly":
+					if(!options.PrettyPrint)
+					{
+						throw OptionAlreadySpecified(option);
+					}
+					options.PrettyPrint = false;
 					return OptionArgument.None;
 				case "r":
 				case "root":
