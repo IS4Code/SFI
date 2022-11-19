@@ -215,7 +215,7 @@ namespace IS4.SFI
             var queries = GetQueries(options);
 
             var formatStr = options.Format ?? MimeTypesHelper.DefaultTurtleExtension;
-            var format = MimeTypesHelper.GetDefinitionsByFileExtension(formatStr).Concat(MimeTypesHelper.GetDefinitions(formatStr)).FirstOrDefault(f => f.CanWriteRdf);
+            var format = MimeTypesHelper.GetDefinitionsByFileExtension(formatStr).Concat(MimeTypesHelper.GetDefinitions(formatStr)).FirstOrDefault(f => f.CanWriteRdf || f.CanWriteRdfDatasets);
             if(format == null)
             {
                 throw new ApplicationException($"Format '{options.Format}' is not recognized or could not be used for writing!");
@@ -394,7 +394,7 @@ namespace IS4.SFI
         {
             var writer = OpenFile(outputFactory, options.CompressedOutput, options);
             var qnameMapper = new QNameOutputMapper();
-            var rdfWriter = format.GetRdfWriter() as IFormatterBasedWriter;
+            var rdfWriter = format.CanWriteRdf ? format.GetRdfWriter() as IFormatterBasedWriter : null;
             if(rdfWriter == null)
             {
                 throw new ApplicationException($"Format {format.SyntaxName} does not support direct output!");
@@ -493,7 +493,31 @@ namespace IS4.SFI
         /// <param name="format">The format to use for writing.</param>
         private void SaveGraph(Graph graph, Func<Stream> outputFactory, InspectorOptions options, MimeTypeDefinition format)
         {
-            var writer = format.GetRdfWriter();
+            using(var textWriter = OpenFile(outputFactory, options.CompressedOutput, options))
+            {
+                if(format.CanWriteRdf)
+                {
+                    var writer = format.GetRdfWriter();
+                    ConfigureWriter(writer, options);
+                    graph.SaveToStream(textWriter, writer);
+                }else if(format.CanWriteRdfDatasets)
+                {
+                    var writer = format.GetRdfDatasetWriter();
+                    ConfigureWriter(writer, options);
+                    graph.SaveToStream(textWriter, writer);
+                }else{
+                    throw new ApplicationException($"The format {format.SyntaxName} cannot be used for writing!");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Configures an arbitrary writer instance based on the supplied options.
+        /// </summary>
+        /// <param name="writer">The RDF writer.</param>
+        /// <param name="options">The options.</param>
+        private void ConfigureWriter(object writer, InspectorOptions options)
+        {
             if(writer is IPrettyPrintingWriter prettyWriter)
             {
                 prettyWriter.PrettyPrintMode = options.PrettyPrint;
@@ -501,10 +525,6 @@ namespace IS4.SFI
             if(writer is INamespaceWriter namespaceWriter)
             {
                 namespaceWriter.DefaultNamespaces.Clear();
-            }
-            using(var textWriter = OpenFile(outputFactory, options.CompressedOutput, options))
-            {
-                graph.SaveToStream(textWriter, writer);
             }
         }
     }
