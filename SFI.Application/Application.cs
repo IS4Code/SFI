@@ -144,6 +144,15 @@ namespace IS4.SFI
 					inspector.DataAnalyzer.ContentUriFormatter = new NiHashedContentUriFormatter(hash);
                 }
 
+				if(options.Format == null)
+                {
+					options.Format = VDS.RDF.MimeTypesHelper.GetTrueFileExtension(output);
+                    if(String.IsNullOrEmpty(options.Format))
+                    {
+						options.Format = null;
+                    }
+                }
+
 				// Load the input files from the environment
 				var inputFiles = inputs.SelectMany(input => environment.GetFiles(input));
 				
@@ -353,6 +362,9 @@ namespace IS4.SFI
 				case "s":
 				case "sparql-query":
 					return OptionArgument.Required;
+				case "f":
+				case "format":
+					return OptionArgument.Required;
 				case "?":
 				case "help":
 					Help();
@@ -398,6 +410,14 @@ namespace IS4.SFI
 				case "s":
 				case "sparql-query":
 					queries.Add(argument!);
+					break;
+				case "f":
+				case "format":
+					if(options.Format != null)
+					{
+						throw OptionAlreadySpecified(option);
+					}
+					options.Format = argument!;
 					break;
 			}
 		}

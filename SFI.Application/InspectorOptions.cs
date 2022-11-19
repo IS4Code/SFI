@@ -50,5 +50,10 @@ namespace IS4.SFI
         /// The URI of the described node.
         /// </summary>
         public Uri? Node { get; set; }
+
+        /// <summary>
+        /// Contains the desired output format, as a file extension.
+        /// </summary>
+        public string? Format { get; set; }
     }
 }

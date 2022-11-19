@@ -8,6 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
 using VDS.RDF;
@@ -216,12 +219,20 @@ namespace IS4.SFI
             // Loads SPARQL queries to evaluate on the RDF
             var queries = GetQueries(options);
 
+            var formatStr = options.Format ?? MimeTypesHelper.DefaultTurtleExtension;
+            var format = MimeTypesHelper.GetDefinitionsByFileExtension(formatStr).Concat(MimeTypesHelper.GetDefinitions(formatStr)).FirstOrDefault(f => f.CanWriteRdf);
+            if(format == null)
+            {
+                throw new ApplicationException($"Format '{options.Format}' is not recognized or could not be used for writing!");
+            }
+            OutputLog.WriteLine($"Using {format.CanonicalMimeType + (options.CompressedOutput ? " (compressed)" : "")} for output.");
+
             if(options.DirectOutput)
             {
                 // The data is immediately saved to output without an intermediate storage
                 OutputLog.WriteLine("Writing data...");
 
-                using(var disposable = CreateFileHandler(outputFactory, out var mapper, options, out var handler))
+                using(var disposable = CreateFileHandler(outputFactory, out var mapper, options, format, out var handler))
                 {
                     Graph? queryGraph = null;
                     if(queries.Count > 0)
@@ -263,7 +274,7 @@ namespace IS4.SFI
 
                 OutputLog.WriteLine("Saving...");
 
-                SaveGraph(graph, outputFactory, options);
+                SaveGraph(graph, outputFactory, options, format);
             }
 
             OutputLog.WriteLine("Done!");
@@ -371,14 +382,19 @@ namespace IS4.SFI
         /// <param name="outputFactory">The function to provide the output stream.</param>
         /// <param name="mapper">A variable that receives the instance of <see cref="INamespaceMapper"/> representing the namespaces in use by the handler.</param>
         /// <param name="options">Additional options.</param>
+        /// <param name="format">The format to use for writing.</param>
         /// <param name="handler">A variable that receives the RDF handler to use.</param>
         /// <returns>An instance of <see cref="IDisposable"/> representing the open file.</returns>
-        private IDisposable CreateFileHandler(Func<Stream> outputFactory, out INamespaceMapper mapper, InspectorOptions options, out IRdfHandler handler)
+        private IDisposable CreateFileHandler(Func<Stream> outputFactory, out INamespaceMapper mapper, InspectorOptions options, MimeTypeDefinition format, out IRdfHandler handler)
         {
             var writer = OpenFile(outputFactory, options.CompressedOutput, options);
             var qnameMapper = new QNameOutputMapper();
-            //TODO: Support for other output formats
-            var formatter = new TurtleFormatter(qnameMapper);
+            var rdfWriter = format.GetRdfWriter() as IFormatterBasedWriter;
+            if(rdfWriter == null)
+            {
+                throw new ApplicationException($"Format '{format.CanonicalMimeType}' does not support direct output!");
+            }
+            var formatter = CreateFormatter(format.CanonicalMimeType, rdfWriter.TripleFormatterType, qnameMapper);
             if(options.PrettyPrint && formatter is TurtleFormatter turtleFormatter)
             {
                 // Use the custom Turtle handler with @base support
@@ -389,6 +405,37 @@ namespace IS4.SFI
             }
             mapper = qnameMapper;
             return writer;
+        }
+
+        /// <summary>
+        /// Creates a new instance of <see cref="ITripleFormatter"/> from the corresponding
+        /// arguments.
+        /// </summary>
+        /// <param name="mime">The MIME type of the format, for diagnostics.</param>
+        /// <param name="formatterType">The type of the formatter.</param>
+        /// <param name="mapper">The namespace mapper to provide to the formatter.</param>
+        /// <returns>A new instance of the formatter.</returns>
+        private ITripleFormatter CreateFormatter(string mime, Type formatterType, QNameOutputMapper mapper)
+        {
+            try{
+                return (ITripleFormatter)Activator.CreateInstance(formatterType, mapper);
+            }catch(MissingMethodException)
+            {
+                try{
+                    return (ITripleFormatter)Activator.CreateInstance(formatterType);
+                }catch(MissingMethodException e)
+                {
+                    throw new ApplicationException($"Formatter for '{mime}' could not be constructed!", e);
+                }catch(TargetInvocationException e)
+                {
+                    ExceptionDispatchInfo.Capture(e).Throw();
+                    throw;
+                }
+            }catch(TargetInvocationException e)
+            {
+                ExceptionDispatchInfo.Capture(e).Throw();
+                throw;
+            }
         }
 
         /// <summary>
@@ -438,12 +485,18 @@ namespace IS4.SFI
         /// <param name="graph">The graph to save.</param>
         /// <param name="outputFactory">The function to provide the output stream.</param>
         /// <param name="options">Additional options.</param>
-        private void SaveGraph(Graph graph, Func<Stream> outputFactory, InspectorOptions options)
+        /// <param name="format">The format to use for writing.</param>
+        private void SaveGraph(Graph graph, Func<Stream> outputFactory, InspectorOptions options, MimeTypeDefinition format)
         {
-            //TODO: Support for other output formats
-            var writer = new CompressingTurtleWriter(TurtleSyntax.Original);
-            writer.PrettyPrintMode = options.PrettyPrint;
-            writer.DefaultNamespaces.Clear();
+            var writer = format.GetRdfWriter();
+            if(writer is IPrettyPrintingWriter prettyWriter)
+            {
+                prettyWriter.PrettyPrintMode = options.PrettyPrint;
+            }
+            if(writer is INamespaceWriter namespaceWriter)
+            {
+                namespaceWriter.DefaultNamespaces.Clear();
+            }
             using(var textWriter = OpenFile(outputFactory, options.CompressedOutput, options))
             {
                 graph.SaveToStream(textWriter, writer);
