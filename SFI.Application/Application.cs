@@ -167,16 +167,27 @@ namespace IS4.SFI
 				}
 
 				// Open the output RDF file
-				using(var outputStream = environment.CreateFile(output, inspector.OutputMediaType))
-                {
-					if(dataOnly)
-                    {
-						// The input should be treated as a byte sequence without file metadata
-						await inspector.Inspect<IStreamFactory>(inputFiles, outputStream, options);
-                    }else{
-						await inspector.Inspect(inputFiles, outputStream, options);
-					}
+				var streams = new List<Stream>();
+				Stream Factory(string mime)
+				{
+					var stream = environment.CreateFile(output, mime);
+					streams.Add(stream);
+					return stream;
 				}
+				try{
+					if(dataOnly)
+					{
+						// The input should be treated as a byte sequence without file metadata
+						await inspector.Inspect<IStreamFactory>(inputFiles, Factory, options);
+					}else{
+						await inspector.Inspect(inputFiles, Factory, options);
+					}
+                }finally{
+					foreach(var stream in streams)
+                    {
+						stream.Dispose();
+                    }
+                }
 			}catch(ApplicationExitException)
 			{
 

@@ -64,11 +64,6 @@ namespace IS4.SFI
         }
 
         /// <summary>
-        /// The media type assigned to the output RDF file.
-        /// </summary>
-        public virtual string OutputMediaType => "text/turtle;charset=utf-8";
-
-        /// <summary>
         /// Creates a new instance of the inspector and initializes several
         /// core analyzers.
         /// </summary>
@@ -156,7 +151,7 @@ namespace IS4.SFI
         /// <param name="options">Additional options.</param>
         public ValueTask Inspect<T>(T entity, string output, InspectorOptions options) where T : class
         {
-            return Inspect(new[] { entity }, () => new FileStream(output, FileMode.Create, FileAccess.Write, FileShare.Read), options);
+            return Inspect(new[] { entity }, _ => new FileStream(output, FileMode.Create, FileAccess.Write, FileShare.Read), options);
         }
 
         /// <summary>
@@ -168,7 +163,7 @@ namespace IS4.SFI
         /// <param name="options">Additional options.</param>
         public ValueTask Inspect<T>(T entity, Stream output, InspectorOptions options) where T : class
         {
-            return Inspect(new[] { entity }, () => output, options);
+            return Inspect(new[] { entity }, _ => output, options);
         }
 
         /// <summary>
@@ -180,7 +175,7 @@ namespace IS4.SFI
         /// <param name="options">Additional options.</param>
         public ValueTask Inspect<T>(IEnumerable<T> entities, string output, InspectorOptions options) where T : class
         {
-            return Inspect(entities, () => new FileStream(output, FileMode.Create, FileAccess.Write, FileShare.Read), options);
+            return Inspect(entities, _ => new FileStream(output, FileMode.Create, FileAccess.Write, FileShare.Read), options);
         }
 
         /// <summary>
@@ -192,7 +187,7 @@ namespace IS4.SFI
         /// <param name="options">Additional options.</param>
         public ValueTask Inspect<T>(IEnumerable<T> entities, Stream output, InspectorOptions options) where T : class
         {
-            return Inspect(entities, () => output, options);
+            return Inspect(entities, _ => output, options);
         }
 
         /// <summary>
@@ -200,9 +195,9 @@ namespace IS4.SFI
         /// </summary>
         /// <typeparam name="T">The types of <paramref name="entities"/>.</typeparam>
         /// <param name="entities">The entities to describe.</param>
-        /// <param name="outputFactory">A function producing the output stream where to store the RDF description.</param>
+        /// <param name="outputFactory">A function producing the output stream where to store the RDF description, with the format MIME type as the argument.</param>
         /// <param name="options">Additional options.</param>
-        public async ValueTask Inspect<T>(IEnumerable<T> entities, Func<Stream> outputFactory, InspectorOptions options) where T : class
+        public async ValueTask Inspect<T>(IEnumerable<T> entities, Func<string, Stream> outputFactory, InspectorOptions options) where T : class
         {
             if(options == null) throw new ArgumentNullException(nameof(options));
 
@@ -232,7 +227,7 @@ namespace IS4.SFI
                 // The data is immediately saved to output without an intermediate storage
                 OutputLog.WriteLine("Writing data...");
 
-                using(var disposable = CreateFileHandler(outputFactory, out var mapper, options, format, out var handler))
+                using(var disposable = CreateFileHandler(() => outputFactory(GetOutputMimeType(format)), out var mapper, options, format, out var handler))
                 {
                     Graph? queryGraph = null;
                     if(queries.Count > 0)
@@ -274,10 +269,20 @@ namespace IS4.SFI
 
                 OutputLog.WriteLine("Saving...");
 
-                SaveGraph(graph, outputFactory, options, format);
+                SaveGraph(graph, () => outputFactory(GetOutputMimeType(format)), options, format);
             }
 
             OutputLog.WriteLine("Done!");
+        }
+
+        private string GetOutputMimeType(MimeTypeDefinition mime)
+        {
+            var type = mime.CanonicalMimeType;
+            if(type.StartsWith("text/", StringComparison.OrdinalIgnoreCase))
+            {
+                type += ";charset=utf-8";
+            }
+            return type;
         }
 
         /// <summary>
