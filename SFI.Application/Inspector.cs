@@ -395,7 +395,7 @@ namespace IS4.SFI
                 throw new ApplicationException($"Format '{format.CanonicalMimeType}' does not support direct output!");
             }
             var formatter = CreateFormatter(format.CanonicalMimeType, rdfWriter.TripleFormatterType, qnameMapper);
-            if(options.PrettyPrint && formatter is TurtleFormatter turtleFormatter)
+            if(options.PrettyPrint && format.CanonicalMimeType == "text/turtle" && formatter is TurtleFormatter turtleFormatter)
             {
                 // Use the custom Turtle handler with @base support
                 handler = new TurtleHandler<TurtleFormatter>(writer, turtleFormatter, qnameMapper);
