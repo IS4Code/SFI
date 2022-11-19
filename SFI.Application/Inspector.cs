@@ -225,7 +225,7 @@ namespace IS4.SFI
             {
                 throw new ApplicationException($"Format '{options.Format}' is not recognized or could not be used for writing!");
             }
-            OutputLog.WriteLine($"Using {format.CanonicalMimeType + (options.CompressedOutput ? " (compressed)" : "")} for output.");
+            OutputLog.WriteLine($"Using {format.SyntaxName + (options.CompressedOutput ? " (compressed)" : "")} for output.");
 
             if(options.DirectOutput)
             {
@@ -392,9 +392,9 @@ namespace IS4.SFI
             var rdfWriter = format.GetRdfWriter() as IFormatterBasedWriter;
             if(rdfWriter == null)
             {
-                throw new ApplicationException($"Format '{format.CanonicalMimeType}' does not support direct output!");
+                throw new ApplicationException($"Format {format.SyntaxName} does not support direct output!");
             }
-            var formatter = CreateFormatter(format.CanonicalMimeType, rdfWriter.TripleFormatterType, qnameMapper);
+            var formatter = CreateFormatter(format.SyntaxName, rdfWriter.TripleFormatterType, qnameMapper);
             if(options.PrettyPrint && format.CanonicalMimeType == "text/turtle" && formatter is TurtleFormatter turtleFormatter)
             {
                 // Use the custom Turtle handler with @base support
@@ -411,11 +411,11 @@ namespace IS4.SFI
         /// Creates a new instance of <see cref="ITripleFormatter"/> from the corresponding
         /// arguments.
         /// </summary>
-        /// <param name="mime">The MIME type of the format, for diagnostics.</param>
+        /// <param name="name">The name of the format, for diagnostics.</param>
         /// <param name="formatterType">The type of the formatter.</param>
         /// <param name="mapper">The namespace mapper to provide to the formatter.</param>
         /// <returns>A new instance of the formatter.</returns>
-        private ITripleFormatter CreateFormatter(string mime, Type formatterType, QNameOutputMapper mapper)
+        private ITripleFormatter CreateFormatter(string name, Type formatterType, QNameOutputMapper mapper)
         {
             try{
                 return (ITripleFormatter)Activator.CreateInstance(formatterType, mapper);
@@ -425,7 +425,7 @@ namespace IS4.SFI
                     return (ITripleFormatter)Activator.CreateInstance(formatterType);
                 }catch(MissingMethodException e)
                 {
-                    throw new ApplicationException($"Formatter for '{mime}' could not be constructed!", e);
+                    throw new ApplicationException($"Formatter for {name} could not be constructed!", e);
                 }catch(TargetInvocationException e)
                 {
                     ExceptionDispatchInfo.Capture(e).Throw();
