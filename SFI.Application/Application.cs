@@ -374,6 +374,7 @@ namespace IS4.SFI
 				{"r", "root", "uri", "set the hierarchy root URI prefix"},
 				{"s", "sparql-query", "file", "perform a SPARQL query on the result"},
 				{"?", "help", null, "displays this help message"},
+				{null, "[component]:[property]", "value", "sets a specific component's property (see list)"}
 			};
 		}
 

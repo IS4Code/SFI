@@ -112,15 +112,16 @@ namespace IS4.SFI
 				LogWriter.WriteLine("Usage: {0} {1}", ExecutableName, Usage);
 			}
 			LogWriter.WriteLine();
-			
-			string optFormat = " -{0} [ --{1} ] {2} ";
+
+			const string optFormat = " -{0} [ --{1} ] {2} ";
+			const string optFormatLong = " --{1} {2} ";
 			var options = GetOptions();
 			
-			int colLength = options.Max(o => String.Format(optFormat, o.ShortName, o.LongName, o.ArgumentText).Length);
+			int colLength = options.Max(o => String.Format(o.ShortName == null ? optFormatLong : optFormat, o.ShortName, o.LongName, o.ArgumentText).Length);
 			
 			foreach(var opt in options)
 			{
-				string usage = String.Format(optFormat, opt.ShortName, opt.LongName, opt.ArgumentText);
+				string usage = String.Format(opt.ShortName == null ? optFormatLong : optFormat, opt.ShortName, opt.LongName, opt.ArgumentText);
 				LogWriter.Write(usage);
 				LogWriter.Write(new string(' ', colLength-usage.Length));
 				OutputWrapPad(opt.Description, colLength, WindowWidth - colLength);
@@ -506,7 +507,7 @@ namespace IS4.SFI
 			/// <param name="longName">The long name of the option.</param>
 			/// <param name="argument">The type of the argument for the option.</param>
 			/// <param name="description">The description of the option.</param>
-			public void Add(string shortName, string longName, string? argument, string description)
+			public void Add(string? shortName, string longName, string? argument, string description)
 			{
 				Add(new OptionInfo(shortName, longName, argument, description));
 			}
@@ -520,7 +521,7 @@ namespace IS4.SFI
 			/// <summary>
 			/// The short name of the option.
 			/// </summary>
-			public string ShortName { get; }
+			public string? ShortName { get; }
 
 			/// <summary>
 			/// The long name of the option.
@@ -549,7 +550,7 @@ namespace IS4.SFI
 			/// <param name="longName">The value of <see cref="LongName"/>.</param>
 			/// <param name="argument">The value of <see cref="Argument"/>.</param>
 			/// <param name="description">The value of <see cref="Description"/>.</param>
-			public OptionInfo(string shortName, string longName, string? argument, string description) : this()
+			public OptionInfo(string? shortName, string longName, string? argument, string description) : this()
 			{
 				ShortName = shortName;
 				LongName = longName;
