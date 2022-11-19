@@ -415,6 +415,10 @@ namespace IS4.SFI
 					{
 						throw OptionAlreadySpecified(option);
 					}
+					if(!Uri.TryCreate(argument, UriKind.Absolute, out _))
+                    {
+						throw new ApplicationException("The argument to option '" + option + "' must be a well-formed absolute URI.");
+					}
 					options.Root = argument!;
 					rootSpecified = true;
 					break;
