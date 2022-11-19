@@ -258,14 +258,14 @@ namespace IS4.SFI
                     if(!friendNamespace.IsMatch(type.Namespace))
                     {
                         // If this is in an external assembly, distinguish it by the assembly name
-                        components.Add(FormatName(type.Assembly.GetName().Name));
+                        components.Add(FormatMimeName(type.Assembly.GetName().Name));
                     }
                 }
                 // Strip the arity
                 int index = name.IndexOf('`');
                 if(index != -1) name = name.Substring(0, index);
                 // Add the base name and generic arguments
-                components.Add(FormatName(name));
+                components.Add(FormatMimeName(name));
                 components.AddRange(type.GetGenericArguments().Select(GetTypeFriendlyName));
                 return String.Join(".", components);
             }
@@ -282,16 +282,18 @@ namespace IS4.SFI
                 }
                 return max;
             }
+        }
 
-            /// <summary>
-            /// Produces a MIME-friendly name by hyphenating the name, converting to lowercase and encoding unsafe characters.
-            /// </summary>
-            static string FormatName(string name)
-            {
-                name = hyphenCharacters.Replace(name, "$0-").ToLowerInvariant();
-                name = badMimeCharacters.Replace(name, m =>  String.Join("", Encoding.UTF8.GetBytes(m.Value).Select(b => $"&{b:X2}")));
-                return name;
-            }
+        /// <summary>
+        /// Produces a MIME-friendly name by hyphenating the name, converting to lowercase and encoding unsafe characters.
+        /// </summary>
+        /// <param name="name">The name to format.</param>
+        /// <returns>The resulting formatted name.</returns>
+        public static string FormatMimeName(string name)
+        {
+            name = hyphenCharacters.Replace(name, "$0-").ToLowerInvariant();
+            name = badMimeCharacters.Replace(name, m => String.Join("", Encoding.UTF8.GetBytes(m.Value).Select(b => $"&{b:X2}")));
+            return name;
         }
 
         /// <summary>

@@ -52,6 +52,16 @@ namespace IS4.SFI.Application
             return RuntimeHelpers.GetHashCode(Collection);
         }
 
+        /// <summary>
+        /// Returns the identifier of a component with the prefix of this collection.
+        /// </summary>
+        /// <param name="component">The component.</param>
+        /// <returns>The identifier of the component.</returns>
+        public virtual string GetIdentifier(object component)
+        {
+            return $"{Attribute.Prefix}:{DataTools.GetUserFriendlyName(component)}";
+        }
+
         static readonly Type genericType = typeof(ComponentCollection<>);
 
         /// <summary>
@@ -139,16 +149,6 @@ namespace IS4.SFI.Application
                 return await resultFactory.Invoke(obj, args);
             }
             return default;
-        }
-
-        /// <summary>
-        /// Returns the identifier of a component with the prefix of this collection.
-        /// </summary>
-        /// <param name="component">The component.</param>
-        /// <returns>The identifier of the component.</returns>
-        public string GetIdentifier(T component)
-        {
-            return $"{Attribute.Prefix}:{DataTools.GetUserFriendlyName(component)}";
         }
 
         /// <inheritdoc/>

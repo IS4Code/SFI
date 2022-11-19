@@ -3,6 +3,7 @@ using IS4.SFI.Services;
 using MorseCode.ITask;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -60,6 +61,8 @@ namespace IS4.SFI
 		readonly List<Matcher> componentMatchers = new();
 		Regex? mainHash;
 		string? output;
+
+		readonly Dictionary<string, Dictionary<string, string>> componentProperties = new(StringComparer.OrdinalIgnoreCase);
 
 		bool quiet;
 		bool rootSpecified;
@@ -120,6 +123,16 @@ namespace IS4.SFI
 						{
 							fileOutput.OutputFile += OnOutputFile;
 						}
+						if(componentProperties.Count > 0)
+						{
+							// Check if there are properties for this component
+							var id = collection.GetIdentifier(component);
+							if(componentProperties.TryGetValue(id, out var dict))
+                            {
+								componentProperties.Remove(id);
+								SetProperties(component, id, dict);
+                            }
+						}
 					}
 				}
 
@@ -129,7 +142,12 @@ namespace IS4.SFI
 					{
 						writer.WriteLine($"Warning: Pattern '{matcher.Pattern}' did not {(matcher.Result ? "include" : "exclude")} any components!");
 					}
-                }
+				}
+
+				foreach(var properties in componentProperties)
+				{
+					LogWriter?.WriteLine($"Warning: Properties for component {properties.Key} could not be found!");
+				}
 
 				writer.WriteLine($"Included {componentCount} components in total.");
 
@@ -219,6 +237,57 @@ namespace IS4.SFI
         }
 
 		/// <summary>
+		/// Assigns the values of properties on a component.
+		/// </summary>
+		/// <param name="component">The component to assign to.</param>
+		/// <param name="componentName">The name of the component, for diagnostics.</param>
+		/// <param name="properties">The dictionary of property names and their values to assign.</param>
+		private void SetProperties(object component, string componentName, IDictionary<string, string> properties)
+        {
+			foreach(var prop in GetConfigurableProperties(component))
+            {
+				var name = DataTools.FormatMimeName(prop.Name);
+				if(properties.TryGetValue(name, out var value))
+				{
+					// The property is assigned
+					properties.Remove(name);
+					var converter = TypeDescriptor.GetConverter(prop.PropertyType);
+					object? convertedValue = null;
+					try{
+						convertedValue = converter.ConvertFromInvariantString(value);
+                    }catch{
+						// Conversion failed (for any reason)
+                    }
+					if(convertedValue == null)
+                    {
+						throw new ApplicationException($"Cannot convert value '{value}' for property {componentName}:{name} to type {DataTools.GetIdentifierFromType(prop.PropertyType)}!");
+                    }
+					prop.SetValue(component, convertedValue);
+				}
+            }
+			foreach(var pair in properties)
+            {
+				LogWriter?.WriteLine($"Warning: Property {componentName}:{pair.Key} was not found!");
+            }
+        }
+
+		static readonly Type stringType = typeof(string);
+
+		/// <summary>
+		/// Returns the collection of all properties on a component
+		/// that can be configured from the command line.
+		/// </summary>
+		/// <remarks>
+		/// Configurable properties are those properties that can be set (not read-only),
+		/// which do not have [<see cref="BrowsableAttribute"/>(false)], and their type
+		/// can be converted to and from <see cref="string"/>.
+		/// </remarks>
+		private IEnumerable<PropertyDescriptor> GetConfigurableProperties(object component)
+        {
+			return TypeDescriptor.GetProperties(component).Cast<PropertyDescriptor>().Where(p => !p.IsReadOnly && p.IsBrowsable && (TypeDescriptor.GetConverter(p.PropertyType) is { } converter && converter.CanConvertFrom(stringType) && converter.CanConvertTo(stringType)));
+        }
+
+		/// <summary>
 		/// Checks whether a component is matched by the inner list of matchers.
 		/// </summary>
 		/// <typeparam name="T">The type of the component.</typeparam>
@@ -245,6 +314,12 @@ namespace IS4.SFI
 			if(IsIncluded(component, name))
 			{
 				LogWriter?.WriteLine($" - {name} ({DataTools.GetUserFriendlyName(component.GetType())})");
+				foreach(var prop in GetConfigurableProperties(component))
+				{
+					var value = prop.GetValue(component);
+					var converter = TypeDescriptor.GetConverter(prop.PropertyType);
+					LogWriter?.WriteLine($"  - {name}:{DataTools.FormatMimeName(prop.Name)} ({DataTools.GetIdentifierFromType(prop.PropertyType)}) = {converter.ConvertToInvariantString(value)}");
+				}
 			}
 			return default;
 		}
@@ -324,6 +399,8 @@ namespace IS4.SFI
 			return OperandState.OnlyOperands;
 		}
 
+		static readonly Regex componentPropertyRegex = new Regex(@"^([^:]+:[^:]+):(.*)$", RegexOptions.Compiled);
+
 		/// <inheritdoc/>
 		protected override OptionArgument OnOptionFound(string option)
 		{
@@ -400,6 +477,14 @@ namespace IS4.SFI
 					Help();
 					return OptionArgument.None;
 				default:
+					if(componentPropertyRegex.IsMatch(option))
+                    {
+						if(componentProperties.ContainsKey(option))
+						{
+							throw OptionAlreadySpecified(option);
+						}
+						return OptionArgument.Required;
+                    }
 					throw UnrecognizedOption(option);
 			}
 		}
@@ -452,6 +537,17 @@ namespace IS4.SFI
 						throw OptionAlreadySpecified(option);
 					}
 					options.Format = argument!;
+					break;
+				default:
+					if(componentPropertyRegex.Match(option) is { Success: true } propMatch)
+                    {
+						var componentId = propMatch.Groups[1].Value.ToLowerInvariant();
+						if(!componentProperties.TryGetValue(componentId, out var dict))
+                        {
+							componentProperties[componentId] = dict = new(StringComparer.OrdinalIgnoreCase);
+                        }
+						dict[propMatch.Groups[2].Value.ToLowerInvariant()] = argument!;
+                    }
 					break;
 			}
 		}
