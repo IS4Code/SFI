@@ -251,7 +251,7 @@ namespace IS4.SFI.Services
         /// </summary>
         /// <param name="properties">Other properties assigned by the query.</param>
         /// <returns>True if the resource is matched, false otherwise.</returns>
-        bool Match(out IReadOnlyDictionary<string, object>? properties);
+        bool Match(out IDictionary<string, object>? properties);
 
         /// <summary>
         /// Returns a version of this node that writes output to a graph identified
@@ -440,7 +440,7 @@ namespace IS4.SFI.Services
         public abstract void SetAsBase();
 
         /// <inheritdoc/>
-        public abstract bool Match(out IReadOnlyDictionary<string, object>? properties);
+        public abstract bool Match(out IDictionary<string, object>? properties);
 
         /// <inheritdoc/>
         public void SetClass(ClassUri @class)

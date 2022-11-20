@@ -186,7 +186,7 @@ namespace IS4.SFI.Tests
         }
 
         /// <inheritdoc/>
-        public override bool Match(out IReadOnlyDictionary<string, object>? properties)
+        public override bool Match(out IDictionary<string, object>? properties)
         {
             properties = null;
             return false;

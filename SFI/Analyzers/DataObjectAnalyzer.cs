@@ -3,7 +3,9 @@ using IS4.SFI.Services;
 using IS4.SFI.Tools;
 using IS4.SFI.Vocabulary;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace IS4.SFI.Analyzers
@@ -59,6 +61,8 @@ namespace IS4.SFI.Analyzers
                 await HashAlgorithm.AddHash(node, algorithm, value, context.NodeFactory, OnOutputFile);
             }
 
+            KeyValuePair<IBinaryFormatObject, string?> primaryFormat = default;
+
             if(!dataObject.Recognized)
             {
                 // Prepare an improvised format if no other format was recognized
@@ -82,12 +86,33 @@ namespace IS4.SFI.Analyzers
                     {
                         node.Set(Properties.HasFormat, formatNode);
                     }
+                    primaryFormat = new(formatObj, null);
                 }
+            }else{
+                primaryFormat = dataObject.Formats.FirstOrDefault();
             }
+
+            label = primaryFormat.Value ?? label;
 
             if(node.Match(out var properties))
             {
-                await OnOutputFile(label, dataObject.IsBinary, properties, async stream => {
+                if(properties != null)
+                {
+                    var format = primaryFormat.Key;
+                    if(format?.Extension is string extension)
+                    {
+                        properties["extension"] = "." + extension;
+                    }
+                    if(format?.MediaType is string mediaType)
+                    {
+                        properties["mediaType"] = mediaType;
+                    }
+                    if(label != null)
+                    {
+                        properties["name"] = label;
+                    }
+                }
+                await OnOutputFile(dataObject.IsBinary, properties, async stream => {
                     using(var input = dataObject.StreamFactory.Open())
                     {
                         await input.CopyToAsync(stream);

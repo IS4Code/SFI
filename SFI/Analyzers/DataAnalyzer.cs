@@ -355,6 +355,10 @@ namespace IS4.SFI.Analyzers
 
                 public IReadOnlyList<FormatResult> Results { get; private set; }
 
+                readonly Dictionary<IBinaryFormatObject, string?> formats = new(ReferenceEqualityComparer<IBinaryFormatObject>.Default);
+
+                public IReadOnlyDictionary<IBinaryFormatObject, string?> Formats => formats;
+
                 public override string ToString()
                 {
                     return $"{(IsBinary ? "Binary" : $"Text ({Charset})")} ({ActualLength} B)";
@@ -463,6 +467,7 @@ namespace IS4.SFI.Analyzers
                     {
                         try{
                             await result.Finish();
+                            match.formats[result] = result.Label;
                         }catch(InternalApplicationException)
                         {
                             throw;
@@ -533,7 +538,7 @@ namespace IS4.SFI.Analyzers
             }
         }
         
-		class FormatResult : IComparable<FormatResult>, IResultFactory<ILinkedNode?, MatchContext>
+		class FormatResult : IComparable<FormatResult>, IResultFactory<ILinkedNode?, MatchContext>, IBinaryFormatObject
 		{
             readonly DataAnalysis.DataMatch fileMatch;
             public IBinaryFileFormat Format { get; }
@@ -547,10 +552,19 @@ namespace IS4.SFI.Analyzers
 
             public int MaxReadBytes => Format.HeaderLength;
 
+            public ILinkedNode? Result => taskResult ?? task?.Result;
+
+            IDataObject IBinaryFormatObject.Data => fileMatch;
+
             public string? Extension { get; private set; }
+
+            public string? MediaType { get; private set; }
+
             public string? Label { get; private set; }
 
-            public ILinkedNode? Result => taskResult ?? task?.Result;
+            IFileFormat IFormatObject.Format => Format;
+
+            Uri? IUriFormatter<Uri>.this[Uri value] => throw new NotImplementedException();
 
             public FormatResult(DataAnalysis.DataMatch fileMatch, IStreamFactory streamFactory, IBinaryFileFormat format, ValueTask<ILinkedNode?> parent, AnalysisContext context, IEntityAnalyzers analyzer)
 			{
@@ -618,8 +632,11 @@ namespace IS4.SFI.Analyzers
                 var parent = await parentTask;
                 try{
                     var formatObj = new BinaryFormatObject<T>(fileMatch, Format, value);
+                    Extension = formatObj.Extension;
+                    MediaType = formatObj.MediaType;
                     var result = await analyzer.Analyze(formatObj, streamContext.WithParent(parent));
                     taskResult = result.Node;
+                    Label = result.Label;
                     return result.Node;
                 }catch(Exception e)
                 {
@@ -637,6 +654,11 @@ namespace IS4.SFI.Analyzers
                 var t1 = a.GetType();
                 var t2 = b.GetType();
                 return t1.IsAssignableFrom(t2) ? 1 : t2.IsAssignableFrom(t1) ? -1 : 0;
+            }
+
+            ValueTask<TResult> IFormatObject.GetValue<TResult, TArgs>(IResultFactory<TResult, TArgs> resultFactory, TArgs args)
+            {
+                throw new NotImplementedException();
             }
         }
 

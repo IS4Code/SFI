@@ -4,8 +4,10 @@ using MorseCode.ITask;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -218,18 +220,50 @@ namespace IS4.SFI
 		/// <summary>
 		/// Called from an analyzer when an output file should be created.
 		/// </summary>
-        private async ValueTask OnOutputFile(string? name, bool isBinary, IReadOnlyDictionary<string, object>? properties, Func<Stream, ValueTask> writer)
+        private async ValueTask OnOutputFile(bool isBinary, IDictionary<string, object>? properties, Func<Stream, ValueTask> writer)
         {
-			name ??= Guid.NewGuid().ToString("N");
-			if(properties != null && properties.TryGetValue("path", out var pathObject) && pathObject is string path)
+			if(properties == null)
             {
-				if(path.EndsWith("/"))
-                {
-					name = path + name;
-                }else{
-					name = path;
-                }
+				properties = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
             }
+			if(!properties.ContainsKey("name"))
+            {
+				properties["name"] = Guid.NewGuid().ToString("N");
+			}
+			if(!properties.ContainsKey("extension"))
+			{
+				properties["extension"] = "";
+			}
+			if(!properties.ContainsKey("mediaType"))
+			{
+				properties["mediaType"] = "";
+			}
+			if(!properties.TryGetValue("path", out var pathObject))
+			{
+				pathObject = "${name}${extension}";
+			}
+			var path = pathObject.ToString();
+
+			// "value\0" for each pair
+			var source = new StringBuilder();
+			// "(?<key>[^\0]{value-length})" for each pair
+			var pattern = new StringBuilder();
+
+			pattern.Append("^");
+			foreach(var pair in properties)
+            {
+				if(pair.Value == null) continue;
+				var valueStr = pair.Value is IFormattable fmt ? fmt.ToString(null, CultureInfo.InvariantCulture) : pair.Value.ToString();
+				source.Append(valueStr);
+				source.Append('\0');
+				pattern.Append($"(?<{pair.Key}>[^\0]{{{valueStr.Length}}})\0");
+			}
+			pattern.Append("$");
+
+			// Perform substitution using Regex
+			var name = Regex.Replace(source.ToString(), pattern.ToString(), path);
+
+			LogWriter?.WriteLine($"Extracting to '{name}'...");
 			using(var stream = environment.CreateFile(name, isBinary ? "application/octet-stream" : "text/plain"))
             {
 				await writer(stream);

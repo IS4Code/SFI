@@ -38,7 +38,7 @@ namespace IS4.SFI
         /// <param name="subject">The matching node to be identified by the queries.</param>
         /// <param name="properties">Additional variables from a successful match, as instances of <see cref="Uri"/> or <see cref="String"/>.</param>
         /// <returns>True if any of the queries successfully matched the node.</returns>
-        public bool Match(INode subject, out IReadOnlyDictionary<string, object>? properties)
+        public bool Match(INode subject, out IDictionary<string, object>? properties)
         {
             Dictionary<string, object>? variables = null;
             var success = false;

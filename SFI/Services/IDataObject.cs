@@ -37,6 +37,11 @@ namespace IS4.SFI.Services
         IReadOnlyDictionary<IDataHashAlgorithm, byte[]> Hashes { get; }
 
         /// <summary>
+        /// The collection of recognized format objects and their labels.
+        /// </summary>
+        IReadOnlyDictionary<IBinaryFormatObject, string?> Formats { get; }
+
+        /// <summary>
         /// The byte content of the data, possibly only from its
         /// beginning if <see cref="IsComplete"/> is true.
         /// </summary>
