@@ -12,7 +12,7 @@ namespace IS4.SFI.Services
     /// <param name="properties">Additional user-defined properties of the file.</param>
     /// <param name="writer">If the file is opened, a stream is created and provided to this function to write the file.</param>
     /// <returns>The result of <paramref name="writer"/>.</returns>
-    public delegate ValueTask OutputFileDelegate(bool isBinary, IDictionary<string, object>? properties, Func<Stream, ValueTask> writer);
+    public delegate ValueTask OutputFileDelegate(bool isBinary, INodeMatchProperties properties, Func<Stream, ValueTask> writer);
 
     /// <summary>
     /// Allows extraction of arbitrary files during the operations
@@ -40,6 +40,6 @@ namespace IS4.SFI.Services
         /// <param name="output">The instance of <see cref="OutputFileDelegate"/> for storing the data.</param>
         /// <param name="properties">Additional properties passed to <paramref name="output"/>.</param>
         /// <returns>Whether the entity was recognized.</returns>
-        ValueTask<bool> DescribeEntity(T entity, OutputFileDelegate? output, IDictionary<string, object>? properties);
+        ValueTask<bool> DescribeEntity(T entity, OutputFileDelegate? output, INodeMatchProperties properties);
     }
 }

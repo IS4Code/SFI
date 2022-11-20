@@ -96,22 +96,20 @@ namespace IS4.SFI.Analyzers
 
             if(node.Match(out var properties))
             {
-                if(properties != null)
+                var format = primaryFormat.Key;
+                if(format?.Extension is string extension)
                 {
-                    var format = primaryFormat.Key;
-                    if(format?.Extension is string extension)
-                    {
-                        properties["extension"] = "." + extension;
-                    }
-                    if(format?.MediaType is string mediaType)
-                    {
-                        properties["mediaType"] = mediaType;
-                    }
-                    if(label != null)
-                    {
-                        properties["name"] = label;
-                    }
+                    properties.Extension ??= "." + extension;
                 }
+                if(format?.MediaType is string mediaType)
+                {
+                    properties.MediaType ??= mediaType;
+                }
+                if(label != null)
+                {
+                    properties.Name ??= label;
+                }
+
                 await OnOutputFile(dataObject.IsBinary, properties, async stream => {
                     using(var input = dataObject.StreamFactory.Open())
                     {

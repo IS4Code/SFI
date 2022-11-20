@@ -220,31 +220,15 @@ namespace IS4.SFI
 		/// <summary>
 		/// Called from an analyzer when an output file should be created.
 		/// </summary>
-        private async ValueTask OnOutputFile(bool isBinary, IDictionary<string, object>? properties, Func<Stream, ValueTask> writer)
+        private async ValueTask OnOutputFile(bool isBinary, INodeMatchProperties properties, Func<Stream, ValueTask> writer)
         {
-			if(properties == null)
-            {
-				properties = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
-            }
-			if(!properties.ContainsKey("name"))
-            {
-				properties["name"] = Guid.NewGuid().ToString("N");
-			}
-			if(!properties.ContainsKey("extension"))
-			{
-				properties["extension"] = "";
-			}
-			if(!properties.ContainsKey("mediaType"))
-			{
-				properties["mediaType"] = "";
-			}
-			if(!properties.TryGetValue("path", out var pathObject))
-			{
-				pathObject = "${name}${extension}";
-			}
-			var path = pathObject.ToString();
+			properties.Name ??= Guid.NewGuid().ToString("N");
+			properties.Extension ??= "";
+			properties.MediaType ??= "";
+			var path = properties.PathFormat ?? "${name}${extension}";
+			properties.PathFormat = null;
 
-			var name = TextTools.SubstituteVariables(path, properties);
+			var name = TextTools.SubstituteVariables(path, properties.GetProperties().Select(p => new KeyValuePair<string, object>(p.Key, p.Value.GetValue(properties))));
 
 			LogWriter?.WriteLine($"Extracting to '{name}'...");
 			using(var stream = environment.CreateFile(name, isBinary ? "application/octet-stream" : "text/plain"))

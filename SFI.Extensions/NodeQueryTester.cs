@@ -1,5 +1,8 @@
-﻿using System;
+﻿using IS4.SFI.Services;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 using VDS.RDF;
 using VDS.RDF.Query;
 using VDS.RDF.Query.Datasets;
@@ -38,9 +41,9 @@ namespace IS4.SFI
         /// <param name="subject">The matching node to be identified by the queries.</param>
         /// <param name="properties">Additional variables from a successful match, as instances of <see cref="Uri"/> or <see cref="String"/>.</param>
         /// <returns>True if any of the queries successfully matched the node.</returns>
-        public bool Match(INode subject, out IDictionary<string, object>? properties)
+        public bool Match(INode subject, out INodeMatchProperties properties)
         {
-            Dictionary<string, object>? variables = null;
+            Properties? variables = null;
             var success = false;
             foreach(var query in queries)
             {
@@ -60,18 +63,21 @@ namespace IS4.SFI
                                 success = true;
                                 if(variables == null)
                                 {
-                                    variables = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
+                                    variables = new Properties();
                                 }
                                 foreach(var pair in result)
                                 {
-                                    switch(pair.Value)
+                                    if(variables.Properites.TryGetValue(pair.Key, out var prop))
                                     {
-                                        case IUriNode uriValue:
-                                            variables[pair.Key] = uriValue.Uri;
-                                            break;
-                                        case ILiteralNode literalValue:
-                                            variables[pair.Key] = literalValue.Value;
-                                            break;
+                                        switch(pair.Value)
+                                        {
+                                            case IUriNode uriValue:
+                                                prop.SetValue(variables, uriValue.Uri);
+                                                break;
+                                            case ILiteralNode literalValue:
+                                                prop.SetValue(variables, literalValue.Value);
+                                                break;
+                                        }
                                     }
                                 }
                             }
@@ -79,8 +85,29 @@ namespace IS4.SFI
                         break;
                 }
             }
-            properties = variables;
+            properties = variables ?? Properties.Default;
             return success;
+        }
+
+        class Properties : INodeMatchProperties
+        {
+            public static readonly Properties Default = new Properties();
+
+            /// <inheritdoc/>
+            public string? Extension { get; set; }
+
+            /// <inheritdoc/>
+            public string? MediaType { get; set; }
+
+            /// <inheritdoc/>
+            public string? Name { get; set; }
+
+            /// <inheritdoc/>
+            public string? PathFormat { get; set; }
+
+            Dictionary<string, PropertyDescriptor>? properties;
+
+            public Dictionary<string, PropertyDescriptor> Properites => properties ?? (properties = this.GetProperties().ToDictionary(p => p.Key, p => p.Value));
         }
     }
 }

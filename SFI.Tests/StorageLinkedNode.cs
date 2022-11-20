@@ -186,9 +186,9 @@ namespace IS4.SFI.Tests
         }
 
         /// <inheritdoc/>
-        public override bool Match(out IDictionary<string, object>? properties)
+        public override bool Match(out INodeMatchProperties properties)
         {
-            properties = null;
+            properties = null!;
             return false;
         }
 

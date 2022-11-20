@@ -86,15 +86,12 @@ namespace IS4.SFI
         /// <param name="output">The instance of <see cref="OutputFileDelegate"/> to receive the file.</param>
         /// <param name="properties">Additional properties passed to <paramref name="output"/>.</param>
         /// <returns>Whether a description of the hash was properly retrieved.</returns>
-        public async ValueTask<bool> DescribeEntity(byte[] hash, OutputFileDelegate? output, IDictionary<string, object>? properties)
+        public async ValueTask<bool> DescribeEntity(byte[] hash, OutputFileDelegate? output, INodeMatchProperties properties)
         {
             if(bDictCache.TryGetValue(hash, out var info))
             {
-                if(properties != null)
-                {
-                    properties["name"] = BitConverter.ToString(hash).Replace("-", "");
-                    properties["extension"] = ".torrent";
-                }
+                properties.Name ??= BitConverter.ToString(hash).Replace("-", "");
+                properties.Extension ??= ".torrent";
                 await (output?.Invoke(
                     true, properties, async stream => {
                     var dict = new BDictionary();

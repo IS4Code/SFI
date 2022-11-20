@@ -260,7 +260,7 @@ namespace IS4.SFI.Extensions
         {
             readonly NodeQueryTester? queryTester;
 
-            /// <param name="queryTester">The instance of <see cref="NodeQueryTester"/> for <see cref="Match(out IDictionary{string, object})"/>.</param>
+            /// <param name="queryTester">The instance of <see cref="NodeQueryTester"/> for <see cref="Match(out INodeMatchProperties)"/>.</param>
             /// <inheritdoc cref="LinkedNode{TNode, TGraphNode, TVocabularyCache}.LinkedNode(TNode, TGraphNode, TVocabularyCache)"/>
             /// <param name="subject"><inheritdoc path="/param[@name='subject']" cref="LinkedNode{TNode, TGraphNode, TVocabularyCache}.LinkedNode(TNode, TGraphNode, TVocabularyCache)"/></param>
             /// <param name="graph"><inheritdoc path="/param[@name='graph']" cref="LinkedNode{TNode, TGraphNode, TVocabularyCache}.LinkedNode(TNode, TGraphNode, TVocabularyCache)"/></param>
@@ -317,11 +317,11 @@ namespace IS4.SFI.Extensions
                 }
             }
 
-            public override bool Match(out IDictionary<string, object>? properties)
+            public override bool Match(out INodeMatchProperties properties)
             {
                 if(queryTester == null)
                 {
-                    properties = null;
+                    properties = null!;
                     return false;
                 }
                 return queryTester.Match(Subject, out properties);
