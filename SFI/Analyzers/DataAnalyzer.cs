@@ -150,26 +150,27 @@ namespace IS4.SFI.Analyzers
         /// <inheritdoc/>
         public async override ValueTask<AnalysisResult> Analyze(IStreamFactory streamFactory, AnalysisContext context, IEntityAnalyzers analyzers)
         {
-            var match = await new DataAnalysis(this, streamFactory, context, analyzers).Match();
-            var node = await match.NodeTask;
+            return await new DataAnalysis(this, streamFactory, context, analyzers).Match(async match => {
+                var node = await match.NodeTask;
 
-            if(node != null)
-            {
-                node.SetAsBase();
-
-                var results = match.Results.Where(result => result.IsValid);
-
-                foreach(var result in results.GroupBy(r => r.Result))
+                if(node != null)
                 {
-                    if(result.Key != null)
+                    node.SetAsBase();
+
+                    var results = match.Results.Where(result => result.IsValid);
+
+                    foreach(var result in results.GroupBy(r => r.Result))
                     {
-                        match.Recognized = true;
-                        node.Set(Properties.HasFormat, result.Key);
+                        if(result.Key != null)
+                        {
+                            match.Recognized = true;
+                            node.Set(Properties.HasFormat, result.Key);
+                        }
                     }
                 }
-            }
 
-            return await analyzers.Analyze<IDataObject>(match, context.WithNode(node));
+                return await analyzers.Analyze<IDataObject>(match, context.WithNode(node));
+            });
 		}
 
         class DataAnalysis
@@ -199,7 +200,7 @@ namespace IS4.SFI.Analyzers
                 this.analyzers = analyzers;
             }
 
-            public async Task<DataMatch> Match()
+            public async Task<TResult> Match<TResult>(Func<DataMatch, ValueTask<TResult>> receiver)
             {
                 var lazyMatch = new Lazy<Task<DataMatch>>(() => DataMatch.Create(this), false);
             
@@ -315,13 +316,12 @@ namespace IS4.SFI.Analyzers
                     }
 
                     match = await lazyMatch.Value;
+                    match.ActualLength = actualLength;
+
+                    return await receiver(match);
                 }finally{
                     tmpPath.Dispose();
                 }
-
-                match.ActualLength = actualLength;
-
-                return match;
             }
 
             public class DataMatch : IDataObject
