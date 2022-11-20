@@ -466,9 +466,9 @@ namespace IS4.SFI.Analyzers
                         }catch(InternalApplicationException)
                         {
                             throw;
-                        }catch(PlatformNotSupportedException e)
+                        }catch(Exception e) when(IsFatalFormatException(e))
                         {
-                            analysis.analyzer.OutputLog.WriteLine($"{result.Format.GetType().Name}: {e.Message}");
+                            analysis.analyzer.OutputLog.WriteLine($"{DataTools.GetUserFriendlyName(result.Format.GetType())}: {e.Message}");
                             analysis.analyzer.DataFormats.Remove(result.Format);
                         }catch{
 
@@ -476,6 +476,15 @@ namespace IS4.SFI.Analyzers
                     }
 
                     return match;
+                }
+
+                private static bool IsFatalFormatException(Exception e)
+                {
+                    return
+                        e is PlatformNotSupportedException ||
+                        e is FileLoadException ||
+                        e is FileNotFoundException ||
+                        e is TypeLoadException;
                 }
 
                 private string? TryGetString(Encoding encoding, ArraySegment<byte> data)
