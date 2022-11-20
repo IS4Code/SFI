@@ -55,20 +55,28 @@ namespace IS4.SFI
         readonly ConcurrentDictionary<string, StrongBox<long>> typeCounters = new(StringComparer.OrdinalIgnoreCase);
 
         /// <summary>
+        /// Stores if a 
+        /// </summary>
+        readonly ConcurrentDictionary<string, bool> noAnalyzerWarned = new(StringComparer.OrdinalIgnoreCase);
+
+        /// <summary>
         /// Traverses the <see cref="Analyzers"/> and picks the first to implement
         /// <see cref="IEntityAnalyzer{T}"/> of <typeparamref name="T"/> to analyze
         /// <paramref name="entity"/>.
         /// </summary>
         private async ValueTask<AnalysisResult> Analyze<T>(T entity, AnalysisContext context, IEntityAnalyzers analyzers) where T : class
         {
-            var nameShort = DataTools.GetIdentifierFromType<T>();
-            var id = Interlocked.Increment(ref typeCounters.GetOrAdd(nameShort, _ => new StrongBox<long>(0)).Value);
-            nameShort += "#" + id;
-            var nameLong = DataTools.GetUserFriendlyName(entity);
+            var nameKey = DataTools.GetIdentifierFromType<T>();
+            var id = Interlocked.Increment(ref typeCounters.GetOrAdd(nameKey, _ => new StrongBox<long>(0)).Value);
+            
+            var nameOrdinal = nameKey + "#" + id;
+            var nameFriendly = DataTools.GetUserFriendlyName(entity);
 
+            bool any = false;
             foreach(var analyzer in Analyzers.OfType<IEntityAnalyzer<T>>())
             {
-                OutputLog.WriteLine($"[{nameShort}] Analyzing: {nameLong}...");
+                any = true;
+                OutputLog.WriteLine($"[{nameOrdinal}] Analyzing: {nameFriendly}...");
                 await Update();
                 try{
                     var result = await analyzer.Analyze(entity, context, analyzers);
@@ -76,28 +84,32 @@ namespace IS4.SFI
                     {
                         if(!String.IsNullOrEmpty(result.Label))
                         {
-                            OutputLog.WriteLine($"[{nameShort}] OK! {result.Label}");
+                            OutputLog.WriteLine($"[{nameOrdinal}] OK! {result.Label}");
                         }else{
-                            OutputLog.WriteLine($"[{nameShort}] OK!");
+                            OutputLog.WriteLine($"[{nameOrdinal}] OK!");
                         }
                         return result;
                     }
-                    OutputLog.WriteLine($"[{nameShort}] No result!");
+                    OutputLog.WriteLine($"[{nameOrdinal}] No result!");
                 }catch(InternalApplicationException e)
                 {
                     ExceptionDispatchInfo.Capture(e.InnerException).Throw();
                     throw;
                 }catch(Exception e) when(GlobalOptions.SuppressNonCriticalExceptions)
                 {
-                    OutputLog.WriteLine($"[{nameShort}] Error!");
+                    OutputLog.WriteLine($"[{nameOrdinal}] Error!");
                     OutputLog.WriteLine(e);
                     return default;
                 }finally{
                     await Update();
                 }
             }
-            OutputLog.WriteLine($"[{nameShort}] No analyzer for {nameLong}.");
-            await Update();
+            if(any || !noAnalyzerWarned.ContainsKey(nameKey))
+            {
+                OutputLog.WriteLine($"[{nameOrdinal}] No analyzer for {nameFriendly}.");
+                noAnalyzerWarned[nameKey] = true;
+                await Update();
+            }
             return default;
         }
 
