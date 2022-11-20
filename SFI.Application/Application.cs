@@ -224,6 +224,7 @@ namespace IS4.SFI
         {
 			properties.Name ??= Guid.NewGuid().ToString("N");
 			properties.Extension ??= "";
+			var mediaType = properties.MediaType;
 			properties.MediaType ??= "";
 			var path = properties.PathFormat ?? "${name}${extension}";
 			properties.PathFormat = null;
@@ -231,7 +232,7 @@ namespace IS4.SFI
 			var name = TextTools.SubstituteVariables(path, properties.GetProperties().Select(p => new KeyValuePair<string, object>(p.Key, p.Value.GetValue(properties))));
 
 			LogWriter?.WriteLine($"Extracting to '{name}'...");
-			using(var stream = environment.CreateFile(name, isBinary ? "application/octet-stream" : "text/plain"))
+			using(var stream = environment.CreateFile(name, mediaType ?? (isBinary ? "application/octet-stream" : "text/plain")))
             {
 				await writer(stream);
             }
