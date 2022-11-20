@@ -107,7 +107,7 @@ namespace IS4.SFI
 			LogWriter.WriteLine();
 			if(String.IsNullOrWhiteSpace(ExecutableName))
 			{
-				LogWriter.WriteLine("Usage: {1}", Usage);
+				LogWriter.WriteLine("Usage: {0}", Usage);
 			}else{
 				LogWriter.WriteLine("Usage: {0} {1}", ExecutableName, Usage);
 			}
