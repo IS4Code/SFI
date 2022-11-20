@@ -62,6 +62,7 @@ namespace IS4.SFI.ConsoleApp
             DataAnalyzer.DataFormats.Add(new DelphiFormFormat());
             DataAnalyzer.DataFormats.Add(new CabinetFormat());
             DataAnalyzer.DataFormats.Add(new OleStorageFormat());
+            DataAnalyzer.DataFormats.Add(new ShockwaveFlashFormat());
             DataAnalyzer.DataFormats.Add(new InternetShortcutFormat());
             DataAnalyzer.DataFormats.Add(new ShellLinkFormat());
 
@@ -94,6 +95,7 @@ namespace IS4.SFI.ConsoleApp
             Analyzers.Add(new OleDocumentAnalyzer());
             Analyzers.Add(new OpenXmlDocumentAnalyzer());
             Analyzers.Add(new PdfAnalyzer());
+            Analyzers.Add(new ShockwaveFlashAnalyzer());
             Analyzers.Add(new InternetShortcutAnalyzer());
             Analyzers.Add(new ShellLinkAnalyzer());
 

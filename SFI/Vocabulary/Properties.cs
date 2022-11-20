@@ -477,6 +477,18 @@
         public static readonly PropertyUri PageCount;
 
         /// <summary>
+        /// <see cref="Nfo"/>:frameCount.
+        /// </summary>
+        [Uri(Nfo)]
+        public static readonly PropertyUri FrameCount;
+
+        /// <summary>
+        /// <see cref="Nfo"/>:frameRate.
+        /// </summary>
+        [Uri(Nfo)]
+        public static readonly PropertyUri FrameRate;
+
+        /// <summary>
         /// <see cref="Skos"/>:broader.
         /// </summary>
         [Uri(Skos)]
