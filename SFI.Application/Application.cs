@@ -246,7 +246,7 @@ namespace IS4.SFI
 
 			// "value\0" for each pair
 			var source = new StringBuilder();
-			// "(?<key>[^\0]{value-length})" for each pair
+			// "(?<key>.{value-length})\0" for each pair
 			var pattern = new StringBuilder();
 
 			pattern.Append("^");
@@ -256,12 +256,12 @@ namespace IS4.SFI
 				var valueStr = pair.Value is IFormattable fmt ? fmt.ToString(null, CultureInfo.InvariantCulture) : pair.Value.ToString();
 				source.Append(valueStr);
 				source.Append('\0');
-				pattern.Append($"(?<{pair.Key}>[^\0]{{{valueStr.Length}}})\0");
+				pattern.Append($"(?<{pair.Key}>.{{{valueStr.Length}}})\0");
 			}
 			pattern.Append("$");
 
 			// Perform substitution using Regex
-			var name = Regex.Replace(source.ToString(), pattern.ToString(), path);
+			var name = Regex.Replace(source.ToString(), pattern.ToString(), path, RegexOptions.Singleline);
 
 			LogWriter?.WriteLine($"Extracting to '{name}'...");
 			using(var stream = environment.CreateFile(name, isBinary ? "application/octet-stream" : "text/plain"))
