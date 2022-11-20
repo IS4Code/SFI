@@ -59,7 +59,7 @@ namespace IS4.SFI.Application
         /// <returns>The identifier of the component.</returns>
         public virtual string GetIdentifier(object component)
         {
-            return $"{Attribute.Prefix}:{DataTools.GetUserFriendlyName(component)}";
+            return $"{Attribute.Prefix}:{TextTools.GetUserFriendlyName(component)}";
         }
 
         static readonly Type genericType = typeof(ComponentCollection<>);

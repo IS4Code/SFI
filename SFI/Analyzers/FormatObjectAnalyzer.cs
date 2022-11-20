@@ -66,7 +66,7 @@ namespace IS4.SFI.Analyzers
             var label = result.Label;
             if(format is IBinaryFormatObject binaryFormat)
             {
-                label ??= DataTools.SizeSuffix(binaryFormat.Data.StreamFactory.Length, 2);
+                label ??= TextTools.SizeSuffix(binaryFormat.Data.StreamFactory.Length, 2);
             }
 
             if(format.Format is IXmlDocumentFormat xmlFormat)

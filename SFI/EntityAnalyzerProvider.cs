@@ -66,11 +66,11 @@ namespace IS4.SFI
         /// </summary>
         private async ValueTask<AnalysisResult> Analyze<T>(T entity, AnalysisContext context, IEntityAnalyzers analyzers) where T : class
         {
-            var nameKey = DataTools.GetIdentifierFromType<T>();
+            var nameKey = TextTools.GetIdentifierFromType<T>();
             var id = Interlocked.Increment(ref typeCounters.GetOrAdd(nameKey, _ => new StrongBox<long>(0)).Value);
             
             var nameOrdinal = nameKey + "#" + id;
-            var nameFriendly = DataTools.GetUserFriendlyName(entity);
+            var nameFriendly = TextTools.GetUserFriendlyName(entity);
 
             bool any = false;
             foreach(var analyzer in Analyzers.OfType<IEntityAnalyzer<T>>())

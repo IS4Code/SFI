@@ -47,7 +47,7 @@ namespace IS4.SFI.Analyzers
                 }
             }
 
-            var sizeSuffix = DataTools.SizeSuffix(dataObject.ActualLength, 2);
+            var sizeSuffix = TextTools.SizeSuffix(dataObject.ActualLength, 2);
 
             var label = $"{(isBinary ? "binary data" : "text")} ({sizeSuffix})";
 
@@ -135,9 +135,9 @@ namespace IS4.SFI.Analyzers
             public override string Extension { get; }
 
             /// <summary>
-            /// The media type is produced by <see cref="DataTools.GetFakeMediaTypeFromSignature(string)"/>.
+            /// The media type is produced by <see cref="TextTools.GetFakeMediaTypeFromSignature(string)"/>.
             /// </summary>
-            public override string MediaType => DataTools.GetFakeMediaTypeFromSignature(Extension);
+            public override string MediaType => TextTools.GetFakeMediaTypeFromSignature(Extension);
 
             public SignatureFormat(string signature)
             {
@@ -157,9 +157,9 @@ namespace IS4.SFI.Analyzers
             public override string Extension { get; }
 
             /// <summary>
-            /// The media type is produced by <see cref="DataTools.GetFakeMediaTypeFromInterpreter(string)"/>.
+            /// The media type is produced by <see cref="TextTools.GetFakeMediaTypeFromInterpreter(string)"/>.
             /// </summary>
-            public override string MediaType => DataTools.GetFakeMediaTypeFromInterpreter(Extension);
+            public override string MediaType => TextTools.GetFakeMediaTypeFromInterpreter(Extension);
 
             public InterpreterFormat(string interpreter)
             {

@@ -65,7 +65,7 @@ namespace IS4.SFI.WebApp
             {
                 return Array.Empty<IFileInfo>();
             }
-            var match = DataTools.ConvertWildcardToRegex(path);
+            var match = TextTools.ConvertWildcardToRegex(path);
             return inputFiles.Where(f => match.IsMatch(f.Key)).Select(f => new BrowserFileInfo(f.Value));
         }
 

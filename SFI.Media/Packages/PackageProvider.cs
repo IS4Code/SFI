@@ -50,7 +50,7 @@ namespace IS4.SFI.Formats
         /// <inheritdoc/>
         public override string ToString()
         {
-            return DataTools.GetFakeMediaTypeFromType<TAnalyzer>() ?? base.ToString();
+            return TextTools.GetFakeMediaTypeFromType<TAnalyzer>() ?? base.ToString();
         }
 
         /// <summary>

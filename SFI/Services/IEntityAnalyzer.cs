@@ -286,7 +286,7 @@ namespace IS4.SFI.Services
         /// <inheritdoc/>
         public override string ToString()
         {
-            var typesId = String.Join("+", GetType().GetEntityAnalyzerTypes().Select(DataTools.GetIdentifierFromType).Distinct());
+            var typesId = String.Join("+", GetType().GetEntityAnalyzerTypes().Select(TextTools.GetIdentifierFromType).Distinct());
             return String.IsNullOrEmpty(typesId) ? base.ToString() : typesId;
         }
     }
@@ -304,7 +304,7 @@ namespace IS4.SFI.Services
         /// <inheritdoc/>
         public override string ToString()
         {
-            return DataTools.GetIdentifierFromType<T>() ?? base.ToString();
+            return TextTools.GetIdentifierFromType<T>() ?? base.ToString();
         }
     }
 }

@@ -156,7 +156,7 @@ namespace IS4.SFI
 				if(mainHash != null)
                 {
 					// Set the primary ni: hash
-					var hash = inspector.DataAnalyzer.HashAlgorithms.FirstOrDefault(h => mainHash.IsMatch(DataTools.GetUserFriendlyName(h)));
+					var hash = inspector.DataAnalyzer.HashAlgorithms.FirstOrDefault(h => mainHash.IsMatch(TextTools.GetUserFriendlyName(h)));
 					if(hash == null)
                     {
 						throw new ApplicationException("Main hash cannot be found!");
@@ -244,24 +244,7 @@ namespace IS4.SFI
 			}
 			var path = pathObject.ToString();
 
-			// "value\0" for each pair
-			var source = new StringBuilder();
-			// "(?<key>.{value-length})\0" for each pair
-			var pattern = new StringBuilder();
-
-			pattern.Append("^");
-			foreach(var pair in properties)
-            {
-				if(pair.Value == null) continue;
-				var valueStr = pair.Value is IFormattable fmt ? fmt.ToString(null, CultureInfo.InvariantCulture) : pair.Value.ToString();
-				source.Append(valueStr);
-				source.Append('\0');
-				pattern.Append($"(?<{pair.Key}>.{{{valueStr.Length}}})\0");
-			}
-			pattern.Append("$");
-
-			// Perform substitution using Regex
-			var name = Regex.Replace(source.ToString(), pattern.ToString(), path, RegexOptions.Singleline);
+			var name = TextTools.SubstituteVariables(path, properties);
 
 			LogWriter?.WriteLine($"Extracting to '{name}'...");
 			using(var stream = environment.CreateFile(name, isBinary ? "application/octet-stream" : "text/plain"))
@@ -280,7 +263,7 @@ namespace IS4.SFI
         {
 			foreach(var prop in GetConfigurableProperties(component))
             {
-				var name = DataTools.FormatMimeName(prop.Name);
+				var name = TextTools.FormatMimeName(prop.Name);
 				if(properties.TryGetValue(name, out var value))
 				{
 					// The property is assigned
@@ -294,7 +277,7 @@ namespace IS4.SFI
                     }
 					if(convertedValue == null)
                     {
-						throw new ApplicationException($"Cannot convert value '{value}' for property {componentName}:{name} to type {DataTools.GetIdentifierFromType(prop.PropertyType)}!");
+						throw new ApplicationException($"Cannot convert value '{value}' for property {componentName}:{name} to type {TextTools.GetIdentifierFromType(prop.PropertyType)}!");
                     }
 					prop.SetValue(component, convertedValue);
 				}
@@ -347,12 +330,12 @@ namespace IS4.SFI
 		{
 			if(IsIncluded(component, name))
 			{
-				LogWriter?.WriteLine($" - {name} ({DataTools.GetUserFriendlyName(component.GetType())})");
+				LogWriter?.WriteLine($" - {name} ({TextTools.GetUserFriendlyName(component.GetType())})");
 				foreach(var prop in GetConfigurableProperties(component))
 				{
 					var value = prop.GetValue(component);
 					var converter = TypeDescriptor.GetConverter(prop.PropertyType);
-					LogWriter?.WriteLine($"  - {name}:{DataTools.FormatMimeName(prop.Name)} ({DataTools.GetIdentifierFromType(prop.PropertyType)}) = {converter.ConvertToInvariantString(value)}");
+					LogWriter?.WriteLine($"  - {name}:{TextTools.FormatMimeName(prop.Name)} ({TextTools.GetIdentifierFromType(prop.PropertyType)}) = {converter.ConvertToInvariantString(value)}");
 				}
 			}
 			return default;
@@ -552,7 +535,7 @@ namespace IS4.SFI
 					break;
 				case "h":
 				case "hash":
-					var match = DataTools.ConvertWildcardToRegex(argument!);
+					var match = TextTools.ConvertWildcardToRegex(argument!);
 					if(mainHash == null)
 					{
 						mainHash = match;
@@ -598,7 +581,7 @@ namespace IS4.SFI
             {
 				Result = result;
 				Pattern = forgetPattern ? null : pattern;
-				Predicate = DataTools.ConvertWildcardToRegex(pattern).IsMatch;
+				Predicate = TextTools.ConvertWildcardToRegex(pattern).IsMatch;
 			}
         }
     }

@@ -260,11 +260,11 @@ namespace IS4.SFI.Analyzers
             }
 
             /// <summary>
-            /// The media type is produced by <see cref="DataTools.GetFakeMediaTypeFromXml(Uri, string, string)"/>.
+            /// The media type is produced by <see cref="TextTools.GetFakeMediaTypeFromXml(Uri, string, string)"/>.
             /// </summary>
             public override string? GetMediaType(XmlFormat value)
             {
-                return DataTools.GetFakeMediaTypeFromXml(GetNamespace(value), GetPublicId(value), value.RootName.Name);
+                return TextTools.GetFakeMediaTypeFromXml(GetNamespace(value), GetPublicId(value), value.RootName.Name);
             }
 
             /// <summary>

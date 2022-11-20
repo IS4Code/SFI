@@ -473,7 +473,7 @@ namespace IS4.SFI.Analyzers
                             throw;
                         }catch(Exception e) when(IsFatalFormatException(e))
                         {
-                            analysis.analyzer.OutputLog.WriteLine($"{DataTools.GetUserFriendlyName(result.Format.GetType())}: {e.Message}");
+                            analysis.analyzer.OutputLog.WriteLine($"{TextTools.GetUserFriendlyName(result.Format.GetType())}: {e.Message}");
                             analysis.analyzer.DataFormats.Remove(result.Format);
                         }catch{
 
