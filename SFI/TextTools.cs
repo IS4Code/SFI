@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -215,7 +216,7 @@ namespace IS4.SFI
                     if(!String.IsNullOrEmpty(type.Namespace))
                     {
                         // Get all similarly named visible types in the assembly
-                        var similarTypes = type.Assembly.ExportedTypes.Where(t => t.Name.Equals(type.Name, StringComparison.OrdinalIgnoreCase) && !t.Equals(type));
+                        var similarTypes = GetExportedTypes(type.Assembly).Where(t => t.Name.Equals(type.Name, StringComparison.OrdinalIgnoreCase) && !t.Equals(type));
                         // Get the length of the namespace prefix shared by all these types
                         int prefix = similarTypes.Select(t => CommonPrefix(t.Namespace, type.Namespace)).DefaultIfEmpty(type.Namespace.Length).Max();
                         // Prepend the determining part of the namespace to the name
@@ -235,6 +236,15 @@ namespace IS4.SFI
                 components.Add(FormatMimeName(name));
                 components.AddRange(type.GetGenericArguments().Select(GetTypeFriendlyName));
                 return String.Join(".", components);
+            }
+
+            static IEnumerable<Type> GetExportedTypes(Assembly asm)
+            {
+                try{
+                    return asm.ExportedTypes;
+                }catch{
+                    return Array.Empty<Type>();
+                }
             }
 
             /// <summary>
