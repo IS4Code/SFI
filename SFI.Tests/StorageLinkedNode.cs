@@ -197,7 +197,12 @@ namespace IS4.SFI.Tests
             return new StorageLinkedNode(EquatableUri.Create(formatter[value] ?? throw new NotImplementedException()), base.Graph, Cache);
         }
 
-        bool ILinkedNodeFactory.IsSafeString(string str)
+        bool ILinkedNodeFactory.IsSafeLiteral(string str)
+        {
+            return true;
+        }
+
+        bool ILinkedNodeFactory.IsSafePredicate(Uri uri)
         {
             return true;
         }

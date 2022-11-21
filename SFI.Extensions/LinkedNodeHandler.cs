@@ -136,7 +136,7 @@ namespace IS4.SFI.Extensions
             {
                 throw new NotSupportedException();
             }
-            return new UriNode(node, defaultHandler, GetGraphCache(defaultHandler), queryTester);
+            return new UriNode(node, defaultHandler, GetGraphCache(defaultHandler));
         }
 
         /// <summary>
@@ -161,7 +161,7 @@ namespace IS4.SFI.Extensions
                 var newUri = UriTools.UriToUuidUri(uri);
                 var subject = handler.CreateUriNode(newUri);
                 realUriCache.Add(subject, uri);
-                var node = new UriNode(subject, handler, GetGraphCache(handler), queryTester);
+                var node = new UriNode(subject, handler, GetGraphCache(handler));
                 node.Set(Properties.AtPrefLabel, shortUriLabel.ToString(), Datatypes.AnyUri);
                 var linked = node.In(Graphs.ShortenedLinks);
                 if(linked != null)
@@ -185,11 +185,31 @@ namespace IS4.SFI.Extensions
             return bnode;
         }
 
-        bool ILinkedNodeFactory.IsSafeString(string str)
+        bool ILinkedNodeFactory.IsSafeLiteral(string str)
         {
             return DataTools.IsSafeString(str);
         }
-        
+
+        bool ILinkedNodeFactory.IsSafePredicate(Uri uri)
+        {
+            return IsSafePredicate(uri);
+        }
+
+        static readonly VDS.RDF.Writing.Formatting.RdfXmlFormatter rdfXmlFormatter = new();
+
+        bool IsSafePredicate(Uri uri)
+        {
+            var blank = defaultHandler.CreateBlankNode("a");
+            var triple = new Triple(blank, defaultHandler.CreateUriNode(uri), blank);
+            try{
+                rdfXmlFormatter.Format(triple);
+                return true;
+            }catch(VDS.RDF.Writing.RdfOutputException)
+            {
+                return false;
+            }
+        }
+
         /// <summary>
         /// Returns the <see cref="VocabularyCache{TNode}"/> for a given RDF handler.
         /// </summary>
@@ -258,17 +278,15 @@ namespace IS4.SFI.Extensions
         /// </summary>
         class UriNode : LinkedNode<INode, IRdfHandler, Cache>
         {
-            readonly NodeQueryTester? queryTester;
+            LinkedNodeHandler handler => Cache.Parent;
 
-            /// <param name="queryTester">The instance of <see cref="NodeQueryTester"/> for <see cref="Match(out INodeMatchProperties)"/>.</param>
             /// <inheritdoc cref="LinkedNode{TNode, TGraphNode, TVocabularyCache}.LinkedNode(TNode, TGraphNode, TVocabularyCache)"/>
             /// <param name="subject"><inheritdoc path="/param[@name='subject']" cref="LinkedNode{TNode, TGraphNode, TVocabularyCache}.LinkedNode(TNode, TGraphNode, TVocabularyCache)"/></param>
             /// <param name="graph"><inheritdoc path="/param[@name='graph']" cref="LinkedNode{TNode, TGraphNode, TVocabularyCache}.LinkedNode(TNode, TGraphNode, TVocabularyCache)"/></param>
             /// <param name="cache"><inheritdoc path="/param[@name='cache']" cref="LinkedNode{TNode, TGraphNode, TVocabularyCache}.LinkedNode(TNode, TGraphNode, TVocabularyCache)"/></param>
-            public UriNode(INode subject, IRdfHandler graph, Cache cache, NodeQueryTester? queryTester) : base(subject, graph, cache)
+            public UriNode(INode subject, IRdfHandler graph, Cache cache) : base(subject, graph, cache)
             {
                 if(!(subject is IUriNode || subject is IBlankNode)) throw new ArgumentException(null, nameof(subject));
-                this.queryTester = queryTester;
             }
 
             protected override void HandleTriple(INode? subj, INode? pred, INode? obj)
@@ -278,9 +296,22 @@ namespace IS4.SFI.Extensions
                     return;
                 }
                 var date = DateTime.UtcNow;
+                var oldPred = pred;
+                while(pred is IUriNode uriPred && !handler.IsSafePredicate(uriPred.Uri))
+                {
+                    // Create v5 UUID URI to encode the unsafe predicate URI
+                    pred = Graph.CreateUriNode(UriTools.UriToUuidUri(uriPred.Uri));
+                }
                 lock(Graph)
                 {
                     Graph.HandleTriple(new Triple(subj, pred, obj));
+                }
+                if(pred != oldPred)
+                {
+                    var predNode = CreateNew(pred);
+                    var oldPredNode = CreateNew(oldPred);
+                    predNode.Set(Properties.SameAs, oldPredNode);
+                    predNode.Set(Properties.EquivalentProperty, oldPredNode);
                 }
                 var meta = In(Graphs.Metadata);
                 if(meta != null && !Equals(meta))
@@ -319,17 +350,18 @@ namespace IS4.SFI.Extensions
 
             public override bool Match(out INodeMatchProperties properties)
             {
-                if(queryTester == null)
+                var tester = handler.queryTester;
+                if(tester == null)
                 {
                     properties = null!;
                     return false;
                 }
-                return queryTester.Match(Subject, out properties);
+                return tester.Match(Subject, out properties);
             }
 
             protected override INode CreateNode(Uri uri)
             {
-                return Cache.Parent.CreateNode(uri, Graph);
+                return handler.CreateNode(uri, Graph);
             }
 
             protected override INode CreateNode(string value)
@@ -373,7 +405,7 @@ namespace IS4.SFI.Extensions
 
             protected override LinkedNode<INode, IRdfHandler, Cache> CreateNew(INode subject)
             {
-                return new UriNode(subject, Graph, Cache, queryTester);
+                return new UriNode(subject, Graph, Cache);
             }
 
             protected override LinkedNode<INode, IRdfHandler, Cache>? CreateInGraph(IRdfHandler? graph)
@@ -382,12 +414,12 @@ namespace IS4.SFI.Extensions
                 {
                     return null;
                 }
-                return new UriNode(VDS.RDF.Tools.CopyNode(Subject, graph), graph, Cache.Parent.GetGraphCache(graph), queryTester);
+                return new UriNode(VDS.RDF.Tools.CopyNode(Subject, graph), graph, handler.GetGraphCache(graph));
             }
 
             protected override IRdfHandler? CreateGraphNode(Uri uri)
             {
-                return Cache.Parent.GetGraphHandler(uri);
+                return handler.GetGraphHandler(uri);
             }
 
             /// <summary>
