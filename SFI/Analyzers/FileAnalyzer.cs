@@ -109,7 +109,7 @@ namespace IS4.SFI.Analyzers
                     node.Set(Properties.FileSize, file.Length);
                 }
 
-                if(file.IsEncrypted)
+                if((file.Attributes & FileAttributes.Encrypted) != 0)
                 {
                     node.Set(Properties.EncryptionStatus, Individuals.EncryptedStatus);
                 }else{

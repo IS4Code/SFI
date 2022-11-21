@@ -23,9 +23,6 @@ namespace IS4.SFI.WebApp
         }
 
         /// <inheritdoc/>
-        public bool IsEncrypted => false;
-
-        /// <inheritdoc/>
         public string? Name => file.Name;
 
         /// <inheritdoc/>
@@ -51,6 +48,9 @@ namespace IS4.SFI.WebApp
 
         /// <inheritdoc/>
         public long Length => file.Size;
+
+        /// <inheritdoc/>
+        public FileAttributes Attributes => FileAttributes.Normal;
 
         /// <inheritdoc/>
         public StreamFactoryAccess Access => StreamFactoryAccess.Parallel;

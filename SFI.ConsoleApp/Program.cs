@@ -76,8 +76,6 @@ namespace IS4.SFI.ConsoleApp
         /// </summary>
         class StandardInput : IFileInfo
         {
-            public bool IsEncrypted => false;
-
             public string? Name => null;
 
             public string? SubName => null;
@@ -95,6 +93,8 @@ namespace IS4.SFI.ConsoleApp
             public FileKind Kind => FileKind.None;
 
             public long Length => -1;
+
+            public FileAttributes Attributes => FileAttributes.Device;
 
             public StreamFactoryAccess Access => StreamFactoryAccess.Single;
 

@@ -110,6 +110,8 @@ namespace IS4.SFI.Analyzers
                 }
             }
 
+            public FileAttributes Attributes => info.Attributes;
+
             object IPersistentKey.ReferenceKey => info.FileSystem;
 
             object IPersistentKey.DataKey => info.FullName;
@@ -130,8 +132,6 @@ namespace IS4.SFI.Analyzers
             }
 
             public long Length => info.Length;
-
-            public bool IsEncrypted => false;
 
             public StreamFactoryAccess Access => info.FileSystem.IsThreadSafe ? StreamFactoryAccess.Parallel : StreamFactoryAccess.Reentrant;
 
@@ -154,6 +154,8 @@ namespace IS4.SFI.Analyzers
                 info.GetFiles().Select(f => (IFileNodeInfo)new FileInfoWrapper(f)).Concat(
                     info.GetDirectories().Select(d => new DirectoryInfoWrapper(d))
                     );
+
+            public Environment.SpecialFolder? SpecialFolderType => null;
         }
     }
 }

@@ -172,6 +172,8 @@ namespace IS4.SFI
             public DateTime? LastWriteTime => null;
             public DateTime? LastAccessTime => null;
             public FileKind Kind => FileKind.ArchiveItem;
+            public FileAttributes Attributes => FileAttributes.Directory;
+            public Environment.SpecialFolder? SpecialFolderType => null;
             public object? ReferenceKey => archive;
             public object? DataKey => null;
 
@@ -184,7 +186,6 @@ namespace IS4.SFI
                     this.entry = entry;
                 }
 
-                public bool IsEncrypted => false;
                 public string? Name => entry.Name;
                 public string? SubName => null;
                 public string? Path => entry.FullName;
@@ -193,6 +194,7 @@ namespace IS4.SFI
                 public DateTime? LastWriteTime => entry.LastWriteTime.UtcDateTime;
                 public DateTime? LastAccessTime => null;
                 public FileKind Kind => FileKind.ArchiveItem;
+                public FileAttributes Attributes => FileAttributes.Normal;
                 public long Length => entry.Length;
                 public StreamFactoryAccess Access => StreamFactoryAccess.Parallel;
                 public object? ReferenceKey => entry;

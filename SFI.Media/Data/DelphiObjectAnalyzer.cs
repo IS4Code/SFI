@@ -98,8 +98,6 @@ namespace IS4.SFI.Analyzers
                 return Data.AsStream(false);
             }
 
-            public bool IsEncrypted => false;
-
             public string? SubName => null;
 
             public string? Path => null;
@@ -113,6 +111,8 @@ namespace IS4.SFI.Analyzers
             public DateTime? LastAccessTime => null;
 
             public FileKind Kind => FileKind.Embedded;
+
+            public FileAttributes Attributes => FileAttributes.Normal;
 
             public override string ToString()
             {

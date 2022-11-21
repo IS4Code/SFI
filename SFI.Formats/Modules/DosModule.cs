@@ -60,8 +60,6 @@ namespace IS4.SFI.Formats.Modules
                 });
             }
 
-            public bool IsEncrypted => false;
-
             public string? Name => null;
 
             public string? SubName => null;
@@ -85,6 +83,8 @@ namespace IS4.SFI.Formats.Modules
             public object? DataKey => null;
 
             public FileKind Kind => FileKind.Embedded;
+
+            public FileAttributes Attributes => FileAttributes.Normal;
 
             public Stream Open()
             {

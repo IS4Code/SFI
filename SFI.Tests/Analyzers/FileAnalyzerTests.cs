@@ -66,6 +66,7 @@ namespace IS4.SFI.Tests.Analyzers
             public DateTime? CreationTime { get; set; }
             public DateTime? LastWriteTime { get; set; }
             public DateTime? LastAccessTime { get; set; }
+            public FileAttributes Attributes { get; set; }
 
             public FileKind Kind => FileKind.None;
             public object? ReferenceKey => this;
@@ -79,12 +80,11 @@ namespace IS4.SFI.Tests.Analyzers
 
         class File : FileNode, IFileInfo
         {
-            public bool IsEncrypted { get; set; }
-
             readonly ArraySegment<byte> data;
 
             public File(ArraySegment<byte> data, Directory? parent) : base(parent)
             {
+                Attributes = FileAttributes.Normal;
                 this.data = data;
             }
 
@@ -104,9 +104,11 @@ namespace IS4.SFI.Tests.Analyzers
 
             public HashSet<FileNode> Entries { get; } = new HashSet<FileNode>();
 
+            public Environment.SpecialFolder? SpecialFolderType { get; set; }
+
             public Directory(Directory? parent) : base(parent)
             {
-
+                Attributes = FileAttributes.Normal;
             }
         }
     }

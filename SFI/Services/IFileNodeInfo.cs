@@ -51,6 +51,11 @@ namespace IS4.SFI.Services
         /// The kind of the file.
         /// </summary>
         FileKind Kind { get; }
+
+        /// <summary>
+        /// The attributes of the file.
+        /// </summary>
+        FileAttributes Attributes { get; }
     }
 
     /// <summary>
@@ -79,10 +84,7 @@ namespace IS4.SFI.Services
     /// </summary>
     public interface IFileInfo : IFileNodeInfo, IStreamFactory
     {
-        /// <summary>
-        /// True if the file is encrypted.
-        /// </summary>
-        bool IsEncrypted { get; }
+
     }
 
     /// <summary>
@@ -95,6 +97,49 @@ namespace IS4.SFI.Services
         /// in this directory.
         /// </summary>
         IEnumerable<IFileNodeInfo> Entries { get; }
+
+        /// <summary>
+        /// The type of the folder, as a value from <see cref="Environment.SpecialFolder"/>
+        /// or <see cref="VirtualFolders"/>, if applicable.
+        /// </summary>
+        Environment.SpecialFolder? SpecialFolderType { get; }
+    }
+
+    /// <summary>
+    /// Additional values of <see cref="Environment.SpecialFolder"/> for
+    /// virtual folders, usable in <see cref="IDirectoryInfo.SpecialFolderType"/>.
+    /// </summary>
+    public static class VirtualFolders
+    {
+        /// <summary>
+        /// A virtual folder for Internet Explorer.
+        /// </summary>
+        public const Environment.SpecialFolder InternetExplorer = (Environment.SpecialFolder)1;
+
+        /// <summary>
+        /// The virtual folder that contains icons for the Control Panel applications.
+        /// </summary>
+        public const Environment.SpecialFolder ControlPanel = (Environment.SpecialFolder)3;
+
+        /// <summary>
+        /// The virtual folder that contains installed printers.
+        /// </summary>
+        public const Environment.SpecialFolder Printers = (Environment.SpecialFolder)4;
+
+        /// <summary>
+        /// The virtual folder that contains the objects in the user's Recycle Bin.
+        /// </summary>
+        public const Environment.SpecialFolder RecycleBin = (Environment.SpecialFolder)10;
+
+        /// <summary>
+        /// A virtual folder that represents Network Neighborhood, the root of the network namespace hierarchy.
+        /// </summary>
+        public const Environment.SpecialFolder NetworkNeighborhood = (Environment.SpecialFolder)18;
+
+        /// <summary>
+        /// The virtual folder that represents Network Connections, that contains network and dial-up connections.
+        /// </summary>
+        public const Environment.SpecialFolder NetworkConnections = (Environment.SpecialFolder)48;
     }
 
     /// <summary>
@@ -129,6 +174,12 @@ namespace IS4.SFI.Services
 
         /// <inheritdoc/>
         public virtual FileKind Kind => FileKind.None;
+
+        /// <inheritdoc/>
+        public virtual FileAttributes Attributes => FileAttributes.Directory;
+
+        /// <inheritdoc/>
+        public Environment.SpecialFolder? SpecialFolderType => null;
 
         /// <inheritdoc/>
         public abstract object? ReferenceKey { get; }
@@ -221,9 +272,6 @@ namespace IS4.SFI.Services
         public int? Revision => null;
 
         /// <inheritdoc/>
-        public bool IsEncrypted => false;
-
-        /// <inheritdoc/>
         public StreamFactoryAccess Access => StreamFactoryAccess.Parallel;
 
         object? IPersistentKey.ReferenceKey => key != null ? key.ReferenceKey : AppDomain.CurrentDomain;
@@ -232,6 +280,9 @@ namespace IS4.SFI.Services
 
         /// <inheritdoc/>
         public FileKind Kind => FileKind.None;
+
+        /// <inheritdoc/>
+        public FileAttributes Attributes => BaseInfo.Attributes;
 
         /// <inheritdoc/>
         public override string ToString()
@@ -277,5 +328,8 @@ namespace IS4.SFI.Services
             BaseInfo.EnumerateFiles().Select(f => (IFileNodeInfo)new FileInfoWrapper(f)).Concat(
                 BaseInfo.EnumerateDirectories().Select(d => new DirectoryInfoWrapper(d))
                 );
+
+        /// <inheritdoc/>
+        public Environment.SpecialFolder? SpecialFolderType => null;
     }
 }

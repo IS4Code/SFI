@@ -140,6 +140,9 @@ namespace IS4.SFI.Formats.Archives
             public FileKind Kind => FileKind.ArchiveItem;
 
             /// <inheritdoc/>
+            public abstract FileAttributes Attributes { get; }
+
+            /// <inheritdoc/>
             public override string ToString()
             {
                 return "/" + Path;
@@ -182,6 +185,12 @@ namespace IS4.SFI.Formats.Archives
                 }
             }
 
+            /// <inheritdoc/>
+            public override FileAttributes Attributes => FileAttributes.Directory;
+
+            /// <inheritdoc/>
+            public Environment.SpecialFolder? SpecialFolderType => null;
+
             protected override object? ReferenceKey => base.ReferenceKey ?? entries.FirstOrDefault().Entry?.Archive;
 
             public static ArchiveDirectoryInfo Create(string path, IArchiveEntryGrouping group)
@@ -207,7 +216,7 @@ namespace IS4.SFI.Formats.Archives
 
             public long Length => entryInfo.Length;
 
-            public bool IsEncrypted => entryInfo.IsEncrypted;
+            public override FileAttributes Attributes => FileAttributes.Directory | (Entry!.IsEncrypted ? FileAttributes.Encrypted : 0);
 
             public StreamFactoryAccess Access => entryInfo.Access;
 
@@ -226,7 +235,7 @@ namespace IS4.SFI.Formats.Archives
 
             public long Length => Entry!.Size;
 
-            public bool IsEncrypted => Entry!.IsEncrypted;
+            public override FileAttributes Attributes => Entry!.IsEncrypted ? FileAttributes.Encrypted : FileAttributes.Normal;
 
             public StreamFactoryAccess Access => StreamFactoryAccess.Parallel;
 

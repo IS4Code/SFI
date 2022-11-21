@@ -99,6 +99,8 @@ namespace IS4.SFI.Analyzers
 
             public FileKind Kind => FileKind.Embedded;
 
+            public abstract FileAttributes Attributes { get; }
+
             public override string ToString()
             {
                 return IsRoot ? "" : "/" + Path;
@@ -108,6 +110,10 @@ namespace IS4.SFI.Analyzers
         class DirectoryEntry : ItemEntry<CFStorage>, IDirectoryInfo
         {
             public IEnumerable<IFileNodeInfo> Entries { get; }
+
+            public override FileAttributes Attributes => FileAttributes.Directory;
+
+            public Environment.SpecialFolder? SpecialFolderType => null;
 
             public DirectoryEntry(string path, CFStorage item, IEnumerable<IFileNodeInfo> entries) : base(path, item)
             {
@@ -122,9 +128,9 @@ namespace IS4.SFI.Analyzers
 
             }
 
-            public bool IsEncrypted => false;
-
             public long Length => Item.Size;
+
+            public override FileAttributes Attributes => FileAttributes.Normal;
 
             public StreamFactoryAccess Access => StreamFactoryAccess.Parallel;
 
