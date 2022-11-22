@@ -82,15 +82,11 @@ namespace IS4.SFI.Tools
                     }
                     default:
                     {
-                        var buffer = ArrayPool<byte>.Shared.Rent(16384);
-                        try{
-                            int read;
-                            while((read = await input.ReadAsync(buffer, 0, buffer.Length)) != 0)
-                            {
-                                Append(ref instance, new ArraySegment<byte>(buffer, 0, read));
-                            }
-                        }finally{
-                            ArrayPool<byte>.Shared.Return(buffer);
+                        using var bufferLease = ArrayPool<byte>.Shared.Rent(16384, out var buffer);
+                        int read;
+                        while((read = await input.ReadAsync(buffer, 0, buffer.Length)) != 0)
+                        {
+                            Append(ref instance, new ArraySegment<byte>(buffer, 0, read));
                         }
                         break;
                     }

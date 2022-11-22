@@ -1,4 +1,5 @@
 ﻿using IS4.SFI.Media;
+using IS4.SFI.Tools;
 using IS4.SFI.Tools.IO;
 using System;
 using System.Buffers;
@@ -239,15 +240,11 @@ namespace IS4.SFI.Windows
 
                 read = (hf, memory, cb) => {
                     try{
-                        var buffer = ArrayPool<byte>.Shared.Rent(unchecked((int)cb));
-                        try{
-                            var subStream = GetStream(hf)!;
-                            var read = subStream.Read(buffer, 0, unchecked((int)cb));
-                            Marshal.Copy(buffer, 0, memory, read);
-                            return unchecked((uint)read);
-                        }finally{
-                            ArrayPool<byte>.Shared.Return(buffer);
-                        }
+                        using var bufferLease = ArrayPool<byte>.Shared.Rent(unchecked((int)cb), out var buffer);
+                        var subStream = GetStream(hf)!;
+                        var read = subStream.Read(buffer, 0, unchecked((int)cb));
+                        Marshal.Copy(buffer, 0, memory, read);
+                        return unchecked((uint)read);
                     }catch(Exception e)
                     {
                         Exceptions.Add(e);

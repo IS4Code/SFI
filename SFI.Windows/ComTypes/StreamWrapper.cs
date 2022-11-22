@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IS4.SFI.Tools;
+using System;
 using System.Buffers;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -25,14 +26,10 @@ namespace IS4.SFI.Windows.ComTypes
 		
 	    public void Read([Out] byte* pv, int cb, [Out] int* pcbRead)
 	    {
-            var buffer = ArrayPool<byte>.Shared.Rent(cb);
-            try{
-	    	    int read = baseStream.Read(buffer, 0, cb);
-                if(pcbRead != null) *pcbRead = read;
-                Marshal.Copy(buffer, 0, (IntPtr)pv, cb);
-            }finally{
-                ArrayPool<byte>.Shared.Return(buffer);
-            }
+            using var bufferLease = ArrayPool<byte>.Shared.Rent(cb, out var buffer);
+	    	int read = baseStream.Read(buffer, 0, cb);
+            if(pcbRead != null) *pcbRead = read;
+            Marshal.Copy(buffer, 0, (IntPtr)pv, cb);
 	    }
 	    
 	    public void Write([In] byte* pv, int cb, [Out] int* pcbWritten)
@@ -44,13 +41,9 @@ namespace IS4.SFI.Windows.ComTypes
                     baseStream.WriteByte(pv[i]);
                 }
             }else{
-                var buffer = ArrayPool<byte>.Shared.Rent(cb);
-                try{
-                    Marshal.Copy((IntPtr)pv, buffer, 0, cb);
-                    baseStream.Write(buffer, 0, cb);
-                }finally{
-                    ArrayPool<byte>.Shared.Return(buffer);
-                }
+                using var bufferLease = ArrayPool<byte>.Shared.Rent(cb, out var buffer);
+                Marshal.Copy((IntPtr)pv, buffer, 0, cb);
+                baseStream.Write(buffer, 0, cb);
             }
             if(pcbWritten != null) *pcbWritten = cb;
         }

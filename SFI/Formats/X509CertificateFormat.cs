@@ -1,4 +1,5 @@
 ﻿using IS4.SFI.Services;
+using IS4.SFI.Tools;
 using System;
 using System.Buffers;
 using System.IO;
@@ -31,7 +32,7 @@ namespace IS4.SFI.Formats
         /// <inheritdoc/>
         public override bool CheckHeader(ReadOnlySpan<byte> header, bool isBinary, IEncodingDetector? encodingDetector)
         {
-            var buffer = ArrayPool<byte>.Shared.Rent(header.Length);
+            using var bufferLease = ArrayPool<byte>.Shared.Rent(header.Length, out var buffer);
             try{
                 header.CopyTo(buffer);
                 var type = X509Certificate2.GetCertContentType(buffer);
@@ -41,8 +42,6 @@ namespace IS4.SFI.Formats
                 return false;
             }catch{
                 return true;
-            }finally{
-                ArrayPool<byte>.Shared.Return(buffer);
             }
         }
 

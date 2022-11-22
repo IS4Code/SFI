@@ -67,16 +67,14 @@ namespace IS4.SFI.Analysis.Audio
         {
             var gen = new AudioSpectrumSingle(sampleRate, channels, 2048, 1536, maxFreq: 4000);
 
-            var buffer = ArrayPool<float>.Shared.Rent(16384);
-            try{
+            {
+                using var bufferLease = ArrayPool<float>.Shared.Rent(16384, out var buffer);
                 int read;
                 while((read = provider.Read(buffer, 0, buffer.Length)) > 0)
                 {
                     gen.Add(buffer.Slice(0, read));
                 }
                 gen.Finish();
-            }finally{
-                ArrayPool<float>.Shared.Return(buffer);
             }
 
             var result = new Complex[channels][];

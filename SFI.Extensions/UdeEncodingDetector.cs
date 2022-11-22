@@ -45,13 +45,9 @@ namespace IS4.SFI.Tools
         /// <inheritdoc/>
         public void Write(ReadOnlySpan<byte> data)
         {
-            var array = ArrayPool<byte>.Shared.Rent(data.Length);
-            try{
-                data.CopyTo(array);
-                Write(array.Slice(0, data.Length));
-            }finally{
-                ArrayPool<byte>.Shared.Return(array);
-            }
+            using var arrayLease = ArrayPool<byte>.Shared.Rent(data.Length, out var array);
+            data.CopyTo(array);
+            Write(array.Slice(0, data.Length));
         }
 
         /// <inheritdoc/>

@@ -1,5 +1,6 @@
 ﻿using IS4.SFI.Services;
 using System;
+using System.Buffers;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -316,6 +317,58 @@ namespace IS4.SFI.Tools
         {
             var label = String.Join(separator, components.Where(c => !String.IsNullOrWhiteSpace(c)).Distinct());
             return label != "" ? label : null;
+        }
+
+        /// <summary>
+        /// Rents an array from the instance of <see cref="ArrayPool{T}"/>
+        /// with a particular minimum size, and returns an instance of
+        /// <see cref="IDisposable"/> that can be used to return it back to the
+        /// pool.
+        /// </summary>
+        /// <typeparam name="T">The element type of the array.</typeparam>
+        /// <param name="arrayPool">The instance of <see cref="ArrayPool{T}"/> to use.</param>
+        /// <param name="minimumLength">The minimum length of the desired array.</param>
+        /// <param name="array">A variable to receive the array from <paramref name="arrayPool"/>.</param>
+        /// <returns>An instance of <see cref="IDisposable"/> that should be used to return the array.</returns>
+        /// <remarks>
+        /// This method internally calls <see cref="ArrayPool{T}.Rent(int)"/>
+        /// and <see cref="ArrayPool{T}.Return(T[], bool)"/>.
+        /// </remarks>
+        public static ArrayPoolLease<T> Rent<T>(this ArrayPool<T> arrayPool, int minimumLength, out T[] array)
+        {
+            array = arrayPool.Rent(minimumLength);
+            return new ArrayPoolLease<T>(arrayPool, array);
+        }
+
+        /// <summary>
+        /// Stores an array rented from an instance of <see cref="ArrayPool{T}"/>
+        /// by calling <see cref="ArrayPool{T}.Rent(int)"/>, implementing
+        /// <see cref="IDisposable"/> to automatically return the array to the pool.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        public struct ArrayPoolLease<T> : IDisposable
+        {
+            readonly ArrayPool<T> arrayPool;
+            T[]? array;
+
+            internal ArrayPoolLease(ArrayPool<T> arrayPool, T[] array)
+            {
+                this.arrayPool = arrayPool;
+                this.array = array;
+            }
+
+            /// <summary>
+            /// Calls <see cref="ArrayPool{T}.Return(T[], bool)"/> on the rented array.
+            /// </summary>
+            public void Dispose()
+            {
+                var arr = array;
+                array = null;
+                if(arr != null)
+                {
+                    arrayPool.Return(arr);
+                }
+            }
         }
 
         #region MemoryCast overloads

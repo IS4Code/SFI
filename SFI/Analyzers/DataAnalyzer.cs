@@ -245,60 +245,56 @@ namespace IS4.SFI.Analyzers
 
                         bool? couldBeUnicode = null;
 
-                        var buffer = ArrayPool<byte>.Shared.Rent(16384);
+                        using var bufferLease = ArrayPool<byte>.Shared.Rent(16384, out var buffer);
 
                         var activeHashes = (IEnumerable<(ChannelWriter<ArraySegment<byte>> writer, Task<byte[]> data)>)hashes.Values.Where(v => v.writer != null);
 
-                        try{
-                            int read;
-                            while((read = await stream.ReadAsync(buffer, 0, buffer.Length)) != 0)
+                        int read;
+                        while((read = await stream.ReadAsync(buffer, 0, buffer.Length)) != 0)
+                        {
+                            var segment = buffer.Slice(0, read);
+                            async Task WriteToHasher(ChannelWriter<ArraySegment<byte>> writer)
                             {
-                                var segment = buffer.Slice(0, read);
-                                async Task WriteToHasher(ChannelWriter<ArraySegment<byte>> writer)
-                                {
-                                    await writer.WriteAsync(segment).ConfigureAwait(false);
-                                    await writer.WriteAsync(default).ConfigureAwait(false);
-                                    await writer.WaitToWriteAsync().ConfigureAwait(false);
-                                }
-                                var writing = activeHashes.Select(hash => Task.WhenAny(WriteToHasher(hash.writer), hash.data)).ToArray();
+                                await writer.WriteAsync(segment).ConfigureAwait(false);
+                                await writer.WriteAsync(default).ConfigureAwait(false);
+                                await writer.WaitToWriteAsync().ConfigureAwait(false);
+                            }
+                            var writing = activeHashes.Select(hash => Task.WhenAny(WriteToHasher(hash.writer), hash.data)).ToArray();
 
-                                actualLength += read;
+                            actualLength += read;
 
-                                if(couldBeUnicode == null)
-                                {
-                                    couldBeUnicode = DataTools.FindBom(buffer.AsSpan()) > 0;
-                                }
-
-                                if(!isBinary)
-                                {
-                                    var data = buffer.Slice(0, read);
-                                    if(couldBeUnicode == false && DataTools.IsBinary(data))
-                                    {
-                                        isBinary = true;
-                                    }else{
-                                        encodingDetector?.Write(data);
-                                    }
-                                }
-
-                                outputStream?.Write(buffer, 0, read);
-
-                                if(signatureBuffer.Length < signatureBuffer.Capacity)
-                                {
-                                    signatureBuffer.Write(buffer, 0, Math.Min(signatureBuffer.Capacity - (int)signatureBuffer.Length, read));
-                                }else if(outputStream == null)
-                                {
-                                    _ = lazyMatch.Value;
-                                }
-
-                                await Task.WhenAll(writing);
+                            if(couldBeUnicode == null)
+                            {
+                                couldBeUnicode = DataTools.FindBom(buffer.AsSpan()) > 0;
                             }
 
-                            foreach(var hash in activeHashes)
+                            if(!isBinary)
                             {
-                                hash.writer.Complete();
+                                var data = buffer.Slice(0, read);
+                                if(couldBeUnicode == false && DataTools.IsBinary(data))
+                                {
+                                    isBinary = true;
+                                }else{
+                                    encodingDetector?.Write(data);
+                                }
                             }
-                        }finally{
-                            ArrayPool<byte>.Shared.Return(buffer);
+
+                            outputStream?.Write(buffer, 0, read);
+
+                            if(signatureBuffer.Length < signatureBuffer.Capacity)
+                            {
+                                signatureBuffer.Write(buffer, 0, Math.Min(signatureBuffer.Capacity - (int)signatureBuffer.Length, read));
+                            }else if(outputStream == null)
+                            {
+                                _ = lazyMatch.Value;
+                            }
+
+                            await Task.WhenAll(writing);
+                        }
+
+                        foreach(var hash in activeHashes)
+                        {
+                            hash.writer.Complete();
                         }
 
                         encodingDetector?.End();
