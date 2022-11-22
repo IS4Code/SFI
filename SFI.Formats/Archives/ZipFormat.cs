@@ -20,11 +20,9 @@ namespace IS4.SFI.Formats
         /// <inheritdoc/>
         public async override ValueTask<TResult?> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<IArchiveFile, TResult, TArgs> resultFactory, TArgs args) where TResult : default
         {
-            using(var archive = ZipArchive.Open(stream))
-            {
-                if(!CheckArchive(archive)) return default;
-                return await resultFactory(new ArchiveAdapter(archive), args);
-            }
+            using var archive = ZipArchive.Open(stream);
+            if(!CheckArchive(archive)) return default;
+            return await resultFactory(new ArchiveAdapter(archive), args);
         }
     }
 }

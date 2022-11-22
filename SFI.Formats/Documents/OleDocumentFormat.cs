@@ -66,10 +66,8 @@ namespace IS4.SFI.Formats
                     {
                         if(entry is IFileInfo file)
                         {
-                            using(var stream = file.Open())
-                            {
-                                parent.CreateDocument(file.Name, stream);
-                            }
+                            using var stream = file.Open();
+                            parent.CreateDocument(file.Name, stream);
                         }
                         if(entry is IDirectoryInfo subDir)
                         {

@@ -31,10 +31,8 @@ namespace IS4.SFI.Formats
         /// <inheritdoc/>
         public async override ValueTask<TResult?> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<CompoundFile, TResult, TArgs> resultFactory, TArgs args) where TResult : default
         {
-            using(var file = new CompoundFile(stream, CFSUpdateMode.ReadOnly, CFSConfiguration.NoValidationException))
-            {
-                return await resultFactory(file, args);
-            }
+            using var file = new CompoundFile(stream, CFSUpdateMode.ReadOnly, CFSConfiguration.NoValidationException);
+            return await resultFactory(file, args);
         }
     }
 }

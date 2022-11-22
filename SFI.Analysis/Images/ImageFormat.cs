@@ -44,10 +44,8 @@ namespace IS4.SFI.Formats
         /// <inheritdoc/>
         public async override ValueTask<TResult?> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<Image, TResult, TArgs> resultFactory, TArgs args) where TResult : default
         {
-            using(var image = Image.FromStream(stream))
-            {
-                return await resultFactory(image, args);
-            }
+            using var image = Image.FromStream(stream);
+            return await resultFactory(image, args);
         }
 
         /// <inheritdoc/>

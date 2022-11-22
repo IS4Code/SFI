@@ -87,10 +87,8 @@ namespace IS4.SFI.Tools
 
         private static int GetHashSize(Func<Cryptography.HashAlgorithm> factory)
         {
-            using(var hash = factory())
-            {
-                return (hash.HashSize + 7) / 8;
-            }
+            using var hash = factory();
+            return (hash.HashSize + 7) / 8;
         }
 
         /// <inheritdoc/>

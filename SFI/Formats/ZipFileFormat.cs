@@ -18,10 +18,8 @@ namespace IS4.SFI.Formats
         /// <inheritdoc/>
         public async override ValueTask<TResult?> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<ZipArchive, TResult, TArgs> resultFactory, TArgs args) where TResult : default
         {
-            using(var archive = new ZipArchive(stream, ZipArchiveMode.Read, true))
-            {
-                return await resultFactory(archive, args);
-            }
+            using var archive = new ZipArchive(stream, ZipArchiveMode.Read, true);
+            return await resultFactory(archive, args);
         }
     }
 }

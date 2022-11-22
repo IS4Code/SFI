@@ -4,19 +4,17 @@ using MorseCode.ITask;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace IS4.SFI
 {
-	/// <summary>
-	/// The main application for analyzing input files and producing output.
-	/// </summary>
-	/// <typeparam name="TInspector">The type of <see cref="Inspector"/> to use.</typeparam>
+    /// <summary>
+    /// The main application for analyzing input files and producing output.
+    /// </summary>
+    /// <typeparam name="TInspector">The type of <see cref="Inspector"/> to use.</typeparam>
     public class Application<TInspector> : CommandApplication, IResultFactory<ValueTuple, string>, IResultFactory<bool, string> where TInspector : ComponentInspector, new()
     {
         readonly IApplicationEnvironment environment;
@@ -232,10 +230,8 @@ namespace IS4.SFI
 			var name = TextTools.SubstituteVariables(path, properties.GetProperties().Select(p => new KeyValuePair<string, object>(p.Key, p.Value.GetValue(properties))));
 
 			LogWriter?.WriteLine($"Extracting to '{name}'...");
-			using(var stream = environment.CreateFile(name, mediaType ?? (isBinary ? "application/octet-stream" : "text/plain")))
-            {
-				await writer(stream);
-            }
+			using var stream = environment.CreateFile(name, mediaType ?? (isBinary ? "application/octet-stream" : "text/plain"));
+            await writer(stream);
         }
 
 		/// <summary>

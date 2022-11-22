@@ -227,26 +227,24 @@ namespace IS4.SFI
                 // The data is immediately saved to output without an intermediate storage
                 OutputLog.WriteLine("Writing data...");
 
-                using(var disposable = CreateFileHandler(() => outputFactory(GetOutputMimeType(format)), out var mapper, options, format, out var handler))
+                using var disposable = CreateFileHandler(() => outputFactory(GetOutputMimeType(format)), out var mapper, options, format, out var handler);
+                Graph? queryGraph = null;
+                if(queries.Count > 0)
                 {
-                    Graph? queryGraph = null;
-                    if(queries.Count > 0)
-                    {
-                        handler = new TemporaryGraphHandler(handler, out queryGraph);
-                    }
+                    handler = new TemporaryGraphHandler(handler, out queryGraph);
+                }
 
-                    SetDefaultNamespaces(mapper);
+                SetDefaultNamespaces(mapper);
 
-                    NodeQueryTester? tester = null;
-                    if(queryGraph != null)
-                    {
-                        tester = new NodeQueryTester(handler, queryGraph, queries);
-                    }
+                NodeQueryTester? tester = null;
+                if(queryGraph != null)
+                {
+                    tester = new NodeQueryTester(handler, queryGraph, queries);
+                }
 
-                    foreach(var entity in entities)
-                    {
-                        await AnalyzeEntity(entity, handler, graphHandlers, mapper, tester, options);
-                    }
+                foreach(var entity in entities)
+                {
+                    await AnalyzeEntity(entity, handler, graphHandlers, mapper, tester, options);
                 }
             }else{
                 // The data is first stored in a graph and then saved
@@ -300,24 +298,22 @@ namespace IS4.SFI
                     queryParser.DefaultBaseUri = new Uri(options.Root, UriKind.Absolute);
                     queryParser.Warning += OutputLog.WriteLine;
                 }
-                using(var stream = file.Open())
+                using var stream = file.Open();
+                using var reader = new StreamReader(stream, Encoding.UTF8, true, 4096, true);
+                var query = queryParser.Parse(reader);
+                switch(query.QueryType)
                 {
-                    using var reader = new StreamReader(stream, Encoding.UTF8, true, 4096, true);
-                    var query = queryParser.Parse(reader);
-                    switch(query.QueryType)
-                    {
-                        case SparqlQueryType.Construct:
-                        case SparqlQueryType.Select:
-                        case SparqlQueryType.SelectAll:
-                        case SparqlQueryType.SelectAllDistinct:
-                        case SparqlQueryType.SelectDistinct:
-                        case SparqlQueryType.SelectReduced:
-                            break;
-                        default:
-                            throw new ApplicationException($"Query in {file.Name} has an unsupported type ({query.QueryType}), only SELECT or CONSTRUCT queries are allowed.");
-                    }
-                    results.Add(query);
+                    case SparqlQueryType.Construct:
+                    case SparqlQueryType.Select:
+                    case SparqlQueryType.SelectAll:
+                    case SparqlQueryType.SelectAllDistinct:
+                    case SparqlQueryType.SelectDistinct:
+                    case SparqlQueryType.SelectReduced:
+                        break;
+                    default:
+                        throw new ApplicationException($"Query in {file.Name} has an unsupported type ({query.QueryType}), only SELECT or CONSTRUCT queries are allowed.");
                 }
+                results.Add(query);
             }
             return results;
         }
@@ -493,21 +489,19 @@ namespace IS4.SFI
         /// <param name="format">The format to use for writing.</param>
         private void SaveGraph(Graph graph, Func<Stream> outputFactory, InspectorOptions options, MimeTypeDefinition format)
         {
-            using(var textWriter = OpenFile(outputFactory, options.CompressedOutput, options))
+            using var textWriter = OpenFile(outputFactory, options.CompressedOutput, options);
+            if(format.CanWriteRdf)
             {
-                if(format.CanWriteRdf)
-                {
-                    var writer = format.GetRdfWriter();
-                    ConfigureWriter(writer, options);
-                    graph.SaveToStream(textWriter, writer);
-                }else if(format.CanWriteRdfDatasets)
-                {
-                    var writer = format.GetRdfDatasetWriter();
-                    ConfigureWriter(writer, options);
-                    graph.SaveToStream(textWriter, writer);
-                }else{
-                    throw new ApplicationException($"The format {format.SyntaxName} cannot be used for writing!");
-                }
+                var writer = format.GetRdfWriter();
+                ConfigureWriter(writer, options);
+                graph.SaveToStream(textWriter, writer);
+            }else if(format.CanWriteRdfDatasets)
+            {
+                var writer = format.GetRdfDatasetWriter();
+                ConfigureWriter(writer, options);
+                graph.SaveToStream(textWriter, writer);
+            }else{
+                throw new ApplicationException($"The format {format.SyntaxName} cannot be used for writing!");
             }
         }
 

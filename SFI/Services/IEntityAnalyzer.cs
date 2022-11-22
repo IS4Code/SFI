@@ -1,8 +1,6 @@
 ﻿using IS4.SFI.Formats;
 using IS4.SFI.Tools;
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 

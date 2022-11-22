@@ -32,10 +32,8 @@ namespace IS4.SFI.Formats
         /// <inheritdoc/>
         public async override ValueTask<TResult?> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<CDReader, TResult, TArgs> resultFactory, TArgs args) where TResult : default
         {
-            using(var reader = new CDReader(stream, true))
-            {
-                return await resultFactory(reader, args);
-            }
+            using var reader = new CDReader(stream, true);
+            return await resultFactory(reader, args);
         }
     }
 }

@@ -24,10 +24,8 @@ namespace IS4.SFI.Formats
         /// <inheritdoc/>
         public async override ValueTask<TResult?> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<PdfDocument, TResult, TArgs> resultFactory, TArgs args) where TResult : default
         {
-            using(var doc = PdfReader.Open(stream, OpenMode))
-            {
-                return await resultFactory(doc, args);
-            }
+            using var doc = PdfReader.Open(stream, OpenMode);
+            return await resultFactory(doc, args);
         }
     }
 }

@@ -399,13 +399,11 @@ namespace IS4.SFI
             using(var buffer = new MemoryStream())
             {
                 buffer.Write(namespaceBytes, 0, namespaceBytes.Length);
-                using(var writer = new StreamWriter(buffer, Encoding.UTF8))
-                {
-                    writer.Write(name);
-                    writer.Flush();
-                    buffer.Position = 0;
-                    hash = sha1.ComputeHash(buffer, null).Result;
-                }
+                using var writer = new StreamWriter(buffer, Encoding.UTF8);
+                writer.Write(name);
+                writer.Flush();
+                buffer.Position = 0;
+                hash = sha1.ComputeHash(buffer, null).Result;
             }
             return GuidFromHash(hash);
         }
@@ -512,10 +510,8 @@ namespace IS4.SFI
         /// <param name="subjectUris">A collection of URIs that represent the subject.</param>
         public static void DescribeAsXmp(ILinkedNode node, Stream stream, IReadOnlyCollection<Uri>? subjectUris = null)
         {
-            using(var reader = XmlReader.Create(stream))
-            {
-                DescribeAsXmp(node, reader, subjectUris);
-            }
+            using var reader = XmlReader.Create(stream);
+            DescribeAsXmp(node, reader, subjectUris);
         }
 
         /// <inheritdoc cref="DescribeAsXmp(ILinkedNode, Stream, IReadOnlyCollection{Uri})"/>
@@ -524,10 +520,8 @@ namespace IS4.SFI
         /// <param name="subjectUris"><inheritdoc cref="DescribeAsXmp(ILinkedNode, Stream, IReadOnlyCollection{Uri})" path="/param[@name='subjectUris']"/></param>
         public static void DescribeAsXmp(ILinkedNode node, TextReader reader, IReadOnlyCollection<Uri>? subjectUris = null)
         {
-            using(var xmlReader = XmlReader.Create(reader))
-            {
-                DescribeAsXmp(node, xmlReader, subjectUris);
-            }
+            using var xmlReader = XmlReader.Create(reader);
+            DescribeAsXmp(node, xmlReader, subjectUris);
         }
 
         /// <inheritdoc cref="DescribeAsXmp(ILinkedNode, Stream, IReadOnlyCollection{Uri})"/>

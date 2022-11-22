@@ -57,10 +57,8 @@ namespace IS4.SFI.Analyzers
                 var data = metadata.Stream?.Value;
                 if(data != null)
                 {
-                    using(var stream = new MemoryStream(data, false))
-                    {
-                        DataTools.DescribeAsXmp(node, stream);
-                    }
+                    using var stream = new MemoryStream(data, false);
+                    DataTools.DescribeAsXmp(node, stream);
                 }
             }
             return new AnalysisResult(node, label);

@@ -48,83 +48,80 @@ namespace IS4.SFI.Analyzers
         unsafe string? ReadVersion(ILinkedNode node, ArraySegment<byte> versionData)
         {
             string? label = null;
-            using(var stream = versionData.AsStream(false))
+            using var stream = versionData.AsStream(false);
+            // Allocate space for ANSI/Unicode conversions
+            var buffer = new byte[stream.Length * 3];
+            int bufferLen = buffer.Length / 3;
+            stream.Read(buffer, bufferLen, bufferLen);
+
+            var bufferData = buffer.AsSpan().Slice(bufferLen, bufferLen);
+
+            var signature = bufferData.Slice(4);
+
+            bool useAnsi;
+            if(signature.StartsWith(ansiVersionString))
             {
-                // Allocate space for ANSI/Unicode conversions
-                var buffer = new byte[stream.Length * 3];
-                int bufferLen = buffer.Length / 3;
-                stream.Read(buffer, bufferLen, bufferLen);
+                useAnsi = true;
+            }else if(signature.StartsWith(unicodeVersionString))
+            {
+                useAnsi = false;
+            }else{
+                return null;
+            }
 
-                var bufferData = buffer.AsSpan().Slice(bufferLen, bufferLen);
+            fixed(byte* data = bufferData)
+            {
+                if(VerQueryValue(useAnsi, (IntPtr)data, bufferLen, @"\", out var rootVal, out var rootLen))
+                {
+                    ref var version = ref *(VS_FIXEDFILEINFO*)rootVal;
+                    if(version.dwSignature == 0xFEEF04BD)
+                    {
+                        var fileVersion = VerFromDWORDs(version.dwFileVersionMS, version.dwFileVersionLS);
+                        var productVersion = VerFromDWORDs(version.dwProductVersionMS, version.dwProductVersionLS);
 
-                var signature = bufferData.Slice(4);
-
-                bool useAnsi;
-                if(signature.StartsWith(ansiVersionString))
-                {
-                    useAnsi = true;
-                } else if(signature.StartsWith(unicodeVersionString))
-                {
-                    useAnsi = false;
-                } else
-                {
-                    return null;
+                        node.Set(Properties.Version, fileVersion);
+                        node.Set(Properties.SoftwareVersion, productVersion);
+                    }
                 }
 
-                fixed (byte* data = bufferData)
+                if(VerQueryValue(useAnsi, (IntPtr)data, bufferLen, @"\VarFileInfo\Translation", out var transBlock, out var transLen))
                 {
-                    if(VerQueryValue(useAnsi, (IntPtr)data, bufferLen, @"\", out var rootVal, out var rootLen))
+                    var num = transLen / (uint)sizeof(LANGANDCODEPAGE);
+                    var translations = new Span<LANGANDCODEPAGE>((void*)transBlock, unchecked((int)num));
+                    foreach(var trans in translations)
                     {
-                        ref var version = ref *(VS_FIXEDFILEINFO*)rootVal;
-                        if(version.dwSignature == 0xFEEF04BD)
+                        var enc = useAnsi ? Encoding.GetEncoding(trans.wCodePage, EncoderFallback.ReplacementFallback, DecoderFallback.ReplacementFallback) : Encoding.Unicode;
+                        CultureInfo? culture;
+                        if(trans.wLanguage > 0)
                         {
-                            var fileVersion = VerFromDWORDs(version.dwFileVersionMS, version.dwFileVersionLS);
-                            var productVersion = VerFromDWORDs(version.dwProductVersionMS, version.dwProductVersionLS);
-
-                            node.Set(Properties.Version, fileVersion);
-                            node.Set(Properties.SoftwareVersion, productVersion);
-                        }
-                    }
-
-                    if(VerQueryValue(useAnsi, (IntPtr)data, bufferLen, @"\VarFileInfo\Translation", out var transBlock, out var transLen))
-                    {
-                        var num = transLen / (uint)sizeof(LANGANDCODEPAGE);
-                        var translations = new Span<LANGANDCODEPAGE>((void*)transBlock, unchecked((int)num));
-                        foreach(var trans in translations)
-                        {
-                            var enc = useAnsi ? Encoding.GetEncoding(trans.wCodePage, EncoderFallback.ReplacementFallback, DecoderFallback.ReplacementFallback) : Encoding.Unicode;
-                            CultureInfo? culture;
-                            if(trans.wLanguage > 0)
+                            try{
+                                culture = CultureInfo.GetCultureInfo(trans.wLanguage);
+                            }catch(CultureNotFoundException)
                             {
-                                try{
-                                    culture = CultureInfo.GetCultureInfo(trans.wLanguage);
-                                }catch(CultureNotFoundException)
-                                {
-                                    culture = null;
-                                }
-                            }else{
                                 culture = null;
                             }
-                            var dir = $@"\StringFileInfo\{trans.wLanguage:X4}{trans.wCodePage:X4}\";
-                            foreach(var pair in predefinedProperties)
+                        }else{
+                            culture = null;
+                        }
+                        var dir = $@"\StringFileInfo\{trans.wLanguage:X4}{trans.wCodePage:X4}\";
+                        foreach(var pair in predefinedProperties)
+                        {
+                            if(VerQueryValue(useAnsi, (IntPtr)data, bufferLen, dir + pair.Key, out var text, out var textLen))
                             {
-                                if(VerQueryValue(useAnsi, (IntPtr)data, bufferLen, dir + pair.Key, out var text, out var textLen))
+                                var len = enc.GetMaxByteCount(unchecked((int)textLen));
+                                var value = enc.GetString((byte*)text, len).Substring(0, unchecked((int)textLen));
+                                int end = value.IndexOf('\0');
+                                if(end != -1) value = value.Substring(0, end);
+                                if(culture != null && pair.Value.lang)
                                 {
-                                    var len = enc.GetMaxByteCount(unchecked((int)textLen));
-                                    var value = enc.GetString((byte*)text, len).Substring(0, unchecked((int)textLen));
-                                    int end = value.IndexOf('\0');
-                                    if(end != -1) value = value.Substring(0, end);
-                                    if(culture != null && pair.Value.lang)
-                                    {
-                                        node.Set(pair.Value.prop, value, new LanguageCode(culture));
-                                    } else
-                                    {
-                                        node.Set(pair.Value.prop, value);
-                                    }
-                                    if(pair.Value.prop == Properties.Name)
-                                    {
-                                        label = value;
-                                    }
+                                    node.Set(pair.Value.prop, value, new LanguageCode(culture));
+                                } else
+                                {
+                                    node.Set(pair.Value.prop, value);
+                                }
+                                if(pair.Value.prop == Properties.Name)
+                                {
+                                    label = value;
                                 }
                             }
                         }

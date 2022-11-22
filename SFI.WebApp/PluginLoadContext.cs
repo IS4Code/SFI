@@ -28,10 +28,8 @@ namespace IS4.SFI.WebApp
 
         static Assembly LoadFromFile(AssemblyLoadContext context, IFileInfo fileInfo)
         {
-            using(var stream = fileInfo.Open())
-            {
-                return context.LoadFromStream(stream);
-            }
+            using var stream = fileInfo.Open();
+            return context.LoadFromStream(stream);
         }
 
         protected override Assembly? Load(AssemblyName assemblyName)

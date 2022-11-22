@@ -51,12 +51,10 @@ namespace IS4.SFI.Formats
         /// <inheritdoc/>
         public async override ValueTask<TResult?> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<IArchiveReader, TResult, TArgs> resultFactory, TArgs args) where TResult : default
         {
-            using(var reader = new SzReader(stream))
-            {
-                var adapter = new ArchiveReaderAdapter(reader);
-                storedTypes.Add(adapter, reader.QBasicVariant ? "application/x-ms-compress-sz" : "application/x-ms-compress-szdd");
-                return await resultFactory(adapter, args);
-            }
+            using var reader = new SzReader(stream);
+            var adapter = new ArchiveReaderAdapter(reader);
+            storedTypes.Add(adapter, reader.QBasicVariant ? "application/x-ms-compress-sz" : "application/x-ms-compress-szdd");
+            return await resultFactory(adapter, args);
         }
     }
 }

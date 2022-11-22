@@ -35,37 +35,31 @@ namespace IS4.SFI
         /// <inheritdoc/>
         public async override ValueTask<byte[]> ComputeHash(Stream input, IPersistentKey? key = null)
         {
-            using(var output = new MemoryStream())
+            using var output = new MemoryStream();
+            var info = await BitTorrentHashCache.GetCachedInfo(BlockSize, input, key);
+            var enc = BitConverter.GetBytes(info.Padding);
+            output.Write(enc, 0, enc.Length);
+            foreach(var block in info.BlockHashes)
             {
-                var info = await BitTorrentHashCache.GetCachedInfo(BlockSize, input, key);
-                var enc = BitConverter.GetBytes(info.Padding);
-                output.Write(enc, 0, enc.Length);
-                foreach(var block in info.BlockHashes)
-                {
-                    output.Write(block, 0, block.Length);
-                }
-                output.Write(info.LastHashPadded, 0, info.LastHashPadded.Length);
-                output.Write(info.LastHash, 0, info.LastHash.Length);
-                return output.ToArray();
+                output.Write(block, 0, block.Length);
             }
+            output.Write(info.LastHashPadded, 0, info.LastHashPadded.Length);
+            output.Write(info.LastHash, 0, info.LastHash.Length);
+            return output.ToArray();
         }
 
         /// <inheritdoc/>
         public async override ValueTask<byte[]> ComputeHash(byte[] data, IPersistentKey? key = null)
         {
-            using(var stream = new MemoryStream(data, false))
-            {
-                return await ComputeHash(stream, key).ConfigureAwait(false);
-            }
+            using var stream = new MemoryStream(data, false);
+            return await ComputeHash(stream, key).ConfigureAwait(false);
         }
 
         /// <inheritdoc/>
         public async override ValueTask<byte[]> ComputeHash(byte[] data, int offset, int count, IPersistentKey? key = null)
         {
-            using(var stream = new MemoryStream(data, offset, count, false))
-            {
-                return await ComputeHash(stream, key).ConfigureAwait(false);
-            }
+            using var stream = new MemoryStream(data, offset, count, false);
+            return await ComputeHash(stream, key).ConfigureAwait(false);
         }
 
         /// <inheritdoc/>

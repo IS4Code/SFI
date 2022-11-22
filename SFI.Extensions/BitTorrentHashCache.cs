@@ -150,10 +150,8 @@ namespace IS4.SFI
             public static async Task<FileInfo> Create(int blockSize, IPersistentKey key)
             {
                 if(key is not IStreamFactory file) throw new ArgumentException(null, nameof(key));
-                using(var stream = file.Open())
-                {
-                    return new FileInfo(await HashData(blockSize, stream));
-                }
+                using var stream = file.Open();
+                return new FileInfo(await HashData(blockSize, stream));
             }
         }
     }

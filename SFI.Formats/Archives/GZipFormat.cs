@@ -20,10 +20,8 @@ namespace IS4.SFI.Formats
         /// <inheritdoc/>
         public async override ValueTask<TResult?> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<IArchiveReader, TResult, TArgs> resultFactory, TArgs args) where TResult : default
         {
-            using(var reader = GZipReader.Open(stream))
-            {
-                return await resultFactory(new ArchiveReaderAdapter(reader), args);
-            }
+            using var reader = GZipReader.Open(stream);
+            return await resultFactory(new ArchiveReaderAdapter(reader), args);
         }
     }
 }

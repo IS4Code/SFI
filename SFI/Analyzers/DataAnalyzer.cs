@@ -2,7 +2,6 @@
 using IS4.SFI.Services;
 using IS4.SFI.Tools;
 using IS4.SFI.Tools.IO;
-using IS4.SFI.Vocabulary;
 using MorseCode.ITask;
 using System;
 using System.Buffers;
@@ -219,10 +218,8 @@ namespace IS4.SFI.Analyzers
                             foreach(var hash in analyzer.HashAlgorithms)
                             {
                                 hashes[hash] = (null, Task.Run(async () => {
-                                    using(var hashStream = streamFactory.Open())
-                                    {
-                                        return await hash.ComputeHash(hashStream, streamFactory);
-                                    }
+                                    using var hashStream = streamFactory.Open();
+                                    return await hash.ComputeHash(hashStream, streamFactory);
                                 }));
                             }
                         }

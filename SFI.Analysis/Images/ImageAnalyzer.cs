@@ -96,11 +96,9 @@ namespace IS4.SFI.Analyzers
                     ArraySegment<byte> thumbnailData;
                     using(var thumbnail = ImageTools.ResizeImage(image, 12, 12, PixelFormat.Format32bppArgb, Color.Transparent))
                     {
-                        using(var stream = new MemoryStream())
-                        {
-                            thumbnail.Save(stream, ImageFormat.Png);
-                            thumbnailData = stream.GetData();
-                        }
+                        using var stream = new MemoryStream();
+                        thumbnail.Save(stream, ImageFormat.Png);
+                        thumbnailData = stream.GetData();
                     }
 
                     var thumbNode = context.NodeFactory.Create(UriTools.DataUriFormatter, ("image/png", null, thumbnailData));
@@ -129,11 +127,9 @@ namespace IS4.SFI.Analyzers
                     try{
                         int bpp = Image.GetPixelFormatSize(data.PixelFormat);
                         await Task.WhenAll(DataHashAlgorithms.Select(hash => Task.Run(async () => {
-                            using(var stream = new BitmapDataStream(data.Scan0, data.Stride, data.Height, data.Width, bpp))
-                            {
-                                var hashBytes = await hash.ComputeHash(stream);
-                                await HashAlgorithm.AddHash(node, hash, hashBytes, context.NodeFactory, OnOutputFile);
-                            }
+                            using var stream = new BitmapDataStream(data.Scan0, data.Stride, data.Height, data.Width, bpp);
+                            var hashBytes = await hash.ComputeHash(stream);
+                            await HashAlgorithm.AddHash(node, hash, hashBytes, context.NodeFactory, OnOutputFile);
                         })));
                     }finally{
                         bmp.UnlockBits(data);

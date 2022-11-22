@@ -27,23 +27,19 @@ namespace IS4.SFI.Formats
         {
             if(stream is FileStream fileStream)
             {
-                using(var inst = LoadLibraryEx(fileStream.Name, LoadLibraryExFlags.LOAD_LIBRARY_AS_IMAGE_RESOURCE | LoadLibraryExFlags.LOAD_LIBRARY_AS_DATAFILE | LoadLibraryExFlags.DONT_RESOLVE_DLL_REFERENCES))
-                {
-                    if(inst.IsNull) return default;
-                    return await resultFactory(new Module(inst), args);
-                }
+                using var inst = LoadLibraryEx(fileStream.Name, LoadLibraryExFlags.LOAD_LIBRARY_AS_IMAGE_RESOURCE | LoadLibraryExFlags.LOAD_LIBRARY_AS_DATAFILE | LoadLibraryExFlags.DONT_RESOLVE_DLL_REFERENCES);
+                if(inst.IsNull) return default;
+                return await resultFactory(new Module(inst), args);
             }
-            using(var tmpPath = FileTools.GetTemporaryFile("mz"))
+            using var tmpPath = FileTools.GetTemporaryFile("mz");
+            using(var file = new FileStream(tmpPath, FileMode.CreateNew))
             {
-                using(var file = new FileStream(tmpPath, FileMode.CreateNew))
-                {
-                    stream.CopyTo(file);
-                }
-                using(var inst = LoadLibraryEx(tmpPath, LoadLibraryExFlags.LOAD_LIBRARY_AS_IMAGE_RESOURCE | LoadLibraryExFlags.LOAD_LIBRARY_AS_DATAFILE | LoadLibraryExFlags.DONT_RESOLVE_DLL_REFERENCES))
-                {
-                    if(inst.IsNull) return default;
-                    return await resultFactory(new Module(inst), args);
-                }
+                stream.CopyTo(file);
+            }
+            using(var inst = LoadLibraryEx(tmpPath, LoadLibraryExFlags.LOAD_LIBRARY_AS_IMAGE_RESOURCE | LoadLibraryExFlags.LOAD_LIBRARY_AS_DATAFILE | LoadLibraryExFlags.DONT_RESOLVE_DLL_REFERENCES))
+            {
+                if(inst.IsNull) return default;
+                return await resultFactory(new Module(inst), args);
             }
         }
 

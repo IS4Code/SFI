@@ -18,10 +18,8 @@ namespace IS4.SFI.Formats
         /// <inheritdoc/>
         public async override ValueTask<TResult?> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<CabinetFile, TResult, TArgs> resultFactory, TArgs args) where TResult : default
         {
-            using(var file = new CabinetFile(stream))
-            {
-                return await resultFactory(file, args);
-            }
+            using var file = new CabinetFile(stream);
+            return await resultFactory(file, args);
         }
     }
 }

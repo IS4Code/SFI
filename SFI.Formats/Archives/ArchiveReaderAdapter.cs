@@ -148,10 +148,8 @@ namespace IS4.SFI.Formats.Archives
         public void Skip()
         {
             try{
-                using(var stream = reader.OpenEntryStream())
-                {
-                    stream.SkipEntry();
-                }
+                using var stream = reader.OpenEntryStream();
+                stream.SkipEntry();
             }catch(SharpCompressCryptoException e)
             {
                 throw new CryptographicException(e.Message, e);

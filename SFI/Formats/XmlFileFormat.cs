@@ -76,15 +76,13 @@ namespace IS4.SFI.Formats
         /// <inheritdoc/>
         public async override ValueTask<TResult?> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<XmlReader, TResult, TArgs> resultFactory, TArgs args) where TResult : default
         {
-            using(var reader = XmlReader.Create(stream, ReaderSettings))
+            using var reader = XmlReader.Create(stream, ReaderSettings);
+            if(!await reader.ReadAsync()) return default;
+            while(reader.NodeType == XmlNodeType.Whitespace || reader.NodeType == XmlNodeType.SignificantWhitespace)
             {
                 if(!await reader.ReadAsync()) return default;
-                while(reader.NodeType == XmlNodeType.Whitespace || reader.NodeType == XmlNodeType.SignificantWhitespace)
-                {
-                    if(!await reader.ReadAsync()) return default;
-                }
-                return await resultFactory(reader, args);
             }
+            return await resultFactory(reader, args);
         }
 
         class XmlPlaceholderResolver : XmlResolver

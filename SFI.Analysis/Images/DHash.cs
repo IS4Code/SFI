@@ -34,22 +34,18 @@ namespace IS4.SFI.Analysis.Images
         /// <inheritdoc/>
         public async override ValueTask<byte[]> ComputeHash(Image image)
         {
-            using(var horiz = ImageTools.ResizeImage(image, 9, 8, PixelFormat.Format32bppArgb, gray))
-            {
-                using(var vert = ImageTools.ResizeImage(image, 8, 9, PixelFormat.Format32bppArgb, gray))
-                {
-                    var horizBits = horiz.LockBits(new Rectangle(0, 0, 9, 8), ImageLockMode.ReadOnly, PixelFormat.Format32bppRgb);
-                    try{
-                        var vertBits = vert.LockBits(new Rectangle(0, 0, 8, 9), ImageLockMode.ReadOnly, PixelFormat.Format32bppRgb);
-                        try{
-                            return ComputeDHash(horizBits, vertBits);
-                        }finally{
-                            vert.UnlockBits(vertBits);
-                        }
-                    }finally{
-                        horiz.UnlockBits(horizBits);
-                    }
+            using var horiz = ImageTools.ResizeImage(image, 9, 8, PixelFormat.Format32bppArgb, gray);
+            using var vert = ImageTools.ResizeImage(image, 8, 9, PixelFormat.Format32bppArgb, gray);
+            var horizBits = horiz.LockBits(new Rectangle(0, 0, 9, 8), ImageLockMode.ReadOnly, PixelFormat.Format32bppRgb);
+            try{
+                var vertBits = vert.LockBits(new Rectangle(0, 0, 8, 9), ImageLockMode.ReadOnly, PixelFormat.Format32bppRgb);
+                try{
+                    return ComputeDHash(horizBits, vertBits);
+                }finally{
+                    vert.UnlockBits(vertBits);
                 }
+            }finally{
+                horiz.UnlockBits(horizBits);
             }
         }
 

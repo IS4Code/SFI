@@ -91,10 +91,8 @@ namespace IS4.SFI.Formats
                 {
                     if(ContentTypeManager.CONTENT_TYPES_PART_NAME.Equals(file.Name, StringComparison.OrdinalIgnoreCase))
                     {
-                        using(var stream = dataObject.StreamFactory.Open())
-                        {
-                            ContentTypeManager = new ZipContentTypeManager(stream, null);
-                        }
+                        using var stream = dataObject.StreamFactory.Open();
+                        ContentTypeManager = new ZipContentTypeManager(stream, null);
                     }
                 }
                 return await inner(ContainerBehaviour.None);

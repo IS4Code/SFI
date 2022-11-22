@@ -31,16 +31,13 @@ namespace IS4.SFI.Analyzers
                 node.Set(Properties.Height, (decimal)svg.Height.Value);
             }
             Exception? exception = null;
-            try
-            {
-                using(var bmp = svg.Draw())
+            try{
+                using var bmp = svg.Draw();
+                bmp.Tag = new ImageTag
                 {
-                    bmp.Tag = new ImageTag
-                    {
-                        StoreDimensions = false
-                    };
-                    exception = (await analyzers.Analyze(bmp, context)).Exception;
-                }
+                    StoreDimensions = false
+                };
+                exception = (await analyzers.Analyze(bmp, context)).Exception;
             }catch(Exception e)
             {
                 exception = e;

@@ -62,11 +62,9 @@ namespace IS4.SFI.Formats
                 storedTypes.Add(cert, type);
                 return await resultFactory(cert, args);
             }
-            using(var buffer = new MemoryStream())
-            {
-                await stream.CopyToAsync(buffer);
-                return await Match(buffer, context, resultFactory, args);
-            }
+            using var buffer = new MemoryStream();
+            await stream.CopyToAsync(buffer);
+            return await Match(buffer, context, resultFactory, args);
         }
 
         private X509ContentType GetContentType(X509Certificate2 certificate)

@@ -5,7 +5,6 @@ using IS4.SFI.Vocabulary;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace IS4.SFI.Analyzers
@@ -124,10 +123,8 @@ namespace IS4.SFI.Analyzers
                 }
 
                 await OnOutputFile(dataObject.IsBinary, properties, async stream => {
-                    using(var input = dataObject.StreamFactory.Open())
-                    {
-                        await input.CopyToAsync(stream);
-                    }
+                    using var input = dataObject.StreamFactory.Open();
+                    await input.CopyToAsync(stream);
                 });
             }
 

@@ -78,10 +78,8 @@ namespace IS4.SFI.Formats
         public async override ValueTask<TResult?> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<WaveStream, TResult, TArgs> resultFactory, TArgs args) where TResult : default
         {
             readerAllowMp3 = allowMp3;
-            using(var reader = new CustomStreamMediaFoundationReader(stream, settings))
-            {
-                return await resultFactory(reader, args);
-            }
+            using var reader = new CustomStreamMediaFoundationReader(stream, settings);
+            return await resultFactory(reader, args);
         }
 
         class CustomStreamMediaFoundationReader : StreamMediaFoundationReader, ICustomWaveFormat

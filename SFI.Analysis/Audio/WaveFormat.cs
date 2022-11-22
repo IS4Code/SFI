@@ -31,10 +31,8 @@ namespace IS4.SFI.Formats
         /// <inheritdoc/>
         public async override ValueTask<TResult?> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<WaveStream, TResult, TArgs> resultFactory, TArgs args) where TResult : default
         {
-            using(var reader = new WaveFileReader(stream))
-            {
-                return await resultFactory(reader, args);
-            }
+            using var reader = new WaveFileReader(stream);
+            return await resultFactory(reader, args);
         }
     }
 }
