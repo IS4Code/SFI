@@ -58,7 +58,7 @@ namespace IS4.SFI.Formats
         }
 
         /// <inheritdoc/>
-        public override bool CheckHeader(Span<byte> header, bool isBinary, IEncodingDetector? encodingDetector)
+        public override bool CheckHeader(ReadOnlySpan<byte> header, bool isBinary, IEncodingDetector? encodingDetector)
         {
             if(!allowMp3) return !waveFormat.CheckHeader(header, isBinary, encodingDetector);
             if(header.Length < HeaderLength) return false;

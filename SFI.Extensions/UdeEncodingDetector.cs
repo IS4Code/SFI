@@ -43,7 +43,7 @@ namespace IS4.SFI.Tools
         }
 
         /// <inheritdoc/>
-        public void Write(Span<byte> data)
+        public void Write(ReadOnlySpan<byte> data)
         {
             var array = ArrayPool<byte>.Shared.Rent(data.Length);
             try{

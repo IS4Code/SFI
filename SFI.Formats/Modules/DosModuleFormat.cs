@@ -19,7 +19,7 @@ namespace IS4.SFI.Formats
         }
 
         /// <inheritdoc/>
-        protected override bool CheckSignature(Span<byte> header)
+        protected override bool CheckSignature(ReadOnlySpan<byte> header)
         {
             var fields = header.MemoryCast<ushort>();
             return (fields.Length > 0 && fields[0] == 0x4D5A) || base.CheckSignature(header);

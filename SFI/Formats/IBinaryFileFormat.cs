@@ -13,7 +13,7 @@ namespace IS4.SFI.Formats
     {
         /// <summary>
         /// The minimum length of the header that should be read from a file
-        /// before calling <see cref="CheckHeader(Span{byte}, bool, IEncodingDetector)"/>.
+        /// before calling <see cref="CheckHeader(ReadOnlySpan{byte}, bool, IEncodingDetector)"/>.
         /// </summary>
         int HeaderLength { get; }
 
@@ -35,7 +35,7 @@ namespace IS4.SFI.Formats
         /// <param name="isBinary">Whether the file was detected as binary or not.</param>
         /// <param name="encodingDetector">The specific instance of <see cref="IEncodingDetector"/> used to determine the encoding.</param>
         /// <returns>False if the file cannot possibly be in this format, true otherwise.</returns>
-        bool CheckHeader(Span<byte> header, bool isBinary, IEncodingDetector? encodingDetector);
+        bool CheckHeader(ReadOnlySpan<byte> header, bool isBinary, IEncodingDetector? encodingDetector);
 
         /// <summary>
         /// Attempts to match this format from a file, producing an object that describes
@@ -114,11 +114,11 @@ namespace IS4.SFI.Formats
         /// <inheritdoc/>
         public virtual bool CheckHeader(ArraySegment<byte> header, bool isBinary, IEncodingDetector? encodingDetector)
         {
-            return CheckHeader(header.AsSpan(), isBinary, encodingDetector);
+            return CheckHeader(new ReadOnlySpan<byte>(header.Array, header.Offset, header.Count), isBinary, encodingDetector);
         }
 
         /// <inheritdoc/>
-        public abstract bool CheckHeader(Span<byte> header, bool isBinary, IEncodingDetector? encodingDetector);
+        public abstract bool CheckHeader(ReadOnlySpan<byte> header, bool isBinary, IEncodingDetector? encodingDetector);
 
         /// <inheritdoc/>
         public abstract ValueTask<TResult?> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<T, TResult, TArgs> resultFactory, TArgs args);

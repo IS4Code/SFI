@@ -7,7 +7,7 @@ namespace IS4.SFI.Formats
 {
     /// <summary>
     /// Represents a format of DOS/Windows MZ modules as instances of <typeparamref name="T"/>.
-    /// The implementation of <see cref="CheckHeader(Span{byte}, bool, IEncodingDetector)"/>
+    /// The implementation of <see cref="CheckHeader(ReadOnlySpan{byte}, bool, IEncodingDetector)"/>
     /// checks the signature in the extended MZ header.
     /// </summary>
     /// <typeparam name="T"></typeparam>
@@ -27,7 +27,7 @@ namespace IS4.SFI.Formats
         }
 
         /// <inheritdoc/>
-        public override bool CheckHeader(Span<byte> header, bool isBinary, IEncodingDetector? encodingDetector)
+        public override bool CheckHeader(ReadOnlySpan<byte> header, bool isBinary, IEncodingDetector? encodingDetector)
         {
             if(!base.CheckHeader(header, isBinary, encodingDetector))
             {

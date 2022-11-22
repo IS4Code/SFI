@@ -37,7 +37,7 @@ namespace IS4.SFI
         /// </summary>
         /// <param name="data">The input as a span of bytes.</param>
         /// <returns>The length of the BOM, if any, or 0.</returns>
-        public static int FindBom(Span<byte> data)
+        public static int FindBom(ReadOnlySpan<byte> data)
         {
             foreach(var bom in knownBoms)
             {

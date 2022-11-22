@@ -19,7 +19,7 @@ namespace IS4.SFI.Formats
         }
 
         /// <inheritdoc/>
-        public override bool CheckHeader(Span<byte> header, bool isBinary, IEncodingDetector? encodingDetector)
+        public override bool CheckHeader(ReadOnlySpan<byte> header, bool isBinary, IEncodingDetector? encodingDetector)
         {
             if(header.Length < HeaderLength || !base.CheckHeader(header, isBinary, encodingDetector))
             {

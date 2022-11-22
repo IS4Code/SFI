@@ -72,7 +72,7 @@ namespace IS4.SFI.Formats
         }
 
         /// <inheritdoc/>
-        public override bool CheckHeader(Span<byte> header, bool isBinary, IEncodingDetector? encodingDetector)
+        public override bool CheckHeader(ReadOnlySpan<byte> header, bool isBinary, IEncodingDetector? encodingDetector)
         {
             return CheckSignature(header);
         }
@@ -84,7 +84,7 @@ namespace IS4.SFI.Formats
         /// </summary>
         /// <param name="header">A collection of bytes from the beginning of the file.</param>
         /// <returns>True if the signature in the header matches.</returns>
-        protected virtual bool CheckSignature(Span<byte> header)
+        protected virtual bool CheckSignature(ReadOnlySpan<byte> header)
         {
             return header.Length > signature.Length && header.StartsWith(signature);
         }

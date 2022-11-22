@@ -31,7 +31,7 @@ namespace IS4.SFI.Services
         /// Gives additional data to the detector.
         /// </summary>
         /// <param name="data">The next collection of bytes of the data.</param>
-        void Write(Span<byte> data);
+        void Write(ReadOnlySpan<byte> data);
 
         /// <summary>
         /// Indicates that the data is at its end.

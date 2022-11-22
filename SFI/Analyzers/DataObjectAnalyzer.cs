@@ -190,7 +190,7 @@ namespace IS4.SFI.Analyzers
                 return value.Extension;
             }
 
-            public override bool CheckHeader(Span<byte> header, bool isBinary, IEncodingDetector? encodingDetector)
+            public override bool CheckHeader(ReadOnlySpan<byte> header, bool isBinary, IEncodingDetector? encodingDetector)
             {
                 throw new NotSupportedException();
             }

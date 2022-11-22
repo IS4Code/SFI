@@ -28,7 +28,7 @@ namespace IS4.SFI.Formats
         static readonly byte[] terminator = { 0, (byte)' ' };
 
         /// <inheritdoc/>
-        public override bool CheckHeader(Span<byte> header, bool isBinary, IEncodingDetector? encodingDetector)
+        public override bool CheckHeader(ReadOnlySpan<byte> header, bool isBinary, IEncodingDetector? encodingDetector)
         {
             if(header.Length < headerLength) return false;
             if(header.Slice(154, 2).IndexOfAny(terminator) != 0)
