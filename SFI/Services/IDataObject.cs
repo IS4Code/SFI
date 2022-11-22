@@ -37,19 +37,19 @@ namespace IS4.SFI.Services
         IReadOnlyDictionary<IDataHashAlgorithm, byte[]> Hashes { get; }
 
         /// <summary>
-        /// The collection of recognized format objects and their labels.
+        /// The collection of recognized format objects and the results of the analysis.
         /// </summary>
-        IReadOnlyDictionary<IBinaryFormatObject, string?> Formats { get; }
+        IReadOnlyDictionary<IBinaryFormatObject, AnalysisResult> Formats { get; }
 
         /// <summary>
-        /// The byte content of the data, possibly only from its
-        /// beginning if <see cref="IsComplete"/> is true.
+        /// The byte content of the data, possibly only an
+        /// initial portion if <see cref="IsComplete"/> is false.
         /// </summary>
         ArraySegment<byte> ByteValue { get; }
 
         /// <summary>
-        /// The string content of the data, possibly only from its
-        /// beginning if <see cref="IsComplete"/> is true.
+        /// The string content of the data, possibly only an
+        /// initial portion if <see cref="IsComplete"/> is false.
         /// </summary>
         string? StringValue { get; }
 
@@ -62,11 +62,6 @@ namespace IS4.SFI.Services
         /// The encoding used to produce <see cref="StringValue"/>.
         /// </summary>
         Encoding? Encoding { get; }
-
-        /// <summary>
-        /// Whether any format was recognized from the data or not.
-        /// </summary>
-        bool Recognized { get; }
 
         /// <summary>
         /// Whether <see cref="ByteValue"/> and <see cref="StringValue"/>

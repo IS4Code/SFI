@@ -20,6 +20,8 @@ namespace IS4.SFI.Analyzers
         {
             var node = GetNode(context);
 
+            node.SetAsBase();
+
             var isBinary = dataObject.IsBinary;
             var charset = dataObject.Charset;
 
@@ -61,9 +63,22 @@ namespace IS4.SFI.Analyzers
                 await HashAlgorithm.AddHash(node, algorithm, value, context.NodeFactory, OnOutputFile);
             }
 
-            KeyValuePair<IBinaryFormatObject, string?> primaryFormat = default;
+            KeyValuePair<IBinaryFormatObject, AnalysisResult>? primaryFormat = null;
 
-            if(!dataObject.Recognized)
+            foreach(var pair in dataObject.Formats)
+            {
+                if(primaryFormat == null)
+                {
+                    primaryFormat = pair;
+                }
+                var formatNode = pair.Value.Node;
+                if(formatNode != null)
+                {
+                    node.Set(Properties.HasFormat, formatNode);
+                }
+            }
+
+            if(primaryFormat == null)
             {
                 // Prepare an improvised format if no other format was recognized
                 ImprovisedFormat.Format? improvisedFormat = null;
@@ -86,17 +101,15 @@ namespace IS4.SFI.Analyzers
                     {
                         node.Set(Properties.HasFormat, formatNode);
                     }
-                    primaryFormat = new(formatObj, null);
+                    primaryFormat = new(formatObj, default);
                 }
-            }else{
-                primaryFormat = dataObject.Formats.FirstOrDefault();
             }
 
-            label = primaryFormat.Value ?? label;
+            label = primaryFormat?.Value.Label ?? label;
 
             if(node.Match(out var properties))
             {
-                var format = primaryFormat.Key;
+                var format = primaryFormat?.Key;
                 if(format?.Extension is string extension)
                 {
                     properties.Extension ??= "." + extension;

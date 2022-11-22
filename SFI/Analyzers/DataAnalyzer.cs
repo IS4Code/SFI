@@ -6,6 +6,7 @@ using IS4.SFI.Vocabulary;
 using MorseCode.ITask;
 using System;
 using System.Buffers;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -73,7 +74,7 @@ namespace IS4.SFI.Analyzers
         /// <summary>
         /// An instance of <see cref="TextWriter"/> to use for logging.
         /// </summary>
-        public TextWriter OutputLog { get; set; } = Console.Error;
+        public TextWriter? OutputLog { get; set; }
 
         /// <summary>
         /// Calculates the maximum allowed length of input above which the node
@@ -152,23 +153,6 @@ namespace IS4.SFI.Analyzers
         {
             return await new DataAnalysis(this, streamFactory, context, analyzers).Match(async match => {
                 var node = await match.NodeTask;
-
-                if(node != null)
-                {
-                    node.SetAsBase();
-
-                    var results = match.Results.Where(result => result.IsValid);
-
-                    foreach(var result in results.GroupBy(r => r.Result))
-                    {
-                        if(result.Key != null)
-                        {
-                            match.Recognized = true;
-                            node.Set(Properties.HasFormat, result.Key);
-                        }
-                    }
-                }
-
                 return await analyzers.Analyze<IDataObject>(match, context.WithNode(node));
             });
 		}
@@ -343,17 +327,15 @@ namespace IS4.SFI.Analyzers
 
                 public Encoding? Encoding => charsetMatch?.Encoding;
 
-                public bool Recognized { get; set; }
-
                 public IReadOnlyDictionary<IDataHashAlgorithm, byte[]> Hashes { get; }
 
                 public ValueTask<ILinkedNode?> NodeTask { get; }
 
                 public IReadOnlyList<FormatResult> Results { get; private set; }
 
-                readonly Dictionary<IBinaryFormatObject, string?> formats = new(ReferenceEqualityComparer<IBinaryFormatObject>.Default);
+                readonly ConcurrentDictionary<IBinaryFormatObject, AnalysisResult> formats = new(ReferenceEqualityComparer<IBinaryFormatObject>.Default);
 
-                public IReadOnlyDictionary<IBinaryFormatObject, string?> Formats => formats;
+                public IReadOnlyDictionary<IBinaryFormatObject, AnalysisResult> Formats => formats;
 
                 public override string ToString()
                 {
@@ -463,13 +445,16 @@ namespace IS4.SFI.Analyzers
                     {
                         try{
                             await result.Finish();
-                            match.formats[result] = result.Label;
+                            if(result.Result is AnalysisResult analysisResult)
+                            {
+                                match.formats[result] = analysisResult;
+                            }
                         }catch(InternalApplicationException)
                         {
                             throw;
                         }catch(Exception e) when(IsFatalFormatException(e))
                         {
-                            analysis.analyzer.OutputLog.WriteLine($"{TextTools.GetUserFriendlyName(result.Format.GetType())}: {e.Message}");
+                            analysis.analyzer.OutputLog?.WriteLine($"{TextTools.GetUserFriendlyName(result.Format.GetType())}: {e.Message}");
                             analysis.analyzer.DataFormats.Remove(result.Format);
                         }catch{
 
@@ -534,21 +519,21 @@ namespace IS4.SFI.Analyzers
             }
         }
         
-		class FormatResult : IComparable<FormatResult>, IResultFactory<ILinkedNode?, MatchContext>, IBinaryFormatObject
+		class FormatResult : IComparable<FormatResult>, IResultFactory<AnalysisResult?, MatchContext>, IBinaryFormatObject
 		{
             readonly DataAnalysis.DataMatch fileMatch;
             public IBinaryFileFormat Format { get; }
             readonly ValueTask<ILinkedNode?> parentTask;
             readonly AnalysisContext context;
             readonly IEntityAnalyzers analyzer;
-            readonly Task<ILinkedNode?> task;
-            ILinkedNode? taskResult;
+            readonly Task<AnalysisResult?> task;
+            AnalysisResult? taskResult;
 
             public bool IsValid => !task.IsFaulted;
 
             public int MaxReadBytes => Format.HeaderLength;
 
-            public ILinkedNode? Result => taskResult ?? task?.Result;
+            public AnalysisResult? Result => taskResult ?? task?.Result;
 
             IDataObject IBinaryFormatObject.Data => fileMatch;
 
@@ -572,15 +557,15 @@ namespace IS4.SFI.Analyzers
 
                 task = StartReading();
 
-                async ValueTask<ILinkedNode?> Reader(Stream stream)
+                async ValueTask<AnalysisResult?> Reader(Stream stream)
                 {
                     var matchContext = this.context.MatchContext;
                     return await format.Match(stream, matchContext, this, matchContext);
                 }
 
-                Task<ILinkedNode?> StartReading()
+                Task<AnalysisResult?> StartReading()
                 {
-                    async Task<ILinkedNode?> Inner()
+                    async Task<AnalysisResult?> Inner()
                     {
                         var stream = streamFactory.Open();
                         try{
@@ -606,7 +591,7 @@ namespace IS4.SFI.Analyzers
                             return Inner();
                         }catch(Exception e)
                         {
-                            return Task.FromException<ILinkedNode?>(e);
+                            return Task.FromException<AnalysisResult?>(e);
                         }
                     }
                 }
@@ -617,7 +602,7 @@ namespace IS4.SFI.Analyzers
                 return task;
             }
 
-            async ITask<ILinkedNode?> IResultFactory<ILinkedNode?, MatchContext>.Invoke<T>(T? value, MatchContext matchContext) where T : class
+            async ITask<AnalysisResult?> IResultFactory<AnalysisResult?, MatchContext>.Invoke<T>(T? value, MatchContext matchContext) where T : class
             {
                 if(value == null)
                 {
@@ -630,10 +615,7 @@ namespace IS4.SFI.Analyzers
                     var formatObj = new BinaryFormatObject<T>(fileMatch, Format, value);
                     Extension = formatObj.Extension;
                     MediaType = formatObj.MediaType;
-                    var result = await analyzer.Analyze(formatObj, streamContext.WithParent(parent));
-                    taskResult = result.Node;
-                    Label = result.Label;
-                    return result.Node;
+                    return taskResult = await analyzer.Analyze(formatObj, streamContext.WithParent(parent));
                 }catch(Exception e)
                 {
                     throw new InternalApplicationException(e);
@@ -654,7 +636,7 @@ namespace IS4.SFI.Analyzers
 
             ValueTask<TResult> IFormatObject.GetValue<TResult, TArgs>(IResultFactory<TResult, TArgs> resultFactory, TArgs args)
             {
-                throw new NotImplementedException();
+                throw new NotSupportedException();
             }
         }
 
