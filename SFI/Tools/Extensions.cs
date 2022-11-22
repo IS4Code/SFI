@@ -4,6 +4,7 @@ using System.Buffers;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -22,6 +23,7 @@ namespace IS4.SFI.Tools
         /// <param name="pair">The deconstructed pair of values.</param>
         /// <param name="key">The variable receiving <see cref="KeyValuePair{TKey, TValue}.Key"/>.</param>
         /// <param name="value">The variable receiving <see cref="KeyValuePair{TKey, TValue}.Value"/></param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Deconstruct<TKey, TValue>(this KeyValuePair<TKey, TValue> pair, out TKey key, out TValue value)
         {
             key = pair.Key;
@@ -70,6 +72,7 @@ namespace IS4.SFI.Tools
         /// Either the result of <see cref="MemoryStream.TryGetBuffer(out ArraySegment{byte})"/>,
         /// or <see cref="MemoryStream.ToArray"/> if that fails.
         /// </returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ArraySegment<byte> GetData(this MemoryStream memoryStream)
         {
             if(memoryStream.TryGetBuffer(out var buffer)) return buffer;
@@ -85,6 +88,7 @@ namespace IS4.SFI.Tools
         /// The result of <see cref="Encoding.GetString(byte[], int, int)"/>
         /// applied on the array segment.
         /// </returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string GetString(this Encoding encoding, ArraySegment<byte> bytes)
         {
             return encoding.GetString(bytes.Array, bytes.Offset, bytes.Count);
@@ -98,12 +102,14 @@ namespace IS4.SFI.Tools
         /// The result of <see cref="Convert.ToBase64String(byte[], int, int)"/>
         /// applied on the array segment.
         /// </returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string ToBase64String(this ArraySegment<byte> bytes)
         {
             return Convert.ToBase64String(bytes.Array, bytes.Offset, bytes.Count);
         }
 
         /// <inheritdoc cref="IndexOf{T}(ArraySegment{T}, T, int, int)"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static int IndexOf<T>(this ArraySegment<T> segment, T value)
         {
             var index = Array.IndexOf(segment.Array, value, segment.Offset, segment.Count);
@@ -112,6 +118,7 @@ namespace IS4.SFI.Tools
         }
 
         /// <inheritdoc cref="IndexOf{T}(ArraySegment{T}, T, int, int)"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static int IndexOf<T>(this ArraySegment<T> segment, T value, int startIndex)
         {
             var index = Array.IndexOf(segment.Array, value, segment.Offset + startIndex, segment.Count - startIndex);
@@ -129,6 +136,7 @@ namespace IS4.SFI.Tools
         /// <param name="startIndex">The index in the segment where to begin searching.</param>
         /// <param name="count">The maximum number of elements to search.</param>
         /// <returns>The index of the searched element within the segment, or -1 if not found.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static int IndexOf<T>(this ArraySegment<T> segment, T value, int startIndex, int count)
         {
             var index = Array.IndexOf(segment.Array, value, segment.Offset + startIndex, Math.Min(segment.Count - startIndex, count));
@@ -143,11 +151,13 @@ namespace IS4.SFI.Tools
         /// <param name="segment">The used <see cref="ArraySegment{T}"/> instance.</param>
         /// <param name="index">The index of the element.</param>
         /// <returns>The value of the element at <paramref name="index"/>.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T At<T>(this ArraySegment<T> segment, int index)
         {
             return AtList<ArraySegment<T>, T>(segment, index);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static T AtList<TList, T>(TList list, int index) where TList : struct, IReadOnlyList<T>
         {
             return list[index];
@@ -162,6 +172,7 @@ namespace IS4.SFI.Tools
         /// <param name="segment">The used <see cref="ArraySegment{T}"/> instance.</param>
         /// <param name="array">The destination array.</param>
         /// <param name="index">The index in the destination array.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void CopyTo<T>(this ArraySegment<T> segment, T[] array, int index = 0)
         {
             Array.Copy(segment.Array, segment.Offset, array, index, segment.Count);
@@ -172,6 +183,7 @@ namespace IS4.SFI.Tools
         /// </summary>
         /// <param name="stream">The used <see cref="Stream"/> instance.</param>
         /// <param name="buffer">The data to write.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Write(this Stream stream, ArraySegment<byte> buffer)
         {
             stream.Write(buffer.Array, buffer.Offset, buffer.Count);
@@ -184,6 +196,7 @@ namespace IS4.SFI.Tools
         /// <param name="buffer">The array segment buffer to use.</param>
         /// <param name="writable">Whether the stream should allow writing or not.</param>
         /// <returns>The newly created instance.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static MemoryStream AsStream(this ArraySegment<byte> buffer, bool writable)
         {
             return new MemoryStream(buffer.Array, buffer.Offset, buffer.Count, writable);
@@ -334,6 +347,7 @@ namespace IS4.SFI.Tools
         /// This method internally calls <see cref="ArrayPool{T}.Rent(int)"/>
         /// and <see cref="ArrayPool{T}.Return(T[], bool)"/>.
         /// </remarks>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ArrayPoolLease<T> Rent<T>(this ArrayPool<T> arrayPool, int minimumLength, out T[] array)
         {
             array = arrayPool.Rent(minimumLength);
@@ -351,6 +365,7 @@ namespace IS4.SFI.Tools
             readonly ArrayPool<T> arrayPool;
             T[]? array;
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             internal ArrayPoolLease(ArrayPool<T> arrayPool, T[] array)
             {
                 this.arrayPool = arrayPool;
@@ -360,6 +375,7 @@ namespace IS4.SFI.Tools
             /// <summary>
             /// Calls <see cref="ArrayPool{T}.Return(T[], bool)"/> on the rented array.
             /// </summary>
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public void Dispose()
             {
                 var arr = array;
@@ -383,84 +399,98 @@ namespace IS4.SFI.Tools
         /// A new span over the same memory range, but with elements
         /// reinterpreted to type <typeparamref name="T"/>.
         /// </returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Span<T> MemoryCast<T>(this Span<bool> span) where T : struct
         {
             return MemoryMarshal.Cast<bool, T>(span);
         }
 
         /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Span<T> MemoryCast<T>(this Span<byte> span) where T : struct
         {
             return MemoryMarshal.Cast<byte, T>(span);
         }
 
         /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Span<T> MemoryCast<T>(this Span<sbyte> span) where T : struct
         {
             return MemoryMarshal.Cast<sbyte, T>(span);
         }
 
         /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Span<T> MemoryCast<T>(this Span<char> span) where T : struct
         {
             return MemoryMarshal.Cast<char, T>(span);
         }
 
         /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Span<T> MemoryCast<T>(this Span<short> span) where T : struct
         {
             return MemoryMarshal.Cast<short, T>(span);
         }
 
         /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Span<T> MemoryCast<T>(this Span<ushort> span) where T : struct
         {
             return MemoryMarshal.Cast<ushort, T>(span);
         }
 
         /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Span<T> MemoryCast<T>(this Span<int> span) where T : struct
         {
             return MemoryMarshal.Cast<int, T>(span);
         }
 
         /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Span<T> MemoryCast<T>(this Span<uint> span) where T : struct
         {
             return MemoryMarshal.Cast<uint, T>(span);
         }
 
         /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Span<T> MemoryCast<T>(this Span<long> span) where T : struct
         {
             return MemoryMarshal.Cast<long, T>(span);
         }
 
         /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Span<T> MemoryCast<T>(this Span<ulong> span) where T : struct
         {
             return MemoryMarshal.Cast<ulong, T>(span);
         }
 
         /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Span<T> MemoryCast<T>(this Span<float> span) where T : struct
         {
             return MemoryMarshal.Cast<float, T>(span);
         }
 
         /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Span<T> MemoryCast<T>(this Span<double> span) where T : struct
         {
             return MemoryMarshal.Cast<double, T>(span);
         }
 
         /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Span<T> MemoryCast<T>(this Span<IntPtr> span) where T : struct
         {
             return MemoryMarshal.Cast<IntPtr, T>(span);
         }
 
         /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ReadOnlySpan<T> MemoryCast<T>(this ReadOnlySpan<bool> span) where T : struct
         {
             return MemoryMarshal.Cast<bool, T>(span);
@@ -468,72 +498,84 @@ namespace IS4.SFI.Tools
 
 
         /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ReadOnlySpan<T> MemoryCast<T>(this ReadOnlySpan<byte> span) where T : struct
         {
             return MemoryMarshal.Cast<byte, T>(span);
         }
 
         /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ReadOnlySpan<T> MemoryCast<T>(this ReadOnlySpan<sbyte> span) where T : struct
         {
             return MemoryMarshal.Cast<sbyte, T>(span);
         }
 
         /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ReadOnlySpan<T> MemoryCast<T>(this ReadOnlySpan<char> span) where T : struct
         {
             return MemoryMarshal.Cast<char, T>(span);
         }
 
         /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ReadOnlySpan<T> MemoryCast<T>(this ReadOnlySpan<short> span) where T : struct
         {
             return MemoryMarshal.Cast<short, T>(span);
         }
 
         /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ReadOnlySpan<T> MemoryCast<T>(this ReadOnlySpan<ushort> span) where T : struct
         {
             return MemoryMarshal.Cast<ushort, T>(span);
         }
 
         /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ReadOnlySpan<T> MemoryCast<T>(this ReadOnlySpan<int> span) where T : struct
         {
             return MemoryMarshal.Cast<int, T>(span);
         }
 
         /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ReadOnlySpan<T> MemoryCast<T>(this ReadOnlySpan<uint> span) where T : struct
         {
             return MemoryMarshal.Cast<uint, T>(span);
         }
 
         /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ReadOnlySpan<T> MemoryCast<T>(this ReadOnlySpan<long> span) where T : struct
         {
             return MemoryMarshal.Cast<long, T>(span);
         }
 
         /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ReadOnlySpan<T> MemoryCast<T>(this ReadOnlySpan<ulong> span) where T : struct
         {
             return MemoryMarshal.Cast<ulong, T>(span);
         }
 
         /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ReadOnlySpan<T> MemoryCast<T>(this ReadOnlySpan<float> span) where T : struct
         {
             return MemoryMarshal.Cast<float, T>(span);
         }
 
         /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ReadOnlySpan<T> MemoryCast<T>(this ReadOnlySpan<double> span) where T : struct
         {
             return MemoryMarshal.Cast<double, T>(span);
         }
 
         /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ReadOnlySpan<T> MemoryCast<T>(this ReadOnlySpan<IntPtr> span) where T : struct
         {
             return MemoryMarshal.Cast<IntPtr, T>(span);

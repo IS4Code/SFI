@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -158,6 +159,7 @@ namespace IS4.SFI
         /// <returns>A MIME type in the form of "application/x.obj.{name}", where name
         /// is the result of <see cref="GetIdentifierFromType{T}"/>.
         /// </returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string GetFakeMediaTypeFromType<T>()
         {
             return FakeTypeNameCache<T>.Name;
@@ -170,6 +172,7 @@ namespace IS4.SFI
         /// <returns>A concatenation of the name of the type and names of all
         /// its generic arguments.
         /// </returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string GetIdentifierFromType<T>()
         {
             return FakeTypeNameCache<T>.ShortName;
@@ -177,6 +180,7 @@ namespace IS4.SFI
 
         /// <inheritdoc cref="GetIdentifierFromType{T}"/>
         /// <param name="type">The type to use for the identifier.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string GetIdentifierFromType(Type type)
         {
             return FakeTypeNameCache<object>.GetTypeFriendlyName(type);

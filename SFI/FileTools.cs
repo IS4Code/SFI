@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.CompilerServices;
 
 namespace IS4.SFI
 {
@@ -14,6 +15,7 @@ namespace IS4.SFI
         /// </summary>
         /// <param name="identifier">Part of the temporary file's name to distinguish it among others.</param>
         /// <returns>A new instance of <see cref="TemporaryFile"/> representing the file.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TemporaryFile GetTemporaryFile(string identifier)
         {
             return new TemporaryFile(identifier);
@@ -38,6 +40,7 @@ namespace IS4.SFI
             /// Returns the value of the <see cref="Path"/> property.
             /// </summary>
             /// <param name="file">The instance to retrieve the value from.</param>
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static implicit operator string(TemporaryFile file)
             {
                 return file.Path;
