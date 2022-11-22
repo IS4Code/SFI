@@ -13,7 +13,7 @@ namespace IS4.SFI.Analyzers
     /// <see cref="IFileInfo"/>, <see cref="IDirectoryInfo"/>, <see cref="FileInfo"/> or
     /// <see cref="DirectoryInfo"/>.
     /// </summary>
-    public sealed class FileAnalyzer : EntityAnalyzer<IFileNodeInfo>, IEntityAnalyzer<FileInfo>, IEntityAnalyzer<DirectoryInfo>, IEntityAnalyzer<IFileInfo>, IEntityAnalyzer<IDirectoryInfo>
+    public sealed class FileAnalyzer : EntityAnalyzer<IFileNodeInfo>, IEntityAnalyzer<FileInfo>, IEntityAnalyzer<DirectoryInfo>, IEntityAnalyzer<DriveInfo>, IEntityAnalyzer<IFileInfo>, IEntityAnalyzer<IDirectoryInfo>
     {
         /// <summary>
         /// A collection of used hash algorithms, as instances of <see cref="IFileHashAlgorithm"/>,
@@ -93,6 +93,30 @@ namespace IS4.SFI.Analyzers
             if(info.Revision is int rev)
             {
                 node.Set(Properties.Version, rev);
+            }
+
+            if(info is IDriveInfo drive)
+            {
+                if(drive.OccupiedSpace is long occupiedSpace)
+                {
+                    node.Set(Properties.OccupiedSpace, occupiedSpace);
+                }
+                if(drive.TotalFreeSpace is long freeSpace)
+                {
+                    node.Set(Properties.FreeSpace, freeSpace);
+                }
+                if(drive.TotalSize is long totalSize)
+                {
+                    node.Set(Properties.TotalSpace, totalSize);
+                }
+                if(drive.VolumeLabel is string volumeLabel)
+                {
+                    node.Set(Properties.VolumeLabel, volumeLabel);
+                }
+                if(drive.DriveFormat is string format)
+                {
+                    node.Set(Properties.FilesystemType, format);
+                }
             }
 
             return node;
@@ -247,6 +271,12 @@ namespace IS4.SFI.Analyzers
         public ValueTask<AnalysisResult> Analyze(DirectoryInfo entity, AnalysisContext context, IEntityAnalyzers analyzer)
         {
             return analyzer.Analyze<IDirectoryInfo>(new DirectoryInfoWrapper(entity), context);
+        }
+
+        /// <inheritdoc/>
+        public ValueTask<AnalysisResult> Analyze(DriveInfo entity, AnalysisContext context, IEntityAnalyzers analyzer)
+        {
+            return analyzer.Analyze<IDriveInfo>(new DriveInfoWrapper(entity), context);
         }
 
         /// <inheritdoc/>

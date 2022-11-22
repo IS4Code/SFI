@@ -27,18 +27,10 @@ namespace IS4.SFI.Analyzers
         {
             var node = GetNode(context);
 
-            try{ node.Set(Properties.FreeSpace, filesystem.AvailableSpace); }
-            catch(NotSupportedException) { }
-            try{ node.Set(Properties.OccupiedSpace, filesystem.UsedSpace); }
-            catch(NotSupportedException) { }
-            try{ node.Set(Properties.TotalSpace, filesystem.AvailableSpace + filesystem.UsedSpace); }
-            catch(NotSupportedException) { }
-
             string? label = null;
             if(filesystem is DiscFileSystem disc)
             {
-                node.Set(Properties.VolumeLabel, label = disc.VolumeLabel);
-                node.Set(Properties.FilesystemType, disc.FriendlyName);
+                label = disc.VolumeLabel;
             }
 
             var info = new FileSystemWrapper(filesystem);
@@ -66,6 +58,65 @@ namespace IS4.SFI.Analyzers
                     foreach(var directory in fileSystem.GetDirectories(null))
                     {
                         yield return new DirectoryInfoWrapper(fileSystem.GetDirectoryInfo(directory));
+                    }
+                }
+            }
+
+            public override string? DriveFormat {
+                get {
+                    switch(fileSystem)
+                    {
+                        case DiscFileSystem disc:
+                            return disc.FriendlyName;
+                        default:
+                            return null;
+                    }
+                }
+            }
+
+            public override DriveType DriveType => DriveType.Unknown;
+
+            public override long? TotalFreeSpace {
+                get {
+                    try{
+                        return fileSystem.AvailableSpace;
+                    }catch(NotSupportedException)
+                    {
+                        return null;
+                    }
+                }
+            }
+
+            public override long? OccupiedSpace {
+                get {
+                    try{
+                        return fileSystem.UsedSpace;
+                    }catch(NotSupportedException)
+                    {
+                        return null;
+                    }
+                }
+            }
+
+            public override long? TotalSize {
+                get {
+                    try{
+                        return fileSystem.AvailableSpace + fileSystem.UsedSpace;
+                    }catch(NotSupportedException)
+                    {
+                        return null;
+                    }
+                }
+            }
+
+            public override string? VolumeLabel {
+                get {
+                    switch(fileSystem)
+                    {
+                        case DiscFileSystem disc:
+                            return disc.VolumeLabel;
+                        default:
+                            return null;
                     }
                 }
             }
