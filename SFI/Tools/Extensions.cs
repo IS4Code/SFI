@@ -102,14 +102,7 @@ namespace IS4.SFI.Tools
             return Convert.ToBase64String(bytes.Array, bytes.Offset, bytes.Count);
         }
 
-        /// <summary>
-        /// Searches for the given element <paramref name="value"/> in the input
-        /// array segment, and returns its index.
-        /// </summary>
-        /// <typeparam name="T">The element type.</typeparam>
-        /// <param name="segment">The used <see cref="ArraySegment{T}"/> insntace.</param>
-        /// <param name="value">The element to search.</param>
-        /// <returns>The index of the searched element within the segment, or -1 if not found.</returns>
+        /// <inheritdoc cref="IndexOf{T}(ArraySegment{T}, T, int, int)"/>
         public static int IndexOf<T>(this ArraySegment<T> segment, T value)
         {
             var index = Array.IndexOf(segment.Array, value, segment.Offset, segment.Count);
@@ -117,15 +110,7 @@ namespace IS4.SFI.Tools
             return index - segment.Offset;
         }
 
-        /// <summary>
-        /// Searches for the given element <paramref name="value"/> in the input
-        /// array segment, and returns its index.
-        /// </summary>
-        /// <typeparam name="T">The element type.</typeparam>
-        /// <param name="segment">The used <see cref="ArraySegment{T}"/> insntace.</param>
-        /// <param name="value">The element to search.</param>
-        /// <param name="startIndex">The index in the segment where to begin searching.</param>
-        /// <returns>The index of the searched element within the segment, or -1 if not found.</returns>
+        /// <inheritdoc cref="IndexOf{T}(ArraySegment{T}, T, int, int)"/>
         public static int IndexOf<T>(this ArraySegment<T> segment, T value, int startIndex)
         {
             var index = Array.IndexOf(segment.Array, value, segment.Offset + startIndex, segment.Count - startIndex);
@@ -350,388 +335,152 @@ namespace IS4.SFI.Tools
             return MemoryMarshal.Cast<bool, T>(span);
         }
 
-        /// <summary>
-        /// Memory-casts the input span to a different element type,
-        /// via <see cref="MemoryMarshal.Cast{TFrom, TTo}(Span{TFrom})"/>.
-        /// </summary>
-        /// <typeparam name="T">The new element type of the span.</typeparam>
-        /// <param name="span">The input <see cref="Span{T}"/> instance to use.</param>
-        /// <returns>
-        /// A new span over the same memory range, but with elements
-        /// reinterpreted to type <typeparamref name="T"/>.
-        /// </returns>
+        /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
         public static Span<T> MemoryCast<T>(this Span<byte> span) where T : struct
         {
             return MemoryMarshal.Cast<byte, T>(span);
         }
 
-        /// <summary>
-        /// Memory-casts the input span to a different element type,
-        /// via <see cref="MemoryMarshal.Cast{TFrom, TTo}(Span{TFrom})"/>.
-        /// </summary>
-        /// <typeparam name="T">The new element type of the span.</typeparam>
-        /// <param name="span">The input <see cref="Span{T}"/> instance to use.</param>
-        /// <returns>
-        /// A new span over the same memory range, but with elements
-        /// reinterpreted to type <typeparamref name="T"/>.
-        /// </returns>
+        /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
         public static Span<T> MemoryCast<T>(this Span<sbyte> span) where T : struct
         {
             return MemoryMarshal.Cast<sbyte, T>(span);
         }
 
-        /// <summary>
-        /// Memory-casts the input span to a different element type,
-        /// via <see cref="MemoryMarshal.Cast{TFrom, TTo}(Span{TFrom})"/>.
-        /// </summary>
-        /// <typeparam name="T">The new element type of the span.</typeparam>
-        /// <param name="span">The input <see cref="Span{T}"/> instance to use.</param>
-        /// <returns>
-        /// A new span over the same memory range, but with elements
-        /// reinterpreted to type <typeparamref name="T"/>.
-        /// </returns>
+        /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
         public static Span<T> MemoryCast<T>(this Span<char> span) where T : struct
         {
             return MemoryMarshal.Cast<char, T>(span);
         }
 
-        /// <summary>
-        /// Memory-casts the input span to a different element type,
-        /// via <see cref="MemoryMarshal.Cast{TFrom, TTo}(Span{TFrom})"/>.
-        /// </summary>
-        /// <typeparam name="T">The new element type of the span.</typeparam>
-        /// <param name="span">The input <see cref="Span{T}"/> instance to use.</param>
-        /// <returns>
-        /// A new span over the same memory range, but with elements
-        /// reinterpreted to type <typeparamref name="T"/>.
-        /// </returns>
+        /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
         public static Span<T> MemoryCast<T>(this Span<short> span) where T : struct
         {
             return MemoryMarshal.Cast<short, T>(span);
         }
 
-        /// <summary>
-        /// Memory-casts the input span to a different element type,
-        /// via <see cref="MemoryMarshal.Cast{TFrom, TTo}(Span{TFrom})"/>.
-        /// </summary>
-        /// <typeparam name="T">The new element type of the span.</typeparam>
-        /// <param name="span">The input <see cref="Span{T}"/> instance to use.</param>
-        /// <returns>
-        /// A new span over the same memory range, but with elements
-        /// reinterpreted to type <typeparamref name="T"/>.
-        /// </returns>
+        /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
         public static Span<T> MemoryCast<T>(this Span<ushort> span) where T : struct
         {
             return MemoryMarshal.Cast<ushort, T>(span);
         }
 
-        /// <summary>
-        /// Memory-casts the input span to a different element type,
-        /// via <see cref="MemoryMarshal.Cast{TFrom, TTo}(Span{TFrom})"/>.
-        /// </summary>
-        /// <typeparam name="T">The new element type of the span.</typeparam>
-        /// <param name="span">The input <see cref="Span{T}"/> instance to use.</param>
-        /// <returns>
-        /// A new span over the same memory range, but with elements
-        /// reinterpreted to type <typeparamref name="T"/>.
-        /// </returns>
+        /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
         public static Span<T> MemoryCast<T>(this Span<int> span) where T : struct
         {
             return MemoryMarshal.Cast<int, T>(span);
         }
 
-        /// <summary>
-        /// Memory-casts the input span to a different element type,
-        /// via <see cref="MemoryMarshal.Cast{TFrom, TTo}(Span{TFrom})"/>.
-        /// </summary>
-        /// <typeparam name="T">The new element type of the span.</typeparam>
-        /// <param name="span">The input <see cref="Span{T}"/> instance to use.</param>
-        /// <returns>
-        /// A new span over the same memory range, but with elements
-        /// reinterpreted to type <typeparamref name="T"/>.
-        /// </returns>
+        /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
         public static Span<T> MemoryCast<T>(this Span<uint> span) where T : struct
         {
             return MemoryMarshal.Cast<uint, T>(span);
         }
 
-        /// <summary>
-        /// Memory-casts the input span to a different element type,
-        /// via <see cref="MemoryMarshal.Cast{TFrom, TTo}(Span{TFrom})"/>.
-        /// </summary>
-        /// <typeparam name="T">The new element type of the span.</typeparam>
-        /// <param name="span">The input <see cref="Span{T}"/> instance to use.</param>
-        /// <returns>
-        /// A new span over the same memory range, but with elements
-        /// reinterpreted to type <typeparamref name="T"/>.
-        /// </returns>
+        /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
         public static Span<T> MemoryCast<T>(this Span<long> span) where T : struct
         {
             return MemoryMarshal.Cast<long, T>(span);
         }
 
-        /// <summary>
-        /// Memory-casts the input span to a different element type,
-        /// via <see cref="MemoryMarshal.Cast{TFrom, TTo}(Span{TFrom})"/>.
-        /// </summary>
-        /// <typeparam name="T">The new element type of the span.</typeparam>
-        /// <param name="span">The input <see cref="Span{T}"/> instance to use.</param>
-        /// <returns>
-        /// A new span over the same memory range, but with elements
-        /// reinterpreted to type <typeparamref name="T"/>.
-        /// </returns>
+        /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
         public static Span<T> MemoryCast<T>(this Span<ulong> span) where T : struct
         {
             return MemoryMarshal.Cast<ulong, T>(span);
         }
 
-        /// <summary>
-        /// Memory-casts the input span to a different element type,
-        /// via <see cref="MemoryMarshal.Cast{TFrom, TTo}(Span{TFrom})"/>.
-        /// </summary>
-        /// <typeparam name="T">The new element type of the span.</typeparam>
-        /// <param name="span">The input <see cref="Span{T}"/> instance to use.</param>
-        /// <returns>
-        /// A new span over the same memory range, but with elements
-        /// reinterpreted to type <typeparamref name="T"/>.
-        /// </returns>
+        /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
         public static Span<T> MemoryCast<T>(this Span<float> span) where T : struct
         {
             return MemoryMarshal.Cast<float, T>(span);
         }
 
-        /// <summary>
-        /// Memory-casts the input span to a different element type,
-        /// via <see cref="MemoryMarshal.Cast{TFrom, TTo}(Span{TFrom})"/>.
-        /// </summary>
-        /// <typeparam name="T">The new element type of the span.</typeparam>
-        /// <param name="span">The input <see cref="Span{T}"/> instance to use.</param>
-        /// <returns>
-        /// A new span over the same memory range, but with elements
-        /// reinterpreted to type <typeparamref name="T"/>.
-        /// </returns>
+        /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
         public static Span<T> MemoryCast<T>(this Span<double> span) where T : struct
         {
             return MemoryMarshal.Cast<double, T>(span);
         }
 
-        /// <summary>
-        /// Memory-casts the input span to a different element type,
-        /// via <see cref="MemoryMarshal.Cast{TFrom, TTo}(Span{TFrom})"/>.
-        /// </summary>
-        /// <typeparam name="T">The new element type of the span.</typeparam>
-        /// <param name="span">The input <see cref="Span{T}"/> instance to use.</param>
-        /// <returns>
-        /// A new span over the same memory range, but with elements
-        /// reinterpreted to type <typeparamref name="T"/>.
-        /// </returns>
+        /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
         public static Span<T> MemoryCast<T>(this Span<IntPtr> span) where T : struct
         {
             return MemoryMarshal.Cast<IntPtr, T>(span);
         }
 
-        /// <summary>
-        /// Memory-casts the input read-only span to a different element type,
-        /// via <see cref="MemoryMarshal.Cast{TFrom, TTo}(ReadOnlySpan{TFrom})"/>.
-        /// </summary>
-        /// <typeparam name="T">The new element type of the span.</typeparam>
-        /// <param name="span">The input <see cref="ReadOnlySpan{T}"/> instance to use.</param>
-        /// <returns>
-        /// A new span over the same memory range, but with elements
-        /// reinterpreted to type <typeparamref name="T"/>.
-        /// </returns>
+        /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
         public static ReadOnlySpan<T> MemoryCast<T>(this ReadOnlySpan<bool> span) where T : struct
         {
             return MemoryMarshal.Cast<bool, T>(span);
         }
 
 
-        /// <summary>
-        /// Memory-casts the input read-only span to a different element type,
-        /// via <see cref="MemoryMarshal.Cast{TFrom, TTo}(ReadOnlySpan{TFrom})"/>.
-        /// </summary>
-        /// <typeparam name="T">The new element type of the span.</typeparam>
-        /// <param name="span">The input <see cref="ReadOnlySpan{T}"/> instance to use.</param>
-        /// <returns>
-        /// A new span over the same memory range, but with elements
-        /// reinterpreted to type <typeparamref name="T"/>.
-        /// </returns>
+        /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
         public static ReadOnlySpan<T> MemoryCast<T>(this ReadOnlySpan<byte> span) where T : struct
         {
             return MemoryMarshal.Cast<byte, T>(span);
         }
 
-
-        /// <summary>
-        /// Memory-casts the input read-only span to a different element type,
-        /// via <see cref="MemoryMarshal.Cast{TFrom, TTo}(ReadOnlySpan{TFrom})"/>.
-        /// </summary>
-        /// <typeparam name="T">The new element type of the span.</typeparam>
-        /// <param name="span">The input <see cref="ReadOnlySpan{T}"/> instance to use.</param>
-        /// <returns>
-        /// A new span over the same memory range, but with elements
-        /// reinterpreted to type <typeparamref name="T"/>.
-        /// </returns>
+        /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
         public static ReadOnlySpan<T> MemoryCast<T>(this ReadOnlySpan<sbyte> span) where T : struct
         {
             return MemoryMarshal.Cast<sbyte, T>(span);
         }
 
-
-        /// <summary>
-        /// Memory-casts the input read-only span to a different element type,
-        /// via <see cref="MemoryMarshal.Cast{TFrom, TTo}(ReadOnlySpan{TFrom})"/>.
-        /// </summary>
-        /// <typeparam name="T">The new element type of the span.</typeparam>
-        /// <param name="span">The input <see cref="ReadOnlySpan{T}"/> instance to use.</param>
-        /// <returns>
-        /// A new span over the same memory range, but with elements
-        /// reinterpreted to type <typeparamref name="T"/>.
-        /// </returns>
+        /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
         public static ReadOnlySpan<T> MemoryCast<T>(this ReadOnlySpan<char> span) where T : struct
         {
             return MemoryMarshal.Cast<char, T>(span);
         }
 
-
-        /// <summary>
-        /// Memory-casts the input read-only span to a different element type,
-        /// via <see cref="MemoryMarshal.Cast{TFrom, TTo}(ReadOnlySpan{TFrom})"/>.
-        /// </summary>
-        /// <typeparam name="T">The new element type of the span.</typeparam>
-        /// <param name="span">The input <see cref="ReadOnlySpan{T}"/> instance to use.</param>
-        /// <returns>
-        /// A new span over the same memory range, but with elements
-        /// reinterpreted to type <typeparamref name="T"/>.
-        /// </returns>
+        /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
         public static ReadOnlySpan<T> MemoryCast<T>(this ReadOnlySpan<short> span) where T : struct
         {
             return MemoryMarshal.Cast<short, T>(span);
         }
 
-
-        /// <summary>
-        /// Memory-casts the input read-only span to a different element type,
-        /// via <see cref="MemoryMarshal.Cast{TFrom, TTo}(ReadOnlySpan{TFrom})"/>.
-        /// </summary>
-        /// <typeparam name="T">The new element type of the span.</typeparam>
-        /// <param name="span">The input <see cref="ReadOnlySpan{T}"/> instance to use.</param>
-        /// <returns>
-        /// A new span over the same memory range, but with elements
-        /// reinterpreted to type <typeparamref name="T"/>.
-        /// </returns>
+        /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
         public static ReadOnlySpan<T> MemoryCast<T>(this ReadOnlySpan<ushort> span) where T : struct
         {
             return MemoryMarshal.Cast<ushort, T>(span);
         }
 
-
-        /// <summary>
-        /// Memory-casts the input read-only span to a different element type,
-        /// via <see cref="MemoryMarshal.Cast{TFrom, TTo}(ReadOnlySpan{TFrom})"/>.
-        /// </summary>
-        /// <typeparam name="T">The new element type of the span.</typeparam>
-        /// <param name="span">The input <see cref="ReadOnlySpan{T}"/> instance to use.</param>
-        /// <returns>
-        /// A new span over the same memory range, but with elements
-        /// reinterpreted to type <typeparamref name="T"/>.
-        /// </returns>
+        /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
         public static ReadOnlySpan<T> MemoryCast<T>(this ReadOnlySpan<int> span) where T : struct
         {
             return MemoryMarshal.Cast<int, T>(span);
         }
 
-
-        /// <summary>
-        /// Memory-casts the input read-only span to a different element type,
-        /// via <see cref="MemoryMarshal.Cast{TFrom, TTo}(ReadOnlySpan{TFrom})"/>.
-        /// </summary>
-        /// <typeparam name="T">The new element type of the span.</typeparam>
-        /// <param name="span">The input <see cref="ReadOnlySpan{T}"/> instance to use.</param>
-        /// <returns>
-        /// A new span over the same memory range, but with elements
-        /// reinterpreted to type <typeparamref name="T"/>.
-        /// </returns>
+        /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
         public static ReadOnlySpan<T> MemoryCast<T>(this ReadOnlySpan<uint> span) where T : struct
         {
             return MemoryMarshal.Cast<uint, T>(span);
         }
 
-
-        /// <summary>
-        /// Memory-casts the input read-only span to a different element type,
-        /// via <see cref="MemoryMarshal.Cast{TFrom, TTo}(ReadOnlySpan{TFrom})"/>.
-        /// </summary>
-        /// <typeparam name="T">The new element type of the span.</typeparam>
-        /// <param name="span">The input <see cref="ReadOnlySpan{T}"/> instance to use.</param>
-        /// <returns>
-        /// A new span over the same memory range, but with elements
-        /// reinterpreted to type <typeparamref name="T"/>.
-        /// </returns>
+        /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
         public static ReadOnlySpan<T> MemoryCast<T>(this ReadOnlySpan<long> span) where T : struct
         {
             return MemoryMarshal.Cast<long, T>(span);
         }
 
-
-        /// <summary>
-        /// Memory-casts the input read-only span to a different element type,
-        /// via <see cref="MemoryMarshal.Cast{TFrom, TTo}(ReadOnlySpan{TFrom})"/>.
-        /// </summary>
-        /// <typeparam name="T">The new element type of the span.</typeparam>
-        /// <param name="span">The input <see cref="ReadOnlySpan{T}"/> instance to use.</param>
-        /// <returns>
-        /// A new span over the same memory range, but with elements
-        /// reinterpreted to type <typeparamref name="T"/>.
-        /// </returns>
+        /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
         public static ReadOnlySpan<T> MemoryCast<T>(this ReadOnlySpan<ulong> span) where T : struct
         {
             return MemoryMarshal.Cast<ulong, T>(span);
         }
 
-
-        /// <summary>
-        /// Memory-casts the input read-only span to a different element type,
-        /// via <see cref="MemoryMarshal.Cast{TFrom, TTo}(ReadOnlySpan{TFrom})"/>.
-        /// </summary>
-        /// <typeparam name="T">The new element type of the span.</typeparam>
-        /// <param name="span">The input <see cref="ReadOnlySpan{T}"/> instance to use.</param>
-        /// <returns>
-        /// A new span over the same memory range, but with elements
-        /// reinterpreted to type <typeparamref name="T"/>.
-        /// </returns>
+        /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
         public static ReadOnlySpan<T> MemoryCast<T>(this ReadOnlySpan<float> span) where T : struct
         {
             return MemoryMarshal.Cast<float, T>(span);
         }
 
-
-        /// <summary>
-        /// Memory-casts the input read-only span to a different element type,
-        /// via <see cref="MemoryMarshal.Cast{TFrom, TTo}(ReadOnlySpan{TFrom})"/>.
-        /// </summary>
-        /// <typeparam name="T">The new element type of the span.</typeparam>
-        /// <param name="span">The input <see cref="ReadOnlySpan{T}"/> instance to use.</param>
-        /// <returns>
-        /// A new span over the same memory range, but with elements
-        /// reinterpreted to type <typeparamref name="T"/>.
-        /// </returns>
+        /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
         public static ReadOnlySpan<T> MemoryCast<T>(this ReadOnlySpan<double> span) where T : struct
         {
             return MemoryMarshal.Cast<double, T>(span);
         }
 
-
-        /// <summary>
-        /// Memory-casts the input read-only span to a different element type,
-        /// via <see cref="MemoryMarshal.Cast{TFrom, TTo}(ReadOnlySpan{TFrom})"/>.
-        /// </summary>
-        /// <typeparam name="T">The new element type of the span.</typeparam>
-        /// <param name="span">The input <see cref="ReadOnlySpan{T}"/> instance to use.</param>
-        /// <returns>
-        /// A new span over the same memory range, but with elements
-        /// reinterpreted to type <typeparamref name="T"/>.
-        /// </returns>
+        /// <inheritdoc cref="MemoryCast{T}(Span{bool})"/>
         public static ReadOnlySpan<T> MemoryCast<T>(this ReadOnlySpan<IntPtr> span) where T : struct
         {
             return MemoryMarshal.Cast<IntPtr, T>(span);
