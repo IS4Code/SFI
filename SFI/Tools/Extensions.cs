@@ -387,6 +387,33 @@ namespace IS4.SFI.Tools
             }
         }
 
+        /// <summary>
+        /// Attempts to decode a sequence of bytes to string based on the encoding,
+        /// while taking the preamble into account.
+        /// </summary>
+        /// <param name="encoding">The instance of <see cref="Encoding"/> to use.</param>
+        /// <param name="data">The byte sequence to decode.</param>
+        /// <returns>The decoded string, or null if it could not be produced.</returns>
+        /// <remarks>
+        /// The preamble, as returned by <see cref="Encoding.GetPreamble"/>, is
+        /// attempted to be matched at the beginning of the data, and if it is found,
+        /// only the remaining part of the data is decoded.
+        /// </remarks>
+        public static string? TryGetString(this Encoding encoding, ArraySegment<byte> data)
+        {
+            try{
+                var preamble = encoding.GetPreamble();
+                if(preamble?.Length > 0 && data.AsSpan().StartsWith(preamble))
+                {
+                    return encoding.GetString(data.Slice(preamble.Length));
+                }
+                return encoding.GetString(data);
+            }catch(ArgumentException)
+            {
+                return null;
+            }
+        }
+
         #region MemoryCast overloads
 
         /// <summary>

@@ -373,7 +373,7 @@ namespace IS4.SFI.Analyzers
 
                         if(charsetMatch.Encoding != null)
                         {
-                            StringValue = TryGetString(charsetMatch.Encoding, ByteValue);
+                            StringValue = charsetMatch.Encoding.TryGetString(ByteValue);
 
                             if(IsComplete && StringValue == null)
                             {
@@ -471,21 +471,6 @@ namespace IS4.SFI.Analyzers
                         e is FileLoadException ||
                         e is FileNotFoundException ||
                         e is TypeLoadException;
-                }
-
-                private string? TryGetString(Encoding encoding, ArraySegment<byte> data)
-                {
-                    try{
-                        var preamble = encoding.GetPreamble();
-                        if(preamble?.Length > 0 && data.AsSpan().StartsWith(preamble))
-                        {
-                            return encoding.GetString(data.Slice(preamble.Length));
-                        }
-                        return encoding.GetString(data);
-                    }catch(ArgumentException)
-                    {
-                        return null;
-                    }
                 }
             }
         }
