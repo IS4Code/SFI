@@ -64,5 +64,22 @@ namespace IS4.SFI.Services
         {
             return factory.Create(factory.Root, Guid.NewGuid().ToString("D")) ?? throw new NotSupportedException();
         }
+
+        /// <summary>
+        /// Creates a new unique linked blank node.
+        /// </summary>
+        /// <param name="factory">The factory instance to use.</param>
+        /// <returns>A new linked node corresponding to a blank node.</returns>
+        public static ILinkedNode CreateBlank(this ILinkedNodeFactory factory)
+        {
+            return factory.Create(NullFormatter.Instance, default);
+        }
+
+        class NullFormatter : IIndividualUriFormatter<ValueTuple>
+        {
+            public static readonly NullFormatter Instance = new();
+
+            Uri? IUriFormatter<ValueTuple>.this[ValueTuple value] => null;
+        }
     }
 }
