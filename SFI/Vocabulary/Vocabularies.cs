@@ -32,6 +32,21 @@ namespace IS4.SFI.Vocabulary
         public static readonly IIndividualUriFormatter<string> Uris = new VocabularyUri(Uri.Uris);
 
         /// <summary>
+        /// The vocabulary for HTTP headers.
+        /// </summary>
+        public static readonly IIndividualUriFormatter<string> Httph = new VocabularyUri(Uri.Httph);
+
+        /// <summary>
+        /// The vocabulary for HTTP methods.
+        /// </summary>
+        public static readonly IIndividualUriFormatter<string> Httpm = new VocabularyUri(Uri.Httpm);
+
+        /// <summary>
+        /// The vocabulary for HTTP status codes.
+        /// </summary>
+        public static readonly IIndividualUriFormatter<string> Httpsc = new VocabularyUri(Uri.Httpsc);
+
+        /// <summary>
         /// Stores raw URIs of all used vocabularies.
         /// </summary>
         public static class Uri
@@ -155,6 +170,26 @@ namespace IS4.SFI.Vocabulary
             /// The Cert Ontology
             /// </summary>
             public const string Cert = "http://www.w3.org/ns/auth/cert#";
+
+            /// <summary>
+            /// HTTP Vocabulary
+            /// </summary>
+            public const string Http = "http://www.w3.org/2011/http#";
+
+            /// <summary>
+            /// HTTP Vocabulary Headers
+            /// </summary>
+            public const string Httph = "http://www.w3.org/2011/http-headers#";
+
+            /// <summary>
+            /// HTTP Vocabulary Methods
+            /// </summary>
+            public const string Httpm = "http://www.w3.org/2011/http-methods#";
+
+            /// <summary>
+            /// HTTP Vocabulary Status Codes
+            /// </summary>
+            public const string Httpsc = "http://www.w3.org/2011/http-statusCodes#";
 
             /// <summary>
             /// file: URIs

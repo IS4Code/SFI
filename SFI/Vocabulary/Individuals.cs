@@ -9,6 +9,12 @@
     public static class Individuals
     {
         /// <summary>
+        /// <see cref="Rdf"/>:nil.
+        /// </summary>
+        [Uri(Rdf)]
+        public static readonly IndividualUri Nil;
+
+        /// <summary>
         /// <see cref="Dsm"/>:md5.
         /// </summary>
         [Uri(Dsm, "md5")]

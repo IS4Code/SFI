@@ -63,6 +63,7 @@ namespace IS4.SFI.ConsoleApp
             DataAnalyzer.DataFormats.Add(new CabinetFormat());
             DataAnalyzer.DataFormats.Add(new OleStorageFormat());
             DataAnalyzer.DataFormats.Add(new ShockwaveFlashFormat());
+            DataAnalyzer.DataFormats.Add(new WarcFormat());
             DataAnalyzer.DataFormats.Add(new InternetShortcutFormat());
             DataAnalyzer.DataFormats.Add(new ShellLinkFormat());
 
@@ -98,6 +99,7 @@ namespace IS4.SFI.ConsoleApp
             Analyzers.Add(new ShockwaveFlashAnalyzer());
             Analyzers.Add(new InternetShortcutAnalyzer());
             Analyzers.Add(new ShellLinkAnalyzer());
+            Analyzers.Add(new WarcAnalyzer());
 
             Plugins.Clear();
             foreach(var plugin in LoadPlugins())

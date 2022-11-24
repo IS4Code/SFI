@@ -21,6 +21,18 @@
         public static readonly PropertyUri Value;
 
         /// <summary>
+        /// <see cref="Rdf"/>:first.
+        /// </summary>
+        [Uri(Rdf)]
+        public static readonly PropertyUri First;
+
+        /// <summary>
+        /// <see cref="Rdf"/>:rest.
+        /// </summary>
+        [Uri(Rdf)]
+        public static readonly PropertyUri Rest;
+
+        /// <summary>
         /// <see cref="Rdfs"/>:label.
         /// </summary>
         [Uri(Rdfs)]
@@ -43,6 +55,12 @@
         /// </summary>
         [Uri(Owl)]
         public static readonly PropertyUri SameAs;
+
+        /// <summary>
+        /// <see cref="Owl"/>:equivalentProperty.
+        /// </summary>
+        [Uri(Owl)]
+        public static readonly PropertyUri EquivalentProperty;
 
         /// <summary>
         /// <see cref="Dcterms"/>:description.
@@ -105,6 +123,12 @@
         public static readonly PropertyUri Created;
 
         /// <summary>
+        /// <see cref="Dcterms"/>:date.
+        /// </summary>
+        [Uri(Dcterms)]
+        public static readonly PropertyUri Date;
+
+        /// <summary>
         /// <see cref="Dcterms"/>:provenance.
         /// </summary>
         [Uri(Dcterms)]
@@ -137,8 +161,8 @@
         /// <summary>
         /// <see cref="Cnt"/>:rest.
         /// </summary>
-        [Uri(Cnt)]
-        public static readonly PropertyUri Rest;
+        [Uri(Cnt, "rest")]
+        public static readonly PropertyUri RestXml;
 
         /// <summary>
         /// <see cref="Cnt"/>:doctypeName.
@@ -553,6 +577,96 @@
         /// </summary>
         [Uri(Xis)]
         public static readonly PropertyUri NamespaceName;
+
+        /// <summary>
+        /// <see cref="Http"/>:resp.
+        /// </summary>
+        [Uri(Http, "resp")]
+        public static readonly PropertyUri HttpResponse;
+
+        /// <summary>
+        /// <see cref="Http"/>:methodName.
+        /// </summary>
+        [Uri(Http, "methodName")]
+        public static readonly PropertyUri HttpMethodName;
+
+        /// <summary>
+        /// <see cref="Http"/>:mthd.
+        /// </summary>
+        [Uri(Http, "mthd")]
+        public static readonly PropertyUri HttpMethod;
+
+        /// <summary>
+        /// <see cref="Http"/>:absoluteURI.
+        /// </summary>
+        [Uri(Http, "absoluteURI")]
+        public static readonly PropertyUri HttpAbsoluteUri;
+
+        /// <summary>
+        /// <see cref="Http"/>:absolutePath.
+        /// </summary>
+        [Uri(Http, "absolutePath")]
+        public static readonly PropertyUri HttpAbsolutePath;
+
+        /// <summary>
+        /// <see cref="Http"/>:authority.
+        /// </summary>
+        [Uri(Http, "authority")]
+        public static readonly PropertyUri HttpAuthority;
+
+        /// <summary>
+        /// <see cref="Http"/>:httpVersion.
+        /// </summary>
+        [Uri(Http)]
+        public static readonly PropertyUri HttpVersion;
+
+        /// <summary>
+        /// <see cref="Http"/>:statusCodeValue.
+        /// </summary>
+        [Uri(Http, "statusCodeValue")]
+        public static readonly PropertyUri HttpStatusCodeValue;
+
+        /// <summary>
+        /// <see cref="Http"/>:sc.
+        /// </summary>
+        [Uri(Http, "sc")]
+        public static readonly PropertyUri HttpStatusCode;
+
+        /// <summary>
+        /// <see cref="Http"/>:reasonPhrase.
+        /// </summary>
+        [Uri(Http, "reasonPhrase")]
+        public static readonly PropertyUri HttpReasonPhrase;
+
+        /// <summary>
+        /// <see cref="Http"/>:headers.
+        /// </summary>
+        [Uri(Http, "headers")]
+        public static readonly PropertyUri HttpHeaders;
+
+        /// <summary>
+        /// <see cref="Http"/>:fieldName.
+        /// </summary>
+        [Uri(Http, "fieldName")]
+        public static readonly PropertyUri HttpFieldName;
+
+        /// <summary>
+        /// <see cref="Http"/>:hdrName.
+        /// </summary>
+        [Uri(Http, "hdrName")]
+        public static readonly PropertyUri HttpHeaderName;
+
+        /// <summary>
+        /// <see cref="Http"/>:fieldValue.
+        /// </summary>
+        [Uri(Http, "fieldValue")]
+        public static readonly PropertyUri HttpFieldValue;
+
+        /// <summary>
+        /// <see cref="Http"/>:body.
+        /// </summary>
+        [Uri(Http, "body")]
+        public static readonly PropertyUri HttpBody;
 
         /// <summary>
         /// <see cref="At"/>:digest.

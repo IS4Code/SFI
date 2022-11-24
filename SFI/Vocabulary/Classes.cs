@@ -188,6 +188,24 @@
         [Uri(Cert)]
         public static readonly ClassUri X509Certificate;
 
+        /// <summary>
+        /// <see cref="Http"/>:Request.
+        /// </summary>
+        [Uri(Http, "Request")]
+        public static readonly ClassUri HttpRequest;
+
+        /// <summary>
+        /// <see cref="Http"/>:Response.
+        /// </summary>
+        [Uri(Http, "Response")]
+        public static readonly ClassUri HttpResponse;
+
+        /// <summary>
+        /// <see cref="Http"/>:MessageHeader.
+        /// </summary>
+        [Uri(Http, "MessageHeader")]
+        public static readonly ClassUri HttpMessageHeader;
+
         static Classes()
         {
             typeof(Classes).InitializeUris();
