@@ -197,9 +197,11 @@ namespace IS4.SFI.Extensions
 
         static readonly VDS.RDF.Writing.Formatting.RdfXmlFormatter rdfXmlFormatter = new();
 
+        IBlankNode? testBlankNode;
+
         bool IsSafePredicate(Uri uri)
         {
-            var blank = defaultHandler.CreateBlankNode("a");
+            var blank = testBlankNode ?? (testBlankNode = defaultHandler.CreateBlankNode());
             var triple = new Triple(blank, defaultHandler.CreateUriNode(uri), blank);
             try{
                 rdfXmlFormatter.Format(triple);
