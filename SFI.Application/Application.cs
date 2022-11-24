@@ -249,7 +249,7 @@ namespace IS4.SFI
 				{
 					// The property is assigned
 					properties.Remove(name);
-					var converter = TypeDescriptor.GetConverter(prop.PropertyType);
+					var converter = TypeDescriptor.GetConverter(PropertyValueType(prop));
 					object? convertedValue = null;
 					try{
 						convertedValue = converter.ConvertFromInvariantString(value);
@@ -282,7 +282,43 @@ namespace IS4.SFI
 		/// </remarks>
 		private IEnumerable<PropertyDescriptor> GetConfigurableProperties(object component)
         {
-			return TypeDescriptor.GetProperties(component).Cast<PropertyDescriptor>().Where(p => !p.IsReadOnly && p.IsBrowsable && (TypeDescriptor.GetConverter(p.PropertyType) is { } converter && converter.CanConvertFrom(stringType) && converter.CanConvertTo(stringType)));
+			return TypeDescriptor.GetProperties(component).Cast<PropertyDescriptor>().Where(
+				p =>
+					!p.IsReadOnly &&
+					p.IsBrowsable &&
+					IsTypeConvertible(PropertyValueType(p))
+			);
+        }
+
+		/// <summary>
+		/// Checks whether <paramref name="type"/> can be converted to and from
+		/// <see cref="string"/> using an instance of <see cref="TypeConverter"/>.
+		/// </summary>
+		/// <param name="type">The type to check.</param>
+		/// <returns>True if the type is convertible, false otherwise.</returns>
+		private bool IsTypeConvertible(Type type)
+        {
+			var converter = TypeDescriptor.GetConverter(type);
+			if(converter != null)
+			{
+				return converter.CanConvertFrom(stringType) && converter.CanConvertTo(stringType);
+			}
+			return false;
+        }
+
+		/// <summary>
+		/// Returns the type of a property suitable for conversions.
+		/// </summary>
+		/// <param name="descriptor">The property descriptor to use.</param>
+		/// <returns>The actual type to use for conversions.</returns>
+		/// <remarks>
+		/// Properties with a nullable type use <see cref="Nullable.GetUnderlyingType(Type)"/>
+		/// to retrieve the actual type.
+		/// </remarks>
+		private Type PropertyValueType(PropertyDescriptor descriptor)
+        {
+			var type = descriptor.PropertyType;
+			return Nullable.GetUnderlyingType(type) ?? type;
         }
 
 		/// <summary>
@@ -315,8 +351,9 @@ namespace IS4.SFI
 				foreach(var prop in GetConfigurableProperties(component))
 				{
 					var value = prop.GetValue(component);
-					var converter = TypeDescriptor.GetConverter(prop.PropertyType);
-					LogWriter?.WriteLine($"  - {name}:{TextTools.FormatMimeName(prop.Name)} ({TextTools.GetIdentifierFromType(prop.PropertyType)}) = {converter.ConvertToInvariantString(value)}");
+					var type = PropertyValueType(prop);
+					var converter = TypeDescriptor.GetConverter(type);
+					LogWriter?.WriteLine($"  - {name}:{TextTools.FormatMimeName(prop.Name)} ({TextTools.GetIdentifierFromType(type)}) = {converter.ConvertToInvariantString(value)}");
 				}
 			}
 			return default;
