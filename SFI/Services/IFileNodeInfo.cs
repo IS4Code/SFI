@@ -273,6 +273,10 @@ namespace IS4.SFI.Services
         /// </param>
         public FileSystemInfoWrapper(TInfo baseInfo, IPersistentKey? key = null)
         {
+            if(!baseInfo.Exists)
+            {
+                throw new ArgumentException("The supplied argument is not valid!", nameof(baseInfo));
+            }
             this.BaseInfo = baseInfo;
             this.key = key;
         }

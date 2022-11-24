@@ -50,6 +50,10 @@ namespace IS4.SFI.ConsoleApp
                 var files = Directory.GetFiles(String.IsNullOrEmpty(directory) ? Environment.CurrentDirectory : directory, fileName);
                 return files.Select(f => new FileInfoWrapper(new FileInfo(f)));
             }
+            if(!File.Exists(path))
+            {
+                return Array.Empty<IFileInfo>();
+            }
             return new IFileInfo[] { new FileInfoWrapper(new FileInfo(path)) };
         }
 
