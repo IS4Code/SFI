@@ -201,7 +201,7 @@ namespace IS4.SFI.Extensions
 
         bool IsSafePredicate(Uri uri)
         {
-            var blank = testBlankNode ?? (testBlankNode = defaultHandler.CreateBlankNode());
+            var blank = testBlankNode ??= defaultHandler.CreateBlankNode();
             var triple = new Triple(blank, defaultHandler.CreateUriNode(uri), blank);
             try{
                 rdfXmlFormatter.Format(triple);

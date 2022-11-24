@@ -107,7 +107,7 @@ namespace IS4.SFI
 
             Dictionary<string, PropertyDescriptor>? properties;
 
-            public Dictionary<string, PropertyDescriptor> Properites => properties ?? (properties = this.GetProperties().ToDictionary(p => p.Key, p => p.Value));
+            public Dictionary<string, PropertyDescriptor> Properites => properties ??= this.GetProperties().ToDictionary(p => p.Key, p => p.Value);
         }
     }
 }
