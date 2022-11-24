@@ -1,5 +1,4 @@
-﻿using IS4.SFI.Media;
-using IS4.SFI.Services;
+﻿using IS4.SFI.Services;
 using NAudio.MediaFoundation;
 using NAudio.Wave;
 using System;

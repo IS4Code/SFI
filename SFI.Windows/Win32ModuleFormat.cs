@@ -1,5 +1,4 @@
-﻿using IS4.SFI.Media;
-using IS4.SFI.Media.Modules;
+﻿using IS4.SFI.Formats.Modules;
 using System;
 using System.Collections.Generic;
 using System.IO;

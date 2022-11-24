@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace IS4.SFI.Media
+namespace IS4.SFI.Formats
 {
     /// <summary>
     /// Represents a Cabinet (CAB) archive for implementations compatible with

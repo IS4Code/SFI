@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace IS4.SFI.Media
+namespace IS4.SFI.Formats
 {
     /// <summary>
     /// Stores the description of an audio format.

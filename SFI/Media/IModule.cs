@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 
-namespace IS4.SFI.Media
+namespace IS4.SFI.Formats
 {
     /// <summary>
     /// Represents a general module with executable code.

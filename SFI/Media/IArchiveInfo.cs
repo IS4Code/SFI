@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace IS4.SFI.Media
+namespace IS4.SFI.Formats
 {
     /// <summary>
     /// A general representation of an archive.
