@@ -52,7 +52,7 @@ namespace IS4.SFI.Analyzers
                 var infoNode = (await analyzers.Analyze<IFileInfo>(uncompressed, context.WithParent(node))).Node;
                 if(infoNode != null)
                 {
-                    node.Set(Properties.BelongsToContainer, infoNode);
+                    node.Set(Properties.HasPart, infoNode);
                 }
             }else if(Emulate)
             {
