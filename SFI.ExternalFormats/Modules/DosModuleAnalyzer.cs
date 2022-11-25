@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace IS4.SFI.Analyzers
 {
     /// <summary>
-    /// An analyzer of MS-DOS modules, as instances of <see cref="DosModule"/>.
+    /// An analyzer of MS-DOS executables, as instances of <see cref="DosModule"/>.
     /// </summary>
     public class DosModuleAnalyzer : MediaObjectAnalyzer<DosModule>
     {

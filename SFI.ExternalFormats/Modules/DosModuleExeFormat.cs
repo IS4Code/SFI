@@ -10,10 +10,10 @@ namespace IS4.SFI.Formats
     /// Represents the MS-DOS MZ module format, producing instances of
     /// <see cref="DosModule"/>.
     /// </summary>
-    public class DosModuleFormat : ModuleFormat<DosModule>
+    public class DosModuleExeFormat : ModuleFormat<DosModule>
     {
         /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
-        public DosModuleFormat() : base(null, "application/x-dosexec", "exe")
+        public DosModuleExeFormat() : base(null, "application/x-msdos-program", "exe")
         {
 
         }

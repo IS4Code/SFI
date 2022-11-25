@@ -51,7 +51,8 @@ namespace IS4.SFI.ConsoleApp
             DataAnalyzer.DataFormats.Add(new TagLibFormat());
             DataAnalyzer.DataFormats.Add(new PdfFormat());
             DataAnalyzer.DataFormats.Add(new IsoFormat());
-            DataAnalyzer.DataFormats.Add(new DosModuleFormat());
+            DataAnalyzer.DataFormats.Add(new DosModuleExeFormat());
+            DataAnalyzer.DataFormats.Add(new DosModuleComFormat());
             DataAnalyzer.DataFormats.Add(new GenericModuleFormat());
             DataAnalyzer.DataFormats.Add(new LinearModuleFormat());
             DataAnalyzer.DataFormats.Add(new Win16ModuleFormat());

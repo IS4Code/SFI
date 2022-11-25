@@ -1,6 +1,7 @@
 ﻿using Aeon.Emulator;
 using Aeon.Emulator.Dos.Programs;
 using Aeon.Emulator.Dos.VirtualFileSystem;
+using Aeon.Emulator.RuntimeExceptions;
 using Aeon.Emulator.Video;
 using IS4.SFI.Services;
 using IS4.SFI.Tools;
@@ -20,13 +21,21 @@ namespace IS4.SFI.Formats.Modules
         readonly BinaryReader reader;
 
         /// <summary>
+        /// Whether the module is a MZ module (EXE) or a plain COM executable.
+        /// </summary>
+        public bool IsExe { get; }
+
+        /// <summary>
         /// Creates a new instance of the module.
         /// </summary>
-        /// <param name="stream">The stream storing the module in the MZ format.</param>
+        /// <param name="stream">The stream storing the module.</param>
         public DosModule(Stream stream)
         {
             reader = new BinaryReader(stream, Encoding.ASCII, true);
-
+            stream.Position = 0;
+            var sig = reader.ReadUInt16();
+            if(sig != 0x5A4D && sig != 0x4D5A) return;
+            IsExe = true;
             if(stream.Length < 0x3C + 4) return;
             stream.Position = 0x3C;
             var headerOffset = reader.ReadUInt32();
@@ -39,6 +48,13 @@ namespace IS4.SFI.Formats.Modules
             throw new ArgumentException("This file uses an extended executable format.", nameof(stream));
         }
 
+        /// <summary>
+        /// Attempts to emulate the module and reads the output from the console.
+        /// </summary>
+        /// <param name="consoleEncoding">The encoding to use to convert the video memory to text.</param>
+        /// <param name="step">The number of instructions to emulate in each step.</param>
+        /// <param name="max">The maximum number of instructions after which to terminate.</param>
+        /// <returns>The text in the console after the program was executed, if any.</returns>
         public string? Emulate(Encoding consoleEncoding, int step, int max)
         {
             using var machine = new VirtualMachine();
@@ -52,7 +68,8 @@ namespace IS4.SFI.Formats.Modules
 
             var stream = reader.BaseStream;
             stream.Position = 0;
-            var image = new ExeFile(new VirtualPath(), stream);
+            var path = new VirtualPath();
+            ProgramImage image = IsExe ? new ExeFile(path, stream) : new ComFile(path, stream);
             machine.LoadImage(image);
 
             EventHandler endHandler = delegate { throw new EndOfProgramException(); };
@@ -69,14 +86,8 @@ namespace IS4.SFI.Formats.Modules
                     {
                         break;
                     }
-                }catch(EndOfProgramException)
+                }catch(Exception e) when (IsVMException(e))
                 { 
-                    break;
-                }catch(NotImplementedException)
-                {
-                    break;
-                }catch(NotSupportedException)
-                {
                     break;
                 }
             }
@@ -89,6 +100,28 @@ namespace IS4.SFI.Formats.Modules
             return ReadTextMemory(plane, console.Width, console.Height, consoleEncoding);
         }
 
+        bool IsVMException(Exception e)
+        {
+            return
+                e is EndOfProgramException ||
+                e is NotImplementedException ||
+                e is NotSupportedException ||
+                e is ArgumentException ||
+                e is InvalidOperationException ||
+                e is InvalidDataException ||
+                e is FileNotFoundException ||
+                e is EmulatedException ||
+                e is EnableInstructionTrapException;
+        }
+
+        /// <summary>
+        /// Reads the video text memory lines to string.
+        /// </summary>
+        /// <param name="memory">The memory span.</param>
+        /// <param name="width">The width of each line.</param>
+        /// <param name="height">The height of the console.</param>
+        /// <param name="encoding">The encoding to use to decode the bytes.</param>
+        /// <returns>The string contents of the memory, or null.</returns>
         string? ReadTextMemory(Span<byte> memory, int width, int height, Encoding encoding)
         {
             StringBuilder? sb = null;
