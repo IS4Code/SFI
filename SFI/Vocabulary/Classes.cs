@@ -153,6 +153,12 @@
         public static readonly ClassUri EmbeddedFileDataObject;
 
         /// <summary>
+        /// <see cref="Nmo"/>:Message.
+        /// </summary>
+        [Uri(Nmo)]
+        public static readonly ClassUri Message;
+
+        /// <summary>
         /// <see cref="Nid3"/>:ID3Audio.
         /// </summary>
         [Uri(Nid3)]

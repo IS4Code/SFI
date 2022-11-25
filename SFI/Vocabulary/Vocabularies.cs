@@ -82,6 +82,11 @@ namespace IS4.SFI.Vocabulary
             public const string Nfo = "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#";
 
             /// <summary>
+            /// NEPOMUK Message Ontology
+            /// </summary>
+            public const string Nmo = "http://www.semanticdesktop.org/ontologies/2007/03/22/nmo#";
+
+            /// <summary>
             /// NEPOMUK Information Element Ontology
             /// </summary>
             public const string Nie = "http://www.semanticdesktop.org/ontologies/2007/01/19/nie#";

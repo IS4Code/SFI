@@ -87,7 +87,7 @@
         public static readonly PropertyUri Creator;
 
         /// <summary>
-        /// <see cref="Dcterms"/>:creator.
+        /// <see cref="Dcterms"/>:subject.
         /// </summary>
         [Uri(Dcterms)]
         public static readonly PropertyUri Subject;
@@ -321,6 +321,12 @@
         public static readonly PropertyUri HasPart;
 
         /// <summary>
+        /// <see cref="Nie"/>:mimeType.
+        /// </summary>
+        [Uri(Nie)]
+        public static readonly PropertyUri MimeType;
+
+        /// <summary>
         /// <see cref="Nfo"/>:fileName.
         /// </summary>
         [Uri(Nfo)]
@@ -511,6 +517,24 @@
         /// </summary>
         [Uri(Nfo)]
         public static readonly PropertyUri FrameRate;
+
+        /// <summary>
+        /// <see cref="Nmo"/>:messageId.
+        /// </summary>
+        [Uri(Nmo)]
+        public static readonly PropertyUri MessageId;
+
+        /// <summary>
+        /// <see cref="Nmo"/>:inReplyTo.
+        /// </summary>
+        [Uri(Nmo)]
+        public static readonly PropertyUri InReplyTo;
+
+        /// <summary>
+        /// <see cref="Nmo"/>:messageHeader.
+        /// </summary>
+        [Uri(Nmo)]
+        public static readonly PropertyUri MessageHeader;
 
         /// <summary>
         /// <see cref="Skos"/>:broader.

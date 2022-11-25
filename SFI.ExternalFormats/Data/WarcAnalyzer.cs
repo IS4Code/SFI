@@ -25,11 +25,12 @@ namespace IS4.SFI.Analyzers
             string? label = null;
             var requests = new Dictionary<string, ILinkedNode>();
             var responses = new Dictionary<string, ILinkedNode>();
-            var requestsOf = new Dictionary<string, List<ILinkedNode>>();
-            var responsesOf = new Dictionary<string, List<ILinkedNode>>();
+            var requestsOf = new Dictionary<string, HashSet<ILinkedNode>>();
+            var responsesOf = new Dictionary<string, HashSet<ILinkedNode>>();
             await foreach(var record in records)
             {
-                var itemNode = node[record.Id.OriginalString];
+                var id = record.Id.OriginalString;
+                var itemNode = node[id];
                 if(itemNode != null)
                 {
                     switch(record)
@@ -40,24 +41,33 @@ namespace IS4.SFI.Analyzers
                         case RequestRecord request:
                             if(request.ContentType.StartsWith("application/http", StringComparison.OrdinalIgnoreCase))
                             {
+                                LinkRequestResponse(
+                                    itemNode,
+                                    id, request.ConcurrentTos,
+                                    requests, responses, requestsOf, responsesOf,
+                                    (a, b) => b.Set(Properties.InReplyTo, a)
+                                );
+
                                 var (line, fields) = ParseHttp(request.RecordBlock);
                                 itemNode.SetClass(Classes.HttpRequest);
+                                itemNode.SetClass(Classes.Message);
+                                itemNode.Set(Properties.MessageId, id);
+                                itemNode.Set(Properties.Subject, UriFormatter.Instance, request.TargetUri);
+                                itemNode.Set(Properties.MimeType, request.ContentType);
                                 if(line != null)
                                 {
                                     DescribeHttpRequest(itemNode, line, fields);
-                                    DescribeHttpFields(node, context.NodeFactory, fields);
+                                    DescribeHttpFields(itemNode, context.NodeFactory, fields);
                                 }
+
                                 LinkRequestResponse(
                                     itemNode,
-                                    record.Id.OriginalString,
-                                    request.ConcurrentTos,
-                                    requests,
-                                    responses,
-                                    requestsOf,
-                                    responsesOf,
+                                    id, request.ConcurrentTos,
+                                    requests, responses, requestsOf, responsesOf,
                                     (a, b) => a.Set(Properties.HttpResponse, b)
                                 );
-                                await DescribePayload(node, request.Payload, request.PayloadDigest, context, analyzers);
+
+                                await DescribePayload(itemNode, request.Payload, request.PayloadDigest, context, analyzers);
                             }
                             break;
                         case ResponseRecord response:
@@ -65,23 +75,31 @@ namespace IS4.SFI.Analyzers
                             {
                                 LinkRequestResponse(
                                     itemNode,
-                                    record.Id.OriginalString,
-                                    response.ConcurrentTos,
-                                    responses,
-                                    requests,
-                                    responsesOf,
-                                    requestsOf,
+                                    id, response.ConcurrentTos,
+                                    responses, requests, responsesOf, requestsOf,
                                     (a, b) => b.Set(Properties.HttpResponse, a)
                                 );
 
                                 var (line, fields) = ParseHttp(response.RecordBlock);
                                 itemNode.SetClass(Classes.HttpResponse);
+                                itemNode.SetClass(Classes.Message);
+                                itemNode.Set(Properties.MessageId, id);
+                                itemNode.Set(Properties.Subject, UriFormatter.Instance, response.TargetUri);
+                                itemNode.Set(Properties.MimeType, response.ContentType);
                                 if(line != null)
                                 {
                                     DescribeHttpResponse(itemNode, line, fields);
-                                    DescribeHttpFields(node, context.NodeFactory, fields);
+                                    DescribeHttpFields(itemNode, context.NodeFactory, fields);
                                 }
-                                await DescribePayload(node, response.Payload, response.PayloadDigest, context, analyzers);
+
+                                LinkRequestResponse(
+                                    itemNode,
+                                    id, response.ConcurrentTos,
+                                    responses, requests, responsesOf, requestsOf,
+                                    (a, b) => a.Set(Properties.InReplyTo, b)
+                                );
+
+                                await DescribePayload(itemNode, response.Payload, response.PayloadDigest, context, analyzers);
                             }
                             break;
                     }
@@ -92,7 +110,7 @@ namespace IS4.SFI.Analyzers
             return new AnalysisResult(node, label: label);
         }
 
-        void LinkRequestResponse(ILinkedNode node, string id, IEnumerable<Uri> concurrent, Dictionary<string, ILinkedNode> primary, Dictionary<string, ILinkedNode> target, Dictionary<string, List<ILinkedNode>> inversePrimary, Dictionary<string, List<ILinkedNode>> inverseTarget, Action<ILinkedNode, ILinkedNode> setter)
+        void LinkRequestResponse(ILinkedNode node, string id, IEnumerable<Uri> concurrent, Dictionary<string, ILinkedNode> primary, Dictionary<string, ILinkedNode> target, Dictionary<string, HashSet<ILinkedNode>> inversePrimary, Dictionary<string, HashSet<ILinkedNode>> inverseTarget, Action<ILinkedNode, ILinkedNode> setter)
         {
             primary[id] = node;
             foreach(var uri in concurrent)
@@ -102,15 +120,15 @@ namespace IS4.SFI.Analyzers
                     setter(node, concurrentItem);
                     continue;
                 }
-                if(!inversePrimary.TryGetValue(uri.OriginalString, out var list))
+                if(!inversePrimary.TryGetValue(uri.OriginalString, out var set))
                 {
-                    list = inversePrimary[uri.OriginalString] = new();
+                    set = inversePrimary[uri.OriginalString] = new(ReferenceEqualityComparer<ILinkedNode>.Default);
                 }
-                list.Add(node);
+                set.Add(node);
             }
-            if(inverseTarget.TryGetValue(id, out var targetList))
+            if(inverseTarget.TryGetValue(id, out var targetSet))
             {
-                foreach(var targetNode in targetList)
+                foreach(var targetNode in targetSet)
                 {
                     setter(node, targetNode);
                 }
@@ -232,6 +250,8 @@ namespace IS4.SFI.Analyzers
                 headerNode.Set(Properties.HttpFieldName, field);
                 headerNode.Set(Properties.HttpHeaderName, Vocabularies.Httph, field.ToLowerInvariant());
                 headerNode.Set(Properties.HttpFieldValue, value);
+
+                node.Set(Properties.MessageHeader, headerNode);
 
                 listNode.Set(Properties.First, headerNode);
 
