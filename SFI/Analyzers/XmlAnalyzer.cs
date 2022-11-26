@@ -66,6 +66,7 @@ namespace IS4.SFI.Analyzers
                         if(!String.IsNullOrEmpty(pubid))
                         {
                             var dtd = node["#dtd()"];
+                            node.Set(Properties.DtDecl, dtd);
                             dtd.SetClass(Classes.DoctypeDecl);
                             if(name != null)
                             {
@@ -88,13 +89,13 @@ namespace IS4.SFI.Analyzers
                                     dtdParent.Set(Properties.IsDefinedBy, definedNode);
                                 }
                             }
-                            node.Set(Properties.DtDecl, dtd);
                         }
                         docType = new XDocumentType(name, pubid, sysid, reader.Value);
                         break;
                     case XmlNodeType.Element:
                         // Describe the root element using the XIS vocabulary
                         var elem = node["#element(/1)"];
+                        node.Set(Properties.DocumentElement, elem);
                         elem.SetClass(Classes.Element);
                         elem.Set(Properties.LocalName, reader.LocalName);
                         if(!String.IsNullOrEmpty(reader.Prefix))
@@ -118,7 +119,6 @@ namespace IS4.SFI.Analyzers
                                 }
                             }
                         }
-                        node.Set(Properties.DocumentElement, elem);
 
                         context = context.WithNode(null);
 
