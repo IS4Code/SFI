@@ -60,6 +60,7 @@ namespace IS4.SFI
 		readonly List<string> queries = new();
 		readonly List<Matcher> componentMatchers = new();
 		Regex? mainHash;
+		string? mainHashName;
 		string? output;
 
 		readonly Dictionary<string, Dictionary<string, string>> componentProperties = new(StringComparer.OrdinalIgnoreCase);
@@ -157,7 +158,7 @@ namespace IS4.SFI
 					var hash = inspector.DataAnalyzer.HashAlgorithms.FirstOrDefault(h => mainHash.IsMatch(TextTools.GetUserFriendlyName(h)));
 					if(hash == null)
                     {
-						throw new ApplicationException("Main hash cannot be found!");
+						throw new ApplicationException($"Main hash '{mainHashName}' cannot be found!");
 					}
 					inspector.DataAnalyzer.ContentUriFormatter = new NiHashedContentUriFormatter(hash);
                 }
@@ -557,6 +558,7 @@ namespace IS4.SFI
 					if(mainHash == null)
 					{
 						mainHash = match;
+						mainHashName = argument;
 						componentMatchers.Add(new Matcher(true, "data-hash:" + argument!, true));
 					}else{
 						throw OptionAlreadySpecified(option);
