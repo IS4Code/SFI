@@ -349,7 +349,12 @@ namespace IS4.SFI.Services
         protected static bool IsDefined(DateTime value, out DateTime result)
         {
             result = value;
-            return value.Kind != DateTimeKind.Unspecified;
+            try{
+                if(value.ToBinary() == 0) return false;
+                return value.ToFileTimeUtc() != 0 && value.ToFileTime() != 0;
+            }catch{
+                return false;
+            }
         }
     }
 
