@@ -261,7 +261,12 @@ namespace IS4.SFI
                     {
 						throw new ApplicationException($"Cannot convert value '{value}' for property {componentName}:{name} to type {TextTools.GetIdentifierFromType(prop.PropertyType)}!");
                     }
-					prop.SetValue(component, convertedValue);
+                    try{
+						prop.SetValue(component, convertedValue);
+					}catch(Exception e)
+					{
+						throw new ApplicationException($"Cannot assign value '{value}' to property {componentName}:{name}: {e.Message}", e);
+					}
 				}
             }
 			foreach(var pair in properties)
@@ -344,17 +349,22 @@ namespace IS4.SFI
 			return included;
 		}
 
-		async ITask<ValueTuple> IResultFactory<ValueTuple, string>.Invoke<T>(T component, string name)
+		async ITask<ValueTuple> IResultFactory<ValueTuple, string>.Invoke<T>(T component, string id)
 		{
-			if(IsIncluded(component, name))
+			if(IsIncluded(component, id))
 			{
-				LogWriter?.WriteLine($" - {name} ({TextTools.GetUserFriendlyName(component.GetType())})");
+				LogWriter?.WriteLine($" - {id} ({TextTools.GetUserFriendlyName(component.GetType())})");
+				if(componentProperties.TryGetValue(id, out var dict))
+				{
+					componentProperties.Remove(id);
+					SetProperties(component, id, dict);
+				}
 				foreach(var prop in GetConfigurableProperties(component))
 				{
 					var value = prop.GetValue(component);
 					var type = PropertyValueType(prop);
 					var converter = TypeDescriptor.GetConverter(type);
-					LogWriter?.WriteLine($"  - {name}:{TextTools.FormatMimeName(prop.Name)} ({TextTools.GetIdentifierFromType(type)}) = {converter.ConvertToInvariantString(value)}");
+					LogWriter?.WriteLine($"  - {id}:{TextTools.FormatMimeName(prop.Name)} ({TextTools.GetIdentifierFromType(type)}) = {converter.ConvertToInvariantString(value)}");
 				}
 			}
 			return default;
