@@ -57,9 +57,9 @@ namespace IS4.SFI.Analyzers
             }else if(Emulate)
             {
                 var text = module.Emulate(ConsoleEncoding, InstructionStep, InstructionLimit);
-                if(text != null)
+                if(IsDefined(text, out var value))
                 {
-                    node.Set(Properties.Description, text);
+                    node.Set(Properties.Description, value);
                 }
             }
             return new AnalysisResult(node);

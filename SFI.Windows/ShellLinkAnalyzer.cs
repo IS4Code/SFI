@@ -34,8 +34,7 @@ namespace IS4.SFI.Analyzers
 
             sb = new StringBuilder(INFOTIPSIZE, INFOTIPSIZE);
             link.GetDescription(sb, sb.Capacity);
-            var desc = sb.ToString();
-            if(!String.IsNullOrEmpty(desc))
+            if(IsDefined(sb.ToString(), out var desc))
             {
                 node.Set(Properties.Description, desc);
             }

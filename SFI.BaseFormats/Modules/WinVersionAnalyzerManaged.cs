@@ -76,18 +76,23 @@ namespace IS4.SFI.Analyzers
                         {
                             if(locInfo.Children.TryGetValue(propKey, out var propInfo))
                             {
-                                var value = propInfo.GetValue(encoding);
-                                if(culture != null && useLang)
+                                if(IsDefined(propInfo.GetValue(encoding), out var value))
                                 {
-                                    node.Set(propUri, value, new LanguageCode(culture));
-                                }else{
-                                    node.Set(propUri, value);
+                                    if(culture != null && useLang)
+                                    {
+                                        node.Set(propUri, value, new LanguageCode(culture));
+                                    }else{
+                                        node.Set(propUri, value);
+                                    }
                                 }
                             }
                         }
                         if(locInfo.Children.TryGetValue("InternalName", out var nameInfo))
                         {
-                            label = nameInfo.GetValue(encoding);
+                            if(IsDefined(nameInfo.GetValue(encoding), out var value))
+                            {
+                                label = value;
+                            }
                         }
                     }
                 }

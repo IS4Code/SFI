@@ -112,16 +112,18 @@ namespace IS4.SFI.Analyzers
                                 var value = enc.GetString((byte*)text, len).Substring(0, unchecked((int)textLen));
                                 int end = value.IndexOf('\0');
                                 if(end != -1) value = value.Substring(0, end);
-                                if(culture != null && pair.Value.lang)
+                                if(IsDefined(value, out var propValue))
                                 {
-                                    node.Set(pair.Value.prop, value, new LanguageCode(culture));
-                                } else
-                                {
-                                    node.Set(pair.Value.prop, value);
-                                }
-                                if(pair.Value.prop == Properties.Name)
-                                {
-                                    label = value;
+                                    if(culture != null && pair.Value.lang)
+                                    {
+                                        node.Set(pair.Value.prop, propValue, new LanguageCode(culture));
+                                    }else{
+                                        node.Set(pair.Value.prop, propValue);
+                                    }
+                                    if(pair.Value.prop == Properties.Name)
+                                    {
+                                        label = propValue;
+                                    }
                                 }
                             }
                         }

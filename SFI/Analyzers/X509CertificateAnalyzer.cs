@@ -28,23 +28,29 @@ namespace IS4.SFI.Analyzers
             var hash = cert.GetCertHash();
             await HashAlgorithm.AddHash(node, HashAlgorithm.FromLength(hash.Length), hash, context.NodeFactory, OnOutputFile);
 
-            if(!String.IsNullOrWhiteSpace(cert.Subject))
+            if(IsDefined(cert.Subject, out var subject))
             {
-                node.Set(Properties.Subject, cert.Subject);
+                node.Set(Properties.Subject, subject);
             }
-            if(!String.IsNullOrWhiteSpace(cert.Issuer))
+            if(IsDefined(cert.Issuer, out var issuer))
             {
-                node.Set(Properties.Creator, cert.Issuer);
+                node.Set(Properties.Creator, issuer);
             }
 
             if(cert is X509Certificate2 cert2)
             {
-                if(!String.IsNullOrWhiteSpace(cert2.FriendlyName))
+                if(IsDefined(cert2.FriendlyName, out var friendlyName))
                 {
-                    node.Set(Properties.Name, cert2.FriendlyName);
+                    node.Set(Properties.Name, friendlyName);
                 }
-                node.Set(Properties.Created, cert2.NotBefore);
-                node.Set(Properties.Expiration, cert2.NotAfter);
+                if(IsDefined(cert2.NotBefore, out var created))
+                {
+                    node.Set(Properties.Created, created);
+                }
+                if(IsDefined(cert2.NotAfter, out var expired))
+                {
+                    node.Set(Properties.Expiration, expired);
+                }
 
                 var language = new LanguageCode(CultureInfo.InstalledUICulture);
                 foreach(var extension in cert2.Extensions)
