@@ -65,21 +65,24 @@ namespace IS4.SFI.Analyzers
                         var sysid = reader.GetAttribute("SYSTEM");
                         if(!String.IsNullOrEmpty(pubid))
                         {
-                            // A URI is created from the PUBLIC identifier and the name of the root element
-                            var dtdParent = context.NodeFactory.Create(UriTools.PublicIdFormatter, pubid);
-                            var dtd = dtdParent[$"#{name}"];
+                            var dtd = node["#dtd()"];
                             dtd.SetClass(Classes.DoctypeDecl);
                             if(name != null)
                             {
                                 dtd.Set(Properties.DoctypeName, name);
                             }
                             dtd.Set(Properties.PublicId, pubid);
-                            dtd.Set(Properties.SeeAlso, dtdParent);
+                            // A URI is created from the PUBLIC identifier
+                            var dtdParent = context.NodeFactory.Create(UriTools.PublicIdFormatter, pubid);
+                            if(dtdParent != null)
+                            {
+                                dtd.Set(Properties.SeeAlso, dtdParent);
+                            }
                             if(sysid != null)
                             {
                                 dtd.Set(Properties.SystemId, sysid, Datatypes.AnyUri);
                                 var definedNode = context.NodeFactory.Create(UriFormatter.Instance, sysid);
-                                if(definedNode != null)
+                                if(dtdParent != null && definedNode != null)
                                 {
                                     // The SYSTEM identifier can be used to define the DTD
                                     dtdParent.Set(Properties.IsDefinedBy, definedNode);
@@ -91,7 +94,7 @@ namespace IS4.SFI.Analyzers
                         break;
                     case XmlNodeType.Element:
                         // Describe the root element using the XIS vocabulary
-                        var elem = node[reader.LocalName];
+                        var elem = node["#element(/1)"];
                         elem.SetClass(Classes.Element);
                         elem.Set(Properties.LocalName, reader.LocalName);
                         if(!String.IsNullOrEmpty(reader.Prefix))
