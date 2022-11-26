@@ -85,23 +85,5 @@ namespace IS4.SFI.Analyzers
             }
             return new AnalysisResult(node, label);
         }
-
-        static bool IsDefined(string? value, out string result)
-        {
-            result = value!;
-            return !String.IsNullOrEmpty(value);
-        }
-
-        static bool IsDefined(int value, out int result)
-        {
-            result = value;
-            return value > 0;
-        }
-
-        static bool IsDefined<T>(T? value, out T result) where T : struct
-        {
-            result = value.GetValueOrDefault();
-            return value != null;
-        }
     }
 }

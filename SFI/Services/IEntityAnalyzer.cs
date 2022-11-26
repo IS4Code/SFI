@@ -1,6 +1,8 @@
 ﻿using IS4.SFI.Formats;
 using IS4.SFI.Tools;
+using IS4.SFI.Vocabulary;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -286,6 +288,68 @@ namespace IS4.SFI.Services
         {
             var typesId = String.Join("+", GetType().GetEntityAnalyzerTypes().Select(TextTools.GetIdentifierFromType).Distinct());
             return String.IsNullOrEmpty(typesId) ? base.ToString() : typesId;
+        }
+
+        /// <summary>
+        /// Ensures that an object has a valid value.
+        /// </summary>
+        /// <typeparam name="T">The type of the object.</typeparam>
+        /// <param name="value">The value of the object.</param>
+        /// <param name="result">The variable that receives the value of the object.</param>
+        /// <returns>True if the value is valid.</returns>
+        protected static bool IsDefined<T>(T? value, out T result) where T : struct
+        {
+            result = value.GetValueOrDefault();
+            return value != null;
+        }
+
+        /// <inheritdoc cref="IsDefined{T}(T?, out T)"/>
+        protected static bool IsDefined<T>(T? value, [MaybeNullWhen(false)] out T result) where T : class
+        {
+            result = value!;
+            return value != null;
+        }
+
+        /// <inheritdoc cref="IsDefined{T}(T?, out T)"/>
+        protected static bool IsDefined(string? value, [MaybeNullWhen(false)] out string result)
+        {
+            result = value!;
+            return !String.IsNullOrWhiteSpace(value);
+        }
+
+        /// <inheritdoc cref="IsDefined{T}(T?, out T)"/>
+        protected static bool IsDefined(int value, out int result)
+        {
+            result = value;
+            return value > 0;
+        }
+
+        /// <inheritdoc cref="IsDefined{T}(T?, out T)"/>
+        protected static bool IsDefined(long value, out long result)
+        {
+            result = value;
+            return value > 0;
+        }
+
+        /// <inheritdoc cref="IsDefined{T}(T?, out T)"/>
+        protected static bool IsDefined(float value, out float result)
+        {
+            result = value;
+            return value > 0;
+        }
+
+        /// <inheritdoc cref="IsDefined{T}(T?, out T)"/>
+        protected static bool IsDefined(double value, out double result)
+        {
+            result = value;
+            return value > 0;
+        }
+
+        /// <inheritdoc cref="IsDefined{T}(T?, out T)"/>
+        protected static bool IsDefined(DateTime value, out DateTime result)
+        {
+            result = value;
+            return value.Kind != DateTimeKind.Unspecified;
         }
     }
 

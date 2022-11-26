@@ -63,17 +63,5 @@ namespace IS4.SFI.Analyzers
             }
             return new AnalysisResult(node, label);
         }
-
-        static bool IsDefined(string value, out string result)
-        {
-            result = value;
-            return !String.IsNullOrEmpty(value);
-        }
-
-        static bool IsDefined(DateTime value, out DateTime result)
-        {
-            result = value;
-            return value.Kind != DateTimeKind.Unspecified;
-        }
     }
 }
