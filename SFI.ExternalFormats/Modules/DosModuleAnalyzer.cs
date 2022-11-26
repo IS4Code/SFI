@@ -17,6 +17,18 @@ namespace IS4.SFI.Analyzers
         public Encoding ConsoleEncoding { get; set; }
 
         /// <summary>
+        /// Contains the name of <see cref="ConsoleEncoding"/>.
+        /// </summary>
+        public string ConsoleEncodingName {
+            get {
+                return ConsoleEncoding.WebName;
+            }
+            set {
+                ConsoleEncoding = Encoding.GetEncoding(value);
+            }
+        }
+
+        /// <summary>
         /// Whether to attempt to run the executable to obtain additional data.
         /// </summary>
         public bool Emulate { get; set; } = true;
