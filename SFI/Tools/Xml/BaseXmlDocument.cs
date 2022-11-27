@@ -17,20 +17,18 @@ namespace IS4.SFI.Tools.Xml
         /// <summary>
         /// Creates a new instance of the document.
         /// </summary>
-        /// <param name="baseUri">The value of <see cref="BaseURI"/>.</param>
-        public BaseXmlDocument(string? baseUri)
+        public BaseXmlDocument()
         {
-            this.baseUri = baseUri;
+
         }
 
         /// <summary>
         /// Creates a new instance of the document.
         /// </summary>
-        /// <param name="baseUri">The value of <see cref="BaseURI"/>.</param>
         /// <param name="nameTable">The name table to use for <see cref="XmlDocument.XmlDocument(XmlNameTable)"/>.</param>
-        public BaseXmlDocument(string? baseUri, XmlNameTable nameTable) : base(nameTable)
+        public BaseXmlDocument(XmlNameTable nameTable) : base(nameTable)
         {
-            this.baseUri = baseUri;
+
         }
 
         /// <summary>

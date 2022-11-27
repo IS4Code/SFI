@@ -426,41 +426,59 @@ namespace IS4.SFI.Extensions
             }
 
             /// <summary>
-            /// Ensures that the argument stores an rdf:RDF element, and returns a document
-            /// with the base set to the current URI.
+            /// Ensures that the argument stores an rdf:RDF element, and returns an
+            /// instance of <see cref="BaseXmlDocument"/>.
             /// </summary>
-            private XmlDocument PrepareXmlDocument(XmlReader rdfXmlReader)
+            private static BaseXmlDocument PrepareXmlDocument(XmlReader rdfXmlReader)
             {
                 if(rdfXmlReader.NodeType != XmlNodeType.Element || rdfXmlReader.NamespaceURI != "http://www.w3.org/1999/02/22-rdf-syntax-ns#" || rdfXmlReader.LocalName != "RDF")
                 {
                     throw new ArgumentException("The XML reader must be positioned on a rdf:RDF element.", nameof(rdfXmlReader));
                 }
-                return new BaseXmlDocument(GetUri(Subject).AbsoluteUri, rdfXmlReader.NameTable);
+                return new BaseXmlDocument(rdfXmlReader.NameTable);
             }
 
             public override void Describe(XmlReader rdfXmlReader, IReadOnlyCollection<Uri>? subjectUris = null)
             {
-                var doc = PrepareXmlDocument(rdfXmlReader);
-                doc.Load(rdfXmlReader);
-                Describe(doc, subjectUris);
+                var parser = new VDS.RDF.Parsing.RdfXmlParser();
+                if(!TryDescribe(parser, uri => {
+                    var doc = PrepareXmlDocument(rdfXmlReader);
+                    doc.SetBaseURI(uri.AbsoluteUri);
+                    doc.Load(rdfXmlReader);
+                    return doc;
+                }, subjectUris))
+                {
+                    throw new NotSupportedException();
+                }
             }
 
             public async override Task DescribeAsync(XmlReader rdfXmlReader, IReadOnlyCollection<Uri>? subjectUris = null)
             {
-                var doc = PrepareXmlDocument(rdfXmlReader);
-                await doc.LoadAsync(rdfXmlReader);
-                Describe(doc, subjectUris);
+                var parser = new VDS.RDF.Parsing.RdfXmlParser();
+                if(!await TryDescribeAsync(parser, async uri => {
+                    var doc = PrepareXmlDocument(rdfXmlReader);
+                    doc.SetBaseURI(uri.AbsoluteUri);
+                    await doc.LoadAsync(rdfXmlReader);
+                    return doc;
+                }, subjectUris))
+                {
+                    throw new NotSupportedException();
+                }
             }
 
             public override void Describe(XmlDocument rdfXmlDocument, IReadOnlyCollection<Uri>? subjectUris = null)
             {
-                if(rdfXmlDocument is BaseXmlDocument baseXmlDocument && baseXmlDocument.BaseURI == null)
-                {
-                    baseXmlDocument.SetBaseURI(GetUri(Subject).AbsoluteUri);
-                }
-                var graph = new DataGraph(this, subjectUris);
                 var parser = new VDS.RDF.Parsing.RdfXmlParser();
-                parser.Load(graph, rdfXmlDocument);
+                if(!TryDescribe(parser, uri => {
+                    if(rdfXmlDocument is BaseXmlDocument baseXmlDocument)
+                    {
+                        baseXmlDocument.SetBaseURI(uri.AbsoluteUri);
+                    }
+                    return rdfXmlDocument;
+                }, subjectUris))
+                {
+                    throw new NotSupportedException();
+                }
             }
 
             public override bool TryDescribe(object loader, Func<Uri, object> dataSource, IReadOnlyCollection<Uri>? subjectUris = null)
@@ -468,20 +486,39 @@ namespace IS4.SFI.Extensions
                 if(loader is IRdfReader reader)
                 {
                     var graph = new DataGraph(this, subjectUris);
-                    // Produce the data using the graph's (unique) base URI
                     var data = dataSource(graph.BaseUri);
-                    switch(data)
-                    {
-                        case string filename:
-                            reader.Load(graph, filename);
-                            return true;
-                        case StreamReader inputStream:
-                            reader.Load(graph, inputStream);
-                            break;
-                        case TextReader inputText:
-                            reader.Load(graph, inputText);
-                            break;
-                    }
+                    return LoadData(graph, reader, data);
+                }
+                return false;
+            }
+
+            public async override ValueTask<bool> TryDescribeAsync(object loader, Func<Uri, ValueTask<object>> dataSource, IReadOnlyCollection<Uri>? subjectUris = null)
+            {
+                if(loader is IRdfReader reader)
+                {
+                    var graph = new DataGraph(this, subjectUris);
+                    var data = await dataSource(graph.BaseUri);
+                    return LoadData(graph, reader, data);
+                }
+                return false;
+            }
+
+            private bool LoadData(DataGraph graph, IRdfReader reader, object data)
+            {
+                switch(data)
+                {
+                    case string filename:
+                        reader.Load(graph, filename);
+                        return true;
+                    case StreamReader inputStream:
+                        reader.Load(graph, inputStream);
+                        return true;
+                    case TextReader inputText:
+                        reader.Load(graph, inputText);
+                        return true;
+                    case XmlDocument xmlDocument when reader is VDS.RDF.Parsing.RdfXmlParser xmlParser:
+                        xmlParser.Load(graph, xmlDocument);
+                        return true;
                 }
                 return false;
             }
@@ -500,7 +537,14 @@ namespace IS4.SFI.Extensions
                 /// <summary>
                 /// The base URI uses the graph's unique scheme.
                 /// </summary>
-                public override Uri BaseUri { get => base.BaseUri; set => throw new InvalidOperationException(); }
+                public override Uri BaseUri {
+                    get {
+                        return base.BaseUri;
+                    }
+                    set {
+
+                    }
+                }
 
                 public DataGraph(UriNode describingNode, IReadOnlyCollection<Uri>? subjectUris) : base(true)
                 {

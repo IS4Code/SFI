@@ -72,6 +72,9 @@ namespace IS4.SFI.Services
         /// </returns>
         bool TryDescribe(object loader, Func<Uri, object> dataSource, IReadOnlyCollection<Uri>? subjectUris = null);
 
+        /// <inheritdoc cref="TryDescribe(object, Func{Uri, object}, IReadOnlyCollection{Uri}?)"/>
+        ValueTask<bool> TryDescribeAsync(object loader, Func<Uri, ValueTask<object>> dataSource, IReadOnlyCollection<Uri>? subjectUris = null);
+
         /// <summary>
         /// Sets one of the classes of the resource to be <paramref name="class"/>.
         /// </summary>
@@ -454,6 +457,9 @@ namespace IS4.SFI.Services
 
         /// <inheritdoc/>
         public abstract bool TryDescribe(object loader, Func<Uri, object> dataSource, IReadOnlyCollection<Uri>? subjectUris = null);
+
+        /// <inheritdoc/>
+        public abstract ValueTask<bool> TryDescribeAsync(object loader, Func<Uri, ValueTask<object>> dataSource, IReadOnlyCollection<Uri>? subjectUris = null);
 
         /// <inheritdoc/>
         public abstract void SetAsBase();
