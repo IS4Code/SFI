@@ -186,6 +186,18 @@ namespace IS4.SFI.Tests
         }
 
         /// <inheritdoc/>
+        public override bool TryDescribe(object loader, Func<Uri, object> dataSource, IReadOnlyCollection<Uri>? subjectUris = null)
+        {
+            return false;
+        }
+
+        /// <inheritdoc/>
+        public override ValueTask<bool> TryDescribeAsync(object loader, Func<Uri, ValueTask<object>> dataSource, IReadOnlyCollection<Uri>? subjectUris = null)
+        {
+            return new ValueTask<bool>(false);
+        }
+
+        /// <inheritdoc/>
         public override bool Match(out INodeMatchProperties properties)
         {
             properties = null!;
