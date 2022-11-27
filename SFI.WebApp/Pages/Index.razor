@@ -1,6 +1,7 @@
 ﻿@page "/"
 @using IS4.SFI;
 @using System.IO;
+@using System.Text.RegularExpressions;
 @using Microsoft.VisualBasic.FileIO;
 @inject IJSRuntime js
 
@@ -45,6 +46,8 @@
         PluginFiles = e.GetMultipleFiles().ToDictionary(f => f.Name, f => f, StringComparer.Ordinal);
     }
 
+    static readonly Regex lineWhitespace = new Regex(@"^\s+|\s+$", RegexOptions.Multiline | RegexOptions.Compiled);
+
     async void OnSubmit()
     {
         var output = outputChunks = new List<string>();
@@ -58,7 +61,7 @@
 
         try{
             var invocations = new List<string[]>();
-            using(var parser = new TextFieldParser(new StringReader(Command))
+            using(var parser = new TextFieldParser(new StringReader(lineWhitespace.Replace(Command, "")))
             {
                 TextFieldType = FieldType.Delimited,
                 CommentTokens = new[] { "#" },
@@ -91,7 +94,7 @@
                 await application.Run(args);
                 this.StateHasChanged();
             }
-        }catch(Exception e) when (GlobalOptions.SuppressNonCriticalExceptions)
+        }catch(Exception e) when(GlobalOptions.SuppressNonCriticalExceptions)
         {
             logWriter.WriteLine("Unexpected error: " + e);
         }finally{
