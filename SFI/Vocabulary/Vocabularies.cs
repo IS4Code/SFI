@@ -164,12 +164,12 @@ namespace IS4.SFI.Vocabulary
             /// <summary>
             /// uri4uri MIME types
             /// </summary>
-            public const string Urim = "http://purl.org/uri4uri/mime/";
+            public const string Urim = "https://w3id.org/uri4uri/mime/";
 
             /// <summary>
             /// uri4uri suffixes
             /// </summary>
-            public const string Uris = "http://purl.org/uri4uri/suffix/";
+            public const string Uris = "https://w3id.org/uri4uri/suffix/";
 
             /// <summary>
             /// The Cert Ontology
