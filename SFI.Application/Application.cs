@@ -173,7 +173,12 @@ namespace IS4.SFI
                 }
 
 				// Load the input files from the environment
-				var inputFiles = inputs.SelectMany(input => environment.GetFiles(input));
+				var inputFiles = inputs.SelectMany(input => environment.GetFiles(input)).ToList();
+
+				if(inputFiles.Count == 0)
+				{
+					throw new ApplicationException("No specified input files were found!");
+				}
 				
 				options.Queries = queries.SelectMany(query => environment.GetFiles(query));
 
