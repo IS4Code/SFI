@@ -45,6 +45,7 @@ namespace IS4.SFI.WebApp
             DataAnalyzer.DataFormats.Add(new OleStorageFormat());
             DataAnalyzer.DataFormats.Add(new ShockwaveFlashFormat());
             DataAnalyzer.DataFormats.Add(new WarcFormat());
+            DataAnalyzer.DataFormats.Add(new HtmlFormat());
 
             ContainerProviders.Add(new OpenPackageFormat());
             ContainerProviders.Add(new PackageDescriptionProvider());
@@ -76,6 +77,7 @@ namespace IS4.SFI.WebApp
             Analyzers.Add(new PdfAnalyzer());
             Analyzers.Add(new ShockwaveFlashAnalyzer());
             Analyzers.Add(new WarcAnalyzer());
+            Analyzers.Add(new HtmlAnalyzer());
 
             Plugins.Clear();
             await LoadPlugins();
