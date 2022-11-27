@@ -53,6 +53,10 @@ namespace IS4.SFI.Formats
             var doc = new HtmlDocument();
             doc.OptionDefaultStreamEncoding = DefaultEncoding;
             doc.Load(stream, true);
+            if(doc.DocumentNode.Element("html") == null)
+            {
+                return default;
+            }
             return await resultFactory(doc, args);
         }
     }
