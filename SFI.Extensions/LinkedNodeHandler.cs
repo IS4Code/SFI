@@ -5,6 +5,7 @@ using Microsoft.CSharp.RuntimeBinder;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -333,7 +334,7 @@ namespace IS4.SFI.Extensions
                 if(Subject.Equals(subj) && !(obj is IBlankNode))
                 {
                     // The triple is accepted only if it fully described the current node
-                    HandleTriple(subj, pred, obj);
+                    HandleTriple(Subject, VDS.RDF.Tools.CopyNode(pred, Graph), VDS.RDF.Tools.CopyNode(obj, Graph));
                     return true;
                 }
                 return false;
@@ -462,8 +463,32 @@ namespace IS4.SFI.Extensions
                 parser.Load(graph, rdfXmlDocument);
             }
 
+            public override bool TryDescribe(object loader, Func<Uri, object> dataSource, IReadOnlyCollection<Uri>? subjectUris = null)
+            {
+                if(loader is IRdfReader reader)
+                {
+                    var graph = new DataGraph(this, subjectUris);
+                    // Produce the data using the graph's (unique) base URI
+                    var data = dataSource(graph.BaseUri);
+                    switch(data)
+                    {
+                        case string filename:
+                            reader.Load(graph, filename);
+                            return true;
+                        case StreamReader inputStream:
+                            reader.Load(graph, inputStream);
+                            break;
+                        case TextReader inputText:
+                            reader.Load(graph, inputText);
+                            break;
+                    }
+                }
+                return false;
+            }
+
             /// <summary>
-            /// The graph holding the external description, used by <see cref="Describe(XmlDocument, IReadOnlyCollection{Uri}?)"/>.
+            /// The graph holding the external description, used by <see cref="Describe(XmlDocument, IReadOnlyCollection{Uri}?)"/>
+            /// and <see cref="TryDescribe(object, Func{Uri, object}, IReadOnlyCollection{Uri}?)"/>.
             /// </summary>
             class DataGraph : Graph
             {
@@ -472,22 +497,48 @@ namespace IS4.SFI.Extensions
 
                 static readonly UriComparer comparer = new();
 
+                /// <summary>
+                /// The base URI uses the graph's unique scheme.
+                /// </summary>
+                public override Uri BaseUri { get => base.BaseUri; set => throw new InvalidOperationException(); }
+
                 public DataGraph(UriNode describingNode, IReadOnlyCollection<Uri>? subjectUris) : base(true)
                 {
                     this.describingNode = describingNode;
                     this.subjectUris = subjectUris ?? Array.Empty<Uri>();
+                    base.BaseUri = new Uri($"x.{Guid.NewGuid():N}:", UriKind.Absolute);
                 }
 
                 public override bool Assert(Triple t)
                 {
-                    return describingNode.HandleExternalTriple(ReplaceNode(t.Subject), t.Predicate, ReplaceNode(t.Object));
+                    var subj = ReplaceNode(t.Subject);
+                    var obj = ReplaceNode(t.Object);
+                    if(subj == null || obj == null) return false;
+                    return describingNode.HandleExternalTriple(subj, t.Predicate, obj);
                 }
 
-                private INode ReplaceNode(INode node)
+                private INode? ReplaceNode(INode node)
                 {
-                    if(node is IUriNode uriNode && subjectUris.Any(uri => comparer.Equals(uriNode.Uri, uri)))
+                    if(node is IUriNode uriNode)
                     {
-                        return describingNode.Subject;
+                        var nodeUri = uriNode.Uri;
+                        if(subjectUris.Any(uri => comparer.Equals(nodeUri, uri)))
+                        {
+                            return describingNode.Subject;
+                        }
+                        if(nodeUri.IsAbsoluteUri && nodeUri.Scheme == BaseUri.Scheme)
+                        {
+                            var idUri = BaseUri.MakeRelativeUri(nodeUri);
+                            if(!idUri.IsAbsoluteUri)
+                            {
+                                var id = idUri.OriginalString;
+                                if(id == "")
+                                {
+                                    return describingNode.Subject;
+                                }
+                                return (describingNode[id] as UriNode)?.Subject;
+                            }
+                        }
                     }
                     return node;
                 }

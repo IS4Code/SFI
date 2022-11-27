@@ -57,6 +57,22 @@ namespace IS4.SFI.Services
         void Describe(XmlDocument rdfXmlDocument, IReadOnlyCollection<Uri>? subjectUris = null);
 
         /// <summary>
+        /// Attempts to describe the node in an implementation-specific
+        /// way, using a <paramref name="loader"/> which, if recognized,
+        /// operates on the result of <paramref name="dataSource"/>.
+        /// </summary>
+        /// <param name="loader">An instance of an implementation-specific RDF loader class.</param>
+        /// <param name="dataSource">
+        /// A function that provides the argument to the loader.
+        /// The parameter is a URI that should be used as the base.</param>
+        /// <param name="subjectUris"><inheritdoc cref="Describe(XmlDocument, IReadOnlyCollection{Uri}?)" path="/param[@name='subjectUris']"/></param>
+        /// <returns>
+        /// True if <paramref name="loader"/> was correctly recognized
+        /// and executed, false otherwise.
+        /// </returns>
+        bool TryDescribe(object loader, Func<Uri, object> dataSource, IReadOnlyCollection<Uri>? subjectUris = null);
+
+        /// <summary>
         /// Sets one of the classes of the resource to be <paramref name="class"/>.
         /// </summary>
         /// <param name="class">The class to add to the list of classes of this resource.</param>
@@ -437,6 +453,9 @@ namespace IS4.SFI.Services
         public abstract void Describe(XmlDocument rdfXmlDocument, IReadOnlyCollection<Uri>? subjectUris = null);
 
         /// <inheritdoc/>
+        public abstract bool TryDescribe(object loader, Func<Uri, object> dataSource, IReadOnlyCollection<Uri>? subjectUris = null);
+
+        /// <inheritdoc/>
         public abstract void SetAsBase();
 
         /// <inheritdoc/>
@@ -648,9 +667,9 @@ namespace IS4.SFI.Services
                     prefix = "";
                 }else if(String.IsNullOrEmpty(uri.Fragment) && (String.IsNullOrEmpty(uri.Authority) || !String.IsNullOrEmpty(uri.Query)))
                 {
-                    prefix = "#/";
+                    prefix = subName.StartsWith("/") ? "#" : "#/";
                 }else{
-                    prefix = "/";
+                    prefix = subName.StartsWith("/") ? "" : "/";
                 }
                 uri = new EncodedUri(uri.AbsoluteUri + prefix + subName);
                 return CreateNew(CreateNode(uri));
