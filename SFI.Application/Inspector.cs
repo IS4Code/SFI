@@ -112,10 +112,6 @@ namespace IS4.SFI
         {
             DataAnalyzer.DataFormats.Add(new XmlFileFormat());
             DataAnalyzer.DataFormats.Add(new X509CertificateFormat());
-
-            XmlAnalyzer.XmlFormats.Add(new RdfXmlFormat());
-
-            Analyzers.Add(new RdfXmlAnalyzer());
         }
 
         static Inspector()

@@ -1,6 +1,5 @@
 ﻿using IS4.SFI.Analyzers;
 using IS4.SFI.Application;
-using IS4.SFI.Formats;
 using IS4.SFI.Services;
 using System;
 using System.Collections.Generic;
@@ -40,69 +39,11 @@ namespace IS4.SFI.ConsoleApp
 
         public async override ValueTask AddDefault()
         {
-            DataAnalyzer.DataFormats.Add(new ZipFormat());
-            DataAnalyzer.DataFormats.Add(new RarFormat());
-            DataAnalyzer.DataFormats.Add(new SevenZipFormat());
-            DataAnalyzer.DataFormats.Add(new GZipFormat());
-            DataAnalyzer.DataFormats.Add(new TarFormat());
-            DataAnalyzer.DataFormats.Add(new SzFormat());
-            DataAnalyzer.DataFormats.Add(new ImageMetadataFormat());
-            DataAnalyzer.DataFormats.Add(new ImageFormat());
-            DataAnalyzer.DataFormats.Add(new TagLibFormat());
-            DataAnalyzer.DataFormats.Add(new PdfFormat());
-            DataAnalyzer.DataFormats.Add(new IsoFormat());
-            DataAnalyzer.DataFormats.Add(new DosModuleExeFormat());
-            DataAnalyzer.DataFormats.Add(new DosModuleComFormat());
-            DataAnalyzer.DataFormats.Add(new GenericModuleFormat());
-            DataAnalyzer.DataFormats.Add(new LinearModuleFormat());
-            DataAnalyzer.DataFormats.Add(new Win16ModuleFormat());
-            DataAnalyzer.DataFormats.Add(new Win32ModuleFormatManaged());
-            DataAnalyzer.DataFormats.Add(new WaveFormat());
-            DataAnalyzer.DataFormats.Add(new WasapiFormat(false));
-            DataAnalyzer.DataFormats.Add(new WasapiFormat(true));
-            DataAnalyzer.DataFormats.Add(new DelphiFormFormat());
-            DataAnalyzer.DataFormats.Add(new CabinetFormat());
-            DataAnalyzer.DataFormats.Add(new OleStorageFormat());
-            DataAnalyzer.DataFormats.Add(new ShockwaveFlashFormat());
-            DataAnalyzer.DataFormats.Add(new WarcFormat());
-            DataAnalyzer.DataFormats.Add(new HtmlFormat());
-            DataAnalyzer.DataFormats.Add(new InternetShortcutFormat());
-            DataAnalyzer.DataFormats.Add(new ShellLinkFormat());
-
-            ContainerProviders.Add(new OpenPackageFormat());
-            ContainerProviders.Add(new PackageDescriptionProvider());
-            ContainerProviders.Add(new ExcelXmlDocumentFormat());
-            ContainerProviders.Add(new ExcelDocumentFormat());
-            ContainerProviders.Add(new WordXmlDocumentFormat());
-            ContainerProviders.Add(new WordDocumentFormat());
-
-            XmlAnalyzer.XmlFormats.Add(new SvgFormat());
-
-            Analyzers.Add(new ArchiveAnalyzer());
-            Analyzers.Add(new ArchiveReaderAnalyzer());
-            Analyzers.Add(new FileSystemAnalyzer());
-            Analyzers.Add(new ImageMetadataAnalyzer());
-            Analyzers.Add(new ExifMetadataAnalyzer());
-            Analyzers.Add(new XmpMetadataAnalyzer());
-            Analyzers.Add(new TagLibAnalyzer());
-            Analyzers.Add(new XmpTagAnalyzer());
-            Analyzers.Add(new DosModuleAnalyzer());
-            Analyzers.Add(new WinModuleAnalyzer());
-            Analyzers.Add(new WinVersionAnalyzerManaged());
-            Analyzers.Add(new SvgAnalyzer());
-            Analyzers.Add(new WaveAnalyzer());
-            Analyzers.Add(new DelphiObjectAnalyzer());
-            Analyzers.Add(new CabinetAnalyzer());
-            Analyzers.Add(new OleStorageAnalyzer());
-            Analyzers.Add(new PackageDescriptionAnalyzer());
-            Analyzers.Add(new OleDocumentAnalyzer());
-            Analyzers.Add(new OpenXmlDocumentAnalyzer());
-            Analyzers.Add(new PdfAnalyzer());
-            Analyzers.Add(new ShockwaveFlashAnalyzer());
-            Analyzers.Add(new InternetShortcutAnalyzer());
-            Analyzers.Add(new ShellLinkAnalyzer());
-            Analyzers.Add(new WarcAnalyzer());
-            Analyzers.Add(new HtmlAnalyzer());
+            BaseFormats.AddDefault(Analyzers, DataAnalyzer.DataFormats, XmlAnalyzer.XmlFormats, ContainerProviders);
+            ExternalFormats.AddDefault(Analyzers, DataAnalyzer.DataFormats, XmlAnalyzer.XmlFormats, ContainerProviders);
+            ExtensionsFormats.AddDefault(Analyzers, DataAnalyzer.DataFormats, XmlAnalyzer.XmlFormats, ContainerProviders);
+            AnalysisFormats.AddDefault(Analyzers, DataAnalyzer.DataFormats, XmlAnalyzer.XmlFormats, ContainerProviders);
+            WindowsFormats.AddDefault(Analyzers, DataAnalyzer.DataFormats, XmlAnalyzer.XmlFormats, ContainerProviders);
 
             Plugins.Clear();
             foreach(var plugin in LoadPlugins())
