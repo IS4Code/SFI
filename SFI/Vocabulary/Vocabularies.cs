@@ -47,6 +47,11 @@ namespace IS4.SFI.Vocabulary
         public static readonly IIndividualUriFormatter<string> Httpsc = new VocabularyUri(Uri.Httpsc);
 
         /// <summary>
+        /// The vocabulary for datatypes specifying the text language and direction.
+        /// </summary>
+        public static readonly IDatatypeUriFormatter<(LanguageCode? lang, bool? rtl)> I18n = new I18nFormatter();
+
+        /// <summary>
         /// Stores raw URIs of all used vocabularies.
         /// </summary>
         public static class Uri
@@ -197,6 +202,11 @@ namespace IS4.SFI.Vocabulary
             public const string Httpsc = "http://www.w3.org/2011/http-statusCodes#";
 
             /// <summary>
+            /// The i18n Namespace for language tags and directions
+            /// </summary>
+            public const string I18n = "https://www.w3.org/ns/i18n#";
+
+            /// <summary>
             /// file: URIs
             /// </summary>
             public const string File = "file:///";
@@ -220,5 +230,17 @@ namespace IS4.SFI.Vocabulary
             .Where(f => f.IsLiteral)
             .Select(f => new KeyValuePair<System.Uri, string>(new System.Uri(f.GetRawConstantValue().ToString(), UriKind.Absolute), f.Name.ToLowerInvariant()))
             .ToList();
+
+        class I18nFormatter : IDatatypeUriFormatter<(LanguageCode? lang, bool? rtl)>
+        {
+            public System.Uri? this[(LanguageCode? lang, bool? rtl) value] {
+                get {
+                    var (lang, rtl) = value;
+                    if(lang == null && rtl == null) return null;
+                    var uri = Uri.I18n + $"{lang?.Value?.ToLowerInvariant()}_{(rtl is bool b ? (b ? "rtl" : "ltr") : "")}";
+                    return new System.Uri(uri, UriKind.Absolute);
+                }
+            }
+        }
     }
 }
