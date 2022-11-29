@@ -82,7 +82,7 @@ namespace IS4.SFI
 
 				if(mode == null)
 				{
-					throw new ApplicationException($"Mode must be specified (one of {String.Join(", ", modeNames)})!");
+					throw new ApplicationException($"Mode must be specified (one of {String.Join(", ", modeNames)})! Use -? for help.");
 				}
 
 				var inspector = new TInspector();
