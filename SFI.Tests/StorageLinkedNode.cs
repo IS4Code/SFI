@@ -180,19 +180,43 @@ namespace IS4.SFI.Tests
         }
 
         /// <inheritdoc/>
-        public override Task DescribeAsync(XmlReader rdfXmlReader, IReadOnlyCollection<Uri>? subjectUris = null)
+        public override ValueTask DescribeAsync(XmlReader rdfXmlReader, IReadOnlyCollection<Uri>? subjectUris = null)
         {
-            return Task.CompletedTask;
+            return default;
         }
 
         /// <inheritdoc/>
-        public override bool TryDescribe(object loader, Func<Uri, object> dataSource, IReadOnlyCollection<Uri>? subjectUris = null)
+        public override void Describe(Func<Uri, XmlReader?> rdfXmlReaderFactory, IReadOnlyCollection<Uri>? subjectUris = null)
+        {
+
+        }
+
+        /// <inheritdoc/>
+        public override ValueTask DescribeAsync(Func<Uri, ValueTask<XmlReader?>> rdfXmlReaderFactory, IReadOnlyCollection<Uri>? subjectUris = null)
+        {
+            return default;
+        }
+
+        /// <inheritdoc/>
+        public override void Describe(Func<Uri, XmlDocument?> rdfXmlDocumentFactory, IReadOnlyCollection<Uri>? subjectUris = null)
+        {
+
+        }
+
+        /// <inheritdoc/>
+        public override ValueTask DescribeAsync(Func<Uri, ValueTask<XmlDocument?>> rdfXmlDocumentFactory, IReadOnlyCollection<Uri>? subjectUris = null)
+        {
+            return default;
+        }
+
+        /// <inheritdoc/>
+        public override bool TryDescribe(object loader, Func<Uri, object?> dataSource, IReadOnlyCollection<Uri>? subjectUris = null)
         {
             return false;
         }
 
         /// <inheritdoc/>
-        public override ValueTask<bool> TryDescribeAsync(object loader, Func<Uri, ValueTask<object>> dataSource, IReadOnlyCollection<Uri>? subjectUris = null)
+        public override ValueTask<bool> TryDescribeAsync(object loader, Func<Uri, ValueTask<object?>> dataSource, IReadOnlyCollection<Uri>? subjectUris = null)
         {
             return new ValueTask<bool>(false);
         }
