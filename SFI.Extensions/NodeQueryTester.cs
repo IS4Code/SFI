@@ -52,7 +52,12 @@ namespace IS4.SFI
                     case IGraph resultsGraph:
                         foreach(var triple in resultsGraph.Triples)
                         {
-                            rdfHandler.HandleTriple(triple);
+                            var copy = new Triple(
+                                VDS.RDF.Tools.CopyNode(triple.Subject, rdfHandler),
+                                VDS.RDF.Tools.CopyNode(triple.Predicate, rdfHandler),
+                                VDS.RDF.Tools.CopyNode(triple.Object, rdfHandler)
+                            );
+                            rdfHandler.HandleTriple(copy);
                         }
                         break;
                     case IEnumerable<SparqlResult> resultSet:

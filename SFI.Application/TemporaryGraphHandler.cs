@@ -35,7 +35,7 @@ namespace IS4.SFI
 
         public bool HandleTriple(Triple t)
         {
-            graph.Assert(t);
+            graph.Assert(VDS.RDF.Tools.CopyTriple(t, graph));
             return baseHandler.HandleTriple(t);
         }
 
