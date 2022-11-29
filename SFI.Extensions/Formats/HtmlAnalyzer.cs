@@ -5,7 +5,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.CompilerServices;
+using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using VDS.RDF;
 using VDS.RDF.Parsing;
 
 namespace IS4.SFI.Analyzers
@@ -19,6 +22,15 @@ namespace IS4.SFI.Analyzers
         /// The RDFa parser used for HTML.
         /// </summary>
         public RdfAParserBase<HtmlDocument, HtmlNode, HtmlNode, HtmlAttribute> RdfAParser { get; } = new Parser(RdfASyntax.AutoDetect);
+
+        /// <summary>
+        /// The RDF/XML writer used when serializing RDFa data.
+        /// </summary>
+        public VDS.RDF.Writing.RdfXmlWriter RdfXmlWriter { get; } = new()
+        {
+            UseDtd = false,
+            PrettyPrintMode = false
+        };
 
         /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>
         public HtmlAnalyzer() : base(Common.DocumentClasses)
@@ -39,10 +51,24 @@ namespace IS4.SFI.Analyzers
                     node.Set(Properties.Title, title.InnerText);
                 }
             }
-            node.TryDescribe(RdfAParser, baseUri => {
+            var reader = new Parser.DummyReader(document);
+            if(!node.TryDescribe(RdfAParser, baseUri => {
                 Parser.SetBase(document, baseUri);
-                return new Parser.DummyReader(document);
-            });
+                return reader;
+            }))
+            {
+                node.Describe(uri => {
+                    var graph = new Graph();
+                    graph.BaseUri = uri;
+                    RdfAParser.Load(graph, reader);
+                    var buffer = new MemoryStream();
+                    RdfXmlWriter.Save(graph, new StreamWriter(buffer, Encoding.UTF8), true);
+                    buffer.Position = 0;
+                    var xmlReader = XmlReader.Create(new StreamReader(buffer, Encoding.UTF8));
+                    if(xmlReader.MoveToContent() == XmlNodeType.Element) return xmlReader;
+                    return null;
+                });
+            }
             return new AnalysisResult(node);
         }
 

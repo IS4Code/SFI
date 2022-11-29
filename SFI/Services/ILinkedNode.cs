@@ -40,7 +40,26 @@ namespace IS4.SFI.Services
         void Describe(XmlReader rdfXmlReader, IReadOnlyCollection<Uri>? subjectUris = null);
 
         /// <inheritdoc cref="Describe(XmlReader, IReadOnlyCollection{Uri})"/>
-        Task DescribeAsync(XmlReader rdfXmlReader, IReadOnlyCollection<Uri>? subjectUris = null);
+        ValueTask DescribeAsync(XmlReader rdfXmlReader, IReadOnlyCollection<Uri>? subjectUris = null);
+
+        /// <summary>
+        /// Describes the node using the RDF/XML description provided
+        /// through <paramref name="rdfXmlReaderFactory"/>.
+        /// </summary>
+        /// <param name="rdfXmlReaderFactory">
+        /// A function returning an XML reader, like for <see cref="Describe(XmlReader, IReadOnlyCollection{Uri}?)"/>,
+        /// but the argument is an URI that should be used as the base URI of the graph.
+        /// </param>
+        /// <param name="subjectUris"><inheritdoc cref="Describe(XmlReader, IReadOnlyCollection{Uri}?)" path="/param[@name='subjectUris']"/></param>
+        /// <exception cref="ArgumentException">
+        /// The reader returned by <paramref name="rdfXmlReaderFactory"/>
+        /// is not positioned on an
+        /// {http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF element.
+        /// </exception>
+        void Describe(Func<Uri, XmlReader?> rdfXmlReaderFactory, IReadOnlyCollection<Uri>? subjectUris = null);
+
+        /// <inheritdoc cref="Describe(Func{Uri, XmlReader}, IReadOnlyCollection{Uri}?)"/>
+        ValueTask DescribeAsync(Func<Uri, ValueTask<XmlReader?>> rdfXmlReaderFactory, IReadOnlyCollection<Uri>? subjectUris = null);
 
         /// <summary>
         /// Describes the node using the RDF/XML description provided
@@ -51,10 +70,22 @@ namespace IS4.SFI.Services
         /// shall describe the node by using a blank relative URI,
         /// i.e. &lt;rdf:Description rdf:about=""&gt;
         /// </param>
-        /// <param name="subjectUris">
-        /// Stores a collection of URIs that represent this node.
-        /// </param>
+        /// <param name="subjectUris"><inheritdoc cref="Describe(XmlReader, IReadOnlyCollection{Uri}?)" path="/param[@name='subjectUris']"/></param>
         void Describe(XmlDocument rdfXmlDocument, IReadOnlyCollection<Uri>? subjectUris = null);
+
+        /// <summary>
+        /// Describes the node using the RDF/XML description
+        /// obtained when calling <paramref name="rdfXmlDocumentFactory"/>.
+        /// </summary>
+        /// <param name="rdfXmlDocumentFactory">
+        /// A function returning an XML document, like for <see cref="Describe(XmlDocument, IReadOnlyCollection{Uri}?)"/>,
+        /// but the argument is an URI that should be used as the base URI of the graph.
+        /// </param>
+        /// <param name="subjectUris"><inheritdoc cref="Describe(XmlReader, IReadOnlyCollection{Uri}?)" path="/param[@name='subjectUris']"/></param>
+        void Describe(Func<Uri, XmlDocument?> rdfXmlDocumentFactory, IReadOnlyCollection<Uri>? subjectUris = null);
+
+        /// <inheritdoc cref="Describe(Func{Uri, XmlDocument?}, IReadOnlyCollection{Uri}?)"/>
+        ValueTask DescribeAsync(Func<Uri, ValueTask<XmlDocument?>> rdfXmlDocumentFactory, IReadOnlyCollection<Uri>? subjectUris = null);
 
         /// <summary>
         /// Attempts to describe the node in an implementation-specific
@@ -65,15 +96,15 @@ namespace IS4.SFI.Services
         /// <param name="dataSource">
         /// A function that provides the argument to the loader.
         /// The parameter is a URI that should be used as the base.</param>
-        /// <param name="subjectUris"><inheritdoc cref="Describe(XmlDocument, IReadOnlyCollection{Uri}?)" path="/param[@name='subjectUris']"/></param>
+        /// <param name="subjectUris"><inheritdoc cref="Describe(XmlReader, IReadOnlyCollection{Uri}?)" path="/param[@name='subjectUris']"/></param>
         /// <returns>
         /// True if <paramref name="loader"/> was correctly recognized
         /// and executed, false otherwise.
         /// </returns>
-        bool TryDescribe(object loader, Func<Uri, object> dataSource, IReadOnlyCollection<Uri>? subjectUris = null);
+        bool TryDescribe(object loader, Func<Uri, object?> dataSource, IReadOnlyCollection<Uri>? subjectUris = null);
 
         /// <inheritdoc cref="TryDescribe(object, Func{Uri, object}, IReadOnlyCollection{Uri}?)"/>
-        ValueTask<bool> TryDescribeAsync(object loader, Func<Uri, ValueTask<object>> dataSource, IReadOnlyCollection<Uri>? subjectUris = null);
+        ValueTask<bool> TryDescribeAsync(object loader, Func<Uri, ValueTask<object?>> dataSource, IReadOnlyCollection<Uri>? subjectUris = null);
 
         /// <summary>
         /// Sets one of the classes of the resource to be <paramref name="class"/>.
@@ -450,16 +481,28 @@ namespace IS4.SFI.Services
         public abstract void Describe(XmlReader rdfXmlReader, IReadOnlyCollection<Uri>? subjectUris = null);
 
         /// <inheritdoc/>
-        public abstract Task DescribeAsync(XmlReader rdfXmlReader, IReadOnlyCollection<Uri>? subjectUris = null);
+        public abstract ValueTask DescribeAsync(XmlReader rdfXmlReader, IReadOnlyCollection<Uri>? subjectUris = null);
 
         /// <inheritdoc/>
         public abstract void Describe(XmlDocument rdfXmlDocument, IReadOnlyCollection<Uri>? subjectUris = null);
 
         /// <inheritdoc/>
-        public abstract bool TryDescribe(object loader, Func<Uri, object> dataSource, IReadOnlyCollection<Uri>? subjectUris = null);
+        public abstract void Describe(Func<Uri, XmlReader?> rdfXmlReaderFactory, IReadOnlyCollection<Uri>? subjectUris = null);
 
         /// <inheritdoc/>
-        public abstract ValueTask<bool> TryDescribeAsync(object loader, Func<Uri, ValueTask<object>> dataSource, IReadOnlyCollection<Uri>? subjectUris = null);
+        public abstract ValueTask DescribeAsync(Func<Uri, ValueTask<XmlReader?>> rdfXmlReaderFactory, IReadOnlyCollection<Uri>? subjectUris = null);
+
+        /// <inheritdoc/>
+        public abstract void Describe(Func<Uri, XmlDocument?> rdfXmlDocumentFactory, IReadOnlyCollection<Uri>? subjectUris = null);
+
+        /// <inheritdoc/>
+        public abstract ValueTask DescribeAsync(Func<Uri, ValueTask<XmlDocument?>> rdfXmlDocumentFactory, IReadOnlyCollection<Uri>? subjectUris = null);
+
+        /// <inheritdoc/>
+        public abstract bool TryDescribe(object loader, Func<Uri, object?> dataSource, IReadOnlyCollection<Uri>? subjectUris = null);
+
+        /// <inheritdoc/>
+        public abstract ValueTask<bool> TryDescribeAsync(object loader, Func<Uri, ValueTask<object?>> dataSource, IReadOnlyCollection<Uri>? subjectUris = null);
 
         /// <inheritdoc/>
         public abstract void SetAsBase();

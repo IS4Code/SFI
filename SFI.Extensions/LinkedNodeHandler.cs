@@ -452,7 +452,7 @@ namespace IS4.SFI.Extensions
                 }
             }
 
-            public async override Task DescribeAsync(XmlReader rdfXmlReader, IReadOnlyCollection<Uri>? subjectUris = null)
+            public async override ValueTask DescribeAsync(XmlReader rdfXmlReader, IReadOnlyCollection<Uri>? subjectUris = null)
             {
                 var parser = new VDS.RDF.Parsing.RdfXmlParser();
                 if(!await TryDescribeAsync(parser, async uri => {
@@ -481,23 +481,91 @@ namespace IS4.SFI.Extensions
                 }
             }
 
-            public override bool TryDescribe(object loader, Func<Uri, object> dataSource, IReadOnlyCollection<Uri>? subjectUris = null)
+            public override void Describe(Func<Uri, XmlReader?> rdfXmlReaderFactory, IReadOnlyCollection<Uri>? subjectUris = null)
+            {
+                var parser = new VDS.RDF.Parsing.RdfXmlParser();
+                if(!TryDescribe(parser, uri => {
+                    var rdfXmlReader = rdfXmlReaderFactory(uri);
+                    if(rdfXmlReader == null) return null;
+                    var doc = PrepareXmlDocument(rdfXmlReader);
+                    doc.SetBaseURI(uri.AbsoluteUri);
+                    doc.Load(rdfXmlReader);
+                    return doc;
+                }, subjectUris))
+                {
+                    throw new NotSupportedException();
+                }
+            }
+
+            public override async ValueTask DescribeAsync(Func<Uri, ValueTask<XmlReader?>> rdfXmlReaderFactory, IReadOnlyCollection<Uri>? subjectUris = null)
+            {
+                var parser = new VDS.RDF.Parsing.RdfXmlParser();
+                if(!await TryDescribeAsync(parser, async uri => {
+                    var rdfXmlReader = await rdfXmlReaderFactory(uri);
+                    if(rdfXmlReader == null) return null;
+                    var doc = PrepareXmlDocument(rdfXmlReader);
+                    doc.SetBaseURI(uri.AbsoluteUri);
+                    await doc.LoadAsync(rdfXmlReader);
+                    return doc;
+                }, subjectUris))
+                {
+                    throw new NotSupportedException();
+                }
+            }
+
+            public override void Describe(Func<Uri, XmlDocument?> rdfXmlDocumentFactory, IReadOnlyCollection<Uri>? subjectUris = null)
+            {
+                var parser = new VDS.RDF.Parsing.RdfXmlParser();
+                if(!TryDescribe(parser, uri => {
+                    var rdfXmlDocument = rdfXmlDocumentFactory(uri);
+                    if(rdfXmlDocument == null) return null;
+                    if(rdfXmlDocument is BaseXmlDocument baseXmlDocument)
+                    {
+                        baseXmlDocument.SetBaseURI(uri.AbsoluteUri);
+                    }
+                    return rdfXmlDocument;
+                }, subjectUris))
+                {
+                    throw new NotSupportedException();
+                }
+            }
+
+            public async override ValueTask DescribeAsync(Func<Uri, ValueTask<XmlDocument?>> rdfXmlDocumentFactory, IReadOnlyCollection<Uri>? subjectUris = null)
+            {
+                var parser = new VDS.RDF.Parsing.RdfXmlParser();
+                if(!await TryDescribeAsync(parser, async uri => {
+                    var rdfXmlDocument = await rdfXmlDocumentFactory(uri);
+                    if(rdfXmlDocument == null) return null;
+                    if(rdfXmlDocument is BaseXmlDocument baseXmlDocument)
+                    {
+                        baseXmlDocument.SetBaseURI(uri.AbsoluteUri);
+                    }
+                    return rdfXmlDocument;
+                }, subjectUris))
+                {
+                    throw new NotSupportedException();
+                }
+            }
+
+            public override bool TryDescribe(object loader, Func<Uri, object?> dataSource, IReadOnlyCollection<Uri>? subjectUris = null)
             {
                 if(loader is IRdfReader reader)
                 {
                     var graph = new DataGraph(this, subjectUris);
                     var data = dataSource(graph.BaseUri);
+                    if(data == null) return false;
                     return LoadData(graph, reader, data);
                 }
                 return false;
             }
 
-            public async override ValueTask<bool> TryDescribeAsync(object loader, Func<Uri, ValueTask<object>> dataSource, IReadOnlyCollection<Uri>? subjectUris = null)
+            public async override ValueTask<bool> TryDescribeAsync(object loader, Func<Uri, ValueTask<object?>> dataSource, IReadOnlyCollection<Uri>? subjectUris = null)
             {
                 if(loader is IRdfReader reader)
                 {
                     var graph = new DataGraph(this, subjectUris);
                     var data = await dataSource(graph.BaseUri);
+                    if(data == null) return false;
                     return LoadData(graph, reader, data);
                 }
                 return false;
