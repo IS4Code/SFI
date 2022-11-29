@@ -411,7 +411,7 @@ namespace IS4.SFI
                 return Regex.Escape(match.Value);
             }
 
-            return new Regex($"^{wildcardRegex.Replace(pattern, Replacer)}$", RegexOptions.Singleline);
+            return new Regex($"^{wildcardRegex.Replace(pattern, Replacer)}$", RegexOptions.Singleline | RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
         }
 
         /// <summary>
