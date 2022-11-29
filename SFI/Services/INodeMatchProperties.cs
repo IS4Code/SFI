@@ -22,6 +22,11 @@ namespace IS4.SFI.Services
         string? MediaType { get; set; }
 
         /// <summary>
+        /// The size of the file, if known.
+        /// </summary>
+        long? Size { get; set; }
+
+        /// <summary>
         /// The desired name of the file.
         /// </summary>
         string? Name { get; set; }

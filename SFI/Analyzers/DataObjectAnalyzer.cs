@@ -117,6 +117,7 @@ namespace IS4.SFI.Analyzers
                 {
                     properties.MediaType ??= mediaType;
                 }
+                properties.Size ??= dataObject.ActualLength;
                 if(label != null)
                 {
                     properties.Name ??= label;

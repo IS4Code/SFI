@@ -74,13 +74,14 @@ namespace IS4.SFI
                                 {
                                     if(variables.Properites.TryGetValue(pair.Key, out var prop))
                                     {
+                                        var conv = TypeDescriptor.GetConverter(prop.PropertyType);
                                         switch(pair.Value)
                                         {
                                             case IUriNode uriValue:
-                                                prop.SetValue(variables, uriValue.Uri);
+                                                prop.SetValue(variables, conv.ConvertFrom(uriValue.Uri));
                                                 break;
                                             case ILiteralNode literalValue:
-                                                prop.SetValue(variables, literalValue.Value);
+                                                prop.SetValue(variables, conv.ConvertFromInvariantString(literalValue.Value));
                                                 break;
                                         }
                                     }
@@ -103,6 +104,9 @@ namespace IS4.SFI
 
             /// <inheritdoc/>
             public string? MediaType { get; set; }
+
+            /// <inheritdoc/>
+            public long? Size { get; set; }
 
             /// <inheritdoc/>
             public string? Name { get; set; }

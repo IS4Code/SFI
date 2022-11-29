@@ -423,7 +423,7 @@ namespace IS4.SFI
         /// <remarks>
         /// The current implementation uses <see cref="Regex.Replace(string, string, string)"/> to perform the replacement.
         /// </remarks>
-        public static string SubstituteVariables(string text, IEnumerable<KeyValuePair<string, object>> variables)
+        public static string SubstituteVariables(string text, IEnumerable<KeyValuePair<string, object?>> variables)
         {
 			// "value\0" for each pair
 			var source = new StringBuilder();
