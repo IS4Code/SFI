@@ -4,6 +4,7 @@ using IS4.SFI.Vocabulary;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,8 @@ namespace IS4.SFI.Analyzers
             PrettyPrintMode = false
         };
 
+        static string? initialContext;
+
         /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>
         public HtmlAnalyzer() : base(Common.DocumentClasses)
         {
@@ -51,6 +54,7 @@ namespace IS4.SFI.Analyzers
                     node.Set(Properties.Title, title.InnerText);
                 }
             }
+            initialContext = await RdfAInitialContext.PrefixString;
             var reader = new Parser.DummyReader(document);
             if(!node.TryDescribe(RdfAParser, baseUri => {
                 Parser.SetBase(document, baseUri);
@@ -120,6 +124,42 @@ namespace IS4.SFI.Analyzers
                     return baseElement;
                 }
                 return base.GetBaseElement(document);
+            }
+
+            protected override string GetAttribute(HtmlNode element, string attributeName)
+            {
+                var value = base.GetAttribute(element, attributeName);
+                if(GetElementName(element) == "html" && attributeName == "prefix")
+                {
+                    value = initialContext + " " + value;
+                }
+                return value;
+            }
+
+            protected override IEnumerable<HtmlAttribute> GetAttributes(HtmlNode element)
+            {
+                if(GetElementName(element) == "html")
+                {
+                    var attributes = base.GetAttributes(element).ToList();
+                    var prefixAttr = attributes.FirstOrDefault(attr => GetAttributeName(attr) == "prefix");
+                    if(prefixAttr == null)
+                    {
+                        SetAttribute(element, "prefix", "");
+                        return base.GetAttributes(element);
+                    }
+                    return attributes;
+                }
+                return base.GetAttributes(element);
+            }
+
+            protected override string GetAttributeValue(HtmlAttribute attribute)
+            {
+                var value = base.GetAttributeValue(attribute);
+                if(GetAttributeName(attribute) == "prefix" && GetElementName(attribute.OwnerNode) == "html")
+                {
+                    value = initialContext + " " + value;
+                }
+                return value;
             }
 
             /// <summary>
