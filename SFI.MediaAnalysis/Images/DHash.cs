@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Threading.Tasks;
 
-namespace IS4.SFI.Analysis.Images
+namespace IS4.SFI.MediaAnalysis.Images
 {
     /// <summary>
     /// A dHash is a type of image hashing algorithm that encodes the difference between

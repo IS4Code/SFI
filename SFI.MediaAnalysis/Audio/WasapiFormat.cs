@@ -48,7 +48,7 @@ namespace IS4.SFI.Formats
         }
         
         /// <summary>
-        /// Craetes a new instance of the format.
+        /// Creates a new instance of the format.
         /// </summary>
         /// <param name="allowMp3">Whether to allow the MP3 format to be recognized.</param>
         public WasapiFormat(bool allowMp3) : base(allowMp3 ? 4 : 0, null, null)

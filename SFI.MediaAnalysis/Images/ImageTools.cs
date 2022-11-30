@@ -2,7 +2,7 @@
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 
-namespace IS4.SFI.Analysis.Images
+namespace IS4.SFI.MediaAnalysis.Images
 {
     /// <summary>
     /// Stores utility methods for manipulating images.

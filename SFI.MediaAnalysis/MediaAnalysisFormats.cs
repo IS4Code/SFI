@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace IS4.SFI
 {
     /// <inheritdoc cref="BaseFormats"/>
-    public static class AnalysisFormats
+    public static class MediaAnalysisFormats
     {
         /// <inheritdoc cref="BaseFormats.AddDefault(ICollection{object}, ICollection{IBinaryFileFormat}, ICollection{IXmlDocumentFormat}, ICollection{IContainerAnalyzerProvider})"/>
         public static void AddDefault(ICollection<object> analyzers, ICollection<IBinaryFileFormat> dataFormats, ICollection<IXmlDocumentFormat> xmlFormats, ICollection<IContainerAnalyzerProvider> containerProviders)

@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Numerics;
 
-namespace IS4.SFI.Analysis.Audio
+namespace IS4.SFI.MediaAnalysis.Audio
 {
     /// <summary>
     /// Generates polar spectrum images.

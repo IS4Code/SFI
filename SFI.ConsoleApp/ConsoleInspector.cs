@@ -27,7 +27,7 @@ namespace IS4.SFI.ConsoleApp
         {
             Analyzers.Add(ImageAnalyzer = new ImageAnalyzer());
 
-            ImageAnalyzer.LowFrequencyImageHashAlgorithms.Add(Analysis.Images.DHash.Instance);
+            ImageAnalyzer.LowFrequencyImageHashAlgorithms.Add(MediaAnalysis.Images.DHash.Instance);
 
             var algorithms = ImageAnalyzer.DataHashAlgorithms;
             DataAnalyzer.HashAlgorithms.Add(Blake3Hash.Instance);
@@ -42,7 +42,7 @@ namespace IS4.SFI.ConsoleApp
             BaseFormats.AddDefault(Analyzers, DataAnalyzer.DataFormats, XmlAnalyzer.XmlFormats, ContainerProviders);
             ExternalFormats.AddDefault(Analyzers, DataAnalyzer.DataFormats, XmlAnalyzer.XmlFormats, ContainerProviders);
             AccessoriesFormats.AddDefault(Analyzers, DataAnalyzer.DataFormats, XmlAnalyzer.XmlFormats, ContainerProviders);
-            AnalysisFormats.AddDefault(Analyzers, DataAnalyzer.DataFormats, XmlAnalyzer.XmlFormats, ContainerProviders);
+            MediaAnalysisFormats.AddDefault(Analyzers, DataAnalyzer.DataFormats, XmlAnalyzer.XmlFormats, ContainerProviders);
             WindowsFormats.AddDefault(Analyzers, DataAnalyzer.DataFormats, XmlAnalyzer.XmlFormats, ContainerProviders);
 
             Plugins.Clear();

@@ -1,4 +1,4 @@
-﻿using IS4.SFI.Analysis.Images;
+﻿using IS4.SFI.MediaAnalysis.Images;
 using IS4.SFI.Services;
 using IS4.SFI.Tags;
 using IS4.SFI.Tools;

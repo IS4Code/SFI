@@ -1,4 +1,4 @@
-﻿using IS4.SFI.Analysis.Audio;
+﻿using IS4.SFI.MediaAnalysis.Audio;
 using IS4.SFI.Formats;
 using IS4.SFI.Services;
 using IS4.SFI.Tags;
