@@ -6,7 +6,7 @@ namespace IS4.SFI.Services
     /// The common interface used by a detector of an input file's charset.
     /// Once initialized, the instance shall receive consecutive chunks of the
     /// input data via <see cref="Write(ArraySegment{byte})"/> or
-    /// <see cref="Write(Span{byte})"/> until its and, signalized
+    /// <see cref="Write(ReadOnlySpan{byte})"/> until its and, signalized
     /// by calling <see cref="End"/>.
     /// </summary>
     public interface IEncodingDetector
