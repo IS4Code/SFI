@@ -290,5 +290,43 @@ namespace IS4.SFI
         {
             return DataTools.GuidFromName(urlNamespace, uri.AbsoluteUri);
         }
+
+        /// <summary>
+        /// Produces a URI that is located under <paramref name="uri"/>
+        /// with a specific local name stored in <paramref name="component"/>.
+        /// </summary>
+        /// <param name="uri">The parent URI.</param>
+        /// <param name="component">The name of the component under <paramref name="uri"/>.</param>
+        /// <param name="formRoot">
+        /// Whether the component should form a new hierarchy. If true,
+        /// <paramref name="uri"/> and <paramref name="component"/> may be
+        /// joined with <c>#/</c>.
+        /// </param>
+        /// <returns>
+        /// A new instance of <see cref="Uri"/>, created by joining
+        /// <paramref name="uri"/> and <paramref name="component"/>
+        /// with <c>#</c>, <c>/</c> or <c>#/</c>, depending on their syntax
+        /// and the value of <paramref name="formRoot"/>.
+        /// </returns>
+        public static Uri MakeSubUri(Uri uri, string component, bool formRoot = true)
+        {
+            string prefix;
+            if(component.StartsWith("#"))
+            {
+                if(String.IsNullOrEmpty(uri.Fragment))
+                {
+                    prefix = "";
+                }else{
+                    prefix = "/";
+                    component = component.Substring(1);
+                }
+            }else if(String.IsNullOrEmpty(uri.Fragment) && (String.IsNullOrEmpty(uri.Authority) || !String.IsNullOrEmpty(uri.Query)))
+            {
+                prefix = (component.StartsWith("/") || !formRoot) ? "#" : "#/";
+            }else{
+                prefix = component.StartsWith("/") ? "" : "/";
+            }
+            return new EncodedUri(uri.AbsoluteUri + prefix + component);
+        }
     }
 }

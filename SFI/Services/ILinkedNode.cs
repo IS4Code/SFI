@@ -699,40 +699,19 @@ namespace IS4.SFI.Services
         {
             HandleTriple(Subject, CreateNode(propertyFormatter, propertyValue), CreateNode(value));
         }
-        
-        /// <summary>
-        /// Produces a subnode that is logically aggregated under the current node,
-        /// from its name in <paramref name="subName"/>.
-        /// </summary>
-        /// <param name="subName">A name that is appended to the URI of this node.</param>
-        /// <returns>A new node with the specific subname.</returns>
+
+        /// <inheritdoc cref="ILinkedNode.this[string]"/>;
         public LinkedNode<TNode, TGraphNode, TVocabularyCache> this[string? subName] {
             get{
-                subName ??= "";
                 var uri = GetUri(Subject);
-                string prefix;
-                if(subName.StartsWith("#"))
-                {
-                    prefix = "";
-                }else if(String.IsNullOrEmpty(uri.Fragment) && (String.IsNullOrEmpty(uri.Authority) || !String.IsNullOrEmpty(uri.Query)))
-                {
-                    prefix = subName.StartsWith("/") ? "#" : "#/";
-                }else{
-                    prefix = subName.StartsWith("/") ? "" : "/";
-                }
-                uri = new EncodedUri(uri.AbsoluteUri + prefix + subName);
+                uri = UriTools.MakeSubUri(uri, subName ?? "");
                 return CreateNew(CreateNode(uri));
             }
         }
 
         ILinkedNode ILinkedNode.this[string? subName] => this[subName];
 
-        /// <summary>
-        /// Produces a subnode that is logically aggregated under the current node,
-        /// from a formatter that transforms the current URI.
-        /// </summary>
-        /// <param name="subFormatter">The formatter that transforms the current URI.</param>
-        /// <returns>A new node with the transformed URI.</returns>
+        /// <inheritdoc cref="ILinkedNode.this[IIndividualUriFormatter{Uri}]"/>;
         public LinkedNode<TNode, TGraphNode, TVocabularyCache>? this[IIndividualUriFormatter<Uri> subFormatter] {
             get{
                 if(subFormatter == null) throw new ArgumentNullException(nameof(subFormatter));
