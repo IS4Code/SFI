@@ -34,6 +34,11 @@ namespace IS4.SFI.Analyzers
         [ComponentCollection("pixel-hash")]
         public ICollection<IDataHashAlgorithm> DataHashAlgorithms { get; } = new List<IDataHashAlgorithm>();
 
+        /// <summary>
+        /// Whether to produce a small thumbnail data: node from the image.
+        /// </summary>
+        public bool MakeThumbnail { get; set; } = true;
+
         /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>
         public ImageAnalyzer() : base(Common.ImageClasses)
         {
@@ -91,7 +96,7 @@ namespace IS4.SFI.Analyzers
 
             if(!storedAsData)
             {
-                if(tag.MakeThumbnail)
+                if(MakeThumbnail && tag.MakeThumbnail)
                 {
                     ArraySegment<byte> thumbnailData;
                     using(var thumbnail = ImageTools.ResizeImage(image, 12, 12, PixelFormat.Format32bppArgb, Color.Transparent))
