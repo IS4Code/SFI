@@ -13,6 +13,7 @@ namespace IS4.SFI
         {
             dataFormats.Add(new ImageFormat());
             dataFormats.Add(new WaveFormat());
+            dataFormats.Add(new OggFormat());
             dataFormats.Add(new WasapiFormat(false));
             dataFormats.Add(new WasapiFormat(true));
 
