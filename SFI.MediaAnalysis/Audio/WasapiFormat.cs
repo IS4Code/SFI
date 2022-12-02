@@ -21,15 +21,30 @@ namespace IS4.SFI.Formats
             RequestFloatOutput = true
         };
 
+        /// <summary>
+        /// Source: https://gix.github.io/media-types/
+        /// </summary>
         static readonly Dictionary<Guid, (string type, string ext)> GuidTypes = new Dictionary<Guid, (string, string)>
         {
-            { Guid.Parse("00000055-0000-0010-8000-00AA00389B71"), ("audio/mpeg", "mp3") }
+            { new("00000001-0000-0010-8000-00AA00389B71"), ("audio/x-raw-int", "pcm") },
+            { new("00000002-0000-0010-8000-00AA00389B71"), ("audio/x-adpcm", "adpcm") },
+            { new("0000000A-0000-0010-8000-00AA00389B71"), ("audio/x-wms", "wms") },
+            { new("00000160-0000-0010-8000-00AA00389B71"), ("audio/x-wma", "wma") },
+            { new("00000161-0000-0010-8000-00AA00389B71"), ("audio/x-wma", "wma") },
+            { new("00000162-0000-0010-8000-00AA00389B71"), ("audio/x-wma", "wma") },
+            { new("00000163-0000-0010-8000-00AA00389B71"), ("audio/x-wma", "wma") },
+            { new("00000164-0000-0010-8000-00AA00389B71"), ("audio/x-wma", "wma") },
+            { new("00000050-0000-0010-8000-00AA00389B71"), ("audio/mpeg", "mp1") },
+            { new("E06D802B-DB46-11CF-B4D1-00805F6CBBEA"), ("audio/mpeg", "mp2") },
+            { new("00000055-0000-0010-8000-00AA00389B71"), ("audio/mpeg", "mp3") },
+            { new("E06D802C-DB46-11CF-B4D1-00805F6CBBEA"), ("audio/x-ac3", "ac3") },
+            { new("97663A80-8FFB-4445-A6BA-792D908F497F"), ("audio/x-ac3", "ac3") },
+            { new("00000092-0000-0010-8000-00AA00389B71"), ("audio/x-ac3", "ac3") },
+            { new("00002000-0000-0010-8000-00AA00389B71"), ("audio/x-ac3", "ac3") },
+            { new("00001610-0000-0010-8000-00AA00389B71"), ("audio/mpeg", "aac") }
         };
 
         static readonly WaveFormat waveFormat = new WaveFormat();
-
-        [ThreadStatic]
-        static bool readerAllowMp3;
 
         readonly bool allowMp3;
 
@@ -57,6 +72,12 @@ namespace IS4.SFI.Formats
         }
 
         /// <inheritdoc/>
+        public override string ToString()
+        {
+            return base.ToString() + ";mp3=" + (allowMp3 ? "yes" : "no");
+        }
+
+        /// <inheritdoc/>
         public override bool CheckHeader(ReadOnlySpan<byte> header, bool isBinary, IEncodingDetector? encodingDetector)
         {
             if(!allowMp3) return !waveFormat.CheckHeader(header, isBinary, encodingDetector);
@@ -76,20 +97,26 @@ namespace IS4.SFI.Formats
         /// <inheritdoc/>
         public async override ValueTask<TResult?> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<WaveStream, TResult, TArgs> resultFactory, TArgs args) where TResult : default
         {
-            readerAllowMp3 = allowMp3;
-            using var reader = new CustomStreamMediaFoundationReader(stream, settings);
+            using var reader = new CustomStreamMediaFoundationReader(allowMp3, stream, settings);
             return await resultFactory(reader, args);
         }
 
         class CustomStreamMediaFoundationReader : StreamMediaFoundationReader, ICustomWaveFormat
         {
-            static readonly Guid mp3Subtype = Guid.Parse("00000055-0000-0010-8000-00AA00389B71");
+            [ThreadStatic]
+            static bool readerAllowMp3;
 
             MediaType? type;
 
-            public CustomStreamMediaFoundationReader(Stream stream, MediaFoundationReaderSettings? settings = null) : base(stream, settings)
+            public CustomStreamMediaFoundationReader(bool allowMp3, Stream stream, MediaFoundationReaderSettings? settings = null) : base(SetAllowMp3(allowMp3, stream), settings)
             {
 
+            }
+
+            static Stream SetAllowMp3(bool allowMp3, Stream stream)
+            {
+                readerAllowMp3 = allowMp3;
+                return stream;
             }
 
             protected override IMFSourceReader CreateReader(MediaFoundationReaderSettings settings)
@@ -100,7 +127,8 @@ namespace IS4.SFI.Formats
 
                 type = new MediaType(nativeType);
 
-                if((type.SubType == mp3Subtype) != readerAllowMp3)
+                bool isMp3 = GuidTypes.TryGetValue(type.SubType, out var info) && info.ext == "mp3";
+                if(isMp3 != readerAllowMp3)
                 {
                     throw new InvalidOperationException("Non-MP3 format was used on an MP3 file or vice versa.");
                 }
