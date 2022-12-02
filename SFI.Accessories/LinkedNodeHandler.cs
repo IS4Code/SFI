@@ -22,6 +22,7 @@ namespace IS4.SFI.Extensions
     {
         readonly IRdfHandler defaultHandler;
         readonly IReadOnlyDictionary<Uri, IRdfHandler?> graphHandlers;
+        readonly ConcurrentDictionary<Guid, IBlankNode>? blankNodes;
 
         readonly ConcurrentDictionary<GraphUri, IRdfHandler?> graphUriCache = new();
         readonly ConcurrentDictionary<IRdfHandler, VocabularyCache<IUriNode>> graphCaches = new();
@@ -62,12 +63,18 @@ namespace IS4.SFI.Extensions
         /// <param name="defaultHandler">The default RDF handler to write triples to.</param>
         /// <param name="graphHandlers">The additional handlers for each custom graph.</param>
         /// <param name="queryTester">The instance of <see cref="NodeQueryTester"/> that is used to match nodes.</param>
-        public LinkedNodeHandler(IIndividualUriFormatter<string> root, IRdfHandler defaultHandler, IReadOnlyDictionary<Uri, IRdfHandler?> graphHandlers, NodeQueryTester? queryTester)
+        /// <param name="simplifyBlankNodes">Whether to produce shorter blank node IDs.</param>
+        public LinkedNodeHandler(IIndividualUriFormatter<string> root, IRdfHandler defaultHandler, IReadOnlyDictionary<Uri, IRdfHandler?> graphHandlers, NodeQueryTester? queryTester, bool simplifyBlankNodes)
             : base(defaultHandler.CreateUriNode)
         {
             this.defaultHandler = defaultHandler;
             this.graphHandlers = graphHandlers;
             this.queryTester = queryTester;
+
+            if(simplifyBlankNodes)
+            {
+                blankNodes = new();
+            }
 
             graphCaches[defaultHandler] = this;
 
@@ -180,9 +187,16 @@ namespace IS4.SFI.Extensions
         /// </summary>
         private IBlankNode CreateBlankNode(Uri blankUri, IRdfHandler handler)
         {
-            var identifier = $"b{UriTools.UuidFromUri(blankUri):N}";
-            var bnode = handler.CreateBlankNode(identifier);
-            realUriCache.Add(bnode, blankUri);
+            IBlankNode bnode;
+            var uuid = UriTools.UuidFromUri(blankUri);
+            if(blankNodes != null)
+            {
+                bnode = blankNodes.GetOrAdd(uuid, _ => handler.CreateBlankNode());
+            }else{
+                bnode = handler.CreateBlankNode($"b{uuid:N}");
+            }
+            // May be already added
+            realUriCache.GetValue(bnode, _ => blankUri);
             return bnode;
         }
 

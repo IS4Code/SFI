@@ -55,5 +55,10 @@ namespace IS4.SFI
         /// Contains the desired output format, as a file extension.
         /// </summary>
         public string? Format { get; set; }
+
+        /// <summary>
+        /// Whether to shorten blank node IDs in the resulting graph.
+        /// </summary>
+        public bool SimplifyBlankNodes { get; set; }
     }
 }

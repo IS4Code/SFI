@@ -327,7 +327,7 @@ namespace IS4.SFI
         private async ValueTask<AnalysisResult> AnalyzeEntity<T>(T entity, IRdfHandler rdfHandler, IReadOnlyDictionary<Uri, IRdfHandler?> graphHandlers, INamespaceMapper? mapper, NodeQueryTester? queryTester, InspectorOptions options) where T : class
         {
             // The node factory/handler
-            var handler = new LinkedNodeHandler(new UriTools.PrefixFormatter(options.Root), rdfHandler, graphHandlers, queryTester);
+            var handler = new LinkedNodeHandler(new UriTools.PrefixFormatter(options.Root), rdfHandler, graphHandlers, queryTester, options.SimplifyBlankNodes);
             rdfHandler.StartRdf();
             foreach(var graphHandler in graphHandlers)
             {
