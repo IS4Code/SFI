@@ -34,7 +34,7 @@ namespace IS4.SFI.Formats
         public async override ValueTask<TResult?> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<DosModule, TResult, TArgs> resultFactory, TArgs args) where TResult : default
         {
             var file = context.GetService<IFileNodeInfo>();
-            if(file != null && Path.GetExtension(file.Name).Equals(".com", StringComparison.OrdinalIgnoreCase))
+            if(file?.Name != null && Path.GetExtension(file.Name).Equals(".com", StringComparison.OrdinalIgnoreCase))
             {
                 return await resultFactory(new DosModule(stream), args);
             }
