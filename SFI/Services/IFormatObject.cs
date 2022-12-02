@@ -1,5 +1,6 @@
 ﻿using IS4.SFI.Formats;
 using System;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace IS4.SFI.Services
@@ -112,7 +113,11 @@ namespace IS4.SFI.Services
             return await resultFactory.Invoke<T>(Value, args);
         }
 
-        static readonly char[] splitChar = { '/' };
+        /// <summary>
+        /// Captures the core descriptive component of a MIME type, such as
+        /// <c>bsf</c> from <c>application/vnd.3gpp.bsf+xml</c>.
+        /// </summary>
+        static readonly Regex mimeCoreName = new Regex(@"^[^/]+/(?:[^.]+\.|x-)*([^;+]*[^;+.\d-][^;+]*)", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
 
         /// <summary>
         /// Applies the format referenced by this object to a URI
@@ -135,29 +140,17 @@ namespace IS4.SFI.Services
                         return null;
                     }
                 }
-                if(String.IsNullOrEmpty(value.Authority)) return null;
                 var sub = Extension?.ToLowerInvariant();
                 if(sub == null)
                 {
-                    // The extension is not defined, use bare media type
-                    sub = MediaType?.ToLowerInvariant();
-                    if(sub == null || sub.IndexOf('/') == -1) return null;
-                    sub = sub.Split(splitChar)[1];
-                    if(sub.StartsWith("prs.") || sub.StartsWith("vnd."))
-                    {
-                        sub = sub.Substring(4);
-                    }else if(sub.StartsWith("x-"))
-                    {
-                        sub = sub.Substring(2);
-                    }
-                    int plus = sub.IndexOf('+');
-                    if(plus != -1)
-                    {
-                        sub = sub.Substring(0, plus);
-                    }
+                    // The extension is not defined, extract something from the media type
+                    sub = MediaType;
+                    if(sub == null) return null;
+                    if(mimeCoreName.Match(sub) is not { Success: true } match) return null;
+                    sub = match.Groups[1].Value.ToLowerInvariant();
                 }
                 // Append it after the whole URI
-                return new Uri(value.AbsoluteUri + "/" + sub);
+                return UriTools.MakeSubUri(value, sub, false);
             }
         }
     }
