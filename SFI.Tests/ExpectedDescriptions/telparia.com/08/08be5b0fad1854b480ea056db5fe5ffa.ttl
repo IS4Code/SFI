@@ -1,0 +1,98 @@
+@base <ni:///mh;1QEQaY0Hp9LhXKLrNWUtrWxMDw?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///DSCF0036.MPO>;
+     nie:interpretedAs <ni:///mh;1QEQaY0Hp9LhXKLrNWUtrWxMDw?ct=application/octet-stream>;
+     nfo:fileName "DSCF0036.MPO";
+     nfo:fileSize 10039442 ;
+     a nfo:FileDataObject.
+<file:///DSCF0036.MPO> at:extensionObject <https://w3id.org/uri4uri/suffix/mpo>.
+<ni:///mh;1QEQaY0Hp9LhXKLrNWUtrWxMDw?ct=application/octet-stream> at:digest <urn:md5:698D07A7D2E15CA2EB35652DAD6C4C0F>;
+                                                                  dcterms:extent "10039442"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQaY0Hp9LhXKLrNWUtrWxMDw?ct=image/jpeg>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (9.57 MiB)"@en.
+<ni:///mh;1QEQaY0Hp9LhXKLrNWUtrWxMDw?ct=image/jpeg> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/jpeg>;
+                                                    nfo:colorDepth 24 ;
+                                                    nfo:hasMediaStream <ni:///mh;1QEQaY0Hp9LhXKLrNWUtrWxMDw?ct=image/jpeg#/0>,
+                                                                       <ni:///mh;1QEQaY0Hp9LhXKLrNWUtrWxMDw?ct=image/jpeg#/1>;
+                                                    nfo:height 2736 ;
+                                                    nfo:horizontalResolution 72 ;
+                                                    nfo:verticalResolution 72 ;
+                                                    nfo:width 3648 ;
+                                                    a schema:MediaObject,
+                                                      exif:IFD,
+                                                      schema:ImageObject,
+                                                      nfo:Image;
+                                                    exif:apertureValue "23/5"^^owl:rational;
+                                                    exif:brightnessValue "811/100"^^owl:rational;
+                                                    exif:colorSpace 1 ;
+                                                    exif:componentsConfiguration "01020300"^^xsd:hexBinary;
+                                                    exif:compressedBitsPerPixel 4 ;
+                                                    exif:compression 6 ;
+                                                    exif:customRendered 0 ;
+                                                    exif:dateTime "2010-04-03T10:31:28.000000"^^xsd:dateTime;
+                                                    exif:dateTimeDigitized "2010-04-03T10:31:28.000000"^^xsd:dateTime;
+                                                    exif:dateTimeOriginal "2010-04-03T10:31:28.000000"^^xsd:dateTime;
+                                                    exif:exifVersion "30323230"^^xsd:hexBinary;
+                                                    exif:exposureBiasValue 0 ;
+                                                    exif:exposureMode 0 ;
+                                                    exif:exposureProgram 2 ;
+                                                    exif:exposureTime "1/320"^^owl:rational;
+                                                    exif:fNumber 5 ;
+                                                    exif:fileSource "03"^^xsd:hexBinary;
+                                                    exif:flash 24 ;
+                                                    exif:flashpixVersion "30313030"^^xsd:hexBinary;
+                                                    exif:focalLength "63/10"^^owl:rational;
+                                                    exif:focalPlaneResolutionUnit 3 ;
+                                                    exif:focalPlaneXResolution 5952 ;
+                                                    exif:focalPlaneYResolution 5952 ;
+                                                    exif:isoSpeedRatings 100 ;
+                                                    exif:jpegInterchangeFormat 1468 ;
+                                                    exif:jpegInterchangeFormatLength 10442 ;
+                                                    exif:lightSource 0 ;
+                                                    exif:make "FUJIFILM"^^xsd:string;
+                                                    exif:maxApertureValue "17/5"^^owl:rational;
+                                                    exif:meteringMode 5 ;
+                                                    exif:model "FinePix REAL 3D W1"^^xsd:string;
+                                                    exif:orientation 1 ;
+                                                    exif:pixelXDimension 3648 ;
+                                                    exif:pixelYDimension 2736 ;
+                                                    exif:resolutionUnit 2 ;
+                                                    exif:sceneCaptureType 0 ;
+                                                    exif:sceneType "01"^^xsd:hexBinary;
+                                                    exif:sensingMethod 2 ;
+                                                    exif:sharpness 0 ;
+                                                    exif:shutterSpeedValue "831/100"^^owl:rational;
+                                                    exif:software "Digital Camera FinePix REAL 3D W1 Ver1.00"^^xsd:string;
+                                                    exif:subjectDistanceRange 0 ;
+                                                    exif:whiteBalance 0 ;
+                                                    exif:xResolution 72 ;
+                                                    exif:yCbCrPositioning 2 ;
+                                                    exif:yResolution 72 ;
+                                                    skos:prefLabel "JPG object (9.57 MiB)"@en.
+<ni:///mh;1QEQaY0Hp9LhXKLrNWUtrWxMDw?ct=image/jpeg#/0> nfo:height 2736 ;
+                                                       nfo:width 3648 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "0:JPEG (3648×2736)".
+<ni:///mh;1QEQaY0Hp9LhXKLrNWUtrWxMDw?ct=image/jpeg#/1> nfo:height 2736 ;
+                                                       nfo:width 3648 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "1:Exif SubIFD (3648×2736)".
+<urn:md5:698D07A7D2E15CA2EB35652DAD6C4C0F> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "aY0Hp9LhXKLrNWUtrWxMDw=="^^xsd:base64Binary.

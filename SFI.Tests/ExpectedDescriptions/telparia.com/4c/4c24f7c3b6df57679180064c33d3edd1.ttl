@@ -1,0 +1,27 @@
+@base <ni:///mh;1QEQEw5od-72m18hZeVXVRqfrQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///RMRText.hlp>;
+     nie:interpretedAs <ni:///mh;1QEQEw5od-72m18hZeVXVRqfrQ?ct=application/octet-stream>;
+     nfo:fileName "RMRText.hlp";
+     nfo:fileSize 16239 ;
+     a nfo:FileDataObject.
+<file:///RMRText.hlp> at:extensionObject <https://w3id.org/uri4uri/suffix/hlp>.
+<ni:///mh;1QEQEw5od-72m18hZeVXVRqfrQ?ct=application/octet-stream> at:digest <urn:md5:130E6877EEF69B5F2165E557551A9FAD>;
+                                                                  dcterms:extent "16239"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (15.86 KiB)"@en.
+<urn:md5:130E6877EEF69B5F2165E557551A9FAD> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "Ew5od+72m18hZeVXVRqfrQ=="^^xsd:base64Binary.

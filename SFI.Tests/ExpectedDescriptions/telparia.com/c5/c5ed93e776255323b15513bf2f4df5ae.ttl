@@ -1,0 +1,58 @@
+@base <ni:///mh;1QEQbegL9TEkpsvQe2k6FYvTcg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///demo%20x00%20command.svar>;
+     nie:interpretedAs <ni:///mh;1QEQbegL9TEkpsvQe2k6FYvTcg?ct=application/octet-stream>;
+     nfo:fileName "demo x00 command.svar";
+     nfo:fileSize 296647 ;
+     a nfo:FileDataObject.
+<file:///SongData/ver02> at:pathObject <file:///ver02>.
+<file:///demo%20x00%20command.svar> at:extensionObject <https://w3id.org/uri4uri/suffix/svar>.
+<ni:///mh;1QEQbegL9TEkpsvQe2k6FYvTcg?ct=application/octet-stream> at:digest <urn:md5:6DE80BF53124A6CBD07B693A158BD372>;
+                                                                  dcterms:extent "296647"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQbegL9TEkpsvQe2k6FYvTcg?ct=application/zip>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (289.69 KiB)"@en.
+<ni:///mh;1QEQbegL9TEkpsvQe2k6FYvTcg?ct=application/zip> at:pathObject <file:///>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
+                                                         nie:interpretedAs <ni:///mh;1QEQbegL9TEkpsvQe2k6FYvTcg?ct=application/zip#/>;
+                                                         a schema:MediaObject,
+                                                           nfo:Archive;
+                                                         skos:prefLabel "ZIP object (289.69 KiB)"@en.
+<ni:///mh;1QEQbegL9TEkpsvQe2k6FYvTcg?ct=application/zip#/> at:pathObject <file:///./>;
+                                                           a nfo:Folder;
+                                                           skos:prefLabel "/".
+<ni:///mh;1QEQbegL9TEkpsvQe2k6FYvTcg?ct=application/zip#/SongData> at:pathObject <file:///SongData>;
+                                                                   nie:interpretedAs <ni:///mh;1QEQbegL9TEkpsvQe2k6FYvTcg?ct=application/zip#/SongData/>;
+                                                                   nfo:belongsToContainer <ni:///mh;1QEQbegL9TEkpsvQe2k6FYvTcg?ct=application/zip#/>;
+                                                                   nfo:fileName "SongData";
+                                                                   a nfo:FileDataObject,
+                                                                     nfo:ArchiveItem;
+                                                                   skos:prefLabel "/SongData".
+<ni:///mh;1QEQbegL9TEkpsvQe2k6FYvTcg?ct=application/zip#/SongData/> at:pathObject <file:///SongData/>;
+                                                                    a nfo:Folder;
+                                                                    skos:prefLabel "/SongData/".
+<ni:///mh;1QEQbegL9TEkpsvQe2k6FYvTcg?ct=application/zip#/SongData/ver02> at:pathObject <file:///SongData/ver02>;
+                                                                         nfo:belongsToContainer <ni:///mh;1QEQbegL9TEkpsvQe2k6FYvTcg?ct=application/zip#/SongData/>;
+                                                                         nfo:encryptionStatus nfo:encryptedStatus;
+                                                                         nfo:fileLastModified "2007-11-04T23:47:00.000000+01:00"^^xsd:dateTime;
+                                                                         nfo:fileName "ver02";
+                                                                         nfo:fileSize 1026953 ;
+                                                                         a nfo:FileDataObject,
+                                                                           nfo:ArchiveItem;
+                                                                         skos:prefLabel "/SongData/ver02".
+<urn:md5:6DE80BF53124A6CBD07B693A158BD372> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "begL9TEkpsvQe2k6FYvTcg=="^^xsd:base64Binary.

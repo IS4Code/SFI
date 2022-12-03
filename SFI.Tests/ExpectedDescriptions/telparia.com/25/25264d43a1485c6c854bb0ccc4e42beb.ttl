@@ -1,0 +1,30 @@
+@base <ni:///mh;1QEQsWq87XTXp4vTfbL-PEbaCQ?ct=text/plain>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///install.lgo>;
+     nie:interpretedAs <ni:///mh;1QEQsWq87XTXp4vTfbL-PEbaCQ?ct=text/plain>;
+     nfo:fileName "install.lgo";
+     nfo:fileSize 423 ;
+     a nfo:FileDataObject.
+<file:///install.lgo> at:extensionObject <https://w3id.org/uri4uri/suffix/lgo>.
+<ni:///mh;1QEQsWq87XTXp4vTfbL-PEbaCQ?ct=text/plain> at:digest <urn:md5:B16ABCED74D7A78BD37DB2FE3C46DA09>;
+                                                    dcterms:extent "423"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQsWq87XTXp4vTfbL-PEbaCQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (423 B)"@en;
+                                                    cnt:characterEncoding "windows-1252".
+<ni:///mh;1QEQsWq87XTXp4vTfbL-PEbaCQ?ct=text/plain#line=,1> rdf:value "#background=0,0,255".
+<urn:md5:B16ABCED74D7A78BD37DB2FE3C46DA09> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "sWq87XTXp4vTfbL+PEbaCQ=="^^xsd:base64Binary.

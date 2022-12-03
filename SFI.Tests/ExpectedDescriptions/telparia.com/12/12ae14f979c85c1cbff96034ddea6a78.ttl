@@ -1,0 +1,57 @@
+@base <ni:///mh;1QEQZNvBvGYXCXvmhElmpoLJoA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///example.tar>;
+     nie:interpretedAs <ni:///mh;1QEQZNvBvGYXCXvmhElmpoLJoA?ct=application/octet-stream>;
+     nfo:fileName "example.tar";
+     nfo:fileSize 363008 ;
+     a nfo:FileDataObject.
+<file:///example.pdf> at:extensionObject <https://w3id.org/uri4uri/suffix/pdf>.
+<file:///example.tar> at:extensionObject <https://w3id.org/uri4uri/suffix/tar>.
+<ni:///mh;1QEQZNvBvGYXCXvmhElmpoLJoA?ct=application/octet-stream> at:digest <urn:md5:64DBC1BC6617097BE6844966A682C9A0>;
+                                                                  dcterms:extent "363008"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQZNvBvGYXCXvmhElmpoLJoA?ct=application/x-tar>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (354.5 KiB)"@en.
+<ni:///mh;1QEQZNvBvGYXCXvmhElmpoLJoA?ct=application/x-tar> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-tar>;
+                                                           a schema:MediaObject,
+                                                             nfo:Archive;
+                                                           skos:prefLabel "TAR object (354.5 KiB)"@en.
+<ni:///mh;1QEQZNvBvGYXCXvmhElmpoLJoA?ct=application/x-tar#/example.pdf> at:pathObject <file:///example.pdf>;
+                                                                        nie:interpretedAs <ni:///mh;1QEQdKhVHyPkB9xbYR8tkANVGg?ct=application/octet-stream>;
+                                                                        nfo:belongsToContainer <ni:///mh;1QEQZNvBvGYXCXvmhElmpoLJoA?ct=application/x-tar>;
+                                                                        nfo:fileLastModified "2014-09-24T15:00:17.000000+02:00"^^xsd:dateTime;
+                                                                        nfo:fileName "example.pdf";
+                                                                        nfo:fileSize 361155 ;
+                                                                        a nfo:FileDataObject,
+                                                                          nfo:ArchiveItem;
+                                                                        skos:prefLabel "/example.pdf".
+<ni:///mh;1QEQdKhVHyPkB9xbYR8tkANVGg?ct=application/octet-stream> at:digest <urn:md5:74A8551F23E407DC5B611F2D9003551A>;
+                                                                  dcterms:extent "361155"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQdKhVHyPkB9xbYR8tkANVGg?ct=application/pdf>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (352.69 KiB)"@en.
+<ni:///mh;1QEQdKhVHyPkB9xbYR8tkANVGg?ct=application/pdf> dcterms:created "2014-09-24T13:00:17.000000Z"^^xsd:dateTime;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/pdf>;
+                                                         a schema:MediaObject,
+                                                           schema:DigitalDocument,
+                                                           nfo:Document;
+                                                         skos:prefLabel "PDF object (352.69 KiB)"@en.
+<urn:md5:64DBC1BC6617097BE6844966A682C9A0> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "ZNvBvGYXCXvmhElmpoLJoA=="^^xsd:base64Binary.
+<urn:md5:74A8551F23E407DC5B611F2D9003551A> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "dKhVHyPkB9xbYR8tkANVGg=="^^xsd:base64Binary.

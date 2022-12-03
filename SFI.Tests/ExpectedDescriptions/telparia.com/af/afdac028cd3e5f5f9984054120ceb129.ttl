@@ -1,0 +1,32 @@
+@base <ni:///mh;1QEQEXXgOzgdHhJFGhNbY7MdPw?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///Tune%201.rmi>;
+     nie:interpretedAs <ni:///mh;1QEQEXXgOzgdHhJFGhNbY7MdPw?ct=application/octet-stream>;
+     nfo:fileName "Tune 1.rmi";
+     nfo:fileSize 92466 ;
+     a nfo:FileDataObject.
+<file:///Tune%201.rmi> at:extensionObject <https://w3id.org/uri4uri/suffix/rmi>.
+<ni:///mh;1QEQEXXgOzgdHhJFGhNbY7MdPw?ct=application/octet-stream> at:digest <urn:md5:1175E03B381D1E12451A135B63B31D3F>;
+                                                                  dcterms:extent "92466"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQEXXgOzgdHhJFGhNbY7MdPw?ct=application/x-riff>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (90.3 KiB)"@en.
+<ni:///mh;1QEQEXXgOzgdHhJFGhNbY7MdPw?ct=application/x-riff> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-riff>;
+                                                            a schema:MediaObject;
+                                                            skos:prefLabel "RIFF object (90.3 KiB)"@en.
+<urn:md5:1175E03B381D1E12451A135B63B31D3F> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "EXXgOzgdHhJFGhNbY7MdPw=="^^xsd:base64Binary.

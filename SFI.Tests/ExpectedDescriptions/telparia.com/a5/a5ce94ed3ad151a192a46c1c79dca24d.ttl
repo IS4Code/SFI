@@ -1,0 +1,52 @@
+@base <ni:///mh;1QEQHRREDxil4F-x3FDBYXxX0A?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///frontier14.wma>;
+     nie:interpretedAs <ni:///mh;1QEQHRREDxil4F-x3FDBYXxX0A?ct=application/octet-stream>;
+     nfo:fileName "frontier14.wma";
+     nfo:fileSize 1395463 ;
+     a nfo:FileDataObject.
+<file:///frontier14.wma> at:extensionObject <https://w3id.org/uri4uri/suffix/wma>.
+<ni:///mh;1QEQHRREDxil4F-x3FDBYXxX0A?ct=application/octet-stream> at:digest <urn:md5:1D14440F18A5E05FB1DC50C1617C57D0>;
+                                                                  dcterms:extent "1395463"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQHRREDxil4F-x3FDBYXxX0A?ct=audio/x-ms-wma>,
+                                                                                    <ni:///mh;1QEQHRREDxil4F-x3FDBYXxX0A?ct=audio/x-wma>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.33 MiB)"@en.
+<ni:///mh;1QEQHRREDxil4F-x3FDBYXxX0A?ct=audio/x-ms-wma> schema:encodingFormat <https://w3id.org/uri4uri/mime/audio/x-ms-wma>;
+                                                        nfo:averageBitrate "128"^^dt:kilobitPerSecond;
+                                                        nfo:bitsPerSample 16 ;
+                                                        nfo:channels 2 ;
+                                                        nfo:compressionType nfo:losslessCompressionType;
+                                                        nfo:duration "PT1M26.5618422S"^^xsd:duration;
+                                                        nfo:sampleRate "44100"^^dt:hertz;
+                                                        <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#backgroundArtist> "Unknown Artist";
+                                                        <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#trackNumber> 19 ;
+                                                        a schema:MediaObject,
+                                                          nfo:Audio,
+                                                          schema:AudioObject;
+                                                        skos:prefLabel "WMA object (44100 Hz, 2 channels)"@en.
+<ni:///mh;1QEQHRREDxil4F-x3FDBYXxX0A?ct=audio/x-wma> schema:encodingFormat <https://w3id.org/uri4uri/mime/audio/x-wma>;
+                                                     nfo:bitsPerSample 16 ;
+                                                     nfo:channels 2 ;
+                                                     nfo:duration "PT1M26.1589994S"^^xsd:duration;
+                                                     nfo:sampleRate 44100 ;
+                                                     a schema:MediaObject,
+                                                       schema:AudioObject,
+                                                       nfo:Audio;
+                                                     skos:prefLabel "WMA object (1.33 MiB)"@en.
+<urn:md5:1D14440F18A5E05FB1DC50C1617C57D0> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "HRREDxil4F+x3FDBYXxX0A=="^^xsd:base64Binary.

@@ -1,0 +1,26 @@
+@base <ni:///mh;1QEQSJJ1ciIXj1D6vNEl-2T0Xw?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///Sounds%20File>;
+     nie:interpretedAs <ni:///mh;1QEQSJJ1ciIXj1D6vNEl-2T0Xw?ct=application/octet-stream>;
+     nfo:fileName "Sounds File";
+     nfo:fileSize 1895424 ;
+     a nfo:FileDataObject.
+<ni:///mh;1QEQSJJ1ciIXj1D6vNEl-2T0Xw?ct=application/octet-stream> at:digest <urn:md5:4892757222178F50FABCD125FB64F45F>;
+                                                                  dcterms:extent "1895424"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.81 MiB)"@en.
+<urn:md5:4892757222178F50FABCD125FB64F45F> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "SJJ1ciIXj1D6vNEl+2T0Xw=="^^xsd:base64Binary.

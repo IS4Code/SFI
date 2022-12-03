@@ -1,0 +1,81 @@
+@base <ni:///mh;1QEQ-QtVyDzwHD3e56N-oxqLDQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///SIGMA.ZIP>;
+     nie:interpretedAs <ni:///mh;1QEQ-QtVyDzwHD3e56N-oxqLDQ?ct=application/octet-stream>;
+     nfo:fileName "SIGMA.ZIP";
+     nfo:fileSize 1528 ;
+     a nfo:FileDataObject.
+<file:///READ.ME> at:extensionObject <https://w3id.org/uri4uri/suffix/me>.
+<file:///SIGMA.ZIP> at:extensionObject <https://w3id.org/uri4uri/suffix/zip>.
+<file:///SIGVESA.COM> at:extensionObject <https://w3id.org/uri4uri/suffix/com>.
+<ni:///mh;1QEQ-IKJwKAkL3y4x-kScrXsuQ?ct=text/plain> at:digest <urn:md5:F88289C0A0242F7CB8C7E91272B5ECB9>;
+                                                    dcterms:extent "540"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQ-IKJwKAkL3y4x-kScrXsuQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (540 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQ-IKJwKAkL3y4x-kScrXsuQ?ct=text/plain#line=,1> rdf:value "SIGVESA is a TSR, a terminate stay resident software, which supports the ".
+<ni:///mh;1QEQ-QtVyDzwHD3e56N-oxqLDQ?ct=application/octet-stream> at:digest <urn:md5:F90B55C83CF01C3DDEE7A37EA31A8B0D>;
+                                                                  dcterms:extent "1528"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ-QtVyDzwHD3e56N-oxqLDQ?ct=application/zip>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.49 KiB)"@en.
+<ni:///mh;1QEQ-QtVyDzwHD3e56N-oxqLDQ?ct=application/zip> at:pathObject <file:///>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
+                                                         nie:interpretedAs <ni:///mh;1QEQ-QtVyDzwHD3e56N-oxqLDQ?ct=application/zip#/>;
+                                                         a schema:MediaObject,
+                                                           nfo:Archive;
+                                                         skos:prefLabel "ZIP object (1.49 KiB)"@en.
+<ni:///mh;1QEQ-QtVyDzwHD3e56N-oxqLDQ?ct=application/zip#/> at:pathObject <file:///./>;
+                                                           a nfo:Folder;
+                                                           skos:prefLabel "/".
+<ni:///mh;1QEQ-QtVyDzwHD3e56N-oxqLDQ?ct=application/zip#/READ.ME> at:pathObject <file:///READ.ME>;
+                                                                  nie:interpretedAs <ni:///mh;1QEQ-IKJwKAkL3y4x-kScrXsuQ?ct=text/plain>;
+                                                                  nfo:belongsToContainer <ni:///mh;1QEQ-QtVyDzwHD3e56N-oxqLDQ?ct=application/zip#/>;
+                                                                  nfo:fileLastModified "1993-01-07T02:05:14.000000+01:00"^^xsd:dateTime;
+                                                                  nfo:fileName "READ.ME";
+                                                                  nfo:fileSize 540 ;
+                                                                  a nfo:FileDataObject,
+                                                                    nfo:ArchiveItem;
+                                                                  skos:prefLabel "/READ.ME".
+<ni:///mh;1QEQ-QtVyDzwHD3e56N-oxqLDQ?ct=application/zip#/SIGVESA.COM> at:pathObject <file:///SIGVESA.COM>;
+                                                                      nie:interpretedAs <ni:///mh;1QEQJVHOB_he-531BuchRkNE2A?ct=application/octet-stream>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQ-QtVyDzwHD3e56N-oxqLDQ?ct=application/zip#/>;
+                                                                      nfo:fileLastModified "1992-09-10T09:28:08.000000+02:00"^^xsd:dateTime;
+                                                                      nfo:fileName "SIGVESA.COM";
+                                                                      nfo:fileSize 1537 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/SIGVESA.COM".
+<ni:///mh;1QEQJVHOB_he-531BuchRkNE2A?ct=application/octet-stream> at:digest <urn:md5:2551CE07F85EFB9DF506E721464344D8>;
+                                                                  dcterms:extent "1537"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQJVHOB_he-531BuchRkNE2A?ct=application/x-dosexec>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.5 KiB)"@en.
+<ni:///mh;1QEQJVHOB_he-531BuchRkNE2A?ct=application/x-dosexec> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-dosexec>;
+                                                               a schema:MediaObject,
+                                                                 schema:SoftwareApplication,
+                                                                 nfo:Executable;
+                                                               skos:prefLabel "COM object (1.5 KiB)"@en.
+<urn:md5:2551CE07F85EFB9DF506E721464344D8> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "JVHOB/he+531BuchRkNE2A=="^^xsd:base64Binary.
+<urn:md5:F88289C0A0242F7CB8C7E91272B5ECB9> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "+IKJwKAkL3y4x+kScrXsuQ=="^^xsd:base64Binary.
+<urn:md5:F90B55C83CF01C3DDEE7A37EA31A8B0D> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "+QtVyDzwHD3e56N+oxqLDQ=="^^xsd:base64Binary.

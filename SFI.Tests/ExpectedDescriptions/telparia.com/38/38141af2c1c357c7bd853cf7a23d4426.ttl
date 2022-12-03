@@ -1,0 +1,40 @@
+@base <ni:///mh;1QEQYxMzvS9DUF0A-hqsJrpVEg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///sample_1920%C3%971280.jpg>;
+     nie:interpretedAs <ni:///mh;1QEQYxMzvS9DUF0A-hqsJrpVEg?ct=application/octet-stream>;
+     nfo:fileName "sample_1920×1280.jpg";
+     nfo:fileSize 768552 ;
+     a nfo:FileDataObject.
+<file:///sample_1920%C3%971280.jpg> at:extensionObject <https://w3id.org/uri4uri/suffix/jpg>.
+<ni:///mh;1QEQYxMzvS9DUF0A-hqsJrpVEg?ct=application/octet-stream> at:digest <urn:md5:631333BD2F43505D00FA1AAC26BA5512>;
+                                                                  dcterms:extent "768552"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQYxMzvS9DUF0A-hqsJrpVEg?ct=image/jpeg>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (750.54 KiB)"@en.
+<ni:///mh;1QEQYxMzvS9DUF0A-hqsJrpVEg?ct=image/jpeg> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/jpeg>;
+                                                    nfo:colorDepth 24 ;
+                                                    nfo:height 1280 ;
+                                                    nfo:horizontalResolution 96 ;
+                                                    nfo:verticalResolution 96 ;
+                                                    nfo:width 1920 ;
+                                                    a schema:MediaObject,
+                                                      schema:ImageObject,
+                                                      nfo:Image;
+                                                    skos:prefLabel "JPG object (1920×1280)"@en,
+                                                                   "JPG object (750.54 KiB)"@en.
+<urn:md5:631333BD2F43505D00FA1AAC26BA5512> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "YxMzvS9DUF0A+hqsJrpVEg=="^^xsd:base64Binary.

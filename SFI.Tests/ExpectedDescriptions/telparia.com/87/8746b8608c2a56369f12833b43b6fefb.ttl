@@ -1,0 +1,27 @@
+@base <ni:///mh;1QEQ91LzUjfKYnyxpRtr-9ppEQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///BIIO.OLB>;
+     nie:interpretedAs <ni:///mh;1QEQ91LzUjfKYnyxpRtr-9ppEQ?ct=application/octet-stream>;
+     nfo:fileName "BIIO.OLB";
+     nfo:fileSize 6252 ;
+     a nfo:FileDataObject.
+<file:///BIIO.OLB> at:extensionObject <https://w3id.org/uri4uri/suffix/olb>.
+<ni:///mh;1QEQ91LzUjfKYnyxpRtr-9ppEQ?ct=application/octet-stream> at:digest <urn:md5:F752F35237CA627CB1A51B6BFBDA6911>;
+                                                                  dcterms:extent "6252"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (6.11 KiB)"@en.
+<urn:md5:F752F35237CA627CB1A51B6BFBDA6911> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "91LzUjfKYnyxpRtr+9ppEQ=="^^xsd:base64Binary.

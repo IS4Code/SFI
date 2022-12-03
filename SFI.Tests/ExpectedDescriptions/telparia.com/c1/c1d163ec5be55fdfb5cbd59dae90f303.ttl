@@ -1,0 +1,73 @@
+@base <ni:///mh;1QEQi_fhebJMFna0GeKNFR5NPg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///t2screensaver.jpg>;
+     nie:interpretedAs <ni:///mh;1QEQi_fhebJMFna0GeKNFR5NPg?ct=application/octet-stream>;
+     nfo:fileName "t2screensaver.jpg";
+     nfo:fileSize 671406 ;
+     a nfo:FileDataObject.
+<file:///t2screensaver.jpg> at:extensionObject <https://w3id.org/uri4uri/suffix/jpg>.
+<ni:///mh;1QEQi_fhebJMFna0GeKNFR5NPg?ct=application/octet-stream> at:digest <urn:md5:8BF7E179B24C1676B419E28D151E4D3E>;
+                                                                  dcterms:extent "671406"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQi_fhebJMFna0GeKNFR5NPg?ct=image/jpeg>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (655.67 KiB)"@en.
+<ni:///mh;1QEQi_fhebJMFna0GeKNFR5NPg?ct=image/jpeg> <http://ns.adobe.com/xap/1.0/CreatorTool> "Microsoft Windows Photo Viewer 10.0.18362.1";
+                                                    <http://ns.adobe.com/xap/1.0/mm/InstanceID> "uuid:faf5bdd5-ba3d-11da-ad31-d33d75182f1b";
+                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/image/jpeg>;
+                                                    nfo:colorDepth 24 ;
+                                                    nfo:hasMediaStream <ni:///mh;1QEQi_fhebJMFna0GeKNFR5NPg?ct=image/jpeg#/0>,
+                                                                       <ni:///mh;1QEQi_fhebJMFna0GeKNFR5NPg?ct=image/jpeg#/1>;
+                                                    nfo:height 1460 ;
+                                                    nfo:horizontalResolution 300 ;
+                                                    nfo:verticalResolution 300 ;
+                                                    nfo:width 1440 ;
+                                                    a schema:MediaObject,
+                                                      exif:IFD,
+                                                      schema:ImageObject,
+                                                      nfo:Image;
+                                                    exif:colorSpace 1 ;
+                                                    exif:componentsConfiguration "01020300"^^xsd:hexBinary;
+                                                    exif:compression 6 ;
+                                                    exif:dateTime "2019-12-15T10:00:16.000000"^^xsd:dateTime;
+                                                    exif:dateTimeDigitized "2019/12/15 10:00:05"^^xsd:string;
+                                                    exif:exifVersion "30323231"^^xsd:hexBinary;
+                                                    exif:flashpixVersion "30313030"^^xsd:hexBinary;
+                                                    exif:jpegInterchangeFormat 4602 ;
+                                                    exif:jpegInterchangeFormatLength 4473 ;
+                                                    exif:make "Canon"^^xsd:string;
+                                                    exif:model "Canon MG2500 series"^^xsd:string;
+                                                    exif:orientation 1 ;
+                                                    exif:pixelXDimension 1440 ;
+                                                    exif:pixelYDimension 1460 ;
+                                                    exif:resolutionUnit 2 ;
+                                                    exif:software "Microsoft Windows Photo Viewer 10.0.18362.1"^^xsd:string;
+                                                    exif:xResolution 300 ;
+                                                    exif:yCbCrPositioning 1 ;
+                                                    exif:yResolution 300 ;
+                                                    skos:prefLabel "JPG object (655.67 KiB)"@en,
+                                                                   "JPG object (1440×1460)"@en.
+<ni:///mh;1QEQi_fhebJMFna0GeKNFR5NPg?ct=image/jpeg#/0> nfo:height 1460 ;
+                                                       nfo:width 1440 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "0:JPEG (1440×1460)".
+<ni:///mh;1QEQi_fhebJMFna0GeKNFR5NPg?ct=image/jpeg#/1> nfo:height 1460 ;
+                                                       nfo:width 1440 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "1:Exif SubIFD (1440×1460)".
+<urn:md5:8BF7E179B24C1676B419E28D151E4D3E> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "i/fhebJMFna0GeKNFR5NPg=="^^xsd:base64Binary.

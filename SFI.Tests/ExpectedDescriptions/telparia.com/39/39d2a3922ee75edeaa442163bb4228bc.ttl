@@ -1,0 +1,30 @@
+@base <ni:///mh;1QEQ9Nssb9-upnCJmTK58zO6Bw?ct=text/plain>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///GIFLITE.NEW>;
+     nie:interpretedAs <ni:///mh;1QEQ9Nssb9-upnCJmTK58zO6Bw?ct=text/plain>;
+     nfo:fileName "GIFLITE.NEW";
+     nfo:fileSize 4072 ;
+     a nfo:FileDataObject.
+<file:///GIFLITE.NEW> at:extensionObject <https://w3id.org/uri4uri/suffix/new>.
+<ni:///mh;1QEQ9Nssb9-upnCJmTK58zO6Bw?ct=text/plain> at:digest <urn:md5:F4DB2C6FDFAEA670899932B9F333BA07>;
+                                                    dcterms:extent "4072"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQ9Nssb9-upnCJmTK58zO6Bw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (3.98 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQ9Nssb9-upnCJmTK58zO6Bw?ct=text/plain#line=,1> rdf:value "".
+<urn:md5:F4DB2C6FDFAEA670899932B9F333BA07> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "9Nssb9+upnCJmTK58zO6Bw=="^^xsd:base64Binary.

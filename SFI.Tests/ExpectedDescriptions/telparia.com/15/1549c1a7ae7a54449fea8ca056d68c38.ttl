@@ -1,0 +1,40 @@
+@base <ni:///mh;1QEQpL1gpQOPgQlsqPbTq-NfOQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///example.dib>;
+     nie:interpretedAs <ni:///mh;1QEQpL1gpQOPgQlsqPbTq-NfOQ?ct=application/octet-stream>;
+     nfo:fileName "example.dib";
+     nfo:fileSize 2880054 ;
+     a nfo:FileDataObject.
+<file:///example.dib> at:extensionObject <https://w3id.org/uri4uri/suffix/dib>.
+<ni:///mh;1QEQpL1gpQOPgQlsqPbTq-NfOQ?ct=application/octet-stream> at:digest <urn:md5:A4BD60A5038F81096CA8F6D3ABE35F39>;
+                                                                  dcterms:extent "2880054"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQpL1gpQOPgQlsqPbTq-NfOQ?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (2.75 MiB)"@en.
+<ni:///mh;1QEQpL1gpQOPgQlsqPbTq-NfOQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:colorDepth 24 ;
+                                                   nfo:height 800 ;
+                                                   nfo:horizontalResolution 299.9994;
+                                                   nfo:verticalResolution 299.9994;
+                                                   nfo:width 1200 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (1200×800)"@en,
+                                                                  "BMP object (2.75 MiB)"@en.
+<urn:md5:A4BD60A5038F81096CA8F6D3ABE35F39> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "pL1gpQOPgQlsqPbTq+NfOQ=="^^xsd:base64Binary.

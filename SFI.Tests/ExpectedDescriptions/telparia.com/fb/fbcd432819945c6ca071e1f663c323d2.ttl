@@ -1,0 +1,34 @@
+@base <ni:///mh;1QEQTJ20WA5jgQ4cCnjRIbLXaw?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///Altair-Title.sndh>;
+     nie:interpretedAs <ni:///mh;1QEQTJ20WA5jgQ4cCnjRIbLXaw?ct=application/octet-stream>;
+     nfo:fileName "Altair-Title.sndh";
+     nfo:fileSize 63218 ;
+     a nfo:FileDataObject.
+<file:///Altair-Title.sndh> at:extensionObject <https://w3id.org/uri4uri/suffix/sndh>.
+<ni:///mh;1QEQTJ20WA5jgQ4cCnjRIbLXaw?ct=application/octet-stream> at:digest <urn:md5:4C9DB4580E63810E1C0A78D121B2D76B>;
+                                                                  dcterms:extent "63218"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQTJ20WA5jgQ4cCnjRIbLXaw?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (61.74 KiB)"@en.
+<ni:///mh;1QEQTJ20WA5jgQ4cCnjRIbLXaw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (61.74 KiB)"@en.
+<urn:md5:4C9DB4580E63810E1C0A78D121B2D76B> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "TJ20WA5jgQ4cCnjRIbLXaw=="^^xsd:base64Binary.

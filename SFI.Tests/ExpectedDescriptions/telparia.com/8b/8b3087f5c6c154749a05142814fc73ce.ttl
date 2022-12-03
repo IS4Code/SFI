@@ -1,0 +1,474 @@
+@base <ni:///mh;1QEQPoYaO6bHjCWOvW2BfFMJ9Q?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///SOURCES.TGZ>;
+     nie:interpretedAs <ni:///mh;1QEQPoYaO6bHjCWOvW2BfFMJ9Q?ct=application/octet-stream>;
+     nfo:fileName "SOURCES.TGZ";
+     nfo:fileSize 55133 ;
+     a nfo:FileDataObject.
+<file:///SOURCES.TGZ> at:extensionObject <https://w3id.org/uri4uri/suffix/tgz>.
+<file:///alpha.S> at:extensionObject <https://w3id.org/uri4uri/suffix/s>.
+<file:///compiler.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///compiler.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<file:///config.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///config.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<file:///detect.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///fcrypt.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///fcrypt.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<file:///ids.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///john.asm> at:extensionObject <https://w3id.org/uri4uri/suffix/asm>.
+<file:///john.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///john.com> at:extensionObject <https://w3id.org/uri4uri/suffix/com>.
+<file:///md5crypt.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///rm.bat> at:extensionObject <https://w3id.org/uri4uri/suffix/bat>.
+<file:///sparc.S> at:extensionObject <https://w3id.org/uri4uri/suffix/s>.
+<file:///symlink.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///tinymem.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///unshadow.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///x86.S> at:extensionObject <https://w3id.org/uri4uri/suffix/s>.
+<file:///xtract.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<ni:///mh;1QEQ2WNqewUAKaO2g81UQY6Qig?ct=text/plain> at:digest <urn:md5:D9636A7B050029A3B683CD54418E908A>;
+                                                    dcterms:extent "717"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQ2WNqewUAKaO2g81UQY6Qig?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (717 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQ2WNqewUAKaO2g81UQY6Qig?ct=text/plain#line=,1> rdf:value "".
+<ni:///mh;1QEQ2vmX2OFAaMMSwVTi4B1IhA?ct=text/plain> at:digest <urn:md5:DAF997D8E14068C312C154E2E01D4884>;
+                                                    dcterms:extent "5942"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQ2vmX2OFAaMMSwVTi4B1IhA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (5.8 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQ2vmX2OFAaMMSwVTi4B1IhA?ct=text/plain#line=,1> rdf:value "#include <stdio.h>".
+<ni:///mh;1QEQ3jivpzXm1cciCxQYQQ53Rw?ct=text/plain> at:digest <urn:md5:DE38AFA735E6D5C7220B1418410E7747>;
+                                                    dcterms:extent "2260"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQ3jivpzXm1cciCxQYQQ53Rw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (2.21 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQ3jivpzXm1cciCxQYQQ53Rw?ct=text/plain#line=,1> rdf:value ".model tiny".
+<ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/octet-stream> at:digest <urn:md5:EC3DE0D6988F2FF4E04A09FBCF2FFA1D>;
+                                                                  dcterms:extent "245760"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (240 KiB)"@en.
+<ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-tar>;
+                                                           a schema:MediaObject,
+                                                             nfo:Archive;
+                                                           skos:prefLabel "TAR object (240 KiB)"@en.
+<ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar#/Makefile> at:pathObject <file:///Makefile>;
+                                                                     nie:interpretedAs <ni:///mh;1QEQ8GJ8H8gyAFJNI2Xo-HESdg?ct=text/plain>;
+                                                                     nfo:belongsToContainer <ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar>;
+                                                                     nfo:fileLastModified "1997-02-27T04:00:00.000000+01:00"^^xsd:dateTime;
+                                                                     nfo:fileName "Makefile";
+                                                                     nfo:fileSize 4161 ;
+                                                                     a nfo:FileDataObject,
+                                                                       nfo:ArchiveItem;
+                                                                     skos:prefLabel "/Makefile".
+<ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar#/alpha.S> at:pathObject <file:///alpha.S>;
+                                                                    nie:interpretedAs <ni:///mh;1QEQcNWD69a7wAbMa62Fp4KRzw?ct=text/plain>;
+                                                                    nfo:belongsToContainer <ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar>;
+                                                                    nfo:fileLastModified "1997-02-27T04:00:00.000000+01:00"^^xsd:dateTime;
+                                                                    nfo:fileName "alpha.S";
+                                                                    nfo:fileSize 650 ;
+                                                                    a nfo:FileDataObject,
+                                                                      nfo:ArchiveItem;
+                                                                    skos:prefLabel "/alpha.S".
+<ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar#/compiler.c> at:pathObject <file:///compiler.c>;
+                                                                       nie:interpretedAs <ni:///mh;1QEQyp7AUMiW7eYEayoqan-5yg?ct=text/plain>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar>;
+                                                                       nfo:fileLastModified "1997-02-27T04:00:00.000000+01:00"^^xsd:dateTime;
+                                                                       nfo:fileName "compiler.c";
+                                                                       nfo:fileSize 25893 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/compiler.c".
+<ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar#/compiler.h> at:pathObject <file:///compiler.h>;
+                                                                       nie:interpretedAs <ni:///mh;1QEQv0A9809LkSc1g6wwKCWmXg?ct=text/plain>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar>;
+                                                                       nfo:fileLastModified "1997-02-27T04:00:00.000000+01:00"^^xsd:dateTime;
+                                                                       nfo:fileName "compiler.h";
+                                                                       nfo:fileSize 440 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/compiler.h".
+<ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar#/config.c> at:pathObject <file:///config.c>;
+                                                                     nie:interpretedAs <ni:///mh;1QEQ2vmX2OFAaMMSwVTi4B1IhA?ct=text/plain>;
+                                                                     nfo:belongsToContainer <ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar>;
+                                                                     nfo:fileLastModified "1997-02-27T04:00:00.000000+01:00"^^xsd:dateTime;
+                                                                     nfo:fileName "config.c";
+                                                                     nfo:fileSize 5942 ;
+                                                                     a nfo:FileDataObject,
+                                                                       nfo:ArchiveItem;
+                                                                     skos:prefLabel "/config.c".
+<ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar#/config.h> at:pathObject <file:///config.h>;
+                                                                     nie:interpretedAs <ni:///mh;1QEQQe7cV9IRLcwsbIJ2OMKx1w?ct=text/plain>;
+                                                                     nfo:belongsToContainer <ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar>;
+                                                                     nfo:fileLastModified "1997-02-27T04:00:00.000000+01:00"^^xsd:dateTime;
+                                                                     nfo:fileName "config.h";
+                                                                     nfo:fileSize 564 ;
+                                                                     a nfo:FileDataObject,
+                                                                       nfo:ArchiveItem;
+                                                                     skos:prefLabel "/config.h".
+<ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar#/detect.c> at:pathObject <file:///detect.c>;
+                                                                     nie:interpretedAs <ni:///mh;1QEQtEGxloQgE6Vptq8bc0dAsw?ct=text/plain>;
+                                                                     nfo:belongsToContainer <ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar>;
+                                                                     nfo:fileLastModified "1997-02-27T04:00:00.000000+01:00"^^xsd:dateTime;
+                                                                     nfo:fileName "detect.c";
+                                                                     nfo:fileSize 1424 ;
+                                                                     a nfo:FileDataObject,
+                                                                       nfo:ArchiveItem;
+                                                                     skos:prefLabel "/detect.c".
+<ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar#/fcrypt.c> at:pathObject <file:///fcrypt.c>;
+                                                                     nie:interpretedAs <ni:///mh;1QEQNx1U3y3Z6qgNJKpuW1Byhw?ct=text/plain>;
+                                                                     nfo:belongsToContainer <ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar>;
+                                                                     nfo:fileLastModified "1997-02-27T04:00:00.000000+01:00"^^xsd:dateTime;
+                                                                     nfo:fileName "fcrypt.c";
+                                                                     nfo:fileSize 36996 ;
+                                                                     a nfo:FileDataObject,
+                                                                       nfo:ArchiveItem;
+                                                                     skos:prefLabel "/fcrypt.c".
+<ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar#/fcrypt.h> at:pathObject <file:///fcrypt.h>;
+                                                                     nie:interpretedAs <ni:///mh;1QEQ2WNqewUAKaO2g81UQY6Qig?ct=text/plain>;
+                                                                     nfo:belongsToContainer <ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar>;
+                                                                     nfo:fileLastModified "1997-02-27T04:00:00.000000+01:00"^^xsd:dateTime;
+                                                                     nfo:fileName "fcrypt.h";
+                                                                     nfo:fileSize 717 ;
+                                                                     a nfo:FileDataObject,
+                                                                       nfo:ArchiveItem;
+                                                                     skos:prefLabel "/fcrypt.h".
+<ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar#/ids.c> at:pathObject <file:///ids.c>;
+                                                                  nie:interpretedAs <ni:///mh;1QEQf7Ljyd3Jyyf9XkAWNvKrRA?ct=text/plain>;
+                                                                  nfo:belongsToContainer <ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar>;
+                                                                  nfo:fileLastModified "1997-02-27T04:00:00.000000+01:00"^^xsd:dateTime;
+                                                                  nfo:fileName "ids.c";
+                                                                  nfo:fileSize 3951 ;
+                                                                  a nfo:FileDataObject,
+                                                                    nfo:ArchiveItem;
+                                                                  skos:prefLabel "/ids.c".
+<ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar#/john.asm> at:pathObject <file:///john.asm>;
+                                                                     nie:interpretedAs <ni:///mh;1QEQ3jivpzXm1cciCxQYQQ53Rw?ct=text/plain>;
+                                                                     nfo:belongsToContainer <ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar>;
+                                                                     nfo:fileLastModified "1997-02-27T04:00:00.000000+01:00"^^xsd:dateTime;
+                                                                     nfo:fileName "john.asm";
+                                                                     nfo:fileSize 2260 ;
+                                                                     a nfo:FileDataObject,
+                                                                       nfo:ArchiveItem;
+                                                                     skos:prefLabel "/john.asm".
+<ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar#/john.c> at:pathObject <file:///john.c>;
+                                                                   nie:interpretedAs <ni:///mh;1QEQvxd4zcpJHi4RTQYfdRMsXw?ct=text/plain>;
+                                                                   nfo:belongsToContainer <ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar>;
+                                                                   nfo:fileLastModified "1997-02-27T04:00:00.000000+01:00"^^xsd:dateTime;
+                                                                   nfo:fileName "john.c";
+                                                                   nfo:fileSize 95564 ;
+                                                                   a nfo:FileDataObject,
+                                                                     nfo:ArchiveItem;
+                                                                   skos:prefLabel "/john.c".
+<ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar#/john.com> at:pathObject <file:///john.com>;
+                                                                     nie:interpretedAs <ni:///mh;1QEQJbhk3kXJHxy0GzSfv8ROTg?ct=application/octet-stream>;
+                                                                     nfo:belongsToContainer <ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar>;
+                                                                     nfo:fileLastModified "1997-02-27T04:00:00.000000+01:00"^^xsd:dateTime;
+                                                                     nfo:fileName "john.com";
+                                                                     nfo:fileSize 387 ;
+                                                                     a nfo:FileDataObject,
+                                                                       nfo:ArchiveItem;
+                                                                     skos:prefLabel "/john.com".
+<ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar#/md5crypt.c> at:pathObject <file:///md5crypt.c>;
+                                                                       nie:interpretedAs <ni:///mh;1QEQVNsjW_eAcq-H2S5_5OXR3w?ct=text/plain>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar>;
+                                                                       nfo:fileLastModified "1997-02-27T04:00:00.000000+01:00"^^xsd:dateTime;
+                                                                       nfo:fileName "md5crypt.c";
+                                                                       nfo:fileSize 11898 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/md5crypt.c".
+<ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar#/rm.bat> at:pathObject <file:///rm.bat>;
+                                                                   nie:interpretedAs <ni:///mh;1QEQNcYYX9xFZCx987GZywsUVQ?ct=text/plain>;
+                                                                   nfo:belongsToContainer <ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar>;
+                                                                   nfo:fileLastModified "1997-02-27T04:00:00.000000+01:00"^^xsd:dateTime;
+                                                                   nfo:fileName "rm.bat";
+                                                                   nfo:fileSize 91 ;
+                                                                   a nfo:FileDataObject,
+                                                                     nfo:ArchiveItem;
+                                                                   skos:prefLabel "/rm.bat".
+<ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar#/sparc.S> at:pathObject <file:///sparc.S>;
+                                                                    nie:interpretedAs <ni:///mh;1QEQVo1Di3qw-6Wz_y-lcAlfDg?ct=text/plain>;
+                                                                    nfo:belongsToContainer <ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar>;
+                                                                    nfo:fileLastModified "1997-02-27T04:00:00.000000+01:00"^^xsd:dateTime;
+                                                                    nfo:fileName "sparc.S";
+                                                                    nfo:fileSize 10616 ;
+                                                                    a nfo:FileDataObject,
+                                                                      nfo:ArchiveItem;
+                                                                    skos:prefLabel "/sparc.S".
+<ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar#/symlink.c> at:pathObject <file:///symlink.c>;
+                                                                      nie:interpretedAs <ni:///mh;1QEQ_-hsJvMGk0aDBXCcYeMOPw?ct=text/plain>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar>;
+                                                                      nfo:fileLastModified "1997-02-27T04:00:00.000000+01:00"^^xsd:dateTime;
+                                                                      nfo:fileName "symlink.c";
+                                                                      nfo:fileSize 81 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/symlink.c".
+<ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar#/tinymem.c> at:pathObject <file:///tinymem.c>;
+                                                                      nie:interpretedAs <ni:///mh;1QEQK3VvxsMg3aKYicH6gQOESQ?ct=text/plain>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar>;
+                                                                      nfo:fileLastModified "1997-02-27T04:00:00.000000+01:00"^^xsd:dateTime;
+                                                                      nfo:fileName "tinymem.c";
+                                                                      nfo:fileSize 577 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/tinymem.c".
+<ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar#/unshadow.c> at:pathObject <file:///unshadow.c>;
+                                                                       nie:interpretedAs <ni:///mh;1QEQqEYYDRGsZQAQVzeLI6AFVw?ct=text/plain>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar>;
+                                                                       nfo:fileLastModified "1997-02-27T04:00:00.000000+01:00"^^xsd:dateTime;
+                                                                       nfo:fileName "unshadow.c";
+                                                                       nfo:fileSize 1980 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/unshadow.c".
+<ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar#/x86.S> at:pathObject <file:///x86.S>;
+                                                                  nie:interpretedAs <ni:///mh;1QEQckN_7Tm7bxw2TbPFoCcLnw?ct=text/plain>;
+                                                                  nfo:belongsToContainer <ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar>;
+                                                                  nfo:fileLastModified "1997-02-27T04:00:00.000000+01:00"^^xsd:dateTime;
+                                                                  nfo:fileName "x86.S";
+                                                                  nfo:fileSize 17553 ;
+                                                                  a nfo:FileDataObject,
+                                                                    nfo:ArchiveItem;
+                                                                  skos:prefLabel "/x86.S".
+<ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar#/xtract.c> at:pathObject <file:///xtract.c>;
+                                                                     nie:interpretedAs <ni:///mh;1QEQhqVUJHEG9S0R_9Cjh3pDqg?ct=text/plain>;
+                                                                     nfo:belongsToContainer <ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/x-tar>;
+                                                                     nfo:fileLastModified "1997-02-27T04:00:00.000000+01:00"^^xsd:dateTime;
+                                                                     nfo:fileName "xtract.c";
+                                                                     nfo:fileSize 891 ;
+                                                                     a nfo:FileDataObject,
+                                                                       nfo:ArchiveItem;
+                                                                     skos:prefLabel "/xtract.c".
+<ni:///mh;1QEQ8GJ8H8gyAFJNI2Xo-HESdg?ct=text/plain> at:digest <urn:md5:F0627C1FC83200524D2365E8F8711276>;
+                                                    dcterms:extent "4161"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQ8GJ8H8gyAFJNI2Xo-HESdg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (4.06 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQ8GJ8H8gyAFJNI2Xo-HESdg?ct=text/plain#line=,1> rdf:value "# John the Ripper Makefile  Copyright (c) 1996,97 by Solar Designer".
+<ni:///mh;1QEQJbhk3kXJHxy0GzSfv8ROTg?ct=application/octet-stream> at:digest <urn:md5:25B864DE45C91F1CB41B349FBFC44E4E>;
+                                                                  dcterms:extent "387"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQJbhk3kXJHxy0GzSfv8ROTg?ct=application/x-dosexec>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (387 B)"@en.
+<ni:///mh;1QEQJbhk3kXJHxy0GzSfv8ROTg?ct=application/x-dosexec> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-dosexec>;
+                                                               a schema:MediaObject,
+                                                                 schema:SoftwareApplication,
+                                                                 nfo:Executable;
+                                                               skos:prefLabel "COM object (387 B)"@en.
+<ni:///mh;1QEQK3VvxsMg3aKYicH6gQOESQ?ct=text/plain> at:digest <urn:md5:2B756FC6C320DDA29889C1FA81038449>;
+                                                    dcterms:extent "577"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQK3VvxsMg3aKYicH6gQOESQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (577 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQK3VvxsMg3aKYicH6gQOESQ?ct=text/plain#line=,1> rdf:value "#include <stdio.h>".
+<ni:///mh;1QEQNcYYX9xFZCx987GZywsUVQ?ct=text/plain> at:digest <urn:md5:35C6185FDC45642C7DF3B199CB0B1455>;
+                                                    dcterms:extent "91"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQNcYYX9xFZCx987GZywsUVQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (91 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQNcYYX9xFZCx987GZywsUVQ?ct=text/plain#line=,1> rdf:value "@ctty nul".
+<ni:///mh;1QEQNx1U3y3Z6qgNJKpuW1Byhw?ct=text/plain> at:digest <urn:md5:371D54DF2DD9EAA80D24AA6E5B507287>;
+                                                    dcterms:extent "36996"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQNx1U3y3Z6qgNJKpuW1Byhw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (36.13 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQNx1U3y3Z6qgNJKpuW1Byhw?ct=text/plain#line=,1> rdf:value "/*".
+<ni:///mh;1QEQPoYaO6bHjCWOvW2BfFMJ9Q?ct=application/gzip> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/gzip>;
+                                                          a schema:MediaObject,
+                                                            nfo:Archive;
+                                                          skos:prefLabel "GZ object (53.84 KiB)"@en.
+<ni:///mh;1QEQPoYaO6bHjCWOvW2BfFMJ9Q?ct=application/gzip#/> nie:interpretedAs <ni:///mh;1QEQ7D3g1piPL_TgSgn7zy_6HQ?ct=application/octet-stream>;
+                                                            nfo:belongsToContainer <ni:///mh;1QEQPoYaO6bHjCWOvW2BfFMJ9Q?ct=application/gzip>;
+                                                            nfo:fileLastModified "1997-02-27T11:23:45.000000Z"^^xsd:dateTime;
+                                                            nfo:fileSize 245760 ;
+                                                            a nfo:FileDataObject,
+                                                              nfo:ArchiveItem;
+                                                            skos:prefLabel "/".
+<ni:///mh;1QEQPoYaO6bHjCWOvW2BfFMJ9Q?ct=application/octet-stream> at:digest <urn:md5:3E861A3BA6C78C258EBD6D817C5309F5>;
+                                                                  dcterms:extent "55133"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQPoYaO6bHjCWOvW2BfFMJ9Q?ct=application/gzip>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (53.84 KiB)"@en.
+<ni:///mh;1QEQQe7cV9IRLcwsbIJ2OMKx1w?ct=text/plain> at:digest <urn:md5:41EEDC57D2112DCC2C6C827638C2B1D7>;
+                                                    dcterms:extent "564"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQQe7cV9IRLcwsbIJ2OMKx1w?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (564 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQQe7cV9IRLcwsbIJ2OMKx1w?ct=text/plain#line=,1> rdf:value "struct cfg_param {".
+<ni:///mh;1QEQVNsjW_eAcq-H2S5_5OXR3w?ct=text/plain> at:digest <urn:md5:54DB235BF78072AF87D92E7FE4E5D1DF>;
+                                                    dcterms:extent "11898"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQVNsjW_eAcq-H2S5_5OXR3w?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (11.62 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQVNsjW_eAcq-H2S5_5OXR3w?ct=text/plain#line=,1> rdf:value "/*".
+<ni:///mh;1QEQVo1Di3qw-6Wz_y-lcAlfDg?ct=text/plain> at:digest <urn:md5:568D438B7AB0FBA5B3FF2FA570095F0E>;
+                                                    dcterms:extent "10616"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQVo1Di3qw-6Wz_y-lcAlfDg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (10.37 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQVo1Di3qw-6Wz_y-lcAlfDg?ct=text/plain#line=,1> rdf:value "#ifdef UNDERSCORES".
+<ni:///mh;1QEQ_-hsJvMGk0aDBXCcYeMOPw?ct=text/plain> at:digest <urn:md5:FFE86C26F30693468305709C61E30E3F>;
+                                                    dcterms:extent "81"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQ_-hsJvMGk0aDBXCcYeMOPw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (81 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQ_-hsJvMGk0aDBXCcYeMOPw?ct=text/plain#line=,1> rdf:value "#include <process.h>".
+<ni:///mh;1QEQcNWD69a7wAbMa62Fp4KRzw?ct=text/plain> at:digest <urn:md5:70D583EBD6BBC006CC6BAD85A78291CF>;
+                                                    dcterms:extent "650"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQcNWD69a7wAbMa62Fp4KRzw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (650 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQcNWD69a7wAbMa62Fp4KRzw?ct=text/plain#line=,1> rdf:value "#ifdef UNDERSCORES".
+<ni:///mh;1QEQckN_7Tm7bxw2TbPFoCcLnw?ct=text/plain> at:digest <urn:md5:72437FED39BB6F1C364DB3C5A0270B9F>;
+                                                    dcterms:extent "17553"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQckN_7Tm7bxw2TbPFoCcLnw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (17.14 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQckN_7Tm7bxw2TbPFoCcLnw?ct=text/plain#line=,1> rdf:value "#ifdef UNDERSCORES".
+<ni:///mh;1QEQf7Ljyd3Jyyf9XkAWNvKrRA?ct=text/plain> at:digest <urn:md5:7FB2E3C9DDC9CB27FD5E401636F2AB44>;
+                                                    dcterms:extent "3951"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQf7Ljyd3Jyyf9XkAWNvKrRA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (3.86 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQf7Ljyd3Jyyf9XkAWNvKrRA?ct=text/plain#line=,1> rdf:value "#define idscount (8 * 96 * 2)".
+<ni:///mh;1QEQhqVUJHEG9S0R_9Cjh3pDqg?ct=text/plain> at:digest <urn:md5:86A554247106F52D11FFD0A3877A43AA>;
+                                                    dcterms:extent "891"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQhqVUJHEG9S0R_9Cjh3pDqg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (891 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQhqVUJHEG9S0R_9Cjh3pDqg?ct=text/plain#line=,1> rdf:value "#include <stdio.h>".
+<ni:///mh;1QEQqEYYDRGsZQAQVzeLI6AFVw?ct=text/plain> at:digest <urn:md5:A846180D11AC65001057378B23A00557>;
+                                                    dcterms:extent "1980"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQqEYYDRGsZQAQVzeLI6AFVw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.93 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQqEYYDRGsZQAQVzeLI6AFVw?ct=text/plain#line=,1> rdf:value "#include <stdio.h>".
+<ni:///mh;1QEQtEGxloQgE6Vptq8bc0dAsw?ct=text/plain> at:digest <urn:md5:B441B196842013A569B6AF1B734740B3>;
+                                                    dcterms:extent "1424"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQtEGxloQgE6Vptq8bc0dAsw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.39 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQtEGxloQgE6Vptq8bc0dAsw?ct=text/plain#line=,1> rdf:value "#include <stdio.h>".
+<ni:///mh;1QEQv0A9809LkSc1g6wwKCWmXg?ct=text/plain> at:digest <urn:md5:BF403DF34F4B91273583AC302825A65E>;
+                                                    dcterms:extent "440"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQv0A9809LkSc1g6wwKCWmXg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (440 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQv0A9809LkSc1g6wwKCWmXg?ct=text/plain#line=,1> rdf:value "".
+<ni:///mh;1QEQvxd4zcpJHi4RTQYfdRMsXw?ct=text/plain> at:digest <urn:md5:BF1778CDCA491E2E114D061F75132C5F>;
+                                                    dcterms:extent "95564"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQvxd4zcpJHi4RTQYfdRMsXw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (93.32 KiB)"@en;
+                                                    cnt:characterEncoding "windows-1252".
+<ni:///mh;1QEQvxd4zcpJHi4RTQYfdRMsXw?ct=text/plain#line=,1> rdf:value "/*".
+<ni:///mh;1QEQyp7AUMiW7eYEayoqan-5yg?ct=text/plain> at:digest <urn:md5:CA9EC050C896EDE6046B2A2A6A7FB9CA>;
+                                                    dcterms:extent "25893"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQyp7AUMiW7eYEayoqan-5yg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (25.29 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQyp7AUMiW7eYEayoqan-5yg?ct=text/plain#line=,1> rdf:value "#include <stdio.h>".
+<urn:md5:25B864DE45C91F1CB41B349FBFC44E4E> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "Jbhk3kXJHxy0GzSfv8ROTg=="^^xsd:base64Binary.
+<urn:md5:2B756FC6C320DDA29889C1FA81038449> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "K3VvxsMg3aKYicH6gQOESQ=="^^xsd:base64Binary.
+<urn:md5:35C6185FDC45642C7DF3B199CB0B1455> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "NcYYX9xFZCx987GZywsUVQ=="^^xsd:base64Binary.
+<urn:md5:371D54DF2DD9EAA80D24AA6E5B507287> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "Nx1U3y3Z6qgNJKpuW1Byhw=="^^xsd:base64Binary.
+<urn:md5:3E861A3BA6C78C258EBD6D817C5309F5> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "PoYaO6bHjCWOvW2BfFMJ9Q=="^^xsd:base64Binary.
+<urn:md5:41EEDC57D2112DCC2C6C827638C2B1D7> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "Qe7cV9IRLcwsbIJ2OMKx1w=="^^xsd:base64Binary.
+<urn:md5:54DB235BF78072AF87D92E7FE4E5D1DF> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "VNsjW/eAcq+H2S5/5OXR3w=="^^xsd:base64Binary.
+<urn:md5:568D438B7AB0FBA5B3FF2FA570095F0E> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "Vo1Di3qw+6Wz/y+lcAlfDg=="^^xsd:base64Binary.
+<urn:md5:70D583EBD6BBC006CC6BAD85A78291CF> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "cNWD69a7wAbMa62Fp4KRzw=="^^xsd:base64Binary.
+<urn:md5:72437FED39BB6F1C364DB3C5A0270B9F> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "ckN/7Tm7bxw2TbPFoCcLnw=="^^xsd:base64Binary.
+<urn:md5:7FB2E3C9DDC9CB27FD5E401636F2AB44> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "f7Ljyd3Jyyf9XkAWNvKrRA=="^^xsd:base64Binary.
+<urn:md5:86A554247106F52D11FFD0A3877A43AA> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "hqVUJHEG9S0R/9Cjh3pDqg=="^^xsd:base64Binary.
+<urn:md5:A846180D11AC65001057378B23A00557> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "qEYYDRGsZQAQVzeLI6AFVw=="^^xsd:base64Binary.
+<urn:md5:B441B196842013A569B6AF1B734740B3> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "tEGxloQgE6Vptq8bc0dAsw=="^^xsd:base64Binary.
+<urn:md5:BF1778CDCA491E2E114D061F75132C5F> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "vxd4zcpJHi4RTQYfdRMsXw=="^^xsd:base64Binary.
+<urn:md5:BF403DF34F4B91273583AC302825A65E> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "v0A9809LkSc1g6wwKCWmXg=="^^xsd:base64Binary.
+<urn:md5:CA9EC050C896EDE6046B2A2A6A7FB9CA> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "yp7AUMiW7eYEayoqan+5yg=="^^xsd:base64Binary.
+<urn:md5:D9636A7B050029A3B683CD54418E908A> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "2WNqewUAKaO2g81UQY6Qig=="^^xsd:base64Binary.
+<urn:md5:DAF997D8E14068C312C154E2E01D4884> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "2vmX2OFAaMMSwVTi4B1IhA=="^^xsd:base64Binary.
+<urn:md5:DE38AFA735E6D5C7220B1418410E7747> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "3jivpzXm1cciCxQYQQ53Rw=="^^xsd:base64Binary.
+<urn:md5:EC3DE0D6988F2FF4E04A09FBCF2FFA1D> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "7D3g1piPL/TgSgn7zy/6HQ=="^^xsd:base64Binary.
+<urn:md5:F0627C1FC83200524D2365E8F8711276> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "8GJ8H8gyAFJNI2Xo+HESdg=="^^xsd:base64Binary.
+<urn:md5:FFE86C26F30693468305709C61E30E3F> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "/+hsJvMGk0aDBXCcYeMOPw=="^^xsd:base64Binary.

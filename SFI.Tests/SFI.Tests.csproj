@@ -29,4 +29,10 @@
     <ProjectReference Include="..\SFI\SFI.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="ExpectedDescriptions\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

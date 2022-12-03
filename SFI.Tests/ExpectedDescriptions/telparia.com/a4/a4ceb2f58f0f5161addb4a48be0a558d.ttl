@@ -1,0 +1,42 @@
+@base <ni:///mh;1QEQrWLPEF1XV-NAzGRnZSDLnA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///password.rar>;
+     nie:interpretedAs <ni:///mh;1QEQrWLPEF1XV-NAzGRnZSDLnA?ct=application/octet-stream>;
+     nfo:fileName "password.rar";
+     nfo:fileSize 300 ;
+     a nfo:FileDataObject.
+<file:///abc/123> at:pathObject <file:///123>.
+<file:///password.rar> at:extensionObject <https://w3id.org/uri4uri/suffix/rar>.
+<ni:///mh;1QEQrWLPEF1XV-NAzGRnZSDLnA?ct=application/octet-stream> at:digest <urn:md5:AD62CF105D5757E340CC64676520CB9C>;
+                                                                  dcterms:extent "300"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQrWLPEF1XV-NAzGRnZSDLnA?ct=application/vnd.rar>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (300 B)"@en.
+<ni:///mh;1QEQrWLPEF1XV-NAzGRnZSDLnA?ct=application/vnd.rar> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.rar>;
+                                                             a schema:MediaObject,
+                                                               nfo:Archive;
+                                                             skos:prefLabel "RAR object (300 B)"@en.
+<ni:///mh;1QEQrWLPEF1XV-NAzGRnZSDLnA?ct=application/vnd.rar#/abc/123> at:pathObject <file:///abc/123>;
+                                                                      nfo:encryptionStatus nfo:encryptedStatus;
+                                                                      nfo:fileLastModified "2021-01-21T14:42:21.000000Z"^^xsd:dateTime;
+                                                                      nfo:fileName "123";
+                                                                      nfo:fileSize 4 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/abc/123".
+<urn:md5:AD62CF105D5757E340CC64676520CB9C> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "rWLPEF1XV+NAzGRnZSDLnA=="^^xsd:base64Binary.

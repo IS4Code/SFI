@@ -1,0 +1,80 @@
+@base <ni:///mh;1QEQeLxzeJGnfm1LPaxzMUcFUA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///comments.zip>;
+     nie:interpretedAs <ni:///mh;1QEQeLxzeJGnfm1LPaxzMUcFUA?ct=application/octet-stream>;
+     nfo:fileName "comments.zip";
+     nfo:fileSize 1084 ;
+     a nfo:FileDataObject.
+<file:///LOGICOMM.ICO> at:extensionObject <https://w3id.org/uri4uri/suffix/ico>.
+<file:///biplane.art> at:extensionObject <https://w3id.org/uri4uri/suffix/art>.
+<file:///comments.zip> at:extensionObject <https://w3id.org/uri4uri/suffix/zip>.
+<ni:///mh;1QEQ6ANfPQstzZF-JZB9nR5m7Q?ct=application/octet-stream> at:digest <urn:md5:E8035F3D0B2DCD917E25907D9D1E66ED>;
+                                                                  dcterms:extent "1496"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.46 KiB)"@en.
+<ni:///mh;1QEQeLxzeJGnfm1LPaxzMUcFUA?ct=application/octet-stream> at:digest <urn:md5:78BC737891A77E6D4B3DAC7331470550>;
+                                                                  dcterms:extent "1084"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQeLxzeJGnfm1LPaxzMUcFUA?ct=application/zip>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.06 KiB)"@en.
+<ni:///mh;1QEQeLxzeJGnfm1LPaxzMUcFUA?ct=application/zip> at:pathObject <file:///>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
+                                                         nie:interpretedAs <ni:///mh;1QEQeLxzeJGnfm1LPaxzMUcFUA?ct=application/zip#/>;
+                                                         a schema:MediaObject,
+                                                           nfo:Archive;
+                                                         skos:prefLabel "ZIP object (1.06 KiB)"@en.
+<ni:///mh;1QEQeLxzeJGnfm1LPaxzMUcFUA?ct=application/zip#/> at:pathObject <file:///./>;
+                                                           a nfo:Folder;
+                                                           skos:prefLabel "/".
+<ni:///mh;1QEQeLxzeJGnfm1LPaxzMUcFUA?ct=application/zip#/LOGICOMM.ICO> at:pathObject <file:///LOGICOMM.ICO>;
+                                                                       nie:interpretedAs <ni:///mh;1QEQiUay9PpREEXldzwkLJoReA?ct=application/octet-stream>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQeLxzeJGnfm1LPaxzMUcFUA?ct=application/zip#/>;
+                                                                       nfo:fileLastModified "2020-07-08T15:44:34.000000+02:00"^^xsd:dateTime;
+                                                                       nfo:fileName "LOGICOMM.ICO";
+                                                                       nfo:fileSize 1152 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/LOGICOMM.ICO".
+<ni:///mh;1QEQeLxzeJGnfm1LPaxzMUcFUA?ct=application/zip#/biplane.art> at:pathObject <file:///biplane.art>;
+                                                                      nie:interpretedAs <ni:///mh;1QEQ6ANfPQstzZF-JZB9nR5m7Q?ct=application/octet-stream>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQeLxzeJGnfm1LPaxzMUcFUA?ct=application/zip#/>;
+                                                                      nfo:fileLastModified "2020-07-08T15:44:30.000000+02:00"^^xsd:dateTime;
+                                                                      nfo:fileName "biplane.art";
+                                                                      nfo:fileSize 1496 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/biplane.art".
+<ni:///mh;1QEQiUay9PpREEXldzwkLJoReA?ct=application/octet-stream> at:digest <urn:md5:8946B2F4FA511045E5773C242C9A1178>;
+                                                                  dcterms:extent "1152"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQiUay9PpREEXldzwkLJoReA?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.13 KiB)"@en.
+<ni:///mh;1QEQiUay9PpREEXldzwkLJoReA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:height 128 ;
+                                                   nfo:width 64 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (64×128)"@en.
+<urn:md5:78BC737891A77E6D4B3DAC7331470550> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "eLxzeJGnfm1LPaxzMUcFUA=="^^xsd:base64Binary.
+<urn:md5:8946B2F4FA511045E5773C242C9A1178> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "iUay9PpREEXldzwkLJoReA=="^^xsd:base64Binary.
+<urn:md5:E8035F3D0B2DCD917E25907D9D1E66ED> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "6ANfPQstzZF+JZB9nR5m7Q=="^^xsd:base64Binary.

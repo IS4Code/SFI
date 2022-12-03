@@ -1,0 +1,36 @@
+@base <ni:///mh;1QEQ8FEYnP6cjfn2H_fzSpe-7Q?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///WS1.ICO>;
+     nie:interpretedAs <ni:///mh;1QEQ8FEYnP6cjfn2H_fzSpe-7Q?ct=application/octet-stream>;
+     nfo:fileName "WS1.ICO";
+     nfo:fileSize 888 ;
+     a nfo:FileDataObject.
+<file:///WS1.ICO> at:extensionObject <https://w3id.org/uri4uri/suffix/ico>.
+<ni:///mh;1QEQ8FEYnP6cjfn2H_fzSpe-7Q?ct=application/octet-stream> at:digest <urn:md5:F051189CFE9C8DF9F61FF7F34A97BEED>;
+                                                                  dcterms:extent "888"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ8FEYnP6cjfn2H_fzSpe-7Q?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (888 B)"@en.
+<ni:///mh;1QEQ8FEYnP6cjfn2H_fzSpe-7Q?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:height 64 ;
+                                                   nfo:width 32 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (32×64)"@en.
+<urn:md5:F051189CFE9C8DF9F61FF7F34A97BEED> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "8FEYnP6cjfn2H/fzSpe+7Q=="^^xsd:base64Binary.

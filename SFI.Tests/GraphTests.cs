@@ -6,9 +6,11 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using VDS.RDF;
 using VDS.RDF.Parsing;
+using VDS.RDF.Writing.Formatting;
 
 namespace IS4.SFI.Tests
 {
@@ -34,7 +36,8 @@ namespace IS4.SFI.Tests
         };
 
         static readonly IRdfReader turtleParser = new Notation3Parser();
-        static readonly GraphMatcher graphMatcher = new GraphMatcher();
+        static readonly TurtleFormatter turtleFormatter = new();
+        static readonly GraphDiff graphDiff = new();
 
         async Task TestOutputGraph(string source)
         {
@@ -48,10 +51,10 @@ namespace IS4.SFI.Tests
                 id = host + Path.DirectorySeparatorChar + id;
             }
 
-            const string cachedDir = "cached";
-            const string outputDir = "descriptions";
-            var outputFile = Path.Combine(outputDir, id + ".ttl");
-            Directory.CreateDirectory(Path.GetDirectoryName(outputFile)!);
+            const string cachedDir = "Cached";
+            const string compareDir = "ExpectedDescriptions";
+            var compareFile = Path.Combine(compareDir, id + ".ttl");
+            Directory.CreateDirectory(Path.GetDirectoryName(compareFile)!);
 
             var path = uri.AbsolutePath;
             if(!String.IsNullOrEmpty(host))
@@ -59,10 +62,10 @@ namespace IS4.SFI.Tests
                 path = host + path;
             }
 
-            IStreamFactory streamFactory;
+            TestFile file;
             if(File.Exists(path) || File.Exists(path = Uri.UnescapeDataString(path)))
             {
-                streamFactory = new FileInfoWrapper(new FileInfo(path));
+                file = new TestFile(idUri, path);
             }else{
                 var cachedFile = Path.Combine(cachedDir, id);
                 if(!File.Exists(cachedFile))
@@ -70,30 +73,53 @@ namespace IS4.SFI.Tests
                     Directory.CreateDirectory(Path.GetDirectoryName(cachedFile)!);
                     using(var stream = await httpClient.GetStreamAsync(uri.AbsoluteUri))
                     {
-                        using var file = File.Create(cachedFile);
-                        await stream.CopyToAsync(file);
+                        using var fileStream = File.Create(cachedFile);
+                        await stream.CopyToAsync(fileStream);
                     }
                 }
-                streamFactory = new FileInfoWrapper(new FileInfo(cachedFile));
+                file = new TestFile(idUri, cachedFile);
             }
 
-            if(!File.Exists(outputFile))
+            Assert.IsTrue(File.Exists(compareFile));
+
+            var comparedData = File.ReadAllBytes(compareFile);
+
+            var graph = new Graph(true);
+            turtleParser.Load(graph, compareFile);
+
+            var buffer = new MemoryStream();
+            await inspector.Inspect(file, buffer, inspectorOptions);
+            var data = buffer.GetData();
+            buffer = new MemoryStream(data.Array!, data.Offset, data.Count, false);
+
+            var graph2 = new Graph(true);
+            turtleParser.Load(graph2, new StreamReader(buffer));
+
+            GraphDiffReport? report = null;
+            var thread = new Thread(() => report = graphDiff.Difference(graph, graph2));
+            thread.IsBackground = true;
+            thread.Start();
+            if(!thread.Join(20000))
             {
-                await inspector.Inspect(streamFactory, outputFile, inspectorOptions);
-            }else{
-                var graph = new Graph(true);
-                turtleParser.Load(graph, outputFile);
-
-                var buffer = new MemoryStream();
-                await inspector.Inspect(streamFactory, buffer, inspectorOptions);
-                var data = buffer.GetData();
-                buffer = new MemoryStream(data.Array!, data.Offset, data.Count, false);
-
-                var graph2 = new Graph(true);
-                turtleParser.Load(graph2, new StreamReader(buffer));
-
-                Assert.IsTrue(graphMatcher.Equals(graph, graph2));
+                thread.Priority = ThreadPriority.Lowest;
+                Assert.Inconclusive("The graphs could not be compared within the timeout.");
             }
+
+            if(!report!.AreEqual)
+            {
+                Console.Error.WriteLine($"File: {compareFile}");
+                Console.Error.WriteLine("Added:");
+                foreach(var added in report.AddedTriples.Concat(report.AddedMSGs.SelectMany(g => g.Triples)))
+                {
+                    Console.Error.WriteLine(turtleFormatter.Format(added));
+                }
+                Console.Error.WriteLine("Removed:");
+                foreach(var added in report.AddedTriples.Concat(report.AddedMSGs.SelectMany(g => g.Triples)))
+                {
+                    Console.Error.WriteLine(turtleFormatter.Format(added));
+                }
+            }
+            Assert.IsTrue(report.AreEqual);
         }
         
         class TestInspector : Inspector
@@ -121,16 +147,60 @@ namespace IS4.SFI.Tests
                 MediaAnalysisFormats.AddDefault(Analyzers, DataAnalyzer.DataFormats, XmlAnalyzer.XmlFormats, ContainerProviders);
                 WindowsFormats.AddDefault(Analyzers, DataAnalyzer.DataFormats, XmlAnalyzer.XmlFormats, ContainerProviders);
 
-                if(Analyzers.OfType<WaveAnalyzer>().FirstOrDefault() is WaveAnalyzer waveAnalyzer)
-                {
-                    waveAnalyzer.CreateSpectrum = false;
-                }
-
                 await base.AddDefault();
 
                 DataAnalyzer.MinDataLengthToStore = 0;
                 DataAnalyzer.HashAlgorithms.Clear();
                 FileAnalyzer.HashAlgorithms.Clear();
+
+                DataAnalyzer.HashAlgorithms.Add(BuiltInHash.MD5!);
+                DataAnalyzer.ContentUriFormatter = new NiHashedContentUriFormatter(BuiltInHash.MD5!);
+
+                if(Analyzers.OfType<WaveAnalyzer>().FirstOrDefault() is WaveAnalyzer waveAnalyzer)
+                {
+                    waveAnalyzer.CreateSpectrum = false;
+                }
+
+                if(Analyzers.OfType<DosModuleAnalyzer>().FirstOrDefault() is DosModuleAnalyzer dosAnalyzer)
+                {
+                    dosAnalyzer.Emulate = false;
+                }
+            }
+        }
+
+        class TestFile : IFileInfo
+        {
+            readonly Uri uri;
+            readonly string location;
+
+            public string? Name => Uri.UnescapeDataString(System.IO.Path.GetFileName(uri.AbsolutePath));
+            public string? SubName => null;
+            public string? Path => null;
+            public int? Revision => null;
+            public DateTime? CreationTime => null;
+            public DateTime? LastWriteTime => null;
+            public DateTime? LastAccessTime => null;
+            public FileKind Kind => FileKind.None;
+            public FileAttributes Attributes => FileAttributes.Normal;
+            public long Length => new FileInfo(location).Length;
+            public StreamFactoryAccess Access => StreamFactoryAccess.Parallel;
+            public object? ReferenceKey => AppDomain.CurrentDomain;
+            public object? DataKey => location;
+
+            public TestFile(Uri uri, string location)
+            {
+                this.uri = uri;
+                this.location = location;
+            }
+
+            public Stream Open()
+            {
+                return File.OpenRead(location);
+            }
+
+            public override string? ToString()
+            {
+                return null;
             }
         }
     }

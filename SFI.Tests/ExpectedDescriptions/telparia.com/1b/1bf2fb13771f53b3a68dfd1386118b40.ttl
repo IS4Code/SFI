@@ -1,0 +1,44 @@
+@base <ni:///mh;1QEQiJKXAMYq7vYhpk6PN6CZrw?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///icebergs.jpg>;
+     nie:interpretedAs <ni:///mh;1QEQiJKXAMYq7vYhpk6PN6CZrw?ct=application/octet-stream>;
+     nfo:fileName "icebergs.jpg";
+     nfo:fileSize 33297 ;
+     a nfo:FileDataObject.
+<file:///icebergs.jpg> at:extensionObject <https://w3id.org/uri4uri/suffix/jpg>.
+<ni:///mh;1QEQiJKXAMYq7vYhpk6PN6CZrw?ct=application/octet-stream> at:digest <urn:md5:88929700C62AEEF621A64E8F37A099AF>;
+                                                                  dcterms:extent "33297"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQiJKXAMYq7vYhpk6PN6CZrw?ct=image/jpeg>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (32.52 KiB)"@en.
+<ni:///mh;1QEQiJKXAMYq7vYhpk6PN6CZrw?ct=image/jpeg> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/jpeg>;
+                                                    nfo:colorDepth 24 ;
+                                                    nfo:height 315 ;
+                                                    nfo:horizontalResolution 96 ;
+                                                    nfo:verticalResolution 96 ;
+                                                    nfo:width 437 ;
+                                                    <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#comments> """
+
+CREATOR: XV Version 3.01  Rev: 3/30/93  Quality = 80, Smoothing = 0
+""";
+                                                    a schema:MediaObject,
+                                                      nfo:Image,
+                                                      schema:ImageObject;
+                                                    skos:prefLabel "JPG object (437×315)"@en,
+                                                                   "JPG object (32.52 KiB)"@en.
+<urn:md5:88929700C62AEEF621A64E8F37A099AF> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "iJKXAMYq7vYhpk6PN6CZrw=="^^xsd:base64Binary.

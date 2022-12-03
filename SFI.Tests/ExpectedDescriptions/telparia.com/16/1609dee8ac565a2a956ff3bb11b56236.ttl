@@ -1,0 +1,53 @@
+@base <ni:///mh;1QEQo56R7uqU5eoxb7osVeNCVA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///input_truecolor.tiff>;
+     nie:interpretedAs <ni:///mh;1QEQo56R7uqU5eoxb7osVeNCVA?ct=application/octet-stream>;
+     nfo:fileName "input_truecolor.tiff";
+     nfo:fileSize 9924 ;
+     a nfo:FileDataObject.
+<file:///input_truecolor.tiff> at:extensionObject <https://w3id.org/uri4uri/suffix/tiff>.
+<ni:///mh;1QEQo56R7uqU5eoxb7osVeNCVA?ct=application/octet-stream> at:digest <urn:md5:A39E91EEEA94E5EA316FBA2C55E34254>;
+                                                                  dcterms:extent "9924"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQo56R7uqU5eoxb7osVeNCVA?ct=image/tiff>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (9.69 KiB)"@en.
+<ni:///mh;1QEQo56R7uqU5eoxb7osVeNCVA?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
+                                                    nfo:colorDepth 24 ;
+                                                    nfo:height 46 ;
+                                                    nfo:horizontalResolution 1 ;
+                                                    nfo:verticalResolution 1 ;
+                                                    nfo:width 70 ;
+                                                    a schema:MediaObject,
+                                                      nfo:Image,
+                                                      exif:IFD,
+                                                      schema:ImageObject;
+                                                    exif:compression 1 ;
+                                                    exif:imageLength 46 ;
+                                                    exif:imageWidth 70 ;
+                                                    exif:orientation 1 ;
+                                                    exif:photometricInterpretation 2 ;
+                                                    exif:planarConfiguration 1 ;
+                                                    exif:resolutionUnit 1 ;
+                                                    exif:rowsPerStrip 39 ;
+                                                    exif:samplesPerPixel 3 ;
+                                                    exif:xResolution 1 ;
+                                                    exif:yResolution 1 ;
+                                                    skos:prefLabel "TIFF object (70×46)"@en,
+                                                                   "TIF object (9.69 KiB)"@en.
+<urn:md5:A39E91EEEA94E5EA316FBA2C55E34254> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "o56R7uqU5eoxb7osVeNCVA=="^^xsd:base64Binary.

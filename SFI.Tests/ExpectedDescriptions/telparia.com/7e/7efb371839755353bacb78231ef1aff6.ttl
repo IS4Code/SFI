@@ -1,0 +1,46 @@
+@base <ni:///mh;1QEQJJ5vavvhvASUiH5gcB6EBw?ct=text/plain>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix xis: <http://www.w3.org/2001/04/infoset#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///xinlines.xml>;
+     nie:interpretedAs <ni:///mh;1QEQJJ5vavvhvASUiH5gcB6EBw?ct=text/plain>;
+     nfo:fileName "xinlines.xml";
+     nfo:fileSize 165 ;
+     a nfo:FileDataObject.
+<file:///xinlines.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<ni:///mh;1QEQJJ5vavvhvASUiH5gcB6EBw?ct=application/x.ns.book+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.book+xml>;
+                                                                   a schema:MediaObject;
+                                                                   skos:prefLabel "BOOK object"@en.
+<ni:///mh;1QEQJJ5vavvhvASUiH5gcB6EBw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQJJ5vavvhvASUiH5gcB6EBw?ct=application/x.ns.book+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQJJ5vavvhvASUiH5gcB6EBw?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (book)"@en.
+<ni:///mh;1QEQJJ5vavvhvASUiH5gcB6EBw?ct=application/xml#element(/1)> a xis:Element;
+                                                                     xis:localName "book";
+                                                                     xis:name "book".
+<ni:///mh;1QEQJJ5vavvhvASUiH5gcB6EBw?ct=text/plain> at:digest <urn:md5:249E6F6AFBE1BC0494887E60701E8407>;
+                                                    dcterms:extent "165"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQJJ5vavvhvASUiH5gcB6EBw?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQJJ5vavvhvASUiH5gcB6EBw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (165 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQJJ5vavvhvASUiH5gcB6EBw?ct=text/plain#line=,1> rdf:value """<!DOCTYPE book SYSTEM \"/share/sgml/Norman_Walsh/db3xml07/db3xml07.dtd\" [""".
+<urn:md5:249E6F6AFBE1BC0494887E60701E8407> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "JJ5vavvhvASUiH5gcB6EBw=="^^xsd:base64Binary.

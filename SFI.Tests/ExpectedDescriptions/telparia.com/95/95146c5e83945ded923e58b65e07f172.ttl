@@ -1,0 +1,61 @@
+@base <ni:///mh;1QEQs_hbcrEXMNBg4-2aKZ1gNg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///VIDEO7.ZIP>;
+     nie:interpretedAs <ni:///mh;1QEQs_hbcrEXMNBg4-2aKZ1gNg?ct=application/octet-stream>;
+     nfo:fileName "VIDEO7.ZIP";
+     nfo:fileSize 2396 ;
+     a nfo:FileDataObject.
+<file:///V7VESA.COM> at:extensionObject <https://w3id.org/uri4uri/suffix/com>.
+<file:///VIDEO7.ZIP> at:extensionObject <https://w3id.org/uri4uri/suffix/zip>.
+<ni:///mh;1QEQkB6pSTS7O6Y4Q9u78hdHJg?ct=application/octet-stream> at:digest <urn:md5:901EA94934BB3BA63843DBBBF2174726>;
+                                                                  dcterms:extent "3493"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQkB6pSTS7O6Y4Q9u78hdHJg?ct=application/x-dosexec>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (3.41 KiB)"@en.
+<ni:///mh;1QEQkB6pSTS7O6Y4Q9u78hdHJg?ct=application/x-dosexec> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-dosexec>;
+                                                               a schema:MediaObject,
+                                                                 schema:SoftwareApplication,
+                                                                 nfo:Executable;
+                                                               skos:prefLabel "COM object (3.41 KiB)"@en.
+<ni:///mh;1QEQs_hbcrEXMNBg4-2aKZ1gNg?ct=application/octet-stream> at:digest <urn:md5:B3F85B72B11730D060E3ED9A299D6036>;
+                                                                  dcterms:extent "2396"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQs_hbcrEXMNBg4-2aKZ1gNg?ct=application/zip>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (2.34 KiB)"@en.
+<ni:///mh;1QEQs_hbcrEXMNBg4-2aKZ1gNg?ct=application/zip> at:pathObject <file:///>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
+                                                         nie:interpretedAs <ni:///mh;1QEQs_hbcrEXMNBg4-2aKZ1gNg?ct=application/zip#/>;
+                                                         a schema:MediaObject,
+                                                           nfo:Archive;
+                                                         skos:prefLabel "ZIP object (2.34 KiB)"@en.
+<ni:///mh;1QEQs_hbcrEXMNBg4-2aKZ1gNg?ct=application/zip#/> at:pathObject <file:///./>;
+                                                           a nfo:Folder;
+                                                           skos:prefLabel "/".
+<ni:///mh;1QEQs_hbcrEXMNBg4-2aKZ1gNg?ct=application/zip#/V7VESA.COM> at:pathObject <file:///V7VESA.COM>;
+                                                                     nie:interpretedAs <ni:///mh;1QEQkB6pSTS7O6Y4Q9u78hdHJg?ct=application/octet-stream>;
+                                                                     nfo:belongsToContainer <ni:///mh;1QEQs_hbcrEXMNBg4-2aKZ1gNg?ct=application/zip#/>;
+                                                                     nfo:fileLastModified "1993-01-07T18:03:30.000000+01:00"^^xsd:dateTime;
+                                                                     nfo:fileName "V7VESA.COM";
+                                                                     nfo:fileSize 3493 ;
+                                                                     a nfo:FileDataObject,
+                                                                       nfo:ArchiveItem;
+                                                                     skos:prefLabel "/V7VESA.COM".
+<urn:md5:901EA94934BB3BA63843DBBBF2174726> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "kB6pSTS7O6Y4Q9u78hdHJg=="^^xsd:base64Binary.
+<urn:md5:B3F85B72B11730D060E3ED9A299D6036> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "s/hbcrEXMNBg4+2aKZ1gNg=="^^xsd:base64Binary.

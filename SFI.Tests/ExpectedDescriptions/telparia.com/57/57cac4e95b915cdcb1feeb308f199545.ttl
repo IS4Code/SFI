@@ -1,0 +1,35 @@
+@base <ni:///mh;1QEQKeV7vVpIZze68bmV6NRXcQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///main1>;
+     nie:interpretedAs <ni:///mh;1QEQKeV7vVpIZze68bmV6NRXcQ?ct=application/octet-stream>;
+     nfo:fileName "main1";
+     nfo:fileSize 2992973 ;
+     a nfo:FileDataObject.
+<ni:///mh;1QEQKeV7vVpIZze68bmV6NRXcQ?ct=application/octet-stream> at:digest <urn:md5:29E57BBD5A486737BAF1B995E8D45771>;
+                                                                  dcterms:extent "2992973"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQKeV7vVpIZze68bmV6NRXcQ?ct=image/vnd.adobe.photoshop>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (2.85 MiB)"@en.
+<ni:///mh;1QEQKeV7vVpIZze68bmV6NRXcQ?ct=image/vnd.adobe.photoshop> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/vnd.adobe.photoshop>;
+                                                                   nfo:height 480 ;
+                                                                   nfo:width 640 ;
+                                                                   a schema:MediaObject,
+                                                                     schema:ImageObject,
+                                                                     nfo:Image;
+                                                                   skos:prefLabel "PSD object (640×480)"@en.
+<urn:md5:29E57BBD5A486737BAF1B995E8D45771> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "KeV7vVpIZze68bmV6NRXcQ=="^^xsd:base64Binary.

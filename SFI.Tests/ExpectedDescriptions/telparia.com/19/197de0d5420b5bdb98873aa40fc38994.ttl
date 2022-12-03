@@ -1,0 +1,126 @@
+@base <ni:///mh;1QEQIBUjgZ8LxQuke6BmM4-jew?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///EMBH.DLL>;
+     nie:interpretedAs <ni:///mh;1QEQIBUjgZ8LxQuke6BmM4-jew?ct=application/octet-stream>;
+     nfo:fileName "EMBH.DLL";
+     nfo:fileSize 6976 ;
+     a nfo:FileDataObject.
+<file:///EMBH.DLL> at:extensionObject <https://w3id.org/uri4uri/suffix/dll>.
+<ni:///mh;1QEQIBUjgZ8LxQuke6BmM4-jew?ct=application/octet-stream> at:digest <urn:md5:201523819F0BC50BA47BA066338FA37B>;
+                                                                  dcterms:extent "6976"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQIBUjgZ8LxQuke6BmM4-jew?ct=application/x-msdownload;format=ne>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (6.81 KiB)"@en.
+<ni:///mh;1QEQIBUjgZ8LxQuke6BmM4-jew?ct=application/x-msdownload;format=ne> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-msdownload;format=ne>;
+                                                                            nie:hasPart <ni:///mh;1QEQIBUjgZ8LxQuke6BmM4-jew?ct=application/x-msdownload;format=ne#/Bitmap/100>,
+                                                                                        <ni:///mh;1QEQIBUjgZ8LxQuke6BmM4-jew?ct=application/x-msdownload;format=ne#/Bitmap/101>,
+                                                                                        <ni:///mh;1QEQIBUjgZ8LxQuke6BmM4-jew?ct=application/x-msdownload;format=ne#/Bitmap/102>,
+                                                                                        <ni:///mh;1QEQIBUjgZ8LxQuke6BmM4-jew?ct=application/x-msdownload;format=ne#/Bitmap/103>;
+                                                                            a schema:MediaObject,
+                                                                              schema:SoftwareApplication,
+                                                                              nfo:Executable;
+                                                                            skos:prefLabel "DLL object (6.81 KiB)"@en.
+<ni:///mh;1QEQIBUjgZ8LxQuke6BmM4-jew?ct=application/x-msdownload;format=ne#/Bitmap/100> at:pathObject <file:///100>;
+                                                                                        nie:interpretedAs <ni:///mh;1QEQdLTURlMIyhEG-x25I2rxNg?ct=application/octet-stream>;
+                                                                                        nfo:fileName "100";
+                                                                                        nfo:fileSize 288 ;
+                                                                                        a nfo:FileDataObject,
+                                                                                          nfo:EmbeddedFileDataObject;
+                                                                                        skos:prefLabel "/Bitmap/100".
+<ni:///mh;1QEQIBUjgZ8LxQuke6BmM4-jew?ct=application/x-msdownload;format=ne#/Bitmap/101> at:pathObject <file:///101>;
+                                                                                        nie:interpretedAs <ni:///mh;1QEQKt6KRo25YrCtBHszzlFslw?ct=application/octet-stream>;
+                                                                                        nfo:fileName "101";
+                                                                                        nfo:fileSize 288 ;
+                                                                                        a nfo:FileDataObject,
+                                                                                          nfo:EmbeddedFileDataObject;
+                                                                                        skos:prefLabel "/Bitmap/101".
+<ni:///mh;1QEQIBUjgZ8LxQuke6BmM4-jew?ct=application/x-msdownload;format=ne#/Bitmap/102> at:pathObject <file:///102>;
+                                                                                        nie:interpretedAs <ni:///mh;1QEQMWg8jabq9Xtj9gKHscp5hQ?ct=application/octet-stream>;
+                                                                                        nfo:fileName "102";
+                                                                                        nfo:fileSize 624 ;
+                                                                                        a nfo:FileDataObject,
+                                                                                          nfo:EmbeddedFileDataObject;
+                                                                                        skos:prefLabel "/Bitmap/102".
+<ni:///mh;1QEQIBUjgZ8LxQuke6BmM4-jew?ct=application/x-msdownload;format=ne#/Bitmap/103> at:pathObject <file:///103>;
+                                                                                        nie:interpretedAs <ni:///mh;1QEQathVEWtn26wlw9PGG0__0w?ct=application/octet-stream>;
+                                                                                        nfo:fileName "103";
+                                                                                        nfo:fileSize 624 ;
+                                                                                        a nfo:FileDataObject,
+                                                                                          nfo:EmbeddedFileDataObject;
+                                                                                        skos:prefLabel "/Bitmap/103".
+<ni:///mh;1QEQKt6KRo25YrCtBHszzlFslw?ct=application/octet-stream> at:digest <urn:md5:2ADE8A468DB962B0AD047B33CE516C97>;
+                                                                  dcterms:extent "287"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQKt6KRo25YrCtBHszzlFslw?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (287 B)"@en.
+<ni:///mh;1QEQKt6KRo25YrCtBHszzlFslw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:height 11 ;
+                                                   nfo:width 31 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (31×11)"@en.
+<ni:///mh;1QEQMWg8jabq9Xtj9gKHscp5hQ?ct=application/octet-stream> at:digest <urn:md5:31683C8DA6EAF57B63F60287B1CA7985>;
+                                                                  dcterms:extent "623"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQMWg8jabq9Xtj9gKHscp5hQ?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (623 B)"@en.
+<ni:///mh;1QEQMWg8jabq9Xtj9gKHscp5hQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:height 32 ;
+                                                   nfo:width 32 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (32×32)"@en.
+<ni:///mh;1QEQathVEWtn26wlw9PGG0__0w?ct=application/octet-stream> at:digest <urn:md5:6AD855116B67DBAC25C3D3C61B4FFFD3>;
+                                                                  dcterms:extent "623"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQathVEWtn26wlw9PGG0__0w?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (623 B)"@en.
+<ni:///mh;1QEQathVEWtn26wlw9PGG0__0w?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:height 32 ;
+                                                   nfo:width 32 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (32×32)"@en.
+<ni:///mh;1QEQdLTURlMIyhEG-x25I2rxNg?ct=application/octet-stream> at:digest <urn:md5:74B4D4465308CA1106FB1DB9236AF136>;
+                                                                  dcterms:extent "287"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQdLTURlMIyhEG-x25I2rxNg?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (287 B)"@en.
+<ni:///mh;1QEQdLTURlMIyhEG-x25I2rxNg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:height 11 ;
+                                                   nfo:width 31 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (31×11)"@en.
+<urn:md5:201523819F0BC50BA47BA066338FA37B> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "IBUjgZ8LxQuke6BmM4+jew=="^^xsd:base64Binary.
+<urn:md5:2ADE8A468DB962B0AD047B33CE516C97> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "Kt6KRo25YrCtBHszzlFslw=="^^xsd:base64Binary.
+<urn:md5:31683C8DA6EAF57B63F60287B1CA7985> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "MWg8jabq9Xtj9gKHscp5hQ=="^^xsd:base64Binary.
+<urn:md5:6AD855116B67DBAC25C3D3C61B4FFFD3> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "athVEWtn26wlw9PGG0//0w=="^^xsd:base64Binary.
+<urn:md5:74B4D4465308CA1106FB1DB9236AF136> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "dLTURlMIyhEG+x25I2rxNg=="^^xsd:base64Binary.

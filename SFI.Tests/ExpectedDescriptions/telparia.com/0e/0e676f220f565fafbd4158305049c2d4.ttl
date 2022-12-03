@@ -1,0 +1,32 @@
+@base <ni:///mh;1QEQ5iHXwCcmjRsuzloZU9ikYg?ct=application/x.sig.swg2>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///EINLKART.VOR>;
+     nie:interpretedAs <ni:///mh;1QEQ5iHXwCcmjRsuzloZU9ikYg?ct=application/octet-stream>;
+     nfo:fileName "EINLKART.VOR";
+     nfo:fileSize 5999 ;
+     a nfo:FileDataObject.
+<file:///EINLKART.VOR> at:extensionObject <https://w3id.org/uri4uri/suffix/vor>.
+<ni:///mh;1QEQ5iHXwCcmjRsuzloZU9ikYg?ct=application/octet-stream> at:digest <urn:md5:E621D7C027268D1B2ECE5A1953D8A462>;
+                                                                  dcterms:extent "5999"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ5iHXwCcmjRsuzloZU9ikYg?ct=application/x.sig.swg2>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (5.86 KiB)"@en.
+<ni:///mh;1QEQ5iHXwCcmjRsuzloZU9ikYg?ct=application/x.sig.swg2> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.swg2>;
+                                                                a schema:MediaObject;
+                                                                skos:prefLabel "SWG2 object (5.86 KiB)"@en.
+<urn:md5:E621D7C027268D1B2ECE5A1953D8A462> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "5iHXwCcmjRsuzloZU9ikYg=="^^xsd:base64Binary.

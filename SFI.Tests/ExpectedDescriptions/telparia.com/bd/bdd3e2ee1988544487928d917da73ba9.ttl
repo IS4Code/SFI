@@ -1,0 +1,66 @@
+@base <ni:///mh;1QEQfD1rLTpC-z4IwYxs3yMFrg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///1630627129_Thumbs.db>;
+     nie:interpretedAs <ni:///mh;1QEQfD1rLTpC-z4IwYxs3yMFrg?ct=application/octet-stream>;
+     nfo:fileName "1630627129_Thumbs.db";
+     nfo:fileSize 4096 ;
+     a nfo:FileDataObject.
+<data:application/octet-stream;base64,EAAHAAEAAABgAAAAYAAAACAAAAABAAAAACpG9I2EwwFDAEQALgBpAGMAbwAAAAAA> dcterms:extent "48"^^dt:byte;
+                                                                                                        a cnt:ContentAsBase64;
+                                                                                                        skos:prefLabel "binary data (48 B)"@en;
+                                                                                                        cnt:bytes "EAAHAAEAAABgAAAAYAAAACAAAAABAAAAACpG9I2EwwFDAEQALgBpAGMAbwAAAAAA"^^xsd:base64Binary.
+<file:///1630627129_Thumbs.db> at:extensionObject <https://w3id.org/uri4uri/suffix/db>.
+<ni:///mh;1QEQCcWnfKtz3_Bdb7ra-cIQdQ?ct=application/octet-stream> at:digest <urn:md5:09C5A77CAB73DFF05D6FBADAF9C21075>;
+                                                                  dcterms:extent "1563"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.53 KiB)"@en.
+<ni:///mh;1QEQfD1rLTpC-z4IwYxs3yMFrg?ct=application/octet-stream> at:digest <urn:md5:7C3D6B2D3A42FB3E08C18C6CDF2305AE>;
+                                                                  dcterms:extent "4096"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQfD1rLTpC-z4IwYxs3yMFrg?ct=application/x-ole-storage>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (4 KiB)"@en.
+<ni:///mh;1QEQfD1rLTpC-z4IwYxs3yMFrg?ct=application/x-ole-storage> at:pathObject <file:///>;
+                                                                   schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
+                                                                   nie:interpretedAs <ni:///mh;1QEQfD1rLTpC-z4IwYxs3yMFrg?ct=application/x-ole-storage#/>;
+                                                                   nfo:fileLastModified "2005-03-17T01:07:42.464000Z"^^xsd:dateTime;
+                                                                   a schema:MediaObject,
+                                                                     nfo:EmbeddedFileDataObject;
+                                                                   skos:prefLabel "OLE object (4 KiB)"@en.
+<ni:///mh;1QEQfD1rLTpC-z4IwYxs3yMFrg?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+                                                                     a nfo:Folder;
+                                                                     skos:prefLabel "/".
+<ni:///mh;1QEQfD1rLTpC-z4IwYxs3yMFrg?ct=application/x-ole-storage#/1> at:pathObject <file:///1>;
+                                                                      nie:interpretedAs <ni:///mh;1QEQCcWnfKtz3_Bdb7ra-cIQdQ?ct=application/octet-stream>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQfD1rLTpC-z4IwYxs3yMFrg?ct=application/x-ole-storage#/>;
+                                                                      nfo:fileName "1";
+                                                                      nfo:fileSize 1563 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:EmbeddedFileDataObject;
+                                                                      skos:prefLabel "/1".
+<ni:///mh;1QEQfD1rLTpC-z4IwYxs3yMFrg?ct=application/x-ole-storage#/Catalog> at:pathObject <file:///Catalog>;
+                                                                            nie:interpretedAs <data:application/octet-stream;base64,EAAHAAEAAABgAAAAYAAAACAAAAABAAAAACpG9I2EwwFDAEQALgBpAGMAbwAAAAAA>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQfD1rLTpC-z4IwYxs3yMFrg?ct=application/x-ole-storage#/>;
+                                                                            nfo:fileName "Catalog";
+                                                                            nfo:fileSize 48 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:EmbeddedFileDataObject;
+                                                                            skos:prefLabel "/Catalog".
+<urn:md5:09C5A77CAB73DFF05D6FBADAF9C21075> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "CcWnfKtz3/Bdb7ra+cIQdQ=="^^xsd:base64Binary.
+<urn:md5:7C3D6B2D3A42FB3E08C18C6CDF2305AE> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "fD1rLTpC+z4IwYxs3yMFrg=="^^xsd:base64Binary.

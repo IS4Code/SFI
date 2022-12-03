@@ -1,0 +1,56 @@
+@base <ni:///mh;1QEQQX0UHFJerj20RKylVrz8pA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///xing_t24.tif>;
+     nie:interpretedAs <ni:///mh;1QEQQX0UHFJerj20RKylVrz8pA?ct=application/octet-stream>;
+     nfo:fileName "xing_t24.tif";
+     nfo:fileSize 118248 ;
+     a nfo:FileDataObject.
+<file:///xing_t24.tif> at:extensionObject <https://w3id.org/uri4uri/suffix/tif>.
+<ni:///mh;1QEQQX0UHFJerj20RKylVrz8pA?ct=application/octet-stream> at:digest <urn:md5:417D141C525EAE3DB444ACA556BCFCA4>;
+                                                                  dcterms:extent "118248"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQQX0UHFJerj20RKylVrz8pA?ct=image/tiff>,
+                                                                                    <ni:///mh;1QEQQX0UHFJerj20RKylVrz8pA?ct=application/octet-stream#arw>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (115.48 KiB)"@en.
+<ni:///mh;1QEQQX0UHFJerj20RKylVrz8pA?ct=application/octet-stream#arw> nfo:height 164 ;
+                                                                      nfo:width 240 ;
+                                                                      a schema:MediaObject,
+                                                                        exif:IFD;
+                                                                      exif:compression 1 ;
+                                                                      exif:imageLength 164 ;
+                                                                      exif:imageWidth 240 ;
+                                                                      exif:photometricInterpretation 2 ;
+                                                                      exif:planarConfiguration 1 ;
+                                                                      exif:samplesPerPixel 3 ;
+                                                                      exif:stripOffsets 168 ;
+                                                                      exif:xResolution 73 ;
+                                                                      exif:yResolution 73 ;
+                                                                      skos:prefLabel "ARW object (240×164)"@en.
+<ni:///mh;1QEQQX0UHFJerj20RKylVrz8pA?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
+                                                    nfo:colorDepth 24 ;
+                                                    nfo:height 164 ;
+                                                    nfo:horizontalResolution 73 ;
+                                                    nfo:verticalResolution 73 ;
+                                                    nfo:width 240 ;
+                                                    a schema:MediaObject,
+                                                      nfo:Image,
+                                                      schema:ImageObject;
+                                                    skos:prefLabel "TIFF object (240×164)"@en,
+                                                                   "TIF object (115.48 KiB)"@en.
+<urn:md5:417D141C525EAE3DB444ACA556BCFCA4> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "QX0UHFJerj20RKylVrz8pA=="^^xsd:base64Binary.

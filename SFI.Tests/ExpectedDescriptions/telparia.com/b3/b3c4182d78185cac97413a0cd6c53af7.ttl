@@ -1,0 +1,30 @@
+@base <ni:///mh;1QEQNT2X2tn1hv0--YR8SZTPsA?ct=text/plain>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///object.json>;
+     nie:interpretedAs <ni:///mh;1QEQNT2X2tn1hv0--YR8SZTPsA?ct=text/plain>;
+     nfo:fileName "object.json";
+     nfo:fileSize 835 ;
+     a nfo:FileDataObject.
+<file:///object.json> at:extensionObject <https://w3id.org/uri4uri/suffix/json>.
+<ni:///mh;1QEQNT2X2tn1hv0--YR8SZTPsA?ct=text/plain> at:digest <urn:md5:353D97DAD9F586FD3EF9847C4994CFB0>;
+                                                    dcterms:extent "835"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQNT2X2tn1hv0--YR8SZTPsA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (835 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQNT2X2tn1hv0--YR8SZTPsA?ct=text/plain#line=,1> rdf:value """{\"ANIMATION_DURATION_SCALE\":1,\"AUTO_PLAY_LEVEL\":\"won\",\"DECKID\":\"paris\",\"GAMEID\":\"KlondikeTurn3\",\"TEXTUREID\":\"texture/woodpanel.jpg\",\"ANIMATE_DEAL\":true,\"ANIMATE_CARDS\":true,\"ANIMATE_WIN\":true,\"FAVORITE_GAMES\":\"\",\"NEXT_CARD\":true,\"CONFIRM_DEAL_NEW\":false,\"SHOW_TIMER\":true,\"SHOW_SCORE\":true,\"SHOW_MOVES_MADE\":true,\"SHOW_STACK_COUNT\":true,\"SHOW_FOOTER\":true,\"SHOW_CURRENT_CARD\":false,\"PRE_RENDERED_CARDS\":false,\"MENU_ON_BOTTOM\":false,\"BOTTOM_UNDO_BUTTON\":false,\"CARD_SIZE_SCALE\":1,\"PEEK_CARDS\":true,\"SEEN_CHANGE_LA""".
+<urn:md5:353D97DAD9F586FD3EF9847C4994CFB0> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "NT2X2tn1hv0++YR8SZTPsA=="^^xsd:base64Binary.

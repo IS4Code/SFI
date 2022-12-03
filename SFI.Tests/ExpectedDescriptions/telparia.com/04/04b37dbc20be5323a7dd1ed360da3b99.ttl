@@ -1,0 +1,568 @@
+@base <ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix xis: <http://www.w3.org/2001/04/infoset#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+
+_:n1 at:pathObject <file:///testing.docx>;
+     nie:interpretedAs <ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/octet-stream>;
+     nfo:fileName "testing.docx";
+     nfo:fileSize 10732 ;
+     a nfo:FileDataObject.
+<file:///%5BContent_Types%5D.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///.rels> at:extensionObject <https://w3id.org/uri4uri/suffix/rels>.
+<file:///_rels/.rels> at:pathObject <file:///.rels>.
+<file:///_rels/document.xml.rels> at:pathObject <file:///document.xml.rels>.
+<file:///app.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///core.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///docProps/app.xml> at:pathObject <file:///app.xml>.
+<file:///docProps/core.xml> at:pathObject <file:///core.xml>.
+<file:///document.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///document.xml.rels> at:extensionObject <https://w3id.org/uri4uri/suffix/rels>.
+<file:///fontTable.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///settings.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///styles.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///testing.docx> at:extensionObject <https://w3id.org/uri4uri/suffix/docx>.
+<file:///theme/theme1.xml> at:pathObject <file:///theme1.xml>.
+<file:///theme1.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///webSettings.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///word/_rels> at:pathObject <file:///_rels>.
+<file:///word/_rels/> at:pathObject <file:///_rels/>.
+<file:///word/_rels/document.xml.rels> at:pathObject <file:///_rels/document.xml.rels>.
+<file:///word/document.xml> at:pathObject <file:///document.xml>.
+<file:///word/fontTable.xml> at:pathObject <file:///fontTable.xml>.
+<file:///word/settings.xml> at:pathObject <file:///settings.xml>.
+<file:///word/styles.xml> at:pathObject <file:///styles.xml>.
+<file:///word/theme> at:pathObject <file:///theme>.
+<file:///word/theme/> at:pathObject <file:///theme/>.
+<file:///word/theme/theme1.xml> at:pathObject <file:///theme/theme1.xml>.
+<file:///word/webSettings.xml> at:pathObject <file:///webSettings.xml>.
+<ni:///mh;1QEQ3tGwbZLFxrFcCxLBdv8zVQ?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.content-types.Types+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.package.2006.content-types.types+xml>;
+                                                                                                                               a schema:MediaObject;
+                                                                                                                               skos:prefLabel "TYPES object"@en.
+<ni:///mh;1QEQ3tGwbZLFxrFcCxLBdv8zVQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ3tGwbZLFxrFcCxLBdv8zVQ?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.content-types.Types+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQ3tGwbZLFxrFcCxLBdv8zVQ?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (Types)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:standalone "yes";
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQ3tGwbZLFxrFcCxLBdv8zVQ?ct=application/xml#element(/1)> a xis:Element;
+                                                                     rdfs:seeAlso <http://schemas.openxmlformats.org/package/2006/content-types>;
+                                                                     xis:localName "Types";
+                                                                     xis:name "Types";
+                                                                     xis:namespaceName "http://schemas.openxmlformats.org/package/2006/content-types"^^xsd:anyURI.
+<ni:///mh;1QEQ3tGwbZLFxrFcCxLBdv8zVQ?ct=text/plain> at:digest <urn:md5:DED1B06D92C5C6B15C0B12C176FF3355>;
+                                                    dcterms:extent "1312"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ3tGwbZLFxrFcCxLBdv8zVQ?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQ3tGwbZLFxrFcCxLBdv8zVQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.28 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQ3tGwbZLFxrFcCxLBdv8zVQ?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
+<ni:///mh;1QEQ66Sc-0qICTU_Bx7O-Z1yug?ct=application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.styles+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.styles+xml>;
+                                                                                                                                a schema:MediaObject;
+                                                                                                                                skos:prefLabel "STYLES object"@en.
+<ni:///mh;1QEQ66Sc-0qICTU_Bx7O-Z1yug?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ66Sc-0qICTU_Bx7O-Z1yug?ct=application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.styles+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQ66Sc-0qICTU_Bx7O-Z1yug?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (w:styles)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:standalone "yes";
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQ66Sc-0qICTU_Bx7O-Z1yug?ct=application/xml#element(/1)> a xis:Element;
+                                                                     rdfs:seeAlso <http://schemas.openxmlformats.org/wordprocessingml/2006/main>;
+                                                                     xis:localName "styles";
+                                                                     xis:name "w:styles";
+                                                                     xis:namespaceName "http://schemas.openxmlformats.org/wordprocessingml/2006/main"^^xsd:anyURI;
+                                                                     xis:prefix "w".
+<ni:///mh;1QEQ66Sc-0qICTU_Bx7O-Z1yug?ct=text/plain> at:digest <urn:md5:EBA49CFB4A8809353F071ECEF99D72BA>;
+                                                    dcterms:extent "16033"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ66Sc-0qICTU_Bx7O-Z1yug?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQ66Sc-0qICTU_Bx7O-Z1yug?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (15.66 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQ66Sc-0qICTU_Bx7O-Z1yug?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
+<ni:///mh;1QEQFQZdLePt27CdhDN6Cf15hQ?ct=application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.webSettings+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.websettings+xml>;
+                                                                                                                                     a schema:MediaObject;
+                                                                                                                                     skos:prefLabel "WEBSETTINGS object"@en.
+<ni:///mh;1QEQFQZdLePt27CdhDN6Cf15hQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQFQZdLePt27CdhDN6Cf15hQ?ct=application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.webSettings+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQFQZdLePt27CdhDN6Cf15hQ?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (w:webSettings)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:standalone "yes";
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQFQZdLePt27CdhDN6Cf15hQ?ct=application/xml#element(/1)> a xis:Element;
+                                                                     rdfs:seeAlso <http://schemas.openxmlformats.org/wordprocessingml/2006/main>;
+                                                                     xis:localName "webSettings";
+                                                                     xis:name "w:webSettings";
+                                                                     xis:namespaceName "http://schemas.openxmlformats.org/wordprocessingml/2006/main"^^xsd:anyURI;
+                                                                     xis:prefix "w".
+<ni:///mh;1QEQFQZdLePt27CdhDN6Cf15hQ?ct=text/plain> at:digest <urn:md5:15065D2DE3EDDBB09D84337A09FD7985>;
+                                                    dcterms:extent "260"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQFQZdLePt27CdhDN6Cf15hQ?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQFQZdLePt27CdhDN6Cf15hQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (260 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQFQZdLePt27CdhDN6Cf15hQ?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
+<ni:///mh;1QEQH51XRG-bKJwYkop8la-xMg?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.metadata.core-properties.coreProperties+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.package.2006.metadata.core-properties.coreproperties+xml>;
+                                                                                                                                                   a schema:MediaObject;
+                                                                                                                                                   skos:prefLabel "COREPROPERTIES object"@en.
+<ni:///mh;1QEQH51XRG-bKJwYkop8la-xMg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQH51XRG-bKJwYkop8la-xMg?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.metadata.core-properties.coreProperties+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQH51XRG-bKJwYkop8la-xMg?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (cp:coreProperties)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:standalone "yes";
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQH51XRG-bKJwYkop8la-xMg?ct=application/xml#element(/1)> a xis:Element;
+                                                                     rdfs:seeAlso <http://schemas.openxmlformats.org/package/2006/metadata/core-properties>;
+                                                                     xis:localName "coreProperties";
+                                                                     xis:name "cp:coreProperties";
+                                                                     xis:namespaceName "http://schemas.openxmlformats.org/package/2006/metadata/core-properties"^^xsd:anyURI;
+                                                                     xis:prefix "cp".
+<ni:///mh;1QEQH51XRG-bKJwYkop8la-xMg?ct=text/plain> at:digest <urn:md5:1F9D57446F9B289C18928A7C95AFB132>;
+                                                    dcterms:extent "635"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQH51XRG-bKJwYkop8la-xMg?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQH51XRG-bKJwYkop8la-xMg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (635 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQH51XRG-bKJwYkop8la-xMg?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
+<ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/octet-stream> at:digest <urn:md5:23B5B627D7A798B516B9B44D74B5F2F7>;
+                                                                  dcterms:extent "10732"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (10.48 KiB)"@en.
+<ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/vnd.openxmlformats-officedocument.spreadsheetml.sheet> dcterms:created "2014-04-18T13:01:00.000000Z"^^xsd:dateTime;
+                                                                                                           dcterms:creator "dtobias";
+                                                                                                           dcterms:modified "2014-04-18T13:03:00.000000Z"^^xsd:dateTime;
+                                                                                                           schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.openxmlformats-officedocument.spreadsheetml.sheet>;
+                                                                                                           schema:version "1";
+                                                                                                           nfo:characterCount 328 ;
+                                                                                                           nfo:lineCount 2 ;
+                                                                                                           nfo:pageCount 1 ;
+                                                                                                           nfo:wordCount 49 ;
+                                                                                                           a schema:MediaObject,
+                                                                                                             schema:DigitalDocument,
+                                                                                                             nfo:Document;
+                                                                                                           skos:prefLabel "XLSX object"@en.
+<ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/vnd.openxmlformats-officedocument.wordprocessingml.document> dcterms:created "2014-04-18T13:01:00.000000Z"^^xsd:dateTime;
+                                                                                                                 dcterms:creator "dtobias";
+                                                                                                                 dcterms:modified "2014-04-18T13:03:00.000000Z"^^xsd:dateTime;
+                                                                                                                 schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.openxmlformats-officedocument.wordprocessingml.document>;
+                                                                                                                 schema:version "1";
+                                                                                                                 nfo:characterCount 328 ;
+                                                                                                                 nfo:lineCount 2 ;
+                                                                                                                 nfo:pageCount 1 ;
+                                                                                                                 nfo:wordCount 49 ;
+                                                                                                                 a schema:MediaObject,
+                                                                                                                   schema:DigitalDocument,
+                                                                                                                   nfo:Document;
+                                                                                                                 skos:prefLabel "DOCX object"@en.
+<ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip> at:pathObject <file:///>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
+                                                         nie:interpretedAs <ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/>;
+                                                         a schema:MediaObject,
+                                                           nfo:Archive;
+                                                         skos:prefLabel "ZIP object (10.48 KiB)"@en.
+<ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/> at:pathObject <file:///./>;
+                                                           a nfo:Folder;
+                                                           skos:prefLabel "/".
+<ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/%5BContent_Types%5D.xml> at:pathObject <file:///%5BContent_Types%5D.xml>;
+                                                                                  nie:interpretedAs <ni:///mh;1QEQ3tGwbZLFxrFcCxLBdv8zVQ?ct=text/plain>;
+                                                                                  nfo:belongsToContainer <ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/>;
+                                                                                  nfo:fileLastModified "1980-01-01T00:00:00.000000+01:00"^^xsd:dateTime;
+                                                                                  nfo:fileName "[Content_Types].xml";
+                                                                                  nfo:fileSize 1312 ;
+                                                                                  a nfo:FileDataObject,
+                                                                                    nfo:ArchiveItem;
+                                                                                  skos:prefLabel "/[Content_Types].xml".
+<ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/_rels> at:pathObject <file:///_rels>;
+                                                                nie:interpretedAs <ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/_rels/>;
+                                                                nfo:belongsToContainer <ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/>;
+                                                                nfo:fileName "_rels";
+                                                                a nfo:FileDataObject,
+                                                                  nfo:ArchiveItem;
+                                                                skos:prefLabel "/_rels".
+<ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/_rels/> at:pathObject <file:///_rels/>;
+                                                                 a nfo:Folder;
+                                                                 skos:prefLabel "/_rels/".
+<ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/_rels/.rels> at:pathObject <file:///_rels/.rels>;
+                                                                      nie:interpretedAs <ni:///mh;1QEQd79hczpjPqYXpNt273aaTQ?ct=text/plain>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/_rels/>;
+                                                                      nfo:fileLastModified "1980-01-01T00:00:00.000000+01:00"^^xsd:dateTime;
+                                                                      nfo:fileName ".rels";
+                                                                      nfo:fileSize 590 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/_rels/.rels".
+<ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/docProps> at:pathObject <file:///docProps>;
+                                                                   nie:interpretedAs <ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/docProps/>;
+                                                                   nfo:belongsToContainer <ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/>;
+                                                                   nfo:fileName "docProps";
+                                                                   a nfo:FileDataObject,
+                                                                     nfo:ArchiveItem;
+                                                                   skos:prefLabel "/docProps".
+<ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/docProps/> at:pathObject <file:///docProps/>;
+                                                                    a nfo:Folder;
+                                                                    skos:prefLabel "/docProps/".
+<ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/docProps/app.xml> at:pathObject <file:///docProps/app.xml>;
+                                                                           nie:interpretedAs <ni:///mh;1QEQRxo7IQdr-E5XyFYClJ_z6w?ct=text/plain>;
+                                                                           nfo:belongsToContainer <ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/docProps/>;
+                                                                           nfo:fileLastModified "1980-01-01T00:00:00.000000+01:00"^^xsd:dateTime;
+                                                                           nfo:fileName "app.xml";
+                                                                           nfo:fileSize 723 ;
+                                                                           a nfo:FileDataObject,
+                                                                             nfo:ArchiveItem;
+                                                                           skos:prefLabel "/docProps/app.xml".
+<ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/docProps/core.xml> at:pathObject <file:///docProps/core.xml>;
+                                                                            nie:interpretedAs <ni:///mh;1QEQH51XRG-bKJwYkop8la-xMg?ct=text/plain>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/docProps/>;
+                                                                            nfo:fileLastModified "1980-01-01T00:00:00.000000+01:00"^^xsd:dateTime;
+                                                                            nfo:fileName "core.xml";
+                                                                            nfo:fileSize 635 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/docProps/core.xml".
+<ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/word> at:pathObject <file:///word>;
+                                                               nie:interpretedAs <ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/word/>;
+                                                               nfo:belongsToContainer <ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/>;
+                                                               nfo:fileName "word";
+                                                               a nfo:FileDataObject,
+                                                                 nfo:ArchiveItem;
+                                                               skos:prefLabel "/word".
+<ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/word/> at:pathObject <file:///word/>;
+                                                                a nfo:Folder;
+                                                                skos:prefLabel "/word/".
+<ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/word/_rels> at:pathObject <file:///word/_rels>;
+                                                                     nie:interpretedAs <ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/word/_rels/>;
+                                                                     nfo:belongsToContainer <ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/word/>;
+                                                                     nfo:fileName "_rels";
+                                                                     a nfo:FileDataObject,
+                                                                       nfo:ArchiveItem;
+                                                                     skos:prefLabel "/word/_rels".
+<ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/word/_rels/> at:pathObject <file:///word/_rels/>;
+                                                                      a nfo:Folder;
+                                                                      skos:prefLabel "/word/_rels/".
+<ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/word/_rels/document.xml.rels> at:pathObject <file:///word/_rels/document.xml.rels>;
+                                                                                       nie:interpretedAs <ni:///mh;1QEQfKqpnefHCQJLz7WunDg1Lw?ct=text/plain>;
+                                                                                       nfo:belongsToContainer <ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/word/_rels/>;
+                                                                                       nfo:fileLastModified "1980-01-01T00:00:00.000000+01:00"^^xsd:dateTime;
+                                                                                       nfo:fileName "document.xml.rels";
+                                                                                       nfo:fileSize 817 ;
+                                                                                       a nfo:FileDataObject,
+                                                                                         nfo:ArchiveItem;
+                                                                                       skos:prefLabel "/word/_rels/document.xml.rels".
+<ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/word/document.xml> at:pathObject <file:///word/document.xml>;
+                                                                            nie:interpretedAs <ni:///mh;1QEQPmau46XGJXXCWIx7PtQIjw?ct=text/plain>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/word/>;
+                                                                            nfo:fileLastModified "1980-01-01T00:00:00.000000+01:00"^^xsd:dateTime;
+                                                                            nfo:fileName "document.xml";
+                                                                            nfo:fileSize 7866 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/word/document.xml".
+<ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/word/fontTable.xml> at:pathObject <file:///word/fontTable.xml>;
+                                                                             nie:interpretedAs <ni:///mh;1QEQoxXoS1hugbrz4KpaDDmPAw?ct=text/plain>;
+                                                                             nfo:belongsToContainer <ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/word/>;
+                                                                             nfo:fileLastModified "1980-01-01T00:00:00.000000+01:00"^^xsd:dateTime;
+                                                                             nfo:fileName "fontTable.xml";
+                                                                             nfo:fileSize 1031 ;
+                                                                             a nfo:FileDataObject,
+                                                                               nfo:ArchiveItem;
+                                                                             skos:prefLabel "/word/fontTable.xml".
+<ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/word/settings.xml> at:pathObject <file:///word/settings.xml>;
+                                                                            nie:interpretedAs <ni:///mh;1QEQWP9A5Lx-Q9LhKzXBRQ_KbA?ct=text/plain>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/word/>;
+                                                                            nfo:fileLastModified "1980-01-01T00:00:00.000000+01:00"^^xsd:dateTime;
+                                                                            nfo:fileName "settings.xml";
+                                                                            nfo:fileSize 1566 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/word/settings.xml".
+<ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/word/styles.xml> at:pathObject <file:///word/styles.xml>;
+                                                                          nie:interpretedAs <ni:///mh;1QEQ66Sc-0qICTU_Bx7O-Z1yug?ct=text/plain>;
+                                                                          nfo:belongsToContainer <ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/word/>;
+                                                                          nfo:fileLastModified "1980-01-01T00:00:00.000000+01:00"^^xsd:dateTime;
+                                                                          nfo:fileName "styles.xml";
+                                                                          nfo:fileSize 16033 ;
+                                                                          a nfo:FileDataObject,
+                                                                            nfo:ArchiveItem;
+                                                                          skos:prefLabel "/word/styles.xml".
+<ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/word/theme> at:pathObject <file:///word/theme>;
+                                                                     nie:interpretedAs <ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/word/theme/>;
+                                                                     nfo:belongsToContainer <ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/word/>;
+                                                                     nfo:fileName "theme";
+                                                                     a nfo:FileDataObject,
+                                                                       nfo:ArchiveItem;
+                                                                     skos:prefLabel "/word/theme".
+<ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/word/theme/> at:pathObject <file:///word/theme/>;
+                                                                      a nfo:Folder;
+                                                                      skos:prefLabel "/word/theme/".
+<ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/word/theme/theme1.xml> at:pathObject <file:///word/theme/theme1.xml>;
+                                                                                nie:interpretedAs <ni:///mh;1QEQnYQ3TK-cc-x3Z3r9I8t7Ig?ct=text/plain>;
+                                                                                nfo:belongsToContainer <ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/word/theme/>;
+                                                                                nfo:fileLastModified "1980-01-01T00:00:00.000000+01:00"^^xsd:dateTime;
+                                                                                nfo:fileName "theme1.xml";
+                                                                                nfo:fileSize 6992 ;
+                                                                                a nfo:FileDataObject,
+                                                                                  nfo:ArchiveItem;
+                                                                                skos:prefLabel "/word/theme/theme1.xml".
+<ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/word/webSettings.xml> at:pathObject <file:///word/webSettings.xml>;
+                                                                               nie:interpretedAs <ni:///mh;1QEQFQZdLePt27CdhDN6Cf15hQ?ct=text/plain>;
+                                                                               nfo:belongsToContainer <ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/word/>;
+                                                                               nfo:fileLastModified "1980-01-01T00:00:00.000000+01:00"^^xsd:dateTime;
+                                                                               nfo:fileName "webSettings.xml";
+                                                                               nfo:fileSize 260 ;
+                                                                               a nfo:FileDataObject,
+                                                                                 nfo:ArchiveItem;
+                                                                               skos:prefLabel "/word/webSettings.xml".
+<ni:///mh;1QEQPmau46XGJXXCWIx7PtQIjw?ct=application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.document+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.document+xml>;
+                                                                                                                                  a schema:MediaObject;
+                                                                                                                                  skos:prefLabel "DOCUMENT object"@en.
+<ni:///mh;1QEQPmau46XGJXXCWIx7PtQIjw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQPmau46XGJXXCWIx7PtQIjw?ct=application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.document+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQPmau46XGJXXCWIx7PtQIjw?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (w:document)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:standalone "yes";
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQPmau46XGJXXCWIx7PtQIjw?ct=application/xml#element(/1)> a xis:Element;
+                                                                     rdfs:seeAlso <http://schemas.openxmlformats.org/wordprocessingml/2006/main>;
+                                                                     xis:localName "document";
+                                                                     xis:name "w:document";
+                                                                     xis:namespaceName "http://schemas.openxmlformats.org/wordprocessingml/2006/main"^^xsd:anyURI;
+                                                                     xis:prefix "w".
+<ni:///mh;1QEQPmau46XGJXXCWIx7PtQIjw?ct=text/plain> at:digest <urn:md5:3E66AEE3A5C62575C2588C7B3ED4088F>;
+                                                    dcterms:extent "7866"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQPmau46XGJXXCWIx7PtQIjw?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQPmau46XGJXXCWIx7PtQIjw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (7.68 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQPmau46XGJXXCWIx7PtQIjw?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
+<ni:///mh;1QEQRxo7IQdr-E5XyFYClJ_z6w?ct=application/x.ns.org.openxmlformats.schemas.http.officeDocument.2006.extended-properties.Properties+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.officedocument.2006.extended-properties.properties+xml>;
+                                                                                                                                                 a schema:MediaObject;
+                                                                                                                                                 skos:prefLabel "PROPERTIES object"@en.
+<ni:///mh;1QEQRxo7IQdr-E5XyFYClJ_z6w?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQRxo7IQdr-E5XyFYClJ_z6w?ct=application/x.ns.org.openxmlformats.schemas.http.officeDocument.2006.extended-properties.Properties+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQRxo7IQdr-E5XyFYClJ_z6w?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (Properties)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:standalone "yes";
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQRxo7IQdr-E5XyFYClJ_z6w?ct=application/xml#element(/1)> a xis:Element;
+                                                                     rdfs:seeAlso <http://schemas.openxmlformats.org/officeDocument/2006/extended-properties>;
+                                                                     xis:localName "Properties";
+                                                                     xis:name "Properties";
+                                                                     xis:namespaceName "http://schemas.openxmlformats.org/officeDocument/2006/extended-properties"^^xsd:anyURI.
+<ni:///mh;1QEQRxo7IQdr-E5XyFYClJ_z6w?ct=text/plain> at:digest <urn:md5:471A3B21076BF84E57C85602949FF3EB>;
+                                                    dcterms:extent "723"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQRxo7IQdr-E5XyFYClJ_z6w?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQRxo7IQdr-E5XyFYClJ_z6w?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (723 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQRxo7IQdr-E5XyFYClJ_z6w?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
+<ni:///mh;1QEQWP9A5Lx-Q9LhKzXBRQ_KbA?ct=application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.settings+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.settings+xml>;
+                                                                                                                                  a schema:MediaObject;
+                                                                                                                                  skos:prefLabel "SETTINGS object"@en.
+<ni:///mh;1QEQWP9A5Lx-Q9LhKzXBRQ_KbA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQWP9A5Lx-Q9LhKzXBRQ_KbA?ct=application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.settings+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQWP9A5Lx-Q9LhKzXBRQ_KbA?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (w:settings)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:standalone "yes";
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQWP9A5Lx-Q9LhKzXBRQ_KbA?ct=application/xml#element(/1)> a xis:Element;
+                                                                     rdfs:seeAlso <http://schemas.openxmlformats.org/wordprocessingml/2006/main>;
+                                                                     xis:localName "settings";
+                                                                     xis:name "w:settings";
+                                                                     xis:namespaceName "http://schemas.openxmlformats.org/wordprocessingml/2006/main"^^xsd:anyURI;
+                                                                     xis:prefix "w".
+<ni:///mh;1QEQWP9A5Lx-Q9LhKzXBRQ_KbA?ct=text/plain> at:digest <urn:md5:58FF40E4BC7E43D2E12B35C1450FCA6C>;
+                                                    dcterms:extent "1566"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQWP9A5Lx-Q9LhKzXBRQ_KbA?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQWP9A5Lx-Q9LhKzXBRQ_KbA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.53 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQWP9A5Lx-Q9LhKzXBRQ_KbA?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
+<ni:///mh;1QEQd79hczpjPqYXpNt273aaTQ?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.Relationships+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.relationships+xml>;
+                                                                                                                                       a schema:MediaObject;
+                                                                                                                                       skos:prefLabel "RELATIONSHIPS object"@en.
+<ni:///mh;1QEQd79hczpjPqYXpNt273aaTQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQd79hczpjPqYXpNt273aaTQ?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.Relationships+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQd79hczpjPqYXpNt273aaTQ?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (Relationships)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:standalone "yes";
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQd79hczpjPqYXpNt273aaTQ?ct=application/xml#element(/1)> a xis:Element;
+                                                                     rdfs:seeAlso <http://schemas.openxmlformats.org/package/2006/relationships>;
+                                                                     xis:localName "Relationships";
+                                                                     xis:name "Relationships";
+                                                                     xis:namespaceName "http://schemas.openxmlformats.org/package/2006/relationships"^^xsd:anyURI.
+<ni:///mh;1QEQd79hczpjPqYXpNt273aaTQ?ct=text/plain> at:digest <urn:md5:77BF61733A633EA617A4DB76EF769A4D>;
+                                                    dcterms:extent "590"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQd79hczpjPqYXpNt273aaTQ?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQd79hczpjPqYXpNt273aaTQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (590 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQd79hczpjPqYXpNt273aaTQ?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
+<ni:///mh;1QEQfKqpnefHCQJLz7WunDg1Lw?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.Relationships+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.relationships+xml>;
+                                                                                                                                       a schema:MediaObject;
+                                                                                                                                       skos:prefLabel "RELATIONSHIPS object"@en.
+<ni:///mh;1QEQfKqpnefHCQJLz7WunDg1Lw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQfKqpnefHCQJLz7WunDg1Lw?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.Relationships+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQfKqpnefHCQJLz7WunDg1Lw?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (Relationships)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:standalone "yes";
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQfKqpnefHCQJLz7WunDg1Lw?ct=application/xml#element(/1)> a xis:Element;
+                                                                     rdfs:seeAlso <http://schemas.openxmlformats.org/package/2006/relationships>;
+                                                                     xis:localName "Relationships";
+                                                                     xis:name "Relationships";
+                                                                     xis:namespaceName "http://schemas.openxmlformats.org/package/2006/relationships"^^xsd:anyURI.
+<ni:///mh;1QEQfKqpnefHCQJLz7WunDg1Lw?ct=text/plain> at:digest <urn:md5:7CAAA99DE7C709024BCFB5AE9C38352F>;
+                                                    dcterms:extent "817"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQfKqpnefHCQJLz7WunDg1Lw?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQfKqpnefHCQJLz7WunDg1Lw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (817 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQfKqpnefHCQJLz7WunDg1Lw?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
+<ni:///mh;1QEQnYQ3TK-cc-x3Z3r9I8t7Ig?ct=application/x.ns.org.openxmlformats.schemas.http.drawingml.2006.main.theme+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.drawingml.2006.main.theme+xml>;
+                                                                                                                        a schema:MediaObject;
+                                                                                                                        skos:prefLabel "THEME object"@en.
+<ni:///mh;1QEQnYQ3TK-cc-x3Z3r9I8t7Ig?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQnYQ3TK-cc-x3Z3r9I8t7Ig?ct=application/x.ns.org.openxmlformats.schemas.http.drawingml.2006.main.theme+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQnYQ3TK-cc-x3Z3r9I8t7Ig?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (a:theme)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:standalone "yes";
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQnYQ3TK-cc-x3Z3r9I8t7Ig?ct=application/xml#element(/1)> a xis:Element;
+                                                                     rdfs:seeAlso <http://schemas.openxmlformats.org/drawingml/2006/main>;
+                                                                     xis:localName "theme";
+                                                                     xis:name "a:theme";
+                                                                     xis:namespaceName "http://schemas.openxmlformats.org/drawingml/2006/main"^^xsd:anyURI;
+                                                                     xis:prefix "a".
+<ni:///mh;1QEQnYQ3TK-cc-x3Z3r9I8t7Ig?ct=text/plain> at:digest <urn:md5:9D84374CAF9C73EC77677AFD23CB7B22>;
+                                                    dcterms:extent "6992"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQnYQ3TK-cc-x3Z3r9I8t7Ig?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQnYQ3TK-cc-x3Z3r9I8t7Ig?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (6.83 KiB)"@en;
+                                                    cnt:characterEncoding "utf-8".
+<ni:///mh;1QEQnYQ3TK-cc-x3Z3r9I8t7Ig?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
+<ni:///mh;1QEQoxXoS1hugbrz4KpaDDmPAw?ct=application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.fonts+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.fonts+xml>;
+                                                                                                                               a schema:MediaObject;
+                                                                                                                               skos:prefLabel "FONTS object"@en.
+<ni:///mh;1QEQoxXoS1hugbrz4KpaDDmPAw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQoxXoS1hugbrz4KpaDDmPAw?ct=application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.fonts+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQoxXoS1hugbrz4KpaDDmPAw?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (w:fonts)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:standalone "yes";
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQoxXoS1hugbrz4KpaDDmPAw?ct=application/xml#element(/1)> a xis:Element;
+                                                                     rdfs:seeAlso <http://schemas.openxmlformats.org/wordprocessingml/2006/main>;
+                                                                     xis:localName "fonts";
+                                                                     xis:name "w:fonts";
+                                                                     xis:namespaceName "http://schemas.openxmlformats.org/wordprocessingml/2006/main"^^xsd:anyURI;
+                                                                     xis:prefix "w".
+<ni:///mh;1QEQoxXoS1hugbrz4KpaDDmPAw?ct=text/plain> at:digest <urn:md5:A315E84B586E81BAF3E0AA5A0C398F03>;
+                                                    dcterms:extent "1031"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQoxXoS1hugbrz4KpaDDmPAw?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQoxXoS1hugbrz4KpaDDmPAw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.01 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQoxXoS1hugbrz4KpaDDmPAw?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
+<urn:md5:15065D2DE3EDDBB09D84337A09FD7985> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "FQZdLePt27CdhDN6Cf15hQ=="^^xsd:base64Binary.
+<urn:md5:1F9D57446F9B289C18928A7C95AFB132> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "H51XRG+bKJwYkop8la+xMg=="^^xsd:base64Binary.
+<urn:md5:23B5B627D7A798B516B9B44D74B5F2F7> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "I7W2J9enmLUWubRNdLXy9w=="^^xsd:base64Binary.
+<urn:md5:3E66AEE3A5C62575C2588C7B3ED4088F> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "Pmau46XGJXXCWIx7PtQIjw=="^^xsd:base64Binary.
+<urn:md5:471A3B21076BF84E57C85602949FF3EB> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "Rxo7IQdr+E5XyFYClJ/z6w=="^^xsd:base64Binary.
+<urn:md5:58FF40E4BC7E43D2E12B35C1450FCA6C> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "WP9A5Lx+Q9LhKzXBRQ/KbA=="^^xsd:base64Binary.
+<urn:md5:77BF61733A633EA617A4DB76EF769A4D> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "d79hczpjPqYXpNt273aaTQ=="^^xsd:base64Binary.
+<urn:md5:7CAAA99DE7C709024BCFB5AE9C38352F> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "fKqpnefHCQJLz7WunDg1Lw=="^^xsd:base64Binary.
+<urn:md5:9D84374CAF9C73EC77677AFD23CB7B22> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "nYQ3TK+cc+x3Z3r9I8t7Ig=="^^xsd:base64Binary.
+<urn:md5:A315E84B586E81BAF3E0AA5A0C398F03> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "oxXoS1hugbrz4KpaDDmPAw=="^^xsd:base64Binary.
+<urn:md5:DED1B06D92C5C6B15C0B12C176FF3355> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "3tGwbZLFxrFcCxLBdv8zVQ=="^^xsd:base64Binary.
+<urn:md5:EBA49CFB4A8809353F071ECEF99D72BA> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "66Sc+0qICTU/Bx7O+Z1yug=="^^xsd:base64Binary.

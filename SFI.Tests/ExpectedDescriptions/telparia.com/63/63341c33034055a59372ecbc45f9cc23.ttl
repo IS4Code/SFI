@@ -1,0 +1,34 @@
+@base <ni:///mh;1QEQ6bSw-ibahUOLR3LlQORwWw?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///bad.pcx>;
+     nie:interpretedAs <ni:///mh;1QEQ6bSw-ibahUOLR3LlQORwWw?ct=application/octet-stream>;
+     nfo:fileName "bad.pcx";
+     nfo:fileSize 4260 ;
+     a nfo:FileDataObject.
+<file:///bad.pcx> at:extensionObject <https://w3id.org/uri4uri/suffix/pcx>.
+<ni:///mh;1QEQ6bSw-ibahUOLR3LlQORwWw?ct=application/octet-stream> at:digest <urn:md5:E9B4B0FA26DA85438B4772E540E4705B>;
+                                                                  dcterms:extent "4260"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ6bSw-ibahUOLR3LlQORwWw?ct=image/x-pcx>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (4.16 KiB)"@en.
+<ni:///mh;1QEQ6bSw-ibahUOLR3LlQORwWw?ct=image/x-pcx> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-pcx>;
+                                                     a schema:MediaObject,
+                                                       schema:ImageObject,
+                                                       nfo:Image;
+                                                     skos:prefLabel "PCX object (4.16 KiB)"@en.
+<urn:md5:E9B4B0FA26DA85438B4772E540E4705B> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "6bSw+ibahUOLR3LlQORwWw=="^^xsd:base64Binary.

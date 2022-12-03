@@ -1,0 +1,27 @@
+@base <ni:///mh;1QEQI9KWyuSJ_FQJ51bnaQ5qXQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///torus.gr9p>;
+     nie:interpretedAs <ni:///mh;1QEQI9KWyuSJ_FQJ51bnaQ5qXQ?ct=application/octet-stream>;
+     nfo:fileName "torus.gr9p";
+     nfo:fileSize 2400 ;
+     a nfo:FileDataObject.
+<file:///torus.gr9p> at:extensionObject <https://w3id.org/uri4uri/suffix/gr9p>.
+<ni:///mh;1QEQI9KWyuSJ_FQJ51bnaQ5qXQ?ct=application/octet-stream> at:digest <urn:md5:23D296CAE489FC5409E756E7690E6A5D>;
+                                                                  dcterms:extent "2400"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (2.34 KiB)"@en.
+<urn:md5:23D296CAE489FC5409E756E7690E6A5D> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "I9KWyuSJ/FQJ51bnaQ5qXQ=="^^xsd:base64Binary.

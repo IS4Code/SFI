@@ -1,0 +1,96 @@
+@base <ni:///mh;1QEQQkrXzFvPatpVjnB06GE06Q?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///KODAK-DCSPRO.DCR>;
+     nie:interpretedAs <ni:///mh;1QEQQkrXzFvPatpVjnB06GE06Q?ct=application/octet-stream>;
+     nfo:fileName "KODAK-DCSPRO.DCR";
+     nfo:fileSize 12341760 ;
+     a nfo:FileDataObject.
+<file:///KODAK-DCSPRO.DCR> at:extensionObject <https://w3id.org/uri4uri/suffix/dcr>.
+<ni:///mh;1QEQQkrXzFvPatpVjnB06GE06Q?ct=application/octet-stream> at:digest <urn:md5:424AD7CC5BCF6ADA558E7074E86134E9>;
+                                                                  dcterms:extent "12341760"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQQkrXzFvPatpVjnB06GE06Q?ct=image/tiff>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (11.77 MiB)"@en.
+<ni:///mh;1QEQQkrXzFvPatpVjnB06GE06Q?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
+                                                    nfo:hasMediaStream <ni:///mh;1QEQQkrXzFvPatpVjnB06GE06Q?ct=image/tiff#/0>,
+                                                                       <ni:///mh;1QEQQkrXzFvPatpVjnB06GE06Q?ct=image/tiff#/1>,
+                                                                       <ni:///mh;1QEQQkrXzFvPatpVjnB06GE06Q?ct=image/tiff#/2>,
+                                                                       <ni:///mh;1QEQQkrXzFvPatpVjnB06GE06Q?ct=image/tiff#/3>;
+                                                    a schema:MediaObject,
+                                                      exif:IFD,
+                                                      schema:ImageObject,
+                                                      nfo:Image;
+                                                    exif:bitsPerSample 12 ;
+                                                    exif:compression 65000 ;
+                                                    exif:dateTime "2005-08-20T20:01:40.000000"^^xsd:dateTime;
+                                                    exif:dateTimeOriginal "2005-08-20T20:01:40.000000"^^xsd:dateTime;
+                                                    exif:exposureBiasValue 0 ;
+                                                    exif:exposureProgram 4 ;
+                                                    exif:exposureTime "1/60"^^owl:rational;
+                                                    exif:fNumber "14/5"^^owl:rational;
+                                                    exif:focalLength 70 ;
+                                                    exif:imageLength 250 ,
+                                                                     3012 ,
+                                                                     750 ;
+                                                    exif:imageWidth 375 ,
+                                                                    4516 ,
+                                                                    1125 ;
+                                                    exif:lightSource 0 ;
+                                                    exif:make "Kodak"^^xsd:string;
+                                                    exif:maxApertureValue "14/5"^^owl:rational;
+                                                    exif:meteringMode 4 ;
+                                                    exif:model "DCS Pro SLR/n"^^xsd:string;
+                                                    exif:orientation 1 ;
+                                                    exif:photometricInterpretation 6 ,
+                                                                                   32803 ;
+                                                    exif:planarConfiguration 1 ;
+                                                    exif:resolutionUnit 1 ;
+                                                    exif:rowsPerStrip 250 ,
+                                                                      3012 ,
+                                                                      750 ;
+                                                    exif:samplesPerPixel 3 ,
+                                                                         1 ;
+                                                    exif:software "5.0.1"^^xsd:string;
+                                                    exif:stripByteCounts 97744 ,
+                                                                         10911420 ,
+                                                                         839460 ;
+                                                    exif:stripOffsets 257536 ,
+                                                                      586240 ,
+                                                                      11497984 ;
+                                                    exif:xResolution 72 ;
+                                                    exif:yResolution 72 ;
+                                                    skos:prefLabel "TIFF object (11.77 MiB)"@en.
+<ni:///mh;1QEQQkrXzFvPatpVjnB06GE06Q?ct=image/tiff#/0> nfo:height 250 ;
+                                                       nfo:width 375 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "0:Exif IFD0 (375×250)".
+<ni:///mh;1QEQQkrXzFvPatpVjnB06GE06Q?ct=image/tiff#/1> nfo:height 250 ;
+                                                       nfo:width 375 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "1:Exif SubIFD (375×250)".
+<ni:///mh;1QEQQkrXzFvPatpVjnB06GE06Q?ct=image/tiff#/2> nfo:height 3012 ;
+                                                       nfo:width 4516 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "2:Exif SubIFD (4516×3012, 12-bit)".
+<ni:///mh;1QEQQkrXzFvPatpVjnB06GE06Q?ct=image/tiff#/3> nfo:height 750 ;
+                                                       nfo:width 1125 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "3:Exif SubIFD (1125×750)".
+<urn:md5:424AD7CC5BCF6ADA558E7074E86134E9> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "QkrXzFvPatpVjnB06GE06Q=="^^xsd:base64Binary.

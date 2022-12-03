@@ -1,0 +1,72 @@
+@base <ni:///mh;1QEQwWEcqgVMpDQwVvVstYAUVg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///osutils.zip>;
+     nie:interpretedAs <ni:///mh;1QEQwWEcqgVMpDQwVvVstYAUVg?ct=application/octet-stream>;
+     nfo:fileName "osutils.zip";
+     nfo:fileSize 768 ;
+     a nfo:FileDataObject.
+<file:///RESET_OV.PRG> at:extensionObject <https://w3id.org/uri4uri/suffix/prg>.
+<file:///SET_OVER.PRG> at:extensionObject <https://w3id.org/uri4uri/suffix/prg>.
+<file:///osutils.zip> at:extensionObject <https://w3id.org/uri4uri/suffix/zip>.
+<ni:///mh;1QEQVhsVsNKm7hdN9JzwOijgFw?ct=application/octet-stream> at:digest <urn:md5:561B15B0D2A6EE174DF49CF03A28E017>;
+                                                                  dcterms:extent "110"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (110 B)"@en.
+<ni:///mh;1QEQiDBJdi0Hl6h8V5OYE3w1XQ?ct=application/octet-stream> at:digest <urn:md5:883049762D0797A87C579398137C355D>;
+                                                                  dcterms:extent "124"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (124 B)"@en.
+<ni:///mh;1QEQwWEcqgVMpDQwVvVstYAUVg?ct=application/octet-stream> at:digest <urn:md5:C1611CAA054CA4343056F56CB5801456>;
+                                                                  dcterms:extent "768"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQwWEcqgVMpDQwVvVstYAUVg?ct=application/zip>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (768 B)"@en.
+<ni:///mh;1QEQwWEcqgVMpDQwVvVstYAUVg?ct=application/zip> at:pathObject <file:///>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
+                                                         nie:interpretedAs <ni:///mh;1QEQwWEcqgVMpDQwVvVstYAUVg?ct=application/zip#/>;
+                                                         a schema:MediaObject,
+                                                           nfo:Archive;
+                                                         skos:prefLabel "ZIP object (768 B)"@en.
+<ni:///mh;1QEQwWEcqgVMpDQwVvVstYAUVg?ct=application/zip#/> at:pathObject <file:///./>;
+                                                           a nfo:Folder;
+                                                           skos:prefLabel "/".
+<ni:///mh;1QEQwWEcqgVMpDQwVvVstYAUVg?ct=application/zip#/RESET_OV.PRG> at:pathObject <file:///RESET_OV.PRG>;
+                                                                       nie:interpretedAs <ni:///mh;1QEQVhsVsNKm7hdN9JzwOijgFw?ct=application/octet-stream>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQwWEcqgVMpDQwVvVstYAUVg?ct=application/zip#/>;
+                                                                       nfo:fileLastModified "1993-06-27T04:29:42.000000+02:00"^^xsd:dateTime;
+                                                                       nfo:fileName "RESET_OV.PRG";
+                                                                       nfo:fileSize 110 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/RESET_OV.PRG".
+<ni:///mh;1QEQwWEcqgVMpDQwVvVstYAUVg?ct=application/zip#/SET_OVER.PRG> at:pathObject <file:///SET_OVER.PRG>;
+                                                                       nie:interpretedAs <ni:///mh;1QEQiDBJdi0Hl6h8V5OYE3w1XQ?ct=application/octet-stream>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQwWEcqgVMpDQwVvVstYAUVg?ct=application/zip#/>;
+                                                                       nfo:fileLastModified "1993-06-27T04:29:32.000000+02:00"^^xsd:dateTime;
+                                                                       nfo:fileName "SET_OVER.PRG";
+                                                                       nfo:fileSize 124 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/SET_OVER.PRG".
+<urn:md5:561B15B0D2A6EE174DF49CF03A28E017> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "VhsVsNKm7hdN9JzwOijgFw=="^^xsd:base64Binary.
+<urn:md5:883049762D0797A87C579398137C355D> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "iDBJdi0Hl6h8V5OYE3w1XQ=="^^xsd:base64Binary.
+<urn:md5:C1611CAA054CA4343056F56CB5801456> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "wWEcqgVMpDQwVvVstYAUVg=="^^xsd:base64Binary.

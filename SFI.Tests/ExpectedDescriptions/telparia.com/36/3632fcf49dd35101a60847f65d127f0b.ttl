@@ -1,0 +1,98 @@
+@base <ni:///mh;1QEQIIK9nBGxQoV31v7VyrFWqA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///leica_d_lux_5_titanium_02.rwl>;
+     nie:interpretedAs <ni:///mh;1QEQIIK9nBGxQoV31v7VyrFWqA?ct=application/octet-stream>;
+     nfo:fileName "leica_d_lux_5_titanium_02.rwl";
+     nfo:fileSize 12945920 ;
+     a nfo:FileDataObject.
+<file:///leica_d_lux_5_titanium_02.rwl> at:extensionObject <https://w3id.org/uri4uri/suffix/rwl>.
+<ni:///mh;1QEQIIK9nBGxQoV31v7VyrFWqA?ct=application/octet-stream> at:digest <urn:md5:2082BD9C11B1428577D6FED5CAB156A8>;
+                                                                  dcterms:extent "12945920"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQIIK9nBGxQoV31v7VyrFWqA?ct=application/octet-stream#rw2>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (12.35 MiB)"@en.
+<ni:///mh;1QEQIIK9nBGxQoV31v7VyrFWqA?ct=application/octet-stream#rw2> nfo:hasMediaStream <ni:///mh;1QEQIIK9nBGxQoV31v7VyrFWqA?ct=application/octet-stream#rw2/0>,
+                                                                                         <ni:///mh;1QEQIIK9nBGxQoV31v7VyrFWqA?ct=application/octet-stream#rw2/1>,
+                                                                                         <ni:///mh;1QEQIIK9nBGxQoV31v7VyrFWqA?ct=application/octet-stream#rw2/2>,
+                                                                                         <ni:///mh;1QEQIIK9nBGxQoV31v7VyrFWqA?ct=application/octet-stream#rw2/3>;
+                                                                      a schema:MediaObject,
+                                                                        exif:IFD;
+                                                                      exif:colorSpace 1 ;
+                                                                      exif:componentsConfiguration "01020300"^^xsd:hexBinary;
+                                                                      exif:compressedBitsPerPixel 2 ;
+                                                                      exif:compression 6 ;
+                                                                      exif:contrast 0 ;
+                                                                      exif:customRendered 0 ;
+                                                                      exif:dateTime "2011-12-13T13:57:18.000000"^^xsd:dateTime;
+                                                                      exif:dateTimeDigitized "2011-12-13T13:57:18.000000"^^xsd:dateTime;
+                                                                      exif:dateTimeOriginal "2011-12-13T13:57:18.000000"^^xsd:dateTime;
+                                                                      exif:digitalZoomRatio 0 ;
+                                                                      exif:exifVersion "30323330"^^xsd:hexBinary;
+                                                                      exif:exposureBiasValue 0 ;
+                                                                      exif:exposureMode 0 ;
+                                                                      exif:exposureProgram 2 ;
+                                                                      exif:exposureTime "1/400"^^owl:rational;
+                                                                      exif:fNumber "14/5"^^owl:rational;
+                                                                      exif:fileSource "03"^^xsd:hexBinary;
+                                                                      exif:flash 16 ;
+                                                                      exif:flashpixVersion "30313030"^^xsd:hexBinary;
+                                                                      exif:focalLength "51/10"^^owl:rational;
+                                                                      exif:focalLengthIn35mmFilm 24 ;
+                                                                      exif:gainControl 0 ;
+                                                                      exif:isoSpeedRatings 80 ;
+                                                                      exif:jpegInterchangeFormat 11764 ;
+                                                                      exif:jpegInterchangeFormatLength 5765 ;
+                                                                      exif:lightSource 0 ;
+                                                                      exif:make "LEICA"^^xsd:string;
+                                                                      exif:maxApertureValue 2 ;
+                                                                      exif:meteringMode 5 ;
+                                                                      exif:model "D-LUX 5"^^xsd:string;
+                                                                      exif:orientation 1 ;
+                                                                      exif:pixelXDimension 1920 ;
+                                                                      exif:pixelYDimension 1440 ;
+                                                                      exif:resolutionUnit 2 ;
+                                                                      exif:saturation 0 ;
+                                                                      exif:sceneCaptureType 0 ;
+                                                                      exif:sceneType "01"^^xsd:hexBinary;
+                                                                      exif:sensingMethod 2 ;
+                                                                      exif:sharpness 0 ;
+                                                                      exif:software "Ver.1.0  "^^xsd:string;
+                                                                      exif:whiteBalance 0 ;
+                                                                      exif:xResolution 180 ;
+                                                                      exif:yCbCrPositioning 2 ;
+                                                                      exif:yResolution 180 ;
+                                                                      skos:prefLabel "RW2 object (12.35 MiB)"@en.
+<ni:///mh;1QEQIIK9nBGxQoV31v7VyrFWqA?ct=application/octet-stream#rw2/0> nfo:height 2754 ;
+                                                                        nfo:width 3864 ;
+                                                                        a nfo:MediaStream;
+                                                                        skos:prefLabel "0:PanasonicRaw Exif IFD0 (3864×2754)".
+<ni:///mh;1QEQIIK9nBGxQoV31v7VyrFWqA?ct=application/octet-stream#rw2/1> nfo:height 1440 ;
+                                                                        nfo:width 1920 ;
+                                                                        a nfo:MediaStream;
+                                                                        skos:prefLabel "1:JPEG (1920×1440)".
+<ni:///mh;1QEQIIK9nBGxQoV31v7VyrFWqA?ct=application/octet-stream#rw2/2> nfo:height 1440 ;
+                                                                        nfo:width 1920 ;
+                                                                        a nfo:MediaStream;
+                                                                        skos:prefLabel "2:Exif SubIFD (1920×1440)".
+<ni:///mh;1QEQIIK9nBGxQoV31v7VyrFWqA?ct=application/octet-stream#rw2/3> nfo:height 2736 ;
+                                                                        nfo:width 3648 ;
+                                                                        a nfo:MediaStream;
+                                                                        skos:prefLabel "3:Panasonic Makernote (3648×2736)".
+<urn:md5:2082BD9C11B1428577D6FED5CAB156A8> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "IIK9nBGxQoV31v7VyrFWqA=="^^xsd:base64Binary.

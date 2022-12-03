@@ -1,0 +1,44 @@
+@base <ni:///mh;1QEQQiEqGj91CW6N0QANaVnlBw?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///187645SDCCMYK35.jpg>;
+     nie:interpretedAs <ni:///mh;1QEQQiEqGj91CW6N0QANaVnlBw?ct=application/octet-stream>;
+     nfo:fileName "187645SDCCMYK35.jpg";
+     nfo:fileSize 3693455 ;
+     a nfo:FileDataObject.
+<file:///187645SDCCMYK35.jpg> at:extensionObject <https://w3id.org/uri4uri/suffix/jpg>.
+<ni:///mh;1QEQQiEqGj91CW6N0QANaVnlBw?ct=application/octet-stream> at:digest <urn:md5:42212A1A3F75096E8DD1000D6959E507>;
+                                                                  dcterms:extent "3693455"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQQiEqGj91CW6N0QANaVnlBw?ct=image/jpeg>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (3.52 MiB)"@en.
+<ni:///mh;1QEQQiEqGj91CW6N0QANaVnlBw?ct=image/jpeg> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/jpeg>;
+                                                    nfo:colorDepth 32 ;
+                                                    nfo:height 3029 ;
+                                                    nfo:horizontalResolution 300 ;
+                                                    nfo:verticalResolution 300 ;
+                                                    nfo:width 3029 ;
+                                                    <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#comments> """© 1997-2005 StockdiscªAll rights reservedContact: StockdiscªFreephoneIreland 1800 70 80 90United Kingdom 0800 404  9624United States 1866 951 2888France 0800 905 706United StatesPhone 011 353 66 7145002Fax 011 353 66 7127088InternationalPhone ++353 66 7145002Fax ++353 66 7127088Webhttp://www.stockdisc.comemailinfo@stockdisc.comThis image may only be used by a licensed user, it may not be reproduced without licensing the appropriate Stockdiscª high resolution CD or image. License available at http://www.stockdisc.com.If you have any questions regarding the termsof the license, contact  Stockdiscª before use.""";
+                                                    <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#copyrightMessage> "© Stockdiscª (www.stockdisc.com)";
+                                                    <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#title> "16OR03";
+                                                    a schema:MediaObject,
+                                                      nfo:Image,
+                                                      schema:ImageObject;
+                                                    skos:prefLabel "JPG object (3029×3029, 16OR03)"@en,
+                                                                   "JPG object (3029×3029)"@en,
+                                                                   "JPG object (3.52 MiB)"@en.
+<urn:md5:42212A1A3F75096E8DD1000D6959E507> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "QiEqGj91CW6N0QANaVnlBw=="^^xsd:base64Binary.

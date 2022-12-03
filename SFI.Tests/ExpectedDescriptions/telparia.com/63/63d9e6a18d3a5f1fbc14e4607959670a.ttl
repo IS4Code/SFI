@@ -1,0 +1,60 @@
+@base <ni:///mh;1QEQVxEHKhGu39YsqKhsDzgUcQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///PIXHELP.DL_>;
+     nie:interpretedAs <ni:///mh;1QEQVxEHKhGu39YsqKhsDzgUcQ?ct=application/octet-stream>;
+     nfo:fileName "PIXHELP.DL_";
+     nfo:fileSize 2650 ;
+     a nfo:FileDataObject.
+<file:///PIXHELP.DL_> at:extensionObject <https://w3id.org/uri4uri/suffix/dl_>.
+<ni:///mh;1QEQVxEHKhGu39YsqKhsDzgUcQ?ct=application/octet-stream> at:digest <urn:md5:5711072A11AEDFD62CA8A86C0F381471>;
+                                                                  dcterms:extent "2650"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQVxEHKhGu39YsqKhsDzgUcQ?ct=application/x-ms-compress-szdd>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (2.59 KiB)"@en.
+<ni:///mh;1QEQVxEHKhGu39YsqKhsDzgUcQ?ct=application/x-ms-compress-szdd> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ms-compress-szdd>;
+                                                                        a schema:MediaObject,
+                                                                          nfo:Archive;
+                                                                        skos:prefLabel "SZ object (2.59 KiB)"@en.
+<ni:///mh;1QEQVxEHKhGu39YsqKhsDzgUcQ?ct=application/x-ms-compress-szdd#/l> at:pathObject <file:///l>;
+                                                                           nie:interpretedAs <ni:///mh;1QEQcV6I0FS-md7q63XG0IZI9w?ct=application/octet-stream>;
+                                                                           nfo:belongsToContainer <ni:///mh;1QEQVxEHKhGu39YsqKhsDzgUcQ?ct=application/x-ms-compress-szdd>;
+                                                                           nfo:fileName "l";
+                                                                           nfo:fileSize 3712 ;
+                                                                           a nfo:FileDataObject,
+                                                                             nfo:ArchiveItem;
+                                                                           skos:prefLabel "/l".
+<ni:///mh;1QEQcV6I0FS-md7q63XG0IZI9w?ct=application/octet-stream> at:digest <urn:md5:715E88D054BE99DEEAEB75C6D08648F7>;
+                                                                  dcterms:extent "3712"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQcV6I0FS-md7q63XG0IZI9w?ct=application/x-msdownload;format=ne>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (3.63 KiB)"@en.
+<ni:///mh;1QEQcV6I0FS-md7q63XG0IZI9w?ct=application/x-msdownload;format=ne> dcterms:creator "ACK Software"@en-us;
+                                                                            dcterms:description "PixFolio Help Error message DLL"@en-us;
+                                                                            schema:copyrightNotice "Copyright ACK Software, 1991, 1992"@en-us;
+                                                                            schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-msdownload;format=ne>;
+                                                                            schema:softwareVersion "1.3.0.7";
+                                                                            schema:version "1.3.0.7",
+                                                                                           "1.03.7";
+                                                                            a schema:MediaObject,
+                                                                              schema:SoftwareApplication,
+                                                                              nfo:Executable;
+                                                                            skos:prefLabel "DLL object (3.63 KiB)"@en.
+<urn:md5:5711072A11AEDFD62CA8A86C0F381471> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "VxEHKhGu39YsqKhsDzgUcQ=="^^xsd:base64Binary.
+<urn:md5:715E88D054BE99DEEAEB75C6D08648F7> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "cV6I0FS+md7q63XG0IZI9w=="^^xsd:base64Binary.

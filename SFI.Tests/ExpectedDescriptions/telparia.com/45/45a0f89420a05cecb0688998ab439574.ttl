@@ -1,0 +1,38 @@
+@base <ni:///mh;1QEQLNMo76W9PCV3Nyu0GERk8w?ct=text/plain>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///index.htm.ru.cp866>;
+     nie:interpretedAs <ni:///mh;1QEQLNMo76W9PCV3Nyu0GERk8w?ct=text/plain>;
+     nfo:fileName "index.htm.ru.cp866";
+     nfo:fileSize 1591 ;
+     a nfo:FileDataObject.
+<file:///index.htm.ru.cp866> at:extensionObject <https://w3id.org/uri4uri/suffix/cp866>.
+<ni:///mh;1QEQLNMo76W9PCV3Nyu0GERk8w?ct=text/html> dcterms:title "���⮢�� ��࠭�� ��⠭���� Apache";
+                                                   schema:encodingFormat <https://w3id.org/uri4uri/mime/text/html>;
+                                                   a schema:MediaObject,
+                                                     schema:DigitalDocument,
+                                                     nfo:Document;
+                                                   skos:prefLabel "HTML object (1.55 KiB)"@en.
+<ni:///mh;1QEQLNMo76W9PCV3Nyu0GERk8w?ct=text/plain> at:digest <urn:md5:2CD328EFA5BD3C2577372BB4184464F3>;
+                                                    dcterms:extent "1591"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQLNMo76W9PCV3Nyu0GERk8w?ct=text/html>;
+                                                    nie:hasPart <ni:///mh;1QEQLNMo76W9PCV3Nyu0GERk8w?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.55 KiB)"@en;
+                                                    cnt:characterEncoding "cp866".
+<ni:///mh;1QEQLNMo76W9PCV3Nyu0GERk8w?ct=text/plain#line=,1> rdf:value """<!doctype html public \"-//w3c//dtd html 4.0 transitional//en\">""".
+<urn:md5:2CD328EFA5BD3C2577372BB4184464F3> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "LNMo76W9PCV3Nyu0GERk8w=="^^xsd:base64Binary.

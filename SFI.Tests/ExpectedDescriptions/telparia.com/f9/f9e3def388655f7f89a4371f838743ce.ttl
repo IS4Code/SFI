@@ -1,0 +1,62 @@
+@base <ni:///mh;1QEQl8xqi4ry3vLBghyzUAox0g?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///TFORMABOUT>;
+     nie:interpretedAs <ni:///mh;1QEQl8xqi4ry3vLBghyzUAox0g?ct=application/octet-stream>;
+     nfo:fileName "TFORMABOUT";
+     nfo:fileSize 1385 ;
+     a nfo:FileDataObject.
+<file:///GlyViewIcon/Picture.Data> at:pathObject <file:///Picture.Data>.
+<file:///Panel1/GlyViewIcon/Picture.Data> at:pathObject <file:///GlyViewIcon/Picture.Data>.
+<file:///Picture.Data> at:extensionObject <https://w3id.org/uri4uri/suffix/data>.
+<ni:///mh;1QEQB9cI3x-CSVUJCIZF4o9KkQ?ct=application/octet-stream> at:digest <urn:md5:07D708DF1F82495509088645E28F4A91>;
+                                                                  dcterms:extent "322"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQB9cI3x-CSVUJCIZF4o9KkQ?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (322 B)"@en.
+<ni:///mh;1QEQB9cI3x-CSVUJCIZF4o9KkQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
+                                                   nfo:height 17 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 18 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (18×17)"@en,
+                                                                  "BMP object (334 B)"@en.
+<ni:///mh;1QEQl8xqi4ry3vLBghyzUAox0g?ct=application/octet-stream> at:digest <urn:md5:97CC6A8B8AF2DEF2C1821CB3500A31D2>;
+                                                                  dcterms:extent "1385"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQl8xqi4ry3vLBghyzUAox0g?ct=application/x-delphi-form>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.35 KiB)"@en.
+<ni:///mh;1QEQl8xqi4ry3vLBghyzUAox0g?ct=application/x-delphi-form> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-delphi-form>;
+                                                                   nie:hasPart <ni:///mh;1QEQl8xqi4ry3vLBghyzUAox0g?ct=application/x-delphi-form#/Panel1%2FGlyViewIcon%2FPicture.Data>;
+                                                                   a schema:MediaObject;
+                                                                   skos:prefLabel "DFM object (FormAbout)"@en.
+<ni:///mh;1QEQl8xqi4ry3vLBghyzUAox0g?ct=application/x-delphi-form#/Panel1%2FGlyViewIcon%2FPicture.Data> at:pathObject <file:///Panel1/GlyViewIcon/Picture.Data>;
+                                                                                                        nie:interpretedAs <ni:///mh;1QEQB9cI3x-CSVUJCIZF4o9KkQ?ct=application/octet-stream>;
+                                                                                                        nfo:fileName "Panel1/GlyViewIcon/Picture.Data";
+                                                                                                        nfo:fileSize 334 ;
+                                                                                                        a nfo:FileDataObject,
+                                                                                                          nfo:EmbeddedFileDataObject;
+                                                                                                        skos:prefLabel "/Panel1/GlyViewIcon/Picture.Data".
+<urn:md5:07D708DF1F82495509088645E28F4A91> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "B9cI3x+CSVUJCIZF4o9KkQ=="^^xsd:base64Binary.
+<urn:md5:97CC6A8B8AF2DEF2C1821CB3500A31D2> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "l8xqi4ry3vLBghyzUAox0g=="^^xsd:base64Binary.

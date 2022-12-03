@@ -1,0 +1,50 @@
+@base <data:application/octet-stream;base64,AAABAAABAAAAAAAAAAAAAAEAAQAAAAABAAAAAAABAAAAAAAAAAAAAAEAAAEAAAABAAAAAAAAAAAAAAEAAAEAAA==>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///ROUND.BRU>;
+     nie:interpretedAs <data:application/octet-stream;base64,AAABAAABAAAAAAAAAAAAAAEAAQAAAAABAAAAAAABAAAAAAAAAAAAAAEAAAEAAAABAAAAAAAAAAAAAAEAAAEAAA==>;
+     nfo:fileName "ROUND.BRU";
+     nfo:fileSize 64 ;
+     a nfo:FileDataObject.
+<data:application/octet-stream;base64,AAABAAABAAAAAAAAAAAAAAEAAQAAAAABAAAAAAABAAAAAAAAAAAAAAEAAAEAAAABAAAAAAAAAAAAAAEAAAEAAA==> dcterms:extent "64"^^dt:byte;
+                                                                                                                                dcterms:hasFormat <data:image/x-icon;base64,AAABAAABAAAAAAAAAAAAAAEAAQAAAAABAAAAAAABAAAAAAAAAAAAAAEAAAEAAAABAAAAAAAAAAAAAAEAAAEAAA==>;
+                                                                                                                                a cnt:ContentAsBase64;
+                                                                                                                                skos:prefLabel "binary data (64 B)"@en;
+                                                                                                                                cnt:bytes "AAABAAABAAAAAAAAAAAAAAEAAQAAAAABAAAAAAABAAAAAAAAAAAAAAEAAAEAAAABAAAAAAAAAAAAAAEAAAEAAA=="^^xsd:base64Binary.
+<data:image/x-icon;base64,AAABAAABAAAAAAAAAAAAAAEAAQAAAAABAAAAAAABAAAAAAAAAAAAAAEAAAEAAAABAAAAAAAAAAAAAAEAAAEAAA==> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
+                                                                                                                    nfo:hasMediaStream <data:image/x-icon;base64,AAABAAABAAAAAAAAAAAAAAEAAQAAAAABAAAAAAABAAAAAAAAAAAAAAEAAAEAAAABAAAAAAAAAAAAAAEAAAEAAA==#/0>,
+                                                                                                                                       <data:image/x-icon;base64,AAABAAABAAAAAAAAAAAAAAEAAQAAAAABAAAAAAABAAAAAAAAAAAAAAEAAAEAAAABAAAAAAAAAAAAAAEAAAEAAA==#/1>,
+                                                                                                                                       <data:image/x-icon;base64,AAABAAABAAAAAAAAAAAAAAEAAQAAAAABAAAAAAABAAAAAAAAAAAAAAEAAAEAAAABAAAAAAAAAAAAAAEAAAEAAA==#/2>,
+                                                                                                                                       <data:image/x-icon;base64,AAABAAABAAAAAAAAAAAAAAEAAQAAAAABAAAAAAABAAAAAAAAAAAAAAEAAAEAAAABAAAAAAAAAAAAAAEAAAEAAA==#/3>;
+                                                                                                                    nfo:width 0 ;
+                                                                                                                    a schema:MediaObject,
+                                                                                                                      schema:ImageObject,
+                                                                                                                      nfo:Image;
+                                                                                                                    skos:prefLabel "ICO object (64 B)"@en.
+<data:image/x-icon;base64,AAABAAABAAAAAAAAAAAAAAEAAQAAAAABAAAAAAABAAAAAAAAAAAAAAEAAAEAAAABAAAAAAAAAAAAAAEAAAEAAA==#/0> nfo:height 0 ;
+                                                                                                                       nfo:width 0 ;
+                                                                                                                       a nfo:MediaStream;
+                                                                                                                       skos:prefLabel "0:ICO (0×0)".
+<data:image/x-icon;base64,AAABAAABAAAAAAAAAAAAAAEAAQAAAAABAAAAAAABAAAAAAAAAAAAAAEAAAEAAAABAAAAAAAAAAAAAAEAAAEAAA==#/1> nfo:height 1 ;
+                                                                                                                       nfo:width 0 ;
+                                                                                                                       a nfo:MediaStream;
+                                                                                                                       skos:prefLabel "1:ICO (0×1)".
+<data:image/x-icon;base64,AAABAAABAAAAAAAAAAAAAAEAAQAAAAABAAAAAAABAAAAAAAAAAAAAAEAAAEAAAABAAAAAAAAAAAAAAEAAAEAAA==#/2> nfo:height 0 ;
+                                                                                                                       nfo:width 0 ;
+                                                                                                                       a nfo:MediaStream;
+                                                                                                                       skos:prefLabel "2:ICO (0×0)".
+<data:image/x-icon;base64,AAABAAABAAAAAAAAAAAAAAEAAQAAAAABAAAAAAABAAAAAAAAAAAAAAEAAAEAAAABAAAAAAAAAAAAAAEAAAEAAA==#/3> nfo:height 0 ;
+                                                                                                                       nfo:width 0 ;
+                                                                                                                       a nfo:MediaStream;
+                                                                                                                       skos:prefLabel "3:ICO (0×0)".
+<file:///ROUND.BRU> at:extensionObject <https://w3id.org/uri4uri/suffix/bru>.

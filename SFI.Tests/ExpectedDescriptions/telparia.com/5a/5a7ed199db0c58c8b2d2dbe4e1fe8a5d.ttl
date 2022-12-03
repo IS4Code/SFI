@@ -1,0 +1,32 @@
+@base <ni:///mh;1QEQrfGNIJxOxb6aJSaNl1qcqw?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///WINDMILL.CCX>;
+     nie:interpretedAs <ni:///mh;1QEQrfGNIJxOxb6aJSaNl1qcqw?ct=application/octet-stream>;
+     nfo:fileName "WINDMILL.CCX";
+     nfo:fileSize 23792 ;
+     a nfo:FileDataObject.
+<file:///WINDMILL.CCX> at:extensionObject <https://w3id.org/uri4uri/suffix/ccx>.
+<ni:///mh;1QEQrfGNIJxOxb6aJSaNl1qcqw?ct=application/octet-stream> at:digest <urn:md5:ADF18D209C4EC5BE9A25268D975A9CAB>;
+                                                                  dcterms:extent "23792"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQrfGNIJxOxb6aJSaNl1qcqw?ct=application/x-riff>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (23.23 KiB)"@en.
+<ni:///mh;1QEQrfGNIJxOxb6aJSaNl1qcqw?ct=application/x-riff> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-riff>;
+                                                            a schema:MediaObject;
+                                                            skos:prefLabel "RIFF object (23.23 KiB)"@en.
+<urn:md5:ADF18D209C4EC5BE9A25268D975A9CAB> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "rfGNIJxOxb6aJSaNl1qcqw=="^^xsd:base64Binary.

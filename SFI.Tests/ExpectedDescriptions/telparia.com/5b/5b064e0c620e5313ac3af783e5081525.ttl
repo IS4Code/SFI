@@ -1,0 +1,82 @@
+@base <ni:///mh;1QEQ7r93dnNmVsC_vsSIfyAgYA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///example_document.swf>;
+     nie:interpretedAs <ni:///mh;1QEQ7r93dnNmVsC_vsSIfyAgYA?ct=application/octet-stream>;
+     nfo:fileName "example_document.swf";
+     nfo:fileSize 628788 ;
+     a nfo:FileDataObject.
+<file:///example_document.swf> at:extensionObject <https://w3id.org/uri4uri/suffix/swf>.
+<ni:///mh;1QEQ7r93dnNmVsC_vsSIfyAgYA?ct=application/octet-stream> at:digest <urn:md5:EEBF7776736656C0BFBEC4887F202060>;
+                                                                  dcterms:extent "628788"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ7r93dnNmVsC_vsSIfyAgYA?ct=application/vnd.adobe.flash-movie>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (614.05 KiB)"@en.
+<ni:///mh;1QEQ7r93dnNmVsC_vsSIfyAgYA?ct=application/vnd.adobe.flash-movie> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.adobe.flash-movie>;
+                                                                           nie:hasPart <ni:///mh;1QEQQPq4VUBNXYoeOuClJChK6A?ct=application/octet-stream>,
+                                                                                       <ni:///mh;1QEQ9GgPyLQmqlltQcI6uIhqQA?ct=application/octet-stream>,
+                                                                                       <ni:///mh;1QEQGG2vlIEilyv8422HyV4wKQ?ct=application/octet-stream>;
+                                                                           nfo:frameCount 1 ;
+                                                                           nfo:frameRate "30"^^xsd:float;
+                                                                           nfo:height 800 ;
+                                                                           nfo:width 600 ;
+                                                                           a schema:MediaObject,
+                                                                             schema:SoftwareApplication,
+                                                                             nfo:Executable,
+                                                                             schema:VideoObject,
+                                                                             nfo:Video;
+                                                                           skos:prefLabel "SWF object (614.05 KiB)"@en.
+<ni:///mh;1QEQ9GgPyLQmqlltQcI6uIhqQA?ct=application/octet-stream> at:digest <urn:md5:F4680FC8B426AA596D41C23AB8886A40>;
+                                                                  dcterms:extent "157923"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ9GgPyLQmqlltQcI6uIhqQA?ct=image/jpeg>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (154.22 KiB)"@en.
+<ni:///mh;1QEQ9GgPyLQmqlltQcI6uIhqQA?ct=image/jpeg> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/jpeg>;
+                                                    a schema:MediaObject,
+                                                      schema:ImageObject,
+                                                      nfo:Image;
+                                                    skos:prefLabel "JPG object (154.22 KiB)"@en.
+<ni:///mh;1QEQGG2vlIEilyv8422HyV4wKQ?ct=application/octet-stream> at:digest <urn:md5:186DAF948122972BFCE36D87C95E3029>;
+                                                                  dcterms:extent "11488"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQGG2vlIEilyv8422HyV4wKQ?ct=image/jpeg>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (11.22 KiB)"@en.
+<ni:///mh;1QEQGG2vlIEilyv8422HyV4wKQ?ct=image/jpeg> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/jpeg>;
+                                                    a schema:MediaObject,
+                                                      schema:ImageObject,
+                                                      nfo:Image;
+                                                    skos:prefLabel "JPG object (11.22 KiB)"@en.
+<ni:///mh;1QEQQPq4VUBNXYoeOuClJChK6A?ct=application/octet-stream> at:digest <urn:md5:40FAB855404D5D8A1E3AE0A524284AE8>;
+                                                                  dcterms:extent "420156"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQQPq4VUBNXYoeOuClJChK6A?ct=image/jpeg>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (410.31 KiB)"@en.
+<ni:///mh;1QEQQPq4VUBNXYoeOuClJChK6A?ct=image/jpeg> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/jpeg>;
+                                                    a schema:MediaObject,
+                                                      schema:ImageObject,
+                                                      nfo:Image;
+                                                    skos:prefLabel "JPG object (410.31 KiB)"@en.
+<urn:md5:186DAF948122972BFCE36D87C95E3029> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "GG2vlIEilyv8422HyV4wKQ=="^^xsd:base64Binary.
+<urn:md5:40FAB855404D5D8A1E3AE0A524284AE8> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "QPq4VUBNXYoeOuClJChK6A=="^^xsd:base64Binary.
+<urn:md5:EEBF7776736656C0BFBEC4887F202060> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "7r93dnNmVsC/vsSIfyAgYA=="^^xsd:base64Binary.
+<urn:md5:F4680FC8B426AA596D41C23AB8886A40> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "9GgPyLQmqlltQcI6uIhqQA=="^^xsd:base64Binary.

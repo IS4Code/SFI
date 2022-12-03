@@ -1,0 +1,95 @@
+@base <ni:///mh;1QEQNOTMdz7Q16n4ghLNxRU5Dg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///CSH-NT.PPT>;
+     nie:interpretedAs <ni:///mh;1QEQNOTMdz7Q16n4ghLNxRU5Dg?ct=application/octet-stream>;
+     nfo:fileName "CSH-NT.PPT";
+     nfo:fileSize 27648 ;
+     a nfo:FileDataObject.
+<data:,%13Douglas%20A.%20Hamilton> dcterms:extent "20"^^dt:byte;
+                                   a cnt:ContentAsText;
+                                   skos:prefLabel "text (20 B)"@en;
+                                   cnt:characterEncoding "us-ascii";
+                                   cnt:chars "␓Douglas A. Hamilton"^^xsd:string.
+<data:application/octet-stream,%00%00%00%00> dcterms:extent "4"^^dt:byte;
+                                             a cnt:ContentAsBase64;
+                                             skos:prefLabel "binary data (4 B)"@en;
+                                             cnt:bytes "AAAAAA=="^^xsd:base64Binary.
+<file:///CSH-NT.PPT> at:extensionObject <https://w3id.org/uri4uri/suffix/ppt>.
+<ni:///mh;1QEQNOTMdz7Q16n4ghLNxRU5Dg?ct=application/octet-stream> at:digest <urn:md5:34E4CC773ED0D7A9F88212CDC515390E>;
+                                                                  dcterms:extent "27648"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQNOTMdz7Q16n4ghLNxRU5Dg?ct=application/x-ole-storage>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (27 KiB)"@en.
+<ni:///mh;1QEQNOTMdz7Q16n4ghLNxRU5Dg?ct=application/x-ole-storage> at:pathObject <file:///>;
+                                                                   schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
+                                                                   nie:interpretedAs <ni:///mh;1QEQNOTMdz7Q16n4ghLNxRU5Dg?ct=application/x-ole-storage#/>;
+                                                                   nfo:fileLastModified "1994-12-08T17:01:52.265000Z"^^xsd:dateTime;
+                                                                   a schema:MediaObject,
+                                                                     nfo:EmbeddedFileDataObject;
+                                                                   skos:prefLabel "OLE object (27 KiB)"@en.
+<ni:///mh;1QEQNOTMdz7Q16n4ghLNxRU5Dg?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+                                                                     a nfo:Folder;
+                                                                     skos:prefLabel "/".
+<ni:///mh;1QEQNOTMdz7Q16n4ghLNxRU5Dg?ct=application/x-ole-storage#/%05SummaryInformation> at:pathObject <file:///%05SummaryInformation>;
+                                                                                          nie:interpretedAs <ni:///mh;1QEQpaZnXobECaEBjXx48OMRcg?ct=text/plain>;
+                                                                                          nfo:belongsToContainer <ni:///mh;1QEQNOTMdz7Q16n4ghLNxRU5Dg?ct=application/x-ole-storage#/>;
+                                                                                          nfo:fileName """{\"@value\":\"\\u0005SummaryInformation\"}"""^^rdf:JSON;
+                                                                                          nfo:fileSize 5010 ;
+                                                                                          a nfo:FileDataObject,
+                                                                                            nfo:EmbeddedFileDataObject;
+                                                                                          skos:prefLabel "/␅SummaryInformation".
+<ni:///mh;1QEQNOTMdz7Q16n4ghLNxRU5Dg?ct=application/x-ole-storage#/Current%20ID> at:pathObject <file:///Current%20ID>;
+                                                                                 nie:interpretedAs <data:application/octet-stream,%00%00%00%00>;
+                                                                                 nfo:belongsToContainer <ni:///mh;1QEQNOTMdz7Q16n4ghLNxRU5Dg?ct=application/x-ole-storage#/>;
+                                                                                 nfo:fileName "Current ID";
+                                                                                 nfo:fileSize 4 ;
+                                                                                 a nfo:FileDataObject,
+                                                                                   nfo:EmbeddedFileDataObject;
+                                                                                 skos:prefLabel "/Current ID".
+<ni:///mh;1QEQNOTMdz7Q16n4ghLNxRU5Dg?ct=application/x-ole-storage#/Current%20User> at:pathObject <file:///Current%20User>;
+                                                                                   nie:interpretedAs <data:,%13Douglas%20A.%20Hamilton>;
+                                                                                   nfo:belongsToContainer <ni:///mh;1QEQNOTMdz7Q16n4ghLNxRU5Dg?ct=application/x-ole-storage#/>;
+                                                                                   nfo:fileName "Current User";
+                                                                                   nfo:fileSize 20 ;
+                                                                                   a nfo:FileDataObject,
+                                                                                     nfo:EmbeddedFileDataObject;
+                                                                                   skos:prefLabel "/Current User".
+<ni:///mh;1QEQNOTMdz7Q16n4ghLNxRU5Dg?ct=application/x-ole-storage#/PP40> at:pathObject <file:///PP40>;
+                                                                         nie:interpretedAs <ni:///mh;1QEQYFMBoacrpzfzAOS7ekW8DA?ct=application/octet-stream>;
+                                                                         nfo:belongsToContainer <ni:///mh;1QEQNOTMdz7Q16n4ghLNxRU5Dg?ct=application/x-ole-storage#/>;
+                                                                         nfo:fileName "PP40";
+                                                                         nfo:fileSize 19387 ;
+                                                                         a nfo:FileDataObject,
+                                                                           nfo:EmbeddedFileDataObject;
+                                                                         skos:prefLabel "/PP40".
+<ni:///mh;1QEQYFMBoacrpzfzAOS7ekW8DA?ct=application/octet-stream> at:digest <urn:md5:605301A1A72BA737F300E4BB7A45BC0C>;
+                                                                  dcterms:extent "19387"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (18.93 KiB)"@en.
+<ni:///mh;1QEQpaZnXobECaEBjXx48OMRcg?ct=text/plain> at:digest <urn:md5:A5A6675E86C409A1018D7C78F0E31172>;
+                                                    dcterms:extent "5010"^^dt:byte;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (4.89 KiB)"@en;
+                                                    cnt:characterEncoding "x-iso-10646-ucs-4-3412".
+<urn:md5:34E4CC773ED0D7A9F88212CDC515390E> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "NOTMdz7Q16n4ghLNxRU5Dg=="^^xsd:base64Binary.
+<urn:md5:605301A1A72BA737F300E4BB7A45BC0C> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "YFMBoacrpzfzAOS7ekW8DA=="^^xsd:base64Binary.
+<urn:md5:A5A6675E86C409A1018D7C78F0E31172> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "paZnXobECaEBjXx48OMRcg=="^^xsd:base64Binary.

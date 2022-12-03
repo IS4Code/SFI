@@ -1,0 +1,645 @@
+@base <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xis: <http://www.w3.org/2001/04/infoset#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+
+_:n1 at:pathObject <file:///example.cdr>;
+     nie:interpretedAs <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/octet-stream>;
+     nfo:fileName "example.cdr";
+     nfo:fileSize 1321560 ;
+     a nfo:FileDataObject.
+<data:,application%2Fx-vnd.corel.zcf.draw.document%2Bzip> dcterms:extent "45"^^dt:byte;
+                                                          a cnt:ContentAsText;
+                                                          skos:prefLabel "text (45 B)"@en;
+                                                          cnt:characterEncoding "us-ascii";
+                                                          cnt:chars "application/x-vnd.corel.zcf.draw.document+zip"^^xsd:string.
+<data:,data1.dat%0ABitmaps.dat%0Adata2.dat%0AmasterPage.dat%0Apage1.dat> dcterms:extent "56"^^dt:byte;
+                                                                         a cnt:ContentAsText;
+                                                                         skos:prefLabel "text (56 B)"@en;
+                                                                         cnt:characterEncoding "us-ascii";
+                                                                         cnt:chars """data1.dat
+Bitmaps.dat
+data2.dat
+masterPage.dat
+page1.dat"""^^xsd:string.
+<data:;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiID8+CjxsaW5rSW5mbyAvPgo=> dcterms:extent "53"^^dt:byte;
+                                                                                        dcterms:hasFormat <data:application/xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiID8+CjxsaW5rSW5mbyAvPgo=>;
+                                                                                        a cnt:ContentAsText;
+                                                                                        skos:prefLabel "text (53 B)"@en;
+                                                                                        cnt:characterEncoding "us-ascii";
+                                                                                        cnt:chars """<?xml version=\"1.0\" encoding=\"UTF-8\" ?>
+<linkInfo />
+"""^^xsd:string.
+<data:application/x.ns.linkInfo+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiID8+CjxsaW5rSW5mbyAvPgo=> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.linkinfo+xml>;
+                                                                                                                     a schema:MediaObject;
+                                                                                                                     skos:prefLabel "LINKINFO object"@en.
+<data:application/xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiID8+CjxsaW5rSW5mbyAvPgo=> dcterms:hasFormat <data:application/x.ns.linkInfo+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiID8+CjxsaW5rSW5mbyAvPgo=>;
+                                                                                                       schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                                                                       a schema:MediaObject,
+                                                                                                         cnt:ContentAsXML,
+                                                                                                         xis:Document;
+                                                                                                       xis:documentElement <data:application/xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiID8+CjxsaW5rSW5mbyAvPgo=#element(/1)>;
+                                                                                                       skos:prefLabel "XML object (linkInfo)"@en;
+                                                                                                       cnt:declaredEncoding "UTF-8";
+                                                                                                       cnt:version "1.0".
+<data:application/xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiID8+CjxsaW5rSW5mbyAvPgo=#element(/1)> a xis:Element;
+                                                                                                                   xis:localName "linkInfo";
+                                                                                                                   xis:name "linkInfo".
+<file:///Bitmaps.dat> at:extensionObject <https://w3id.org/uri4uri/suffix/dat>.
+<file:///META-INF/container.xml> at:pathObject <file:///container.xml>.
+<file:///META-INF/links.xml> at:pathObject <file:///links.xml>.
+<file:///META-INF/metadata.xml> at:pathObject <file:///metadata.xml>.
+<file:///META-INF/textinfo.xml> at:pathObject <file:///textinfo.xml>.
+<file:///cmyk/uswebcoatedswop.icc> at:pathObject <file:///uswebcoatedswop.icc>.
+<file:///color.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///color/color.xml> at:pathObject <file:///color.xml>.
+<file:///color/docPalette.xml> at:pathObject <file:///docPalette.xml>.
+<file:///color/profiles> at:pathObject <file:///profiles>.
+<file:///color/profiles/> at:pathObject <file:///profiles/>.
+<file:///color/profiles/cmyk> at:pathObject <file:///profiles/cmyk>.
+<file:///color/profiles/cmyk/> at:pathObject <file:///profiles/cmyk/>.
+<file:///color/profiles/cmyk/uswebcoatedswop.icc> at:pathObject <file:///profiles/cmyk/uswebcoatedswop.icc>.
+<file:///color/profiles/rgb> at:pathObject <file:///profiles/rgb>.
+<file:///color/profiles/rgb/> at:pathObject <file:///profiles/rgb/>.
+<file:///color/profiles/rgb/srgb%20color%20space%20profile.icm> at:pathObject <file:///profiles/rgb/srgb%20color%20space%20profile.icm>.
+<file:///container.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///content/data> at:pathObject <file:///data>.
+<file:///content/data/> at:pathObject <file:///data/>.
+<file:///content/data/Bitmaps.dat> at:pathObject <file:///data/Bitmaps.dat>.
+<file:///content/data/data1.dat> at:pathObject <file:///data/data1.dat>.
+<file:///content/data/data2.dat> at:pathObject <file:///data/data2.dat>.
+<file:///content/data/masterPage.dat> at:pathObject <file:///data/masterPage.dat>.
+<file:///content/data/page1.dat> at:pathObject <file:///data/page1.dat>.
+<file:///content/dataFileList.dat> at:pathObject <file:///dataFileList.dat>.
+<file:///content/root.dat> at:pathObject <file:///root.dat>.
+<file:///data/Bitmaps.dat> at:pathObject <file:///Bitmaps.dat>.
+<file:///data/data1.dat> at:pathObject <file:///data1.dat>.
+<file:///data/data2.dat> at:pathObject <file:///data2.dat>.
+<file:///data/masterPage.dat> at:pathObject <file:///masterPage.dat>.
+<file:///data/page1.dat> at:pathObject <file:///page1.dat>.
+<file:///data1.dat> at:extensionObject <https://w3id.org/uri4uri/suffix/dat>.
+<file:///data2.dat> at:extensionObject <https://w3id.org/uri4uri/suffix/dat>.
+<file:///dataFileList.dat> at:extensionObject <https://w3id.org/uri4uri/suffix/dat>.
+<file:///docPalette.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///document.cdss> at:extensionObject <https://w3id.org/uri4uri/suffix/cdss>.
+<file:///example.cdr> at:extensionObject <https://w3id.org/uri4uri/suffix/cdr>.
+<file:///links.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///masterPage.dat> at:extensionObject <https://w3id.org/uri4uri/suffix/dat>.
+<file:///metadata.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///page1.dat> at:extensionObject <https://w3id.org/uri4uri/suffix/dat>.
+<file:///page1.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
+<file:///previews/page1.png> at:pathObject <file:///page1.png>.
+<file:///previews/thumbnail.png> at:pathObject <file:///thumbnail.png>.
+<file:///profiles/cmyk> at:pathObject <file:///cmyk>.
+<file:///profiles/cmyk/> at:pathObject <file:///cmyk/>.
+<file:///profiles/cmyk/uswebcoatedswop.icc> at:pathObject <file:///cmyk/uswebcoatedswop.icc>.
+<file:///profiles/rgb> at:pathObject <file:///rgb>.
+<file:///profiles/rgb/> at:pathObject <file:///rgb/>.
+<file:///profiles/rgb/srgb%20color%20space%20profile.icm> at:pathObject <file:///rgb/srgb%20color%20space%20profile.icm>.
+<file:///rgb/srgb%20color%20space%20profile.icm> at:pathObject <file:///srgb%20color%20space%20profile.icm>.
+<file:///root.dat> at:extensionObject <https://w3id.org/uri4uri/suffix/dat>.
+<file:///srgb%20color%20space%20profile.icm> at:extensionObject <https://w3id.org/uri4uri/suffix/icm>.
+<file:///styles/document.cdss> at:pathObject <file:///document.cdss>.
+<file:///textinfo.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///thumbnail.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
+<file:///uswebcoatedswop.icc> at:extensionObject <https://w3id.org/uri4uri/suffix/icc>.
+<ni:///mh;1QEQ8roYprnkt-LZU9la-dUasA?ct=application/x.ns.Color+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.color+xml>;
+                                                                    a schema:MediaObject;
+                                                                    skos:prefLabel "COLOR object"@en.
+<ni:///mh;1QEQ8roYprnkt-LZU9la-dUasA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ8roYprnkt-LZU9la-dUasA?ct=application/x.ns.Color+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQ8roYprnkt-LZU9la-dUasA?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (Color)"@en.
+<ni:///mh;1QEQ8roYprnkt-LZU9la-dUasA?ct=application/xml#element(/1)> a xis:Element;
+                                                                     xis:localName "Color";
+                                                                     xis:name "Color".
+<ni:///mh;1QEQ8roYprnkt-LZU9la-dUasA?ct=text/plain> at:digest <urn:md5:F2BA18A6B9E4B7E2D953D95AF9D51AB0>;
+                                                    dcterms:extent "425"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ8roYprnkt-LZU9la-dUasA?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQ8roYprnkt-LZU9la-dUasA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (425 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQ8roYprnkt-LZU9la-dUasA?ct=text/plain#line=,1> rdf:value """<Color><ColorContext><ColorProfile id=\"Rgb\">sRGB IEC61966-2.1</ColorProfile><ColorProfile id=\"Cmyk\">U.S. Web Coated (SWOP) v2</ColorProfile><ColorProfile id=\"Grayscale\">Dot Gain 20%</ColorProfile><ColorModel>Cmyk</ColorModel><RenderingIntent>RelativeColorimetric</RenderingIntent></ColorContext><HasRgbObjects>true</HasRgbObjects><HasCmykObjects>true</HasCmykObjects><HasGrayscaleObjects>false</HasGrayscaleObjects></Color>""".
+<ni:///mh;1QEQCoxnMsnyN7R2Nj5rpfOKeQ?ct=text/plain> at:digest <urn:md5:0A8C6732C9F237B476363E6BA5F38A79>;
+                                                    dcterms:extent "451"^^dt:byte;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (451 B)"@en;
+                                                    cnt:characterEncoding "utf-16BE".
+<ni:///mh;1QEQD9erTMs0lFsuKlkvacIiZg?ct=application/octet-stream> at:digest <urn:md5:0FD7AB4CCB34945B2E2A592F69C22266>;
+                                                                  dcterms:extent "1642871"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQD9erTMs0lFsuKlkvacIiZg?ct=application/x.sig.bi>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.57 MiB)"@en.
+<ni:///mh;1QEQD9erTMs0lFsuKlkvacIiZg?ct=application/x.sig.bi> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.bi>;
+                                                              a schema:MediaObject;
+                                                              skos:prefLabel "BI object (1.57 MiB)"@en.
+<ni:///mh;1QEQHT_aLttKiatgojxffH2B3Q?ct=application/octet-stream> at:digest <urn:md5:1D3FDA2EDB4A89AB60A23C5F7C7D81DD>;
+                                                                  dcterms:extent "3144"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (3.07 KiB)"@en.
+<ni:///mh;1QEQJnK8M6O_3RM0tbrs9mTuvw?ct=application/octet-stream> at:digest <urn:md5:2672BC33A3BFDD1334B5BAECF664EEBF>;
+                                                                  dcterms:extent "40643"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQJnK8M6O_3RM0tbrs9mTuvw?ct=image/png>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (39.69 KiB)"@en.
+<ni:///mh;1QEQJnK8M6O_3RM0tbrs9mTuvw?ct=image/png> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/png>;
+                                                   nfo:colorDepth 24 ;
+                                                   nfo:height 256 ;
+                                                   nfo:horizontalResolution 95.9866;
+                                                   nfo:verticalResolution 95.9866;
+                                                   nfo:width 256 ;
+                                                   a schema:MediaObject,
+                                                     nfo:Image,
+                                                     schema:ImageObject;
+                                                   skos:prefLabel "PNG object (256×256, 8-bit)"@en,
+                                                                  "PNG object (256×256)"@en,
+                                                                  "PNG object (39.69 KiB)"@en.
+<ni:///mh;1QEQLwPLwTdXxW4SyEVBpo7fqQ?ct=text/plain> at:digest <urn:md5:2F03CBC13757C56E12C84541A68EDFA9>;
+                                                    dcterms:extent "15628"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQLwPLwTdXxW4SyEVBpo7fqQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (15.26 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQLwPLwTdXxW4SyEVBpo7fqQ?ct=text/plain#line=,1> rdf:value "{".
+<ni:///mh;1QEQNmG9BDmEjKhFwIvbQVfOYg?ct=application/x.ns.palette+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.palette+xml>;
+                                                                      a schema:MediaObject;
+                                                                      skos:prefLabel "PALETTE object"@en.
+<ni:///mh;1QEQNmG9BDmEjKhFwIvbQVfOYg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQNmG9BDmEjKhFwIvbQVfOYg?ct=application/x.ns.palette+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQNmG9BDmEjKhFwIvbQVfOYg?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (palette)"@en;
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQNmG9BDmEjKhFwIvbQVfOYg?ct=application/xml#element(/1)> a xis:Element;
+                                                                     xis:localName "palette";
+                                                                     xis:name "palette".
+<ni:///mh;1QEQNmG9BDmEjKhFwIvbQVfOYg?ct=text/plain> at:digest <urn:md5:3661BD0439848CA845C08BDB4157CE62>;
+                                                    dcterms:extent "102"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQNmG9BDmEjKhFwIvbQVfOYg?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQNmG9BDmEjKhFwIvbQVfOYg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (102 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQNmG9BDmEjKhFwIvbQVfOYg?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\"?>""".
+<ni:///mh;1QEQSgHe5lrV-N24rqE6V-vkcA?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.container.container+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.urn.oasis.names.tc.opendocument.xmlns.container.container+xml>;
+                                                                                                                        a schema:MediaObject;
+                                                                                                                        skos:prefLabel "CONTAINER object"@en.
+<ni:///mh;1QEQSgHe5lrV-N24rqE6V-vkcA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQSgHe5lrV-N24rqE6V-vkcA?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.container.container+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQSgHe5lrV-N24rqE6V-vkcA?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (container)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQSgHe5lrV-N24rqE6V-vkcA?ct=application/xml#element(/1)> a xis:Element;
+                                                                     rdfs:seeAlso <urn:oasis:names:tc:opendocument:xmlns:container>;
+                                                                     xis:localName "container";
+                                                                     xis:name "container";
+                                                                     xis:namespaceName "urn:oasis:names:tc:opendocument:xmlns:container"^^xsd:anyURI.
+<ni:///mh;1QEQSgHe5lrV-N24rqE6V-vkcA?ct=text/plain> at:digest <urn:md5:4A01DEE65AD5F8DDB8AEA13A57EBE470>;
+                                                    dcterms:extent "686"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQSgHe5lrV-N24rqE6V-vkcA?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQSgHe5lrV-N24rqE6V-vkcA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (686 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQSgHe5lrV-N24rqE6V-vkcA?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" ?>""".
+<ni:///mh;1QEQYxvUVEiap9SPfbTT6IWTSg?ct=application/octet-stream> at:digest <urn:md5:631BD454489AA7D48F7DB4D3E885934A>;
+                                                                  dcterms:extent "51204"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQYxvUVEiap9SPfbTT6IWTSg?ct=application/x-riff>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (50 KiB)"@en.
+<ni:///mh;1QEQYxvUVEiap9SPfbTT6IWTSg?ct=application/x-riff> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-riff>;
+                                                            a schema:MediaObject;
+                                                            skos:prefLabel "RIFF object (50 KiB)"@en.
+<ni:///mh;1QEQdnST_NuwF8q_fgqpFw1HTA?ct=application/x.ns.adobe.ns.meta&2F.xmpmeta+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.adobe.ns.meta&2f.xmpmeta+xml>;
+                                                                                       a schema:MediaObject;
+                                                                                       skos:prefLabel "XMPMETA object"@en.
+<ni:///mh;1QEQdnST_NuwF8q_fgqpFw1HTA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQdnST_NuwF8q_fgqpFw1HTA?ct=application/x.ns.adobe.ns.meta&2F.xmpmeta+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQdnST_NuwF8q_fgqpFw1HTA?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (x:xmpmeta)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQdnST_NuwF8q_fgqpFw1HTA?ct=application/xml#element(/1)> a xis:Element;
+                                                                     rdfs:seeAlso <adobe:ns:meta/>;
+                                                                     xis:localName "xmpmeta";
+                                                                     xis:name "x:xmpmeta";
+                                                                     xis:namespaceName "adobe:ns:meta/"^^xsd:anyURI;
+                                                                     xis:prefix "x".
+<ni:///mh;1QEQdnST_NuwF8q_fgqpFw1HTA?ct=text/plain> at:digest <urn:md5:767493FCDBB017CABF7E0AA9170D474C>;
+                                                    dcterms:extent "8563"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQdnST_NuwF8q_fgqpFw1HTA?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQdnST_NuwF8q_fgqpFw1HTA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (8.36 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQdnST_NuwF8q_fgqpFw1HTA?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" ?>""".
+<ni:///mh;1QEQedfphOo6x07tfMkr9rIqDQ?ct=application/octet-stream> at:digest <urn:md5:79D7E984EA3AC74EED7CC92BF6B22A0D>;
+                                                                  dcterms:extent "557168"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (544.11 KiB)"@en.
+<ni:///mh;1QEQi3pDe2R8L2Bjdf8fbwNU6A?ct=application/x.ns.adobe.ns.meta&2F.xmpmeta+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.adobe.ns.meta&2f.xmpmeta+xml>;
+                                                                                       a schema:MediaObject;
+                                                                                       skos:prefLabel "XMPMETA object"@en.
+<ni:///mh;1QEQi3pDe2R8L2Bjdf8fbwNU6A?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQi3pDe2R8L2Bjdf8fbwNU6A?ct=application/x.ns.adobe.ns.meta&2F.xmpmeta+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQi3pDe2R8L2Bjdf8fbwNU6A?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (x:xmpmeta)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQi3pDe2R8L2Bjdf8fbwNU6A?ct=application/xml#element(/1)> a xis:Element;
+                                                                     rdfs:seeAlso <adobe:ns:meta/>;
+                                                                     xis:localName "xmpmeta";
+                                                                     xis:name "x:xmpmeta";
+                                                                     xis:namespaceName "adobe:ns:meta/"^^xsd:anyURI;
+                                                                     xis:prefix "x".
+<ni:///mh;1QEQi3pDe2R8L2Bjdf8fbwNU6A?ct=text/plain> at:digest <urn:md5:8B7A437B647C2F606375FF1F6F0354E8>;
+                                                    dcterms:extent "596"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQi3pDe2R8L2Bjdf8fbwNU6A?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQi3pDe2R8L2Bjdf8fbwNU6A?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (596 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQi3pDe2R8L2Bjdf8fbwNU6A?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" ?>""".
+<ni:///mh;1QEQn0KQE6KxJtLF3PtHKLulKA?ct=application/octet-stream> at:digest <urn:md5:9F429013A2B126D2C5DCFB4728BBA528>;
+                                                                  dcterms:extent "17349"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (16.94 KiB)"@en.
+<ni:///mh;1QEQnmgkolWK6nKw_AuoftZwLw?ct=application/octet-stream> at:digest <urn:md5:9E6824A2558AEA72B0FC0BA87ED6702F>;
+                                                                  dcterms:extent "11108"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (10.85 KiB)"@en.
+<ni:///mh;1QEQpDN415FbLF_-tBpztLEl5A?ct=application/octet-stream> at:digest <urn:md5:A43378D7915B2C5FFEB41A73B4B125E4>;
+                                                                  dcterms:extent "33148"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQpDN415FbLF_-tBpztLEl5A?ct=image/png>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (32.37 KiB)"@en.
+<ni:///mh;1QEQpDN415FbLF_-tBpztLEl5A?ct=image/png> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/png>;
+                                                   nfo:colorDepth 24 ;
+                                                   nfo:height 256 ;
+                                                   nfo:horizontalResolution 95.9866;
+                                                   nfo:verticalResolution 95.9866;
+                                                   nfo:width 197 ;
+                                                   a schema:MediaObject,
+                                                     nfo:Image,
+                                                     schema:ImageObject;
+                                                   skos:prefLabel "PNG object (197×256)"@en,
+                                                                  "PNG object (197×256, 8-bit)"@en,
+                                                                  "PNG object (32.37 KiB)"@en.
+<ni:///mh;1QEQr8uFz9SihhQkILni9jN1HQ?ct=application/octet-stream> at:digest <urn:md5:AFCB85CFD4A286142420B9E2F633751D>;
+                                                                  dcterms:extent "312"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (312 B)"@en.
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/octet-stream> at:digest <urn:md5:B279DD927AA97FFDC209C25F7E71613C>;
+                                                                  dcterms:extent "1321560"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.26 MiB)"@en.
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip> at:pathObject <file:///>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
+                                                         nie:interpretedAs <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/>;
+                                                         a schema:MediaObject,
+                                                           nfo:Archive;
+                                                         skos:prefLabel "ZIP object (1.26 MiB)"@en.
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/> at:pathObject <file:///./>;
+                                                           a nfo:Folder;
+                                                           skos:prefLabel "/".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/META-INF> at:pathObject <file:///META-INF>;
+                                                                   nie:interpretedAs <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/META-INF/>;
+                                                                   nfo:belongsToContainer <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/>;
+                                                                   nfo:fileName "META-INF";
+                                                                   a nfo:FileDataObject,
+                                                                     nfo:ArchiveItem;
+                                                                   skos:prefLabel "/META-INF".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/META-INF/> at:pathObject <file:///META-INF/>;
+                                                                    a nfo:Folder;
+                                                                    skos:prefLabel "/META-INF/".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/META-INF/container.xml> at:pathObject <file:///META-INF/container.xml>;
+                                                                                 nie:interpretedAs <ni:///mh;1QEQSgHe5lrV-N24rqE6V-vkcA?ct=text/plain>;
+                                                                                 nfo:belongsToContainer <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/META-INF/>;
+                                                                                 nfo:fileLastModified "2014-10-14T11:06:32.000000+02:00"^^xsd:dateTime;
+                                                                                 nfo:fileName "container.xml";
+                                                                                 nfo:fileSize 686 ;
+                                                                                 a nfo:FileDataObject,
+                                                                                   nfo:ArchiveItem;
+                                                                                 skos:prefLabel "/META-INF/container.xml".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/META-INF/links.xml> at:pathObject <file:///META-INF/links.xml>;
+                                                                             nie:interpretedAs <data:;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiID8+CjxsaW5rSW5mbyAvPgo=>;
+                                                                             nfo:belongsToContainer <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/META-INF/>;
+                                                                             nfo:fileLastModified "2014-10-14T11:06:32.000000+02:00"^^xsd:dateTime;
+                                                                             nfo:fileName "links.xml";
+                                                                             nfo:fileSize 53 ;
+                                                                             a nfo:FileDataObject,
+                                                                               nfo:ArchiveItem;
+                                                                             skos:prefLabel "/META-INF/links.xml".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/META-INF/metadata.xml> at:pathObject <file:///META-INF/metadata.xml>;
+                                                                                nie:interpretedAs <ni:///mh;1QEQdnST_NuwF8q_fgqpFw1HTA?ct=text/plain>;
+                                                                                nfo:belongsToContainer <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/META-INF/>;
+                                                                                nfo:fileLastModified "2014-10-14T11:06:32.000000+02:00"^^xsd:dateTime;
+                                                                                nfo:fileName "metadata.xml";
+                                                                                nfo:fileSize 8563 ;
+                                                                                a nfo:FileDataObject,
+                                                                                  nfo:ArchiveItem;
+                                                                                skos:prefLabel "/META-INF/metadata.xml".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/META-INF/textinfo.xml> at:pathObject <file:///META-INF/textinfo.xml>;
+                                                                                nie:interpretedAs <ni:///mh;1QEQi3pDe2R8L2Bjdf8fbwNU6A?ct=text/plain>;
+                                                                                nfo:belongsToContainer <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/META-INF/>;
+                                                                                nfo:fileLastModified "2014-10-14T11:06:32.000000+02:00"^^xsd:dateTime;
+                                                                                nfo:fileName "textinfo.xml";
+                                                                                nfo:fileSize 596 ;
+                                                                                a nfo:FileDataObject,
+                                                                                  nfo:ArchiveItem;
+                                                                                skos:prefLabel "/META-INF/textinfo.xml".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/color> at:pathObject <file:///color>;
+                                                                nie:interpretedAs <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/color/>;
+                                                                nfo:belongsToContainer <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/>;
+                                                                nfo:fileName "color";
+                                                                a nfo:FileDataObject,
+                                                                  nfo:ArchiveItem;
+                                                                skos:prefLabel "/color".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/color/> at:pathObject <file:///color/>;
+                                                                 a nfo:Folder;
+                                                                 skos:prefLabel "/color/".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/color/color.xml> at:pathObject <file:///color/color.xml>;
+                                                                          nie:interpretedAs <ni:///mh;1QEQ8roYprnkt-LZU9la-dUasA?ct=text/plain>;
+                                                                          nfo:belongsToContainer <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/color/>;
+                                                                          nfo:fileLastModified "2014-10-14T11:06:32.000000+02:00"^^xsd:dateTime;
+                                                                          nfo:fileName "color.xml";
+                                                                          nfo:fileSize 425 ;
+                                                                          a nfo:FileDataObject,
+                                                                            nfo:ArchiveItem;
+                                                                          skos:prefLabel "/color/color.xml".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/color/docPalette.xml> at:pathObject <file:///color/docPalette.xml>;
+                                                                               nie:interpretedAs <ni:///mh;1QEQNmG9BDmEjKhFwIvbQVfOYg?ct=text/plain>;
+                                                                               nfo:belongsToContainer <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/color/>;
+                                                                               nfo:fileLastModified "2014-10-14T11:06:32.000000+02:00"^^xsd:dateTime;
+                                                                               nfo:fileName "docPalette.xml";
+                                                                               nfo:fileSize 102 ;
+                                                                               a nfo:FileDataObject,
+                                                                                 nfo:ArchiveItem;
+                                                                               skos:prefLabel "/color/docPalette.xml".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/color/profiles> at:pathObject <file:///color/profiles>;
+                                                                         nie:interpretedAs <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/color/profiles/>;
+                                                                         nfo:belongsToContainer <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/color/>;
+                                                                         nfo:fileName "profiles";
+                                                                         a nfo:FileDataObject,
+                                                                           nfo:ArchiveItem;
+                                                                         skos:prefLabel "/color/profiles".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/color/profiles/> at:pathObject <file:///color/profiles/>;
+                                                                          a nfo:Folder;
+                                                                          skos:prefLabel "/color/profiles/".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/color/profiles/cmyk> at:pathObject <file:///color/profiles/cmyk>;
+                                                                              nie:interpretedAs <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/color/profiles/cmyk/>;
+                                                                              nfo:belongsToContainer <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/color/profiles/>;
+                                                                              nfo:fileName "cmyk";
+                                                                              a nfo:FileDataObject,
+                                                                                nfo:ArchiveItem;
+                                                                              skos:prefLabel "/color/profiles/cmyk".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/color/profiles/cmyk/> at:pathObject <file:///color/profiles/cmyk/>;
+                                                                               a nfo:Folder;
+                                                                               skos:prefLabel "/color/profiles/cmyk/".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/color/profiles/cmyk/uswebcoatedswop.icc> at:pathObject <file:///color/profiles/cmyk/uswebcoatedswop.icc>;
+                                                                                                  nie:interpretedAs <ni:///mh;1QEQedfphOo6x07tfMkr9rIqDQ?ct=application/octet-stream>;
+                                                                                                  nfo:belongsToContainer <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/color/profiles/cmyk/>;
+                                                                                                  nfo:fileLastModified "2014-10-14T11:06:32.000000+02:00"^^xsd:dateTime;
+                                                                                                  nfo:fileName "uswebcoatedswop.icc";
+                                                                                                  nfo:fileSize 557168 ;
+                                                                                                  a nfo:FileDataObject,
+                                                                                                    nfo:ArchiveItem;
+                                                                                                  skos:prefLabel "/color/profiles/cmyk/uswebcoatedswop.icc".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/color/profiles/rgb> at:pathObject <file:///color/profiles/rgb>;
+                                                                             nie:interpretedAs <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/color/profiles/rgb/>;
+                                                                             nfo:belongsToContainer <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/color/profiles/>;
+                                                                             nfo:fileName "rgb";
+                                                                             a nfo:FileDataObject,
+                                                                               nfo:ArchiveItem;
+                                                                             skos:prefLabel "/color/profiles/rgb".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/color/profiles/rgb/> at:pathObject <file:///color/profiles/rgb/>;
+                                                                              a nfo:Folder;
+                                                                              skos:prefLabel "/color/profiles/rgb/".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/color/profiles/rgb/srgb%20color%20space%20profile.icm> at:pathObject <file:///color/profiles/rgb/srgb%20color%20space%20profile.icm>;
+                                                                                                                nie:interpretedAs <ni:///mh;1QEQHT_aLttKiatgojxffH2B3Q?ct=application/octet-stream>;
+                                                                                                                nfo:belongsToContainer <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/color/profiles/rgb/>;
+                                                                                                                nfo:fileLastModified "2014-10-14T11:06:32.000000+02:00"^^xsd:dateTime;
+                                                                                                                nfo:fileName "srgb color space profile.icm";
+                                                                                                                nfo:fileSize 3144 ;
+                                                                                                                a nfo:FileDataObject,
+                                                                                                                  nfo:ArchiveItem;
+                                                                                                                skos:prefLabel "/color/profiles/rgb/srgb color space profile.icm".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/content> at:pathObject <file:///content>;
+                                                                  nie:interpretedAs <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/content/>;
+                                                                  nfo:belongsToContainer <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/>;
+                                                                  nfo:fileName "content";
+                                                                  a nfo:FileDataObject,
+                                                                    nfo:ArchiveItem;
+                                                                  skos:prefLabel "/content".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/content/> at:pathObject <file:///content/>;
+                                                                   a nfo:Folder;
+                                                                   skos:prefLabel "/content/".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/content/data> at:pathObject <file:///content/data>;
+                                                                       nie:interpretedAs <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/content/data/>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/content/>;
+                                                                       nfo:fileName "data";
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/content/data".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/content/data/> at:pathObject <file:///content/data/>;
+                                                                        a nfo:Folder;
+                                                                        skos:prefLabel "/content/data/".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/content/data/Bitmaps.dat> at:pathObject <file:///content/data/Bitmaps.dat>;
+                                                                                   nie:interpretedAs <ni:///mh;1QEQnmgkolWK6nKw_AuoftZwLw?ct=application/octet-stream>;
+                                                                                   nfo:belongsToContainer <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/content/data/>;
+                                                                                   nfo:fileLastModified "2014-10-14T11:06:30.000000+02:00"^^xsd:dateTime;
+                                                                                   nfo:fileName "Bitmaps.dat";
+                                                                                   nfo:fileSize 11108 ;
+                                                                                   a nfo:FileDataObject,
+                                                                                     nfo:ArchiveItem;
+                                                                                   skos:prefLabel "/content/data/Bitmaps.dat".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/content/data/data1.dat> at:pathObject <file:///content/data/data1.dat>;
+                                                                                 nie:interpretedAs <ni:///mh;1QEQr8uFz9SihhQkILni9jN1HQ?ct=application/octet-stream>;
+                                                                                 nfo:belongsToContainer <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/content/data/>;
+                                                                                 nfo:fileLastModified "2014-10-14T11:06:30.000000+02:00"^^xsd:dateTime;
+                                                                                 nfo:fileName "data1.dat";
+                                                                                 nfo:fileSize 312 ;
+                                                                                 a nfo:FileDataObject,
+                                                                                   nfo:ArchiveItem;
+                                                                                 skos:prefLabel "/content/data/data1.dat".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/content/data/data2.dat> at:pathObject <file:///content/data/data2.dat>;
+                                                                                 nie:interpretedAs <ni:///mh;1QEQn0KQE6KxJtLF3PtHKLulKA?ct=application/octet-stream>;
+                                                                                 nfo:belongsToContainer <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/content/data/>;
+                                                                                 nfo:fileLastModified "2014-10-14T11:06:30.000000+02:00"^^xsd:dateTime;
+                                                                                 nfo:fileName "data2.dat";
+                                                                                 nfo:fileSize 17349 ;
+                                                                                 a nfo:FileDataObject,
+                                                                                   nfo:ArchiveItem;
+                                                                                 skos:prefLabel "/content/data/data2.dat".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/content/data/masterPage.dat> at:pathObject <file:///content/data/masterPage.dat>;
+                                                                                      nie:interpretedAs <ni:///mh;1QEQCoxnMsnyN7R2Nj5rpfOKeQ?ct=text/plain>;
+                                                                                      nfo:belongsToContainer <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/content/data/>;
+                                                                                      nfo:fileLastModified "2014-10-14T11:06:30.000000+02:00"^^xsd:dateTime;
+                                                                                      nfo:fileName "masterPage.dat";
+                                                                                      nfo:fileSize 451 ;
+                                                                                      a nfo:FileDataObject,
+                                                                                        nfo:ArchiveItem;
+                                                                                      skos:prefLabel "/content/data/masterPage.dat".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/content/data/page1.dat> at:pathObject <file:///content/data/page1.dat>;
+                                                                                 nie:interpretedAs <ni:///mh;1QEQD9erTMs0lFsuKlkvacIiZg?ct=application/octet-stream>;
+                                                                                 nfo:belongsToContainer <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/content/data/>;
+                                                                                 nfo:fileLastModified "2014-10-14T11:06:30.000000+02:00"^^xsd:dateTime;
+                                                                                 nfo:fileName "page1.dat";
+                                                                                 nfo:fileSize 1642871 ;
+                                                                                 a nfo:FileDataObject,
+                                                                                   nfo:ArchiveItem;
+                                                                                 skos:prefLabel "/content/data/page1.dat".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/content/dataFileList.dat> at:pathObject <file:///content/dataFileList.dat>;
+                                                                                   nie:interpretedAs <data:,data1.dat%0ABitmaps.dat%0Adata2.dat%0AmasterPage.dat%0Apage1.dat>;
+                                                                                   nfo:belongsToContainer <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/content/>;
+                                                                                   nfo:fileLastModified "2014-10-14T11:06:32.000000+02:00"^^xsd:dateTime;
+                                                                                   nfo:fileName "dataFileList.dat";
+                                                                                   nfo:fileSize 56 ;
+                                                                                   a nfo:FileDataObject,
+                                                                                     nfo:ArchiveItem;
+                                                                                   skos:prefLabel "/content/dataFileList.dat".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/content/root.dat> at:pathObject <file:///content/root.dat>;
+                                                                           nie:interpretedAs <ni:///mh;1QEQYxvUVEiap9SPfbTT6IWTSg?ct=application/octet-stream>;
+                                                                           nfo:belongsToContainer <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/content/>;
+                                                                           nfo:fileLastModified "2014-10-14T11:06:32.000000+02:00"^^xsd:dateTime;
+                                                                           nfo:fileName "root.dat";
+                                                                           nfo:fileSize 51204 ;
+                                                                           a nfo:FileDataObject,
+                                                                             nfo:ArchiveItem;
+                                                                           skos:prefLabel "/content/root.dat".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/mimetype> at:pathObject <file:///mimetype>;
+                                                                   nie:interpretedAs <data:,application%2Fx-vnd.corel.zcf.draw.document%2Bzip>;
+                                                                   nfo:belongsToContainer <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/>;
+                                                                   nfo:fileLastModified "2014-10-14T11:06:30.000000+02:00"^^xsd:dateTime;
+                                                                   nfo:fileName "mimetype";
+                                                                   nfo:fileSize 45 ;
+                                                                   a nfo:FileDataObject,
+                                                                     nfo:ArchiveItem;
+                                                                   skos:prefLabel "/mimetype".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/previews> at:pathObject <file:///previews>;
+                                                                   nie:interpretedAs <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/previews/>;
+                                                                   nfo:belongsToContainer <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/>;
+                                                                   nfo:fileName "previews";
+                                                                   a nfo:FileDataObject,
+                                                                     nfo:ArchiveItem;
+                                                                   skos:prefLabel "/previews".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/previews/> at:pathObject <file:///previews/>;
+                                                                    a nfo:Folder;
+                                                                    skos:prefLabel "/previews/".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/previews/page1.png> at:pathObject <file:///previews/page1.png>;
+                                                                             nie:interpretedAs <ni:///mh;1QEQpDN415FbLF_-tBpztLEl5A?ct=application/octet-stream>;
+                                                                             nfo:belongsToContainer <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/previews/>;
+                                                                             nfo:fileLastModified "2014-10-14T11:06:32.000000+02:00"^^xsd:dateTime;
+                                                                             nfo:fileName "page1.png";
+                                                                             nfo:fileSize 33148 ;
+                                                                             a nfo:FileDataObject,
+                                                                               nfo:ArchiveItem;
+                                                                             skos:prefLabel "/previews/page1.png".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/previews/thumbnail.png> at:pathObject <file:///previews/thumbnail.png>;
+                                                                                 nie:interpretedAs <ni:///mh;1QEQJnK8M6O_3RM0tbrs9mTuvw?ct=application/octet-stream>;
+                                                                                 nfo:belongsToContainer <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/previews/>;
+                                                                                 nfo:fileLastModified "2014-10-14T11:06:32.000000+02:00"^^xsd:dateTime;
+                                                                                 nfo:fileName "thumbnail.png";
+                                                                                 nfo:fileSize 40643 ;
+                                                                                 a nfo:FileDataObject,
+                                                                                   nfo:ArchiveItem;
+                                                                                 skos:prefLabel "/previews/thumbnail.png".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/styles> at:pathObject <file:///styles>;
+                                                                 nie:interpretedAs <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/styles/>;
+                                                                 nfo:belongsToContainer <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/>;
+                                                                 nfo:fileName "styles";
+                                                                 a nfo:FileDataObject,
+                                                                   nfo:ArchiveItem;
+                                                                 skos:prefLabel "/styles".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/styles/> at:pathObject <file:///styles/>;
+                                                                  a nfo:Folder;
+                                                                  skos:prefLabel "/styles/".
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/styles/document.cdss> at:pathObject <file:///styles/document.cdss>;
+                                                                               nie:interpretedAs <ni:///mh;1QEQLwPLwTdXxW4SyEVBpo7fqQ?ct=text/plain>;
+                                                                               nfo:belongsToContainer <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/styles/>;
+                                                                               nfo:fileLastModified "2014-10-14T11:06:32.000000+02:00"^^xsd:dateTime;
+                                                                               nfo:fileName "document.cdss";
+                                                                               nfo:fileSize 15628 ;
+                                                                               a nfo:FileDataObject,
+                                                                                 nfo:ArchiveItem;
+                                                                               skos:prefLabel "/styles/document.cdss".
+<urn:md5:0A8C6732C9F237B476363E6BA5F38A79> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "CoxnMsnyN7R2Nj5rpfOKeQ=="^^xsd:base64Binary.
+<urn:md5:0FD7AB4CCB34945B2E2A592F69C22266> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "D9erTMs0lFsuKlkvacIiZg=="^^xsd:base64Binary.
+<urn:md5:1D3FDA2EDB4A89AB60A23C5F7C7D81DD> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "HT/aLttKiatgojxffH2B3Q=="^^xsd:base64Binary.
+<urn:md5:2672BC33A3BFDD1334B5BAECF664EEBF> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "JnK8M6O/3RM0tbrs9mTuvw=="^^xsd:base64Binary.
+<urn:md5:2F03CBC13757C56E12C84541A68EDFA9> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "LwPLwTdXxW4SyEVBpo7fqQ=="^^xsd:base64Binary.
+<urn:md5:3661BD0439848CA845C08BDB4157CE62> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "NmG9BDmEjKhFwIvbQVfOYg=="^^xsd:base64Binary.
+<urn:md5:4A01DEE65AD5F8DDB8AEA13A57EBE470> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "SgHe5lrV+N24rqE6V+vkcA=="^^xsd:base64Binary.
+<urn:md5:631BD454489AA7D48F7DB4D3E885934A> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "YxvUVEiap9SPfbTT6IWTSg=="^^xsd:base64Binary.
+<urn:md5:767493FCDBB017CABF7E0AA9170D474C> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "dnST/NuwF8q/fgqpFw1HTA=="^^xsd:base64Binary.
+<urn:md5:79D7E984EA3AC74EED7CC92BF6B22A0D> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "edfphOo6x07tfMkr9rIqDQ=="^^xsd:base64Binary.
+<urn:md5:8B7A437B647C2F606375FF1F6F0354E8> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "i3pDe2R8L2Bjdf8fbwNU6A=="^^xsd:base64Binary.
+<urn:md5:9E6824A2558AEA72B0FC0BA87ED6702F> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "nmgkolWK6nKw/AuoftZwLw=="^^xsd:base64Binary.
+<urn:md5:9F429013A2B126D2C5DCFB4728BBA528> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "n0KQE6KxJtLF3PtHKLulKA=="^^xsd:base64Binary.
+<urn:md5:A43378D7915B2C5FFEB41A73B4B125E4> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "pDN415FbLF/+tBpztLEl5A=="^^xsd:base64Binary.
+<urn:md5:AFCB85CFD4A286142420B9E2F633751D> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "r8uFz9SihhQkILni9jN1HQ=="^^xsd:base64Binary.
+<urn:md5:B279DD927AA97FFDC209C25F7E71613C> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "snndknqpf/3CCcJffnFhPA=="^^xsd:base64Binary.
+<urn:md5:F2BA18A6B9E4B7E2D953D95AF9D51AB0> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "8roYprnkt+LZU9la+dUasA=="^^xsd:base64Binary.

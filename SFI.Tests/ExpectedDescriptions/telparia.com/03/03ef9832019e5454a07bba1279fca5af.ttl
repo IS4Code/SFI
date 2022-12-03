@@ -1,0 +1,64 @@
+@base <ni:///mh;1QEQ6uz0_wMmIFwXbpQseFn1CQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///20001pt1.swf>;
+     nie:interpretedAs <ni:///mh;1QEQ6uz0_wMmIFwXbpQseFn1CQ?ct=application/octet-stream>;
+     nfo:fileName "20001pt1.swf";
+     nfo:fileSize 2162876 ;
+     a nfo:FileDataObject.
+<file:///20001pt1.swf> at:extensionObject <https://w3id.org/uri4uri/suffix/swf>.
+<ni:///mh;1QEQ6uz0_wMmIFwXbpQseFn1CQ?ct=application/octet-stream> at:digest <urn:md5:EAECF4FF0326205C176E942C7859F509>;
+                                                                  dcterms:extent "2162876"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ6uz0_wMmIFwXbpQseFn1CQ?ct=application/vnd.adobe.flash-movie>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (2.06 MiB)"@en.
+<ni:///mh;1QEQ6uz0_wMmIFwXbpQseFn1CQ?ct=application/vnd.adobe.flash-movie> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.adobe.flash-movie>;
+                                                                           nie:hasPart <ni:///mh;1QEQROrj1MLmVhnx1DsbjKxHMA?ct=application/octet-stream>,
+                                                                                       <ni:///mh;1QEQsJDGEnE0o9dOh2u5wOFioQ?ct=application/octet-stream>,
+                                                                                       <ni:///mh;1QEQ8Mc1oiJ770jISuTBGKfrUA?ct=application/octet-stream>;
+                                                                           nfo:frameCount 4272 ;
+                                                                           nfo:frameRate "10"^^xsd:float;
+                                                                           nfo:height 240 ;
+                                                                           nfo:width 320 ;
+                                                                           a schema:MediaObject,
+                                                                             schema:SoftwareApplication,
+                                                                             nfo:Executable,
+                                                                             schema:VideoObject,
+                                                                             nfo:Video;
+                                                                           skos:prefLabel "SWF object (2.06 MiB)"@en.
+<ni:///mh;1QEQ8Mc1oiJ770jISuTBGKfrUA?ct=application/octet-stream> at:digest <urn:md5:F0C735A2227BEF48C84AE4C118A7EB50>;
+                                                                  dcterms:extent "938"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (938 B)"@en.
+<ni:///mh;1QEQROrj1MLmVhnx1DsbjKxHMA?ct=application/octet-stream> at:digest <urn:md5:44EAE3D4C2E65619F1D43B1B8CAC4730>;
+                                                                  dcterms:extent "7490"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (7.31 KiB)"@en.
+<ni:///mh;1QEQsJDGEnE0o9dOh2u5wOFioQ?ct=application/octet-stream> at:digest <urn:md5:B090C6127134A3D74E876BB9C0E162A1>;
+                                                                  dcterms:extent "3330"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (3.25 KiB)"@en.
+<urn:md5:44EAE3D4C2E65619F1D43B1B8CAC4730> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "ROrj1MLmVhnx1DsbjKxHMA=="^^xsd:base64Binary.
+<urn:md5:B090C6127134A3D74E876BB9C0E162A1> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "sJDGEnE0o9dOh2u5wOFioQ=="^^xsd:base64Binary.
+<urn:md5:EAECF4FF0326205C176E942C7859F509> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "6uz0/wMmIFwXbpQseFn1CQ=="^^xsd:base64Binary.
+<urn:md5:F0C735A2227BEF48C84AE4C118A7EB50> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "8Mc1oiJ770jISuTBGKfrUA=="^^xsd:base64Binary.

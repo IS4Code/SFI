@@ -1,0 +1,34 @@
+@base <ni:///mh;1QEQpWttAAPHC1-Ub7iN1hM70g?ct=text/plain>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///eagle>;
+     nie:interpretedAs <ni:///mh;1QEQpWttAAPHC1-Ub7iN1hM70g?ct=text/plain>;
+     nfo:fileName "eagle";
+     nfo:fileSize 11413 ;
+     a nfo:FileDataObject.
+<ni:///mh;1QEQpWttAAPHC1-Ub7iN1hM70g?ct=application/postscript> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/postscript>;
+                                                                a schema:MediaObject;
+                                                                skos:prefLabel "EPS object (11.15 KiB)"@en.
+<ni:///mh;1QEQpWttAAPHC1-Ub7iN1hM70g?ct=text/plain> at:digest <urn:md5:A56B6D0003C70B5F946FB88DD6133BD2>;
+                                                    dcterms:extent "11413"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQpWttAAPHC1-Ub7iN1hM70g?ct=application/postscript>;
+                                                    nie:hasPart <ni:///mh;1QEQpWttAAPHC1-Ub7iN1hM70g?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (11.15 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQpWttAAPHC1-Ub7iN1hM70g?ct=text/plain#line=,1> rdf:value """%!PS-Adobe-2.0 EPSF-1.2%%Creator: Adobe Illustrator 88(TM) 1.9.5%%For: (Jonathan D. Dailey) (Liquid Time Systems, Inc.)%%Title: (Eagle)%%CreationDate: (10/31/92) (2:41 PM)%%DocumentProcSets: Adobe_Illustrator_1.1 0 0%%DocumentSuppliedProcSets: Adobe_Illustrator_1.1 0 0%%ColorUsage: Black&White%%DocumentProcessColors: Black%%BoundingBox:156 -371 449 -140%%TemplateBox:288 -360 288 -360%%TileBox:-552 0 0 730%%DocumentPreview: Macintosh_Pic%%EndComments%%BeginProcSet:Adobe_Illustrator_1.1 0 0% Co""".
+<urn:md5:A56B6D0003C70B5F946FB88DD6133BD2> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "pWttAAPHC1+Ub7iN1hM70g=="^^xsd:base64Binary.

@@ -1,0 +1,32 @@
+@base <ni:///mh;1QEQa4Sl0gGalFkrd7ZSwpkFGw?ct=application/x.sig.xyz1>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///%E5%9F%BA%E6%9C%AC%E3%83%81%E3%83%83%E3%83%97%28256%29.xyz>;
+     nie:interpretedAs <ni:///mh;1QEQa4Sl0gGalFkrd7ZSwpkFGw?ct=application/octet-stream>;
+     nfo:fileName "基本チップ(256).xyz";
+     nfo:fileSize 22889 ;
+     a nfo:FileDataObject.
+<file:///%E5%9F%BA%E6%9C%AC%E3%83%81%E3%83%83%E3%83%97%28256%29.xyz> at:extensionObject <https://w3id.org/uri4uri/suffix/xyz>.
+<ni:///mh;1QEQa4Sl0gGalFkrd7ZSwpkFGw?ct=application/octet-stream> at:digest <urn:md5:6B84A5D2019A94592B77B652C299051B>;
+                                                                  dcterms:extent "22889"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQa4Sl0gGalFkrd7ZSwpkFGw?ct=application/x.sig.xyz1>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (22.35 KiB)"@en.
+<ni:///mh;1QEQa4Sl0gGalFkrd7ZSwpkFGw?ct=application/x.sig.xyz1> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.xyz1>;
+                                                                a schema:MediaObject;
+                                                                skos:prefLabel "XYZ1 object (22.35 KiB)"@en.
+<urn:md5:6B84A5D2019A94592B77B652C299051B> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "a4Sl0gGalFkrd7ZSwpkFGw=="^^xsd:base64Binary.

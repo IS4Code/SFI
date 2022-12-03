@@ -1,0 +1,67 @@
+@base <ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix xis: <http://www.w3.org/2001/04/infoset#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///test.html>;
+     nie:interpretedAs <ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=application/octet-stream>;
+     nfo:fileName "test.html";
+     nfo:fileSize 68393 ;
+     a nfo:FileDataObject.
+<file:///test.html> at:extensionObject <https://w3id.org/uri4uri/suffix/html>.
+<ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=application/octet-stream> at:digest <urn:md5:019DB3B07FF46E22830BAA39D77DBA39>;
+                                                                  dcterms:extent "68393"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=text/html>,
+                                                                                    <ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=application/xml>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (66.79 KiB)"@en.
+<ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=application/x.ns.urn.publicid.-.W3C.DTD&2BHTML&2B4.01.EN.html+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.urn.publicid.-.w3c.dtd&2bhtml&2b4.01.en.html+xml>,
+                                                                                                                                 <urn:publicid:-:W3C:DTD+HTML+4.01:EN>;
+                                                                                                           a schema:MediaObject;
+                                                                                                           skos:prefLabel "HTML object"@en.
+<ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=application/x.ns.urn.publicid.-.W3C.DTD&2BHTML&2B4.01.EN.html+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (html)"@en;
+                                                         cnt:dtDecl <ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=application/xml#dtd()>.
+<ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=application/xml#dtd()> a cnt:DoctypeDecl;
+                                                               rdfs:seeAlso <urn:publicid:-:W3C:DTD+HTML+4.01:EN>;
+                                                               cnt:doctypeName "HTML";
+                                                               cnt:publicId "-//W3C//DTD HTML 4.01//EN";
+                                                               cnt:systemId "http://www.w3.org/TR/html4/strict.dtd"^^xsd:anyURI.
+<ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=application/xml#element(/1)> a xis:Element;
+                                                                     xis:localName "html";
+                                                                     xis:name "html".
+<ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=text/html> dcterms:title "World of Solitaire";
+                                                   schema:encodingFormat <https://w3id.org/uri4uri/mime/text/html>;
+                                                   a schema:MediaObject,
+                                                     schema:DigitalDocument,
+                                                     nfo:Document;
+                                                   <http://www.w3.org/1999/xhtml/vocab#icon> <ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=text/html#/favicon.ico>,
+                                                                                             <ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=text/html#/icon-196x196.png>;
+                                                   <http://www.w3.org/1999/xhtml/vocab#stylesheet> <ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=text/html#/yui/reset.css>,
+                                                                                                   <ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=text/html#/yui/fonts.css>,
+                                                                                                   <ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=text/html#/yui/assets/skins/sam/container.css>,
+                                                                                                   <ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=text/html#/yui/assets/skins/sam/treeview.css>,
+                                                                                                   <ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=text/html#/yui/assets/skins/sam/tabview.css>,
+                                                                                                   <ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=text/html#/solitaire.css>;
+                                                   skos:prefLabel "HTML object (66.79 KiB)"@en.
+<urn:md5:019DB3B07FF46E22830BAA39D77DBA39> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "AZ2zsH/0biKDC6o51326OQ=="^^xsd:base64Binary.
+<urn:publicid:-:W3C:DTD+HTML+4.01:EN> rdfs:isDefinedBy <http://www.w3.org/TR/html4/strict.dtd>.

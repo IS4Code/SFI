@@ -1,0 +1,58 @@
+@base <ni:///mh;1QEQIuGjOUbQjqamRXoXVnezvA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///input_256_planar_separate.tiff>;
+     nie:interpretedAs <ni:///mh;1QEQIuGjOUbQjqamRXoXVnezvA?ct=application/octet-stream>;
+     nfo:fileName "input_256_planar_separate.tiff";
+     nfo:fileSize 5020 ;
+     a nfo:FileDataObject.
+<file:///input_256_planar_separate.tiff> at:extensionObject <https://w3id.org/uri4uri/suffix/tiff>.
+<ni:///mh;1QEQIuGjOUbQjqamRXoXVnezvA?ct=application/octet-stream> at:digest <urn:md5:22E1A33946D08EA6A6457A175677B3BC>;
+                                                                  dcterms:extent "5020"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQIuGjOUbQjqamRXoXVnezvA?ct=image/tiff>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (4.9 KiB)"@en.
+<ni:///mh;1QEQIuGjOUbQjqamRXoXVnezvA?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
+                                                    nfo:bitDepth 8 ;
+                                                    nfo:height 46 ;
+                                                    nfo:horizontalResolution 1 ;
+                                                    nfo:paletteSize 256 ;
+                                                    nfo:verticalResolution 1 ;
+                                                    nfo:width 70 ;
+                                                    a schema:MediaObject,
+                                                      nfo:Image,
+                                                      schema:ImageObject,
+                                                      exif:IFD;
+                                                    exif:bitsPerSample 8 ;
+                                                    exif:compression 1 ;
+                                                    exif:imageLength 46 ;
+                                                    exif:imageWidth 70 ;
+                                                    exif:orientation 1 ;
+                                                    exif:photometricInterpretation 3 ;
+                                                    exif:planarConfiguration 1 ;
+                                                    exif:resolutionUnit 1 ;
+                                                    exif:rowsPerStrip 117 ;
+                                                    exif:samplesPerPixel 1 ;
+                                                    exif:stripByteCounts 3220 ;
+                                                    exif:stripOffsets 8 ;
+                                                    exif:xResolution 1 ;
+                                                    exif:yResolution 1 ;
+                                                    skos:prefLabel "TIFF object (70×46)"@en,
+                                                                   "TIF object (4.9 KiB)"@en,
+                                                                   "TIFF object (70×46, 8-bit)"@en.
+<urn:md5:22E1A33946D08EA6A6457A175677B3BC> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "IuGjOUbQjqamRXoXVnezvA=="^^xsd:base64Binary.

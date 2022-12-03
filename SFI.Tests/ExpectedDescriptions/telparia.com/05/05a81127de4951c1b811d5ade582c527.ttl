@@ -1,0 +1,42 @@
+@base <ni:///mh;1QEQAjB20LZXL8BkDKKx6PvgHQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///snd%20_2502_terror.organ.s.wav>;
+     nie:interpretedAs <ni:///mh;1QEQAjB20LZXL8BkDKKx6PvgHQ?ct=application/octet-stream>;
+     nfo:fileName "snd _2502_terror.organ.s.wav";
+     nfo:fileSize 63882 ;
+     a nfo:FileDataObject.
+<file:///snd%20_2502_terror.organ.s.wav> at:extensionObject <https://w3id.org/uri4uri/suffix/wav>.
+<ni:///mh;1QEQAjB20LZXL8BkDKKx6PvgHQ?ct=application/octet-stream> at:digest <urn:md5:023076D0B6572FC0640CA2B1E8FBE01D>;
+                                                                  dcterms:extent "63882"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQAjB20LZXL8BkDKKx6PvgHQ?ct=audio/vnd.wave>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (62.38 KiB)"@en.
+<ni:///mh;1QEQAjB20LZXL8BkDKKx6PvgHQ?ct=audio/vnd.wave> schema:encodingFormat <https://w3id.org/uri4uri/mime/audio/vnd.wave>;
+                                                        nfo:averageBitrate "356"^^dt:kilobitPerSecond;
+                                                        nfo:bitsPerSample 8 ;
+                                                        nfo:channels 2 ;
+                                                        nfo:compressionType nfo:losslessCompressionType;
+                                                        nfo:duration "PT1.4327761S"^^xsd:duration;
+                                                        nfo:sampleRate "22254"^^dt:hertz;
+                                                        a schema:MediaObject,
+                                                          schema:AudioObject,
+                                                          nfo:Audio;
+                                                        skos:prefLabel "WAV object (62.38 KiB)"@en,
+                                                                       "WAV object (8-bit, 22254 Hz, 2 channels)"@en,
+                                                                       "WAV object (22254 Hz, 2 channels)"@en.
+<urn:md5:023076D0B6572FC0640CA2B1E8FBE01D> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "AjB20LZXL8BkDKKx6PvgHQ=="^^xsd:base64Binary.

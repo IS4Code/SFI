@@ -1,0 +1,34 @@
+@base <ni:///mh;1QEQj3aF1S_m5JBRc1H4gKJfiA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///iris_wat.erc>;
+     nie:interpretedAs <ni:///mh;1QEQj3aF1S_m5JBRc1H4gKJfiA?ct=application/octet-stream>;
+     nfo:fileName "iris_wat.erc";
+     nfo:fileSize 308213 ;
+     a nfo:FileDataObject.
+<file:///iris_wat.erc> at:extensionObject <https://w3id.org/uri4uri/suffix/erc>.
+<ni:///mh;1QEQj3aF1S_m5JBRc1H4gKJfiA?ct=application/octet-stream> at:digest <urn:md5:8F7685D52FE6E490517351F880A25F88>;
+                                                                  dcterms:extent "308213"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQj3aF1S_m5JBRc1H4gKJfiA?ct=application/postscript>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (300.99 KiB)"@en.
+<ni:///mh;1QEQj3aF1S_m5JBRc1H4gKJfiA?ct=application/postscript> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/postscript>;
+                                                                nfo:height 480 ;
+                                                                nfo:width 640 ;
+                                                                a schema:MediaObject;
+                                                                skos:prefLabel "EPS object (640×480)"@en.
+<urn:md5:8F7685D52FE6E490517351F880A25F88> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "j3aF1S/m5JBRc1H4gKJfiA=="^^xsd:base64Binary.

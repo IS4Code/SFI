@@ -1,0 +1,92 @@
+@base <ni:///mh;1QEQuZ317imW08IaMfdFlFksdw?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///wfpc04.gif>;
+     nie:interpretedAs <ni:///mh;1QEQuZ317imW08IaMfdFlFksdw?ct=application/octet-stream>;
+     nfo:fileName "wfpc04.gif";
+     nfo:fileSize 113862 ;
+     a nfo:FileDataObject.
+<file:///wfpc04.gif> at:extensionObject <https://w3id.org/uri4uri/suffix/gif>.
+<ni:///mh;1QEQuZ317imW08IaMfdFlFksdw?ct=application/octet-stream> at:digest <urn:md5:B99DF5EE2996D3C21A31F74594592C77>;
+                                                                  dcterms:extent "113862"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQuZ317imW08IaMfdFlFksdw?ct=image/gif>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (111.19 KiB)"@en.
+<ni:///mh;1QEQuZ317imW08IaMfdFlFksdw?ct=image/gif> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/gif>;
+                                                   nfo:bitDepth 8 ;
+                                                   nfo:hasMediaStream <ni:///mh;1QEQuZ317imW08IaMfdFlFksdw?ct=image/gif#/0>,
+                                                                      <ni:///mh;1QEQuZ317imW08IaMfdFlFksdw?ct=image/gif#/1>;
+                                                   nfo:height 480 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:paletteSize 256 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 550 ;
+                                                   <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#comments> """PUBLIC INFORMATION OFFICE
+JET PROPULSION LABORATORY
+CALIFORNIA INSTITUTE OF TECHNOLOGY
+NATIONAL AERONAUTICS AND SPACE ADMINISTRATION
+PASADENA, CALIF. 91109. TELEPHONE (818) 354-5011
+
+PHOTO CAPTION                                    January 13, 1994
+
+This image is of a star-forming region in the 30 Doradus nebula,
+surrounding the dense star cluster R136.  The image was obtained
+using the second-generation Wide Field and Planetary Camera
+installed in the Hubble Space Telescope during the STS-61
+mission.
+
+The large picture shows a mosaic of the images taken with WFPC-
+II's four separate cameras.  Three of the cameras, called the
+wide-field cameras, give the telescope a panoramic view of
+astronomical objects.  A fourth camera, called the planetary
+camera, has a smaller field of view but provides better spatial
+resolution.  The image shows the fields of view of the four
+cameras combined into a chevron shape.
+
+The image shows a portion of a giant cloud of gas and dust in 30
+Doradus, which is located in a small neighboring galaxy called
+the Large Magellanic Cloud about 160,000 light-years away from
+Earth.  The cloud is called an H II region because it is made up
+primarily of ionized hydrogen excited by ultraviolet light from
+hot stars.  The inset shows a blowup of the star cluster, called
+R136.  Even at the distance from Earth, WFPC-II's resolution
+allows objects as small as 25 light-days across to be
+distinguished from their surroundings, revealing the effect of
+the hot stars on the surrounding gas in unprecedented detail. 
+(For comparison, our solar system is about half a light-day
+across, while the distance to the nearest star beyond the sun is
+4.3 light-years.)
+
+The Jet Propulsion Laboratory developed the Wide Field and
+Planetary Camera-II for NASA's Office of Space Science.
+
+                              #####
+""";
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "GIF object (550×480)"@en,
+                                                                  "GIF object (111.19 KiB)"@en.
+<ni:///mh;1QEQuZ317imW08IaMfdFlFksdw?ct=image/gif#/0> nfo:height 480 ;
+                                                      nfo:width 550 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "0:GIF Header (550×480)".
+<ni:///mh;1QEQuZ317imW08IaMfdFlFksdw?ct=image/gif#/1> nfo:height 480 ;
+                                                      nfo:width 550 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "1:GIF Image (550×480)".
+<urn:md5:B99DF5EE2996D3C21A31F74594592C77> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "uZ317imW08IaMfdFlFksdw=="^^xsd:base64Binary.

@@ -1,0 +1,27 @@
+@base <ni:///mh;1QEQtAJRlEjr2_WefZ3YH19sAA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///ROCKET.MPG>;
+     nie:interpretedAs <ni:///mh;1QEQtAJRlEjr2_WefZ3YH19sAA?ct=application/octet-stream>;
+     nfo:fileName "ROCKET.MPG";
+     nfo:fileSize 104987 ;
+     a nfo:FileDataObject.
+<file:///ROCKET.MPG> at:extensionObject <https://w3id.org/uri4uri/suffix/mpg>.
+<ni:///mh;1QEQtAJRlEjr2_WefZ3YH19sAA?ct=application/octet-stream> at:digest <urn:md5:B402519448EBDBF59E7D9DD81F5F6C00>;
+                                                                  dcterms:extent "104987"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (102.53 KiB)"@en.
+<urn:md5:B402519448EBDBF59E7D9DD81F5F6C00> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "tAJRlEjr2/WefZ3YH19sAA=="^^xsd:base64Binary.

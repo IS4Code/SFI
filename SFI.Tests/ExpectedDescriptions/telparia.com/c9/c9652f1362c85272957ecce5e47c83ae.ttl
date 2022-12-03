@@ -1,0 +1,108 @@
+@base <ni:///mh;1QEQ4y1-HeB4lhN6pY1jDy8PDw?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+
+_:n1 at:pathObject <file:///travel.gal>;
+     nie:interpretedAs <ni:///mh;1QEQ4y1-HeB4lhN6pY1jDy8PDw?ct=application/octet-stream>;
+     nfo:fileName "travel.gal";
+     nfo:fileSize 419840 ;
+     a nfo:FileDataObject.
+<data:application/octet-stream,%00> dcterms:extent "1"^^dt:byte;
+                                    a cnt:ContentAsBase64;
+                                    skos:prefLabel "binary data (1 B)"@en;
+                                    cnt:bytes "AA=="^^xsd:base64Binary.
+<data:application/octet-stream,%00%00%00%00> dcterms:extent "4"^^dt:byte;
+                                             a cnt:ContentAsBase64;
+                                             skos:prefLabel "binary data (4 B)"@en;
+                                             cnt:bytes "AAAAAA=="^^xsd:base64Binary.
+<file:///travel.gal> at:extensionObject <https://w3id.org/uri4uri/suffix/gal>.
+<ni:///mh;1QEQ4y1-HeB4lhN6pY1jDy8PDw?ct=application/octet-stream> at:digest <urn:md5:E32D7E1DE07896137AA58D630F2F0F0F>;
+                                                                  dcterms:extent "419840"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ4y1-HeB4lhN6pY1jDy8PDw?ct=application/x-ole-storage>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (410 KiB)"@en.
+<ni:///mh;1QEQ4y1-HeB4lhN6pY1jDy8PDw?ct=application/x-ole-storage> at:pathObject <file:///>;
+                                                                   schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
+                                                                   nie:interpretedAs <ni:///mh;1QEQ4y1-HeB4lhN6pY1jDy8PDw?ct=application/x-ole-storage#/>;
+                                                                   nfo:fileLastModified "1997-09-24T01:34:31.400000Z"^^xsd:dateTime;
+                                                                   a schema:MediaObject,
+                                                                     nfo:EmbeddedFileDataObject;
+                                                                   skos:prefLabel "OLE object (410 KiB)"@en.
+<ni:///mh;1QEQ4y1-HeB4lhN6pY1jDy8PDw?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+                                                                     a nfo:Folder;
+                                                                     skos:prefLabel "/".
+<ni:///mh;1QEQ4y1-HeB4lhN6pY1jDy8PDw?ct=application/x-ole-storage#/_ALBUM_> at:pathObject <file:///_ALBUM_>;
+                                                                            nie:interpretedAs <data:application/octet-stream,%00>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQ4y1-HeB4lhN6pY1jDy8PDw?ct=application/x-ole-storage#/>;
+                                                                            nfo:fileName "_ALBUM_";
+                                                                            nfo:fileSize 1 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:EmbeddedFileDataObject;
+                                                                            skos:prefLabel "/_ALBUM_".
+<ni:///mh;1QEQ4y1-HeB4lhN6pY1jDy8PDw?ct=application/x-ole-storage#/_DATA_> at:pathObject <file:///_DATA_>;
+                                                                           nie:interpretedAs <data:application/octet-stream,%00%00%00%00>;
+                                                                           nfo:belongsToContainer <ni:///mh;1QEQ4y1-HeB4lhN6pY1jDy8PDw?ct=application/x-ole-storage#/>;
+                                                                           nfo:fileName "_DATA_";
+                                                                           nfo:fileSize 4 ;
+                                                                           a nfo:FileDataObject,
+                                                                             nfo:EmbeddedFileDataObject;
+                                                                           skos:prefLabel "/_DATA_".
+<ni:///mh;1QEQ4y1-HeB4lhN6pY1jDy8PDw?ct=application/x-ole-storage#/_INFO_> at:pathObject <file:///_INFO_>;
+                                                                           nie:interpretedAs <ni:///mh;1QEQWoewB4nMROxYANQtJrHHkw?ct=application/octet-stream>;
+                                                                           nfo:belongsToContainer <ni:///mh;1QEQ4y1-HeB4lhN6pY1jDy8PDw?ct=application/x-ole-storage#/>;
+                                                                           nfo:fileName "_INFO_";
+                                                                           nfo:fileSize 16946 ;
+                                                                           a nfo:FileDataObject,
+                                                                             nfo:EmbeddedFileDataObject;
+                                                                           skos:prefLabel "/_INFO_".
+<ni:///mh;1QEQ4y1-HeB4lhN6pY1jDy8PDw?ct=application/x-ole-storage#/_ITEM_> at:pathObject <file:///_ITEM_>;
+                                                                           nie:interpretedAs <ni:///mh;1QEQjstY-m9i-t69n393UHHyIQ?ct=application/octet-stream>;
+                                                                           nfo:belongsToContainer <ni:///mh;1QEQ4y1-HeB4lhN6pY1jDy8PDw?ct=application/x-ole-storage#/>;
+                                                                           nfo:fileName "_ITEM_";
+                                                                           nfo:fileSize 73651 ;
+                                                                           a nfo:FileDataObject,
+                                                                             nfo:EmbeddedFileDataObject;
+                                                                           skos:prefLabel "/_ITEM_".
+<ni:///mh;1QEQ4y1-HeB4lhN6pY1jDy8PDw?ct=application/x-ole-storage#/_THUMBNAIL_> at:pathObject <file:///_THUMBNAIL_>;
+                                                                                nie:interpretedAs <ni:///mh;1QEQZwoIJ5_7wzYMOaYGrqRB_Q?ct=application/octet-stream>;
+                                                                                nfo:belongsToContainer <ni:///mh;1QEQ4y1-HeB4lhN6pY1jDy8PDw?ct=application/x-ole-storage#/>;
+                                                                                nfo:fileName "_THUMBNAIL_";
+                                                                                nfo:fileSize 322064 ;
+                                                                                a nfo:FileDataObject,
+                                                                                  nfo:EmbeddedFileDataObject;
+                                                                                skos:prefLabel "/_THUMBNAIL_".
+<ni:///mh;1QEQWoewB4nMROxYANQtJrHHkw?ct=application/octet-stream> at:digest <urn:md5:5A87B00789CC44EC5800D42D26B1C793>;
+                                                                  dcterms:extent "16946"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (16.55 KiB)"@en.
+<ni:///mh;1QEQZwoIJ5_7wzYMOaYGrqRB_Q?ct=application/octet-stream> at:digest <urn:md5:670A08279FFBC3360C39A606AEA441FD>;
+                                                                  dcterms:extent "322064"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (314.52 KiB)"@en.
+<ni:///mh;1QEQjstY-m9i-t69n393UHHyIQ?ct=application/octet-stream> at:digest <urn:md5:8ECB58FA6F62FADEBD9F7F775071F221>;
+                                                                  dcterms:extent "73651"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (71.92 KiB)"@en.
+<urn:md5:5A87B00789CC44EC5800D42D26B1C793> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "WoewB4nMROxYANQtJrHHkw=="^^xsd:base64Binary.
+<urn:md5:670A08279FFBC3360C39A606AEA441FD> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "ZwoIJ5/7wzYMOaYGrqRB/Q=="^^xsd:base64Binary.
+<urn:md5:8ECB58FA6F62FADEBD9F7F775071F221> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "jstY+m9i+t69n393UHHyIQ=="^^xsd:base64Binary.
+<urn:md5:E32D7E1DE07896137AA58D630F2F0F0F> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "4y1+HeB4lhN6pY1jDy8PDw=="^^xsd:base64Binary.

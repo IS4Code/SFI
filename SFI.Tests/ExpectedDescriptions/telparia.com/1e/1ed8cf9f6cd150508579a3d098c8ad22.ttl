@@ -1,0 +1,48 @@
+@base <ni:///mh;1QEQhYwBexcrlgdLNqcf1O_l9A?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///apm65_in.avi>;
+     nie:interpretedAs <ni:///mh;1QEQhYwBexcrlgdLNqcf1O_l9A?ct=application/octet-stream>;
+     nfo:fileName "apm65_in.avi";
+     nfo:fileSize 3939452 ;
+     a nfo:FileDataObject.
+<file:///apm65_in.avi> at:extensionObject <https://w3id.org/uri4uri/suffix/avi>.
+<ni:///mh;1QEQhYwBexcrlgdLNqcf1O_l9A?ct=application/octet-stream> at:digest <urn:md5:858C017B172B96074B36A71FD4EFE5F4>;
+                                                                  dcterms:extent "3939452"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQhYwBexcrlgdLNqcf1O_l9A?ct=video/vnd.avi>,
+                                                                                    <ni:///mh;1QEQhYwBexcrlgdLNqcf1O_l9A?ct=audio/vnd.wave>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (3.76 MiB)"@en.
+<ni:///mh;1QEQhYwBexcrlgdLNqcf1O_l9A?ct=audio/vnd.wave> schema:encodingFormat <https://w3id.org/uri4uri/mime/audio/vnd.wave>;
+                                                        nfo:averageBitrate "176"^^dt:kilobitPerSecond;
+                                                        nfo:bitsPerSample 8 ;
+                                                        nfo:channels 1 ;
+                                                        nfo:compressionType nfo:losslessCompressionType;
+                                                        nfo:duration "PT2M58.329S"^^xsd:duration;
+                                                        nfo:sampleRate "22050"^^dt:hertz;
+                                                        a schema:MediaObject,
+                                                          nfo:Audio,
+                                                          schema:AudioObject;
+                                                        skos:prefLabel "WAV object (22050 Hz, 1 channel)"@en.
+<ni:///mh;1QEQhYwBexcrlgdLNqcf1O_l9A?ct=video/vnd.avi> schema:encodingFormat <https://w3id.org/uri4uri/mime/video/vnd.avi>;
+                                                       nfo:height 0 ;
+                                                       nfo:width 0 ;
+                                                       a schema:MediaObject,
+                                                         schema:VideoObject,
+                                                         nfo:Video;
+                                                       skos:prefLabel "AVI object (0×0)"@en.
+<urn:md5:858C017B172B96074B36A71FD4EFE5F4> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "hYwBexcrlgdLNqcf1O/l9A=="^^xsd:base64Binary.

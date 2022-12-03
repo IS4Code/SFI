@@ -1,0 +1,52 @@
+@base <ni:///mh;1QEQlVgJrQRvcpzAuam0tN1x3Q?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///zelda%20first%20commercial.mpeg>;
+     nie:interpretedAs <ni:///mh;1QEQlVgJrQRvcpzAuam0tN1x3Q?ct=application/octet-stream>;
+     nfo:fileName "zelda first commercial.mpeg";
+     nfo:fileSize 2570244 ;
+     a nfo:FileDataObject.
+<file:///zelda%20first%20commercial.mpeg> at:extensionObject <https://w3id.org/uri4uri/suffix/mpeg>.
+<ni:///mh;1QEQlVgJrQRvcpzAuam0tN1x3Q?ct=application/octet-stream> at:digest <urn:md5:955809AD046F729CC0B9A9B4B4DD71DD>;
+                                                                  dcterms:extent "2570244"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQlVgJrQRvcpzAuam0tN1x3Q?ct=video/mpeg>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (2.45 MiB)"@en.
+<ni:///mh;1QEQlVgJrQRvcpzAuam0tN1x3Q?ct=video/mpeg> schema:encodingFormat <https://w3id.org/uri4uri/mime/video/mpeg>;
+                                                    nfo:channels 1 ;
+                                                    nfo:duration "PT29.3182333S"^^xsd:duration;
+                                                    nfo:hasMediaStream <ni:///mh;1QEQlVgJrQRvcpzAuam0tN1x3Q?ct=video/mpeg#/Video/0>,
+                                                                       <ni:///mh;1QEQlVgJrQRvcpzAuam0tN1x3Q?ct=video/mpeg#/Audio/0>;
+                                                    nfo:height 120 ;
+                                                    nfo:sampleRate "44100"^^dt:hertz;
+                                                    nfo:width 160 ;
+                                                    a schema:MediaObject,
+                                                      schema:VideoObject,
+                                                      nfo:Video;
+                                                    skos:prefLabel "MPG object (160×120)"@en.
+<ni:///mh;1QEQlVgJrQRvcpzAuam0tN1x3Q?ct=video/mpeg#/Audio/0> nfo:averageBitrate "64"^^dt:kilobitPerSecond;
+                                                             nfo:channels 1 ;
+                                                             nfo:sampleRate "44100"^^dt:hertz;
+                                                             a nfo:Audio,
+                                                               nfo:MediaStream;
+                                                             skos:prefLabel "0:Audio (44100 Hz, 1 channel)".
+<ni:///mh;1QEQlVgJrQRvcpzAuam0tN1x3Q?ct=video/mpeg#/Video/0> nfo:height 120 ;
+                                                             nfo:width 160 ;
+                                                             a nfo:Video,
+                                                               nfo:MediaStream;
+                                                             skos:prefLabel "0:Video (160×120)".
+<urn:md5:955809AD046F729CC0B9A9B4B4DD71DD> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "lVgJrQRvcpzAuam0tN1x3Q=="^^xsd:base64Binary.

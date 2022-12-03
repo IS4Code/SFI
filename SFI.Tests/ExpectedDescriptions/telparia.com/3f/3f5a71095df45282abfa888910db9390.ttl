@@ -1,0 +1,61 @@
+@base <ni:///mh;1QEQygYW4FLbjTTcYjsXaajOpQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///APPIAN.ZIP>;
+     nie:interpretedAs <ni:///mh;1QEQygYW4FLbjTTcYjsXaajOpQ?ct=application/octet-stream>;
+     nfo:fileName "APPIAN.ZIP";
+     nfo:fileSize 1323 ;
+     a nfo:FileDataObject.
+<file:///APPIAN.ZIP> at:extensionObject <https://w3id.org/uri4uri/suffix/zip>.
+<file:///APVESA.EXE> at:extensionObject <https://w3id.org/uri4uri/suffix/exe>.
+<ni:///mh;1QEQuvsRezFYDyLdE7DtI6U-CA?ct=application/octet-stream> at:digest <urn:md5:BAFB117B31580F22DD13B0ED23A53E08>;
+                                                                  dcterms:extent "2580"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQuvsRezFYDyLdE7DtI6U-CA?ct=application/x-msdos-program>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (2.52 KiB)"@en.
+<ni:///mh;1QEQuvsRezFYDyLdE7DtI6U-CA?ct=application/x-msdos-program> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-msdos-program>;
+                                                                     a schema:MediaObject,
+                                                                       schema:SoftwareApplication,
+                                                                       nfo:Executable;
+                                                                     skos:prefLabel "EXE object (2.52 KiB)"@en.
+<ni:///mh;1QEQygYW4FLbjTTcYjsXaajOpQ?ct=application/octet-stream> at:digest <urn:md5:CA0616E052DB8D34DC623B1769A8CEA5>;
+                                                                  dcterms:extent "1323"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQygYW4FLbjTTcYjsXaajOpQ?ct=application/zip>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.29 KiB)"@en.
+<ni:///mh;1QEQygYW4FLbjTTcYjsXaajOpQ?ct=application/zip> at:pathObject <file:///>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
+                                                         nie:interpretedAs <ni:///mh;1QEQygYW4FLbjTTcYjsXaajOpQ?ct=application/zip#/>;
+                                                         a schema:MediaObject,
+                                                           nfo:Archive;
+                                                         skos:prefLabel "ZIP object (1.29 KiB)"@en.
+<ni:///mh;1QEQygYW4FLbjTTcYjsXaajOpQ?ct=application/zip#/> at:pathObject <file:///./>;
+                                                           a nfo:Folder;
+                                                           skos:prefLabel "/".
+<ni:///mh;1QEQygYW4FLbjTTcYjsXaajOpQ?ct=application/zip#/APVESA.EXE> at:pathObject <file:///APVESA.EXE>;
+                                                                     nie:interpretedAs <ni:///mh;1QEQuvsRezFYDyLdE7DtI6U-CA?ct=application/octet-stream>;
+                                                                     nfo:belongsToContainer <ni:///mh;1QEQygYW4FLbjTTcYjsXaajOpQ?ct=application/zip#/>;
+                                                                     nfo:fileLastModified "1991-02-27T20:53:38.000000+01:00"^^xsd:dateTime;
+                                                                     nfo:fileName "APVESA.EXE";
+                                                                     nfo:fileSize 2580 ;
+                                                                     a nfo:FileDataObject,
+                                                                       nfo:ArchiveItem;
+                                                                     skos:prefLabel "/APVESA.EXE".
+<urn:md5:BAFB117B31580F22DD13B0ED23A53E08> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "uvsRezFYDyLdE7DtI6U+CA=="^^xsd:base64Binary.
+<urn:md5:CA0616E052DB8D34DC623B1769A8CEA5> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "ygYW4FLbjTTcYjsXaajOpQ=="^^xsd:base64Binary.

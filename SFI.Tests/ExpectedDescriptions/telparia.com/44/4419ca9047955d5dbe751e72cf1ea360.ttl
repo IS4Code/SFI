@@ -1,0 +1,45 @@
+@base <ni:///mh;1QEQ7fOcPB68gmNXpmyjJpKTMw?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///yuv2.mov>;
+     nie:interpretedAs <ni:///mh;1QEQ7fOcPB68gmNXpmyjJpKTMw?ct=application/octet-stream>;
+     nfo:fileName "yuv2.mov";
+     nfo:fileSize 1844073 ;
+     a nfo:FileDataObject.
+<file:///yuv2.mov> at:extensionObject <https://w3id.org/uri4uri/suffix/mov>.
+<ni:///mh;1QEQ7fOcPB68gmNXpmyjJpKTMw?ct=application/octet-stream> at:digest <urn:md5:EDF39C3C1EBC826357A66CA326929333>;
+                                                                  dcterms:extent "1844073"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ7fOcPB68gmNXpmyjJpKTMw?ct=video/quicktime>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.76 MiB)"@en.
+<ni:///mh;1QEQ7fOcPB68gmNXpmyjJpKTMw?ct=video/quicktime> schema:encodingFormat <https://w3id.org/uri4uri/mime/video/quicktime>;
+                                                         nfo:hasMediaStream <ni:///mh;1QEQ7fOcPB68gmNXpmyjJpKTMw?ct=video/quicktime#/0>,
+                                                                            <ni:///mh;1QEQ7fOcPB68gmNXpmyjJpKTMw?ct=video/quicktime#/1>;
+                                                         nfo:height 240 ;
+                                                         nfo:width 320 ;
+                                                         a schema:MediaObject,
+                                                           schema:VideoObject,
+                                                           nfo:Video;
+                                                         skos:prefLabel "MOV object (320×240)"@en.
+<ni:///mh;1QEQ7fOcPB68gmNXpmyjJpKTMw?ct=video/quicktime#/0> nfo:duration "PT0.4733333S"^^xsd:duration;
+                                                            a nfo:MediaStream;
+                                                            skos:prefLabel "0:QuickTime Movie Header".
+<ni:///mh;1QEQ7fOcPB68gmNXpmyjJpKTMw?ct=video/quicktime#/1> nfo:height 240 ;
+                                                            nfo:width 320 ;
+                                                            a nfo:MediaStream;
+                                                            skos:prefLabel "1:QuickTime Track Header (320×240)".
+<urn:md5:EDF39C3C1EBC826357A66CA326929333> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "7fOcPB68gmNXpmyjJpKTMw=="^^xsd:base64Binary.

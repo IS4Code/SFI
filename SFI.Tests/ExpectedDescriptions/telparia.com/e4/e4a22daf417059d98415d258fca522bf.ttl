@@ -1,0 +1,30 @@
+@base <ni:///mh;1QEQwAXaIKc6x-XTtc1hw8mqDA?ct=text/plain>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///CALLM.MAC>;
+     nie:interpretedAs <ni:///mh;1QEQwAXaIKc6x-XTtc1hw8mqDA?ct=text/plain>;
+     nfo:fileName "CALLM.MAC";
+     nfo:fileSize 167 ;
+     a nfo:FileDataObject.
+<file:///CALLM.MAC> at:extensionObject <https://w3id.org/uri4uri/suffix/mac>.
+<ni:///mh;1QEQwAXaIKc6x-XTtc1hw8mqDA?ct=text/plain> at:digest <urn:md5:C005DA20A73AC7E5D3B5CD61C3C9AA0C>;
+                                                    dcterms:extent "167"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQwAXaIKc6x-XTtc1hw8mqDA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (167 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQwAXaIKc6x-XTtc1hw8mqDA?ct=text/plain#line=,1> rdf:value """CALLM	Macro P0,P1,P2""".
+<urn:md5:C005DA20A73AC7E5D3B5CD61C3C9AA0C> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "wAXaIKc6x+XTtc1hw8mqDA=="^^xsd:base64Binary.

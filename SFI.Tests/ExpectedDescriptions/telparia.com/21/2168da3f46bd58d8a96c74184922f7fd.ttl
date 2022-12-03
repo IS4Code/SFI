@@ -1,0 +1,165 @@
+@base <ni:///mh;1QEQwY5oJT5czgveGvAec5p1FA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///KNW.PPT>;
+     nie:interpretedAs <ni:///mh;1QEQwY5oJT5czgveGvAec5p1FA?ct=application/octet-stream>;
+     nfo:fileName "KNW.PPT";
+     nfo:fileSize 4128768 ;
+     a nfo:FileDataObject.
+<data:,%10Thomas%20Feldmeier> dcterms:extent "17"^^dt:byte;
+                              a cnt:ContentAsText;
+                              skos:prefLabel "text (17 B)"@en;
+                              cnt:characterEncoding "us-ascii";
+                              cnt:chars "␐Thomas Feldmeier"^^xsd:string.
+<data:application/octet-stream,%00%00%00%00> dcterms:extent "4"^^dt:byte;
+                                             a cnt:ContentAsBase64;
+                                             skos:prefLabel "binary data (4 B)"@en;
+                                             cnt:bytes "AAAAAA=="^^xsd:base64Binary.
+<data:application/octet-stream;base64,AQAAAgAAAAAAAAAAAAAAAAAAAAA=> dcterms:extent "20"^^dt:byte;
+                                                                    a cnt:ContentAsBase64;
+                                                                    skos:prefLabel "binary data (20 B)"@en;
+                                                                    cnt:bytes "AQAAAgAAAAAAAAAAAAAAAAAAAAA="^^xsd:base64Binary.
+<data:application/octet-stream;base64,CwAAADAgMCA1ODcgMjgA> dcterms:extent "15"^^dt:byte;
+                                                            a cnt:ContentAsBase64;
+                                                            skos:prefLabel "binary data (15 B)"@en;
+                                                            cnt:bytes "CwAAADAgMCA1ODcgMjgA"^^xsd:base64Binary.
+<file:///KNW.PPT> at:extensionObject <https://w3id.org/uri4uri/suffix/ppt>.
+<file:///Object2/%01CompObj> at:pathObject <file:///%01CompObj>.
+<file:///Object2/%01Ole> at:pathObject <file:///%01Ole>.
+<file:///Object2/%01Ole10ItemName> at:pathObject <file:///%01Ole10ItemName>.
+<file:///Object2/%01Ole10Native> at:pathObject <file:///%01Ole10Native>.
+<ni:///mh;1QEQMxB2tNx4cISZHaWAOzW-8Q?ct=application/octet-stream> at:digest <urn:md5:331076B4DC787084991DA5803B35BEF1>;
+                                                                  dcterms:extent "4062279"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (3.87 MiB)"@en.
+<ni:///mh;1QEQWknSEoJCJLdzb-3hhp7s-g?ct=text/plain> at:digest <urn:md5:5A49D212824224B7736FEDE1869EECFA>;
+                                                    dcterms:extent "12700"^^dt:byte;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (12.4 KiB)"@en;
+                                                    cnt:characterEncoding "x-iso-10646-ucs-4-3412".
+<ni:///mh;1QEQcxYodzRyCKL-37EbX-7CmQ?ct=application/octet-stream> at:digest <urn:md5:73162877347208A2FEDFB11B5FEEC299>;
+                                                                  dcterms:extent "17572"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (17.16 KiB)"@en.
+<ni:///mh;1QEQsxA4MMzg7JgFWFbwzs_H4A?ct=application/octet-stream> at:digest <urn:md5:B3103830CCE0EC98055856F0CECFC7E0>;
+                                                                  dcterms:extent "77"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (77 B)"@en.
+<ni:///mh;1QEQwY5oJT5czgveGvAec5p1FA?ct=application/octet-stream> at:digest <urn:md5:C18E68253E5CCE0BDE1AF01E739A7514>;
+                                                                  dcterms:extent "4128768"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQwY5oJT5czgveGvAec5p1FA?ct=application/x-ole-storage>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (3.94 MiB)"@en.
+<ni:///mh;1QEQwY5oJT5czgveGvAec5p1FA?ct=application/x-ole-storage> at:pathObject <file:///>;
+                                                                   schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
+                                                                   nie:interpretedAs <ni:///mh;1QEQwY5oJT5czgveGvAec5p1FA?ct=application/x-ole-storage#/>;
+                                                                   nfo:fileLastModified "1995-10-28T06:29:16.000551Z"^^xsd:dateTime;
+                                                                   a schema:MediaObject,
+                                                                     nfo:EmbeddedFileDataObject;
+                                                                   skos:prefLabel "OLE object (3.94 MiB)"@en.
+<ni:///mh;1QEQwY5oJT5czgveGvAec5p1FA?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+                                                                     a nfo:Folder;
+                                                                     skos:prefLabel "/".
+<ni:///mh;1QEQwY5oJT5czgveGvAec5p1FA?ct=application/x-ole-storage#/%05SummaryInformation> at:pathObject <file:///%05SummaryInformation>;
+                                                                                          nie:interpretedAs <ni:///mh;1QEQWknSEoJCJLdzb-3hhp7s-g?ct=text/plain>;
+                                                                                          nfo:belongsToContainer <ni:///mh;1QEQwY5oJT5czgveGvAec5p1FA?ct=application/x-ole-storage#/>;
+                                                                                          nfo:fileName """{\"@value\":\"\\u0005SummaryInformation\"}"""^^rdf:JSON;
+                                                                                          nfo:fileSize 12700 ;
+                                                                                          a nfo:FileDataObject,
+                                                                                            nfo:EmbeddedFileDataObject;
+                                                                                          skos:prefLabel "/␅SummaryInformation".
+<ni:///mh;1QEQwY5oJT5czgveGvAec5p1FA?ct=application/x-ole-storage#/Current%20ID> at:pathObject <file:///Current%20ID>;
+                                                                                 nie:interpretedAs <data:application/octet-stream,%00%00%00%00>;
+                                                                                 nfo:belongsToContainer <ni:///mh;1QEQwY5oJT5czgveGvAec5p1FA?ct=application/x-ole-storage#/>;
+                                                                                 nfo:fileName "Current ID";
+                                                                                 nfo:fileSize 4 ;
+                                                                                 a nfo:FileDataObject,
+                                                                                   nfo:EmbeddedFileDataObject;
+                                                                                 skos:prefLabel "/Current ID".
+<ni:///mh;1QEQwY5oJT5czgveGvAec5p1FA?ct=application/x-ole-storage#/Current%20User> at:pathObject <file:///Current%20User>;
+                                                                                   nie:interpretedAs <data:,%10Thomas%20Feldmeier>;
+                                                                                   nfo:belongsToContainer <ni:///mh;1QEQwY5oJT5czgveGvAec5p1FA?ct=application/x-ole-storage#/>;
+                                                                                   nfo:fileName "Current User";
+                                                                                   nfo:fileSize 17 ;
+                                                                                   a nfo:FileDataObject,
+                                                                                     nfo:EmbeddedFileDataObject;
+                                                                                   skos:prefLabel "/Current User".
+<ni:///mh;1QEQwY5oJT5czgveGvAec5p1FA?ct=application/x-ole-storage#/Object2> at:pathObject <file:///Object2>;
+                                                                            nie:interpretedAs <ni:///mh;1QEQwY5oJT5czgveGvAec5p1FA?ct=application/x-ole-storage#/Object2/>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQwY5oJT5czgveGvAec5p1FA?ct=application/x-ole-storage#/>;
+                                                                            nfo:fileCreated "1995-10-28T06:29:10.000551Z"^^xsd:dateTime;
+                                                                            nfo:fileLastModified "1995-10-28T06:29:10.000551Z"^^xsd:dateTime;
+                                                                            nfo:fileName "Object2";
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:EmbeddedFileDataObject;
+                                                                            skos:prefLabel "/Object2".
+<ni:///mh;1QEQwY5oJT5czgveGvAec5p1FA?ct=application/x-ole-storage#/Object2/> at:pathObject <file:///Object2/>;
+                                                                             a nfo:Folder;
+                                                                             skos:prefLabel "/Object2/".
+<ni:///mh;1QEQwY5oJT5czgveGvAec5p1FA?ct=application/x-ole-storage#/Object2/%01CompObj> at:pathObject <file:///Object2/%01CompObj>;
+                                                                                       nie:interpretedAs <ni:///mh;1QEQsxA4MMzg7JgFWFbwzs_H4A?ct=application/octet-stream>;
+                                                                                       nfo:belongsToContainer <ni:///mh;1QEQwY5oJT5czgveGvAec5p1FA?ct=application/x-ole-storage#/Object2/>;
+                                                                                       nfo:fileName """{\"@value\":\"\\u0001CompObj\"}"""^^rdf:JSON;
+                                                                                       nfo:fileSize 77 ;
+                                                                                       a nfo:FileDataObject,
+                                                                                         nfo:EmbeddedFileDataObject;
+                                                                                       skos:prefLabel "/Object2/␁CompObj".
+<ni:///mh;1QEQwY5oJT5czgveGvAec5p1FA?ct=application/x-ole-storage#/Object2/%01Ole> at:pathObject <file:///Object2/%01Ole>;
+                                                                                   nie:interpretedAs <data:application/octet-stream;base64,AQAAAgAAAAAAAAAAAAAAAAAAAAA=>;
+                                                                                   nfo:belongsToContainer <ni:///mh;1QEQwY5oJT5czgveGvAec5p1FA?ct=application/x-ole-storage#/Object2/>;
+                                                                                   nfo:fileName """{\"@value\":\"\\u0001Ole\"}"""^^rdf:JSON;
+                                                                                   nfo:fileSize 20 ;
+                                                                                   a nfo:FileDataObject,
+                                                                                     nfo:EmbeddedFileDataObject;
+                                                                                   skos:prefLabel "/Object2/␁Ole".
+<ni:///mh;1QEQwY5oJT5czgveGvAec5p1FA?ct=application/x-ole-storage#/Object2/%01Ole10ItemName> at:pathObject <file:///Object2/%01Ole10ItemName>;
+                                                                                             nie:interpretedAs <data:application/octet-stream;base64,CwAAADAgMCA1ODcgMjgA>;
+                                                                                             nfo:belongsToContainer <ni:///mh;1QEQwY5oJT5czgveGvAec5p1FA?ct=application/x-ole-storage#/Object2/>;
+                                                                                             nfo:fileName """{\"@value\":\"\\u0001Ole10ItemName\"}"""^^rdf:JSON;
+                                                                                             nfo:fileSize 15 ;
+                                                                                             a nfo:FileDataObject,
+                                                                                               nfo:EmbeddedFileDataObject;
+                                                                                             skos:prefLabel "/Object2/␁Ole10ItemName".
+<ni:///mh;1QEQwY5oJT5czgveGvAec5p1FA?ct=application/x-ole-storage#/Object2/%01Ole10Native> at:pathObject <file:///Object2/%01Ole10Native>;
+                                                                                           nie:interpretedAs <ni:///mh;1QEQcxYodzRyCKL-37EbX-7CmQ?ct=application/octet-stream>;
+                                                                                           nfo:belongsToContainer <ni:///mh;1QEQwY5oJT5czgveGvAec5p1FA?ct=application/x-ole-storage#/Object2/>;
+                                                                                           nfo:fileName """{\"@value\":\"\\u0001Ole10Native\"}"""^^rdf:JSON;
+                                                                                           nfo:fileSize 17572 ;
+                                                                                           a nfo:FileDataObject,
+                                                                                             nfo:EmbeddedFileDataObject;
+                                                                                           skos:prefLabel "/Object2/␁Ole10Native".
+<ni:///mh;1QEQwY5oJT5czgveGvAec5p1FA?ct=application/x-ole-storage#/PP40> at:pathObject <file:///PP40>;
+                                                                         nie:interpretedAs <ni:///mh;1QEQMxB2tNx4cISZHaWAOzW-8Q?ct=application/octet-stream>;
+                                                                         nfo:belongsToContainer <ni:///mh;1QEQwY5oJT5czgveGvAec5p1FA?ct=application/x-ole-storage#/>;
+                                                                         nfo:fileName "PP40";
+                                                                         nfo:fileSize 4062279 ;
+                                                                         a nfo:FileDataObject,
+                                                                           nfo:EmbeddedFileDataObject;
+                                                                         skos:prefLabel "/PP40".
+<urn:md5:331076B4DC787084991DA5803B35BEF1> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "MxB2tNx4cISZHaWAOzW+8Q=="^^xsd:base64Binary.
+<urn:md5:5A49D212824224B7736FEDE1869EECFA> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "WknSEoJCJLdzb+3hhp7s+g=="^^xsd:base64Binary.
+<urn:md5:73162877347208A2FEDFB11B5FEEC299> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "cxYodzRyCKL+37EbX+7CmQ=="^^xsd:base64Binary.
+<urn:md5:B3103830CCE0EC98055856F0CECFC7E0> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "sxA4MMzg7JgFWFbwzs/H4A=="^^xsd:base64Binary.
+<urn:md5:C18E68253E5CCE0BDE1AF01E739A7514> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "wY5oJT5czgveGvAec5p1FA=="^^xsd:base64Binary.

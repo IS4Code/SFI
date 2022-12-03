@@ -1,0 +1,27 @@
+@base <ni:///mh;1QEQWpKflkG4yfwH8wB80M4erg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///NEATKEYS.WP>;
+     nie:interpretedAs <ni:///mh;1QEQWpKflkG4yfwH8wB80M4erg?ct=application/octet-stream>;
+     nfo:fileName "NEATKEYS.WP";
+     nfo:fileSize 16450 ;
+     a nfo:FileDataObject.
+<file:///NEATKEYS.WP> at:extensionObject <https://w3id.org/uri4uri/suffix/wp>.
+<ni:///mh;1QEQWpKflkG4yfwH8wB80M4erg?ct=application/octet-stream> at:digest <urn:md5:5A929F9641B8C9FC07F3007CD0CE1EAE>;
+                                                                  dcterms:extent "16450"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (16.06 KiB)"@en.
+<urn:md5:5A929F9641B8C9FC07F3007CD0CE1EAE> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "WpKflkG4yfwH8wB80M4erg=="^^xsd:base64Binary.

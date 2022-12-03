@@ -1,0 +1,33 @@
+@base <ni:///mh;1QEQL628SX2IelQA2kqigpYxKg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///Oidata>;
+     nie:interpretedAs <ni:///mh;1QEQL628SX2IelQA2kqigpYxKg?ct=application/octet-stream>;
+     nfo:fileName "Oidata";
+     nfo:fileSize 8192 ;
+     a nfo:FileDataObject.
+<ni:///mh;1QEQL628SX2IelQA2kqigpYxKg?ct=application/octet-stream> at:digest <urn:md5:2FADBC497D887A5400DA4AA28296312A>;
+                                                                  dcterms:extent "8192"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQL628SX2IelQA2kqigpYxKg?ct=application/vnd.microsoft.portable-executable>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (8 KiB)"@en.
+<ni:///mh;1QEQL628SX2IelQA2kqigpYxKg?ct=application/vnd.microsoft.portable-executable> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
+                                                                                       a schema:MediaObject,
+                                                                                         schema:SoftwareApplication,
+                                                                                         nfo:Executable;
+                                                                                       skos:prefLabel "EXE object (8 KiB)"@en.
+<urn:md5:2FADBC497D887A5400DA4AA28296312A> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "L628SX2IelQA2kqigpYxKg=="^^xsd:base64Binary.

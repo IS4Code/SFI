@@ -1,0 +1,30 @@
+@base <ni:///mh;1QEQCotQ3IEuWJ79zEi9-ZKGAA?ct=text/plain>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///22000gifs.cue>;
+     nie:interpretedAs <ni:///mh;1QEQCotQ3IEuWJ79zEi9-ZKGAA?ct=text/plain>;
+     nfo:fileName "22000gifs.cue";
+     nfo:fileSize 136 ;
+     a nfo:FileDataObject.
+<file:///22000gifs.cue> at:extensionObject <https://w3id.org/uri4uri/suffix/cue>.
+<ni:///mh;1QEQCotQ3IEuWJ79zEi9-ZKGAA?ct=text/plain> at:digest <urn:md5:0A8B50DC812E589EFDCC48BDF9928600>;
+                                                    dcterms:extent "136"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQCotQ3IEuWJ79zEi9-ZKGAA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (136 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQCotQ3IEuWJ79zEi9-ZKGAA?ct=text/plain#line=,1> rdf:value "CD_ROM_XA".
+<urn:md5:0A8B50DC812E589EFDCC48BDF9928600> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "CotQ3IEuWJ79zEi9+ZKGAA=="^^xsd:base64Binary.

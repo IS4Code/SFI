@@ -1,0 +1,228 @@
+@base <ni:///mh;1QEQ8PjXUMPhPh1Jf2yS3sDKWA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix dbo: <http://dbpedia.org/ontology/>.
+
+_:n1 at:pathObject <file:///PIXFOLIO.EX_>;
+     nie:interpretedAs <ni:///mh;1QEQ8PjXUMPhPh1Jf2yS3sDKWA?ct=application/octet-stream>;
+     nfo:fileName "PIXFOLIO.EX_";
+     nfo:fileSize 117046 ;
+     a nfo:FileDataObject.
+<file:///PIXFOLIO.EX_> at:extensionObject <https://w3id.org/uri4uri/suffix/ex_>.
+<ni:///mh;1QEQ5uPNoDu9MfLx0IGquT1jNQ?ct=application/octet-stream> at:digest <urn:md5:E6E3CDA03BBD31F2F1D081AAB93D6335>;
+                                                                  dcterms:extent "318"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ5uPNoDu9MfLx0IGquT1jNQ?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (318 B)"@en.
+<ni:///mh;1QEQ5uPNoDu9MfLx0IGquT1jNQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:colorDepth 32 ;
+                                                   nfo:height 32 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 32 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (32×32)"@en.
+<ni:///mh;1QEQ8PjXUMPhPh1Jf2yS3sDKWA?ct=application/octet-stream> at:digest <urn:md5:F0F8D750C3E13E1D497F6C92DEC0CA58>;
+                                                                  dcterms:extent "117046"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ8PjXUMPhPh1Jf2yS3sDKWA?ct=application/x-ms-compress-szdd>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (114.3 KiB)"@en.
+<ni:///mh;1QEQ8PjXUMPhPh1Jf2yS3sDKWA?ct=application/x-ms-compress-szdd> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ms-compress-szdd>;
+                                                                        a schema:MediaObject,
+                                                                          nfo:Archive;
+                                                                        skos:prefLabel "SZ object (114.3 KiB)"@en.
+<ni:///mh;1QEQ8PjXUMPhPh1Jf2yS3sDKWA?ct=application/x-ms-compress-szdd#/e> at:pathObject <file:///e>;
+                                                                           nie:interpretedAs <ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/octet-stream>;
+                                                                           nfo:belongsToContainer <ni:///mh;1QEQ8PjXUMPhPh1Jf2yS3sDKWA?ct=application/x-ms-compress-szdd>;
+                                                                           nfo:fileName "e";
+                                                                           nfo:fileSize 271024 ;
+                                                                           a nfo:FileDataObject,
+                                                                             nfo:ArchiveItem;
+                                                                           skos:prefLabel "/e".
+<ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/octet-stream> at:digest <urn:md5:351D51E93D8C0CE412B4A013B703B11A>;
+                                                                  dcterms:extent "271024"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/x-msdownload;format=ne>,
+                                                                                    <ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/vnd.microsoft.portable-executable>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (264.67 KiB)"@en.
+<ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/vnd.microsoft.portable-executable> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
+                                                                                       a schema:MediaObject,
+                                                                                         schema:SoftwareApplication,
+                                                                                         nfo:Executable.
+<ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/x-msdownload;format=ne> dbo:originalName "PIXFOLIO.EXE";
+                                                                            dcterms:creator "ACK Software"@en-us;
+                                                                            dcterms:description "PixFolio main application module"@en-us;
+                                                                            schema:copyrightNotice "Copyright ACK Software, 1991, 1992"@en-us;
+                                                                            schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-msdownload;format=ne>;
+                                                                            schema:name "PixFolio";
+                                                                            schema:softwareVersion "1.3.0.7";
+                                                                            schema:version "1.3.0.7",
+                                                                                           "1.03.7";
+                                                                            nie:hasPart <ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/x-msdownload;format=ne#/Bitmap/PIXINFO>,
+                                                                                        <ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/x-msdownload;format=ne#/Bitmap/PIXCOVER>,
+                                                                                        <ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/x-msdownload;format=ne#/Icon/1>,
+                                                                                        <ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/x-msdownload;format=ne#/Cursor/2>,
+                                                                                        <ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/x-msdownload;format=ne#/Cursor/3>,
+                                                                                        <ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/x-msdownload;format=ne#/Cursor/4>;
+                                                                            a schema:MediaObject,
+                                                                              schema:SoftwareApplication,
+                                                                              nfo:Executable;
+                                                                            skos:prefLabel "EXE object (264.67 KiB)"@en.
+<ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/x-msdownload;format=ne#/Bitmap/PIXCOVER> at:pathObject <file:///PIXCOVER>;
+                                                                                             nie:interpretedAs <ni:///mh;1QEQS_59DrMvLvPvI2r4bN4pAQ?ct=application/octet-stream>;
+                                                                                             nfo:fileName "PIXCOVER";
+                                                                                             nfo:fileSize 77568 ;
+                                                                                             a nfo:FileDataObject,
+                                                                                               nfo:EmbeddedFileDataObject;
+                                                                                             skos:prefLabel "/Bitmap/PIXCOVER".
+<ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/x-msdownload;format=ne#/Bitmap/PIXINFO> at:pathObject <file:///PIXINFO>;
+                                                                                            nie:interpretedAs <ni:///mh;1QEQO8zT4ri2A4axXY3RN-EPuA?ct=application/octet-stream>;
+                                                                                            nfo:fileName "PIXINFO";
+                                                                                            nfo:fileSize 30336 ;
+                                                                                            a nfo:FileDataObject,
+                                                                                              nfo:EmbeddedFileDataObject;
+                                                                                            skos:prefLabel "/Bitmap/PIXINFO".
+<ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/x-msdownload;format=ne#/Cursor/2> at:pathObject <file:///2>;
+                                                                                      nie:interpretedAs <ni:///mh;1QEQmd4FThVmELBMOez2WdXCNg?ct=application/octet-stream>;
+                                                                                      nfo:fileName "2";
+                                                                                      nfo:fileSize 320 ;
+                                                                                      a nfo:FileDataObject,
+                                                                                        nfo:EmbeddedFileDataObject;
+                                                                                      skos:prefLabel "/Cursor/2".
+<ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/x-msdownload;format=ne#/Cursor/3> at:pathObject <file:///3>;
+                                                                                      nie:interpretedAs <ni:///mh;1QEQ5uPNoDu9MfLx0IGquT1jNQ?ct=application/octet-stream>;
+                                                                                      nfo:fileName "3";
+                                                                                      nfo:fileSize 320 ;
+                                                                                      a nfo:FileDataObject,
+                                                                                        nfo:EmbeddedFileDataObject;
+                                                                                      skos:prefLabel "/Cursor/3".
+<ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/x-msdownload;format=ne#/Cursor/4> at:pathObject <file:///4>;
+                                                                                      nie:interpretedAs <ni:///mh;1QEQTkTy_eLnd8Uz3qB_5tGZcg?ct=application/octet-stream>;
+                                                                                      nfo:fileName "4";
+                                                                                      nfo:fileSize 320 ;
+                                                                                      a nfo:FileDataObject,
+                                                                                        nfo:EmbeddedFileDataObject;
+                                                                                      skos:prefLabel "/Cursor/4".
+<ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/x-msdownload;format=ne#/Icon/1> at:pathObject <file:///1>;
+                                                                                    nie:interpretedAs <ni:///mh;1QEQlk3tdMrzUwLFKNUGzSmTrQ?ct=application/octet-stream>;
+                                                                                    nfo:fileName "1";
+                                                                                    nfo:fileSize 752 ;
+                                                                                    a nfo:FileDataObject,
+                                                                                      nfo:EmbeddedFileDataObject;
+                                                                                    skos:prefLabel "/Icon/1".
+<ni:///mh;1QEQO8zT4ri2A4axXY3RN-EPuA?ct=application/octet-stream> at:digest <urn:md5:3BCCD3E2B8B60386B15D8DD137E10FB8>;
+                                                                  dcterms:extent "30350"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQO8zT4ri2A4axXY3RN-EPuA?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (29.64 KiB)"@en.
+<ni:///mh;1QEQO8zT4ri2A4axXY3RN-EPuA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 8 ;
+                                                   nfo:height 103 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:paletteSize 256 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 283 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (283×103)"@en,
+                                                                  "BMP object (29.63 KiB)"@en.
+<ni:///mh;1QEQS_59DrMvLvPvI2r4bN4pAQ?ct=application/octet-stream> at:digest <urn:md5:4BFE7D0EB32F2EF3EF236AF86CDE2901>;
+                                                                  dcterms:extent "77582"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQS_59DrMvLvPvI2r4bN4pAQ?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (75.76 KiB)"@en.
+<ni:///mh;1QEQS_59DrMvLvPvI2r4bN4pAQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 8 ;
+                                                   nfo:height 239 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:paletteSize 256 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 319 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (319×239)"@en,
+                                                                  "BMP object (75.75 KiB)"@en.
+<ni:///mh;1QEQTkTy_eLnd8Uz3qB_5tGZcg?ct=application/octet-stream> at:digest <urn:md5:4E44F2FDE2E777C533DEA07FE6D19972>;
+                                                                  dcterms:extent "318"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQTkTy_eLnd8Uz3qB_5tGZcg?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (318 B)"@en.
+<ni:///mh;1QEQTkTy_eLnd8Uz3qB_5tGZcg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:colorDepth 32 ;
+                                                   nfo:height 32 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 32 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (32×32)"@en.
+<ni:///mh;1QEQlk3tdMrzUwLFKNUGzSmTrQ?ct=application/octet-stream> at:digest <urn:md5:964DED74CAF35302C528D506CD2993AD>;
+                                                                  dcterms:extent "751"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQlk3tdMrzUwLFKNUGzSmTrQ?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (751 B)"@en.
+<ni:///mh;1QEQlk3tdMrzUwLFKNUGzSmTrQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:colorDepth 32 ;
+                                                   nfo:height 32 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 32 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (32×32)"@en.
+<ni:///mh;1QEQmd4FThVmELBMOez2WdXCNg?ct=application/octet-stream> at:digest <urn:md5:99DE054E156610B04C39ECF659D5C236>;
+                                                                  dcterms:extent "318"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQmd4FThVmELBMOez2WdXCNg?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (318 B)"@en.
+<ni:///mh;1QEQmd4FThVmELBMOez2WdXCNg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:colorDepth 32 ;
+                                                   nfo:height 32 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 32 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (32×32)"@en.
+<urn:md5:351D51E93D8C0CE412B4A013B703B11A> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "NR1R6T2MDOQStKATtwOxGg=="^^xsd:base64Binary.
+<urn:md5:3BCCD3E2B8B60386B15D8DD137E10FB8> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "O8zT4ri2A4axXY3RN+EPuA=="^^xsd:base64Binary.
+<urn:md5:4BFE7D0EB32F2EF3EF236AF86CDE2901> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "S/59DrMvLvPvI2r4bN4pAQ=="^^xsd:base64Binary.
+<urn:md5:4E44F2FDE2E777C533DEA07FE6D19972> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "TkTy/eLnd8Uz3qB/5tGZcg=="^^xsd:base64Binary.
+<urn:md5:964DED74CAF35302C528D506CD2993AD> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "lk3tdMrzUwLFKNUGzSmTrQ=="^^xsd:base64Binary.
+<urn:md5:99DE054E156610B04C39ECF659D5C236> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "md4FThVmELBMOez2WdXCNg=="^^xsd:base64Binary.
+<urn:md5:E6E3CDA03BBD31F2F1D081AAB93D6335> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "5uPNoDu9MfLx0IGquT1jNQ=="^^xsd:base64Binary.
+<urn:md5:F0F8D750C3E13E1D497F6C92DEC0CA58> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "8PjXUMPhPh1Jf2yS3sDKWA=="^^xsd:base64Binary.

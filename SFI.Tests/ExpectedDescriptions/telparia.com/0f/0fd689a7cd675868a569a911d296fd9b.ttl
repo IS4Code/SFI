@@ -1,0 +1,56 @@
+@base <ni:///mh;1QEQLTHiMM6G0UPQ4m1h_Y_M9w?ct=text/plain>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix xis: <http://www.w3.org/2001/04/infoset#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+
+_:n1 at:pathObject <file:///bi2cf.xml>;
+     nie:interpretedAs <ni:///mh;1QEQLTHiMM6G0UPQ4m1h_Y_M9w?ct=text/plain>;
+     nfo:fileName "bi2cf.xml";
+     nfo:fileSize 5651 ;
+     a nfo:FileDataObject.
+<file:///bi2cf.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<ni:///mh;1QEQLTHiMM6G0UPQ4m1h_Y_M9w?ct=application/x.ns.urn.publicid.-.OASIS.DTD&2BDocBook&2BXML&2BV4.2.EN.refentry+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.urn.publicid.-.oasis.dtd&2bdocbook&2bxml&2bv4.2.en.refentry+xml>,
+                                                                                                                                                <urn:publicid:-:OASIS:DTD+DocBook+XML+V4.2:EN>;
+                                                                                                                          a schema:MediaObject;
+                                                                                                                          skos:prefLabel "REFENTRY object"@en.
+<ni:///mh;1QEQLTHiMM6G0UPQ4m1h_Y_M9w?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQLTHiMM6G0UPQ4m1h_Y_M9w?ct=application/x.ns.urn.publicid.-.OASIS.DTD&2BDocBook&2BXML&2BV4.2.EN.refentry+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQLTHiMM6G0UPQ4m1h_Y_M9w?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (refentry)"@en;
+                                                         cnt:dtDecl <ni:///mh;1QEQLTHiMM6G0UPQ4m1h_Y_M9w?ct=application/xml#dtd()>;
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQLTHiMM6G0UPQ4m1h_Y_M9w?ct=application/xml#dtd()> a cnt:DoctypeDecl;
+                                                               rdfs:seeAlso <urn:publicid:-:OASIS:DTD+DocBook+XML+V4.2:EN>;
+                                                               cnt:doctypeName "refentry";
+                                                               cnt:publicId "-//OASIS//DTD DocBook XML V4.2//EN";
+                                                               cnt:systemId "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd"^^xsd:anyURI.
+<ni:///mh;1QEQLTHiMM6G0UPQ4m1h_Y_M9w?ct=application/xml#element(/1)> a xis:Element;
+                                                                     xis:localName "refentry";
+                                                                     xis:name "refentry".
+<ni:///mh;1QEQLTHiMM6G0UPQ4m1h_Y_M9w?ct=text/plain> at:digest <urn:md5:2D31E230CE86D143D0E26D61FD8FCCF7>;
+                                                    dcterms:extent "5651"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQLTHiMM6G0UPQ4m1h_Y_M9w?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQLTHiMM6G0UPQ4m1h_Y_M9w?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (5.52 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQLTHiMM6G0UPQ4m1h_Y_M9w?ct=text/plain#line=,1> rdf:value "<?xml version='1.0'?>".
+<urn:md5:2D31E230CE86D143D0E26D61FD8FCCF7> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "LTHiMM6G0UPQ4m1h/Y/M9w=="^^xsd:base64Binary.
+<urn:publicid:-:OASIS:DTD+DocBook+XML+V4.2:EN> rdfs:isDefinedBy <http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd>.

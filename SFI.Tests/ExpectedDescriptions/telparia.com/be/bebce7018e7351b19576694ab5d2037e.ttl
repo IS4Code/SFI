@@ -1,0 +1,103 @@
+@base <ni:///mh;1QEQaDSyGeRKE6HOlWBedoAP8g?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///ITALIANO.DOC>;
+     nie:interpretedAs <ni:///mh;1QEQaDSyGeRKE6HOlWBedoAP8g?ct=application/octet-stream>;
+     nfo:fileName "ITALIANO.DOC";
+     nfo:fileSize 55296 ;
+     a nfo:FileDataObject.
+<file:///ITALIANO.DOC> at:extensionObject <https://w3id.org/uri4uri/suffix/doc>.
+<ni:///mh;1QEQ3EjyhhszXItc7C31vNPusA?ct=application/octet-stream> at:digest <urn:md5:DC48F2861B335C8B5CEC2DF5BCD3EEB0>;
+                                                                  dcterms:extent "47762"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (46.64 KiB)"@en.
+<ni:///mh;1QEQ5AJiM3jIQGVjQfYsvzSBOA?ct=text/plain> at:digest <urn:md5:E402623378C840656341F62CBF348138>;
+                                                    dcterms:extent "208"^^dt:byte;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (208 B)"@en;
+                                                    cnt:characterEncoding "x-iso-10646-ucs-4-3412".
+<ni:///mh;1QEQaDSyGeRKE6HOlWBedoAP8g?ct=application/octet-stream> at:digest <urn:md5:6834B219E44A13A1CE95605E76800FF2>;
+                                                                  dcterms:extent "55296"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQaDSyGeRKE6HOlWBedoAP8g?ct=application/x-ole-storage>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (54 KiB)"@en.
+<ni:///mh;1QEQaDSyGeRKE6HOlWBedoAP8g?ct=application/x-ole-storage> at:pathObject <file:///>;
+                                                                   schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
+                                                                   nie:interpretedAs <ni:///mh;1QEQaDSyGeRKE6HOlWBedoAP8g?ct=application/x-ole-storage#/>;
+                                                                   nfo:fileCreated "1997-04-26T16:34:01.530000Z"^^xsd:dateTime;
+                                                                   nfo:fileLastModified "1997-04-26T16:34:36.840000Z"^^xsd:dateTime;
+                                                                   a schema:MediaObject,
+                                                                     nfo:EmbeddedFileDataObject;
+                                                                   skos:prefLabel "OLE object (54 KiB)"@en.
+<ni:///mh;1QEQaDSyGeRKE6HOlWBedoAP8g?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+                                                                     a nfo:Folder;
+                                                                     skos:prefLabel "/".
+<ni:///mh;1QEQaDSyGeRKE6HOlWBedoAP8g?ct=application/x-ole-storage#/%01CompObj> at:pathObject <file:///%01CompObj>;
+                                                                               nie:interpretedAs <ni:///mh;1QEQzUVfvhTwOsAthLqrTj9NqA?ct=application/octet-stream>;
+                                                                               nfo:belongsToContainer <ni:///mh;1QEQaDSyGeRKE6HOlWBedoAP8g?ct=application/x-ole-storage#/>;
+                                                                               nfo:fileName """{\"@value\":\"\\u0001CompObj\"}"""^^rdf:JSON;
+                                                                               nfo:fileSize 107 ;
+                                                                               a nfo:FileDataObject,
+                                                                                 nfo:EmbeddedFileDataObject;
+                                                                               skos:prefLabel "/␁CompObj".
+<ni:///mh;1QEQaDSyGeRKE6HOlWBedoAP8g?ct=application/x-ole-storage#/%05DocumentSummaryInformation> at:pathObject <file:///%05DocumentSummaryInformation>;
+                                                                                                  nie:interpretedAs <ni:///mh;1QEQ5AJiM3jIQGVjQfYsvzSBOA?ct=text/plain>;
+                                                                                                  nfo:belongsToContainer <ni:///mh;1QEQaDSyGeRKE6HOlWBedoAP8g?ct=application/x-ole-storage#/>;
+                                                                                                  nfo:fileName """{\"@value\":\"\\u0005DocumentSummaryInformation\"}"""^^rdf:JSON;
+                                                                                                  nfo:fileSize 208 ;
+                                                                                                  a nfo:FileDataObject,
+                                                                                                    nfo:EmbeddedFileDataObject;
+                                                                                                  skos:prefLabel "/␅DocumentSummaryInformation".
+<ni:///mh;1QEQaDSyGeRKE6HOlWBedoAP8g?ct=application/x-ole-storage#/%05SummaryInformation> at:pathObject <file:///%05SummaryInformation>;
+                                                                                          nie:interpretedAs <ni:///mh;1QEQo5Qmk24ODnAmlLbmvy3stw?ct=text/plain>;
+                                                                                          nfo:belongsToContainer <ni:///mh;1QEQaDSyGeRKE6HOlWBedoAP8g?ct=application/x-ole-storage#/>;
+                                                                                          nfo:fileName """{\"@value\":\"\\u0005SummaryInformation\"}"""^^rdf:JSON;
+                                                                                          nfo:fileSize 464 ;
+                                                                                          a nfo:FileDataObject,
+                                                                                            nfo:EmbeddedFileDataObject;
+                                                                                          skos:prefLabel "/␅SummaryInformation".
+<ni:///mh;1QEQaDSyGeRKE6HOlWBedoAP8g?ct=application/x-ole-storage#/WordDocument> at:pathObject <file:///WordDocument>;
+                                                                                 nie:interpretedAs <ni:///mh;1QEQ3EjyhhszXItc7C31vNPusA?ct=application/octet-stream>;
+                                                                                 nfo:belongsToContainer <ni:///mh;1QEQaDSyGeRKE6HOlWBedoAP8g?ct=application/x-ole-storage#/>;
+                                                                                 nfo:fileCreated "1601-09-02T08:10:52.750028Z"^^xsd:dateTime;
+                                                                                 nfo:fileName "WordDocument";
+                                                                                 nfo:fileSize 47762 ;
+                                                                                 a nfo:FileDataObject,
+                                                                                   nfo:EmbeddedFileDataObject;
+                                                                                 skos:prefLabel "/WordDocument".
+<ni:///mh;1QEQo5Qmk24ODnAmlLbmvy3stw?ct=text/plain> at:digest <urn:md5:A39426936E0E0E702694B6E6BF2DECB7>;
+                                                    dcterms:extent "464"^^dt:byte;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (464 B)"@en;
+                                                    cnt:characterEncoding "x-iso-10646-ucs-4-3412".
+<ni:///mh;1QEQzUVfvhTwOsAthLqrTj9NqA?ct=application/octet-stream> at:digest <urn:md5:CD455FBE14F03AC02D84BAAB4E3F4DA8>;
+                                                                  dcterms:extent "107"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (107 B)"@en.
+<urn:md5:6834B219E44A13A1CE95605E76800FF2> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "aDSyGeRKE6HOlWBedoAP8g=="^^xsd:base64Binary.
+<urn:md5:A39426936E0E0E702694B6E6BF2DECB7> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "o5Qmk24ODnAmlLbmvy3stw=="^^xsd:base64Binary.
+<urn:md5:CD455FBE14F03AC02D84BAAB4E3F4DA8> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "zUVfvhTwOsAthLqrTj9NqA=="^^xsd:base64Binary.
+<urn:md5:DC48F2861B335C8B5CEC2DF5BCD3EEB0> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "3EjyhhszXItc7C31vNPusA=="^^xsd:base64Binary.
+<urn:md5:E402623378C840656341F62CBF348138> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "5AJiM3jIQGVjQfYsvzSBOA=="^^xsd:base64Binary.

@@ -1,0 +1,93 @@
+@base <ni:///mh;1QEQEYu-08yWCXmdhy_0TsQEfg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///RAW_PENTAX_K100.PEF>;
+     nie:interpretedAs <ni:///mh;1QEQEYu-08yWCXmdhy_0TsQEfg?ct=application/octet-stream>;
+     nfo:fileName "RAW_PENTAX_K100.PEF";
+     nfo:fileSize 11199172 ;
+     a nfo:FileDataObject.
+<file:///RAW_PENTAX_K100.PEF> at:extensionObject <https://w3id.org/uri4uri/suffix/pef>.
+<ni:///mh;1QEQEYu-08yWCXmdhy_0TsQEfg?ct=application/octet-stream> at:digest <urn:md5:118BBED3CC9609799D872FF44EC4047E>;
+                                                                  dcterms:extent "11199172"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQEYu-08yWCXmdhy_0TsQEfg?ct=image/tiff>,
+                                                                                    <ni:///mh;1QEQEYu-08yWCXmdhy_0TsQEfg?ct=image/pef>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (10.68 MiB)"@en.
+<ni:///mh;1QEQEYu-08yWCXmdhy_0TsQEfg?ct=image/pef> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/pef>;
+                                                   nfo:height 2024 ;
+                                                   nfo:width 3040 ;
+                                                   a schema:MediaObject,
+                                                     nfo:Image,
+                                                     schema:ImageObject;
+                                                   skos:prefLabel "PEF object (3040×2024)"@en.
+<ni:///mh;1QEQEYu-08yWCXmdhy_0TsQEfg?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
+                                                    nfo:height 2024 ;
+                                                    nfo:width 3040 ;
+                                                    a schema:MediaObject,
+                                                      exif:IFD,
+                                                      schema:ImageObject,
+                                                      nfo:Image;
+                                                    exif:bitsPerSample 12 ;
+                                                    exif:cfaPattern "0002000200010102"^^xsd:hexBinary;
+                                                    exif:compression 32773 ,
+                                                                     6 ;
+                                                    exif:contrast 2 ;
+                                                    exif:customRendered 0 ;
+                                                    exif:dateTime "2009-12-05T13:26:11.000000"^^xsd:dateTime;
+                                                    exif:dateTimeDigitized "2009-12-05T13:26:11.000000"^^xsd:dateTime;
+                                                    exif:dateTimeOriginal "2009-12-05T13:26:11.000000"^^xsd:dateTime;
+                                                    exif:exposureBiasValue 0 ;
+                                                    exif:exposureMode 0 ;
+                                                    exif:exposureProgram 3 ;
+                                                    exif:exposureTime "1/750"^^owl:rational;
+                                                    exif:fNumber "7/2"^^owl:rational;
+                                                    exif:fileSource "03"^^xsd:hexBinary;
+                                                    exif:flash 16 ;
+                                                    exif:focalLength 18 ;
+                                                    exif:focalLengthIn35mmFilm 27 ;
+                                                    exif:imageLength 2024 ;
+                                                    exif:imageWidth 3040 ;
+                                                    exif:isoSpeedRatings 400 ;
+                                                    exif:jpegInterchangeFormat 65630 ,
+                                                                               9303262 ;
+                                                    exif:jpegInterchangeFormatLength 6143 ,
+                                                                                     1895910 ;
+                                                    exif:make "PENTAX Corporation "^^xsd:string;
+                                                    exif:meteringMode 5 ;
+                                                    exif:model "PENTAX K100D       "^^xsd:string;
+                                                    exif:orientation 1 ;
+                                                    exif:photometricInterpretation 32803 ;
+                                                    exif:planarConfiguration 1 ;
+                                                    exif:resolutionUnit 2 ;
+                                                    exif:rowsPerStrip 2024 ;
+                                                    exif:samplesPerPixel 1 ;
+                                                    exif:saturation 2 ;
+                                                    exif:sceneCaptureType 0 ;
+                                                    exif:sceneType "01"^^xsd:hexBinary;
+                                                    exif:sensingMethod 2 ;
+                                                    exif:sharpness 2 ;
+                                                    exif:software "K100D       Ver 1.02   "^^xsd:string;
+                                                    exif:stripByteCounts 9229440 ;
+                                                    exif:stripOffsets 73728 ;
+                                                    exif:subjectDistanceRange 2 ;
+                                                    exif:whiteBalance 0 ;
+                                                    exif:xResolution 72 ;
+                                                    exif:yResolution 72 ;
+                                                    skos:prefLabel "TIFF object (3040×2024, 12-bit)"@en.
+<urn:md5:118BBED3CC9609799D872FF44EC4047E> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "EYu+08yWCXmdhy/0TsQEfg=="^^xsd:base64Binary.

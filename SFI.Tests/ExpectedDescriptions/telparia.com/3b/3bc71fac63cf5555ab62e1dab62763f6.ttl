@@ -1,0 +1,66 @@
+@base <ni:///mh;1QEQmUFnnGldtUeuMQsi9LVA0A?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///example.rar>;
+     nie:interpretedAs <ni:///mh;1QEQmUFnnGldtUeuMQsi9LVA0A?ct=application/octet-stream>;
+     nfo:fileName "example.rar";
+     nfo:fileSize 260021 ;
+     a nfo:FileDataObject.
+<file:///example.pdf> at:extensionObject <https://w3id.org/uri4uri/suffix/pdf>.
+<file:///example.rar> at:extensionObject <https://w3id.org/uri4uri/suffix/rar>.
+<ni:///mh;1QEQWmFl3fm7nl2mFPtpmfaj_Q?ct=application/octet-stream> at:digest <urn:md5:5A6165DDF9BB9E5DA614FB6999F6A3FD>;
+                                                                  dcterms:extent "265158"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQWmFl3fm7nl2mFPtpmfaj_Q?ct=application/pdf>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (258.94 KiB)"@en.
+<ni:///mh;1QEQWmFl3fm7nl2mFPtpmfaj_Q?ct=application/pdf> <http://ns.adobe.com/pdf/1.3/Producer> "OpenOffice 4.1.0";
+                                                         <http://ns.adobe.com/xap/1.0/CreateDate> "2014-09-25T09:21:39+02:00";
+                                                         <http://ns.adobe.com/xap/1.0/CreatorTool> "Writer";
+                                                         <http://ns.adobe.com/xap/1.0/MetadataDate> "2014-09-29T11:50:36+02:00";
+                                                         <http://ns.adobe.com/xap/1.0/ModifyDate> "2014-09-29T11:50:36+02:00";
+                                                         <http://ns.adobe.com/xap/1.0/mm/DocumentID> "uuid:505c0830-1008-46d5-a1fa-c74f84f8fac2";
+                                                         <http://ns.adobe.com/xap/1.0/mm/InstanceID> "uuid:1406ec77-3791-4e98-b68c-2a59cddef12a";
+                                                         <http://purl.org/dc/elements/1.1/format> "application/pdf";
+                                                         dcterms:created "2014-09-25T07:21:39.000000Z"^^xsd:dateTime;
+                                                         dcterms:modified "2014-09-29T09:50:36.000000Z"^^xsd:dateTime;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/pdf>;
+                                                         a schema:MediaObject,
+                                                           schema:DigitalDocument,
+                                                           nfo:Document;
+                                                         skos:prefLabel "PDF object (258.94 KiB)"@en.
+<ni:///mh;1QEQmUFnnGldtUeuMQsi9LVA0A?ct=application/octet-stream> at:digest <urn:md5:9941679C695DB547AE310B22F4B540D0>;
+                                                                  dcterms:extent "260021"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQmUFnnGldtUeuMQsi9LVA0A?ct=application/vnd.rar>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (253.93 KiB)"@en.
+<ni:///mh;1QEQmUFnnGldtUeuMQsi9LVA0A?ct=application/vnd.rar> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.rar>;
+                                                             a schema:MediaObject,
+                                                               nfo:Archive;
+                                                             skos:prefLabel "RAR object (253.93 KiB)"@en.
+<ni:///mh;1QEQmUFnnGldtUeuMQsi9LVA0A?ct=application/vnd.rar#/example.pdf> at:pathObject <file:///example.pdf>;
+                                                                          nie:interpretedAs <ni:///mh;1QEQWmFl3fm7nl2mFPtpmfaj_Q?ct=application/octet-stream>;
+                                                                          nfo:belongsToContainer <ni:///mh;1QEQmUFnnGldtUeuMQsi9LVA0A?ct=application/vnd.rar>;
+                                                                          nfo:fileLastModified "2014-09-29T11:50:37.452000+02:00"^^xsd:dateTime;
+                                                                          nfo:fileName "example.pdf";
+                                                                          nfo:fileSize 265158 ;
+                                                                          a nfo:FileDataObject,
+                                                                            nfo:ArchiveItem;
+                                                                          skos:prefLabel "/example.pdf".
+<urn:md5:5A6165DDF9BB9E5DA614FB6999F6A3FD> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "WmFl3fm7nl2mFPtpmfaj/Q=="^^xsd:base64Binary.
+<urn:md5:9941679C695DB547AE310B22F4B540D0> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "mUFnnGldtUeuMQsi9LVA0A=="^^xsd:base64Binary.

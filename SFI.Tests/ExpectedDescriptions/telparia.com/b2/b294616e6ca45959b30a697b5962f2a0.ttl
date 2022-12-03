@@ -1,0 +1,27 @@
+@base <ni:///mh;1QEQ_TB_1GCqu_thbdZfRlQEzQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///ccitt1.jbg>;
+     nie:interpretedAs <ni:///mh;1QEQ_TB_1GCqu_thbdZfRlQEzQ?ct=application/octet-stream>;
+     nfo:fileName "ccitt1.jbg";
+     nfo:fileSize 16830 ;
+     a nfo:FileDataObject.
+<file:///ccitt1.jbg> at:extensionObject <https://w3id.org/uri4uri/suffix/jbg>.
+<ni:///mh;1QEQ_TB_1GCqu_thbdZfRlQEzQ?ct=application/octet-stream> at:digest <urn:md5:FD307FD460AABBFB616DD65F465404CD>;
+                                                                  dcterms:extent "16830"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (16.44 KiB)"@en.
+<urn:md5:FD307FD460AABBFB616DD65F465404CD> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "/TB/1GCqu/thbdZfRlQEzQ=="^^xsd:base64Binary.

@@ -1,0 +1,247 @@
+@base <ni:///mh;1QEQyuqkPC8AJYxCXHBlnHHakw?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
+
+_:n1 at:pathObject <file:///next>;
+     nie:interpretedAs <ni:///mh;1QEQyuqkPC8AJYxCXHBlnHHakw?ct=application/octet-stream>;
+     nfo:fileName "next";
+     nfo:fileSize 430080 ;
+     a nfo:FileDataObject.
+<data:application/octet-stream,> dcterms:extent "0"^^dt:byte;
+                                 a cnt:ContentAsBase64;
+                                 skos:prefLabel "binary data (0 B)"@en;
+                                 cnt:bytes ""^^xsd:base64Binary.
+<file:///Colors.clr> at:extensionObject <https://w3id.org/uri4uri/suffix/clr>.
+<file:///GEMini.Mesa> at:extensionObject <https://w3id.org/uri4uri/suffix/mesa>.
+<file:///GEMini.Mesa/> at:pathObject <file:///>.
+<file:///GEMini.Mesa/sheet> at:pathObject <file:///sheet>.
+<file:///GEMini.diagram2> at:extensionObject <https://w3id.org/uri4uri/suffix/diagram2>.
+<file:///GEMini.diagram2/> at:pathObject <file:///>.
+<file:///GEMini.diagram2/Colors.clr> at:pathObject <file:///Colors.clr>.
+<file:///GEMini.diagram2/DiagramText> at:pathObject <file:///DiagramText>.
+<file:///GEMini.diagram2/PrintInfo> at:pathObject <file:///PrintInfo>.
+<file:///GEMini.eps> at:extensionObject <https://w3id.org/uri4uri/suffix/eps>.
+<file:///GEMini.tiff> at:extensionObject <https://w3id.org/uri4uri/suffix/tiff>.
+<file:///next/> at:pathObject <file:///>.
+<file:///next/GEMini.Mesa> at:pathObject <file:///GEMini.Mesa>.
+<file:///next/GEMini.Mesa/> at:pathObject <file:///GEMini.Mesa/>.
+<file:///next/GEMini.Mesa/sheet> at:pathObject <file:///GEMini.Mesa/sheet>.
+<file:///next/GEMini.diagram2> at:pathObject <file:///GEMini.diagram2>.
+<file:///next/GEMini.diagram2/> at:pathObject <file:///GEMini.diagram2/>.
+<file:///next/GEMini.diagram2/Colors.clr> at:pathObject <file:///GEMini.diagram2/Colors.clr>.
+<file:///next/GEMini.diagram2/DiagramText> at:pathObject <file:///GEMini.diagram2/DiagramText>.
+<file:///next/GEMini.diagram2/PrintInfo> at:pathObject <file:///GEMini.diagram2/PrintInfo>.
+<file:///next/GEMini.eps> at:pathObject <file:///GEMini.eps>.
+<file:///next/GEMini.tiff> at:pathObject <file:///GEMini.tiff>.
+<ni:///mh;1QEQ2VZq8IWGXqCXzigZfpFGCw?ct=application/octet-stream> at:digest <urn:md5:D9566AF085865EA097CE28197E91460B>;
+                                                                  dcterms:extent "266412"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ2VZq8IWGXqCXzigZfpFGCw?ct=image/tiff>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (260.17 KiB)"@en.
+<ni:///mh;1QEQ2VZq8IWGXqCXzigZfpFGCw?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
+                                                    nfo:bitDepth 8 ;
+                                                    nfo:height 2113 ;
+                                                    nfo:horizontalResolution 72 ;
+                                                    nfo:paletteSize 256 ;
+                                                    nfo:verticalResolution 72 ;
+                                                    nfo:width 504 ;
+                                                    a schema:MediaObject,
+                                                      exif:IFD,
+                                                      schema:ImageObject,
+                                                      nfo:Image;
+                                                    exif:bitsPerSample 2 ;
+                                                    exif:compression 1 ;
+                                                    exif:imageLength 2113 ;
+                                                    exif:imageWidth 504 ;
+                                                    exif:photometricInterpretation 1 ;
+                                                    exif:planarConfiguration 2 ;
+                                                    exif:resolutionUnit 2 ;
+                                                    exif:samplesPerPixel 1 ;
+                                                    exif:stripByteCounts 266238 ;
+                                                    exif:stripOffsets 8 ;
+                                                    exif:xResolution 72 ;
+                                                    exif:yResolution 72 ;
+                                                    skos:prefLabel "TIFF object (504×2113, 2-bit)"@en,
+                                                                   "TIFF object (504×2113)"@en,
+                                                                   "TIF object (260.17 KiB)"@en.
+<ni:///mh;1QEQ72mITfgG7weEWKic20Y3gw?ct=application/postscript> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/postscript>;
+                                                                a schema:MediaObject;
+                                                                skos:prefLabel "EPS object (76.88 KiB)"@en.
+<ni:///mh;1QEQ72mITfgG7weEWKic20Y3gw?ct=text/plain> at:digest <urn:md5:EF69884DF806EF078458A89CDB463783>;
+                                                    dcterms:extent "78728"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ72mITfgG7weEWKic20Y3gw?ct=application/postscript>;
+                                                    nie:hasPart <ni:///mh;1QEQ72mITfgG7weEWKic20Y3gw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (76.88 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQ72mITfgG7weEWKic20Y3gw?ct=text/plain#line=,1> rdf:value "%!PS-Adobe-2.0 EPSF-2.0".
+<ni:///mh;1QEQOrkFpjaoYt0lxA7a1OyVLA?ct=application/x.exec.dg_text-version-2> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.exec.dg_text-version-2>;
+                                                                              a schema:MediaObject;
+                                                                              skos:prefLabel "DG_TEXT-VERSION-2 object (60.63 KiB)"@en.
+<ni:///mh;1QEQOrkFpjaoYt0lxA7a1OyVLA?ct=text/plain> at:digest <urn:md5:3AB905A636A862DD25C40EDAD4EC952C>;
+                                                    dcterms:extent "62084"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQOrkFpjaoYt0lxA7a1OyVLA?ct=application/x.exec.dg_text-version-2>;
+                                                    nie:hasPart <ni:///mh;1QEQOrkFpjaoYt0lxA7a1OyVLA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (60.63 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQOrkFpjaoYt0lxA7a1OyVLA?ct=text/plain#line=,1> rdf:value "#!DG_TEXT-Version-2".
+<ni:///mh;1QEQ_NMaDFBZ_yOB2D_2rU9P3g?ct=application/octet-stream> at:digest <urn:md5:FCD31A0C5059FF2381D83FF6AD4F4FDE>;
+                                                                  dcterms:extent "12793"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (12.49 KiB)"@en.
+<ni:///mh;1QEQb0HqUF9uYbaL7cZs2J5rPA?ct=application/octet-stream> at:digest <urn:md5:6F41EA505F6E61B68BEDC66CD89E6B3C>;
+                                                                  dcterms:extent "111"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (111 B)"@en.
+<ni:///mh;1QEQu1lGF5UQIVe5TZBhvN7AJQ?ct=application/octet-stream> at:digest <urn:md5:BB59461795102157B94D9061BCDEC025>;
+                                                                  dcterms:extent "185"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (185 B)"@en.
+<ni:///mh;1QEQyuqkPC8AJYxCXHBlnHHakw?ct=application/octet-stream> at:digest <urn:md5:CAEAA43C2F00258C425C70659C71DA93>;
+                                                                  dcterms:extent "430080"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQyuqkPC8AJYxCXHBlnHHakw?ct=application/x-tar>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (420 KiB)"@en.
+<ni:///mh;1QEQyuqkPC8AJYxCXHBlnHHakw?ct=application/x-tar> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-tar>;
+                                                           a schema:MediaObject,
+                                                             nfo:Archive;
+                                                           skos:prefLabel "TAR object (420 KiB)"@en.
+<ni:///mh;1QEQyuqkPC8AJYxCXHBlnHHakw?ct=application/x-tar#/next> at:pathObject <file:///next>;
+                                                                 nie:interpretedAs <ni:///mh;1QEQyuqkPC8AJYxCXHBlnHHakw?ct=application/x-tar#/next/>;
+                                                                 nfo:belongsToContainer <ni:///mh;1QEQyuqkPC8AJYxCXHBlnHHakw?ct=application/x-tar>;
+                                                                 nfo:fileName "next";
+                                                                 a nfo:FileDataObject,
+                                                                   nfo:ArchiveItem;
+                                                                 skos:prefLabel "/next".
+<ni:///mh;1QEQyuqkPC8AJYxCXHBlnHHakw?ct=application/x-tar#/next/> at:pathObject <file:///next/>;
+                                                                  nie:interpretedAs <data:application/octet-stream,>;
+                                                                  nfo:belongsToContainer <ni:///mh;1QEQyuqkPC8AJYxCXHBlnHHakw?ct=application/x-tar#/next/>;
+                                                                  nfo:fileLastModified "1993-10-24T03:59:39.000000+02:00"^^xsd:dateTime;
+                                                                  nfo:fileName "";
+                                                                  nfo:fileSize 0 ;
+                                                                  a nfo:FileDataObject,
+                                                                    nfo:ArchiveItem,
+                                                                    nfo:Folder;
+                                                                  skos:prefLabel "/next/".
+<ni:///mh;1QEQyuqkPC8AJYxCXHBlnHHakw?ct=application/x-tar#/next/GEMini.Mesa> at:pathObject <file:///next/GEMini.Mesa>;
+                                                                             nie:interpretedAs <ni:///mh;1QEQyuqkPC8AJYxCXHBlnHHakw?ct=application/x-tar#/next/GEMini.Mesa/>;
+                                                                             nfo:belongsToContainer <ni:///mh;1QEQyuqkPC8AJYxCXHBlnHHakw?ct=application/x-tar#/next/>;
+                                                                             nfo:fileName "GEMini.Mesa";
+                                                                             a nfo:FileDataObject,
+                                                                               nfo:ArchiveItem;
+                                                                             skos:prefLabel "/next/GEMini.Mesa".
+<ni:///mh;1QEQyuqkPC8AJYxCXHBlnHHakw?ct=application/x-tar#/next/GEMini.Mesa/> at:pathObject <file:///next/GEMini.Mesa/>;
+                                                                              nie:interpretedAs <data:application/octet-stream,>;
+                                                                              nfo:belongsToContainer <ni:///mh;1QEQyuqkPC8AJYxCXHBlnHHakw?ct=application/x-tar#/next/GEMini.Mesa/>;
+                                                                              nfo:fileLastModified "1993-10-24T03:48:35.000000+02:00"^^xsd:dateTime;
+                                                                              nfo:fileName "";
+                                                                              nfo:fileSize 0 ;
+                                                                              a nfo:FileDataObject,
+                                                                                nfo:ArchiveItem,
+                                                                                nfo:Folder;
+                                                                              skos:prefLabel "/next/GEMini.Mesa/".
+<ni:///mh;1QEQyuqkPC8AJYxCXHBlnHHakw?ct=application/x-tar#/next/GEMini.Mesa/sheet> at:pathObject <file:///next/GEMini.Mesa/sheet>;
+                                                                                   nie:interpretedAs <ni:///mh;1QEQ_NMaDFBZ_yOB2D_2rU9P3g?ct=application/octet-stream>;
+                                                                                   nfo:belongsToContainer <ni:///mh;1QEQyuqkPC8AJYxCXHBlnHHakw?ct=application/x-tar#/next/GEMini.Mesa/>;
+                                                                                   nfo:fileLastModified "1993-10-24T03:48:30.000000+02:00"^^xsd:dateTime;
+                                                                                   nfo:fileName "sheet";
+                                                                                   nfo:fileSize 12793 ;
+                                                                                   a nfo:FileDataObject,
+                                                                                     nfo:ArchiveItem;
+                                                                                   skos:prefLabel "/next/GEMini.Mesa/sheet".
+<ni:///mh;1QEQyuqkPC8AJYxCXHBlnHHakw?ct=application/x-tar#/next/GEMini.diagram2> at:pathObject <file:///next/GEMini.diagram2>;
+                                                                                 nie:interpretedAs <ni:///mh;1QEQyuqkPC8AJYxCXHBlnHHakw?ct=application/x-tar#/next/GEMini.diagram2/>;
+                                                                                 nfo:belongsToContainer <ni:///mh;1QEQyuqkPC8AJYxCXHBlnHHakw?ct=application/x-tar#/next/>;
+                                                                                 nfo:fileName "GEMini.diagram2";
+                                                                                 a nfo:FileDataObject,
+                                                                                   nfo:ArchiveItem;
+                                                                                 skos:prefLabel "/next/GEMini.diagram2".
+<ni:///mh;1QEQyuqkPC8AJYxCXHBlnHHakw?ct=application/x-tar#/next/GEMini.diagram2/> at:pathObject <file:///next/GEMini.diagram2/>;
+                                                                                  nie:interpretedAs <data:application/octet-stream,>;
+                                                                                  nfo:belongsToContainer <ni:///mh;1QEQyuqkPC8AJYxCXHBlnHHakw?ct=application/x-tar#/next/GEMini.diagram2/>;
+                                                                                  nfo:fileLastModified "1993-10-24T03:58:02.000000+02:00"^^xsd:dateTime;
+                                                                                  nfo:fileName "";
+                                                                                  nfo:fileSize 0 ;
+                                                                                  a nfo:FileDataObject,
+                                                                                    nfo:ArchiveItem,
+                                                                                    nfo:Folder;
+                                                                                  skos:prefLabel "/next/GEMini.diagram2/".
+<ni:///mh;1QEQyuqkPC8AJYxCXHBlnHHakw?ct=application/x-tar#/next/GEMini.diagram2/Colors.clr> at:pathObject <file:///next/GEMini.diagram2/Colors.clr>;
+                                                                                            nie:interpretedAs <ni:///mh;1QEQb0HqUF9uYbaL7cZs2J5rPA?ct=application/octet-stream>;
+                                                                                            nfo:belongsToContainer <ni:///mh;1QEQyuqkPC8AJYxCXHBlnHHakw?ct=application/x-tar#/next/GEMini.diagram2/>;
+                                                                                            nfo:fileLastModified "1993-10-24T03:58:01.000000+02:00"^^xsd:dateTime;
+                                                                                            nfo:fileName "Colors.clr";
+                                                                                            nfo:fileSize 111 ;
+                                                                                            a nfo:FileDataObject,
+                                                                                              nfo:ArchiveItem;
+                                                                                            skos:prefLabel "/next/GEMini.diagram2/Colors.clr".
+<ni:///mh;1QEQyuqkPC8AJYxCXHBlnHHakw?ct=application/x-tar#/next/GEMini.diagram2/DiagramText> at:pathObject <file:///next/GEMini.diagram2/DiagramText>;
+                                                                                             nie:interpretedAs <ni:///mh;1QEQOrkFpjaoYt0lxA7a1OyVLA?ct=text/plain>;
+                                                                                             nfo:belongsToContainer <ni:///mh;1QEQyuqkPC8AJYxCXHBlnHHakw?ct=application/x-tar#/next/GEMini.diagram2/>;
+                                                                                             nfo:fileLastModified "1993-10-24T03:58:02.000000+02:00"^^xsd:dateTime;
+                                                                                             nfo:fileName "DiagramText";
+                                                                                             nfo:fileSize 62084 ;
+                                                                                             a nfo:FileDataObject,
+                                                                                               nfo:ArchiveItem;
+                                                                                             skos:prefLabel "/next/GEMini.diagram2/DiagramText".
+<ni:///mh;1QEQyuqkPC8AJYxCXHBlnHHakw?ct=application/x-tar#/next/GEMini.diagram2/PrintInfo> at:pathObject <file:///next/GEMini.diagram2/PrintInfo>;
+                                                                                           nie:interpretedAs <ni:///mh;1QEQu1lGF5UQIVe5TZBhvN7AJQ?ct=application/octet-stream>;
+                                                                                           nfo:belongsToContainer <ni:///mh;1QEQyuqkPC8AJYxCXHBlnHHakw?ct=application/x-tar#/next/GEMini.diagram2/>;
+                                                                                           nfo:fileLastModified "1993-10-24T03:58:00.000000+02:00"^^xsd:dateTime;
+                                                                                           nfo:fileName "PrintInfo";
+                                                                                           nfo:fileSize 185 ;
+                                                                                           a nfo:FileDataObject,
+                                                                                             nfo:ArchiveItem;
+                                                                                           skos:prefLabel "/next/GEMini.diagram2/PrintInfo".
+<ni:///mh;1QEQyuqkPC8AJYxCXHBlnHHakw?ct=application/x-tar#/next/GEMini.eps> at:pathObject <file:///next/GEMini.eps>;
+                                                                            nie:interpretedAs <ni:///mh;1QEQ72mITfgG7weEWKic20Y3gw?ct=text/plain>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQyuqkPC8AJYxCXHBlnHHakw?ct=application/x-tar#/next/>;
+                                                                            nfo:fileLastModified "1993-10-24T03:58:16.000000+02:00"^^xsd:dateTime;
+                                                                            nfo:fileName "GEMini.eps";
+                                                                            nfo:fileSize 78728 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/next/GEMini.eps".
+<ni:///mh;1QEQyuqkPC8AJYxCXHBlnHHakw?ct=application/x-tar#/next/GEMini.tiff> at:pathObject <file:///next/GEMini.tiff>;
+                                                                             nie:interpretedAs <ni:///mh;1QEQ2VZq8IWGXqCXzigZfpFGCw?ct=application/octet-stream>;
+                                                                             nfo:belongsToContainer <ni:///mh;1QEQyuqkPC8AJYxCXHBlnHHakw?ct=application/x-tar#/next/>;
+                                                                             nfo:fileLastModified "1993-10-24T03:58:33.000000+02:00"^^xsd:dateTime;
+                                                                             nfo:fileName "GEMini.tiff";
+                                                                             nfo:fileSize 266412 ;
+                                                                             a nfo:FileDataObject,
+                                                                               nfo:ArchiveItem;
+                                                                             skos:prefLabel "/next/GEMini.tiff".
+<urn:md5:3AB905A636A862DD25C40EDAD4EC952C> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "OrkFpjaoYt0lxA7a1OyVLA=="^^xsd:base64Binary.
+<urn:md5:6F41EA505F6E61B68BEDC66CD89E6B3C> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "b0HqUF9uYbaL7cZs2J5rPA=="^^xsd:base64Binary.
+<urn:md5:BB59461795102157B94D9061BCDEC025> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "u1lGF5UQIVe5TZBhvN7AJQ=="^^xsd:base64Binary.
+<urn:md5:CAEAA43C2F00258C425C70659C71DA93> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "yuqkPC8AJYxCXHBlnHHakw=="^^xsd:base64Binary.
+<urn:md5:D9566AF085865EA097CE28197E91460B> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "2VZq8IWGXqCXzigZfpFGCw=="^^xsd:base64Binary.
+<urn:md5:EF69884DF806EF078458A89CDB463783> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "72mITfgG7weEWKic20Y3gw=="^^xsd:base64Binary.
+<urn:md5:FCD31A0C5059FF2381D83FF6AD4F4FDE> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "/NMaDFBZ/yOB2D/2rU9P3g=="^^xsd:base64Binary.

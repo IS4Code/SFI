@@ -1,0 +1,32 @@
+@base <ni:///mh;1QEQ-8d33E9i0ViK1n76MYiV_Q?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///HERBSOUN.DLS>;
+     nie:interpretedAs <ni:///mh;1QEQ-8d33E9i0ViK1n76MYiV_Q?ct=application/octet-stream>;
+     nfo:fileName "HERBSOUN.DLS";
+     nfo:fileSize 547454 ;
+     a nfo:FileDataObject.
+<file:///HERBSOUN.DLS> at:extensionObject <https://w3id.org/uri4uri/suffix/dls>.
+<ni:///mh;1QEQ-8d33E9i0ViK1n76MYiV_Q?ct=application/octet-stream> at:digest <urn:md5:FBC777DC4F62D1588AD67EFA318895FD>;
+                                                                  dcterms:extent "547454"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ-8d33E9i0ViK1n76MYiV_Q?ct=application/x-riff>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (534.62 KiB)"@en.
+<ni:///mh;1QEQ-8d33E9i0ViK1n76MYiV_Q?ct=application/x-riff> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-riff>;
+                                                            a schema:MediaObject;
+                                                            skos:prefLabel "RIFF object (534.62 KiB)"@en.
+<urn:md5:FBC777DC4F62D1588AD67EFA318895FD> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "+8d33E9i0ViK1n76MYiV/Q=="^^xsd:base64Binary.

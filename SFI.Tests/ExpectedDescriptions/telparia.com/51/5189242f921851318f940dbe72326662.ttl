@@ -1,0 +1,51 @@
+@base <ni:///mh;1QEQ3SvTFrBbDGZsyTlPYeNyJw?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///atlantis405-test.mkv>;
+     nie:interpretedAs <ni:///mh;1QEQ3SvTFrBbDGZsyTlPYeNyJw?ct=application/octet-stream>;
+     nfo:fileName "atlantis405-test.mkv";
+     nfo:fileSize 10485760 ;
+     a nfo:FileDataObject.
+<file:///atlantis405-test.mkv> at:extensionObject <https://w3id.org/uri4uri/suffix/mkv>.
+<ni:///mh;1QEQ3SvTFrBbDGZsyTlPYeNyJw?ct=application/octet-stream> at:digest <urn:md5:DD2BD316B05B0C666CC9394F61E37227>;
+                                                                  dcterms:extent "10485760"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ3SvTFrBbDGZsyTlPYeNyJw?ct=video/webm>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (10 MiB)"@en.
+<ni:///mh;1QEQ3SvTFrBbDGZsyTlPYeNyJw?ct=video/webm> schema:encodingFormat <https://w3id.org/uri4uri/mime/video/webm>;
+                                                    nfo:channels 2 ;
+                                                    nfo:duration "PT41M2.4495S"^^xsd:duration;
+                                                    nfo:hasMediaStream <ni:///mh;1QEQ3SvTFrBbDGZsyTlPYeNyJw?ct=video/webm#/Audio/0>,
+                                                                       <ni:///mh;1QEQ3SvTFrBbDGZsyTlPYeNyJw?ct=video/webm#/Video/0>;
+                                                    nfo:height 720 ;
+                                                    nfo:sampleRate "48000"^^dt:hertz;
+                                                    nfo:width 1280 ;
+                                                    a schema:MediaObject,
+                                                      schema:VideoObject,
+                                                      nfo:Video;
+                                                    skos:prefLabel "MKV object (1280×720)"@en.
+<ni:///mh;1QEQ3SvTFrBbDGZsyTlPYeNyJw?ct=video/webm#/Audio/0> nfo:channels 2 ;
+                                                             nfo:sampleRate "48000"^^dt:hertz;
+                                                             a nfo:Audio,
+                                                               nfo:MediaStream;
+                                                             skos:prefLabel "0:Audio (48000 Hz, 2 channels)".
+<ni:///mh;1QEQ3SvTFrBbDGZsyTlPYeNyJw?ct=video/webm#/Video/0> nfo:height 720 ;
+                                                             nfo:width 1280 ;
+                                                             a nfo:Video,
+                                                               nfo:MediaStream;
+                                                             skos:prefLabel "0:Video (1280×720)".
+<urn:md5:DD2BD316B05B0C666CC9394F61E37227> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "3SvTFrBbDGZsyTlPYeNyJw=="^^xsd:base64Binary.

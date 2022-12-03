@@ -1,0 +1,32 @@
+@base <ni:///mh;1QEQ8u5L6VH31GKtOtx6mMbHrA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///EYES2.ANI>;
+     nie:interpretedAs <ni:///mh;1QEQ8u5L6VH31GKtOtx6mMbHrA?ct=application/octet-stream>;
+     nfo:fileName "EYES2.ANI";
+     nfo:fileSize 6342 ;
+     a nfo:FileDataObject.
+<file:///EYES2.ANI> at:extensionObject <https://w3id.org/uri4uri/suffix/ani>.
+<ni:///mh;1QEQ8u5L6VH31GKtOtx6mMbHrA?ct=application/octet-stream> at:digest <urn:md5:F2EE4BE951F7D462AD3ADC7A98C6C7AC>;
+                                                                  dcterms:extent "6342"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ8u5L6VH31GKtOtx6mMbHrA?ct=application/x-riff>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (6.19 KiB)"@en.
+<ni:///mh;1QEQ8u5L6VH31GKtOtx6mMbHrA?ct=application/x-riff> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-riff>;
+                                                            a schema:MediaObject;
+                                                            skos:prefLabel "RIFF object (6.19 KiB)"@en.
+<urn:md5:F2EE4BE951F7D462AD3ADC7A98C6C7AC> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "8u5L6VH31GKtOtx6mMbHrA=="^^xsd:base64Binary.

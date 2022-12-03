@@ -1,0 +1,35 @@
+@base <ni:///mh;1QEQNhSJZsN1pGQtz9aoBVbjAw?ct=text/plain>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///DIAMONDS.AI>;
+     nie:interpretedAs <ni:///mh;1QEQNhSJZsN1pGQtz9aoBVbjAw?ct=text/plain>;
+     nfo:fileName "DIAMONDS.AI";
+     nfo:fileSize 4298 ;
+     a nfo:FileDataObject.
+<file:///DIAMONDS.AI> at:extensionObject <https://w3id.org/uri4uri/suffix/ai>.
+<ni:///mh;1QEQNhSJZsN1pGQtz9aoBVbjAw?ct=application/postscript> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/postscript>;
+                                                                a schema:MediaObject;
+                                                                skos:prefLabel "EPS object (4.2 KiB)"@en.
+<ni:///mh;1QEQNhSJZsN1pGQtz9aoBVbjAw?ct=text/plain> at:digest <urn:md5:36148966C375A4642DCFD6A80556E303>;
+                                                    dcterms:extent "4298"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQNhSJZsN1pGQtz9aoBVbjAw?ct=application/postscript>;
+                                                    nie:hasPart <ni:///mh;1QEQNhSJZsN1pGQtz9aoBVbjAw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (4.2 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQNhSJZsN1pGQtz9aoBVbjAw?ct=text/plain#line=,1> rdf:value """%!PS-Adobe-3.0 %%Creator: Adobe Illustrator(TM) 3.0%%For: (steve guttman) (adobe systems)%%Title: (-Diamonds/cubes)%%CreationDate: (5/17/91) (4:27 PM)%%DocumentProcessColors: Black%%DocumentNeededResources: procset Adobe_packedarray 2.0 0%%+ procset Adobe_cmykcolor 1.1 0%%+ procset Adobe_cshow 1.1 0%%+ procset Adobe_customcolor 1.0 0%%+ procset Adobe_IllustratorA_AI3 1.0 0%%BoundingBox: 216 360 306 432%AI3_ColorUsage: Black&White%AI3_TemplateBox: 288 360 288 360%AI3_TileBox: 12 24 564 754%AI3""".
+<urn:md5:36148966C375A4642DCFD6A80556E303> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "NhSJZsN1pGQtz9aoBVbjAw=="^^xsd:base64Binary.

@@ -1,0 +1,117 @@
+@base <ni:///mh;1QEQY-HkyLzNpveKj5SGyxqAFw?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///ucf-tp32.zip>;
+     nie:interpretedAs <ni:///mh;1QEQY-HkyLzNpveKj5SGyxqAFw?ct=application/octet-stream>;
+     nfo:fileName "ucf-tp32.zip";
+     nfo:fileSize 12818 ;
+     a nfo:FileDataObject.
+<file:///ED%21SON.NFO> at:extensionObject <https://w3id.org/uri4uri/suffix/nfo>.
+<file:///ED%21TP32.EXE> at:extensionObject <https://w3id.org/uri4uri/suffix/exe>.
+<file:///FILE_ID.DIZ> at:extensionObject <https://w3id.org/uri4uri/suffix/diz>.
+<file:///UCF96.NFO> at:extensionObject <https://w3id.org/uri4uri/suffix/nfo>.
+<file:///ucf-tp32.zip> at:extensionObject <https://w3id.org/uri4uri/suffix/zip>.
+<ni:///mh;1QEQC9uL6F93wvGeOUY3LF84Aw?ct=application/octet-stream> at:digest <urn:md5:0BDB8BE85F77C2F19E3946372C5F3803>;
+                                                                  dcterms:extent "1094"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.07 KiB)"@en.
+<ni:///mh;1QEQQlsCCuRV7FKffkE5qRqnSg?ct=application/octet-stream> at:digest <urn:md5:425B020AE455EC529F7E4139A91AA74A>;
+                                                                  dcterms:extent "9110"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQQlsCCuRV7FKffkE5qRqnSg?ct=application/x-msdos-program>,
+                                                                                    <ni:///mh;1QEQQlsCCuRV7FKffkE5qRqnSg?ct=application/vnd.microsoft.portable-executable>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (8.9 KiB)"@en.
+<ni:///mh;1QEQQlsCCuRV7FKffkE5qRqnSg?ct=application/vnd.microsoft.portable-executable> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
+                                                                                       a schema:MediaObject,
+                                                                                         schema:SoftwareApplication,
+                                                                                         nfo:Executable.
+<ni:///mh;1QEQQlsCCuRV7FKffkE5qRqnSg?ct=application/x-msdos-program> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-msdos-program>;
+                                                                     a schema:MediaObject,
+                                                                       schema:SoftwareApplication,
+                                                                       nfo:Executable;
+                                                                     skos:prefLabel "EXE object (8.9 KiB)"@en.
+<ni:///mh;1QEQY-HkyLzNpveKj5SGyxqAFw?ct=application/octet-stream> at:digest <urn:md5:63E1E4C8BCCDA6F78A8F9486CB1A8017>;
+                                                                  dcterms:extent "12818"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQY-HkyLzNpveKj5SGyxqAFw?ct=application/zip>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (12.52 KiB)"@en.
+<ni:///mh;1QEQY-HkyLzNpveKj5SGyxqAFw?ct=application/zip> at:pathObject <file:///>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
+                                                         nie:interpretedAs <ni:///mh;1QEQY-HkyLzNpveKj5SGyxqAFw?ct=application/zip#/>;
+                                                         a schema:MediaObject,
+                                                           nfo:Archive;
+                                                         skos:prefLabel "ZIP object (12.52 KiB)"@en.
+<ni:///mh;1QEQY-HkyLzNpveKj5SGyxqAFw?ct=application/zip#/> at:pathObject <file:///./>;
+                                                           a nfo:Folder;
+                                                           skos:prefLabel "/".
+<ni:///mh;1QEQY-HkyLzNpveKj5SGyxqAFw?ct=application/zip#/ED%21SON.NFO> at:pathObject <file:///ED%21SON.NFO>;
+                                                                       nie:interpretedAs <ni:///mh;1QEQC9uL6F93wvGeOUY3LF84Aw?ct=application/octet-stream>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQY-HkyLzNpveKj5SGyxqAFw?ct=application/zip#/>;
+                                                                       nfo:fileLastModified "1996-04-14T17:18:38.000000+02:00"^^xsd:dateTime;
+                                                                       nfo:fileName "ED!SON.NFO";
+                                                                       nfo:fileSize 1094 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/ED!SON.NFO".
+<ni:///mh;1QEQY-HkyLzNpveKj5SGyxqAFw?ct=application/zip#/ED%21TP32.EXE> at:pathObject <file:///ED%21TP32.EXE>;
+                                                                        nie:interpretedAs <ni:///mh;1QEQQlsCCuRV7FKffkE5qRqnSg?ct=application/octet-stream>;
+                                                                        nfo:belongsToContainer <ni:///mh;1QEQY-HkyLzNpveKj5SGyxqAFw?ct=application/zip#/>;
+                                                                        nfo:fileLastModified "1996-04-16T16:28:38.000000+02:00"^^xsd:dateTime;
+                                                                        nfo:fileName "ED!TP32.EXE";
+                                                                        nfo:fileSize 9110 ;
+                                                                        a nfo:FileDataObject,
+                                                                          nfo:ArchiveItem;
+                                                                        skos:prefLabel "/ED!TP32.EXE".
+<ni:///mh;1QEQY-HkyLzNpveKj5SGyxqAFw?ct=application/zip#/FILE_ID.DIZ> at:pathObject <file:///FILE_ID.DIZ>;
+                                                                      nie:interpretedAs <ni:///mh;1QEQhki1r9cLkx101AgQmZyjNQ?ct=application/octet-stream>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQY-HkyLzNpveKj5SGyxqAFw?ct=application/zip#/>;
+                                                                      nfo:fileLastModified "1996-04-16T16:32:04.000000+02:00"^^xsd:dateTime;
+                                                                      nfo:fileName "FILE_ID.DIZ";
+                                                                      nfo:fileSize 388 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/FILE_ID.DIZ".
+<ni:///mh;1QEQY-HkyLzNpveKj5SGyxqAFw?ct=application/zip#/UCF96.NFO> at:pathObject <file:///UCF96.NFO>;
+                                                                    nie:interpretedAs <ni:///mh;1QEQqYVax_wY5ZDSVcdguMpxSA?ct=application/octet-stream>;
+                                                                    nfo:belongsToContainer <ni:///mh;1QEQY-HkyLzNpveKj5SGyxqAFw?ct=application/zip#/>;
+                                                                    nfo:fileLastModified "1996-04-16T16:36:24.000000+02:00"^^xsd:dateTime;
+                                                                    nfo:fileName "UCF96.NFO";
+                                                                    nfo:fileSize 8400 ;
+                                                                    a nfo:FileDataObject,
+                                                                      nfo:ArchiveItem;
+                                                                    skos:prefLabel "/UCF96.NFO".
+<ni:///mh;1QEQhki1r9cLkx101AgQmZyjNQ?ct=application/octet-stream> at:digest <urn:md5:8648B5AFD70B931D74D40810999CA335>;
+                                                                  dcterms:extent "388"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (388 B)"@en.
+<ni:///mh;1QEQqYVax_wY5ZDSVcdguMpxSA?ct=application/octet-stream> at:digest <urn:md5:A9855AC7FC18E590D255C760B8CA7148>;
+                                                                  dcterms:extent "8400"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (8.2 KiB)"@en.
+<urn:md5:0BDB8BE85F77C2F19E3946372C5F3803> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "C9uL6F93wvGeOUY3LF84Aw=="^^xsd:base64Binary.
+<urn:md5:425B020AE455EC529F7E4139A91AA74A> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "QlsCCuRV7FKffkE5qRqnSg=="^^xsd:base64Binary.
+<urn:md5:63E1E4C8BCCDA6F78A8F9486CB1A8017> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "Y+HkyLzNpveKj5SGyxqAFw=="^^xsd:base64Binary.
+<urn:md5:8648B5AFD70B931D74D40810999CA335> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "hki1r9cLkx101AgQmZyjNQ=="^^xsd:base64Binary.
+<urn:md5:A9855AC7FC18E590D255C760B8CA7148> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "qYVax/wY5ZDSVcdguMpxSA=="^^xsd:base64Binary.

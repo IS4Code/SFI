@@ -1,0 +1,51 @@
+@base <ni:///mh;1QEQKbRZMpKuhrTJQ3da0Zsl2w?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///input.gif>;
+     nie:interpretedAs <ni:///mh;1QEQKbRZMpKuhrTJQ3da0Zsl2w?ct=application/octet-stream>;
+     nfo:fileName "input.gif";
+     nfo:fileSize 4037 ;
+     a nfo:FileDataObject.
+<file:///input.gif> at:extensionObject <https://w3id.org/uri4uri/suffix/gif>.
+<ni:///mh;1QEQKbRZMpKuhrTJQ3da0Zsl2w?ct=application/octet-stream> at:digest <urn:md5:29B4593292AE86B4C943775AD19B25DB>;
+                                                                  dcterms:extent "4037"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQKbRZMpKuhrTJQ3da0Zsl2w?ct=image/gif>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (3.94 KiB)"@en.
+<ni:///mh;1QEQKbRZMpKuhrTJQ3da0Zsl2w?ct=image/gif> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/gif>;
+                                                   nfo:bitDepth 8 ;
+                                                   nfo:hasMediaStream <ni:///mh;1QEQKbRZMpKuhrTJQ3da0Zsl2w?ct=image/gif#/0>,
+                                                                      <ni:///mh;1QEQKbRZMpKuhrTJQ3da0Zsl2w?ct=image/gif#/1>;
+                                                   nfo:height 46 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:paletteSize 256 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 70 ;
+                                                   a schema:MediaObject,
+                                                     nfo:Image,
+                                                     schema:ImageObject;
+                                                   skos:prefLabel "GIF object (70×46)"@en,
+                                                                  "GIF object (3.94 KiB)"@en.
+<ni:///mh;1QEQKbRZMpKuhrTJQ3da0Zsl2w?ct=image/gif#/0> nfo:height 46 ;
+                                                      nfo:width 70 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "0:GIF Header (70×46)".
+<ni:///mh;1QEQKbRZMpKuhrTJQ3da0Zsl2w?ct=image/gif#/1> nfo:height 46 ;
+                                                      nfo:width 70 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "1:GIF Image (70×46)".
+<urn:md5:29B4593292AE86B4C943775AD19B25DB> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "KbRZMpKuhrTJQ3da0Zsl2w=="^^xsd:base64Binary.

@@ -1,0 +1,38 @@
+@base <ni:///mh;1QEQ4hatdkb-ZTlsVJfOYu7O1w?ct=text/plain>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix xis: <http://www.w3.org/2001/04/infoset#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///1650203769_ISOlat1.sgml>;
+     nie:interpretedAs <ni:///mh;1QEQ4hatdkb-ZTlsVJfOYu7O1w?ct=text/plain>;
+     nfo:fileName "1650203769_ISOlat1.sgml";
+     nfo:fileSize 6283 ;
+     a nfo:FileDataObject.
+<file:///1650203769_ISOlat1.sgml> at:extensionObject <https://w3id.org/uri4uri/suffix/sgml>.
+<ni:///mh;1QEQ4hatdkb-ZTlsVJfOYu7O1w?ct=application/xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         skos:prefLabel "XML object (6.14 KiB)"@en.
+<ni:///mh;1QEQ4hatdkb-ZTlsVJfOYu7O1w?ct=text/plain> at:digest <urn:md5:E216AD7646FE65396C5497CE62EECED7>;
+                                                    dcterms:extent "6283"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ4hatdkb-ZTlsVJfOYu7O1w?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQ4hatdkb-ZTlsVJfOYu7O1w?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (6.14 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQ4hatdkb-ZTlsVJfOYu7O1w?ct=text/plain#line=,1> rdf:value "<!-- (C) International Organization for Standardization 1986".
+<urn:md5:E216AD7646FE65396C5497CE62EECED7> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "4hatdkb+ZTlsVJfOYu7O1w=="^^xsd:base64Binary.

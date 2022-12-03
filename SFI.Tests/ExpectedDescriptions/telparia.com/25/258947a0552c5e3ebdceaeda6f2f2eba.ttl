@@ -1,0 +1,41 @@
+@base <ni:///mh;1QEQDlFT4RPhDSPcL0apWR9_wQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///sample_1920%C3%971280.ico>;
+     nie:interpretedAs <ni:///mh;1QEQDlFT4RPhDSPcL0apWR9_wQ?ct=application/octet-stream>;
+     nfo:fileName "sample_1920×1280.ico";
+     nfo:fileSize 180638 ;
+     a nfo:FileDataObject.
+<file:///sample_1920%C3%971280.ico> at:extensionObject <https://w3id.org/uri4uri/suffix/ico>.
+<ni:///mh;1QEQDlFT4RPhDSPcL0apWR9_wQ?ct=application/octet-stream> at:digest <urn:md5:0E5153E113E10D23DC2F46A9591F7FC1>;
+                                                                  dcterms:extent "180638"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQDlFT4RPhDSPcL0apWR9_wQ?ct=image/x-icon>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (176.4 KiB)"@en.
+<ni:///mh;1QEQDlFT4RPhDSPcL0apWR9_wQ?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
+                                                      nfo:colorDepth 32 ;
+                                                      nfo:height 171 ;
+                                                      nfo:horizontalResolution 96 ;
+                                                      nfo:verticalResolution 96 ;
+                                                      nfo:width 256 ,
+                                                                0 ;
+                                                      a schema:MediaObject,
+                                                        schema:ImageObject,
+                                                        nfo:Image;
+                                                      skos:prefLabel "ICO object (176.4 KiB)"@en,
+                                                                     "ICO object (0×171)"@en.
+<urn:md5:0E5153E113E10D23DC2F46A9591F7FC1> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "DlFT4RPhDSPcL0apWR9/wQ=="^^xsd:base64Binary.

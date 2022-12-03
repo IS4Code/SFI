@@ -1,0 +1,39 @@
+@base <ni:///mh;1QEQ0iQWqT-EyfYKhjtCSShZEA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///PCBDOCS.EXE>;
+     nie:interpretedAs <ni:///mh;1QEQ0iQWqT-EyfYKhjtCSShZEA?ct=application/octet-stream>;
+     nfo:fileName "PCBDOCS.EXE";
+     nfo:fileSize 379231 ;
+     a nfo:FileDataObject.
+<file:///PCBDOCS.EXE> at:extensionObject <https://w3id.org/uri4uri/suffix/exe>.
+<ni:///mh;1QEQ0iQWqT-EyfYKhjtCSShZEA?ct=application/octet-stream> at:digest <urn:md5:D22416A93F84C9F60A863B4249285910>;
+                                                                  dcterms:extent "379231"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ0iQWqT-EyfYKhjtCSShZEA?ct=application/vnd.microsoft.portable-executable>,
+                                                                                    <ni:///mh;1QEQ0iQWqT-EyfYKhjtCSShZEA?ct=application/x-msdos-program>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (370.34 KiB)"@en.
+<ni:///mh;1QEQ0iQWqT-EyfYKhjtCSShZEA?ct=application/vnd.microsoft.portable-executable> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
+                                                                                       a schema:MediaObject,
+                                                                                         schema:SoftwareApplication,
+                                                                                         nfo:Executable.
+<ni:///mh;1QEQ0iQWqT-EyfYKhjtCSShZEA?ct=application/x-msdos-program> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-msdos-program>;
+                                                                     a schema:MediaObject,
+                                                                       schema:SoftwareApplication,
+                                                                       nfo:Executable;
+                                                                     skos:prefLabel "EXE object (370.34 KiB)"@en.
+<urn:md5:D22416A93F84C9F60A863B4249285910> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "0iQWqT+EyfYKhjtCSShZEA=="^^xsd:base64Binary.

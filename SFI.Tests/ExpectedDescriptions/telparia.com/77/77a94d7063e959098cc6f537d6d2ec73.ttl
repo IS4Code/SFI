@@ -1,0 +1,519 @@
+@base <ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix xis: <http://www.w3.org/2001/04/infoset#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///PagePlusX6-Sample.ppp>;
+     nie:interpretedAs <ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/octet-stream>;
+     nfo:fileName "PagePlusX6-Sample.ppp";
+     nfo:fileSize 22708 ;
+     a nfo:FileDataObject.
+<file:///1.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///2.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///3.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///4.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///PagePlusX6-Sample.ppp> at:extensionObject <https://w3id.org/uri4uri/suffix/ppp>.
+<file:///Root.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///document.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///masterspreads/1.xml> at:pathObject <file:///1.xml>.
+<file:///preview.jpg> at:extensionObject <https://w3id.org/uri4uri/suffix/jpg>.
+<file:///spreads/1.xml> at:pathObject <file:///1.xml>.
+<file:///story.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///story/1.xml> at:pathObject <file:///1.xml>.
+<file:///stylesheet.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///summary.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///typedspreads/1.xml> at:pathObject <file:///1.xml>.
+<file:///typedspreads/2.xml> at:pathObject <file:///2.xml>.
+<file:///typedspreads/3.xml> at:pathObject <file:///3.xml>.
+<file:///typedspreads/4.xml> at:pathObject <file:///4.xml>.
+<ni:///mh;1QEQ-jnyFtmB-lcnGapOdauwWg?ct=application/x.ns.SerifXML+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.serifxml+xml>;
+                                                                       a schema:MediaObject;
+                                                                       skos:prefLabel "SERIFXML object"@en.
+<ni:///mh;1QEQ-jnyFtmB-lcnGapOdauwWg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ-jnyFtmB-lcnGapOdauwWg?ct=application/x.ns.SerifXML+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQ-jnyFtmB-lcnGapOdauwWg?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (SerifXML)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQ-jnyFtmB-lcnGapOdauwWg?ct=application/xml#element(/1)> a xis:Element;
+                                                                     xis:localName "SerifXML";
+                                                                     xis:name "SerifXML".
+<ni:///mh;1QEQ-jnyFtmB-lcnGapOdauwWg?ct=text/plain> at:digest <urn:md5:FA39F216D981FA572719AA4E75ABB05A>;
+                                                    dcterms:extent "901"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ-jnyFtmB-lcnGapOdauwWg?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQ-jnyFtmB-lcnGapOdauwWg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (901 B)"@en;
+                                                    cnt:characterEncoding "utf-8".
+<ni:///mh;1QEQ-jnyFtmB-lcnGapOdauwWg?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?><SerifXML version=\"1.0\"><_item _class=\"LogoSpread\" SavedWithMasterLayers=\"1\"><_item _class=\"Layer\"><Info Name=\"Layer 1\" Colour=\"14757376\"/><HorizontalGuides/><VerticalGuides IsVert=\"1\"/><MasterSpreads><_item/></MasterSpreads><LineStyle _class=\"CLineStyleSolid\" Offset=\"0\"/><WrapOutline/></_item><LineStyle _class=\"CLineStyleSolid\" Offset=\"0\"/><WrapOutline/><Pages><_item _class=\"Page\" HasLandscape=\"1\" Rect=\"0,0,595276,841890\" RawRect=\"0,0,595276,841890\"><Layout Margins=""".
+<ni:///mh;1QEQCZKbthP1V0gTR3Fed8p_jA?ct=application/x.ns.SerifXML+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.serifxml+xml>;
+                                                                       a schema:MediaObject;
+                                                                       skos:prefLabel "SERIFXML object"@en.
+<ni:///mh;1QEQCZKbthP1V0gTR3Fed8p_jA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQCZKbthP1V0gTR3Fed8p_jA?ct=application/x.ns.SerifXML+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQCZKbthP1V0gTR3Fed8p_jA?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (SerifXML)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQCZKbthP1V0gTR3Fed8p_jA?ct=application/xml#element(/1)> a xis:Element;
+                                                                     xis:localName "SerifXML";
+                                                                     xis:name "SerifXML".
+<ni:///mh;1QEQCZKbthP1V0gTR3Fed8p_jA?ct=text/plain> at:digest <urn:md5:09929BB613F557481347715E77CA7F8C>;
+                                                    dcterms:extent "38294"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQCZKbthP1V0gTR3Fed8p_jA?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQCZKbthP1V0gTR3Fed8p_jA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (37.4 KiB)"@en;
+                                                    cnt:characterEncoding "utf-8".
+<ni:///mh;1QEQCZKbthP1V0gTR3Fed8p_jA?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?><SerifXML version=\"1.0\"><_object _id=\"55\" _class=\"Story::CStyleSheet\" defaultParaName=\"Normal\" defaultGlyphName=\"Default Paragraph Font\" placeholderName=\"Placeholder\"><styles><_item _class=\"Story::CStyle\" name=\"Artistic Body\" baseName=\"Body\" followingName=\"Artistic Body\" nextLevelName=\"Artistic Body\" recommendedLevel=\"10\"><GlyphDelta _ref=\"57\"/><ParaDelta _ref=\"58\"/></_item><_item _class=\"Story::CStyle\" name=\"Body\" baseName=\"Normal\" followingName=\"Body\" nextLevelName""".
+<ni:///mh;1QEQDVOx72VBGJPTmXMxGOXXHg?ct=application/x.ns.SerifXML+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.serifxml+xml>;
+                                                                       a schema:MediaObject;
+                                                                       skos:prefLabel "SERIFXML object"@en.
+<ni:///mh;1QEQDVOx72VBGJPTmXMxGOXXHg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQDVOx72VBGJPTmXMxGOXXHg?ct=application/x.ns.SerifXML+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQDVOx72VBGJPTmXMxGOXXHg?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (SerifXML)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQDVOx72VBGJPTmXMxGOXXHg?ct=application/xml#element(/1)> a xis:Element;
+                                                                     xis:localName "SerifXML";
+                                                                     xis:name "SerifXML".
+<ni:///mh;1QEQDVOx72VBGJPTmXMxGOXXHg?ct=text/plain> at:digest <urn:md5:0D53B1EF65411893D399733118E5D71E>;
+                                                    dcterms:extent "1063"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQDVOx72VBGJPTmXMxGOXXHg?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQDVOx72VBGJPTmXMxGOXXHg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.04 KiB)"@en;
+                                                    cnt:characterEncoding "utf-8".
+<ni:///mh;1QEQDVOx72VBGJPTmXMxGOXXHg?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?><SerifXML version=\"1.0\"><_item _class=\"Spread\" ScaleToFitMax=\"0\" SavedWithMasterLayers=\"1\"><_item _class=\"Layer\"><Info Name=\"Layer 1\" Colour=\"14757376\"/><HorizontalGuides/><VerticalGuides IsVert=\"1\"/><MasterSpreads><_item/></MasterSpreads><LineStyle _class=\"CLineStyleSolid\" Offset=\"0\"/><WrapOutline/></_item><BrushFill _class=\"CFillSolid\"><colour _class=\"CRGBColour\"/></BrushFill><PenFill _class=\"CFillSolid\"><colour _class=\"CRGBColour\"/></PenFill><WrapOutline/><AnchorI""".
+<ni:///mh;1QEQIZ11dTShzujlVObwlVbiWQ?ct=application/x.ns.SerifXML+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.serifxml+xml>;
+                                                                       a schema:MediaObject;
+                                                                       skos:prefLabel "SERIFXML object"@en.
+<ni:///mh;1QEQIZ11dTShzujlVObwlVbiWQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQIZ11dTShzujlVObwlVbiWQ?ct=application/x.ns.SerifXML+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQIZ11dTShzujlVObwlVbiWQ?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (SerifXML)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQIZ11dTShzujlVObwlVbiWQ?ct=application/xml#element(/1)> a xis:Element;
+                                                                     xis:localName "SerifXML";
+                                                                     xis:name "SerifXML".
+<ni:///mh;1QEQIZ11dTShzujlVObwlVbiWQ?ct=text/plain> at:digest <urn:md5:219D757534A1CEE8E554E6F09556E259>;
+                                                    dcterms:extent "264"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQIZ11dTShzujlVObwlVbiWQ?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQIZ11dTShzujlVObwlVbiWQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (264 B)"@en;
+                                                    cnt:characterEncoding "utf-8".
+<ni:///mh;1QEQIZ11dTShzujlVObwlVbiWQ?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?><SerifXML version=\"1.0\"><_item _value=\"document\"/><_item _value=\"story\"/><_item _value=\"stylesheet\"/><_item _value=\"masterspreads\"/><_item _value=\"typedspreads\"/><_item _value=\"spreads\"/><_item _value=\"summary\"/></SerifXML>""".
+<ni:///mh;1QEQJTIXDx1FCFbrJW4-LSPjWA?ct=application/x.ns.SerifXML+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.serifxml+xml>;
+                                                                       a schema:MediaObject;
+                                                                       skos:prefLabel "SERIFXML object"@en.
+<ni:///mh;1QEQJTIXDx1FCFbrJW4-LSPjWA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQJTIXDx1FCFbrJW4-LSPjWA?ct=application/x.ns.SerifXML+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQJTIXDx1FCFbrJW4-LSPjWA?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (SerifXML)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQJTIXDx1FCFbrJW4-LSPjWA?ct=application/xml#element(/1)> a xis:Element;
+                                                                     xis:localName "SerifXML";
+                                                                     xis:name "SerifXML".
+<ni:///mh;1QEQJTIXDx1FCFbrJW4-LSPjWA?ct=text/plain> at:digest <urn:md5:2532170F1D450856EB256E3E2D23E358>;
+                                                    dcterms:extent "172"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQJTIXDx1FCFbrJW4-LSPjWA?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQJTIXDx1FCFbrJW4-LSPjWA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (172 B)"@en;
+                                                    cnt:characterEncoding "utf-8".
+<ni:///mh;1QEQJTIXDx1FCFbrJW4-LSPjWA?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?><SerifXML version=\"1.0\" _class=\"Story::CRoot\" unit=\"72000\"><StyleSheet _ref=\"55\"/><stories><_item _ref=\"434\"/></stories></SerifXML>""".
+<ni:///mh;1QEQNIQImzXNt_x2nVk8X3OgyQ?ct=application/x.ns.SerifXML+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.serifxml+xml>;
+                                                                       a schema:MediaObject;
+                                                                       skos:prefLabel "SERIFXML object"@en.
+<ni:///mh;1QEQNIQImzXNt_x2nVk8X3OgyQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQNIQImzXNt_x2nVk8X3OgyQ?ct=application/x.ns.SerifXML+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQNIQImzXNt_x2nVk8X3OgyQ?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (SerifXML)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQNIQImzXNt_x2nVk8X3OgyQ?ct=application/xml#element(/1)> a xis:Element;
+                                                                     xis:localName "SerifXML";
+                                                                     xis:name "SerifXML".
+<ni:///mh;1QEQNIQImzXNt_x2nVk8X3OgyQ?ct=text/plain> at:digest <urn:md5:3484089B35CDB7FC769D593C5F73A0C9>;
+                                                    dcterms:extent "991"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQNIQImzXNt_x2nVk8X3OgyQ?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQNIQImzXNt_x2nVk8X3OgyQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (991 B)"@en;
+                                                    cnt:characterEncoding "utf-8".
+<ni:///mh;1QEQNIQImzXNt_x2nVk8X3OgyQ?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?><SerifXML version=\"1.0\"><_item _class=\"Spread\" ScaleToFitMax=\"0\" SavedWithMasterLayers=\"1\"><_item _class=\"Layer\"><Info Name=\"Layer 1\" Colour=\"14757376\"/><HorizontalGuides/><VerticalGuides IsVert=\"1\"/><MasterSpreads><_item/></MasterSpreads><LineStyle _class=\"CLineStyleSolid\" Offset=\"0\"/><WrapOutline/></_item><PenFill _class=\"CFillSolid\"><colour _class=\"CRGBColour\"/></PenFill><WrapOutline/><AnchorInfo _class=\"AnchorInfo\" IncludeAnchorInNav=\"1\"/><Pages><_item _class=\"Pa""".
+<ni:///mh;1QEQORao485uRms6H-iY51j1-g?ct=application/x.ns.SerifXML+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.serifxml+xml>;
+                                                                       a schema:MediaObject;
+                                                                       skos:prefLabel "SERIFXML object"@en.
+<ni:///mh;1QEQORao485uRms6H-iY51j1-g?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQORao485uRms6H-iY51j1-g?ct=application/x.ns.SerifXML+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQORao485uRms6H-iY51j1-g?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (SerifXML)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQORao485uRms6H-iY51j1-g?ct=application/xml#element(/1)> a xis:Element;
+                                                                     xis:localName "SerifXML";
+                                                                     xis:name "SerifXML".
+<ni:///mh;1QEQORao485uRms6H-iY51j1-g?ct=text/plain> at:digest <urn:md5:3916A8E3CE6E466B3A1FE898E758F5FA>;
+                                                    dcterms:extent "1927"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQORao485uRms6H-iY51j1-g?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQORao485uRms6H-iY51j1-g?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.88 KiB)"@en;
+                                                    cnt:characterEncoding "utf-8".
+<ni:///mh;1QEQORao485uRms6H-iY51j1-g?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?><SerifXML version=\"1.0\"><_item _class=\"Spread\" BBox=\"45774,46570,609162,343355\" BaseBBox=\"45774,46570,707755,343355\" ScaleToFitMax=\"0\" SavedWithMasterLayers=\"1\"><_item _class=\"Layer\"><Info Name=\"Master Layer 1\" Colour=\"14757376\"/><HorizontalGuides/><VerticalGuides IsVert=\"1\"/><MasterSpreads><_item _ref=\"598\"/></MasterSpreads><LineStyle _class=\"CLineStyleSolid\" Offset=\"0\"/><WrapOutline/></_item><_item _class=\"Layer\" BBox=\"45774,46570,609162,343355\" BaseBBox=\"45774,465""".
+<ni:///mh;1QEQSyA9JjDPHy5m1SeO99LTew?ct=application/octet-stream> at:digest <urn:md5:4B203D2630CF1F2E66D5278EF7D2D37B>;
+                                                                  dcterms:extent "10294"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQSyA9JjDPHy5m1SeO99LTew?ct=image/jpeg>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (10.05 KiB)"@en.
+<ni:///mh;1QEQSyA9JjDPHy5m1SeO99LTew?ct=image/jpeg> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/jpeg>;
+                                                    nfo:colorDepth 24 ;
+                                                    nfo:height 400 ;
+                                                    nfo:horizontalResolution 96 ;
+                                                    nfo:verticalResolution 96 ;
+                                                    nfo:width 311 ;
+                                                    <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#comments> "LEAD Technologies Inc. V1.01";
+                                                    a schema:MediaObject,
+                                                      schema:ImageObject,
+                                                      nfo:Image;
+                                                    skos:prefLabel "JPG object (311×400)"@en,
+                                                                   "JPG object (10.05 KiB)"@en.
+<ni:///mh;1QEQTqbrugqX3U-VRFRupOaKkQ?ct=application/x.ns.SerifXML+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.serifxml+xml>;
+                                                                       a schema:MediaObject;
+                                                                       skos:prefLabel "SERIFXML object"@en.
+<ni:///mh;1QEQTqbrugqX3U-VRFRupOaKkQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQTqbrugqX3U-VRFRupOaKkQ?ct=application/x.ns.SerifXML+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQTqbrugqX3U-VRFRupOaKkQ?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (SerifXML)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQTqbrugqX3U-VRFRupOaKkQ?ct=application/xml#element(/1)> a xis:Element;
+                                                                     xis:localName "SerifXML";
+                                                                     xis:name "SerifXML".
+<ni:///mh;1QEQTqbrugqX3U-VRFRupOaKkQ?ct=text/plain> at:digest <urn:md5:4EA6EBBA0A97DD4F9544546EA4E68A91>;
+                                                    dcterms:extent "16691"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQTqbrugqX3U-VRFRupOaKkQ?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQTqbrugqX3U-VRFRupOaKkQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (16.3 KiB)"@en;
+                                                    cnt:characterEncoding "utf-8".
+<ni:///mh;1QEQTqbrugqX3U-VRFRupOaKkQ?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?><SerifXML version=\"1.0\" WizardSavedPrevious=\"1\" ModelType=\"Multiple\" WebPageFileExt=\"html\" Palette=\"Standard CMYK.plt\"><CurrentDocModel _class=\"DocModelMultiple\"><PageSize size=\"612000,792000\" name=\"Letter\"/><Layout Margins=\"36000,36000,36000,36000\" ColGap=\"9000\" RowGap=\"9000\"/></CurrentDocModel><DocColours _class=\"DocColours\" HlinkUndrln=\"1\"><HlinkCol _class=\"SchemeColour\" index=\"5\"><scheme _class=\"ColourScheme\" SchemeName=\"Active 01\" _id=\"4\"><Colours><_item _class=""".
+<ni:///mh;1QEQWGa54aeCzHHz0llzcIYu1Q?ct=application/x.ns.SerifXML+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.serifxml+xml>;
+                                                                       a schema:MediaObject;
+                                                                       skos:prefLabel "SERIFXML object"@en.
+<ni:///mh;1QEQWGa54aeCzHHz0llzcIYu1Q?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQWGa54aeCzHHz0llzcIYu1Q?ct=application/x.ns.SerifXML+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQWGa54aeCzHHz0llzcIYu1Q?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (SerifXML)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQWGa54aeCzHHz0llzcIYu1Q?ct=application/xml#element(/1)> a xis:Element;
+                                                                     xis:localName "SerifXML";
+                                                                     xis:name "SerifXML".
+<ni:///mh;1QEQWGa54aeCzHHz0llzcIYu1Q?ct=text/plain> at:digest <urn:md5:5866B9E1A782CC71F3D2597370862ED5>;
+                                                    dcterms:extent "1088"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQWGa54aeCzHHz0llzcIYu1Q?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQWGa54aeCzHHz0llzcIYu1Q?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.06 KiB)"@en;
+                                                    cnt:characterEncoding "utf-8".
+<ni:///mh;1QEQWGa54aeCzHHz0llzcIYu1Q?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?><SerifXML version=\"1.0\"><_item _class=\"Spread\" ScaleToFitMax=\"0\" SavedWithMasterLayers=\"1\" _id=\"598\"><_item _class=\"Layer\"><Info Name=\"Layer 1\" Colour=\"14757376\"/><HorizontalGuides/><VerticalGuides IsVert=\"1\"/><MasterSpreads><_item/></MasterSpreads><LineStyle _class=\"CLineStyleSolid\" Offset=\"0\"/><WrapOutline/></_item><BrushFill _class=\"CFillSolid\"><colour _class=\"CRGBColour\"/></BrushFill><PenFill _class=\"CFillSolid\"><colour _class=\"CRGBColour\"/></PenFill><WrapOutline""".
+<ni:///mh;1QEQXuIRCDkxyp_WENYLAs7GQg?ct=application/x.ns.SerifXML+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.serifxml+xml>;
+                                                                       a schema:MediaObject;
+                                                                       skos:prefLabel "SERIFXML object"@en.
+<ni:///mh;1QEQXuIRCDkxyp_WENYLAs7GQg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQXuIRCDkxyp_WENYLAs7GQg?ct=application/x.ns.SerifXML+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQXuIRCDkxyp_WENYLAs7GQg?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (SerifXML)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQXuIRCDkxyp_WENYLAs7GQg?ct=application/xml#element(/1)> a xis:Element;
+                                                                     xis:localName "SerifXML";
+                                                                     xis:name "SerifXML".
+<ni:///mh;1QEQXuIRCDkxyp_WENYLAs7GQg?ct=text/plain> at:digest <urn:md5:5EE211083931CA9FD610D60B02CEC642>;
+                                                    dcterms:extent "254"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQXuIRCDkxyp_WENYLAs7GQg?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQXuIRCDkxyp_WENYLAs7GQg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (254 B)"@en;
+                                                    cnt:characterEncoding "utf-8".
+<ni:///mh;1QEQXuIRCDkxyp_WENYLAs7GQg?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?><SerifXML version=\"1.0\"><_object _id=\"434\" _class=\"CStoryProxy\" StyleExcludesSize=\"1\" xml:space=\"preserve\"><StyleSheet _ref=\"55\"/><p Style=\"Artistic Body\"><span Height=\"235793\">TEST</span></p></_object></SerifXML>""".
+<ni:///mh;1QEQhkxFHeH8juqsCnuu3_9SvQ?ct=application/x.ns.SerifXML+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.serifxml+xml>;
+                                                                       a schema:MediaObject;
+                                                                       skos:prefLabel "SERIFXML object"@en.
+<ni:///mh;1QEQhkxFHeH8juqsCnuu3_9SvQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQhkxFHeH8juqsCnuu3_9SvQ?ct=application/x.ns.SerifXML+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQhkxFHeH8juqsCnuu3_9SvQ?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (SerifXML)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQhkxFHeH8juqsCnuu3_9SvQ?ct=application/xml#element(/1)> a xis:Element;
+                                                                     xis:localName "SerifXML";
+                                                                     xis:name "SerifXML".
+<ni:///mh;1QEQhkxFHeH8juqsCnuu3_9SvQ?ct=text/plain> at:digest <urn:md5:864C451DE1FC8EEAAC0A7BAEDFFF52BD>;
+                                                    dcterms:extent "944"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQhkxFHeH8juqsCnuu3_9SvQ?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQhkxFHeH8juqsCnuu3_9SvQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (944 B)"@en;
+                                                    cnt:characterEncoding "utf-8".
+<ni:///mh;1QEQhkxFHeH8juqsCnuu3_9SvQ?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?><SerifXML version=\"1.0\"><Summary AppName=\"Serif PagePlus 16,0,0,19\" Title=\"pAGEpULSx6-sAMPLE\" Author=\"Administrator\" LastAuthor=\"Administrator\" RevNumber=\"1\" PageCount=\"1\" CreationTime=\"27/05/2020 17:59:31\" LastSaveTime=\"27/05/2020 18:00:30\" LastPublishTime=\"01/01/1601 01:00:00\"/><DocumentSignature Signature=\"92000\" Version=\"1599\" ProductId=\"Serif PagePlus\" CompileTime=\"Nov  8 2011 11:48:58\" LastKnownChange=\"$Change$ $DateTime$\"><SaveHistory><_item _value=\"Serif Page""".
+<ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/octet-stream> at:digest <urn:md5:C6D681D23FA985655943917D60FE7E13>;
+                                                                  dcterms:extent "22708"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (22.18 KiB)"@en.
+<ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip> at:pathObject <file:///>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
+                                                         nie:interpretedAs <ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/>;
+                                                         a schema:MediaObject,
+                                                           nfo:Archive;
+                                                         skos:prefLabel "ZIP object (22.18 KiB)"@en.
+<ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/> at:pathObject <file:///./>;
+                                                           a nfo:Folder;
+                                                           skos:prefLabel "/".
+<ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/Root.xml> at:pathObject <file:///Root.xml>;
+                                                                   nie:interpretedAs <ni:///mh;1QEQIZ11dTShzujlVObwlVbiWQ?ct=text/plain>;
+                                                                   nfo:belongsToContainer <ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/>;
+                                                                   nfo:fileLastModified "2020-05-27T12:00:30.000000+02:00"^^xsd:dateTime;
+                                                                   nfo:fileName "Root.xml";
+                                                                   nfo:fileSize 264 ;
+                                                                   a nfo:FileDataObject,
+                                                                     nfo:ArchiveItem;
+                                                                   skos:prefLabel "/Root.xml".
+<ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/document.xml> at:pathObject <file:///document.xml>;
+                                                                       nie:interpretedAs <ni:///mh;1QEQTqbrugqX3U-VRFRupOaKkQ?ct=text/plain>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/>;
+                                                                       nfo:fileLastModified "2020-05-27T12:00:30.000000+02:00"^^xsd:dateTime;
+                                                                       nfo:fileName "document.xml";
+                                                                       nfo:fileSize 16691 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/document.xml".
+<ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/masterspreads> at:pathObject <file:///masterspreads>;
+                                                                        nie:interpretedAs <ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/masterspreads/>;
+                                                                        nfo:belongsToContainer <ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/>;
+                                                                        nfo:fileName "masterspreads";
+                                                                        a nfo:FileDataObject,
+                                                                          nfo:ArchiveItem;
+                                                                        skos:prefLabel "/masterspreads".
+<ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/masterspreads/> at:pathObject <file:///masterspreads/>;
+                                                                         a nfo:Folder;
+                                                                         skos:prefLabel "/masterspreads/".
+<ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/masterspreads/1.xml> at:pathObject <file:///masterspreads/1.xml>;
+                                                                              nie:interpretedAs <ni:///mh;1QEQWGa54aeCzHHz0llzcIYu1Q?ct=text/plain>;
+                                                                              nfo:belongsToContainer <ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/masterspreads/>;
+                                                                              nfo:fileLastModified "2020-05-27T12:00:30.000000+02:00"^^xsd:dateTime;
+                                                                              nfo:fileName "1.xml";
+                                                                              nfo:fileSize 1088 ;
+                                                                              a nfo:FileDataObject,
+                                                                                nfo:ArchiveItem;
+                                                                              skos:prefLabel "/masterspreads/1.xml".
+<ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/preview.jpg> at:pathObject <file:///preview.jpg>;
+                                                                      nie:interpretedAs <ni:///mh;1QEQSyA9JjDPHy5m1SeO99LTew?ct=application/octet-stream>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/>;
+                                                                      nfo:fileLastModified "2020-05-27T12:00:30.000000+02:00"^^xsd:dateTime;
+                                                                      nfo:fileName "preview.jpg";
+                                                                      nfo:fileSize 10294 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/preview.jpg".
+<ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/spreads> at:pathObject <file:///spreads>;
+                                                                  nie:interpretedAs <ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/spreads/>;
+                                                                  nfo:belongsToContainer <ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/>;
+                                                                  nfo:fileName "spreads";
+                                                                  a nfo:FileDataObject,
+                                                                    nfo:ArchiveItem;
+                                                                  skos:prefLabel "/spreads".
+<ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/spreads/> at:pathObject <file:///spreads/>;
+                                                                   a nfo:Folder;
+                                                                   skos:prefLabel "/spreads/".
+<ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/spreads/1.xml> at:pathObject <file:///spreads/1.xml>;
+                                                                        nie:interpretedAs <ni:///mh;1QEQORao485uRms6H-iY51j1-g?ct=text/plain>;
+                                                                        nfo:belongsToContainer <ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/spreads/>;
+                                                                        nfo:fileLastModified "2020-05-27T12:00:30.000000+02:00"^^xsd:dateTime;
+                                                                        nfo:fileName "1.xml";
+                                                                        nfo:fileSize 1927 ;
+                                                                        a nfo:FileDataObject,
+                                                                          nfo:ArchiveItem;
+                                                                        skos:prefLabel "/spreads/1.xml".
+<ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/story> at:pathObject <file:///story>;
+                                                                nie:interpretedAs <ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/story/>;
+                                                                nfo:belongsToContainer <ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/>;
+                                                                nfo:fileName "story";
+                                                                a nfo:FileDataObject,
+                                                                  nfo:ArchiveItem;
+                                                                skos:prefLabel "/story".
+<ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/story.xml> at:pathObject <file:///story.xml>;
+                                                                    nie:interpretedAs <ni:///mh;1QEQJTIXDx1FCFbrJW4-LSPjWA?ct=text/plain>;
+                                                                    nfo:belongsToContainer <ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/>;
+                                                                    nfo:fileLastModified "2020-05-27T12:00:30.000000+02:00"^^xsd:dateTime;
+                                                                    nfo:fileName "story.xml";
+                                                                    nfo:fileSize 172 ;
+                                                                    a nfo:FileDataObject,
+                                                                      nfo:ArchiveItem;
+                                                                    skos:prefLabel "/story.xml".
+<ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/story/> at:pathObject <file:///story/>;
+                                                                 a nfo:Folder;
+                                                                 skos:prefLabel "/story/".
+<ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/story/1.xml> at:pathObject <file:///story/1.xml>;
+                                                                      nie:interpretedAs <ni:///mh;1QEQXuIRCDkxyp_WENYLAs7GQg?ct=text/plain>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/story/>;
+                                                                      nfo:fileLastModified "2020-05-27T12:00:30.000000+02:00"^^xsd:dateTime;
+                                                                      nfo:fileName "1.xml";
+                                                                      nfo:fileSize 254 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/story/1.xml".
+<ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/stylesheet.xml> at:pathObject <file:///stylesheet.xml>;
+                                                                         nie:interpretedAs <ni:///mh;1QEQCZKbthP1V0gTR3Fed8p_jA?ct=text/plain>;
+                                                                         nfo:belongsToContainer <ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/>;
+                                                                         nfo:fileLastModified "2020-05-27T12:00:30.000000+02:00"^^xsd:dateTime;
+                                                                         nfo:fileName "stylesheet.xml";
+                                                                         nfo:fileSize 38294 ;
+                                                                         a nfo:FileDataObject,
+                                                                           nfo:ArchiveItem;
+                                                                         skos:prefLabel "/stylesheet.xml".
+<ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/summary.xml> at:pathObject <file:///summary.xml>;
+                                                                      nie:interpretedAs <ni:///mh;1QEQhkxFHeH8juqsCnuu3_9SvQ?ct=text/plain>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/>;
+                                                                      nfo:fileLastModified "2020-05-27T12:00:30.000000+02:00"^^xsd:dateTime;
+                                                                      nfo:fileName "summary.xml";
+                                                                      nfo:fileSize 944 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/summary.xml".
+<ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/typedspreads> at:pathObject <file:///typedspreads>;
+                                                                       nie:interpretedAs <ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/typedspreads/>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/>;
+                                                                       nfo:fileName "typedspreads";
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/typedspreads".
+<ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/typedspreads/> at:pathObject <file:///typedspreads/>;
+                                                                        a nfo:Folder;
+                                                                        skos:prefLabel "/typedspreads/".
+<ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/typedspreads/1.xml> at:pathObject <file:///typedspreads/1.xml>;
+                                                                             nie:interpretedAs <ni:///mh;1QEQDVOx72VBGJPTmXMxGOXXHg?ct=text/plain>;
+                                                                             nfo:belongsToContainer <ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/typedspreads/>;
+                                                                             nfo:fileLastModified "2020-05-27T12:00:30.000000+02:00"^^xsd:dateTime;
+                                                                             nfo:fileName "1.xml";
+                                                                             nfo:fileSize 1063 ;
+                                                                             a nfo:FileDataObject,
+                                                                               nfo:ArchiveItem;
+                                                                             skos:prefLabel "/typedspreads/1.xml".
+<ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/typedspreads/2.xml> at:pathObject <file:///typedspreads/2.xml>;
+                                                                             nie:interpretedAs <ni:///mh;1QEQNIQImzXNt_x2nVk8X3OgyQ?ct=text/plain>;
+                                                                             nfo:belongsToContainer <ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/typedspreads/>;
+                                                                             nfo:fileLastModified "2020-05-27T12:00:30.000000+02:00"^^xsd:dateTime;
+                                                                             nfo:fileName "2.xml";
+                                                                             nfo:fileSize 991 ;
+                                                                             a nfo:FileDataObject,
+                                                                               nfo:ArchiveItem;
+                                                                             skos:prefLabel "/typedspreads/2.xml".
+<ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/typedspreads/3.xml> at:pathObject <file:///typedspreads/3.xml>;
+                                                                             nie:interpretedAs <ni:///mh;1QEQNIQImzXNt_x2nVk8X3OgyQ?ct=text/plain>;
+                                                                             nfo:belongsToContainer <ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/typedspreads/>;
+                                                                             nfo:fileLastModified "2020-05-27T12:00:30.000000+02:00"^^xsd:dateTime;
+                                                                             nfo:fileName "3.xml";
+                                                                             nfo:fileSize 991 ;
+                                                                             a nfo:FileDataObject,
+                                                                               nfo:ArchiveItem;
+                                                                             skos:prefLabel "/typedspreads/3.xml".
+<ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/typedspreads/4.xml> at:pathObject <file:///typedspreads/4.xml>;
+                                                                             nie:interpretedAs <ni:///mh;1QEQ-jnyFtmB-lcnGapOdauwWg?ct=text/plain>;
+                                                                             nfo:belongsToContainer <ni:///mh;1QEQxtaB0j-phWVZQ5F9YP5-Ew?ct=application/zip#/typedspreads/>;
+                                                                             nfo:fileLastModified "2020-05-27T12:00:30.000000+02:00"^^xsd:dateTime;
+                                                                             nfo:fileName "4.xml";
+                                                                             nfo:fileSize 901 ;
+                                                                             a nfo:FileDataObject,
+                                                                               nfo:ArchiveItem;
+                                                                             skos:prefLabel "/typedspreads/4.xml".
+<urn:md5:09929BB613F557481347715E77CA7F8C> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "CZKbthP1V0gTR3Fed8p/jA=="^^xsd:base64Binary.
+<urn:md5:0D53B1EF65411893D399733118E5D71E> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "DVOx72VBGJPTmXMxGOXXHg=="^^xsd:base64Binary.
+<urn:md5:219D757534A1CEE8E554E6F09556E259> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "IZ11dTShzujlVObwlVbiWQ=="^^xsd:base64Binary.
+<urn:md5:2532170F1D450856EB256E3E2D23E358> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "JTIXDx1FCFbrJW4+LSPjWA=="^^xsd:base64Binary.
+<urn:md5:3484089B35CDB7FC769D593C5F73A0C9> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "NIQImzXNt/x2nVk8X3OgyQ=="^^xsd:base64Binary.
+<urn:md5:3916A8E3CE6E466B3A1FE898E758F5FA> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "ORao485uRms6H+iY51j1+g=="^^xsd:base64Binary.
+<urn:md5:4B203D2630CF1F2E66D5278EF7D2D37B> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "SyA9JjDPHy5m1SeO99LTew=="^^xsd:base64Binary.
+<urn:md5:4EA6EBBA0A97DD4F9544546EA4E68A91> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "TqbrugqX3U+VRFRupOaKkQ=="^^xsd:base64Binary.
+<urn:md5:5866B9E1A782CC71F3D2597370862ED5> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "WGa54aeCzHHz0llzcIYu1Q=="^^xsd:base64Binary.
+<urn:md5:5EE211083931CA9FD610D60B02CEC642> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "XuIRCDkxyp/WENYLAs7GQg=="^^xsd:base64Binary.
+<urn:md5:864C451DE1FC8EEAAC0A7BAEDFFF52BD> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "hkxFHeH8juqsCnuu3/9SvQ=="^^xsd:base64Binary.
+<urn:md5:C6D681D23FA985655943917D60FE7E13> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "xtaB0j+phWVZQ5F9YP5+Ew=="^^xsd:base64Binary.
+<urn:md5:FA39F216D981FA572719AA4E75ABB05A> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "+jnyFtmB+lcnGapOdauwWg=="^^xsd:base64Binary.

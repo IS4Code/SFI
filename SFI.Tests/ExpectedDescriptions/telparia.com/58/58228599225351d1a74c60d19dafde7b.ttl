@@ -1,0 +1,45 @@
+@base <ni:///mh;1QEQGYxjci1OVF-akVKxFxyM3w?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix nid3: <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///example.aif>;
+     nie:interpretedAs <ni:///mh;1QEQGYxjci1OVF-akVKxFxyM3w?ct=application/octet-stream>;
+     nfo:fileName "example.aif";
+     nfo:fileSize 6606350 ;
+     a nfo:FileDataObject.
+<file:///example.aif> at:extensionObject <https://w3id.org/uri4uri/suffix/aif>.
+<ni:///mh;1QEQGYxjci1OVF-akVKxFxyM3w?ct=application/octet-stream> at:digest <urn:md5:198C63722D4E545F9A9152B1171C8CDF>;
+                                                                  dcterms:extent "6606350"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQGYxjci1OVF-akVKxFxyM3w?ct=audio/aiff>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (6.3 MiB)"@en.
+<ni:///mh;1QEQGYxjci1OVF-akVKxFxyM3w?ct=audio/aiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/audio/aiff>;
+                                                    nfo:averageBitrate "1411"^^dt:kilobitPerSecond;
+                                                    nfo:bitsPerSample 16 ;
+                                                    nfo:channels 2 ;
+                                                    nfo:compressionType nfo:losslessCompressionType;
+                                                    nfo:duration "PT37.4498412S"^^xsd:duration;
+                                                    nfo:sampleRate "44100"^^dt:hertz;
+                                                    nid3:albumTitle "Example Files";
+                                                    nid3:leadArtist "Online-Convert.com";
+                                                    nid3:title "AIF Test File";
+                                                    a schema:MediaObject,
+                                                      nfo:Audio,
+                                                      nid3:ID3Audio,
+                                                      schema:AudioObject;
+                                                    skos:prefLabel "AIF object (44100 Hz, 2 channels, AIF Test File)"@en.
+<urn:md5:198C63722D4E545F9A9152B1171C8CDF> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "GYxjci1OVF+akVKxFxyM3w=="^^xsd:base64Binary.

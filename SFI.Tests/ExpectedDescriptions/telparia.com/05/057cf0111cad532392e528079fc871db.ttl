@@ -1,0 +1,49 @@
+@base <ni:///mh;1QEQhr0LVFfHm3OGiUvzXfMMjw?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix xis: <http://www.w3.org/2001/04/infoset#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///example.htm>;
+     nie:interpretedAs <ni:///mh;1QEQhr0LVFfHm3OGiUvzXfMMjw?ct=application/octet-stream>;
+     nfo:fileName "example.htm";
+     nfo:fileSize 136780 ;
+     a nfo:FileDataObject.
+<file:///example.htm> at:extensionObject <https://w3id.org/uri4uri/suffix/htm>.
+<ni:///mh;1QEQhr0LVFfHm3OGiUvzXfMMjw?ct=application/octet-stream> at:digest <urn:md5:86BD0B5457C79B7386894BF35DF30C8F>;
+                                                                  dcterms:extent "136780"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQhr0LVFfHm3OGiUvzXfMMjw?ct=application/xml>,
+                                                                                    <ni:///mh;1QEQhr0LVFfHm3OGiUvzXfMMjw?ct=text/html>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (133.57 KiB)"@en.
+<ni:///mh;1QEQhr0LVFfHm3OGiUvzXfMMjw?ct=application/x.ns.html+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.html+xml>;
+                                                                   a schema:MediaObject;
+                                                                   skos:prefLabel "HTML object"@en.
+<ni:///mh;1QEQhr0LVFfHm3OGiUvzXfMMjw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQhr0LVFfHm3OGiUvzXfMMjw?ct=application/x.ns.html+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQhr0LVFfHm3OGiUvzXfMMjw?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (html)"@en.
+<ni:///mh;1QEQhr0LVFfHm3OGiUvzXfMMjw?ct=application/xml#element(/1)> a xis:Element;
+                                                                     xis:localName "html";
+                                                                     xis:name "html".
+<ni:///mh;1QEQhr0LVFfHm3OGiUvzXfMMjw?ct=text/html> schema:encodingFormat <https://w3id.org/uri4uri/mime/text/html>;
+                                                   a schema:MediaObject,
+                                                     schema:DigitalDocument,
+                                                     nfo:Document;
+                                                   skos:prefLabel "HTML object (133.57 KiB)"@en.
+<urn:md5:86BD0B5457C79B7386894BF35DF30C8F> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "hr0LVFfHm3OGiUvzXfMMjw=="^^xsd:base64Binary.

@@ -1,0 +1,46 @@
+@base <ni:///mh;1QEQmpYV1ry9mHO_a_DRPenyyQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix nid3: <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///example.mp3>;
+     nie:interpretedAs <ni:///mh;1QEQmpYV1ry9mHO_a_DRPenyyQ?ct=application/octet-stream>;
+     nfo:fileName "example.mp3";
+     nfo:fileSize 566002 ;
+     a nfo:FileDataObject.
+<file:///example.mp3> at:extensionObject <https://w3id.org/uri4uri/suffix/mp3>.
+<ni:///mh;1QEQmpYV1ry9mHO_a_DRPenyyQ?ct=application/octet-stream> at:digest <urn:md5:9A9615D6BCBD9873BF6BF0D13DE9F2C9>;
+                                                                  dcterms:extent "566002"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQmpYV1ry9mHO_a_DRPenyyQ?ct=audio/mpeg>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (552.74 KiB)"@en.
+<ni:///mh;1QEQmpYV1ry9mHO_a_DRPenyyQ?ct=audio/mpeg> schema:encodingFormat <https://w3id.org/uri4uri/mime/audio/mpeg>;
+                                                    nfo:averageBitrate "128"^^dt:kilobitPerSecond;
+                                                    nfo:channels 2 ;
+                                                    nfo:duration "PT35.3928749S"^^xsd:duration,
+                                                                 "PT35.3696853S"^^xsd:duration;
+                                                    nfo:sampleRate "44100"^^dt:hertz,
+                                                                   44100 ;
+                                                    nid3:albumTitle "Example Files";
+                                                    nid3:leadArtist "Online-Convert.com";
+                                                    nid3:title "MP3 Test File";
+                                                    a schema:MediaObject,
+                                                      nfo:Audio,
+                                                      nid3:ID3Audio,
+                                                      schema:AudioObject;
+                                                    skos:prefLabel "MP3 object (44100 Hz, 2 channels, MP3 Test File)"@en,
+                                                                   "MP3 object (552.74 KiB)"@en.
+<urn:md5:9A9615D6BCBD9873BF6BF0D13DE9F2C9> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "mpYV1ry9mHO/a/DRPenyyQ=="^^xsd:base64Binary.

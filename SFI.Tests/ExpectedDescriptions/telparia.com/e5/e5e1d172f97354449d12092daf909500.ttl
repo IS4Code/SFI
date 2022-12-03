@@ -1,0 +1,41 @@
+@base <ni:///mh;1QEQHtbWB-cQXefSkz9UXijsQA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///static_examples_ehren-paper_lights-96.opus>;
+     nie:interpretedAs <ni:///mh;1QEQHtbWB-cQXefSkz9UXijsQA?ct=application/octet-stream>;
+     nfo:fileName "static_examples_ehren-paper_lights-96.opus";
+     nfo:fileSize 2629170 ;
+     a nfo:FileDataObject.
+<file:///static_examples_ehren-paper_lights-96.opus> at:extensionObject <https://w3id.org/uri4uri/suffix/opus>.
+<ni:///mh;1QEQHtbWB-cQXefSkz9UXijsQA?ct=application/octet-stream> at:digest <urn:md5:1ED6D607E7105DE7D2933F545E28EC40>;
+                                                                  dcterms:extent "2629170"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQHtbWB-cQXefSkz9UXijsQA?ct=application/ogg>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (2.51 MiB)"@en.
+<ni:///mh;1QEQHtbWB-cQXefSkz9UXijsQA?ct=application/ogg> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/ogg>;
+                                                         nfo:channels 2 ;
+                                                         nfo:duration "PT3M48.09925S"^^xsd:duration;
+                                                         nfo:sampleRate "44100"^^dt:hertz;
+                                                         <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#albumTitle> "Lines Build Walls";
+                                                         <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#copyrightMessage> "Copyright 2005 Ehren Starks";
+                                                         <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#leadArtist> "Ehren Starks";
+                                                         <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#recordingYear> 2005 ;
+                                                         <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#title> "Paper Lights";
+                                                         a schema:MediaObject,
+                                                           nfo:Audio;
+                                                         skos:prefLabel "OGG object (44100 Hz, 2 channels, Paper Lights)"@en.
+<urn:md5:1ED6D607E7105DE7D2933F545E28EC40> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "HtbWB+cQXefSkz9UXijsQA=="^^xsd:base64Binary.

@@ -1,0 +1,34 @@
+@base <ni:///mh;1QEQJBcEqE4oTSThqjCoNDF3jQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///Super%20Mario%20Bros%201.cso>;
+     nie:interpretedAs <ni:///mh;1QEQJBcEqE4oTSThqjCoNDF3jQ?ct=application/octet-stream>;
+     nfo:fileName "Super Mario Bros 1.cso";
+     nfo:fileSize 1386132 ;
+     a nfo:FileDataObject.
+<file:///Super%20Mario%20Bros%201.cso> at:extensionObject <https://w3id.org/uri4uri/suffix/cso>.
+<ni:///mh;1QEQJBcEqE4oTSThqjCoNDF3jQ?ct=application/octet-stream> at:digest <urn:md5:241704A84E284D24E1AA30A83431778D>;
+                                                                  dcterms:extent "1386132"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQJBcEqE4oTSThqjCoNDF3jQ?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.32 MiB)"@en.
+<ni:///mh;1QEQJBcEqE4oTSThqjCoNDF3jQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (1.32 MiB)"@en.
+<urn:md5:241704A84E284D24E1AA30A83431778D> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "JBcEqE4oTSThqjCoNDF3jQ=="^^xsd:base64Binary.

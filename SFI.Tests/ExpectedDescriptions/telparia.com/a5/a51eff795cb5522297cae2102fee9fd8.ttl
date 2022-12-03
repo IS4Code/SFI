@@ -1,0 +1,38 @@
+@base <ni:///mh;1QEQ6dPHbGhO9tRwFPy78hdmIw?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///nested_tags_lang.mka>;
+     nie:interpretedAs <ni:///mh;1QEQ6dPHbGhO9tRwFPy78hdmIw?ct=application/octet-stream>;
+     nfo:fileName "nested_tags_lang.mka";
+     nfo:fileSize 6271426 ;
+     a nfo:FileDataObject.
+<file:///nested_tags_lang.mka> at:extensionObject <https://w3id.org/uri4uri/suffix/mka>.
+<ni:///mh;1QEQ6dPHbGhO9tRwFPy78hdmIw?ct=application/octet-stream> at:digest <urn:md5:E9D3C76C684EF6D47014FCBBF2176623>;
+                                                                  dcterms:extent "6271426"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ6dPHbGhO9tRwFPy78hdmIw?ct=video/webm>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (5.98 MiB)"@en.
+<ni:///mh;1QEQ6dPHbGhO9tRwFPy78hdmIw?ct=video/webm> schema:encodingFormat <https://w3id.org/uri4uri/mime/video/webm>;
+                                                    nfo:channels 2 ;
+                                                    nfo:duration "PT6M28.8326621S"^^xsd:duration;
+                                                    nfo:sampleRate "44100"^^dt:hertz;
+                                                    a schema:MediaObject,
+                                                      nfo:Audio,
+                                                      schema:VideoObject,
+                                                      nfo:Video;
+                                                    skos:prefLabel "MKV object (44100 Hz, 2 channels)"@en.
+<urn:md5:E9D3C76C684EF6D47014FCBBF2176623> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "6dPHbGhO9tRwFPy78hdmIw=="^^xsd:base64Binary.

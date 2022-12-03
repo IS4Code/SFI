@@ -1,0 +1,27 @@
+@base <ni:///mh;1QEQaspYuncWEW1yiTlBpkYkxw?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///ofc1.sng>;
+     nie:interpretedAs <ni:///mh;1QEQaspYuncWEW1yiTlBpkYkxw?ct=application/octet-stream>;
+     nfo:fileName "ofc1.sng";
+     nfo:fileSize 14026 ;
+     a nfo:FileDataObject.
+<file:///ofc1.sng> at:extensionObject <https://w3id.org/uri4uri/suffix/sng>.
+<ni:///mh;1QEQaspYuncWEW1yiTlBpkYkxw?ct=application/octet-stream> at:digest <urn:md5:6ACA58BA7716116D72893941A64624C7>;
+                                                                  dcterms:extent "14026"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (13.7 KiB)"@en.
+<urn:md5:6ACA58BA7716116D72893941A64624C7> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "aspYuncWEW1yiTlBpkYkxw=="^^xsd:base64Binary.

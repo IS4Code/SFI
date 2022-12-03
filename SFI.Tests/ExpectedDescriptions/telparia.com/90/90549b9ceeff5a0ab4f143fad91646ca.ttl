@@ -1,0 +1,27 @@
+@base <ni:///mh;1QEQh0t5EufHCn827FXTR3CG_Q?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///example.tz>;
+     nie:interpretedAs <ni:///mh;1QEQh0t5EufHCn827FXTR3CG_Q?ct=application/octet-stream>;
+     nfo:fileName "example.tz";
+     nfo:fileSize 313625 ;
+     a nfo:FileDataObject.
+<file:///example.tz> at:extensionObject <https://w3id.org/uri4uri/suffix/tz>.
+<ni:///mh;1QEQh0t5EufHCn827FXTR3CG_Q?ct=application/octet-stream> at:digest <urn:md5:874B7912E7C70A7F36EC55D3477086FD>;
+                                                                  dcterms:extent "313625"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (306.27 KiB)"@en.
+<urn:md5:874B7912E7C70A7F36EC55D3477086FD> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "h0t5EufHCn827FXTR3CG/Q=="^^xsd:base64Binary.

@@ -1,0 +1,56 @@
+@base <ni:///mh;1QEQ-sUQ9GgvjgQWIgawOcRGLQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///input_gray_8bit_matte.tiff>;
+     nie:interpretedAs <ni:///mh;1QEQ-sUQ9GgvjgQWIgawOcRGLQ?ct=application/octet-stream>;
+     nfo:fileName "input_gray_8bit_matte.tiff";
+     nfo:fileSize 6860 ;
+     a nfo:FileDataObject.
+<file:///input_gray_8bit_matte.tiff> at:extensionObject <https://w3id.org/uri4uri/suffix/tiff>.
+<ni:///mh;1QEQ-sUQ9GgvjgQWIgawOcRGLQ?ct=application/octet-stream> at:digest <urn:md5:FAC510F4682F8E04162206B039C4462D>;
+                                                                  dcterms:extent "6860"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ-sUQ9GgvjgQWIgawOcRGLQ?ct=image/tiff>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (6.7 KiB)"@en.
+<ni:///mh;1QEQ-sUQ9GgvjgQWIgawOcRGLQ?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
+                                                    nfo:colorDepth 32 ;
+                                                    nfo:height 46 ;
+                                                    nfo:horizontalResolution 72 ;
+                                                    nfo:verticalResolution 72 ;
+                                                    nfo:width 70 ;
+                                                    a schema:MediaObject,
+                                                      nfo:Image,
+                                                      schema:ImageObject,
+                                                      exif:IFD;
+                                                    exif:compression 1 ;
+                                                    exif:imageLength 46 ;
+                                                    exif:imageWidth 70 ;
+                                                    exif:orientation 1 ;
+                                                    exif:photometricInterpretation 1 ;
+                                                    exif:planarConfiguration 1 ;
+                                                    exif:resolutionUnit 1 ;
+                                                    exif:rowsPerStrip 58 ;
+                                                    exif:samplesPerPixel 2 ;
+                                                    exif:software "ImageMagick 6.2.0 02/07/05 Q16 http://www.imagemagick.org"^^xsd:string;
+                                                    exif:stripByteCounts 6440 ;
+                                                    exif:stripOffsets 8 ;
+                                                    exif:xResolution 72 ;
+                                                    exif:yResolution 72 ;
+                                                    skos:prefLabel "TIFF object (70×46)"@en,
+                                                                   "TIF object (6.7 KiB)"@en.
+<urn:md5:FAC510F4682F8E04162206B039C4462D> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "+sUQ9GgvjgQWIgawOcRGLQ=="^^xsd:base64Binary.

@@ -1,0 +1,36 @@
+@base <ni:///mh;1QEQgMqZMuw-9_Jeim8Iq9QwCA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///TESTIMG.PPM>;
+     nie:interpretedAs <ni:///mh;1QEQgMqZMuw-9_Jeim8Iq9QwCA?ct=application/octet-stream>;
+     nfo:fileName "TESTIMG.PPM";
+     nfo:fileSize 46890 ;
+     a nfo:FileDataObject.
+<file:///TESTIMG.PPM> at:extensionObject <https://w3id.org/uri4uri/suffix/ppm>.
+<ni:///mh;1QEQgMqZMuw-9_Jeim8Iq9QwCA?ct=application/octet-stream> at:digest <urn:md5:80CA9932EC3EF7F25E8A6F08ABD43008>;
+                                                                  dcterms:extent "46890"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQgMqZMuw-9_Jeim8Iq9QwCA?ct=image/x-portable-graymap>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (45.79 KiB)"@en.
+<ni:///mh;1QEQgMqZMuw-9_Jeim8Iq9QwCA?ct=image/x-portable-graymap> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-portable-graymap>;
+                                                                  nfo:height 125 ;
+                                                                  nfo:width 125 ;
+                                                                  a schema:MediaObject,
+                                                                    schema:ImageObject,
+                                                                    nfo:Image;
+                                                                  skos:prefLabel "PBM object (125×125)"@en.
+<urn:md5:80CA9932EC3EF7F25E8A6F08ABD43008> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "gMqZMuw+9/Jeim8Iq9QwCA=="^^xsd:base64Binary.

@@ -1,0 +1,38 @@
+@base <ni:///mh;1QEQhLgRt3Pb_rodYLq5e_fVMw?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///TOWNS.MP1>;
+     nie:interpretedAs <ni:///mh;1QEQhLgRt3Pb_rodYLq5e_fVMw?ct=application/octet-stream>;
+     nfo:fileName "TOWNS.MP1";
+     nfo:fileSize 41138 ;
+     a nfo:FileDataObject.
+<file:///TOWNS.MP1> at:extensionObject <https://w3id.org/uri4uri/suffix/mp1>.
+<ni:///mh;1QEQhLgRt3Pb_rodYLq5e_fVMw?ct=application/octet-stream> at:digest <urn:md5:84B811B773DBFEBA1D60BAB97BF7D533>;
+                                                                  dcterms:extent "41138"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQhLgRt3Pb_rodYLq5e_fVMw?ct=audio/mpeg>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (40.17 KiB)"@en.
+<ni:///mh;1QEQhLgRt3Pb_rodYLq5e_fVMw?ct=audio/mpeg> schema:encodingFormat <https://w3id.org/uri4uri/mime/audio/mpeg>;
+                                                    nfo:averageBitrate "192"^^dt:kilobitPerSecond;
+                                                    nfo:channels 2 ;
+                                                    nfo:duration "PT1.72S"^^xsd:duration;
+                                                    nfo:sampleRate "48000"^^dt:hertz;
+                                                    a schema:MediaObject,
+                                                      nfo:Audio,
+                                                      schema:AudioObject;
+                                                    skos:prefLabel "MP3 object (48000 Hz, 2 channels)"@en.
+<urn:md5:84B811B773DBFEBA1D60BAB97BF7D533> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "hLgRt3Pb/rodYLq5e/fVMw=="^^xsd:base64Binary.

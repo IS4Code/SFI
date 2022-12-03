@@ -1,0 +1,30 @@
+@base <ni:///mh;1QEQL3EtJ7sCFBLrdeh3DsgnLg?ct=text/plain>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///InfoPlist.strings>;
+     nie:interpretedAs <ni:///mh;1QEQL3EtJ7sCFBLrdeh3DsgnLg?ct=text/plain>;
+     nfo:fileName "InfoPlist.strings";
+     nfo:fileSize 516 ;
+     a nfo:FileDataObject.
+<file:///InfoPlist.strings> at:extensionObject <https://w3id.org/uri4uri/suffix/strings>.
+<ni:///mh;1QEQL3EtJ7sCFBLrdeh3DsgnLg?ct=text/plain> at:digest <urn:md5:2F712D27BB021412EB75E8770EC8272E>;
+                                                    dcterms:extent "516"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQL3EtJ7sCFBLrdeh3DsgnLg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (516 B)"@en;
+                                                    cnt:characterEncoding "utf-16BE".
+<ni:///mh;1QEQL3EtJ7sCFBLrdeh3DsgnLg?ct=text/plain#line=,1> rdf:value "/* Localized versions of Info.plist keys */".
+<urn:md5:2F712D27BB021412EB75E8770EC8272E> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "L3EtJ7sCFBLrdeh3DsgnLg=="^^xsd:base64Binary.

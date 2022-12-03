@@ -1,0 +1,286 @@
+@base <ni:///mh;1QEQTknYn0xZS-iP7vVOMhlVrQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix xis: <http://www.w3.org/2001/04/infoset#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+
+_:n1 at:pathObject <file:///stl-music.stw>;
+     nie:interpretedAs <ni:///mh;1QEQTknYn0xZS-iP7vVOMhlVrQ?ct=application/octet-stream>;
+     nfo:fileName "stl-music.stw";
+     nfo:fileSize 7456 ;
+     a nfo:FileDataObject.
+<file:///META-INF/manifest.xml> at:pathObject <file:///manifest.xml>.
+<file:///content.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///manifest.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///meta.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///settings.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///stl-music.stw> at:extensionObject <https://w3id.org/uri4uri/suffix/stw>.
+<file:///styles.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<ni:///mh;1QEQ9ZZrd3rvT3ezFYVbknH7Jg?ct=application/x.ns.org.openoffice.http.2000.office.document-styles+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openoffice.http.2000.office.document-styles+xml>,
+                                                                                                                                    <urn:publicid:-:OpenOffice.org:DTD+OfficeDocument+1.0:EN>;
+                                                                                                              a schema:MediaObject;
+                                                                                                              skos:prefLabel "DOCUMENT-STYLES object"@en.
+<ni:///mh;1QEQ9ZZrd3rvT3ezFYVbknH7Jg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ9ZZrd3rvT3ezFYVbknH7Jg?ct=application/x.ns.org.openoffice.http.2000.office.document-styles+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQ9ZZrd3rvT3ezFYVbknH7Jg?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (office:document-styles)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:dtDecl <ni:///mh;1QEQ9ZZrd3rvT3ezFYVbknH7Jg?ct=application/xml#dtd()>;
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQ9ZZrd3rvT3ezFYVbknH7Jg?ct=application/xml#dtd()> a cnt:DoctypeDecl;
+                                                               rdfs:seeAlso <urn:publicid:-:OpenOffice.org:DTD+OfficeDocument+1.0:EN>;
+                                                               cnt:doctypeName "office:document-styles";
+                                                               cnt:publicId "-//OpenOffice.org//DTD OfficeDocument 1.0//EN";
+                                                               cnt:systemId "office.dtd"^^xsd:anyURI.
+<ni:///mh;1QEQ9ZZrd3rvT3ezFYVbknH7Jg?ct=application/xml#element(/1)> a xis:Element;
+                                                                     rdfs:seeAlso <http://openoffice.org/2000/office>;
+                                                                     xis:localName "document-styles";
+                                                                     xis:name "office:document-styles";
+                                                                     xis:namespaceName "http://openoffice.org/2000/office"^^xsd:anyURI;
+                                                                     xis:prefix "office".
+<ni:///mh;1QEQ9ZZrd3rvT3ezFYVbknH7Jg?ct=text/plain> at:digest <urn:md5:F5966B777AEF4F77B315855B9271FB26>;
+                                                    dcterms:extent "16596"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ9ZZrd3rvT3ezFYVbknH7Jg?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQ9ZZrd3rvT3ezFYVbknH7Jg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (16.21 KiB)"@en;
+                                                    cnt:characterEncoding "utf-8".
+<ni:///mh;1QEQ9ZZrd3rvT3ezFYVbknH7Jg?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?>""".
+<ni:///mh;1QEQTknYn0xZS-iP7vVOMhlVrQ?ct=application/octet-stream> at:digest <urn:md5:4E49D89F4C594BE88FEEF54E321955AD>;
+                                                                  dcterms:extent "7456"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQTknYn0xZS-iP7vVOMhlVrQ?ct=application/zip>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (7.28 KiB)"@en.
+<ni:///mh;1QEQTknYn0xZS-iP7vVOMhlVrQ?ct=application/zip> at:pathObject <file:///>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
+                                                         nie:interpretedAs <ni:///mh;1QEQTknYn0xZS-iP7vVOMhlVrQ?ct=application/zip#/>;
+                                                         a schema:MediaObject,
+                                                           nfo:Archive;
+                                                         skos:prefLabel "ZIP object (7.28 KiB)"@en.
+<ni:///mh;1QEQTknYn0xZS-iP7vVOMhlVrQ?ct=application/zip#/> at:pathObject <file:///./>;
+                                                           a nfo:Folder;
+                                                           skos:prefLabel "/".
+<ni:///mh;1QEQTknYn0xZS-iP7vVOMhlVrQ?ct=application/zip#/META-INF> at:pathObject <file:///META-INF>;
+                                                                   nie:interpretedAs <ni:///mh;1QEQTknYn0xZS-iP7vVOMhlVrQ?ct=application/zip#/META-INF/>;
+                                                                   nfo:belongsToContainer <ni:///mh;1QEQTknYn0xZS-iP7vVOMhlVrQ?ct=application/zip#/>;
+                                                                   nfo:fileName "META-INF";
+                                                                   a nfo:FileDataObject,
+                                                                     nfo:ArchiveItem;
+                                                                   skos:prefLabel "/META-INF".
+<ni:///mh;1QEQTknYn0xZS-iP7vVOMhlVrQ?ct=application/zip#/META-INF/> at:pathObject <file:///META-INF/>;
+                                                                    a nfo:Folder;
+                                                                    skos:prefLabel "/META-INF/".
+<ni:///mh;1QEQTknYn0xZS-iP7vVOMhlVrQ?ct=application/zip#/META-INF/manifest.xml> at:pathObject <file:///META-INF/manifest.xml>;
+                                                                                nie:interpretedAs <ni:///mh;1QEQXoE8pXTVBNwM3n0YhIg6DA?ct=text/plain>;
+                                                                                nfo:belongsToContainer <ni:///mh;1QEQTknYn0xZS-iP7vVOMhlVrQ?ct=application/zip#/META-INF/>;
+                                                                                nfo:fileLastModified "2001-11-28T19:15:46.000000+01:00"^^xsd:dateTime;
+                                                                                nfo:fileName "manifest.xml";
+                                                                                nfo:fileSize 764 ;
+                                                                                a nfo:FileDataObject,
+                                                                                  nfo:ArchiveItem;
+                                                                                skos:prefLabel "/META-INF/manifest.xml".
+<ni:///mh;1QEQTknYn0xZS-iP7vVOMhlVrQ?ct=application/zip#/content.xml> at:pathObject <file:///content.xml>;
+                                                                      nie:interpretedAs <ni:///mh;1QEQcKRsqktlXmfGtQWkHuIsoQ?ct=text/plain>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQTknYn0xZS-iP7vVOMhlVrQ?ct=application/zip#/>;
+                                                                      nfo:fileLastModified "2001-11-28T19:15:46.000000+01:00"^^xsd:dateTime;
+                                                                      nfo:fileName "content.xml";
+                                                                      nfo:fileSize 5189 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/content.xml".
+<ni:///mh;1QEQTknYn0xZS-iP7vVOMhlVrQ?ct=application/zip#/meta.xml> at:pathObject <file:///meta.xml>;
+                                                                   nie:interpretedAs <ni:///mh;1QEQwaAeP374F5Br95Jdj59beQ?ct=text/plain>;
+                                                                   nfo:belongsToContainer <ni:///mh;1QEQTknYn0xZS-iP7vVOMhlVrQ?ct=application/zip#/>;
+                                                                   nfo:fileLastModified "2001-11-28T19:15:46.000000+01:00"^^xsd:dateTime;
+                                                                   nfo:fileName "meta.xml";
+                                                                   nfo:fileSize 1310 ;
+                                                                   a nfo:FileDataObject,
+                                                                     nfo:ArchiveItem;
+                                                                   skos:prefLabel "/meta.xml".
+<ni:///mh;1QEQTknYn0xZS-iP7vVOMhlVrQ?ct=application/zip#/settings.xml> at:pathObject <file:///settings.xml>;
+                                                                       nie:interpretedAs <ni:///mh;1QEQhz5o49imnlJCo8pF-9GjLA?ct=text/plain>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQTknYn0xZS-iP7vVOMhlVrQ?ct=application/zip#/>;
+                                                                       nfo:fileLastModified "2001-11-28T19:15:46.000000+01:00"^^xsd:dateTime;
+                                                                       nfo:fileName "settings.xml";
+                                                                       nfo:fileSize 7974 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/settings.xml".
+<ni:///mh;1QEQTknYn0xZS-iP7vVOMhlVrQ?ct=application/zip#/styles.xml> at:pathObject <file:///styles.xml>;
+                                                                     nie:interpretedAs <ni:///mh;1QEQ9ZZrd3rvT3ezFYVbknH7Jg?ct=text/plain>;
+                                                                     nfo:belongsToContainer <ni:///mh;1QEQTknYn0xZS-iP7vVOMhlVrQ?ct=application/zip#/>;
+                                                                     nfo:fileLastModified "2001-11-28T19:15:46.000000+01:00"^^xsd:dateTime;
+                                                                     nfo:fileName "styles.xml";
+                                                                     nfo:fileSize 16596 ;
+                                                                     a nfo:FileDataObject,
+                                                                       nfo:ArchiveItem;
+                                                                     skos:prefLabel "/styles.xml".
+<ni:///mh;1QEQXoE8pXTVBNwM3n0YhIg6DA?ct=application/x.ns.org.openoffice.http.2001.manifest.manifest+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openoffice.http.2001.manifest.manifest+xml>,
+                                                                                                                               <urn:publicid:-:OpenOffice.org:DTD+Manifest+1.0:EN>;
+                                                                                                         a schema:MediaObject;
+                                                                                                         skos:prefLabel "MANIFEST object"@en.
+<ni:///mh;1QEQXoE8pXTVBNwM3n0YhIg6DA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQXoE8pXTVBNwM3n0YhIg6DA?ct=application/x.ns.org.openoffice.http.2001.manifest.manifest+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQXoE8pXTVBNwM3n0YhIg6DA?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (manifest:manifest)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:dtDecl <ni:///mh;1QEQXoE8pXTVBNwM3n0YhIg6DA?ct=application/xml#dtd()>;
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQXoE8pXTVBNwM3n0YhIg6DA?ct=application/xml#dtd()> a cnt:DoctypeDecl;
+                                                               rdfs:seeAlso <urn:publicid:-:OpenOffice.org:DTD+Manifest+1.0:EN>;
+                                                               cnt:doctypeName "manifest:manifest";
+                                                               cnt:publicId "-//OpenOffice.org//DTD Manifest 1.0//EN";
+                                                               cnt:systemId "Manifest.dtd"^^xsd:anyURI.
+<ni:///mh;1QEQXoE8pXTVBNwM3n0YhIg6DA?ct=application/xml#element(/1)> a xis:Element;
+                                                                     rdfs:seeAlso <http://openoffice.org/2001/manifest>;
+                                                                     xis:localName "manifest";
+                                                                     xis:name "manifest:manifest";
+                                                                     xis:namespaceName "http://openoffice.org/2001/manifest"^^xsd:anyURI;
+                                                                     xis:prefix "manifest".
+<ni:///mh;1QEQXoE8pXTVBNwM3n0YhIg6DA?ct=text/plain> at:digest <urn:md5:5E813CA574D504DC0CDE7D1884883A0C>;
+                                                    dcterms:extent "764"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQXoE8pXTVBNwM3n0YhIg6DA?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQXoE8pXTVBNwM3n0YhIg6DA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (764 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQXoE8pXTVBNwM3n0YhIg6DA?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?>""".
+<ni:///mh;1QEQcKRsqktlXmfGtQWkHuIsoQ?ct=application/x.ns.org.openoffice.http.2000.office.document-content+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openoffice.http.2000.office.document-content+xml>,
+                                                                                                                                     <urn:publicid:-:OpenOffice.org:DTD+OfficeDocument+1.0:EN>;
+                                                                                                               a schema:MediaObject;
+                                                                                                               skos:prefLabel "DOCUMENT-CONTENT object"@en.
+<ni:///mh;1QEQcKRsqktlXmfGtQWkHuIsoQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQcKRsqktlXmfGtQWkHuIsoQ?ct=application/x.ns.org.openoffice.http.2000.office.document-content+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQcKRsqktlXmfGtQWkHuIsoQ?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (office:document-content)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:dtDecl <ni:///mh;1QEQcKRsqktlXmfGtQWkHuIsoQ?ct=application/xml#dtd()>;
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQcKRsqktlXmfGtQWkHuIsoQ?ct=application/xml#dtd()> a cnt:DoctypeDecl;
+                                                               rdfs:seeAlso <urn:publicid:-:OpenOffice.org:DTD+OfficeDocument+1.0:EN>;
+                                                               cnt:doctypeName "office:document-content";
+                                                               cnt:publicId "-//OpenOffice.org//DTD OfficeDocument 1.0//EN";
+                                                               cnt:systemId "office.dtd"^^xsd:anyURI.
+<ni:///mh;1QEQcKRsqktlXmfGtQWkHuIsoQ?ct=application/xml#element(/1)> a xis:Element;
+                                                                     rdfs:seeAlso <http://openoffice.org/2000/office>;
+                                                                     xis:localName "document-content";
+                                                                     xis:name "office:document-content";
+                                                                     xis:namespaceName "http://openoffice.org/2000/office"^^xsd:anyURI;
+                                                                     xis:prefix "office".
+<ni:///mh;1QEQcKRsqktlXmfGtQWkHuIsoQ?ct=text/plain> at:digest <urn:md5:70A46CAA4B655E67C6B505A41EE22CA1>;
+                                                    dcterms:extent "5189"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQcKRsqktlXmfGtQWkHuIsoQ?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQcKRsqktlXmfGtQWkHuIsoQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (5.07 KiB)"@en;
+                                                    cnt:characterEncoding "utf-8".
+<ni:///mh;1QEQcKRsqktlXmfGtQWkHuIsoQ?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?>""".
+<ni:///mh;1QEQhz5o49imnlJCo8pF-9GjLA?ct=application/x.ns.org.openoffice.http.2000.office.document-settings+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openoffice.http.2000.office.document-settings+xml>,
+                                                                                                                                      <urn:publicid:-:OpenOffice.org:DTD+OfficeDocument+1.0:EN>;
+                                                                                                                a schema:MediaObject;
+                                                                                                                skos:prefLabel "DOCUMENT-SETTINGS object"@en.
+<ni:///mh;1QEQhz5o49imnlJCo8pF-9GjLA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQhz5o49imnlJCo8pF-9GjLA?ct=application/x.ns.org.openoffice.http.2000.office.document-settings+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQhz5o49imnlJCo8pF-9GjLA?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (office:document-settings)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:dtDecl <ni:///mh;1QEQhz5o49imnlJCo8pF-9GjLA?ct=application/xml#dtd()>;
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQhz5o49imnlJCo8pF-9GjLA?ct=application/xml#dtd()> a cnt:DoctypeDecl;
+                                                               rdfs:seeAlso <urn:publicid:-:OpenOffice.org:DTD+OfficeDocument+1.0:EN>;
+                                                               cnt:doctypeName "office:document-settings";
+                                                               cnt:publicId "-//OpenOffice.org//DTD OfficeDocument 1.0//EN";
+                                                               cnt:systemId "office.dtd"^^xsd:anyURI.
+<ni:///mh;1QEQhz5o49imnlJCo8pF-9GjLA?ct=application/xml#element(/1)> a xis:Element;
+                                                                     rdfs:seeAlso <http://openoffice.org/2000/office>;
+                                                                     xis:localName "document-settings";
+                                                                     xis:name "office:document-settings";
+                                                                     xis:namespaceName "http://openoffice.org/2000/office"^^xsd:anyURI;
+                                                                     xis:prefix "office".
+<ni:///mh;1QEQhz5o49imnlJCo8pF-9GjLA?ct=text/plain> at:digest <urn:md5:873E68E3D8A69E5242A3CA45FBD1A32C>;
+                                                    dcterms:extent "7974"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQhz5o49imnlJCo8pF-9GjLA?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQhz5o49imnlJCo8pF-9GjLA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (7.79 KiB)"@en;
+                                                    cnt:characterEncoding "utf-8".
+<ni:///mh;1QEQhz5o49imnlJCo8pF-9GjLA?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?>""".
+<ni:///mh;1QEQwaAeP374F5Br95Jdj59beQ?ct=application/x.ns.org.openoffice.http.2000.office.document-meta+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openoffice.http.2000.office.document-meta+xml>,
+                                                                                                                                  <urn:publicid:-:OpenOffice.org:DTD+OfficeDocument+1.0:EN>;
+                                                                                                            a schema:MediaObject;
+                                                                                                            skos:prefLabel "DOCUMENT-META object"@en.
+<ni:///mh;1QEQwaAeP374F5Br95Jdj59beQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQwaAeP374F5Br95Jdj59beQ?ct=application/x.ns.org.openoffice.http.2000.office.document-meta+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQwaAeP374F5Br95Jdj59beQ?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (office:document-meta)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:dtDecl <ni:///mh;1QEQwaAeP374F5Br95Jdj59beQ?ct=application/xml#dtd()>;
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQwaAeP374F5Br95Jdj59beQ?ct=application/xml#dtd()> a cnt:DoctypeDecl;
+                                                               rdfs:seeAlso <urn:publicid:-:OpenOffice.org:DTD+OfficeDocument+1.0:EN>;
+                                                               cnt:doctypeName "office:document-meta";
+                                                               cnt:publicId "-//OpenOffice.org//DTD OfficeDocument 1.0//EN";
+                                                               cnt:systemId "office.dtd"^^xsd:anyURI.
+<ni:///mh;1QEQwaAeP374F5Br95Jdj59beQ?ct=application/xml#element(/1)> a xis:Element;
+                                                                     rdfs:seeAlso <http://openoffice.org/2000/office>;
+                                                                     xis:localName "document-meta";
+                                                                     xis:name "office:document-meta";
+                                                                     xis:namespaceName "http://openoffice.org/2000/office"^^xsd:anyURI;
+                                                                     xis:prefix "office".
+<ni:///mh;1QEQwaAeP374F5Br95Jdj59beQ?ct=text/plain> at:digest <urn:md5:C1A01E3F7EF817906BF7925D8F9F5B79>;
+                                                    dcterms:extent "1310"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQwaAeP374F5Br95Jdj59beQ?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQwaAeP374F5Br95Jdj59beQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.28 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQwaAeP374F5Br95Jdj59beQ?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?>""".
+<urn:md5:4E49D89F4C594BE88FEEF54E321955AD> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "TknYn0xZS+iP7vVOMhlVrQ=="^^xsd:base64Binary.
+<urn:md5:5E813CA574D504DC0CDE7D1884883A0C> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "XoE8pXTVBNwM3n0YhIg6DA=="^^xsd:base64Binary.
+<urn:md5:70A46CAA4B655E67C6B505A41EE22CA1> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "cKRsqktlXmfGtQWkHuIsoQ=="^^xsd:base64Binary.
+<urn:md5:873E68E3D8A69E5242A3CA45FBD1A32C> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "hz5o49imnlJCo8pF+9GjLA=="^^xsd:base64Binary.
+<urn:md5:C1A01E3F7EF817906BF7925D8F9F5B79> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "waAeP374F5Br95Jdj59beQ=="^^xsd:base64Binary.
+<urn:md5:F5966B777AEF4F77B315855B9271FB26> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "9ZZrd3rvT3ezFYVbknH7Jg=="^^xsd:base64Binary.
+<urn:publicid:-:OpenOffice.org:DTD+Manifest+1.0:EN> rdfs:isDefinedBy [].
+<urn:publicid:-:OpenOffice.org:DTD+OfficeDocument+1.0:EN> rdfs:isDefinedBy [],
+                                                                           [],
+                                                                           [],
+                                                                           [].

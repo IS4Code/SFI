@@ -1,0 +1,60 @@
+@base <ni:///mh;1QEQ-1qlo4jhFvG5xueyVwllmw?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///1642808122_TFORM2>;
+     nie:interpretedAs <ni:///mh;1QEQ-1qlo4jhFvG5xueyVwllmw?ct=application/octet-stream>;
+     nfo:fileName "1642808122_TFORM2";
+     nfo:fileSize 42758 ;
+     a nfo:FileDataObject.
+<file:///Image1/Picture.Data> at:pathObject <file:///Picture.Data>.
+<file:///Picture.Data> at:extensionObject <https://w3id.org/uri4uri/suffix/data>.
+<ni:///mh;1QEQ-1qlo4jhFvG5xueyVwllmw?ct=application/octet-stream> at:digest <urn:md5:FB5AA5A388E116F1B9C6E7B25709659B>;
+                                                                  dcterms:extent "42758"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ-1qlo4jhFvG5xueyVwllmw?ct=application/x-delphi-form>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (41.76 KiB)"@en.
+<ni:///mh;1QEQ-1qlo4jhFvG5xueyVwllmw?ct=application/x-delphi-form> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-delphi-form>;
+                                                                   nie:hasPart <ni:///mh;1QEQ-1qlo4jhFvG5xueyVwllmw?ct=application/x-delphi-form#/Image1%2FPicture.Data>;
+                                                                   a schema:MediaObject;
+                                                                   skos:prefLabel "DFM object (Form2)"@en.
+<ni:///mh;1QEQ-1qlo4jhFvG5xueyVwllmw?ct=application/x-delphi-form#/Image1%2FPicture.Data> at:pathObject <file:///Image1/Picture.Data>;
+                                                                                          nie:interpretedAs <ni:///mh;1QEQEvgnPwvAYDMXE-LqtDnFgw?ct=application/octet-stream>;
+                                                                                          nfo:fileName "Image1/Picture.Data";
+                                                                                          nfo:fileSize 42001 ;
+                                                                                          a nfo:FileDataObject,
+                                                                                            nfo:EmbeddedFileDataObject;
+                                                                                          skos:prefLabel "/Image1/Picture.Data".
+<ni:///mh;1QEQEvgnPwvAYDMXE-LqtDnFgw?ct=application/octet-stream> at:digest <urn:md5:12F8273F0BC060331713E2EAB439C583>;
+                                                                  dcterms:extent "41986"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQEvgnPwvAYDMXE-LqtDnFgw?ct=image/jpeg>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (41 KiB)"@en.
+<ni:///mh;1QEQEvgnPwvAYDMXE-LqtDnFgw?ct=image/jpeg> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/jpeg>;
+                                                    nfo:colorDepth 24 ;
+                                                    nfo:height 400 ;
+                                                    nfo:horizontalResolution 72 ;
+                                                    nfo:verticalResolution 72 ;
+                                                    nfo:width 500 ;
+                                                    a schema:MediaObject,
+                                                      schema:ImageObject,
+                                                      nfo:Image;
+                                                    skos:prefLabel "JPG object (41.02 KiB)"@en,
+                                                                   "JPG object (500×400)"@en.
+<urn:md5:12F8273F0BC060331713E2EAB439C583> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "EvgnPwvAYDMXE+LqtDnFgw=="^^xsd:base64Binary.
+<urn:md5:FB5AA5A388E116F1B9C6E7B25709659B> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "+1qlo4jhFvG5xueyVwllmw=="^^xsd:base64Binary.

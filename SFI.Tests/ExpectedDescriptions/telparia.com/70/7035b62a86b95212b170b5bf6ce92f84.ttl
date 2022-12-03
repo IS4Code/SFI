@@ -1,0 +1,53 @@
+@base <ni:///mh;1QEQ3yz3-sIk5PsTdR49vQ3Rsg?ct=text/plain>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix xis: <http://www.w3.org/2001/04/infoset#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///hires.html>;
+     nie:interpretedAs <ni:///mh;1QEQ3yz3-sIk5PsTdR49vQ3Rsg?ct=text/plain>;
+     nfo:fileName "hires.html";
+     nfo:fileSize 1653 ;
+     a nfo:FileDataObject.
+<file:///hires.html> at:extensionObject <https://w3id.org/uri4uri/suffix/html>.
+<ni:///mh;1QEQ3yz3-sIk5PsTdR49vQ3Rsg?ct=application/x.ns.HTML+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.html+xml>;
+                                                                   a schema:MediaObject;
+                                                                   skos:prefLabel "HTML object"@en.
+<ni:///mh;1QEQ3yz3-sIk5PsTdR49vQ3Rsg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ3yz3-sIk5PsTdR49vQ3Rsg?ct=application/x.ns.HTML+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQ3yz3-sIk5PsTdR49vQ3Rsg?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (HTML)"@en.
+<ni:///mh;1QEQ3yz3-sIk5PsTdR49vQ3Rsg?ct=application/xml#element(/1)> a xis:Element;
+                                                                     xis:localName "HTML";
+                                                                     xis:name "HTML".
+<ni:///mh;1QEQ3yz3-sIk5PsTdR49vQ3Rsg?ct=text/html> dcterms:title "Play The Puzzling jigsaw";
+                                                   schema:encodingFormat <https://w3id.org/uri4uri/mime/text/html>;
+                                                   a schema:MediaObject,
+                                                     schema:DigitalDocument,
+                                                     nfo:Document;
+                                                   skos:prefLabel "HTML object (1.61 KiB)"@en.
+<ni:///mh;1QEQ3yz3-sIk5PsTdR49vQ3Rsg?ct=text/plain> at:digest <urn:md5:DF2CF7FAC224E4FB13751E3DBD0DD1B2>;
+                                                    dcterms:extent "1653"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ3yz3-sIk5PsTdR49vQ3Rsg?ct=text/html>,
+                                                                      <ni:///mh;1QEQ3yz3-sIk5PsTdR49vQ3Rsg?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQ3yz3-sIk5PsTdR49vQ3Rsg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.61 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQ3yz3-sIk5PsTdR49vQ3Rsg?ct=text/plain#line=,1> rdf:value "<HTML>".
+<urn:md5:DF2CF7FAC224E4FB13751E3DBD0DD1B2> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "3yz3+sIk5PsTdR49vQ3Rsg=="^^xsd:base64Binary.

@@ -1,0 +1,53 @@
+@base <ni:///mh;1QEQyF48aL14BCAddGZVjjkjAg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///example_small.divx>;
+     nie:interpretedAs <ni:///mh;1QEQyF48aL14BCAddGZVjjkjAg?ct=application/octet-stream>;
+     nfo:fileName "example_small.divx";
+     nfo:fileSize 559520 ;
+     a nfo:FileDataObject.
+<file:///example_small.divx> at:extensionObject <https://w3id.org/uri4uri/suffix/divx>.
+<ni:///mh;1QEQyF48aL14BCAddGZVjjkjAg?ct=application/octet-stream> at:digest <urn:md5:C85E3C68BD7804201D7466558E392302>;
+                                                                  dcterms:extent "559520"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQyF48aL14BCAddGZVjjkjAg?ct=video/vnd.avi>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (546.41 KiB)"@en.
+<ni:///mh;1QEQyF48aL14BCAddGZVjjkjAg?ct=video/vnd.avi> schema:encodingFormat <https://w3id.org/uri4uri/mime/video/vnd.avi>;
+                                                       nfo:channels 2 ;
+                                                       nfo:duration "PT4S"^^xsd:duration,
+                                                                    "PT4.04S"^^xsd:duration;
+                                                       nfo:hasMediaStream <ni:///mh;1QEQyF48aL14BCAddGZVjjkjAg?ct=video/vnd.avi#/Video/0>,
+                                                                          <ni:///mh;1QEQyF48aL14BCAddGZVjjkjAg?ct=video/vnd.avi#/Audio/0>;
+                                                       nfo:height 720 ;
+                                                       nfo:sampleRate "48000"^^dt:hertz;
+                                                       nfo:width 1280 ;
+                                                       a schema:MediaObject,
+                                                         schema:VideoObject,
+                                                         nfo:Video;
+                                                       skos:prefLabel "AVI object (1280×720)"@en.
+<ni:///mh;1QEQyF48aL14BCAddGZVjjkjAg?ct=video/vnd.avi#/Audio/0> nfo:channels 2 ;
+                                                                nfo:compressionType nfo:losslessCompressionType;
+                                                                nfo:sampleRate "48000"^^dt:hertz;
+                                                                a nfo:Audio,
+                                                                  nfo:MediaStream;
+                                                                skos:prefLabel "0:Audio (48000 Hz, 2 channels)".
+<ni:///mh;1QEQyF48aL14BCAddGZVjjkjAg?ct=video/vnd.avi#/Video/0> nfo:height 720 ;
+                                                                nfo:width 1280 ;
+                                                                a nfo:Video,
+                                                                  nfo:MediaStream;
+                                                                skos:prefLabel "0:Video (1280×720)".
+<urn:md5:C85E3C68BD7804201D7466558E392302> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "yF48aL14BCAddGZVjjkjAg=="^^xsd:base64Binary.

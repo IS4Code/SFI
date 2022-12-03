@@ -1,0 +1,191 @@
+@base <ni:///mh;1QEQg99noLuC_9Blo5Mb3wNKcQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///1647137937_TFORM1>;
+     nie:interpretedAs <ni:///mh;1QEQg99noLuC_9Blo5Mb3wNKcQ?ct=application/octet-stream>;
+     nfo:fileName "1647137937_TFORM1";
+     nfo:fileSize 12870 ;
+     a nfo:FileDataObject.
+<file:///Image1/Picture.Data> at:pathObject <file:///Picture.Data>.
+<file:///Image2/Picture.Data> at:pathObject <file:///Picture.Data>.
+<file:///Image3/Picture.Data> at:pathObject <file:///Picture.Data>.
+<file:///Image4/Picture.Data> at:pathObject <file:///Picture.Data>.
+<file:///Panel1/Image1/Picture.Data> at:pathObject <file:///Image1/Picture.Data>.
+<file:///Panel1/Image2/Picture.Data> at:pathObject <file:///Image2/Picture.Data>.
+<file:///Panel1/Image3/Picture.Data> at:pathObject <file:///Image3/Picture.Data>.
+<file:///Picture.Data> at:extensionObject <https://w3id.org/uri4uri/suffix/data>.
+<ni:///mh;1QEQ59wJ6UlbBPBficGKyukKUQ?ct=application/octet-stream> at:digest <urn:md5:E7DC09E9495B04F05F89C18ACAE90A51>;
+                                                                  dcterms:extent "6486"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ59wJ6UlbBPBficGKyukKUQ?ct=image/gif>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (6.33 KiB)"@en.
+<ni:///mh;1QEQ59wJ6UlbBPBficGKyukKUQ?ct=image/gif> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/gif>;
+                                                   nfo:bitDepth 8 ;
+                                                   nfo:hasMediaStream <ni:///mh;1QEQ59wJ6UlbBPBficGKyukKUQ?ct=image/gif#/0>,
+                                                                      <ni:///mh;1QEQ59wJ6UlbBPBficGKyukKUQ?ct=image/gif#/1>;
+                                                   nfo:height 133 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:paletteSize 256 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 525 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "GIF object (525×133)"@en,
+                                                                  "GIF object (6.35 KiB)"@en.
+<ni:///mh;1QEQ59wJ6UlbBPBficGKyukKUQ?ct=image/gif#/0> nfo:height 133 ;
+                                                      nfo:width 525 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "0:GIF Header (525×133)".
+<ni:///mh;1QEQ59wJ6UlbBPBficGKyukKUQ?ct=image/gif#/1> nfo:height 133 ;
+                                                      nfo:width 525 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "1:GIF Image (525×133)".
+<ni:///mh;1QEQP2qX53ew1IPKh_os6-C2OA?ct=application/octet-stream> at:digest <urn:md5:3F6A97E777B0D483CA87FA2CEBE0B638>;
+                                                                  dcterms:extent "1313"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQP2qX53ew1IPKh_os6-C2OA?ct=image/gif>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.28 KiB)"@en.
+<ni:///mh;1QEQP2qX53ew1IPKh_os6-C2OA?ct=image/gif> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/gif>;
+                                                   nfo:bitDepth 8 ;
+                                                   nfo:hasMediaStream <ni:///mh;1QEQP2qX53ew1IPKh_os6-C2OA?ct=image/gif#/0>,
+                                                                      <ni:///mh;1QEQP2qX53ew1IPKh_os6-C2OA?ct=image/gif#/1>;
+                                                   nfo:height 24 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:paletteSize 256 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 72 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "GIF object (72×24)"@en,
+                                                                  "GIF object (1.3 KiB)"@en.
+<ni:///mh;1QEQP2qX53ew1IPKh_os6-C2OA?ct=image/gif#/0> nfo:height 24 ;
+                                                      nfo:width 72 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "0:GIF Header (72×24)".
+<ni:///mh;1QEQP2qX53ew1IPKh_os6-C2OA?ct=image/gif#/1> nfo:height 24 ;
+                                                      nfo:width 72 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "1:GIF Image (72×24)".
+<ni:///mh;1QEQUF63K8bKdsRaYPOWAPivsQ?ct=application/octet-stream> at:digest <urn:md5:505EB72BC6CA76C45A60F39600F8AFB1>;
+                                                                  dcterms:extent "1520"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQUF63K8bKdsRaYPOWAPivsQ?ct=image/gif>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.48 KiB)"@en.
+<ni:///mh;1QEQUF63K8bKdsRaYPOWAPivsQ?ct=image/gif> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/gif>;
+                                                   nfo:bitDepth 8 ;
+                                                   nfo:hasMediaStream <ni:///mh;1QEQUF63K8bKdsRaYPOWAPivsQ?ct=image/gif#/0>,
+                                                                      <ni:///mh;1QEQUF63K8bKdsRaYPOWAPivsQ?ct=image/gif#/1>;
+                                                   nfo:height 23 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:paletteSize 256 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 119 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "GIF object (119×23)"@en,
+                                                                  "GIF object (1.5 KiB)"@en.
+<ni:///mh;1QEQUF63K8bKdsRaYPOWAPivsQ?ct=image/gif#/0> nfo:height 23 ;
+                                                      nfo:width 119 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "0:GIF Header (119×23)".
+<ni:///mh;1QEQUF63K8bKdsRaYPOWAPivsQ?ct=image/gif#/1> nfo:height 23 ;
+                                                      nfo:width 119 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "1:GIF Image (119×23)".
+<ni:///mh;1QEQg99noLuC_9Blo5Mb3wNKcQ?ct=application/octet-stream> at:digest <urn:md5:83DF67A0BB82FFD065A3931BDF034A71>;
+                                                                  dcterms:extent "12870"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQg99noLuC_9Blo5Mb3wNKcQ?ct=application/x-delphi-form>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (12.57 KiB)"@en.
+<ni:///mh;1QEQg99noLuC_9Blo5Mb3wNKcQ?ct=application/x-delphi-form> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-delphi-form>;
+                                                                   nie:hasPart <ni:///mh;1QEQg99noLuC_9Blo5Mb3wNKcQ?ct=application/x-delphi-form#/Image4%2FPicture.Data>,
+                                                                               <ni:///mh;1QEQg99noLuC_9Blo5Mb3wNKcQ?ct=application/x-delphi-form#/Panel1%2FImage1%2FPicture.Data>,
+                                                                               <ni:///mh;1QEQg99noLuC_9Blo5Mb3wNKcQ?ct=application/x-delphi-form#/Panel1%2FImage3%2FPicture.Data>,
+                                                                               <ni:///mh;1QEQg99noLuC_9Blo5Mb3wNKcQ?ct=application/x-delphi-form#/Panel1%2FImage2%2FPicture.Data>;
+                                                                   a schema:MediaObject;
+                                                                   skos:prefLabel "DFM object (Form1)"@en.
+<ni:///mh;1QEQg99noLuC_9Blo5Mb3wNKcQ?ct=application/x-delphi-form#/Image4%2FPicture.Data> at:pathObject <file:///Image4/Picture.Data>;
+                                                                                          nie:interpretedAs <ni:///mh;1QEQqf8h5-nxsAnV97oXQ5zNdQ?ct=application/octet-stream>;
+                                                                                          nfo:fileName "Image4/Picture.Data";
+                                                                                          nfo:fileSize 1673 ;
+                                                                                          a nfo:FileDataObject,
+                                                                                            nfo:EmbeddedFileDataObject;
+                                                                                          skos:prefLabel "/Image4/Picture.Data".
+<ni:///mh;1QEQg99noLuC_9Blo5Mb3wNKcQ?ct=application/x-delphi-form#/Panel1%2FImage1%2FPicture.Data> at:pathObject <file:///Panel1/Image1/Picture.Data>;
+                                                                                                   nie:interpretedAs <ni:///mh;1QEQ59wJ6UlbBPBficGKyukKUQ?ct=application/octet-stream>;
+                                                                                                   nfo:fileName "Panel1/Image1/Picture.Data";
+                                                                                                   nfo:fileSize 6500 ;
+                                                                                                   a nfo:FileDataObject,
+                                                                                                     nfo:EmbeddedFileDataObject;
+                                                                                                   skos:prefLabel "/Panel1/Image1/Picture.Data".
+<ni:///mh;1QEQg99noLuC_9Blo5Mb3wNKcQ?ct=application/x-delphi-form#/Panel1%2FImage2%2FPicture.Data> at:pathObject <file:///Panel1/Image2/Picture.Data>;
+                                                                                                   nie:interpretedAs <ni:///mh;1QEQP2qX53ew1IPKh_os6-C2OA?ct=application/octet-stream>;
+                                                                                                   nfo:fileName "Panel1/Image2/Picture.Data";
+                                                                                                   nfo:fileSize 1327 ;
+                                                                                                   a nfo:FileDataObject,
+                                                                                                     nfo:EmbeddedFileDataObject;
+                                                                                                   skos:prefLabel "/Panel1/Image2/Picture.Data".
+<ni:///mh;1QEQg99noLuC_9Blo5Mb3wNKcQ?ct=application/x-delphi-form#/Panel1%2FImage3%2FPicture.Data> at:pathObject <file:///Panel1/Image3/Picture.Data>;
+                                                                                                   nie:interpretedAs <ni:///mh;1QEQUF63K8bKdsRaYPOWAPivsQ?ct=application/octet-stream>;
+                                                                                                   nfo:fileName "Panel1/Image3/Picture.Data";
+                                                                                                   nfo:fileSize 1534 ;
+                                                                                                   a nfo:FileDataObject,
+                                                                                                     nfo:EmbeddedFileDataObject;
+                                                                                                   skos:prefLabel "/Panel1/Image3/Picture.Data".
+<ni:///mh;1QEQqf8h5-nxsAnV97oXQ5zNdQ?ct=application/octet-stream> at:digest <urn:md5:A9FF21E7E9F1B009D5F7BA17439CCD75>;
+                                                                  dcterms:extent "1659"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQqf8h5-nxsAnV97oXQ5zNdQ?ct=image/gif>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.62 KiB)"@en.
+<ni:///mh;1QEQqf8h5-nxsAnV97oXQ5zNdQ?ct=image/gif> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/gif>;
+                                                   nfo:bitDepth 8 ;
+                                                   nfo:hasMediaStream <ni:///mh;1QEQqf8h5-nxsAnV97oXQ5zNdQ?ct=image/gif#/0>,
+                                                                      <ni:///mh;1QEQqf8h5-nxsAnV97oXQ5zNdQ?ct=image/gif#/1>;
+                                                   nfo:height 22 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:paletteSize 256 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 159 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "GIF object (1.63 KiB)"@en,
+                                                                  "GIF object (159×22)"@en.
+<ni:///mh;1QEQqf8h5-nxsAnV97oXQ5zNdQ?ct=image/gif#/0> nfo:height 22 ;
+                                                      nfo:width 159 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "0:GIF Header (159×22)".
+<ni:///mh;1QEQqf8h5-nxsAnV97oXQ5zNdQ?ct=image/gif#/1> nfo:height 22 ;
+                                                      nfo:width 159 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "1:GIF Image (159×22)".
+<urn:md5:3F6A97E777B0D483CA87FA2CEBE0B638> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "P2qX53ew1IPKh/os6+C2OA=="^^xsd:base64Binary.
+<urn:md5:505EB72BC6CA76C45A60F39600F8AFB1> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "UF63K8bKdsRaYPOWAPivsQ=="^^xsd:base64Binary.
+<urn:md5:83DF67A0BB82FFD065A3931BDF034A71> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "g99noLuC/9Blo5Mb3wNKcQ=="^^xsd:base64Binary.
+<urn:md5:A9FF21E7E9F1B009D5F7BA17439CCD75> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "qf8h5+nxsAnV97oXQ5zNdQ=="^^xsd:base64Binary.
+<urn:md5:E7DC09E9495B04F05F89C18ACAE90A51> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "59wJ6UlbBPBficGKyukKUQ=="^^xsd:base64Binary.

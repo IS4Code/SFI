@@ -1,0 +1,219 @@
+@base <ni:///mh;1QEQ0cDibPcAB5FfcK14m4zaBA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///example_multilevel.tar.gz>;
+     nie:interpretedAs <ni:///mh;1QEQ0cDibPcAB5FfcK14m4zaBA?ct=application/octet-stream>;
+     nfo:fileName "example_multilevel.tar.gz";
+     nfo:fileSize 4259191 ;
+     a nfo:FileDataObject.
+<file:///example.pdf> at:extensionObject <https://w3id.org/uri4uri/suffix/pdf>.
+<file:///example1.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
+<file:///example1/example.pdf> at:pathObject <file:///example.pdf>.
+<file:///example1/example1.png> at:pathObject <file:///example1.png>.
+<file:///example1/example2.png> at:pathObject <file:///example2.png>.
+<file:///example2.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
+<file:///example2/example.pdf> at:pathObject <file:///example.pdf>.
+<file:///example2/example1.png> at:pathObject <file:///example1.png>.
+<file:///example2/example2.png> at:pathObject <file:///example2.png>.
+<file:///example_multilevel.tar> at:extensionObject <https://w3id.org/uri4uri/suffix/tar>.
+<file:///example_multilevel.tar.gz> at:extensionObject <https://w3id.org/uri4uri/suffix/gz>.
+<ni:///mh;1QEQ0cDibPcAB5FfcK14m4zaBA?ct=application/gzip> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/gzip>;
+                                                          a schema:MediaObject,
+                                                            nfo:Archive;
+                                                          skos:prefLabel "GZ object (4.06 MiB)"@en.
+<ni:///mh;1QEQ0cDibPcAB5FfcK14m4zaBA?ct=application/gzip#/example_multilevel.tar> at:pathObject <file:///example_multilevel.tar>;
+                                                                                  nie:interpretedAs <ni:///mh;1QEQMWN67tX0emXDYW9Al_WEVg?ct=application/octet-stream>;
+                                                                                  nfo:belongsToContainer <ni:///mh;1QEQ0cDibPcAB5FfcK14m4zaBA?ct=application/gzip>;
+                                                                                  nfo:fileLastModified "2017-07-12T09:46:47.000000Z"^^xsd:dateTime;
+                                                                                  nfo:fileName "example_multilevel.tar";
+                                                                                  nfo:fileSize 4291072 ;
+                                                                                  a nfo:FileDataObject,
+                                                                                    nfo:ArchiveItem;
+                                                                                  skos:prefLabel "/example_multilevel.tar".
+<ni:///mh;1QEQ0cDibPcAB5FfcK14m4zaBA?ct=application/octet-stream> at:digest <urn:md5:D1C0E26CF70007915F70AD789B8CDA04>;
+                                                                  dcterms:extent "4259191"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ0cDibPcAB5FfcK14m4zaBA?ct=application/gzip>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (4.06 MiB)"@en.
+<ni:///mh;1QEQMWN67tX0emXDYW9Al_WEVg?ct=application/octet-stream> at:digest <urn:md5:31637AEED5F47A65C3616F4097F58456>;
+                                                                  dcterms:extent "4291072"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQMWN67tX0emXDYW9Al_WEVg?ct=application/x-tar>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (4.09 MiB)"@en.
+<ni:///mh;1QEQMWN67tX0emXDYW9Al_WEVg?ct=application/x-tar> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-tar>;
+                                                           a schema:MediaObject,
+                                                             nfo:Archive;
+                                                           skos:prefLabel "TAR object (4.09 MiB)"@en.
+<ni:///mh;1QEQMWN67tX0emXDYW9Al_WEVg?ct=application/x-tar#/example.pdf> at:pathObject <file:///example.pdf>;
+                                                                        nie:interpretedAs <ni:///mh;1QEQYr1AKfZiSgZxgEYX00X2NQ?ct=application/octet-stream>;
+                                                                        nfo:belongsToContainer <ni:///mh;1QEQMWN67tX0emXDYW9Al_WEVg?ct=application/x-tar>;
+                                                                        nfo:fileLastModified "2017-07-12T11:46:14.000000+02:00"^^xsd:dateTime;
+                                                                        nfo:fileName "example.pdf";
+                                                                        nfo:fileSize 761773 ;
+                                                                        a nfo:FileDataObject,
+                                                                          nfo:ArchiveItem;
+                                                                        skos:prefLabel "/example.pdf".
+<ni:///mh;1QEQMWN67tX0emXDYW9Al_WEVg?ct=application/x-tar#/example1> at:pathObject <file:///example1>;
+                                                                     nie:interpretedAs <ni:///mh;1QEQMWN67tX0emXDYW9Al_WEVg?ct=application/x-tar#/example1/>;
+                                                                     nfo:belongsToContainer <ni:///mh;1QEQMWN67tX0emXDYW9Al_WEVg?ct=application/x-tar>;
+                                                                     nfo:fileLastModified "2017-07-12T11:43:53.000000+02:00"^^xsd:dateTime;
+                                                                     nfo:fileName "example1";
+                                                                     a nfo:FileDataObject,
+                                                                       nfo:ArchiveItem;
+                                                                     skos:prefLabel "/example1".
+<ni:///mh;1QEQMWN67tX0emXDYW9Al_WEVg?ct=application/x-tar#/example1.png> at:pathObject <file:///example1.png>;
+                                                                         nie:interpretedAs <ni:///mh;1QEQTXwgcPL_VLG1YXMkWJWxQw?ct=application/octet-stream>;
+                                                                         nfo:belongsToContainer <ni:///mh;1QEQMWN67tX0emXDYW9Al_WEVg?ct=application/x-tar>;
+                                                                         nfo:fileLastModified "2017-07-12T11:39:24.000000+02:00"^^xsd:dateTime;
+                                                                         nfo:fileName "example1.png";
+                                                                         nfo:fileSize 333205 ;
+                                                                         a nfo:FileDataObject,
+                                                                           nfo:ArchiveItem;
+                                                                         skos:prefLabel "/example1.png".
+<ni:///mh;1QEQMWN67tX0emXDYW9Al_WEVg?ct=application/x-tar#/example1/> at:pathObject <file:///example1/>;
+                                                                      a nfo:Folder;
+                                                                      skos:prefLabel "/example1/".
+<ni:///mh;1QEQMWN67tX0emXDYW9Al_WEVg?ct=application/x-tar#/example1/example.pdf> at:pathObject <file:///example1/example.pdf>;
+                                                                                 nie:interpretedAs <ni:///mh;1QEQZ2NvO6-sdpfCmU7sExuLDg?ct=application/octet-stream>;
+                                                                                 nfo:belongsToContainer <ni:///mh;1QEQMWN67tX0emXDYW9Al_WEVg?ct=application/x-tar#/example1/>;
+                                                                                 nfo:fileLastModified "2017-07-12T11:37:05.000000+02:00"^^xsd:dateTime;
+                                                                                 nfo:fileName "example.pdf";
+                                                                                 nfo:fileSize 761023 ;
+                                                                                 a nfo:FileDataObject,
+                                                                                   nfo:ArchiveItem;
+                                                                                 skos:prefLabel "/example1/example.pdf".
+<ni:///mh;1QEQMWN67tX0emXDYW9Al_WEVg?ct=application/x-tar#/example1/example1.png> at:pathObject <file:///example1/example1.png>;
+                                                                                  nie:interpretedAs <ni:///mh;1QEQTXwgcPL_VLG1YXMkWJWxQw?ct=application/octet-stream>;
+                                                                                  nfo:belongsToContainer <ni:///mh;1QEQMWN67tX0emXDYW9Al_WEVg?ct=application/x-tar#/example1/>;
+                                                                                  nfo:fileLastModified "2017-07-12T11:39:24.000000+02:00"^^xsd:dateTime;
+                                                                                  nfo:fileName "example1.png";
+                                                                                  nfo:fileSize 333205 ;
+                                                                                  a nfo:FileDataObject,
+                                                                                    nfo:ArchiveItem;
+                                                                                  skos:prefLabel "/example1/example1.png".
+<ni:///mh;1QEQMWN67tX0emXDYW9Al_WEVg?ct=application/x-tar#/example1/example2.png> at:pathObject <file:///example1/example2.png>;
+                                                                                  nie:interpretedAs <ni:///mh;1QEQTXwgcPL_VLG1YXMkWJWxQw?ct=application/octet-stream>;
+                                                                                  nfo:belongsToContainer <ni:///mh;1QEQMWN67tX0emXDYW9Al_WEVg?ct=application/x-tar#/example1/>;
+                                                                                  nfo:fileLastModified "2017-07-12T11:39:24.000000+02:00"^^xsd:dateTime;
+                                                                                  nfo:fileName "example2.png";
+                                                                                  nfo:fileSize 333205 ;
+                                                                                  a nfo:FileDataObject,
+                                                                                    nfo:ArchiveItem;
+                                                                                  skos:prefLabel "/example1/example2.png".
+<ni:///mh;1QEQMWN67tX0emXDYW9Al_WEVg?ct=application/x-tar#/example2> at:pathObject <file:///example2>;
+                                                                     nie:interpretedAs <ni:///mh;1QEQMWN67tX0emXDYW9Al_WEVg?ct=application/x-tar#/example2/>;
+                                                                     nfo:belongsToContainer <ni:///mh;1QEQMWN67tX0emXDYW9Al_WEVg?ct=application/x-tar>;
+                                                                     nfo:fileLastModified "2017-07-12T11:43:59.000000+02:00"^^xsd:dateTime;
+                                                                     nfo:fileName "example2";
+                                                                     a nfo:FileDataObject,
+                                                                       nfo:ArchiveItem;
+                                                                     skos:prefLabel "/example2".
+<ni:///mh;1QEQMWN67tX0emXDYW9Al_WEVg?ct=application/x-tar#/example2.png> at:pathObject <file:///example2.png>;
+                                                                         nie:interpretedAs <ni:///mh;1QEQTXwgcPL_VLG1YXMkWJWxQw?ct=application/octet-stream>;
+                                                                         nfo:belongsToContainer <ni:///mh;1QEQMWN67tX0emXDYW9Al_WEVg?ct=application/x-tar>;
+                                                                         nfo:fileLastModified "2017-07-12T11:39:24.000000+02:00"^^xsd:dateTime;
+                                                                         nfo:fileName "example2.png";
+                                                                         nfo:fileSize 333205 ;
+                                                                         a nfo:FileDataObject,
+                                                                           nfo:ArchiveItem;
+                                                                         skos:prefLabel "/example2.png".
+<ni:///mh;1QEQMWN67tX0emXDYW9Al_WEVg?ct=application/x-tar#/example2/> at:pathObject <file:///example2/>;
+                                                                      a nfo:Folder;
+                                                                      skos:prefLabel "/example2/".
+<ni:///mh;1QEQMWN67tX0emXDYW9Al_WEVg?ct=application/x-tar#/example2/example.pdf> at:pathObject <file:///example2/example.pdf>;
+                                                                                 nie:interpretedAs <ni:///mh;1QEQZ2NvO6-sdpfCmU7sExuLDg?ct=application/octet-stream>;
+                                                                                 nfo:belongsToContainer <ni:///mh;1QEQMWN67tX0emXDYW9Al_WEVg?ct=application/x-tar#/example2/>;
+                                                                                 nfo:fileLastModified "2017-07-12T11:37:05.000000+02:00"^^xsd:dateTime;
+                                                                                 nfo:fileName "example.pdf";
+                                                                                 nfo:fileSize 761023 ;
+                                                                                 a nfo:FileDataObject,
+                                                                                   nfo:ArchiveItem;
+                                                                                 skos:prefLabel "/example2/example.pdf".
+<ni:///mh;1QEQMWN67tX0emXDYW9Al_WEVg?ct=application/x-tar#/example2/example1.png> at:pathObject <file:///example2/example1.png>;
+                                                                                  nie:interpretedAs <ni:///mh;1QEQTXwgcPL_VLG1YXMkWJWxQw?ct=application/octet-stream>;
+                                                                                  nfo:belongsToContainer <ni:///mh;1QEQMWN67tX0emXDYW9Al_WEVg?ct=application/x-tar#/example2/>;
+                                                                                  nfo:fileLastModified "2017-07-12T11:39:24.000000+02:00"^^xsd:dateTime;
+                                                                                  nfo:fileName "example1.png";
+                                                                                  nfo:fileSize 333205 ;
+                                                                                  a nfo:FileDataObject,
+                                                                                    nfo:ArchiveItem;
+                                                                                  skos:prefLabel "/example2/example1.png".
+<ni:///mh;1QEQMWN67tX0emXDYW9Al_WEVg?ct=application/x-tar#/example2/example2.png> at:pathObject <file:///example2/example2.png>;
+                                                                                  nie:interpretedAs <ni:///mh;1QEQTXwgcPL_VLG1YXMkWJWxQw?ct=application/octet-stream>;
+                                                                                  nfo:belongsToContainer <ni:///mh;1QEQMWN67tX0emXDYW9Al_WEVg?ct=application/x-tar#/example2/>;
+                                                                                  nfo:fileLastModified "2017-07-12T11:39:24.000000+02:00"^^xsd:dateTime;
+                                                                                  nfo:fileName "example2.png";
+                                                                                  nfo:fileSize 333205 ;
+                                                                                  a nfo:FileDataObject,
+                                                                                    nfo:ArchiveItem;
+                                                                                  skos:prefLabel "/example2/example2.png".
+<ni:///mh;1QEQTXwgcPL_VLG1YXMkWJWxQw?ct=application/octet-stream> at:digest <urn:md5:4D7C2070F2FF54B1B56173245895B143>;
+                                                                  dcterms:extent "333205"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQTXwgcPL_VLG1YXMkWJWxQw?ct=image/png>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (325.4 KiB)"@en.
+<ni:///mh;1QEQTXwgcPL_VLG1YXMkWJWxQw?ct=image/png> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/png>;
+                                                   nfo:colorDepth 32 ;
+                                                   nfo:height 333 ;
+                                                   nfo:horizontalResolution 299.9994;
+                                                   nfo:verticalResolution 299.9994;
+                                                   nfo:width 500 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "PNG object (500×333, 8-bit)"@en,
+                                                                  "PNG object (500×333)"@en,
+                                                                  "PNG object (325.4 KiB)"@en.
+<ni:///mh;1QEQYr1AKfZiSgZxgEYX00X2NQ?ct=application/octet-stream> at:digest <urn:md5:62BD4029F6624A0671804617D345F635>;
+                                                                  dcterms:extent "761773"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQYr1AKfZiSgZxgEYX00X2NQ?ct=application/pdf>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (743.92 KiB)"@en.
+<ni:///mh;1QEQYr1AKfZiSgZxgEYX00X2NQ?ct=application/pdf> dcterms:created "2017-07-12T09:46:14.000000Z"^^xsd:dateTime;
+                                                         dcterms:creator "Vb1";
+                                                         dcterms:title "example";
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/pdf>;
+                                                         a schema:MediaObject,
+                                                           schema:DigitalDocument,
+                                                           nfo:Document;
+                                                         skos:prefLabel "PDF object (example)"@en.
+<ni:///mh;1QEQZ2NvO6-sdpfCmU7sExuLDg?ct=application/octet-stream> at:digest <urn:md5:67636F3BAFAC7697C2994EEC131B8B0E>;
+                                                                  dcterms:extent "761023"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQZ2NvO6-sdpfCmU7sExuLDg?ct=application/pdf>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (743.19 KiB)"@en.
+<ni:///mh;1QEQZ2NvO6-sdpfCmU7sExuLDg?ct=application/pdf> dcterms:created "2017-07-12T09:37:05.000000Z"^^xsd:dateTime;
+                                                         dcterms:creator "Vb1";
+                                                         dcterms:title "example";
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/pdf>;
+                                                         a schema:MediaObject,
+                                                           schema:DigitalDocument,
+                                                           nfo:Document;
+                                                         skos:prefLabel "PDF object (example)"@en.
+<urn:md5:31637AEED5F47A65C3616F4097F58456> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "MWN67tX0emXDYW9Al/WEVg=="^^xsd:base64Binary.
+<urn:md5:4D7C2070F2FF54B1B56173245895B143> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "TXwgcPL/VLG1YXMkWJWxQw=="^^xsd:base64Binary.
+<urn:md5:62BD4029F6624A0671804617D345F635> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "Yr1AKfZiSgZxgEYX00X2NQ=="^^xsd:base64Binary.
+<urn:md5:67636F3BAFAC7697C2994EEC131B8B0E> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "Z2NvO6+sdpfCmU7sExuLDg=="^^xsd:base64Binary.
+<urn:md5:D1C0E26CF70007915F70AD789B8CDA04> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "0cDibPcAB5FfcK14m4zaBA=="^^xsd:base64Binary.

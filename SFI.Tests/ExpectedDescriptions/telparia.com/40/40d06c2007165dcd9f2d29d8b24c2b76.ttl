@@ -1,0 +1,92 @@
+@base <ni:///mh;1QEQxoq4JfcJH29E-5qxxEOX2A?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///example.raf>;
+     nie:interpretedAs <ni:///mh;1QEQxoq4JfcJH29E-5qxxEOX2A?ct=application/octet-stream>;
+     nfo:fileName "example.raf";
+     nfo:fileSize 50534400 ;
+     a nfo:FileDataObject.
+<file:///example.raf> at:extensionObject <https://w3id.org/uri4uri/suffix/raf>.
+<ni:///mh;1QEQxoq4JfcJH29E-5qxxEOX2A?ct=application/octet-stream> at:digest <urn:md5:C68AB825F7091F6F44FB9AB1C44397D8>;
+                                                                  dcterms:extent "50534400"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQxoq4JfcJH29E-5qxxEOX2A?ct=application/octet-stream#raf>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (48.19 MiB)"@en.
+<ni:///mh;1QEQxoq4JfcJH29E-5qxxEOX2A?ct=application/octet-stream#raf> nfo:hasMediaStream <ni:///mh;1QEQxoq4JfcJH29E-5qxxEOX2A?ct=application/octet-stream#raf/0>,
+                                                                                         <ni:///mh;1QEQxoq4JfcJH29E-5qxxEOX2A?ct=application/octet-stream#raf/1>;
+                                                                      a schema:MediaObject,
+                                                                        exif:IFD;
+                                                                      exif:apertureValue "37/10"^^owl:rational;
+                                                                      exif:brightnessValue "89/20"^^owl:rational;
+                                                                      exif:colorSpace 1 ;
+                                                                      exif:componentsConfiguration "01020300"^^xsd:hexBinary;
+                                                                      exif:compressedBitsPerPixel "5/2"^^owl:rational;
+                                                                      exif:compression 6 ;
+                                                                      exif:customRendered 0 ;
+                                                                      exif:dateTime "2016-03-24T17:12:46.000000"^^xsd:dateTime;
+                                                                      exif:dateTimeDigitized "2016-03-24T17:12:46.000000"^^xsd:dateTime;
+                                                                      exif:dateTimeOriginal "2016-03-24T17:12:46.000000"^^xsd:dateTime;
+                                                                      exif:exifVersion "30323330"^^xsd:hexBinary;
+                                                                      exif:exposureBiasValue 0 ;
+                                                                      exif:exposureMode 0 ;
+                                                                      exif:exposureProgram 2 ;
+                                                                      exif:exposureTime "1/75"^^owl:rational;
+                                                                      exif:fNumber "18/5"^^owl:rational;
+                                                                      exif:fileSource "03"^^xsd:hexBinary;
+                                                                      exif:flash 0 ;
+                                                                      exif:flashpixVersion "30313030"^^xsd:hexBinary;
+                                                                      exif:focalLength "343/10"^^owl:rational;
+                                                                      exif:focalLengthIn35mmFilm 51 ;
+                                                                      exif:focalPlaneResolutionUnit 3 ;
+                                                                      exif:focalPlaneXResolution 820 ;
+                                                                      exif:focalPlaneYResolution 820 ;
+                                                                      exif:isoSpeedRatings 200 ;
+                                                                      exif:jpegInterchangeFormat 3616 ;
+                                                                      exif:jpegInterchangeFormatLength 9427 ;
+                                                                      exif:lightSource 0 ;
+                                                                      exif:make "FUJIFILM"^^xsd:string;
+                                                                      exif:maxApertureValue 3 ;
+                                                                      exif:meteringMode 5 ;
+                                                                      exif:model "X-T2"^^xsd:string;
+                                                                      exif:orientation 1 ;
+                                                                      exif:pixelXDimension 1920 ;
+                                                                      exif:pixelYDimension 1280 ;
+                                                                      exif:resolutionUnit 2 ;
+                                                                      exif:sceneCaptureType 0 ;
+                                                                      exif:sceneType "01"^^xsd:hexBinary;
+                                                                      exif:sensingMethod 2 ;
+                                                                      exif:sharpness 2 ;
+                                                                      exif:shutterSpeedValue "629/100"^^owl:rational;
+                                                                      exif:software "Digital Camera X-T2 Ver4.30"^^xsd:string;
+                                                                      exif:subjectDistanceRange 0 ;
+                                                                      exif:userComment "AAAAAAAAAAAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIA=="^^xsd:base64Binary;
+                                                                      exif:whiteBalance 0 ;
+                                                                      exif:xResolution 72 ;
+                                                                      exif:yCbCrPositioning 2 ;
+                                                                      exif:yResolution 72 ;
+                                                                      skos:prefLabel "RAF object (48.19 MiB)"@en.
+<ni:///mh;1QEQxoq4JfcJH29E-5qxxEOX2A?ct=application/octet-stream#raf/0> nfo:height 1280 ;
+                                                                        nfo:width 1920 ;
+                                                                        a nfo:MediaStream;
+                                                                        skos:prefLabel "0:JPEG (1920×1280)".
+<ni:///mh;1QEQxoq4JfcJH29E-5qxxEOX2A?ct=application/octet-stream#raf/1> nfo:height 1280 ;
+                                                                        nfo:width 1920 ;
+                                                                        a nfo:MediaStream;
+                                                                        skos:prefLabel "1:Exif SubIFD (1920×1280)".
+<urn:md5:C68AB825F7091F6F44FB9AB1C44397D8> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "xoq4JfcJH29E+5qxxEOX2A=="^^xsd:base64Binary.

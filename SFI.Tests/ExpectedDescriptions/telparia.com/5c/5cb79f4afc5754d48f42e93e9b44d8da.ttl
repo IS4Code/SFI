@@ -1,0 +1,119 @@
+@base <ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///find%20anything.mgb>;
+     nie:interpretedAs <ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=application/octet-stream>;
+     nfo:fileName "find anything.mgb";
+     nfo:fileSize 19050 ;
+     a nfo:FileDataObject.
+<file:///find%20anything.mgb> at:extensionObject <https://w3id.org/uri4uri/suffix/mgb>.
+<ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=application/octet-stream> at:digest <urn:md5:CAB2A510FE7D49F665D707C7C33A040C>;
+                                                                  dcterms:extent "19050"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=image/x-icon>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (18.6 KiB)"@en.
+<ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
+                                                      nfo:hasMediaStream <ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=image/x-icon#/0>,
+                                                                         <ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=image/x-icon#/1>,
+                                                                         <ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=image/x-icon#/2>,
+                                                                         <ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=image/x-icon#/3>,
+                                                                         <ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=image/x-icon#/4>,
+                                                                         <ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=image/x-icon#/5>,
+                                                                         <ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=image/x-icon#/6>,
+                                                                         <ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=image/x-icon#/7>,
+                                                                         <ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=image/x-icon#/8>,
+                                                                         <ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=image/x-icon#/9>,
+                                                                         <ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=image/x-icon#/10>,
+                                                                         <ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=image/x-icon#/11>,
+                                                                         <ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=image/x-icon#/12>,
+                                                                         <ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=image/x-icon#/13>,
+                                                                         <ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=image/x-icon#/14>,
+                                                                         <ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=image/x-icon#/15>,
+                                                                         <ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=image/x-icon#/16>;
+                                                      a schema:MediaObject,
+                                                        schema:ImageObject,
+                                                        nfo:Image;
+                                                      skos:prefLabel "ICO object (18.6 KiB)"@en.
+<ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=image/x-icon#/0> nfo:height 0 ;
+                                                         nfo:width 1 ;
+                                                         a nfo:MediaStream;
+                                                         skos:prefLabel "0:ICO (1×0)".
+<ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=image/x-icon#/1> nfo:height 105 ;
+                                                         nfo:width 115 ;
+                                                         a nfo:MediaStream;
+                                                         skos:prefLabel "1:ICO (115×105)".
+<ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=image/x-icon#/10> nfo:height 75 ;
+                                                          nfo:width 108 ;
+                                                          a nfo:MediaStream;
+                                                          skos:prefLabel "10:ICO (108×75)".
+<ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=image/x-icon#/11> nfo:height 0 ;
+                                                          nfo:width 0 ;
+                                                          a nfo:MediaStream;
+                                                          skos:prefLabel "11:ICO (0×0)".
+<ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=image/x-icon#/12> nfo:height 0 ;
+                                                          nfo:width 0 ;
+                                                          a nfo:MediaStream;
+                                                          skos:prefLabel "12:ICO (0×0)".
+<ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=image/x-icon#/13> nfo:height 1 ;
+                                                          nfo:width 0 ;
+                                                          a nfo:MediaStream;
+                                                          skos:prefLabel "13:ICO (0×1)".
+<ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=image/x-icon#/14> nfo:height 115 ;
+                                                          nfo:width 117 ;
+                                                          a nfo:MediaStream;
+                                                          skos:prefLabel "14:ICO (117×115)".
+<ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=image/x-icon#/15> nfo:height 0 ;
+                                                          nfo:width 7 ;
+                                                          a nfo:MediaStream;
+                                                          skos:prefLabel "15:ICO (7×0)".
+<ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=image/x-icon#/16> nfo:height 251 ;
+                                                          nfo:width 12 ;
+                                                          a nfo:MediaStream;
+                                                          skos:prefLabel "16:ICO (12×251)".
+<ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=image/x-icon#/2> nfo:height 0 ;
+                                                         nfo:width 0 ;
+                                                         a nfo:MediaStream;
+                                                         skos:prefLabel "2:ICO (0×0)".
+<ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=image/x-icon#/3> nfo:height 0 ;
+                                                         nfo:width 31 ;
+                                                         a nfo:MediaStream;
+                                                         skos:prefLabel "3:ICO (31×0)".
+<ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=image/x-icon#/4> nfo:height 173 ;
+                                                         nfo:width 229 ;
+                                                         a nfo:MediaStream;
+                                                         skos:prefLabel "4:ICO (229×173)".
+<ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=image/x-icon#/5> nfo:height 163 ;
+                                                         nfo:width 229 ;
+                                                         a nfo:MediaStream;
+                                                         skos:prefLabel "5:ICO (229×163)".
+<ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=image/x-icon#/6> nfo:height 192 ;
+                                                         nfo:width 217 ;
+                                                         a nfo:MediaStream;
+                                                         skos:prefLabel "6:ICO (217×192)".
+<ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=image/x-icon#/7> nfo:height 27 ;
+                                                         nfo:width 48 ;
+                                                         a nfo:MediaStream;
+                                                         skos:prefLabel "7:ICO (48×27)".
+<ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=image/x-icon#/8> nfo:height 0 ;
+                                                         nfo:width 0 ;
+                                                         a nfo:MediaStream;
+                                                         skos:prefLabel "8:ICO (0×0)".
+<ni:///mh;1QEQyrKlEP59SfZl1wfHwzoEDA?ct=image/x-icon#/9> nfo:height 78 ;
+                                                         nfo:width 112 ;
+                                                         a nfo:MediaStream;
+                                                         skos:prefLabel "9:ICO (112×78)".
+<urn:md5:CAB2A510FE7D49F665D707C7C33A040C> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "yrKlEP59SfZl1wfHwzoEDA=="^^xsd:base64Binary.

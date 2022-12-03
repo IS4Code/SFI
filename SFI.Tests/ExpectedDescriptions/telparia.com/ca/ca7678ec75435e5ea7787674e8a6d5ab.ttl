@@ -1,0 +1,29 @@
+@base <ni:///mh;1QEQd5ScqpgUJmGfGXLxByEb7A?ct=text/plain>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///Loops>;
+     nie:interpretedAs <ni:///mh;1QEQd5ScqpgUJmGfGXLxByEb7A?ct=text/plain>;
+     nfo:fileName "Loops";
+     nfo:fileSize 1407 ;
+     a nfo:FileDataObject.
+<ni:///mh;1QEQd5ScqpgUJmGfGXLxByEb7A?ct=text/plain> at:digest <urn:md5:77949CAA981426619F1972F107211BEC>;
+                                                    dcterms:extent "1407"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQd5ScqpgUJmGfGXLxByEb7A?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.37 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQd5ScqpgUJmGfGXLxByEb7A?ct=text/plain#line=,1> rdf:value """GAME{ BOARD_SETUP_FILE  YPIECESP 0 L 0 0 S 0 T 0 ;P 0 L 1 0 S 0 T 0 ;P 0 L 5 0 S 0 T 0 ;P 0 L 2 1 S 0 T 0 ;P 0 L 2 0 S 0 T 0 ;P 0 L 5 1 S 0 T 0 ;P 0 L 4 1 S 0 T 0 ;P 0 L 6 0 S 0 T 0 ;P 2 L 2 6 S 0 T 2 ;P 2 L 5 7 S 0 T 2 ;P 0 L 7 0 S 0 T 0 ;P 2 L 5 6 S 0 T 2 ;P 2 L 0 7 S 0 T 2 ;P 2 L 3 6 S 0 T 2 ;P 2 L 4 6 S 0 T 2 ;P 0 L 3 1 S 0 T 0 ;P 2 L 1 7 S 0 T 2 ;P 0 L 7 1 S 0 T 0 ;P 0 L 0 1 S 0 T 0 ;P 2 L 6 7 S 0 T 2 ;P 2 L 7 6 S 0 T 2 ;P 2 L 2 7 S 0 T 2 ;P 2 L 7 7 S 0 T 2 ;P 2 L 0 6 S 0 T 2""".
+<urn:md5:77949CAA981426619F1972F107211BEC> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "d5ScqpgUJmGfGXLxByEb7A=="^^xsd:base64Binary.

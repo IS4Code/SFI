@@ -1,0 +1,246 @@
+@base <ni:///mh;1QEQYhuHW_Axx-0aQOYFNSDNwA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///DBEAR.SCR>;
+     nie:interpretedAs <ni:///mh;1QEQYhuHW_Axx-0aQOYFNSDNwA?ct=application/octet-stream>;
+     nfo:fileName "DBEAR.SCR";
+     nfo:fileSize 83480 ;
+     a nfo:FileDataObject.
+<data:,%07PassErr%08Command1%06Image1> dcterms:extent "24"^^dt:byte;
+                                       a cnt:ContentAsText;
+                                       skos:prefLabel "text (24 B)"@en;
+                                       cnt:characterEncoding "us-ascii";
+                                       cnt:chars "␇PassErr␈Command1␆Image1"^^xsd:string.
+<data:,%0ADancinBear%06Timer1%08Picture1%06PicBox> dcterms:extent "34"^^dt:byte;
+                                                   a cnt:ContentAsText;
+                                                   skos:prefLabel "text (34 B)"@en;
+                                                   cnt:characterEncoding "us-ascii";
+                                                   cnt:chars """
+DancinBear␆Timer1␈Picture1␆PicBox"""^^xsd:string.
+<data:,%0CPassLockForm%05Text1%08Command2%08Command1%06Image1%06Label1> dcterms:extent "51"^^dt:byte;
+                                                                        a cnt:ContentAsText;
+                                                                        skos:prefLabel "text (51 B)"@en;
+                                                                        cnt:characterEncoding "us-ascii";
+                                                                        cnt:chars "␌PassLockForm␅Text1␈Command2␈Command1␆Image1␆Label1"^^xsd:string.
+<file:///DBEAR.SCR> at:extensionObject <https://w3id.org/uri4uri/suffix/scr>.
+<ni:///mh;1QEQ5KSGAMiZxt7urBxZFKJBMQ?ct=application/octet-stream> at:digest <urn:md5:E4A48600C899C6DEEEAC1C5914A24131>;
+                                                                  dcterms:extent "962"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (962 B)"@en.
+<ni:///mh;1QEQEXFGDRVBLpk_-Msv2WLl7A?ct=text/plain> at:digest <urn:md5:1171460D15412E993FF8CB2FD962E5EC>;
+                                                    dcterms:extent "92"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQEXFGDRVBLpk_-Msv2WLl7A?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (92 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQEXFGDRVBLpk_-Msv2WLl7A?ct=text/plain#line=,1> rdf:value """{\"@value\":\"\\bDbearCfg\\u0006Frame2\\bHScroll1\\u0006Label1\\u0006Check2\\u0004cmOK\\u0006Frame1\\u0006Check3\\u0006Check1\\bCommand1\\bPicture1\\bCommand2\"}"""^^rdf:JSON.
+<ni:///mh;1QEQEaMzjaX56c8wU0xNyNbuJQ?ct=application/octet-stream> at:digest <urn:md5:11A3338DA5F9E9CF30534C4DC8D6EE25>;
+                                                                  dcterms:extent "758"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQEaMzjaX56c8wU0xNyNbuJQ?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (758 B)"@en.
+<ni:///mh;1QEQEaMzjaX56c8wU0xNyNbuJQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:colorDepth 32 ;
+                                                   nfo:height 32 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 32 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (32×32)"@en.
+<ni:///mh;1QEQIAWmqVdczUIUr_YBvYqLrQ?ct=application/octet-stream> at:digest <urn:md5:2005A6A9575CCD4214AFF601BD8A8BAD>;
+                                                                  dcterms:extent "531"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (531 B)"@en.
+<ni:///mh;1QEQRJjKjqGP4v37xw2MJuD8sg?ct=application/octet-stream> at:digest <urn:md5:4498CA8EA18FE2FDFBC70D8C26E0FCB2>;
+                                                                  dcterms:extent "1606"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.57 KiB)"@en.
+<ni:///mh;1QEQYhuHW_Axx-0aQOYFNSDNwA?ct=application/octet-stream> at:digest <urn:md5:621B875BF031C7ED1A40E6053520CDC0>;
+                                                                  dcterms:extent "83480"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQYhuHW_Axx-0aQOYFNSDNwA?ct=application/vnd.microsoft.portable-executable>,
+                                                                                    <ni:///mh;1QEQYhuHW_Axx-0aQOYFNSDNwA?ct=application/x-msdownload;format=ne>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (81.52 KiB)"@en.
+<ni:///mh;1QEQYhuHW_Axx-0aQOYFNSDNwA?ct=application/vnd.microsoft.portable-executable> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
+                                                                                       a schema:MediaObject,
+                                                                                         schema:SoftwareApplication,
+                                                                                         nfo:Executable.
+<ni:///mh;1QEQYhuHW_Axx-0aQOYFNSDNwA?ct=application/x-msdownload;format=ne> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-msdownload;format=ne>;
+                                                                            nie:hasPart <ni:///mh;1QEQYhuHW_Axx-0aQOYFNSDNwA?ct=application/x-msdownload;format=ne#/Icon/1>,
+                                                                                        <ni:///mh;1QEQYhuHW_Axx-0aQOYFNSDNwA?ct=application/x-msdownload;format=ne#/UserData/1>,
+                                                                                        <ni:///mh;1QEQYhuHW_Axx-0aQOYFNSDNwA?ct=application/x-msdownload;format=ne#/UserData/2>,
+                                                                                        <ni:///mh;1QEQYhuHW_Axx-0aQOYFNSDNwA?ct=application/x-msdownload;format=ne#/UserData/3>,
+                                                                                        <ni:///mh;1QEQYhuHW_Axx-0aQOYFNSDNwA?ct=application/x-msdownload;format=ne#/UserData/4>,
+                                                                                        <ni:///mh;1QEQYhuHW_Axx-0aQOYFNSDNwA?ct=application/x-msdownload;format=ne#/UserData/5>,
+                                                                                        <ni:///mh;1QEQYhuHW_Axx-0aQOYFNSDNwA?ct=application/x-msdownload;format=ne#/UserData/6>,
+                                                                                        <ni:///mh;1QEQYhuHW_Axx-0aQOYFNSDNwA?ct=application/x-msdownload;format=ne#/UserData/7>,
+                                                                                        <ni:///mh;1QEQYhuHW_Axx-0aQOYFNSDNwA?ct=application/x-msdownload;format=ne#/UserData/8>,
+                                                                                        <ni:///mh;1QEQYhuHW_Axx-0aQOYFNSDNwA?ct=application/x-msdownload;format=ne#/UserData/9>,
+                                                                                        <ni:///mh;1QEQYhuHW_Axx-0aQOYFNSDNwA?ct=application/x-msdownload;format=ne#/UserData/10>,
+                                                                                        <ni:///mh;1QEQYhuHW_Axx-0aQOYFNSDNwA?ct=application/x-msdownload;format=ne#/UserData/11>,
+                                                                                        <ni:///mh;1QEQYhuHW_Axx-0aQOYFNSDNwA?ct=application/x-msdownload;format=ne#/UserData/12>;
+                                                                            a schema:MediaObject,
+                                                                              schema:SoftwareApplication,
+                                                                              nfo:Executable;
+                                                                            skos:prefLabel "EXE object (81.52 KiB)"@en.
+<ni:///mh;1QEQYhuHW_Axx-0aQOYFNSDNwA?ct=application/x-msdownload;format=ne#/Icon/1> at:pathObject <file:///1>;
+                                                                                    nie:interpretedAs <ni:///mh;1QEQEaMzjaX56c8wU0xNyNbuJQ?ct=application/octet-stream>;
+                                                                                    nfo:fileName "1";
+                                                                                    nfo:fileSize 768 ;
+                                                                                    a nfo:FileDataObject,
+                                                                                      nfo:EmbeddedFileDataObject;
+                                                                                    skos:prefLabel "/Icon/1".
+<ni:///mh;1QEQYhuHW_Axx-0aQOYFNSDNwA?ct=application/x-msdownload;format=ne#/UserData/1> at:pathObject <file:///1>;
+                                                                                        nie:interpretedAs <ni:///mh;1QEQoyEvcSB9HL-0IYsHhHfw8Q?ct=application/octet-stream>;
+                                                                                        nfo:fileName "1";
+                                                                                        nfo:fileSize 512 ;
+                                                                                        a nfo:FileDataObject,
+                                                                                          nfo:EmbeddedFileDataObject;
+                                                                                        skos:prefLabel "/UserData/1".
+<ni:///mh;1QEQYhuHW_Axx-0aQOYFNSDNwA?ct=application/x-msdownload;format=ne#/UserData/10> at:pathObject <file:///10>;
+                                                                                         nie:interpretedAs <data:,%0CPassLockForm%05Text1%08Command2%08Command1%06Image1%06Label1>;
+                                                                                         nfo:fileName "10";
+                                                                                         nfo:fileSize 256 ;
+                                                                                         a nfo:FileDataObject,
+                                                                                           nfo:EmbeddedFileDataObject;
+                                                                                         skos:prefLabel "/UserData/10".
+<ni:///mh;1QEQYhuHW_Axx-0aQOYFNSDNwA?ct=application/x-msdownload;format=ne#/UserData/11> at:pathObject <file:///11>;
+                                                                                         nie:interpretedAs <ni:///mh;1QEQ5KSGAMiZxt7urBxZFKJBMQ?ct=application/octet-stream>;
+                                                                                         nfo:fileName "11";
+                                                                                         nfo:fileSize 1024 ;
+                                                                                         a nfo:FileDataObject,
+                                                                                           nfo:EmbeddedFileDataObject;
+                                                                                         skos:prefLabel "/UserData/11".
+<ni:///mh;1QEQYhuHW_Axx-0aQOYFNSDNwA?ct=application/x-msdownload;format=ne#/UserData/12> at:pathObject <file:///12>;
+                                                                                         nie:interpretedAs <data:,%07PassErr%08Command1%06Image1>;
+                                                                                         nfo:fileName "12";
+                                                                                         nfo:fileSize 256 ;
+                                                                                         a nfo:FileDataObject,
+                                                                                           nfo:EmbeddedFileDataObject;
+                                                                                         skos:prefLabel "/UserData/12".
+<ni:///mh;1QEQYhuHW_Axx-0aQOYFNSDNwA?ct=application/x-msdownload;format=ne#/UserData/2> at:pathObject <file:///2>;
+                                                                                        nie:interpretedAs <ni:///mh;1QEQRJjKjqGP4v37xw2MJuD8sg?ct=application/octet-stream>;
+                                                                                        nfo:fileName "2";
+                                                                                        nfo:fileSize 1792 ;
+                                                                                        a nfo:FileDataObject,
+                                                                                          nfo:EmbeddedFileDataObject;
+                                                                                        skos:prefLabel "/UserData/2".
+<ni:///mh;1QEQYhuHW_Axx-0aQOYFNSDNwA?ct=application/x-msdownload;format=ne#/UserData/3> at:pathObject <file:///3>;
+                                                                                        nie:interpretedAs <ni:///mh;1QEQaNffOHIBVVQwI8fU8eJJpw?ct=application/octet-stream>;
+                                                                                        nfo:fileName "3";
+                                                                                        nfo:fileSize 49920 ;
+                                                                                        a nfo:FileDataObject,
+                                                                                          nfo:EmbeddedFileDataObject;
+                                                                                        skos:prefLabel "/UserData/3".
+<ni:///mh;1QEQYhuHW_Axx-0aQOYFNSDNwA?ct=application/x-msdownload;format=ne#/UserData/4> at:pathObject <file:///4>;
+                                                                                        nie:interpretedAs <data:,%0ADancinBear%06Timer1%08Picture1%06PicBox>;
+                                                                                        nfo:fileName "4";
+                                                                                        nfo:fileSize 256 ;
+                                                                                        a nfo:FileDataObject,
+                                                                                          nfo:EmbeddedFileDataObject;
+                                                                                        skos:prefLabel "/UserData/4".
+<ni:///mh;1QEQYhuHW_Axx-0aQOYFNSDNwA?ct=application/x-msdownload;format=ne#/UserData/5> at:pathObject <file:///5>;
+                                                                                        nie:interpretedAs <ni:///mh;1QEQrTA_5v4UiKU1Wmo8XxtS0Q?ct=application/octet-stream>;
+                                                                                        nfo:fileName "5";
+                                                                                        nfo:fileSize 8192 ;
+                                                                                        a nfo:FileDataObject,
+                                                                                          nfo:EmbeddedFileDataObject;
+                                                                                        skos:prefLabel "/UserData/5".
+<ni:///mh;1QEQYhuHW_Axx-0aQOYFNSDNwA?ct=application/x-msdownload;format=ne#/UserData/6> at:pathObject <file:///6>;
+                                                                                        nie:interpretedAs <ni:///mh;1QEQEXFGDRVBLpk_-Msv2WLl7A?ct=text/plain>;
+                                                                                        nfo:fileName "6";
+                                                                                        nfo:fileSize 256 ;
+                                                                                        a nfo:FileDataObject,
+                                                                                          nfo:EmbeddedFileDataObject;
+                                                                                        skos:prefLabel "/UserData/6".
+<ni:///mh;1QEQYhuHW_Axx-0aQOYFNSDNwA?ct=application/x-msdownload;format=ne#/UserData/7> at:pathObject <file:///7>;
+                                                                                        nie:interpretedAs <ni:///mh;1QEQIAWmqVdczUIUr_YBvYqLrQ?ct=application/octet-stream>;
+                                                                                        nfo:fileName "7";
+                                                                                        nfo:fileSize 768 ;
+                                                                                        a nfo:FileDataObject,
+                                                                                          nfo:EmbeddedFileDataObject;
+                                                                                        skos:prefLabel "/UserData/7".
+<ni:///mh;1QEQYhuHW_Axx-0aQOYFNSDNwA?ct=application/x-msdownload;format=ne#/UserData/8> at:pathObject <file:///8>;
+                                                                                        nie:interpretedAs <ni:///mh;1QEQiO8hPnjMr2GFLA6jqXVvvw?ct=text/plain>;
+                                                                                        nfo:fileName "8";
+                                                                                        nfo:fileSize 256 ;
+                                                                                        a nfo:FileDataObject,
+                                                                                          nfo:EmbeddedFileDataObject;
+                                                                                        skos:prefLabel "/UserData/8".
+<ni:///mh;1QEQYhuHW_Axx-0aQOYFNSDNwA?ct=application/x-msdownload;format=ne#/UserData/9> at:pathObject <file:///9>;
+                                                                                        nie:interpretedAs <ni:///mh;1QEQekXED5NBGf4u2qUvH6lkng?ct=application/octet-stream>;
+                                                                                        nfo:fileName "9";
+                                                                                        nfo:fileSize 1280 ;
+                                                                                        a nfo:FileDataObject,
+                                                                                          nfo:EmbeddedFileDataObject;
+                                                                                        skos:prefLabel "/UserData/9".
+<ni:///mh;1QEQaNffOHIBVVQwI8fU8eJJpw?ct=application/octet-stream> at:digest <urn:md5:68D7DF38720155543023C7D4F1E249A7>;
+                                                                  dcterms:extent "49806"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (48.64 KiB)"@en.
+<ni:///mh;1QEQekXED5NBGf4u2qUvH6lkng?ct=application/octet-stream> at:digest <urn:md5:7A45C40F934119FE2EDAA52F1FA9649E>;
+                                                                  dcterms:extent "1114"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.09 KiB)"@en.
+<ni:///mh;1QEQiO8hPnjMr2GFLA6jqXVvvw?ct=text/plain> at:digest <urn:md5:88EF213E78CCAF61852C0EA3A9756FBF>;
+                                                    dcterms:extent "78"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQiO8hPnjMr2GFLA6jqXVvvw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (78 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQiO8hPnjMr2GFLA6jqXVvvw?ct=text/plain#line=,1> rdf:value """{\"@value\":\"\\u000bSetPassForm\\u0005Text3\\u0005Text2\\u0005Text1\\bCommand3\\bCommand2\\bCommand1\\u0006Label3\\u0006Label2\\u0006Label1\"}"""^^rdf:JSON.
+<ni:///mh;1QEQoyEvcSB9HL-0IYsHhHfw8Q?ct=application/octet-stream> at:digest <urn:md5:A3212F71207D1CBFB4218B078477F0F1>;
+                                                                  dcterms:extent "451"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (451 B)"@en.
+<ni:///mh;1QEQrTA_5v4UiKU1Wmo8XxtS0Q?ct=application/octet-stream> at:digest <urn:md5:AD303FE6FE1488A5355A6A3C5F1B52D1>;
+                                                                  dcterms:extent "7971"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (7.78 KiB)"@en.
+<urn:md5:1171460D15412E993FF8CB2FD962E5EC> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "EXFGDRVBLpk/+Msv2WLl7A=="^^xsd:base64Binary.
+<urn:md5:11A3338DA5F9E9CF30534C4DC8D6EE25> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "EaMzjaX56c8wU0xNyNbuJQ=="^^xsd:base64Binary.
+<urn:md5:2005A6A9575CCD4214AFF601BD8A8BAD> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "IAWmqVdczUIUr/YBvYqLrQ=="^^xsd:base64Binary.
+<urn:md5:4498CA8EA18FE2FDFBC70D8C26E0FCB2> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "RJjKjqGP4v37xw2MJuD8sg=="^^xsd:base64Binary.
+<urn:md5:621B875BF031C7ED1A40E6053520CDC0> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "YhuHW/Axx+0aQOYFNSDNwA=="^^xsd:base64Binary.
+<urn:md5:68D7DF38720155543023C7D4F1E249A7> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "aNffOHIBVVQwI8fU8eJJpw=="^^xsd:base64Binary.
+<urn:md5:7A45C40F934119FE2EDAA52F1FA9649E> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "ekXED5NBGf4u2qUvH6lkng=="^^xsd:base64Binary.
+<urn:md5:88EF213E78CCAF61852C0EA3A9756FBF> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "iO8hPnjMr2GFLA6jqXVvvw=="^^xsd:base64Binary.
+<urn:md5:A3212F71207D1CBFB4218B078477F0F1> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "oyEvcSB9HL+0IYsHhHfw8Q=="^^xsd:base64Binary.
+<urn:md5:AD303FE6FE1488A5355A6A3C5F1B52D1> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "rTA/5v4UiKU1Wmo8XxtS0Q=="^^xsd:base64Binary.
+<urn:md5:E4A48600C899C6DEEEAC1C5914A24131> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "5KSGAMiZxt7urBxZFKJBMQ=="^^xsd:base64Binary.

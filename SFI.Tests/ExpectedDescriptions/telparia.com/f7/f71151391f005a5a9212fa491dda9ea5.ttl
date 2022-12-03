@@ -1,0 +1,98 @@
+@base <ni:///mh;1QEQoxLhFvvUEJpKv1HsCiWVyg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///VisioTest.vst>;
+     nie:interpretedAs <ni:///mh;1QEQoxLhFvvUEJpKv1HsCiWVyg?ct=application/octet-stream>;
+     nfo:fileName "VisioTest.vst";
+     nfo:fileSize 42496 ;
+     a nfo:FileDataObject.
+<data:;charset=x-iso-10646-ucs-4-3412;base64,/v8AAAQAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAA==> dcterms:extent "28"^^dt:byte;
+                                                                                       a cnt:ContentAsText;
+                                                                                       skos:prefLabel "text (28 B)"@en;
+                                                                                       cnt:characterEncoding "x-iso-10646-ucs-4-3412".
+<file:///VisioTest.vst> at:extensionObject <https://w3id.org/uri4uri/suffix/vst>.
+<ni:///mh;1QEQBNHwPJh4oNBkwhV4bJeHOQ?ct=application/octet-stream> at:digest <urn:md5:04D1F03C9878A0D064C215786C978739>;
+                                                                  dcterms:extent "23583"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (23.03 KiB)"@en.
+<ni:///mh;1QEQRUaXjb3OE2hMfq8iQQaURQ?ct=text/plain> at:digest <urn:md5:4546978DBDCE13684C7EAF2241069445>;
+                                                    dcterms:extent "13788"^^dt:byte;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (13.46 KiB)"@en;
+                                                    cnt:characterEncoding "x-iso-10646-ucs-4-3412".
+<ni:///mh;1QEQoxLhFvvUEJpKv1HsCiWVyg?ct=application/octet-stream> at:digest <urn:md5:A312E116FBD4109A4ABF51EC0A2595CA>;
+                                                                  dcterms:extent "42496"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQoxLhFvvUEJpKv1HsCiWVyg?ct=application/x-ole-storage>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (41.5 KiB)"@en.
+<ni:///mh;1QEQoxLhFvvUEJpKv1HsCiWVyg?ct=application/x-ole-storage> at:pathObject <file:///>;
+                                                                   schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
+                                                                   nie:interpretedAs <ni:///mh;1QEQoxLhFvvUEJpKv1HsCiWVyg?ct=application/x-ole-storage#/>;
+                                                                   nfo:fileLastModified "2014-04-03T20:02:49.553000Z"^^xsd:dateTime;
+                                                                   a schema:MediaObject,
+                                                                     nfo:EmbeddedFileDataObject;
+                                                                   skos:prefLabel "OLE object (41.5 KiB)"@en.
+<ni:///mh;1QEQoxLhFvvUEJpKv1HsCiWVyg?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+                                                                     a nfo:Folder;
+                                                                     skos:prefLabel "/".
+<ni:///mh;1QEQoxLhFvvUEJpKv1HsCiWVyg?ct=application/x-ole-storage#/%05DocumentSummaryInformation> at:pathObject <file:///%05DocumentSummaryInformation>;
+                                                                                                  nie:interpretedAs <ni:///mh;1QEQyRlBEvOhnL-qflC1jjr2Qw?ct=text/plain>;
+                                                                                                  nfo:belongsToContainer <ni:///mh;1QEQoxLhFvvUEJpKv1HsCiWVyg?ct=application/x-ole-storage#/>;
+                                                                                                  nfo:fileName """{\"@value\":\"\\u0005DocumentSummaryInformation\"}"""^^rdf:JSON;
+                                                                                                  nfo:fileSize 468 ;
+                                                                                                  a nfo:FileDataObject,
+                                                                                                    nfo:EmbeddedFileDataObject;
+                                                                                                  skos:prefLabel "/␅DocumentSummaryInformation".
+<ni:///mh;1QEQoxLhFvvUEJpKv1HsCiWVyg?ct=application/x-ole-storage#/%05SummaryInformation> at:pathObject <file:///%05SummaryInformation>;
+                                                                                          nie:interpretedAs <ni:///mh;1QEQRUaXjb3OE2hMfq8iQQaURQ?ct=text/plain>;
+                                                                                          nfo:belongsToContainer <ni:///mh;1QEQoxLhFvvUEJpKv1HsCiWVyg?ct=application/x-ole-storage#/>;
+                                                                                          nfo:fileName """{\"@value\":\"\\u0005SummaryInformation\"}"""^^rdf:JSON;
+                                                                                          nfo:fileSize 13788 ;
+                                                                                          a nfo:FileDataObject,
+                                                                                            nfo:EmbeddedFileDataObject;
+                                                                                          skos:prefLabel "/␅SummaryInformation".
+<ni:///mh;1QEQoxLhFvvUEJpKv1HsCiWVyg?ct=application/x-ole-storage#/VisioDocument> at:pathObject <file:///VisioDocument>;
+                                                                                  nie:interpretedAs <ni:///mh;1QEQBNHwPJh4oNBkwhV4bJeHOQ?ct=application/octet-stream>;
+                                                                                  nfo:belongsToContainer <ni:///mh;1QEQoxLhFvvUEJpKv1HsCiWVyg?ct=application/x-ole-storage#/>;
+                                                                                  nfo:fileName "VisioDocument";
+                                                                                  nfo:fileSize 23583 ;
+                                                                                  a nfo:FileDataObject,
+                                                                                    nfo:EmbeddedFileDataObject;
+                                                                                  skos:prefLabel "/VisioDocument".
+<ni:///mh;1QEQoxLhFvvUEJpKv1HsCiWVyg?ct=application/x-ole-storage#/VisioInformation> at:pathObject <file:///VisioInformation>;
+                                                                                     nie:interpretedAs <data:;charset=x-iso-10646-ucs-4-3412;base64,/v8AAAQAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAA==>;
+                                                                                     nfo:belongsToContainer <ni:///mh;1QEQoxLhFvvUEJpKv1HsCiWVyg?ct=application/x-ole-storage#/>;
+                                                                                     nfo:fileName "VisioInformation";
+                                                                                     nfo:fileSize 28 ;
+                                                                                     a nfo:FileDataObject,
+                                                                                       nfo:EmbeddedFileDataObject;
+                                                                                     skos:prefLabel "/VisioInformation".
+<ni:///mh;1QEQyRlBEvOhnL-qflC1jjr2Qw?ct=text/plain> at:digest <urn:md5:C9194112F3A19CBFAA7E50B58E3AF643>;
+                                                    dcterms:extent "468"^^dt:byte;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (468 B)"@en;
+                                                    cnt:characterEncoding "x-iso-10646-ucs-4-3412".
+<urn:md5:04D1F03C9878A0D064C215786C978739> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "BNHwPJh4oNBkwhV4bJeHOQ=="^^xsd:base64Binary.
+<urn:md5:4546978DBDCE13684C7EAF2241069445> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "RUaXjb3OE2hMfq8iQQaURQ=="^^xsd:base64Binary.
+<urn:md5:A312E116FBD4109A4ABF51EC0A2595CA> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "oxLhFvvUEJpKv1HsCiWVyg=="^^xsd:base64Binary.
+<urn:md5:C9194112F3A19CBFAA7E50B58E3AF643> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "yRlBEvOhnL+qflC1jjr2Qw=="^^xsd:base64Binary.

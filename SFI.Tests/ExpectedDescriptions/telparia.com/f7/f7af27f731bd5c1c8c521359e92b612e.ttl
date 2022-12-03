@@ -1,0 +1,27 @@
+@base <ni:///mh;1QEQU157qiNQ5xcbH35oX61u3w?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///_BINGO.PP>;
+     nie:interpretedAs <ni:///mh;1QEQU157qiNQ5xcbH35oX61u3w?ct=application/octet-stream>;
+     nfo:fileName "_BINGO.PP";
+     nfo:fileSize 97469 ;
+     a nfo:FileDataObject.
+<file:///_BINGO.PP> at:extensionObject <https://w3id.org/uri4uri/suffix/pp>.
+<ni:///mh;1QEQU157qiNQ5xcbH35oX61u3w?ct=application/octet-stream> at:digest <urn:md5:535E7BAA2350E7171B1F7E685FAD6EDF>;
+                                                                  dcterms:extent "97469"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (95.18 KiB)"@en.
+<urn:md5:535E7BAA2350E7171B1F7E685FAD6EDF> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "U157qiNQ5xcbH35oX61u3w=="^^xsd:base64Binary.

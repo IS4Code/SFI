@@ -1,0 +1,89 @@
+@base <ni:///mh;1QEQRVjH-KZRS1nPqKcXYZxBEA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///RAW_NIKON_P7000.NRW>;
+     nie:interpretedAs <ni:///mh;1QEQRVjH-KZRS1nPqKcXYZxBEA?ct=application/octet-stream>;
+     nfo:fileName "RAW_NIKON_P7000.NRW";
+     nfo:fileSize 16058749 ;
+     a nfo:FileDataObject.
+<file:///RAW_NIKON_P7000.NRW> at:extensionObject <https://w3id.org/uri4uri/suffix/nrw>.
+<ni:///mh;1QEQRVjH-KZRS1nPqKcXYZxBEA?ct=application/octet-stream> at:digest <urn:md5:4558C7F8A6514B59CFA8A717619C4110>;
+                                                                  dcterms:extent "16058749"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQRVjH-KZRS1nPqKcXYZxBEA?ct=application/octet-stream#arw>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (15.31 MiB)"@en.
+<ni:///mh;1QEQRVjH-KZRS1nPqKcXYZxBEA?ct=application/octet-stream#arw> nfo:bitDepth 12 ;
+                                                                      nfo:height 2742 ;
+                                                                      nfo:width 3664 ;
+                                                                      a schema:MediaObject,
+                                                                        exif:IFD;
+                                                                      exif:bitsPerSample 12 ;
+                                                                      exif:cfaPattern "0002000200010102"^^xsd:hexBinary;
+                                                                      exif:compression 6 ,
+                                                                                       1 ;
+                                                                      exif:contrast 0 ;
+                                                                      exif:customRendered 0 ;
+                                                                      exif:dateTime "2014-08-08T21:56:44.000000"^^xsd:dateTime;
+                                                                      exif:dateTimeDigitized "2014-08-08T21:56:44.000000"^^xsd:dateTime;
+                                                                      exif:dateTimeOriginal "2014-08-08T21:56:44.000000"^^xsd:dateTime;
+                                                                      exif:digitalZoomRatio 0 ;
+                                                                      exif:exposureBiasValue 0 ;
+                                                                      exif:exposureMode 0 ;
+                                                                      exif:exposureProgram 3 ;
+                                                                      exif:exposureTime "481/100"^^owl:rational;
+                                                                      exif:fNumber "14/5"^^owl:rational;
+                                                                      exif:fileSource "03"^^xsd:hexBinary;
+                                                                      exif:flash 16 ;
+                                                                      exif:focalLength 6 ;
+                                                                      exif:focalLengthIn35mmFilm 28 ;
+                                                                      exif:gainControl 2 ;
+                                                                      exif:imageLength 2742 ;
+                                                                      exif:imageWidth 3664 ;
+                                                                      exif:isoSpeedRatings 800 ;
+                                                                      exif:jpegInterchangeFormat 153600 ,
+                                                                                                 15237120 ;
+                                                                      exif:jpegInterchangeFormatLength 4022 ,
+                                                                                                       821629 ;
+                                                                      exif:lightSource 0 ;
+                                                                      exif:make "NIKON"^^xsd:string;
+                                                                      exif:maxApertureValue 3 ;
+                                                                      exif:meteringMode 6 ;
+                                                                      exif:model "COOLPIX P7000"^^xsd:string;
+                                                                      exif:orientation 1 ;
+                                                                      exif:photometricInterpretation 32803 ;
+                                                                      exif:planarConfiguration 1 ;
+                                                                      exif:resolutionUnit 2 ;
+                                                                      exif:rowsPerStrip 2742 ;
+                                                                      exif:samplesPerPixel 1 ;
+                                                                      exif:saturation 0 ;
+                                                                      exif:sceneCaptureType 0 ;
+                                                                      exif:sceneType "01"^^xsd:hexBinary;
+                                                                      exif:sensingMethod 2 ;
+                                                                      exif:sharpness 0 ;
+                                                                      exif:software "COOLPIX P7000V1.2"^^xsd:string;
+                                                                      exif:stripByteCounts 15073280 ;
+                                                                      exif:stripOffsets 163840 ;
+                                                                      exif:subjectDistanceRange 0 ;
+                                                                      exif:userComment "AAAAAAAAAAAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAA"^^xsd:base64Binary;
+                                                                      exif:whiteBalance 0 ;
+                                                                      exif:xResolution 300 ;
+                                                                      exif:yCbCrPositioning 2 ;
+                                                                      exif:yResolution 300 ;
+                                                                      skos:prefLabel "ARW object (3664×2742, 12-bit)"@en.
+<urn:md5:4558C7F8A6514B59CFA8A717619C4110> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "RVjH+KZRS1nPqKcXYZxBEA=="^^xsd:base64Binary.

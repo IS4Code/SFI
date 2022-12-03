@@ -1,0 +1,84 @@
+@base <ni:///mh;1QEQ8QvRPK84Lps6G7rjhQU5gA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///sm.tar.gz>;
+     nie:interpretedAs <ni:///mh;1QEQ8QvRPK84Lps6G7rjhQU5gA?ct=application/octet-stream>;
+     nfo:fileName "sm.tar.gz";
+     nfo:fileSize 75597 ;
+     a nfo:FileDataObject.
+<file:///sm-if09.jpg> at:extensionObject <https://w3id.org/uri4uri/suffix/jpg>.
+<file:///sm.tar> at:extensionObject <https://w3id.org/uri4uri/suffix/tar>.
+<file:///sm.tar.gz> at:extensionObject <https://w3id.org/uri4uri/suffix/gz>.
+<ni:///mh;1QEQ8QvRPK84Lps6G7rjhQU5gA?ct=application/gzip> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/gzip>;
+                                                          a schema:MediaObject,
+                                                            nfo:Archive;
+                                                          skos:prefLabel "GZ object (73.83 KiB)"@en.
+<ni:///mh;1QEQ8QvRPK84Lps6G7rjhQU5gA?ct=application/gzip#/sm.tar> at:pathObject <file:///sm.tar>;
+                                                                  nie:interpretedAs <ni:///mh;1QEQdV059owdSmMjiBvG8KMOrA?ct=application/octet-stream>;
+                                                                  nfo:belongsToContainer <ni:///mh;1QEQ8QvRPK84Lps6G7rjhQU5gA?ct=application/gzip>;
+                                                                  nfo:fileLastModified "2020-04-21T14:52:06.000000Z"^^xsd:dateTime;
+                                                                  nfo:fileName "sm.tar";
+                                                                  nfo:fileSize 81920 ;
+                                                                  a nfo:FileDataObject,
+                                                                    nfo:ArchiveItem;
+                                                                  skos:prefLabel "/sm.tar".
+<ni:///mh;1QEQ8QvRPK84Lps6G7rjhQU5gA?ct=application/octet-stream> at:digest <urn:md5:F10BD13CAF382E9B3A1BBAE385053980>;
+                                                                  dcterms:extent "75597"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ8QvRPK84Lps6G7rjhQU5gA?ct=application/gzip>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (73.83 KiB)"@en.
+<ni:///mh;1QEQdV059owdSmMjiBvG8KMOrA?ct=application/octet-stream> at:digest <urn:md5:755D39F68C1D4A6323881BC6F0A30EAC>;
+                                                                  dcterms:extent "81920"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQdV059owdSmMjiBvG8KMOrA?ct=application/x-tar>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (80 KiB)"@en.
+<ni:///mh;1QEQdV059owdSmMjiBvG8KMOrA?ct=application/x-tar> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-tar>;
+                                                           a schema:MediaObject,
+                                                             nfo:Archive;
+                                                           skos:prefLabel "TAR object (80 KiB)"@en.
+<ni:///mh;1QEQdV059owdSmMjiBvG8KMOrA?ct=application/x-tar#/sm-if09.jpg> at:pathObject <file:///sm-if09.jpg>;
+                                                                        nie:interpretedAs <ni:///mh;1QEQxd03fexy1nkHN61SCacwFw?ct=application/octet-stream>;
+                                                                        nfo:belongsToContainer <ni:///mh;1QEQdV059owdSmMjiBvG8KMOrA?ct=application/x-tar>;
+                                                                        nfo:fileLastModified "2009-12-07T22:08:12.000000+01:00"^^xsd:dateTime;
+                                                                        nfo:fileName "sm-if09.jpg";
+                                                                        nfo:fileSize 75580 ;
+                                                                        a nfo:FileDataObject,
+                                                                          nfo:ArchiveItem;
+                                                                        skos:prefLabel "/sm-if09.jpg".
+<ni:///mh;1QEQxd03fexy1nkHN61SCacwFw?ct=application/octet-stream> at:digest <urn:md5:C5DD377DEC72D6790737AD5209A73017>;
+                                                                  dcterms:extent "75580"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQxd03fexy1nkHN61SCacwFw?ct=image/jpeg>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (73.81 KiB)"@en.
+<ni:///mh;1QEQxd03fexy1nkHN61SCacwFw?ct=image/jpeg> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/jpeg>;
+                                                    nfo:colorDepth 24 ;
+                                                    nfo:height 792 ;
+                                                    nfo:horizontalResolution 96 ;
+                                                    nfo:verticalResolution 96 ;
+                                                    nfo:width 818 ;
+                                                    a schema:MediaObject,
+                                                      schema:ImageObject,
+                                                      nfo:Image;
+                                                    skos:prefLabel "JPG object (818×792)"@en,
+                                                                   "JPG object (73.81 KiB)"@en.
+<urn:md5:755D39F68C1D4A6323881BC6F0A30EAC> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "dV059owdSmMjiBvG8KMOrA=="^^xsd:base64Binary.
+<urn:md5:C5DD377DEC72D6790737AD5209A73017> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "xd03fexy1nkHN61SCacwFw=="^^xsd:base64Binary.
+<urn:md5:F10BD13CAF382E9B3A1BBAE385053980> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "8QvRPK84Lps6G7rjhQU5gA=="^^xsd:base64Binary.

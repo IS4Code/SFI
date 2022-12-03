@@ -1,0 +1,88 @@
+@base <ni:///mh;1QEQsvW9QfMzDXYHBAetxPr_RQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///example.heic>;
+     nie:interpretedAs <ni:///mh;1QEQsvW9QfMzDXYHBAetxPr_RQ?ct=application/octet-stream>;
+     nfo:fileName "example.heic";
+     nfo:fileSize 2049547 ;
+     a nfo:FileDataObject.
+<file:///example.heic> at:extensionObject <https://w3id.org/uri4uri/suffix/heic>.
+<ni:///mh;1QEQsvW9QfMzDXYHBAetxPr_RQ?ct=application/octet-stream> at:digest <urn:md5:B2F5BD41F3330D76070407ADC4FAFF45>;
+                                                                  dcterms:extent "2049547"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQsvW9QfMzDXYHBAetxPr_RQ?ct=image/heic>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.95 MiB)"@en.
+<ni:///mh;1QEQsvW9QfMzDXYHBAetxPr_RQ?ct=image/heic> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/heic>;
+                                                    nfo:hasMediaStream <ni:///mh;1QEQsvW9QfMzDXYHBAetxPr_RQ?ct=image/heic#/0>,
+                                                                       <ni:///mh;1QEQsvW9QfMzDXYHBAetxPr_RQ?ct=image/heic#/1>,
+                                                                       <ni:///mh;1QEQsvW9QfMzDXYHBAetxPr_RQ?ct=image/heic#/2>;
+                                                    a schema:MediaObject,
+                                                      exif:IFD,
+                                                      schema:ImageObject,
+                                                      nfo:Image;
+                                                    exif:apertureValue "2159/1273"^^owl:rational;
+                                                    exif:brightnessValue "11551/2459"^^owl:rational;
+                                                    exif:colorSpace 65535 ;
+                                                    exif:componentsConfiguration "01020300"^^xsd:hexBinary;
+                                                    exif:dateTime "2017-09-27T10:40:47.000000"^^xsd:dateTime;
+                                                    exif:dateTimeDigitized "2017-09-27T10:40:47.000000"^^xsd:dateTime;
+                                                    exif:dateTimeOriginal "2017-09-27T10:40:47.000000"^^xsd:dateTime;
+                                                    exif:exifVersion "30323231"^^xsd:hexBinary;
+                                                    exif:exposureBiasValue 0 ;
+                                                    exif:exposureMode 0 ;
+                                                    exif:exposureProgram 2 ;
+                                                    exif:exposureTime "1/33"^^owl:rational;
+                                                    exif:fNumber "9/5"^^owl:rational;
+                                                    exif:flash 24 ;
+                                                    exif:flashpixVersion "30313030"^^xsd:hexBinary;
+                                                    exif:focalLength "399/100"^^owl:rational;
+                                                    exif:focalLengthIn35mmFilm 28 ;
+                                                    exif:isoSpeedRatings 25 ;
+                                                    exif:make "Apple"^^xsd:string;
+                                                    exif:meteringMode 5 ;
+                                                    exif:model "iPad Pro (10.5-inch)"^^xsd:string;
+                                                    exif:orientation 1 ;
+                                                    exif:pixelXDimension 4032 ;
+                                                    exif:pixelYDimension 3024 ;
+                                                    exif:resolutionUnit 2 ;
+                                                    exif:sceneCaptureType 0 ;
+                                                    exif:sceneType "01"^^xsd:hexBinary;
+                                                    exif:sensingMethod 2 ;
+                                                    exif:shutterSpeedValue "7553/1493"^^owl:rational;
+                                                    exif:software "11.0"^^xsd:string;
+                                                    exif:subSecTimeDigitized "747"^^xsd:string;
+                                                    exif:subSecTimeOriginal "747"^^xsd:string;
+                                                    exif:whiteBalance 0 ;
+                                                    exif:xResolution 72 ;
+                                                    exif:yCbCrPositioning 1 ;
+                                                    exif:yResolution 72 ;
+                                                    skos:prefLabel "HEIC object (1.95 MiB)"@en.
+<ni:///mh;1QEQsvW9QfMzDXYHBAetxPr_RQ?ct=image/heic#/0> nfo:height 3024 ;
+                                                       nfo:width 4032 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "0:HEIC Primary Item Properties (4032×3024)".
+<ni:///mh;1QEQsvW9QfMzDXYHBAetxPr_RQ?ct=image/heic#/1> nfo:height 240 ;
+                                                       nfo:width 320 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "1:HEIC Thumbnail Properties (320×240)".
+<ni:///mh;1QEQsvW9QfMzDXYHBAetxPr_RQ?ct=image/heic#/2> nfo:height 3024 ;
+                                                       nfo:width 4032 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "2:Exif SubIFD (4032×3024)".
+<urn:md5:B2F5BD41F3330D76070407ADC4FAFF45> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "svW9QfMzDXYHBAetxPr/RQ=="^^xsd:base64Binary.

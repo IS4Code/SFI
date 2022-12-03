@@ -1,0 +1,594 @@
+@base <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///disp135.zip>;
+     nie:interpretedAs <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/octet-stream>;
+     nfo:fileName "disp135.zip";
+     nfo:fileSize 264919 ;
+     a nfo:FileDataObject.
+<file:///AHEADA.GRD> at:extensionObject <https://w3id.org/uri4uri/suffix/grd>.
+<file:///AHEADB.GRD> at:extensionObject <https://w3id.org/uri4uri/suffix/grd>.
+<file:///ATIULTRA.GRN> at:extensionObject <https://w3id.org/uri4uri/suffix/grn>.
+<file:///ATIVGA.GRN> at:extensionObject <https://w3id.org/uri4uri/suffix/grn>.
+<file:///CHIPS.GRD> at:extensionObject <https://w3id.org/uri4uri/suffix/grd>.
+<file:///COPYING.CB> at:extensionObject <https://w3id.org/uri4uri/suffix/cb>.
+<file:///COPYING.DJ> at:extensionObject <https://w3id.org/uri4uri/suffix/dj>.
+<file:///COPYING.GNU> at:extensionObject <https://w3id.org/uri4uri/suffix/gnu>.
+<file:///DISPLAY.EXE> at:extensionObject <https://w3id.org/uri4uri/suffix/exe>.
+<file:///DRIVER/AHEADA.GRD> at:pathObject <file:///AHEADA.GRD>.
+<file:///DRIVER/AHEADB.GRD> at:pathObject <file:///AHEADB.GRD>.
+<file:///DRIVER/ATIULTRA.GRN> at:pathObject <file:///ATIULTRA.GRN>.
+<file:///DRIVER/ATIVGA.GRN> at:pathObject <file:///ATIVGA.GRN>.
+<file:///DRIVER/CHIPS.GRD> at:pathObject <file:///CHIPS.GRD>.
+<file:///DRIVER/ET3000.GRN> at:pathObject <file:///ET3000.GRN>.
+<file:///DRIVER/ET4000.GRN> at:pathObject <file:///ET4000.GRN>.
+<file:///DRIVER/EVEREX.GRD> at:pathObject <file:///EVEREX.GRD>.
+<file:///DRIVER/GENOA.GRD> at:pathObject <file:///GENOA.GRD>.
+<file:///DRIVER/OAK.GRN> at:pathObject <file:///OAK.GRN>.
+<file:///DRIVER/PARADISE.GRD> at:pathObject <file:///PARADISE.GRD>.
+<file:///DRIVER/STDVGA.GRN> at:pathObject <file:///STDVGA.GRN>.
+<file:///DRIVER/STEALTH.GRN> at:pathObject <file:///STEALTH.GRN>.
+<file:///DRIVER/TR8900.GRN> at:pathObject <file:///TR8900.GRN>.
+<file:///DRIVER/VESA.GRN> at:pathObject <file:///VESA.GRN>.
+<file:///DRIVER/VIDEO7.GRD> at:pathObject <file:///VIDEO7.GRD>.
+<file:///DRIVER/WD90C3X.GRN> at:pathObject <file:///WD90C3X.GRN>.
+<file:///DRIVER/WDVANILA.GRN> at:pathObject <file:///WDVANILA.GRN>.
+<file:///ET3000.GRN> at:extensionObject <https://w3id.org/uri4uri/suffix/grn>.
+<file:///ET4000.GRN> at:extensionObject <https://w3id.org/uri4uri/suffix/grn>.
+<file:///EVEREX.GRD> at:extensionObject <https://w3id.org/uri4uri/suffix/grd>.
+<file:///GENOA.GRD> at:extensionObject <https://w3id.org/uri4uri/suffix/grd>.
+<file:///GO32.EXE> at:extensionObject <https://w3id.org/uri4uri/suffix/exe>.
+<file:///MATCH.DOC> at:extensionObject <https://w3id.org/uri4uri/suffix/doc>.
+<file:///OAK.GRN> at:extensionObject <https://w3id.org/uri4uri/suffix/grn>.
+<file:///PARADISE.GRD> at:extensionObject <https://w3id.org/uri4uri/suffix/grd>.
+<file:///READ.ME> at:extensionObject <https://w3id.org/uri4uri/suffix/me>.
+<file:///README.WD> at:extensionObject <https://w3id.org/uri4uri/suffix/wd>.
+<file:///RUNME.BAT> at:extensionObject <https://w3id.org/uri4uri/suffix/bat>.
+<file:///STDVGA.GRN> at:extensionObject <https://w3id.org/uri4uri/suffix/grn>.
+<file:///STEALTH.GRN> at:extensionObject <https://w3id.org/uri4uri/suffix/grn>.
+<file:///TR8900.GRN> at:extensionObject <https://w3id.org/uri4uri/suffix/grn>.
+<file:///VESA.GRN> at:extensionObject <https://w3id.org/uri4uri/suffix/grn>.
+<file:///VIDEO7.GRD> at:extensionObject <https://w3id.org/uri4uri/suffix/grd>.
+<file:///WD90C3X.GRN> at:extensionObject <https://w3id.org/uri4uri/suffix/grn>.
+<file:///WDVANILA.GRN> at:extensionObject <https://w3id.org/uri4uri/suffix/grn>.
+<file:///disp135.zip> at:extensionObject <https://w3id.org/uri4uri/suffix/zip>.
+<ni:///mh;1QEQ0RPyrsZ_MEXTDBEu5cddqg?ct=application/octet-stream> at:digest <urn:md5:D113F2AEC67F3045D30C112EE5C75DAA>;
+                                                                  dcterms:extent "331"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (331 B)"@en.
+<ni:///mh;1QEQ4PUVg30w7p_geS9IlJJHlw?ct=application/octet-stream> at:digest <urn:md5:E0F515837D30EE9FE0792F4894924797>;
+                                                                  dcterms:extent "530"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (530 B)"@en.
+<ni:///mh;1QEQ4ly0UlxL8C0TUlBvZ7SodQ?ct=application/octet-stream> at:digest <urn:md5:E25CB4525C4BF02D1352506F67B4A875>;
+                                                                  dcterms:extent "609"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (609 B)"@en.
+<ni:///mh;1QEQ8NE83fQ7kDSWH08ggsjVWg?ct=application/octet-stream> at:digest <urn:md5:F0D13CDDF43B9034961F4F2082C8D55A>;
+                                                                  dcterms:extent "565"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (565 B)"@en.
+<ni:///mh;1QEQ9JNl-eAByLo-Y8m-SeobsA?ct=text/plain> at:digest <urn:md5:F49365F9E001C8BA3E63C9BE49EA1BB0>;
+                                                    dcterms:extent "4360"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQ9JNl-eAByLo-Y8m-SeobsA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (4.26 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQ9JNl-eAByLo-Y8m-SeobsA?ct=text/plain#line=,1> rdf:value """This is file \"copying.cb\".""".
+<ni:///mh;1QEQBAS8R7eXxydBtiaNzwKy2Q?ct=application/octet-stream> at:digest <urn:md5:0404BC47B797C72741B6268DCF02B2D9>;
+                                                                  dcterms:extent "578"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (578 B)"@en.
+<ni:///mh;1QEQBHIQg5lkbtuA1nPT5EXhWQ?ct=application/octet-stream> at:digest <urn:md5:0472108399646EDB80D673D3E445E159>;
+                                                                  dcterms:extent "624"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (624 B)"@en.
+<ni:///mh;1QEQDtIIIyBoiVS6DewAaY2TbQ?ct=application/octet-stream> at:digest <urn:md5:0ED2082320688954BA0DEC00698D936D>;
+                                                                  dcterms:extent "502"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (502 B)"@en.
+<ni:///mh;1QEQJTGyItfr1j4Iwe7ZqGeiGw?ct=application/octet-stream> at:digest <urn:md5:2531B222D7EBD63E08C1EED9A867A21B>;
+                                                                  dcterms:extent "499"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (499 B)"@en.
+<ni:///mh;1QEQKK0SZ8yDaV9VNKKGduLotQ?ct=text/plain> at:digest <urn:md5:28AD1267CC83695F5534A28676E2E8B5>;
+                                                    dcterms:extent "988"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQKK0SZ8yDaV9VNKKGduLotQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (988 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQKK0SZ8yDaV9VNKKGduLotQ?ct=text/plain#line=,1> rdf:value "@echo off".
+<ni:///mh;1QEQLeB-pNkhaxrq9FVCraHe_g?ct=text/plain> at:digest <urn:md5:2DE07EA4D9216B1AEAF45542ADA1DEFE>;
+                                                    dcterms:extent "2648"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQLeB-pNkhaxrq9FVCraHe_g?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (2.59 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQLeB-pNkhaxrq9FVCraHe_g?ct=text/plain#line=,1> rdf:value """This is the file \"copying.dj\".""".
+<ni:///mh;1QEQLtcE5qpaDUkOrPvev9dCew?ct=text/plain> at:digest <urn:md5:2ED704E6AA5A0D490EACFBDEBFD7427B>;
+                                                    dcterms:extent "5150"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQLtcE5qpaDUkOrPvev9dCew?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (5.03 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQLtcE5qpaDUkOrPvev9dCew?ct=text/plain#line=,1> rdf:value "Version 1.35: (4/23/93)".
+<ni:///mh;1QEQQVK9nIpO4YvTF7YabI6Sow?ct=application/octet-stream> at:digest <urn:md5:4152BD9C8A4EE18BD317B61A6C8E92A3>;
+                                                                  dcterms:extent "267"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (267 B)"@en.
+<ni:///mh;1QEQSlwQm05UJCI_4jbNZUJQyQ?ct=application/octet-stream> at:digest <urn:md5:4A5C109B4E5424223FE236CD654250C9>;
+                                                                  dcterms:extent "282"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (282 B)"@en.
+<ni:///mh;1QEQT0vuSk1lPCjkbSBFfEDSpA?ct=text/plain> at:digest <urn:md5:4F4BEE4A4D653C28E46D20457C40D2A4>;
+                                                    dcterms:extent "12737"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQT0vuSk1lPCjkbSBFfEDSpA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (12.44 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQT0vuSk1lPCjkbSBFfEDSpA?ct=text/plain#line=,1> rdf:value "".
+<ni:///mh;1QEQYyYwoqwpNDi-YmF2x_nKEg?ct=application/octet-stream> at:digest <urn:md5:632630A2AC293438BE626176C7F9CA12>;
+                                                                  dcterms:extent "617"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (617 B)"@en.
+<ni:///mh;1QEQae3QMbybm6pXX_8Xm_GiGw?ct=application/octet-stream> at:digest <urn:md5:69EDD031BC9B9BAA575FFF179BF1A21B>;
+                                                                  dcterms:extent "311"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (311 B)"@en.
+<ni:///mh;1QEQd0LpWZjUJ-YRXNS8t6Daxw?ct=application/octet-stream> at:digest <urn:md5:7742E95998D427E6115CD4BCB7A0DAC7>;
+                                                                  dcterms:extent "50524"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQd0LpWZjUJ-YRXNS8t6Daxw?ct=application/x-msdos-program>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (49.34 KiB)"@en.
+<ni:///mh;1QEQd0LpWZjUJ-YRXNS8t6Daxw?ct=application/x-msdos-program> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-msdos-program>;
+                                                                     a schema:MediaObject,
+                                                                       schema:SoftwareApplication,
+                                                                       nfo:Executable;
+                                                                     skos:prefLabel "EXE object (49.34 KiB)"@en.
+<ni:///mh;1QEQd13EZ1YQVxzc_JSkdWk7uw?ct=application/octet-stream> at:digest <urn:md5:775DC4675610571CDCFC94A475693BBB>;
+                                                                  dcterms:extent "1192"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.16 KiB)"@en.
+<ni:///mh;1QEQemF3tWGfW4CiSv7e8Dhk4g?ct=text/plain> at:digest <urn:md5:7A6177B5619F5B80A24AFEDEF03864E2>;
+                                                    dcterms:extent "774"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQemF3tWGfW4CiSv7e8Dhk4g?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (774 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQemF3tWGfW4CiSv7e8Dhk4g?ct=text/plain#line=,1> rdf:value "Hi,".
+<ni:///mh;1QEQgR7z9D8RSyv4RAlgKTKstQ?ct=text/plain> at:digest <urn:md5:811EF3F43F114B2BF84409602932ACB5>;
+                                                    dcterms:extent "2646"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQgR7z9D8RSyv4RAlgKTKstQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (2.58 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQgR7z9D8RSyv4RAlgKTKstQ?ct=text/plain#line=,1> rdf:value "".
+<ni:///mh;1QEQhv3mugiCt3eWThD3SnNXsA?ct=application/octet-stream> at:digest <urn:md5:86FDE6BA0882B777964E10F74A7357B0>;
+                                                                  dcterms:extent "287"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (287 B)"@en.
+<ni:///mh;1QEQiUW0tfxbGzZJHhfzShHeYg?ct=application/octet-stream> at:digest <urn:md5:8945B4B5FC5B1B36491E17F34A11DE62>;
+                                                                  dcterms:extent "868"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (868 B)"@en.
+<ni:///mh;1QEQjBKXOYgJYGgBhMozvvXFZw?ct=application/octet-stream> at:digest <urn:md5:8C129739880960680184CA33BEF5C567>;
+                                                                  dcterms:extent "263"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (263 B)"@en.
+<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/octet-stream> at:digest <urn:md5:9618A634B9D3CB7638E0ED60ED820548>;
+                                                                  dcterms:extent "264919"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (258.71 KiB)"@en.
+<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip> at:pathObject <file:///>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
+                                                         nie:interpretedAs <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/>;
+                                                         a schema:MediaObject,
+                                                           nfo:Archive;
+                                                         skos:prefLabel "ZIP object (258.71 KiB)"@en.
+<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/> at:pathObject <file:///./>;
+                                                           a nfo:Folder;
+                                                           skos:prefLabel "/".
+<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/CHANGE> at:pathObject <file:///CHANGE>;
+                                                                 nie:interpretedAs <ni:///mh;1QEQLtcE5qpaDUkOrPvev9dCew?ct=text/plain>;
+                                                                 nfo:belongsToContainer <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/>;
+                                                                 nfo:fileLastModified "1993-04-23T09:16:14.000000+02:00"^^xsd:dateTime;
+                                                                 nfo:fileName "CHANGE";
+                                                                 nfo:fileSize 5150 ;
+                                                                 a nfo:FileDataObject,
+                                                                   nfo:ArchiveItem;
+                                                                 skos:prefLabel "/CHANGE".
+<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/COPYING.CB> at:pathObject <file:///COPYING.CB>;
+                                                                     nie:interpretedAs <ni:///mh;1QEQ9JNl-eAByLo-Y8m-SeobsA?ct=text/plain>;
+                                                                     nfo:belongsToContainer <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/>;
+                                                                     nfo:fileLastModified "1992-08-12T15:27:22.000000+02:00"^^xsd:dateTime;
+                                                                     nfo:fileName "COPYING.CB";
+                                                                     nfo:fileSize 4360 ;
+                                                                     a nfo:FileDataObject,
+                                                                       nfo:ArchiveItem;
+                                                                     skos:prefLabel "/COPYING.CB".
+<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/COPYING.DJ> at:pathObject <file:///COPYING.DJ>;
+                                                                     nie:interpretedAs <ni:///mh;1QEQLeB-pNkhaxrq9FVCraHe_g?ct=text/plain>;
+                                                                     nfo:belongsToContainer <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/>;
+                                                                     nfo:fileLastModified "1992-03-11T20:46:00.000000+01:00"^^xsd:dateTime;
+                                                                     nfo:fileName "COPYING.DJ";
+                                                                     nfo:fileSize 2648 ;
+                                                                     a nfo:FileDataObject,
+                                                                       nfo:ArchiveItem;
+                                                                     skos:prefLabel "/COPYING.DJ".
+<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/COPYING.GNU> at:pathObject <file:///COPYING.GNU>;
+                                                                      nie:interpretedAs <ni:///mh;1QEQT0vuSk1lPCjkbSBFfEDSpA?ct=text/plain>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/>;
+                                                                      nfo:fileLastModified "1991-03-06T22:12:12.000000+01:00"^^xsd:dateTime;
+                                                                      nfo:fileName "COPYING.GNU";
+                                                                      nfo:fileSize 12737 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/COPYING.GNU".
+<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DISPLAY.EXE> at:pathObject <file:///DISPLAY.EXE>;
+                                                                      nie:interpretedAs <ni:///mh;1QEQsyO0i_uHHVH5HtF1QONhPA?ct=application/octet-stream>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/>;
+                                                                      nfo:fileLastModified "1993-04-23T09:16:00.000000+02:00"^^xsd:dateTime;
+                                                                      nfo:fileName "DISPLAY.EXE";
+                                                                      nfo:fileSize 510464 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/DISPLAY.EXE".
+<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER> at:pathObject <file:///DRIVER>;
+                                                                 nie:interpretedAs <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/>;
+                                                                 nfo:belongsToContainer <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/>;
+                                                                 nfo:fileLastModified "1993-05-19T07:34:24.000000+02:00"^^xsd:dateTime;
+                                                                 nfo:fileName "DRIVER";
+                                                                 a nfo:FileDataObject,
+                                                                   nfo:ArchiveItem;
+                                                                 skos:prefLabel "/DRIVER".
+<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/> at:pathObject <file:///DRIVER/>;
+                                                                  a nfo:Folder;
+                                                                  skos:prefLabel "/DRIVER/".
+<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/AHEADA.GRD> at:pathObject <file:///DRIVER/AHEADA.GRD>;
+                                                                            nie:interpretedAs <ni:///mh;1QEQhv3mugiCt3eWThD3SnNXsA?ct=application/octet-stream>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/>;
+                                                                            nfo:fileLastModified "1991-03-20T21:30:06.000000+01:00"^^xsd:dateTime;
+                                                                            nfo:fileName "AHEADA.GRD";
+                                                                            nfo:fileSize 287 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/DRIVER/AHEADA.GRD".
+<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/AHEADB.GRD> at:pathObject <file:///DRIVER/AHEADB.GRD>;
+                                                                            nie:interpretedAs <ni:///mh;1QEQQVK9nIpO4YvTF7YabI6Sow?ct=application/octet-stream>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/>;
+                                                                            nfo:fileLastModified "1991-03-20T21:30:12.000000+01:00"^^xsd:dateTime;
+                                                                            nfo:fileName "AHEADB.GRD";
+                                                                            nfo:fileSize 267 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/DRIVER/AHEADB.GRD".
+<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/ATIULTRA.GRN> at:pathObject <file:///DRIVER/ATIULTRA.GRN>;
+                                                                              nie:interpretedAs <ni:///mh;1QEQd13EZ1YQVxzc_JSkdWk7uw?ct=application/octet-stream>;
+                                                                              nfo:belongsToContainer <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/>;
+                                                                              nfo:fileLastModified "1992-08-12T15:27:24.000000+02:00"^^xsd:dateTime;
+                                                                              nfo:fileName "ATIULTRA.GRN";
+                                                                              nfo:fileSize 1192 ;
+                                                                              a nfo:FileDataObject,
+                                                                                nfo:ArchiveItem;
+                                                                              skos:prefLabel "/DRIVER/ATIULTRA.GRN".
+<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/ATIVGA.GRN> at:pathObject <file:///DRIVER/ATIVGA.GRN>;
+                                                                            nie:interpretedAs <ni:///mh;1QEQ8NE83fQ7kDSWH08ggsjVWg?ct=application/octet-stream>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/>;
+                                                                            nfo:fileLastModified "1992-08-12T15:27:24.000000+02:00"^^xsd:dateTime;
+                                                                            nfo:fileName "ATIVGA.GRN";
+                                                                            nfo:fileSize 565 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/DRIVER/ATIVGA.GRN".
+<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/CHIPS.GRD> at:pathObject <file:///DRIVER/CHIPS.GRD>;
+                                                                           nie:interpretedAs <ni:///mh;1QEQSlwQm05UJCI_4jbNZUJQyQ?ct=application/octet-stream>;
+                                                                           nfo:belongsToContainer <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/>;
+                                                                           nfo:fileLastModified "1991-03-20T21:35:44.000000+01:00"^^xsd:dateTime;
+                                                                           nfo:fileName "CHIPS.GRD";
+                                                                           nfo:fileSize 282 ;
+                                                                           a nfo:FileDataObject,
+                                                                             nfo:ArchiveItem;
+                                                                           skos:prefLabel "/DRIVER/CHIPS.GRD".
+<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/ET3000.GRN> at:pathObject <file:///DRIVER/ET3000.GRN>;
+                                                                            nie:interpretedAs <ni:///mh;1QEQ4PUVg30w7p_geS9IlJJHlw?ct=application/octet-stream>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/>;
+                                                                            nfo:fileLastModified "1992-12-03T22:25:52.000000+01:00"^^xsd:dateTime;
+                                                                            nfo:fileName "ET3000.GRN";
+                                                                            nfo:fileSize 530 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/DRIVER/ET3000.GRN".
+<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/ET4000.GRN> at:pathObject <file:///DRIVER/ET4000.GRN>;
+                                                                            nie:interpretedAs <ni:///mh;1QEQiUW0tfxbGzZJHhfzShHeYg?ct=application/octet-stream>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/>;
+                                                                            nfo:fileLastModified "1993-03-29T14:11:30.000000+02:00"^^xsd:dateTime;
+                                                                            nfo:fileName "ET4000.GRN";
+                                                                            nfo:fileSize 868 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/DRIVER/ET4000.GRN".
+<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/EVEREX.GRD> at:pathObject <file:///DRIVER/EVEREX.GRD>;
+                                                                            nie:interpretedAs <ni:///mh;1QEQae3QMbybm6pXX_8Xm_GiGw?ct=application/octet-stream>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/>;
+                                                                            nfo:fileLastModified "1991-03-20T21:30:26.000000+01:00"^^xsd:dateTime;
+                                                                            nfo:fileName "EVEREX.GRD";
+                                                                            nfo:fileSize 311 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/DRIVER/EVEREX.GRD".
+<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/GENOA.GRD> at:pathObject <file:///DRIVER/GENOA.GRD>;
+                                                                           nie:interpretedAs <ni:///mh;1QEQr25MqAATkGkh29WlSjMk9g?ct=application/octet-stream>;
+                                                                           nfo:belongsToContainer <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/>;
+                                                                           nfo:fileLastModified "1991-06-22T21:10:04.000000+02:00"^^xsd:dateTime;
+                                                                           nfo:fileName "GENOA.GRD";
+                                                                           nfo:fileSize 285 ;
+                                                                           a nfo:FileDataObject,
+                                                                             nfo:ArchiveItem;
+                                                                           skos:prefLabel "/DRIVER/GENOA.GRD".
+<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/OAK.GRN> at:pathObject <file:///DRIVER/OAK.GRN>;
+                                                                         nie:interpretedAs <ni:///mh;1QEQJTGyItfr1j4Iwe7ZqGeiGw?ct=application/octet-stream>;
+                                                                         nfo:belongsToContainer <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/>;
+                                                                         nfo:fileLastModified "1992-12-07T06:32:14.000000+01:00"^^xsd:dateTime;
+                                                                         nfo:fileName "OAK.GRN";
+                                                                         nfo:fileSize 499 ;
+                                                                         a nfo:FileDataObject,
+                                                                           nfo:ArchiveItem;
+                                                                         skos:prefLabel "/DRIVER/OAK.GRN".
+<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/PARADISE.GRD> at:pathObject <file:///DRIVER/PARADISE.GRD>;
+                                                                              nie:interpretedAs <ni:///mh;1QEQjBKXOYgJYGgBhMozvvXFZw?ct=application/octet-stream>;
+                                                                              nfo:belongsToContainer <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/>;
+                                                                              nfo:fileLastModified "1991-03-20T21:30:34.000000+01:00"^^xsd:dateTime;
+                                                                              nfo:fileName "PARADISE.GRD";
+                                                                              nfo:fileSize 263 ;
+                                                                              a nfo:FileDataObject,
+                                                                                nfo:ArchiveItem;
+                                                                              skos:prefLabel "/DRIVER/PARADISE.GRD".
+<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/STDVGA.GRN> at:pathObject <file:///DRIVER/STDVGA.GRN>;
+                                                                            nie:interpretedAs <ni:///mh;1QEQDtIIIyBoiVS6DewAaY2TbQ?ct=application/octet-stream>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/>;
+                                                                            nfo:fileLastModified "1992-08-12T15:27:24.000000+02:00"^^xsd:dateTime;
+                                                                            nfo:fileName "STDVGA.GRN";
+                                                                            nfo:fileSize 502 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/DRIVER/STDVGA.GRN".
+<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/STEALTH.GRN> at:pathObject <file:///DRIVER/STEALTH.GRN>;
+                                                                             nie:interpretedAs <ni:///mh;1QEQYyYwoqwpNDi-YmF2x_nKEg?ct=application/octet-stream>;
+                                                                             nfo:belongsToContainer <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/>;
+                                                                             nfo:fileLastModified "1992-08-12T15:27:24.000000+02:00"^^xsd:dateTime;
+                                                                             nfo:fileName "STEALTH.GRN";
+                                                                             nfo:fileSize 617 ;
+                                                                             a nfo:FileDataObject,
+                                                                               nfo:ArchiveItem;
+                                                                             skos:prefLabel "/DRIVER/STEALTH.GRN".
+<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/TR8900.GRN> at:pathObject <file:///DRIVER/TR8900.GRN>;
+                                                                            nie:interpretedAs <ni:///mh;1QEQBAS8R7eXxydBtiaNzwKy2Q?ct=application/octet-stream>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/>;
+                                                                            nfo:fileLastModified "1992-08-12T15:27:24.000000+02:00"^^xsd:dateTime;
+                                                                            nfo:fileName "TR8900.GRN";
+                                                                            nfo:fileSize 578 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/DRIVER/TR8900.GRN".
+<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/VESA.GRN> at:pathObject <file:///DRIVER/VESA.GRN>;
+                                                                          nie:interpretedAs <ni:///mh;1QEQs2clkzrNDFz7NKFuNfzFFw?ct=application/octet-stream>;
+                                                                          nfo:belongsToContainer <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/>;
+                                                                          nfo:fileLastModified "1993-03-29T20:46:36.000000+02:00"^^xsd:dateTime;
+                                                                          nfo:fileName "VESA.GRN";
+                                                                          nfo:fileSize 1039 ;
+                                                                          a nfo:FileDataObject,
+                                                                            nfo:ArchiveItem;
+                                                                          skos:prefLabel "/DRIVER/VESA.GRN".
+<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/VIDEO7.GRD> at:pathObject <file:///DRIVER/VIDEO7.GRD>;
+                                                                            nie:interpretedAs <ni:///mh;1QEQ0RPyrsZ_MEXTDBEu5cddqg?ct=application/octet-stream>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/>;
+                                                                            nfo:fileLastModified "1991-03-20T21:30:44.000000+01:00"^^xsd:dateTime;
+                                                                            nfo:fileName "VIDEO7.GRD";
+                                                                            nfo:fileSize 331 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/DRIVER/VIDEO7.GRD".
+<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/WD90C3X.GRN> at:pathObject <file:///DRIVER/WD90C3X.GRN>;
+                                                                             nie:interpretedAs <ni:///mh;1QEQBHIQg5lkbtuA1nPT5EXhWQ?ct=application/octet-stream>;
+                                                                             nfo:belongsToContainer <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/>;
+                                                                             nfo:fileLastModified "1993-04-09T20:11:08.000000+02:00"^^xsd:dateTime;
+                                                                             nfo:fileName "WD90C3X.GRN";
+                                                                             nfo:fileSize 624 ;
+                                                                             a nfo:FileDataObject,
+                                                                               nfo:ArchiveItem;
+                                                                             skos:prefLabel "/DRIVER/WD90C3X.GRN".
+<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/WDVANILA.GRN> at:pathObject <file:///DRIVER/WDVANILA.GRN>;
+                                                                              nie:interpretedAs <ni:///mh;1QEQ4ly0UlxL8C0TUlBvZ7SodQ?ct=application/octet-stream>;
+                                                                              nfo:belongsToContainer <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/DRIVER/>;
+                                                                              nfo:fileLastModified "1993-04-12T20:10:38.000000+02:00"^^xsd:dateTime;
+                                                                              nfo:fileName "WDVANILA.GRN";
+                                                                              nfo:fileSize 609 ;
+                                                                              a nfo:FileDataObject,
+                                                                                nfo:ArchiveItem;
+                                                                              skos:prefLabel "/DRIVER/WDVANILA.GRN".
+<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/EMU387> at:pathObject <file:///EMU387>;
+                                                                 nie:interpretedAs <ni:///mh;1QEQzySOmOnZeumnQrwGTfgWRw?ct=application/octet-stream>;
+                                                                 nfo:belongsToContainer <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/>;
+                                                                 nfo:fileLastModified "1992-10-27T21:51:08.000000+01:00"^^xsd:dateTime;
+                                                                 nfo:fileName "EMU387";
+                                                                 nfo:fileSize 42766 ;
+                                                                 a nfo:FileDataObject,
+                                                                   nfo:ArchiveItem;
+                                                                 skos:prefLabel "/EMU387".
+<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/GO32.EXE> at:pathObject <file:///GO32.EXE>;
+                                                                   nie:interpretedAs <ni:///mh;1QEQd0LpWZjUJ-YRXNS8t6Daxw?ct=application/octet-stream>;
+                                                                   nfo:belongsToContainer <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/>;
+                                                                   nfo:fileLastModified "1993-03-29T19:11:28.000000+02:00"^^xsd:dateTime;
+                                                                   nfo:fileName "GO32.EXE";
+                                                                   nfo:fileSize 50524 ;
+                                                                   a nfo:FileDataObject,
+                                                                     nfo:ArchiveItem;
+                                                                   skos:prefLabel "/GO32.EXE".
+<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/MATCH.DOC> at:pathObject <file:///MATCH.DOC>;
+                                                                    nie:interpretedAs <ni:///mh;1QEQgR7z9D8RSyv4RAlgKTKstQ?ct=text/plain>;
+                                                                    nfo:belongsToContainer <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/>;
+                                                                    nfo:fileLastModified "1993-01-10T14:42:04.000000+01:00"^^xsd:dateTime;
+                                                                    nfo:fileName "MATCH.DOC";
+                                                                    nfo:fileSize 2646 ;
+                                                                    a nfo:FileDataObject,
+                                                                      nfo:ArchiveItem;
+                                                                    skos:prefLabel "/MATCH.DOC".
+<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/READ.ME> at:pathObject <file:///READ.ME>;
+                                                                  nie:interpretedAs <ni:///mh;1QEQv_4RWlnYO6VMXZ1UNVTxRA?ct=text/plain>;
+                                                                  nfo:belongsToContainer <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/>;
+                                                                  nfo:fileLastModified "1993-04-23T07:35:12.000000+02:00"^^xsd:dateTime;
+                                                                  nfo:fileName "READ.ME";
+                                                                  nfo:fileSize 9914 ;
+                                                                  a nfo:FileDataObject,
+                                                                    nfo:ArchiveItem;
+                                                                  skos:prefLabel "/READ.ME".
+<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/README.WD> at:pathObject <file:///README.WD>;
+                                                                    nie:interpretedAs <ni:///mh;1QEQemF3tWGfW4CiSv7e8Dhk4g?ct=text/plain>;
+                                                                    nfo:belongsToContainer <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/>;
+                                                                    nfo:fileLastModified "1993-04-12T22:25:08.000000+02:00"^^xsd:dateTime;
+                                                                    nfo:fileName "README.WD";
+                                                                    nfo:fileSize 774 ;
+                                                                    a nfo:FileDataObject,
+                                                                      nfo:ArchiveItem;
+                                                                    skos:prefLabel "/README.WD".
+<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/RUNME.BAT> at:pathObject <file:///RUNME.BAT>;
+                                                                    nie:interpretedAs <ni:///mh;1QEQKK0SZ8yDaV9VNKKGduLotQ?ct=text/plain>;
+                                                                    nfo:belongsToContainer <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/>;
+                                                                    nfo:fileLastModified "1993-04-23T09:22:08.000000+02:00"^^xsd:dateTime;
+                                                                    nfo:fileName "RUNME.BAT";
+                                                                    nfo:fileSize 988 ;
+                                                                    a nfo:FileDataObject,
+                                                                      nfo:ArchiveItem;
+                                                                    skos:prefLabel "/RUNME.BAT".
+<ni:///mh;1QEQr25MqAATkGkh29WlSjMk9g?ct=application/octet-stream> at:digest <urn:md5:AF6E4CA80013906921DBD5A54A3324F6>;
+                                                                  dcterms:extent "285"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (285 B)"@en.
+<ni:///mh;1QEQs2clkzrNDFz7NKFuNfzFFw?ct=application/octet-stream> at:digest <urn:md5:B36725933ACD0C5CFB34A16E35FCC517>;
+                                                                  dcterms:extent "1039"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.01 KiB)"@en.
+<ni:///mh;1QEQsyO0i_uHHVH5HtF1QONhPA?ct=application/octet-stream> at:digest <urn:md5:B323B48BFB871D51F91ED17540E3613C>;
+                                                                  dcterms:extent "510464"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQsyO0i_uHHVH5HtF1QONhPA?ct=application/x-msdos-program>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (498.5 KiB)"@en.
+<ni:///mh;1QEQsyO0i_uHHVH5HtF1QONhPA?ct=application/x-msdos-program> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-msdos-program>;
+                                                                     a schema:MediaObject,
+                                                                       schema:SoftwareApplication,
+                                                                       nfo:Executable;
+                                                                     skos:prefLabel "EXE object (498.5 KiB)"@en.
+<ni:///mh;1QEQv_4RWlnYO6VMXZ1UNVTxRA?ct=text/plain> at:digest <urn:md5:BFFE115A59D83BA54C5D9D543554F144>;
+                                                    dcterms:extent "9914"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQv_4RWlnYO6VMXZ1UNVTxRA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (9.68 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQv_4RWlnYO6VMXZ1UNVTxRA?ct=text/plain#line=,1> rdf:value "******   You may distribute this program freely for non-commercial use".
+<ni:///mh;1QEQzySOmOnZeumnQrwGTfgWRw?ct=application/octet-stream> at:digest <urn:md5:CF248E98E9D97AE9A742BC064DF81647>;
+                                                                  dcterms:extent "42766"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (41.76 KiB)"@en.
+<urn:md5:0404BC47B797C72741B6268DCF02B2D9> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "BAS8R7eXxydBtiaNzwKy2Q=="^^xsd:base64Binary.
+<urn:md5:0472108399646EDB80D673D3E445E159> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "BHIQg5lkbtuA1nPT5EXhWQ=="^^xsd:base64Binary.
+<urn:md5:0ED2082320688954BA0DEC00698D936D> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "DtIIIyBoiVS6DewAaY2TbQ=="^^xsd:base64Binary.
+<urn:md5:2531B222D7EBD63E08C1EED9A867A21B> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "JTGyItfr1j4Iwe7ZqGeiGw=="^^xsd:base64Binary.
+<urn:md5:28AD1267CC83695F5534A28676E2E8B5> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "KK0SZ8yDaV9VNKKGduLotQ=="^^xsd:base64Binary.
+<urn:md5:2DE07EA4D9216B1AEAF45542ADA1DEFE> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "LeB+pNkhaxrq9FVCraHe/g=="^^xsd:base64Binary.
+<urn:md5:2ED704E6AA5A0D490EACFBDEBFD7427B> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "LtcE5qpaDUkOrPvev9dCew=="^^xsd:base64Binary.
+<urn:md5:4152BD9C8A4EE18BD317B61A6C8E92A3> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "QVK9nIpO4YvTF7YabI6Sow=="^^xsd:base64Binary.
+<urn:md5:4A5C109B4E5424223FE236CD654250C9> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "SlwQm05UJCI/4jbNZUJQyQ=="^^xsd:base64Binary.
+<urn:md5:4F4BEE4A4D653C28E46D20457C40D2A4> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "T0vuSk1lPCjkbSBFfEDSpA=="^^xsd:base64Binary.
+<urn:md5:632630A2AC293438BE626176C7F9CA12> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "YyYwoqwpNDi+YmF2x/nKEg=="^^xsd:base64Binary.
+<urn:md5:69EDD031BC9B9BAA575FFF179BF1A21B> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "ae3QMbybm6pXX/8Xm/GiGw=="^^xsd:base64Binary.
+<urn:md5:7742E95998D427E6115CD4BCB7A0DAC7> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "d0LpWZjUJ+YRXNS8t6Daxw=="^^xsd:base64Binary.
+<urn:md5:775DC4675610571CDCFC94A475693BBB> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "d13EZ1YQVxzc/JSkdWk7uw=="^^xsd:base64Binary.
+<urn:md5:7A6177B5619F5B80A24AFEDEF03864E2> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "emF3tWGfW4CiSv7e8Dhk4g=="^^xsd:base64Binary.
+<urn:md5:811EF3F43F114B2BF84409602932ACB5> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "gR7z9D8RSyv4RAlgKTKstQ=="^^xsd:base64Binary.
+<urn:md5:86FDE6BA0882B777964E10F74A7357B0> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "hv3mugiCt3eWThD3SnNXsA=="^^xsd:base64Binary.
+<urn:md5:8945B4B5FC5B1B36491E17F34A11DE62> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "iUW0tfxbGzZJHhfzShHeYg=="^^xsd:base64Binary.
+<urn:md5:8C129739880960680184CA33BEF5C567> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "jBKXOYgJYGgBhMozvvXFZw=="^^xsd:base64Binary.
+<urn:md5:9618A634B9D3CB7638E0ED60ED820548> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "lhimNLnTy3Y44O1g7YIFSA=="^^xsd:base64Binary.
+<urn:md5:AF6E4CA80013906921DBD5A54A3324F6> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "r25MqAATkGkh29WlSjMk9g=="^^xsd:base64Binary.
+<urn:md5:B323B48BFB871D51F91ED17540E3613C> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "syO0i/uHHVH5HtF1QONhPA=="^^xsd:base64Binary.
+<urn:md5:B36725933ACD0C5CFB34A16E35FCC517> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "s2clkzrNDFz7NKFuNfzFFw=="^^xsd:base64Binary.
+<urn:md5:BFFE115A59D83BA54C5D9D543554F144> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "v/4RWlnYO6VMXZ1UNVTxRA=="^^xsd:base64Binary.
+<urn:md5:CF248E98E9D97AE9A742BC064DF81647> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "zySOmOnZeumnQrwGTfgWRw=="^^xsd:base64Binary.
+<urn:md5:D113F2AEC67F3045D30C112EE5C75DAA> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "0RPyrsZ/MEXTDBEu5cddqg=="^^xsd:base64Binary.
+<urn:md5:E0F515837D30EE9FE0792F4894924797> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "4PUVg30w7p/geS9IlJJHlw=="^^xsd:base64Binary.
+<urn:md5:E25CB4525C4BF02D1352506F67B4A875> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "4ly0UlxL8C0TUlBvZ7SodQ=="^^xsd:base64Binary.
+<urn:md5:F0D13CDDF43B9034961F4F2082C8D55A> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "8NE83fQ7kDSWH08ggsjVWg=="^^xsd:base64Binary.
+<urn:md5:F49365F9E001C8BA3E63C9BE49EA1BB0> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "9JNl+eAByLo+Y8m+SeobsA=="^^xsd:base64Binary.

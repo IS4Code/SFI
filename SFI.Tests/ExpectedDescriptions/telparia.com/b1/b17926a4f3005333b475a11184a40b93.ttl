@@ -1,0 +1,54 @@
+@base <ni:///mh;1QEQ_zxG0XcT8Rmmqhs4QsTxvA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///postman-.co1>;
+     nie:interpretedAs <ni:///mh;1QEQ_zxG0XcT8Rmmqhs4QsTxvA?ct=application/octet-stream>;
+     nfo:fileName "postman-.co1";
+     nfo:fileSize 49756 ;
+     a nfo:FileDataObject.
+<file:///postman-.co1> at:extensionObject <https://w3id.org/uri4uri/suffix/co1>.
+<ni:///mh;1QEQ_zxG0XcT8Rmmqhs4QsTxvA?ct=application/octet-stream> at:digest <urn:md5:FF3C46D17713F119A6AA1B3842C4F1BC>;
+                                                                  dcterms:extent "49756"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ_zxG0XcT8Rmmqhs4QsTxvA?ct=application/postscript>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (48.59 KiB)"@en.
+<ni:///mh;1QEQ_zxG0XcT8Rmmqhs4QsTxvA?ct=application/postscript> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/postscript>;
+                                                                nfo:hasMediaStream <ni:///mh;1QEQ_zxG0XcT8Rmmqhs4QsTxvA?ct=application/postscript#/0>,
+                                                                                   <ni:///mh;1QEQ_zxG0XcT8Rmmqhs4QsTxvA?ct=application/postscript#/1>;
+                                                                nfo:height 281 ;
+                                                                nfo:width 200 ;
+                                                                a schema:MediaObject,
+                                                                  exif:IFD;
+                                                                exif:compression 32773 ;
+                                                                exif:imageLength 281 ;
+                                                                exif:imageWidth 200 ;
+                                                                exif:photometricInterpretation 0 ;
+                                                                exif:stripByteCounts 4526 ,
+                                                                                     3114 ;
+                                                                exif:stripOffsets 8 ,
+                                                                                  4624 ;
+                                                                skos:prefLabel "EPS object (200×281)"@en.
+<ni:///mh;1QEQ_zxG0XcT8Rmmqhs4QsTxvA?ct=application/postscript#/0> nfo:height 281 ;
+                                                                   nfo:width 200 ;
+                                                                   a nfo:MediaStream;
+                                                                   skos:prefLabel "0:Exif IFD0 (200×281)".
+<ni:///mh;1QEQ_zxG0XcT8Rmmqhs4QsTxvA?ct=application/postscript#/1> nfo:height 281 ;
+                                                                   nfo:width 200 ;
+                                                                   a nfo:MediaStream;
+                                                                   skos:prefLabel "1:Exif Thumbnail (200×281)".
+<urn:md5:FF3C46D17713F119A6AA1B3842C4F1BC> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "/zxG0XcT8Rmmqhs4QsTxvA=="^^xsd:base64Binary.

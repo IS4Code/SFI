@@ -1,0 +1,32 @@
+@base <ni:///mh;1QEQSDZPDG59fJiydlF5Lfnhsw?ct=application/x.sig.er>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///WWDC.iso>;
+     nie:interpretedAs <ni:///mh;1QEQSDZPDG59fJiydlF5Lfnhsw?ct=application/octet-stream>;
+     nfo:fileName "WWDC.iso";
+     nfo:fileSize 60614656 ;
+     a nfo:FileDataObject.
+<file:///WWDC.iso> at:extensionObject <https://w3id.org/uri4uri/suffix/iso>.
+<ni:///mh;1QEQSDZPDG59fJiydlF5Lfnhsw?ct=application/octet-stream> at:digest <urn:md5:48364F0C6E7D7C98B27651792DF9E1B3>;
+                                                                  dcterms:extent "60614656"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQSDZPDG59fJiydlF5Lfnhsw?ct=application/x.sig.er>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (57.81 MiB)"@en.
+<ni:///mh;1QEQSDZPDG59fJiydlF5Lfnhsw?ct=application/x.sig.er> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.er>;
+                                                              a schema:MediaObject;
+                                                              skos:prefLabel "ER object (57.81 MiB)"@en.
+<urn:md5:48364F0C6E7D7C98B27651792DF9E1B3> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "SDZPDG59fJiydlF5Lfnhsw=="^^xsd:base64Binary.

@@ -1,0 +1,58 @@
+@base <ni:///mh;1QEQUIu9p_4-yYfKZ7Gx0BU8rg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix xis: <http://www.w3.org/2001/04/infoset#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///sample_1920%C3%971280.svg>;
+     nie:interpretedAs <ni:///mh;1QEQUIu9p_4-yYfKZ7Gx0BU8rg?ct=application/octet-stream>;
+     nfo:fileName "sample_1920×1280.svg";
+     nfo:fileSize 1067956 ;
+     a nfo:FileDataObject.
+<file:///sample_1920%C3%971280.svg> at:extensionObject <https://w3id.org/uri4uri/suffix/svg>.
+<ni:///mh;1QEQUIu9p_4-yYfKZ7Gx0BU8rg?ct=application/octet-stream> at:digest <urn:md5:508BBDA7FE3EC987CA67B1B1D0153CAE>;
+                                                                  dcterms:extent "1067956"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQUIu9p_4-yYfKZ7Gx0BU8rg?ct=application/xml>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.02 MiB)"@en.
+<ni:///mh;1QEQUIu9p_4-yYfKZ7Gx0BU8rg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQUIu9p_4-yYfKZ7Gx0BU8rg?ct=image/svg+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQUIu9p_4-yYfKZ7Gx0BU8rg?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (svg)"@en;
+                                                         cnt:dtDecl <ni:///mh;1QEQUIu9p_4-yYfKZ7Gx0BU8rg?ct=application/xml#dtd()>;
+                                                         cnt:standalone "no";
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQUIu9p_4-yYfKZ7Gx0BU8rg?ct=application/xml#dtd()> a cnt:DoctypeDecl;
+                                                               rdfs:seeAlso <urn:publicid:-:W3C:DTD+SVG+20010904:EN>;
+                                                               cnt:doctypeName "svg";
+                                                               cnt:publicId "-//W3C//DTD SVG 20010904//EN";
+                                                               cnt:systemId "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd"^^xsd:anyURI.
+<ni:///mh;1QEQUIu9p_4-yYfKZ7Gx0BU8rg?ct=application/xml#element(/1)> a xis:Element;
+                                                                     rdfs:seeAlso <http://www.w3.org/2000/svg>;
+                                                                     xis:localName "svg";
+                                                                     xis:name "svg";
+                                                                     xis:namespaceName "http://www.w3.org/2000/svg"^^xsd:anyURI.
+<ni:///mh;1QEQUIu9p_4-yYfKZ7Gx0BU8rg?ct=image/svg+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/svg+xml>,
+                                                                             <urn:publicid:-:W3C:DTD+SVG+1.1:EN>;
+                                                       a schema:MediaObject,
+                                                         schema:ImageObject,
+                                                         nfo:Image;
+                                                       skos:prefLabel "SVG object (1920×1280)"@en.
+<urn:md5:508BBDA7FE3EC987CA67B1B1D0153CAE> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "UIu9p/4+yYfKZ7Gx0BU8rg=="^^xsd:base64Binary.
+<urn:publicid:-:W3C:DTD+SVG+20010904:EN> rdfs:isDefinedBy <http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd>.

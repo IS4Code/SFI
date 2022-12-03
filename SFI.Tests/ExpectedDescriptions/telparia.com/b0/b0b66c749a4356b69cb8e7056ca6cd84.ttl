@@ -1,0 +1,37 @@
+@base <ni:///mh;1QEQA-_eRdnQ1jxXeSzcfmIl1w?ct=text/plain>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///dhor.hip>;
+     nie:interpretedAs <ni:///mh;1QEQA-_eRdnQ1jxXeSzcfmIl1w?ct=text/plain>;
+     nfo:fileName "dhor.hip";
+     nfo:fileSize 16012 ;
+     a nfo:FileDataObject.
+<file:///dhor.hip> at:extensionObject <https://w3id.org/uri4uri/suffix/hip>.
+<ni:///mh;1QEQA-_eRdnQ1jxXeSzcfmIl1w?ct=audio/mpeg> schema:encodingFormat <https://w3id.org/uri4uri/mime/audio/mpeg>;
+                                                    a schema:MediaObject,
+                                                      schema:AudioObject,
+                                                      nfo:Audio;
+                                                    skos:prefLabel "MP3 object (15.64 KiB)"@en.
+<ni:///mh;1QEQA-_eRdnQ1jxXeSzcfmIl1w?ct=text/plain> at:digest <urn:md5:03EFDE45D9D0D63C57792CDC7E6225D7>;
+                                                    dcterms:extent "16012"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQA-_eRdnQ1jxXeSzcfmIl1w?ct=audio/mpeg>;
+                                                    nie:hasPart <ni:///mh;1QEQA-_eRdnQ1jxXeSzcfmIl1w?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (15.64 KiB)"@en;
+                                                    cnt:characterEncoding "windows-1252".
+<ni:///mh;1QEQA-_eRdnQ1jxXeSzcfmIl1w?ct=text/plain#line=,1> rdf:value """{\"@value\":\"ÿÿ\\u0010`O4D33EDD34EUUC\\\"\\\"\\\"\\\"4\\\"\\\"\\\"2\\\"\\\"\\\"\\\"2\\\"\\\"2\\\"\\\"\\\"\\\"\\\"fS6UU4D33ETD34EUUC\\\"\\\"\\\"\\\"4\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"2\\\"\\\"2\\\"\\\"\\\"\\\"\\\"fS\\u0026eU4DC3ESD34EUUT\\\"\\\"\\\"\\\"4\\\"\\\"\\\"\\\"\\\"\\\"\\\"#2\\\"\\\"2\\\"\\\"\\\"\\\"3fR$eUDDC35TD3CDUUT\\\"\\\"\\\"\\\"5\\\"\\\"\\\"#\\\"\\\"\\\"#C\\\"\\\"2\\\"\\\"\\\"\\\"#fR#eUCDC34UD3DBEUT\\\"\\\"\\\"\\\"%\\\"\\\"\\\"#2\\\"\\\"\\\"B\\\"\\\"2\\\"\\\"\\\"\\\"$fR\\\"VU3DC34UD3DB$ET\\\"\\\"\\\"\\\"$2\\\"\\\"33\\\"\\\"\\\"3\\\"\\\"2\\\"\\\"\\\"\\\"$fb\\\"EU34D34ETCDB#5T\\\"\\\"\\\"\\\"$2\\\"##22#\\\"3\\\"\\\"2\\\"\\\"\\\"\\\"%fc\\\"EU44D34UDCD2#%T\\\"\\\"\\\"\\\"$2\\\"#32\\\"#23\\\"\\\"2\\\"\\\"\\\"\\\"\\u0026fd\\\"DUC4D34UD3D235S\\\"\\\"\\\"\\\"$2\\\"#3\\\"2#\\\"3\\\"\\\"2\\\"\\\"\\\"\\\"6ff\\\"3U34D34EU3D225R\\\"\\\"\\\"\\\"$2\\\"#3233\\\"3\\\"#2\\\"\\\"\\\"\\\"7ffB2U34D34DE3E\\\"24R\\\"\\\"\\\"\\\"$2\\\"##\\\"33\\\"32#\\\"\\\"\\\"\\\"\\\"FvfRBE344C3DUCD\\\"24S\\\"\\\"\\\"\\\"#2\\\"\\\"\\\"#32\\\"32#2\\\"\\\"\\\"\\\"FvfbR543DC3DUTD#34S\\\"\\\"\\\"\\\"#2\\\"\\\"233\\\"\\\"\"}"""^^rdf:JSON.
+<urn:md5:03EFDE45D9D0D63C57792CDC7E6225D7> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "A+/eRdnQ1jxXeSzcfmIl1w=="^^xsd:base64Binary.

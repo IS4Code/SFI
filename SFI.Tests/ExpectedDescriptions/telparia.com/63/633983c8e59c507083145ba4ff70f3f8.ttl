@@ -1,0 +1,100 @@
+@base <ni:///mh;1QEQnJ7o1PfMur03rlBJU1kR2Q?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///example_multicontent.zip>;
+     nie:interpretedAs <ni:///mh;1QEQnJ7o1PfMur03rlBJU1kR2Q?ct=application/octet-stream>;
+     nfo:fileName "example_multicontent.zip";
+     nfo:fileSize 2260107 ;
+     a nfo:FileDataObject.
+<file:///example1.pdf> at:extensionObject <https://w3id.org/uri4uri/suffix/pdf>.
+<file:///example2.pdf> at:extensionObject <https://w3id.org/uri4uri/suffix/pdf>.
+<file:///example3.pdf> at:extensionObject <https://w3id.org/uri4uri/suffix/pdf>.
+<file:///example_multicontent.zip> at:extensionObject <https://w3id.org/uri4uri/suffix/zip>.
+<ni:///mh;1QEQ3fd1C975PBzccGR8sTBkWQ?ct=application/octet-stream> at:digest <urn:md5:DDF7750BDEF93C1CDC70647CB1306459>;
+                                                                  dcterms:extent "761038"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ3fd1C975PBzccGR8sTBkWQ?ct=application/pdf>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (743.2 KiB)"@en.
+<ni:///mh;1QEQ3fd1C975PBzccGR8sTBkWQ?ct=application/pdf> dcterms:created "2017-07-12T09:51:30.000000Z"^^xsd:dateTime;
+                                                         dcterms:creator "Vb1";
+                                                         dcterms:title "example";
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/pdf>;
+                                                         a schema:MediaObject,
+                                                           schema:DigitalDocument,
+                                                           nfo:Document;
+                                                         skos:prefLabel "PDF object (example)"@en.
+<ni:///mh;1QEQQnqNfQy5nK3O-qZoqylYpw?ct=application/octet-stream> at:digest <urn:md5:427A8D7D0CB99CADCEFAA668AB2958A7>;
+                                                                  dcterms:extent "761038"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQQnqNfQy5nK3O-qZoqylYpw?ct=application/pdf>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (743.2 KiB)"@en.
+<ni:///mh;1QEQQnqNfQy5nK3O-qZoqylYpw?ct=application/pdf> dcterms:created "2017-07-12T09:51:26.000000Z"^^xsd:dateTime;
+                                                         dcterms:creator "Vb1";
+                                                         dcterms:title "example";
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/pdf>;
+                                                         a schema:MediaObject,
+                                                           schema:DigitalDocument,
+                                                           nfo:Document;
+                                                         skos:prefLabel "PDF object (example)"@en.
+<ni:///mh;1QEQnJ7o1PfMur03rlBJU1kR2Q?ct=application/octet-stream> at:digest <urn:md5:9C9EE8D4F7CCBABD37AE5049535911D9>;
+                                                                  dcterms:extent "2260107"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQnJ7o1PfMur03rlBJU1kR2Q?ct=application/zip>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (2.16 MiB)"@en.
+<ni:///mh;1QEQnJ7o1PfMur03rlBJU1kR2Q?ct=application/zip> at:pathObject <file:///>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
+                                                         nie:interpretedAs <ni:///mh;1QEQnJ7o1PfMur03rlBJU1kR2Q?ct=application/zip#/>;
+                                                         a schema:MediaObject,
+                                                           nfo:Archive;
+                                                         skos:prefLabel "ZIP object (2.16 MiB)"@en.
+<ni:///mh;1QEQnJ7o1PfMur03rlBJU1kR2Q?ct=application/zip#/> at:pathObject <file:///./>;
+                                                           a nfo:Folder;
+                                                           skos:prefLabel "/".
+<ni:///mh;1QEQnJ7o1PfMur03rlBJU1kR2Q?ct=application/zip#/example1.pdf> at:pathObject <file:///example1.pdf>;
+                                                                       nie:interpretedAs <ni:///mh;1QEQQnqNfQy5nK3O-qZoqylYpw?ct=application/octet-stream>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQnJ7o1PfMur03rlBJU1kR2Q?ct=application/zip#/>;
+                                                                       nfo:fileLastModified "2017-07-12T11:51:28.000000+02:00"^^xsd:dateTime;
+                                                                       nfo:fileName "example1.pdf";
+                                                                       nfo:fileSize 761038 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/example1.pdf".
+<ni:///mh;1QEQnJ7o1PfMur03rlBJU1kR2Q?ct=application/zip#/example2.pdf> at:pathObject <file:///example2.pdf>;
+                                                                       nie:interpretedAs <ni:///mh;1QEQ3fd1C975PBzccGR8sTBkWQ?ct=application/octet-stream>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQnJ7o1PfMur03rlBJU1kR2Q?ct=application/zip#/>;
+                                                                       nfo:fileLastModified "2017-07-12T11:51:32.000000+02:00"^^xsd:dateTime;
+                                                                       nfo:fileName "example2.pdf";
+                                                                       nfo:fileSize 761038 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/example2.pdf".
+<ni:///mh;1QEQnJ7o1PfMur03rlBJU1kR2Q?ct=application/zip#/example3.pdf> at:pathObject <file:///example3.pdf>;
+                                                                       nie:interpretedAs <ni:///mh;1QEQQnqNfQy5nK3O-qZoqylYpw?ct=application/octet-stream>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQnJ7o1PfMur03rlBJU1kR2Q?ct=application/zip#/>;
+                                                                       nfo:fileLastModified "2017-07-12T11:51:28.000000+02:00"^^xsd:dateTime;
+                                                                       nfo:fileName "example3.pdf";
+                                                                       nfo:fileSize 761038 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/example3.pdf".
+<urn:md5:427A8D7D0CB99CADCEFAA668AB2958A7> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "QnqNfQy5nK3O+qZoqylYpw=="^^xsd:base64Binary.
+<urn:md5:9C9EE8D4F7CCBABD37AE5049535911D9> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "nJ7o1PfMur03rlBJU1kR2Q=="^^xsd:base64Binary.
+<urn:md5:DDF7750BDEF93C1CDC70647CB1306459> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "3fd1C975PBzccGR8sTBkWQ=="^^xsd:base64Binary.

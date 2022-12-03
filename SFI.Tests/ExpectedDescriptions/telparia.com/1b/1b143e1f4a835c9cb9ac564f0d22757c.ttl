@@ -1,0 +1,49 @@
+@base <ni:///mh;1QEQsMmNBmd3dcI50zFVp4eFKg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///REGISTER.TX_>;
+     nie:interpretedAs <ni:///mh;1QEQsMmNBmd3dcI50zFVp4eFKg?ct=application/octet-stream>;
+     nfo:fileName "REGISTER.TX_";
+     nfo:fileSize 1016 ;
+     a nfo:FileDataObject.
+<file:///REGISTER.TX_> at:extensionObject <https://w3id.org/uri4uri/suffix/tx_>.
+<ni:///mh;1QEQEIuM0Dm6wrzPBFw8tYLPog?ct=text/plain> at:digest <urn:md5:108B8CD039BAC2BCCF045C3CB582CFA2>;
+                                                    dcterms:extent "1553"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQEIuM0Dm6wrzPBFw8tYLPog?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.52 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQEIuM0Dm6wrzPBFw8tYLPog?ct=text/plain#line=,1> rdf:value "Hi, Finance! version 2.09 Order Form".
+<ni:///mh;1QEQsMmNBmd3dcI50zFVp4eFKg?ct=application/octet-stream> at:digest <urn:md5:B0C98D06677775C239D33155A787852A>;
+                                                                  dcterms:extent "1016"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQsMmNBmd3dcI50zFVp4eFKg?ct=application/x-ms-compress-szdd>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (0.99 KiB)"@en.
+<ni:///mh;1QEQsMmNBmd3dcI50zFVp4eFKg?ct=application/x-ms-compress-szdd> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ms-compress-szdd>;
+                                                                        a schema:MediaObject,
+                                                                          nfo:Archive;
+                                                                        skos:prefLabel "SZ object (0.99 KiB)"@en.
+<ni:///mh;1QEQsMmNBmd3dcI50zFVp4eFKg?ct=application/x-ms-compress-szdd#/> nie:interpretedAs <ni:///mh;1QEQEIuM0Dm6wrzPBFw8tYLPog?ct=text/plain>;
+                                                                          nfo:belongsToContainer <ni:///mh;1QEQsMmNBmd3dcI50zFVp4eFKg?ct=application/x-ms-compress-szdd>;
+                                                                          nfo:fileSize 1553 ;
+                                                                          a nfo:FileDataObject,
+                                                                            nfo:ArchiveItem;
+                                                                          skos:prefLabel "/".
+<urn:md5:108B8CD039BAC2BCCF045C3CB582CFA2> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "EIuM0Dm6wrzPBFw8tYLPog=="^^xsd:base64Binary.
+<urn:md5:B0C98D06677775C239D33155A787852A> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "sMmNBmd3dcI50zFVp4eFKg=="^^xsd:base64Binary.

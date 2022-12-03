@@ -1,0 +1,27 @@
+@base <ni:///mh;1QEQQWkGBRO7qQHSSDNod18sFA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///DISPLAY.PP>;
+     nie:interpretedAs <ni:///mh;1QEQQWkGBRO7qQHSSDNod18sFA?ct=application/octet-stream>;
+     nfo:fileName "DISPLAY.PP";
+     nfo:fileSize 163667 ;
+     a nfo:FileDataObject.
+<file:///DISPLAY.PP> at:extensionObject <https://w3id.org/uri4uri/suffix/pp>.
+<ni:///mh;1QEQQWkGBRO7qQHSSDNod18sFA?ct=application/octet-stream> at:digest <urn:md5:4169060513BBA901D2483368775F2C14>;
+                                                                  dcterms:extent "163667"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (159.83 KiB)"@en.
+<urn:md5:4169060513BBA901D2483368775F2C14> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "QWkGBRO7qQHSSDNod18sFA=="^^xsd:base64Binary.

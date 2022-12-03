@@ -1,0 +1,30 @@
+@base <ni:///mh;1QEQpldc8oKjHEwBRKsl3iet8Q?ct=text/plain>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///1651427811_example.tex>;
+     nie:interpretedAs <ni:///mh;1QEQpldc8oKjHEwBRKsl3iet8Q?ct=text/plain>;
+     nfo:fileName "1651427811_example.tex";
+     nfo:fileSize 2581 ;
+     a nfo:FileDataObject.
+<file:///1651427811_example.tex> at:extensionObject <https://w3id.org/uri4uri/suffix/tex>.
+<ni:///mh;1QEQpldc8oKjHEwBRKsl3iet8Q?ct=text/plain> at:digest <urn:md5:A6575CF282A31C4C0144AB25DE27ADF1>;
+                                                    dcterms:extent "2581"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQpldc8oKjHEwBRKsl3iet8Q?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (2.52 KiB)"@en;
+                                                    cnt:characterEncoding "utf-8".
+<ni:///mh;1QEQpldc8oKjHEwBRKsl3iet8Q?ct=text/plain#line=,1> rdf:value "TEX test file".
+<urn:md5:A6575CF282A31C4C0144AB25DE27ADF1> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "pldc8oKjHEwBRKsl3iet8Q=="^^xsd:base64Binary.

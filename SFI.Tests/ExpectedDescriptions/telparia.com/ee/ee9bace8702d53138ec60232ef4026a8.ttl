@@ -1,0 +1,322 @@
+@base <ni:///mh;1QEQFBw3vFgnnUVU7kNISoZmTQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///TFORMMAINWINDOW>;
+     nie:interpretedAs <ni:///mh;1QEQFBw3vFgnnUVU7kNISoZmTQ?ct=application/octet-stream>;
+     nfo:fileName "TFORMMAINWINDOW";
+     nfo:fileSize 6952 ;
+     a nfo:FileDataObject.
+<file:///Glyph.Data> at:extensionObject <https://w3id.org/uri4uri/suffix/data>.
+<file:///SpeedButtonAbout/Glyph.Data> at:pathObject <file:///Glyph.Data>.
+<file:///SpeedButtonDirectory/Glyph.Data> at:pathObject <file:///Glyph.Data>.
+<file:///SpeedButtonDisable/Glyph.Data> at:pathObject <file:///Glyph.Data>.
+<file:///SpeedButtonExit/Glyph.Data> at:pathObject <file:///Glyph.Data>.
+<file:///SpeedButtonExtract/Glyph.Data> at:pathObject <file:///Glyph.Data>.
+<file:///SpeedButtonFirst/Glyph.Data> at:pathObject <file:///Glyph.Data>.
+<file:///SpeedButtonHilfe/Glyph.Data> at:pathObject <file:///Glyph.Data>.
+<file:///SpeedButtonLast/Glyph.Data> at:pathObject <file:///Glyph.Data>.
+<file:///SpeedButtonNext/Glyph.Data> at:pathObject <file:///Glyph.Data>.
+<file:///SpeedButtonPrevious/Glyph.Data> at:pathObject <file:///Glyph.Data>.
+<ni:///mh;1QEQAMh7oYwFYfMDpCD3nolUzg?ct=application/octet-stream> at:digest <urn:md5:00C87BA18C0561F303A420F79E8954CE>;
+                                                                  dcterms:extent "358"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQAMh7oYwFYfMDpCD3nolUzg?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (358 B)"@en.
+<ni:///mh;1QEQAMh7oYwFYfMDpCD3nolUzg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
+                                                   nfo:height 20 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 20 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (20×20)"@en,
+                                                                  "BMP object (362 B)"@en.
+<ni:///mh;1QEQFBw3vFgnnUVU7kNISoZmTQ?ct=application/octet-stream> at:digest <urn:md5:141C37BC58279D4554EE43484A86664D>;
+                                                                  dcterms:extent "6952"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQFBw3vFgnnUVU7kNISoZmTQ?ct=application/x-delphi-form>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (6.79 KiB)"@en.
+<ni:///mh;1QEQFBw3vFgnnUVU7kNISoZmTQ?ct=application/x-delphi-form> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-delphi-form>;
+                                                                   nie:hasPart <ni:///mh;1QEQFBw3vFgnnUVU7kNISoZmTQ?ct=application/x-delphi-form#/SpeedButtonFirst%2FGlyph.Data>,
+                                                                               <ni:///mh;1QEQFBw3vFgnnUVU7kNISoZmTQ?ct=application/x-delphi-form#/SpeedButtonPrevious%2FGlyph.Data>,
+                                                                               <ni:///mh;1QEQFBw3vFgnnUVU7kNISoZmTQ?ct=application/x-delphi-form#/SpeedButtonNext%2FGlyph.Data>,
+                                                                               <ni:///mh;1QEQFBw3vFgnnUVU7kNISoZmTQ?ct=application/x-delphi-form#/SpeedButtonLast%2FGlyph.Data>,
+                                                                               <ni:///mh;1QEQFBw3vFgnnUVU7kNISoZmTQ?ct=application/x-delphi-form#/SpeedButtonDisable%2FGlyph.Data>,
+                                                                               <ni:///mh;1QEQFBw3vFgnnUVU7kNISoZmTQ?ct=application/x-delphi-form#/SpeedButtonDirectory%2FGlyph.Data>,
+                                                                               <ni:///mh;1QEQFBw3vFgnnUVU7kNISoZmTQ?ct=application/x-delphi-form#/SpeedButtonExtract%2FGlyph.Data>,
+                                                                               <ni:///mh;1QEQFBw3vFgnnUVU7kNISoZmTQ?ct=application/x-delphi-form#/SpeedButtonAbout%2FGlyph.Data>,
+                                                                               <ni:///mh;1QEQFBw3vFgnnUVU7kNISoZmTQ?ct=application/x-delphi-form#/SpeedButtonExit%2FGlyph.Data>,
+                                                                               <ni:///mh;1QEQFBw3vFgnnUVU7kNISoZmTQ?ct=application/x-delphi-form#/SpeedButtonHilfe%2FGlyph.Data>;
+                                                                   a schema:MediaObject;
+                                                                   skos:prefLabel "DFM object (FormMainWindow)"@en.
+<ni:///mh;1QEQFBw3vFgnnUVU7kNISoZmTQ?ct=application/x-delphi-form#/SpeedButtonAbout%2FGlyph.Data> at:pathObject <file:///SpeedButtonAbout/Glyph.Data>;
+                                                                                                  nie:interpretedAs <ni:///mh;1QEQTWFIwcH_yJQIN4rZ0eQwNw?ct=application/octet-stream>;
+                                                                                                  nfo:fileName "SpeedButtonAbout/Glyph.Data";
+                                                                                                  nfo:fileSize 522 ;
+                                                                                                  a nfo:FileDataObject,
+                                                                                                    nfo:EmbeddedFileDataObject;
+                                                                                                  skos:prefLabel "/SpeedButtonAbout/Glyph.Data".
+<ni:///mh;1QEQFBw3vFgnnUVU7kNISoZmTQ?ct=application/x-delphi-form#/SpeedButtonDirectory%2FGlyph.Data> at:pathObject <file:///SpeedButtonDirectory/Glyph.Data>;
+                                                                                                      nie:interpretedAs <ni:///mh;1QEQrdwU5ypHa0Kl8gw39c2pDg?ct=application/octet-stream>;
+                                                                                                      nfo:fileName "SpeedButtonDirectory/Glyph.Data";
+                                                                                                      nfo:fileSize 338 ;
+                                                                                                      a nfo:FileDataObject,
+                                                                                                        nfo:EmbeddedFileDataObject;
+                                                                                                      skos:prefLabel "/SpeedButtonDirectory/Glyph.Data".
+<ni:///mh;1QEQFBw3vFgnnUVU7kNISoZmTQ?ct=application/x-delphi-form#/SpeedButtonDisable%2FGlyph.Data> at:pathObject <file:///SpeedButtonDisable/Glyph.Data>;
+                                                                                                    nie:interpretedAs <ni:///mh;1QEQwwjMufA8vJrrTGrhqkhrwQ?ct=application/octet-stream>;
+                                                                                                    nfo:fileName "SpeedButtonDisable/Glyph.Data";
+                                                                                                    nfo:fileSize 522 ;
+                                                                                                    a nfo:FileDataObject,
+                                                                                                      nfo:EmbeddedFileDataObject;
+                                                                                                    skos:prefLabel "/SpeedButtonDisable/Glyph.Data".
+<ni:///mh;1QEQFBw3vFgnnUVU7kNISoZmTQ?ct=application/x-delphi-form#/SpeedButtonExit%2FGlyph.Data> at:pathObject <file:///SpeedButtonExit/Glyph.Data>;
+                                                                                                 nie:interpretedAs <ni:///mh;1QEQKQrYL6ElE8fLQlNGM8edIw?ct=application/octet-stream>;
+                                                                                                 nfo:fileName "SpeedButtonExit/Glyph.Data";
+                                                                                                 nfo:fileSize 378 ;
+                                                                                                 a nfo:FileDataObject,
+                                                                                                   nfo:EmbeddedFileDataObject;
+                                                                                                 skos:prefLabel "/SpeedButtonExit/Glyph.Data".
+<ni:///mh;1QEQFBw3vFgnnUVU7kNISoZmTQ?ct=application/x-delphi-form#/SpeedButtonExtract%2FGlyph.Data> at:pathObject <file:///SpeedButtonExtract/Glyph.Data>;
+                                                                                                    nie:interpretedAs <ni:///mh;1QEQSWGuo2FSk-Gz66lviNIcVQ?ct=application/octet-stream>;
+                                                                                                    nfo:fileName "SpeedButtonExtract/Glyph.Data";
+                                                                                                    nfo:fileSize 482 ;
+                                                                                                    a nfo:FileDataObject,
+                                                                                                      nfo:EmbeddedFileDataObject;
+                                                                                                    skos:prefLabel "/SpeedButtonExtract/Glyph.Data".
+<ni:///mh;1QEQFBw3vFgnnUVU7kNISoZmTQ?ct=application/x-delphi-form#/SpeedButtonFirst%2FGlyph.Data> at:pathObject <file:///SpeedButtonFirst/Glyph.Data>;
+                                                                                                  nie:interpretedAs <ni:///mh;1QEQAMh7oYwFYfMDpCD3nolUzg?ct=application/octet-stream>;
+                                                                                                  nfo:fileName "SpeedButtonFirst/Glyph.Data";
+                                                                                                  nfo:fileSize 362 ;
+                                                                                                  a nfo:FileDataObject,
+                                                                                                    nfo:EmbeddedFileDataObject;
+                                                                                                  skos:prefLabel "/SpeedButtonFirst/Glyph.Data".
+<ni:///mh;1QEQFBw3vFgnnUVU7kNISoZmTQ?ct=application/x-delphi-form#/SpeedButtonHilfe%2FGlyph.Data> at:pathObject <file:///SpeedButtonHilfe/Glyph.Data>;
+                                                                                                  nie:interpretedAs <ni:///mh;1QEQsZy0OLKGPxuYOqmvp1X2mQ?ct=application/octet-stream>;
+                                                                                                  nfo:fileName "SpeedButtonHilfe/Glyph.Data";
+                                                                                                  nfo:fileSize 378 ;
+                                                                                                  a nfo:FileDataObject,
+                                                                                                    nfo:EmbeddedFileDataObject;
+                                                                                                  skos:prefLabel "/SpeedButtonHilfe/Glyph.Data".
+<ni:///mh;1QEQFBw3vFgnnUVU7kNISoZmTQ?ct=application/x-delphi-form#/SpeedButtonLast%2FGlyph.Data> at:pathObject <file:///SpeedButtonLast/Glyph.Data>;
+                                                                                                 nie:interpretedAs <ni:///mh;1QEQXxMjqf1NQOnlwNiFO1k0_Q?ct=application/octet-stream>;
+                                                                                                 nfo:fileName "SpeedButtonLast/Glyph.Data";
+                                                                                                 nfo:fileSize 362 ;
+                                                                                                 a nfo:FileDataObject,
+                                                                                                   nfo:EmbeddedFileDataObject;
+                                                                                                 skos:prefLabel "/SpeedButtonLast/Glyph.Data".
+<ni:///mh;1QEQFBw3vFgnnUVU7kNISoZmTQ?ct=application/x-delphi-form#/SpeedButtonNext%2FGlyph.Data> at:pathObject <file:///SpeedButtonNext/Glyph.Data>;
+                                                                                                 nie:interpretedAs <ni:///mh;1QEQGfUUrluFBKTPby_89IRKXQ?ct=application/octet-stream>;
+                                                                                                 nfo:fileName "SpeedButtonNext/Glyph.Data";
+                                                                                                 nfo:fileSize 362 ;
+                                                                                                 a nfo:FileDataObject,
+                                                                                                   nfo:EmbeddedFileDataObject;
+                                                                                                 skos:prefLabel "/SpeedButtonNext/Glyph.Data".
+<ni:///mh;1QEQFBw3vFgnnUVU7kNISoZmTQ?ct=application/x-delphi-form#/SpeedButtonPrevious%2FGlyph.Data> at:pathObject <file:///SpeedButtonPrevious/Glyph.Data>;
+                                                                                                     nie:interpretedAs <ni:///mh;1QEQoG3hKsVE69-ZEDP5EM2Xzw?ct=application/octet-stream>;
+                                                                                                     nfo:fileName "SpeedButtonPrevious/Glyph.Data";
+                                                                                                     nfo:fileSize 362 ;
+                                                                                                     a nfo:FileDataObject,
+                                                                                                       nfo:EmbeddedFileDataObject;
+                                                                                                     skos:prefLabel "/SpeedButtonPrevious/Glyph.Data".
+<ni:///mh;1QEQGfUUrluFBKTPby_89IRKXQ?ct=application/octet-stream> at:digest <urn:md5:19F514AE5B8504A4CF6F2FFCF4844A5D>;
+                                                                  dcterms:extent "358"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQGfUUrluFBKTPby_89IRKXQ?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (358 B)"@en.
+<ni:///mh;1QEQGfUUrluFBKTPby_89IRKXQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
+                                                   nfo:height 20 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 20 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (20×20)"@en,
+                                                                  "BMP object (362 B)"@en.
+<ni:///mh;1QEQKQrYL6ElE8fLQlNGM8edIw?ct=application/octet-stream> at:digest <urn:md5:290AD82FA12513C7CB42534633C79D23>;
+                                                                  dcterms:extent "374"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQKQrYL6ElE8fLQlNGM8edIw?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (374 B)"@en.
+<ni:///mh;1QEQKQrYL6ElE8fLQlNGM8edIw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
+                                                   nfo:height 16 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 32 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (32×16)"@en,
+                                                                  "BMP object (378 B)"@en.
+<ni:///mh;1QEQSWGuo2FSk-Gz66lviNIcVQ?ct=application/octet-stream> at:digest <urn:md5:4961AEA3615293E1B3EBA96F88D21C55>;
+                                                                  dcterms:extent "478"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQSWGuo2FSk-Gz66lviNIcVQ?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (478 B)"@en.
+<ni:///mh;1QEQSWGuo2FSk-Gz66lviNIcVQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
+                                                   nfo:height 18 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 36 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (36×18)"@en,
+                                                                  "BMP object (482 B)"@en.
+<ni:///mh;1QEQTWFIwcH_yJQIN4rZ0eQwNw?ct=application/octet-stream> at:digest <urn:md5:4D6148C1C1FFC89408378AD9D1E43037>;
+                                                                  dcterms:extent "518"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQTWFIwcH_yJQIN4rZ0eQwNw?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (518 B)"@en.
+<ni:///mh;1QEQTWFIwcH_yJQIN4rZ0eQwNw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
+                                                   nfo:height 20 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 40 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (40×20)"@en,
+                                                                  "BMP object (522 B)"@en.
+<ni:///mh;1QEQXxMjqf1NQOnlwNiFO1k0_Q?ct=application/octet-stream> at:digest <urn:md5:5F1323A9FD4D40E9E5C0D8853B5934FD>;
+                                                                  dcterms:extent "358"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQXxMjqf1NQOnlwNiFO1k0_Q?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (358 B)"@en.
+<ni:///mh;1QEQXxMjqf1NQOnlwNiFO1k0_Q?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
+                                                   nfo:height 20 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 20 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (20×20)"@en,
+                                                                  "BMP object (362 B)"@en.
+<ni:///mh;1QEQoG3hKsVE69-ZEDP5EM2Xzw?ct=application/octet-stream> at:digest <urn:md5:A06DE12AC544EBDF991033F910CD97CF>;
+                                                                  dcterms:extent "358"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQoG3hKsVE69-ZEDP5EM2Xzw?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (358 B)"@en.
+<ni:///mh;1QEQoG3hKsVE69-ZEDP5EM2Xzw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
+                                                   nfo:height 20 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 20 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (20×20)"@en,
+                                                                  "BMP object (362 B)"@en.
+<ni:///mh;1QEQrdwU5ypHa0Kl8gw39c2pDg?ct=application/octet-stream> at:digest <urn:md5:ADDC14E72A476B42A5F20C37F5CDA90E>;
+                                                                  dcterms:extent "334"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQrdwU5ypHa0Kl8gw39c2pDg?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (334 B)"@en.
+<ni:///mh;1QEQrdwU5ypHa0Kl8gw39c2pDg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
+                                                   nfo:height 18 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 18 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (18×18)"@en,
+                                                                  "BMP object (338 B)"@en.
+<ni:///mh;1QEQsZy0OLKGPxuYOqmvp1X2mQ?ct=application/octet-stream> at:digest <urn:md5:B19CB438B2863F1B983AA9AFA755F699>;
+                                                                  dcterms:extent "374"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQsZy0OLKGPxuYOqmvp1X2mQ?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (374 B)"@en.
+<ni:///mh;1QEQsZy0OLKGPxuYOqmvp1X2mQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
+                                                   nfo:height 16 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 32 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (32×16)"@en,
+                                                                  "BMP object (378 B)"@en.
+<ni:///mh;1QEQwwjMufA8vJrrTGrhqkhrwQ?ct=application/octet-stream> at:digest <urn:md5:C308CCB9F03CBC9AEB4C6AE1AA486BC1>;
+                                                                  dcterms:extent "518"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQwwjMufA8vJrrTGrhqkhrwQ?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (518 B)"@en.
+<ni:///mh;1QEQwwjMufA8vJrrTGrhqkhrwQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
+                                                   nfo:height 20 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 40 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (40×20)"@en,
+                                                                  "BMP object (522 B)"@en.
+<urn:md5:00C87BA18C0561F303A420F79E8954CE> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "AMh7oYwFYfMDpCD3nolUzg=="^^xsd:base64Binary.
+<urn:md5:141C37BC58279D4554EE43484A86664D> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "FBw3vFgnnUVU7kNISoZmTQ=="^^xsd:base64Binary.
+<urn:md5:19F514AE5B8504A4CF6F2FFCF4844A5D> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "GfUUrluFBKTPby/89IRKXQ=="^^xsd:base64Binary.
+<urn:md5:290AD82FA12513C7CB42534633C79D23> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "KQrYL6ElE8fLQlNGM8edIw=="^^xsd:base64Binary.
+<urn:md5:4961AEA3615293E1B3EBA96F88D21C55> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "SWGuo2FSk+Gz66lviNIcVQ=="^^xsd:base64Binary.
+<urn:md5:4D6148C1C1FFC89408378AD9D1E43037> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "TWFIwcH/yJQIN4rZ0eQwNw=="^^xsd:base64Binary.
+<urn:md5:5F1323A9FD4D40E9E5C0D8853B5934FD> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "XxMjqf1NQOnlwNiFO1k0/Q=="^^xsd:base64Binary.
+<urn:md5:A06DE12AC544EBDF991033F910CD97CF> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "oG3hKsVE69+ZEDP5EM2Xzw=="^^xsd:base64Binary.
+<urn:md5:ADDC14E72A476B42A5F20C37F5CDA90E> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "rdwU5ypHa0Kl8gw39c2pDg=="^^xsd:base64Binary.
+<urn:md5:B19CB438B2863F1B983AA9AFA755F699> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "sZy0OLKGPxuYOqmvp1X2mQ=="^^xsd:base64Binary.
+<urn:md5:C308CCB9F03CBC9AEB4C6AE1AA486BC1> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "wwjMufA8vJrrTGrhqkhrwQ=="^^xsd:base64Binary.

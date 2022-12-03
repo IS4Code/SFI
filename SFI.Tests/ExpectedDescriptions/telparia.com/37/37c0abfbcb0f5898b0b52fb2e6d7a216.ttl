@@ -1,0 +1,34 @@
+@base <ni:///mh;1QEQHT8j9RfNKOlu0BFHKuxCNQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///MYMCON.COM>;
+     nie:interpretedAs <ni:///mh;1QEQHT8j9RfNKOlu0BFHKuxCNQ?ct=application/octet-stream>;
+     nfo:fileName "MYMCON.COM";
+     nfo:fileSize 19176 ;
+     a nfo:FileDataObject.
+<file:///MYMCON.COM> at:extensionObject <https://w3id.org/uri4uri/suffix/com>.
+<ni:///mh;1QEQHT8j9RfNKOlu0BFHKuxCNQ?ct=application/octet-stream> at:digest <urn:md5:1D3F23F517CD28E96ED011472AEC4235>;
+                                                                  dcterms:extent "19176"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQHT8j9RfNKOlu0BFHKuxCNQ?ct=application/x-dosexec>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (18.73 KiB)"@en.
+<ni:///mh;1QEQHT8j9RfNKOlu0BFHKuxCNQ?ct=application/x-dosexec> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-dosexec>;
+                                                               a schema:MediaObject,
+                                                                 schema:SoftwareApplication,
+                                                                 nfo:Executable;
+                                                               skos:prefLabel "COM object (18.73 KiB)"@en.
+<urn:md5:1D3F23F517CD28E96ED011472AEC4235> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "HT8j9RfNKOlu0BFHKuxCNQ=="^^xsd:base64Binary.

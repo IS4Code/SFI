@@ -1,0 +1,378 @@
+@base <ni:///mh;1QEQhjSIBLLia5Afkv6JzW38nQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix dbo: <http://dbpedia.org/ontology/>.
+
+_:n1 at:pathObject <file:///DISK1.IMG>;
+     nie:interpretedAs <ni:///mh;1QEQhjSIBLLia5Afkv6JzW38nQ?ct=application/octet-stream>;
+     nfo:fileName "DISK1.IMG";
+     nfo:fileSize 662528 ;
+     a nfo:FileDataObject.
+<data:application/octet-stream;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAACAA==> dcterms:extent "34"^^dt:byte;
+                                                                                        dcterms:hasFormat <data:image/x-icon;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAACAA==>;
+                                                                                        a cnt:ContentAsBase64;
+                                                                                        skos:prefLabel "binary data (34 B)"@en;
+                                                                                        cnt:bytes "AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAACAA=="^^xsd:base64Binary.
+<data:image/x-icon;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAACAA==> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
+                                                                            nfo:hasMediaStream <data:image/x-icon;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAACAA==#/0>,
+                                                                                               <data:image/x-icon;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAACAA==#/1>;
+                                                                            a schema:MediaObject,
+                                                                              schema:ImageObject,
+                                                                              nfo:Image;
+                                                                            skos:prefLabel "ICO object (34 B)"@en.
+<data:image/x-icon;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAACAA==#/0> nfo:height 32 ;
+                                                                               nfo:width 32 ;
+                                                                               a nfo:MediaStream;
+                                                                               skos:prefLabel "0:ICO (32×32)".
+<data:image/x-icon;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAACAA==#/1> nfo:height 0 ;
+                                                                               nfo:width 16 ;
+                                                                               a nfo:MediaStream;
+                                                                               skos:prefLabel "1:ICO (16×0)".
+<file:///DISK1.IMG> at:extensionObject <https://w3id.org/uri4uri/suffix/img>.
+<file:///helpspk.dll> at:extensionObject <https://w3id.org/uri4uri/suffix/dll>.
+<file:///jean.vce> at:extensionObject <https://w3id.org/uri4uri/suffix/vce>.
+<file:///mfc40.dll> at:extensionObject <https://w3id.org/uri4uri/suffix/dll>.
+<file:///mstts.dll> at:extensionObject <https://w3id.org/uri4uri/suffix/dll>.
+<file:///msvoice.cnt> at:extensionObject <https://w3id.org/uri4uri/suffix/cnt>.
+<file:///msvoice.cpl> at:extensionObject <https://w3id.org/uri4uri/suffix/cpl>.
+<file:///msvoice.dat> at:extensionObject <https://w3id.org/uri4uri/suffix/dat>.
+<file:///msvoice.hlp> at:extensionObject <https://w3id.org/uri4uri/suffix/hlp>.
+<file:///msvoice.key> at:extensionObject <https://w3id.org/uri4uri/suffix/key>.
+<file:///vrdemo.hlp> at:extensionObject <https://w3id.org/uri4uri/suffix/hlp>.
+<file:///whisper.hlp> at:extensionObject <https://w3id.org/uri4uri/suffix/hlp>.
+<file:///whisper.vce> at:extensionObject <https://w3id.org/uri4uri/suffix/vce>.
+<ni:///mh;1QEQ-4mEuPJ3yTcbM8Hx4g_H3A?ct=application/octet-stream> at:digest <urn:md5:FB8984B8F277C9371B33C1F1E20FC7DC>;
+                                                                  dcterms:extent "213862"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (208.85 KiB)"@en.
+<ni:///mh;1QEQ1SoGgTOH4a37cqnKSFh3GQ?ct=text/plain> at:digest <urn:md5:D52A06813387E1ADFB72A9CA48587719>;
+                                                    dcterms:extent "4753"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQ1SoGgTOH4a37cqnKSFh3GQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (4.64 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQ1SoGgTOH4a37cqnKSFh3GQ?ct=text/plain#line=,1> rdf:value """ShowActive        0          \"List Voice Commands\"    \"Changing the Listening Mode\"    \"Shows a list of active voice commands.\"""".
+<ni:///mh;1QEQ1jBVNdP4zD1fArD2Tuy5Ag?ct=application/octet-stream> at:digest <urn:md5:D6305535D3F8CC3D5F02B0F64EECB902>;
+                                                                  dcterms:extent "8628"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (8.43 KiB)"@en.
+<ni:///mh;1QEQDF9yfmH7SZ4v9akgwUtjfQ?ct=text/plain> at:digest <urn:md5:0C5F727E61FB499E2FF5A920C14B637D>;
+                                                    dcterms:extent "1270"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQDF9yfmH7SZ4v9akgwUtjfQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.24 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQDF9yfmH7SZ4v9akgwUtjfQ?ct=text/plain#line=,1> rdf:value ":Base msvoice.hlp>proc4".
+<ni:///mh;1QEQMtu1ryU9vl0g-zYiv6XSwA?ct=application/octet-stream> at:digest <urn:md5:32DBB5AF253DBE5D20FB3622BFA5D2C0>;
+                                                                  dcterms:extent "277702"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (271.19 KiB)"@en.
+<ni:///mh;1QEQVWaQXeQmnzsxxc3mEgkCoQ?ct=application/octet-stream> at:digest <urn:md5:5566905DE4269F3B31C5CDE6120902A1>;
+                                                                  dcterms:extent "107525"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQVWaQXeQmnzsxxc3mEgkCoQ?ct=application/vnd.microsoft.portable-executable>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (105 KiB)"@en.
+<ni:///mh;1QEQVWaQXeQmnzsxxc3mEgkCoQ?ct=application/vnd.microsoft.portable-executable> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
+                                                                                       a schema:MediaObject,
+                                                                                         schema:SoftwareApplication,
+                                                                                         nfo:Executable;
+                                                                                       skos:prefLabel "DLL object (105 KiB)"@en.
+<ni:///mh;1QEQecbWPDMPuLkHwPJgCXgA5A?ct=application/octet-stream> at:digest <urn:md5:79C6D63C330FB8B907C0F260097800E4>;
+                                                                  dcterms:extent "8704"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQecbWPDMPuLkHwPJgCXgA5A?ct=application/vnd.microsoft.portable-executable>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (8.5 KiB)"@en.
+<ni:///mh;1QEQecbWPDMPuLkHwPJgCXgA5A?ct=application/vnd.microsoft.portable-executable> dbo:originalName "msvoice.cpl";
+                                                                                       dcterms:creator "Microsoft Corporation"@en-us;
+                                                                                       dcterms:description "Microsoft Voice Control Panel"@en-us;
+                                                                                       schema:copyrightNotice "Copyright © 1991-1996 Microsoft Corporation"@en-us;
+                                                                                       schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
+                                                                                       schema:name "Microsoft Voice Control Panel";
+                                                                                       schema:softwareVersion "2.0.2.10208",
+                                                                                                              "2.0.0.10208";
+                                                                                       schema:version "2.0.2.10208",
+                                                                                                      "2.0.0.10208";
+                                                                                       nie:hasPart <ni:///mh;1QEQecbWPDMPuLkHwPJgCXgA5A?ct=application/vnd.microsoft.portable-executable#/Icon/1>,
+                                                                                                   <ni:///mh;1QEQecbWPDMPuLkHwPJgCXgA5A?ct=application/vnd.microsoft.portable-executable#/Icon/2>,
+                                                                                                   <ni:///mh;1QEQecbWPDMPuLkHwPJgCXgA5A?ct=application/vnd.microsoft.portable-executable#/GroupIcon/101>;
+                                                                                       a schema:MediaObject,
+                                                                                         schema:SoftwareApplication,
+                                                                                         nfo:Executable;
+                                                                                       skos:prefLabel "DLL object (Microsoft Voice Control Panel)"@en.
+<ni:///mh;1QEQecbWPDMPuLkHwPJgCXgA5A?ct=application/vnd.microsoft.portable-executable#/GroupIcon/101> at:pathObject <file:///101>;
+                                                                                                      nie:interpretedAs <data:application/octet-stream;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAACAA==>;
+                                                                                                      nfo:fileName "101";
+                                                                                                      nfo:fileSize 34 ;
+                                                                                                      a nfo:FileDataObject,
+                                                                                                        nfo:EmbeddedFileDataObject;
+                                                                                                      skos:prefLabel "/GroupIcon/101".
+<ni:///mh;1QEQecbWPDMPuLkHwPJgCXgA5A?ct=application/vnd.microsoft.portable-executable#/Icon/1> at:pathObject <file:///1>;
+                                                                                               nie:interpretedAs <ni:///mh;1QEQv08-uWu8XAosgfA-dUZIrA?ct=application/octet-stream>;
+                                                                                               nfo:fileName "1";
+                                                                                               nfo:fileSize 744 ;
+                                                                                               a nfo:FileDataObject,
+                                                                                                 nfo:EmbeddedFileDataObject;
+                                                                                               skos:prefLabel "/Icon/1".
+<ni:///mh;1QEQecbWPDMPuLkHwPJgCXgA5A?ct=application/vnd.microsoft.portable-executable#/Icon/2> at:pathObject <file:///2>;
+                                                                                               nie:interpretedAs <ni:///mh;1QEQzBVrFZarHOfYGQZGvbO_SA?ct=application/octet-stream>;
+                                                                                               nfo:fileName "2";
+                                                                                               nfo:fileSize 296 ;
+                                                                                               a nfo:FileDataObject,
+                                                                                                 nfo:EmbeddedFileDataObject;
+                                                                                               skos:prefLabel "/Icon/2".
+<ni:///mh;1QEQhL3dxiR9essACTJEtTZfBw?ct=application/octet-stream> at:digest <urn:md5:84BDDDC6247D7ACB00093244B5365F07>;
+                                                                  dcterms:extent "79360"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQhL3dxiR9essACTJEtTZfBw?ct=application/vnd.microsoft.portable-executable>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (77.5 KiB)"@en.
+<ni:///mh;1QEQhL3dxiR9essACTJEtTZfBw?ct=application/vnd.microsoft.portable-executable> dbo:originalName "mstts.dll";
+                                                                                       dcterms:creator "Microsoft Corporation"@en-us;
+                                                                                       dcterms:description "Microsoft Text To Speech Engine"@en-us;
+                                                                                       schema:copyrightNotice "Copyright © 1991-1996 Microsoft Corporation"@en-us;
+                                                                                       schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
+                                                                                       schema:name "Microsoft Text To Speech Engine";
+                                                                                       schema:softwareVersion "2.0.2.10208",
+                                                                                                              "2.0.0.10208";
+                                                                                       schema:version "2.0.2.10208",
+                                                                                                      "2.0.0.10208";
+                                                                                       a schema:MediaObject,
+                                                                                         schema:SoftwareApplication,
+                                                                                         nfo:Executable;
+                                                                                       skos:prefLabel "DLL object (Microsoft Text To Speech Engine)"@en.
+<ni:///mh;1QEQhjSIBLLia5Afkv6JzW38nQ?ct=application/octet-stream> at:digest <urn:md5:86348804B2E26B901F92FE89CD6DFC9D>;
+                                                                  dcterms:extent "662528"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQhjSIBLLia5Afkv6JzW38nQ?ct=application/vnd.ms-cab-compressed>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (647 KiB)"@en.
+<ni:///mh;1QEQhjSIBLLia5Afkv6JzW38nQ?ct=application/vnd.ms-cab-compressed> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.ms-cab-compressed>;
+                                                                           a schema:MediaObject,
+                                                                             nfo:Archive;
+                                                                           skos:prefLabel "CAB object (647 KiB)"@en.
+<ni:///mh;1QEQhjSIBLLia5Afkv6JzW38nQ?ct=application/vnd.ms-cab-compressed#/helpspk.dll> at:pathObject <file:///helpspk.dll>;
+                                                                                        nie:interpretedAs <ni:///mh;1QEQmVF9nHh_FI6hUweP8r9qZg?ct=application/octet-stream>;
+                                                                                        nfo:belongsToContainer <ni:///mh;1QEQhjSIBLLia5Afkv6JzW38nQ?ct=application/vnd.ms-cab-compressed>;
+                                                                                        nfo:fileLastModified "1996-02-08T08:55:48.000000Z"^^xsd:dateTime;
+                                                                                        nfo:fileName "helpspk.dll";
+                                                                                        nfo:fileSize 27648 ;
+                                                                                        a nfo:FileDataObject,
+                                                                                          nfo:ArchiveItem;
+                                                                                        skos:prefLabel "/helpspk.dll".
+<ni:///mh;1QEQhjSIBLLia5Afkv6JzW38nQ?ct=application/vnd.ms-cab-compressed#/jean.vce> at:pathObject <file:///jean.vce>;
+                                                                                     nie:interpretedAs <ni:///mh;1QEQMtu1ryU9vl0g-zYiv6XSwA?ct=application/octet-stream>;
+                                                                                     nfo:belongsToContainer <ni:///mh;1QEQhjSIBLLia5Afkv6JzW38nQ?ct=application/vnd.ms-cab-compressed>;
+                                                                                     nfo:fileLastModified "1996-01-31T09:06:48.000000Z"^^xsd:dateTime;
+                                                                                     nfo:fileName "jean.vce";
+                                                                                     nfo:fileSize 277702 ;
+                                                                                     a nfo:FileDataObject,
+                                                                                       nfo:ArchiveItem;
+                                                                                     skos:prefLabel "/jean.vce".
+<ni:///mh;1QEQhjSIBLLia5Afkv6JzW38nQ?ct=application/vnd.ms-cab-compressed#/mfc40.dll> at:pathObject <file:///mfc40.dll>;
+                                                                                      nie:interpretedAs <ni:///mh;1QEQVWaQXeQmnzsxxc3mEgkCoQ?ct=application/octet-stream>;
+                                                                                      nfo:belongsToContainer <ni:///mh;1QEQhjSIBLLia5Afkv6JzW38nQ?ct=application/vnd.ms-cab-compressed>;
+                                                                                      nfo:fileLastModified "1995-10-05T23:27:10.000000Z"^^xsd:dateTime;
+                                                                                      nfo:fileName "mfc40.dll";
+                                                                                      nfo:fileSize 923408 ;
+                                                                                      a nfo:FileDataObject,
+                                                                                        nfo:ArchiveItem;
+                                                                                      skos:prefLabel "/mfc40.dll".
+<ni:///mh;1QEQhjSIBLLia5Afkv6JzW38nQ?ct=application/vnd.ms-cab-compressed#/mstts.dll> at:pathObject <file:///mstts.dll>;
+                                                                                      nie:interpretedAs <ni:///mh;1QEQhL3dxiR9essACTJEtTZfBw?ct=application/octet-stream>;
+                                                                                      nfo:belongsToContainer <ni:///mh;1QEQhjSIBLLia5Afkv6JzW38nQ?ct=application/vnd.ms-cab-compressed>;
+                                                                                      nfo:fileLastModified "1996-02-08T05:53:54.000000Z"^^xsd:dateTime;
+                                                                                      nfo:fileName "mstts.dll";
+                                                                                      nfo:fileSize 79360 ;
+                                                                                      a nfo:FileDataObject,
+                                                                                        nfo:ArchiveItem;
+                                                                                      skos:prefLabel "/mstts.dll".
+<ni:///mh;1QEQhjSIBLLia5Afkv6JzW38nQ?ct=application/vnd.ms-cab-compressed#/msvoice.cnt> at:pathObject <file:///msvoice.cnt>;
+                                                                                        nie:interpretedAs <ni:///mh;1QEQDF9yfmH7SZ4v9akgwUtjfQ?ct=text/plain>;
+                                                                                        nfo:belongsToContainer <ni:///mh;1QEQhjSIBLLia5Afkv6JzW38nQ?ct=application/vnd.ms-cab-compressed>;
+                                                                                        nfo:fileLastModified "1995-12-19T09:58:24.000000Z"^^xsd:dateTime;
+                                                                                        nfo:fileName "msvoice.cnt";
+                                                                                        nfo:fileSize 1270 ;
+                                                                                        a nfo:FileDataObject,
+                                                                                          nfo:ArchiveItem;
+                                                                                        skos:prefLabel "/msvoice.cnt".
+<ni:///mh;1QEQhjSIBLLia5Afkv6JzW38nQ?ct=application/vnd.ms-cab-compressed#/msvoice.cpl> at:pathObject <file:///msvoice.cpl>;
+                                                                                        nie:interpretedAs <ni:///mh;1QEQecbWPDMPuLkHwPJgCXgA5A?ct=application/octet-stream>;
+                                                                                        nfo:belongsToContainer <ni:///mh;1QEQhjSIBLLia5Afkv6JzW38nQ?ct=application/vnd.ms-cab-compressed>;
+                                                                                        nfo:fileLastModified "1996-02-08T08:54:20.000000Z"^^xsd:dateTime;
+                                                                                        nfo:fileName "msvoice.cpl";
+                                                                                        nfo:fileSize 8704 ;
+                                                                                        a nfo:FileDataObject,
+                                                                                          nfo:ArchiveItem;
+                                                                                        skos:prefLabel "/msvoice.cpl".
+<ni:///mh;1QEQhjSIBLLia5Afkv6JzW38nQ?ct=application/vnd.ms-cab-compressed#/msvoice.dat> at:pathObject <file:///msvoice.dat>;
+                                                                                        nie:interpretedAs <ni:///mh;1QEQ1SoGgTOH4a37cqnKSFh3GQ?ct=text/plain>;
+                                                                                        nfo:belongsToContainer <ni:///mh;1QEQhjSIBLLia5Afkv6JzW38nQ?ct=application/vnd.ms-cab-compressed>;
+                                                                                        nfo:fileLastModified "1996-01-15T10:39:34.000000Z"^^xsd:dateTime;
+                                                                                        nfo:fileName "msvoice.dat";
+                                                                                        nfo:fileSize 4753 ;
+                                                                                        a nfo:FileDataObject,
+                                                                                          nfo:ArchiveItem;
+                                                                                        skos:prefLabel "/msvoice.dat".
+<ni:///mh;1QEQhjSIBLLia5Afkv6JzW38nQ?ct=application/vnd.ms-cab-compressed#/msvoice.hlp> at:pathObject <file:///msvoice.hlp>;
+                                                                                        nie:interpretedAs <ni:///mh;1QEQjkf-28XrIaySxKbu3NqgKg?ct=application/octet-stream>;
+                                                                                        nfo:belongsToContainer <ni:///mh;1QEQhjSIBLLia5Afkv6JzW38nQ?ct=application/vnd.ms-cab-compressed>;
+                                                                                        nfo:fileLastModified "1996-02-08T12:42:48.000000Z"^^xsd:dateTime;
+                                                                                        nfo:fileName "msvoice.hlp";
+                                                                                        nfo:fileSize 47744 ;
+                                                                                        a nfo:FileDataObject,
+                                                                                          nfo:ArchiveItem;
+                                                                                        skos:prefLabel "/msvoice.hlp".
+<ni:///mh;1QEQhjSIBLLia5Afkv6JzW38nQ?ct=application/vnd.ms-cab-compressed#/msvoice.key> at:pathObject <file:///msvoice.key>;
+                                                                                        nie:interpretedAs <ni:///mh;1QEQipatQ_bGRUO_1W_AdHmiDw?ct=text/plain>;
+                                                                                        nfo:belongsToContainer <ni:///mh;1QEQhjSIBLLia5Afkv6JzW38nQ?ct=application/vnd.ms-cab-compressed>;
+                                                                                        nfo:fileLastModified "1995-12-15T14:23:44.000000Z"^^xsd:dateTime;
+                                                                                        nfo:fileName "msvoice.key";
+                                                                                        nfo:fileSize 3116 ;
+                                                                                        a nfo:FileDataObject,
+                                                                                          nfo:ArchiveItem;
+                                                                                        skos:prefLabel "/msvoice.key".
+<ni:///mh;1QEQhjSIBLLia5Afkv6JzW38nQ?ct=application/vnd.ms-cab-compressed#/vrdemo.hlp> at:pathObject <file:///vrdemo.hlp>;
+                                                                                       nie:interpretedAs <ni:///mh;1QEQpjp0NvAG0YFwTTJjQH0-yA?ct=application/octet-stream>;
+                                                                                       nfo:belongsToContainer <ni:///mh;1QEQhjSIBLLia5Afkv6JzW38nQ?ct=application/vnd.ms-cab-compressed>;
+                                                                                       nfo:fileLastModified "1996-02-08T12:43:00.000000Z"^^xsd:dateTime;
+                                                                                       nfo:fileName "vrdemo.hlp";
+                                                                                       nfo:fileSize 38888 ;
+                                                                                       a nfo:FileDataObject,
+                                                                                         nfo:ArchiveItem;
+                                                                                       skos:prefLabel "/vrdemo.hlp".
+<ni:///mh;1QEQhjSIBLLia5Afkv6JzW38nQ?ct=application/vnd.ms-cab-compressed#/whisper.hlp> at:pathObject <file:///whisper.hlp>;
+                                                                                        nie:interpretedAs <ni:///mh;1QEQ1jBVNdP4zD1fArD2Tuy5Ag?ct=application/octet-stream>;
+                                                                                        nfo:belongsToContainer <ni:///mh;1QEQhjSIBLLia5Afkv6JzW38nQ?ct=application/vnd.ms-cab-compressed>;
+                                                                                        nfo:fileLastModified "1996-02-08T12:43:04.000000Z"^^xsd:dateTime;
+                                                                                        nfo:fileName "whisper.hlp";
+                                                                                        nfo:fileSize 8628 ;
+                                                                                        a nfo:FileDataObject,
+                                                                                          nfo:ArchiveItem;
+                                                                                        skos:prefLabel "/whisper.hlp".
+<ni:///mh;1QEQhjSIBLLia5Afkv6JzW38nQ?ct=application/vnd.ms-cab-compressed#/whisper.vce> at:pathObject <file:///whisper.vce>;
+                                                                                        nie:interpretedAs <ni:///mh;1QEQ-4mEuPJ3yTcbM8Hx4g_H3A?ct=application/octet-stream>;
+                                                                                        nfo:belongsToContainer <ni:///mh;1QEQhjSIBLLia5Afkv6JzW38nQ?ct=application/vnd.ms-cab-compressed>;
+                                                                                        nfo:fileLastModified "1996-02-01T14:35:54.000000Z"^^xsd:dateTime;
+                                                                                        nfo:fileName "whisper.vce";
+                                                                                        nfo:fileSize 213862 ;
+                                                                                        a nfo:FileDataObject,
+                                                                                          nfo:ArchiveItem;
+                                                                                        skos:prefLabel "/whisper.vce".
+<ni:///mh;1QEQipatQ_bGRUO_1W_AdHmiDw?ct=text/plain> at:digest <urn:md5:8A96AD43F6C64543BFD56FC07479A20F>;
+                                                    dcterms:extent "3116"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQipatQ_bGRUO_1W_AdHmiDw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (3.04 KiB)"@en;
+                                                    cnt:characterEncoding "windows-1252".
+<ni:///mh;1QEQipatQ_bGRUO_1W_AdHmiDw?ct=text/plain#line=,1> rdf:value "[TipOfTheDay]".
+<ni:///mh;1QEQjkf-28XrIaySxKbu3NqgKg?ct=application/octet-stream> at:digest <urn:md5:8E47FEDBC5EB21AC92C4A6EEDCDAA02A>;
+                                                                  dcterms:extent "47744"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (46.63 KiB)"@en.
+<ni:///mh;1QEQmVF9nHh_FI6hUweP8r9qZg?ct=application/octet-stream> at:digest <urn:md5:99517D9C787F148EA153078FF2BF6A66>;
+                                                                  dcterms:extent "27648"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQmVF9nHh_FI6hUweP8r9qZg?ct=application/vnd.microsoft.portable-executable>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (27 KiB)"@en.
+<ni:///mh;1QEQmVF9nHh_FI6hUweP8r9qZg?ct=application/vnd.microsoft.portable-executable> dbo:originalName "helpspk.dll";
+                                                                                       dcterms:creator "Microsoft Corporation"@en-us;
+                                                                                       dcterms:description "MSVoice Help Helper"@en-us;
+                                                                                       schema:copyrightNotice "Copyright © 1991-1996 Microsoft Corporation"@en-us;
+                                                                                       schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
+                                                                                       schema:name "MSVoice Help Helper";
+                                                                                       schema:softwareVersion "2.0.2.10208",
+                                                                                                              "2.0.0.10208";
+                                                                                       schema:version "2.0.2.10208",
+                                                                                                      "2.0.0.10208";
+                                                                                       a schema:MediaObject,
+                                                                                         schema:SoftwareApplication,
+                                                                                         nfo:Executable;
+                                                                                       skos:prefLabel "DLL object (MSVoice Help Helper)"@en.
+<ni:///mh;1QEQpjp0NvAG0YFwTTJjQH0-yA?ct=application/octet-stream> at:digest <urn:md5:A63A7436F006D181704D3263407D3EC8>;
+                                                                  dcterms:extent "38888"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (37.98 KiB)"@en.
+<ni:///mh;1QEQv08-uWu8XAosgfA-dUZIrA?ct=application/octet-stream> at:digest <urn:md5:BF4F3EB96BBC5C0A2C81F03E754648AC>;
+                                                                  dcterms:extent "758"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQv08-uWu8XAosgfA-dUZIrA?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (758 B)"@en.
+<ni:///mh;1QEQv08-uWu8XAosgfA-dUZIrA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:colorDepth 32 ;
+                                                   nfo:height 32 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 32 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (32×32)"@en.
+<ni:///mh;1QEQzBVrFZarHOfYGQZGvbO_SA?ct=application/octet-stream> at:digest <urn:md5:CC156B1596AB1CE7D8190646BDB3BF48>;
+                                                                  dcterms:extent "310"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQzBVrFZarHOfYGQZGvbO_SA?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (310 B)"@en.
+<ni:///mh;1QEQzBVrFZarHOfYGQZGvbO_SA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:colorDepth 32 ;
+                                                   nfo:height 16 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 16 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (16×16)"@en.
+<urn:md5:0C5F727E61FB499E2FF5A920C14B637D> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "DF9yfmH7SZ4v9akgwUtjfQ=="^^xsd:base64Binary.
+<urn:md5:32DBB5AF253DBE5D20FB3622BFA5D2C0> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "Mtu1ryU9vl0g+zYiv6XSwA=="^^xsd:base64Binary.
+<urn:md5:5566905DE4269F3B31C5CDE6120902A1> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "VWaQXeQmnzsxxc3mEgkCoQ=="^^xsd:base64Binary.
+<urn:md5:79C6D63C330FB8B907C0F260097800E4> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "ecbWPDMPuLkHwPJgCXgA5A=="^^xsd:base64Binary.
+<urn:md5:84BDDDC6247D7ACB00093244B5365F07> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "hL3dxiR9essACTJEtTZfBw=="^^xsd:base64Binary.
+<urn:md5:86348804B2E26B901F92FE89CD6DFC9D> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "hjSIBLLia5Afkv6JzW38nQ=="^^xsd:base64Binary.
+<urn:md5:8A96AD43F6C64543BFD56FC07479A20F> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "ipatQ/bGRUO/1W/AdHmiDw=="^^xsd:base64Binary.
+<urn:md5:8E47FEDBC5EB21AC92C4A6EEDCDAA02A> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "jkf+28XrIaySxKbu3NqgKg=="^^xsd:base64Binary.
+<urn:md5:99517D9C787F148EA153078FF2BF6A66> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "mVF9nHh/FI6hUweP8r9qZg=="^^xsd:base64Binary.
+<urn:md5:A63A7436F006D181704D3263407D3EC8> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "pjp0NvAG0YFwTTJjQH0+yA=="^^xsd:base64Binary.
+<urn:md5:BF4F3EB96BBC5C0A2C81F03E754648AC> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "v08+uWu8XAosgfA+dUZIrA=="^^xsd:base64Binary.
+<urn:md5:CC156B1596AB1CE7D8190646BDB3BF48> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "zBVrFZarHOfYGQZGvbO/SA=="^^xsd:base64Binary.
+<urn:md5:D52A06813387E1ADFB72A9CA48587719> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "1SoGgTOH4a37cqnKSFh3GQ=="^^xsd:base64Binary.
+<urn:md5:D6305535D3F8CC3D5F02B0F64EECB902> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "1jBVNdP4zD1fArD2Tuy5Ag=="^^xsd:base64Binary.
+<urn:md5:FB8984B8F277C9371B33C1F1E20FC7DC> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "+4mEuPJ3yTcbM8Hx4g/H3A=="^^xsd:base64Binary.

@@ -1,0 +1,40 @@
+@base <ni:///mh;1QEQ-Zp8LQYYNUniX5vL8sCFDA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///sample2.ogg>;
+     nie:interpretedAs <ni:///mh;1QEQ-Zp8LQYYNUniX5vL8sCFDA?ct=application/octet-stream>;
+     nfo:fileName "sample2.ogg";
+     nfo:fileSize 3299176 ;
+     a nfo:FileDataObject.
+<file:///sample2.ogg> at:extensionObject <https://w3id.org/uri4uri/suffix/ogg>.
+<ni:///mh;1QEQ-Zp8LQYYNUniX5vL8sCFDA?ct=application/octet-stream> at:digest <urn:md5:F99A7C2D06183549E25F9BCBF2C0850C>;
+                                                                  dcterms:extent "3299176"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ-Zp8LQYYNUniX5vL8sCFDA?ct=application/ogg>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (3.15 MiB)"@en.
+<ni:///mh;1QEQ-Zp8LQYYNUniX5vL8sCFDA?ct=application/ogg> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/ogg>;
+                                                         nfo:averageBitrate "112"^^dt:kilobitPerSecond;
+                                                         nfo:bitsPerSample 32 ;
+                                                         nfo:channels 2 ;
+                                                         nfo:duration "PT3M37.3585034S"^^xsd:duration;
+                                                         nfo:sampleRate "44100"^^dt:hertz;
+                                                         a schema:MediaObject,
+                                                           nfo:Audio,
+                                                           schema:AudioObject;
+                                                         skos:prefLabel "OGG object (44100 Hz, 2 channels)"@en,
+                                                                        "OGG object (3.15 MiB)"@en.
+<urn:md5:F99A7C2D06183549E25F9BCBF2C0850C> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "+Zp8LQYYNUniX5vL8sCFDA=="^^xsd:base64Binary.

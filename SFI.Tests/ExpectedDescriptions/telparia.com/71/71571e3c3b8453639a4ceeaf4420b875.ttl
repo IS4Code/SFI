@@ -1,0 +1,37 @@
+@base <ni:///mh;1QEQfWZZDm4_aSs6_GDoo-HAqQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///PML.OLB>;
+     nie:interpretedAs <ni:///mh;1QEQfWZZDm4_aSs6_GDoo-HAqQ?ct=application/octet-stream>;
+     nfo:fileName "PML.OLB";
+     nfo:fileSize 29822 ;
+     a nfo:FileDataObject.
+<file:///PML.OLB> at:extensionObject <https://w3id.org/uri4uri/suffix/olb>.
+<ni:///mh;1QEQfWZZDm4_aSs6_GDoo-HAqQ?ct=application/octet-stream> at:digest <urn:md5:7D66590E6E3F692B3AFC60E8A3E1C0A9>;
+                                                                  dcterms:extent "29822"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQfWZZDm4_aSs6_GDoo-HAqQ?ct=audio/mpeg>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (29.12 KiB)"@en.
+<ni:///mh;1QEQfWZZDm4_aSs6_GDoo-HAqQ?ct=audio/mpeg> schema:encodingFormat <https://w3id.org/uri4uri/mime/audio/mpeg>;
+                                                    nfo:channels 2 ;
+                                                    nfo:duration "PT0.1875052S"^^xsd:duration;
+                                                    nfo:sampleRate 48000 ;
+                                                    a schema:MediaObject,
+                                                      schema:AudioObject,
+                                                      nfo:Audio;
+                                                    skos:prefLabel "AAC object (29.12 KiB)"@en.
+<urn:md5:7D66590E6E3F692B3AFC60E8A3E1C0A9> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "fWZZDm4/aSs6/GDoo+HAqQ=="^^xsd:base64Binary.

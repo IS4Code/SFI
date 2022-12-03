@@ -1,0 +1,45 @@
+@base <ni:///mh;1QEQ78XmOC1mP48UROlZvz5dyA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///LOREDEMO.ADL>;
+     nie:interpretedAs <ni:///mh;1QEQ78XmOC1mP48UROlZvz5dyA?ct=application/octet-stream>;
+     nfo:fileName "LOREDEMO.ADL";
+     nfo:fileSize 10184 ;
+     a nfo:FileDataObject.
+<file:///LOREDEMO.ADL> at:extensionObject <https://w3id.org/uri4uri/suffix/adl>.
+<ni:///mh;1QEQ78XmOC1mP48UROlZvz5dyA?ct=application/octet-stream> at:digest <urn:md5:EFC5E6382D663F8F1444E959BF3E5DC8>;
+                                                                  dcterms:extent "10184"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ78XmOC1mP48UROlZvz5dyA?ct=image/x-icon>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (9.95 KiB)"@en.
+<ni:///mh;1QEQ78XmOC1mP48UROlZvz5dyA?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
+                                                      nfo:hasMediaStream <ni:///mh;1QEQ78XmOC1mP48UROlZvz5dyA?ct=image/x-icon#/0>,
+                                                                         <ni:///mh;1QEQ78XmOC1mP48UROlZvz5dyA?ct=image/x-icon#/1>;
+                                                      nfo:height 0 ;
+                                                      a schema:MediaObject,
+                                                        schema:ImageObject,
+                                                        nfo:Image;
+                                                      skos:prefLabel "ICO object (9.95 KiB)"@en.
+<ni:///mh;1QEQ78XmOC1mP48UROlZvz5dyA?ct=image/x-icon#/0> nfo:height 0 ;
+                                                         nfo:width 2 ;
+                                                         a nfo:MediaStream;
+                                                         skos:prefLabel "0:ICO (2×0)".
+<ni:///mh;1QEQ78XmOC1mP48UROlZvz5dyA?ct=image/x-icon#/1> nfo:height 0 ;
+                                                         nfo:width 32 ;
+                                                         a nfo:MediaStream;
+                                                         skos:prefLabel "1:ICO (32×0)".
+<urn:md5:EFC5E6382D663F8F1444E959BF3E5DC8> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "78XmOC1mP48UROlZvz5dyA=="^^xsd:base64Binary.

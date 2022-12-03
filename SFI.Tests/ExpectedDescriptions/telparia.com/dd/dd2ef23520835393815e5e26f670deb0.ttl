@@ -1,0 +1,48 @@
+@base <ni:///mh;1QEQTlwRtxGaNjwk1bbnB3J7Jg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///example_protected.zip>;
+     nie:interpretedAs <ni:///mh;1QEQTlwRtxGaNjwk1bbnB3J7Jg?ct=application/octet-stream>;
+     nfo:fileName "example_protected.zip";
+     nfo:fileSize 250570 ;
+     a nfo:FileDataObject.
+<file:///example.pdf> at:extensionObject <https://w3id.org/uri4uri/suffix/pdf>.
+<file:///example_protected.zip> at:extensionObject <https://w3id.org/uri4uri/suffix/zip>.
+<ni:///mh;1QEQTlwRtxGaNjwk1bbnB3J7Jg?ct=application/octet-stream> at:digest <urn:md5:4E5C11B7119A363C24D5B6E707727B26>;
+                                                                  dcterms:extent "250570"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQTlwRtxGaNjwk1bbnB3J7Jg?ct=application/zip>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (244.7 KiB)"@en.
+<ni:///mh;1QEQTlwRtxGaNjwk1bbnB3J7Jg?ct=application/zip> at:pathObject <file:///>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
+                                                         nie:interpretedAs <ni:///mh;1QEQTlwRtxGaNjwk1bbnB3J7Jg?ct=application/zip#/>;
+                                                         a schema:MediaObject,
+                                                           nfo:Archive;
+                                                         skos:prefLabel "ZIP object (244.7 KiB)"@en.
+<ni:///mh;1QEQTlwRtxGaNjwk1bbnB3J7Jg?ct=application/zip#/> at:pathObject <file:///./>;
+                                                           a nfo:Folder;
+                                                           skos:prefLabel "/".
+<ni:///mh;1QEQTlwRtxGaNjwk1bbnB3J7Jg?ct=application/zip#/example.pdf> at:pathObject <file:///example.pdf>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQTlwRtxGaNjwk1bbnB3J7Jg?ct=application/zip#/>;
+                                                                      nfo:encryptionStatus nfo:encryptedStatus;
+                                                                      nfo:fileLastModified "2016-10-13T06:54:32.000000+02:00"^^xsd:dateTime;
+                                                                      nfo:fileName "example.pdf";
+                                                                      nfo:fileSize 253908 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/example.pdf".
+<urn:md5:4E5C11B7119A363C24D5B6E707727B26> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "TlwRtxGaNjwk1bbnB3J7Jg=="^^xsd:base64Binary.

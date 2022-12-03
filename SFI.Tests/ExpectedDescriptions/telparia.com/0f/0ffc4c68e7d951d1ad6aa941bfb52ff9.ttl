@@ -1,0 +1,60 @@
+@base <ni:///mh;1QEQUB7CKaOTa9gg6NY5YhMVTg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///sample_1920x1080.mp4>;
+     nie:interpretedAs <ni:///mh;1QEQUB7CKaOTa9gg6NY5YhMVTg?ct=application/octet-stream>;
+     nfo:fileName "sample_1920x1080.mp4";
+     nfo:fileSize 38247618 ;
+     a nfo:FileDataObject.
+<file:///sample_1920x1080.mp4> at:extensionObject <https://w3id.org/uri4uri/suffix/mp4>.
+<ni:///mh;1QEQUB7CKaOTa9gg6NY5YhMVTg?ct=application/octet-stream> at:digest <urn:md5:501EC229A3936BD820E8D6396213154E>;
+                                                                  dcterms:extent "38247618"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQUB7CKaOTa9gg6NY5YhMVTg?ct=audio/mp4>,
+                                                                                    <ni:///mh;1QEQUB7CKaOTa9gg6NY5YhMVTg?ct=video/mp4>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (36.48 MiB)"@en.
+<ni:///mh;1QEQUB7CKaOTa9gg6NY5YhMVTg?ct=audio/mp4> schema:encodingFormat <https://w3id.org/uri4uri/mime/audio/mp4>;
+                                                   nfo:duration "PT28.237S"^^xsd:duration;
+                                                   nfo:hasMediaStream <ni:///mh;1QEQUB7CKaOTa9gg6NY5YhMVTg?ct=audio/mp4#/Video/0>;
+                                                   nfo:height 1080 ;
+                                                   nfo:width 1920 ;
+                                                   a schema:MediaObject,
+                                                     schema:AudioObject,
+                                                     nfo:Audio;
+                                                   skos:prefLabel "M4A object (1920×1080)"@en.
+<ni:///mh;1QEQUB7CKaOTa9gg6NY5YhMVTg?ct=audio/mp4#/Video/0> nfo:height 1080 ;
+                                                            nfo:width 1920 ;
+                                                            a nfo:Video,
+                                                              nfo:MediaStream;
+                                                            skos:prefLabel "0:Video (1920×1080)".
+<ni:///mh;1QEQUB7CKaOTa9gg6NY5YhMVTg?ct=video/mp4> schema:encodingFormat <https://w3id.org/uri4uri/mime/video/mp4>;
+                                                   nfo:hasMediaStream <ni:///mh;1QEQUB7CKaOTa9gg6NY5YhMVTg?ct=video/mp4#/0>,
+                                                                      <ni:///mh;1QEQUB7CKaOTa9gg6NY5YhMVTg?ct=video/mp4#/1>;
+                                                   nfo:height 1080 ;
+                                                   nfo:width 1920 ;
+                                                   a schema:MediaObject,
+                                                     schema:VideoObject,
+                                                     nfo:Video;
+                                                   skos:prefLabel "MP4 object (1920×1080)"@en.
+<ni:///mh;1QEQUB7CKaOTa9gg6NY5YhMVTg?ct=video/mp4#/0> nfo:duration "PT28.237S"^^xsd:duration;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "0:QuickTime Movie Header".
+<ni:///mh;1QEQUB7CKaOTa9gg6NY5YhMVTg?ct=video/mp4#/1> nfo:height 1080 ;
+                                                      nfo:width 1920 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "1:QuickTime Track Header (1920×1080)".
+<urn:md5:501EC229A3936BD820E8D6396213154E> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "UB7CKaOTa9gg6NY5YhMVTg=="^^xsd:base64Binary.

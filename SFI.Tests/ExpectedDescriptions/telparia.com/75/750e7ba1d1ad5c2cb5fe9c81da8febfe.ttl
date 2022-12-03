@@ -1,0 +1,118 @@
+@base <ni:///mh;1QEQvZp4Og-PnyzFGoGvLaKdUw?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///example.cr2>;
+     nie:interpretedAs <ni:///mh;1QEQvZp4Og-PnyzFGoGvLaKdUw?ct=application/octet-stream>;
+     nfo:fileName "example.cr2";
+     nfo:fileSize 23296306 ;
+     a nfo:FileDataObject.
+<file:///example.cr2> at:extensionObject <https://w3id.org/uri4uri/suffix/cr2>.
+<ni:///mh;1QEQvZp4Og-PnyzFGoGvLaKdUw?ct=application/octet-stream> at:digest <urn:md5:BD9A783A0F8F9F2CC51A81AF2DA29D53>;
+                                                                  dcterms:extent "23296306"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQvZp4Og-PnyzFGoGvLaKdUw?ct=image/cr2>,
+                                                                                    <ni:///mh;1QEQvZp4Og-PnyzFGoGvLaKdUw?ct=application/octet-stream#cr2>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (22.22 MiB)"@en.
+<ni:///mh;1QEQvZp4Og-PnyzFGoGvLaKdUw?ct=application/octet-stream#cr2> <http://ns.adobe.com/xap/1.0/Rating> "0";
+                                                                      nfo:hasMediaStream <ni:///mh;1QEQvZp4Og-PnyzFGoGvLaKdUw?ct=application/octet-stream#cr2/0>,
+                                                                                         <ni:///mh;1QEQvZp4Og-PnyzFGoGvLaKdUw?ct=application/octet-stream#cr2/1>,
+                                                                                         <ni:///mh;1QEQvZp4Og-PnyzFGoGvLaKdUw?ct=application/octet-stream#cr2/2>,
+                                                                                         <ni:///mh;1QEQvZp4Og-PnyzFGoGvLaKdUw?ct=application/octet-stream#cr2/3>;
+                                                                      a schema:MediaObject,
+                                                                        exif:IFD;
+                                                                      exif:apertureValue "27/8"^^owl:rational;
+                                                                      exif:artist """Wolfgang Mueller 
+Hauptstr.45 78239 Rielasingen Germany"""^^xsd:string;
+                                                                      exif:colorSpace 1 ;
+                                                                      exif:componentsConfiguration "01020300"^^xsd:hexBinary;
+                                                                      exif:compression 6 ,
+                                                                                       1 ;
+                                                                      exif:customRendered 0 ;
+                                                                      exif:dateTime "2017-07-21T11:17:15.000000"^^xsd:dateTime;
+                                                                      exif:dateTimeDigitized "2017-07-21T11:17:15.000000"^^xsd:dateTime;
+                                                                      exif:dateTimeOriginal "2017-07-21T11:17:15.000000"^^xsd:dateTime;
+                                                                      exif:exifVersion "30323330"^^xsd:hexBinary;
+                                                                      exif:exposureBiasValue 0 ;
+                                                                      exif:exposureMode 1 ;
+                                                                      exif:exposureProgram 1 ;
+                                                                      exif:exposureTime "1/250"^^owl:rational;
+                                                                      exif:fNumber "16/5"^^owl:rational;
+                                                                      exif:flash 16 ;
+                                                                      exif:flashpixVersion "30313030"^^xsd:hexBinary;
+                                                                      exif:focalLength 28 ;
+                                                                      exif:focalPlaneResolutionUnit 2 ;
+                                                                      exif:focalPlaneXResolution "1036800/181"^^owl:rational;
+                                                                      exif:focalPlaneYResolution "691200/119"^^owl:rational;
+                                                                      exif:imageLength 3456 ,
+                                                                                       432 ;
+                                                                      exif:imageWidth 5184 ,
+                                                                                      668 ;
+                                                                      exif:isoSpeedRatings 500 ;
+                                                                      exif:jpegInterchangeFormat 55156 ;
+                                                                      exif:jpegInterchangeFormatLength 8448 ;
+                                                                      exif:make "Canon"^^xsd:string;
+                                                                      exif:meteringMode 3 ;
+                                                                      exif:model "Canon EOS 60D"^^xsd:string;
+                                                                      exif:orientation 1 ;
+                                                                      exif:photometricInterpretation 2 ;
+                                                                      exif:pixelXDimension 5184 ;
+                                                                      exif:pixelYDimension 3456 ;
+                                                                      exif:planarConfiguration 1 ;
+                                                                      exif:resolutionUnit 2 ;
+                                                                      exif:rowsPerStrip 432 ;
+                                                                      exif:samplesPerPixel 3 ;
+                                                                      exif:sceneCaptureType 0 ;
+                                                                      exif:shutterSpeedValue 8 ;
+                                                                      exif:stripByteCounts 1775505 ,
+                                                                                           1731456 ,
+                                                                                           19720490 ;
+                                                                      exif:stripOffsets 63604 ,
+                                                                                        1839112 ,
+                                                                                        3575816 ;
+                                                                      exif:subSecTime "00"^^xsd:string;
+                                                                      exif:subSecTimeDigitized "00"^^xsd:string;
+                                                                      exif:subSecTimeOriginal "00"^^xsd:string;
+                                                                      exif:userComment "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"^^xsd:base64Binary;
+                                                                      exif:whiteBalance 0 ;
+                                                                      exif:xResolution 72 ;
+                                                                      exif:yResolution 72 ;
+                                                                      skos:prefLabel "CR2 object (22.22 MiB)"@en.
+<ni:///mh;1QEQvZp4Og-PnyzFGoGvLaKdUw?ct=application/octet-stream#cr2/0> nfo:height 3456 ;
+                                                                        nfo:width 5184 ;
+                                                                        a nfo:MediaStream;
+                                                                        skos:prefLabel "0:Exif IFD0 (5184×3456)".
+<ni:///mh;1QEQvZp4Og-PnyzFGoGvLaKdUw?ct=application/octet-stream#cr2/1> nfo:height 3456 ;
+                                                                        nfo:width 5184 ;
+                                                                        a nfo:MediaStream;
+                                                                        skos:prefLabel "1:Exif SubIFD (5184×3456)".
+<ni:///mh;1QEQvZp4Og-PnyzFGoGvLaKdUw?ct=application/octet-stream#cr2/2> nfo:width 65535 ;
+                                                                        a nfo:MediaStream;
+                                                                        skos:prefLabel "2:Canon Makernote".
+<ni:///mh;1QEQvZp4Og-PnyzFGoGvLaKdUw?ct=application/octet-stream#cr2/3> nfo:height 432 ;
+                                                                        nfo:width 668 ;
+                                                                        a nfo:MediaStream;
+                                                                        skos:prefLabel "3:Exif Image (668×432)".
+<ni:///mh;1QEQvZp4Og-PnyzFGoGvLaKdUw?ct=image/cr2> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/cr2>;
+                                                   nfo:height 3456 ;
+                                                   nfo:width 5184 ;
+                                                   a schema:MediaObject,
+                                                     nfo:Image,
+                                                     schema:ImageObject;
+                                                   skos:prefLabel "CR2 object (5184×3456)"@en.
+<urn:md5:BD9A783A0F8F9F2CC51A81AF2DA29D53> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "vZp4Og+PnyzFGoGvLaKdUw=="^^xsd:base64Binary.

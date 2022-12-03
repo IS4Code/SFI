@@ -1,0 +1,152 @@
+@base <ni:///mh;1QEQVLnllOETYzGDgoEktpwnvQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///example_small.jpeg>;
+     nie:interpretedAs <ni:///mh;1QEQVLnllOETYzGDgoEktpwnvQ?ct=application/octet-stream>;
+     nfo:fileName "example_small.jpeg";
+     nfo:fileSize 187607 ;
+     a nfo:FileDataObject.
+<file:///example_small.jpeg> at:extensionObject <https://w3id.org/uri4uri/suffix/jpeg>.
+<ni:///mh;1QEQVLnllOETYzGDgoEktpwnvQ?ct=application/octet-stream> at:digest <urn:md5:54B9E594E113633183828124B69C27BD>;
+                                                                  dcterms:extent "187607"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQVLnllOETYzGDgoEktpwnvQ?ct=image/jpeg>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (183.21 KiB)"@en.
+<ni:///mh;1QEQVLnllOETYzGDgoEktpwnvQ?ct=image/jpeg> <http://ns.adobe.com/exif/1.0/ColorSpace> "sRGB";
+                                                    <http://ns.adobe.com/exif/1.0/CompressedBitsPerPixel> " 4";
+                                                    <http://ns.adobe.com/exif/1.0/Compression> "JPEG compression";
+                                                    <http://ns.adobe.com/exif/1.0/Contrast> "Normal";
+                                                    <http://ns.adobe.com/exif/1.0/CustomRendered> "Normal process";
+                                                    <http://ns.adobe.com/exif/1.0/DateTime> "2014:10:06 13:41:36";
+                                                    <http://ns.adobe.com/exif/1.0/DateTimeDigitized> "2014:10:01 21:50:18";
+                                                    <http://ns.adobe.com/exif/1.0/DateTimeOriginal> "2014:10:01 21:50:18";
+                                                    <http://ns.adobe.com/exif/1.0/DigitalZoomRatio> " 1";
+                                                    <http://ns.adobe.com/exif/1.0/ExifVersion> "Exif Version 2.21";
+                                                    <http://ns.adobe.com/exif/1.0/ExposureBiasValue> "1.67 EV";
+                                                    <http://ns.adobe.com/exif/1.0/ExposureMode> "Manual exposure";
+                                                    <http://ns.adobe.com/exif/1.0/ExposureProgram> "Manual";
+                                                    <http://ns.adobe.com/exif/1.0/ExposureTime> "1/320 sec.";
+                                                    <http://ns.adobe.com/exif/1.0/FNumber> "f/3.8";
+                                                    <http://ns.adobe.com/exif/1.0/FileSource> "DSC";
+                                                    <http://ns.adobe.com/exif/1.0/FlashPixVersion> "FlashPix Version 1.0";
+                                                    <http://ns.adobe.com/exif/1.0/FocalLength> "22.0 mm";
+                                                    <http://ns.adobe.com/exif/1.0/FocalLengthIn35mmFilm> "33";
+                                                    <http://ns.adobe.com/exif/1.0/GPSVersionID> "2.2.0.0";
+                                                    <http://ns.adobe.com/exif/1.0/GainControl> "Normal";
+                                                    <http://ns.adobe.com/exif/1.0/InteroperabilityIndex> "R98";
+                                                    <http://ns.adobe.com/exif/1.0/InteroperabilityVersion> "0100";
+                                                    <http://ns.adobe.com/exif/1.0/LightSource> "Unknown";
+                                                    <http://ns.adobe.com/exif/1.0/Make> "NIKON CORPORATION";
+                                                    <http://ns.adobe.com/exif/1.0/MakerNote> "11278 bytes undefined data";
+                                                    <http://ns.adobe.com/exif/1.0/MaxApertureValue> "3.90 EV (f/3.9)";
+                                                    <http://ns.adobe.com/exif/1.0/MeteringMode> "Pattern";
+                                                    <http://ns.adobe.com/exif/1.0/Model> "NIKON D3100";
+                                                    <http://ns.adobe.com/exif/1.0/Orientation> "Top-left";
+                                                    <http://ns.adobe.com/exif/1.0/PixelXDimension> "0";
+                                                    <http://ns.adobe.com/exif/1.0/PixelYDimension> "0";
+                                                    <http://ns.adobe.com/exif/1.0/ResolutionUnit> "Inch";
+                                                    <http://ns.adobe.com/exif/1.0/Saturation> "Normal";
+                                                    <http://ns.adobe.com/exif/1.0/SceneCaptureType> "Standard";
+                                                    <http://ns.adobe.com/exif/1.0/SceneType> "Directly photographed";
+                                                    <http://ns.adobe.com/exif/1.0/SensingMethod> "One-chip color area sensor";
+                                                    <http://ns.adobe.com/exif/1.0/Sharpness> "Normal";
+                                                    <http://ns.adobe.com/exif/1.0/Software> "GIMP 2.8.10";
+                                                    <http://ns.adobe.com/exif/1.0/SubSecTimeDigitized> "00";
+                                                    <http://ns.adobe.com/exif/1.0/SubSecTimeOriginal> "00";
+                                                    <http://ns.adobe.com/exif/1.0/SubjectDistanceRange> "Unknown";
+                                                    <http://ns.adobe.com/exif/1.0/SubsecTime> "00";
+                                                    <http://ns.adobe.com/exif/1.0/UserComment> "";
+                                                    <http://ns.adobe.com/exif/1.0/WhiteBalance> "Auto white balance";
+                                                    <http://ns.adobe.com/exif/1.0/XResolution> "300";
+                                                    <http://ns.adobe.com/exif/1.0/YCbCrPositioning> "Co-sited";
+                                                    <http://ns.adobe.com/exif/1.0/YResolution> "300";
+                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/image/jpeg>;
+                                                    nfo:colorDepth 24 ;
+                                                    nfo:hasMediaStream <ni:///mh;1QEQVLnllOETYzGDgoEktpwnvQ?ct=image/jpeg#/0>,
+                                                                       <ni:///mh;1QEQVLnllOETYzGDgoEktpwnvQ?ct=image/jpeg#/1>;
+                                                    nfo:height 333 ;
+                                                    nfo:horizontalResolution 300 ;
+                                                    nfo:verticalResolution 300 ;
+                                                    nfo:width 500 ;
+                                                    <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#comments> "                                    ";
+                                                    a schema:MediaObject,
+                                                      exif:IFD,
+                                                      nfo:Image,
+                                                      schema:ImageObject;
+                                                    exif:cfaPattern "0002000201020001"^^xsd:hexBinary;
+                                                    exif:colorSpace 1 ;
+                                                    exif:componentsConfiguration "01020300"^^xsd:hexBinary;
+                                                    exif:compressedBitsPerPixel 4 ;
+                                                    exif:compression 6 ;
+                                                    exif:contrast 0 ;
+                                                    exif:customRendered 0 ;
+                                                    exif:dateTime "2016-04-26T13:44:13.000000"^^xsd:dateTime;
+                                                    exif:dateTimeDigitized "2014-10-01T21:50:18.000000"^^xsd:dateTime;
+                                                    exif:dateTimeOriginal "2014-10-01T21:50:18.000000"^^xsd:dateTime;
+                                                    exif:digitalZoomRatio 1 ;
+                                                    exif:exifVersion "30323231"^^xsd:hexBinary;
+                                                    exif:exposureBiasValue "5/3"^^owl:rational;
+                                                    exif:exposureMode 1 ;
+                                                    exif:exposureProgram 1 ;
+                                                    exif:exposureTime "1/320"^^owl:rational;
+                                                    exif:fNumber "19/5"^^owl:rational;
+                                                    exif:fileSource "03"^^xsd:hexBinary;
+                                                    exif:flash 0 ;
+                                                    exif:flashpixVersion "30313030"^^xsd:hexBinary;
+                                                    exif:focalLength 22 ;
+                                                    exif:focalLengthIn35mmFilm 33 ;
+                                                    exif:gainControl 0 ;
+                                                    exif:isoSpeedRatings 200 ;
+                                                    exif:jpegInterchangeFormat 12290 ;
+                                                    exif:jpegInterchangeFormatLength 6017 ;
+                                                    exif:lightSource 0 ;
+                                                    exif:make "NIKON CORPORATION"^^xsd:string;
+                                                    exif:maxApertureValue "39/10"^^owl:rational;
+                                                    exif:meteringMode 5 ;
+                                                    exif:model "NIKON D3100"^^xsd:string;
+                                                    exif:orientation 1 ;
+                                                    exif:pixelXDimension 0 ;
+                                                    exif:pixelYDimension 0 ;
+                                                    exif:resolutionUnit 2 ;
+                                                    exif:saturation 0 ;
+                                                    exif:sceneCaptureType 0 ;
+                                                    exif:sceneType "01"^^xsd:hexBinary;
+                                                    exif:sensingMethod 2 ;
+                                                    exif:sharpness 0 ;
+                                                    exif:software "GIMP 2.8.10"^^xsd:string;
+                                                    exif:subSecTime "00"^^xsd:string;
+                                                    exif:subSecTimeDigitized "00"^^xsd:string;
+                                                    exif:subSecTimeOriginal "00"^^xsd:string;
+                                                    exif:subjectDistanceRange 0 ;
+                                                    exif:userComment "QVNDSUkAAAAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA="^^xsd:base64Binary;
+                                                    exif:whiteBalance 0 ;
+                                                    exif:xResolution 300 ;
+                                                    exif:yCbCrPositioning 2 ;
+                                                    exif:yResolution 300 ;
+                                                    skos:prefLabel "JPG object (183.21 KiB)"@en,
+                                                                   "JPG object (500×333)"@en.
+<ni:///mh;1QEQVLnllOETYzGDgoEktpwnvQ?ct=image/jpeg#/0> nfo:height 333 ;
+                                                       nfo:width 500 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "0:JPEG (500×333)".
+<ni:///mh;1QEQVLnllOETYzGDgoEktpwnvQ?ct=image/jpeg#/1> nfo:height 0 ;
+                                                       nfo:width 0 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "1:Exif SubIFD (0×0)".
+<urn:md5:54B9E594E113633183828124B69C27BD> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "VLnllOETYzGDgoEktpwnvQ=="^^xsd:base64Binary.

@@ -1,0 +1,183 @@
+@base <ni:///mh;1QEQYOglUC7WozXQG0DNY-1vbg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix dbo: <http://dbpedia.org/ontology/>.
+
+_:n1 at:pathObject <file:///ATIPXDEF.RS>;
+     nie:interpretedAs <ni:///mh;1QEQYOglUC7WozXQG0DNY-1vbg?ct=application/octet-stream>;
+     nfo:fileName "ATIPXDEF.RS";
+     nfo:fileSize 17920 ;
+     a nfo:FileDataObject.
+<data:,%09%04%00%00> dcterms:extent "4"^^dt:byte;
+                     a cnt:ContentAsText;
+                     skos:prefLabel "text (4 B)"@en;
+                     cnt:characterEncoding "us-ascii";
+                     cnt:chars """	␄␀␀"""^^xsd:string.
+<data:application/octet-stream;base64,AAABAAEAIEAEAAEABADoAgAAAwA=> dcterms:extent "20"^^dt:byte;
+                                                                    dcterms:hasFormat <data:image/x-icon;base64,AAABAAEAIEAEAAEABADoAgAAAwA=>;
+                                                                    a cnt:ContentAsBase64;
+                                                                    skos:prefLabel "binary data (20 B)"@en;
+                                                                    cnt:bytes "AAABAAEAIEAEAAEABADoAgAAAwA="^^xsd:base64Binary.
+<data:application/octet-stream;base64,AAABAAIAIEAEAAEABADoAgAAAQAQIAQAAQAEACgBAAACAA==> dcterms:extent "34"^^dt:byte;
+                                                                                        dcterms:hasFormat <data:image/x-icon;base64,AAABAAIAIEAEAAEABADoAgAAAQAQIAQAAQAEACgBAAACAA==>;
+                                                                                        a cnt:ContentAsBase64;
+                                                                                        skos:prefLabel "binary data (34 B)"@en;
+                                                                                        cnt:bytes "AAABAAIAIEAEAAEABADoAgAAAQAQIAQAAQAEACgBAAACAA=="^^xsd:base64Binary.
+<data:image/x-icon;base64,AAABAAEAIEAEAAEABADoAgAAAwA=> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
+                                                        nfo:height 64 ;
+                                                        nfo:width 32 ;
+                                                        a schema:MediaObject,
+                                                          schema:ImageObject,
+                                                          nfo:Image;
+                                                        skos:prefLabel "ICO object (32×64)"@en.
+<data:image/x-icon;base64,AAABAAIAIEAEAAEABADoAgAAAQAQIAQAAQAEACgBAAACAA==> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
+                                                                            nfo:hasMediaStream <data:image/x-icon;base64,AAABAAIAIEAEAAEABADoAgAAAQAQIAQAAQAEACgBAAACAA==#/0>,
+                                                                                               <data:image/x-icon;base64,AAABAAIAIEAEAAEABADoAgAAAQAQIAQAAQAEACgBAAACAA==#/1>;
+                                                                            a schema:MediaObject,
+                                                                              schema:ImageObject,
+                                                                              nfo:Image;
+                                                                            skos:prefLabel "ICO object (34 B)"@en.
+<data:image/x-icon;base64,AAABAAIAIEAEAAEABADoAgAAAQAQIAQAAQAEACgBAAACAA==#/0> nfo:height 64 ;
+                                                                               nfo:width 32 ;
+                                                                               a nfo:MediaStream;
+                                                                               skos:prefLabel "0:ICO (32×64)".
+<data:image/x-icon;base64,AAABAAIAIEAEAAEABADoAgAAAQAQIAQAAQAEACgBAAACAA==#/1> nfo:height 0 ;
+                                                                               nfo:width 4 ;
+                                                                               a nfo:MediaStream;
+                                                                               skos:prefLabel "1:ICO (4×0)".
+<file:///ATIPXDEF.RS> at:extensionObject <https://w3id.org/uri4uri/suffix/rs>.
+<ni:///mh;1QEQ-rW80SOD_8S5OEfVQIHHXA?ct=application/octet-stream> at:digest <urn:md5:FAB5BCD12383FFC4B93847D54081C75C>;
+                                                                  dcterms:extent "758"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ-rW80SOD_8S5OEfVQIHHXA?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (758 B)"@en.
+<ni:///mh;1QEQ-rW80SOD_8S5OEfVQIHHXA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:colorDepth 32 ;
+                                                   nfo:height 32 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 32 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (32×32)"@en.
+<ni:///mh;1QEQYOglUC7WozXQG0DNY-1vbg?ct=application/octet-stream> at:digest <urn:md5:60E825502ED6A335D01B40CD63ED6F6E>;
+                                                                  dcterms:extent "17920"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQYOglUC7WozXQG0DNY-1vbg?ct=application/vnd.microsoft.portable-executable>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (17.5 KiB)"@en.
+<ni:///mh;1QEQYOglUC7WozXQG0DNY-1vbg?ct=application/vnd.microsoft.portable-executable> dbo:originalName "ATIDPLX.DLL";
+                                                                                       dcterms:creator "ATI Technologies Inc."@en-us;
+                                                                                       dcterms:description "ATI Desktop Control Panel Extension Language Resource"@en-us;
+                                                                                       schema:copyrightNotice "Copyright © ATI Technologies Inc. 1995"@en-us;
+                                                                                       schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
+                                                                                       schema:name "ATIDPLX";
+                                                                                       schema:softwareVersion "4.2.0.214",
+                                                                                                              "4.02.0214";
+                                                                                       schema:version "4.2.0.214",
+                                                                                                      "4.02.0214";
+                                                                                       nie:hasPart <ni:///mh;1QEQYOglUC7WozXQG0DNY-1vbg?ct=application/vnd.microsoft.portable-executable#/Icon/1>,
+                                                                                                   <ni:///mh;1QEQYOglUC7WozXQG0DNY-1vbg?ct=application/vnd.microsoft.portable-executable#/Icon/2>,
+                                                                                                   <ni:///mh;1QEQYOglUC7WozXQG0DNY-1vbg?ct=application/vnd.microsoft.portable-executable#/Icon/3>,
+                                                                                                   <ni:///mh;1QEQYOglUC7WozXQG0DNY-1vbg?ct=application/vnd.microsoft.portable-executable#/255/1>,
+                                                                                                   <ni:///mh;1QEQYOglUC7WozXQG0DNY-1vbg?ct=application/vnd.microsoft.portable-executable#/GroupIcon/101>,
+                                                                                                   <ni:///mh;1QEQYOglUC7WozXQG0DNY-1vbg?ct=application/vnd.microsoft.portable-executable#/GroupIcon/110>;
+                                                                                       a schema:MediaObject,
+                                                                                         schema:SoftwareApplication,
+                                                                                         nfo:Executable;
+                                                                                       skos:prefLabel "DLL object (ATIDPLX)"@en.
+<ni:///mh;1QEQYOglUC7WozXQG0DNY-1vbg?ct=application/vnd.microsoft.portable-executable#/255/1> at:pathObject <file:///1>;
+                                                                                              nie:interpretedAs <data:,%09%04%00%00>;
+                                                                                              nfo:fileName "1";
+                                                                                              nfo:fileSize 4 ;
+                                                                                              a nfo:FileDataObject,
+                                                                                                nfo:EmbeddedFileDataObject;
+                                                                                              skos:prefLabel "/255/1".
+<ni:///mh;1QEQYOglUC7WozXQG0DNY-1vbg?ct=application/vnd.microsoft.portable-executable#/GroupIcon/101> at:pathObject <file:///101>;
+                                                                                                      nie:interpretedAs <data:application/octet-stream;base64,AAABAAIAIEAEAAEABADoAgAAAQAQIAQAAQAEACgBAAACAA==>;
+                                                                                                      nfo:fileName "101";
+                                                                                                      nfo:fileSize 34 ;
+                                                                                                      a nfo:FileDataObject,
+                                                                                                        nfo:EmbeddedFileDataObject;
+                                                                                                      skos:prefLabel "/GroupIcon/101".
+<ni:///mh;1QEQYOglUC7WozXQG0DNY-1vbg?ct=application/vnd.microsoft.portable-executable#/GroupIcon/110> at:pathObject <file:///110>;
+                                                                                                      nie:interpretedAs <data:application/octet-stream;base64,AAABAAEAIEAEAAEABADoAgAAAwA=>;
+                                                                                                      nfo:fileName "110";
+                                                                                                      nfo:fileSize 20 ;
+                                                                                                      a nfo:FileDataObject,
+                                                                                                        nfo:EmbeddedFileDataObject;
+                                                                                                      skos:prefLabel "/GroupIcon/110".
+<ni:///mh;1QEQYOglUC7WozXQG0DNY-1vbg?ct=application/vnd.microsoft.portable-executable#/Icon/1> at:pathObject <file:///1>;
+                                                                                               nie:interpretedAs <ni:///mh;1QEQ-rW80SOD_8S5OEfVQIHHXA?ct=application/octet-stream>;
+                                                                                               nfo:fileName "1";
+                                                                                               nfo:fileSize 744 ;
+                                                                                               a nfo:FileDataObject,
+                                                                                                 nfo:EmbeddedFileDataObject;
+                                                                                               skos:prefLabel "/Icon/1".
+<ni:///mh;1QEQYOglUC7WozXQG0DNY-1vbg?ct=application/vnd.microsoft.portable-executable#/Icon/2> at:pathObject <file:///2>;
+                                                                                               nie:interpretedAs <ni:///mh;1QEQnu1GSuEwfOLty_VpvIhqlw?ct=application/octet-stream>;
+                                                                                               nfo:fileName "2";
+                                                                                               nfo:fileSize 296 ;
+                                                                                               a nfo:FileDataObject,
+                                                                                                 nfo:EmbeddedFileDataObject;
+                                                                                               skos:prefLabel "/Icon/2".
+<ni:///mh;1QEQYOglUC7WozXQG0DNY-1vbg?ct=application/vnd.microsoft.portable-executable#/Icon/3> at:pathObject <file:///3>;
+                                                                                               nie:interpretedAs <ni:///mh;1QEQvxCUwmAwrHVugD5TUCKEBQ?ct=application/octet-stream>;
+                                                                                               nfo:fileName "3";
+                                                                                               nfo:fileSize 744 ;
+                                                                                               a nfo:FileDataObject,
+                                                                                                 nfo:EmbeddedFileDataObject;
+                                                                                               skos:prefLabel "/Icon/3".
+<ni:///mh;1QEQnu1GSuEwfOLty_VpvIhqlw?ct=application/octet-stream> at:digest <urn:md5:9EED464AE1307CE2EDCBF569BC886A97>;
+                                                                  dcterms:extent "310"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQnu1GSuEwfOLty_VpvIhqlw?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (310 B)"@en.
+<ni:///mh;1QEQnu1GSuEwfOLty_VpvIhqlw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:colorDepth 32 ;
+                                                   nfo:height 16 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 16 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (16×16)"@en.
+<ni:///mh;1QEQvxCUwmAwrHVugD5TUCKEBQ?ct=application/octet-stream> at:digest <urn:md5:BF1094C26030AC756E803E5350228405>;
+                                                                  dcterms:extent "758"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQvxCUwmAwrHVugD5TUCKEBQ?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (758 B)"@en.
+<ni:///mh;1QEQvxCUwmAwrHVugD5TUCKEBQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:colorDepth 32 ;
+                                                   nfo:height 32 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 32 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (32×32)"@en.
+<urn:md5:60E825502ED6A335D01B40CD63ED6F6E> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "YOglUC7WozXQG0DNY+1vbg=="^^xsd:base64Binary.
+<urn:md5:9EED464AE1307CE2EDCBF569BC886A97> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "nu1GSuEwfOLty/VpvIhqlw=="^^xsd:base64Binary.
+<urn:md5:BF1094C26030AC756E803E5350228405> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "vxCUwmAwrHVugD5TUCKEBQ=="^^xsd:base64Binary.
+<urn:md5:FAB5BCD12383FFC4B93847D54081C75C> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "+rW80SOD/8S5OEfVQIHHXA=="^^xsd:base64Binary.

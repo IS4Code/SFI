@@ -1,0 +1,117 @@
+@base <ni:///mh;1QEQ6AADxAu3y-T3kAl_Wfo5Vg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///example.nef>;
+     nie:interpretedAs <ni:///mh;1QEQ6AADxAu3y-T3kAl_Wfo5Vg?ct=application/octet-stream>;
+     nfo:fileName "example.nef";
+     nfo:fileSize 12980368 ;
+     a nfo:FileDataObject.
+<file:///example.nef> at:extensionObject <https://w3id.org/uri4uri/suffix/nef>.
+<ni:///mh;1QEQ6AADxAu3y-T3kAl_Wfo5Vg?ct=application/octet-stream> at:digest <urn:md5:E80003C40BB7CBE4F790097F59FA3956>;
+                                                                  dcterms:extent "12980368"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ6AADxAu3y-T3kAl_Wfo5Vg?ct=image/tiff>,
+                                                                                    <ni:///mh;1QEQ6AADxAu3y-T3kAl_Wfo5Vg?ct=image/nef>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (12.38 MiB)"@en.
+<ni:///mh;1QEQ6AADxAu3y-T3kAl_Wfo5Vg?ct=image/nef> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/nef>;
+                                                   nfo:height 120 ;
+                                                   nfo:width 160 ;
+                                                   <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#comments> "                                    ";
+                                                   a schema:MediaObject,
+                                                     nfo:Image,
+                                                     schema:ImageObject;
+                                                   skos:prefLabel "NEF object (160×120)"@en.
+<ni:///mh;1QEQ6AADxAu3y-T3kAl_Wfo5Vg?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
+                                                    nfo:hasMediaStream <ni:///mh;1QEQ6AADxAu3y-T3kAl_Wfo5Vg?ct=image/tiff#/0>,
+                                                                       <ni:///mh;1QEQ6AADxAu3y-T3kAl_Wfo5Vg?ct=image/tiff#/1>;
+                                                    a schema:MediaObject,
+                                                      exif:IFD,
+                                                      schema:ImageObject,
+                                                      nfo:Image;
+                                                    exif:bitsPerSample 12 ;
+                                                    exif:cfaPattern "0002000201020001"^^xsd:hexBinary;
+                                                    exif:compression 1 ,
+                                                                     6 ,
+                                                                     34713 ;
+                                                    exif:contrast 0 ;
+                                                    exif:customRendered 0 ;
+                                                    exif:dateTime "2014-10-01T21:50:18.000000"^^xsd:dateTime;
+                                                    exif:dateTimeDigitized "2014-10-01T21:50:18.000000"^^xsd:dateTime;
+                                                    exif:dateTimeOriginal "2014-10-01T21:50:18.000000"^^xsd:dateTime;
+                                                    exif:digitalZoomRatio 1 ;
+                                                    exif:exposureBiasValue "5/3"^^owl:rational;
+                                                    exif:exposureMode 1 ;
+                                                    exif:exposureProgram 1 ;
+                                                    exif:exposureTime "1/320"^^owl:rational;
+                                                    exif:fNumber "19/5"^^owl:rational;
+                                                    exif:fileSource "03"^^xsd:hexBinary;
+                                                    exif:flash 0 ;
+                                                    exif:focalLength 22 ;
+                                                    exif:focalLengthIn35mmFilm 33 ;
+                                                    exif:gainControl 0 ;
+                                                    exif:imageLength 120 ,
+                                                                     3084 ;
+                                                    exif:imageWidth 160 ,
+                                                                    4672 ;
+                                                    exif:isoSpeedRatings 200 ;
+                                                    exif:jpegInterchangeFormat 175296 ;
+                                                    exif:jpegInterchangeFormatLength 1610650 ;
+                                                    exif:lightSource 0 ;
+                                                    exif:make "NIKON CORPORATION"^^xsd:string;
+                                                    exif:maxApertureValue "39/10"^^owl:rational;
+                                                    exif:meteringMode 5 ;
+                                                    exif:model "NIKON D3100"^^xsd:string;
+                                                    exif:orientation 1 ;
+                                                    exif:photometricInterpretation 2 ,
+                                                                                   32803 ;
+                                                    exif:planarConfiguration 1 ;
+                                                    exif:resolutionUnit 2 ;
+                                                    exif:rowsPerStrip 120 ,
+                                                                      3084 ;
+                                                    exif:samplesPerPixel 3 ,
+                                                                         1 ;
+                                                    exif:saturation 0 ;
+                                                    exif:sceneCaptureType 0 ;
+                                                    exif:sceneType "01"^^xsd:hexBinary;
+                                                    exif:sensingMethod 2 ;
+                                                    exif:sharpness 0 ;
+                                                    exif:software "Ver.1.01 "^^xsd:string;
+                                                    exif:stripByteCounts 57600 ,
+                                                                         11194416 ;
+                                                    exif:stripOffsets 117332 ,
+                                                                      1785952 ;
+                                                    exif:subSecTime "00"^^xsd:string;
+                                                    exif:subSecTimeDigitized "00"^^xsd:string;
+                                                    exif:subSecTimeOriginal "00"^^xsd:string;
+                                                    exif:subjectDistanceRange 0 ;
+                                                    exif:userComment "QVNDSUkAAAAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA="^^xsd:base64Binary;
+                                                    exif:whiteBalance 0 ;
+                                                    exif:xResolution 300 ;
+                                                    exif:yCbCrPositioning 2 ;
+                                                    exif:yResolution 300 ;
+                                                    skos:prefLabel "TIFF object (12.38 MiB)"@en.
+<ni:///mh;1QEQ6AADxAu3y-T3kAl_Wfo5Vg?ct=image/tiff#/0> nfo:height 120 ;
+                                                       nfo:width 160 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "0:Exif IFD0 (160×120)".
+<ni:///mh;1QEQ6AADxAu3y-T3kAl_Wfo5Vg?ct=image/tiff#/1> nfo:height 3084 ;
+                                                       nfo:width 4672 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "1:Exif SubIFD (4672×3084, 12-bit)".
+<urn:md5:E80003C40BB7CBE4F790097F59FA3956> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "6AADxAu3y+T3kAl/Wfo5Vg=="^^xsd:base64Binary.

@@ -1,0 +1,59 @@
+@base <ni:///mh;1QEQNk6cHxG1AfeFCfG9X8zpOQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///TFORM1>;
+     nie:interpretedAs <ni:///mh;1QEQNk6cHxG1AfeFCfG9X8zpOQ?ct=application/octet-stream>;
+     nfo:fileName "TFORM1";
+     nfo:fileSize 597694 ;
+     a nfo:FileDataObject.
+<file:///Icon.Data> at:extensionObject <https://w3id.org/uri4uri/suffix/data>.
+<ni:///mh;1QEQNk6cHxG1AfeFCfG9X8zpOQ?ct=application/octet-stream> at:digest <urn:md5:364E9C1F11B501F78509F1BD5FCCE939>;
+                                                                  dcterms:extent "597694"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQNk6cHxG1AfeFCfG9X8zpOQ?ct=application/x-delphi-form>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (583.69 KiB)"@en.
+<ni:///mh;1QEQNk6cHxG1AfeFCfG9X8zpOQ?ct=application/x-delphi-form> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-delphi-form>;
+                                                                   nie:hasPart <ni:///mh;1QEQNk6cHxG1AfeFCfG9X8zpOQ?ct=application/x-delphi-form#/Icon.Data>;
+                                                                   a schema:MediaObject;
+                                                                   skos:prefLabel "DFM object (Form1)"@en.
+<ni:///mh;1QEQNk6cHxG1AfeFCfG9X8zpOQ?ct=application/x-delphi-form#/Icon.Data> at:pathObject <file:///Icon.Data>;
+                                                                              nie:interpretedAs <ni:///mh;1QEQpsmb8vEFCWL5UgOiAp3JaQ?ct=application/octet-stream>;
+                                                                              nfo:fileName "Icon.Data";
+                                                                              nfo:fileSize 2238 ;
+                                                                              a nfo:FileDataObject,
+                                                                                nfo:EmbeddedFileDataObject;
+                                                                              skos:prefLabel "/Icon.Data".
+<ni:///mh;1QEQpsmb8vEFCWL5UgOiAp3JaQ?ct=application/octet-stream> at:digest <urn:md5:A6C99BF2F1050962F95203A2029DC969>;
+                                                                  dcterms:extent "2238"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQpsmb8vEFCWL5UgOiAp3JaQ?ct=image/x-icon>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (2.19 KiB)"@en.
+<ni:///mh;1QEQpsmb8vEFCWL5UgOiAp3JaQ?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
+                                                      nfo:colorDepth 32 ;
+                                                      nfo:height 32 ;
+                                                      nfo:horizontalResolution 96 ;
+                                                      nfo:verticalResolution 96 ;
+                                                      nfo:width 32 ;
+                                                      a schema:MediaObject,
+                                                        schema:ImageObject,
+                                                        nfo:Image;
+                                                      skos:prefLabel "ICO object (32×32)"@en,
+                                                                     "ICO object (2.19 KiB)"@en.
+<urn:md5:364E9C1F11B501F78509F1BD5FCCE939> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "Nk6cHxG1AfeFCfG9X8zpOQ=="^^xsd:base64Binary.
+<urn:md5:A6C99BF2F1050962F95203A2029DC969> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "psmb8vEFCWL5UgOiAp3JaQ=="^^xsd:base64Binary.

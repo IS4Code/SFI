@@ -1,0 +1,58 @@
+@base <ni:///mh;1QEQ_xUHmo1ag8t4wai_xMAfSg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///password.zip>;
+     nie:interpretedAs <ni:///mh;1QEQ_xUHmo1ag8t4wai_xMAfSg?ct=application/octet-stream>;
+     nfo:fileName "password.zip";
+     nfo:fileSize 1002 ;
+     a nfo:FileDataObject.
+<file:///LOGICOMM.ICO> at:extensionObject <https://w3id.org/uri4uri/suffix/ico>.
+<file:///biplane.art> at:extensionObject <https://w3id.org/uri4uri/suffix/art>.
+<file:///password.zip> at:extensionObject <https://w3id.org/uri4uri/suffix/zip>.
+<ni:///mh;1QEQ_xUHmo1ag8t4wai_xMAfSg?ct=application/octet-stream> at:digest <urn:md5:FF15079A8D5A83CB78C1A8BFC4C01F4A>;
+                                                                  dcterms:extent "1002"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ_xUHmo1ag8t4wai_xMAfSg?ct=application/zip>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (0.98 KiB)"@en.
+<ni:///mh;1QEQ_xUHmo1ag8t4wai_xMAfSg?ct=application/zip> at:pathObject <file:///>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
+                                                         nie:interpretedAs <ni:///mh;1QEQ_xUHmo1ag8t4wai_xMAfSg?ct=application/zip#/>;
+                                                         a schema:MediaObject,
+                                                           nfo:Archive;
+                                                         skos:prefLabel "ZIP object (0.98 KiB)"@en.
+<ni:///mh;1QEQ_xUHmo1ag8t4wai_xMAfSg?ct=application/zip#/> at:pathObject <file:///./>;
+                                                           a nfo:Folder;
+                                                           skos:prefLabel "/".
+<ni:///mh;1QEQ_xUHmo1ag8t4wai_xMAfSg?ct=application/zip#/LOGICOMM.ICO> at:pathObject <file:///LOGICOMM.ICO>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQ_xUHmo1ag8t4wai_xMAfSg?ct=application/zip#/>;
+                                                                       nfo:encryptionStatus nfo:encryptedStatus;
+                                                                       nfo:fileLastModified "2020-07-08T15:38:16.000000+02:00"^^xsd:dateTime;
+                                                                       nfo:fileName "LOGICOMM.ICO";
+                                                                       nfo:fileSize 1152 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/LOGICOMM.ICO".
+<ni:///mh;1QEQ_xUHmo1ag8t4wai_xMAfSg?ct=application/zip#/biplane.art> at:pathObject <file:///biplane.art>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQ_xUHmo1ag8t4wai_xMAfSg?ct=application/zip#/>;
+                                                                      nfo:encryptionStatus nfo:encryptedStatus;
+                                                                      nfo:fileLastModified "2020-07-08T15:38:16.000000+02:00"^^xsd:dateTime;
+                                                                      nfo:fileName "biplane.art";
+                                                                      nfo:fileSize 1496 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/biplane.art".
+<urn:md5:FF15079A8D5A83CB78C1A8BFC4C01F4A> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "/xUHmo1ag8t4wai/xMAfSg=="^^xsd:base64Binary.

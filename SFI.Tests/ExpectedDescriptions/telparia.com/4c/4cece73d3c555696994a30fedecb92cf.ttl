@@ -1,0 +1,129 @@
+@base <ni:///mh;1QEQJmL4n_mRH1uzSsyypWPFMA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///fractk17.zip>;
+     nie:interpretedAs <ni:///mh;1QEQJmL4n_mRH1uzSsyypWPFMA?ct=application/octet-stream>;
+     nfo:fileName "fractk17.zip";
+     nfo:fileSize 54590 ;
+     a nfo:FileDataObject.
+<file:///BLOAD.DOC> at:extensionObject <https://w3id.org/uri4uri/suffix/doc>.
+<file:///BLOAD.EXE> at:extensionObject <https://w3id.org/uri4uri/suffix/exe>.
+<file:///FRACTK17.DOC> at:extensionObject <https://w3id.org/uri4uri/suffix/doc>.
+<file:///FRACT_KL.EXE> at:extensionObject <https://w3id.org/uri4uri/suffix/exe>.
+<file:///fractk17.zip> at:extensionObject <https://w3id.org/uri4uri/suffix/zip>.
+<ni:///mh;1QEQ11vk7ZpUd0X_qOa6KraZ2A?ct=text/plain> at:digest <urn:md5:D75BE4ED9A547745FFA8E6BA2AB699D8>;
+                                                    dcterms:extent "503"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQ11vk7ZpUd0X_qOa6KraZ2A?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (503 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQ11vk7ZpUd0X_qOa6KraZ2A?ct=text/plain#line=,1> rdf:value "".
+<ni:///mh;1QEQJmL4n_mRH1uzSsyypWPFMA?ct=application/octet-stream> at:digest <urn:md5:2662F89FF9911F5BB34ACCB2A563C530>;
+                                                                  dcterms:extent "54590"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQJmL4n_mRH1uzSsyypWPFMA?ct=application/zip>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (53.31 KiB)"@en.
+<ni:///mh;1QEQJmL4n_mRH1uzSsyypWPFMA?ct=application/zip> at:pathObject <file:///>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
+                                                         nie:interpretedAs <ni:///mh;1QEQJmL4n_mRH1uzSsyypWPFMA?ct=application/zip#/>;
+                                                         a schema:MediaObject,
+                                                           nfo:Archive;
+                                                         skos:prefLabel "ZIP object (53.31 KiB)"@en.
+<ni:///mh;1QEQJmL4n_mRH1uzSsyypWPFMA?ct=application/zip#/> at:pathObject <file:///./>;
+                                                           a nfo:Folder;
+                                                           skos:prefLabel "/".
+<ni:///mh;1QEQJmL4n_mRH1uzSsyypWPFMA?ct=application/zip#/BLOAD.DOC> at:pathObject <file:///BLOAD.DOC>;
+                                                                    nie:interpretedAs <ni:///mh;1QEQ11vk7ZpUd0X_qOa6KraZ2A?ct=text/plain>;
+                                                                    nfo:belongsToContainer <ni:///mh;1QEQJmL4n_mRH1uzSsyypWPFMA?ct=application/zip#/>;
+                                                                    nfo:fileLastModified "1992-08-11T11:59:32.000000+02:00"^^xsd:dateTime;
+                                                                    nfo:fileName "BLOAD.DOC";
+                                                                    nfo:fileSize 503 ;
+                                                                    a nfo:FileDataObject,
+                                                                      nfo:ArchiveItem;
+                                                                    skos:prefLabel "/BLOAD.DOC".
+<ni:///mh;1QEQJmL4n_mRH1uzSsyypWPFMA?ct=application/zip#/BLOAD.EXE> at:pathObject <file:///BLOAD.EXE>;
+                                                                    nie:interpretedAs <ni:///mh;1QEQMnNrxgQHTguwginFslK9OQ?ct=application/octet-stream>;
+                                                                    nfo:belongsToContainer <ni:///mh;1QEQJmL4n_mRH1uzSsyypWPFMA?ct=application/zip#/>;
+                                                                    nfo:fileLastModified "1992-08-11T11:49:26.000000+02:00"^^xsd:dateTime;
+                                                                    nfo:fileName "BLOAD.EXE";
+                                                                    nfo:fileSize 11584 ;
+                                                                    a nfo:FileDataObject,
+                                                                      nfo:ArchiveItem;
+                                                                    skos:prefLabel "/BLOAD.EXE".
+<ni:///mh;1QEQJmL4n_mRH1uzSsyypWPFMA?ct=application/zip#/FRACTK17.DOC> at:pathObject <file:///FRACTK17.DOC>;
+                                                                       nie:interpretedAs <ni:///mh;1QEQdw7HWFK-eyT1dgC7RjTNPQ?ct=text/plain>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQJmL4n_mRH1uzSsyypWPFMA?ct=application/zip#/>;
+                                                                       nfo:fileLastModified "1993-01-14T15:34:44.000000+01:00"^^xsd:dateTime;
+                                                                       nfo:fileName "FRACTK17.DOC";
+                                                                       nfo:fileSize 7999 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/FRACTK17.DOC".
+<ni:///mh;1QEQJmL4n_mRH1uzSsyypWPFMA?ct=application/zip#/FRACT_KL.EXE> at:pathObject <file:///FRACT_KL.EXE>;
+                                                                       nie:interpretedAs <ni:///mh;1QEQqb2RgTwPev-nLITSVRRQ_g?ct=application/octet-stream>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQJmL4n_mRH1uzSsyypWPFMA?ct=application/zip#/>;
+                                                                       nfo:fileLastModified "1993-01-15T19:32:22.000000+01:00"^^xsd:dateTime;
+                                                                       nfo:fileName "FRACT_KL.EXE";
+                                                                       nfo:fileSize 96336 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/FRACT_KL.EXE".
+<ni:///mh;1QEQMnNrxgQHTguwginFslK9OQ?ct=application/octet-stream> at:digest <urn:md5:32736BC604074E0BB08229C5B252BD39>;
+                                                                  dcterms:extent "11584"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQMnNrxgQHTguwginFslK9OQ?ct=application/x-msdos-program>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (11.31 KiB)"@en.
+<ni:///mh;1QEQMnNrxgQHTguwginFslK9OQ?ct=application/x-msdos-program> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-msdos-program>;
+                                                                     a schema:MediaObject,
+                                                                       schema:SoftwareApplication,
+                                                                       nfo:Executable;
+                                                                     skos:prefLabel "EXE object (11.31 KiB)"@en.
+<ni:///mh;1QEQdw7HWFK-eyT1dgC7RjTNPQ?ct=text/plain> at:digest <urn:md5:770EC75852BE7B24F57600BB4634CD3D>;
+                                                    dcterms:extent "7999"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQdw7HWFK-eyT1dgC7RjTNPQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (7.81 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQdw7HWFK-eyT1dgC7RjTNPQ?ct=text/plain#line=,1> rdf:value "                                                                -1-".
+<ni:///mh;1QEQqb2RgTwPev-nLITSVRRQ_g?ct=application/octet-stream> at:digest <urn:md5:A9BD91813C0F7AFFA72C84D2551450FE>;
+                                                                  dcterms:extent "96336"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQqb2RgTwPev-nLITSVRRQ_g?ct=application/x-msdos-program>,
+                                                                                    <ni:///mh;1QEQqb2RgTwPev-nLITSVRRQ_g?ct=application/vnd.microsoft.portable-executable>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (94.08 KiB)"@en.
+<ni:///mh;1QEQqb2RgTwPev-nLITSVRRQ_g?ct=application/vnd.microsoft.portable-executable> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
+                                                                                       a schema:MediaObject,
+                                                                                         schema:SoftwareApplication,
+                                                                                         nfo:Executable.
+<ni:///mh;1QEQqb2RgTwPev-nLITSVRRQ_g?ct=application/x-msdos-program> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-msdos-program>;
+                                                                     a schema:MediaObject,
+                                                                       schema:SoftwareApplication,
+                                                                       nfo:Executable;
+                                                                     skos:prefLabel "EXE object (94.08 KiB)"@en.
+<urn:md5:2662F89FF9911F5BB34ACCB2A563C530> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "JmL4n/mRH1uzSsyypWPFMA=="^^xsd:base64Binary.
+<urn:md5:32736BC604074E0BB08229C5B252BD39> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "MnNrxgQHTguwginFslK9OQ=="^^xsd:base64Binary.
+<urn:md5:770EC75852BE7B24F57600BB4634CD3D> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "dw7HWFK+eyT1dgC7RjTNPQ=="^^xsd:base64Binary.
+<urn:md5:A9BD91813C0F7AFFA72C84D2551450FE> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "qb2RgTwPev+nLITSVRRQ/g=="^^xsd:base64Binary.
+<urn:md5:D75BE4ED9A547745FFA8E6BA2AB699D8> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "11vk7ZpUd0X/qOa6KraZ2A=="^^xsd:base64Binary.

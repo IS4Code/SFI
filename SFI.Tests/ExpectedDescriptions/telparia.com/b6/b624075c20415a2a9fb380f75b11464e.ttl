@@ -1,0 +1,60 @@
+@base <ni:///mh;1QEQFjNyOQCRaUCIaMwuzM9F_g?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///abydos.tiff>;
+     nie:interpretedAs <ni:///mh;1QEQFjNyOQCRaUCIaMwuzM9F_g?ct=application/octet-stream>;
+     nfo:fileName "abydos.tiff";
+     nfo:fileSize 463838 ;
+     a nfo:FileDataObject.
+<file:///abydos.tiff> at:extensionObject <https://w3id.org/uri4uri/suffix/tiff>.
+<ni:///mh;1QEQFjNyOQCRaUCIaMwuzM9F_g?ct=application/octet-stream> at:digest <urn:md5:16337239009169408868CC2ECCCF45FE>;
+                                                                  dcterms:extent "463838"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQFjNyOQCRaUCIaMwuzM9F_g?ct=image/tiff>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (452.97 KiB)"@en.
+<ni:///mh;1QEQFjNyOQCRaUCIaMwuzM9F_g?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
+                                                    nfo:colorDepth 32 ;
+                                                    nfo:hasMediaStream <ni:///mh;1QEQFjNyOQCRaUCIaMwuzM9F_g?ct=image/tiff#/0>,
+                                                                       <ni:///mh;1QEQFjNyOQCRaUCIaMwuzM9F_g?ct=image/tiff#/1>;
+                                                    nfo:height 600 ;
+                                                    nfo:horizontalResolution 96 ;
+                                                    nfo:verticalResolution 96 ;
+                                                    nfo:width 800 ;
+                                                    a schema:MediaObject,
+                                                      exif:IFD,
+                                                      schema:ImageObject,
+                                                      nfo:Image;
+                                                    exif:compression 8 ;
+                                                    exif:imageLength 600 ;
+                                                    exif:imageWidth 800 ;
+                                                    exif:orientation 1 ;
+                                                    exif:photometricInterpretation 2 ;
+                                                    exif:planarConfiguration 1 ;
+                                                    exif:rowsPerStrip 320 ;
+                                                    exif:samplesPerPixel 4 ;
+                                                    skos:prefLabel "TIFF object (800×600)"@en,
+                                                                   "TIF object (452.97 KiB)"@en.
+<ni:///mh;1QEQFjNyOQCRaUCIaMwuzM9F_g?ct=image/tiff#/0> nfo:height 600 ;
+                                                       nfo:width 800 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "0:Exif IFD0 (800×600)".
+<ni:///mh;1QEQFjNyOQCRaUCIaMwuzM9F_g?ct=image/tiff#/1> nfo:height 600 ;
+                                                       nfo:width 800 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "1:Exif Thumbnail (800×600)".
+<urn:md5:16337239009169408868CC2ECCCF45FE> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "FjNyOQCRaUCIaMwuzM9F/g=="^^xsd:base64Binary.

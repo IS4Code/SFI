@@ -1,0 +1,264 @@
+@base <ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///decision_computer_datacap_extracted.7z>;
+     nie:interpretedAs <ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/octet-stream>;
+     nfo:fileName "decision_computer_datacap_extracted.7z";
+     nfo:fileSize 137136 ;
+     a nfo:FileDataObject.
+<file:///DATACAP.EXE> at:extensionObject <https://w3id.org/uri4uri/suffix/exe>.
+<file:///DCS/DATACAP.EXE> at:pathObject <file:///DATACAP.EXE>.
+<file:///IO.H> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<file:///IO.LIB> at:extensionObject <https://w3id.org/uri4uri/suffix/lib>.
+<file:///LIB/IO.H> at:pathObject <file:///IO.H>.
+<file:///LIB/IO.LIB> at:pathObject <file:///IO.LIB>.
+<file:///TEST.C> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///TEST.EXE> at:extensionObject <https://w3id.org/uri4uri/suffix/exe>.
+<file:///TEST.OBJ> at:extensionObject <https://w3id.org/uri4uri/suffix/obj>.
+<file:///TEST.PRJ> at:extensionObject <https://w3id.org/uri4uri/suffix/prj>.
+<file:///TEST/TEST.C> at:pathObject <file:///TEST.C>.
+<file:///TEST/TEST.EXE> at:pathObject <file:///TEST.EXE>.
+<file:///TEST/TEST.OBJ> at:pathObject <file:///TEST.OBJ>.
+<file:///TEST/TEST.PRJ> at:pathObject <file:///TEST.PRJ>.
+<file:///decision_computer_datacap_extracted.7z> at:extensionObject <https://w3id.org/uri4uri/suffix/7z>.
+<file:///files.txt> at:extensionObject <https://w3id.org/uri4uri/suffix/txt>.
+<file:///files/DCS> at:pathObject <file:///DCS>.
+<file:///files/DCS/> at:pathObject <file:///DCS/>.
+<file:///files/DCS/DATACAP.EXE> at:pathObject <file:///DCS/DATACAP.EXE>.
+<file:///files/LIB> at:pathObject <file:///LIB>.
+<file:///files/LIB/> at:pathObject <file:///LIB/>.
+<file:///files/LIB/IO.H> at:pathObject <file:///LIB/IO.H>.
+<file:///files/LIB/IO.LIB> at:pathObject <file:///LIB/IO.LIB>.
+<file:///files/TEST> at:pathObject <file:///TEST>.
+<file:///files/TEST/> at:pathObject <file:///TEST/>.
+<file:///files/TEST/TEST.C> at:pathObject <file:///TEST/TEST.C>.
+<file:///files/TEST/TEST.EXE> at:pathObject <file:///TEST/TEST.EXE>.
+<file:///files/TEST/TEST.OBJ> at:pathObject <file:///TEST/TEST.OBJ>.
+<file:///files/TEST/TEST.PRJ> at:pathObject <file:///TEST/TEST.PRJ>.
+<ni:///mh;1QEQ7bxCfcD5borftlSB4L-YZw?ct=text/plain> at:digest <urn:md5:EDBC427DC0F96E8ADFB65481E0BF9867>;
+                                                    dcterms:extent "1853"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQ7bxCfcD5borftlSB4L-YZw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.81 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQ7bxCfcD5borftlSB4L-YZw?ct=text/plain#line=,1> rdf:value """#define LPT1 				0x3bc""".
+<ni:///mh;1QEQV4gdLNN2cawuJ05dvsHJVg?ct=text/plain> at:digest <urn:md5:57881D2CD37671AC2E274E5DBEC1C956>;
+                                                    dcterms:extent "125"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQV4gdLNN2cawuJ05dvsHJVg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (125 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQV4gdLNN2cawuJ05dvsHJVg?ct=text/plain#line=,1> rdf:value ".".
+<ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/octet-stream> at:digest <urn:md5:7767F208E5B1BCD21D2A26A6B1566448>;
+                                                                  dcterms:extent "137136"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (133.92 KiB)"@en.
+<ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed> at:pathObject <file:///>;
+                                                                     schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-7z-compressed>;
+                                                                     nie:interpretedAs <ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/>;
+                                                                     a schema:MediaObject,
+                                                                       nfo:Archive;
+                                                                     skos:prefLabel "7Z object (133.92 KiB)"@en.
+<ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/> at:pathObject <file:///./>;
+                                                                       a nfo:Folder;
+                                                                       skos:prefLabel "/".
+<ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/files> at:pathObject <file:///files>;
+                                                                            nie:interpretedAs <ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/files/>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/>;
+                                                                            nfo:fileLastModified "2018-07-29T19:33:30.000000+02:00"^^xsd:dateTime;
+                                                                            nfo:fileName "files";
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/files".
+<ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/files.txt> at:pathObject <file:///files.txt>;
+                                                                                nie:interpretedAs <ni:///mh;1QEQV4gdLNN2cawuJ05dvsHJVg?ct=text/plain>;
+                                                                                nfo:belongsToContainer <ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/>;
+                                                                                nfo:fileLastModified "2018-07-29T19:33:53.000000+02:00"^^xsd:dateTime;
+                                                                                nfo:fileName "files.txt";
+                                                                                nfo:fileSize 125 ;
+                                                                                a nfo:FileDataObject,
+                                                                                  nfo:ArchiveItem;
+                                                                                skos:prefLabel "/files.txt".
+<ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/files/> at:pathObject <file:///files/>;
+                                                                             a nfo:Folder;
+                                                                             skos:prefLabel "/files/".
+<ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/files/DCS> at:pathObject <file:///files/DCS>;
+                                                                                nie:interpretedAs <ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/files/DCS/>;
+                                                                                nfo:belongsToContainer <ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/files/>;
+                                                                                nfo:fileLastModified "1996-10-18T10:15:56.000000+02:00"^^xsd:dateTime;
+                                                                                nfo:fileName "DCS";
+                                                                                a nfo:FileDataObject,
+                                                                                  nfo:ArchiveItem;
+                                                                                skos:prefLabel "/files/DCS".
+<ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/files/DCS/> at:pathObject <file:///files/DCS/>;
+                                                                                 a nfo:Folder;
+                                                                                 skos:prefLabel "/files/DCS/".
+<ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/files/DCS/DATACAP.EXE> at:pathObject <file:///files/DCS/DATACAP.EXE>;
+                                                                                            nie:interpretedAs <ni:///mh;1QEQz4HRNp7VJVjDX6NihhjITg?ct=application/octet-stream>;
+                                                                                            nfo:belongsToContainer <ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/files/DCS/>;
+                                                                                            nfo:fileLastModified "1996-08-17T20:21:44.000000+02:00"^^xsd:dateTime;
+                                                                                            nfo:fileName "DATACAP.EXE";
+                                                                                            nfo:fileSize 142241 ;
+                                                                                            a nfo:FileDataObject,
+                                                                                              nfo:ArchiveItem;
+                                                                                            skos:prefLabel "/files/DCS/DATACAP.EXE".
+<ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/files/LIB> at:pathObject <file:///files/LIB>;
+                                                                                nie:interpretedAs <ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/files/LIB/>;
+                                                                                nfo:belongsToContainer <ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/files/>;
+                                                                                nfo:fileLastModified "1996-10-18T10:15:54.000000+02:00"^^xsd:dateTime;
+                                                                                nfo:fileName "LIB";
+                                                                                a nfo:FileDataObject,
+                                                                                  nfo:ArchiveItem;
+                                                                                skos:prefLabel "/files/LIB".
+<ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/files/LIB/> at:pathObject <file:///files/LIB/>;
+                                                                                 a nfo:Folder;
+                                                                                 skos:prefLabel "/files/LIB/".
+<ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/files/LIB/IO.H> at:pathObject <file:///files/LIB/IO.H>;
+                                                                                     nie:interpretedAs <ni:///mh;1QEQ7bxCfcD5borftlSB4L-YZw?ct=text/plain>;
+                                                                                     nfo:belongsToContainer <ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/files/LIB/>;
+                                                                                     nfo:fileLastModified "1996-08-16T00:08:36.000000+02:00"^^xsd:dateTime;
+                                                                                     nfo:fileName "IO.H";
+                                                                                     nfo:fileSize 1853 ;
+                                                                                     a nfo:FileDataObject,
+                                                                                       nfo:ArchiveItem;
+                                                                                     skos:prefLabel "/files/LIB/IO.H".
+<ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/files/LIB/IO.LIB> at:pathObject <file:///files/LIB/IO.LIB>;
+                                                                                       nie:interpretedAs <ni:///mh;1QEQtZjNMMNMOxumB3d_cBgi1Q?ct=application/octet-stream>;
+                                                                                       nfo:belongsToContainer <ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/files/LIB/>;
+                                                                                       nfo:fileLastModified "1996-08-16T00:08:36.000000+02:00"^^xsd:dateTime;
+                                                                                       nfo:fileName "IO.LIB";
+                                                                                       nfo:fileSize 17408 ;
+                                                                                       a nfo:FileDataObject,
+                                                                                         nfo:ArchiveItem;
+                                                                                       skos:prefLabel "/files/LIB/IO.LIB".
+<ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/files/TEST> at:pathObject <file:///files/TEST>;
+                                                                                 nie:interpretedAs <ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/files/TEST/>;
+                                                                                 nfo:belongsToContainer <ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/files/>;
+                                                                                 nfo:fileLastModified "1996-10-18T10:15:54.000000+02:00"^^xsd:dateTime;
+                                                                                 nfo:fileName "TEST";
+                                                                                 a nfo:FileDataObject,
+                                                                                   nfo:ArchiveItem;
+                                                                                 skos:prefLabel "/files/TEST".
+<ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/files/TEST/> at:pathObject <file:///files/TEST/>;
+                                                                                  a nfo:Folder;
+                                                                                  skos:prefLabel "/files/TEST/".
+<ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/files/TEST/TEST.C> at:pathObject <file:///files/TEST/TEST.C>;
+                                                                                        nie:interpretedAs <ni:///mh;1QEQoWzV0UvEc5rqUMR1PF0OxA?ct=text/plain>;
+                                                                                        nfo:belongsToContainer <ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/files/TEST/>;
+                                                                                        nfo:fileLastModified "1995-10-03T23:06:38.000000+02:00"^^xsd:dateTime;
+                                                                                        nfo:fileName "TEST.C";
+                                                                                        nfo:fileSize 5056 ;
+                                                                                        a nfo:FileDataObject,
+                                                                                          nfo:ArchiveItem;
+                                                                                        skos:prefLabel "/files/TEST/TEST.C".
+<ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/files/TEST/TEST.EXE> at:pathObject <file:///files/TEST/TEST.EXE>;
+                                                                                          nie:interpretedAs <ni:///mh;1QEQxG3dAIz-BI7OzwP3ZqqpzQ?ct=application/octet-stream>;
+                                                                                          nfo:belongsToContainer <ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/files/TEST/>;
+                                                                                          nfo:fileLastModified "1995-10-04T15:00:12.000000+02:00"^^xsd:dateTime;
+                                                                                          nfo:fileName "TEST.EXE";
+                                                                                          nfo:fileSize 47438 ;
+                                                                                          a nfo:FileDataObject,
+                                                                                            nfo:ArchiveItem;
+                                                                                          skos:prefLabel "/files/TEST/TEST.EXE".
+<ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/files/TEST/TEST.OBJ> at:pathObject <file:///files/TEST/TEST.OBJ>;
+                                                                                          nie:interpretedAs <ni:///mh;1QEQvwBXsYRpBk-_dXppy2OPAQ?ct=application/octet-stream>;
+                                                                                          nfo:belongsToContainer <ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/files/TEST/>;
+                                                                                          nfo:fileLastModified "1995-10-04T15:00:12.000000+02:00"^^xsd:dateTime;
+                                                                                          nfo:fileName "TEST.OBJ";
+                                                                                          nfo:fileSize 6858 ;
+                                                                                          a nfo:FileDataObject,
+                                                                                            nfo:ArchiveItem;
+                                                                                          skos:prefLabel "/files/TEST/TEST.OBJ".
+<ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/files/TEST/TEST.PRJ> at:pathObject <file:///files/TEST/TEST.PRJ>;
+                                                                                          nie:interpretedAs <ni:///mh;1QEQqwXQSz04XzSPBr8Cj2Mrgg?ct=application/octet-stream>;
+                                                                                          nfo:belongsToContainer <ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/files/TEST/>;
+                                                                                          nfo:fileLastModified "1995-10-04T15:00:12.000000+02:00"^^xsd:dateTime;
+                                                                                          nfo:fileName "TEST.PRJ";
+                                                                                          nfo:fileSize 5182 ;
+                                                                                          a nfo:FileDataObject,
+                                                                                            nfo:ArchiveItem;
+                                                                                          skos:prefLabel "/files/TEST/TEST.PRJ".
+<ni:///mh;1QEQoWzV0UvEc5rqUMR1PF0OxA?ct=text/plain> at:digest <urn:md5:A16CD5D14BC4739AEA50C4753C5D0EC4>;
+                                                    dcterms:extent "5056"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQoWzV0UvEc5rqUMR1PF0OxA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (4.94 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQoWzV0UvEc5rqUMR1PF0OxA?ct=text/plain#line=,1> rdf:value """#include \"io.h\"""".
+<ni:///mh;1QEQqwXQSz04XzSPBr8Cj2Mrgg?ct=application/octet-stream> at:digest <urn:md5:AB05D04B3D385F348F06BF028F632B82>;
+                                                                  dcterms:extent "5182"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (5.06 KiB)"@en.
+<ni:///mh;1QEQtZjNMMNMOxumB3d_cBgi1Q?ct=application/octet-stream> at:digest <urn:md5:B598CD30C34C3B1BA607777F701822D5>;
+                                                                  dcterms:extent "17408"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (17 KiB)"@en.
+<ni:///mh;1QEQvwBXsYRpBk-_dXppy2OPAQ?ct=application/octet-stream> at:digest <urn:md5:BF0057B18469064FBF757A69CB638F01>;
+                                                                  dcterms:extent "6858"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (6.7 KiB)"@en.
+<ni:///mh;1QEQxG3dAIz-BI7OzwP3ZqqpzQ?ct=application/octet-stream> at:digest <urn:md5:C46DDD008CFE048ECECF03F766AAA9CD>;
+                                                                  dcterms:extent "47438"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQxG3dAIz-BI7OzwP3ZqqpzQ?ct=application/x-msdos-program>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (46.33 KiB)"@en.
+<ni:///mh;1QEQxG3dAIz-BI7OzwP3ZqqpzQ?ct=application/x-msdos-program> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-msdos-program>;
+                                                                     a schema:MediaObject,
+                                                                       schema:SoftwareApplication,
+                                                                       nfo:Executable;
+                                                                     skos:prefLabel "EXE object (46.33 KiB)"@en.
+<ni:///mh;1QEQz4HRNp7VJVjDX6NihhjITg?ct=application/octet-stream> at:digest <urn:md5:CF81D1369ED52558C35FA3628618C84E>;
+                                                                  dcterms:extent "142241"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQz4HRNp7VJVjDX6NihhjITg?ct=application/vnd.microsoft.portable-executable>,
+                                                                                    <ni:///mh;1QEQz4HRNp7VJVjDX6NihhjITg?ct=application/x-msdos-program>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (138.91 KiB)"@en.
+<ni:///mh;1QEQz4HRNp7VJVjDX6NihhjITg?ct=application/vnd.microsoft.portable-executable> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
+                                                                                       a schema:MediaObject,
+                                                                                         schema:SoftwareApplication,
+                                                                                         nfo:Executable.
+<ni:///mh;1QEQz4HRNp7VJVjDX6NihhjITg?ct=application/x-msdos-program> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-msdos-program>;
+                                                                     a schema:MediaObject,
+                                                                       schema:SoftwareApplication,
+                                                                       nfo:Executable;
+                                                                     skos:prefLabel "EXE object (138.91 KiB)"@en.
+<urn:md5:57881D2CD37671AC2E274E5DBEC1C956> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "V4gdLNN2cawuJ05dvsHJVg=="^^xsd:base64Binary.
+<urn:md5:7767F208E5B1BCD21D2A26A6B1566448> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "d2fyCOWxvNIdKiamsVZkSA=="^^xsd:base64Binary.
+<urn:md5:A16CD5D14BC4739AEA50C4753C5D0EC4> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "oWzV0UvEc5rqUMR1PF0OxA=="^^xsd:base64Binary.
+<urn:md5:AB05D04B3D385F348F06BF028F632B82> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "qwXQSz04XzSPBr8Cj2Mrgg=="^^xsd:base64Binary.
+<urn:md5:B598CD30C34C3B1BA607777F701822D5> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "tZjNMMNMOxumB3d/cBgi1Q=="^^xsd:base64Binary.
+<urn:md5:BF0057B18469064FBF757A69CB638F01> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "vwBXsYRpBk+/dXppy2OPAQ=="^^xsd:base64Binary.
+<urn:md5:C46DDD008CFE048ECECF03F766AAA9CD> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "xG3dAIz+BI7OzwP3ZqqpzQ=="^^xsd:base64Binary.
+<urn:md5:CF81D1369ED52558C35FA3628618C84E> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "z4HRNp7VJVjDX6NihhjITg=="^^xsd:base64Binary.
+<urn:md5:EDBC427DC0F96E8ADFB65481E0BF9867> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "7bxCfcD5borftlSB4L+YZw=="^^xsd:base64Binary.

@@ -1,0 +1,32 @@
+@base <ni:///mh;1QEQ8oVeLJdUguLXf3_uFsfg7w?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///flag_b24.eps>;
+     nie:interpretedAs <ni:///mh;1QEQ8oVeLJdUguLXf3_uFsfg7w?ct=application/octet-stream>;
+     nfo:fileName "flag_b24.eps";
+     nfo:fileSize 31454 ;
+     a nfo:FileDataObject.
+<file:///flag_b24.eps> at:extensionObject <https://w3id.org/uri4uri/suffix/eps>.
+<ni:///mh;1QEQ8oVeLJdUguLXf3_uFsfg7w?ct=application/octet-stream> at:digest <urn:md5:F2855E2C975482E2D77F7FEE16C7E0EF>;
+                                                                  dcterms:extent "31454"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ8oVeLJdUguLXf3_uFsfg7w?ct=application/postscript>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (30.72 KiB)"@en.
+<ni:///mh;1QEQ8oVeLJdUguLXf3_uFsfg7w?ct=application/postscript> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/postscript>;
+                                                                a schema:MediaObject;
+                                                                skos:prefLabel "EPS object (30.72 KiB)"@en.
+<urn:md5:F2855E2C975482E2D77F7FEE16C7E0EF> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "8oVeLJdUguLXf3/uFsfg7w=="^^xsd:base64Binary.

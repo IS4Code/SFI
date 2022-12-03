@@ -1,0 +1,46 @@
+@base <ni:///mh;1QEQocWqdby2sWdRi-o3cdNpsg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///HIFINANC.WRI>;
+     nie:interpretedAs <ni:///mh;1QEQocWqdby2sWdRi-o3cdNpsg?ct=application/octet-stream>;
+     nfo:fileName "HIFINANC.WRI";
+     nfo:fileSize 137811 ;
+     a nfo:FileDataObject.
+<file:///HIFINANC.WRI> at:extensionObject <https://w3id.org/uri4uri/suffix/wri>.
+<ni:///mh;1QEQUq3cp_HKu-aVl6yAIlbd3g?ct=application/octet-stream> at:digest <urn:md5:52ADDCA7F1CABBE69597AC802256DDDE>;
+                                                                  dcterms:extent "478976"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (467.75 KiB)"@en.
+<ni:///mh;1QEQocWqdby2sWdRi-o3cdNpsg?ct=application/octet-stream> at:digest <urn:md5:A1C5AA75BCB6B167518BEA3771D369B2>;
+                                                                  dcterms:extent "137811"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQocWqdby2sWdRi-o3cdNpsg?ct=application/x-ms-compress-szdd>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (134.58 KiB)"@en.
+<ni:///mh;1QEQocWqdby2sWdRi-o3cdNpsg?ct=application/x-ms-compress-szdd> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ms-compress-szdd>;
+                                                                        a schema:MediaObject,
+                                                                          nfo:Archive;
+                                                                        skos:prefLabel "SZ object (134.58 KiB)"@en.
+<ni:///mh;1QEQocWqdby2sWdRi-o3cdNpsg?ct=application/x-ms-compress-szdd#/> nie:interpretedAs <ni:///mh;1QEQUq3cp_HKu-aVl6yAIlbd3g?ct=application/octet-stream>;
+                                                                          nfo:belongsToContainer <ni:///mh;1QEQocWqdby2sWdRi-o3cdNpsg?ct=application/x-ms-compress-szdd>;
+                                                                          nfo:fileSize 478976 ;
+                                                                          a nfo:FileDataObject,
+                                                                            nfo:ArchiveItem;
+                                                                          skos:prefLabel "/".
+<urn:md5:52ADDCA7F1CABBE69597AC802256DDDE> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "Uq3cp/HKu+aVl6yAIlbd3g=="^^xsd:base64Binary.
+<urn:md5:A1C5AA75BCB6B167518BEA3771D369B2> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "ocWqdby2sWdRi+o3cdNpsg=="^^xsd:base64Binary.

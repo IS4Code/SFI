@@ -1,0 +1,58 @@
+@base <ni:///mh;1QEQ7aU3BS5J9u_usoILO7Hxlw?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///mnews35.exe>;
+     nie:interpretedAs <ni:///mh;1QEQ7aU3BS5J9u_usoILO7Hxlw?ct=application/octet-stream>;
+     nfo:fileName "mnews35.exe";
+     nfo:fileSize 127280 ;
+     a nfo:FileDataObject.
+<file:///mnews35.exe> at:extensionObject <https://w3id.org/uri4uri/suffix/exe>.
+<ni:///mh;1QEQ7aU3BS5J9u_usoILO7Hxlw?ct=application/octet-stream> at:digest <urn:md5:EDA537052E49F6EFEEB2820B3BB1F197>;
+                                                                  dcterms:extent "127280"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ7aU3BS5J9u_usoILO7Hxlw?ct=application/x-msdos-program>,
+                                                                                    <ni:///mh;1QEQ7aU3BS5J9u_usoILO7Hxlw?ct=application/vnd.microsoft.portable-executable>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (124.3 KiB)"@en.
+<ni:///mh;1QEQ7aU3BS5J9u_usoILO7Hxlw?ct=application/vnd.microsoft.portable-executable> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
+                                                                                       a schema:MediaObject,
+                                                                                         schema:SoftwareApplication,
+                                                                                         nfo:Executable.
+<ni:///mh;1QEQ7aU3BS5J9u_usoILO7Hxlw?ct=application/x-msdos-program> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-msdos-program>;
+                                                                     nie:hasPart <ni:///mh;1QEQ7aU3BS5J9u_usoILO7Hxlw?ct=application/x-msdos-program#/>;
+                                                                     a schema:MediaObject,
+                                                                       schema:SoftwareApplication,
+                                                                       nfo:Executable;
+                                                                     skos:prefLabel "EXE object (124.3 KiB)"@en.
+<ni:///mh;1QEQ7aU3BS5J9u_usoILO7Hxlw?ct=application/x-msdos-program#/> nie:interpretedAs <ni:///mh;1QEQI0KFvX2SgVsKru-NgkYLoQ?ct=application/octet-stream>;
+                                                                       nfo:fileSize 7262 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:EmbeddedFileDataObject;
+                                                                       skos:prefLabel "LZEXE-compressed executable".
+<ni:///mh;1QEQI0KFvX2SgVsKru-NgkYLoQ?ct=application/octet-stream> at:digest <urn:md5:234285BD7D92815B0AAEEF8D82460BA1>;
+                                                                  dcterms:extent "7262"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQI0KFvX2SgVsKru-NgkYLoQ?ct=application/x-msdos-program>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (7.09 KiB)"@en.
+<ni:///mh;1QEQI0KFvX2SgVsKru-NgkYLoQ?ct=application/x-msdos-program> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-msdos-program>;
+                                                                     a schema:MediaObject,
+                                                                       schema:SoftwareApplication,
+                                                                       nfo:Executable;
+                                                                     skos:prefLabel "EXE object (7.09 KiB)"@en.
+<urn:md5:234285BD7D92815B0AAEEF8D82460BA1> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "I0KFvX2SgVsKru+NgkYLoQ=="^^xsd:base64Binary.
+<urn:md5:EDA537052E49F6EFEEB2820B3BB1F197> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "7aU3BS5J9u/usoILO7Hxlw=="^^xsd:base64Binary.

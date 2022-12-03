@@ -1,0 +1,508 @@
+@base <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix xis: <http://www.w3.org/2001/04/infoset#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///gummi.xrns>;
+     nie:interpretedAs <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/octet-stream>;
+     nfo:fileName "gummi.xrns";
+     nfo:fileSize 83332 ;
+     a nfo:FileDataObject.
+<file:///Instrument00%20%28%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20keith303%29/Sample00%20%28New%20Sample%29.flac> at:pathObject <file:///Sample00%20%28New%20Sample%29.flac>.
+<file:///Instrument02%20%28Unnamed%29/Sample00%20%28Unnamed%29.flac> at:pathObject <file:///Sample00%20%28Unnamed%29.flac>.
+<file:///Instrument04%20%28%20%20%20%20%20%20%20%20%20%20%20%20%20-%20%20tiny%20music%20-%29/Sample00%20%28Unnamed%29.flac> at:pathObject <file:///Sample00%20%28Unnamed%29.flac>.
+<file:///Instrument06%20%28Unnamed%29/Sample00%20%28Unnamed%29.flac> at:pathObject <file:///Sample00%20%28Unnamed%29.flac>.
+<file:///Instrument08%20%28Unnamed%29/Sample00%20%28Unnamed%29.flac> at:pathObject <file:///Sample00%20%28Unnamed%29.flac>.
+<file:///Instrument10%20%28Unnamed%29/Sample00%20%28Unnamed%29.flac> at:pathObject <file:///Sample00%20%28Unnamed%29.flac>.
+<file:///Instrument13%20%28Unnamed%29/Sample00%20%28Unnamed%29.flac> at:pathObject <file:///Sample00%20%28Unnamed%29.flac>.
+<file:///Instrument16%20%28Unnamed%29/Sample00%20%28Unnamed%29.flac> at:pathObject <file:///Sample00%20%28Unnamed%29.flac>.
+<file:///Instrument17%20%28Unnamed%29/Sample00%20%28Unnamed%29.flac> at:pathObject <file:///Sample00%20%28Unnamed%29.flac>.
+<file:///Instrument21%20%28Unnamed%29/Sample00%20%28Unnamed%29.ogg> at:pathObject <file:///Sample00%20%28Unnamed%29.ogg>.
+<file:///Sample00%20%28New%20Sample%29.flac> at:extensionObject <https://w3id.org/uri4uri/suffix/flac>.
+<file:///Sample00%20%28Unnamed%29.flac> at:extensionObject <https://w3id.org/uri4uri/suffix/flac>.
+<file:///Sample00%20%28Unnamed%29.ogg> at:extensionObject <https://w3id.org/uri4uri/suffix/ogg>.
+<file:///SampleData/Instrument00%20%28%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20keith303%29> at:pathObject <file:///Instrument00%20%28%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20keith303%29>.
+<file:///SampleData/Instrument00%20%28%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20keith303%29/> at:pathObject <file:///Instrument00%20%28%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20keith303%29/>.
+<file:///SampleData/Instrument00%20%28%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20keith303%29/Sample00%20%28New%20Sample%29.flac> at:pathObject <file:///Instrument00%20%28%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20keith303%29/Sample00%20%28New%20Sample%29.flac>.
+<file:///SampleData/Instrument02%20%28Unnamed%29> at:pathObject <file:///Instrument02%20%28Unnamed%29>.
+<file:///SampleData/Instrument02%20%28Unnamed%29/> at:pathObject <file:///Instrument02%20%28Unnamed%29/>.
+<file:///SampleData/Instrument02%20%28Unnamed%29/Sample00%20%28Unnamed%29.flac> at:pathObject <file:///Instrument02%20%28Unnamed%29/Sample00%20%28Unnamed%29.flac>.
+<file:///SampleData/Instrument04%20%28%20%20%20%20%20%20%20%20%20%20%20%20%20-%20%20tiny%20music%20-%29> at:pathObject <file:///Instrument04%20%28%20%20%20%20%20%20%20%20%20%20%20%20%20-%20%20tiny%20music%20-%29>.
+<file:///SampleData/Instrument04%20%28%20%20%20%20%20%20%20%20%20%20%20%20%20-%20%20tiny%20music%20-%29/> at:pathObject <file:///Instrument04%20%28%20%20%20%20%20%20%20%20%20%20%20%20%20-%20%20tiny%20music%20-%29/>.
+<file:///SampleData/Instrument04%20%28%20%20%20%20%20%20%20%20%20%20%20%20%20-%20%20tiny%20music%20-%29/Sample00%20%28Unnamed%29.flac> at:pathObject <file:///Instrument04%20%28%20%20%20%20%20%20%20%20%20%20%20%20%20-%20%20tiny%20music%20-%29/Sample00%20%28Unnamed%29.flac>.
+<file:///SampleData/Instrument06%20%28Unnamed%29> at:pathObject <file:///Instrument06%20%28Unnamed%29>.
+<file:///SampleData/Instrument06%20%28Unnamed%29/> at:pathObject <file:///Instrument06%20%28Unnamed%29/>.
+<file:///SampleData/Instrument06%20%28Unnamed%29/Sample00%20%28Unnamed%29.flac> at:pathObject <file:///Instrument06%20%28Unnamed%29/Sample00%20%28Unnamed%29.flac>.
+<file:///SampleData/Instrument08%20%28Unnamed%29> at:pathObject <file:///Instrument08%20%28Unnamed%29>.
+<file:///SampleData/Instrument08%20%28Unnamed%29/> at:pathObject <file:///Instrument08%20%28Unnamed%29/>.
+<file:///SampleData/Instrument08%20%28Unnamed%29/Sample00%20%28Unnamed%29.flac> at:pathObject <file:///Instrument08%20%28Unnamed%29/Sample00%20%28Unnamed%29.flac>.
+<file:///SampleData/Instrument10%20%28Unnamed%29> at:pathObject <file:///Instrument10%20%28Unnamed%29>.
+<file:///SampleData/Instrument10%20%28Unnamed%29/> at:pathObject <file:///Instrument10%20%28Unnamed%29/>.
+<file:///SampleData/Instrument10%20%28Unnamed%29/Sample00%20%28Unnamed%29.flac> at:pathObject <file:///Instrument10%20%28Unnamed%29/Sample00%20%28Unnamed%29.flac>.
+<file:///SampleData/Instrument13%20%28Unnamed%29> at:pathObject <file:///Instrument13%20%28Unnamed%29>.
+<file:///SampleData/Instrument13%20%28Unnamed%29/> at:pathObject <file:///Instrument13%20%28Unnamed%29/>.
+<file:///SampleData/Instrument13%20%28Unnamed%29/Sample00%20%28Unnamed%29.flac> at:pathObject <file:///Instrument13%20%28Unnamed%29/Sample00%20%28Unnamed%29.flac>.
+<file:///SampleData/Instrument16%20%28Unnamed%29> at:pathObject <file:///Instrument16%20%28Unnamed%29>.
+<file:///SampleData/Instrument16%20%28Unnamed%29/> at:pathObject <file:///Instrument16%20%28Unnamed%29/>.
+<file:///SampleData/Instrument16%20%28Unnamed%29/Sample00%20%28Unnamed%29.flac> at:pathObject <file:///Instrument16%20%28Unnamed%29/Sample00%20%28Unnamed%29.flac>.
+<file:///SampleData/Instrument17%20%28Unnamed%29> at:pathObject <file:///Instrument17%20%28Unnamed%29>.
+<file:///SampleData/Instrument17%20%28Unnamed%29/> at:pathObject <file:///Instrument17%20%28Unnamed%29/>.
+<file:///SampleData/Instrument17%20%28Unnamed%29/Sample00%20%28Unnamed%29.flac> at:pathObject <file:///Instrument17%20%28Unnamed%29/Sample00%20%28Unnamed%29.flac>.
+<file:///SampleData/Instrument21%20%28Unnamed%29> at:pathObject <file:///Instrument21%20%28Unnamed%29>.
+<file:///SampleData/Instrument21%20%28Unnamed%29/> at:pathObject <file:///Instrument21%20%28Unnamed%29/>.
+<file:///SampleData/Instrument21%20%28Unnamed%29/Sample00%20%28Unnamed%29.ogg> at:pathObject <file:///Instrument21%20%28Unnamed%29/Sample00%20%28Unnamed%29.ogg>.
+<file:///Song.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///gummi.xrns> at:extensionObject <https://w3id.org/uri4uri/suffix/xrns>.
+<ni:///mh;1QEQ0VlKipFoZL1MY2b81k3TDQ?ct=application/octet-stream> at:digest <urn:md5:D1594A8A916864BD4C6366FCD64DD30D>;
+                                                                  dcterms:extent "601"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ0VlKipFoZL1MY2b81k3TDQ?ct=audio/flac>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (601 B)"@en.
+<ni:///mh;1QEQ0VlKipFoZL1MY2b81k3TDQ?ct=audio/flac> schema:encodingFormat <https://w3id.org/uri4uri/mime/audio/flac>;
+                                                    nfo:averageBitrate "264"^^dt:kilobitPerSecond;
+                                                    nfo:bitsPerSample 8 ;
+                                                    nfo:channels 1 ;
+                                                    nfo:compressionType nfo:losslessCompressionType;
+                                                    nfo:duration "PT0.0155555S"^^xsd:duration;
+                                                    nfo:sampleRate "44100"^^dt:hertz;
+                                                    a schema:MediaObject,
+                                                      nfo:Audio,
+                                                      schema:AudioObject;
+                                                    skos:prefLabel "FLAC object (44100 Hz, 1 channel)"@en.
+<ni:///mh;1QEQ3Q7tHPF5hvzNMAmtxBwAdw?ct=application/octet-stream> at:digest <urn:md5:DD0EED1CF17986FCCD3009ADC41C0077>;
+                                                                  dcterms:extent "227"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ3Q7tHPF5hvzNMAmtxBwAdw?ct=audio/flac>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (227 B)"@en.
+<ni:///mh;1QEQ3Q7tHPF5hvzNMAmtxBwAdw?ct=audio/flac> schema:encodingFormat <https://w3id.org/uri4uri/mime/audio/flac>;
+                                                    nfo:averageBitrate "857"^^dt:kilobitPerSecond;
+                                                    nfo:bitsPerSample 32 ;
+                                                    nfo:channels 1 ;
+                                                    nfo:compressionType nfo:losslessCompressionType;
+                                                    nfo:duration "PT0.0013151S"^^xsd:duration;
+                                                    nfo:sampleRate "44100"^^dt:hertz;
+                                                    a schema:MediaObject,
+                                                      nfo:Audio,
+                                                      schema:AudioObject;
+                                                    skos:prefLabel "FLAC object (44100 Hz, 1 channel)"@en.
+<ni:///mh;1QEQ3kGXMkvvdtSf56JjyUr7TQ?ct=application/octet-stream> at:digest <urn:md5:DE4197324BEF76D49FE7A263C94AFB4D>;
+                                                                  dcterms:extent "2502"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ3kGXMkvvdtSf56JjyUr7TQ?ct=audio/flac>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (2.44 KiB)"@en.
+<ni:///mh;1QEQ3kGXMkvvdtSf56JjyUr7TQ?ct=audio/flac> schema:encodingFormat <https://w3id.org/uri4uri/mime/audio/flac>;
+                                                    nfo:averageBitrate "335"^^dt:kilobitPerSecond;
+                                                    nfo:bitsPerSample 8 ;
+                                                    nfo:channels 1 ;
+                                                    nfo:compressionType nfo:losslessCompressionType;
+                                                    nfo:duration "PT0.057551S"^^xsd:duration;
+                                                    nfo:sampleRate "44100"^^dt:hertz;
+                                                    a schema:MediaObject,
+                                                      nfo:Audio,
+                                                      schema:AudioObject;
+                                                    skos:prefLabel "FLAC object (44100 Hz, 1 channel)"@en.
+<ni:///mh;1QEQEos-E67ODc-aDM1qbcABGQ?ct=application/octet-stream> at:digest <urn:md5:128B3E13AECE0DCF9A0CCD6A6DC00119>;
+                                                                  dcterms:extent "554"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQEos-E67ODc-aDM1qbcABGQ?ct=audio/flac>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (554 B)"@en.
+<ni:///mh;1QEQEos-E67ODc-aDM1qbcABGQ?ct=audio/flac> schema:encodingFormat <https://w3id.org/uri4uri/mime/audio/flac>;
+                                                    nfo:averageBitrate "322"^^dt:kilobitPerSecond;
+                                                    nfo:bitsPerSample 8 ;
+                                                    nfo:channels 1 ;
+                                                    nfo:compressionType nfo:losslessCompressionType;
+                                                    nfo:duration "PT0.0116099S"^^xsd:duration;
+                                                    nfo:sampleRate "44100"^^dt:hertz;
+                                                    a schema:MediaObject,
+                                                      nfo:Audio,
+                                                      schema:AudioObject;
+                                                    skos:prefLabel "FLAC object (44100 Hz, 1 channel)"@en.
+<ni:///mh;1QEQPQuWaxGvGGmGFKOaxu_LjA?ct=application/octet-stream> at:digest <urn:md5:3D0B966B11AF18698614A39AC6EFCB8C>;
+                                                                  dcterms:extent "5998"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQPQuWaxGvGGmGFKOaxu_LjA?ct=application/ogg>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (5.86 KiB)"@en.
+<ni:///mh;1QEQPQuWaxGvGGmGFKOaxu_LjA?ct=application/ogg> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/ogg>;
+                                                         nfo:averageBitrate "37"^^dt:kilobitPerSecond;
+                                                         nfo:bitsPerSample 32 ;
+                                                         nfo:channels 1 ;
+                                                         nfo:duration "PT0.4634013S"^^xsd:duration;
+                                                         nfo:sampleRate "22050"^^dt:hertz;
+                                                         a schema:MediaObject,
+                                                           nfo:Audio,
+                                                           schema:AudioObject;
+                                                         skos:prefLabel "OGG object (22050 Hz, 1 channel)"@en,
+                                                                        "OGG object (5.86 KiB)"@en.
+<ni:///mh;1QEQZRXnjgb7wrciMUcOLtMf0g?ct=application/x.ns.RenoiseSong+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.renoisesong+xml>;
+                                                                          a schema:MediaObject;
+                                                                          skos:prefLabel "RENOISESONG object"@en.
+<ni:///mh;1QEQZRXnjgb7wrciMUcOLtMf0g?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQZRXnjgb7wrciMUcOLtMf0g?ct=application/x.ns.RenoiseSong+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQZRXnjgb7wrciMUcOLtMf0g?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (RenoiseSong)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQZRXnjgb7wrciMUcOLtMf0g?ct=application/xml#element(/1)> a xis:Element;
+                                                                     xis:localName "RenoiseSong";
+                                                                     xis:name "RenoiseSong".
+<ni:///mh;1QEQZRXnjgb7wrciMUcOLtMf0g?ct=text/plain> at:digest <urn:md5:6515E78E06FBC2B72231470E2ED31FD2>;
+                                                    dcterms:extent "3843329"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQZRXnjgb7wrciMUcOLtMf0g?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQZRXnjgb7wrciMUcOLtMf0g?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (3.67 MiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQZRXnjgb7wrciMUcOLtMf0g?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?><RenoiseSong doc_version=\"10\">  <GlobalSongData>    <Octave>4</Octave>    <EditStep>1</EditStep>    <LoopPlay>false</LoopPlay>    <LoopCoeff>4</LoopCoeff>    <LoopStart>0</LoopStart>    <BeatsPerMin>128</BeatsPerMin>    <TicksPerLine>3</TicksPerLine>    <ShuffleIsActive>true</ShuffleIsActive>    <ShuffleAmounts>      <ShuffleAmount>90</ShuffleAmount>      <ShuffleAmount>90</ShuffleAmount>      <ShuffleAmount>90</ShuffleAmount>      <ShuffleAmount>90</ShuffleAmount>    <""".
+<ni:///mh;1QEQaD1PCxspuMxdPqyHW3IL0A?ct=application/octet-stream> at:digest <urn:md5:683D4F0B1B29B8CC5D3EAC875B720BD0>;
+                                                                  dcterms:extent "395"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQaD1PCxspuMxdPqyHW3IL0A?ct=audio/flac>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (395 B)"@en.
+<ni:///mh;1QEQaD1PCxspuMxdPqyHW3IL0A?ct=audio/flac> schema:encodingFormat <https://w3id.org/uri4uri/mime/audio/flac>;
+                                                    nfo:averageBitrate "108"^^dt:kilobitPerSecond;
+                                                    nfo:bitsPerSample 8 ;
+                                                    nfo:channels 1 ;
+                                                    nfo:compressionType nfo:losslessCompressionType;
+                                                    nfo:duration "PT0.0228344S"^^xsd:duration;
+                                                    nfo:sampleRate "44100"^^dt:hertz;
+                                                    a schema:MediaObject,
+                                                      nfo:Audio,
+                                                      schema:AudioObject;
+                                                    skos:prefLabel "FLAC object (44100 Hz, 1 channel)"@en.
+<ni:///mh;1QEQbz-xucRyvKuvt6zQE6Kj-g?ct=application/octet-stream> at:digest <urn:md5:6F3FB1B9C472BCABAFB7ACD013A2A3FA>;
+                                                                  dcterms:extent "728"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQbz-xucRyvKuvt6zQE6Kj-g?ct=audio/flac>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (728 B)"@en.
+<ni:///mh;1QEQbz-xucRyvKuvt6zQE6Kj-g?ct=audio/flac> schema:encodingFormat <https://w3id.org/uri4uri/mime/audio/flac>;
+                                                    nfo:averageBitrate "171"^^dt:kilobitPerSecond;
+                                                    nfo:bitsPerSample 8 ;
+                                                    nfo:channels 1 ;
+                                                    nfo:compressionType nfo:losslessCompressionType;
+                                                    nfo:duration "PT0.03S"^^xsd:duration;
+                                                    nfo:sampleRate "44100"^^dt:hertz;
+                                                    a schema:MediaObject,
+                                                      nfo:Audio,
+                                                      schema:AudioObject;
+                                                    skos:prefLabel "FLAC object (44100 Hz, 1 channel)"@en.
+<ni:///mh;1QEQjBBmCQd3t4P976OtkwQpZw?ct=application/octet-stream> at:digest <urn:md5:8C1066090777B783FDEFA3AD93042967>;
+                                                                  dcterms:extent "791"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQjBBmCQd3t4P976OtkwQpZw?ct=audio/flac>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (791 B)"@en.
+<ni:///mh;1QEQjBBmCQd3t4P976OtkwQpZw?ct=audio/flac> schema:encodingFormat <https://w3id.org/uri4uri/mime/audio/flac>;
+                                                    nfo:averageBitrate "312"^^dt:kilobitPerSecond;
+                                                    nfo:bitsPerSample 8 ;
+                                                    nfo:channels 1 ;
+                                                    nfo:compressionType nfo:losslessCompressionType;
+                                                    nfo:duration "PT0.0180272S"^^xsd:duration;
+                                                    nfo:sampleRate "44100"^^dt:hertz;
+                                                    a schema:MediaObject,
+                                                      nfo:Audio,
+                                                      schema:AudioObject;
+                                                    skos:prefLabel "FLAC object (44100 Hz, 1 channel)"@en.
+<ni:///mh;1QEQqVlEwljhUZ_Tsy77izfIAA?ct=application/octet-stream> at:digest <urn:md5:A95944C258E1519FD3B32EFB8B37C800>;
+                                                                  dcterms:extent "388"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQqVlEwljhUZ_Tsy77izfIAA?ct=audio/flac>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (388 B)"@en.
+<ni:///mh;1QEQqVlEwljhUZ_Tsy77izfIAA?ct=audio/flac> schema:encodingFormat <https://w3id.org/uri4uri/mime/audio/flac>;
+                                                    nfo:averageBitrate "139"^^dt:kilobitPerSecond;
+                                                    nfo:bitsPerSample 8 ;
+                                                    nfo:channels 1 ;
+                                                    nfo:compressionType nfo:losslessCompressionType;
+                                                    nfo:duration "PT0.0172789S"^^xsd:duration;
+                                                    nfo:sampleRate "44100"^^dt:hertz;
+                                                    a schema:MediaObject,
+                                                      nfo:Audio,
+                                                      schema:AudioObject;
+                                                    skos:prefLabel "FLAC object (44100 Hz, 1 channel)"@en.
+<ni:///mh;1QEQwR7I6K4fKpwZ56DtbruL9w?ct=application/octet-stream> at:digest <urn:md5:C11EC8E8AE1F2A9C19E7A0ED6EBB8BF7>;
+                                                                  dcterms:extent "1615"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQwR7I6K4fKpwZ56DtbruL9w?ct=audio/flac>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.58 KiB)"@en.
+<ni:///mh;1QEQwR7I6K4fKpwZ56DtbruL9w?ct=audio/flac> schema:encodingFormat <https://w3id.org/uri4uri/mime/audio/flac>;
+                                                    nfo:averageBitrate "259"^^dt:kilobitPerSecond;
+                                                    nfo:bitsPerSample 8 ;
+                                                    nfo:channels 1 ;
+                                                    nfo:compressionType nfo:losslessCompressionType;
+                                                    nfo:duration "PT0.0472108S"^^xsd:duration;
+                                                    nfo:sampleRate "44100"^^dt:hertz;
+                                                    a schema:MediaObject,
+                                                      nfo:Audio,
+                                                      schema:AudioObject;
+                                                    skos:prefLabel "FLAC object (44100 Hz, 1 channel)"@en.
+<ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/octet-stream> at:digest <urn:md5:CF3F8BD7D0ED5642946C05DAD7584583>;
+                                                                  dcterms:extent "83332"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (81.38 KiB)"@en.
+<ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip> at:pathObject <file:///>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
+                                                         nie:interpretedAs <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/>;
+                                                         a schema:MediaObject,
+                                                           nfo:Archive;
+                                                         skos:prefLabel "ZIP object (81.38 KiB)"@en.
+<ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/> at:pathObject <file:///./>;
+                                                           a nfo:Folder;
+                                                           skos:prefLabel "/".
+<ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData> at:pathObject <file:///SampleData>;
+                                                                     nie:interpretedAs <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/>;
+                                                                     nfo:belongsToContainer <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/>;
+                                                                     nfo:fileName "SampleData";
+                                                                     a nfo:FileDataObject,
+                                                                       nfo:ArchiveItem;
+                                                                     skos:prefLabel "/SampleData".
+<ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/> at:pathObject <file:///SampleData/>;
+                                                                      a nfo:Folder;
+                                                                      skos:prefLabel "/SampleData/".
+<ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument00%20%28%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20keith303%29> at:pathObject <file:///SampleData/Instrument00%20%28%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20keith303%29>;
+                                                                                                                                                         nie:interpretedAs <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument00%20%28%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20keith303%29/>;
+                                                                                                                                                         nfo:belongsToContainer <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/>;
+                                                                                                                                                         nfo:fileName "Instrument00 (                  keith303)";
+                                                                                                                                                         a nfo:FileDataObject,
+                                                                                                                                                           nfo:ArchiveItem;
+                                                                                                                                                         skos:prefLabel "/SampleData/Instrument00 (                  keith303)".
+<ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument00%20%28%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20keith303%29/> at:pathObject <file:///SampleData/Instrument00%20%28%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20keith303%29/>;
+                                                                                                                                                          a nfo:Folder;
+                                                                                                                                                          skos:prefLabel "/SampleData/Instrument00 (                  keith303)/".
+<ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument00%20%28%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20keith303%29/Sample00%20%28New%20Sample%29.flac> at:pathObject <file:///SampleData/Instrument00%20%28%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20keith303%29/Sample00%20%28New%20Sample%29.flac>;
+                                                                                                                                                                                            nie:interpretedAs <ni:///mh;1QEQ3Q7tHPF5hvzNMAmtxBwAdw?ct=application/octet-stream>;
+                                                                                                                                                                                            nfo:belongsToContainer <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument00%20%28%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20keith303%29/>;
+                                                                                                                                                                                            nfo:fileLastModified "2008-08-08T13:20:28.000000+02:00"^^xsd:dateTime;
+                                                                                                                                                                                            nfo:fileName "Sample00 (New Sample).flac";
+                                                                                                                                                                                            nfo:fileSize 227 ;
+                                                                                                                                                                                            a nfo:FileDataObject,
+                                                                                                                                                                                              nfo:ArchiveItem;
+                                                                                                                                                                                            skos:prefLabel "/SampleData/Instrument00 (                  keith303)/Sample00 (New Sample).flac".
+<ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument02%20%28Unnamed%29> at:pathObject <file:///SampleData/Instrument02%20%28Unnamed%29>;
+                                                                                                  nie:interpretedAs <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument02%20%28Unnamed%29/>;
+                                                                                                  nfo:belongsToContainer <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/>;
+                                                                                                  nfo:fileName "Instrument02 (Unnamed)";
+                                                                                                  a nfo:FileDataObject,
+                                                                                                    nfo:ArchiveItem;
+                                                                                                  skos:prefLabel "/SampleData/Instrument02 (Unnamed)".
+<ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument02%20%28Unnamed%29/> at:pathObject <file:///SampleData/Instrument02%20%28Unnamed%29/>;
+                                                                                                   a nfo:Folder;
+                                                                                                   skos:prefLabel "/SampleData/Instrument02 (Unnamed)/".
+<ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument02%20%28Unnamed%29/Sample00%20%28Unnamed%29.flac> at:pathObject <file:///SampleData/Instrument02%20%28Unnamed%29/Sample00%20%28Unnamed%29.flac>;
+                                                                                                                                nie:interpretedAs <ni:///mh;1QEQjBBmCQd3t4P976OtkwQpZw?ct=application/octet-stream>;
+                                                                                                                                nfo:belongsToContainer <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument02%20%28Unnamed%29/>;
+                                                                                                                                nfo:fileLastModified "2008-08-08T13:20:28.000000+02:00"^^xsd:dateTime;
+                                                                                                                                nfo:fileName "Sample00 (Unnamed).flac";
+                                                                                                                                nfo:fileSize 791 ;
+                                                                                                                                a nfo:FileDataObject,
+                                                                                                                                  nfo:ArchiveItem;
+                                                                                                                                skos:prefLabel "/SampleData/Instrument02 (Unnamed)/Sample00 (Unnamed).flac".
+<ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument04%20%28%20%20%20%20%20%20%20%20%20%20%20%20%20-%20%20tiny%20music%20-%29> at:pathObject <file:///SampleData/Instrument04%20%28%20%20%20%20%20%20%20%20%20%20%20%20%20-%20%20tiny%20music%20-%29>;
+                                                                                                                                                         nie:interpretedAs <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument04%20%28%20%20%20%20%20%20%20%20%20%20%20%20%20-%20%20tiny%20music%20-%29/>;
+                                                                                                                                                         nfo:belongsToContainer <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/>;
+                                                                                                                                                         nfo:fileName "Instrument04 (             -  tiny music -)";
+                                                                                                                                                         a nfo:FileDataObject,
+                                                                                                                                                           nfo:ArchiveItem;
+                                                                                                                                                         skos:prefLabel "/SampleData/Instrument04 (             -  tiny music -)".
+<ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument04%20%28%20%20%20%20%20%20%20%20%20%20%20%20%20-%20%20tiny%20music%20-%29/> at:pathObject <file:///SampleData/Instrument04%20%28%20%20%20%20%20%20%20%20%20%20%20%20%20-%20%20tiny%20music%20-%29/>;
+                                                                                                                                                          a nfo:Folder;
+                                                                                                                                                          skos:prefLabel "/SampleData/Instrument04 (             -  tiny music -)/".
+<ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument04%20%28%20%20%20%20%20%20%20%20%20%20%20%20%20-%20%20tiny%20music%20-%29/Sample00%20%28Unnamed%29.flac> at:pathObject <file:///SampleData/Instrument04%20%28%20%20%20%20%20%20%20%20%20%20%20%20%20-%20%20tiny%20music%20-%29/Sample00%20%28Unnamed%29.flac>;
+                                                                                                                                                                                       nie:interpretedAs <ni:///mh;1QEQqVlEwljhUZ_Tsy77izfIAA?ct=application/octet-stream>;
+                                                                                                                                                                                       nfo:belongsToContainer <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument04%20%28%20%20%20%20%20%20%20%20%20%20%20%20%20-%20%20tiny%20music%20-%29/>;
+                                                                                                                                                                                       nfo:fileLastModified "2008-08-08T13:20:28.000000+02:00"^^xsd:dateTime;
+                                                                                                                                                                                       nfo:fileName "Sample00 (Unnamed).flac";
+                                                                                                                                                                                       nfo:fileSize 388 ;
+                                                                                                                                                                                       a nfo:FileDataObject,
+                                                                                                                                                                                         nfo:ArchiveItem;
+                                                                                                                                                                                       skos:prefLabel "/SampleData/Instrument04 (             -  tiny music -)/Sample00 (Unnamed).flac".
+<ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument06%20%28Unnamed%29> at:pathObject <file:///SampleData/Instrument06%20%28Unnamed%29>;
+                                                                                                  nie:interpretedAs <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument06%20%28Unnamed%29/>;
+                                                                                                  nfo:belongsToContainer <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/>;
+                                                                                                  nfo:fileName "Instrument06 (Unnamed)";
+                                                                                                  a nfo:FileDataObject,
+                                                                                                    nfo:ArchiveItem;
+                                                                                                  skos:prefLabel "/SampleData/Instrument06 (Unnamed)".
+<ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument06%20%28Unnamed%29/> at:pathObject <file:///SampleData/Instrument06%20%28Unnamed%29/>;
+                                                                                                   a nfo:Folder;
+                                                                                                   skos:prefLabel "/SampleData/Instrument06 (Unnamed)/".
+<ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument06%20%28Unnamed%29/Sample00%20%28Unnamed%29.flac> at:pathObject <file:///SampleData/Instrument06%20%28Unnamed%29/Sample00%20%28Unnamed%29.flac>;
+                                                                                                                                nie:interpretedAs <ni:///mh;1QEQbz-xucRyvKuvt6zQE6Kj-g?ct=application/octet-stream>;
+                                                                                                                                nfo:belongsToContainer <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument06%20%28Unnamed%29/>;
+                                                                                                                                nfo:fileLastModified "2008-08-08T13:20:28.000000+02:00"^^xsd:dateTime;
+                                                                                                                                nfo:fileName "Sample00 (Unnamed).flac";
+                                                                                                                                nfo:fileSize 728 ;
+                                                                                                                                a nfo:FileDataObject,
+                                                                                                                                  nfo:ArchiveItem;
+                                                                                                                                skos:prefLabel "/SampleData/Instrument06 (Unnamed)/Sample00 (Unnamed).flac".
+<ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument08%20%28Unnamed%29> at:pathObject <file:///SampleData/Instrument08%20%28Unnamed%29>;
+                                                                                                  nie:interpretedAs <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument08%20%28Unnamed%29/>;
+                                                                                                  nfo:belongsToContainer <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/>;
+                                                                                                  nfo:fileName "Instrument08 (Unnamed)";
+                                                                                                  a nfo:FileDataObject,
+                                                                                                    nfo:ArchiveItem;
+                                                                                                  skos:prefLabel "/SampleData/Instrument08 (Unnamed)".
+<ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument08%20%28Unnamed%29/> at:pathObject <file:///SampleData/Instrument08%20%28Unnamed%29/>;
+                                                                                                   a nfo:Folder;
+                                                                                                   skos:prefLabel "/SampleData/Instrument08 (Unnamed)/".
+<ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument08%20%28Unnamed%29/Sample00%20%28Unnamed%29.flac> at:pathObject <file:///SampleData/Instrument08%20%28Unnamed%29/Sample00%20%28Unnamed%29.flac>;
+                                                                                                                                nie:interpretedAs <ni:///mh;1QEQaD1PCxspuMxdPqyHW3IL0A?ct=application/octet-stream>;
+                                                                                                                                nfo:belongsToContainer <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument08%20%28Unnamed%29/>;
+                                                                                                                                nfo:fileLastModified "2008-08-08T13:20:28.000000+02:00"^^xsd:dateTime;
+                                                                                                                                nfo:fileName "Sample00 (Unnamed).flac";
+                                                                                                                                nfo:fileSize 395 ;
+                                                                                                                                a nfo:FileDataObject,
+                                                                                                                                  nfo:ArchiveItem;
+                                                                                                                                skos:prefLabel "/SampleData/Instrument08 (Unnamed)/Sample00 (Unnamed).flac".
+<ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument10%20%28Unnamed%29> at:pathObject <file:///SampleData/Instrument10%20%28Unnamed%29>;
+                                                                                                  nie:interpretedAs <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument10%20%28Unnamed%29/>;
+                                                                                                  nfo:belongsToContainer <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/>;
+                                                                                                  nfo:fileName "Instrument10 (Unnamed)";
+                                                                                                  a nfo:FileDataObject,
+                                                                                                    nfo:ArchiveItem;
+                                                                                                  skos:prefLabel "/SampleData/Instrument10 (Unnamed)".
+<ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument10%20%28Unnamed%29/> at:pathObject <file:///SampleData/Instrument10%20%28Unnamed%29/>;
+                                                                                                   a nfo:Folder;
+                                                                                                   skos:prefLabel "/SampleData/Instrument10 (Unnamed)/".
+<ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument10%20%28Unnamed%29/Sample00%20%28Unnamed%29.flac> at:pathObject <file:///SampleData/Instrument10%20%28Unnamed%29/Sample00%20%28Unnamed%29.flac>;
+                                                                                                                                nie:interpretedAs <ni:///mh;1QEQ0VlKipFoZL1MY2b81k3TDQ?ct=application/octet-stream>;
+                                                                                                                                nfo:belongsToContainer <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument10%20%28Unnamed%29/>;
+                                                                                                                                nfo:fileLastModified "2008-08-08T13:20:28.000000+02:00"^^xsd:dateTime;
+                                                                                                                                nfo:fileName "Sample00 (Unnamed).flac";
+                                                                                                                                nfo:fileSize 601 ;
+                                                                                                                                a nfo:FileDataObject,
+                                                                                                                                  nfo:ArchiveItem;
+                                                                                                                                skos:prefLabel "/SampleData/Instrument10 (Unnamed)/Sample00 (Unnamed).flac".
+<ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument13%20%28Unnamed%29> at:pathObject <file:///SampleData/Instrument13%20%28Unnamed%29>;
+                                                                                                  nie:interpretedAs <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument13%20%28Unnamed%29/>;
+                                                                                                  nfo:belongsToContainer <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/>;
+                                                                                                  nfo:fileName "Instrument13 (Unnamed)";
+                                                                                                  a nfo:FileDataObject,
+                                                                                                    nfo:ArchiveItem;
+                                                                                                  skos:prefLabel "/SampleData/Instrument13 (Unnamed)".
+<ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument13%20%28Unnamed%29/> at:pathObject <file:///SampleData/Instrument13%20%28Unnamed%29/>;
+                                                                                                   a nfo:Folder;
+                                                                                                   skos:prefLabel "/SampleData/Instrument13 (Unnamed)/".
+<ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument13%20%28Unnamed%29/Sample00%20%28Unnamed%29.flac> at:pathObject <file:///SampleData/Instrument13%20%28Unnamed%29/Sample00%20%28Unnamed%29.flac>;
+                                                                                                                                nie:interpretedAs <ni:///mh;1QEQEos-E67ODc-aDM1qbcABGQ?ct=application/octet-stream>;
+                                                                                                                                nfo:belongsToContainer <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument13%20%28Unnamed%29/>;
+                                                                                                                                nfo:fileLastModified "2008-08-08T13:20:28.000000+02:00"^^xsd:dateTime;
+                                                                                                                                nfo:fileName "Sample00 (Unnamed).flac";
+                                                                                                                                nfo:fileSize 554 ;
+                                                                                                                                a nfo:FileDataObject,
+                                                                                                                                  nfo:ArchiveItem;
+                                                                                                                                skos:prefLabel "/SampleData/Instrument13 (Unnamed)/Sample00 (Unnamed).flac".
+<ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument16%20%28Unnamed%29> at:pathObject <file:///SampleData/Instrument16%20%28Unnamed%29>;
+                                                                                                  nie:interpretedAs <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument16%20%28Unnamed%29/>;
+                                                                                                  nfo:belongsToContainer <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/>;
+                                                                                                  nfo:fileName "Instrument16 (Unnamed)";
+                                                                                                  a nfo:FileDataObject,
+                                                                                                    nfo:ArchiveItem;
+                                                                                                  skos:prefLabel "/SampleData/Instrument16 (Unnamed)".
+<ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument16%20%28Unnamed%29/> at:pathObject <file:///SampleData/Instrument16%20%28Unnamed%29/>;
+                                                                                                   a nfo:Folder;
+                                                                                                   skos:prefLabel "/SampleData/Instrument16 (Unnamed)/".
+<ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument16%20%28Unnamed%29/Sample00%20%28Unnamed%29.flac> at:pathObject <file:///SampleData/Instrument16%20%28Unnamed%29/Sample00%20%28Unnamed%29.flac>;
+                                                                                                                                nie:interpretedAs <ni:///mh;1QEQwR7I6K4fKpwZ56DtbruL9w?ct=application/octet-stream>;
+                                                                                                                                nfo:belongsToContainer <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument16%20%28Unnamed%29/>;
+                                                                                                                                nfo:fileLastModified "2008-08-08T13:20:28.000000+02:00"^^xsd:dateTime;
+                                                                                                                                nfo:fileName "Sample00 (Unnamed).flac";
+                                                                                                                                nfo:fileSize 1615 ;
+                                                                                                                                a nfo:FileDataObject,
+                                                                                                                                  nfo:ArchiveItem;
+                                                                                                                                skos:prefLabel "/SampleData/Instrument16 (Unnamed)/Sample00 (Unnamed).flac".
+<ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument17%20%28Unnamed%29> at:pathObject <file:///SampleData/Instrument17%20%28Unnamed%29>;
+                                                                                                  nie:interpretedAs <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument17%20%28Unnamed%29/>;
+                                                                                                  nfo:belongsToContainer <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/>;
+                                                                                                  nfo:fileName "Instrument17 (Unnamed)";
+                                                                                                  a nfo:FileDataObject,
+                                                                                                    nfo:ArchiveItem;
+                                                                                                  skos:prefLabel "/SampleData/Instrument17 (Unnamed)".
+<ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument17%20%28Unnamed%29/> at:pathObject <file:///SampleData/Instrument17%20%28Unnamed%29/>;
+                                                                                                   a nfo:Folder;
+                                                                                                   skos:prefLabel "/SampleData/Instrument17 (Unnamed)/".
+<ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument17%20%28Unnamed%29/Sample00%20%28Unnamed%29.flac> at:pathObject <file:///SampleData/Instrument17%20%28Unnamed%29/Sample00%20%28Unnamed%29.flac>;
+                                                                                                                                nie:interpretedAs <ni:///mh;1QEQ3kGXMkvvdtSf56JjyUr7TQ?ct=application/octet-stream>;
+                                                                                                                                nfo:belongsToContainer <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument17%20%28Unnamed%29/>;
+                                                                                                                                nfo:fileLastModified "2008-08-08T13:20:28.000000+02:00"^^xsd:dateTime;
+                                                                                                                                nfo:fileName "Sample00 (Unnamed).flac";
+                                                                                                                                nfo:fileSize 2502 ;
+                                                                                                                                a nfo:FileDataObject,
+                                                                                                                                  nfo:ArchiveItem;
+                                                                                                                                skos:prefLabel "/SampleData/Instrument17 (Unnamed)/Sample00 (Unnamed).flac".
+<ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument21%20%28Unnamed%29> at:pathObject <file:///SampleData/Instrument21%20%28Unnamed%29>;
+                                                                                                  nie:interpretedAs <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument21%20%28Unnamed%29/>;
+                                                                                                  nfo:belongsToContainer <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/>;
+                                                                                                  nfo:fileName "Instrument21 (Unnamed)";
+                                                                                                  a nfo:FileDataObject,
+                                                                                                    nfo:ArchiveItem;
+                                                                                                  skos:prefLabel "/SampleData/Instrument21 (Unnamed)".
+<ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument21%20%28Unnamed%29/> at:pathObject <file:///SampleData/Instrument21%20%28Unnamed%29/>;
+                                                                                                   a nfo:Folder;
+                                                                                                   skos:prefLabel "/SampleData/Instrument21 (Unnamed)/".
+<ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument21%20%28Unnamed%29/Sample00%20%28Unnamed%29.ogg> at:pathObject <file:///SampleData/Instrument21%20%28Unnamed%29/Sample00%20%28Unnamed%29.ogg>;
+                                                                                                                               nie:interpretedAs <ni:///mh;1QEQPQuWaxGvGGmGFKOaxu_LjA?ct=application/octet-stream>;
+                                                                                                                               nfo:belongsToContainer <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/SampleData/Instrument21%20%28Unnamed%29/>;
+                                                                                                                               nfo:fileLastModified "2008-08-08T13:10:34.000000+02:00"^^xsd:dateTime;
+                                                                                                                               nfo:fileName "Sample00 (Unnamed).ogg";
+                                                                                                                               nfo:fileSize 5998 ;
+                                                                                                                               a nfo:FileDataObject,
+                                                                                                                                 nfo:ArchiveItem;
+                                                                                                                               skos:prefLabel "/SampleData/Instrument21 (Unnamed)/Sample00 (Unnamed).ogg".
+<ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/Song.xml> at:pathObject <file:///Song.xml>;
+                                                                   nie:interpretedAs <ni:///mh;1QEQZRXnjgb7wrciMUcOLtMf0g?ct=text/plain>;
+                                                                   nfo:belongsToContainer <ni:///mh;1QEQzz-L19DtVkKUbAXa11hFgw?ct=application/zip#/>;
+                                                                   nfo:fileLastModified "2008-08-08T13:21:40.000000+02:00"^^xsd:dateTime;
+                                                                   nfo:fileName "Song.xml";
+                                                                   nfo:fileSize 3843329 ;
+                                                                   a nfo:FileDataObject,
+                                                                     nfo:ArchiveItem;
+                                                                   skos:prefLabel "/Song.xml".
+<urn:md5:128B3E13AECE0DCF9A0CCD6A6DC00119> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "Eos+E67ODc+aDM1qbcABGQ=="^^xsd:base64Binary.
+<urn:md5:3D0B966B11AF18698614A39AC6EFCB8C> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "PQuWaxGvGGmGFKOaxu/LjA=="^^xsd:base64Binary.
+<urn:md5:6515E78E06FBC2B72231470E2ED31FD2> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "ZRXnjgb7wrciMUcOLtMf0g=="^^xsd:base64Binary.
+<urn:md5:683D4F0B1B29B8CC5D3EAC875B720BD0> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "aD1PCxspuMxdPqyHW3IL0A=="^^xsd:base64Binary.
+<urn:md5:6F3FB1B9C472BCABAFB7ACD013A2A3FA> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "bz+xucRyvKuvt6zQE6Kj+g=="^^xsd:base64Binary.
+<urn:md5:8C1066090777B783FDEFA3AD93042967> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "jBBmCQd3t4P976OtkwQpZw=="^^xsd:base64Binary.
+<urn:md5:A95944C258E1519FD3B32EFB8B37C800> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "qVlEwljhUZ/Tsy77izfIAA=="^^xsd:base64Binary.
+<urn:md5:C11EC8E8AE1F2A9C19E7A0ED6EBB8BF7> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "wR7I6K4fKpwZ56DtbruL9w=="^^xsd:base64Binary.
+<urn:md5:CF3F8BD7D0ED5642946C05DAD7584583> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "zz+L19DtVkKUbAXa11hFgw=="^^xsd:base64Binary.
+<urn:md5:D1594A8A916864BD4C6366FCD64DD30D> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "0VlKipFoZL1MY2b81k3TDQ=="^^xsd:base64Binary.
+<urn:md5:DD0EED1CF17986FCCD3009ADC41C0077> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "3Q7tHPF5hvzNMAmtxBwAdw=="^^xsd:base64Binary.
+<urn:md5:DE4197324BEF76D49FE7A263C94AFB4D> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "3kGXMkvvdtSf56JjyUr7TQ=="^^xsd:base64Binary.

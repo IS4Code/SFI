@@ -1,0 +1,36 @@
+@base <ni:///mh;1QEQ0R9cG233O87HjIEkrE_1yg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///CKRUHAND.PTR>;
+     nie:interpretedAs <ni:///mh;1QEQ0R9cG233O87HjIEkrE_1yg?ct=application/octet-stream>;
+     nfo:fileName "CKRUHAND.PTR";
+     nfo:fileSize 288 ;
+     a nfo:FileDataObject.
+<file:///CKRUHAND.PTR> at:extensionObject <https://w3id.org/uri4uri/suffix/ptr>.
+<ni:///mh;1QEQ0R9cG233O87HjIEkrE_1yg?ct=application/octet-stream> at:digest <urn:md5:D11F5C1B6DF73BCEC78C8124AC4FF5CA>;
+                                                                  dcterms:extent "288"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ0R9cG233O87HjIEkrE_1yg?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (288 B)"@en.
+<ni:///mh;1QEQ0R9cG233O87HjIEkrE_1yg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:height 64 ;
+                                                   nfo:width 32 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (32×64)"@en.
+<urn:md5:D11F5C1B6DF73BCEC78C8124AC4FF5CA> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "0R9cG233O87HjIEkrE/1yg=="^^xsd:base64Binary.

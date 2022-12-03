@@ -1,0 +1,43 @@
+@base <ni:///mh;1QEQxsAU8MJK8tXpQ8Oy6kCjKQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix nid3: <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///test.mp3>;
+     nie:interpretedAs <ni:///mh;1QEQxsAU8MJK8tXpQ8Oy6kCjKQ?ct=application/octet-stream>;
+     nfo:fileName "test.mp3";
+     nfo:fileSize 1954212 ;
+     a nfo:FileDataObject.
+<file:///test.mp3> at:extensionObject <https://w3id.org/uri4uri/suffix/mp3>.
+<ni:///mh;1QEQxsAU8MJK8tXpQ8Oy6kCjKQ?ct=application/octet-stream> at:digest <urn:md5:C6C014F0C24AF2D5E943C3B2EA40A329>;
+                                                                  dcterms:extent "1954212"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQxsAU8MJK8tXpQ8Oy6kCjKQ?ct=audio/mpeg>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.86 MiB)"@en.
+<ni:///mh;1QEQxsAU8MJK8tXpQ8Oy6kCjKQ?ct=audio/mpeg> schema:encodingFormat <https://w3id.org/uri4uri/mime/audio/mpeg>;
+                                                    nfo:averageBitrate "64"^^dt:kilobitPerSecond;
+                                                    nfo:channels 2 ;
+                                                    nfo:duration "PT4M4.296S"^^xsd:duration,
+                                                                 "PT4M4.270873S"^^xsd:duration;
+                                                    nfo:sampleRate "44100"^^dt:hertz,
+                                                                   44100 ;
+                                                    a schema:MediaObject,
+                                                      nfo:Audio,
+                                                      nid3:ID3Audio,
+                                                      schema:AudioObject;
+                                                    skos:prefLabel "MP3 object (44100 Hz, 2 channels)"@en,
+                                                                   "MP3 object (1.86 MiB)"@en.
+<urn:md5:C6C014F0C24AF2D5E943C3B2EA40A329> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "xsAU8MJK8tXpQ8Oy6kCjKQ=="^^xsd:base64Binary.

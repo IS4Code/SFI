@@ -1,0 +1,102 @@
+@base <ni:///mh;1QEQaK6In5NYnT9r0iYLUOordQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///sample1.orf>;
+     nie:interpretedAs <ni:///mh;1QEQaK6In5NYnT9r0iYLUOordQ?ct=application/octet-stream>;
+     nfo:fileName "sample1.orf";
+     nfo:fileSize 14127616 ;
+     a nfo:FileDataObject.
+<file:///sample1.orf> at:extensionObject <https://w3id.org/uri4uri/suffix/orf>.
+<ni:///mh;1QEQaK6In5NYnT9r0iYLUOordQ?ct=application/octet-stream> at:digest <urn:md5:68AE889F93589D3F6BD2260B50EA2B75>;
+                                                                  dcterms:extent "14127616"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQaK6In5NYnT9r0iYLUOordQ?ct=application/octet-stream#orf>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (13.47 MiB)"@en.
+<ni:///mh;1QEQaK6In5NYnT9r0iYLUOordQ?ct=application/octet-stream#orf> nfo:bitDepth 16 ;
+                                                                      nfo:hasMediaStream <ni:///mh;1QEQaK6In5NYnT9r0iYLUOordQ?ct=application/octet-stream#orf/0>,
+                                                                                         <ni:///mh;1QEQaK6In5NYnT9r0iYLUOordQ?ct=application/octet-stream#orf/1>,
+                                                                                         <ni:///mh;1QEQaK6In5NYnT9r0iYLUOordQ?ct=application/octet-stream#orf/2>;
+                                                                      a schema:MediaObject,
+                                                                        exif:IFD;
+                                                                      exif:bitsPerSample 16 ;
+                                                                      exif:cfaPattern "0200020000010102"^^xsd:hexBinary;
+                                                                      exif:colorSpace 65535 ;
+                                                                      exif:compression 1 ,
+                                                                                       6 ;
+                                                                      exif:contrast 0 ;
+                                                                      exif:customRendered 0 ;
+                                                                      exif:dateTime "2006-08-06T14:45:09.000000"^^xsd:dateTime;
+                                                                      exif:dateTimeDigitized "2006-08-06T14:45:09.000000"^^xsd:dateTime;
+                                                                      exif:dateTimeOriginal "2006-08-06T14:45:09.000000"^^xsd:dateTime;
+                                                                      exif:digitalZoomRatio 1 ;
+                                                                      exif:exifVersion "30323231"^^xsd:hexBinary;
+                                                                      exif:exposureBiasValue 0 ;
+                                                                      exif:exposureMode 0 ;
+                                                                      exif:exposureProgram 3 ;
+                                                                      exif:exposureTime "1/125"^^owl:rational;
+                                                                      exif:fNumber 16 ;
+                                                                      exif:fileSource "03"^^xsd:hexBinary;
+                                                                      exif:flash 16 ;
+                                                                      exif:flashpixVersion "30313030"^^xsd:hexBinary;
+                                                                      exif:focalLength 14 ;
+                                                                      exif:gainControl 0 ;
+                                                                      exif:imageDescription "OLYMPUS DIGITAL CAMERA         "^^xsd:string;
+                                                                      exif:imageLength 2504 ;
+                                                                      exif:imageWidth 3360 ;
+                                                                      exif:isoSpeedRatings 100 ;
+                                                                      exif:jpegInterchangeFormat 12896 ;
+                                                                      exif:jpegInterchangeFormatLength 10689 ;
+                                                                      exif:lightSource 0 ;
+                                                                      exif:make "OLYMPUS IMAGING CORP.  "^^xsd:string;
+                                                                      exif:maxApertureValue "925/256"^^owl:rational;
+                                                                      exif:meteringMode 5 ;
+                                                                      exif:model "E-300           "^^xsd:string;
+                                                                      exif:orientation 1 ;
+                                                                      exif:photometricInterpretation 1 ;
+                                                                      exif:planarConfiguration 1 ;
+                                                                      exif:resolutionUnit 2 ;
+                                                                      exif:rowsPerStrip 2504 ;
+                                                                      exif:samplesPerPixel 1 ;
+                                                                      exif:saturation 0 ;
+                                                                      exif:sceneCaptureType 0 ;
+                                                                      exif:sharpness 0 ;
+                                                                      exif:software "Version 1.4                    "^^xsd:string;
+                                                                      exif:stripByteCounts 13461504 ;
+                                                                      exif:stripOffsets 666112 ;
+                                                                      exif:userComment "AAAAAAAAAAAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA="^^xsd:base64Binary;
+                                                                      exif:whiteBalance 0 ;
+                                                                      exif:xResolution 314 ,
+                                                                                       72 ;
+                                                                      exif:yResolution 314 ,
+                                                                                       72 ;
+                                                                      skos:prefLabel "ORF object (16-bit)"@en.
+<ni:///mh;1QEQaK6In5NYnT9r0iYLUOordQ?ct=application/octet-stream#orf/0> nfo:bitDepth 16 ;
+                                                                        nfo:height 2504 ;
+                                                                        nfo:width 3360 ;
+                                                                        a nfo:MediaStream;
+                                                                        skos:prefLabel "0:Exif IFD0 (3360×2504, 16-bit)".
+<ni:///mh;1QEQaK6In5NYnT9r0iYLUOordQ?ct=application/octet-stream#orf/1> nfo:height 2448 ;
+                                                                        nfo:width 3264 ;
+                                                                        a nfo:MediaStream;
+                                                                        skos:prefLabel "1:Olympus Makernote (3264×2448)".
+<ni:///mh;1QEQaK6In5NYnT9r0iYLUOordQ?ct=application/octet-stream#orf/2> nfo:height 2448 ;
+                                                                        nfo:width 3264 ;
+                                                                        a nfo:MediaStream;
+                                                                        skos:prefLabel "2:Olympus Image Processing (3264×2448)".
+<urn:md5:68AE889F93589D3F6BD2260B50EA2B75> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "aK6In5NYnT9r0iYLUOordQ=="^^xsd:base64Binary.

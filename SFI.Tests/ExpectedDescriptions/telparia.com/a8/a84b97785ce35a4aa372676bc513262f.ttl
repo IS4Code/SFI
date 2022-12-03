@@ -1,0 +1,91 @@
+@base <ni:///mh;1QEQKy2Id9humJETdcezYUi9oQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///fujifilm_x_e1_13.raf>;
+     nie:interpretedAs <ni:///mh;1QEQKy2Id9humJETdcezYUi9oQ?ct=application/octet-stream>;
+     nfo:fileName "fujifilm_x_e1_13.raf";
+     nfo:fileSize 26146816 ;
+     a nfo:FileDataObject.
+<file:///fujifilm_x_e1_13.raf> at:extensionObject <https://w3id.org/uri4uri/suffix/raf>.
+<ni:///mh;1QEQKy2Id9humJETdcezYUi9oQ?ct=application/octet-stream> at:digest <urn:md5:2B2D8877D86E98911375C7B36148BDA1>;
+                                                                  dcterms:extent "26146816"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQKy2Id9humJETdcezYUi9oQ?ct=application/octet-stream#raf>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (24.94 MiB)"@en.
+<ni:///mh;1QEQKy2Id9humJETdcezYUi9oQ?ct=application/octet-stream#raf> nfo:hasMediaStream <ni:///mh;1QEQKy2Id9humJETdcezYUi9oQ?ct=application/octet-stream#raf/0>,
+                                                                                         <ni:///mh;1QEQKy2Id9humJETdcezYUi9oQ?ct=application/octet-stream#raf/1>;
+                                                                      a schema:MediaObject,
+                                                                        exif:IFD;
+                                                                      exif:apertureValue 4 ;
+                                                                      exif:brightnessValue "112/25"^^owl:rational;
+                                                                      exif:colorSpace 1 ;
+                                                                      exif:componentsConfiguration "01020300"^^xsd:hexBinary;
+                                                                      exif:compressedBitsPerPixel 2 ;
+                                                                      exif:compression 6 ;
+                                                                      exif:customRendered 0 ;
+                                                                      exif:dateTime "2012-11-08T14:58:51.000000"^^xsd:dateTime;
+                                                                      exif:dateTimeDigitized "2012-11-08T14:58:51.000000"^^xsd:dateTime;
+                                                                      exif:dateTimeOriginal "2012-11-08T14:58:51.000000"^^xsd:dateTime;
+                                                                      exif:exifVersion "30323330"^^xsd:hexBinary;
+                                                                      exif:exposureBiasValue 0 ;
+                                                                      exif:exposureMode 0 ;
+                                                                      exif:exposureProgram 3 ;
+                                                                      exif:exposureTime "1/170"^^owl:rational;
+                                                                      exif:fNumber 4 ;
+                                                                      exif:fileSource "03"^^xsd:hexBinary;
+                                                                      exif:flash 16 ;
+                                                                      exif:flashpixVersion "30313030"^^xsd:hexBinary;
+                                                                      exif:focalLength 55 ;
+                                                                      exif:focalLengthIn35mmFilm 83 ;
+                                                                      exif:focalPlaneResolutionUnit 3 ;
+                                                                      exif:focalPlaneXResolution 820 ;
+                                                                      exif:focalPlaneYResolution 820 ;
+                                                                      exif:isoSpeedRatings 400 ;
+                                                                      exif:jpegInterchangeFormat 2096 ;
+                                                                      exif:jpegInterchangeFormatLength 6981 ;
+                                                                      exif:lightSource 0 ;
+                                                                      exif:make "FUJIFILM"^^xsd:string;
+                                                                      exif:maxApertureValue 3 ;
+                                                                      exif:meteringMode 5 ;
+                                                                      exif:model "X-E1"^^xsd:string;
+                                                                      exif:orientation 8 ;
+                                                                      exif:pixelXDimension 1920 ;
+                                                                      exif:pixelYDimension 1280 ;
+                                                                      exif:resolutionUnit 2 ;
+                                                                      exif:sceneCaptureType 0 ;
+                                                                      exif:sceneType "01"^^xsd:hexBinary;
+                                                                      exif:sensingMethod 2 ;
+                                                                      exif:sharpness 0 ;
+                                                                      exif:shutterSpeedValue "741/100"^^owl:rational;
+                                                                      exif:software "Digital Camera X-E1 Ver1.01"^^xsd:string;
+                                                                      exif:subjectDistanceRange 0 ;
+                                                                      exif:whiteBalance 0 ;
+                                                                      exif:xResolution 72 ;
+                                                                      exif:yCbCrPositioning 2 ;
+                                                                      exif:yResolution 72 ;
+                                                                      skos:prefLabel "RAF object (24.94 MiB)"@en.
+<ni:///mh;1QEQKy2Id9humJETdcezYUi9oQ?ct=application/octet-stream#raf/0> nfo:height 1280 ;
+                                                                        nfo:width 1920 ;
+                                                                        a nfo:MediaStream;
+                                                                        skos:prefLabel "0:JPEG (1920×1280)".
+<ni:///mh;1QEQKy2Id9humJETdcezYUi9oQ?ct=application/octet-stream#raf/1> nfo:height 1280 ;
+                                                                        nfo:width 1920 ;
+                                                                        a nfo:MediaStream;
+                                                                        skos:prefLabel "1:Exif SubIFD (1920×1280)".
+<urn:md5:2B2D8877D86E98911375C7B36148BDA1> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "Ky2Id9humJETdcezYUi9oQ=="^^xsd:base64Binary.

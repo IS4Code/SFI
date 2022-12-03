@@ -1,0 +1,32 @@
+@base <ni:///mh;1QEQwMzRRnB09cBidxE_QQKJSg?ct=application/x.sig.dsm>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///andante.dsm>;
+     nie:interpretedAs <ni:///mh;1QEQwMzRRnB09cBidxE_QQKJSg?ct=application/octet-stream>;
+     nfo:fileName "andante.dsm";
+     nfo:fileSize 288338 ;
+     a nfo:FileDataObject.
+<file:///andante.dsm> at:extensionObject <https://w3id.org/uri4uri/suffix/dsm>.
+<ni:///mh;1QEQwMzRRnB09cBidxE_QQKJSg?ct=application/octet-stream> at:digest <urn:md5:C0CCD1467074F5C06277113F4102894A>;
+                                                                  dcterms:extent "288338"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQwMzRRnB09cBidxE_QQKJSg?ct=application/x.sig.dsm>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (281.58 KiB)"@en.
+<ni:///mh;1QEQwMzRRnB09cBidxE_QQKJSg?ct=application/x.sig.dsm> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.dsm>;
+                                                               a schema:MediaObject;
+                                                               skos:prefLabel "DSM object (281.58 KiB)"@en.
+<urn:md5:C0CCD1467074F5C06277113F4102894A> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "wMzRRnB09cBidxE/QQKJSg=="^^xsd:base64Binary.

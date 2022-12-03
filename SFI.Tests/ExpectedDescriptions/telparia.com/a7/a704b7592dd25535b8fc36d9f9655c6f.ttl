@@ -1,0 +1,131 @@
+@base <ni:///mh;1QEQ-bKArAiBIsGrekQVKn0eVQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///test.zip>;
+     nie:interpretedAs <ni:///mh;1QEQ-bKArAiBIsGrekQVKn0eVQ?ct=application/octet-stream>;
+     nfo:fileName "test.zip";
+     nfo:fileSize 66201 ;
+     a nfo:FileDataObject.
+<data:,This%20is%20just%20a%20text%20file> dcterms:extent "24"^^dt:byte;
+                                           a cnt:ContentAsText;
+                                           skos:prefLabel "text (24 B)"@en;
+                                           cnt:characterEncoding "us-ascii";
+                                           cnt:chars "This is just a text file"^^xsd:string.
+<file:///pewpewpew.flac> at:extensionObject <https://w3id.org/uri4uri/suffix/flac>.
+<file:///subdir/zip_smile.png> at:pathObject <file:///zip_smile.png>.
+<file:///test.zip> at:extensionObject <https://w3id.org/uri4uri/suffix/zip>.
+<file:///zip_hello.txt> at:extensionObject <https://w3id.org/uri4uri/suffix/txt>.
+<file:///zip_smile.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
+<ni:///mh;1QEQ-bKArAiBIsGrekQVKn0eVQ?ct=application/octet-stream> at:digest <urn:md5:F9B280AC088122C1AB7A44152A7D1E55>;
+                                                                  dcterms:extent "66201"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ-bKArAiBIsGrekQVKn0eVQ?ct=application/zip>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (64.65 KiB)"@en.
+<ni:///mh;1QEQ-bKArAiBIsGrekQVKn0eVQ?ct=application/zip> at:pathObject <file:///>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
+                                                         nie:interpretedAs <ni:///mh;1QEQ-bKArAiBIsGrekQVKn0eVQ?ct=application/zip#/>;
+                                                         a schema:MediaObject,
+                                                           nfo:Archive;
+                                                         skos:prefLabel "ZIP object (64.65 KiB)"@en.
+<ni:///mh;1QEQ-bKArAiBIsGrekQVKn0eVQ?ct=application/zip#/> at:pathObject <file:///./>;
+                                                           a nfo:Folder;
+                                                           skos:prefLabel "/".
+<ni:///mh;1QEQ-bKArAiBIsGrekQVKn0eVQ?ct=application/zip#/pewpewpew.flac> at:pathObject <file:///pewpewpew.flac>;
+                                                                         nie:interpretedAs <ni:///mh;1QEQuc3Z6Rb3ZH5YMJolQqQUmQ?ct=application/octet-stream>;
+                                                                         nfo:belongsToContainer <ni:///mh;1QEQ-bKArAiBIsGrekQVKn0eVQ?ct=application/zip#/>;
+                                                                         nfo:fileLastModified "2019-04-29T15:08:10.000000+02:00"^^xsd:dateTime;
+                                                                         nfo:fileName "pewpewpew.flac";
+                                                                         nfo:fileSize 76721 ;
+                                                                         a nfo:FileDataObject,
+                                                                           nfo:ArchiveItem;
+                                                                         skos:prefLabel "/pewpewpew.flac".
+<ni:///mh;1QEQ-bKArAiBIsGrekQVKn0eVQ?ct=application/zip#/subdir> at:pathObject <file:///subdir>;
+                                                                 nie:interpretedAs <ni:///mh;1QEQ-bKArAiBIsGrekQVKn0eVQ?ct=application/zip#/subdir/>;
+                                                                 nfo:belongsToContainer <ni:///mh;1QEQ-bKArAiBIsGrekQVKn0eVQ?ct=application/zip#/>;
+                                                                 nfo:fileLastModified "2019-04-29T15:08:28.000000+02:00"^^xsd:dateTime;
+                                                                 nfo:fileName "subdir";
+                                                                 a nfo:FileDataObject,
+                                                                   nfo:ArchiveItem;
+                                                                 skos:prefLabel "/subdir".
+<ni:///mh;1QEQ-bKArAiBIsGrekQVKn0eVQ?ct=application/zip#/subdir/> at:pathObject <file:///subdir/>;
+                                                                  a nfo:Folder;
+                                                                  skos:prefLabel "/subdir/".
+<ni:///mh;1QEQ-bKArAiBIsGrekQVKn0eVQ?ct=application/zip#/subdir/zip_smile.png> at:pathObject <file:///subdir/zip_smile.png>;
+                                                                               nie:interpretedAs <ni:///mh;1QEQ_oE-EEEYbtC2XrHkvaAUZw?ct=application/octet-stream>;
+                                                                               nfo:belongsToContainer <ni:///mh;1QEQ-bKArAiBIsGrekQVKn0eVQ?ct=application/zip#/subdir/>;
+                                                                               nfo:fileLastModified "2019-04-29T15:08:28.000000+02:00"^^xsd:dateTime;
+                                                                               nfo:fileName "zip_smile.png";
+                                                                               nfo:fileSize 314 ;
+                                                                               a nfo:FileDataObject,
+                                                                                 nfo:ArchiveItem;
+                                                                               skos:prefLabel "/subdir/zip_smile.png".
+<ni:///mh;1QEQ-bKArAiBIsGrekQVKn0eVQ?ct=application/zip#/zip_hello.txt> at:pathObject <file:///zip_hello.txt>;
+                                                                        nie:interpretedAs <data:,This%20is%20just%20a%20text%20file>;
+                                                                        nfo:belongsToContainer <ni:///mh;1QEQ-bKArAiBIsGrekQVKn0eVQ?ct=application/zip#/>;
+                                                                        nfo:fileLastModified "2019-04-29T15:04:30.000000+02:00"^^xsd:dateTime;
+                                                                        nfo:fileName "zip_hello.txt";
+                                                                        nfo:fileSize 24 ;
+                                                                        a nfo:FileDataObject,
+                                                                          nfo:ArchiveItem;
+                                                                        skos:prefLabel "/zip_hello.txt".
+<ni:///mh;1QEQ_oE-EEEYbtC2XrHkvaAUZw?ct=application/octet-stream> at:digest <urn:md5:FE813E1041186ED0B65EB1E4BDA01467>;
+                                                                  dcterms:extent "314"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ_oE-EEEYbtC2XrHkvaAUZw?ct=image/png>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (314 B)"@en.
+<ni:///mh;1QEQ_oE-EEEYbtC2XrHkvaAUZw?ct=image/png> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/png>;
+                                                   nfo:colorDepth 24 ;
+                                                   nfo:height 40 ;
+                                                   nfo:horizontalResolution 299.9994;
+                                                   nfo:verticalResolution 299.9994;
+                                                   nfo:width 32 ;
+                                                   <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#comments> "Created with GIMP";
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "PNG object (32×40, 8-bit)"@en,
+                                                                  "PNG object (314 B)"@en,
+                                                                  "PNG object (32×40)"@en.
+<ni:///mh;1QEQuc3Z6Rb3ZH5YMJolQqQUmQ?ct=application/octet-stream> at:digest <urn:md5:B9CDD9E916F7647E58309A2542A41499>;
+                                                                  dcterms:extent "76721"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQuc3Z6Rb3ZH5YMJolQqQUmQ?ct=audio/flac>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (74.92 KiB)"@en.
+<ni:///mh;1QEQuc3Z6Rb3ZH5YMJolQqQUmQ?ct=audio/flac> schema:encodingFormat <https://w3id.org/uri4uri/mime/audio/flac>;
+                                                    nfo:averageBitrate "460"^^dt:kilobitPerSecond;
+                                                    nfo:bitsPerSample 16 ;
+                                                    nfo:channels 1 ;
+                                                    nfo:compressionType nfo:losslessCompressionType;
+                                                    nfo:duration "PT1.1881405S"^^xsd:duration;
+                                                    nfo:sampleRate "44100"^^dt:hertz;
+                                                    <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#albumTitle> "Neuromancer";
+                                                    <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#contentType> "Soundtrack";
+                                                    <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#leadArtist> "Dave Warhol";
+                                                    <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#recordingYear> 1988 ;
+                                                    <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#title> "Track 19";
+                                                    <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#trackNumber> 19 ;
+                                                    a schema:MediaObject,
+                                                      nfo:Audio,
+                                                      schema:AudioObject;
+                                                    skos:prefLabel "FLAC object (44100 Hz, 1 channel, Track 19)"@en.
+<urn:md5:B9CDD9E916F7647E58309A2542A41499> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "uc3Z6Rb3ZH5YMJolQqQUmQ=="^^xsd:base64Binary.
+<urn:md5:F9B280AC088122C1AB7A44152A7D1E55> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "+bKArAiBIsGrekQVKn0eVQ=="^^xsd:base64Binary.
+<urn:md5:FE813E1041186ED0B65EB1E4BDA01467> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "/oE+EEEYbtC2XrHkvaAUZw=="^^xsd:base64Binary.

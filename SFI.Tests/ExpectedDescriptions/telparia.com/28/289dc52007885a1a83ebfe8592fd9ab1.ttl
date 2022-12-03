@@ -1,0 +1,75 @@
+@base <ni:///mh;1QEQj_XKFF3F2YBp-OaO49AM2g?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix xis: <http://www.w3.org/2001/04/infoset#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///valleyball.xrns>;
+     nie:interpretedAs <ni:///mh;1QEQj_XKFF3F2YBp-OaO49AM2g?ct=application/octet-stream>;
+     nfo:fileName "valleyball.xrns";
+     nfo:fileSize 15237 ;
+     a nfo:FileDataObject.
+<file:///Song.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///valleyball.xrns> at:extensionObject <https://w3id.org/uri4uri/suffix/xrns>.
+<ni:///mh;1QEQUzZr9ePrHo1HD5iZC-2Vtg?ct=application/x.ns.RenoiseSong+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.renoisesong+xml>;
+                                                                          a schema:MediaObject;
+                                                                          skos:prefLabel "RENOISESONG object"@en.
+<ni:///mh;1QEQUzZr9ePrHo1HD5iZC-2Vtg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQUzZr9ePrHo1HD5iZC-2Vtg?ct=application/x.ns.RenoiseSong+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQUzZr9ePrHo1HD5iZC-2Vtg?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (RenoiseSong)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQUzZr9ePrHo1HD5iZC-2Vtg?ct=application/xml#element(/1)> a xis:Element;
+                                                                     xis:localName "RenoiseSong";
+                                                                     xis:name "RenoiseSong".
+<ni:///mh;1QEQUzZr9ePrHo1HD5iZC-2Vtg?ct=text/plain> at:digest <urn:md5:53366BF5E3EB1E8D470F98990BED95B6>;
+                                                    dcterms:extent "1083371"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQUzZr9ePrHo1HD5iZC-2Vtg?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQUzZr9ePrHo1HD5iZC-2Vtg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.03 MiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQUzZr9ePrHo1HD5iZC-2Vtg?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?>""".
+<ni:///mh;1QEQj_XKFF3F2YBp-OaO49AM2g?ct=application/octet-stream> at:digest <urn:md5:8FF5CA145DC5D98069F8E68EE3D00CDA>;
+                                                                  dcterms:extent "15237"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQj_XKFF3F2YBp-OaO49AM2g?ct=application/zip>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (14.88 KiB)"@en.
+<ni:///mh;1QEQj_XKFF3F2YBp-OaO49AM2g?ct=application/zip> at:pathObject <file:///>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
+                                                         nie:interpretedAs <ni:///mh;1QEQj_XKFF3F2YBp-OaO49AM2g?ct=application/zip#/>;
+                                                         a schema:MediaObject,
+                                                           nfo:Archive;
+                                                         skos:prefLabel "ZIP object (14.88 KiB)"@en.
+<ni:///mh;1QEQj_XKFF3F2YBp-OaO49AM2g?ct=application/zip#/> at:pathObject <file:///./>;
+                                                           a nfo:Folder;
+                                                           skos:prefLabel "/".
+<ni:///mh;1QEQj_XKFF3F2YBp-OaO49AM2g?ct=application/zip#/Song.xml> at:pathObject <file:///Song.xml>;
+                                                                   nie:interpretedAs <ni:///mh;1QEQUzZr9ePrHo1HD5iZC-2Vtg?ct=text/plain>;
+                                                                   nfo:belongsToContainer <ni:///mh;1QEQj_XKFF3F2YBp-OaO49AM2g?ct=application/zip#/>;
+                                                                   nfo:fileLastModified "2009-04-09T11:39:32.000000+02:00"^^xsd:dateTime;
+                                                                   nfo:fileName "Song.xml";
+                                                                   nfo:fileSize 1083371 ;
+                                                                   a nfo:FileDataObject,
+                                                                     nfo:ArchiveItem;
+                                                                   skos:prefLabel "/Song.xml".
+<urn:md5:53366BF5E3EB1E8D470F98990BED95B6> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "UzZr9ePrHo1HD5iZC+2Vtg=="^^xsd:base64Binary.
+<urn:md5:8FF5CA145DC5D98069F8E68EE3D00CDA> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "j/XKFF3F2YBp+OaO49AM2g=="^^xsd:base64Binary.

@@ -1,0 +1,30 @@
+@base <ni:///mh;1QEQE2M-ADmFh_RoHFrJ10rXQw?ct=text/plain>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///balance.fig>;
+     nie:interpretedAs <ni:///mh;1QEQE2M-ADmFh_RoHFrJ10rXQw?ct=text/plain>;
+     nfo:fileName "balance.fig";
+     nfo:fileSize 1288 ;
+     a nfo:FileDataObject.
+<file:///balance.fig> at:extensionObject <https://w3id.org/uri4uri/suffix/fig>.
+<ni:///mh;1QEQE2M-ADmFh_RoHFrJ10rXQw?ct=text/plain> at:digest <urn:md5:13633E00398587F4681C5AC9D74AD743>;
+                                                    dcterms:extent "1288"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQE2M-ADmFh_RoHFrJ10rXQw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.26 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQE2M-ADmFh_RoHFrJ10rXQw?ct=text/plain#line=,1> rdf:value "#FIG 3.2".
+<urn:md5:13633E00398587F4681C5AC9D74AD743> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "E2M+ADmFh/RoHFrJ10rXQw=="^^xsd:base64Binary.

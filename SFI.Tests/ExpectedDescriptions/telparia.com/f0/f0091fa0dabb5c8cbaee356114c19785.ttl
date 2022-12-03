@@ -1,0 +1,69 @@
+@base <ni:///mh;1QEQP9e_wgYHH5_WLuxEcyZgow?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///example.jps>;
+     nie:interpretedAs <ni:///mh;1QEQP9e_wgYHH5_WLuxEcyZgow?ct=application/octet-stream>;
+     nfo:fileName "example.jps";
+     nfo:fileSize 239264 ;
+     a nfo:FileDataObject.
+<file:///example.jps> at:extensionObject <https://w3id.org/uri4uri/suffix/jps>.
+<ni:///mh;1QEQP9e_wgYHH5_WLuxEcyZgow?ct=application/octet-stream> at:digest <urn:md5:3FD7BFC206071F9FD62EEC44732660A3>;
+                                                                  dcterms:extent "239264"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQP9e_wgYHH5_WLuxEcyZgow?ct=image/jpeg>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (233.66 KiB)"@en.
+<ni:///mh;1QEQP9e_wgYHH5_WLuxEcyZgow?ct=image/jpeg> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/jpeg>;
+                                                    nfo:colorDepth 24 ;
+                                                    nfo:hasMediaStream <ni:///mh;1QEQP9e_wgYHH5_WLuxEcyZgow?ct=image/jpeg#/0>,
+                                                                       <ni:///mh;1QEQP9e_wgYHH5_WLuxEcyZgow?ct=image/jpeg#/1>,
+                                                                       <ni:///mh;1QEQP9e_wgYHH5_WLuxEcyZgow?ct=image/jpeg#/2>;
+                                                    nfo:height 800 ;
+                                                    nfo:horizontalResolution 300 ;
+                                                    nfo:verticalResolution 300 ;
+                                                    nfo:width 1200 ;
+                                                    a schema:MediaObject,
+                                                      exif:IFD,
+                                                      schema:ImageObject,
+                                                      nfo:Image;
+                                                    exif:compression 6 ;
+                                                    exif:imageLength 800 ;
+                                                    exif:imageWidth 1200 ;
+                                                    exif:jpegInterchangeFormat 3434 ;
+                                                    exif:jpegInterchangeFormatLength 6998 ;
+                                                    exif:pixelXDimension 1200 ;
+                                                    exif:pixelYDimension 800 ;
+                                                    exif:resolutionUnit 2 ;
+                                                    exif:software "PaintShop Pro 19.00"^^xsd:string;
+                                                    exif:xResolution 300 ,
+                                                                     72 ;
+                                                    exif:yResolution 300 ,
+                                                                     72 ;
+                                                    skos:prefLabel "JPG object (233.66 KiB)"@en.
+<ni:///mh;1QEQP9e_wgYHH5_WLuxEcyZgow?ct=image/jpeg#/0> nfo:height 800 ;
+                                                       nfo:width 1200 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "0:JPEG (1200×800)".
+<ni:///mh;1QEQP9e_wgYHH5_WLuxEcyZgow?ct=image/jpeg#/1> nfo:height 800 ;
+                                                       nfo:width 1200 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "1:Exif IFD0 (1200×800)".
+<ni:///mh;1QEQP9e_wgYHH5_WLuxEcyZgow?ct=image/jpeg#/2> nfo:height 800 ;
+                                                       nfo:width 1200 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "2:Exif SubIFD (1200×800)".
+<urn:md5:3FD7BFC206071F9FD62EEC44732660A3> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "P9e/wgYHH5/WLuxEcyZgow=="^^xsd:base64Binary.

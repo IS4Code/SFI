@@ -1,0 +1,34 @@
+@base <ni:///mh;1QEQyCL4rRZ6fcFkvyDs0_-fVQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///QRW3COU.bnd>;
+     nie:interpretedAs <ni:///mh;1QEQyCL4rRZ6fcFkvyDs0_-fVQ?ct=application/octet-stream>;
+     nfo:fileName "QRW3COU.bnd";
+     nfo:fileSize 47654 ;
+     a nfo:FileDataObject.
+<file:///QRW3COU.bnd> at:extensionObject <https://w3id.org/uri4uri/suffix/bnd>.
+<ni:///mh;1QEQyCL4rRZ6fcFkvyDs0_-fVQ?ct=application/octet-stream> at:digest <urn:md5:C822F8AD167A7DC164BF20ECD3FF9F55>;
+                                                                  dcterms:extent "47654"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQyCL4rRZ6fcFkvyDs0_-fVQ?ct=audio/mpeg>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (46.54 KiB)"@en.
+<ni:///mh;1QEQyCL4rRZ6fcFkvyDs0_-fVQ?ct=audio/mpeg> schema:encodingFormat <https://w3id.org/uri4uri/mime/audio/mpeg>;
+                                                    a schema:MediaObject,
+                                                      schema:AudioObject,
+                                                      nfo:Audio;
+                                                    skos:prefLabel "MP3 object (46.54 KiB)"@en.
+<urn:md5:C822F8AD167A7DC164BF20ECD3FF9F55> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "yCL4rRZ6fcFkvyDs0/+fVQ=="^^xsd:base64Binary.

@@ -1,0 +1,27 @@
+@base <ni:///mh;1QEQgNO_g27TK0kfI5W1ckvXuQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///test.jp2>;
+     nie:interpretedAs <ni:///mh;1QEQgNO_g27TK0kfI5W1ckvXuQ?ct=application/octet-stream>;
+     nfo:fileName "test.jp2";
+     nfo:fileSize 305930 ;
+     a nfo:FileDataObject.
+<file:///test.jp2> at:extensionObject <https://w3id.org/uri4uri/suffix/jp2>.
+<ni:///mh;1QEQgNO_g27TK0kfI5W1ckvXuQ?ct=application/octet-stream> at:digest <urn:md5:80D3BF836ED32B491F2395B5724BD7B9>;
+                                                                  dcterms:extent "305930"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (298.76 KiB)"@en.
+<urn:md5:80D3BF836ED32B491F2395B5724BD7B9> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "gNO/g27TK0kfI5W1ckvXuQ=="^^xsd:base64Binary.

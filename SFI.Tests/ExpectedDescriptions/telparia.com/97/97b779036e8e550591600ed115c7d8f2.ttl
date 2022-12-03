@@ -1,0 +1,433 @@
+@base <ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix xis: <http://www.w3.org/2001/04/infoset#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+
+_:n1 at:pathObject <file:///childrens-literature.epub>;
+     nie:interpretedAs <ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/octet-stream>;
+     nfo:fileName "childrens-literature.epub";
+     nfo:fileSize 161291 ;
+     a nfo:FileDataObject.
+<data:,application%2Fepub%2Bzip> dcterms:extent "20"^^dt:byte;
+                                 a cnt:ContentAsText;
+                                 skos:prefLabel "text (20 B)"@en;
+                                 cnt:characterEncoding "us-ascii";
+                                 cnt:chars "application/epub+zip"^^xsd:string.
+<file:///EPUB/cover.xhtml> at:pathObject <file:///cover.xhtml>.
+<file:///EPUB/css> at:pathObject <file:///css>.
+<file:///EPUB/css/> at:pathObject <file:///css/>.
+<file:///EPUB/css/epub.css> at:pathObject <file:///css/epub.css>.
+<file:///EPUB/css/nav.css> at:pathObject <file:///css/nav.css>.
+<file:///EPUB/images> at:pathObject <file:///images>.
+<file:///EPUB/images/> at:pathObject <file:///images/>.
+<file:///EPUB/images/cover.png> at:pathObject <file:///images/cover.png>.
+<file:///EPUB/nav.xhtml> at:pathObject <file:///nav.xhtml>.
+<file:///EPUB/package.opf> at:pathObject <file:///package.opf>.
+<file:///EPUB/s04.xhtml> at:pathObject <file:///s04.xhtml>.
+<file:///EPUB/toc.ncx> at:pathObject <file:///toc.ncx>.
+<file:///META-INF/container.xml> at:pathObject <file:///container.xml>.
+<file:///childrens-literature.epub> at:extensionObject <https://w3id.org/uri4uri/suffix/epub>.
+<file:///container.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///cover.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
+<file:///cover.xhtml> at:extensionObject <https://w3id.org/uri4uri/suffix/xhtml>.
+<file:///css/epub.css> at:pathObject <file:///epub.css>.
+<file:///css/nav.css> at:pathObject <file:///nav.css>.
+<file:///epub.css> at:extensionObject <https://w3id.org/uri4uri/suffix/css>.
+<file:///images/cover.png> at:pathObject <file:///cover.png>.
+<file:///nav.css> at:extensionObject <https://w3id.org/uri4uri/suffix/css>.
+<file:///nav.xhtml> at:extensionObject <https://w3id.org/uri4uri/suffix/xhtml>.
+<file:///package.opf> at:extensionObject <https://w3id.org/uri4uri/suffix/opf>.
+<file:///s04.xhtml> at:extensionObject <https://w3id.org/uri4uri/suffix/xhtml>.
+<file:///toc.ncx> at:extensionObject <https://w3id.org/uri4uri/suffix/ncx>.
+<ni:///mh;1QEQ0u1Dzl9x-tRWSJpFwB2AOQ?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.container.container+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.urn.oasis.names.tc.opendocument.xmlns.container.container+xml>;
+                                                                                                                        a schema:MediaObject;
+                                                                                                                        skos:prefLabel "CONTAINER object"@en.
+<ni:///mh;1QEQ0u1Dzl9x-tRWSJpFwB2AOQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ0u1Dzl9x-tRWSJpFwB2AOQ?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.container.container+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQ0u1Dzl9x-tRWSJpFwB2AOQ?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (container)"@en;
+                                                         cnt:declaredEncoding "utf-8";
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQ0u1Dzl9x-tRWSJpFwB2AOQ?ct=application/xml#element(/1)> a xis:Element;
+                                                                     rdfs:seeAlso <urn:oasis:names:tc:opendocument:xmlns:container>;
+                                                                     xis:localName "container";
+                                                                     xis:name "container";
+                                                                     xis:namespaceName "urn:oasis:names:tc:opendocument:xmlns:container"^^xsd:anyURI.
+<ni:///mh;1QEQ0u1Dzl9x-tRWSJpFwB2AOQ?ct=text/plain> at:digest <urn:md5:D2ED43CE5F71FAD456489A45C01D8039>;
+                                                    dcterms:extent "257"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ0u1Dzl9x-tRWSJpFwB2AOQ?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQ0u1Dzl9x-tRWSJpFwB2AOQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (257 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQ0u1Dzl9x-tRWSJpFwB2AOQ?ct=text/plain#line=,1> rdf:value "<?xml version='1.0' encoding='utf-8'?>".
+<ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/octet-stream> at:digest <urn:md5:43F10D52E5C486D1432417701A402FCB>;
+                                                                  dcterms:extent "161291"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (157.51 KiB)"@en.
+<ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip> at:pathObject <file:///>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
+                                                         nie:interpretedAs <ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/>;
+                                                         a schema:MediaObject,
+                                                           nfo:Archive;
+                                                         skos:prefLabel "ZIP object (157.51 KiB)"@en.
+<ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/> at:pathObject <file:///./>;
+                                                           a nfo:Folder;
+                                                           skos:prefLabel "/".
+<ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/EPUB> at:pathObject <file:///EPUB>;
+                                                               nie:interpretedAs <ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/EPUB/>;
+                                                               nfo:belongsToContainer <ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/>;
+                                                               nfo:fileName "EPUB";
+                                                               a nfo:FileDataObject,
+                                                                 nfo:ArchiveItem;
+                                                               skos:prefLabel "/EPUB".
+<ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/EPUB/> at:pathObject <file:///EPUB/>;
+                                                                a nfo:Folder;
+                                                                skos:prefLabel "/EPUB/".
+<ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/EPUB/cover.xhtml> at:pathObject <file:///EPUB/cover.xhtml>;
+                                                                           nie:interpretedAs <ni:///mh;1QEQhHuAEadpeZFqpQaI-YDjoA?ct=text/plain>;
+                                                                           nfo:belongsToContainer <ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/EPUB/>;
+                                                                           nfo:fileLastModified "2015-04-24T17:25:54.000000+02:00"^^xsd:dateTime;
+                                                                           nfo:fileName "cover.xhtml";
+                                                                           nfo:fileSize 392 ;
+                                                                           a nfo:FileDataObject,
+                                                                             nfo:ArchiveItem;
+                                                                           skos:prefLabel "/EPUB/cover.xhtml".
+<ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/EPUB/css> at:pathObject <file:///EPUB/css>;
+                                                                   nie:interpretedAs <ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/EPUB/css/>;
+                                                                   nfo:belongsToContainer <ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/EPUB/>;
+                                                                   nfo:fileName "css";
+                                                                   a nfo:FileDataObject,
+                                                                     nfo:ArchiveItem;
+                                                                   skos:prefLabel "/EPUB/css".
+<ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/EPUB/css/> at:pathObject <file:///EPUB/css/>;
+                                                                    a nfo:Folder;
+                                                                    skos:prefLabel "/EPUB/css/".
+<ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/EPUB/css/epub.css> at:pathObject <file:///EPUB/css/epub.css>;
+                                                                            nie:interpretedAs <ni:///mh;1QEQs3-PzQZFLHHOgdjT43dQrA?ct=text/plain>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/EPUB/css/>;
+                                                                            nfo:fileLastModified "2015-04-24T17:25:54.000000+02:00"^^xsd:dateTime;
+                                                                            nfo:fileName "epub.css";
+                                                                            nfo:fileSize 1473 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/EPUB/css/epub.css".
+<ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/EPUB/css/nav.css> at:pathObject <file:///EPUB/css/nav.css>;
+                                                                           nie:interpretedAs <ni:///mh;1QEQtvhp544vT-ACJGXky9lDiw?ct=text/plain>;
+                                                                           nfo:belongsToContainer <ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/EPUB/css/>;
+                                                                           nfo:fileLastModified "2015-04-24T17:25:54.000000+02:00"^^xsd:dateTime;
+                                                                           nfo:fileName "nav.css";
+                                                                           nfo:fileSize 570 ;
+                                                                           a nfo:FileDataObject,
+                                                                             nfo:ArchiveItem;
+                                                                           skos:prefLabel "/EPUB/css/nav.css".
+<ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/EPUB/images> at:pathObject <file:///EPUB/images>;
+                                                                      nie:interpretedAs <ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/EPUB/images/>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/EPUB/>;
+                                                                      nfo:fileName "images";
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/EPUB/images".
+<ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/EPUB/images/> at:pathObject <file:///EPUB/images/>;
+                                                                       a nfo:Folder;
+                                                                       skos:prefLabel "/EPUB/images/".
+<ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/EPUB/images/cover.png> at:pathObject <file:///EPUB/images/cover.png>;
+                                                                                nie:interpretedAs <ni:///mh;1QEQl4Ar-OdC1T9Gt8BIBXJTgQ?ct=application/octet-stream>;
+                                                                                nfo:belongsToContainer <ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/EPUB/images/>;
+                                                                                nfo:fileLastModified "2015-04-24T17:25:54.000000+02:00"^^xsd:dateTime;
+                                                                                nfo:fileName "cover.png";
+                                                                                nfo:fileSize 41134 ;
+                                                                                a nfo:FileDataObject,
+                                                                                  nfo:ArchiveItem;
+                                                                                skos:prefLabel "/EPUB/images/cover.png".
+<ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/EPUB/nav.xhtml> at:pathObject <file:///EPUB/nav.xhtml>;
+                                                                         nie:interpretedAs <ni:///mh;1QEQevV-8jqxY-u7pA9J-_RAxw?ct=text/plain>;
+                                                                         nfo:belongsToContainer <ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/EPUB/>;
+                                                                         nfo:fileLastModified "2015-04-24T17:25:54.000000+02:00"^^xsd:dateTime;
+                                                                         nfo:fileName "nav.xhtml";
+                                                                         nfo:fileSize 12655 ;
+                                                                         a nfo:FileDataObject,
+                                                                           nfo:ArchiveItem;
+                                                                         skos:prefLabel "/EPUB/nav.xhtml".
+<ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/EPUB/package.opf> at:pathObject <file:///EPUB/package.opf>;
+                                                                           nie:interpretedAs <ni:///mh;1QEQTgdI_wDrtlOjWWKa-6TB4g?ct=text/plain>;
+                                                                           nfo:belongsToContainer <ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/EPUB/>;
+                                                                           nfo:fileLastModified "2015-04-24T17:25:54.000000+02:00"^^xsd:dateTime;
+                                                                           nfo:fileName "package.opf";
+                                                                           nfo:fileSize 2050 ;
+                                                                           a nfo:FileDataObject,
+                                                                             nfo:ArchiveItem;
+                                                                           skos:prefLabel "/EPUB/package.opf".
+<ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/EPUB/s04.xhtml> at:pathObject <file:///EPUB/s04.xhtml>;
+                                                                         nie:interpretedAs <ni:///mh;1QEQguRKD_vOS3RhJ2l5-2oLZw?ct=text/plain>;
+                                                                         nfo:belongsToContainer <ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/EPUB/>;
+                                                                         nfo:fileLastModified "2015-04-24T17:25:54.000000+02:00"^^xsd:dateTime;
+                                                                         nfo:fileName "s04.xhtml";
+                                                                         nfo:fileSize 342935 ;
+                                                                         a nfo:FileDataObject,
+                                                                           nfo:ArchiveItem;
+                                                                         skos:prefLabel "/EPUB/s04.xhtml".
+<ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/EPUB/toc.ncx> at:pathObject <file:///EPUB/toc.ncx>;
+                                                                       nie:interpretedAs <ni:///mh;1QEQk6o5wctOzJRYeIJjiGeUiA?ct=text/plain>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/EPUB/>;
+                                                                       nfo:fileLastModified "2017-06-05T18:20:36.000000+02:00"^^xsd:dateTime;
+                                                                       nfo:fileName "toc.ncx";
+                                                                       nfo:fileSize 17324 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/EPUB/toc.ncx".
+<ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/META-INF> at:pathObject <file:///META-INF>;
+                                                                   nie:interpretedAs <ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/META-INF/>;
+                                                                   nfo:belongsToContainer <ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/>;
+                                                                   nfo:fileName "META-INF";
+                                                                   a nfo:FileDataObject,
+                                                                     nfo:ArchiveItem;
+                                                                   skos:prefLabel "/META-INF".
+<ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/META-INF/> at:pathObject <file:///META-INF/>;
+                                                                    a nfo:Folder;
+                                                                    skos:prefLabel "/META-INF/".
+<ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/META-INF/container.xml> at:pathObject <file:///META-INF/container.xml>;
+                                                                                 nie:interpretedAs <ni:///mh;1QEQ0u1Dzl9x-tRWSJpFwB2AOQ?ct=text/plain>;
+                                                                                 nfo:belongsToContainer <ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/META-INF/>;
+                                                                                 nfo:fileLastModified "2015-04-24T17:25:54.000000+02:00"^^xsd:dateTime;
+                                                                                 nfo:fileName "container.xml";
+                                                                                 nfo:fileSize 257 ;
+                                                                                 a nfo:FileDataObject,
+                                                                                   nfo:ArchiveItem;
+                                                                                 skos:prefLabel "/META-INF/container.xml".
+<ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/mimetype> at:pathObject <file:///mimetype>;
+                                                                   nie:interpretedAs <data:,application%2Fepub%2Bzip>;
+                                                                   nfo:belongsToContainer <ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/>;
+                                                                   nfo:fileLastModified "2015-04-24T17:25:54.000000+02:00"^^xsd:dateTime;
+                                                                   nfo:fileName "mimetype";
+                                                                   nfo:fileSize 20 ;
+                                                                   a nfo:FileDataObject,
+                                                                     nfo:ArchiveItem;
+                                                                   skos:prefLabel "/mimetype".
+<ni:///mh;1QEQTgdI_wDrtlOjWWKa-6TB4g?ct=application/x.ns.org.idpf.www.http.2007.opf.package+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.idpf.www.http.2007.opf.package+xml>;
+                                                                                                 a schema:MediaObject;
+                                                                                                 skos:prefLabel "PACKAGE object"@en.
+<ni:///mh;1QEQTgdI_wDrtlOjWWKa-6TB4g?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQTgdI_wDrtlOjWWKa-6TB4g?ct=application/x.ns.org.idpf.www.http.2007.opf.package+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQTgdI_wDrtlOjWWKa-6TB4g?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (package)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQTgdI_wDrtlOjWWKa-6TB4g?ct=application/xml#element(/1)> a xis:Element;
+                                                                     rdfs:seeAlso <http://www.idpf.org/2007/opf>;
+                                                                     xis:localName "package";
+                                                                     xis:name "package";
+                                                                     xis:namespaceName "http://www.idpf.org/2007/opf"^^xsd:anyURI.
+<ni:///mh;1QEQTgdI_wDrtlOjWWKa-6TB4g?ct=text/plain> at:digest <urn:md5:4E0748FF00EBB653A359629AFBA4C1E2>;
+                                                    dcterms:extent "2050"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQTgdI_wDrtlOjWWKa-6TB4g?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQTgdI_wDrtlOjWWKa-6TB4g?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (2 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQTgdI_wDrtlOjWWKa-6TB4g?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?>""".
+<ni:///mh;1QEQevV-8jqxY-u7pA9J-_RAxw?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
+                                                                                              a schema:MediaObject;
+                                                                                              skos:prefLabel "HTML object"@en.
+<ni:///mh;1QEQevV-8jqxY-u7pA9J-_RAxw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQevV-8jqxY-u7pA9J-_RAxw?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQevV-8jqxY-u7pA9J-_RAxw?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (html)"@en;
+                                                         cnt:declaredEncoding "utf-8";
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQevV-8jqxY-u7pA9J-_RAxw?ct=application/xml#element(/1)> a xis:Element;
+                                                                     rdfs:seeAlso <http://www.w3.org/1999/xhtml>;
+                                                                     xis:localName "html";
+                                                                     xis:name "html";
+                                                                     xis:namespaceName "http://www.w3.org/1999/xhtml"^^xsd:anyURI.
+<ni:///mh;1QEQevV-8jqxY-u7pA9J-_RAxw?ct=text/html> dcterms:title "Children's Literature"@en;
+                                                   schema:encodingFormat <https://w3id.org/uri4uri/mime/text/html>;
+                                                   a schema:MediaObject,
+                                                     schema:DigitalDocument,
+                                                     nfo:Document;
+                                                   <http://www.w3.org/1999/xhtml/vocab#stylesheet> <ni:///mh;1QEQevV-8jqxY-u7pA9J-_RAxw?ct=text/html#/css/epub.css>,
+                                                                                                   <ni:///mh;1QEQevV-8jqxY-u7pA9J-_RAxw?ct=text/html#/css/nav.css>;
+                                                   skos:prefLabel "HTML object (12.36 KiB)"@en.
+<ni:///mh;1QEQevV-8jqxY-u7pA9J-_RAxw?ct=text/plain> at:digest <urn:md5:7AF57EF23AB163EBBBA40F49FBF440C7>;
+                                                    dcterms:extent "12655"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQevV-8jqxY-u7pA9J-_RAxw?ct=application/xml>,
+                                                                      <ni:///mh;1QEQevV-8jqxY-u7pA9J-_RAxw?ct=text/html>;
+                                                    nie:hasPart <ni:///mh;1QEQevV-8jqxY-u7pA9J-_RAxw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (12.36 KiB)"@en;
+                                                    cnt:characterEncoding "utf-8".
+<ni:///mh;1QEQevV-8jqxY-u7pA9J-_RAxw?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"utf-8\"?>""".
+<ni:///mh;1QEQguRKD_vOS3RhJ2l5-2oLZw?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
+                                                                                              a schema:MediaObject;
+                                                                                              skos:prefLabel "HTML object"@en.
+<ni:///mh;1QEQguRKD_vOS3RhJ2l5-2oLZw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQguRKD_vOS3RhJ2l5-2oLZw?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQguRKD_vOS3RhJ2l5-2oLZw?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (html)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQguRKD_vOS3RhJ2l5-2oLZw?ct=application/xml#element(/1)> a xis:Element;
+                                                                     rdfs:seeAlso <http://www.w3.org/1999/xhtml>;
+                                                                     xis:localName "html";
+                                                                     xis:name "html";
+                                                                     xis:namespaceName "http://www.w3.org/1999/xhtml"^^xsd:anyURI.
+<ni:///mh;1QEQguRKD_vOS3RhJ2l5-2oLZw?ct=text/html> dcterms:title "Section IV: FAIRY STORIES—MODERN FANTASTIC TALES"@en;
+                                                   schema:encodingFormat <https://w3id.org/uri4uri/mime/text/html>;
+                                                   a schema:MediaObject,
+                                                     schema:DigitalDocument,
+                                                     nfo:Document;
+                                                   <http://www.w3.org/1999/xhtml/vocab#stylesheet> <ni:///mh;1QEQguRKD_vOS3RhJ2l5-2oLZw?ct=text/html#/css/epub.css>;
+                                                   skos:prefLabel "HTML object (334.9 KiB)"@en.
+<ni:///mh;1QEQguRKD_vOS3RhJ2l5-2oLZw?ct=text/plain> at:digest <urn:md5:82E44A0FFBCE4B7461276979FB6A0B67>;
+                                                    dcterms:extent "342935"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQguRKD_vOS3RhJ2l5-2oLZw?ct=application/xml>,
+                                                                      <ni:///mh;1QEQguRKD_vOS3RhJ2l5-2oLZw?ct=text/html>;
+                                                    nie:hasPart <ni:///mh;1QEQguRKD_vOS3RhJ2l5-2oLZw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (334.9 KiB)"@en;
+                                                    cnt:characterEncoding "utf-8".
+<ni:///mh;1QEQguRKD_vOS3RhJ2l5-2oLZw?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?>""".
+<ni:///mh;1QEQhHuAEadpeZFqpQaI-YDjoA?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
+                                                                                              a schema:MediaObject;
+                                                                                              skos:prefLabel "HTML object"@en.
+<ni:///mh;1QEQhHuAEadpeZFqpQaI-YDjoA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQhHuAEadpeZFqpQaI-YDjoA?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQhHuAEadpeZFqpQaI-YDjoA?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (html)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQhHuAEadpeZFqpQaI-YDjoA?ct=application/xml#element(/1)> a xis:Element;
+                                                                     rdfs:seeAlso <http://www.w3.org/1999/xhtml>;
+                                                                     xis:localName "html";
+                                                                     xis:name "html";
+                                                                     xis:namespaceName "http://www.w3.org/1999/xhtml"^^xsd:anyURI.
+<ni:///mh;1QEQhHuAEadpeZFqpQaI-YDjoA?ct=text/html> dcterms:title "Children's Literature"@en;
+                                                   schema:encodingFormat <https://w3id.org/uri4uri/mime/text/html>;
+                                                   a schema:MediaObject,
+                                                     schema:DigitalDocument,
+                                                     nfo:Document;
+                                                   <http://www.w3.org/1999/xhtml/vocab#stylesheet> <ni:///mh;1QEQhHuAEadpeZFqpQaI-YDjoA?ct=text/html#/css/epub.css>;
+                                                   skos:prefLabel "HTML object (392 B)"@en.
+<ni:///mh;1QEQhHuAEadpeZFqpQaI-YDjoA?ct=text/plain> at:digest <urn:md5:847B8011A76979916AA50688F980E3A0>;
+                                                    dcterms:extent "392"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQhHuAEadpeZFqpQaI-YDjoA?ct=application/xml>,
+                                                                      <ni:///mh;1QEQhHuAEadpeZFqpQaI-YDjoA?ct=text/html>;
+                                                    nie:hasPart <ni:///mh;1QEQhHuAEadpeZFqpQaI-YDjoA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (392 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQhHuAEadpeZFqpQaI-YDjoA?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?>""".
+<ni:///mh;1QEQk6o5wctOzJRYeIJjiGeUiA?ct=application/x.ns.org.daisy.www.http.z3986.2005.ncx.ncx+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.daisy.www.http.z3986.2005.ncx.ncx+xml>;
+                                                                                                    a schema:MediaObject;
+                                                                                                    skos:prefLabel "NCX object"@en.
+<ni:///mh;1QEQk6o5wctOzJRYeIJjiGeUiA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQk6o5wctOzJRYeIJjiGeUiA?ct=application/x.ns.org.daisy.www.http.z3986.2005.ncx.ncx+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQk6o5wctOzJRYeIJjiGeUiA?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (ncx)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQk6o5wctOzJRYeIJjiGeUiA?ct=application/xml#element(/1)> a xis:Element;
+                                                                     rdfs:seeAlso <http://www.daisy.org/z3986/2005/ncx/>;
+                                                                     xis:localName "ncx";
+                                                                     xis:name "ncx";
+                                                                     xis:namespaceName "http://www.daisy.org/z3986/2005/ncx/"^^xsd:anyURI.
+<ni:///mh;1QEQk6o5wctOzJRYeIJjiGeUiA?ct=text/plain> at:digest <urn:md5:93AA39C1CB4ECC945878826388679488>;
+                                                    dcterms:extent "17324"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQk6o5wctOzJRYeIJjiGeUiA?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQk6o5wctOzJRYeIJjiGeUiA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (16.92 KiB)"@en;
+                                                    cnt:characterEncoding "utf-8".
+<ni:///mh;1QEQk6o5wctOzJRYeIJjiGeUiA?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?>""".
+<ni:///mh;1QEQl4Ar-OdC1T9Gt8BIBXJTgQ?ct=application/octet-stream> at:digest <urn:md5:97802BF8E742D53F46B7C04805725381>;
+                                                                  dcterms:extent "41134"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQl4Ar-OdC1T9Gt8BIBXJTgQ?ct=image/png>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (40.17 KiB)"@en.
+<ni:///mh;1QEQl4Ar-OdC1T9Gt8BIBXJTgQ?ct=image/png> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/png>;
+                                                   nfo:colorDepth 32 ;
+                                                   nfo:height 714 ;
+                                                   nfo:horizontalResolution 299.974;
+                                                   nfo:verticalResolution 299.974;
+                                                   nfo:width 500 ;
+                                                   a schema:MediaObject,
+                                                     nfo:Image,
+                                                     schema:ImageObject;
+                                                   skos:prefLabel "PNG object (500×714)"@en,
+                                                                  "PNG object (500×714, 8-bit)"@en,
+                                                                  "PNG object (40.17 KiB)"@en.
+<ni:///mh;1QEQs3-PzQZFLHHOgdjT43dQrA?ct=text/plain> at:digest <urn:md5:B37F8FCD06452C71CE81D8D3E37750AC>;
+                                                    dcterms:extent "1473"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQs3-PzQZFLHHOgdjT43dQrA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.44 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQs3-PzQZFLHHOgdjT43dQrA?ct=text/plain#line=,1> rdf:value """@namespace epub \"http://www.idpf.org/2007/ops\";""".
+<ni:///mh;1QEQtvhp544vT-ACJGXky9lDiw?ct=text/plain> at:digest <urn:md5:B6F869E78E2F4FE0022465E4CBD9438B>;
+                                                    dcterms:extent "570"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQtvhp544vT-ACJGXky9lDiw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (570 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQtvhp544vT-ACJGXky9lDiw?ct=text/plain#line=,1> rdf:value "".
+<urn:md5:43F10D52E5C486D1432417701A402FCB> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "Q/ENUuXEhtFDJBdwGkAvyw=="^^xsd:base64Binary.
+<urn:md5:4E0748FF00EBB653A359629AFBA4C1E2> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "TgdI/wDrtlOjWWKa+6TB4g=="^^xsd:base64Binary.
+<urn:md5:7AF57EF23AB163EBBBA40F49FBF440C7> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "evV+8jqxY+u7pA9J+/RAxw=="^^xsd:base64Binary.
+<urn:md5:82E44A0FFBCE4B7461276979FB6A0B67> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "guRKD/vOS3RhJ2l5+2oLZw=="^^xsd:base64Binary.
+<urn:md5:847B8011A76979916AA50688F980E3A0> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "hHuAEadpeZFqpQaI+YDjoA=="^^xsd:base64Binary.
+<urn:md5:93AA39C1CB4ECC945878826388679488> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "k6o5wctOzJRYeIJjiGeUiA=="^^xsd:base64Binary.
+<urn:md5:97802BF8E742D53F46B7C04805725381> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "l4Ar+OdC1T9Gt8BIBXJTgQ=="^^xsd:base64Binary.
+<urn:md5:B37F8FCD06452C71CE81D8D3E37750AC> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "s3+PzQZFLHHOgdjT43dQrA=="^^xsd:base64Binary.
+<urn:md5:B6F869E78E2F4FE0022465E4CBD9438B> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "tvhp544vT+ACJGXky9lDiw=="^^xsd:base64Binary.
+<urn:md5:D2ED43CE5F71FAD456489A45C01D8039> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "0u1Dzl9x+tRWSJpFwB2AOQ=="^^xsd:base64Binary.

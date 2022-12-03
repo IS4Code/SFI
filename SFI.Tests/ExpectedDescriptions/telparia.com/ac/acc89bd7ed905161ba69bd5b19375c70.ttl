@@ -1,0 +1,108 @@
+@base <ni:///mh;1QEQVdJ-5876FfIes5BzaVn_yw?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///pentax_k5_14.pef>;
+     nie:interpretedAs <ni:///mh;1QEQVdJ-5876FfIes5BzaVn_yw?ct=application/octet-stream>;
+     nfo:fileName "pentax_k5_14.pef";
+     nfo:fileSize 29067940 ;
+     a nfo:FileDataObject.
+<file:///pentax_k5_14.pef> at:extensionObject <https://w3id.org/uri4uri/suffix/pef>.
+<ni:///mh;1QEQVdJ-5876FfIes5BzaVn_yw?ct=application/octet-stream> at:digest <urn:md5:55D27EE7CEFA15F21EB390736959FFCB>;
+                                                                  dcterms:extent "29067940"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQVdJ-5876FfIes5BzaVn_yw?ct=image/pef>,
+                                                                                    <ni:///mh;1QEQVdJ-5876FfIes5BzaVn_yw?ct=image/tiff>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (27.72 MiB)"@en.
+<ni:///mh;1QEQVdJ-5876FfIes5BzaVn_yw?ct=image/pef> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/pef>;
+                                                   nfo:height 3284 ;
+                                                   nfo:width 4992 ;
+                                                   a schema:MediaObject,
+                                                     nfo:Image,
+                                                     schema:ImageObject;
+                                                   skos:prefLabel "PEF object (4992×3284)"@en.
+<ni:///mh;1QEQVdJ-5876FfIes5BzaVn_yw?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
+                                                    nfo:hasMediaStream <ni:///mh;1QEQVdJ-5876FfIes5BzaVn_yw?ct=image/tiff#/0>,
+                                                                       <ni:///mh;1QEQVdJ-5876FfIes5BzaVn_yw?ct=image/tiff#/1>,
+                                                                       <ni:///mh;1QEQVdJ-5876FfIes5BzaVn_yw?ct=image/tiff#/2>;
+                                                    a schema:MediaObject,
+                                                      exif:IFD,
+                                                      schema:ImageObject,
+                                                      nfo:Image;
+                                                    exif:bitsPerSample 14 ;
+                                                    exif:cfaPattern "0002000202010100"^^xsd:hexBinary;
+                                                    exif:compression 65535 ,
+                                                                     6 ;
+                                                    exif:contrast 2 ;
+                                                    exif:customRendered 0 ;
+                                                    exif:dateTime "2010-11-17T13:41:48.000000"^^xsd:dateTime;
+                                                    exif:dateTimeDigitized "2010-11-17T13:41:48.000000"^^xsd:dateTime;
+                                                    exif:dateTimeOriginal "2010-11-17T13:41:48.000000"^^xsd:dateTime;
+                                                    exif:exposureBiasValue 0 ;
+                                                    exif:exposureMode 0 ;
+                                                    exif:exposureProgram 3 ;
+                                                    exif:exposureTime "1/50"^^owl:rational;
+                                                    exif:fNumber "28/5"^^owl:rational;
+                                                    exif:flash 16 ;
+                                                    exif:focalLength 18 ;
+                                                    exif:focalLengthIn35mmFilm 27 ;
+                                                    exif:imageLength 3284 ,
+                                                                     120 ,
+                                                                     3264 ;
+                                                    exif:imageWidth 4992 ,
+                                                                    160 ,
+                                                                    4928 ;
+                                                    exif:isoSpeedRatings 6400 ;
+                                                    exif:jpegInterchangeFormat 103520 ,
+                                                                               27746528 ;
+                                                    exif:jpegInterchangeFormatLength 6772 ,
+                                                                                     1321412 ;
+                                                    exif:make "PENTAX             "^^xsd:string;
+                                                    exif:meteringMode 5 ;
+                                                    exif:model "PENTAX K-5         "^^xsd:string;
+                                                    exif:orientation 1 ;
+                                                    exif:photometricInterpretation 32803 ;
+                                                    exif:planarConfiguration 1 ;
+                                                    exif:resolutionUnit 2 ;
+                                                    exif:rowsPerStrip 3284 ;
+                                                    exif:samplesPerPixel 1 ;
+                                                    exif:saturation 0 ;
+                                                    exif:sceneCaptureType 0 ;
+                                                    exif:sensingMethod 2 ;
+                                                    exif:sharpness 2 ;
+                                                    exif:software "K-5 Ver 1.00           "^^xsd:string;
+                                                    exif:stripByteCounts 27636219 ;
+                                                    exif:stripOffsets 110304 ;
+                                                    exif:subjectDistanceRange 2 ;
+                                                    exif:whiteBalance 1 ;
+                                                    exif:xResolution 300 ;
+                                                    exif:yResolution 300 ;
+                                                    skos:prefLabel "TIFF object (14-bit)"@en.
+<ni:///mh;1QEQVdJ-5876FfIes5BzaVn_yw?ct=image/tiff#/0> nfo:height 3284 ;
+                                                       nfo:width 4992 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "0:Exif IFD0 (4992×3284, 14-bit)".
+<ni:///mh;1QEQVdJ-5876FfIes5BzaVn_yw?ct=image/tiff#/1> nfo:height 120 ;
+                                                       nfo:width 160 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "1:Exif Thumbnail (160×120)".
+<ni:///mh;1QEQVdJ-5876FfIes5BzaVn_yw?ct=image/tiff#/2> nfo:height 3264 ;
+                                                       nfo:width 4928 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "2:Exif Image (4928×3264)".
+<urn:md5:55D27EE7CEFA15F21EB390736959FFCB> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "VdJ+5876FfIes5BzaVn/yw=="^^xsd:base64Binary.

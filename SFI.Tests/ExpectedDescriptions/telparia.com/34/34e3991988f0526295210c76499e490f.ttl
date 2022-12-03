@@ -1,0 +1,55 @@
+@base <ni:///mh;1QEQS_z8BrSN67p0QgsiPLFYbA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix xis: <http://www.w3.org/2001/04/infoset#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///output.xml>;
+     nie:interpretedAs <ni:///mh;1QEQS_z8BrSN67p0QgsiPLFYbA?ct=application/octet-stream>;
+     nfo:fileName "output.xml";
+     nfo:fileSize 2081771 ;
+     a nfo:FileDataObject.
+<file:///output.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<ni:///mh;1QEQS_z8BrSN67p0QgsiPLFYbA?ct=application/octet-stream> at:digest <urn:md5:4BFCFC06B48DEBBA74420B223CB1586C>;
+                                                                  dcterms:extent "2081771"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQS_z8BrSN67p0QgsiPLFYbA?ct=application/xml>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.99 MiB)"@en.
+<ni:///mh;1QEQS_z8BrSN67p0QgsiPLFYbA?ct=application/x.ns.urn.publicid.-.OASIS.DTD&2BDocBook&2BXML&2BV4.5.EN.book+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.urn.publicid.-.oasis.dtd&2bdocbook&2bxml&2bv4.5.en.book+xml>,
+                                                                                                                                            <urn:publicid:-:OASIS:DTD+DocBook+XML+V4.5:EN>;
+                                                                                                                      a schema:MediaObject;
+                                                                                                                      skos:prefLabel "BOOK object"@en.
+<ni:///mh;1QEQS_z8BrSN67p0QgsiPLFYbA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQS_z8BrSN67p0QgsiPLFYbA?ct=application/x.ns.urn.publicid.-.OASIS.DTD&2BDocBook&2BXML&2BV4.5.EN.book+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQS_z8BrSN67p0QgsiPLFYbA?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (book)"@en;
+                                                         cnt:declaredEncoding "UTF-8";
+                                                         cnt:dtDecl <ni:///mh;1QEQS_z8BrSN67p0QgsiPLFYbA?ct=application/xml#dtd()>;
+                                                         cnt:standalone "no";
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQS_z8BrSN67p0QgsiPLFYbA?ct=application/xml#dtd()> a cnt:DoctypeDecl;
+                                                               rdfs:seeAlso <urn:publicid:-:OASIS:DTD+DocBook+XML+V4.5:EN>;
+                                                               cnt:doctypeName "book";
+                                                               cnt:publicId "-//OASIS//DTD DocBook XML V4.5//EN";
+                                                               cnt:systemId "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd"^^xsd:anyURI.
+<ni:///mh;1QEQS_z8BrSN67p0QgsiPLFYbA?ct=application/xml#element(/1)> a xis:Element;
+                                                                     xis:localName "book";
+                                                                     xis:name "book".
+<urn:md5:4BFCFC06B48DEBBA74420B223CB1586C> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "S/z8BrSN67p0QgsiPLFYbA=="^^xsd:base64Binary.
+<urn:publicid:-:OASIS:DTD+DocBook+XML+V4.5:EN> rdfs:isDefinedBy <http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd>.

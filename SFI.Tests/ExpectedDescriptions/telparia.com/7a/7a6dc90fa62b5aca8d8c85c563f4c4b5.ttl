@@ -1,0 +1,256 @@
+@base <ni:///mh;1QEQD0jlFZybW40L9lgBhNvP2A?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+
+_:n1 at:pathObject <file:///xgif.tar>;
+     nie:interpretedAs <ni:///mh;1QEQD0jlFZybW40L9lgBhNvP2A?ct=application/octet-stream>;
+     nfo:fileName "xgif.tar";
+     nfo:fileSize 65536 ;
+     a nfo:FileDataObject.
+<data:,%23define%20PATCHLEVEL%202%0A> dcterms:extent "21"^^dt:byte;
+                                      a cnt:ContentAsText;
+                                      skos:prefLabel "text (21 B)"@en;
+                                      cnt:characterEncoding "us-ascii";
+                                      cnt:chars """#define PATCHLEVEL 2
+"""^^xsd:string.
+<data:application/octet-stream,> dcterms:extent "0"^^dt:byte;
+                                 a cnt:ContentAsBase64;
+                                 skos:prefLabel "binary data (0 B)"@en;
+                                 cnt:bytes ""^^xsd:base64Binary.
+<file:///patchlevel.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<file:///xgif.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///xgif.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<file:///xgif.man> at:extensionObject <https://w3id.org/uri4uri/suffix/man>.
+<file:///xgif.tar> at:extensionObject <https://w3id.org/uri4uri/suffix/tar>.
+<file:///xgif/> at:pathObject <file:///>.
+<file:///xgif/AUTHOR> at:pathObject <file:///AUTHOR>.
+<file:///xgif/Imakefile> at:pathObject <file:///Imakefile>.
+<file:///xgif/Makefile> at:pathObject <file:///Makefile>.
+<file:///xgif/README> at:pathObject <file:///README>.
+<file:///xgif/patch1> at:pathObject <file:///patch1>.
+<file:///xgif/patchlevel.h> at:pathObject <file:///patchlevel.h>.
+<file:///xgif/xgif.c> at:pathObject <file:///xgif.c>.
+<file:///xgif/xgif.h> at:pathObject <file:///xgif.h>.
+<file:///xgif/xgif.man> at:pathObject <file:///xgif.man>.
+<file:///xgif/xgifload.c> at:pathObject <file:///xgifload.c>.
+<file:///xgifload.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<ni:///mh;1QEQ7jZwtXKN4OyjzWrbHN1NMg?ct=text/plain> at:digest <urn:md5:EE3670B5728DE0ECA3CD6ADB1CDD4D32>;
+                                                    dcterms:extent "310"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQ7jZwtXKN4OyjzWrbHN1NMg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (310 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQ7jZwtXKN4OyjzWrbHN1NMg?ct=text/plain#line=,1> rdf:value "Written by John Bradley (bradley@cis.upenn.edu), one of the fine folks at ".
+<ni:///mh;1QEQ8eVQ0vmjgOL6i1WEWJSH0w?ct=text/plain> at:digest <urn:md5:F1E550D2F9A380E2FA8B5584589487D3>;
+                                                    dcterms:extent "4487"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQ8eVQ0vmjgOL6i1WEWJSH0w?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (4.38 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQ8eVQ0vmjgOL6i1WEWJSH0w?ct=text/plain#line=,1> rdf:value ".TH xgif 1X".
+<ni:///mh;1QEQD0jlFZybW40L9lgBhNvP2A?ct=application/octet-stream> at:digest <urn:md5:0F48E5159C9B5B8D0BF6580184DBCFD8>;
+                                                                  dcterms:extent "65536"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQD0jlFZybW40L9lgBhNvP2A?ct=application/x-tar>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (64 KiB)"@en.
+<ni:///mh;1QEQD0jlFZybW40L9lgBhNvP2A?ct=application/x-tar> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-tar>;
+                                                           a schema:MediaObject,
+                                                             nfo:Archive;
+                                                           skos:prefLabel "TAR object (64 KiB)"@en.
+<ni:///mh;1QEQD0jlFZybW40L9lgBhNvP2A?ct=application/x-tar#/xgif> at:pathObject <file:///xgif>;
+                                                                 nie:interpretedAs <ni:///mh;1QEQD0jlFZybW40L9lgBhNvP2A?ct=application/x-tar#/xgif/>;
+                                                                 nfo:belongsToContainer <ni:///mh;1QEQD0jlFZybW40L9lgBhNvP2A?ct=application/x-tar>;
+                                                                 nfo:fileName "xgif";
+                                                                 a nfo:FileDataObject,
+                                                                   nfo:ArchiveItem;
+                                                                 skos:prefLabel "/xgif".
+<ni:///mh;1QEQD0jlFZybW40L9lgBhNvP2A?ct=application/x-tar#/xgif/> at:pathObject <file:///xgif/>;
+                                                                  nie:interpretedAs <data:application/octet-stream,>;
+                                                                  nfo:belongsToContainer <ni:///mh;1QEQD0jlFZybW40L9lgBhNvP2A?ct=application/x-tar#/xgif/>;
+                                                                  nfo:fileLastModified "1992-07-29T00:34:30.000000+02:00"^^xsd:dateTime;
+                                                                  nfo:fileName "";
+                                                                  nfo:fileSize 0 ;
+                                                                  a nfo:FileDataObject,
+                                                                    nfo:ArchiveItem,
+                                                                    nfo:Folder;
+                                                                  skos:prefLabel "/xgif/".
+<ni:///mh;1QEQD0jlFZybW40L9lgBhNvP2A?ct=application/x-tar#/xgif/AUTHOR> at:pathObject <file:///xgif/AUTHOR>;
+                                                                        nie:interpretedAs <ni:///mh;1QEQ7jZwtXKN4OyjzWrbHN1NMg?ct=text/plain>;
+                                                                        nfo:belongsToContainer <ni:///mh;1QEQD0jlFZybW40L9lgBhNvP2A?ct=application/x-tar#/xgif/>;
+                                                                        nfo:fileLastModified "1992-07-29T00:34:12.000000+02:00"^^xsd:dateTime;
+                                                                        nfo:fileName "AUTHOR";
+                                                                        nfo:fileSize 310 ;
+                                                                        a nfo:FileDataObject,
+                                                                          nfo:ArchiveItem;
+                                                                        skos:prefLabel "/xgif/AUTHOR".
+<ni:///mh;1QEQD0jlFZybW40L9lgBhNvP2A?ct=application/x-tar#/xgif/Imakefile> at:pathObject <file:///xgif/Imakefile>;
+                                                                           nie:interpretedAs <ni:///mh;1QEQOeVThu2lpSnP5OSzF3cS1Q?ct=text/plain>;
+                                                                           nfo:belongsToContainer <ni:///mh;1QEQD0jlFZybW40L9lgBhNvP2A?ct=application/x-tar#/xgif/>;
+                                                                           nfo:fileLastModified "1992-07-29T00:34:12.000000+02:00"^^xsd:dateTime;
+                                                                           nfo:fileName "Imakefile";
+                                                                           nfo:fileSize 119 ;
+                                                                           a nfo:FileDataObject,
+                                                                             nfo:ArchiveItem;
+                                                                           skos:prefLabel "/xgif/Imakefile".
+<ni:///mh;1QEQD0jlFZybW40L9lgBhNvP2A?ct=application/x-tar#/xgif/Makefile> at:pathObject <file:///xgif/Makefile>;
+                                                                          nie:interpretedAs <ni:///mh;1QEQckahRwYiacoDeOiSdSlK1Q?ct=text/plain>;
+                                                                          nfo:belongsToContainer <ni:///mh;1QEQD0jlFZybW40L9lgBhNvP2A?ct=application/x-tar#/xgif/>;
+                                                                          nfo:fileLastModified "1992-07-29T00:34:12.000000+02:00"^^xsd:dateTime;
+                                                                          nfo:fileName "Makefile";
+                                                                          nfo:fileSize 7275 ;
+                                                                          a nfo:FileDataObject,
+                                                                            nfo:ArchiveItem;
+                                                                          skos:prefLabel "/xgif/Makefile".
+<ni:///mh;1QEQD0jlFZybW40L9lgBhNvP2A?ct=application/x-tar#/xgif/README> at:pathObject <file:///xgif/README>;
+                                                                        nie:interpretedAs <ni:///mh;1QEQPidM-d-Jd49RpwJR0AHnPQ?ct=text/plain>;
+                                                                        nfo:belongsToContainer <ni:///mh;1QEQD0jlFZybW40L9lgBhNvP2A?ct=application/x-tar#/xgif/>;
+                                                                        nfo:fileLastModified "1992-07-29T00:34:12.000000+02:00"^^xsd:dateTime;
+                                                                        nfo:fileName "README";
+                                                                        nfo:fileSize 817 ;
+                                                                        a nfo:FileDataObject,
+                                                                          nfo:ArchiveItem;
+                                                                        skos:prefLabel "/xgif/README".
+<ni:///mh;1QEQD0jlFZybW40L9lgBhNvP2A?ct=application/x-tar#/xgif/patch1> at:pathObject <file:///xgif/patch1>;
+                                                                        nie:interpretedAs <ni:///mh;1QEQExw3MueFEBjT0UQQwM1_6w?ct=text/plain>;
+                                                                        nfo:belongsToContainer <ni:///mh;1QEQD0jlFZybW40L9lgBhNvP2A?ct=application/x-tar#/xgif/>;
+                                                                        nfo:fileLastModified "1992-07-29T00:34:12.000000+02:00"^^xsd:dateTime;
+                                                                        nfo:fileName "patch1";
+                                                                        nfo:fileSize 16234 ;
+                                                                        a nfo:FileDataObject,
+                                                                          nfo:ArchiveItem;
+                                                                        skos:prefLabel "/xgif/patch1".
+<ni:///mh;1QEQD0jlFZybW40L9lgBhNvP2A?ct=application/x-tar#/xgif/patchlevel.h> at:pathObject <file:///xgif/patchlevel.h>;
+                                                                              nie:interpretedAs <data:,%23define%20PATCHLEVEL%202%0A>;
+                                                                              nfo:belongsToContainer <ni:///mh;1QEQD0jlFZybW40L9lgBhNvP2A?ct=application/x-tar#/xgif/>;
+                                                                              nfo:fileLastModified "1992-07-29T00:34:12.000000+02:00"^^xsd:dateTime;
+                                                                              nfo:fileName "patchlevel.h";
+                                                                              nfo:fileSize 21 ;
+                                                                              a nfo:FileDataObject,
+                                                                                nfo:ArchiveItem;
+                                                                              skos:prefLabel "/xgif/patchlevel.h".
+<ni:///mh;1QEQD0jlFZybW40L9lgBhNvP2A?ct=application/x-tar#/xgif/xgif.c> at:pathObject <file:///xgif/xgif.c>;
+                                                                        nie:interpretedAs <ni:///mh;1QEQhWizv5l8RGCxHggJLoC0fg?ct=text/plain>;
+                                                                        nfo:belongsToContainer <ni:///mh;1QEQD0jlFZybW40L9lgBhNvP2A?ct=application/x-tar#/xgif/>;
+                                                                        nfo:fileLastModified "1992-07-29T00:34:12.000000+02:00"^^xsd:dateTime;
+                                                                        nfo:fileName "xgif.c";
+                                                                        nfo:fileSize 8705 ;
+                                                                        a nfo:FileDataObject,
+                                                                          nfo:ArchiveItem;
+                                                                        skos:prefLabel "/xgif/xgif.c".
+<ni:///mh;1QEQD0jlFZybW40L9lgBhNvP2A?ct=application/x-tar#/xgif/xgif.h> at:pathObject <file:///xgif/xgif.h>;
+                                                                        nie:interpretedAs <ni:///mh;1QEQRMv6w-_yikM4VfnN-TIX0w?ct=text/plain>;
+                                                                        nfo:belongsToContainer <ni:///mh;1QEQD0jlFZybW40L9lgBhNvP2A?ct=application/x-tar#/xgif/>;
+                                                                        nfo:fileLastModified "1992-07-29T00:34:12.000000+02:00"^^xsd:dateTime;
+                                                                        nfo:fileName "xgif.h";
+                                                                        nfo:fileSize 1025 ;
+                                                                        a nfo:FileDataObject,
+                                                                          nfo:ArchiveItem;
+                                                                        skos:prefLabel "/xgif/xgif.h".
+<ni:///mh;1QEQD0jlFZybW40L9lgBhNvP2A?ct=application/x-tar#/xgif/xgif.man> at:pathObject <file:///xgif/xgif.man>;
+                                                                          nie:interpretedAs <ni:///mh;1QEQ8eVQ0vmjgOL6i1WEWJSH0w?ct=text/plain>;
+                                                                          nfo:belongsToContainer <ni:///mh;1QEQD0jlFZybW40L9lgBhNvP2A?ct=application/x-tar#/xgif/>;
+                                                                          nfo:fileLastModified "1992-07-29T00:34:12.000000+02:00"^^xsd:dateTime;
+                                                                          nfo:fileName "xgif.man";
+                                                                          nfo:fileSize 4487 ;
+                                                                          a nfo:FileDataObject,
+                                                                            nfo:ArchiveItem;
+                                                                          skos:prefLabel "/xgif/xgif.man".
+<ni:///mh;1QEQD0jlFZybW40L9lgBhNvP2A?ct=application/x-tar#/xgif/xgifload.c> at:pathObject <file:///xgif/xgifload.c>;
+                                                                            nie:interpretedAs <ni:///mh;1QEQr0DRonQt88dgNvBGPJaaQg?ct=text/plain>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQD0jlFZybW40L9lgBhNvP2A?ct=application/x-tar#/xgif/>;
+                                                                            nfo:fileLastModified "1992-07-29T00:34:13.000000+02:00"^^xsd:dateTime;
+                                                                            nfo:fileName "xgifload.c";
+                                                                            nfo:fileSize 15199 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/xgif/xgifload.c".
+<ni:///mh;1QEQExw3MueFEBjT0UQQwM1_6w?ct=text/plain> at:digest <urn:md5:131C3732E7851018D3D14410C0CD7FEB>;
+                                                    dcterms:extent "16234"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQExw3MueFEBjT0UQQwM1_6w?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (15.85 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQExw3MueFEBjT0UQQwM1_6w?ct=text/plain#line=,1> rdf:value "Path: uunet!wyse!mikew".
+<ni:///mh;1QEQOeVThu2lpSnP5OSzF3cS1Q?ct=text/plain> at:digest <urn:md5:39E55386EDA5A529CFE4E4B3177712D5>;
+                                                    dcterms:extent "119"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQOeVThu2lpSnP5OSzF3cS1Q?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (119 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQOeVThu2lpSnP5OSzF3cS1Q?ct=text/plain#line=,1> rdf:value "LOCAL_LIBRARIES = $(XLIB)".
+<ni:///mh;1QEQPidM-d-Jd49RpwJR0AHnPQ?ct=text/plain> at:digest <urn:md5:3E274CF9DF89778F51A70251D001E73D>;
+                                                    dcterms:extent "817"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQPidM-d-Jd49RpwJR0AHnPQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (817 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQPidM-d-Jd49RpwJR0AHnPQ?ct=text/plain#line=,1> rdf:value "xgif is a program that displays GIF images on an 8-plane X11 display.  The".
+<ni:///mh;1QEQRMv6w-_yikM4VfnN-TIX0w?ct=text/plain> at:digest <urn:md5:44CBFAC3EFF28A433855F9CDF93217D3>;
+                                                    dcterms:extent "1025"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQRMv6w-_yikM4VfnN-TIX0w?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQRMv6w-_yikM4VfnN-TIX0w?ct=text/plain#line=,1> rdf:value "/*".
+<ni:///mh;1QEQckahRwYiacoDeOiSdSlK1Q?ct=text/plain> at:digest <urn:md5:7246A147062269CA0378E89275294AD5>;
+                                                    dcterms:extent "7275"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQckahRwYiacoDeOiSdSlK1Q?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (7.1 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQckahRwYiacoDeOiSdSlK1Q?ct=text/plain#line=,1> rdf:value "# Makefile generated by imake - do not edit!".
+<ni:///mh;1QEQhWizv5l8RGCxHggJLoC0fg?ct=text/plain> at:digest <urn:md5:8568B3BF997C4460B11E08092E80B47E>;
+                                                    dcterms:extent "8705"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQhWizv5l8RGCxHggJLoC0fg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (8.5 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQhWizv5l8RGCxHggJLoC0fg?ct=text/plain#line=,1> rdf:value "/*".
+<ni:///mh;1QEQr0DRonQt88dgNvBGPJaaQg?ct=text/plain> at:digest <urn:md5:AF40D1A2742DF3C76036F0463C969A42>;
+                                                    dcterms:extent "15199"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQr0DRonQt88dgNvBGPJaaQg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (14.84 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQr0DRonQt88dgNvBGPJaaQg?ct=text/plain#line=,1> rdf:value "/*".
+<urn:md5:0F48E5159C9B5B8D0BF6580184DBCFD8> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "D0jlFZybW40L9lgBhNvP2A=="^^xsd:base64Binary.
+<urn:md5:131C3732E7851018D3D14410C0CD7FEB> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "Exw3MueFEBjT0UQQwM1/6w=="^^xsd:base64Binary.
+<urn:md5:39E55386EDA5A529CFE4E4B3177712D5> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "OeVThu2lpSnP5OSzF3cS1Q=="^^xsd:base64Binary.
+<urn:md5:3E274CF9DF89778F51A70251D001E73D> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "PidM+d+Jd49RpwJR0AHnPQ=="^^xsd:base64Binary.
+<urn:md5:44CBFAC3EFF28A433855F9CDF93217D3> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "RMv6w+/yikM4VfnN+TIX0w=="^^xsd:base64Binary.
+<urn:md5:7246A147062269CA0378E89275294AD5> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "ckahRwYiacoDeOiSdSlK1Q=="^^xsd:base64Binary.
+<urn:md5:8568B3BF997C4460B11E08092E80B47E> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "hWizv5l8RGCxHggJLoC0fg=="^^xsd:base64Binary.
+<urn:md5:AF40D1A2742DF3C76036F0463C969A42> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "r0DRonQt88dgNvBGPJaaQg=="^^xsd:base64Binary.
+<urn:md5:EE3670B5728DE0ECA3CD6ADB1CDD4D32> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "7jZwtXKN4OyjzWrbHN1NMg=="^^xsd:base64Binary.
+<urn:md5:F1E550D2F9A380E2FA8B5584589487D3> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "8eVQ0vmjgOL6i1WEWJSH0w=="^^xsd:base64Binary.

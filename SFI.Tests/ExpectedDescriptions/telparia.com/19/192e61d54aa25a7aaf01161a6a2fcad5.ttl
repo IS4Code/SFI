@@ -1,0 +1,48 @@
+@base <ni:///mh;1QEQBXJbiXFCEvL0h_ckXOdIBg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///USRGUIDE.WR_>;
+     nie:interpretedAs <ni:///mh;1QEQBXJbiXFCEvL0h_ckXOdIBg?ct=application/octet-stream>;
+     nfo:fileName "USRGUIDE.WR_";
+     nfo:fileSize 109938 ;
+     a nfo:FileDataObject.
+<file:///USRGUIDE.WR_> at:extensionObject <https://w3id.org/uri4uri/suffix/wr_>.
+<ni:///mh;1QEQBXJbiXFCEvL0h_ckXOdIBg?ct=application/octet-stream> at:digest <urn:md5:05725B89714212F2F487F7245CE74806>;
+                                                                  dcterms:extent "109938"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQBXJbiXFCEvL0h_ckXOdIBg?ct=application/x-ms-compress-szdd>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (107.36 KiB)"@en.
+<ni:///mh;1QEQBXJbiXFCEvL0h_ckXOdIBg?ct=application/x-ms-compress-szdd> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ms-compress-szdd>;
+                                                                        a schema:MediaObject,
+                                                                          nfo:Archive;
+                                                                        skos:prefLabel "SZ object (107.36 KiB)"@en.
+<ni:///mh;1QEQBXJbiXFCEvL0h_ckXOdIBg?ct=application/x-ms-compress-szdd#/i> at:pathObject <file:///i>;
+                                                                           nie:interpretedAs <ni:///mh;1QEQUKqx5W4Bcvdx2Y1W04uMDw?ct=application/octet-stream>;
+                                                                           nfo:belongsToContainer <ni:///mh;1QEQBXJbiXFCEvL0h_ckXOdIBg?ct=application/x-ms-compress-szdd>;
+                                                                           nfo:fileName "i";
+                                                                           nfo:fileSize 369152 ;
+                                                                           a nfo:FileDataObject,
+                                                                             nfo:ArchiveItem;
+                                                                           skos:prefLabel "/i".
+<ni:///mh;1QEQUKqx5W4Bcvdx2Y1W04uMDw?ct=application/octet-stream> at:digest <urn:md5:50AAB1E56E0172F771D98D56D38B8C0F>;
+                                                                  dcterms:extent "369152"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (360.5 KiB)"@en.
+<urn:md5:05725B89714212F2F487F7245CE74806> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "BXJbiXFCEvL0h/ckXOdIBg=="^^xsd:base64Binary.
+<urn:md5:50AAB1E56E0172F771D98D56D38B8C0F> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "UKqx5W4Bcvdx2Y1W04uMDw=="^^xsd:base64Binary.

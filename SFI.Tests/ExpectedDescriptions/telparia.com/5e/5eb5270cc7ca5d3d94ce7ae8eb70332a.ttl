@@ -1,0 +1,60 @@
+@base <ni:///mh;1QEQNXZBm9Aj9YjX_lUQbsf0Zg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///ccitt_4.tif>;
+     nie:interpretedAs <ni:///mh;1QEQNXZBm9Aj9YjX_lUQbsf0Zg?ct=application/octet-stream>;
+     nfo:fileName "ccitt_4.tif";
+     nfo:fileSize 69554 ;
+     a nfo:FileDataObject.
+<file:///ccitt_4.tif> at:extensionObject <https://w3id.org/uri4uri/suffix/tif>.
+<ni:///mh;1QEQNXZBm9Aj9YjX_lUQbsf0Zg?ct=application/octet-stream> at:digest <urn:md5:3576419BD023F588D7FE55106EC7F466>;
+                                                                  dcterms:extent "69554"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQNXZBm9Aj9YjX_lUQbsf0Zg?ct=image/tiff>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (67.92 KiB)"@en.
+<ni:///mh;1QEQNXZBm9Aj9YjX_lUQbsf0Zg?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
+                                                    nfo:bitDepth 1 ;
+                                                    nfo:height 2376 ;
+                                                    nfo:horizontalResolution 200 ;
+                                                    nfo:paletteSize 2 ;
+                                                    nfo:verticalResolution 200 ;
+                                                    nfo:width 1728 ;
+                                                    <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#comments> "converted PBM file";
+                                                    a schema:MediaObject,
+                                                      nfo:Image,
+                                                      exif:IFD,
+                                                      schema:ImageObject;
+                                                    exif:bitsPerSample 1 ;
+                                                    exif:compression 4 ;
+                                                    exif:imageDescription "converted PBM file"^^xsd:string;
+                                                    exif:imageLength 2376 ;
+                                                    exif:imageWidth 1728 ;
+                                                    exif:orientation 1 ;
+                                                    exif:photometricInterpretation 0 ;
+                                                    exif:planarConfiguration 1 ;
+                                                    exif:resolutionUnit 2 ;
+                                                    exif:rowsPerStrip 2376 ;
+                                                    exif:samplesPerPixel 1 ;
+                                                    exif:stripByteCounts 69284 ;
+                                                    exif:stripOffsets 8 ;
+                                                    exif:xResolution 200 ;
+                                                    exif:yResolution 200 ;
+                                                    skos:prefLabel "TIFF object (1728×2376, 1-bit)"@en,
+                                                                   "TIFF object (1728×2376)"@en,
+                                                                   "TIF object (67.92 KiB)"@en.
+<urn:md5:3576419BD023F588D7FE55106EC7F466> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "NXZBm9Aj9YjX/lUQbsf0Zg=="^^xsd:base64Binary.

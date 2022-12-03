@@ -1,0 +1,923 @@
+@base <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+
+_:n1 at:pathObject <file:///ttywatcher-1_0a_tar>;
+     nie:interpretedAs <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/octet-stream>;
+     nfo:fileName "ttywatcher-1_0a_tar";
+     nfo:fileSize 180224 ;
+     a nfo:FileDataObject.
+<data:,%2Fsec%2FCVS%0A> dcterms:extent "9"^^dt:byte;
+                        a cnt:ContentAsText;
+                        skos:prefLabel "text (9 B)"@en;
+                        cnt:characterEncoding "us-ascii";
+                        cnt:chars """/sec/CVS
+"""^^xsd:string.
+<data:,%2Fsec%2FCVS%2Fttywatcher%0A> dcterms:extent "20"^^dt:byte;
+                                     a cnt:ContentAsText;
+                                     skos:prefLabel "text (20 B)"@en;
+                                     cnt:characterEncoding "us-ascii";
+                                     cnt:chars """/sec/CVS/ttywatcher
+"""^^xsd:string.
+<data:,%2Fsec%2FCVS%2Fttywatcher%2Ftwtch%0A> dcterms:extent "26"^^dt:byte;
+                                             a cnt:ContentAsText;
+                                             skos:prefLabel "text (26 B)"@en;
+                                             cnt:characterEncoding "us-ascii";
+                                             cnt:chars """/sec/CVS/ttywatcher/twtch
+"""^^xsd:string.
+<data:application/octet-stream,> dcterms:extent "0"^^dt:byte;
+                                 a cnt:ContentAsBase64;
+                                 skos:prefLabel "binary data (0 B)"@en;
+                                 cnt:bytes ""^^xsd:base64Binary.
+<file:///CVS/> at:pathObject <file:///>.
+<file:///CVS/Entries> at:pathObject <file:///Entries>.
+<file:///CVS/Repository> at:pathObject <file:///Repository>.
+<file:///CVS/Root> at:pathObject <file:///Root>.
+<file:///Makefile.solaris> at:extensionObject <https://w3id.org/uri4uri/suffix/solaris>.
+<file:///README.xview> at:extensionObject <https://w3id.org/uri4uri/suffix/xview>.
+<file:///common.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///curses.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///driver4x.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///driver5x.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///hash.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///init.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///main.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///module4x.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///module5x.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///mon.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///readpacket.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///sendpacket.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///ses_packet.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<file:///streams.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///ttywatcher.8> at:extensionObject <https://w3id.org/uri4uri/suffix/8>.
+<file:///ttywatcher/> at:pathObject <file:///>.
+<file:///ttywatcher/ANNOUNCE> at:pathObject <file:///ANNOUNCE>.
+<file:///ttywatcher/COPYRIGHT> at:pathObject <file:///COPYRIGHT>.
+<file:///ttywatcher/CVS> at:pathObject <file:///CVS>.
+<file:///ttywatcher/CVS/> at:pathObject <file:///CVS/>.
+<file:///ttywatcher/CVS/Entries> at:pathObject <file:///CVS/Entries>.
+<file:///ttywatcher/CVS/Repository> at:pathObject <file:///CVS/Repository>.
+<file:///ttywatcher/CVS/Root> at:pathObject <file:///CVS/Root>.
+<file:///ttywatcher/Makefile> at:pathObject <file:///Makefile>.
+<file:///ttywatcher/Makefile.solaris> at:pathObject <file:///Makefile.solaris>.
+<file:///ttywatcher/README> at:pathObject <file:///README>.
+<file:///ttywatcher/README.xview> at:pathObject <file:///README.xview>.
+<file:///ttywatcher/TODO> at:pathObject <file:///TODO>.
+<file:///ttywatcher/common.c> at:pathObject <file:///common.c>.
+<file:///ttywatcher/curses.c> at:pathObject <file:///curses.c>.
+<file:///ttywatcher/hash.c> at:pathObject <file:///hash.c>.
+<file:///ttywatcher/init.c> at:pathObject <file:///init.c>.
+<file:///ttywatcher/main.c> at:pathObject <file:///main.c>.
+<file:///ttywatcher/readpacket.c> at:pathObject <file:///readpacket.c>.
+<file:///ttywatcher/sendpacket.c> at:pathObject <file:///sendpacket.c>.
+<file:///ttywatcher/ses_packet.h> at:pathObject <file:///ses_packet.h>.
+<file:///ttywatcher/ttywatcher.8> at:pathObject <file:///ttywatcher.8>.
+<file:///ttywatcher/twtch> at:pathObject <file:///twtch>.
+<file:///ttywatcher/twtch/> at:pathObject <file:///twtch/>.
+<file:///ttywatcher/twtch/CVS> at:pathObject <file:///twtch/CVS>.
+<file:///ttywatcher/twtch/CVS/> at:pathObject <file:///twtch/CVS/>.
+<file:///ttywatcher/twtch/CVS/Entries> at:pathObject <file:///twtch/CVS/Entries>.
+<file:///ttywatcher/twtch/CVS/Repository> at:pathObject <file:///twtch/CVS/Repository>.
+<file:///ttywatcher/twtch/CVS/Root> at:pathObject <file:///twtch/CVS/Root>.
+<file:///ttywatcher/twtch/Makefile> at:pathObject <file:///twtch/Makefile>.
+<file:///ttywatcher/twtch/Makefile.solaris> at:pathObject <file:///twtch/Makefile.solaris>.
+<file:///ttywatcher/twtch/README> at:pathObject <file:///twtch/README>.
+<file:///ttywatcher/twtch/driver4x.c> at:pathObject <file:///twtch/driver4x.c>.
+<file:///ttywatcher/twtch/driver5x.c> at:pathObject <file:///twtch/driver5x.c>.
+<file:///ttywatcher/twtch/install_driver> at:pathObject <file:///twtch/install_driver>.
+<file:///ttywatcher/twtch/load4x> at:pathObject <file:///twtch/load4x>.
+<file:///ttywatcher/twtch/load5x> at:pathObject <file:///twtch/load5x>.
+<file:///ttywatcher/twtch/module4x.c> at:pathObject <file:///twtch/module4x.c>.
+<file:///ttywatcher/twtch/module5x.c> at:pathObject <file:///twtch/module5x.c>.
+<file:///ttywatcher/twtch/mon.c> at:pathObject <file:///twtch/mon.c>.
+<file:///ttywatcher/twtch/popall> at:pathObject <file:///twtch/popall>.
+<file:///ttywatcher/twtch/streams.c> at:pathObject <file:///twtch/streams.c>.
+<file:///ttywatcher/twtch/twtch.h> at:pathObject <file:///twtch/twtch.h>.
+<file:///ttywatcher/twtch/twtchc.conf> at:pathObject <file:///twtch/twtchc.conf>.
+<file:///ttywatcher/twtch/unload> at:pathObject <file:///twtch/unload>.
+<file:///ttywatcher/xview.c> at:pathObject <file:///xview.c>.
+<file:///twtch.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<file:///twtch/> at:pathObject <file:///>.
+<file:///twtch/CVS> at:pathObject <file:///CVS>.
+<file:///twtch/CVS/> at:pathObject <file:///CVS/>.
+<file:///twtch/CVS/Entries> at:pathObject <file:///CVS/Entries>.
+<file:///twtch/CVS/Repository> at:pathObject <file:///CVS/Repository>.
+<file:///twtch/CVS/Root> at:pathObject <file:///CVS/Root>.
+<file:///twtch/Makefile> at:pathObject <file:///Makefile>.
+<file:///twtch/Makefile.solaris> at:pathObject <file:///Makefile.solaris>.
+<file:///twtch/README> at:pathObject <file:///README>.
+<file:///twtch/driver4x.c> at:pathObject <file:///driver4x.c>.
+<file:///twtch/driver5x.c> at:pathObject <file:///driver5x.c>.
+<file:///twtch/install_driver> at:pathObject <file:///install_driver>.
+<file:///twtch/load4x> at:pathObject <file:///load4x>.
+<file:///twtch/load5x> at:pathObject <file:///load5x>.
+<file:///twtch/module4x.c> at:pathObject <file:///module4x.c>.
+<file:///twtch/module5x.c> at:pathObject <file:///module5x.c>.
+<file:///twtch/mon.c> at:pathObject <file:///mon.c>.
+<file:///twtch/popall> at:pathObject <file:///popall>.
+<file:///twtch/streams.c> at:pathObject <file:///streams.c>.
+<file:///twtch/twtch.h> at:pathObject <file:///twtch.h>.
+<file:///twtch/twtchc.conf> at:pathObject <file:///twtchc.conf>.
+<file:///twtch/unload> at:pathObject <file:///unload>.
+<file:///twtchc.conf> at:extensionObject <https://w3id.org/uri4uri/suffix/conf>.
+<file:///xview.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<ni:///mh;1QEQ-UayP0RF31N8gv8pe1h3zg?ct=text/plain> at:digest <urn:md5:F946B23F4445DF537C82FF297B5877CE>;
+                                                    dcterms:extent "171"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQ-UayP0RF31N8gv8pe1h3zg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (171 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQ-UayP0RF31N8gv8pe1h3zg?ct=text/plain#line=,1> rdf:value "#! /bin/sh".
+<ni:///mh;1QEQ421yO45XyXbnlLfHhU177A?ct=application/x.exec.sh> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.exec.sh>;
+                                                               a schema:MediaObject;
+                                                               skos:prefLabel "SH object (1.42 KiB)"@en.
+<ni:///mh;1QEQ421yO45XyXbnlLfHhU177A?ct=text/plain> at:digest <urn:md5:E36D723B8E57C976E794B7C7854D7BEC>;
+                                                    dcterms:extent "1451"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ421yO45XyXbnlLfHhU177A?ct=application/x.exec.sh>;
+                                                    nie:hasPart <ni:///mh;1QEQ421yO45XyXbnlLfHhU177A?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.42 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQ421yO45XyXbnlLfHhU177A?ct=text/plain#line=,1> rdf:value "#!/bin/sh".
+<ni:///mh;1QEQ4XimScAIQjxBjHBctM2nUA?ct=text/plain> at:digest <urn:md5:E178A649C008423C418C705CB4CDA750>;
+                                                    dcterms:extent "17555"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQ4XimScAIQjxBjHBctM2nUA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (17.14 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQ4XimScAIQjxBjHBctM2nUA?ct=text/plain#line=,1> rdf:value "/* Common interrupt GUI handlers for xview, motif, etc. */".
+<ni:///mh;1QEQ4ZvQvLVxDdPK6IfAVFCYNg?ct=text/plain> at:digest <urn:md5:E19BD0BCB5710DD3CAE887C054509836>;
+                                                    dcterms:extent "83"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQ4ZvQvLVxDdPK6IfAVFCYNg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (83 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQ4ZvQvLVxDdPK6IfAVFCYNg?ct=text/plain#line=,1> rdf:value "#! /bin/sh".
+<ni:///mh;1QEQ5S8zvx970ZFr1sktDi_fGg?ct=text/plain> at:digest <urn:md5:E52F33BF1F7BD1916BD6C92D0E2FDF1A>;
+                                                    dcterms:extent "251"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQ5S8zvx970ZFr1sktDi_fGg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (251 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQ5S8zvx970ZFr1sktDi_fGg?ct=text/plain#line=,1> rdf:value "# TWTCH Makefile for Solaris 2.x (Sunos 5.x)".
+<ni:///mh;1QEQ7PlajV7crahVDt-lbHADzg?ct=text/plain> at:digest <urn:md5:ECF95A8D5EDCADA8550EDFA56C7003CE>;
+                                                    dcterms:extent "124"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQ7PlajV7crahVDt-lbHADzg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (124 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQ7PlajV7crahVDt-lbHADzg?ct=text/plain#line=,1> rdf:value "#! /bin/sh".
+<ni:///mh;1QEQE-qacKLwFQZwbEKKv6-c3A?ct=text/plain> at:digest <urn:md5:13EA9A70A2F01506706C428ABFAF9CDC>;
+                                                    dcterms:extent "8207"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQE-qacKLwFQZwbEKKv6-c3A?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (8.01 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQE-qacKLwFQZwbEKKv6-c3A?ct=text/plain#line=,1> rdf:value "/* Loadable STREAMS device driver and module for Solaris */".
+<ni:///mh;1QEQIFj7y-Ll2Q8mAFPojpJyRg?ct=application/x.exec.sh> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.exec.sh>;
+                                                               a schema:MediaObject;
+                                                               skos:prefLabel "SH object (91 B)"@en.
+<ni:///mh;1QEQIFj7y-Ll2Q8mAFPojpJyRg?ct=text/plain> at:digest <urn:md5:2058FBCBE2E5D90F260053E88E927246>;
+                                                    dcterms:extent "91"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQIFj7y-Ll2Q8mAFPojpJyRg?ct=application/x.exec.sh>;
+                                                    nie:hasPart <ni:///mh;1QEQIFj7y-Ll2Q8mAFPojpJyRg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (91 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQIFj7y-Ll2Q8mAFPojpJyRg?ct=text/plain#line=,1> rdf:value "#!/bin/sh".
+<ni:///mh;1QEQKa4vsnOTudLSra4p4hrqcQ?ct=text/plain> at:digest <urn:md5:29AE2FB27393B9D2D2ADAE29E21AEA71>;
+                                                    dcterms:extent "730"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQKa4vsnOTudLSra4p4hrqcQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (730 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQKa4vsnOTudLSra4p4hrqcQ?ct=text/plain#line=,1> rdf:value "/COPYRIGHT/1.1.1.1/Mon Jun 12 17:38:19 1995//".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/octet-stream> at:digest <urn:md5:2ABE3F4049BE1F0CB5D9FE097893E07B>;
+                                                                  dcterms:extent "180224"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (176 KiB)"@en.
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-tar>;
+                                                           a schema:MediaObject,
+                                                             nfo:Archive;
+                                                           skos:prefLabel "TAR object (176 KiB)"@en.
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher> at:pathObject <file:///ttywatcher>;
+                                                                       nie:interpretedAs <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar>;
+                                                                       nfo:fileName "ttywatcher";
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/ttywatcher".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/> at:pathObject <file:///ttywatcher/>;
+                                                                        nie:interpretedAs <data:application/octet-stream,>;
+                                                                        nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/>;
+                                                                        nfo:fileLastModified "1995-06-23T01:29:47.000000+02:00"^^xsd:dateTime;
+                                                                        nfo:fileName "";
+                                                                        nfo:fileSize 0 ;
+                                                                        a nfo:FileDataObject,
+                                                                          nfo:ArchiveItem,
+                                                                          nfo:Folder;
+                                                                        skos:prefLabel "/ttywatcher/".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/ANNOUNCE> at:pathObject <file:///ttywatcher/ANNOUNCE>;
+                                                                                nie:interpretedAs <ni:///mh;1QEQuFdndA64CwcFSaMKsmuzjA?ct=text/plain>;
+                                                                                nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/>;
+                                                                                nfo:fileLastModified "1995-06-22T15:39:26.000000+02:00"^^xsd:dateTime;
+                                                                                nfo:fileName "ANNOUNCE";
+                                                                                nfo:fileSize 3258 ;
+                                                                                a nfo:FileDataObject,
+                                                                                  nfo:ArchiveItem;
+                                                                                skos:prefLabel "/ttywatcher/ANNOUNCE".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/COPYRIGHT> at:pathObject <file:///ttywatcher/COPYRIGHT>;
+                                                                                 nie:interpretedAs <ni:///mh;1QEQhTlV6J3M4k7lrUDrSFWbeQ?ct=text/plain>;
+                                                                                 nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/>;
+                                                                                 nfo:fileLastModified "1995-06-12T19:38:19.000000+02:00"^^xsd:dateTime;
+                                                                                 nfo:fileName "COPYRIGHT";
+                                                                                 nfo:fileSize 862 ;
+                                                                                 a nfo:FileDataObject,
+                                                                                   nfo:ArchiveItem;
+                                                                                 skos:prefLabel "/ttywatcher/COPYRIGHT".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/CVS> at:pathObject <file:///ttywatcher/CVS>;
+                                                                           nie:interpretedAs <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/CVS/>;
+                                                                           nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/>;
+                                                                           nfo:fileName "CVS";
+                                                                           a nfo:FileDataObject,
+                                                                             nfo:ArchiveItem;
+                                                                           skos:prefLabel "/ttywatcher/CVS".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/CVS/> at:pathObject <file:///ttywatcher/CVS/>;
+                                                                            nie:interpretedAs <data:application/octet-stream,>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/CVS/>;
+                                                                            nfo:fileLastModified "1995-06-23T00:46:55.000000+02:00"^^xsd:dateTime;
+                                                                            nfo:fileName "";
+                                                                            nfo:fileSize 0 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem,
+                                                                              nfo:Folder;
+                                                                            skos:prefLabel "/ttywatcher/CVS/".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/CVS/Entries> at:pathObject <file:///ttywatcher/CVS/Entries>;
+                                                                                   nie:interpretedAs <ni:///mh;1QEQKa4vsnOTudLSra4p4hrqcQ?ct=text/plain>;
+                                                                                   nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/CVS/>;
+                                                                                   nfo:fileLastModified "1995-06-23T00:46:55.000000+02:00"^^xsd:dateTime;
+                                                                                   nfo:fileName "Entries";
+                                                                                   nfo:fileSize 730 ;
+                                                                                   a nfo:FileDataObject,
+                                                                                     nfo:ArchiveItem;
+                                                                                   skos:prefLabel "/ttywatcher/CVS/Entries".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/CVS/Repository> at:pathObject <file:///ttywatcher/CVS/Repository>;
+                                                                                      nie:interpretedAs <data:,%2Fsec%2FCVS%2Fttywatcher%0A>;
+                                                                                      nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/CVS/>;
+                                                                                      nfo:fileLastModified "1995-06-12T19:39:29.000000+02:00"^^xsd:dateTime;
+                                                                                      nfo:fileName "Repository";
+                                                                                      nfo:fileSize 20 ;
+                                                                                      a nfo:FileDataObject,
+                                                                                        nfo:ArchiveItem;
+                                                                                      skos:prefLabel "/ttywatcher/CVS/Repository".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/CVS/Root> at:pathObject <file:///ttywatcher/CVS/Root>;
+                                                                                nie:interpretedAs <data:,%2Fsec%2FCVS%0A>;
+                                                                                nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/CVS/>;
+                                                                                nfo:fileLastModified "1995-06-12T19:39:29.000000+02:00"^^xsd:dateTime;
+                                                                                nfo:fileName "Root";
+                                                                                nfo:fileSize 9 ;
+                                                                                a nfo:FileDataObject,
+                                                                                  nfo:ArchiveItem;
+                                                                                skos:prefLabel "/ttywatcher/CVS/Root".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/Makefile> at:pathObject <file:///ttywatcher/Makefile>;
+                                                                                nie:interpretedAs <ni:///mh;1QEQsugdhVRX7v_oYqDuhOrGCA?ct=text/plain>;
+                                                                                nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/>;
+                                                                                nfo:fileLastModified "1995-06-14T21:49:46.000000+02:00"^^xsd:dateTime;
+                                                                                nfo:fileName "Makefile";
+                                                                                nfo:fileSize 1423 ;
+                                                                                a nfo:FileDataObject,
+                                                                                  nfo:ArchiveItem;
+                                                                                skos:prefLabel "/ttywatcher/Makefile".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/Makefile.solaris> at:pathObject <file:///ttywatcher/Makefile.solaris>;
+                                                                                        nie:interpretedAs <ni:///mh;1QEQx5A5MmrXLAJqWy3nrnD2Vw?ct=text/plain>;
+                                                                                        nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/>;
+                                                                                        nfo:fileLastModified "1995-06-22T19:39:12.000000+02:00"^^xsd:dateTime;
+                                                                                        nfo:fileName "Makefile.solaris";
+                                                                                        nfo:fileSize 1448 ;
+                                                                                        a nfo:FileDataObject,
+                                                                                          nfo:ArchiveItem;
+                                                                                        skos:prefLabel "/ttywatcher/Makefile.solaris".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/README> at:pathObject <file:///ttywatcher/README>;
+                                                                              nie:interpretedAs <ni:///mh;1QEQqlXX3ManbsDTwjt9VuuSUg?ct=text/plain>;
+                                                                              nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/>;
+                                                                              nfo:fileLastModified "1995-06-22T21:44:29.000000+02:00"^^xsd:dateTime;
+                                                                              nfo:fileName "README";
+                                                                              nfo:fileSize 6846 ;
+                                                                              a nfo:FileDataObject,
+                                                                                nfo:ArchiveItem;
+                                                                              skos:prefLabel "/ttywatcher/README".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/README.xview> at:pathObject <file:///ttywatcher/README.xview>;
+                                                                                    nie:interpretedAs <ni:///mh;1QEQhLReNt5bJso5VYPfV9dUHQ?ct=text/plain>;
+                                                                                    nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/>;
+                                                                                    nfo:fileLastModified "1995-06-13T23:11:40.000000+02:00"^^xsd:dateTime;
+                                                                                    nfo:fileName "README.xview";
+                                                                                    nfo:fileSize 5845 ;
+                                                                                    a nfo:FileDataObject,
+                                                                                      nfo:ArchiveItem;
+                                                                                    skos:prefLabel "/ttywatcher/README.xview".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/TODO> at:pathObject <file:///ttywatcher/TODO>;
+                                                                            nie:interpretedAs <ni:///mh;1QEQoLrcLRKWtPgJ2tA1XB4wyQ?ct=text/plain>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/>;
+                                                                            nfo:fileLastModified "1995-06-14T21:29:58.000000+02:00"^^xsd:dateTime;
+                                                                            nfo:fileName "TODO";
+                                                                            nfo:fileSize 402 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/ttywatcher/TODO".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/common.c> at:pathObject <file:///ttywatcher/common.c>;
+                                                                                nie:interpretedAs <ni:///mh;1QEQ4XimScAIQjxBjHBctM2nUA?ct=text/plain>;
+                                                                                nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/>;
+                                                                                nfo:fileLastModified "1995-06-14T21:35:21.000000+02:00"^^xsd:dateTime;
+                                                                                nfo:fileName "common.c";
+                                                                                nfo:fileSize 17555 ;
+                                                                                a nfo:FileDataObject,
+                                                                                  nfo:ArchiveItem;
+                                                                                skos:prefLabel "/ttywatcher/common.c".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/curses.c> at:pathObject <file:///ttywatcher/curses.c>;
+                                                                                nie:interpretedAs <ni:///mh;1QEQn_vjT65TjQfP3hdm-0wEvQ?ct=text/plain>;
+                                                                                nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/>;
+                                                                                nfo:fileLastModified "1995-06-12T19:38:19.000000+02:00"^^xsd:dateTime;
+                                                                                nfo:fileName "curses.c";
+                                                                                nfo:fileSize 11727 ;
+                                                                                a nfo:FileDataObject,
+                                                                                  nfo:ArchiveItem;
+                                                                                skos:prefLabel "/ttywatcher/curses.c".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/hash.c> at:pathObject <file:///ttywatcher/hash.c>;
+                                                                              nie:interpretedAs <ni:///mh;1QEQjljt2t1zTsAsNccP_gQz6w?ct=text/plain>;
+                                                                              nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/>;
+                                                                              nfo:fileLastModified "1995-06-14T21:29:59.000000+02:00"^^xsd:dateTime;
+                                                                              nfo:fileName "hash.c";
+                                                                              nfo:fileSize 8316 ;
+                                                                              a nfo:FileDataObject,
+                                                                                nfo:ArchiveItem;
+                                                                              skos:prefLabel "/ttywatcher/hash.c".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/init.c> at:pathObject <file:///ttywatcher/init.c>;
+                                                                              nie:interpretedAs <ni:///mh;1QEQr8rLR-oWhNP7CaSrreOAQw?ct=text/plain>;
+                                                                              nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/>;
+                                                                              nfo:fileLastModified "1995-06-12T19:38:19.000000+02:00"^^xsd:dateTime;
+                                                                              nfo:fileName "init.c";
+                                                                              nfo:fileSize 1434 ;
+                                                                              a nfo:FileDataObject,
+                                                                                nfo:ArchiveItem;
+                                                                              skos:prefLabel "/ttywatcher/init.c".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/main.c> at:pathObject <file:///ttywatcher/main.c>;
+                                                                              nie:interpretedAs <ni:///mh;1QEQknYQtrFO2BoOY1ipcB6PRw?ct=text/plain>;
+                                                                              nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/>;
+                                                                              nfo:fileLastModified "1995-06-23T00:46:55.000000+02:00"^^xsd:dateTime;
+                                                                              nfo:fileName "main.c";
+                                                                              nfo:fileSize 8843 ;
+                                                                              a nfo:FileDataObject,
+                                                                                nfo:ArchiveItem;
+                                                                              skos:prefLabel "/ttywatcher/main.c".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/readpacket.c> at:pathObject <file:///ttywatcher/readpacket.c>;
+                                                                                    nie:interpretedAs <ni:///mh;1QEQUaoAO4tvTX-Y8OitjajTUw?ct=text/plain>;
+                                                                                    nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/>;
+                                                                                    nfo:fileLastModified "1995-06-12T19:38:19.000000+02:00"^^xsd:dateTime;
+                                                                                    nfo:fileName "readpacket.c";
+                                                                                    nfo:fileSize 5170 ;
+                                                                                    a nfo:FileDataObject,
+                                                                                      nfo:ArchiveItem;
+                                                                                    skos:prefLabel "/ttywatcher/readpacket.c".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/sendpacket.c> at:pathObject <file:///ttywatcher/sendpacket.c>;
+                                                                                    nie:interpretedAs <ni:///mh;1QEQnkjjssLdoRh4-6Ri4q-Ywg?ct=text/plain>;
+                                                                                    nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/>;
+                                                                                    nfo:fileLastModified "1995-06-14T00:35:09.000000+02:00"^^xsd:dateTime;
+                                                                                    nfo:fileName "sendpacket.c";
+                                                                                    nfo:fileSize 1863 ;
+                                                                                    a nfo:FileDataObject,
+                                                                                      nfo:ArchiveItem;
+                                                                                    skos:prefLabel "/ttywatcher/sendpacket.c".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/ses_packet.h> at:pathObject <file:///ttywatcher/ses_packet.h>;
+                                                                                    nie:interpretedAs <ni:///mh;1QEQe2vugtf7ApKoF5lJVTcSfA?ct=text/plain>;
+                                                                                    nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/>;
+                                                                                    nfo:fileLastModified "1995-06-14T23:01:53.000000+02:00"^^xsd:dateTime;
+                                                                                    nfo:fileName "ses_packet.h";
+                                                                                    nfo:fileSize 2500 ;
+                                                                                    a nfo:FileDataObject,
+                                                                                      nfo:ArchiveItem;
+                                                                                    skos:prefLabel "/ttywatcher/ses_packet.h".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/ttywatcher.8> at:pathObject <file:///ttywatcher/ttywatcher.8>;
+                                                                                    nie:interpretedAs <ni:///mh;1QEQZ4khNXtlcJm8fPg0UcU-IA?ct=text/plain>;
+                                                                                    nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/>;
+                                                                                    nfo:fileLastModified "1995-06-14T00:01:28.000000+02:00"^^xsd:dateTime;
+                                                                                    nfo:fileName "ttywatcher.8";
+                                                                                    nfo:fileSize 12015 ;
+                                                                                    a nfo:FileDataObject,
+                                                                                      nfo:ArchiveItem;
+                                                                                    skos:prefLabel "/ttywatcher/ttywatcher.8".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch> at:pathObject <file:///ttywatcher/twtch>;
+                                                                             nie:interpretedAs <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/>;
+                                                                             nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/>;
+                                                                             nfo:fileName "twtch";
+                                                                             a nfo:FileDataObject,
+                                                                               nfo:ArchiveItem;
+                                                                             skos:prefLabel "/ttywatcher/twtch".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/> at:pathObject <file:///ttywatcher/twtch/>;
+                                                                              nie:interpretedAs <data:application/octet-stream,>;
+                                                                              nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/>;
+                                                                              nfo:fileLastModified "1995-06-23T01:29:45.000000+02:00"^^xsd:dateTime;
+                                                                              nfo:fileName "";
+                                                                              nfo:fileSize 0 ;
+                                                                              a nfo:FileDataObject,
+                                                                                nfo:ArchiveItem,
+                                                                                nfo:Folder;
+                                                                              skos:prefLabel "/ttywatcher/twtch/".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/CVS> at:pathObject <file:///ttywatcher/twtch/CVS>;
+                                                                                 nie:interpretedAs <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/CVS/>;
+                                                                                 nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/>;
+                                                                                 nfo:fileName "CVS";
+                                                                                 a nfo:FileDataObject,
+                                                                                   nfo:ArchiveItem;
+                                                                                 skos:prefLabel "/ttywatcher/twtch/CVS".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/CVS/> at:pathObject <file:///ttywatcher/twtch/CVS/>;
+                                                                                  nie:interpretedAs <data:application/octet-stream,>;
+                                                                                  nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/CVS/>;
+                                                                                  nfo:fileLastModified "1995-06-23T01:26:55.000000+02:00"^^xsd:dateTime;
+                                                                                  nfo:fileName "";
+                                                                                  nfo:fileSize 0 ;
+                                                                                  a nfo:FileDataObject,
+                                                                                    nfo:ArchiveItem,
+                                                                                    nfo:Folder;
+                                                                                  skos:prefLabel "/ttywatcher/twtch/CVS/".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/CVS/Entries> at:pathObject <file:///ttywatcher/twtch/CVS/Entries>;
+                                                                                         nie:interpretedAs <ni:///mh;1QEQxQg1jHhkuKXjUpQSYF1uWQ?ct=text/plain>;
+                                                                                         nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/CVS/>;
+                                                                                         nfo:fileLastModified "1995-06-23T01:26:55.000000+02:00"^^xsd:dateTime;
+                                                                                         nfo:fileName "Entries";
+                                                                                         nfo:fileSize 688 ;
+                                                                                         a nfo:FileDataObject,
+                                                                                           nfo:ArchiveItem;
+                                                                                         skos:prefLabel "/ttywatcher/twtch/CVS/Entries".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/CVS/Repository> at:pathObject <file:///ttywatcher/twtch/CVS/Repository>;
+                                                                                            nie:interpretedAs <data:,%2Fsec%2FCVS%2Fttywatcher%2Ftwtch%0A>;
+                                                                                            nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/CVS/>;
+                                                                                            nfo:fileLastModified "1995-06-12T19:39:32.000000+02:00"^^xsd:dateTime;
+                                                                                            nfo:fileName "Repository";
+                                                                                            nfo:fileSize 26 ;
+                                                                                            a nfo:FileDataObject,
+                                                                                              nfo:ArchiveItem;
+                                                                                            skos:prefLabel "/ttywatcher/twtch/CVS/Repository".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/CVS/Root> at:pathObject <file:///ttywatcher/twtch/CVS/Root>;
+                                                                                      nie:interpretedAs <data:,%2Fsec%2FCVS%0A>;
+                                                                                      nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/CVS/>;
+                                                                                      nfo:fileLastModified "1995-06-12T19:39:32.000000+02:00"^^xsd:dateTime;
+                                                                                      nfo:fileName "Root";
+                                                                                      nfo:fileSize 9 ;
+                                                                                      a nfo:FileDataObject,
+                                                                                        nfo:ArchiveItem;
+                                                                                      skos:prefLabel "/ttywatcher/twtch/CVS/Root".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/Makefile> at:pathObject <file:///ttywatcher/twtch/Makefile>;
+                                                                                      nie:interpretedAs <ni:///mh;1QEQuVpjO0LEZ0sRmbetHeaQBg?ct=text/plain>;
+                                                                                      nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/>;
+                                                                                      nfo:fileLastModified "1995-06-14T21:54:49.000000+02:00"^^xsd:dateTime;
+                                                                                      nfo:fileName "Makefile";
+                                                                                      nfo:fileSize 322 ;
+                                                                                      a nfo:FileDataObject,
+                                                                                        nfo:ArchiveItem;
+                                                                                      skos:prefLabel "/ttywatcher/twtch/Makefile".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/Makefile.solaris> at:pathObject <file:///ttywatcher/twtch/Makefile.solaris>;
+                                                                                              nie:interpretedAs <ni:///mh;1QEQ5S8zvx970ZFr1sktDi_fGg?ct=text/plain>;
+                                                                                              nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/>;
+                                                                                              nfo:fileLastModified "1995-06-22T17:03:17.000000+02:00"^^xsd:dateTime;
+                                                                                              nfo:fileName "Makefile.solaris";
+                                                                                              nfo:fileSize 251 ;
+                                                                                              a nfo:FileDataObject,
+                                                                                                nfo:ArchiveItem;
+                                                                                              skos:prefLabel "/ttywatcher/twtch/Makefile.solaris".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/README> at:pathObject <file:///ttywatcher/twtch/README>;
+                                                                                    nie:interpretedAs <ni:///mh;1QEQigzQflbPttbzpIkbehYH9Q?ct=text/plain>;
+                                                                                    nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/>;
+                                                                                    nfo:fileLastModified "1995-06-22T21:43:43.000000+02:00"^^xsd:dateTime;
+                                                                                    nfo:fileName "README";
+                                                                                    nfo:fileSize 2758 ;
+                                                                                    a nfo:FileDataObject,
+                                                                                      nfo:ArchiveItem;
+                                                                                    skos:prefLabel "/ttywatcher/twtch/README".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/driver4x.c> at:pathObject <file:///ttywatcher/twtch/driver4x.c>;
+                                                                                        nie:interpretedAs <ni:///mh;1QEQUD0HEVghFwxI9May44ZdOA?ct=text/plain>;
+                                                                                        nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/>;
+                                                                                        nfo:fileLastModified "1995-06-23T01:26:43.000000+02:00"^^xsd:dateTime;
+                                                                                        nfo:fileName "driver4x.c";
+                                                                                        nfo:fileSize 6829 ;
+                                                                                        a nfo:FileDataObject,
+                                                                                          nfo:ArchiveItem;
+                                                                                        skos:prefLabel "/ttywatcher/twtch/driver4x.c".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/driver5x.c> at:pathObject <file:///ttywatcher/twtch/driver5x.c>;
+                                                                                        nie:interpretedAs <ni:///mh;1QEQE-qacKLwFQZwbEKKv6-c3A?ct=text/plain>;
+                                                                                        nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/>;
+                                                                                        nfo:fileLastModified "1995-06-22T18:45:41.000000+02:00"^^xsd:dateTime;
+                                                                                        nfo:fileName "driver5x.c";
+                                                                                        nfo:fileSize 8207 ;
+                                                                                        a nfo:FileDataObject,
+                                                                                          nfo:ArchiveItem;
+                                                                                        skos:prefLabel "/ttywatcher/twtch/driver5x.c".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/install_driver> at:pathObject <file:///ttywatcher/twtch/install_driver>;
+                                                                                            nie:interpretedAs <ni:///mh;1QEQ421yO45XyXbnlLfHhU177A?ct=text/plain>;
+                                                                                            nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/>;
+                                                                                            nfo:fileLastModified "1995-06-22T17:03:37.000000+02:00"^^xsd:dateTime;
+                                                                                            nfo:fileName "install_driver";
+                                                                                            nfo:fileSize 1451 ;
+                                                                                            a nfo:FileDataObject,
+                                                                                              nfo:ArchiveItem;
+                                                                                            skos:prefLabel "/ttywatcher/twtch/install_driver".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/load4x> at:pathObject <file:///ttywatcher/twtch/load4x>;
+                                                                                    nie:interpretedAs <ni:///mh;1QEQ7PlajV7crahVDt-lbHADzg?ct=text/plain>;
+                                                                                    nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/>;
+                                                                                    nfo:fileLastModified "1995-06-12T19:38:20.000000+02:00"^^xsd:dateTime;
+                                                                                    nfo:fileName "load4x";
+                                                                                    nfo:fileSize 124 ;
+                                                                                    a nfo:FileDataObject,
+                                                                                      nfo:ArchiveItem;
+                                                                                    skos:prefLabel "/ttywatcher/twtch/load4x".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/load5x> at:pathObject <file:///ttywatcher/twtch/load5x>;
+                                                                                    nie:interpretedAs <ni:///mh;1QEQ4ZvQvLVxDdPK6IfAVFCYNg?ct=text/plain>;
+                                                                                    nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/>;
+                                                                                    nfo:fileLastModified "1995-06-14T22:34:32.000000+02:00"^^xsd:dateTime;
+                                                                                    nfo:fileName "load5x";
+                                                                                    nfo:fileSize 83 ;
+                                                                                    a nfo:FileDataObject,
+                                                                                      nfo:ArchiveItem;
+                                                                                    skos:prefLabel "/ttywatcher/twtch/load5x".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/module4x.c> at:pathObject <file:///ttywatcher/twtch/module4x.c>;
+                                                                                        nie:interpretedAs <ni:///mh;1QEQX_K0USDXaG95K3jOG9nghQ?ct=text/plain>;
+                                                                                        nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/>;
+                                                                                        nfo:fileLastModified "1995-06-22T18:45:58.000000+02:00"^^xsd:dateTime;
+                                                                                        nfo:fileName "module4x.c";
+                                                                                        nfo:fileSize 5349 ;
+                                                                                        a nfo:FileDataObject,
+                                                                                          nfo:ArchiveItem;
+                                                                                        skos:prefLabel "/ttywatcher/twtch/module4x.c".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/module5x.c> at:pathObject <file:///ttywatcher/twtch/module5x.c>;
+                                                                                        nie:interpretedAs <ni:///mh;1QEQdr9BnCl9quxg3TVgPAO-pQ?ct=text/plain>;
+                                                                                        nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/>;
+                                                                                        nfo:fileLastModified "1995-06-22T18:46:13.000000+02:00"^^xsd:dateTime;
+                                                                                        nfo:fileName "module5x.c";
+                                                                                        nfo:fileSize 5356 ;
+                                                                                        a nfo:FileDataObject,
+                                                                                          nfo:ArchiveItem;
+                                                                                        skos:prefLabel "/ttywatcher/twtch/module5x.c".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/mon.c> at:pathObject <file:///ttywatcher/twtch/mon.c>;
+                                                                                   nie:interpretedAs <ni:///mh;1QEQr3Mrj4fPfPQmAFJ5pioA7A?ct=text/plain>;
+                                                                                   nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/>;
+                                                                                   nfo:fileLastModified "1995-06-12T19:38:20.000000+02:00"^^xsd:dateTime;
+                                                                                   nfo:fileName "mon.c";
+                                                                                   nfo:fileSize 1776 ;
+                                                                                   a nfo:FileDataObject,
+                                                                                     nfo:ArchiveItem;
+                                                                                   skos:prefLabel "/ttywatcher/twtch/mon.c".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/popall> at:pathObject <file:///ttywatcher/twtch/popall>;
+                                                                                    nie:interpretedAs <ni:///mh;1QEQIFj7y-Ll2Q8mAFPojpJyRg?ct=text/plain>;
+                                                                                    nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/>;
+                                                                                    nfo:fileLastModified "1995-06-12T19:38:20.000000+02:00"^^xsd:dateTime;
+                                                                                    nfo:fileName "popall";
+                                                                                    nfo:fileSize 91 ;
+                                                                                    a nfo:FileDataObject,
+                                                                                      nfo:ArchiveItem;
+                                                                                    skos:prefLabel "/ttywatcher/twtch/popall".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/streams.c> at:pathObject <file:///ttywatcher/twtch/streams.c>;
+                                                                                       nie:interpretedAs <ni:///mh;1QEQTeTCQf6m--EMyu2Rtyv1FQ?ct=text/plain>;
+                                                                                       nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/>;
+                                                                                       nfo:fileLastModified "1995-06-12T19:38:20.000000+02:00"^^xsd:dateTime;
+                                                                                       nfo:fileName "streams.c";
+                                                                                       nfo:fileSize 1629 ;
+                                                                                       a nfo:FileDataObject,
+                                                                                         nfo:ArchiveItem;
+                                                                                       skos:prefLabel "/ttywatcher/twtch/streams.c".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/twtch.h> at:pathObject <file:///ttywatcher/twtch/twtch.h>;
+                                                                                     nie:interpretedAs <ni:///mh;1QEQkWgVUVR3-pmwYHL8VPlCgw?ct=text/plain>;
+                                                                                     nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/>;
+                                                                                     nfo:fileLastModified "1995-06-12T19:38:20.000000+02:00"^^xsd:dateTime;
+                                                                                     nfo:fileName "twtch.h";
+                                                                                     nfo:fileSize 1830 ;
+                                                                                     a nfo:FileDataObject,
+                                                                                       nfo:ArchiveItem;
+                                                                                     skos:prefLabel "/ttywatcher/twtch/twtch.h".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/twtchc.conf> at:pathObject <file:///ttywatcher/twtch/twtchc.conf>;
+                                                                                         nie:interpretedAs <ni:///mh;1QEQetLD1ANiBHv_DiYjPaEVfw?ct=text/plain>;
+                                                                                         nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/>;
+                                                                                         nfo:fileLastModified "1995-06-14T21:23:34.000000+02:00"^^xsd:dateTime;
+                                                                                         nfo:fileName "twtchc.conf";
+                                                                                         nfo:fileSize 178 ;
+                                                                                         a nfo:FileDataObject,
+                                                                                           nfo:ArchiveItem;
+                                                                                         skos:prefLabel "/ttywatcher/twtch/twtchc.conf".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/unload> at:pathObject <file:///ttywatcher/twtch/unload>;
+                                                                                    nie:interpretedAs <ni:///mh;1QEQ-UayP0RF31N8gv8pe1h3zg?ct=text/plain>;
+                                                                                    nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/twtch/>;
+                                                                                    nfo:fileLastModified "1995-06-12T19:38:20.000000+02:00"^^xsd:dateTime;
+                                                                                    nfo:fileName "unload";
+                                                                                    nfo:fileSize 171 ;
+                                                                                    a nfo:FileDataObject,
+                                                                                      nfo:ArchiveItem;
+                                                                                    skos:prefLabel "/ttywatcher/twtch/unload".
+<ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/xview.c> at:pathObject <file:///ttywatcher/xview.c>;
+                                                                               nie:interpretedAs <ni:///mh;1QEQwe9ILxALPdAOZgaeWIfjhg?ct=text/plain>;
+                                                                               nfo:belongsToContainer <ni:///mh;1QEQKr4_QEm-Hwy12f4JeJPgew?ct=application/x-tar#/ttywatcher/>;
+                                                                               nfo:fileLastModified "1995-06-14T21:48:00.000000+02:00"^^xsd:dateTime;
+                                                                               nfo:fileName "xview.c";
+                                                                               nfo:fileSize 18188 ;
+                                                                               a nfo:FileDataObject,
+                                                                                 nfo:ArchiveItem;
+                                                                               skos:prefLabel "/ttywatcher/xview.c".
+<ni:///mh;1QEQTeTCQf6m--EMyu2Rtyv1FQ?ct=text/plain> at:digest <urn:md5:4DE4C241FEA6FBE10CCAED91B72BF515>;
+                                                    dcterms:extent "1629"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQTeTCQf6m--EMyu2Rtyv1FQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.59 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQTeTCQf6m--EMyu2Rtyv1FQ?ct=text/plain#line=,1> rdf:value "#include <stdio.h>".
+<ni:///mh;1QEQUD0HEVghFwxI9May44ZdOA?ct=text/plain> at:digest <urn:md5:503D07115821170C48F4C6B2E3865D38>;
+                                                    dcterms:extent "6829"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQUD0HEVghFwxI9May44ZdOA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (6.67 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQUD0HEVghFwxI9May44ZdOA?ct=text/plain#line=,1> rdf:value "/* Loadable TWTCH device driver */".
+<ni:///mh;1QEQUaoAO4tvTX-Y8OitjajTUw?ct=text/plain> at:digest <urn:md5:51AA003B8B6F4D7F98F0E8AD8DA8D353>;
+                                                    dcterms:extent "5170"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQUaoAO4tvTX-Y8OitjajTUw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (5.05 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQUaoAO4tvTX-Y8OitjajTUw?ct=text/plain#line=,1> rdf:value "/* Monitor for TTY-watcher */".
+<ni:///mh;1QEQX_K0USDXaG95K3jOG9nghQ?ct=text/plain> at:digest <urn:md5:5FF2B45120D7686F792B78CE1BD9E085>;
+                                                    dcterms:extent "5349"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQX_K0USDXaG95K3jOG9nghQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (5.22 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQX_K0USDXaG95K3jOG9nghQ?ct=text/plain#line=,1> rdf:value "/* Loadable TWTCH STREAMS module */".
+<ni:///mh;1QEQZ4khNXtlcJm8fPg0UcU-IA?ct=text/plain> at:digest <urn:md5:678921357B657099BC7CF83451C53E20>;
+                                                    dcterms:extent "12015"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQZ4khNXtlcJm8fPg0UcU-IA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (11.73 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQZ4khNXtlcJm8fPg0UcU-IA?ct=text/plain#line=,1> rdf:value """.\\\" @(#)$Revision: 1.2 $""".
+<ni:///mh;1QEQdr9BnCl9quxg3TVgPAO-pQ?ct=text/plain> at:digest <urn:md5:76BF419C297DAAEC60DD35603C03BEA5>;
+                                                    dcterms:extent "5356"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQdr9BnCl9quxg3TVgPAO-pQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (5.23 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQdr9BnCl9quxg3TVgPAO-pQ?ct=text/plain#line=,1> rdf:value "/* Loadable TWTCH STREAMS module */".
+<ni:///mh;1QEQe2vugtf7ApKoF5lJVTcSfA?ct=text/plain> at:digest <urn:md5:7B6BEE82D7FB0292A81799495537127C>;
+                                                    dcterms:extent "2500"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQe2vugtf7ApKoF5lJVTcSfA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (2.44 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQe2vugtf7ApKoF5lJVTcSfA?ct=text/plain#line=,1> rdf:value "/* packet and other definitions for Watcher project */".
+<ni:///mh;1QEQetLD1ANiBHv_DiYjPaEVfw?ct=text/plain> at:digest <urn:md5:7AD2C3D40362047BFF0E26233DA1157F>;
+                                                    dcterms:extent "178"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQetLD1ANiBHv_DiYjPaEVfw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (178 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQetLD1ANiBHv_DiYjPaEVfw?ct=text/plain#line=,1> rdf:value "#".
+<ni:///mh;1QEQhLReNt5bJso5VYPfV9dUHQ?ct=text/plain> at:digest <urn:md5:84B45E36DE5B26CA395583DF57D7541D>;
+                                                    dcterms:extent "5845"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQhLReNt5bJso5VYPfV9dUHQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (5.71 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQhLReNt5bJso5VYPfV9dUHQ?ct=text/plain#line=,1> rdf:value "There are several xview bugs which result in strange behaviour under ".
+<ni:///mh;1QEQhTlV6J3M4k7lrUDrSFWbeQ?ct=text/plain> at:digest <urn:md5:853955E89DCCE24EE5AD40EB48559B79>;
+                                                    dcterms:extent "862"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQhTlV6J3M4k7lrUDrSFWbeQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (862 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQhTlV6J3M4k7lrUDrSFWbeQ?ct=text/plain#line=,1> rdf:value "/*".
+<ni:///mh;1QEQigzQflbPttbzpIkbehYH9Q?ct=text/plain> at:digest <urn:md5:8A0CD07E56CFB6D6F3A4891B7A1607F5>;
+                                                    dcterms:extent "2758"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQigzQflbPttbzpIkbehYH9Q?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (2.69 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQigzQflbPttbzpIkbehYH9Q?ct=text/plain#line=,1> rdf:value "TWTCH (pronounced 'twitch') instructions".
+<ni:///mh;1QEQjljt2t1zTsAsNccP_gQz6w?ct=text/plain> at:digest <urn:md5:8E58EDDADD734EC02C35C70FFE0433EB>;
+                                                    dcterms:extent "8316"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQjljt2t1zTsAsNccP_gQz6w?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (8.12 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQjljt2t1zTsAsNccP_gQz6w?ct=text/plain#line=,1> rdf:value "/* Hash Functions */".
+<ni:///mh;1QEQkWgVUVR3-pmwYHL8VPlCgw?ct=text/plain> at:digest <urn:md5:916815515477FA99B06072FC54F94283>;
+                                                    dcterms:extent "1830"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQkWgVUVR3-pmwYHL8VPlCgw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.79 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQkWgVUVR3-pmwYHL8VPlCgw?ct=text/plain#line=,1> rdf:value "/* Definitions for TWTCH drivers */".
+<ni:///mh;1QEQknYQtrFO2BoOY1ipcB6PRw?ct=text/plain> at:digest <urn:md5:927610B6B14ED81A0E6358A9701E8F47>;
+                                                    dcterms:extent "8843"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQknYQtrFO2BoOY1ipcB6PRw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (8.64 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQknYQtrFO2BoOY1ipcB6PRw?ct=text/plain#line=,1> rdf:value "/* main & mainloop part of TTYwatch project.  */".
+<ni:///mh;1QEQn_vjT65TjQfP3hdm-0wEvQ?ct=text/plain> at:digest <urn:md5:9FFBE34FAE538D07CFDE1766FB4C04BD>;
+                                                    dcterms:extent "11727"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQn_vjT65TjQfP3hdm-0wEvQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (11.45 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQn_vjT65TjQfP3hdm-0wEvQ?ct=text/plain#line=,1> rdf:value "/* The curses interface for TTY-Watcher */".
+<ni:///mh;1QEQnkjjssLdoRh4-6Ri4q-Ywg?ct=text/plain> at:digest <urn:md5:9E48E3B2C2DDA11878FBA462E2AF98C2>;
+                                                    dcterms:extent "1863"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQnkjjssLdoRh4-6Ri4q-Ywg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.82 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQnkjjssLdoRh4-6Ri4q-Ywg?ct=text/plain#line=,1> rdf:value """/* \"Packet\" Sender for TTY-Watcher Project */""".
+<ni:///mh;1QEQoLrcLRKWtPgJ2tA1XB4wyQ?ct=text/plain> at:digest <urn:md5:A0BADC2D1296B4F809DAD0355C1E30C9>;
+                                                    dcterms:extent "402"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQoLrcLRKWtPgJ2tA1XB4wyQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (402 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQoLrcLRKWtPgJ2tA1XB4wyQ?ct=text/plain#line=,1> rdf:value "* Fix the 'New conn' stuff during initial startup. They really aren't new".
+<ni:///mh;1QEQqlXX3ManbsDTwjt9VuuSUg?ct=text/plain> at:digest <urn:md5:AA55D7DCC6A76EC0D3C23B7D56EB9252>;
+                                                    dcterms:extent "6846"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQqlXX3ManbsDTwjt9VuuSUg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (6.69 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQqlXX3ManbsDTwjt9VuuSUg?ct=text/plain#line=,1> rdf:value "TTY-Watcher README".
+<ni:///mh;1QEQr3Mrj4fPfPQmAFJ5pioA7A?ct=text/plain> at:digest <urn:md5:AF732B8F87CF7CF426005279A62A00EC>;
+                                                    dcterms:extent "1776"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQr3Mrj4fPfPQmAFJ5pioA7A?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.73 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQr3Mrj4fPfPQmAFJ5pioA7A?ct=text/plain#line=,1> rdf:value "/* Simple monitor for the new twtch stuff */".
+<ni:///mh;1QEQr8rLR-oWhNP7CaSrreOAQw?ct=text/plain> at:digest <urn:md5:AFCACB47EA1684D3FB09A4ABADE38043>;
+                                                    dcterms:extent "1434"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQr8rLR-oWhNP7CaSrreOAQw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.4 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQr8rLR-oWhNP7CaSrreOAQw?ct=text/plain#line=,1> rdf:value "/* File Descriptor and initialization for TTY-Watcher */".
+<ni:///mh;1QEQsugdhVRX7v_oYqDuhOrGCA?ct=text/plain> at:digest <urn:md5:B2E81D855457EEFFE862A0EE84EAC608>;
+                                                    dcterms:extent "1423"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQsugdhVRX7v_oYqDuhOrGCA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.39 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQsugdhVRX7v_oYqDuhOrGCA?ct=text/plain#line=,1> rdf:value "# The entire TTYWatcher Project is:".
+<ni:///mh;1QEQuFdndA64CwcFSaMKsmuzjA?ct=text/plain> at:digest <urn:md5:B85767740EB80B070549A30AB26BB38C>;
+                                                    dcterms:extent "3258"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQuFdndA64CwcFSaMKsmuzjA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (3.18 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQuFdndA64CwcFSaMKsmuzjA?ct=text/plain#line=,1> rdf:value """The latest in our *-Watcher series, \"TTY-Watcher\", is now freely available """.
+<ni:///mh;1QEQuVpjO0LEZ0sRmbetHeaQBg?ct=text/plain> at:digest <urn:md5:B95A633B42C4674B1199B7AD1DE69006>;
+                                                    dcterms:extent "322"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQuVpjO0LEZ0sRmbetHeaQBg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (322 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQuVpjO0LEZ0sRmbetHeaQBg?ct=text/plain#line=,1> rdf:value "# TWTCH Makefile for SunOS 4.x".
+<ni:///mh;1QEQwe9ILxALPdAOZgaeWIfjhg?ct=text/plain> at:digest <urn:md5:C1EF482F100B3DD00E66069E5887E386>;
+                                                    dcterms:extent "18188"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQwe9ILxALPdAOZgaeWIfjhg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (17.76 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQwe9ILxALPdAOZgaeWIfjhg?ct=text/plain#line=,1> rdf:value "/* XView GUI interface for TTY-Watcher */".
+<ni:///mh;1QEQx5A5MmrXLAJqWy3nrnD2Vw?ct=text/plain> at:digest <urn:md5:C79039326AD72C026A5B2DE7AE70F657>;
+                                                    dcterms:extent "1448"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQx5A5MmrXLAJqWy3nrnD2Vw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.41 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQx5A5MmrXLAJqWy3nrnD2Vw?ct=text/plain#line=,1> rdf:value "# The entire TTYWatcher Project is:".
+<ni:///mh;1QEQxQg1jHhkuKXjUpQSYF1uWQ?ct=text/plain> at:digest <urn:md5:C508358C7864B8A5E3529412605D6E59>;
+                                                    dcterms:extent "688"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQxQg1jHhkuKXjUpQSYF1uWQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (688 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQxQg1jHhkuKXjUpQSYF1uWQ?ct=text/plain#line=,1> rdf:value "/mon.c/1.1.1.1/Mon Jun 12 17:38:20 1995//".
+<urn:md5:13EA9A70A2F01506706C428ABFAF9CDC> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "E+qacKLwFQZwbEKKv6+c3A=="^^xsd:base64Binary.
+<urn:md5:2058FBCBE2E5D90F260053E88E927246> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "IFj7y+Ll2Q8mAFPojpJyRg=="^^xsd:base64Binary.
+<urn:md5:29AE2FB27393B9D2D2ADAE29E21AEA71> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "Ka4vsnOTudLSra4p4hrqcQ=="^^xsd:base64Binary.
+<urn:md5:2ABE3F4049BE1F0CB5D9FE097893E07B> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "Kr4/QEm+Hwy12f4JeJPgew=="^^xsd:base64Binary.
+<urn:md5:4DE4C241FEA6FBE10CCAED91B72BF515> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "TeTCQf6m++EMyu2Rtyv1FQ=="^^xsd:base64Binary.
+<urn:md5:503D07115821170C48F4C6B2E3865D38> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "UD0HEVghFwxI9May44ZdOA=="^^xsd:base64Binary.
+<urn:md5:51AA003B8B6F4D7F98F0E8AD8DA8D353> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "UaoAO4tvTX+Y8OitjajTUw=="^^xsd:base64Binary.
+<urn:md5:5FF2B45120D7686F792B78CE1BD9E085> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "X/K0USDXaG95K3jOG9nghQ=="^^xsd:base64Binary.
+<urn:md5:678921357B657099BC7CF83451C53E20> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "Z4khNXtlcJm8fPg0UcU+IA=="^^xsd:base64Binary.
+<urn:md5:76BF419C297DAAEC60DD35603C03BEA5> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "dr9BnCl9quxg3TVgPAO+pQ=="^^xsd:base64Binary.
+<urn:md5:7AD2C3D40362047BFF0E26233DA1157F> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "etLD1ANiBHv/DiYjPaEVfw=="^^xsd:base64Binary.
+<urn:md5:7B6BEE82D7FB0292A81799495537127C> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "e2vugtf7ApKoF5lJVTcSfA=="^^xsd:base64Binary.
+<urn:md5:84B45E36DE5B26CA395583DF57D7541D> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "hLReNt5bJso5VYPfV9dUHQ=="^^xsd:base64Binary.
+<urn:md5:853955E89DCCE24EE5AD40EB48559B79> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "hTlV6J3M4k7lrUDrSFWbeQ=="^^xsd:base64Binary.
+<urn:md5:8A0CD07E56CFB6D6F3A4891B7A1607F5> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "igzQflbPttbzpIkbehYH9Q=="^^xsd:base64Binary.
+<urn:md5:8E58EDDADD734EC02C35C70FFE0433EB> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "jljt2t1zTsAsNccP/gQz6w=="^^xsd:base64Binary.
+<urn:md5:916815515477FA99B06072FC54F94283> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "kWgVUVR3+pmwYHL8VPlCgw=="^^xsd:base64Binary.
+<urn:md5:927610B6B14ED81A0E6358A9701E8F47> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "knYQtrFO2BoOY1ipcB6PRw=="^^xsd:base64Binary.
+<urn:md5:9E48E3B2C2DDA11878FBA462E2AF98C2> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "nkjjssLdoRh4+6Ri4q+Ywg=="^^xsd:base64Binary.
+<urn:md5:9FFBE34FAE538D07CFDE1766FB4C04BD> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "n/vjT65TjQfP3hdm+0wEvQ=="^^xsd:base64Binary.
+<urn:md5:A0BADC2D1296B4F809DAD0355C1E30C9> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "oLrcLRKWtPgJ2tA1XB4wyQ=="^^xsd:base64Binary.
+<urn:md5:AA55D7DCC6A76EC0D3C23B7D56EB9252> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "qlXX3ManbsDTwjt9VuuSUg=="^^xsd:base64Binary.
+<urn:md5:AF732B8F87CF7CF426005279A62A00EC> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "r3Mrj4fPfPQmAFJ5pioA7A=="^^xsd:base64Binary.
+<urn:md5:AFCACB47EA1684D3FB09A4ABADE38043> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "r8rLR+oWhNP7CaSrreOAQw=="^^xsd:base64Binary.
+<urn:md5:B2E81D855457EEFFE862A0EE84EAC608> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "sugdhVRX7v/oYqDuhOrGCA=="^^xsd:base64Binary.
+<urn:md5:B85767740EB80B070549A30AB26BB38C> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "uFdndA64CwcFSaMKsmuzjA=="^^xsd:base64Binary.
+<urn:md5:B95A633B42C4674B1199B7AD1DE69006> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "uVpjO0LEZ0sRmbetHeaQBg=="^^xsd:base64Binary.
+<urn:md5:C1EF482F100B3DD00E66069E5887E386> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "we9ILxALPdAOZgaeWIfjhg=="^^xsd:base64Binary.
+<urn:md5:C508358C7864B8A5E3529412605D6E59> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "xQg1jHhkuKXjUpQSYF1uWQ=="^^xsd:base64Binary.
+<urn:md5:C79039326AD72C026A5B2DE7AE70F657> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "x5A5MmrXLAJqWy3nrnD2Vw=="^^xsd:base64Binary.
+<urn:md5:E178A649C008423C418C705CB4CDA750> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "4XimScAIQjxBjHBctM2nUA=="^^xsd:base64Binary.
+<urn:md5:E19BD0BCB5710DD3CAE887C054509836> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "4ZvQvLVxDdPK6IfAVFCYNg=="^^xsd:base64Binary.
+<urn:md5:E36D723B8E57C976E794B7C7854D7BEC> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "421yO45XyXbnlLfHhU177A=="^^xsd:base64Binary.
+<urn:md5:E52F33BF1F7BD1916BD6C92D0E2FDF1A> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "5S8zvx970ZFr1sktDi/fGg=="^^xsd:base64Binary.
+<urn:md5:ECF95A8D5EDCADA8550EDFA56C7003CE> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "7PlajV7crahVDt+lbHADzg=="^^xsd:base64Binary.
+<urn:md5:F946B23F4445DF537C82FF297B5877CE> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "+UayP0RF31N8gv8pe1h3zg=="^^xsd:base64Binary.

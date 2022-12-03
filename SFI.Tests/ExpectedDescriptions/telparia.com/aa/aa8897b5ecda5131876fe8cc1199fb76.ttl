@@ -1,0 +1,27 @@
+@base <ni:///mh;1QEQdA3Bl9A6wYuXlcDWQpoy4A?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///tutor1.ppt>;
+     nie:interpretedAs <ni:///mh;1QEQdA3Bl9A6wYuXlcDWQpoy4A?ct=application/octet-stream>;
+     nfo:fileName "tutor1.ppt";
+     nfo:fileSize 71996 ;
+     a nfo:FileDataObject.
+<file:///tutor1.ppt> at:extensionObject <https://w3id.org/uri4uri/suffix/ppt>.
+<ni:///mh;1QEQdA3Bl9A6wYuXlcDWQpoy4A?ct=application/octet-stream> at:digest <urn:md5:740DC197D03AC18B9795C0D6429A32E0>;
+                                                                  dcterms:extent "71996"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (70.31 KiB)"@en.
+<urn:md5:740DC197D03AC18B9795C0D6429A32E0> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "dA3Bl9A6wYuXlcDWQpoy4A=="^^xsd:base64Binary.

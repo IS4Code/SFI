@@ -1,0 +1,41 @@
+@base <ni:///mh;1QEQsLI2Shc2B8xU_I6FayZY3g?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///BIRD1.png>;
+     nie:interpretedAs <ni:///mh;1QEQsLI2Shc2B8xU_I6FayZY3g?ct=application/octet-stream>;
+     nfo:fileName "BIRD1.png";
+     nfo:fileSize 18295 ;
+     a nfo:FileDataObject.
+<file:///BIRD1.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
+<ni:///mh;1QEQsLI2Shc2B8xU_I6FayZY3g?ct=application/octet-stream> at:digest <urn:md5:B0B2364A173607CC54FC8E856B2658DE>;
+                                                                  dcterms:extent "18295"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQsLI2Shc2B8xU_I6FayZY3g?ct=image/png>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (17.87 KiB)"@en.
+<ni:///mh;1QEQsLI2Shc2B8xU_I6FayZY3g?ct=image/png> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/png>;
+                                                   nfo:colorDepth 32 ;
+                                                   nfo:height 400 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 640 ;
+                                                   a schema:MediaObject,
+                                                     nfo:Image,
+                                                     schema:ImageObject;
+                                                   skos:prefLabel "PNG object (640×400)"@en,
+                                                                  "PNG object (640×400, 8-bit)"@en,
+                                                                  "PNG object (17.87 KiB)"@en.
+<urn:md5:B0B2364A173607CC54FC8E856B2658DE> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "sLI2Shc2B8xU/I6FayZY3g=="^^xsd:base64Binary.

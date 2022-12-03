@@ -1,0 +1,32 @@
+@base <ni:///mh;1QEQaPnUsgtEc2C4fYpDniIy2w?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///COTTON.CCX>;
+     nie:interpretedAs <ni:///mh;1QEQaPnUsgtEc2C4fYpDniIy2w?ct=application/octet-stream>;
+     nfo:fileName "COTTON.CCX";
+     nfo:fileSize 11818 ;
+     a nfo:FileDataObject.
+<file:///COTTON.CCX> at:extensionObject <https://w3id.org/uri4uri/suffix/ccx>.
+<ni:///mh;1QEQaPnUsgtEc2C4fYpDniIy2w?ct=application/octet-stream> at:digest <urn:md5:68F9D4B20B447360B87D8A439E2232DB>;
+                                                                  dcterms:extent "11818"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQaPnUsgtEc2C4fYpDniIy2w?ct=application/x-riff>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (11.54 KiB)"@en.
+<ni:///mh;1QEQaPnUsgtEc2C4fYpDniIy2w?ct=application/x-riff> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-riff>;
+                                                            a schema:MediaObject;
+                                                            skos:prefLabel "RIFF object (11.54 KiB)"@en.
+<urn:md5:68F9D4B20B447360B87D8A439E2232DB> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "aPnUsgtEc2C4fYpDniIy2w=="^^xsd:base64Binary.

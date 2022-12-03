@@ -1,0 +1,27 @@
+@base <ni:///mh;1QEQE2rVbDHTyUZWG4_sQbNQag?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///HWIDB2.bnd>;
+     nie:interpretedAs <ni:///mh;1QEQE2rVbDHTyUZWG4_sQbNQag?ct=application/octet-stream>;
+     nfo:fileName "HWIDB2.bnd";
+     nfo:fileSize 7295 ;
+     a nfo:FileDataObject.
+<file:///HWIDB2.bnd> at:extensionObject <https://w3id.org/uri4uri/suffix/bnd>.
+<ni:///mh;1QEQE2rVbDHTyUZWG4_sQbNQag?ct=application/octet-stream> at:digest <urn:md5:136AD56C31D3C946561B8FEC41B3506A>;
+                                                                  dcterms:extent "7295"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (7.12 KiB)"@en.
+<urn:md5:136AD56C31D3C946561B8FEC41B3506A> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "E2rVbDHTyUZWG4/sQbNQag=="^^xsd:base64Binary.

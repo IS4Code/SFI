@@ -1,0 +1,38 @@
+@base <ni:///mh;1QEQScZNXSQM-e9BpRfb7Vil_Q?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///sample_1920x1080.avi>;
+     nie:interpretedAs <ni:///mh;1QEQScZNXSQM-e9BpRfb7Vil_Q?ct=application/octet-stream>;
+     nfo:fileName "sample_1920x1080.avi";
+     nfo:fileSize 9909100 ;
+     a nfo:FileDataObject.
+<file:///sample_1920x1080.avi> at:extensionObject <https://w3id.org/uri4uri/suffix/avi>.
+<ni:///mh;1QEQScZNXSQM-e9BpRfb7Vil_Q?ct=application/octet-stream> at:digest <urn:md5:49C64D5D240CF9EF41A517DBED58A5FD>;
+                                                                  dcterms:extent "9909100"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQScZNXSQM-e9BpRfb7Vil_Q?ct=video/vnd.avi>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (9.45 MiB)"@en.
+<ni:///mh;1QEQScZNXSQM-e9BpRfb7Vil_Q?ct=video/vnd.avi> schema:encodingFormat <https://w3id.org/uri4uri/mime/video/vnd.avi>;
+                                                       nfo:duration "PT28S"^^xsd:duration,
+                                                                    "PT28.236316S"^^xsd:duration;
+                                                       nfo:height 1080 ;
+                                                       nfo:width 1920 ;
+                                                       a schema:MediaObject,
+                                                         schema:VideoObject,
+                                                         nfo:Video;
+                                                       skos:prefLabel "AVI object (1920×1080)"@en.
+<urn:md5:49C64D5D240CF9EF41A517DBED58A5FD> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "ScZNXSQM+e9BpRfb7Vil/Q=="^^xsd:base64Binary.

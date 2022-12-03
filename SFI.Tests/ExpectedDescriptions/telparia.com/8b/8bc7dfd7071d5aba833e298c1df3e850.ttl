@@ -1,0 +1,38 @@
+@base <ni:///mh;1QEQ6r7oo04OdznHqlZP2GUw3Q?ct=text/plain>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///COUNT.BEG>;
+     nie:interpretedAs <ni:///mh;1QEQ6r7oo04OdznHqlZP2GUw3Q?ct=text/plain>;
+     nfo:fileName "COUNT.BEG";
+     nfo:fileSize 127 ;
+     a nfo:FileDataObject.
+<file:///COUNT.BEG> at:extensionObject <https://w3id.org/uri4uri/suffix/beg>.
+<ni:///mh;1QEQ6r7oo04OdznHqlZP2GUw3Q?ct=text/html> dcterms:title "count";
+                                                   schema:encodingFormat <https://w3id.org/uri4uri/mime/text/html>;
+                                                   a schema:MediaObject,
+                                                     schema:DigitalDocument,
+                                                     nfo:Document;
+                                                   skos:prefLabel "HTML object (127 B)"@en.
+<ni:///mh;1QEQ6r7oo04OdznHqlZP2GUw3Q?ct=text/plain> at:digest <urn:md5:EABEE8A34E0E7739C7AA564FD86530DD>;
+                                                    dcterms:extent "127"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ6r7oo04OdznHqlZP2GUw3Q?ct=text/html>;
+                                                    nie:hasPart <ni:///mh;1QEQ6r7oo04OdznHqlZP2GUw3Q?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (127 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQ6r7oo04OdznHqlZP2GUw3Q?ct=text/plain#line=,1> rdf:value "HTTP/1.0 200 OK".
+<urn:md5:EABEE8A34E0E7739C7AA564FD86530DD> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "6r7oo04OdznHqlZP2GUw3Q=="^^xsd:base64Binary.

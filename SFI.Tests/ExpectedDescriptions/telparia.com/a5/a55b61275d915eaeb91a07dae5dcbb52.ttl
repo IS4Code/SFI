@@ -1,0 +1,130 @@
+@base <ni:///mh;1QEQANZhOz22HnVryGrBC1Rs3w?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///example.psd>;
+     nie:interpretedAs <ni:///mh;1QEQANZhOz22HnVryGrBC1Rs3w?ct=application/octet-stream>;
+     nfo:fileName "example.psd";
+     nfo:fileSize 25200390 ;
+     a nfo:FileDataObject.
+<file:///example.psd> at:extensionObject <https://w3id.org/uri4uri/suffix/psd>.
+<ni:///mh;1QEQANZhOz22HnVryGrBC1Rs3w?ct=application/octet-stream> at:digest <urn:md5:00D6613B3DB61E756BC86AC10B546CDF>;
+                                                                  dcterms:extent "25200390"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQANZhOz22HnVryGrBC1Rs3w?ct=image/vnd.adobe.photoshop>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (24.03 MiB)"@en.
+<ni:///mh;1QEQANZhOz22HnVryGrBC1Rs3w?ct=image/vnd.adobe.photoshop> <http://ns.adobe.com/exif/1.0/aux/ApproximateFocusDistance> "94/100";
+                                                                   <http://ns.adobe.com/exif/1.0/aux/ImageNumber> "11284";
+                                                                   <http://ns.adobe.com/exif/1.0/aux/Lens> "18.0-55.0 mm f/3.5-5.6";
+                                                                   <http://ns.adobe.com/exif/1.0/aux/LensID> "154";
+                                                                   <http://ns.adobe.com/exif/1.0/aux/LensInfo> "180/10 550/10 35/10 56/10";
+                                                                   <http://ns.adobe.com/exif/1.0/aux/SerialNumber> "7034444";
+                                                                   <http://ns.adobe.com/photoshop/1.0/ColorMode> "3";
+                                                                   <http://ns.adobe.com/photoshop/1.0/DateCreated> "2014-10-01T21:50:18";
+                                                                   <http://ns.adobe.com/photoshop/1.0/ICCProfile> "sRGB IEC61966-2.1";
+                                                                   <http://ns.adobe.com/xap/1.0/CreateDate> "2014-10-01T21:50:18";
+                                                                   <http://ns.adobe.com/xap/1.0/CreatorTool> "Adobe Photoshop CC 2014 (Windows)";
+                                                                   <http://ns.adobe.com/xap/1.0/MetadataDate> "2015-07-22T17:46:19+02:00";
+                                                                   <http://ns.adobe.com/xap/1.0/ModifyDate> "2015-07-22T17:46:19+02:00";
+                                                                   <http://ns.adobe.com/xap/1.0/mm/DocumentID> "adobe:docid:photoshop:b65fecd6-4f9c-11e4-a55c-f8249efbabf9";
+                                                                   <http://ns.adobe.com/xap/1.0/mm/InstanceID> "xmp.iid:FE1BFABC8830E511862D9B8D91A04293";
+                                                                   <http://ns.adobe.com/xap/1.0/mm/OriginalDocumentID> "0A5D1088FB0E5EBC9A5FC17986F8A170";
+                                                                   <http://purl.org/dc/elements/1.1/format> "application/vnd.adobe.photoshop";
+                                                                   schema:encodingFormat <https://w3id.org/uri4uri/mime/image/vnd.adobe.photoshop>;
+                                                                   nfo:hasMediaStream <ni:///mh;1QEQANZhOz22HnVryGrBC1Rs3w?ct=image/vnd.adobe.photoshop#/0>,
+                                                                                      <ni:///mh;1QEQANZhOz22HnVryGrBC1Rs3w?ct=image/vnd.adobe.photoshop#/1>,
+                                                                                      <ni:///mh;1QEQANZhOz22HnVryGrBC1Rs3w?ct=image/vnd.adobe.photoshop#/2>,
+                                                                                      <ni:///mh;1QEQANZhOz22HnVryGrBC1Rs3w?ct=image/vnd.adobe.photoshop#/3>;
+                                                                   a schema:MediaObject,
+                                                                     exif:IFD,
+                                                                     schema:ImageObject,
+                                                                     nfo:Image;
+                                                                   exif:apertureValue "3851999/1000000"^^owl:rational;
+                                                                   exif:cfaPattern "0002000201020001"^^xsd:hexBinary;
+                                                                   exif:colorSpace 1 ;
+                                                                   exif:componentsConfiguration "01020300"^^xsd:hexBinary;
+                                                                   exif:compressedBitsPerPixel 4 ;
+                                                                   exif:compression 6 ;
+                                                                   exif:contrast 0 ;
+                                                                   exif:customRendered 0 ;
+                                                                   exif:dateTime "2015-07-22T17:46:19.000000"^^xsd:dateTime;
+                                                                   exif:dateTimeDigitized "2014-10-01T21:50:18.000000"^^xsd:dateTime;
+                                                                   exif:dateTimeOriginal "2014-10-01T21:50:18.000000"^^xsd:dateTime;
+                                                                   exif:digitalZoomRatio 1 ;
+                                                                   exif:exifVersion "30323231"^^xsd:hexBinary;
+                                                                   exif:exposureBiasValue "5/3"^^owl:rational;
+                                                                   exif:exposureMode 1 ;
+                                                                   exif:exposureProgram 1 ;
+                                                                   exif:exposureTime "1/320"^^owl:rational;
+                                                                   exif:fNumber "19/5"^^owl:rational;
+                                                                   exif:fileSource "03"^^xsd:hexBinary;
+                                                                   exif:flash 0 ;
+                                                                   exif:flashpixVersion "30313030"^^xsd:hexBinary;
+                                                                   exif:focalLength 22 ;
+                                                                   exif:focalLengthIn35mmFilm 33 ;
+                                                                   exif:gainControl 0 ;
+                                                                   exif:imageLength 3072 ;
+                                                                   exif:imageWidth 4608 ;
+                                                                   exif:isoSpeedRatings 200 ;
+                                                                   exif:jpegInterchangeFormat 1118 ;
+                                                                   exif:jpegInterchangeFormatLength 0 ;
+                                                                   exif:lightSource 0 ;
+                                                                   exif:make "NIKON CORPORATION"^^xsd:string;
+                                                                   exif:maxApertureValue "39/10"^^owl:rational;
+                                                                   exif:meteringMode 5 ;
+                                                                   exif:model "NIKON D3100"^^xsd:string;
+                                                                   exif:orientation 1 ;
+                                                                   exif:photometricInterpretation 2 ;
+                                                                   exif:pixelXDimension 2500 ;
+                                                                   exif:pixelYDimension 1666 ;
+                                                                   exif:resolutionUnit 2 ;
+                                                                   exif:samplesPerPixel 3 ;
+                                                                   exif:saturation 0 ;
+                                                                   exif:sceneCaptureType 0 ;
+                                                                   exif:sceneType "01"^^xsd:hexBinary;
+                                                                   exif:sensingMethod 2 ;
+                                                                   exif:sharpness 0 ;
+                                                                   exif:shutterSpeedValue "1040241/125000"^^owl:rational;
+                                                                   exif:software "Adobe Photoshop CS6 (Windows)"^^xsd:string;
+                                                                   exif:subSecTime "00"^^xsd:string;
+                                                                   exif:subSecTimeDigitized "00"^^xsd:string;
+                                                                   exif:subSecTimeOriginal "00"^^xsd:string;
+                                                                   exif:subjectDistanceRange 0 ;
+                                                                   exif:userComment "QVNDSUkAAAAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA="^^xsd:base64Binary;
+                                                                   exif:whiteBalance 0 ;
+                                                                   exif:xResolution 300 ,
+                                                                                    72 ;
+                                                                   exif:yCbCrPositioning 2 ;
+                                                                   exif:yResolution 300 ,
+                                                                                    72 ;
+                                                                   skos:prefLabel "PSD object (24.03 MiB)"@en.
+<ni:///mh;1QEQANZhOz22HnVryGrBC1Rs3w?ct=image/vnd.adobe.photoshop#/0> nfo:height 1666 ;
+                                                                      nfo:width 2500 ;
+                                                                      a nfo:MediaStream;
+                                                                      skos:prefLabel "0:PSD Header (2500×1666)".
+<ni:///mh;1QEQANZhOz22HnVryGrBC1Rs3w?ct=image/vnd.adobe.photoshop#/1> a nfo:MediaStream;
+                                                                      skos:prefLabel "1:Photoshop".
+<ni:///mh;1QEQANZhOz22HnVryGrBC1Rs3w?ct=image/vnd.adobe.photoshop#/2> nfo:height 3072 ;
+                                                                      nfo:width 4608 ;
+                                                                      a nfo:MediaStream;
+                                                                      skos:prefLabel "2:Exif IFD0 (4608×3072)".
+<ni:///mh;1QEQANZhOz22HnVryGrBC1Rs3w?ct=image/vnd.adobe.photoshop#/3> nfo:height 1666 ;
+                                                                      nfo:width 2500 ;
+                                                                      a nfo:MediaStream;
+                                                                      skos:prefLabel "3:Exif SubIFD (2500×1666)".
+<urn:md5:00D6613B3DB61E756BC86AC10B546CDF> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "ANZhOz22HnVryGrBC1Rs3w=="^^xsd:base64Binary.

@@ -1,0 +1,27 @@
+@base <ni:///mh;1QEQJcQBIX5wuxDTbtBFG6Lr-A?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///CREDITS.DN1>;
+     nie:interpretedAs <ni:///mh;1QEQJcQBIX5wuxDTbtBFG6Lr-A?ct=application/octet-stream>;
+     nfo:fileName "CREDITS.DN1";
+     nfo:fileSize 32000 ;
+     a nfo:FileDataObject.
+<file:///CREDITS.DN1> at:extensionObject <https://w3id.org/uri4uri/suffix/dn1>.
+<ni:///mh;1QEQJcQBIX5wuxDTbtBFG6Lr-A?ct=application/octet-stream> at:digest <urn:md5:25C401217E70BB10D36ED0451BA2EBF8>;
+                                                                  dcterms:extent "32000"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (31.25 KiB)"@en.
+<urn:md5:25C401217E70BB10D36ED0451BA2EBF8> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "JcQBIX5wuxDTbtBFG6Lr+A=="^^xsd:base64Binary.

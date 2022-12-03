@@ -1,0 +1,30 @@
+@base <data:;base64,NDI2Mg0KNzQwNg0KMTIwNg0KMTI1NA0KOTk4DQo3NTANCjgyMg0K>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///index.dat>;
+     nie:interpretedAs <data:;base64,NDI2Mg0KNzQwNg0KMTIwNg0KMTI1NA0KOTk4DQo3NTANCjgyMg0K>;
+     nfo:fileName "index.dat";
+     nfo:fileSize 39 ;
+     a nfo:FileDataObject.
+<data:;base64,NDI2Mg0KNzQwNg0KMTIwNg0KMTI1NA0KOTk4DQo3NTANCjgyMg0K> dcterms:extent "39"^^dt:byte;
+                                                                    a cnt:ContentAsText;
+                                                                    skos:prefLabel "text (39 B)"@en;
+                                                                    cnt:characterEncoding "us-ascii";
+                                                                    cnt:chars """4262
+7406
+1206
+1254
+998
+750
+822
+"""^^xsd:string.
+<file:///index.dat> at:extensionObject <https://w3id.org/uri4uri/suffix/dat>.

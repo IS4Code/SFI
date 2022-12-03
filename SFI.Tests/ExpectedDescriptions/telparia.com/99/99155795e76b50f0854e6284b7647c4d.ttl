@@ -1,0 +1,37 @@
+@base <ni:///mh;1QEQgw4Uz5LuN7zstgLlH7H-kQ?ct=text/plain>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///sparrow.hip>;
+     nie:interpretedAs <ni:///mh;1QEQgw4Uz5LuN7zstgLlH7H-kQ?ct=text/plain>;
+     nfo:fileName "sparrow.hip";
+     nfo:fileSize 16012 ;
+     a nfo:FileDataObject.
+<file:///sparrow.hip> at:extensionObject <https://w3id.org/uri4uri/suffix/hip>.
+<ni:///mh;1QEQgw4Uz5LuN7zstgLlH7H-kQ?ct=audio/mpeg> schema:encodingFormat <https://w3id.org/uri4uri/mime/audio/mpeg>;
+                                                    a schema:MediaObject,
+                                                      schema:AudioObject,
+                                                      nfo:Audio;
+                                                    skos:prefLabel "MP3 object (15.64 KiB)"@en.
+<ni:///mh;1QEQgw4Uz5LuN7zstgLlH7H-kQ?ct=text/plain> at:digest <urn:md5:830E14CF92EE37BCECB602E51FB1FE91>;
+                                                    dcterms:extent "16012"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQgw4Uz5LuN7zstgLlH7H-kQ?ct=audio/mpeg>;
+                                                    nie:hasPart <ni:///mh;1QEQgw4Uz5LuN7zstgLlH7H-kQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (15.64 KiB)"@en;
+                                                    cnt:characterEncoding "windows-1252".
+<ni:///mh;1QEQgw4Uz5LuN7zstgLlH7H-kQ?ct=text/plain#line=,1> rdf:value """{\"@value\":\"ÿÿ\\u0010`O!\\u0012#!\\\"#DD#2\\u0012\\u00124\\u0012!\\u0011\\u0012#!\\u0012\\\"\\\"\\\"\\\"\\u0012!\\u0011\\\"\\u0011\\u0011\\u0012UQUU2#42\\u0011\\\"\\u00123\\\"\\\"#ED#B#\\\"4!\\u0011\\u0011\\u0011#\\u0012\\u0012\\\"\\\"\\\"\\\"\\\"\\\"\\u0012\\\"\\u0011\\u0011\\\"UAEU2\\u001343\\u0012!\\u0012#\\\"\\\"#DD#22\\\"53!\\\"\\u0012#\\\"\\u0012!\\u0012\\\"\\\"\\u0012\\\"\\\"\\\"\\u0011\\u0011\\u0013UA%UA\\u00124C\\u0011!\\u00123!\\\"#DD322\\\"TES\\u0012\\\"#\\\"\\u0012!\\\"\\\"\\\"\\u0012\\\"\\u0011!!\\u0012#U1%UB\\u001243\\u0011!\\\"3\\\"\\\"#DD322\\u0014UUe\\\"\\u0011$\\\"\\u0011\\\"\\\"\\\"!\\u00122\\u0011!\\u0011\\u0011#U!\\u0014UB\\u00113C!1\\u00123\\\"\\\"\\\"DD322$fff2\\u0012#\\\"!\\\"\\\"!\\\"\\u0012\\\"\\\"!\\u0011\\u0012\\u0014E!#UC\\u00113C!1\\\"3\\\"\\\"\\\"DD32\\\"VfffR\\\"#\\\"\\\"\\\"\\\"\\\"\\u0012\\\"\\\"\\u0012!!\\u0012#E\\u0011\\\"UT\\u0011#D11\\\"#\\\"\\u0012\\\"DD33$fvffb\\\"#\\\"\\u0012\\\"\\\"\\\"\\\"\\\"\\\"\\u0011!!\\u0012\\\"4\\u0011!UT!#4A2\\\"3\\\"\\u0012\\\"4D43\\u0026fvffc\\\"#!3\\\"\\\"\\\"\\\"\\\"\\\"\\u0011!\\u0011\\u0012\\\"#\\u0011\\u0011ED!#422\\u00123\\\"!\\\"4D33EDVffd\\\"##\\\"\\\"\\u0012\\\"\\u0012\\u0012\\\"\\u0011\\u0012!\\u0011\\\"\\\"\\u0012\\\"5D1\\u00133C2\\u00123\\\"\\\"\\\"4C324U$fff\\\"#\\\"\\\"2!\\\"\\\"\\u0012!!\\u0011\\u0012!\\\"\\\"\\u0012\\u0011%TA\\u00123C3\\\"3\\\"\\u0012\\\"4D32$T$fff2#\\\"#2\\\"\\u0012\\\"\\\"\\u0012\\\"\\u0012\\u0012\\\"\\u0012!\\u0012\\u0012%TA\\u00123D3\\\"3\\\"\\\"\\\"433\\\"$D#feVB#1#2\\u0012\\u0011\\\"\\\"\\u0012\"}"""^^rdf:JSON.
+<urn:md5:830E14CF92EE37BCECB602E51FB1FE91> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "gw4Uz5LuN7zstgLlH7H+kQ=="^^xsd:base64Binary.

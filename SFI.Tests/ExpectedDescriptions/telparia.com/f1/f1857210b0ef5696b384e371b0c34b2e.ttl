@@ -1,0 +1,46 @@
+@base <ni:///mh;1QEQVSJbgfuMP8Asv5c89YX4pg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///mono-1.wv>;
+     nie:interpretedAs <ni:///mh;1QEQVSJbgfuMP8Asv5c89YX4pg?ct=application/octet-stream>;
+     nfo:fileName "mono-1.wv";
+     nfo:fileSize 1285909 ;
+     a nfo:FileDataObject.
+<file:///mono-1.wv> at:extensionObject <https://w3id.org/uri4uri/suffix/wv>.
+<ni:///mh;1QEQVSJbgfuMP8Asv5c89YX4pg?ct=application/octet-stream> at:digest <urn:md5:55225B81FB8C3FC02CBF973CF585F8A6>;
+                                                                  dcterms:extent "1285909"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQVSJbgfuMP8Asv5c89YX4pg?ct=audio/x-wavpack>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.23 MiB)"@en.
+<ni:///mh;1QEQVSJbgfuMP8Asv5c89YX4pg?ct=audio/x-wavpack> schema:encodingFormat <https://w3id.org/uri4uri/mime/audio/x-wavpack>;
+                                                         nfo:averageBitrate "408"^^dt:kilobitPerSecond;
+                                                         nfo:bitsPerSample 16 ;
+                                                         nfo:channels 1 ;
+                                                         nfo:compressionType nfo:losslessCompressionType;
+                                                         nfo:duration "PT25.1810204S"^^xsd:duration;
+                                                         nfo:sampleRate "44100"^^dt:hertz;
+                                                         <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#albumTitle> "David Bowie (Deluxe Edition)";
+                                                         <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#leadArtist> "David Bowie";
+                                                         <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#partOfSet> 2 ;
+                                                         <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#recordingYear> 1967 ;
+                                                         <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#title> "Let Me Sleep Beside You (excerpt)";
+                                                         <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#trackNumber> 8 ;
+                                                         a schema:MediaObject,
+                                                           nfo:Audio,
+                                                           schema:AudioObject;
+                                                         skos:prefLabel "WV object (44100 Hz, 1 channel, Let Me Sleep Beside You (excerpt))"@en.
+<urn:md5:55225B81FB8C3FC02CBF973CF585F8A6> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "VSJbgfuMP8Asv5c89YX4pg=="^^xsd:base64Binary.

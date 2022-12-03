@@ -1,0 +1,73 @@
+@base <ni:///mh;1QEQVT8VGd2e_fgWiiAvWvbbAA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///test.cab>;
+     nie:interpretedAs <ni:///mh;1QEQVT8VGd2e_fgWiiAvWvbbAA?ct=application/octet-stream>;
+     nfo:fileName "test.cab";
+     nfo:fileSize 253 ;
+     a nfo:FileDataObject.
+<file:///hello.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///test.cab> at:extensionObject <https://w3id.org/uri4uri/suffix/cab>.
+<file:///welcome.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<ni:///mh;1QEQVT8VGd2e_fgWiiAvWvbbAA?ct=application/octet-stream> at:digest <urn:md5:553F1519DD9EFDF8168A202F5AF6DB00>;
+                                                                  dcterms:extent "253"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQVT8VGd2e_fgWiiAvWvbbAA?ct=application/vnd.ms-cab-compressed>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (253 B)"@en.
+<ni:///mh;1QEQVT8VGd2e_fgWiiAvWvbbAA?ct=application/vnd.ms-cab-compressed> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.ms-cab-compressed>;
+                                                                           a schema:MediaObject,
+                                                                             nfo:Archive;
+                                                                           skos:prefLabel "CAB object (253 B)"@en.
+<ni:///mh;1QEQVT8VGd2e_fgWiiAvWvbbAA?ct=application/vnd.ms-cab-compressed#/hello.c> at:pathObject <file:///hello.c>;
+                                                                                    nie:interpretedAs <ni:///mh;1QEQwlNZNriQix-KKLdySiwgRQ?ct=text/plain>;
+                                                                                    nfo:belongsToContainer <ni:///mh;1QEQVT8VGd2e_fgWiiAvWvbbAA?ct=application/vnd.ms-cab-compressed>;
+                                                                                    nfo:fileLastModified "1997-03-12T11:13:52.000000Z"^^xsd:dateTime;
+                                                                                    nfo:fileName "hello.c";
+                                                                                    nfo:fileSize 77 ;
+                                                                                    a nfo:FileDataObject,
+                                                                                      nfo:ArchiveItem;
+                                                                                    skos:prefLabel "/hello.c".
+<ni:///mh;1QEQVT8VGd2e_fgWiiAvWvbbAA?ct=application/vnd.ms-cab-compressed#/welcome.c> at:pathObject <file:///welcome.c>;
+                                                                                      nie:interpretedAs <ni:///mh;1QEQZ8mBoBnCHz9LuPku_k2VoQ?ct=text/plain>;
+                                                                                      nfo:belongsToContainer <ni:///mh;1QEQVT8VGd2e_fgWiiAvWvbbAA?ct=application/vnd.ms-cab-compressed>;
+                                                                                      nfo:fileLastModified "1997-03-12T11:15:14.000000Z"^^xsd:dateTime;
+                                                                                      nfo:fileName "welcome.c";
+                                                                                      nfo:fileSize 74 ;
+                                                                                      a nfo:FileDataObject,
+                                                                                        nfo:ArchiveItem;
+                                                                                      skos:prefLabel "/welcome.c".
+<ni:///mh;1QEQZ8mBoBnCHz9LuPku_k2VoQ?ct=text/plain> at:digest <urn:md5:67C981A019C21F3F4BB8F92EFE4D95A1>;
+                                                    dcterms:extent "74"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQZ8mBoBnCHz9LuPku_k2VoQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (74 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQZ8mBoBnCHz9LuPku_k2VoQ?ct=text/plain#line=,1> rdf:value "#include <stdio.h>".
+<ni:///mh;1QEQwlNZNriQix-KKLdySiwgRQ?ct=text/plain> at:digest <urn:md5:C2535936B8908B1F8A28B7724A2C2045>;
+                                                    dcterms:extent "77"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQwlNZNriQix-KKLdySiwgRQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (77 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQwlNZNriQix-KKLdySiwgRQ?ct=text/plain#line=,1> rdf:value "#include <stdio.h>".
+<urn:md5:553F1519DD9EFDF8168A202F5AF6DB00> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "VT8VGd2e/fgWiiAvWvbbAA=="^^xsd:base64Binary.
+<urn:md5:67C981A019C21F3F4BB8F92EFE4D95A1> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "Z8mBoBnCHz9LuPku/k2VoQ=="^^xsd:base64Binary.
+<urn:md5:C2535936B8908B1F8A28B7724A2C2045> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "wlNZNriQix+KKLdySiwgRQ=="^^xsd:base64Binary.

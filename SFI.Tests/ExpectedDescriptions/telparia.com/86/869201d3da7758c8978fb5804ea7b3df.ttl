@@ -1,0 +1,44 @@
+@base <ni:///mh;1QEQYhAHE4nEUP4Hsqyl7aJTcQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///file_example_OOG_1MG.ogg>;
+     nie:interpretedAs <ni:///mh;1QEQYhAHE4nEUP4Hsqyl7aJTcQ?ct=application/octet-stream>;
+     nfo:fileName "file_example_OOG_1MG.ogg";
+     nfo:fileSize 1089524 ;
+     a nfo:FileDataObject.
+<file:///file_example_OOG_1MG.ogg> at:extensionObject <https://w3id.org/uri4uri/suffix/ogg>.
+<ni:///mh;1QEQYhAHE4nEUP4Hsqyl7aJTcQ?ct=application/octet-stream> at:digest <urn:md5:6210071389C450FE07B2ACA5EDA25371>;
+                                                                  dcterms:extent "1089524"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQYhAHE4nEUP4Hsqyl7aJTcQ?ct=application/ogg>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.04 MiB)"@en.
+<ni:///mh;1QEQYhAHE4nEUP4Hsqyl7aJTcQ?ct=application/ogg> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/ogg>;
+                                                         nfo:averageBitrate "120"^^dt:kilobitPerSecond;
+                                                         nfo:bitsPerSample 32 ;
+                                                         nfo:channels 2 ;
+                                                         nfo:duration "PT1M14.3492187S"^^xsd:duration;
+                                                         nfo:sampleRate "32000"^^dt:hertz;
+                                                         <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#albumTitle> "YouTube Audio Library";
+                                                         <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#contentType> "Cinematic";
+                                                         <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#leadArtist> "Kevin MacLeod";
+                                                         <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#title> "Impact Moderato";
+                                                         a schema:MediaObject,
+                                                           schema:AudioObject,
+                                                           nfo:Audio;
+                                                         skos:prefLabel "OGG object (32000 Hz, 2 channels, Impact Moderato)"@en,
+                                                                        "OGG object (1.04 MiB)"@en.
+<urn:md5:6210071389C450FE07B2ACA5EDA25371> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "YhAHE4nEUP4Hsqyl7aJTcQ=="^^xsd:base64Binary.

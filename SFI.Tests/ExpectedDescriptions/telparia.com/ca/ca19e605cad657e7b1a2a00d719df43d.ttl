@@ -1,0 +1,34 @@
+@base <ni:///mh;1QEQ9e1AR_RLrq6Gr-ZAgNRXTA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///example.pcx>;
+     nie:interpretedAs <ni:///mh;1QEQ9e1AR_RLrq6Gr-ZAgNRXTA?ct=application/octet-stream>;
+     nfo:fileName "example.pcx";
+     nfo:fileSize 16945142 ;
+     a nfo:FileDataObject.
+<file:///example.pcx> at:extensionObject <https://w3id.org/uri4uri/suffix/pcx>.
+<ni:///mh;1QEQ9e1AR_RLrq6Gr-ZAgNRXTA?ct=application/octet-stream> at:digest <urn:md5:F5ED4047F44BAEAE86AFE64080D4574C>;
+                                                                  dcterms:extent "16945142"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ9e1AR_RLrq6Gr-ZAgNRXTA?ct=image/x-pcx>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (16.16 MiB)"@en.
+<ni:///mh;1QEQ9e1AR_RLrq6Gr-ZAgNRXTA?ct=image/x-pcx> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-pcx>;
+                                                     a schema:MediaObject,
+                                                       schema:ImageObject,
+                                                       nfo:Image;
+                                                     skos:prefLabel "PCX object (16.16 MiB)"@en.
+<urn:md5:F5ED4047F44BAEAE86AFE64080D4574C> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "9e1AR/RLrq6Gr+ZAgNRXTA=="^^xsd:base64Binary.

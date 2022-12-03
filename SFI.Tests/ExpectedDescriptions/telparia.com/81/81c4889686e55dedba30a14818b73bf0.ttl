@@ -1,0 +1,39 @@
+@base <ni:///mh;1QEQUVS7SfGN0k0puqKbD_Mm7g?ct=text/plain>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///input_p1.pbm>;
+     nie:interpretedAs <ni:///mh;1QEQUVS7SfGN0k0puqKbD_Mm7g?ct=text/plain>;
+     nfo:fileName "input_p1.pbm";
+     nfo:fileSize 6538 ;
+     a nfo:FileDataObject.
+<file:///input_p1.pbm> at:extensionObject <https://w3id.org/uri4uri/suffix/pbm>.
+<ni:///mh;1QEQUVS7SfGN0k0puqKbD_Mm7g?ct=image/x-portable-graymap> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-portable-graymap>;
+                                                                  nfo:height 46 ;
+                                                                  nfo:width 70 ;
+                                                                  a schema:MediaObject,
+                                                                    schema:ImageObject,
+                                                                    nfo:Image;
+                                                                  skos:prefLabel "PBM object (70×46)"@en.
+<ni:///mh;1QEQUVS7SfGN0k0puqKbD_Mm7g?ct=text/plain> at:digest <urn:md5:5154BB49F18DD24D29BAA29B0FF326EE>;
+                                                    dcterms:extent "6538"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQUVS7SfGN0k0puqKbD_Mm7g?ct=image/x-portable-graymap>;
+                                                    nie:hasPart <ni:///mh;1QEQUVS7SfGN0k0puqKbD_Mm7g?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (6.38 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQUVS7SfGN0k0puqKbD_Mm7g?ct=text/plain#line=,1> rdf:value "P1".
+<urn:md5:5154BB49F18DD24D29BAA29B0FF326EE> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "UVS7SfGN0k0puqKbD/Mm7g=="^^xsd:base64Binary.

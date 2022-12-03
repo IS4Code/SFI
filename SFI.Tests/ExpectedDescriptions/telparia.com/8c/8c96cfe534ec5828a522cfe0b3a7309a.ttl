@@ -1,0 +1,66 @@
+@base <ni:///mh;1QEQAFa1Wm-a0smICri5NxARxg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///example.wpg>;
+     nie:interpretedAs <ni:///mh;1QEQAFa1Wm-a0smICri5NxARxg?ct=application/octet-stream>;
+     nfo:fileName "example.wpg";
+     nfo:fileSize 13617664 ;
+     a nfo:FileDataObject.
+<file:///example.wpg> at:extensionObject <https://w3id.org/uri4uri/suffix/wpg>.
+<ni:///mh;1QEQAFa1Wm-a0smICri5NxARxg?ct=application/octet-stream> at:digest <urn:md5:0056B55A6F9AD2C9880AB8B9371011C6>;
+                                                                  dcterms:extent "13617664"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQAFa1Wm-a0smICri5NxARxg?ct=application/x-ole-storage>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (12.99 MiB)"@en.
+<ni:///mh;1QEQAFa1Wm-a0smICri5NxARxg?ct=application/x-ole-storage> at:pathObject <file:///>;
+                                                                   schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
+                                                                   nie:interpretedAs <ni:///mh;1QEQAFa1Wm-a0smICri5NxARxg?ct=application/x-ole-storage#/>;
+                                                                   nfo:fileLastModified "2014-10-15T11:03:02.304000Z"^^xsd:dateTime;
+                                                                   a schema:MediaObject,
+                                                                     nfo:EmbeddedFileDataObject;
+                                                                   skos:prefLabel "OLE object (12.99 MiB)"@en.
+<ni:///mh;1QEQAFa1Wm-a0smICri5NxARxg?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+                                                                     a nfo:Folder;
+                                                                     skos:prefLabel "/".
+<ni:///mh;1QEQAFa1Wm-a0smICri5NxARxg?ct=application/x-ole-storage#/PerfectOffice_MAIN> at:pathObject <file:///PerfectOffice_MAIN>;
+                                                                                       nie:interpretedAs <ni:///mh;1QEQt2M2fm1q9Q2VHtLbC5CU_g?ct=application/octet-stream>;
+                                                                                       nfo:belongsToContainer <ni:///mh;1QEQAFa1Wm-a0smICri5NxARxg?ct=application/x-ole-storage#/>;
+                                                                                       nfo:fileName "PerfectOffice_MAIN";
+                                                                                       nfo:fileSize 13508593 ;
+                                                                                       a nfo:FileDataObject,
+                                                                                         nfo:EmbeddedFileDataObject;
+                                                                                       skos:prefLabel "/PerfectOffice_MAIN".
+<ni:///mh;1QEQAFa1Wm-a0smICri5NxARxg?ct=application/x-ole-storage#/PerfectOffice_OBJECTS> at:pathObject <file:///PerfectOffice_OBJECTS>;
+                                                                                          nie:interpretedAs <ni:///mh;1QEQAFa1Wm-a0smICri5NxARxg?ct=application/x-ole-storage#/PerfectOffice_OBJECTS/>;
+                                                                                          nfo:belongsToContainer <ni:///mh;1QEQAFa1Wm-a0smICri5NxARxg?ct=application/x-ole-storage#/>;
+                                                                                          nfo:fileCreated "2014-10-15T11:03:02.296000Z"^^xsd:dateTime;
+                                                                                          nfo:fileLastModified "2014-10-15T11:03:02.296000Z"^^xsd:dateTime;
+                                                                                          nfo:fileName "PerfectOffice_OBJECTS";
+                                                                                          a nfo:FileDataObject,
+                                                                                            nfo:EmbeddedFileDataObject;
+                                                                                          skos:prefLabel "/PerfectOffice_OBJECTS".
+<ni:///mh;1QEQAFa1Wm-a0smICri5NxARxg?ct=application/x-ole-storage#/PerfectOffice_OBJECTS/> at:pathObject <file:///PerfectOffice_OBJECTS/>;
+                                                                                           a nfo:Folder;
+                                                                                           skos:prefLabel "/PerfectOffice_OBJECTS/".
+<ni:///mh;1QEQt2M2fm1q9Q2VHtLbC5CU_g?ct=application/octet-stream> at:digest <urn:md5:B763367E6D6AF50D951ED2DB0B9094FE>;
+                                                                  dcterms:extent "13508593"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (12.88 MiB)"@en.
+<urn:md5:0056B55A6F9AD2C9880AB8B9371011C6> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "AFa1Wm+a0smICri5NxARxg=="^^xsd:base64Binary.
+<urn:md5:B763367E6D6AF50D951ED2DB0B9094FE> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "t2M2fm1q9Q2VHtLbC5CU/g=="^^xsd:base64Binary.

@@ -1,0 +1,35 @@
+@base <ni:///mh;1QEQItE6Z5lkK5HkU5RYxfykjw?ct=text/plain>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///014.ai>;
+     nie:interpretedAs <ni:///mh;1QEQItE6Z5lkK5HkU5RYxfykjw?ct=text/plain>;
+     nfo:fileName "014.ai";
+     nfo:fileSize 13299 ;
+     a nfo:FileDataObject.
+<file:///014.ai> at:extensionObject <https://w3id.org/uri4uri/suffix/ai>.
+<ni:///mh;1QEQItE6Z5lkK5HkU5RYxfykjw?ct=application/postscript> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/postscript>;
+                                                                a schema:MediaObject;
+                                                                skos:prefLabel "EPS object (12.99 KiB)"@en.
+<ni:///mh;1QEQItE6Z5lkK5HkU5RYxfykjw?ct=text/plain> at:digest <urn:md5:22D13A6799642B91E4539458C5FCA48F>;
+                                                    dcterms:extent "13299"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQItE6Z5lkK5HkU5RYxfykjw?ct=application/postscript>;
+                                                    nie:hasPart <ni:///mh;1QEQItE6Z5lkK5HkU5RYxfykjw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (12.99 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQItE6Z5lkK5HkU5RYxfykjw?ct=text/plain#line=,1> rdf:value """%!PS-Adobe-3.0 %%Creator: Adobe Illustrator(r) 6.0.1%%For: (Dirk Klotz) ()%%Title: (14.eps)%%CreationDate: (20.07.1997) (13:11 Uhr)%%BoundingBox: 89 73 352 401%%HiResBoundingBox: 89.855 73.943 351.7392 400.895%%DocumentProcessColors: Black%%DocumentNeededResources: procset Adobe_level2_AI5 1.0 0%%+ procset Adobe_Illustrator_AI6_vars Adobe_Illustrator_AI6%%+ procset Adobe_Illustrator_AI5 1.0 0%AI5_FileFormat 2.1%AI3_ColorUsage: Color%%DocumentCustomColors: (Blau)%%+ (Gr\\237n)%%+ (Haut 2)%%+ (""".
+<urn:md5:22D13A6799642B91E4539458C5FCA48F> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "ItE6Z5lkK5HkU5RYxfykjw=="^^xsd:base64Binary.

@@ -1,0 +1,46 @@
+@base <ni:///mh;1QEQ6tAs3DrvL2bWG19EoImO_A?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///PYRAMAGE%20CD%20PAGE.pdf>;
+     nie:interpretedAs <ni:///mh;1QEQ6tAs3DrvL2bWG19EoImO_A?ct=application/octet-stream>;
+     nfo:fileName "PYRAMAGE CD PAGE.pdf";
+     nfo:fileSize 6796135 ;
+     a nfo:FileDataObject.
+<file:///PYRAMAGE%20CD%20PAGE.pdf> at:extensionObject <https://w3id.org/uri4uri/suffix/pdf>.
+<ni:///mh;1QEQ6tAs3DrvL2bWG19EoImO_A?ct=application/octet-stream> at:digest <urn:md5:EAD02CDC3AEF2F66D61B5F44A0898EFC>;
+                                                                  dcterms:extent "6796135"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ6tAs3DrvL2bWG19EoImO_A?ct=application/pdf>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (6.48 MiB)"@en.
+<ni:///mh;1QEQ6tAs3DrvL2bWG19EoImO_A?ct=application/pdf> <http://ns.adobe.com/pdf/1.3/Producer> "Acrobat Distiller 8.1.0 (Macintosh)";
+                                                         <http://ns.adobe.com/xap/1.0/CreateDate> "2009-12-22T13:28:41Z";
+                                                         <http://ns.adobe.com/xap/1.0/CreatorTool> "QuarkXPress: pictwpstops filter 1.0";
+                                                         <http://ns.adobe.com/xap/1.0/MetadataDate> "2009-12-24T14:40:33Z";
+                                                         <http://ns.adobe.com/xap/1.0/ModifyDate> "2009-12-24T14:40:33Z";
+                                                         <http://ns.adobe.com/xap/1.0/mm/DocumentID> "uuid:5217d90c-d7d5-6142-8215-4d69a928964d";
+                                                         <http://ns.adobe.com/xap/1.0/mm/InstanceID> "uuid:10f4f3b8-4cfc-4c54-85b6-865131937d25";
+                                                         <http://purl.org/dc/elements/1.1/format> "application/pdf";
+                                                         dcterms:created "2009-12-22T13:28:41.000000Z"^^xsd:dateTime;
+                                                         dcterms:creator "Ian";
+                                                         dcterms:modified "2009-12-24T14:40:33.000000Z"^^xsd:dateTime;
+                                                         dcterms:title "PIN UPS PYRAMAGE PAGE";
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/pdf>;
+                                                         a schema:MediaObject,
+                                                           schema:DigitalDocument,
+                                                           nfo:Document;
+                                                         skos:prefLabel "PDF object (PIN UPS PYRAMAGE PAGE)"@en.
+<urn:md5:EAD02CDC3AEF2F66D61B5F44A0898EFC> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "6tAs3DrvL2bWG19EoImO/A=="^^xsd:base64Binary.

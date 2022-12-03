@@ -1,0 +1,32 @@
+@base <ni:///mh;1QEQ5x3jbdKCQKeiw98P89Z1OQ?ct=application/x.sig.jjk107>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///jjk107.mod>;
+     nie:interpretedAs <ni:///mh;1QEQ5x3jbdKCQKeiw98P89Z1OQ?ct=application/octet-stream>;
+     nfo:fileName "jjk107.mod";
+     nfo:fileSize 113272 ;
+     a nfo:FileDataObject.
+<file:///jjk107.mod> at:extensionObject <https://w3id.org/uri4uri/suffix/mod>.
+<ni:///mh;1QEQ5x3jbdKCQKeiw98P89Z1OQ?ct=application/octet-stream> at:digest <urn:md5:E71DE36DD28240A7A2C3DF0FF3D67539>;
+                                                                  dcterms:extent "113272"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ5x3jbdKCQKeiw98P89Z1OQ?ct=application/x.sig.jjk107>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (110.62 KiB)"@en.
+<ni:///mh;1QEQ5x3jbdKCQKeiw98P89Z1OQ?ct=application/x.sig.jjk107> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.jjk107>;
+                                                                  a schema:MediaObject;
+                                                                  skos:prefLabel "JJK107 object (110.62 KiB)"@en.
+<urn:md5:E71DE36DD28240A7A2C3DF0FF3D67539> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "5x3jbdKCQKeiw98P89Z1OQ=="^^xsd:base64Binary.

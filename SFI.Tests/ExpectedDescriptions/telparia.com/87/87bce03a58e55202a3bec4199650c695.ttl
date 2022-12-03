@@ -1,0 +1,794 @@
+@base <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///p205.zip>;
+     nie:interpretedAs <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/octet-stream>;
+     nfo:fileName "p205.zip";
+     nfo:fileSize 131992 ;
+     a nfo:FileDataObject.
+<data:,ICON%201%20p.ico%0D%0A> dcterms:extent "14"^^dt:byte;
+                               dcterms:hasFormat <data:image/bmp,ICON%201%20p.ico%0D%0A>;
+                               a cnt:ContentAsText;
+                               skos:prefLabel "text (14 B)"@en;
+                               cnt:characterEncoding "us-ascii";
+                               cnt:chars """ICON 1 p.ico
+"""^^xsd:string.
+<data:,NAME%20P%20WINDOWCOMPAT%0D%0ASTACKSIZE%200x10000%0D%0A> dcterms:extent "40"^^dt:byte;
+                                                               a cnt:ContentAsText;
+                                                               skos:prefLabel "text (40 B)"@en;
+                                                               cnt:characterEncoding "us-ascii";
+                                                               cnt:chars """NAME P WINDOWCOMPAT
+STACKSIZE 0x10000
+"""^^xsd:string.
+<data:image/bmp,ICON%201%20p.ico%0D%0A> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                        a schema:MediaObject,
+                                          schema:ImageObject,
+                                          nfo:Image;
+                                        skos:prefLabel "BMP object (14 B)"@en.
+<file:///brw.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///brw.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<file:///callback.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///callback.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<file:///ckop200.ini> at:extensionObject <https://w3id.org/uri4uri/suffix/ini>.
+<file:///common.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///common.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<file:///dir.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///dir.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<file:///errmsgs.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<file:///error.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///error.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<file:///exesrc/brw.c> at:pathObject <file:///brw.c>.
+<file:///exesrc/brw.h> at:pathObject <file:///brw.h>.
+<file:///exesrc/callback.c> at:pathObject <file:///callback.c>.
+<file:///exesrc/callback.h> at:pathObject <file:///callback.h>.
+<file:///exesrc/common.c> at:pathObject <file:///common.c>.
+<file:///exesrc/common.h> at:pathObject <file:///common.h>.
+<file:///exesrc/dir.c> at:pathObject <file:///dir.c>.
+<file:///exesrc/dir.h> at:pathObject <file:///dir.h>.
+<file:///exesrc/errmsgs.h> at:pathObject <file:///errmsgs.h>.
+<file:///exesrc/error.c> at:pathObject <file:///error.c>.
+<file:///exesrc/error.h> at:pathObject <file:///error.h>.
+<file:///exesrc/global.c> at:pathObject <file:///global.c>.
+<file:///exesrc/global.h> at:pathObject <file:///global.h>.
+<file:///exesrc/makefile> at:pathObject <file:///makefile>.
+<file:///exesrc/modules.h> at:pathObject <file:///modules.h>.
+<file:///exesrc/p.c> at:pathObject <file:///p.c>.
+<file:///exesrc/p.def> at:pathObject <file:///p.def>.
+<file:///exesrc/p.h> at:pathObject <file:///p.h>.
+<file:///exesrc/p.ico> at:pathObject <file:///p.ico>.
+<file:///exesrc/p.rc> at:pathObject <file:///p.rc>.
+<file:///exesrc/p_dll.c> at:pathObject <file:///p_dll.c>.
+<file:///exesrc/p_dll.h> at:pathObject <file:///p_dll.h>.
+<file:///exesrc/tcpipapi.c> at:pathObject <file:///tcpipapi.c>.
+<file:///exesrc/tcpipapi.h> at:pathObject <file:///tcpipapi.h>.
+<file:///exesrc/tl.c> at:pathObject <file:///tl.c>.
+<file:///exesrc/tl.h> at:pathObject <file:///tl.h>.
+<file:///exesrc/typedefs.h> at:pathObject <file:///typedefs.h>.
+<file:///exesrc/usage.h> at:pathObject <file:///usage.h>.
+<file:///file_id.diz> at:extensionObject <https://w3id.org/uri4uri/suffix/diz>.
+<file:///global.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///global.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<file:///history.doc> at:extensionObject <https://w3id.org/uri4uri/suffix/doc>.
+<file:///lw_p.cmd> at:extensionObject <https://w3id.org/uri4uri/suffix/cmd>.
+<file:///modules.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<file:///p.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///p.def> at:extensionObject <https://w3id.org/uri4uri/suffix/def>.
+<file:///p.dll> at:extensionObject <https://w3id.org/uri4uri/suffix/dll>.
+<file:///p.doc> at:extensionObject <https://w3id.org/uri4uri/suffix/doc>.
+<file:///p.exe> at:extensionObject <https://w3id.org/uri4uri/suffix/exe>.
+<file:///p.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<file:///p.ico> at:extensionObject <https://w3id.org/uri4uri/suffix/ico>.
+<file:///p.rc> at:extensionObject <https://w3id.org/uri4uri/suffix/rc>.
+<file:///p205.zip> at:extensionObject <https://w3id.org/uri4uri/suffix/zip>.
+<file:///p_dll.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///p_dll.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<file:///tcpipapi.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///tcpipapi.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<file:///tl.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///tl.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<file:///typedefs.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<file:///usage.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<ni:///mh;1QEQ0Qgkg1ZGxOowkyVsFqeRKA?ct=text/plain> at:digest <urn:md5:D10824835646C4EA3093256C16A79128>;
+                                                    dcterms:extent "1838"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQ0Qgkg1ZGxOowkyVsFqeRKA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.79 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQ0Qgkg1ZGxOowkyVsFqeRKA?ct=text/plain#line=,1> rdf:value "/*****************************************************************************/".
+<ni:///mh;1QEQ0TdXd-mpews_R2uGksQqGg?ct=text/plain> at:digest <urn:md5:D1375777E9A97B0B3F476B8692C42A1A>;
+                                                    dcterms:extent "2097"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQ0TdXd-mpews_R2uGksQqGg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (2.05 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQ0TdXd-mpews_R2uGksQqGg?ct=text/plain#line=,1> rdf:value "/*****************************************************************************/".
+<ni:///mh;1QEQ4Fr2hKWaZoLY4v63gq34oQ?ct=text/plain> at:digest <urn:md5:E05AF684A59A6682D8E2FEB782ADF8A1>;
+                                                    dcterms:extent "1690"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQ4Fr2hKWaZoLY4v63gq34oQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.65 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQ4Fr2hKWaZoLY4v63gq34oQ?ct=text/plain#line=,1> rdf:value "/*****************************************************************************/".
+<ni:///mh;1QEQ7PpB4rqFcRi5E_0MbyX6wA?ct=text/plain> at:digest <urn:md5:ECFA41E2BA857118B913FD0C6F25FAC0>;
+                                                    dcterms:extent "734"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQ7PpB4rqFcRi5E_0MbyX6wA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (734 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQ7PpB4rqFcRi5E_0MbyX6wA?ct=text/plain#line=,1> rdf:value "/*****************************************************************************/".
+<ni:///mh;1QEQ7XitwKi1nB2ozJVXrJTHbQ?ct=text/plain> at:digest <urn:md5:ED78ADC0A8B59C1DA8CC9557AC94C76D>;
+                                                    dcterms:extent "2152"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQ7XitwKi1nB2ozJVXrJTHbQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (2.1 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQ7XitwKi1nB2ozJVXrJTHbQ?ct=text/plain#line=,1> rdf:value "###############################################################################".
+<ni:///mh;1QEQCoFAqWkd3gHNbFphqLMpUw?ct=text/plain> at:digest <urn:md5:0A8140A9691DDE01CD6C5A61A8B32953>;
+                                                    dcterms:extent "6718"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQCoFAqWkd3gHNbFphqLMpUw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (6.56 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQCoFAqWkd3gHNbFphqLMpUw?ct=text/plain#line=,1> rdf:value "/*****************************************************************************/".
+<ni:///mh;1QEQDW-YOr5QWS2YL8u99C6zlw?ct=text/plain> at:digest <urn:md5:0D6F983ABE50592D982FCBBDF42EB397>;
+                                                    dcterms:extent "26435"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQDW-YOr5QWS2YL8u99C6zlw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (25.82 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQDW-YOr5QWS2YL8u99C6zlw?ct=text/plain#line=,1> rdf:value "/*****************************************************************************/".
+<ni:///mh;1QEQIqmBbhhSo8pU26IlyZ0tiA?ct=text/plain> at:digest <urn:md5:22A9816E1852A3CA54DBA225C99D2D88>;
+                                                    dcterms:extent "736"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQIqmBbhhSo8pU26IlyZ0tiA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (736 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQIqmBbhhSo8pU26IlyZ0tiA?ct=text/plain#line=,1> rdf:value "/*****************************************************************************/".
+<ni:///mh;1QEQKJb7i0KWxo8sN5UTuYGvnA?ct=text/plain> at:digest <urn:md5:2896FB8B4296C68F2C379513B981AF9C>;
+                                                    dcterms:extent "9564"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQKJb7i0KWxo8sN5UTuYGvnA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (9.34 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQKJb7i0KWxo8sN5UTuYGvnA?ct=text/plain#line=,1> rdf:value "; FILE P200.INI (CKOP200.INI)".
+<ni:///mh;1QEQM2NAqEKj_TuLKpp7vEpiGg?ct=text/plain> at:digest <urn:md5:336340A842A3FD3B8B2A9A7BBC4A621A>;
+                                                    dcterms:extent "818"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQM2NAqEKj_TuLKpp7vEpiGg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (818 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQM2NAqEKj_TuLKpp7vEpiGg?ct=text/plain#line=,1> rdf:value "/*****************************************************************************/".
+<ni:///mh;1QEQMqXxxL9cyOO-y960P4L1Yw?ct=text/plain> at:digest <urn:md5:32A5F1C4BF5CC8E3BECBDEB43F82F563>;
+                                                    dcterms:extent "2411"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQMqXxxL9cyOO-y960P4L1Yw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (2.35 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQMqXxxL9cyOO-y960P4L1Yw?ct=text/plain#line=,1> rdf:value "/*****************************************************************************/".
+<ni:///mh;1QEQPRZYwRD51evxIGnzM8I4fQ?ct=text/plain> at:digest <urn:md5:3D1658C110F9D5EBF12069F333C2387D>;
+                                                    dcterms:extent "38448"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQPRZYwRD51evxIGnzM8I4fQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (37.55 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQPRZYwRD51evxIGnzM8I4fQ?ct=text/plain#line=,1> rdf:value "/*****************************************************************************/".
+<ni:///mh;1QEQQgZ0h-NmclKkRay5VMAVMA?ct=text/plain> at:digest <urn:md5:42067487E3667252A445ACB954C01530>;
+                                                    dcterms:extent "495"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQQgZ0h-NmclKkRay5VMAVMA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (495 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQQgZ0h-NmclKkRay5VMAVMA?ct=text/plain#line=,1> rdf:value "/*****************************************************************************/".
+<ni:///mh;1QEQTNrYQ86RNOcVjPpAfkxqGw?ct=text/plain> at:digest <urn:md5:4CDAD843CE9134E7158CFA407E4C6A1B>;
+                                                    dcterms:extent "789"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQTNrYQ86RNOcVjPpAfkxqGw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (789 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQTNrYQ86RNOcVjPpAfkxqGw?ct=text/plain#line=,1> rdf:value "/*****************************************************************************/".
+<ni:///mh;1QEQTdhBnUO6LlYjXpRdTLV0fw?ct=text/plain> at:digest <urn:md5:4DD8419D43BA2E56235E945D4CB5747F>;
+                                                    dcterms:extent "4339"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQTdhBnUO6LlYjXpRdTLV0fw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (4.24 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQTdhBnUO6LlYjXpRdTLV0fw?ct=text/plain#line=,1> rdf:value "/*****************************************************************************/".
+<ni:///mh;1QEQVbBE9MWeRho6ZZzaxocbYQ?ct=text/plain> at:digest <urn:md5:55B044F4C59E461A3A659CDAC6871B61>;
+                                                    dcterms:extent "1677"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQVbBE9MWeRho6ZZzaxocbYQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.64 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQVbBE9MWeRho6ZZzaxocbYQ?ct=text/plain#line=,1> rdf:value "/*****************************************************************************/".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/octet-stream> at:digest <urn:md5:56D2EBC8A83EDA36FA46D1DCA982274B>;
+                                                                  dcterms:extent "131992"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (128.9 KiB)"@en.
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip> at:pathObject <file:///>;
+                                                         dcterms:description """P is a freeware 32-bit file transfer
+protocol package providing fast and
+multitasking friendly Zmodem, Ymodem-g,
+Ymodem and Xmodem for Asynchronous, Named
+pipe and TCP/IP stream socket (telnet)
+connections. Contains a DLL that can be
+used with your own applications!
+""";
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
+                                                         nie:interpretedAs <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/>;
+                                                         a schema:MediaObject,
+                                                           nfo:Archive;
+                                                         skos:prefLabel "ZIP object (128.9 KiB)"@en.
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/> at:pathObject <file:///./>;
+                                                           a nfo:Folder;
+                                                           skos:prefLabel "/".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/ckop200.ini> at:pathObject <file:///ckop200.ini>;
+                                                                      nie:interpretedAs <ni:///mh;1QEQKJb7i0KWxo8sN5UTuYGvnA?ct=text/plain>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/>;
+                                                                      nfo:fileLastModified "1994-12-18T20:47:02.000000+01:00"^^xsd:dateTime;
+                                                                      nfo:fileName "ckop200.ini";
+                                                                      nfo:fileSize 9564 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/ckop200.ini".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc> at:pathObject <file:///exesrc>;
+                                                                 nie:interpretedAs <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/>;
+                                                                 nfo:belongsToContainer <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/>;
+                                                                 nfo:fileLastModified "1994-12-18T20:47:02.000000+01:00"^^xsd:dateTime;
+                                                                 nfo:fileName "exesrc";
+                                                                 a nfo:FileDataObject,
+                                                                   nfo:ArchiveItem;
+                                                                 skos:prefLabel "/exesrc".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/> at:pathObject <file:///exesrc/>;
+                                                                  a nfo:Folder;
+                                                                  skos:prefLabel "/exesrc/".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/brw.c> at:pathObject <file:///exesrc/brw.c>;
+                                                                       nie:interpretedAs <ni:///mh;1QEQCoFAqWkd3gHNbFphqLMpUw?ct=text/plain>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/>;
+                                                                       nfo:fileLastModified "1994-12-18T20:47:02.000000+01:00"^^xsd:dateTime;
+                                                                       nfo:fileName "brw.c";
+                                                                       nfo:fileSize 6718 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/exesrc/brw.c".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/brw.h> at:pathObject <file:///exesrc/brw.h>;
+                                                                       nie:interpretedAs <ni:///mh;1QEQTNrYQ86RNOcVjPpAfkxqGw?ct=text/plain>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/>;
+                                                                       nfo:fileLastModified "1994-12-18T20:47:02.000000+01:00"^^xsd:dateTime;
+                                                                       nfo:fileName "brw.h";
+                                                                       nfo:fileSize 789 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/exesrc/brw.h".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/callback.c> at:pathObject <file:///exesrc/callback.c>;
+                                                                            nie:interpretedAs <ni:///mh;1QEQDW-YOr5QWS2YL8u99C6zlw?ct=text/plain>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/>;
+                                                                            nfo:fileLastModified "1994-12-18T20:47:02.000000+01:00"^^xsd:dateTime;
+                                                                            nfo:fileName "callback.c";
+                                                                            nfo:fileSize 26435 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/exesrc/callback.c".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/callback.h> at:pathObject <file:///exesrc/callback.h>;
+                                                                            nie:interpretedAs <ni:///mh;1QEQM2NAqEKj_TuLKpp7vEpiGg?ct=text/plain>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/>;
+                                                                            nfo:fileLastModified "1994-12-18T20:47:02.000000+01:00"^^xsd:dateTime;
+                                                                            nfo:fileName "callback.h";
+                                                                            nfo:fileSize 818 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/exesrc/callback.h".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/common.c> at:pathObject <file:///exesrc/common.c>;
+                                                                          nie:interpretedAs <ni:///mh;1QEQyzRSTRBlbaoHqPvKiLrQ2g?ct=text/plain>;
+                                                                          nfo:belongsToContainer <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/>;
+                                                                          nfo:fileLastModified "1994-12-18T20:47:02.000000+01:00"^^xsd:dateTime;
+                                                                          nfo:fileName "common.c";
+                                                                          nfo:fileSize 6056 ;
+                                                                          a nfo:FileDataObject,
+                                                                            nfo:ArchiveItem;
+                                                                          skos:prefLabel "/exesrc/common.c".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/common.h> at:pathObject <file:///exesrc/common.h>;
+                                                                          nie:interpretedAs <ni:///mh;1QEQ7PpB4rqFcRi5E_0MbyX6wA?ct=text/plain>;
+                                                                          nfo:belongsToContainer <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/>;
+                                                                          nfo:fileLastModified "1994-12-18T20:47:02.000000+01:00"^^xsd:dateTime;
+                                                                          nfo:fileName "common.h";
+                                                                          nfo:fileSize 734 ;
+                                                                          a nfo:FileDataObject,
+                                                                            nfo:ArchiveItem;
+                                                                          skos:prefLabel "/exesrc/common.h".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/dir.c> at:pathObject <file:///exesrc/dir.c>;
+                                                                       nie:interpretedAs <ni:///mh;1QEQMqXxxL9cyOO-y960P4L1Yw?ct=text/plain>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/>;
+                                                                       nfo:fileLastModified "1994-12-18T20:47:02.000000+01:00"^^xsd:dateTime;
+                                                                       nfo:fileName "dir.c";
+                                                                       nfo:fileSize 2411 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/exesrc/dir.c".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/dir.h> at:pathObject <file:///exesrc/dir.h>;
+                                                                       nie:interpretedAs <ni:///mh;1QEQIqmBbhhSo8pU26IlyZ0tiA?ct=text/plain>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/>;
+                                                                       nfo:fileLastModified "1994-12-18T20:47:02.000000+01:00"^^xsd:dateTime;
+                                                                       nfo:fileName "dir.h";
+                                                                       nfo:fileSize 736 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/exesrc/dir.h".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/errmsgs.h> at:pathObject <file:///exesrc/errmsgs.h>;
+                                                                           nie:interpretedAs <ni:///mh;1QEQ4Fr2hKWaZoLY4v63gq34oQ?ct=text/plain>;
+                                                                           nfo:belongsToContainer <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/>;
+                                                                           nfo:fileLastModified "1994-12-18T20:47:02.000000+01:00"^^xsd:dateTime;
+                                                                           nfo:fileName "errmsgs.h";
+                                                                           nfo:fileSize 1690 ;
+                                                                           a nfo:FileDataObject,
+                                                                             nfo:ArchiveItem;
+                                                                           skos:prefLabel "/exesrc/errmsgs.h".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/error.c> at:pathObject <file:///exesrc/error.c>;
+                                                                         nie:interpretedAs <ni:///mh;1QEQvcAkT8hDIvQ7uO7ns1fKyQ?ct=text/plain>;
+                                                                         nfo:belongsToContainer <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/>;
+                                                                         nfo:fileLastModified "1994-12-18T20:47:02.000000+01:00"^^xsd:dateTime;
+                                                                         nfo:fileName "error.c";
+                                                                         nfo:fileSize 2207 ;
+                                                                         a nfo:FileDataObject,
+                                                                           nfo:ArchiveItem;
+                                                                         skos:prefLabel "/exesrc/error.c".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/error.h> at:pathObject <file:///exesrc/error.h>;
+                                                                         nie:interpretedAs <ni:///mh;1QEQQgZ0h-NmclKkRay5VMAVMA?ct=text/plain>;
+                                                                         nfo:belongsToContainer <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/>;
+                                                                         nfo:fileLastModified "1994-12-18T20:47:02.000000+01:00"^^xsd:dateTime;
+                                                                         nfo:fileName "error.h";
+                                                                         nfo:fileSize 495 ;
+                                                                         a nfo:FileDataObject,
+                                                                           nfo:ArchiveItem;
+                                                                         skos:prefLabel "/exesrc/error.h".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/global.c> at:pathObject <file:///exesrc/global.c>;
+                                                                          nie:interpretedAs <ni:///mh;1QEQ0TdXd-mpews_R2uGksQqGg?ct=text/plain>;
+                                                                          nfo:belongsToContainer <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/>;
+                                                                          nfo:fileLastModified "1994-12-18T20:47:02.000000+01:00"^^xsd:dateTime;
+                                                                          nfo:fileName "global.c";
+                                                                          nfo:fileSize 2097 ;
+                                                                          a nfo:FileDataObject,
+                                                                            nfo:ArchiveItem;
+                                                                          skos:prefLabel "/exesrc/global.c".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/global.h> at:pathObject <file:///exesrc/global.h>;
+                                                                          nie:interpretedAs <ni:///mh;1QEQvSi7b0EE1-oQmT1aVLdi6g?ct=text/plain>;
+                                                                          nfo:belongsToContainer <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/>;
+                                                                          nfo:fileLastModified "1994-12-18T20:47:02.000000+01:00"^^xsd:dateTime;
+                                                                          nfo:fileName "global.h";
+                                                                          nfo:fileSize 1296 ;
+                                                                          a nfo:FileDataObject,
+                                                                            nfo:ArchiveItem;
+                                                                          skos:prefLabel "/exesrc/global.h".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/makefile> at:pathObject <file:///exesrc/makefile>;
+                                                                          nie:interpretedAs <ni:///mh;1QEQ7XitwKi1nB2ozJVXrJTHbQ?ct=text/plain>;
+                                                                          nfo:belongsToContainer <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/>;
+                                                                          nfo:fileLastModified "1994-12-18T20:47:02.000000+01:00"^^xsd:dateTime;
+                                                                          nfo:fileName "makefile";
+                                                                          nfo:fileSize 2152 ;
+                                                                          a nfo:FileDataObject,
+                                                                            nfo:ArchiveItem;
+                                                                          skos:prefLabel "/exesrc/makefile".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/modules.h> at:pathObject <file:///exesrc/modules.h>;
+                                                                           nie:interpretedAs <ni:///mh;1QEQwuuKXp-1pUWM9fFXnshSKQ?ct=text/plain>;
+                                                                           nfo:belongsToContainer <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/>;
+                                                                           nfo:fileLastModified "1994-12-18T20:47:02.000000+01:00"^^xsd:dateTime;
+                                                                           nfo:fileName "modules.h";
+                                                                           nfo:fileSize 514 ;
+                                                                           a nfo:FileDataObject,
+                                                                             nfo:ArchiveItem;
+                                                                           skos:prefLabel "/exesrc/modules.h".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/p.c> at:pathObject <file:///exesrc/p.c>;
+                                                                     nie:interpretedAs <ni:///mh;1QEQsIyy4Ou5PsTpmpk-qdJKJA?ct=text/plain>;
+                                                                     nfo:belongsToContainer <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/>;
+                                                                     nfo:fileLastModified "1994-12-18T20:47:02.000000+01:00"^^xsd:dateTime;
+                                                                     nfo:fileName "p.c";
+                                                                     nfo:fileSize 14607 ;
+                                                                     a nfo:FileDataObject,
+                                                                       nfo:ArchiveItem;
+                                                                     skos:prefLabel "/exesrc/p.c".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/p.def> at:pathObject <file:///exesrc/p.def>;
+                                                                       nie:interpretedAs <data:,NAME%20P%20WINDOWCOMPAT%0D%0ASTACKSIZE%200x10000%0D%0A>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/>;
+                                                                       nfo:fileLastModified "1994-12-18T20:47:02.000000+01:00"^^xsd:dateTime;
+                                                                       nfo:fileName "p.def";
+                                                                       nfo:fileSize 40 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/exesrc/p.def".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/p.h> at:pathObject <file:///exesrc/p.h>;
+                                                                     nie:interpretedAs <ni:///mh;1QEQPRZYwRD51evxIGnzM8I4fQ?ct=text/plain>;
+                                                                     nfo:belongsToContainer <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/>;
+                                                                     nfo:fileLastModified "1994-12-18T20:47:02.000000+01:00"^^xsd:dateTime;
+                                                                     nfo:fileName "p.h";
+                                                                     nfo:fileSize 38448 ;
+                                                                     a nfo:FileDataObject,
+                                                                       nfo:ArchiveItem;
+                                                                     skos:prefLabel "/exesrc/p.h".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/p.ico> at:pathObject <file:///exesrc/p.ico>;
+                                                                       nie:interpretedAs <ni:///mh;1QEQsalqZXScqS1JCX2JDM9DOA?ct=application/octet-stream>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/>;
+                                                                       nfo:fileLastModified "1994-12-18T20:47:02.000000+01:00"^^xsd:dateTime;
+                                                                       nfo:fileName "p.ico";
+                                                                       nfo:fileSize 996 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/exesrc/p.ico".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/p.rc> at:pathObject <file:///exesrc/p.rc>;
+                                                                      nie:interpretedAs <data:,ICON%201%20p.ico%0D%0A>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/>;
+                                                                      nfo:fileLastModified "1994-12-18T20:47:02.000000+01:00"^^xsd:dateTime;
+                                                                      nfo:fileName "p.rc";
+                                                                      nfo:fileSize 14 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/exesrc/p.rc".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/p_dll.c> at:pathObject <file:///exesrc/p_dll.c>;
+                                                                         nie:interpretedAs <ni:///mh;1QEQ0Qgkg1ZGxOowkyVsFqeRKA?ct=text/plain>;
+                                                                         nfo:belongsToContainer <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/>;
+                                                                         nfo:fileLastModified "1994-12-18T20:47:02.000000+01:00"^^xsd:dateTime;
+                                                                         nfo:fileName "p_dll.c";
+                                                                         nfo:fileSize 1838 ;
+                                                                         a nfo:FileDataObject,
+                                                                           nfo:ArchiveItem;
+                                                                         skos:prefLabel "/exesrc/p_dll.c".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/p_dll.h> at:pathObject <file:///exesrc/p_dll.h>;
+                                                                         nie:interpretedAs <ni:///mh;1QEQulOWdhlLPs-6s8fPFxnzZw?ct=text/plain>;
+                                                                         nfo:belongsToContainer <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/>;
+                                                                         nfo:fileLastModified "1994-12-18T20:47:02.000000+01:00"^^xsd:dateTime;
+                                                                         nfo:fileName "p_dll.h";
+                                                                         nfo:fileSize 430 ;
+                                                                         a nfo:FileDataObject,
+                                                                           nfo:ArchiveItem;
+                                                                         skos:prefLabel "/exesrc/p_dll.h".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/tcpipapi.c> at:pathObject <file:///exesrc/tcpipapi.c>;
+                                                                            nie:interpretedAs <ni:///mh;1QEQVbBE9MWeRho6ZZzaxocbYQ?ct=text/plain>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/>;
+                                                                            nfo:fileLastModified "1994-12-18T20:47:02.000000+01:00"^^xsd:dateTime;
+                                                                            nfo:fileName "tcpipapi.c";
+                                                                            nfo:fileSize 1677 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/exesrc/tcpipapi.c".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/tcpipapi.h> at:pathObject <file:///exesrc/tcpipapi.h>;
+                                                                            nie:interpretedAs <ni:///mh;1QEQYzRQS35GwmMoI3XGDMc91Q?ct=text/plain>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/>;
+                                                                            nfo:fileLastModified "1994-12-18T20:47:02.000000+01:00"^^xsd:dateTime;
+                                                                            nfo:fileName "tcpipapi.h";
+                                                                            nfo:fileSize 429 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/exesrc/tcpipapi.h".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/tl.c> at:pathObject <file:///exesrc/tl.c>;
+                                                                      nie:interpretedAs <ni:///mh;1QEQTdhBnUO6LlYjXpRdTLV0fw?ct=text/plain>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/>;
+                                                                      nfo:fileLastModified "1994-12-18T20:47:02.000000+01:00"^^xsd:dateTime;
+                                                                      nfo:fileName "tl.c";
+                                                                      nfo:fileSize 4339 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/exesrc/tl.c".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/tl.h> at:pathObject <file:///exesrc/tl.h>;
+                                                                      nie:interpretedAs <ni:///mh;1QEQZKBlT9T694wnVtYeen7zhw?ct=text/plain>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/>;
+                                                                      nfo:fileLastModified "1994-12-18T20:47:02.000000+01:00"^^xsd:dateTime;
+                                                                      nfo:fileName "tl.h";
+                                                                      nfo:fileSize 822 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/exesrc/tl.h".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/typedefs.h> at:pathObject <file:///exesrc/typedefs.h>;
+                                                                            nie:interpretedAs <ni:///mh;1QEQwXQKbMPPtzKIbuDK1eVEdw?ct=text/plain>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/>;
+                                                                            nfo:fileLastModified "1994-12-18T20:47:02.000000+01:00"^^xsd:dateTime;
+                                                                            nfo:fileName "typedefs.h";
+                                                                            nfo:fileSize 995 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/exesrc/typedefs.h".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/usage.h> at:pathObject <file:///exesrc/usage.h>;
+                                                                         nie:interpretedAs <ni:///mh;1QEQn0uC5xKoOfwxO_rdCug0MQ?ct=text/plain>;
+                                                                         nfo:belongsToContainer <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/exesrc/>;
+                                                                         nfo:fileLastModified "1994-12-18T20:47:02.000000+01:00"^^xsd:dateTime;
+                                                                         nfo:fileName "usage.h";
+                                                                         nfo:fileSize 1535 ;
+                                                                         a nfo:FileDataObject,
+                                                                           nfo:ArchiveItem;
+                                                                         skos:prefLabel "/exesrc/usage.h".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/file_id.diz> at:pathObject <file:///file_id.diz>;
+                                                                      nie:interpretedAs <ni:///mh;1QEQz-u4UYtQPk7fNyvkAg-SHw?ct=text/plain>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/>;
+                                                                      nfo:fileLastModified "1994-12-18T20:47:02.000000+01:00"^^xsd:dateTime;
+                                                                      nfo:fileName "file_id.diz";
+                                                                      nfo:fileSize 274 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/file_id.diz".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/history.doc> at:pathObject <file:///history.doc>;
+                                                                      nie:interpretedAs <ni:///mh;1QEQcpcdqZD2_dK7N94SH1ePVA?ct=text/plain>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/>;
+                                                                      nfo:fileLastModified "1994-12-18T20:47:02.000000+01:00"^^xsd:dateTime;
+                                                                      nfo:fileName "history.doc";
+                                                                      nfo:fileSize 3182 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/history.doc".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/lw_p.cmd> at:pathObject <file:///lw_p.cmd>;
+                                                                   nie:interpretedAs <ni:///mh;1QEQk3U2IIyVzrsk-SGB1_KoWA?ct=text/plain>;
+                                                                   nfo:belongsToContainer <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/>;
+                                                                   nfo:fileLastModified "1994-12-18T20:47:02.000000+01:00"^^xsd:dateTime;
+                                                                   nfo:fileName "lw_p.cmd";
+                                                                   nfo:fileSize 349 ;
+                                                                   a nfo:FileDataObject,
+                                                                     nfo:ArchiveItem;
+                                                                   skos:prefLabel "/lw_p.cmd".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/p.dll> at:pathObject <file:///p.dll>;
+                                                                nie:interpretedAs <ni:///mh;1QEQZ1OFysl6rvXJL_2baxvLwA?ct=application/octet-stream>;
+                                                                nfo:belongsToContainer <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/>;
+                                                                nfo:fileLastModified "1994-12-18T20:47:02.000000+01:00"^^xsd:dateTime;
+                                                                nfo:fileName "p.dll";
+                                                                nfo:fileSize 131072 ;
+                                                                a nfo:FileDataObject,
+                                                                  nfo:ArchiveItem;
+                                                                skos:prefLabel "/p.dll".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/p.doc> at:pathObject <file:///p.doc>;
+                                                                nie:interpretedAs <ni:///mh;1QEQrsFya5lyvNCWWI7uiJh8uw?ct=text/plain>;
+                                                                nfo:belongsToContainer <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/>;
+                                                                nfo:fileLastModified "1994-12-18T20:47:02.000000+01:00"^^xsd:dateTime;
+                                                                nfo:fileName "p.doc";
+                                                                nfo:fileSize 33771 ;
+                                                                a nfo:FileDataObject,
+                                                                  nfo:ArchiveItem;
+                                                                skos:prefLabel "/p.doc".
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/p.exe> at:pathObject <file:///p.exe>;
+                                                                nie:interpretedAs <ni:///mh;1QEQoYEyy02Au3XRkkiDbecqJQ?ct=application/octet-stream>;
+                                                                nfo:belongsToContainer <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/>;
+                                                                nfo:fileLastModified "1994-12-18T20:47:02.000000+01:00"^^xsd:dateTime;
+                                                                nfo:fileName "p.exe";
+                                                                nfo:fileSize 56832 ;
+                                                                a nfo:FileDataObject,
+                                                                  nfo:ArchiveItem;
+                                                                skos:prefLabel "/p.exe".
+<ni:///mh;1QEQYzRQS35GwmMoI3XGDMc91Q?ct=text/plain> at:digest <urn:md5:6334504B7E46C263282375C60CC73DD5>;
+                                                    dcterms:extent "429"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQYzRQS35GwmMoI3XGDMc91Q?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (429 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQYzRQS35GwmMoI3XGDMc91Q?ct=text/plain#line=,1> rdf:value "/*****************************************************************************/".
+<ni:///mh;1QEQZ1OFysl6rvXJL_2baxvLwA?ct=application/octet-stream> at:digest <urn:md5:675385CAC97AAEF5C92FFD9B6B1BCBC0>;
+                                                                  dcterms:extent "138252"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQZ1OFysl6rvXJL_2baxvLwA?ct=application/x-msdownload;format=le>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (135.01 KiB)"@en.
+<ni:///mh;1QEQZ1OFysl6rvXJL_2baxvLwA?ct=application/x-msdownload;format=le> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-msdownload;format=le>;
+                                                                            a schema:MediaObject,
+                                                                              schema:SoftwareApplication,
+                                                                              nfo:Executable;
+                                                                            skos:prefLabel "EXE object (135.01 KiB)"@en.
+<ni:///mh;1QEQZKBlT9T694wnVtYeen7zhw?ct=text/plain> at:digest <urn:md5:64A0654FD4FAF78C2756D61E7A7EF387>;
+                                                    dcterms:extent "822"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQZKBlT9T694wnVtYeen7zhw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (822 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQZKBlT9T694wnVtYeen7zhw?ct=text/plain#line=,1> rdf:value "/*****************************************************************************/".
+<ni:///mh;1QEQcpcdqZD2_dK7N94SH1ePVA?ct=text/plain> at:digest <urn:md5:72971DA990F6FDD2BB37DE121F578F54>;
+                                                    dcterms:extent "3182"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQcpcdqZD2_dK7N94SH1ePVA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (3.11 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQcpcdqZD2_dK7N94SH1ePVA?ct=text/plain#line=,1> rdf:value "Version 2.05 -- 12/18/94".
+<ni:///mh;1QEQk3U2IIyVzrsk-SGB1_KoWA?ct=text/plain> at:digest <urn:md5:937536208C95CEBB24F92181D7F2A858>;
+                                                    dcterms:extent "349"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQk3U2IIyVzrsk-SGB1_KoWA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (349 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQk3U2IIyVzrsk-SGB1_KoWA?ct=text/plain#line=,1> rdf:value "@echo off".
+<ni:///mh;1QEQn0uC5xKoOfwxO_rdCug0MQ?ct=text/plain> at:digest <urn:md5:9F4B82E712A839FC313BFADD0AE83431>;
+                                                    dcterms:extent "1535"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQn0uC5xKoOfwxO_rdCug0MQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.5 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQn0uC5xKoOfwxO_rdCug0MQ?ct=text/plain#line=,1> rdf:value "/*****************************************************************************/".
+<ni:///mh;1QEQoYEyy02Au3XRkkiDbecqJQ?ct=application/octet-stream> at:digest <urn:md5:A18132CB4D80BB75D19248836DE72A25>;
+                                                                  dcterms:extent "56832"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQoYEyy02Au3XRkkiDbecqJQ?ct=application/x-msdownload;format=le>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (55.5 KiB)"@en.
+<ni:///mh;1QEQoYEyy02Au3XRkkiDbecqJQ?ct=application/x-msdownload;format=le> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-msdownload;format=le>;
+                                                                            a schema:MediaObject,
+                                                                              schema:SoftwareApplication,
+                                                                              nfo:Executable;
+                                                                            skos:prefLabel "EXE object (55.5 KiB)"@en.
+<ni:///mh;1QEQrsFya5lyvNCWWI7uiJh8uw?ct=text/plain> at:digest <urn:md5:AEC1726B9972BCD096588EEE88987CBB>;
+                                                    dcterms:extent "33771"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQrsFya5lyvNCWWI7uiJh8uw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (32.98 KiB)"@en;
+                                                    cnt:characterEncoding "windows-1252".
+<ni:///mh;1QEQrsFya5lyvNCWWI7uiJh8uw?ct=text/plain#line=,1> rdf:value "".
+<ni:///mh;1QEQsIyy4Ou5PsTpmpk-qdJKJA?ct=text/plain> at:digest <urn:md5:B08CB2E0EBB93EC4E99A993EA9D24A24>;
+                                                    dcterms:extent "14607"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQsIyy4Ou5PsTpmpk-qdJKJA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (14.26 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQsIyy4Ou5PsTpmpk-qdJKJA?ct=text/plain#line=,1> rdf:value "/*****************************************************************************/".
+<ni:///mh;1QEQsalqZXScqS1JCX2JDM9DOA?ct=application/octet-stream> at:digest <urn:md5:B1A96A65749CA92D49097D890CCF4338>;
+                                                                  dcterms:extent "996"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQsalqZXScqS1JCX2JDM9DOA?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (996 B)"@en.
+<ni:///mh;1QEQsalqZXScqS1JCX2JDM9DOA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:height 64 ;
+                                                   nfo:width 32 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (32×64)"@en.
+<ni:///mh;1QEQulOWdhlLPs-6s8fPFxnzZw?ct=text/plain> at:digest <urn:md5:BA539676194B3ECFBAB3C7CF1719F367>;
+                                                    dcterms:extent "430"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQulOWdhlLPs-6s8fPFxnzZw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (430 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQulOWdhlLPs-6s8fPFxnzZw?ct=text/plain#line=,1> rdf:value "/*****************************************************************************/".
+<ni:///mh;1QEQvSi7b0EE1-oQmT1aVLdi6g?ct=text/plain> at:digest <urn:md5:BD28BB6F4104D7EA10993D5A54B762EA>;
+                                                    dcterms:extent "1296"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQvSi7b0EE1-oQmT1aVLdi6g?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.27 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQvSi7b0EE1-oQmT1aVLdi6g?ct=text/plain#line=,1> rdf:value "/*****************************************************************************/".
+<ni:///mh;1QEQvcAkT8hDIvQ7uO7ns1fKyQ?ct=text/plain> at:digest <urn:md5:BDC0244FC84322F43BB8EEE7B357CAC9>;
+                                                    dcterms:extent "2207"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQvcAkT8hDIvQ7uO7ns1fKyQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (2.16 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQvcAkT8hDIvQ7uO7ns1fKyQ?ct=text/plain#line=,1> rdf:value "/*****************************************************************************/".
+<ni:///mh;1QEQwXQKbMPPtzKIbuDK1eVEdw?ct=text/plain> at:digest <urn:md5:C1740A6CC3CFB732886EE0CAD5E54477>;
+                                                    dcterms:extent "995"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQwXQKbMPPtzKIbuDK1eVEdw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (995 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQwXQKbMPPtzKIbuDK1eVEdw?ct=text/plain#line=,1> rdf:value "/*****************************************************************************/".
+<ni:///mh;1QEQwuuKXp-1pUWM9fFXnshSKQ?ct=text/plain> at:digest <urn:md5:C2EB8A5E9FB5A5458CF5F1579EC85229>;
+                                                    dcterms:extent "514"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQwuuKXp-1pUWM9fFXnshSKQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (514 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQwuuKXp-1pUWM9fFXnshSKQ?ct=text/plain#line=,1> rdf:value "/*****************************************************************************/".
+<ni:///mh;1QEQyzRSTRBlbaoHqPvKiLrQ2g?ct=text/plain> at:digest <urn:md5:CB34524D10656DAA07A8FBCA88BAD0DA>;
+                                                    dcterms:extent "6056"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQyzRSTRBlbaoHqPvKiLrQ2g?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (5.91 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQyzRSTRBlbaoHqPvKiLrQ2g?ct=text/plain#line=,1> rdf:value "/*****************************************************************************/".
+<ni:///mh;1QEQz-u4UYtQPk7fNyvkAg-SHw?ct=text/plain> at:digest <urn:md5:CFEBB8518B503E4EDF372BE4020F921F>;
+                                                    dcterms:extent "274"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQz-u4UYtQPk7fNyvkAg-SHw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (274 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQz-u4UYtQPk7fNyvkAg-SHw?ct=text/plain#line=,1> rdf:value "P is a freeware 32-bit file transfer".
+<urn:md5:0A8140A9691DDE01CD6C5A61A8B32953> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "CoFAqWkd3gHNbFphqLMpUw=="^^xsd:base64Binary.
+<urn:md5:0D6F983ABE50592D982FCBBDF42EB397> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "DW+YOr5QWS2YL8u99C6zlw=="^^xsd:base64Binary.
+<urn:md5:22A9816E1852A3CA54DBA225C99D2D88> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "IqmBbhhSo8pU26IlyZ0tiA=="^^xsd:base64Binary.
+<urn:md5:2896FB8B4296C68F2C379513B981AF9C> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "KJb7i0KWxo8sN5UTuYGvnA=="^^xsd:base64Binary.
+<urn:md5:32A5F1C4BF5CC8E3BECBDEB43F82F563> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "MqXxxL9cyOO+y960P4L1Yw=="^^xsd:base64Binary.
+<urn:md5:336340A842A3FD3B8B2A9A7BBC4A621A> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "M2NAqEKj/TuLKpp7vEpiGg=="^^xsd:base64Binary.
+<urn:md5:3D1658C110F9D5EBF12069F333C2387D> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "PRZYwRD51evxIGnzM8I4fQ=="^^xsd:base64Binary.
+<urn:md5:42067487E3667252A445ACB954C01530> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "QgZ0h+NmclKkRay5VMAVMA=="^^xsd:base64Binary.
+<urn:md5:4CDAD843CE9134E7158CFA407E4C6A1B> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "TNrYQ86RNOcVjPpAfkxqGw=="^^xsd:base64Binary.
+<urn:md5:4DD8419D43BA2E56235E945D4CB5747F> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "TdhBnUO6LlYjXpRdTLV0fw=="^^xsd:base64Binary.
+<urn:md5:55B044F4C59E461A3A659CDAC6871B61> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "VbBE9MWeRho6ZZzaxocbYQ=="^^xsd:base64Binary.
+<urn:md5:56D2EBC8A83EDA36FA46D1DCA982274B> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "VtLryKg+2jb6RtHcqYInSw=="^^xsd:base64Binary.
+<urn:md5:6334504B7E46C263282375C60CC73DD5> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "YzRQS35GwmMoI3XGDMc91Q=="^^xsd:base64Binary.
+<urn:md5:64A0654FD4FAF78C2756D61E7A7EF387> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "ZKBlT9T694wnVtYeen7zhw=="^^xsd:base64Binary.
+<urn:md5:675385CAC97AAEF5C92FFD9B6B1BCBC0> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "Z1OFysl6rvXJL/2baxvLwA=="^^xsd:base64Binary.
+<urn:md5:72971DA990F6FDD2BB37DE121F578F54> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "cpcdqZD2/dK7N94SH1ePVA=="^^xsd:base64Binary.
+<urn:md5:937536208C95CEBB24F92181D7F2A858> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "k3U2IIyVzrsk+SGB1/KoWA=="^^xsd:base64Binary.
+<urn:md5:9F4B82E712A839FC313BFADD0AE83431> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "n0uC5xKoOfwxO/rdCug0MQ=="^^xsd:base64Binary.
+<urn:md5:A18132CB4D80BB75D19248836DE72A25> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "oYEyy02Au3XRkkiDbecqJQ=="^^xsd:base64Binary.
+<urn:md5:AEC1726B9972BCD096588EEE88987CBB> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "rsFya5lyvNCWWI7uiJh8uw=="^^xsd:base64Binary.
+<urn:md5:B08CB2E0EBB93EC4E99A993EA9D24A24> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "sIyy4Ou5PsTpmpk+qdJKJA=="^^xsd:base64Binary.
+<urn:md5:B1A96A65749CA92D49097D890CCF4338> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "salqZXScqS1JCX2JDM9DOA=="^^xsd:base64Binary.
+<urn:md5:BA539676194B3ECFBAB3C7CF1719F367> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "ulOWdhlLPs+6s8fPFxnzZw=="^^xsd:base64Binary.
+<urn:md5:BD28BB6F4104D7EA10993D5A54B762EA> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "vSi7b0EE1+oQmT1aVLdi6g=="^^xsd:base64Binary.
+<urn:md5:BDC0244FC84322F43BB8EEE7B357CAC9> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "vcAkT8hDIvQ7uO7ns1fKyQ=="^^xsd:base64Binary.
+<urn:md5:C1740A6CC3CFB732886EE0CAD5E54477> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "wXQKbMPPtzKIbuDK1eVEdw=="^^xsd:base64Binary.
+<urn:md5:C2EB8A5E9FB5A5458CF5F1579EC85229> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "wuuKXp+1pUWM9fFXnshSKQ=="^^xsd:base64Binary.
+<urn:md5:CB34524D10656DAA07A8FBCA88BAD0DA> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "yzRSTRBlbaoHqPvKiLrQ2g=="^^xsd:base64Binary.
+<urn:md5:CFEBB8518B503E4EDF372BE4020F921F> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "z+u4UYtQPk7fNyvkAg+SHw=="^^xsd:base64Binary.
+<urn:md5:D10824835646C4EA3093256C16A79128> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "0Qgkg1ZGxOowkyVsFqeRKA=="^^xsd:base64Binary.
+<urn:md5:D1375777E9A97B0B3F476B8692C42A1A> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "0TdXd+mpews/R2uGksQqGg=="^^xsd:base64Binary.
+<urn:md5:E05AF684A59A6682D8E2FEB782ADF8A1> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "4Fr2hKWaZoLY4v63gq34oQ=="^^xsd:base64Binary.
+<urn:md5:ECFA41E2BA857118B913FD0C6F25FAC0> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "7PpB4rqFcRi5E/0MbyX6wA=="^^xsd:base64Binary.
+<urn:md5:ED78ADC0A8B59C1DA8CC9557AC94C76D> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "7XitwKi1nB2ozJVXrJTHbQ=="^^xsd:base64Binary.

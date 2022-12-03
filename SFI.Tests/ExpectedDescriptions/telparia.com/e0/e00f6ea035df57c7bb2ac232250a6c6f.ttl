@@ -1,0 +1,221 @@
+@base <ni:///mh;1QEQNX8TYI5VL0fZqjH3KwVGrQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix dbo: <http://dbpedia.org/ontology/>.
+
+_:n1 at:pathObject <file:///test.iso>;
+     nie:interpretedAs <ni:///mh;1QEQNX8TYI5VL0fZqjH3KwVGrQ?ct=application/octet-stream>;
+     nfo:fileName "test.iso";
+     nfo:fileSize 90112 ;
+     a nfo:FileDataObject.
+<data:,%5Bautorun%5D%0D%0Aopen%3Dinet.exe> dcterms:extent "24"^^dt:byte;
+                                           a cnt:ContentAsText;
+                                           skos:prefLabel "text (24 B)"@en;
+                                           cnt:characterEncoding "us-ascii";
+                                           cnt:chars """[autorun]
+open=inet.exe"""^^xsd:string.
+<data:application/octet-stream;base64,AAABAAMAICACAAEAAQAwAQAAMXUgIBAAAQAEAOgCAAAydRAQEAABAAQAKAEAADN1> dcterms:extent "48"^^dt:byte;
+                                                                                                        dcterms:hasFormat <data:image/x-icon;base64,AAABAAMAICACAAEAAQAwAQAAMXUgIBAAAQAEAOgCAAAydRAQEAABAAQAKAEAADN1>;
+                                                                                                        a cnt:ContentAsBase64;
+                                                                                                        skos:prefLabel "binary data (48 B)"@en;
+                                                                                                        cnt:bytes "AAABAAMAICACAAEAAQAwAQAAMXUgIBAAAQAEAOgCAAAydRAQEAABAAQAKAEAADN1"^^xsd:base64Binary.
+<data:image/x-icon;base64,AAABAAMAICACAAEAAQAwAQAAMXUgIBAAAQAEAOgCAAAydRAQEAABAAQAKAEAADN1> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
+                                                                                            nfo:hasMediaStream <data:image/x-icon;base64,AAABAAMAICACAAEAAQAwAQAAMXUgIBAAAQAEAOgCAAAydRAQEAABAAQAKAEAADN1#/0>,
+                                                                                                               <data:image/x-icon;base64,AAABAAMAICACAAEAAQAwAQAAMXUgIBAAAQAEAOgCAAAydRAQEAABAAQAKAEAADN1#/1>,
+                                                                                                               <data:image/x-icon;base64,AAABAAMAICACAAEAAQAwAQAAMXUgIBAAAQAEAOgCAAAydRAQEAABAAQAKAEAADN1#/2>;
+                                                                                            a schema:MediaObject,
+                                                                                              schema:ImageObject,
+                                                                                              nfo:Image;
+                                                                                            skos:prefLabel "ICO object (48 B)"@en.
+<data:image/x-icon;base64,AAABAAMAICACAAEAAQAwAQAAMXUgIBAAAQAEAOgCAAAydRAQEAABAAQAKAEAADN1#/0> nfo:height 32 ;
+                                                                                               nfo:width 32 ;
+                                                                                               a nfo:MediaStream;
+                                                                                               skos:prefLabel "0:ICO (32×32)".
+<data:image/x-icon;base64,AAABAAMAICACAAEAAQAwAQAAMXUgIBAAAQAEAOgCAAAydRAQEAABAAQAKAEAADN1#/1> nfo:height 0 ;
+                                                                                               nfo:width 16 ;
+                                                                                               a nfo:MediaStream;
+                                                                                               skos:prefLabel "1:ICO (16×0)".
+<data:image/x-icon;base64,AAABAAMAICACAAEAAQAwAQAAMXUgIBAAAQAEAOgCAAAydRAQEAABAAQAKAEAADN1#/2> nfo:height 0 ;
+                                                                                               nfo:width 1 ;
+                                                                                               a nfo:MediaStream;
+                                                                                               skos:prefLabel "2:ICO (1×0)".
+<file:///INET.exe> at:extensionObject <https://w3id.org/uri4uri/suffix/exe>.
+<file:///README.txt> at:extensionObject <https://w3id.org/uri4uri/suffix/txt>.
+<file:///autorun.inf> at:extensionObject <https://w3id.org/uri4uri/suffix/inf>.
+<file:///test.iso> at:extensionObject <https://w3id.org/uri4uri/suffix/iso>.
+<ni:///mh;1QEQ1IH3P9grnEg68z_wU1e0XA?ct=application/octet-stream> at:digest <urn:md5:D481F73FD82B9C483AF33FF05357B45C>;
+                                                                  dcterms:extent "318"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ1IH3P9grnEg68z_wU1e0XA?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (318 B)"@en.
+<ni:///mh;1QEQ1IH3P9grnEg68z_wU1e0XA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:colorDepth 32 ;
+                                                   nfo:height 32 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 32 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (32×32)"@en.
+<ni:///mh;1QEQ9cXhyF6-7BVmC6p1MnQTSg?ct=text/plain> at:digest <urn:md5:F5C5E1C85EBEEC15660BAA753274134A>;
+                                                    dcterms:extent "755"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQ9cXhyF6-7BVmC6p1MnQTSg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (755 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQ9cXhyF6-7BVmC6p1MnQTSg?ct=text/plain#line=,1> rdf:value "iNet Version 1.00".
+<ni:///mh;1QEQCjKtNQRMQre0_RdczX2ciA?ct=application/octet-stream> at:digest <urn:md5:0A32AD35044C42B7B4FD175CCD7D9C88>;
+                                                                  dcterms:extent "758"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQCjKtNQRMQre0_RdczX2ciA?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (758 B)"@en.
+<ni:///mh;1QEQCjKtNQRMQre0_RdczX2ciA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:colorDepth 32 ;
+                                                   nfo:height 32 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 32 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (32×32)"@en.
+<ni:///mh;1QEQNX8TYI5VL0fZqjH3KwVGrQ?ct=application/octet-stream> at:digest <urn:md5:357F13608E552F47D9AA31F72B0546AD>;
+                                                                  dcterms:extent "90112"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQNX8TYI5VL0fZqjH3KwVGrQ?ct=application/x-iso9660-image>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (88 KiB)"@en.
+<ni:///mh;1QEQNX8TYI5VL0fZqjH3KwVGrQ?ct=application/x-iso9660-image> at:pathObject <file:///>;
+                                                                     at:volumeLabel "iNet-100";
+                                                                     schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-iso9660-image>;
+                                                                     nie:interpretedAs <ni:///mh;1QEQNX8TYI5VL0fZqjH3KwVGrQ?ct=application/x-iso9660-image#/>;
+                                                                     nfo:filesystemType "ISO 9660 (CD-ROM)";
+                                                                     a schema:MediaObject,
+                                                                       nfo:FilesystemImage,
+                                                                       nfo:Filesystem;
+                                                                     skos:prefLabel "ISO object (iNet-100)"@en.
+<ni:///mh;1QEQNX8TYI5VL0fZqjH3KwVGrQ?ct=application/x-iso9660-image#/> at:pathObject <file:///./>;
+                                                                       a nfo:Folder;
+                                                                       skos:prefLabel "/".
+<ni:///mh;1QEQNX8TYI5VL0fZqjH3KwVGrQ?ct=application/x-iso9660-image#/INET.exe> at:pathObject <file:///INET.exe>;
+                                                                               nie:interpretedAs <ni:///mh;1QEQ_NZKj_Ya5P0H_HuNNka24g?ct=application/octet-stream>;
+                                                                               nfo:belongsToContainer <ni:///mh;1QEQNX8TYI5VL0fZqjH3KwVGrQ?ct=application/x-iso9660-image#/>;
+                                                                               nfo:fileCreated "2019-12-20T14:35:30.000000Z"^^xsd:dateTime;
+                                                                               nfo:fileLastAccessed "2019-12-20T14:35:30.000000Z"^^xsd:dateTime;
+                                                                               nfo:fileLastModified "2019-12-20T14:35:30.000000Z"^^xsd:dateTime;
+                                                                               nfo:fileName "INET.exe";
+                                                                               nfo:fileSize 24576 ;
+                                                                               a nfo:FileDataObject;
+                                                                               skos:prefLabel "/INET.exe".
+<ni:///mh;1QEQNX8TYI5VL0fZqjH3KwVGrQ?ct=application/x-iso9660-image#/README.txt> at:pathObject <file:///README.txt>;
+                                                                                 nie:interpretedAs <ni:///mh;1QEQ9cXhyF6-7BVmC6p1MnQTSg?ct=text/plain>;
+                                                                                 nfo:belongsToContainer <ni:///mh;1QEQNX8TYI5VL0fZqjH3KwVGrQ?ct=application/x-iso9660-image#/>;
+                                                                                 nfo:fileCreated "2019-12-20T14:45:06.000000Z"^^xsd:dateTime;
+                                                                                 nfo:fileLastAccessed "2019-12-20T14:45:06.000000Z"^^xsd:dateTime;
+                                                                                 nfo:fileLastModified "2019-12-20T14:45:06.000000Z"^^xsd:dateTime;
+                                                                                 nfo:fileName "README.txt";
+                                                                                 nfo:fileSize 755 ;
+                                                                                 a nfo:FileDataObject;
+                                                                                 skos:prefLabel "/README.txt".
+<ni:///mh;1QEQNX8TYI5VL0fZqjH3KwVGrQ?ct=application/x-iso9660-image#/autorun.inf> at:pathObject <file:///autorun.inf>;
+                                                                                  nie:interpretedAs <data:,%5Bautorun%5D%0D%0Aopen%3Dinet.exe>;
+                                                                                  nfo:belongsToContainer <ni:///mh;1QEQNX8TYI5VL0fZqjH3KwVGrQ?ct=application/x-iso9660-image#/>;
+                                                                                  nfo:fileCreated "2019-12-20T14:46:24.000000Z"^^xsd:dateTime;
+                                                                                  nfo:fileLastAccessed "2019-12-20T14:46:24.000000Z"^^xsd:dateTime;
+                                                                                  nfo:fileLastModified "2019-12-20T14:46:24.000000Z"^^xsd:dateTime;
+                                                                                  nfo:fileName "autorun.inf";
+                                                                                  nfo:fileSize 24 ;
+                                                                                  a nfo:FileDataObject;
+                                                                                  skos:prefLabel "/autorun.inf".
+<ni:///mh;1QEQ_NZKj_Ya5P0H_HuNNka24g?ct=application/octet-stream> at:digest <urn:md5:FCD64A8FF61AE4FD07FC7B8D3646B6E2>;
+                                                                  dcterms:extent "24576"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ_NZKj_Ya5P0H_HuNNka24g?ct=application/vnd.microsoft.portable-executable>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (24 KiB)"@en.
+<ni:///mh;1QEQ_NZKj_Ya5P0H_HuNNka24g?ct=application/vnd.microsoft.portable-executable> dbo:originalName "INET.exe";
+                                                                                       schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
+                                                                                       schema:name "INET";
+                                                                                       schema:softwareVersion "1.0.0.0",
+                                                                                                              "1.00";
+                                                                                       schema:version "1.0.0.0",
+                                                                                                      "1.00";
+                                                                                       nie:hasPart <ni:///mh;1QEQ_NZKj_Ya5P0H_HuNNka24g?ct=application/vnd.microsoft.portable-executable#/Icon/30001>,
+                                                                                                   <ni:///mh;1QEQ_NZKj_Ya5P0H_HuNNka24g?ct=application/vnd.microsoft.portable-executable#/Icon/30002>,
+                                                                                                   <ni:///mh;1QEQ_NZKj_Ya5P0H_HuNNka24g?ct=application/vnd.microsoft.portable-executable#/Icon/30003>,
+                                                                                                   <ni:///mh;1QEQ_NZKj_Ya5P0H_HuNNka24g?ct=application/vnd.microsoft.portable-executable#/GroupIcon/1>;
+                                                                                       a schema:MediaObject,
+                                                                                         schema:SoftwareApplication,
+                                                                                         nfo:Executable;
+                                                                                       skos:prefLabel "EXE object (INET)"@en.
+<ni:///mh;1QEQ_NZKj_Ya5P0H_HuNNka24g?ct=application/vnd.microsoft.portable-executable#/GroupIcon/1> at:pathObject <file:///1>;
+                                                                                                    nie:interpretedAs <data:application/octet-stream;base64,AAABAAMAICACAAEAAQAwAQAAMXUgIBAAAQAEAOgCAAAydRAQEAABAAQAKAEAADN1>;
+                                                                                                    nfo:fileName "1";
+                                                                                                    nfo:fileSize 48 ;
+                                                                                                    a nfo:FileDataObject,
+                                                                                                      nfo:EmbeddedFileDataObject;
+                                                                                                    skos:prefLabel "/GroupIcon/1".
+<ni:///mh;1QEQ_NZKj_Ya5P0H_HuNNka24g?ct=application/vnd.microsoft.portable-executable#/Icon/30001> at:pathObject <file:///30001>;
+                                                                                                   nie:interpretedAs <ni:///mh;1QEQ1IH3P9grnEg68z_wU1e0XA?ct=application/octet-stream>;
+                                                                                                   nfo:fileName "30001";
+                                                                                                   nfo:fileSize 304 ;
+                                                                                                   a nfo:FileDataObject,
+                                                                                                     nfo:EmbeddedFileDataObject;
+                                                                                                   skos:prefLabel "/Icon/30001".
+<ni:///mh;1QEQ_NZKj_Ya5P0H_HuNNka24g?ct=application/vnd.microsoft.portable-executable#/Icon/30002> at:pathObject <file:///30002>;
+                                                                                                   nie:interpretedAs <ni:///mh;1QEQCjKtNQRMQre0_RdczX2ciA?ct=application/octet-stream>;
+                                                                                                   nfo:fileName "30002";
+                                                                                                   nfo:fileSize 744 ;
+                                                                                                   a nfo:FileDataObject,
+                                                                                                     nfo:EmbeddedFileDataObject;
+                                                                                                   skos:prefLabel "/Icon/30002".
+<ni:///mh;1QEQ_NZKj_Ya5P0H_HuNNka24g?ct=application/vnd.microsoft.portable-executable#/Icon/30003> at:pathObject <file:///30003>;
+                                                                                                   nie:interpretedAs <ni:///mh;1QEQhK3GhY2M8e_gm366aOCutA?ct=application/octet-stream>;
+                                                                                                   nfo:fileName "30003";
+                                                                                                   nfo:fileSize 296 ;
+                                                                                                   a nfo:FileDataObject,
+                                                                                                     nfo:EmbeddedFileDataObject;
+                                                                                                   skos:prefLabel "/Icon/30003".
+<ni:///mh;1QEQhK3GhY2M8e_gm366aOCutA?ct=application/octet-stream> at:digest <urn:md5:84ADC6858D8CF1EFE09B7EBA68E0AEB4>;
+                                                                  dcterms:extent "310"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQhK3GhY2M8e_gm366aOCutA?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (310 B)"@en.
+<ni:///mh;1QEQhK3GhY2M8e_gm366aOCutA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:colorDepth 32 ;
+                                                   nfo:height 16 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 16 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (16×16)"@en.
+<urn:md5:0A32AD35044C42B7B4FD175CCD7D9C88> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "CjKtNQRMQre0/RdczX2ciA=="^^xsd:base64Binary.
+<urn:md5:357F13608E552F47D9AA31F72B0546AD> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "NX8TYI5VL0fZqjH3KwVGrQ=="^^xsd:base64Binary.
+<urn:md5:84ADC6858D8CF1EFE09B7EBA68E0AEB4> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "hK3GhY2M8e/gm366aOCutA=="^^xsd:base64Binary.
+<urn:md5:D481F73FD82B9C483AF33FF05357B45C> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "1IH3P9grnEg68z/wU1e0XA=="^^xsd:base64Binary.
+<urn:md5:F5C5E1C85EBEEC15660BAA753274134A> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "9cXhyF6+7BVmC6p1MnQTSg=="^^xsd:base64Binary.
+<urn:md5:FCD64A8FF61AE4FD07FC7B8D3646B6E2> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "/NZKj/Ya5P0H/HuNNka24g=="^^xsd:base64Binary.

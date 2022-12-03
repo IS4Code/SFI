@@ -1,0 +1,27 @@
+@base <ni:///mh;1QEQ8aCF9eHYekpYrael6W4cug?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///Fort%20Point.pmv.rsrc>;
+     nie:interpretedAs <ni:///mh;1QEQ8aCF9eHYekpYrael6W4cug?ct=application/octet-stream>;
+     nfo:fileName "Fort Point.pmv.rsrc";
+     nfo:fileSize 1886 ;
+     a nfo:FileDataObject.
+<file:///Fort%20Point.pmv.rsrc> at:extensionObject <https://w3id.org/uri4uri/suffix/rsrc>.
+<ni:///mh;1QEQ8aCF9eHYekpYrael6W4cug?ct=application/octet-stream> at:digest <urn:md5:F1A085F5E1D87A4A58ADA7A5E96E1CBA>;
+                                                                  dcterms:extent "1886"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.84 KiB)"@en.
+<urn:md5:F1A085F5E1D87A4A58ADA7A5E96E1CBA> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "8aCF9eHYekpYrael6W4cug=="^^xsd:base64Binary.

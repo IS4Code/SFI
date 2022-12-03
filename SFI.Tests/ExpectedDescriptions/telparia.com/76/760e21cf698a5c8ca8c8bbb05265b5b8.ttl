@@ -1,0 +1,136 @@
+@base <ni:///mh;1QEQafGKZst3aCaW77cZqY2jcQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///BJBBS.PHN>;
+     nie:interpretedAs <ni:///mh;1QEQafGKZst3aCaW77cZqY2jcQ?ct=application/octet-stream>;
+     nfo:fileName "BJBBS.PHN";
+     nfo:fileSize 46080 ;
+     a nfo:FileDataObject.
+<data:application/octet-stream,%00%00%02%00> dcterms:extent "4"^^dt:byte;
+                                             a cnt:ContentAsBase64;
+                                             skos:prefLabel "binary data (4 B)"@en;
+                                             cnt:bytes "AAACAA=="^^xsd:base64Binary.
+<file:///BJBBS.PHN> at:extensionObject <https://w3id.org/uri4uri/suffix/phn>.
+<file:///phonebook/entries> at:pathObject <file:///entries>.
+<file:///phonebook/groups> at:pathObject <file:///groups>.
+<file:///phonebook/large> at:pathObject <file:///large>.
+<file:///phonebook/small> at:pathObject <file:///small>.
+<file:///phonebook/version> at:pathObject <file:///version>.
+<ni:///mh;1QEQHu-AJ6YEGiLdRpn1-IH5xA?ct=application/octet-stream> at:digest <urn:md5:1EEF8027A6041A22DD4699F5F881F9C4>;
+                                                                  dcterms:extent "6608"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQHu-AJ6YEGiLdRpn1-IH5xA?ct=application/x.sig.il>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (6.45 KiB)"@en.
+<ni:///mh;1QEQHu-AJ6YEGiLdRpn1-IH5xA?ct=application/x.sig.il> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.il>;
+                                                              a schema:MediaObject;
+                                                              skos:prefLabel "IL object (6.45 KiB)"@en.
+<ni:///mh;1QEQPtdqx_gkFKguWR5DLznF7g?ct=application/octet-stream> at:digest <urn:md5:3ED76AC7F82414A82E591E432F39C5EE>;
+                                                                  dcterms:extent "5752"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (5.62 KiB)"@en.
+<ni:///mh;1QEQafGKZst3aCaW77cZqY2jcQ?ct=application/octet-stream> at:digest <urn:md5:69F18A66CB77682696EFB719A98DA371>;
+                                                                  dcterms:extent "46080"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQafGKZst3aCaW77cZqY2jcQ?ct=application/x-ole-storage>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (45 KiB)"@en.
+<ni:///mh;1QEQafGKZst3aCaW77cZqY2jcQ?ct=application/x-ole-storage> at:pathObject <file:///>;
+                                                                   schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
+                                                                   nie:interpretedAs <ni:///mh;1QEQafGKZst3aCaW77cZqY2jcQ?ct=application/x-ole-storage#/>;
+                                                                   nfo:fileLastModified "1997-05-11T15:22:17.560000Z"^^xsd:dateTime;
+                                                                   a schema:MediaObject,
+                                                                     nfo:EmbeddedFileDataObject;
+                                                                   skos:prefLabel "OLE object (45 KiB)"@en.
+<ni:///mh;1QEQafGKZst3aCaW77cZqY2jcQ?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+                                                                     a nfo:Folder;
+                                                                     skos:prefLabel "/".
+<ni:///mh;1QEQafGKZst3aCaW77cZqY2jcQ?ct=application/x-ole-storage#/phonebook> at:pathObject <file:///phonebook>;
+                                                                              nie:interpretedAs <ni:///mh;1QEQafGKZst3aCaW77cZqY2jcQ?ct=application/x-ole-storage#/phonebook/>;
+                                                                              nfo:belongsToContainer <ni:///mh;1QEQafGKZst3aCaW77cZqY2jcQ?ct=application/x-ole-storage#/>;
+                                                                              nfo:fileCreated "1997-02-06T06:54:05.450000Z"^^xsd:dateTime;
+                                                                              nfo:fileLastModified "1997-05-11T15:22:17.560000Z"^^xsd:dateTime;
+                                                                              nfo:fileName "phonebook";
+                                                                              a nfo:FileDataObject,
+                                                                                nfo:EmbeddedFileDataObject;
+                                                                              skos:prefLabel "/phonebook".
+<ni:///mh;1QEQafGKZst3aCaW77cZqY2jcQ?ct=application/x-ole-storage#/phonebook/> at:pathObject <file:///phonebook/>;
+                                                                               a nfo:Folder;
+                                                                               skos:prefLabel "/phonebook/".
+<ni:///mh;1QEQafGKZst3aCaW77cZqY2jcQ?ct=application/x-ole-storage#/phonebook/entries> at:pathObject <file:///phonebook/entries>;
+                                                                                      nie:interpretedAs <ni:///mh;1QEQPtdqx_gkFKguWR5DLznF7g?ct=application/octet-stream>;
+                                                                                      nfo:belongsToContainer <ni:///mh;1QEQafGKZst3aCaW77cZqY2jcQ?ct=application/x-ole-storage#/phonebook/>;
+                                                                                      nfo:fileName "entries";
+                                                                                      nfo:fileSize 5752 ;
+                                                                                      a nfo:FileDataObject,
+                                                                                        nfo:EmbeddedFileDataObject;
+                                                                                      skos:prefLabel "/phonebook/entries".
+<ni:///mh;1QEQafGKZst3aCaW77cZqY2jcQ?ct=application/x-ole-storage#/phonebook/groups> at:pathObject <file:///phonebook/groups>;
+                                                                                     nie:interpretedAs <ni:///mh;1QEQqeGabUMjb47il3iARKEVng?ct=application/octet-stream>;
+                                                                                     nfo:belongsToContainer <ni:///mh;1QEQafGKZst3aCaW77cZqY2jcQ?ct=application/x-ole-storage#/phonebook/>;
+                                                                                     nfo:fileName "groups";
+                                                                                     nfo:fileSize 1104 ;
+                                                                                     a nfo:FileDataObject,
+                                                                                       nfo:EmbeddedFileDataObject;
+                                                                                     skos:prefLabel "/phonebook/groups".
+<ni:///mh;1QEQafGKZst3aCaW77cZqY2jcQ?ct=application/x-ole-storage#/phonebook/large> at:pathObject <file:///phonebook/large>;
+                                                                                    nie:interpretedAs <ni:///mh;1QEQz-CWXEpStqJYzY6RajMCeA?ct=application/octet-stream>;
+                                                                                    nfo:belongsToContainer <ni:///mh;1QEQafGKZst3aCaW77cZqY2jcQ?ct=application/x-ole-storage#/phonebook/>;
+                                                                                    nfo:fileName "large";
+                                                                                    nfo:fileSize 25808 ;
+                                                                                    a nfo:FileDataObject,
+                                                                                      nfo:EmbeddedFileDataObject;
+                                                                                    skos:prefLabel "/phonebook/large".
+<ni:///mh;1QEQafGKZst3aCaW77cZqY2jcQ?ct=application/x-ole-storage#/phonebook/small> at:pathObject <file:///phonebook/small>;
+                                                                                    nie:interpretedAs <ni:///mh;1QEQHu-AJ6YEGiLdRpn1-IH5xA?ct=application/octet-stream>;
+                                                                                    nfo:belongsToContainer <ni:///mh;1QEQafGKZst3aCaW77cZqY2jcQ?ct=application/x-ole-storage#/phonebook/>;
+                                                                                    nfo:fileName "small";
+                                                                                    nfo:fileSize 6608 ;
+                                                                                    a nfo:FileDataObject,
+                                                                                      nfo:EmbeddedFileDataObject;
+                                                                                    skos:prefLabel "/phonebook/small".
+<ni:///mh;1QEQafGKZst3aCaW77cZqY2jcQ?ct=application/x-ole-storage#/phonebook/version> at:pathObject <file:///phonebook/version>;
+                                                                                      nie:interpretedAs <data:application/octet-stream,%00%00%02%00>;
+                                                                                      nfo:belongsToContainer <ni:///mh;1QEQafGKZst3aCaW77cZqY2jcQ?ct=application/x-ole-storage#/phonebook/>;
+                                                                                      nfo:fileName "version";
+                                                                                      nfo:fileSize 4 ;
+                                                                                      a nfo:FileDataObject,
+                                                                                        nfo:EmbeddedFileDataObject;
+                                                                                      skos:prefLabel "/phonebook/version".
+<ni:///mh;1QEQqeGabUMjb47il3iARKEVng?ct=application/octet-stream> at:digest <urn:md5:A9E19A6D43236F8EE297788044A1159E>;
+                                                                  dcterms:extent "1104"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.08 KiB)"@en.
+<ni:///mh;1QEQz-CWXEpStqJYzY6RajMCeA?ct=application/octet-stream> at:digest <urn:md5:CFE0965C4A52B6A258CD8E916A330278>;
+                                                                  dcterms:extent "25808"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQz-CWXEpStqJYzY6RajMCeA?ct=application/x.sig.il>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (25.2 KiB)"@en.
+<ni:///mh;1QEQz-CWXEpStqJYzY6RajMCeA?ct=application/x.sig.il> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.il>;
+                                                              a schema:MediaObject;
+                                                              skos:prefLabel "IL object (25.2 KiB)"@en.
+<urn:md5:1EEF8027A6041A22DD4699F5F881F9C4> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "Hu+AJ6YEGiLdRpn1+IH5xA=="^^xsd:base64Binary.
+<urn:md5:3ED76AC7F82414A82E591E432F39C5EE> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "Ptdqx/gkFKguWR5DLznF7g=="^^xsd:base64Binary.
+<urn:md5:69F18A66CB77682696EFB719A98DA371> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "afGKZst3aCaW77cZqY2jcQ=="^^xsd:base64Binary.
+<urn:md5:A9E19A6D43236F8EE297788044A1159E> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "qeGabUMjb47il3iARKEVng=="^^xsd:base64Binary.
+<urn:md5:CFE0965C4A52B6A258CD8E916A330278> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "z+CWXEpStqJYzY6RajMCeA=="^^xsd:base64Binary.

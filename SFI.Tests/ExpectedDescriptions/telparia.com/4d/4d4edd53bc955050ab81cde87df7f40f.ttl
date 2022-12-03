@@ -1,0 +1,90 @@
+@base <ni:///mh;1QEQ21ZWKEf3ItRkpkUN3kII8A?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///RAW_FUJI_S5000.RAF>;
+     nie:interpretedAs <ni:///mh;1QEQ21ZWKEf3ItRkpkUN3kII8A?ct=application/octet-stream>;
+     nfo:fileName "RAW_FUJI_S5000.RAF";
+     nfo:fileSize 6850400 ;
+     a nfo:FileDataObject.
+<file:///RAW_FUJI_S5000.RAF> at:extensionObject <https://w3id.org/uri4uri/suffix/raf>.
+<ni:///mh;1QEQ21ZWKEf3ItRkpkUN3kII8A?ct=application/octet-stream> at:digest <urn:md5:DB56562847F722D464A6450DDE4208F0>;
+                                                                  dcterms:extent "6850400"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ21ZWKEf3ItRkpkUN3kII8A?ct=application/octet-stream#raf>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (6.53 MiB)"@en.
+<ni:///mh;1QEQ21ZWKEf3ItRkpkUN3kII8A?ct=application/octet-stream#raf> nfo:hasMediaStream <ni:///mh;1QEQ21ZWKEf3ItRkpkUN3kII8A?ct=application/octet-stream#raf/0>,
+                                                                                         <ni:///mh;1QEQ21ZWKEf3ItRkpkUN3kII8A?ct=application/octet-stream#raf/1>;
+                                                                      a schema:MediaObject,
+                                                                        exif:IFD;
+                                                                      exif:apertureValue 3 ;
+                                                                      exif:brightnessValue "511/100"^^owl:rational;
+                                                                      exif:colorSpace 1 ;
+                                                                      exif:componentsConfiguration "01020300"^^xsd:hexBinary;
+                                                                      exif:compressedBitsPerPixel 3 ;
+                                                                      exif:compression 6 ;
+                                                                      exif:customRendered 0 ;
+                                                                      exif:dateTime "2008-06-22T03:48:05.000000"^^xsd:dateTime;
+                                                                      exif:dateTimeDigitized "2008-06-22T03:48:05.000000"^^xsd:dateTime;
+                                                                      exif:dateTimeOriginal "2008-06-22T03:48:05.000000"^^xsd:dateTime;
+                                                                      exif:exifVersion "30323230"^^xsd:hexBinary;
+                                                                      exif:exposureBiasValue 0 ;
+                                                                      exif:exposureMode 0 ;
+                                                                      exif:exposureProgram 2 ;
+                                                                      exif:exposureTime "1/280"^^owl:rational;
+                                                                      exif:fNumber "14/5"^^owl:rational;
+                                                                      exif:fileSource "03"^^xsd:hexBinary;
+                                                                      exif:flash 16 ;
+                                                                      exif:flashpixVersion "30313030"^^xsd:hexBinary;
+                                                                      exif:focalLength "57/10"^^owl:rational;
+                                                                      exif:focalPlaneResolutionUnit 3 ;
+                                                                      exif:focalPlaneXResolution 2405 ;
+                                                                      exif:focalPlaneYResolution 2405 ;
+                                                                      exif:isoSpeedRatings 200 ;
+                                                                      exif:jpegInterchangeFormat 1252 ;
+                                                                      exif:jpegInterchangeFormatLength 8582 ;
+                                                                      exif:lightSource 0 ;
+                                                                      exif:make "FUJIFILM"^^xsd:string;
+                                                                      exif:maxApertureValue 3 ;
+                                                                      exif:meteringMode 5 ;
+                                                                      exif:model "FinePix S5000 "^^xsd:string;
+                                                                      exif:orientation 1 ;
+                                                                      exif:pixelXDimension 1280 ;
+                                                                      exif:pixelYDimension 960 ;
+                                                                      exif:resolutionUnit 2 ;
+                                                                      exif:sceneCaptureType 0 ;
+                                                                      exif:sceneType "01"^^xsd:hexBinary;
+                                                                      exif:sensingMethod 2 ;
+                                                                      exif:sharpness 0 ;
+                                                                      exif:shutterSpeedValue "81/10"^^owl:rational;
+                                                                      exif:software "Digital Camera FinePix S5000 Ver3.00"^^xsd:string;
+                                                                      exif:subjectDistanceRange 0 ;
+                                                                      exif:whiteBalance 0 ;
+                                                                      exif:xResolution 72 ;
+                                                                      exif:yCbCrPositioning 2 ;
+                                                                      exif:yResolution 72 ;
+                                                                      skos:prefLabel "RAF object (6.53 MiB)"@en.
+<ni:///mh;1QEQ21ZWKEf3ItRkpkUN3kII8A?ct=application/octet-stream#raf/0> nfo:height 960 ;
+                                                                        nfo:width 1280 ;
+                                                                        a nfo:MediaStream;
+                                                                        skos:prefLabel "0:JPEG (1280×960)".
+<ni:///mh;1QEQ21ZWKEf3ItRkpkUN3kII8A?ct=application/octet-stream#raf/1> nfo:height 960 ;
+                                                                        nfo:width 1280 ;
+                                                                        a nfo:MediaStream;
+                                                                        skos:prefLabel "1:Exif SubIFD (1280×960)".
+<urn:md5:DB56562847F722D464A6450DDE4208F0> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "21ZWKEf3ItRkpkUN3kII8A=="^^xsd:base64Binary.

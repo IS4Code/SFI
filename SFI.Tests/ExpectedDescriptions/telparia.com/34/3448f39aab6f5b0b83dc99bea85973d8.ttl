@@ -1,0 +1,80 @@
+@base <ni:///mh;1QEQYVtmdF3AnnUC95rLB814kg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///CD%20Front%20%28Alt.%29.tif>;
+     nie:interpretedAs <ni:///mh;1QEQYVtmdF3AnnUC95rLB814kg?ct=application/octet-stream>;
+     nfo:fileName "CD Front (Alt.).tif";
+     nfo:fileSize 17879838 ;
+     a nfo:FileDataObject.
+<file:///CD%20Front%20%28Alt.%29.tif> at:extensionObject <https://w3id.org/uri4uri/suffix/tif>.
+<ni:///mh;1QEQYVtmdF3AnnUC95rLB814kg?ct=application/octet-stream> at:digest <urn:md5:615B66745DC09E7502F79ACB07CD7892>;
+                                                                  dcterms:extent "17879838"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQYVtmdF3AnnUC95rLB814kg?ct=image/tiff>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (17.05 MiB)"@en.
+<ni:///mh;1QEQYVtmdF3AnnUC95rLB814kg?ct=image/tiff> <http://ns.adobe.com/xap/1.0/CreateDate> "2019-11-21T13:50:40";
+                                                    <http://ns.adobe.com/xap/1.0/CreatorTool> "Windows Photo Editor 10.0.10011.16384";
+                                                    <http://ns.adobe.com/xap/1.0/mm/InstanceID> "uuid:faf5bdd5-ba3d-11da-ad31-d33d75182f1b";
+                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
+                                                    nfo:colorDepth 24 ;
+                                                    nfo:hasMediaStream <ni:///mh;1QEQYVtmdF3AnnUC95rLB814kg?ct=image/tiff#/0>,
+                                                                       <ni:///mh;1QEQYVtmdF3AnnUC95rLB814kg?ct=image/tiff#/1>;
+                                                    nfo:height 2942 ;
+                                                    nfo:horizontalResolution 600 ;
+                                                    nfo:verticalResolution 600 ;
+                                                    nfo:width 2934 ;
+                                                    a schema:MediaObject,
+                                                      nfo:Image,
+                                                      exif:IFD,
+                                                      schema:ImageObject;
+                                                    exif:colorSpace 1 ;
+                                                    exif:compression 5 ;
+                                                    exif:dateTime "2019-11-21T13:55:20.000000"^^xsd:dateTime;
+                                                    exif:dateTimeDigitized "2019-11-21T13:50:40.000000"^^xsd:dateTime;
+                                                    exif:dateTimeOriginal "2019-11-21T13:50:40.000000"^^xsd:dateTime;
+                                                    exif:imageLength 2942 ,
+                                                                     256 ;
+                                                    exif:imageWidth 2934 ,
+                                                                    255 ;
+                                                    exif:orientation 1 ;
+                                                    exif:photometricInterpretation 2 ;
+                                                    exif:planarConfiguration 1 ;
+                                                    exif:resolutionUnit 2 ;
+                                                    exif:rowsPerStrip 1 ,
+                                                                      12 ;
+                                                    exif:samplesPerPixel 3 ,
+                                                                         4 ;
+                                                    exif:software "Windows Photo Editor 10.0.10011.16384"^^xsd:string;
+                                                    exif:subSecTimeDigitized "00"^^xsd:string;
+                                                    exif:subSecTimeOriginal "00"^^xsd:string;
+                                                    exif:xResolution 600 ,
+                                                                     96 ;
+                                                    exif:yResolution 600 ,
+                                                                     96 ;
+                                                    skos:prefLabel "TIFF object (2934×2942)"@en,
+                                                                   "TIFF object (17.05 MiB)"@en,
+                                                                   "TIF object (17.05 MiB)"@en.
+<ni:///mh;1QEQYVtmdF3AnnUC95rLB814kg?ct=image/tiff#/0> nfo:height 2942 ;
+                                                       nfo:width 2934 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "0:Exif IFD0 (2934×2942)".
+<ni:///mh;1QEQYVtmdF3AnnUC95rLB814kg?ct=image/tiff#/1> nfo:height 256 ;
+                                                       nfo:width 255 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "1:Exif SubIFD (255×256)".
+<urn:md5:615B66745DC09E7502F79ACB07CD7892> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "YVtmdF3AnnUC95rLB814kg=="^^xsd:base64Binary.

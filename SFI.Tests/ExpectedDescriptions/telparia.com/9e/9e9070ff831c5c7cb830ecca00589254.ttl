@@ -1,0 +1,97 @@
+@base <ni:///mh;1QEQz65kZ58u82MVV0iDXNcQ9g?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///RAW_EPSON_RD1.ERF>;
+     nie:interpretedAs <ni:///mh;1QEQz65kZ58u82MVV0iDXNcQ9g?ct=application/octet-stream>;
+     nfo:fileName "RAW_EPSON_RD1.ERF";
+     nfo:fileSize 9994663 ;
+     a nfo:FileDataObject.
+<file:///RAW_EPSON_RD1.ERF> at:extensionObject <https://w3id.org/uri4uri/suffix/erf>.
+<ni:///mh;1QEQz65kZ58u82MVV0iDXNcQ9g?ct=application/octet-stream> at:digest <urn:md5:CFAE64679F2EF363155748835CD710F6>;
+                                                                  dcterms:extent "9994663"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQz65kZ58u82MVV0iDXNcQ9g?ct=image/tiff>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (9.53 MiB)"@en.
+<ni:///mh;1QEQz65kZ58u82MVV0iDXNcQ9g?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
+                                                    nfo:hasMediaStream <ni:///mh;1QEQz65kZ58u82MVV0iDXNcQ9g?ct=image/tiff#/0>,
+                                                                       <ni:///mh;1QEQz65kZ58u82MVV0iDXNcQ9g?ct=image/tiff#/1>,
+                                                                       <ni:///mh;1QEQz65kZ58u82MVV0iDXNcQ9g?ct=image/tiff#/2>;
+                                                    a schema:MediaObject,
+                                                      exif:IFD,
+                                                      schema:ImageObject,
+                                                      nfo:Image;
+                                                    exif:bitsPerSample 12 ;
+                                                    exif:colorSpace 1 ;
+                                                    exif:compression 1 ,
+                                                                     32769 ;
+                                                    exif:customRendered 0 ;
+                                                    exif:dateTime "2007-08-06T13:33:27.000000"^^xsd:dateTime;
+                                                    exif:dateTimeDigitized "2007-08-06T13:33:27.000000"^^xsd:dateTime;
+                                                    exif:dateTimeOriginal "2007-08-06T13:33:27.000000"^^xsd:dateTime;
+                                                    exif:exifVersion "30323231"^^xsd:hexBinary;
+                                                    exif:exposureBiasValue 0 ;
+                                                    exif:exposureMode 0 ;
+                                                    exif:exposureProgram 3 ;
+                                                    exif:exposureTime "1/315"^^owl:rational;
+                                                    exif:fileSource "03"^^xsd:hexBinary;
+                                                    exif:flash 32 ;
+                                                    exif:gainControl 0 ;
+                                                    exif:imageDescription "EPSON DSC Picture"^^xsd:string;
+                                                    exif:imageLength 120 ,
+                                                                     2024 ;
+                                                    exif:imageWidth 160 ,
+                                                                    3040 ;
+                                                    exif:isoSpeedRatings 200 ;
+                                                    exif:lightSource 0 ;
+                                                    exif:make "SEIKO EPSON CORP."^^xsd:string;
+                                                    exif:meteringMode 2 ;
+                                                    exif:model "R-D1"^^xsd:string;
+                                                    exif:orientation 1 ;
+                                                    exif:photometricInterpretation 2 ,
+                                                                                   32803 ;
+                                                    exif:planarConfiguration 1 ;
+                                                    exif:resolutionUnit 2 ;
+                                                    exif:rowsPerStrip 120 ,
+                                                                      2024 ;
+                                                    exif:samplesPerPixel 3 ,
+                                                                         1 ;
+                                                    exif:sceneCaptureType 0 ;
+                                                    exif:sceneType "01"^^xsd:hexBinary;
+                                                    exif:software "E04106-0200"^^xsd:string;
+                                                    exif:stripByteCounts 57600 ,
+                                                                         9844736 ;
+                                                    exif:stripOffsets 1508 ,
+                                                                      59108 ;
+                                                    exif:whiteBalance 0 ;
+                                                    exif:xResolution 72 ;
+                                                    exif:yResolution 72 ;
+                                                    skos:prefLabel "TIFF object (9.53 MiB)"@en.
+<ni:///mh;1QEQz65kZ58u82MVV0iDXNcQ9g?ct=image/tiff#/0> nfo:height 120 ;
+                                                       nfo:width 160 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "0:Exif IFD0 (160×120)".
+<ni:///mh;1QEQz65kZ58u82MVV0iDXNcQ9g?ct=image/tiff#/1> nfo:height 2024 ;
+                                                       nfo:width 3040 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "1:Exif SubIFD (3040×2024, 12-bit)".
+<ni:///mh;1QEQz65kZ58u82MVV0iDXNcQ9g?ct=image/tiff#/2> nfo:height 2000 ;
+                                                       nfo:width 3008 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "2:Olympus Makernote (3008×2000)".
+<urn:md5:CFAE64679F2EF363155748835CD710F6> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "z65kZ58u82MVV0iDXNcQ9g=="^^xsd:base64Binary.

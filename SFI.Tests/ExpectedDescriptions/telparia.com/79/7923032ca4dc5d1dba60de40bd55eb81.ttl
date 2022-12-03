@@ -1,0 +1,39 @@
+@base <ni:///mh;1QEQVBxe5hoPmQjBJR4w9ueHvA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///MOUNTAIN.WMF>;
+     nie:interpretedAs <ni:///mh;1QEQVBxe5hoPmQjBJR4w9ueHvA?ct=application/octet-stream>;
+     nfo:fileName "MOUNTAIN.WMF";
+     nfo:fileSize 3400 ;
+     a nfo:FileDataObject.
+<file:///MOUNTAIN.WMF> at:extensionObject <https://w3id.org/uri4uri/suffix/wmf>.
+<ni:///mh;1QEQVBxe5hoPmQjBJR4w9ueHvA?ct=application/octet-stream> at:digest <urn:md5:541C5EE61A0F9908C1251E30F6E787BC>;
+                                                                  dcterms:extent "3400"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQVBxe5hoPmQjBJR4w9ueHvA?ct=image/x-wmf>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (3.32 KiB)"@en.
+<ni:///mh;1QEQVBxe5hoPmQjBJR4w9ueHvA?ct=image/x-wmf> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-wmf>;
+                                                     nfo:colorDepth 32 ;
+                                                     nfo:height 5563 ;
+                                                     nfo:horizontalResolution 1440 ;
+                                                     nfo:verticalResolution 1440 ;
+                                                     nfo:width 8971 ;
+                                                     a schema:MediaObject,
+                                                       schema:ImageObject,
+                                                       nfo:Image;
+                                                     skos:prefLabel "WMF object (3.32 KiB)"@en.
+<urn:md5:541C5EE61A0F9908C1251E30F6E787BC> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "VBxe5hoPmQjBJR4w9ueHvA=="^^xsd:base64Binary.

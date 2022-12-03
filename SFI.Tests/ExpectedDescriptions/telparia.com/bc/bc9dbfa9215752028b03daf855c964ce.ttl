@@ -1,0 +1,89 @@
+@base <ni:///mh;1QEQBtPBSirG_qaMEjs8LxaM-A?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix dbo: <http://dbpedia.org/ontology/>.
+
+_:n1 at:pathObject <file:///S3MM.DLL>;
+     nie:interpretedAs <ni:///mh;1QEQBtPBSirG_qaMEjs8LxaM-A?ct=application/octet-stream>;
+     nfo:fileName "S3MM.DLL";
+     nfo:fileSize 14336 ;
+     a nfo:FileDataObject.
+<file:///S3MM.DLL> at:extensionObject <https://w3id.org/uri4uri/suffix/dll>.
+<ni:///mh;1QEQ1cbzWE1Fl4BT43Ck-pPhFw?ct=application/octet-stream> at:digest <urn:md5:D5C6F3584D45978053E370A4FA93E117>;
+                                                                  dcterms:extent "98"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (98 B)"@en.
+<ni:///mh;1QEQ62HhzIGBB4e_XacszVVBFA?ct=application/octet-stream> at:digest <urn:md5:EB61E1CC81810787BF5DA72CCD554114>;
+                                                                  dcterms:extent "194"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (194 B)"@en.
+<ni:///mh;1QEQBtPBSirG_qaMEjs8LxaM-A?ct=application/octet-stream> at:digest <urn:md5:06D3C14A2AC6FEA68C123B3C2F168CF8>;
+                                                                  dcterms:extent "14336"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQBtPBSirG_qaMEjs8LxaM-A?ct=application/vnd.microsoft.portable-executable>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (14 KiB)"@en.
+<ni:///mh;1QEQBtPBSirG_qaMEjs8LxaM-A?ct=application/vnd.microsoft.portable-executable> dbo:originalName "S3MM.dll";
+                                                                                       dcterms:creator "Microsoft Corporation"@en-us;
+                                                                                       dcterms:description "DIB Engine based S3 driver."@en-us;
+                                                                                       schema:copyrightNotice "Copyright © Microsoft Corp. 1992-1996"@en-us;
+                                                                                       schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
+                                                                                       schema:name "S3MM";
+                                                                                       schema:softwareVersion "4.3.0.2030",
+                                                                                                              "4.03.00.2030";
+                                                                                       schema:version "4.3.0.2030",
+                                                                                                      "4.03.00.2030";
+                                                                                       nie:hasPart <ni:///mh;1QEQBtPBSirG_qaMEjs8LxaM-A?ct=application/vnd.microsoft.portable-executable#/OEMBIN/FONTS>,
+                                                                                                   <ni:///mh;1QEQBtPBSirG_qaMEjs8LxaM-A?ct=application/vnd.microsoft.portable-executable#/OEMBIN/1>,
+                                                                                                   <ni:///mh;1QEQBtPBSirG_qaMEjs8LxaM-A?ct=application/vnd.microsoft.portable-executable#/OEMBIN/2>;
+                                                                                       a schema:MediaObject,
+                                                                                         schema:SoftwareApplication,
+                                                                                         nfo:Executable;
+                                                                                       skos:prefLabel "DLL object (S3MM)"@en.
+<ni:///mh;1QEQBtPBSirG_qaMEjs8LxaM-A?ct=application/vnd.microsoft.portable-executable#/OEMBIN/1> at:pathObject <file:///1>;
+                                                                                                 nie:interpretedAs <ni:///mh;1QEQ1cbzWE1Fl4BT43Ck-pPhFw?ct=application/octet-stream>;
+                                                                                                 nfo:fileName "1";
+                                                                                                 nfo:fileSize 98 ;
+                                                                                                 a nfo:FileDataObject,
+                                                                                                   nfo:EmbeddedFileDataObject;
+                                                                                                 skos:prefLabel "/OEMBIN/1".
+<ni:///mh;1QEQBtPBSirG_qaMEjs8LxaM-A?ct=application/vnd.microsoft.portable-executable#/OEMBIN/2> at:pathObject <file:///2>;
+                                                                                                 nie:interpretedAs <ni:///mh;1QEQ62HhzIGBB4e_XacszVVBFA?ct=application/octet-stream>;
+                                                                                                 nfo:fileName "2";
+                                                                                                 nfo:fileSize 194 ;
+                                                                                                 a nfo:FileDataObject,
+                                                                                                   nfo:EmbeddedFileDataObject;
+                                                                                                 skos:prefLabel "/OEMBIN/2".
+<ni:///mh;1QEQBtPBSirG_qaMEjs8LxaM-A?ct=application/vnd.microsoft.portable-executable#/OEMBIN/FONTS> at:pathObject <file:///FONTS>;
+                                                                                                     nie:interpretedAs <ni:///mh;1QEQrLSo_r5osatIcp_kENaVpQ?ct=application/octet-stream>;
+                                                                                                     nfo:fileName "FONTS";
+                                                                                                     nfo:fileSize 85 ;
+                                                                                                     a nfo:FileDataObject,
+                                                                                                       nfo:EmbeddedFileDataObject;
+                                                                                                     skos:prefLabel "/OEMBIN/FONTS".
+<ni:///mh;1QEQrLSo_r5osatIcp_kENaVpQ?ct=application/octet-stream> at:digest <urn:md5:ACB4A8FEBE68B1AB48729FE410D695A5>;
+                                                                  dcterms:extent "85"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (85 B)"@en.
+<urn:md5:06D3C14A2AC6FEA68C123B3C2F168CF8> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "BtPBSirG/qaMEjs8LxaM+A=="^^xsd:base64Binary.
+<urn:md5:ACB4A8FEBE68B1AB48729FE410D695A5> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "rLSo/r5osatIcp/kENaVpQ=="^^xsd:base64Binary.
+<urn:md5:D5C6F3584D45978053E370A4FA93E117> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "1cbzWE1Fl4BT43Ck+pPhFw=="^^xsd:base64Binary.
+<urn:md5:EB61E1CC81810787BF5DA72CCD554114> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "62HhzIGBB4e/XacszVVBFA=="^^xsd:base64Binary.

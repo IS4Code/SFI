@@ -1,0 +1,79 @@
+@base <ni:///mh;1QEQQjKppeAq_iKaPFxKIp_wVA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///K2_DEMO.ADL>;
+     nie:interpretedAs <ni:///mh;1QEQQjKppeAq_iKaPFxKIp_wVA?ct=application/octet-stream>;
+     nfo:fileName "K2_DEMO.ADL";
+     nfo:fileSize 28655 ;
+     a nfo:FileDataObject.
+<file:///K2_DEMO.ADL> at:extensionObject <https://w3id.org/uri4uri/suffix/adl>.
+<ni:///mh;1QEQQjKppeAq_iKaPFxKIp_wVA?ct=application/octet-stream> at:digest <urn:md5:4232A9A5E02AFE229A3C5C4A229FF054>;
+                                                                  dcterms:extent "28655"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQQjKppeAq_iKaPFxKIp_wVA?ct=image/x-icon>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (27.98 KiB)"@en.
+<ni:///mh;1QEQQjKppeAq_iKaPFxKIp_wVA?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
+                                                      nfo:hasMediaStream <ni:///mh;1QEQQjKppeAq_iKaPFxKIp_wVA?ct=image/x-icon#/0>,
+                                                                         <ni:///mh;1QEQQjKppeAq_iKaPFxKIp_wVA?ct=image/x-icon#/1>,
+                                                                         <ni:///mh;1QEQQjKppeAq_iKaPFxKIp_wVA?ct=image/x-icon#/2>,
+                                                                         <ni:///mh;1QEQQjKppeAq_iKaPFxKIp_wVA?ct=image/x-icon#/3>,
+                                                                         <ni:///mh;1QEQQjKppeAq_iKaPFxKIp_wVA?ct=image/x-icon#/4>,
+                                                                         <ni:///mh;1QEQQjKppeAq_iKaPFxKIp_wVA?ct=image/x-icon#/5>,
+                                                                         <ni:///mh;1QEQQjKppeAq_iKaPFxKIp_wVA?ct=image/x-icon#/6>,
+                                                                         <ni:///mh;1QEQQjKppeAq_iKaPFxKIp_wVA?ct=image/x-icon#/7>,
+                                                                         <ni:///mh;1QEQQjKppeAq_iKaPFxKIp_wVA?ct=image/x-icon#/8>;
+                                                      a schema:MediaObject,
+                                                        schema:ImageObject,
+                                                        nfo:Image;
+                                                      skos:prefLabel "ICO object (27.98 KiB)"@en.
+<ni:///mh;1QEQQjKppeAq_iKaPFxKIp_wVA?ct=image/x-icon#/0> nfo:height 0 ;
+                                                         nfo:width 2 ;
+                                                         a nfo:MediaStream;
+                                                         skos:prefLabel "0:ICO (2×0)".
+<ni:///mh;1QEQQjKppeAq_iKaPFxKIp_wVA?ct=image/x-icon#/1> nfo:height 255 ;
+                                                         nfo:width 255 ;
+                                                         a nfo:MediaStream;
+                                                         skos:prefLabel "1:ICO (255×255)".
+<ni:///mh;1QEQQjKppeAq_iKaPFxKIp_wVA?ct=image/x-icon#/2> nfo:height 255 ;
+                                                         nfo:width 255 ;
+                                                         a nfo:MediaStream;
+                                                         skos:prefLabel "2:ICO (255×255)".
+<ni:///mh;1QEQQjKppeAq_iKaPFxKIp_wVA?ct=image/x-icon#/3> nfo:height 255 ;
+                                                         nfo:width 255 ;
+                                                         a nfo:MediaStream;
+                                                         skos:prefLabel "3:ICO (255×255)".
+<ni:///mh;1QEQQjKppeAq_iKaPFxKIp_wVA?ct=image/x-icon#/4> nfo:height 255 ;
+                                                         nfo:width 255 ;
+                                                         a nfo:MediaStream;
+                                                         skos:prefLabel "4:ICO (255×255)".
+<ni:///mh;1QEQQjKppeAq_iKaPFxKIp_wVA?ct=image/x-icon#/5> nfo:height 255 ;
+                                                         nfo:width 255 ;
+                                                         a nfo:MediaStream;
+                                                         skos:prefLabel "5:ICO (255×255)".
+<ni:///mh;1QEQQjKppeAq_iKaPFxKIp_wVA?ct=image/x-icon#/6> nfo:height 255 ;
+                                                         nfo:width 255 ;
+                                                         a nfo:MediaStream;
+                                                         skos:prefLabel "6:ICO (255×255)".
+<ni:///mh;1QEQQjKppeAq_iKaPFxKIp_wVA?ct=image/x-icon#/7> nfo:height 255 ;
+                                                         nfo:width 255 ;
+                                                         a nfo:MediaStream;
+                                                         skos:prefLabel "7:ICO (255×255)".
+<ni:///mh;1QEQQjKppeAq_iKaPFxKIp_wVA?ct=image/x-icon#/8> nfo:height 255 ;
+                                                         nfo:width 255 ;
+                                                         a nfo:MediaStream;
+                                                         skos:prefLabel "8:ICO (255×255)".
+<urn:md5:4232A9A5E02AFE229A3C5C4A229FF054> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "QjKppeAq/iKaPFxKIp/wVA=="^^xsd:base64Binary.

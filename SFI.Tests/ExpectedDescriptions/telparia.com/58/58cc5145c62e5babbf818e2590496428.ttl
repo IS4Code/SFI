@@ -1,0 +1,65 @@
+@base <ni:///mh;1QEQogIMDTV0hfhEb6B-pPGniA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///vrow121.zip>;
+     nie:interpretedAs <ni:///mh;1QEQogIMDTV0hfhEb6B-pPGniA?ct=application/octet-stream>;
+     nfo:fileName "vrow121.zip";
+     nfo:fileSize 6951 ;
+     a nfo:FileDataObject.
+<file:///FILEID.DIZ> at:extensionObject <https://w3id.org/uri4uri/suffix/diz>.
+<file:///VGAROW.DOC> at:extensionObject <https://w3id.org/uri4uri/suffix/doc>.
+<file:///VGAROW.EXE> at:extensionObject <https://w3id.org/uri4uri/suffix/exe>.
+<file:///vrow121.zip> at:extensionObject <https://w3id.org/uri4uri/suffix/zip>.
+<ni:///mh;1QEQogIMDTV0hfhEb6B-pPGniA?ct=application/octet-stream> at:digest <urn:md5:A2020C0D357485F8446FA07EA4F1A788>;
+                                                                  dcterms:extent "6951"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQogIMDTV0hfhEb6B-pPGniA?ct=application/zip>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (6.79 KiB)"@en.
+<ni:///mh;1QEQogIMDTV0hfhEb6B-pPGniA?ct=application/zip> at:pathObject <file:///>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
+                                                         nie:interpretedAs <ni:///mh;1QEQogIMDTV0hfhEb6B-pPGniA?ct=application/zip#/>;
+                                                         a schema:MediaObject,
+                                                           nfo:Archive;
+                                                         skos:prefLabel "ZIP object (6.79 KiB)"@en.
+<ni:///mh;1QEQogIMDTV0hfhEb6B-pPGniA?ct=application/zip#/> at:pathObject <file:///./>;
+                                                           a nfo:Folder;
+                                                           skos:prefLabel "/".
+<ni:///mh;1QEQogIMDTV0hfhEb6B-pPGniA?ct=application/zip#/FILEID.DIZ> at:pathObject <file:///FILEID.DIZ>;
+                                                                     nfo:belongsToContainer <ni:///mh;1QEQogIMDTV0hfhEb6B-pPGniA?ct=application/zip#/>;
+                                                                     nfo:fileLastModified "1993-05-22T20:55:08.000000+02:00"^^xsd:dateTime;
+                                                                     nfo:fileName "FILEID.DIZ";
+                                                                     nfo:fileSize 446 ;
+                                                                     a nfo:FileDataObject,
+                                                                       nfo:ArchiveItem;
+                                                                     skos:prefLabel "/FILEID.DIZ".
+<ni:///mh;1QEQogIMDTV0hfhEb6B-pPGniA?ct=application/zip#/VGAROW.DOC> at:pathObject <file:///VGAROW.DOC>;
+                                                                     nfo:belongsToContainer <ni:///mh;1QEQogIMDTV0hfhEb6B-pPGniA?ct=application/zip#/>;
+                                                                     nfo:fileLastModified "1993-05-22T20:53:08.000000+02:00"^^xsd:dateTime;
+                                                                     nfo:fileName "VGAROW.DOC";
+                                                                     nfo:fileSize 12534 ;
+                                                                     a nfo:FileDataObject,
+                                                                       nfo:ArchiveItem;
+                                                                     skos:prefLabel "/VGAROW.DOC".
+<ni:///mh;1QEQogIMDTV0hfhEb6B-pPGniA?ct=application/zip#/VGAROW.EXE> at:pathObject <file:///VGAROW.EXE>;
+                                                                     nfo:belongsToContainer <ni:///mh;1QEQogIMDTV0hfhEb6B-pPGniA?ct=application/zip#/>;
+                                                                     nfo:fileLastModified "1993-05-22T17:51:08.000000+02:00"^^xsd:dateTime;
+                                                                     nfo:fileName "VGAROW.EXE";
+                                                                     nfo:fileSize 2408 ;
+                                                                     a nfo:FileDataObject,
+                                                                       nfo:ArchiveItem;
+                                                                     skos:prefLabel "/VGAROW.EXE".
+<urn:md5:A2020C0D357485F8446FA07EA4F1A788> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "ogIMDTV0hfhEb6B+pPGniA=="^^xsd:base64Binary.

@@ -1,0 +1,91 @@
+@base <ni:///mh;1QEQQXEHlIS-7F2yZ72lQQ1jdg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///PSXV106J.RAR>;
+     nie:interpretedAs <ni:///mh;1QEQQXEHlIS-7F2yZ72lQQ1jdg?ct=application/octet-stream>;
+     nfo:fileName "PSXV106J.RAR";
+     nfo:fileSize 81196 ;
+     a nfo:FileDataObject.
+<file:///HISTORY.TXT> at:extensionObject <https://w3id.org/uri4uri/suffix/txt>.
+<file:///PSXV106J.RAR> at:extensionObject <https://w3id.org/uri4uri/suffix/rar>.
+<file:///PSXVIDEO.EXE> at:extensionObject <https://w3id.org/uri4uri/suffix/exe>.
+<file:///PSXVIDEO.HLP> at:extensionObject <https://w3id.org/uri4uri/suffix/hlp>.
+<file:///README.TXT> at:extensionObject <https://w3id.org/uri4uri/suffix/txt>.
+<ni:///mh;1QEQQXEHlIS-7F2yZ72lQQ1jdg?ct=application/octet-stream> at:digest <urn:md5:4171079484BEEC5DB267BDA5410D6376>;
+                                                                  dcterms:extent "81196"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQQXEHlIS-7F2yZ72lQQ1jdg?ct=application/vnd.rar>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (79.29 KiB)"@en.
+<ni:///mh;1QEQQXEHlIS-7F2yZ72lQQ1jdg?ct=application/vnd.rar> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.rar>;
+                                                             a schema:MediaObject,
+                                                               nfo:Archive;
+                                                             skos:prefLabel "RAR object (79.29 KiB)"@en.
+<ni:///mh;1QEQQXEHlIS-7F2yZ72lQQ1jdg?ct=application/vnd.rar#/HISTORY.TXT> at:pathObject <file:///HISTORY.TXT>;
+                                                                          nie:interpretedAs <ni:///mh;1QEQbQkuItnU3dUkIZ2CsoQiPg?ct=text/plain>;
+                                                                          nfo:belongsToContainer <ni:///mh;1QEQQXEHlIS-7F2yZ72lQQ1jdg?ct=application/vnd.rar>;
+                                                                          nfo:fileLastModified "1997-02-17T23:01:36.000000+01:00"^^xsd:dateTime;
+                                                                          nfo:fileName "HISTORY.TXT";
+                                                                          nfo:fileSize 1365 ;
+                                                                          a nfo:FileDataObject,
+                                                                            nfo:ArchiveItem;
+                                                                          skos:prefLabel "/HISTORY.TXT".
+<ni:///mh;1QEQQXEHlIS-7F2yZ72lQQ1jdg?ct=application/vnd.rar#/PSXVIDEO.EXE> at:pathObject <file:///PSXVIDEO.EXE>;
+                                                                           nfo:belongsToContainer <ni:///mh;1QEQQXEHlIS-7F2yZ72lQQ1jdg?ct=application/vnd.rar>;
+                                                                           nfo:fileLastModified "1997-02-19T18:46:42.000000+01:00"^^xsd:dateTime;
+                                                                           nfo:fileName "PSXVIDEO.EXE";
+                                                                           nfo:fileSize 93696 ;
+                                                                           a nfo:FileDataObject,
+                                                                             nfo:ArchiveItem;
+                                                                           skos:prefLabel "/PSXVIDEO.EXE".
+<ni:///mh;1QEQQXEHlIS-7F2yZ72lQQ1jdg?ct=application/vnd.rar#/PSXVIDEO.HLP> at:pathObject <file:///PSXVIDEO.HLP>;
+                                                                           nfo:belongsToContainer <ni:///mh;1QEQQXEHlIS-7F2yZ72lQQ1jdg?ct=application/vnd.rar>;
+                                                                           nfo:fileLastModified "1997-02-17T22:55:56.000000+01:00"^^xsd:dateTime;
+                                                                           nfo:fileName "PSXVIDEO.HLP";
+                                                                           nfo:fileSize 35604 ;
+                                                                           a nfo:FileDataObject,
+                                                                             nfo:ArchiveItem;
+                                                                           skos:prefLabel "/PSXVIDEO.HLP".
+<ni:///mh;1QEQQXEHlIS-7F2yZ72lQQ1jdg?ct=application/vnd.rar#/README.TXT> at:pathObject <file:///README.TXT>;
+                                                                         nie:interpretedAs <ni:///mh;1QEQXcWui1Jw-ydMkfNmefTbKw?ct=text/plain>;
+                                                                         nfo:belongsToContainer <ni:///mh;1QEQQXEHlIS-7F2yZ72lQQ1jdg?ct=application/vnd.rar>;
+                                                                         nfo:fileLastModified "1997-02-17T23:02:26.000000+01:00"^^xsd:dateTime;
+                                                                         nfo:fileName "README.TXT";
+                                                                         nfo:fileSize 1336 ;
+                                                                         a nfo:FileDataObject,
+                                                                           nfo:ArchiveItem;
+                                                                         skos:prefLabel "/README.TXT".
+<ni:///mh;1QEQXcWui1Jw-ydMkfNmefTbKw?ct=text/plain> at:digest <urn:md5:5DC5AE8B5270FB274C91F36679F4DB2B>;
+                                                    dcterms:extent "1336"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQXcWui1Jw-ydMkfNmefTbKw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.3 KiB)"@en;
+                                                    cnt:characterEncoding "shift_jis".
+<ni:///mh;1QEQXcWui1Jw-ydMkfNmefTbKw?ct=text/plain#line=,1> rdf:value "===========================================================================".
+<ni:///mh;1QEQbQkuItnU3dUkIZ2CsoQiPg?ct=text/plain> at:digest <urn:md5:6D092E22D9D4DDD524219D82B284223E>;
+                                                    dcterms:extent "1365"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQbQkuItnU3dUkIZ2CsoQiPg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.33 KiB)"@en;
+                                                    cnt:characterEncoding "shift_jis".
+<ni:///mh;1QEQbQkuItnU3dUkIZ2CsoQiPg?ct=text/plain#line=,1> rdf:value "Psxvideo for Windows 変更履歴".
+<urn:md5:4171079484BEEC5DB267BDA5410D6376> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "QXEHlIS+7F2yZ72lQQ1jdg=="^^xsd:base64Binary.
+<urn:md5:5DC5AE8B5270FB274C91F36679F4DB2B> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "XcWui1Jw+ydMkfNmefTbKw=="^^xsd:base64Binary.
+<urn:md5:6D092E22D9D4DDD524219D82B284223E> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "bQkuItnU3dUkIZ2CsoQiPg=="^^xsd:base64Binary.

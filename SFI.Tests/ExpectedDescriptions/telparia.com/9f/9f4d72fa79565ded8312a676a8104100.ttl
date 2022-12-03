@@ -1,0 +1,30 @@
+@base <ni:///mh;1QEQD88ct6q6w_1TCI7mV5Y_fg?ct=text/plain>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///array.json>;
+     nie:interpretedAs <ni:///mh;1QEQD88ct6q6w_1TCI7mV5Y_fg?ct=text/plain>;
+     nfo:fileName "array.json";
+     nfo:fileSize 181 ;
+     a nfo:FileDataObject.
+<file:///array.json> at:extensionObject <https://w3id.org/uri4uri/suffix/json>.
+<ni:///mh;1QEQD88ct6q6w_1TCI7mV5Y_fg?ct=text/plain> at:digest <urn:md5:0FCF1CB7AABAC3FD53088EE657963F7E>;
+                                                    dcterms:extent "181"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQD88ct6q6w_1TCI7mV5Y_fg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (181 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQD88ct6q6w_1TCI7mV5Y_fg?ct=text/plain#line=,1> rdf:value """[\"en\",\"bg\",\"zh\",\"hr\",\"cs\",\"da\",\"nl\",\"et\",\"fi\",\"fr\",\"de\",\"el\",\"he\",\"hu\",\"it\",\"ja\",\"ko\",\"lt\",\"nb\",\"pl\",\"pt\",\"ro\",\"ru\",\"sk\",\"sl\",\"es\",\"sv\",\"tr\",true,1.5,0,null,{\"abc\":123,\"xyz\":null}]""".
+<urn:md5:0FCF1CB7AABAC3FD53088EE657963F7E> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "D88ct6q6w/1TCI7mV5Y/fg=="^^xsd:base64Binary.

@@ -1,0 +1,27 @@
+@base <ni:///mh;1QEQNnV2-L1hrlqJVb8h-ByneA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///HOSPITAL.MP7>;
+     nie:interpretedAs <ni:///mh;1QEQNnV2-L1hrlqJVb8h-ByneA?ct=application/octet-stream>;
+     nfo:fileName "HOSPITAL.MP7";
+     nfo:fileSize 5572 ;
+     a nfo:FileDataObject.
+<file:///HOSPITAL.MP7> at:extensionObject <https://w3id.org/uri4uri/suffix/mp7>.
+<ni:///mh;1QEQNnV2-L1hrlqJVb8h-ByneA?ct=application/octet-stream> at:digest <urn:md5:367576F8BD61AE5A8955BF21F81CA778>;
+                                                                  dcterms:extent "5572"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (5.44 KiB)"@en.
+<urn:md5:367576F8BD61AE5A8955BF21F81CA778> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "NnV2+L1hrlqJVb8h+ByneA=="^^xsd:base64Binary.

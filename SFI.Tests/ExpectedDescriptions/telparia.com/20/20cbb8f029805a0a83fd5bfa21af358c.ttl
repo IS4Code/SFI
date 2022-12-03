@@ -1,0 +1,53 @@
+@base <ni:///mh;1QEQrgPvF1Xt4WcUeyRYOcxLow?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///IE40CIF.CAB>;
+     nie:interpretedAs <ni:///mh;1QEQrgPvF1Xt4WcUeyRYOcxLow?ct=application/octet-stream>;
+     nfo:fileName "IE40CIF.CAB";
+     nfo:fileSize 14275 ;
+     a nfo:FileDataObject.
+<file:///IE40CIF.CAB> at:extensionObject <https://w3id.org/uri4uri/suffix/cab>.
+<file:///ie40.cif> at:extensionObject <https://w3id.org/uri4uri/suffix/cif>.
+<ni:///mh;1QEQdDZaoc0tIrspFkGrnOCbVg?ct=text/plain> at:digest <urn:md5:74365AA1CD2D22BB291641AB9CE09B56>;
+                                                    dcterms:extent "43734"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQdDZaoc0tIrspFkGrnOCbVg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (42.71 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQdDZaoc0tIrspFkGrnOCbVg?ct=text/plain#line=,1> rdf:value "[Version]".
+<ni:///mh;1QEQrgPvF1Xt4WcUeyRYOcxLow?ct=application/octet-stream> at:digest <urn:md5:AE03EF1755EDE167147B245839CC4BA3>;
+                                                                  dcterms:extent "14275"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQrgPvF1Xt4WcUeyRYOcxLow?ct=application/vnd.ms-cab-compressed>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (13.94 KiB)"@en.
+<ni:///mh;1QEQrgPvF1Xt4WcUeyRYOcxLow?ct=application/vnd.ms-cab-compressed> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.ms-cab-compressed>;
+                                                                           a schema:MediaObject,
+                                                                             nfo:Archive;
+                                                                           skos:prefLabel "CAB object (13.94 KiB)"@en.
+<ni:///mh;1QEQrgPvF1Xt4WcUeyRYOcxLow?ct=application/vnd.ms-cab-compressed#/ie40.cif> at:pathObject <file:///ie40.cif>;
+                                                                                     nie:interpretedAs <ni:///mh;1QEQdDZaoc0tIrspFkGrnOCbVg?ct=text/plain>;
+                                                                                     nfo:belongsToContainer <ni:///mh;1QEQrgPvF1Xt4WcUeyRYOcxLow?ct=application/vnd.ms-cab-compressed>;
+                                                                                     nfo:fileLastModified "1998-08-17T17:54:04.000000Z"^^xsd:dateTime;
+                                                                                     nfo:fileName "ie40.cif";
+                                                                                     nfo:fileSize 43734 ;
+                                                                                     a nfo:FileDataObject,
+                                                                                       nfo:ArchiveItem;
+                                                                                     skos:prefLabel "/ie40.cif".
+<urn:md5:74365AA1CD2D22BB291641AB9CE09B56> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "dDZaoc0tIrspFkGrnOCbVg=="^^xsd:base64Binary.
+<urn:md5:AE03EF1755EDE167147B245839CC4BA3> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "rgPvF1Xt4WcUeyRYOcxLow=="^^xsd:base64Binary.

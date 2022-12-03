@@ -1,0 +1,34 @@
+@base <ni:///mh;1QEQgBERM3aEQ3KspOO1z56VhQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///akmag3.zzt>;
+     nie:interpretedAs <ni:///mh;1QEQgBERM3aEQ3KspOO1z56VhQ?ct=application/octet-stream>;
+     nfo:fileName "akmag3.zzt";
+     nfo:fileSize 61278 ;
+     a nfo:FileDataObject.
+<file:///akmag3.zzt> at:extensionObject <https://w3id.org/uri4uri/suffix/zzt>.
+<ni:///mh;1QEQgBERM3aEQ3KspOO1z56VhQ?ct=application/octet-stream> at:digest <urn:md5:8011113376844372ACA4E3B5CF9E9585>;
+                                                                  dcterms:extent "61278"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQgBERM3aEQ3KspOO1z56VhQ?ct=audio/mpeg>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (59.84 KiB)"@en.
+<ni:///mh;1QEQgBERM3aEQ3KspOO1z56VhQ?ct=audio/mpeg> schema:encodingFormat <https://w3id.org/uri4uri/mime/audio/mpeg>;
+                                                    a schema:MediaObject,
+                                                      schema:AudioObject,
+                                                      nfo:Audio;
+                                                    skos:prefLabel "MP3 object (59.84 KiB)"@en.
+<urn:md5:8011113376844372ACA4E3B5CF9E9585> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "gBERM3aEQ3KspOO1z56VhQ=="^^xsd:base64Binary.

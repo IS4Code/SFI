@@ -1,0 +1,27 @@
+@base <ni:///mh;1QEQX0og-C5HWm_l-ZG7CBw7WA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///cReds.cpl>;
+     nie:interpretedAs <ni:///mh;1QEQX0og-C5HWm_l-ZG7CBw7WA?ct=application/octet-stream>;
+     nfo:fileName "cReds.cpl";
+     nfo:fileSize 4347 ;
+     a nfo:FileDataObject.
+<file:///cReds.cpl> at:extensionObject <https://w3id.org/uri4uri/suffix/cpl>.
+<ni:///mh;1QEQX0og-C5HWm_l-ZG7CBw7WA?ct=application/octet-stream> at:digest <urn:md5:5F4A20F82E475A6FE5F991BB081C3B58>;
+                                                                  dcterms:extent "4347"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (4.25 KiB)"@en.
+<urn:md5:5F4A20F82E475A6FE5F991BB081C3B58> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "X0og+C5HWm/l+ZG7CBw7WA=="^^xsd:base64Binary.

@@ -1,0 +1,30 @@
+@base <ni:///mh;1QEQGNHQXtOaxSUVaU8kRPHtDA?ct=text/plain>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///Photo%20Pro%20Volume%201%20-%20Patterns%20of%20Nature%20%28Wayzata%20Technology%29%281181%29%281992%29.cue>;
+     nie:interpretedAs <ni:///mh;1QEQGNHQXtOaxSUVaU8kRPHtDA?ct=text/plain>;
+     nfo:fileName "Photo Pro Volume 1 - Patterns of Nature (Wayzata Technology)(1181)(1992).cue";
+     nfo:fileSize 470 ;
+     a nfo:FileDataObject.
+<file:///Photo%20Pro%20Volume%201%20-%20Patterns%20of%20Nature%20%28Wayzata%20Technology%29%281181%29%281992%29.cue> at:extensionObject <https://w3id.org/uri4uri/suffix/cue>.
+<ni:///mh;1QEQGNHQXtOaxSUVaU8kRPHtDA?ct=text/plain> at:digest <urn:md5:18D1D05ED39AC52515694F2444F1ED0C>;
+                                                    dcterms:extent "470"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQGNHQXtOaxSUVaU8kRPHtDA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (470 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQGNHQXtOaxSUVaU8kRPHtDA?ct=text/plain#line=,1> rdf:value """FILE \"Photo Pro Volume 1 - Patterns of Nature (Wayzata Technology)(1181)(1992).bin\" BINARY""".
+<urn:md5:18D1D05ED39AC52515694F2444F1ED0C> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "GNHQXtOaxSUVaU8kRPHtDA=="^^xsd:base64Binary.

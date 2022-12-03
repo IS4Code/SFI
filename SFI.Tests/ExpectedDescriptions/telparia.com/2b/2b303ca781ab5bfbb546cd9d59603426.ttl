@@ -1,0 +1,126 @@
+@base <ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///abydos.gif>;
+     nie:interpretedAs <ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=application/octet-stream>;
+     nfo:fileName "abydos.gif";
+     nfo:fileSize 1003062 ;
+     a nfo:FileDataObject.
+<file:///abydos.gif> at:extensionObject <https://w3id.org/uri4uri/suffix/gif>.
+<ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=application/octet-stream> at:digest <urn:md5:7172A88900583EA18C7B90587A113089>;
+                                                                  dcterms:extent "1003062"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=image/gif>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (979.55 KiB)"@en.
+<ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=image/gif> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/gif>;
+                                                   nfo:colorDepth 32 ;
+                                                   nfo:hasMediaStream <ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=image/gif#/0>,
+                                                                      <ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=image/gif#/1>,
+                                                                      <ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=image/gif#/2>,
+                                                                      <ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=image/gif#/3>,
+                                                                      <ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=image/gif#/4>,
+                                                                      <ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=image/gif#/5>,
+                                                                      <ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=image/gif#/6>,
+                                                                      <ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=image/gif#/7>,
+                                                                      <ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=image/gif#/8>,
+                                                                      <ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=image/gif#/9>,
+                                                                      <ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=image/gif#/10>,
+                                                                      <ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=image/gif#/11>,
+                                                                      <ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=image/gif#/12>,
+                                                                      <ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=image/gif#/13>,
+                                                                      <ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=image/gif#/14>,
+                                                                      <ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=image/gif#/15>,
+                                                                      <ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=image/gif#/16>;
+                                                   nfo:height 600 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 800 ;
+                                                   <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#comments> "Created with GIMP";
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "GIF object (979.55 KiB)"@en,
+                                                                  "GIF object (800×600)"@en.
+<ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=image/gif#/0> nfo:height 600 ;
+                                                      nfo:width 800 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "0:GIF Header (800×600)".
+<ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=image/gif#/1> nfo:height 600 ;
+                                                      nfo:width 800 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "1:GIF Image (800×600)".
+<ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=image/gif#/10> nfo:height 600 ;
+                                                       nfo:width 800 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "10:GIF Image (800×600)".
+<ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=image/gif#/11> nfo:height 600 ;
+                                                       nfo:width 800 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "11:GIF Image (800×600)".
+<ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=image/gif#/12> nfo:height 600 ;
+                                                       nfo:width 800 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "12:GIF Image (800×600)".
+<ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=image/gif#/13> nfo:height 600 ;
+                                                       nfo:width 800 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "13:GIF Image (800×600)".
+<ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=image/gif#/14> nfo:height 600 ;
+                                                       nfo:width 800 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "14:GIF Image (800×600)".
+<ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=image/gif#/15> nfo:height 600 ;
+                                                       nfo:width 800 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "15:GIF Image (800×600)".
+<ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=image/gif#/16> nfo:height 600 ;
+                                                       nfo:width 800 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "16:GIF Image (800×600)".
+<ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=image/gif#/2> nfo:height 600 ;
+                                                      nfo:width 800 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "2:GIF Image (800×600)".
+<ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=image/gif#/3> nfo:height 600 ;
+                                                      nfo:width 800 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "3:GIF Image (800×600)".
+<ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=image/gif#/4> nfo:height 600 ;
+                                                      nfo:width 800 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "4:GIF Image (800×600)".
+<ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=image/gif#/5> nfo:height 600 ;
+                                                      nfo:width 800 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "5:GIF Image (800×600)".
+<ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=image/gif#/6> nfo:height 600 ;
+                                                      nfo:width 800 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "6:GIF Image (800×600)".
+<ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=image/gif#/7> nfo:height 600 ;
+                                                      nfo:width 800 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "7:GIF Image (800×600)".
+<ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=image/gif#/8> nfo:height 600 ;
+                                                      nfo:width 800 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "8:GIF Image (800×600)".
+<ni:///mh;1QEQcXKoiQBYPqGMe5BYehEwiQ?ct=image/gif#/9> nfo:height 600 ;
+                                                      nfo:width 800 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "9:GIF Image (800×600)".
+<urn:md5:7172A88900583EA18C7B90587A113089> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "cXKoiQBYPqGMe5BYehEwiQ=="^^xsd:base64Binary.

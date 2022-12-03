@@ -1,0 +1,36 @@
+@base <ni:///mh;1QEQsCvxevsNvJ_TtYAJdPX-Dg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///wizard9.arw>;
+     nie:interpretedAs <ni:///mh;1QEQsCvxevsNvJ_TtYAJdPX-Dg?ct=application/octet-stream>;
+     nfo:fileName "wizard9.arw";
+     nfo:fileSize 1240936 ;
+     a nfo:FileDataObject.
+<file:///wizard9.arw> at:extensionObject <https://w3id.org/uri4uri/suffix/arw>.
+<ni:///mh;1QEQsCvxevsNvJ_TtYAJdPX-Dg?ct=application/octet-stream> at:digest <urn:md5:B02BF17AFB0DBC9FD3B5800974F5FE0E>;
+                                                                  dcterms:extent "1240936"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQsCvxevsNvJ_TtYAJdPX-Dg?ct=image/x-targa>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.18 MiB)"@en.
+<ni:///mh;1QEQsCvxevsNvJ_TtYAJdPX-Dg?ct=image/x-targa> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-targa>;
+                                                       nfo:height 1174 ;
+                                                       nfo:width 1057 ;
+                                                       a schema:MediaObject,
+                                                         schema:ImageObject,
+                                                         nfo:Image;
+                                                       skos:prefLabel "TGA object (1057×1174)"@en.
+<urn:md5:B02BF17AFB0DBC9FD3B5800974F5FE0E> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "sCvxevsNvJ/TtYAJdPX+Dg=="^^xsd:base64Binary.

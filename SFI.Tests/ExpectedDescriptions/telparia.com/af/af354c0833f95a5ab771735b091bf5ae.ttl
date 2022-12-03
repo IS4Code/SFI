@@ -1,0 +1,126 @@
+@base <ni:///mh;1QEQ67vQFEyceXPNZaLUn87kPQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///uk_demos.zip>;
+     nie:interpretedAs <ni:///mh;1QEQ67vQFEyceXPNZaLUn87kPQ?ct=application/octet-stream>;
+     nfo:fileName "uk_demos.zip";
+     nfo:fileSize 529152 ;
+     a nfo:FileDataObject.
+<file:///INTEL.PRG> at:extensionObject <https://w3id.org/uri4uri/suffix/prg>.
+<file:///PLASMA30.PRG> at:extensionObject <https://w3id.org/uri4uri/suffix/prg>.
+<file:///PLASMA50.PRG> at:extensionObject <https://w3id.org/uri4uri/suffix/prg>.
+<file:///READ.ME> at:extensionObject <https://w3id.org/uri4uri/suffix/me>.
+<file:///SPEEDER2.PRG> at:extensionObject <https://w3id.org/uri4uri/suffix/prg>.
+<file:///uk_demos.zip> at:extensionObject <https://w3id.org/uri4uri/suffix/zip>.
+<ni:///mh;1QEQ3WyV52GDbQ9pBQT9pIucMQ?ct=application/octet-stream> at:digest <urn:md5:DD6C95E761836D0F690504FDA48B9C31>;
+                                                                  dcterms:extent "556475"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (543.43 KiB)"@en.
+<ni:///mh;1QEQ67vQFEyceXPNZaLUn87kPQ?ct=application/octet-stream> at:digest <urn:md5:EBBBD0144C9C7973CD65A2D49FCEE43D>;
+                                                                  dcterms:extent "529152"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ67vQFEyceXPNZaLUn87kPQ?ct=application/zip>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (516.75 KiB)"@en.
+<ni:///mh;1QEQ67vQFEyceXPNZaLUn87kPQ?ct=application/zip> at:pathObject <file:///>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
+                                                         nie:interpretedAs <ni:///mh;1QEQ67vQFEyceXPNZaLUn87kPQ?ct=application/zip#/>;
+                                                         a schema:MediaObject,
+                                                           nfo:Archive;
+                                                         skos:prefLabel "ZIP object (516.75 KiB)"@en.
+<ni:///mh;1QEQ67vQFEyceXPNZaLUn87kPQ?ct=application/zip#/> at:pathObject <file:///./>;
+                                                           a nfo:Folder;
+                                                           skos:prefLabel "/".
+<ni:///mh;1QEQ67vQFEyceXPNZaLUn87kPQ?ct=application/zip#/INTEL.PRG> at:pathObject <file:///INTEL.PRG>;
+                                                                    nie:interpretedAs <ni:///mh;1QEQnoi-uRyHicxUOlRtBmNbWg?ct=application/octet-stream>;
+                                                                    nfo:belongsToContainer <ni:///mh;1QEQ67vQFEyceXPNZaLUn87kPQ?ct=application/zip#/>;
+                                                                    nfo:fileLastModified "1993-05-09T05:33:34.000000+02:00"^^xsd:dateTime;
+                                                                    nfo:fileName "INTEL.PRG";
+                                                                    nfo:fileSize 17478 ;
+                                                                    a nfo:FileDataObject,
+                                                                      nfo:ArchiveItem;
+                                                                    skos:prefLabel "/INTEL.PRG".
+<ni:///mh;1QEQ67vQFEyceXPNZaLUn87kPQ?ct=application/zip#/PLASMA30.PRG> at:pathObject <file:///PLASMA30.PRG>;
+                                                                       nie:interpretedAs <ni:///mh;1QEQMvhbwFdTn-HVTSJzcwVJPA?ct=application/octet-stream>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQ67vQFEyceXPNZaLUn87kPQ?ct=application/zip#/>;
+                                                                       nfo:fileLastModified "1993-05-18T07:48:14.000000+02:00"^^xsd:dateTime;
+                                                                       nfo:fileName "PLASMA30.PRG";
+                                                                       nfo:fileSize 556465 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/PLASMA30.PRG".
+<ni:///mh;1QEQ67vQFEyceXPNZaLUn87kPQ?ct=application/zip#/PLASMA50.PRG> at:pathObject <file:///PLASMA50.PRG>;
+                                                                       nie:interpretedAs <ni:///mh;1QEQ3WyV52GDbQ9pBQT9pIucMQ?ct=application/octet-stream>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQ67vQFEyceXPNZaLUn87kPQ?ct=application/zip#/>;
+                                                                       nfo:fileLastModified "1993-05-18T07:48:26.000000+02:00"^^xsd:dateTime;
+                                                                       nfo:fileName "PLASMA50.PRG";
+                                                                       nfo:fileSize 556475 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/PLASMA50.PRG".
+<ni:///mh;1QEQ67vQFEyceXPNZaLUn87kPQ?ct=application/zip#/READ.ME> at:pathObject <file:///READ.ME>;
+                                                                  nie:interpretedAs <ni:///mh;1QEQdCWOqs6JKD_46JrAYC2kUg?ct=text/plain>;
+                                                                  nfo:belongsToContainer <ni:///mh;1QEQ67vQFEyceXPNZaLUn87kPQ?ct=application/zip#/>;
+                                                                  nfo:fileLastModified "1993-05-25T08:21:04.000000+02:00"^^xsd:dateTime;
+                                                                  nfo:fileName "READ.ME";
+                                                                  nfo:fileSize 1636 ;
+                                                                  a nfo:FileDataObject,
+                                                                    nfo:ArchiveItem;
+                                                                  skos:prefLabel "/READ.ME".
+<ni:///mh;1QEQ67vQFEyceXPNZaLUn87kPQ?ct=application/zip#/SPEEDER2.PRG> at:pathObject <file:///SPEEDER2.PRG>;
+                                                                       nie:interpretedAs <ni:///mh;1QEQyLH2130BkLvoRUqNa0fUfg?ct=application/octet-stream>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQ67vQFEyceXPNZaLUn87kPQ?ct=application/zip#/>;
+                                                                       nfo:fileLastModified "1993-05-18T07:48:40.000000+02:00"^^xsd:dateTime;
+                                                                       nfo:fileName "SPEEDER2.PRG";
+                                                                       nfo:fileSize 680131 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/SPEEDER2.PRG".
+<ni:///mh;1QEQMvhbwFdTn-HVTSJzcwVJPA?ct=application/octet-stream> at:digest <urn:md5:32F85BC057539FE1D54D22737305493C>;
+                                                                  dcterms:extent "556465"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (543.42 KiB)"@en.
+<ni:///mh;1QEQdCWOqs6JKD_46JrAYC2kUg?ct=text/plain> at:digest <urn:md5:74258EAACE89283FF8E89AC0602DA452>;
+                                                    dcterms:extent "1636"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQdCWOqs6JKD_46JrAYC2kUg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.6 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQdCWOqs6JKD_46JrAYC2kUg?ct=text/plain#line=,1> rdf:value "These demos have been written by UK based Black Scorpion Software, a".
+<ni:///mh;1QEQnoi-uRyHicxUOlRtBmNbWg?ct=application/octet-stream> at:digest <urn:md5:9E88BEB91C8789CC543A546D06635B5A>;
+                                                                  dcterms:extent "17478"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (17.07 KiB)"@en.
+<ni:///mh;1QEQyLH2130BkLvoRUqNa0fUfg?ct=application/octet-stream> at:digest <urn:md5:C8B1F6D77D0190BBE8454A8D6B47D47E>;
+                                                                  dcterms:extent "680131"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (664.19 KiB)"@en.
+<urn:md5:32F85BC057539FE1D54D22737305493C> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "MvhbwFdTn+HVTSJzcwVJPA=="^^xsd:base64Binary.
+<urn:md5:74258EAACE89283FF8E89AC0602DA452> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "dCWOqs6JKD/46JrAYC2kUg=="^^xsd:base64Binary.
+<urn:md5:9E88BEB91C8789CC543A546D06635B5A> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "noi+uRyHicxUOlRtBmNbWg=="^^xsd:base64Binary.
+<urn:md5:C8B1F6D77D0190BBE8454A8D6B47D47E> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "yLH2130BkLvoRUqNa0fUfg=="^^xsd:base64Binary.
+<urn:md5:DD6C95E761836D0F690504FDA48B9C31> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "3WyV52GDbQ9pBQT9pIucMQ=="^^xsd:base64Binary.
+<urn:md5:EBBBD0144C9C7973CD65A2D49FCEE43D> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "67vQFEyceXPNZaLUn87kPQ=="^^xsd:base64Binary.

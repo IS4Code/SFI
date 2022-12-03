@@ -1,0 +1,27 @@
+@base <data:application/x.sig.kwaj;base64,S1dBSojwJ9EDAA4AAAAAAAABdAGAGACAOkQCAJ6AIAAdQgIEAoAOsQGAJ8FQAAdggQATjcQIA7RAoAcG5AQB>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///DATA_USA.ID_>;
+     nie:interpretedAs <data:application/octet-stream;base64,S1dBSojwJ9EDAA4AAAAAAAABdAGAGACAOkQCAJ6AIAAdQgIEAoAOsQGAJ8FQAAdggQATjcQIA7RAoAcG5AQB>;
+     nfo:fileName "DATA_USA.ID_";
+     nfo:fileSize 63 ;
+     a nfo:FileDataObject.
+<data:application/octet-stream;base64,S1dBSojwJ9EDAA4AAAAAAAABdAGAGACAOkQCAJ6AIAAdQgIEAoAOsQGAJ8FQAAdggQATjcQIA7RAoAcG5AQB> dcterms:extent "63"^^dt:byte;
+                                                                                                                            dcterms:hasFormat <data:application/x.sig.kwaj;base64,S1dBSojwJ9EDAA4AAAAAAAABdAGAGACAOkQCAJ6AIAAdQgIEAoAOsQGAJ8FQAAdggQATjcQIA7RAoAcG5AQB>;
+                                                                                                                            a cnt:ContentAsBase64;
+                                                                                                                            skos:prefLabel "binary data (63 B)"@en;
+                                                                                                                            cnt:bytes "S1dBSojwJ9EDAA4AAAAAAAABdAGAGACAOkQCAJ6AIAAdQgIEAoAOsQGAJ8FQAAdggQATjcQIA7RAoAcG5AQB"^^xsd:base64Binary.
+<data:application/x.sig.kwaj;base64,S1dBSojwJ9EDAA4AAAAAAAABdAGAGACAOkQCAJ6AIAAdQgIEAoAOsQGAJ8FQAAdggQATjcQIA7RAoAcG5AQB> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.kwaj>;
+                                                                                                                          a schema:MediaObject;
+                                                                                                                          skos:prefLabel "KWAJ object (63 B)"@en.
+<file:///DATA_USA.ID_> at:extensionObject <https://w3id.org/uri4uri/suffix/id_>.

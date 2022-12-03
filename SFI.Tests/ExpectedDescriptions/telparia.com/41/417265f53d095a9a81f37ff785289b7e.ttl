@@ -1,0 +1,208 @@
+@base <ni:///mh;1QEQMx02jMrvytVKoTrKzzHb8g?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix dbo: <http://dbpedia.org/ontology/>.
+
+_:n1 at:pathObject <file:///ucf-b2sp.zip>;
+     nie:interpretedAs <ni:///mh;1QEQMx02jMrvytVKoTrKzzHb8g?ct=application/octet-stream>;
+     nfo:fileName "ucf-b2sp.zip";
+     nfo:fileSize 61899 ;
+     a nfo:FileDataObject.
+<data:application/octet-stream;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAACAA==> dcterms:extent "34"^^dt:byte;
+                                                                                        dcterms:hasFormat <data:image/x-icon;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAACAA==>;
+                                                                                        a cnt:ContentAsBase64;
+                                                                                        skos:prefLabel "binary data (34 B)"@en;
+                                                                                        cnt:bytes "AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAACAA=="^^xsd:base64Binary.
+<data:image/x-icon;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAACAA==> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
+                                                                            nfo:hasMediaStream <data:image/x-icon;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAACAA==#/0>,
+                                                                                               <data:image/x-icon;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAACAA==#/1>;
+                                                                            a schema:MediaObject,
+                                                                              schema:ImageObject,
+                                                                              nfo:Image;
+                                                                            skos:prefLabel "ICO object (34 B)"@en.
+<data:image/x-icon;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAACAA==#/0> nfo:height 32 ;
+                                                                               nfo:width 32 ;
+                                                                               a nfo:MediaStream;
+                                                                               skos:prefLabel "0:ICO (32×32)".
+<data:image/x-icon;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAACAA==#/1> nfo:height 0 ;
+                                                                               nfo:width 16 ;
+                                                                               a nfo:MediaStream;
+                                                                               skos:prefLabel "1:ICO (16×0)".
+<file:///FILE_ID.DIZ> at:extensionObject <https://w3id.org/uri4uri/suffix/diz>.
+<file:///TL32V20.DLL> at:extensionObject <https://w3id.org/uri4uri/suffix/dll>.
+<file:///UCF2000.COM> at:extensionObject <https://w3id.org/uri4uri/suffix/com>.
+<file:///UCF2000.NFO> at:extensionObject <https://w3id.org/uri4uri/suffix/nfo>.
+<file:///ucf-b2sp.zip> at:extensionObject <https://w3id.org/uri4uri/suffix/zip>.
+<ni:///mh;1QEQ36QOCZALN2vJY-fjxUudAg?ct=application/octet-stream> at:digest <urn:md5:DFA40E09900B376BC963E7E3C54B9D02>;
+                                                                  dcterms:extent "91648"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ36QOCZALN2vJY-fjxUudAg?ct=application/vnd.microsoft.portable-executable>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (89.5 KiB)"@en.
+<ni:///mh;1QEQ36QOCZALN2vJY-fjxUudAg?ct=application/vnd.microsoft.portable-executable> dbo:originalName "tl32v20.dll";
+                                                                                       dcterms:creator "Preview Software Inc"@en-us;
+                                                                                       dcterms:description "tl32v20"@en-us;
+                                                                                       schema:copyrightNotice "Copyright © 1996 Preview Software Inc"@en-us;
+                                                                                       schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
+                                                                                       schema:name "tl32v20";
+                                                                                       schema:softwareVersion "2.0.0.2",
+                                                                                                              "2, 0, 0, 2";
+                                                                                       schema:version "1.2.0.0",
+                                                                                                      "1, 2, 0, 0";
+                                                                                       nie:hasPart <ni:///mh;1QEQ36QOCZALN2vJY-fjxUudAg?ct=application/vnd.microsoft.portable-executable#/Icon/1>,
+                                                                                                   <ni:///mh;1QEQ36QOCZALN2vJY-fjxUudAg?ct=application/vnd.microsoft.portable-executable#/Icon/2>,
+                                                                                                   <ni:///mh;1QEQ36QOCZALN2vJY-fjxUudAg?ct=application/vnd.microsoft.portable-executable#/GroupIcon/128>;
+                                                                                       a schema:MediaObject,
+                                                                                         schema:SoftwareApplication,
+                                                                                         nfo:Executable;
+                                                                                       skos:prefLabel "DLL object (tl32v20)"@en.
+<ni:///mh;1QEQ36QOCZALN2vJY-fjxUudAg?ct=application/vnd.microsoft.portable-executable#/GroupIcon/128> at:pathObject <file:///128>;
+                                                                                                      nie:interpretedAs <data:application/octet-stream;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAACAA==>;
+                                                                                                      nfo:fileName "128";
+                                                                                                      nfo:fileSize 34 ;
+                                                                                                      a nfo:FileDataObject,
+                                                                                                        nfo:EmbeddedFileDataObject;
+                                                                                                      skos:prefLabel "/GroupIcon/128".
+<ni:///mh;1QEQ36QOCZALN2vJY-fjxUudAg?ct=application/vnd.microsoft.portable-executable#/Icon/1> at:pathObject <file:///1>;
+                                                                                               nie:interpretedAs <ni:///mh;1QEQOttxuTkNhBW3EcyQW3hqhw?ct=application/octet-stream>;
+                                                                                               nfo:fileName "1";
+                                                                                               nfo:fileSize 744 ;
+                                                                                               a nfo:FileDataObject,
+                                                                                                 nfo:EmbeddedFileDataObject;
+                                                                                               skos:prefLabel "/Icon/1".
+<ni:///mh;1QEQ36QOCZALN2vJY-fjxUudAg?ct=application/vnd.microsoft.portable-executable#/Icon/2> at:pathObject <file:///2>;
+                                                                                               nie:interpretedAs <ni:///mh;1QEQ5nypei0b2hl8Phiiwn1YnQ?ct=application/octet-stream>;
+                                                                                               nfo:fileName "2";
+                                                                                               nfo:fileSize 296 ;
+                                                                                               a nfo:FileDataObject,
+                                                                                                 nfo:EmbeddedFileDataObject;
+                                                                                               skos:prefLabel "/Icon/2".
+<ni:///mh;1QEQ5nypei0b2hl8Phiiwn1YnQ?ct=application/octet-stream> at:digest <urn:md5:E67CA97A2D1BDA197C3E18A2C27D589D>;
+                                                                  dcterms:extent "310"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ5nypei0b2hl8Phiiwn1YnQ?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (310 B)"@en.
+<ni:///mh;1QEQ5nypei0b2hl8Phiiwn1YnQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:colorDepth 32 ;
+                                                   nfo:height 16 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 16 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (16×16)"@en.
+<ni:///mh;1QEQ98URu9b3lQGq4lElX49IKg?ct=application/octet-stream> at:digest <urn:md5:F7C511BBD6F79501AAE251255F8F482A>;
+                                                                  dcterms:extent "12911"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (12.61 KiB)"@en.
+<ni:///mh;1QEQ9PjqlroA7uO9CErjcW7iFw?ct=application/octet-stream> at:digest <urn:md5:F4F8EA96BA00EEE3BD084AE3716EE217>;
+                                                                  dcterms:extent "436"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (436 B)"@en.
+<ni:///mh;1QEQMx02jMrvytVKoTrKzzHb8g?ct=application/octet-stream> at:digest <urn:md5:331D368CCAEFCAD54AA13ACACF31DBF2>;
+                                                                  dcterms:extent "61899"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQMx02jMrvytVKoTrKzzHb8g?ct=application/zip>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (60.45 KiB)"@en.
+<ni:///mh;1QEQMx02jMrvytVKoTrKzzHb8g?ct=application/zip> at:pathObject <file:///>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
+                                                         nie:interpretedAs <ni:///mh;1QEQMx02jMrvytVKoTrKzzHb8g?ct=application/zip#/>;
+                                                         a schema:MediaObject,
+                                                           nfo:Archive;
+                                                         skos:prefLabel "ZIP object (60.45 KiB)"@en.
+<ni:///mh;1QEQMx02jMrvytVKoTrKzzHb8g?ct=application/zip#/> at:pathObject <file:///./>;
+                                                           a nfo:Folder;
+                                                           skos:prefLabel "/".
+<ni:///mh;1QEQMx02jMrvytVKoTrKzzHb8g?ct=application/zip#/FILE_ID.DIZ> at:pathObject <file:///FILE_ID.DIZ>;
+                                                                      nie:interpretedAs <ni:///mh;1QEQ9PjqlroA7uO9CErjcW7iFw?ct=application/octet-stream>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQMx02jMrvytVKoTrKzzHb8g?ct=application/zip#/>;
+                                                                      nfo:fileLastModified "1997-06-10T00:15:50.000000+02:00"^^xsd:dateTime;
+                                                                      nfo:fileName "FILE_ID.DIZ";
+                                                                      nfo:fileSize 436 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/FILE_ID.DIZ".
+<ni:///mh;1QEQMx02jMrvytVKoTrKzzHb8g?ct=application/zip#/TL32V20.DLL> at:pathObject <file:///TL32V20.DLL>;
+                                                                      nie:interpretedAs <ni:///mh;1QEQ36QOCZALN2vJY-fjxUudAg?ct=application/octet-stream>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQMx02jMrvytVKoTrKzzHb8g?ct=application/zip#/>;
+                                                                      nfo:fileLastModified "1997-01-11T12:08:10.000000+01:00"^^xsd:dateTime;
+                                                                      nfo:fileName "TL32V20.DLL";
+                                                                      nfo:fileSize 91648 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/TL32V20.DLL".
+<ni:///mh;1QEQMx02jMrvytVKoTrKzzHb8g?ct=application/zip#/UCF2000.COM> at:pathObject <file:///UCF2000.COM>;
+                                                                      nie:interpretedAs <ni:///mh;1QEQT3-rT7z6L4bv3Ibgq35joA?ct=application/octet-stream>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQMx02jMrvytVKoTrKzzHb8g?ct=application/zip#/>;
+                                                                      nfo:fileLastModified "1997-06-10T01:07:26.000000+02:00"^^xsd:dateTime;
+                                                                      nfo:fileName "UCF2000.COM";
+                                                                      nfo:fileSize 14867 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/UCF2000.COM".
+<ni:///mh;1QEQMx02jMrvytVKoTrKzzHb8g?ct=application/zip#/UCF2000.NFO> at:pathObject <file:///UCF2000.NFO>;
+                                                                      nie:interpretedAs <ni:///mh;1QEQ98URu9b3lQGq4lElX49IKg?ct=application/octet-stream>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQMx02jMrvytVKoTrKzzHb8g?ct=application/zip#/>;
+                                                                      nfo:fileLastModified "1997-06-10T01:07:18.000000+02:00"^^xsd:dateTime;
+                                                                      nfo:fileName "UCF2000.NFO";
+                                                                      nfo:fileSize 12911 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/UCF2000.NFO".
+<ni:///mh;1QEQOttxuTkNhBW3EcyQW3hqhw?ct=application/octet-stream> at:digest <urn:md5:3ADB71B9390D8415B711CC905B786A87>;
+                                                                  dcterms:extent "758"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQOttxuTkNhBW3EcyQW3hqhw?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (758 B)"@en.
+<ni:///mh;1QEQOttxuTkNhBW3EcyQW3hqhw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:colorDepth 32 ;
+                                                   nfo:height 32 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 32 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (32×32)"@en.
+<ni:///mh;1QEQT3-rT7z6L4bv3Ibgq35joA?ct=application/octet-stream> at:digest <urn:md5:4F7FAB4FBCFA2F86EFDC86E0AB7E63A0>;
+                                                                  dcterms:extent "14867"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQT3-rT7z6L4bv3Ibgq35joA?ct=application/x-dosexec>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (14.52 KiB)"@en.
+<ni:///mh;1QEQT3-rT7z6L4bv3Ibgq35joA?ct=application/x-dosexec> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-dosexec>;
+                                                               a schema:MediaObject,
+                                                                 schema:SoftwareApplication,
+                                                                 nfo:Executable;
+                                                               skos:prefLabel "COM object (14.52 KiB)"@en.
+<urn:md5:331D368CCAEFCAD54AA13ACACF31DBF2> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "Mx02jMrvytVKoTrKzzHb8g=="^^xsd:base64Binary.
+<urn:md5:3ADB71B9390D8415B711CC905B786A87> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "OttxuTkNhBW3EcyQW3hqhw=="^^xsd:base64Binary.
+<urn:md5:4F7FAB4FBCFA2F86EFDC86E0AB7E63A0> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "T3+rT7z6L4bv3Ibgq35joA=="^^xsd:base64Binary.
+<urn:md5:DFA40E09900B376BC963E7E3C54B9D02> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "36QOCZALN2vJY+fjxUudAg=="^^xsd:base64Binary.
+<urn:md5:E67CA97A2D1BDA197C3E18A2C27D589D> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "5nypei0b2hl8Phiiwn1YnQ=="^^xsd:base64Binary.
+<urn:md5:F4F8EA96BA00EEE3BD084AE3716EE217> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "9PjqlroA7uO9CErjcW7iFw=="^^xsd:base64Binary.
+<urn:md5:F7C511BBD6F79501AAE251255F8F482A> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "98URu9b3lQGq4lElX49IKg=="^^xsd:base64Binary.

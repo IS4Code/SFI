@@ -1,0 +1,56 @@
+@base <ni:///mh;1QEQLUp4EjM_xuguNQdYqmME4w?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///BOB-89A.GIF>;
+     nie:interpretedAs <ni:///mh;1QEQLUp4EjM_xuguNQdYqmME4w?ct=application/octet-stream>;
+     nfo:fileName "BOB-89A.GIF";
+     nfo:fileSize 27692 ;
+     a nfo:FileDataObject.
+<file:///BOB-89A.GIF> at:extensionObject <https://w3id.org/uri4uri/suffix/gif>.
+<ni:///mh;1QEQLUp4EjM_xuguNQdYqmME4w?ct=application/octet-stream> at:digest <urn:md5:2D4A7812333FC6E82E350758AA6304E3>;
+                                                                  dcterms:extent "27692"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQLUp4EjM_xuguNQdYqmME4w?ct=image/gif>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (27.04 KiB)"@en.
+<ni:///mh;1QEQLUp4EjM_xuguNQdYqmME4w?ct=image/gif> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/gif>;
+                                                   nfo:bitDepth 8 ;
+                                                   nfo:hasMediaStream <ni:///mh;1QEQLUp4EjM_xuguNQdYqmME4w?ct=image/gif#/0>,
+                                                                      <ni:///mh;1QEQLUp4EjM_xuguNQdYqmME4w?ct=image/gif#/1>;
+                                                   nfo:height 200 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:paletteSize 64 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 320 ;
+                                                   <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#comments> """:::::::::::::::::::::::::::::::::::::::::::::::::::
+: Multi-image GIF89a created with CompuMake Tools :
+:::::::::::::::::::::::::::::::::::::::::::::::::::
+
+""";
+                                                   a schema:MediaObject,
+                                                     nfo:Image,
+                                                     schema:ImageObject;
+                                                   skos:prefLabel "GIF object (320×200)"@en,
+                                                                  "GIF object (27.04 KiB)"@en.
+<ni:///mh;1QEQLUp4EjM_xuguNQdYqmME4w?ct=image/gif#/0> nfo:height 200 ;
+                                                      nfo:width 320 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "0:GIF Header (320×200)".
+<ni:///mh;1QEQLUp4EjM_xuguNQdYqmME4w?ct=image/gif#/1> nfo:height 200 ;
+                                                      nfo:width 320 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "1:GIF Image (320×200)".
+<urn:md5:2D4A7812333FC6E82E350758AA6304E3> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "LUp4EjM/xuguNQdYqmME4w=="^^xsd:base64Binary.

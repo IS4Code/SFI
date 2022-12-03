@@ -1,0 +1,40 @@
+@base <ni:///mh;1QEQE4VsUI-e6bL64fzcnjJIeQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///example.ape>;
+     nie:interpretedAs <ni:///mh;1QEQE4VsUI-e6bL64fzcnjJIeQ?ct=application/octet-stream>;
+     nfo:fileName "example.ape";
+     nfo:fileSize 2462664 ;
+     a nfo:FileDataObject.
+<file:///example.ape> at:extensionObject <https://w3id.org/uri4uri/suffix/ape>.
+<ni:///mh;1QEQE4VsUI-e6bL64fzcnjJIeQ?ct=application/octet-stream> at:digest <urn:md5:13856C508F9EE9B2FAE1FCDC9E324879>;
+                                                                  dcterms:extent "2462664"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQE4VsUI-e6bL64fzcnjJIeQ?ct=audio/ape>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (2.35 MiB)"@en.
+<ni:///mh;1QEQE4VsUI-e6bL64fzcnjJIeQ?ct=audio/ape> schema:encodingFormat <https://w3id.org/uri4uri/mime/audio/ape>;
+                                                   nfo:averageBitrate "548"^^dt:kilobitPerSecond;
+                                                   nfo:bitsPerSample 16 ;
+                                                   nfo:channels 2 ;
+                                                   nfo:compressionType nfo:losslessCompressionType;
+                                                   nfo:duration "PT35.9148299S"^^xsd:duration;
+                                                   nfo:sampleRate "44100"^^dt:hertz;
+                                                   a schema:MediaObject,
+                                                     nfo:Audio,
+                                                     schema:AudioObject;
+                                                   skos:prefLabel "APE object (44100 Hz, 2 channels)"@en.
+<urn:md5:13856C508F9EE9B2FAE1FCDC9E324879> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "E4VsUI+e6bL64fzcnjJIeQ=="^^xsd:base64Binary.

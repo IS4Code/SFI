@@ -1,0 +1,250 @@
+@base <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///animated.gif>;
+     nie:interpretedAs <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=application/octet-stream>;
+     nfo:fileName "animated.gif";
+     nfo:fileSize 75925 ;
+     a nfo:FileDataObject.
+<file:///animated.gif> at:extensionObject <https://w3id.org/uri4uri/suffix/gif>.
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=application/octet-stream> at:digest <urn:md5:C5F80E35B5FD00CD42605A3BB40A7803>;
+                                                                  dcterms:extent "75925"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (74.15 KiB)"@en.
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/gif>;
+                                                   nfo:colorDepth 32 ;
+                                                   nfo:hasMediaStream <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/0>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/1>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/2>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/3>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/4>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/5>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/6>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/7>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/8>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/9>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/10>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/11>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/12>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/13>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/14>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/15>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/16>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/17>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/18>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/19>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/20>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/21>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/22>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/23>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/24>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/25>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/26>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/27>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/28>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/29>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/30>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/31>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/32>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/33>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/34>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/35>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/36>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/37>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/38>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/39>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/40>,
+                                                                      <ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/41>;
+                                                   nfo:height 102 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 128 ;
+                                                   a schema:MediaObject,
+                                                     nfo:Image,
+                                                     schema:ImageObject;
+                                                   skos:prefLabel "GIF object (128×102)"@en,
+                                                                  "GIF object (74.15 KiB)"@en.
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/0> nfo:height 102 ;
+                                                      nfo:width 128 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "0:GIF Header (128×102)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/1> nfo:height 102 ;
+                                                      nfo:width 128 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "1:GIF Image (128×102)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/10> nfo:height 98 ;
+                                                       nfo:width 124 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "10:GIF Image (124×98)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/11> nfo:height 97 ;
+                                                       nfo:width 124 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "11:GIF Image (124×97)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/12> nfo:height 96 ;
+                                                       nfo:width 123 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "12:GIF Image (123×96)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/13> nfo:height 96 ;
+                                                       nfo:width 122 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "13:GIF Image (122×96)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/14> nfo:height 97 ;
+                                                       nfo:width 121 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "14:GIF Image (121×97)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/15> nfo:height 98 ;
+                                                       nfo:width 120 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "15:GIF Image (120×98)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/16> nfo:height 98 ;
+                                                       nfo:width 118 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "16:GIF Image (118×98)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/17> nfo:height 99 ;
+                                                       nfo:width 117 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "17:GIF Image (117×99)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/18> nfo:height 100 ;
+                                                       nfo:width 115 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "18:GIF Image (115×100)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/19> nfo:height 100 ;
+                                                       nfo:width 114 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "19:GIF Image (114×100)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/2> nfo:height 102 ;
+                                                      nfo:width 123 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "2:GIF Image (123×102)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/20> nfo:height 101 ;
+                                                       nfo:width 113 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "20:GIF Image (113×101)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/21> nfo:height 101 ;
+                                                       nfo:width 113 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "21:GIF Image (113×101)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/22> nfo:height 100 ;
+                                                       nfo:width 114 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "22:GIF Image (114×100)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/23> nfo:height 101 ;
+                                                       nfo:width 115 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "23:GIF Image (115×101)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/24> nfo:height 101 ;
+                                                       nfo:width 115 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "24:GIF Image (115×101)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/25> nfo:height 101 ;
+                                                       nfo:width 115 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "25:GIF Image (115×101)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/26> nfo:height 101 ;
+                                                       nfo:width 116 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "26:GIF Image (116×101)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/27> nfo:height 101 ;
+                                                       nfo:width 116 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "27:GIF Image (116×101)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/28> nfo:height 100 ;
+                                                       nfo:width 118 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "28:GIF Image (118×100)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/29> nfo:height 100 ;
+                                                       nfo:width 117 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "29:GIF Image (117×100)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/3> nfo:height 102 ;
+                                                      nfo:width 124 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "3:GIF Image (124×102)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/30> nfo:height 100 ;
+                                                       nfo:width 119 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "30:GIF Image (119×100)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/31> nfo:height 99 ;
+                                                       nfo:width 120 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "31:GIF Image (120×99)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/32> nfo:height 99 ;
+                                                       nfo:width 121 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "32:GIF Image (121×99)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/33> nfo:height 98 ;
+                                                       nfo:width 123 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "33:GIF Image (123×98)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/34> nfo:height 100 ;
+                                                       nfo:width 124 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "34:GIF Image (124×100)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/35> nfo:height 101 ;
+                                                       nfo:width 124 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "35:GIF Image (124×101)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/36> nfo:height 102 ;
+                                                       nfo:width 125 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "36:GIF Image (125×102)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/37> nfo:height 102 ;
+                                                       nfo:width 125 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "37:GIF Image (125×102)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/38> nfo:height 102 ;
+                                                       nfo:width 125 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "38:GIF Image (125×102)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/39> nfo:height 102 ;
+                                                       nfo:width 124 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "39:GIF Image (124×102)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/4> nfo:height 102 ;
+                                                      nfo:width 124 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "4:GIF Image (124×102)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/40> nfo:height 102 ;
+                                                       nfo:width 124 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "40:GIF Image (124×102)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/41> nfo:height 102 ;
+                                                       nfo:width 124 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "41:GIF Image (124×102)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/5> nfo:height 101 ;
+                                                      nfo:width 124 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "5:GIF Image (124×101)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/6> nfo:height 101 ;
+                                                      nfo:width 124 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "6:GIF Image (124×101)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/7> nfo:height 100 ;
+                                                      nfo:width 124 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "7:GIF Image (124×100)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/8> nfo:height 100 ;
+                                                      nfo:width 124 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "8:GIF Image (124×100)".
+<ni:///mh;1QEQxfgONbX9AM1CYFo7tAp4Aw?ct=image/gif#/9> nfo:height 99 ;
+                                                      nfo:width 125 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "9:GIF Image (125×99)".
+<urn:md5:C5F80E35B5FD00CD42605A3BB40A7803> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "xfgONbX9AM1CYFo7tAp4Aw=="^^xsd:base64Binary.

@@ -1,0 +1,51 @@
+@base <ni:///mh;1QEQT7J0Foz-RUTsHuoqSwBG-Q?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///switzler084d_dl.mkv>;
+     nie:interpretedAs <ni:///mh;1QEQT7J0Foz-RUTsHuoqSwBG-Q?ct=application/octet-stream>;
+     nfo:fileName "switzler084d_dl.mkv";
+     nfo:fileSize 8364522 ;
+     a nfo:FileDataObject.
+<file:///switzler084d_dl.mkv> at:extensionObject <https://w3id.org/uri4uri/suffix/mkv>.
+<ni:///mh;1QEQT7J0Foz-RUTsHuoqSwBG-Q?ct=application/octet-stream> at:digest <urn:md5:4FB274168CFE4544EC1EEA2A4B0046F9>;
+                                                                  dcterms:extent "8364522"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQT7J0Foz-RUTsHuoqSwBG-Q?ct=video/webm>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (7.98 MiB)"@en.
+<ni:///mh;1QEQT7J0Foz-RUTsHuoqSwBG-Q?ct=video/webm> schema:encodingFormat <https://w3id.org/uri4uri/mime/video/webm>;
+                                                    nfo:channels 2 ;
+                                                    nfo:duration "PT1M47.734S"^^xsd:duration;
+                                                    nfo:hasMediaStream <ni:///mh;1QEQT7J0Foz-RUTsHuoqSwBG-Q?ct=video/webm#/Video/0>,
+                                                                       <ni:///mh;1QEQT7J0Foz-RUTsHuoqSwBG-Q?ct=video/webm#/Audio/0>;
+                                                    nfo:height 206 ;
+                                                    nfo:sampleRate "48000"^^dt:hertz;
+                                                    nfo:width 480 ;
+                                                    a schema:MediaObject,
+                                                      schema:VideoObject,
+                                                      nfo:Video;
+                                                    skos:prefLabel "MKV object (480×206)"@en.
+<ni:///mh;1QEQT7J0Foz-RUTsHuoqSwBG-Q?ct=video/webm#/Audio/0> nfo:channels 2 ;
+                                                             nfo:sampleRate "48000"^^dt:hertz;
+                                                             a nfo:Audio,
+                                                               nfo:MediaStream;
+                                                             skos:prefLabel "0:Audio (48000 Hz, 2 channels)".
+<ni:///mh;1QEQT7J0Foz-RUTsHuoqSwBG-Q?ct=video/webm#/Video/0> nfo:height 206 ;
+                                                             nfo:width 480 ;
+                                                             a nfo:Video,
+                                                               nfo:MediaStream;
+                                                             skos:prefLabel "0:Video (480×206)".
+<urn:md5:4FB274168CFE4544EC1EEA2A4B0046F9> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "T7J0Foz+RUTsHuoqSwBG+Q=="^^xsd:base64Binary.

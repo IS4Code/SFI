@@ -1,0 +1,27 @@
+@base <ni:///mh;1QEQuC114pnrqRbZxVNG4kYQPA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///DESKTOP.HLP>;
+     nie:interpretedAs <ni:///mh;1QEQuC114pnrqRbZxVNG4kYQPA?ct=application/octet-stream>;
+     nfo:fileName "DESKTOP.HLP";
+     nfo:fileSize 39836 ;
+     a nfo:FileDataObject.
+<file:///DESKTOP.HLP> at:extensionObject <https://w3id.org/uri4uri/suffix/hlp>.
+<ni:///mh;1QEQuC114pnrqRbZxVNG4kYQPA?ct=application/octet-stream> at:digest <urn:md5:B82D75E299EBA916D9C55346E246103C>;
+                                                                  dcterms:extent "39836"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (38.9 KiB)"@en.
+<urn:md5:B82D75E299EBA916D9C55346E246103C> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "uC114pnrqRbZxVNG4kYQPA=="^^xsd:base64Binary.

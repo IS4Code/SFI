@@ -1,0 +1,47 @@
+@base <ni:///mh;1QEQo9-0xK9hhjNSCjGFiW0mAA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///breakout.zip>;
+     nie:interpretedAs <ni:///mh;1QEQo9-0xK9hhjNSCjGFiW0mAA?ct=application/octet-stream>;
+     nfo:fileName "breakout.zip";
+     nfo:fileSize 8150 ;
+     a nfo:FileDataObject.
+<file:///BREAKOUT.ACC> at:extensionObject <https://w3id.org/uri4uri/suffix/acc>.
+<file:///breakout.zip> at:extensionObject <https://w3id.org/uri4uri/suffix/zip>.
+<ni:///mh;1QEQo9-0xK9hhjNSCjGFiW0mAA?ct=application/octet-stream> at:digest <urn:md5:A3DFB4C4AF618633520A3185896D2600>;
+                                                                  dcterms:extent "8150"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQo9-0xK9hhjNSCjGFiW0mAA?ct=application/zip>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (7.96 KiB)"@en.
+<ni:///mh;1QEQo9-0xK9hhjNSCjGFiW0mAA?ct=application/zip> at:pathObject <file:///>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
+                                                         nie:interpretedAs <ni:///mh;1QEQo9-0xK9hhjNSCjGFiW0mAA?ct=application/zip#/>;
+                                                         a schema:MediaObject,
+                                                           nfo:Archive;
+                                                         skos:prefLabel "ZIP object (7.96 KiB)"@en.
+<ni:///mh;1QEQo9-0xK9hhjNSCjGFiW0mAA?ct=application/zip#/> at:pathObject <file:///./>;
+                                                           a nfo:Folder;
+                                                           skos:prefLabel "/".
+<ni:///mh;1QEQo9-0xK9hhjNSCjGFiW0mAA?ct=application/zip#/BREAKOUT.ACC> at:pathObject <file:///BREAKOUT.ACC>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQo9-0xK9hhjNSCjGFiW0mAA?ct=application/zip#/>;
+                                                                       nfo:fileLastModified "1987-11-15T22:05:44.000000+01:00"^^xsd:dateTime;
+                                                                       nfo:fileName "BREAKOUT.ACC";
+                                                                       nfo:fileSize 13824 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/BREAKOUT.ACC".
+<urn:md5:A3DFB4C4AF618633520A3185896D2600> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "o9+0xK9hhjNSCjGFiW0mAA=="^^xsd:base64Binary.

@@ -1,0 +1,40 @@
+@base <ni:///mh;1QEQUtCA9On50jPMRLLpbwPMnA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///ring_in.aif>;
+     nie:interpretedAs <ni:///mh;1QEQUtCA9On50jPMRLLpbwPMnA?ct=application/octet-stream>;
+     nfo:fileName "ring_in.aif";
+     nfo:fileSize 67990 ;
+     a nfo:FileDataObject.
+<file:///ring_in.aif> at:extensionObject <https://w3id.org/uri4uri/suffix/aif>.
+<ni:///mh;1QEQUtCA9On50jPMRLLpbwPMnA?ct=application/octet-stream> at:digest <urn:md5:52D080F4E9F9D233CC44B2E96F03CC9C>;
+                                                                  dcterms:extent "67990"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQUtCA9On50jPMRLLpbwPMnA?ct=audio/aiff>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (66.4 KiB)"@en.
+<ni:///mh;1QEQUtCA9On50jPMRLLpbwPMnA?ct=audio/aiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/audio/aiff>;
+                                                    nfo:averageBitrate "707"^^dt:kilobitPerSecond;
+                                                    nfo:bitsPerSample 8 ;
+                                                    nfo:channels 2 ;
+                                                    nfo:compressionType nfo:losslessCompressionType;
+                                                    nfo:duration "PT0.7686621S"^^xsd:duration;
+                                                    nfo:sampleRate "44100"^^dt:hertz;
+                                                    a schema:MediaObject,
+                                                      nfo:Audio,
+                                                      schema:AudioObject;
+                                                    skos:prefLabel "AIF object (44100 Hz, 2 channels)"@en.
+<urn:md5:52D080F4E9F9D233CC44B2E96F03CC9C> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "UtCA9On50jPMRLLpbwPMnA=="^^xsd:base64Binary.

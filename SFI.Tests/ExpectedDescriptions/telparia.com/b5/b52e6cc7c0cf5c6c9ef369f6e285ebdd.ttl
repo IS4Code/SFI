@@ -1,0 +1,40 @@
+@base <ni:///mh;1QEQX8nQ2qPUV9X3J_J6DwMtVw?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///ray.bmp>;
+     nie:interpretedAs <ni:///mh;1QEQX8nQ2qPUV9X3J_J6DwMtVw?ct=application/octet-stream>;
+     nfo:fileName "ray.bmp";
+     nfo:fileSize 1440054 ;
+     a nfo:FileDataObject.
+<file:///ray.bmp> at:extensionObject <https://w3id.org/uri4uri/suffix/bmp>.
+<ni:///mh;1QEQX8nQ2qPUV9X3J_J6DwMtVw?ct=application/octet-stream> at:digest <urn:md5:5FC9D0DAA3D457D5F727F27A0F032D57>;
+                                                                  dcterms:extent "1440054"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQX8nQ2qPUV9X3J_J6DwMtVw?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.37 MiB)"@en.
+<ni:///mh;1QEQX8nQ2qPUV9X3J_J6DwMtVw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:colorDepth 24 ;
+                                                   nfo:height 600 ;
+                                                   nfo:horizontalResolution 83.9978;
+                                                   nfo:verticalResolution 83.9978;
+                                                   nfo:width 800 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (800×600)"@en,
+                                                                  "BMP object (1.37 MiB)"@en.
+<urn:md5:5FC9D0DAA3D457D5F727F27A0F032D57> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "X8nQ2qPUV9X3J/J6DwMtVw=="^^xsd:base64Binary.

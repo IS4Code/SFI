@@ -1,0 +1,211 @@
+@base <ni:///mh;1QEQvUvbfzqMM_WamOwo8cuOyw?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///example.dng>;
+     nie:interpretedAs <ni:///mh;1QEQvUvbfzqMM_WamOwo8cuOyw?ct=application/octet-stream>;
+     nfo:fileName "example.dng";
+     nfo:fileSize 17858626 ;
+     a nfo:FileDataObject.
+<file:///example.dng> at:extensionObject <https://w3id.org/uri4uri/suffix/dng>.
+<ni:///mh;1QEQvUvbfzqMM_WamOwo8cuOyw?ct=application/octet-stream> at:digest <urn:md5:BD4BDB7F3A8C33F59A98EC28F1CB8ECB>;
+                                                                  dcterms:extent "17858626"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQvUvbfzqMM_WamOwo8cuOyw?ct=application/octet-stream#arw>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (17.03 MiB)"@en.
+<ni:///mh;1QEQvUvbfzqMM_WamOwo8cuOyw?ct=application/octet-stream#arw> <http://ns.adobe.com/camera-raw-settings/1.0/AlreadyApplied> "False";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/AutoLateralCA> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/AutoWhiteVersion> "134348800";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/Blacks2012> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/BlueHue> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/BlueSaturation> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/Clarity2012> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/ColorNoiseReduction> "25";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/ColorNoiseReductionDetail> "50";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/ColorNoiseReductionSmoothness> "50";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/Contrast2012> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/ConvertToGrayscale> "False";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/DefringeGreenAmount> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/DefringeGreenHueHi> "60";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/DefringeGreenHueLo> "40";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/DefringePurpleAmount> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/DefringePurpleHueHi> "70";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/DefringePurpleHueLo> "30";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/Exposure2012> "0.00";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/GrainAmount> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/GreenHue> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/GreenSaturation> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/HasCrop> "False";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/HasSettings> "True";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/Highlights2012> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/HueAdjustmentAqua> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/HueAdjustmentBlue> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/HueAdjustmentGreen> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/HueAdjustmentMagenta> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/HueAdjustmentOrange> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/HueAdjustmentPurple> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/HueAdjustmentRed> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/HueAdjustmentYellow> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/LensManualDistortionAmount> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/LensProfileEnable> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/LensProfileSetup> "LensDefaults";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/LuminanceAdjustmentAqua> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/LuminanceAdjustmentBlue> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/LuminanceAdjustmentGreen> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/LuminanceAdjustmentMagenta> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/LuminanceAdjustmentOrange> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/LuminanceAdjustmentPurple> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/LuminanceAdjustmentRed> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/LuminanceAdjustmentYellow> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/LuminanceSmoothing> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/ParametricDarks> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/ParametricHighlightSplit> "75";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/ParametricHighlights> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/ParametricLights> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/ParametricMidtoneSplit> "50";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/ParametricShadowSplit> "25";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/ParametricShadows> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/PerspectiveAspect> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/PerspectiveHorizontal> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/PerspectiveRotate> "0.0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/PerspectiveScale> "100";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/PerspectiveUpright> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/PerspectiveVertical> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/PostCropVignetteAmount> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/ProcessVersion> "6.7";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/RedHue> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/RedSaturation> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/Saturation> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/SaturationAdjustmentAqua> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/SaturationAdjustmentBlue> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/SaturationAdjustmentGreen> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/SaturationAdjustmentMagenta> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/SaturationAdjustmentOrange> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/SaturationAdjustmentPurple> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/SaturationAdjustmentRed> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/SaturationAdjustmentYellow> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/ShadowTint> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/Shadows2012> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/SharpenDetail> "25";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/SharpenEdgeMasking> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/SharpenRadius> "+1.0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/Sharpness> "25";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/SplitToningBalance> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/SplitToningHighlightHue> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/SplitToningHighlightSaturation> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/SplitToningShadowHue> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/SplitToningShadowSaturation> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/Temperature> "5000";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/Tint> "+9";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/ToneCurveName> "Medium Contrast";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/ToneCurveName2012> "Linear";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/Version> "8.6";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/Vibrance> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/VignetteAmount> "0";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/WhiteBalance> "As Shot";
+                                                                      <http://ns.adobe.com/camera-raw-settings/1.0/Whites2012> "0";
+                                                                      <http://ns.adobe.com/exif/1.0/aux/Lens> "DT 18-55mm F3.5-5.6 SAM";
+                                                                      <http://ns.adobe.com/exif/1.0/aux/LensID> "55";
+                                                                      <http://ns.adobe.com/exif/1.0/aux/LensInfo> "180/10 550/10 35/10 56/10";
+                                                                      <http://ns.adobe.com/photoshop/1.0/DateCreated> "2014-11-18T14:24:23";
+                                                                      <http://ns.adobe.com/xap/1.0/CreateDate> "2014-11-18T14:24:23";
+                                                                      <http://ns.adobe.com/xap/1.0/CreatorTool> "Adobe DNG Converter 8.6 (Windows)";
+                                                                      <http://ns.adobe.com/xap/1.0/MetadataDate> "2014-11-18T14:08:31+01:00";
+                                                                      <http://ns.adobe.com/xap/1.0/ModifyDate> "2014-11-18T14:08:31+01:00";
+                                                                      <http://ns.adobe.com/xap/1.0/mm/DocumentID> "xmp.did:956bc2ea-be09-9d4f-bd1e-efb62c8138f6";
+                                                                      <http://ns.adobe.com/xap/1.0/mm/InstanceID> "xmp.iid:956bc2ea-be09-9d4f-bd1e-efb62c8138f6";
+                                                                      <http://ns.adobe.com/xap/1.0/mm/OriginalDocumentID> "A359D2C6C9C8CA88F47D2011621498A6";
+                                                                      <http://purl.org/dc/elements/1.1/format> "image/dng";
+                                                                      nfo:hasMediaStream <ni:///mh;1QEQvUvbfzqMM_WamOwo8cuOyw?ct=application/octet-stream#arw/0>,
+                                                                                         <ni:///mh;1QEQvUvbfzqMM_WamOwo8cuOyw?ct=application/octet-stream#arw/1>,
+                                                                                         <ni:///mh;1QEQvUvbfzqMM_WamOwo8cuOyw?ct=application/octet-stream#arw/2>;
+                                                                      a schema:MediaObject,
+                                                                        exif:IFD;
+                                                                      exif:apertureValue "86797/20000"^^owl:rational;
+                                                                      exif:bitsPerSample 16 ;
+                                                                      exif:brightnessValue 7 ;
+                                                                      exif:colorSpace 1 ;
+                                                                      exif:compression 1 ,
+                                                                                       7 ;
+                                                                      exif:contrast 0 ;
+                                                                      exif:customRendered 0 ;
+                                                                      exif:dateTime "2014-11-18T14:08:31.000000"^^xsd:dateTime;
+                                                                      exif:dateTimeDigitized "2014-11-18T14:24:23.000000"^^xsd:dateTime;
+                                                                      exif:dateTimeOriginal "2014-11-18T14:24:23.000000"^^xsd:dateTime;
+                                                                      exif:exifVersion "30323330"^^xsd:hexBinary;
+                                                                      exif:exposureBiasValue 0 ;
+                                                                      exif:exposureMode 0 ;
+                                                                      exif:exposureProgram 2 ;
+                                                                      exif:exposureTime "1/200"^^owl:rational;
+                                                                      exif:fNumber "9/2"^^owl:rational;
+                                                                      exif:fileSource "03"^^xsd:hexBinary;
+                                                                      exif:flash 24 ;
+                                                                      exif:focalLength 24 ;
+                                                                      exif:focalLengthIn35mmFilm 36 ;
+                                                                      exif:focalPlaneResolutionUnit 3 ;
+                                                                      exif:focalPlaneXResolution "68784793/32768"^^owl:rational;
+                                                                      exif:focalPlaneYResolution "68784793/32768"^^owl:rational;
+                                                                      exif:imageDescription "SONY DSC"^^xsd:string;
+                                                                      exif:imageLength 170 ,
+                                                                                       3280 ,
+                                                                                       680 ;
+                                                                      exif:imageWidth 256 ,
+                                                                                      4928 ,
+                                                                                      1024 ;
+                                                                      exif:isoSpeedRatings 100 ;
+                                                                      exif:lightSource 0 ;
+                                                                      exif:make "SONY"^^xsd:string;
+                                                                      exif:maxApertureValue 4 ;
+                                                                      exif:meteringMode 5 ;
+                                                                      exif:model "SLT-A35"^^xsd:string;
+                                                                      exif:orientation 1 ;
+                                                                      exif:photometricInterpretation 2 ,
+                                                                                                     32803 ,
+                                                                                                     6 ;
+                                                                      exif:planarConfiguration 1 ;
+                                                                      exif:rowsPerStrip 170 ,
+                                                                                        680 ;
+                                                                      exif:samplesPerPixel 3 ,
+                                                                                           1 ;
+                                                                      exif:saturation 0 ;
+                                                                      exif:sceneCaptureType 0 ;
+                                                                      exif:sceneType "01"^^xsd:hexBinary;
+                                                                      exif:sharpness 0 ;
+                                                                      exif:shutterSpeedValue "477741/62500"^^owl:rational;
+                                                                      exif:software "Adobe DNG Converter 8.6 (Windows)"^^xsd:string;
+                                                                      exif:stripByteCounts 130560 ,
+                                                                                           94548 ;
+                                                                      exif:stripOffsets 142134 ,
+                                                                                        272694 ;
+                                                                      exif:whiteBalance 0 ;
+                                                                      exif:yCbCrPositioning 2 ;
+                                                                      skos:prefLabel "ARW object (17.03 MiB)"@en.
+<ni:///mh;1QEQvUvbfzqMM_WamOwo8cuOyw?ct=application/octet-stream#arw/0> nfo:height 170 ;
+                                                                        nfo:width 256 ;
+                                                                        a nfo:MediaStream;
+                                                                        skos:prefLabel "0:Exif IFD0 (256×170)".
+<ni:///mh;1QEQvUvbfzqMM_WamOwo8cuOyw?ct=application/octet-stream#arw/1> nfo:bitDepth 16 ;
+                                                                        nfo:height 3280 ;
+                                                                        nfo:width 4928 ;
+                                                                        a nfo:MediaStream;
+                                                                        skos:prefLabel "1:Exif SubIFD (4928×3280, 16-bit)".
+<ni:///mh;1QEQvUvbfzqMM_WamOwo8cuOyw?ct=application/octet-stream#arw/2> nfo:height 680 ;
+                                                                        nfo:width 1024 ;
+                                                                        a nfo:MediaStream;
+                                                                        skos:prefLabel "2:Exif SubIFD (1024×680)".
+<urn:md5:BD4BDB7F3A8C33F59A98EC28F1CB8ECB> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "vUvbfzqMM/WamOwo8cuOyw=="^^xsd:base64Binary.

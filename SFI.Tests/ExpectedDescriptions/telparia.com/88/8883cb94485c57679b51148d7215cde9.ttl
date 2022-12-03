@@ -1,0 +1,34 @@
+@base <ni:///mh;1QEQ0xVvVOT2cwCXc94aA6O9Og?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///obj1461-1.ptcop>;
+     nie:interpretedAs <ni:///mh;1QEQ0xVvVOT2cwCXc94aA6O9Og?ct=application/octet-stream>;
+     nfo:fileName "obj1461-1.ptcop";
+     nfo:fileSize 531459 ;
+     a nfo:FileDataObject.
+<file:///obj1461-1.ptcop> at:extensionObject <https://w3id.org/uri4uri/suffix/ptcop>.
+<ni:///mh;1QEQ0xVvVOT2cwCXc94aA6O9Og?ct=application/octet-stream> at:digest <urn:md5:D3156F54E4F673009773DE1A03A3BD3A>;
+                                                                  dcterms:extent "531459"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ0xVvVOT2cwCXc94aA6O9Og?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (519 KiB)"@en.
+<ni:///mh;1QEQ0xVvVOT2cwCXc94aA6O9Og?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (519 KiB)"@en.
+<urn:md5:D3156F54E4F673009773DE1A03A3BD3A> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "0xVvVOT2cwCXc94aA6O9Og=="^^xsd:base64Binary.

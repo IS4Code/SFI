@@ -1,0 +1,227 @@
+@base <ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///vision1.pcb>;
+     nie:interpretedAs <ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/octet-stream>;
+     nfo:fileName "vision1.pcb";
+     nfo:fileSize 70209 ;
+     a nfo:FileDataObject.
+<file:///ACS_ROM.CFG> at:extensionObject <https://w3id.org/uri4uri/suffix/cfg>.
+<file:///ANIMALS.PCB> at:extensionObject <https://w3id.org/uri4uri/suffix/pcb>.
+<file:///AREALIST.BBS> at:extensionObject <https://w3id.org/uri4uri/suffix/bbs>.
+<file:///AREALIST.CLR> at:extensionObject <https://w3id.org/uri4uri/suffix/clr>.
+<file:///ARSENAL.LIB> at:extensionObject <https://w3id.org/uri4uri/suffix/lib>.
+<file:///CELEBS1.PCB> at:extensionObject <https://w3id.org/uri4uri/suffix/pcb>.
+<file:///CELEBS2.PCB> at:extensionObject <https://w3id.org/uri4uri/suffix/pcb>.
+<file:///CLSSCTV.PCB> at:extensionObject <https://w3id.org/uri4uri/suffix/pcb>.
+<file:///COMEDIAN.PCB> at:extensionObject <https://w3id.org/uri4uri/suffix/pcb>.
+<file:///FEMALES.PCB> at:extensionObject <https://w3id.org/uri4uri/suffix/pcb>.
+<file:///FILE_ID.DIZ> at:extensionObject <https://w3id.org/uri4uri/suffix/diz>.
+<file:///LANDMRKS.PCB> at:extensionObject <https://w3id.org/uri4uri/suffix/pcb>.
+<file:///MISC.PCB> at:extensionObject <https://w3id.org/uri4uri/suffix/pcb>.
+<file:///MUSICSTR.PCB> at:extensionObject <https://w3id.org/uri4uri/suffix/pcb>.
+<file:///NATURE.PCB> at:extensionObject <https://w3id.org/uri4uri/suffix/pcb>.
+<file:///PVISION.REV> at:extensionObject <https://w3id.org/uri4uri/suffix/rev>.
+<file:///README.ACS> at:extensionObject <https://w3id.org/uri4uri/suffix/acs>.
+<file:///SCIFI.PCB> at:extensionObject <https://w3id.org/uri4uri/suffix/pcb>.
+<file:///SPRMDLS.PCB> at:extensionObject <https://w3id.org/uri4uri/suffix/pcb>.
+<file:///TRAINS.PCB> at:extensionObject <https://w3id.org/uri4uri/suffix/pcb>.
+<file:///WILDLIFE.PCB> at:extensionObject <https://w3id.org/uri4uri/suffix/pcb>.
+<file:///vision1.pcb> at:extensionObject <https://w3id.org/uri4uri/suffix/pcb>.
+<ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/octet-stream> at:digest <urn:md5:506077093E428785DE73658390D54ECA>;
+                                                                  dcterms:extent "70209"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (68.56 KiB)"@en.
+<ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip> at:pathObject <file:///>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
+                                                         nie:interpretedAs <ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/>;
+                                                         a schema:MediaObject,
+                                                           nfo:Archive;
+                                                         skos:prefLabel "ZIP object (68.56 KiB)"@en.
+<ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/> at:pathObject <file:///./>;
+                                                           a nfo:Folder;
+                                                           skos:prefLabel "/".
+<ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/ACS_ROM.CFG> at:pathObject <file:///ACS_ROM.CFG>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/>;
+                                                                      nfo:fileLastModified "1995-04-08T16:28:14.000000+02:00"^^xsd:dateTime;
+                                                                      nfo:fileName "ACS_ROM.CFG";
+                                                                      nfo:fileSize 1029 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/ACS_ROM.CFG".
+<ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/ANIMALS.PCB> at:pathObject <file:///ANIMALS.PCB>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/>;
+                                                                      nfo:fileLastModified "1994-04-17T22:36:32.000000+02:00"^^xsd:dateTime;
+                                                                      nfo:fileName "ANIMALS.PCB";
+                                                                      nfo:fileSize 7866 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/ANIMALS.PCB".
+<ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/AREALIST.BBS> at:pathObject <file:///AREALIST.BBS>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/>;
+                                                                       nfo:fileLastModified "1994-07-06T11:09:40.000000+02:00"^^xsd:dateTime;
+                                                                       nfo:fileName "AREALIST.BBS";
+                                                                       nfo:fileSize 455 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/AREALIST.BBS".
+<ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/AREALIST.CLR> at:pathObject <file:///AREALIST.CLR>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/>;
+                                                                       nfo:fileLastModified "1994-07-06T11:09:36.000000+02:00"^^xsd:dateTime;
+                                                                       nfo:fileName "AREALIST.CLR";
+                                                                       nfo:fileSize 582 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/AREALIST.CLR".
+<ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/ARSENAL.LIB> at:pathObject <file:///ARSENAL.LIB>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/>;
+                                                                      nfo:fileLastModified "1995-04-23T12:28:18.000000+02:00"^^xsd:dateTime;
+                                                                      nfo:fileName "ARSENAL.LIB";
+                                                                      nfo:fileSize 1577 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/ARSENAL.LIB".
+<ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/CELEBS1.PCB> at:pathObject <file:///CELEBS1.PCB>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/>;
+                                                                      nfo:fileLastModified "1994-04-17T22:20:20.000000+02:00"^^xsd:dateTime;
+                                                                      nfo:fileName "CELEBS1.PCB";
+                                                                      nfo:fileSize 21512 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/CELEBS1.PCB".
+<ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/CELEBS2.PCB> at:pathObject <file:///CELEBS2.PCB>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/>;
+                                                                      nfo:fileLastModified "1994-04-17T22:20:36.000000+02:00"^^xsd:dateTime;
+                                                                      nfo:fileName "CELEBS2.PCB";
+                                                                      nfo:fileSize 26431 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/CELEBS2.PCB".
+<ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/CLSSCTV.PCB> at:pathObject <file:///CLSSCTV.PCB>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/>;
+                                                                      nfo:fileLastModified "1994-04-17T22:38:46.000000+02:00"^^xsd:dateTime;
+                                                                      nfo:fileName "CLSSCTV.PCB";
+                                                                      nfo:fileSize 6333 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/CLSSCTV.PCB".
+<ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/COMEDIAN.PCB> at:pathObject <file:///COMEDIAN.PCB>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/>;
+                                                                       nfo:fileLastModified "1994-04-17T22:36:52.000000+02:00"^^xsd:dateTime;
+                                                                       nfo:fileName "COMEDIAN.PCB";
+                                                                       nfo:fileSize 3348 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/COMEDIAN.PCB".
+<ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/FEMALES.PCB> at:pathObject <file:///FEMALES.PCB>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/>;
+                                                                      nfo:fileLastModified "1994-04-17T22:41:52.000000+02:00"^^xsd:dateTime;
+                                                                      nfo:fileName "FEMALES.PCB";
+                                                                      nfo:fileSize 15120 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/FEMALES.PCB".
+<ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/FILE_ID.DIZ> at:pathObject <file:///FILE_ID.DIZ>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/>;
+                                                                      nfo:fileLastModified "1995-04-08T16:28:48.000000+02:00"^^xsd:dateTime;
+                                                                      nfo:fileName "FILE_ID.DIZ";
+                                                                      nfo:fileSize 188 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/FILE_ID.DIZ".
+<ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/LANDMRKS.PCB> at:pathObject <file:///LANDMRKS.PCB>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/>;
+                                                                       nfo:fileLastModified "1994-04-17T22:37:56.000000+02:00"^^xsd:dateTime;
+                                                                       nfo:fileName "LANDMRKS.PCB";
+                                                                       nfo:fileSize 8730 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/LANDMRKS.PCB".
+<ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/MISC.PCB> at:pathObject <file:///MISC.PCB>;
+                                                                   nfo:belongsToContainer <ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/>;
+                                                                   nfo:fileLastModified "1994-04-17T22:40:44.000000+02:00"^^xsd:dateTime;
+                                                                   nfo:fileName "MISC.PCB";
+                                                                   nfo:fileSize 13506 ;
+                                                                   a nfo:FileDataObject,
+                                                                     nfo:ArchiveItem;
+                                                                   skos:prefLabel "/MISC.PCB".
+<ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/MUSICSTR.PCB> at:pathObject <file:///MUSICSTR.PCB>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/>;
+                                                                       nfo:fileLastModified "1994-04-17T22:39:14.000000+02:00"^^xsd:dateTime;
+                                                                       nfo:fileName "MUSICSTR.PCB";
+                                                                       nfo:fileSize 12625 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/MUSICSTR.PCB".
+<ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/NATURE.PCB> at:pathObject <file:///NATURE.PCB>;
+                                                                     nfo:belongsToContainer <ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/>;
+                                                                     nfo:fileLastModified "1994-04-17T22:37:08.000000+02:00"^^xsd:dateTime;
+                                                                     nfo:fileName "NATURE.PCB";
+                                                                     nfo:fileSize 36458 ;
+                                                                     a nfo:FileDataObject,
+                                                                       nfo:ArchiveItem;
+                                                                     skos:prefLabel "/NATURE.PCB".
+<ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/PVISION.REV> at:pathObject <file:///PVISION.REV>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/>;
+                                                                      nfo:fileLastModified "1994-06-27T15:57:58.000000+02:00"^^xsd:dateTime;
+                                                                      nfo:fileName "PVISION.REV";
+                                                                      nfo:fileSize 2529 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/PVISION.REV".
+<ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/README.ACS> at:pathObject <file:///README.ACS>;
+                                                                     nfo:belongsToContainer <ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/>;
+                                                                     nfo:fileLastModified "1995-04-03T23:57:34.000000+02:00"^^xsd:dateTime;
+                                                                     nfo:fileName "README.ACS";
+                                                                     nfo:fileSize 1220 ;
+                                                                     a nfo:FileDataObject,
+                                                                       nfo:ArchiveItem;
+                                                                     skos:prefLabel "/README.ACS".
+<ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/SCIFI.PCB> at:pathObject <file:///SCIFI.PCB>;
+                                                                    nfo:belongsToContainer <ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/>;
+                                                                    nfo:fileLastModified "1994-04-17T22:40:32.000000+02:00"^^xsd:dateTime;
+                                                                    nfo:fileName "SCIFI.PCB";
+                                                                    nfo:fileSize 22815 ;
+                                                                    a nfo:FileDataObject,
+                                                                      nfo:ArchiveItem;
+                                                                    skos:prefLabel "/SCIFI.PCB".
+<ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/SPRMDLS.PCB> at:pathObject <file:///SPRMDLS.PCB>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/>;
+                                                                      nfo:fileLastModified "1994-04-17T22:36:42.000000+02:00"^^xsd:dateTime;
+                                                                      nfo:fileName "SPRMDLS.PCB";
+                                                                      nfo:fileSize 5841 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/SPRMDLS.PCB".
+<ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/TRAINS.PCB> at:pathObject <file:///TRAINS.PCB>;
+                                                                     nfo:belongsToContainer <ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/>;
+                                                                     nfo:fileLastModified "1994-04-17T22:41:02.000000+02:00"^^xsd:dateTime;
+                                                                     nfo:fileName "TRAINS.PCB";
+                                                                     nfo:fileSize 7351 ;
+                                                                     a nfo:FileDataObject,
+                                                                       nfo:ArchiveItem;
+                                                                     skos:prefLabel "/TRAINS.PCB".
+<ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/WILDLIFE.PCB> at:pathObject <file:///WILDLIFE.PCB>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQUGB3CT5Ch4Xec2WDkNVOyg?ct=application/zip#/>;
+                                                                       nfo:fileLastModified "1994-04-17T22:36:18.000000+02:00"^^xsd:dateTime;
+                                                                       nfo:fileName "WILDLIFE.PCB";
+                                                                       nfo:fileSize 19759 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/WILDLIFE.PCB".
+<urn:md5:506077093E428785DE73658390D54ECA> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "UGB3CT5Ch4Xec2WDkNVOyg=="^^xsd:base64Binary.

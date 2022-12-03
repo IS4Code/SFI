@@ -1,0 +1,40 @@
+@base <ni:///mh;1QEQPTLwP3PK12Ong_LaLNjoVQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///example_small.swf>;
+     nie:interpretedAs <ni:///mh;1QEQPTLwP3PK12Ong_LaLNjoVQ?ct=application/octet-stream>;
+     nfo:fileName "example_small.swf";
+     nfo:fileSize 4221907 ;
+     a nfo:FileDataObject.
+<file:///example_small.swf> at:extensionObject <https://w3id.org/uri4uri/suffix/swf>.
+<ni:///mh;1QEQPTLwP3PK12Ong_LaLNjoVQ?ct=application/octet-stream> at:digest <urn:md5:3D32F03F73CAD763A783F2DA2CD8E855>;
+                                                                  dcterms:extent "4221907"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQPTLwP3PK12Ong_LaLNjoVQ?ct=application/vnd.adobe.flash-movie>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (4.03 MiB)"@en.
+<ni:///mh;1QEQPTLwP3PK12Ong_LaLNjoVQ?ct=application/vnd.adobe.flash-movie> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.adobe.flash-movie>;
+                                                                           nfo:frameCount 358 ;
+                                                                           nfo:frameRate "24"^^xsd:float;
+                                                                           nfo:height 480 ;
+                                                                           nfo:width 640 ;
+                                                                           a schema:MediaObject,
+                                                                             schema:SoftwareApplication,
+                                                                             nfo:Executable,
+                                                                             schema:VideoObject,
+                                                                             nfo:Video;
+                                                                           skos:prefLabel "SWF object (4.03 MiB)"@en.
+<urn:md5:3D32F03F73CAD763A783F2DA2CD8E855> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "PTLwP3PK12Ong/LaLNjoVQ=="^^xsd:base64Binary.

@@ -1,0 +1,36 @@
+@base <ni:///mh;1QEQKPQUbfVi0zb4GRuGQW-jzQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///animated.webp>;
+     nie:interpretedAs <ni:///mh;1QEQKPQUbfVi0zb4GRuGQW-jzQ?ct=application/octet-stream>;
+     nfo:fileName "animated.webp";
+     nfo:fileSize 1040554 ;
+     a nfo:FileDataObject.
+<file:///animated.webp> at:extensionObject <https://w3id.org/uri4uri/suffix/webp>.
+<ni:///mh;1QEQKPQUbfVi0zb4GRuGQW-jzQ?ct=application/octet-stream> at:digest <urn:md5:28F4146DF562D336F8191B86416FA3CD>;
+                                                                  dcterms:extent "1040554"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQKPQUbfVi0zb4GRuGQW-jzQ?ct=image/webp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (0.99 MiB)"@en.
+<ni:///mh;1QEQKPQUbfVi0zb4GRuGQW-jzQ?ct=image/webp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/webp>;
+                                                    nfo:height 600 ;
+                                                    nfo:width 800 ;
+                                                    a schema:MediaObject,
+                                                      schema:ImageObject,
+                                                      nfo:Image;
+                                                    skos:prefLabel "WEBP object (800×600)"@en.
+<urn:md5:28F4146DF562D336F8191B86416FA3CD> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "KPQUbfVi0zb4GRuGQW+jzQ=="^^xsd:base64Binary.

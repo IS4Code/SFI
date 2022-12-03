@@ -1,0 +1,106 @@
+@base <ni:///mh;1QEQtvKi9TNezbOIFKlZLi4JxA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///sample1.rw2>;
+     nie:interpretedAs <ni:///mh;1QEQtvKi9TNezbOIFKlZLi4JxA?ct=application/octet-stream>;
+     nfo:fileName "sample1.rw2";
+     nfo:fileSize 17459200 ;
+     a nfo:FileDataObject.
+<file:///sample1.rw2> at:extensionObject <https://w3id.org/uri4uri/suffix/rw2>.
+<ni:///mh;1QEQtvKi9TNezbOIFKlZLi4JxA?ct=application/octet-stream> at:digest <urn:md5:B6F2A2F5335ECDB38814A9592E2E09C4>;
+                                                                  dcterms:extent "17459200"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQtvKi9TNezbOIFKlZLi4JxA?ct=image/rw2>,
+                                                                                    <ni:///mh;1QEQtvKi9TNezbOIFKlZLi4JxA?ct=application/octet-stream#rw2>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (16.65 MiB)"@en.
+<ni:///mh;1QEQtvKi9TNezbOIFKlZLi4JxA?ct=application/octet-stream#rw2> nfo:hasMediaStream <ni:///mh;1QEQtvKi9TNezbOIFKlZLi4JxA?ct=application/octet-stream#rw2/0>,
+                                                                                         <ni:///mh;1QEQtvKi9TNezbOIFKlZLi4JxA?ct=application/octet-stream#rw2/1>,
+                                                                                         <ni:///mh;1QEQtvKi9TNezbOIFKlZLi4JxA?ct=application/octet-stream#rw2/2>,
+                                                                                         <ni:///mh;1QEQtvKi9TNezbOIFKlZLi4JxA?ct=application/octet-stream#rw2/3>;
+                                                                      a schema:MediaObject,
+                                                                        exif:IFD;
+                                                                      exif:colorSpace 1 ;
+                                                                      exif:componentsConfiguration "01020300"^^xsd:hexBinary;
+                                                                      exif:compressedBitsPerPixel 2 ;
+                                                                      exif:compression 6 ;
+                                                                      exif:contrast 2 ;
+                                                                      exif:customRendered 1 ;
+                                                                      exif:dateTime "2015-07-16T08:58:44.000000"^^xsd:dateTime;
+                                                                      exif:dateTimeDigitized "2015-07-16T08:58:44.000000"^^xsd:dateTime;
+                                                                      exif:dateTimeOriginal "2015-07-16T08:58:44.000000"^^xsd:dateTime;
+                                                                      exif:digitalZoomRatio 0 ;
+                                                                      exif:exifVersion "30323330"^^xsd:hexBinary;
+                                                                      exif:exposureBiasValue 0 ;
+                                                                      exif:exposureMode 0 ;
+                                                                      exif:exposureProgram 2 ;
+                                                                      exif:exposureTime "1/2000"^^owl:rational;
+                                                                      exif:fNumber "71/10"^^owl:rational;
+                                                                      exif:fileSource "03"^^xsd:hexBinary;
+                                                                      exif:flash 16 ;
+                                                                      exif:flashpixVersion "30313030"^^xsd:hexBinary;
+                                                                      exif:focalLength "179/50"^^owl:rational;
+                                                                      exif:focalLengthIn35mmFilm 21 ;
+                                                                      exif:gainControl 2 ;
+                                                                      exif:isoSpeedRatings 3200 ;
+                                                                      exif:jpegInterchangeFormat 14836 ;
+                                                                      exif:jpegInterchangeFormatLength 9550 ;
+                                                                      exif:lightSource 0 ;
+                                                                      exif:make "Panasonic"^^xsd:string;
+                                                                      exif:maxApertureValue "95/32"^^owl:rational;
+                                                                      exif:meteringMode 5 ;
+                                                                      exif:model "DMC-FZ70"^^xsd:string;
+                                                                      exif:orientation 1 ;
+                                                                      exif:pixelXDimension 1920 ;
+                                                                      exif:pixelYDimension 1280 ;
+                                                                      exif:resolutionUnit 2 ;
+                                                                      exif:saturation 0 ;
+                                                                      exif:sceneCaptureType 0 ;
+                                                                      exif:sceneType "01"^^xsd:hexBinary;
+                                                                      exif:sensingMethod 2 ;
+                                                                      exif:sharpness 2 ;
+                                                                      exif:software "Ver.1.0  "^^xsd:string;
+                                                                      exif:whiteBalance 0 ;
+                                                                      exif:xResolution 180 ;
+                                                                      exif:yCbCrPositioning 2 ;
+                                                                      exif:yResolution 180 ;
+                                                                      skos:prefLabel "RW2 object (16.65 MiB)"@en.
+<ni:///mh;1QEQtvKi9TNezbOIFKlZLi4JxA?ct=application/octet-stream#rw2/0> nfo:height 3088 ;
+                                                                        nfo:width 4816 ;
+                                                                        a nfo:MediaStream;
+                                                                        skos:prefLabel "0:PanasonicRaw Exif IFD0 (4816×3088)".
+<ni:///mh;1QEQtvKi9TNezbOIFKlZLi4JxA?ct=application/octet-stream#rw2/1> nfo:height 1280 ;
+                                                                        nfo:width 1920 ;
+                                                                        a nfo:MediaStream;
+                                                                        skos:prefLabel "1:JPEG (1920×1280)".
+<ni:///mh;1QEQtvKi9TNezbOIFKlZLi4JxA?ct=application/octet-stream#rw2/2> nfo:height 1280 ;
+                                                                        nfo:width 1920 ;
+                                                                        a nfo:MediaStream;
+                                                                        skos:prefLabel "2:Exif SubIFD (1920×1280)".
+<ni:///mh;1QEQtvKi9TNezbOIFKlZLi4JxA?ct=application/octet-stream#rw2/3> nfo:height 3072 ;
+                                                                        nfo:width 4608 ;
+                                                                        a nfo:MediaStream;
+                                                                        skos:prefLabel "3:Panasonic Makernote (4608×3072)".
+<ni:///mh;1QEQtvKi9TNezbOIFKlZLi4JxA?ct=image/rw2> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/rw2>;
+                                                   nfo:height 3080 ;
+                                                   nfo:width 4616 ;
+                                                   a schema:MediaObject,
+                                                     nfo:Image,
+                                                     schema:ImageObject;
+                                                   skos:prefLabel "RW2 object (4616×3080)"@en.
+<urn:md5:B6F2A2F5335ECDB38814A9592E2E09C4> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "tvKi9TNezbOIFKlZLi4JxA=="^^xsd:base64Binary.

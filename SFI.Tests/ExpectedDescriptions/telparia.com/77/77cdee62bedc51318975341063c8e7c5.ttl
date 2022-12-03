@@ -1,0 +1,126 @@
+@base <ni:///mh;1QEQV_Moy-KEgvdjWKAx9NUcEg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///sample1.cr2>;
+     nie:interpretedAs <ni:///mh;1QEQV_Moy-KEgvdjWKAx9NUcEg?ct=application/octet-stream>;
+     nfo:fileName "sample1.cr2";
+     nfo:fileSize 67127952 ;
+     a nfo:FileDataObject.
+<file:///sample1.cr2> at:extensionObject <https://w3id.org/uri4uri/suffix/cr2>.
+<ni:///mh;1QEQV_Moy-KEgvdjWKAx9NUcEg?ct=application/octet-stream> at:digest <urn:md5:57F328CBE28482F76358A031F4D51C12>;
+                                                                  dcterms:extent "67127952"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQV_Moy-KEgvdjWKAx9NUcEg?ct=application/octet-stream#cr2>,
+                                                                                    <ni:///mh;1QEQV_Moy-KEgvdjWKAx9NUcEg?ct=image/cr2>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (64.02 MiB)"@en.
+<ni:///mh;1QEQV_Moy-KEgvdjWKAx9NUcEg?ct=application/octet-stream#cr2> <http://ns.adobe.com/xap/1.0/Rating> "0";
+                                                                      nfo:hasMediaStream <ni:///mh;1QEQV_Moy-KEgvdjWKAx9NUcEg?ct=application/octet-stream#cr2/0>,
+                                                                                         <ni:///mh;1QEQV_Moy-KEgvdjWKAx9NUcEg?ct=application/octet-stream#cr2/1>,
+                                                                                         <ni:///mh;1QEQV_Moy-KEgvdjWKAx9NUcEg?ct=application/octet-stream#cr2/2>,
+                                                                                         <ni:///mh;1QEQV_Moy-KEgvdjWKAx9NUcEg?ct=application/octet-stream#cr2/3>,
+                                                                                         <ni:///mh;1QEQV_Moy-KEgvdjWKAx9NUcEg?ct=application/octet-stream#cr2/4>;
+                                                                      a schema:MediaObject,
+                                                                        exif:IFD;
+                                                                      exif:apertureValue "45/8"^^owl:rational;
+                                                                      exif:artist "JAKOB ROHRBACH"^^xsd:string;
+                                                                      exif:colorSpace 1 ;
+                                                                      exif:componentsConfiguration "01020300"^^xsd:hexBinary;
+                                                                      exif:compression 6 ,
+                                                                                       1 ;
+                                                                      exif:copyright "www.jaro.ch"^^xsd:string;
+                                                                      exif:customRendered 0 ;
+                                                                      exif:dateTime "2015-07-23T16:52:30.000000"^^xsd:dateTime;
+                                                                      exif:dateTimeDigitized "2015-07-23T16:52:30.000000"^^xsd:dateTime;
+                                                                      exif:dateTimeOriginal "2015-07-23T16:52:30.000000"^^xsd:dateTime;
+                                                                      exif:exifVersion "30323330"^^xsd:hexBinary;
+                                                                      exif:exposureBiasValue 0 ;
+                                                                      exif:exposureMode 0 ;
+                                                                      exif:exposureProgram 3 ;
+                                                                      exif:exposureTime "1/60"^^owl:rational;
+                                                                      exif:fNumber "71/10"^^owl:rational;
+                                                                      exif:flash 16 ;
+                                                                      exif:flashpixVersion "30313030"^^xsd:hexBinary;
+                                                                      exif:focalLength 60 ;
+                                                                      exif:focalPlaneResolutionUnit 2 ;
+                                                                      exif:focalPlaneXResolution "173760/29"^^owl:rational;
+                                                                      exif:focalPlaneYResolution "1158400/193"^^owl:rational;
+                                                                      exif:imageLength 5792 ,
+                                                                                       370 ,
+                                                                                       5920 ;
+                                                                      exif:imageWidth 8688 ,
+                                                                                      556 ,
+                                                                                      8896 ;
+                                                                      exif:isoSpeedRatings 125 ;
+                                                                      exif:jpegInterchangeFormat 53084 ;
+                                                                      exif:jpegInterchangeFormatLength 17472 ;
+                                                                      exif:make "Canon"^^xsd:string;
+                                                                      exif:meteringMode 5 ;
+                                                                      exif:model "Canon EOS 5DS"^^xsd:string;
+                                                                      exif:orientation 1 ;
+                                                                      exif:photometricInterpretation 2 ;
+                                                                      exif:pixelXDimension 8688 ;
+                                                                      exif:pixelYDimension 5792 ;
+                                                                      exif:planarConfiguration 1 ;
+                                                                      exif:resolutionUnit 2 ;
+                                                                      exif:rowsPerStrip 370 ;
+                                                                      exif:samplesPerPixel 3 ;
+                                                                      exif:sceneCaptureType 0 ;
+                                                                      exif:shutterSpeedValue 6 ;
+                                                                      exif:stripByteCounts 5681811 ,
+                                                                                           1234320 ,
+                                                                                           60141264 ;
+                                                                      exif:stripOffsets 70556 ,
+                                                                                        5752368 ,
+                                                                                        6986688 ;
+                                                                      exif:subSecTime "03"^^xsd:string;
+                                                                      exif:subSecTimeDigitized "03"^^xsd:string;
+                                                                      exif:subSecTimeOriginal "03"^^xsd:string;
+                                                                      exif:userComment "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"^^xsd:base64Binary;
+                                                                      exif:whiteBalance 0 ;
+                                                                      exif:xResolution 72 ;
+                                                                      exif:yResolution 72 ;
+                                                                      skos:prefLabel "CR2 object (64.02 MiB)"@en.
+<ni:///mh;1QEQV_Moy-KEgvdjWKAx9NUcEg?ct=application/octet-stream#cr2/0> nfo:height 5792 ;
+                                                                        nfo:width 8688 ;
+                                                                        a nfo:MediaStream;
+                                                                        skos:prefLabel "0:Exif IFD0 (8688×5792)".
+<ni:///mh;1QEQV_Moy-KEgvdjWKAx9NUcEg?ct=application/octet-stream#cr2/1> nfo:height 5792 ;
+                                                                        nfo:width 8688 ;
+                                                                        a nfo:MediaStream;
+                                                                        skos:prefLabel "1:Exif SubIFD (8688×5792)".
+<ni:///mh;1QEQV_Moy-KEgvdjWKAx9NUcEg?ct=application/octet-stream#cr2/2> nfo:width 65535 ;
+                                                                        a nfo:MediaStream;
+                                                                        skos:prefLabel "2:Canon Makernote".
+<ni:///mh;1QEQV_Moy-KEgvdjWKAx9NUcEg?ct=application/octet-stream#cr2/3> nfo:height 370 ;
+                                                                        nfo:width 556 ;
+                                                                        a nfo:MediaStream;
+                                                                        skos:prefLabel "3:Exif Image (556×370)".
+<ni:///mh;1QEQV_Moy-KEgvdjWKAx9NUcEg?ct=application/octet-stream#cr2/4> nfo:height 5920 ;
+                                                                        nfo:width 8896 ;
+                                                                        a nfo:MediaStream;
+                                                                        skos:prefLabel "4:Exif Image (8896×5920)".
+<ni:///mh;1QEQV_Moy-KEgvdjWKAx9NUcEg?ct=image/cr2> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/cr2>;
+                                                   nfo:height 5792 ;
+                                                   nfo:width 8688 ;
+                                                   <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#copyrightMessage> "www.jaro.ch";
+                                                   a schema:MediaObject,
+                                                     nfo:Image,
+                                                     schema:ImageObject;
+                                                   skos:prefLabel "CR2 object (8688×5792)"@en.
+<urn:md5:57F328CBE28482F76358A031F4D51C12> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "V/Moy+KEgvdjWKAx9NUcEg=="^^xsd:base64Binary.

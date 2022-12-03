@@ -1,0 +1,22 @@
+@base <data:application/octet-stream;base64,AAAAAAAAAQEAAAAAAAABAQAAAAAAAAAAAAAAAQEAAAAAAAABAQAAAAAAAAAAAAAAAQEAAAAAAAABAQAAAAAAAA==>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///THREEDOT.BRU>;
+     nie:interpretedAs <data:application/octet-stream;base64,AAAAAAAAAQEAAAAAAAABAQAAAAAAAAAAAAAAAQEAAAAAAAABAQAAAAAAAAAAAAAAAQEAAAAAAAABAQAAAAAAAA==>;
+     nfo:fileName "THREEDOT.BRU";
+     nfo:fileSize 64 ;
+     a nfo:FileDataObject.
+<data:application/octet-stream;base64,AAAAAAAAAQEAAAAAAAABAQAAAAAAAAAAAAAAAQEAAAAAAAABAQAAAAAAAAAAAAAAAQEAAAAAAAABAQAAAAAAAA==> dcterms:extent "64"^^dt:byte;
+                                                                                                                                a cnt:ContentAsBase64;
+                                                                                                                                skos:prefLabel "binary data (64 B)"@en;
+                                                                                                                                cnt:bytes "AAAAAAAAAQEAAAAAAAABAQAAAAAAAAAAAAAAAQEAAAAAAAABAQAAAAAAAAAAAAAAAQEAAAAAAAABAQAAAAAAAA=="^^xsd:base64Binary.
+<file:///THREEDOT.BRU> at:extensionObject <https://w3id.org/uri4uri/suffix/bru>.

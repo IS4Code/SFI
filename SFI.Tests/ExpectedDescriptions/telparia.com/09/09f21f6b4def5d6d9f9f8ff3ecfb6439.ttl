@@ -1,0 +1,58 @@
+@base <ni:///mh;1QEQyexx584xeNtj7NLjyorsHQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///example.3g2>;
+     nie:interpretedAs <ni:///mh;1QEQyexx584xeNtj7NLjyorsHQ?ct=application/octet-stream>;
+     nfo:fileName "example.3g2";
+     nfo:fileSize 1690521 ;
+     a nfo:FileDataObject.
+<file:///example.3g2> at:extensionObject <https://w3id.org/uri4uri/suffix/3g2>.
+<ni:///mh;1QEQyexx584xeNtj7NLjyorsHQ?ct=application/octet-stream> at:digest <urn:md5:C9EC71E7CE3178DB63ECD2E3CA8AEC1D>;
+                                                                  dcterms:extent "1690521"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQyexx584xeNtj7NLjyorsHQ?ct=audio/mpeg>,
+                                                                                    <ni:///mh;1QEQyexx584xeNtj7NLjyorsHQ?ct=video/quicktime>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.61 MiB)"@en.
+<ni:///mh;1QEQyexx584xeNtj7NLjyorsHQ?ct=audio/mpeg> schema:encodingFormat <https://w3id.org/uri4uri/mime/audio/mpeg>;
+                                                    nfo:bitsPerSample 16 ;
+                                                    nfo:channels 2 ;
+                                                    nfo:duration "PT23.267S"^^xsd:duration;
+                                                    nfo:sampleRate 48000 ;
+                                                    a schema:MediaObject,
+                                                      schema:AudioObject,
+                                                      nfo:Audio;
+                                                    skos:prefLabel "AAC object (1.61 MiB)"@en.
+<ni:///mh;1QEQyexx584xeNtj7NLjyorsHQ?ct=video/quicktime> schema:encodingFormat <https://w3id.org/uri4uri/mime/video/quicktime>;
+                                                         nfo:hasMediaStream <ni:///mh;1QEQyexx584xeNtj7NLjyorsHQ?ct=video/quicktime#/0>,
+                                                                            <ni:///mh;1QEQyexx584xeNtj7NLjyorsHQ?ct=video/quicktime#/1>,
+                                                                            <ni:///mh;1QEQyexx584xeNtj7NLjyorsHQ?ct=video/quicktime#/2>;
+                                                         a schema:MediaObject,
+                                                           schema:VideoObject,
+                                                           nfo:Video;
+                                                         skos:prefLabel "MOV object (1.61 MiB)"@en.
+<ni:///mh;1QEQyexx584xeNtj7NLjyorsHQ?ct=video/quicktime#/0> nfo:duration "PT23.267S"^^xsd:duration;
+                                                            a nfo:MediaStream;
+                                                            skos:prefLabel "0:QuickTime Movie Header".
+<ni:///mh;1QEQyexx584xeNtj7NLjyorsHQ?ct=video/quicktime#/1> nfo:height 288 ;
+                                                            nfo:width 512 ;
+                                                            a nfo:MediaStream;
+                                                            skos:prefLabel "1:QuickTime Track Header (512×288)".
+<ni:///mh;1QEQyexx584xeNtj7NLjyorsHQ?ct=video/quicktime#/2> nfo:height 0 ;
+                                                            nfo:width 0 ;
+                                                            a nfo:MediaStream;
+                                                            skos:prefLabel "2:QuickTime Track Header (0×0)".
+<urn:md5:C9EC71E7CE3178DB63ECD2E3CA8AEC1D> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "yexx584xeNtj7NLjyorsHQ=="^^xsd:base64Binary.

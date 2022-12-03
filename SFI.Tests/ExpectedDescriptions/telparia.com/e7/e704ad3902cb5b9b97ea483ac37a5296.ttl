@@ -1,0 +1,30 @@
+@base <ni:///mh;1QEQneBeujVQ7UVuWkvhd4N-fQ?ct=text/plain>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///VIDEORAMA26701.CUE>;
+     nie:interpretedAs <ni:///mh;1QEQneBeujVQ7UVuWkvhd4N-fQ?ct=text/plain>;
+     nfo:fileName "VIDEORAMA26701.CUE";
+     nfo:fileSize 121 ;
+     a nfo:FileDataObject.
+<file:///VIDEORAMA26701.CUE> at:extensionObject <https://w3id.org/uri4uri/suffix/cue>.
+<ni:///mh;1QEQneBeujVQ7UVuWkvhd4N-fQ?ct=text/plain> at:digest <urn:md5:9DE05EBA3550ED456E5A4BE177837E7D>;
+                                                    dcterms:extent "121"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQneBeujVQ7UVuWkvhd4N-fQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (121 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQneBeujVQ7UVuWkvhd4N-fQ?ct=text/plain#line=,1> rdf:value """FILE \"VIDEORAMA26701.BIN\" BINARY""".
+<urn:md5:9DE05EBA3550ED456E5A4BE177837E7D> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "neBeujVQ7UVuWkvhd4N+fQ=="^^xsd:base64Binary.

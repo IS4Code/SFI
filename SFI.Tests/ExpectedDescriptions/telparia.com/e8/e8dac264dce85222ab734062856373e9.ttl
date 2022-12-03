@@ -1,0 +1,89 @@
+@base <ni:///mh;1QEQRd6Rf2Qq_szyVSef5QiSMA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///TREGLER>;
+     nie:interpretedAs <ni:///mh;1QEQRd6Rf2Qq_szyVSef5QiSMA?ct=application/octet-stream>;
+     nfo:fileName "TREGLER";
+     nfo:fileSize 21567 ;
+     a nfo:FileDataObject.
+<file:///Icon.Data> at:extensionObject <https://w3id.org/uri4uri/suffix/data>.
+<file:///Image1/Picture.Data> at:pathObject <file:///Picture.Data>.
+<file:///Picture.Data> at:extensionObject <https://w3id.org/uri4uri/suffix/data>.
+<file:///ScrollBox1/Image1/Picture.Data> at:pathObject <file:///Image1/Picture.Data>.
+<ni:///mh;1QEQ2KPwkI_NCOEykK91snkfgQ?ct=application/octet-stream> at:digest <urn:md5:D8A3F0908FCD08E13290AF75B2791F81>;
+                                                                  dcterms:extent "5694"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ2KPwkI_NCOEykK91snkfgQ?ct=image/x-icon>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (5.56 KiB)"@en.
+<ni:///mh;1QEQ2KPwkI_NCOEykK91snkfgQ?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
+                                                      nfo:colorDepth 32 ;
+                                                      nfo:height 64 ;
+                                                      nfo:horizontalResolution 96 ;
+                                                      nfo:verticalResolution 96 ;
+                                                      nfo:width 64 ;
+                                                      a schema:MediaObject,
+                                                        schema:ImageObject,
+                                                        nfo:Image;
+                                                      skos:prefLabel "ICO object (64×64)"@en,
+                                                                     "ICO object (5.56 KiB)"@en.
+<ni:///mh;1QEQRd6Rf2Qq_szyVSef5QiSMA?ct=application/octet-stream> at:digest <urn:md5:45DE917F642AFECCF255279FE5089230>;
+                                                                  dcterms:extent "21567"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQRd6Rf2Qq_szyVSef5QiSMA?ct=application/x-delphi-form>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (21.06 KiB)"@en.
+<ni:///mh;1QEQRd6Rf2Qq_szyVSef5QiSMA?ct=application/x-delphi-form> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-delphi-form>;
+                                                                   nie:hasPart <ni:///mh;1QEQRd6Rf2Qq_szyVSef5QiSMA?ct=application/x-delphi-form#/Icon.Data>,
+                                                                               <ni:///mh;1QEQRd6Rf2Qq_szyVSef5QiSMA?ct=application/x-delphi-form#/ScrollBox1%2FImage1%2FPicture.Data>;
+                                                                   a schema:MediaObject;
+                                                                   skos:prefLabel "DFM object (Regler)"@en.
+<ni:///mh;1QEQRd6Rf2Qq_szyVSef5QiSMA?ct=application/x-delphi-form#/Icon.Data> at:pathObject <file:///Icon.Data>;
+                                                                              nie:interpretedAs <ni:///mh;1QEQ2KPwkI_NCOEykK91snkfgQ?ct=application/octet-stream>;
+                                                                              nfo:fileName "Icon.Data";
+                                                                              nfo:fileSize 5694 ;
+                                                                              a nfo:FileDataObject,
+                                                                                nfo:EmbeddedFileDataObject;
+                                                                              skos:prefLabel "/Icon.Data".
+<ni:///mh;1QEQRd6Rf2Qq_szyVSef5QiSMA?ct=application/x-delphi-form#/ScrollBox1%2FImage1%2FPicture.Data> at:pathObject <file:///ScrollBox1/Image1/Picture.Data>;
+                                                                                                       nie:interpretedAs <ni:///mh;1QEQtdUDl9dI929rxd2x6Sb9_g?ct=application/octet-stream>;
+                                                                                                       nfo:fileName "ScrollBox1/Image1/Picture.Data";
+                                                                                                       nfo:fileSize 9774 ;
+                                                                                                       a nfo:FileDataObject,
+                                                                                                         nfo:EmbeddedFileDataObject;
+                                                                                                       skos:prefLabel "/ScrollBox1/Image1/Picture.Data".
+<ni:///mh;1QEQtdUDl9dI929rxd2x6Sb9_g?ct=application/octet-stream> at:digest <urn:md5:B5D50397D748F76F6BC5DDB1E926FDFE>;
+                                                                  dcterms:extent "9759"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQtdUDl9dI929rxd2x6Sb9_g?ct=image/jpeg>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (9.53 KiB)"@en.
+<ni:///mh;1QEQtdUDl9dI929rxd2x6Sb9_g?ct=image/jpeg> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/jpeg>;
+                                                    nfo:colorDepth 24 ;
+                                                    nfo:height 87 ;
+                                                    nfo:horizontalResolution 300 ;
+                                                    nfo:verticalResolution 300 ;
+                                                    nfo:width 300 ;
+                                                    a schema:MediaObject,
+                                                      schema:ImageObject,
+                                                      nfo:Image;
+                                                    skos:prefLabel "JPG object (300×87)"@en,
+                                                                   "JPG object (9.54 KiB)"@en.
+<urn:md5:45DE917F642AFECCF255279FE5089230> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "Rd6Rf2Qq/szyVSef5QiSMA=="^^xsd:base64Binary.
+<urn:md5:B5D50397D748F76F6BC5DDB1E926FDFE> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "tdUDl9dI929rxd2x6Sb9/g=="^^xsd:base64Binary.
+<urn:md5:D8A3F0908FCD08E13290AF75B2791F81> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "2KPwkI/NCOEykK91snkfgQ=="^^xsd:base64Binary.

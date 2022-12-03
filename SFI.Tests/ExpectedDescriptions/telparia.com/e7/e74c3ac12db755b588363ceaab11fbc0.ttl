@@ -1,0 +1,27 @@
+@base <ni:///mh;1QEQq_kv4aHE3T2x6ODr6U7RQg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///CUDDLY4.SND>;
+     nie:interpretedAs <ni:///mh;1QEQq_kv4aHE3T2x6ODr6U7RQg?ct=application/octet-stream>;
+     nfo:fileName "CUDDLY4.SND";
+     nfo:fileSize 7516 ;
+     a nfo:FileDataObject.
+<file:///CUDDLY4.SND> at:extensionObject <https://w3id.org/uri4uri/suffix/snd>.
+<ni:///mh;1QEQq_kv4aHE3T2x6ODr6U7RQg?ct=application/octet-stream> at:digest <urn:md5:ABF92FE1A1C4DD3DB1E8E0EBE94ED142>;
+                                                                  dcterms:extent "7516"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (7.34 KiB)"@en.
+<urn:md5:ABF92FE1A1C4DD3DB1E8E0EBE94ED142> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "q/kv4aHE3T2x6ODr6U7RQg=="^^xsd:base64Binary.

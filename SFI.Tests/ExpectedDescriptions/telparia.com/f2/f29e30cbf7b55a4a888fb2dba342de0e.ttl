@@ -1,0 +1,30 @@
+@base <ni:///mh;1QEQQVaVHhY-96M1YrxVU8awgg?ct=text/plain>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///TMPL_502_PLPS.bin>;
+     nie:interpretedAs <ni:///mh;1QEQQVaVHhY-96M1YrxVU8awgg?ct=text/plain>;
+     nfo:fileName "TMPL_502_PLPS.bin";
+     nfo:fileSize 255 ;
+     a nfo:FileDataObject.
+<file:///TMPL_502_PLPS.bin> at:extensionObject <https://w3id.org/uri4uri/suffix/bin>.
+<ni:///mh;1QEQQVaVHhY-96M1YrxVU8awgg?ct=text/plain> at:digest <urn:md5:4156951E163EF7A33562BC5553C6B082>;
+                                                    dcterms:extent "255"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQQVaVHhY-96M1YrxVU8awgg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (255 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQQVaVHhY-96M1YrxVU8awgg?ct=text/plain#line=,1> rdf:value "".
+<urn:md5:4156951E163EF7A33562BC5553C6B082> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "QVaVHhY+96M1YrxVU8awgg=="^^xsd:base64Binary.

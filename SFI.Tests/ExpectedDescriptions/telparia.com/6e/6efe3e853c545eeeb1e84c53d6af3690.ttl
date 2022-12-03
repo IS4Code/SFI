@@ -1,0 +1,27 @@
+@base <ni:///mh;1QEQNICwlvWqM3RvjEM_Gl51tQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///cPenink.cpl>;
+     nie:interpretedAs <ni:///mh;1QEQNICwlvWqM3RvjEM_Gl51tQ?ct=application/octet-stream>;
+     nfo:fileName "cPenink.cpl";
+     nfo:fileSize 3065 ;
+     a nfo:FileDataObject.
+<file:///cPenink.cpl> at:extensionObject <https://w3id.org/uri4uri/suffix/cpl>.
+<ni:///mh;1QEQNICwlvWqM3RvjEM_Gl51tQ?ct=application/octet-stream> at:digest <urn:md5:3480B096F5AA33746F8C433F1A5E75B5>;
+                                                                  dcterms:extent "3065"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (2.99 KiB)"@en.
+<urn:md5:3480B096F5AA33746F8C433F1A5E75B5> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "NICwlvWqM3RvjEM/Gl51tQ=="^^xsd:base64Binary.

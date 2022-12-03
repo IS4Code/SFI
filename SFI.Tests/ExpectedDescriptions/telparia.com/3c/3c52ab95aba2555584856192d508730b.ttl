@@ -1,0 +1,53 @@
+@base <ni:///mh;1QEQdwwGKtJMc0LDlISOq2qEZQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///PIE03.TIF>;
+     nie:interpretedAs <ni:///mh;1QEQdwwGKtJMc0LDlISOq2qEZQ?ct=application/octet-stream>;
+     nfo:fileName "PIE03.TIF";
+     nfo:fileSize 31485 ;
+     a nfo:FileDataObject.
+<file:///PIE03.TIF> at:extensionObject <https://w3id.org/uri4uri/suffix/tif>.
+<ni:///mh;1QEQdwwGKtJMc0LDlISOq2qEZQ?ct=application/octet-stream> at:digest <urn:md5:770C062AD24C7342C394848EAB6A8465>;
+                                                                  dcterms:extent "31485"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQdwwGKtJMc0LDlISOq2qEZQ?ct=application/octet-stream#arw>,
+                                                                                    <ni:///mh;1QEQdwwGKtJMc0LDlISOq2qEZQ?ct=image/tiff>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (30.75 KiB)"@en.
+<ni:///mh;1QEQdwwGKtJMc0LDlISOq2qEZQ?ct=application/octet-stream#arw> nfo:bitDepth 1 ;
+                                                                      nfo:height 350 ;
+                                                                      nfo:width 736 ;
+                                                                      a schema:MediaObject,
+                                                                        exif:IFD;
+                                                                      exif:bitsPerSample 1 ;
+                                                                      exif:compression 32773 ;
+                                                                      exif:imageLength 350 ;
+                                                                      exif:imageWidth 736 ;
+                                                                      exif:photometricInterpretation 2 ;
+                                                                      exif:planarConfiguration 2 ;
+                                                                      exif:samplesPerPixel 4 ;
+                                                                      exif:xResolution 327963 ;
+                                                                      exif:yResolution 77 ;
+                                                                      skos:prefLabel "ARW object (736×350, 1-bit)"@en.
+<ni:///mh;1QEQdwwGKtJMc0LDlISOq2qEZQ?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
+                                                    nfo:height 350 ;
+                                                    nfo:width 736 ;
+                                                    a schema:MediaObject,
+                                                      nfo:Image,
+                                                      schema:ImageObject;
+                                                    skos:prefLabel "TIFF object (736×350)"@en.
+<urn:md5:770C062AD24C7342C394848EAB6A8465> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "dwwGKtJMc0LDlISOq2qEZQ=="^^xsd:base64Binary.

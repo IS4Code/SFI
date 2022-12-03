@@ -1,0 +1,27 @@
+@base <ni:///mh;1QEQWVOd7Yp4Kfm8hOWgeXkk9g?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///Seen%20the%20Doctor.mov>;
+     nie:interpretedAs <ni:///mh;1QEQWVOd7Yp4Kfm8hOWgeXkk9g?ct=application/octet-stream>;
+     nfo:fileName "Seen the Doctor.mov";
+     nfo:fileSize 644096 ;
+     a nfo:FileDataObject.
+<file:///Seen%20the%20Doctor.mov> at:extensionObject <https://w3id.org/uri4uri/suffix/mov>.
+<ni:///mh;1QEQWVOd7Yp4Kfm8hOWgeXkk9g?ct=application/octet-stream> at:digest <urn:md5:59539DED8A7829F9BC84E5A0797924F6>;
+                                                                  dcterms:extent "644096"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (629 KiB)"@en.
+<urn:md5:59539DED8A7829F9BC84E5A0797924F6> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "WVOd7Yp4Kfm8hOWgeXkk9g=="^^xsd:base64Binary.

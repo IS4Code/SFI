@@ -1,0 +1,38 @@
+@base <ni:///mh;1QEQt3gTYOfddXMlbYuMmgkzng?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///Z_GROWL>;
+     nie:interpretedAs <ni:///mh;1QEQt3gTYOfddXMlbYuMmgkzng?ct=application/octet-stream>;
+     nfo:fileName "Z_GROWL";
+     nfo:fileSize 18606 ;
+     a nfo:FileDataObject.
+<ni:///mh;1QEQt3gTYOfddXMlbYuMmgkzng?ct=application/octet-stream> at:digest <urn:md5:B7781360E7DD7573256D8B8C9A09339E>;
+                                                                  dcterms:extent "18606"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQt3gTYOfddXMlbYuMmgkzng?ct=audio/vnd.wave>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (18.17 KiB)"@en.
+<ni:///mh;1QEQt3gTYOfddXMlbYuMmgkzng?ct=audio/vnd.wave> schema:encodingFormat <https://w3id.org/uri4uri/mime/audio/vnd.wave>;
+                                                        nfo:bitsPerSample 8 ;
+                                                        nfo:channels 1 ;
+                                                        nfo:duration "PT1.6836281S"^^xsd:duration;
+                                                        nfo:sampleRate "11025"^^dt:hertz;
+                                                        a schema:MediaObject,
+                                                          schema:AudioObject,
+                                                          nfo:Audio;
+                                                        skos:prefLabel "WAV object (18.17 KiB)"@en,
+                                                                       "WAV object (8-bit, 11025 Hz, 1 channel)"@en.
+<urn:md5:B7781360E7DD7573256D8B8C9A09339E> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "t3gTYOfddXMlbYuMmgkzng=="^^xsd:base64Binary.

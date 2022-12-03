@@ -1,0 +1,182 @@
+@base <ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+
+_:n1 at:pathObject <file:///badTar.tar>;
+     nie:interpretedAs <ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/octet-stream>;
+     nfo:fileName "badTar.tar";
+     nfo:fileSize 10240 ;
+     a nfo:FileDataObject.
+<data:,hello%0A> dcterms:extent "6"^^dt:byte;
+                 a cnt:ContentAsText;
+                 skos:prefLabel "text (6 B)"@en;
+                 cnt:characterEncoding "us-ascii";
+                 cnt:chars """hello
+"""^^xsd:string.
+<data:application/octet-stream,> dcterms:extent "0"^^dt:byte;
+                                 a cnt:ContentAsBase64;
+                                 skos:prefLabel "binary data (0 B)"@en;
+                                 cnt:bytes ""^^xsd:base64Binary.
+<file:///b/hi.txt> at:pathObject <file:///hi.txt>.
+<file:///bad/hosts> at:pathObject <file:///hosts>.
+<file:///bad2/outside.omg> at:pathObject <file:///outside.omg>.
+<file:///badTar.tar> at:extensionObject <https://w3id.org/uri4uri/suffix/tar>.
+<file:///badTar/a> at:pathObject <file:///a>.
+<file:///badTar/b> at:pathObject <file:///b>.
+<file:///badTar/b/> at:pathObject <file:///b/>.
+<file:///badTar/b/hi.txt> at:pathObject <file:///b/hi.txt>.
+<file:///badTar/bad> at:pathObject <file:///bad>.
+<file:///badTar/bad/> at:pathObject <file:///bad/>.
+<file:///badTar/bad/hosts> at:pathObject <file:///bad/hosts>.
+<file:///badTar/bad2> at:pathObject <file:///bad2>.
+<file:///badTar/bad2/> at:pathObject <file:///bad2/>.
+<file:///badTar/bad2/outside.omg> at:pathObject <file:///bad2/outside.omg>.
+<file:///badTar/bad3> at:pathObject <file:///bad3>.
+<file:///badTar/c> at:pathObject <file:///c>.
+<file:///badTar/c/> at:pathObject <file:///c/>.
+<file:///badTar/c/hi.txt> at:pathObject <file:///c/hi.txt>.
+<file:///badTar/hi.txt> at:pathObject <file:///hi.txt>.
+<file:///c/hi.txt> at:pathObject <file:///hi.txt>.
+<file:///hi.txt> at:extensionObject <https://w3id.org/uri4uri/suffix/txt>.
+<file:///outside.omg> at:extensionObject <https://w3id.org/uri4uri/suffix/omg>.
+<ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/octet-stream> at:digest <urn:md5:A02692AC0277501586E70DF42BA2673C>;
+                                                                  dcterms:extent "10240"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/x-tar>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (10 KiB)"@en.
+<ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/x-tar> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-tar>;
+                                                           a schema:MediaObject,
+                                                             nfo:Archive;
+                                                           skos:prefLabel "TAR object (10 KiB)"@en.
+<ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/x-tar#/badTar> at:pathObject <file:///badTar>;
+                                                                   nie:interpretedAs <ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/x-tar#/badTar/>;
+                                                                   nfo:belongsToContainer <ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/x-tar>;
+                                                                   nfo:fileLastModified "2021-12-05T18:30:09.000000+01:00"^^xsd:dateTime;
+                                                                   nfo:fileName "badTar";
+                                                                   a nfo:FileDataObject,
+                                                                     nfo:ArchiveItem;
+                                                                   skos:prefLabel "/badTar".
+<ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/x-tar#/badTar/> at:pathObject <file:///badTar/>;
+                                                                    a nfo:Folder;
+                                                                    skos:prefLabel "/badTar/".
+<ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/x-tar#/badTar/a> at:pathObject <file:///badTar/a>;
+                                                                     nie:interpretedAs <data:application/octet-stream,>;
+                                                                     nfo:belongsToContainer <ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/x-tar#/badTar/>;
+                                                                     nfo:fileLastModified "2021-12-05T18:30:09.000000+01:00"^^xsd:dateTime;
+                                                                     nfo:fileName "a";
+                                                                     nfo:fileSize 0 ;
+                                                                     a nfo:FileDataObject,
+                                                                       nfo:ArchiveItem;
+                                                                     skos:prefLabel "/badTar/a".
+<ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/x-tar#/badTar/b> at:pathObject <file:///badTar/b>;
+                                                                     nie:interpretedAs <ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/x-tar#/badTar/b/>;
+                                                                     nfo:belongsToContainer <ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/x-tar#/badTar/>;
+                                                                     nfo:fileLastModified "2021-12-05T18:28:37.000000+01:00"^^xsd:dateTime;
+                                                                     nfo:fileName "b";
+                                                                     a nfo:FileDataObject,
+                                                                       nfo:ArchiveItem;
+                                                                     skos:prefLabel "/badTar/b".
+<ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/x-tar#/badTar/b/> at:pathObject <file:///badTar/b/>;
+                                                                      a nfo:Folder;
+                                                                      skos:prefLabel "/badTar/b/".
+<ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/x-tar#/badTar/b/hi.txt> at:pathObject <file:///badTar/b/hi.txt>;
+                                                                            nie:interpretedAs <data:application/octet-stream,>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/x-tar#/badTar/b/>;
+                                                                            nfo:fileLastModified "2021-12-05T18:28:37.000000+01:00"^^xsd:dateTime;
+                                                                            nfo:fileName "hi.txt";
+                                                                            nfo:fileSize 0 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/badTar/b/hi.txt".
+<ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/x-tar#/badTar/bad> at:pathObject <file:///badTar/bad>;
+                                                                       nie:interpretedAs <ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/x-tar#/badTar/bad/>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/x-tar#/badTar/>;
+                                                                       nfo:fileLastModified "2021-12-05T18:29:05.000000+01:00"^^xsd:dateTime;
+                                                                       nfo:fileName "bad";
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/badTar/bad".
+<ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/x-tar#/badTar/bad/> at:pathObject <file:///badTar/bad/>;
+                                                                        a nfo:Folder;
+                                                                        skos:prefLabel "/badTar/bad/".
+<ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/x-tar#/badTar/bad/hosts> at:pathObject <file:///badTar/bad/hosts>;
+                                                                             nie:interpretedAs <data:application/octet-stream,>;
+                                                                             nfo:belongsToContainer <ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/x-tar#/badTar/bad/>;
+                                                                             nfo:fileLastModified "2021-12-05T18:29:05.000000+01:00"^^xsd:dateTime;
+                                                                             nfo:fileName "hosts";
+                                                                             nfo:fileSize 0 ;
+                                                                             a nfo:FileDataObject,
+                                                                               nfo:ArchiveItem;
+                                                                             skos:prefLabel "/badTar/bad/hosts".
+<ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/x-tar#/badTar/bad2> at:pathObject <file:///badTar/bad2>;
+                                                                        nie:interpretedAs <ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/x-tar#/badTar/bad2/>;
+                                                                        nfo:belongsToContainer <ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/x-tar#/badTar/>;
+                                                                        nfo:fileLastModified "2021-12-05T18:29:19.000000+01:00"^^xsd:dateTime;
+                                                                        nfo:fileName "bad2";
+                                                                        a nfo:FileDataObject,
+                                                                          nfo:ArchiveItem;
+                                                                        skos:prefLabel "/badTar/bad2".
+<ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/x-tar#/badTar/bad2/> at:pathObject <file:///badTar/bad2/>;
+                                                                         a nfo:Folder;
+                                                                         skos:prefLabel "/badTar/bad2/".
+<ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/x-tar#/badTar/bad2/outside.omg> at:pathObject <file:///badTar/bad2/outside.omg>;
+                                                                                    nie:interpretedAs <data:application/octet-stream,>;
+                                                                                    nfo:belongsToContainer <ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/x-tar#/badTar/bad2/>;
+                                                                                    nfo:fileLastModified "2021-12-05T18:29:19.000000+01:00"^^xsd:dateTime;
+                                                                                    nfo:fileName "outside.omg";
+                                                                                    nfo:fileSize 0 ;
+                                                                                    a nfo:FileDataObject,
+                                                                                      nfo:ArchiveItem;
+                                                                                    skos:prefLabel "/badTar/bad2/outside.omg".
+<ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/x-tar#/badTar/bad3> at:pathObject <file:///badTar/bad3>;
+                                                                        nie:interpretedAs <data:application/octet-stream,>;
+                                                                        nfo:belongsToContainer <ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/x-tar#/badTar/>;
+                                                                        nfo:fileLastModified "2021-12-05T18:30:01.000000+01:00"^^xsd:dateTime;
+                                                                        nfo:fileName "bad3";
+                                                                        nfo:fileSize 0 ;
+                                                                        a nfo:FileDataObject,
+                                                                          nfo:ArchiveItem;
+                                                                        skos:prefLabel "/badTar/bad3".
+<ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/x-tar#/badTar/c> at:pathObject <file:///badTar/c>;
+                                                                     nie:interpretedAs <ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/x-tar#/badTar/c/>;
+                                                                     nfo:belongsToContainer <ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/x-tar#/badTar/>;
+                                                                     nfo:fileLastModified "2021-12-05T18:28:46.000000+01:00"^^xsd:dateTime;
+                                                                     nfo:fileName "c";
+                                                                     a nfo:FileDataObject,
+                                                                       nfo:ArchiveItem;
+                                                                     skos:prefLabel "/badTar/c".
+<ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/x-tar#/badTar/c/> at:pathObject <file:///badTar/c/>;
+                                                                      a nfo:Folder;
+                                                                      skos:prefLabel "/badTar/c/".
+<ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/x-tar#/badTar/c/hi.txt> at:pathObject <file:///badTar/c/hi.txt>;
+                                                                            nie:interpretedAs <data:application/octet-stream,>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/x-tar#/badTar/c/>;
+                                                                            nfo:fileLastModified "2021-12-05T18:28:46.000000+01:00"^^xsd:dateTime;
+                                                                            nfo:fileName "hi.txt";
+                                                                            nfo:fileSize 0 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/badTar/c/hi.txt".
+<ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/x-tar#/badTar/hi.txt> at:pathObject <file:///badTar/hi.txt>;
+                                                                          nie:interpretedAs <data:,hello%0A>;
+                                                                          nfo:belongsToContainer <ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/x-tar#/badTar/>;
+                                                                          nfo:fileLastModified "2021-12-05T18:28:34.000000+01:00"^^xsd:dateTime;
+                                                                          nfo:fileName "hi.txt";
+                                                                          nfo:fileSize 6 ;
+                                                                          a nfo:FileDataObject,
+                                                                            nfo:ArchiveItem;
+                                                                          skos:prefLabel "/badTar/hi.txt".
+<urn:md5:A02692AC0277501586E70DF42BA2673C> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "oCaSrAJ3UBWG5w30K6JnPA=="^^xsd:base64Binary.

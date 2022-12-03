@@ -1,0 +1,27 @@
+@base <ni:///mh;1QEQnGEV1ankEUenpNumytTX7Q?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///chaos_1.ps>;
+     nie:interpretedAs <ni:///mh;1QEQnGEV1ankEUenpNumytTX7Q?ct=application/octet-stream>;
+     nfo:fileName "chaos_1.ps";
+     nfo:fileSize 646830 ;
+     a nfo:FileDataObject.
+<file:///chaos_1.ps> at:extensionObject <https://w3id.org/uri4uri/suffix/ps>.
+<ni:///mh;1QEQnGEV1ankEUenpNumytTX7Q?ct=application/octet-stream> at:digest <urn:md5:9C6115D5A9E41147A7A4DBA6CAD4D7ED>;
+                                                                  dcterms:extent "646830"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (631.67 KiB)"@en.
+<urn:md5:9C6115D5A9E41147A7A4DBA6CAD4D7ED> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "nGEV1ankEUenpNumytTX7Q=="^^xsd:base64Binary.

@@ -1,0 +1,52 @@
+@base <ni:///mh;1QEQtSZJ0KWvjoddM35dBN-WzQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///example.gif>;
+     nie:interpretedAs <ni:///mh;1QEQtSZJ0KWvjoddM35dBN-WzQ?ct=application/octet-stream>;
+     nfo:fileName "example.gif";
+     nfo:fileSize 5865571 ;
+     a nfo:FileDataObject.
+<file:///example.gif> at:extensionObject <https://w3id.org/uri4uri/suffix/gif>.
+<ni:///mh;1QEQtSZJ0KWvjoddM35dBN-WzQ?ct=application/octet-stream> at:digest <urn:md5:B52649D0A5AF8E875D337E5D04DF96CD>;
+                                                                  dcterms:extent "5865571"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQtSZJ0KWvjoddM35dBN-WzQ?ct=image/gif>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (5.59 MiB)"@en.
+<ni:///mh;1QEQtSZJ0KWvjoddM35dBN-WzQ?ct=image/gif> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/gif>;
+                                                   nfo:bitDepth 8 ;
+                                                   nfo:hasMediaStream <ni:///mh;1QEQtSZJ0KWvjoddM35dBN-WzQ?ct=image/gif#/0>,
+                                                                      <ni:///mh;1QEQtSZJ0KWvjoddM35dBN-WzQ?ct=image/gif#/1>;
+                                                   nfo:height 3072 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:paletteSize 256 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 4608 ;
+                                                   <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#comments> "Created with GIMP";
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "GIF object (5.59 MiB)"@en,
+                                                                  "GIF object (4608×3072)"@en.
+<ni:///mh;1QEQtSZJ0KWvjoddM35dBN-WzQ?ct=image/gif#/0> nfo:height 3072 ;
+                                                      nfo:width 4608 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "0:GIF Header (4608×3072)".
+<ni:///mh;1QEQtSZJ0KWvjoddM35dBN-WzQ?ct=image/gif#/1> nfo:height 3072 ;
+                                                      nfo:width 4608 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "1:GIF Image (4608×3072)".
+<urn:md5:B52649D0A5AF8E875D337E5D04DF96CD> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "tSZJ0KWvjoddM35dBN+WzQ=="^^xsd:base64Binary.

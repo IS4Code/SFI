@@ -1,0 +1,95 @@
+@base <ni:///mh;1QEQH7RyWEhx9Uu7y1IKaSvWxw?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///starstrk.zip>;
+     nie:interpretedAs <ni:///mh;1QEQH7RyWEhx9Uu7y1IKaSvWxw?ct=application/octet-stream>;
+     nfo:fileName "starstrk.zip";
+     nfo:fileSize 3456 ;
+     a nfo:FileDataObject.
+<file:///REBEL.BBS> at:extensionObject <https://w3id.org/uri4uri/suffix/bbs>.
+<file:///STARSTRK.ACC> at:extensionObject <https://w3id.org/uri4uri/suffix/acc>.
+<file:///STARSTRK.DOC> at:extensionObject <https://w3id.org/uri4uri/suffix/doc>.
+<file:///starstrk.zip> at:extensionObject <https://w3id.org/uri4uri/suffix/zip>.
+<ni:///mh;1QEQH7RyWEhx9Uu7y1IKaSvWxw?ct=application/octet-stream> at:digest <urn:md5:1FB472584871F54BBBCB520A692BD6C7>;
+                                                                  dcterms:extent "3456"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQH7RyWEhx9Uu7y1IKaSvWxw?ct=application/zip>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (3.38 KiB)"@en.
+<ni:///mh;1QEQH7RyWEhx9Uu7y1IKaSvWxw?ct=application/zip> at:pathObject <file:///>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
+                                                         nie:interpretedAs <ni:///mh;1QEQH7RyWEhx9Uu7y1IKaSvWxw?ct=application/zip#/>;
+                                                         a schema:MediaObject,
+                                                           nfo:Archive;
+                                                         skos:prefLabel "ZIP object (3.38 KiB)"@en.
+<ni:///mh;1QEQH7RyWEhx9Uu7y1IKaSvWxw?ct=application/zip#/> at:pathObject <file:///./>;
+                                                           a nfo:Folder;
+                                                           skos:prefLabel "/".
+<ni:///mh;1QEQH7RyWEhx9Uu7y1IKaSvWxw?ct=application/zip#/REBEL.BBS> at:pathObject <file:///REBEL.BBS>;
+                                                                    nie:interpretedAs <ni:///mh;1QEQkMXp2Z3ZaErHL3T5_teplg?ct=text/plain>;
+                                                                    nfo:belongsToContainer <ni:///mh;1QEQH7RyWEhx9Uu7y1IKaSvWxw?ct=application/zip#/>;
+                                                                    nfo:fileLastModified "1992-12-13T14:01:42.000000+01:00"^^xsd:dateTime;
+                                                                    nfo:fileName "REBEL.BBS";
+                                                                    nfo:fileSize 1342 ;
+                                                                    a nfo:FileDataObject,
+                                                                      nfo:ArchiveItem;
+                                                                    skos:prefLabel "/REBEL.BBS".
+<ni:///mh;1QEQH7RyWEhx9Uu7y1IKaSvWxw?ct=application/zip#/STARSTRK.ACC> at:pathObject <file:///STARSTRK.ACC>;
+                                                                       nie:interpretedAs <ni:///mh;1QEQqguJ7vhVKCmJIBTqjPcViQ?ct=application/octet-stream>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQH7RyWEhx9Uu7y1IKaSvWxw?ct=application/zip#/>;
+                                                                       nfo:fileLastModified "1990-01-03T07:07:40.000000+01:00"^^xsd:dateTime;
+                                                                       nfo:fileName "STARSTRK.ACC";
+                                                                       nfo:fileSize 2530 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/STARSTRK.ACC".
+<ni:///mh;1QEQH7RyWEhx9Uu7y1IKaSvWxw?ct=application/zip#/STARSTRK.DOC> at:pathObject <file:///STARSTRK.DOC>;
+                                                                       nie:interpretedAs <ni:///mh;1QEQIsQ0taI47I61lOoih6RzEg?ct=text/plain>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQH7RyWEhx9Uu7y1IKaSvWxw?ct=application/zip#/>;
+                                                                       nfo:fileLastModified "1990-01-03T07:07:42.000000+01:00"^^xsd:dateTime;
+                                                                       nfo:fileName "STARSTRK.DOC";
+                                                                       nfo:fileSize 2113 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/STARSTRK.DOC".
+<ni:///mh;1QEQIsQ0taI47I61lOoih6RzEg?ct=text/plain> at:digest <urn:md5:22C434B5A238EC8EB594EA2287A47312>;
+                                                    dcterms:extent "2113"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQIsQ0taI47I61lOoih6RzEg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (2.06 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQIsQ0taI47I61lOoih6RzEg?ct=text/plain#line=,1> rdf:value "".
+<ni:///mh;1QEQkMXp2Z3ZaErHL3T5_teplg?ct=text/plain> at:digest <urn:md5:90C5E9D99DD9684AC72F74F9FED7A996>;
+                                                    dcterms:extent "1342"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQkMXp2Z3ZaErHL3T5_teplg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.31 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQkMXp2Z3ZaErHL3T5_teplg?ct=text/plain#line=,1> rdf:value "  __________________________________________________________________________".
+<ni:///mh;1QEQqguJ7vhVKCmJIBTqjPcViQ?ct=application/octet-stream> at:digest <urn:md5:AA0B89EEF8552829892014EA8CF71589>;
+                                                                  dcterms:extent "2530"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (2.47 KiB)"@en.
+<urn:md5:1FB472584871F54BBBCB520A692BD6C7> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "H7RyWEhx9Uu7y1IKaSvWxw=="^^xsd:base64Binary.
+<urn:md5:22C434B5A238EC8EB594EA2287A47312> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "IsQ0taI47I61lOoih6RzEg=="^^xsd:base64Binary.
+<urn:md5:90C5E9D99DD9684AC72F74F9FED7A996> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "kMXp2Z3ZaErHL3T5/teplg=="^^xsd:base64Binary.
+<urn:md5:AA0B89EEF8552829892014EA8CF71589> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "qguJ7vhVKCmJIBTqjPcViQ=="^^xsd:base64Binary.

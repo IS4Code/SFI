@@ -1,0 +1,24 @@
+@base <data:,%22Hello%2C%20World!%22%0A>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///string.json>;
+     nie:interpretedAs <data:,%22Hello%2C%20World!%22%0A>;
+     nfo:fileName "string.json";
+     nfo:fileSize 16 ;
+     a nfo:FileDataObject.
+<data:,%22Hello%2C%20World!%22%0A> dcterms:extent "16"^^dt:byte;
+                                   a cnt:ContentAsText;
+                                   skos:prefLabel "text (16 B)"@en;
+                                   cnt:characterEncoding "us-ascii";
+                                   cnt:chars """\"Hello, World!\"
+"""^^xsd:string.
+<file:///string.json> at:extensionObject <https://w3id.org/uri4uri/suffix/json>.

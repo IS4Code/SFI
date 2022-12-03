@@ -1,0 +1,42 @@
+@base <ni:///mh;1QEQlEAjKpWhOg_V6STocwpoXA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///media_tests_contents_media_api_music_bzk_chic.wav>;
+     nie:interpretedAs <ni:///mh;1QEQlEAjKpWhOg_V6STocwpoXA?ct=application/octet-stream>;
+     nfo:fileName "media_tests_contents_media_api_music_bzk_chic.wav";
+     nfo:fileSize 47060 ;
+     a nfo:FileDataObject.
+<file:///media_tests_contents_media_api_music_bzk_chic.wav> at:extensionObject <https://w3id.org/uri4uri/suffix/wav>.
+<ni:///mh;1QEQlEAjKpWhOg_V6STocwpoXA?ct=application/octet-stream> at:digest <urn:md5:9440232A95A13A0FD5E924E8730A685C>;
+                                                                  dcterms:extent "47060"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQlEAjKpWhOg_V6STocwpoXA?ct=audio/vnd.wave>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (45.96 KiB)"@en.
+<ni:///mh;1QEQlEAjKpWhOg_V6STocwpoXA?ct=audio/vnd.wave> schema:encodingFormat <https://w3id.org/uri4uri/mime/audio/vnd.wave>;
+                                                        nfo:averageBitrate "176"^^dt:kilobitPerSecond;
+                                                        nfo:bitsPerSample 16 ;
+                                                        nfo:channels 1 ;
+                                                        nfo:compressionType nfo:losslessCompressionType;
+                                                        nfo:duration "PT2.1297959S"^^xsd:duration;
+                                                        nfo:sampleRate "11025"^^dt:hertz;
+                                                        a schema:MediaObject,
+                                                          schema:AudioObject,
+                                                          nfo:Audio;
+                                                        skos:prefLabel "WAV object (45.96 KiB)"@en,
+                                                                       "WAV object (16-bit, 11025 Hz, 1 channel)"@en,
+                                                                       "WAV object (11025 Hz, 1 channel)"@en.
+<urn:md5:9440232A95A13A0FD5E924E8730A685C> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "lEAjKpWhOg/V6STocwpoXA=="^^xsd:base64Binary.

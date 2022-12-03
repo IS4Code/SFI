@@ -1,0 +1,27 @@
+@base <ni:///mh;1QEQRVvvF_CMFCMnOnyUi7B7Fw?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///INTRO.ADL>;
+     nie:interpretedAs <ni:///mh;1QEQRVvvF_CMFCMnOnyUi7B7Fw?ct=application/octet-stream>;
+     nfo:fileName "INTRO.ADL";
+     nfo:fileSize 17320 ;
+     a nfo:FileDataObject.
+<file:///INTRO.ADL> at:extensionObject <https://w3id.org/uri4uri/suffix/adl>.
+<ni:///mh;1QEQRVvvF_CMFCMnOnyUi7B7Fw?ct=application/octet-stream> at:digest <urn:md5:455BEF17F08C1423273A7C948BB07B17>;
+                                                                  dcterms:extent "17320"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (16.91 KiB)"@en.
+<urn:md5:455BEF17F08C1423273A7C948BB07B17> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "RVvvF/CMFCMnOnyUi7B7Fw=="^^xsd:base64Binary.

@@ -1,0 +1,82 @@
+@base <ni:///mh;1QEQ8A-DOPdm0mvG-LDhPWvnNg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///example_small.mp4>;
+     nie:interpretedAs <ni:///mh;1QEQ8A-DOPdm0mvG-LDhPWvnNg?ct=application/octet-stream>;
+     nfo:fileName "example_small.mp4";
+     nfo:fileSize 1979279 ;
+     a nfo:FileDataObject.
+<file:///example_small.mp4> at:extensionObject <https://w3id.org/uri4uri/suffix/mp4>.
+<ni:///mh;1QEQ8A-DOPdm0mvG-LDhPWvnNg?ct=application/octet-stream> at:digest <urn:md5:F00F8338F766D26BC6F8B0E13D6BE736>;
+                                                                  dcterms:extent "1979279"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ8A-DOPdm0mvG-LDhPWvnNg?ct=video/mp4>,
+                                                                                    <ni:///mh;1QEQ8A-DOPdm0mvG-LDhPWvnNg?ct=audio/mpeg>,
+                                                                                    <ni:///mh;1QEQ8A-DOPdm0mvG-LDhPWvnNg?ct=audio/mp4>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.89 MiB)"@en.
+<ni:///mh;1QEQ8A-DOPdm0mvG-LDhPWvnNg?ct=audio/mp4> schema:encodingFormat <https://w3id.org/uri4uri/mime/audio/mp4>;
+                                                   nfo:channels 2 ;
+                                                   nfo:duration "PT20.021S"^^xsd:duration;
+                                                   nfo:hasMediaStream <ni:///mh;1QEQ8A-DOPdm0mvG-LDhPWvnNg?ct=audio/mp4#/Audio/0>,
+                                                                      <ni:///mh;1QEQ8A-DOPdm0mvG-LDhPWvnNg?ct=audio/mp4#/Video/0>;
+                                                   nfo:height 280 ;
+                                                   nfo:sampleRate "44100"^^dt:hertz;
+                                                   nfo:width 500 ;
+                                                   a schema:MediaObject,
+                                                     schema:AudioObject,
+                                                     nfo:Audio;
+                                                   skos:prefLabel "M4A object (500×280)"@en.
+<ni:///mh;1QEQ8A-DOPdm0mvG-LDhPWvnNg?ct=audio/mp4#/Audio/0> nfo:averageBitrate "127"^^dt:kilobitPerSecond;
+                                                            nfo:channels 2 ;
+                                                            nfo:sampleRate "44100"^^dt:hertz;
+                                                            a nfo:Audio,
+                                                              nfo:MediaStream;
+                                                            skos:prefLabel "0:Audio (44100 Hz, 2 channels)".
+<ni:///mh;1QEQ8A-DOPdm0mvG-LDhPWvnNg?ct=audio/mp4#/Video/0> nfo:height 280 ;
+                                                            nfo:width 500 ;
+                                                            a nfo:Video,
+                                                              nfo:MediaStream;
+                                                            skos:prefLabel "0:Video (500×280)".
+<ni:///mh;1QEQ8A-DOPdm0mvG-LDhPWvnNg?ct=audio/mpeg> schema:encodingFormat <https://w3id.org/uri4uri/mime/audio/mpeg>;
+                                                    nfo:bitsPerSample 16 ;
+                                                    nfo:channels 2 ;
+                                                    nfo:duration "PT20.0209977S"^^xsd:duration;
+                                                    nfo:sampleRate 44100 ;
+                                                    a schema:MediaObject,
+                                                      schema:AudioObject,
+                                                      nfo:Audio;
+                                                    skos:prefLabel "AAC object (1.89 MiB)"@en.
+<ni:///mh;1QEQ8A-DOPdm0mvG-LDhPWvnNg?ct=video/mp4> schema:encodingFormat <https://w3id.org/uri4uri/mime/video/mp4>;
+                                                   nfo:hasMediaStream <ni:///mh;1QEQ8A-DOPdm0mvG-LDhPWvnNg?ct=video/mp4#/0>,
+                                                                      <ni:///mh;1QEQ8A-DOPdm0mvG-LDhPWvnNg?ct=video/mp4#/1>,
+                                                                      <ni:///mh;1QEQ8A-DOPdm0mvG-LDhPWvnNg?ct=video/mp4#/2>;
+                                                   a schema:MediaObject,
+                                                     schema:VideoObject,
+                                                     nfo:Video;
+                                                   skos:prefLabel "MP4 object (1.89 MiB)"@en.
+<ni:///mh;1QEQ8A-DOPdm0mvG-LDhPWvnNg?ct=video/mp4#/0> nfo:duration "PT20.021S"^^xsd:duration;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "0:QuickTime Movie Header".
+<ni:///mh;1QEQ8A-DOPdm0mvG-LDhPWvnNg?ct=video/mp4#/1> nfo:height 280 ;
+                                                      nfo:width 500 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "1:QuickTime Track Header (500×280)".
+<ni:///mh;1QEQ8A-DOPdm0mvG-LDhPWvnNg?ct=video/mp4#/2> nfo:height 0 ;
+                                                      nfo:width 0 ;
+                                                      a nfo:MediaStream;
+                                                      skos:prefLabel "2:QuickTime Track Header (0×0)".
+<urn:md5:F00F8338F766D26BC6F8B0E13D6BE736> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "8A+DOPdm0mvG+LDhPWvnNg=="^^xsd:base64Binary.

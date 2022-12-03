@@ -1,0 +1,46 @@
+@base <ni:///mh;1QEQy2aGEUcT-E-Ownn9XKc5sQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///Martingale4.jpg>;
+     nie:interpretedAs <ni:///mh;1QEQy2aGEUcT-E-Ownn9XKc5sQ?ct=application/octet-stream>;
+     nfo:fileName "Martingale4.jpg";
+     nfo:fileSize 397402 ;
+     a nfo:FileDataObject.
+<file:///Martingale4.jpg> at:extensionObject <https://w3id.org/uri4uri/suffix/jpg>.
+<ni:///mh;1QEQy2aGEUcT-E-Ownn9XKc5sQ?ct=application/octet-stream> at:digest <urn:md5:CB6686114713F84F8EC279FD5CA739B1>;
+                                                                  dcterms:extent "397402"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQy2aGEUcT-E-Ownn9XKc5sQ?ct=image/jpeg>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (388.09 KiB)"@en.
+<ni:///mh;1QEQy2aGEUcT-E-Ownn9XKc5sQ?ct=image/jpeg> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/jpeg>;
+                                                    nfo:colorDepth 24 ;
+                                                    nfo:height 691 ;
+                                                    nfo:horizontalResolution 96 ;
+                                                    nfo:verticalResolution 96 ;
+                                                    nfo:width 797 ;
+                                                    a schema:MediaObject,
+                                                      exif:IFD,
+                                                      schema:ImageObject,
+                                                      nfo:Image;
+                                                    exif:resolutionUnit 2 ;
+                                                    exif:software "Paint.NET v3.5.11"^^xsd:string;
+                                                    exif:xResolution 96 ;
+                                                    exif:yResolution 96 ;
+                                                    skos:prefLabel "JPG object (797×691)"@en,
+                                                                   "JPG object (388.09 KiB)"@en.
+<urn:md5:CB6686114713F84F8EC279FD5CA739B1> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "y2aGEUcT+E+Ownn9XKc5sQ=="^^xsd:base64Binary.

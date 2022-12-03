@@ -1,0 +1,47 @@
+@base <ni:///mh;1QEQwcMQNm-mHdU1ZN3xtMmLSA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///CASTLE.IMJ>;
+     nie:interpretedAs <ni:///mh;1QEQwcMQNm-mHdU1ZN3xtMmLSA?ct=application/octet-stream>;
+     nfo:fileName "CASTLE.IMJ";
+     nfo:fileSize 88276 ;
+     a nfo:FileDataObject.
+<file:///CASTLE.IMJ> at:extensionObject <https://w3id.org/uri4uri/suffix/imj>.
+<ni:///mh;1QEQwcMQNm-mHdU1ZN3xtMmLSA?ct=application/octet-stream> at:digest <urn:md5:C1C310366FA61DD53564DDF1B4C98B48>;
+                                                                  dcterms:extent "88276"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQwcMQNm-mHdU1ZN3xtMmLSA?ct=image/tiff>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (86.21 KiB)"@en.
+<ni:///mh;1QEQwcMQNm-mHdU1ZN3xtMmLSA?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
+                                                    nfo:height 480 ;
+                                                    nfo:width 640 ;
+                                                    a schema:MediaObject,
+                                                      exif:IFD,
+                                                      schema:ImageObject,
+                                                      nfo:Image;
+                                                    exif:compression 103 ;
+                                                    exif:imageLength 480 ;
+                                                    exif:imageWidth 640 ;
+                                                    exif:orientation 4 ;
+                                                    exif:photometricInterpretation 6 ;
+                                                    exif:resolutionUnit 1 ;
+                                                    exif:rowsPerStrip 480 ;
+                                                    exif:stripByteCounts 86424 ;
+                                                    exif:stripOffsets 8 ;
+                                                    skos:prefLabel "TIFF object (640×480)"@en.
+<urn:md5:C1C310366FA61DD53564DDF1B4C98B48> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "wcMQNm+mHdU1ZN3xtMmLSA=="^^xsd:base64Binary.

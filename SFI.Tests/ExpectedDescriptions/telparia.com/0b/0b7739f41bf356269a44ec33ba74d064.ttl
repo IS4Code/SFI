@@ -1,0 +1,80 @@
+@base <ni:///mh;1QEQoxTpl2IpeQxj9-sW3ohEnw?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///1647275547_setup.exe>;
+     nie:interpretedAs <ni:///mh;1QEQoxTpl2IpeQxj9-sW3ohEnw?ct=application/octet-stream>;
+     nfo:fileName "1647275547_setup.exe";
+     nfo:fileSize 1940994 ;
+     a nfo:FileDataObject.
+<data:application/octet-stream;base64,AAABAAEAICAQZQEABADoAgAAAQA=> dcterms:extent "20"^^dt:byte;
+                                                                    dcterms:hasFormat <data:image/x-icon;base64,AAABAAEAICAQZQEABADoAgAAAQA=>;
+                                                                    a cnt:ContentAsBase64;
+                                                                    skos:prefLabel "binary data (20 B)"@en;
+                                                                    cnt:bytes "AAABAAEAICAQZQEABADoAgAAAQA="^^xsd:base64Binary.
+<data:image/x-icon;base64,AAABAAEAICAQZQEABADoAgAAAQA=> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
+                                                        nfo:height 32 ;
+                                                        nfo:width 32 ;
+                                                        a schema:MediaObject,
+                                                          schema:ImageObject,
+                                                          nfo:Image;
+                                                        skos:prefLabel "ICO object (32×32)"@en.
+<file:///1647275547_setup.exe> at:extensionObject <https://w3id.org/uri4uri/suffix/exe>.
+<ni:///mh;1QEQ8SbmSEHWMic6Kn-6pYjQgQ?ct=application/octet-stream> at:digest <urn:md5:F126E64841D632273A2A7FBAA588D081>;
+                                                                  dcterms:extent "758"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ8SbmSEHWMic6Kn-6pYjQgQ?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (758 B)"@en.
+<ni:///mh;1QEQ8SbmSEHWMic6Kn-6pYjQgQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:colorDepth 32 ;
+                                                   nfo:height 32 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 32 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (32×32)"@en.
+<ni:///mh;1QEQoxTpl2IpeQxj9-sW3ohEnw?ct=application/octet-stream> at:digest <urn:md5:A314E9976229790C63F7EB16DE88449F>;
+                                                                  dcterms:extent "1940994"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQoxTpl2IpeQxj9-sW3ohEnw?ct=application/vnd.microsoft.portable-executable>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.85 MiB)"@en.
+<ni:///mh;1QEQoxTpl2IpeQxj9-sW3ohEnw?ct=application/vnd.microsoft.portable-executable> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
+                                                                                       nie:hasPart <ni:///mh;1QEQoxTpl2IpeQxj9-sW3ohEnw?ct=application/vnd.microsoft.portable-executable#/Icon/1>,
+                                                                                                   <ni:///mh;1QEQoxTpl2IpeQxj9-sW3ohEnw?ct=application/vnd.microsoft.portable-executable#/GroupIcon/MAINICON>;
+                                                                                       a schema:MediaObject,
+                                                                                         schema:SoftwareApplication,
+                                                                                         nfo:Executable;
+                                                                                       skos:prefLabel "EXE object (1.85 MiB)"@en.
+<ni:///mh;1QEQoxTpl2IpeQxj9-sW3ohEnw?ct=application/vnd.microsoft.portable-executable#/GroupIcon/MAINICON> at:pathObject <file:///MAINICON>;
+                                                                                                           nie:interpretedAs <data:application/octet-stream;base64,AAABAAEAICAQZQEABADoAgAAAQA=>;
+                                                                                                           nfo:fileName "MAINICON";
+                                                                                                           nfo:fileSize 20 ;
+                                                                                                           a nfo:FileDataObject,
+                                                                                                             nfo:EmbeddedFileDataObject;
+                                                                                                           skos:prefLabel "/GroupIcon/MAINICON".
+<ni:///mh;1QEQoxTpl2IpeQxj9-sW3ohEnw?ct=application/vnd.microsoft.portable-executable#/Icon/1> at:pathObject <file:///1>;
+                                                                                               nie:interpretedAs <ni:///mh;1QEQ8SbmSEHWMic6Kn-6pYjQgQ?ct=application/octet-stream>;
+                                                                                               nfo:fileName "1";
+                                                                                               nfo:fileSize 744 ;
+                                                                                               a nfo:FileDataObject,
+                                                                                                 nfo:EmbeddedFileDataObject;
+                                                                                               skos:prefLabel "/Icon/1".
+<urn:md5:A314E9976229790C63F7EB16DE88449F> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "oxTpl2IpeQxj9+sW3ohEnw=="^^xsd:base64Binary.
+<urn:md5:F126E64841D632273A2A7FBAA588D081> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "8SbmSEHWMic6Kn+6pYjQgQ=="^^xsd:base64Binary.

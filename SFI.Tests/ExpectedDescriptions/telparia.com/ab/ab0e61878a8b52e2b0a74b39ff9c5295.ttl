@@ -1,0 +1,175 @@
+@base <ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///MSPublisher98-Sample.pub>;
+     nie:interpretedAs <ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/octet-stream>;
+     nfo:fileName "MSPublisher98-Sample.pub";
+     nfo:fileSize 19456 ;
+     a nfo:FileDataObject.
+<data:application/octet-stream;base64,AAABAAAAAAAAAAAA> dcterms:extent "12"^^dt:byte;
+                                                        dcterms:hasFormat <data:image/x-icon;base64,AAABAAAAAAAAAAAA>;
+                                                        a cnt:ContentAsBase64;
+                                                        skos:prefLabel "binary data (12 B)"@en;
+                                                        cnt:bytes "AAABAAAAAAAAAAAA"^^xsd:base64Binary.
+<data:image/x-icon;base64,AAABAAAAAAAAAAAA> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
+                                            a schema:MediaObject,
+                                              schema:ImageObject,
+                                              nfo:Image;
+                                            skos:prefLabel "ICO object (12 B)"@en.
+<file:///MSPublisher98-Sample.pub> at:extensionObject <https://w3id.org/uri4uri/suffix/pub>.
+<file:///Quill/QuillSub> at:pathObject <file:///QuillSub>.
+<file:///Quill/QuillSub/> at:pathObject <file:///QuillSub/>.
+<file:///Quill/QuillSub/%01CompObj> at:pathObject <file:///QuillSub/%01CompObj>.
+<file:///Quill/QuillSub/CONTENTS> at:pathObject <file:///QuillSub/CONTENTS>.
+<file:///QuillSub/%01CompObj> at:pathObject <file:///%01CompObj>.
+<file:///QuillSub/CONTENTS> at:pathObject <file:///CONTENTS>.
+<ni:///mh;1QEQ9aE5LYhe27qJquOQMhfzXQ?ct=application/octet-stream> at:digest <urn:md5:F5A1392D885EDBBA89AAE3903217F35D>;
+                                                                  dcterms:extent "94"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (94 B)"@en.
+<ni:///mh;1QEQMbGZfdmPxKAvjPbl6B7z3Q?ct=application/octet-stream> at:digest <urn:md5:31B1997DD98FC4A02F8CF6E5E81EF3DD>;
+                                                                  dcterms:extent "4356"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (4.25 KiB)"@en.
+<ni:///mh;1QEQQQLBdu-1qgk8oIKuiNPX5w?ct=application/octet-stream> at:digest <urn:md5:4102C176EFB5AA093CA082AE88D3D7E7>;
+                                                                  dcterms:extent "2560"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (2.5 KiB)"@en.
+<ni:///mh;1QEQTickrXIkz2-1bniKhrDgnw?ct=application/octet-stream> at:digest <urn:md5:4E2724AD7224CF6FB56E788A86B0E09F>;
+                                                                  dcterms:extent "86"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (86 B)"@en.
+<ni:///mh;1QEQYqyjBxvWO0VTTE70A6XqKA?ct=text/plain> at:digest <urn:md5:62ACA3071BD63B45534C4EF403A5EA28>;
+                                                    dcterms:extent "8232"^^dt:byte;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (8.04 KiB)"@en;
+                                                    cnt:characterEncoding "x-iso-10646-ucs-4-3412".
+<ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/octet-stream> at:digest <urn:md5:BE788C7CA7E7F3323C540587ADDD9280>;
+                                                                  dcterms:extent "19456"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/x-ole-storage>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (19 KiB)"@en.
+<ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/x-ole-storage> at:pathObject <file:///>;
+                                                                   schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
+                                                                   nie:interpretedAs <ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/x-ole-storage#/>;
+                                                                   nfo:fileLastModified "2020-09-28T23:11:49.870000Z"^^xsd:dateTime;
+                                                                   a schema:MediaObject,
+                                                                     nfo:EmbeddedFileDataObject;
+                                                                   skos:prefLabel "OLE object (19 KiB)"@en.
+<ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+                                                                     a nfo:Folder;
+                                                                     skos:prefLabel "/".
+<ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/x-ole-storage#/%01CompObj> at:pathObject <file:///%01CompObj>;
+                                                                               nie:interpretedAs <ni:///mh;1QEQ9aE5LYhe27qJquOQMhfzXQ?ct=application/octet-stream>;
+                                                                               nfo:belongsToContainer <ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/x-ole-storage#/>;
+                                                                               nfo:fileName """{\"@value\":\"\\u0001CompObj\"}"""^^rdf:JSON;
+                                                                               nfo:fileSize 94 ;
+                                                                               a nfo:FileDataObject,
+                                                                                 nfo:EmbeddedFileDataObject;
+                                                                               skos:prefLabel "/␁CompObj".
+<ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/x-ole-storage#/%03Internal> at:pathObject <file:///%03Internal>;
+                                                                                nie:interpretedAs <data:application/octet-stream;base64,AAABAAAAAAAAAAAA>;
+                                                                                nfo:belongsToContainer <ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/x-ole-storage#/>;
+                                                                                nfo:fileName """{\"@value\":\"\\u0003Internal\"}"""^^rdf:JSON;
+                                                                                nfo:fileSize 12 ;
+                                                                                a nfo:FileDataObject,
+                                                                                  nfo:EmbeddedFileDataObject;
+                                                                                skos:prefLabel "/␃Internal".
+<ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/x-ole-storage#/%05SummaryInformation> at:pathObject <file:///%05SummaryInformation>;
+                                                                                          nie:interpretedAs <ni:///mh;1QEQYqyjBxvWO0VTTE70A6XqKA?ct=text/plain>;
+                                                                                          nfo:belongsToContainer <ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/x-ole-storage#/>;
+                                                                                          nfo:fileName """{\"@value\":\"\\u0005SummaryInformation\"}"""^^rdf:JSON;
+                                                                                          nfo:fileSize 8232 ;
+                                                                                          a nfo:FileDataObject,
+                                                                                            nfo:EmbeddedFileDataObject;
+                                                                                          skos:prefLabel "/␅SummaryInformation".
+<ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/x-ole-storage#/Contents> at:pathObject <file:///Contents>;
+                                                                             nie:interpretedAs <ni:///mh;1QEQMbGZfdmPxKAvjPbl6B7z3Q?ct=application/octet-stream>;
+                                                                             nfo:belongsToContainer <ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/x-ole-storage#/>;
+                                                                             nfo:fileName "Contents";
+                                                                             nfo:fileSize 4356 ;
+                                                                             a nfo:FileDataObject,
+                                                                               nfo:EmbeddedFileDataObject;
+                                                                             skos:prefLabel "/Contents".
+<ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/x-ole-storage#/Objects> at:pathObject <file:///Objects>;
+                                                                            nie:interpretedAs <ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/x-ole-storage#/Objects/>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/x-ole-storage#/>;
+                                                                            nfo:fileCreated "2020-09-28T23:11:36.850000Z"^^xsd:dateTime;
+                                                                            nfo:fileLastModified "2020-09-28T23:11:36.850000Z"^^xsd:dateTime;
+                                                                            nfo:fileName "Objects";
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:EmbeddedFileDataObject;
+                                                                            skos:prefLabel "/Objects".
+<ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/x-ole-storage#/Objects/> at:pathObject <file:///Objects/>;
+                                                                             a nfo:Folder;
+                                                                             skos:prefLabel "/Objects/".
+<ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/x-ole-storage#/Quill> at:pathObject <file:///Quill>;
+                                                                          nie:interpretedAs <ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/x-ole-storage#/Quill/>;
+                                                                          nfo:belongsToContainer <ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/x-ole-storage#/>;
+                                                                          nfo:fileCreated "2020-09-28T23:11:36.850000Z"^^xsd:dateTime;
+                                                                          nfo:fileLastModified "2020-09-28T23:11:36.850000Z"^^xsd:dateTime;
+                                                                          nfo:fileName "Quill";
+                                                                          a nfo:FileDataObject,
+                                                                            nfo:EmbeddedFileDataObject;
+                                                                          skos:prefLabel "/Quill".
+<ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/x-ole-storage#/Quill/> at:pathObject <file:///Quill/>;
+                                                                           a nfo:Folder;
+                                                                           skos:prefLabel "/Quill/".
+<ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/x-ole-storage#/Quill/QuillSub> at:pathObject <file:///Quill/QuillSub>;
+                                                                                   nie:interpretedAs <ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/x-ole-storage#/Quill/QuillSub/>;
+                                                                                   nfo:belongsToContainer <ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/x-ole-storage#/Quill/>;
+                                                                                   nfo:fileCreated "2020-09-28T23:11:36.850000Z"^^xsd:dateTime;
+                                                                                   nfo:fileLastModified "2020-09-28T23:11:36.850000Z"^^xsd:dateTime;
+                                                                                   nfo:fileName "QuillSub";
+                                                                                   a nfo:FileDataObject,
+                                                                                     nfo:EmbeddedFileDataObject;
+                                                                                   skos:prefLabel "/Quill/QuillSub".
+<ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/x-ole-storage#/Quill/QuillSub/> at:pathObject <file:///Quill/QuillSub/>;
+                                                                                    a nfo:Folder;
+                                                                                    skos:prefLabel "/Quill/QuillSub/".
+<ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/x-ole-storage#/Quill/QuillSub/%01CompObj> at:pathObject <file:///Quill/QuillSub/%01CompObj>;
+                                                                                              nie:interpretedAs <ni:///mh;1QEQTickrXIkz2-1bniKhrDgnw?ct=application/octet-stream>;
+                                                                                              nfo:belongsToContainer <ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/x-ole-storage#/Quill/QuillSub/>;
+                                                                                              nfo:fileName """{\"@value\":\"\\u0001CompObj\"}"""^^rdf:JSON;
+                                                                                              nfo:fileSize 86 ;
+                                                                                              a nfo:FileDataObject,
+                                                                                                nfo:EmbeddedFileDataObject;
+                                                                                              skos:prefLabel "/Quill/QuillSub/␁CompObj".
+<ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/x-ole-storage#/Quill/QuillSub/CONTENTS> at:pathObject <file:///Quill/QuillSub/CONTENTS>;
+                                                                                            nie:interpretedAs <ni:///mh;1QEQQQLBdu-1qgk8oIKuiNPX5w?ct=application/octet-stream>;
+                                                                                            nfo:belongsToContainer <ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/x-ole-storage#/Quill/QuillSub/>;
+                                                                                            nfo:fileName "CONTENTS";
+                                                                                            nfo:fileSize 2560 ;
+                                                                                            a nfo:FileDataObject,
+                                                                                              nfo:EmbeddedFileDataObject;
+                                                                                            skos:prefLabel "/Quill/QuillSub/CONTENTS".
+<urn:md5:31B1997DD98FC4A02F8CF6E5E81EF3DD> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "MbGZfdmPxKAvjPbl6B7z3Q=="^^xsd:base64Binary.
+<urn:md5:4102C176EFB5AA093CA082AE88D3D7E7> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "QQLBdu+1qgk8oIKuiNPX5w=="^^xsd:base64Binary.
+<urn:md5:4E2724AD7224CF6FB56E788A86B0E09F> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "TickrXIkz2+1bniKhrDgnw=="^^xsd:base64Binary.
+<urn:md5:62ACA3071BD63B45534C4EF403A5EA28> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "YqyjBxvWO0VTTE70A6XqKA=="^^xsd:base64Binary.
+<urn:md5:BE788C7CA7E7F3323C540587ADDD9280> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "vniMfKfn8zI8VAWHrd2SgA=="^^xsd:base64Binary.
+<urn:md5:F5A1392D885EDBBA89AAE3903217F35D> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "9aE5LYhe27qJquOQMhfzXQ=="^^xsd:base64Binary.

@@ -1,0 +1,62 @@
+@base <ni:///mh;1QEQhTTkrruX6wwlu4o9EPTEoQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///example.7z>;
+     nie:interpretedAs <ni:///mh;1QEQhTTkrruX6wwlu4o9EPTEoQ?ct=application/octet-stream>;
+     nfo:fileName "example.7z";
+     nfo:fileSize 356575 ;
+     a nfo:FileDataObject.
+<file:///example.7z> at:extensionObject <https://w3id.org/uri4uri/suffix/7z>.
+<file:///example.pdf> at:extensionObject <https://w3id.org/uri4uri/suffix/pdf>.
+<ni:///mh;1QEQPT8dQv0A7CskAu7biBYVoA?ct=application/octet-stream> at:digest <urn:md5:3D3F1D42FD00EC2B2402EEDB881615A0>;
+                                                                  dcterms:extent "361308"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQPT8dQv0A7CskAu7biBYVoA?ct=application/pdf>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (352.84 KiB)"@en.
+<ni:///mh;1QEQPT8dQv0A7CskAu7biBYVoA?ct=application/pdf> dcterms:created "2014-09-24T10:29:26.000000Z"^^xsd:dateTime;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/pdf>;
+                                                         a schema:MediaObject,
+                                                           schema:DigitalDocument,
+                                                           nfo:Document;
+                                                         skos:prefLabel "PDF object (352.84 KiB)"@en.
+<ni:///mh;1QEQhTTkrruX6wwlu4o9EPTEoQ?ct=application/octet-stream> at:digest <urn:md5:8534E4AEBB97EB0C25BB8A3D10F4C4A1>;
+                                                                  dcterms:extent "356575"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQhTTkrruX6wwlu4o9EPTEoQ?ct=application/x-7z-compressed>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (348.22 KiB)"@en.
+<ni:///mh;1QEQhTTkrruX6wwlu4o9EPTEoQ?ct=application/x-7z-compressed> at:pathObject <file:///>;
+                                                                     schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-7z-compressed>;
+                                                                     nie:interpretedAs <ni:///mh;1QEQhTTkrruX6wwlu4o9EPTEoQ?ct=application/x-7z-compressed#/>;
+                                                                     a schema:MediaObject,
+                                                                       nfo:Archive;
+                                                                     skos:prefLabel "7Z object (348.22 KiB)"@en.
+<ni:///mh;1QEQhTTkrruX6wwlu4o9EPTEoQ?ct=application/x-7z-compressed#/> at:pathObject <file:///./>;
+                                                                       a nfo:Folder;
+                                                                       skos:prefLabel "/".
+<ni:///mh;1QEQhTTkrruX6wwlu4o9EPTEoQ?ct=application/x-7z-compressed#/example.pdf> at:pathObject <file:///example.pdf>;
+                                                                                  nie:interpretedAs <ni:///mh;1QEQPT8dQv0A7CskAu7biBYVoA?ct=application/octet-stream>;
+                                                                                  nfo:belongsToContainer <ni:///mh;1QEQhTTkrruX6wwlu4o9EPTEoQ?ct=application/x-7z-compressed#/>;
+                                                                                  nfo:fileLastModified "2014-09-24T12:29:28.224875+02:00"^^xsd:dateTime;
+                                                                                  nfo:fileName "example.pdf";
+                                                                                  nfo:fileSize 361308 ;
+                                                                                  a nfo:FileDataObject,
+                                                                                    nfo:ArchiveItem;
+                                                                                  skos:prefLabel "/example.pdf".
+<urn:md5:3D3F1D42FD00EC2B2402EEDB881615A0> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "PT8dQv0A7CskAu7biBYVoA=="^^xsd:base64Binary.
+<urn:md5:8534E4AEBB97EB0C25BB8A3D10F4C4A1> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "hTTkrruX6wwlu4o9EPTEoQ=="^^xsd:base64Binary.

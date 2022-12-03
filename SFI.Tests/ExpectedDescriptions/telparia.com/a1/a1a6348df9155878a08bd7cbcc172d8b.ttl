@@ -1,0 +1,57 @@
+@base <ni:///mh;1QEQk0f1UCPjzYYdtBIFuAn9Vw?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///CCLIB1.EXE>;
+     nie:interpretedAs <ni:///mh;1QEQk0f1UCPjzYYdtBIFuAn9Vw?ct=application/octet-stream>;
+     nfo:fileName "CCLIB1.EXE";
+     nfo:fileSize 4879 ;
+     a nfo:FileDataObject.
+<file:///CCLIB1.EXE> at:extensionObject <https://w3id.org/uri4uri/suffix/exe>.
+<ni:///mh;1QEQ6BTk_lBHt0KktyDYGcd4og?ct=application/octet-stream> at:digest <urn:md5:E814E4FE5047B742A4B720D819C778A2>;
+                                                                  dcterms:extent "7904"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ6BTk_lBHt0KktyDYGcd4og?ct=application/vnd.microsoft.portable-executable>,
+                                                                                    <ni:///mh;1QEQ6BTk_lBHt0KktyDYGcd4og?ct=application/x-msdownload;format=ne>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (7.72 KiB)"@en.
+<ni:///mh;1QEQ6BTk_lBHt0KktyDYGcd4og?ct=application/vnd.microsoft.portable-executable> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
+                                                                                       a schema:MediaObject,
+                                                                                         schema:SoftwareApplication,
+                                                                                         nfo:Executable.
+<ni:///mh;1QEQ6BTk_lBHt0KktyDYGcd4og?ct=application/x-msdownload;format=ne> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-msdownload;format=ne>;
+                                                                            a schema:MediaObject,
+                                                                              schema:SoftwareApplication,
+                                                                              nfo:Executable;
+                                                                            skos:prefLabel "DLL object (7.72 KiB)"@en.
+<ni:///mh;1QEQk0f1UCPjzYYdtBIFuAn9Vw?ct=application/octet-stream> at:digest <urn:md5:9347F55023E3CD861DB41205B809FD57>;
+                                                                  dcterms:extent "4879"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQk0f1UCPjzYYdtBIFuAn9Vw?ct=application/x-ms-compress-szdd>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (4.76 KiB)"@en.
+<ni:///mh;1QEQk0f1UCPjzYYdtBIFuAn9Vw?ct=application/x-ms-compress-szdd> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ms-compress-szdd>;
+                                                                        a schema:MediaObject,
+                                                                          nfo:Archive;
+                                                                        skos:prefLabel "SZ object (4.76 KiB)"@en.
+<ni:///mh;1QEQk0f1UCPjzYYdtBIFuAn9Vw?ct=application/x-ms-compress-szdd#/> nie:interpretedAs <ni:///mh;1QEQ6BTk_lBHt0KktyDYGcd4og?ct=application/octet-stream>;
+                                                                          nfo:belongsToContainer <ni:///mh;1QEQk0f1UCPjzYYdtBIFuAn9Vw?ct=application/x-ms-compress-szdd>;
+                                                                          nfo:fileSize 7904 ;
+                                                                          a nfo:FileDataObject,
+                                                                            nfo:ArchiveItem;
+                                                                          skos:prefLabel "/".
+<urn:md5:9347F55023E3CD861DB41205B809FD57> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "k0f1UCPjzYYdtBIFuAn9Vw=="^^xsd:base64Binary.
+<urn:md5:E814E4FE5047B742A4B720D819C778A2> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "6BTk/lBHt0KktyDYGcd4og=="^^xsd:base64Binary.

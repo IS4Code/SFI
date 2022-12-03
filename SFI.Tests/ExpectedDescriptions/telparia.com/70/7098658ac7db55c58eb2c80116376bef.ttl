@@ -1,0 +1,55 @@
+@base <ni:///mh;1QEQiffunci88BActxFZspEgvQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///Asterix%20El%20Golpe%20del%20Menhir%20%28Spanish%29%283.5DD%29.img.7z>;
+     nie:interpretedAs <ni:///mh;1QEQiffunci88BActxFZspEgvQ?ct=application/octet-stream>;
+     nfo:fileName "Asterix El Golpe del Menhir (Spanish)(3.5DD).img.7z";
+     nfo:fileSize 304495 ;
+     a nfo:FileDataObject.
+<file:///Asterix%20El%20Golpe%20del%20Menhir%20%28Spanish%29%283.5DD%29.img> at:extensionObject <https://w3id.org/uri4uri/suffix/img>.
+<file:///Asterix%20El%20Golpe%20del%20Menhir%20%28Spanish%29%283.5DD%29.img.7z> at:extensionObject <https://w3id.org/uri4uri/suffix/7z>.
+<ni:///mh;1QEQ_Hp1YcaMY2hhBjXGG3G5eA?ct=application/octet-stream> at:digest <urn:md5:FC7A7561C68C6368610635C61B71B978>;
+                                                                  dcterms:extent "737280"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (720 KiB)"@en.
+<ni:///mh;1QEQiffunci88BActxFZspEgvQ?ct=application/octet-stream> at:digest <urn:md5:89F7EE9DC8BCF0101CB71159B29120BD>;
+                                                                  dcterms:extent "304495"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQiffunci88BActxFZspEgvQ?ct=application/x-7z-compressed>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (297.36 KiB)"@en.
+<ni:///mh;1QEQiffunci88BActxFZspEgvQ?ct=application/x-7z-compressed> at:pathObject <file:///>;
+                                                                     schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-7z-compressed>;
+                                                                     nie:interpretedAs <ni:///mh;1QEQiffunci88BActxFZspEgvQ?ct=application/x-7z-compressed#/>;
+                                                                     a schema:MediaObject,
+                                                                       nfo:Archive;
+                                                                     skos:prefLabel "7Z object (297.36 KiB)"@en.
+<ni:///mh;1QEQiffunci88BActxFZspEgvQ?ct=application/x-7z-compressed#/> at:pathObject <file:///./>;
+                                                                       a nfo:Folder;
+                                                                       skos:prefLabel "/".
+<ni:///mh;1QEQiffunci88BActxFZspEgvQ?ct=application/x-7z-compressed#/Asterix%20El%20Golpe%20del%20Menhir%20%28Spanish%29%283.5DD%29.img> at:pathObject <file:///Asterix%20El%20Golpe%20del%20Menhir%20%28Spanish%29%283.5DD%29.img>;
+                                                                                                                                         nie:interpretedAs <ni:///mh;1QEQ_Hp1YcaMY2hhBjXGG3G5eA?ct=application/octet-stream>;
+                                                                                                                                         nfo:belongsToContainer <ni:///mh;1QEQiffunci88BActxFZspEgvQ?ct=application/x-7z-compressed#/>;
+                                                                                                                                         nfo:fileLastModified "2020-04-03T15:00:25.676220+02:00"^^xsd:dateTime;
+                                                                                                                                         nfo:fileName "Asterix El Golpe del Menhir (Spanish)(3.5DD).img";
+                                                                                                                                         nfo:fileSize 737280 ;
+                                                                                                                                         a nfo:FileDataObject,
+                                                                                                                                           nfo:ArchiveItem;
+                                                                                                                                         skos:prefLabel "/Asterix El Golpe del Menhir (Spanish)(3.5DD).img".
+<urn:md5:89F7EE9DC8BCF0101CB71159B29120BD> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "iffunci88BActxFZspEgvQ=="^^xsd:base64Binary.
+<urn:md5:FC7A7561C68C6368610635C61B71B978> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "/Hp1YcaMY2hhBjXGG3G5eA=="^^xsd:base64Binary.

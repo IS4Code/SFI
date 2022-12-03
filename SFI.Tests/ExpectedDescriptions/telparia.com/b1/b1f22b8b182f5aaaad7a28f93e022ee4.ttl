@@ -1,0 +1,33 @@
+@base <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///PICKLE.002>;
+     nie:interpretedAs <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/octet-stream>;
+     nfo:fileName "PICKLE.002";
+     nfo:fileSize 1125025 ;
+     a nfo:FileDataObject.
+<file:///PICKLE.002> at:extensionObject <https://w3id.org/uri4uri/suffix/002>.
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/octet-stream> at:digest <urn:md5:1FA1EF4A6F86E31DC7EE28901E58BF91>;
+                                                                  dcterms:extent "1125025"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.07 MiB)"@en.
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.rar>;
+                                                             a schema:MediaObject,
+                                                               nfo:Archive;
+                                                             skos:prefLabel "RAR object (1.07 MiB)"@en.
+<urn:md5:1FA1EF4A6F86E31DC7EE28901E58BF91> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "H6HvSm+G4x3H7iiQHli/kQ=="^^xsd:base64Binary.

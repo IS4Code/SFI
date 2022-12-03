@@ -1,0 +1,92 @@
+@base <ni:///mh;1QEQ11zISD5fB_gUb0a1jrTLzg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///club.swf>;
+     nie:interpretedAs <ni:///mh;1QEQ11zISD5fB_gUb0a1jrTLzg?ct=application/octet-stream>;
+     nfo:fileName "club.swf";
+     nfo:fileSize 1368621 ;
+     a nfo:FileDataObject.
+<file:///club.swf> at:extensionObject <https://w3id.org/uri4uri/suffix/swf>.
+<ni:///mh;1QEQ11zISD5fB_gUb0a1jrTLzg?ct=application/octet-stream> at:digest <urn:md5:D75CC8483E5F07F8146F46B58EB4CBCE>;
+                                                                  dcterms:extent "1368621"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ11zISD5fB_gUb0a1jrTLzg?ct=application/vnd.adobe.flash-movie>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.31 MiB)"@en.
+<ni:///mh;1QEQ11zISD5fB_gUb0a1jrTLzg?ct=application/vnd.adobe.flash-movie> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.adobe.flash-movie>;
+                                                                           nie:hasPart <ni:///mh;1QEQgmZAuWvzloAFksjZdKwt1Q?ct=application/octet-stream>,
+                                                                                       <ni:///mh;1QEQBG5TxJ4Nbf-BUdtVHWs5UQ?ct=application/octet-stream>,
+                                                                                       <ni:///mh;1QEQjIkL12HGtfDgbFe6ph7Ebw?ct=application/octet-stream>,
+                                                                                       <ni:///mh;1QEQiqKd18Qx0KkO_5Py3PUvXw?ct=application/octet-stream>,
+                                                                                       <ni:///mh;1QEQCcngj53toSea_lhk3NFvYQ?ct=application/octet-stream>;
+                                                                           nfo:frameCount 58 ;
+                                                                           nfo:frameRate "24"^^xsd:float;
+                                                                           nfo:height 800 ;
+                                                                           nfo:width 1018 ;
+                                                                           a schema:MediaObject,
+                                                                             schema:SoftwareApplication,
+                                                                             nfo:Executable,
+                                                                             schema:VideoObject,
+                                                                             nfo:Video;
+                                                                           skos:prefLabel "SWF object (1.31 MiB)"@en.
+<ni:///mh;1QEQBG5TxJ4Nbf-BUdtVHWs5UQ?ct=application/octet-stream> at:digest <urn:md5:046E53C49E0D6DFF8151DB551D6B3951>;
+                                                                  dcterms:extent "77386"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQBG5TxJ4Nbf-BUdtVHWs5UQ?ct=image/jpeg>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (75.57 KiB)"@en.
+<ni:///mh;1QEQBG5TxJ4Nbf-BUdtVHWs5UQ?ct=image/jpeg> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/jpeg>;
+                                                    a schema:MediaObject,
+                                                      schema:ImageObject,
+                                                      nfo:Image;
+                                                    skos:prefLabel "JPG object (75.57 KiB)"@en.
+<ni:///mh;1QEQCcngj53toSea_lhk3NFvYQ?ct=application/octet-stream> at:digest <urn:md5:09C9E08F9DEDA1279AFE5864DCD16F61>;
+                                                                  dcterms:extent "76804"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (75 KiB)"@en.
+<ni:///mh;1QEQgmZAuWvzloAFksjZdKwt1Q?ct=application/octet-stream> at:digest <urn:md5:826640B96BF396800592C8D974AC2DD5>;
+                                                                  dcterms:extent "14348"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (14.01 KiB)"@en.
+<ni:///mh;1QEQiqKd18Qx0KkO_5Py3PUvXw?ct=application/octet-stream> at:digest <urn:md5:8AA29DD7C431D0A90EFF93F2DCF52F5F>;
+                                                                  dcterms:extent "185773"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (181.42 KiB)"@en.
+<ni:///mh;1QEQjIkL12HGtfDgbFe6ph7Ebw?ct=application/octet-stream> at:digest <urn:md5:8C890BD761C6B5F0E06C57BAA61EC46F>;
+                                                                  dcterms:extent "58757"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQjIkL12HGtfDgbFe6ph7Ebw?ct=image/jpeg>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (57.38 KiB)"@en.
+<ni:///mh;1QEQjIkL12HGtfDgbFe6ph7Ebw?ct=image/jpeg> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/jpeg>;
+                                                    a schema:MediaObject,
+                                                      schema:ImageObject,
+                                                      nfo:Image;
+                                                    skos:prefLabel "JPG object (57.38 KiB)"@en.
+<urn:md5:046E53C49E0D6DFF8151DB551D6B3951> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "BG5TxJ4Nbf+BUdtVHWs5UQ=="^^xsd:base64Binary.
+<urn:md5:09C9E08F9DEDA1279AFE5864DCD16F61> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "Ccngj53toSea/lhk3NFvYQ=="^^xsd:base64Binary.
+<urn:md5:826640B96BF396800592C8D974AC2DD5> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "gmZAuWvzloAFksjZdKwt1Q=="^^xsd:base64Binary.
+<urn:md5:8AA29DD7C431D0A90EFF93F2DCF52F5F> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "iqKd18Qx0KkO/5Py3PUvXw=="^^xsd:base64Binary.
+<urn:md5:8C890BD761C6B5F0E06C57BAA61EC46F> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "jIkL12HGtfDgbFe6ph7Ebw=="^^xsd:base64Binary.
+<urn:md5:D75CC8483E5F07F8146F46B58EB4CBCE> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "11zISD5fB/gUb0a1jrTLzg=="^^xsd:base64Binary.

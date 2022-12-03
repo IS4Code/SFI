@@ -1,0 +1,30 @@
+@base <ni:///mh;1QEQvkC5uy4iRvp7JZntvDW5DA?ct=text/plain>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///lidar.fig>;
+     nie:interpretedAs <ni:///mh;1QEQvkC5uy4iRvp7JZntvDW5DA?ct=text/plain>;
+     nfo:fileName "lidar.fig";
+     nfo:fileSize 10413 ;
+     a nfo:FileDataObject.
+<file:///lidar.fig> at:extensionObject <https://w3id.org/uri4uri/suffix/fig>.
+<ni:///mh;1QEQvkC5uy4iRvp7JZntvDW5DA?ct=text/plain> at:digest <urn:md5:BE40B9BB2E2246FA7B2599EDBC35B90C>;
+                                                    dcterms:extent "10413"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQvkC5uy4iRvp7JZntvDW5DA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (10.17 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQvkC5uy4iRvp7JZntvDW5DA?ct=text/plain#line=,1> rdf:value "#FIG 3.2".
+<urn:md5:BE40B9BB2E2246FA7B2599EDBC35B90C> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "vkC5uy4iRvp7JZntvDW5DA=="^^xsd:base64Binary.

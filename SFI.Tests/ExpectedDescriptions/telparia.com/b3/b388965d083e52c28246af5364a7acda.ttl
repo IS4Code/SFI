@@ -1,0 +1,32 @@
+@base <ni:///mh;1QEQlvvITV1Bv-SZW_BYUQpzZQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///artcur6.ani>;
+     nie:interpretedAs <ni:///mh;1QEQlvvITV1Bv-SZW_BYUQpzZQ?ct=application/octet-stream>;
+     nfo:fileName "artcur6.ani";
+     nfo:fileSize 78810 ;
+     a nfo:FileDataObject.
+<file:///artcur6.ani> at:extensionObject <https://w3id.org/uri4uri/suffix/ani>.
+<ni:///mh;1QEQlvvITV1Bv-SZW_BYUQpzZQ?ct=application/octet-stream> at:digest <urn:md5:96FBC84D5D41BFE4995BF058510A7365>;
+                                                                  dcterms:extent "78810"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQlvvITV1Bv-SZW_BYUQpzZQ?ct=application/x-riff>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (76.96 KiB)"@en.
+<ni:///mh;1QEQlvvITV1Bv-SZW_BYUQpzZQ?ct=application/x-riff> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-riff>;
+                                                            a schema:MediaObject;
+                                                            skos:prefLabel "RIFF object (76.96 KiB)"@en.
+<urn:md5:96FBC84D5D41BFE4995BF058510A7365> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "lvvITV1Bv+SZW/BYUQpzZQ=="^^xsd:base64Binary.

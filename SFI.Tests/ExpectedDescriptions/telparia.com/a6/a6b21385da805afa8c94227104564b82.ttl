@@ -1,0 +1,73 @@
+@base <ni:///mh;1QEQumTevR1Sg6GWTVeUPsh_Xg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///ircseq.tar>;
+     nie:interpretedAs <ni:///mh;1QEQumTevR1Sg6GWTVeUPsh_Xg?ct=application/octet-stream>;
+     nfo:fileName "ircseq.tar";
+     nfo:fileSize 20480 ;
+     a nfo:FileDataObject.
+<file:///ircseq.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///ircseq.tar> at:extensionObject <https://w3id.org/uri4uri/suffix/tar>.
+<file:///tcpip.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<ni:///mh;1QEQ_ALT2vh39h2-E0O-EOkUVQ?ct=text/plain> at:digest <urn:md5:FC02D3DAF877F61DBE1343BE10E91455>;
+                                                    dcterms:extent "6291"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQ_ALT2vh39h2-E0O-EOkUVQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (6.14 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQ_ALT2vh39h2-E0O-EOkUVQ?ct=text/plain#line=,1> rdf:value """/*								*/""".
+<ni:///mh;1QEQuFEQZGT-HztuE6RgvhaT2w?ct=text/plain> at:digest <urn:md5:B851106464FE1F3B6E13A460BE1693DB>;
+                                                    dcterms:extent "6553"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQuFEQZGT-HztuE6RgvhaT2w?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (6.4 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQuFEQZGT-HztuE6RgvhaT2w?ct=text/plain#line=,1> rdf:value "#include <stdio.h>".
+<ni:///mh;1QEQumTevR1Sg6GWTVeUPsh_Xg?ct=application/octet-stream> at:digest <urn:md5:BA64DEBD1D5283A1964D57943EC87F5E>;
+                                                                  dcterms:extent "20480"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQumTevR1Sg6GWTVeUPsh_Xg?ct=application/x-tar>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (20 KiB)"@en.
+<ni:///mh;1QEQumTevR1Sg6GWTVeUPsh_Xg?ct=application/x-tar> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-tar>;
+                                                           a schema:MediaObject,
+                                                             nfo:Archive;
+                                                           skos:prefLabel "TAR object (20 KiB)"@en.
+<ni:///mh;1QEQumTevR1Sg6GWTVeUPsh_Xg?ct=application/x-tar#/ircseq.c> at:pathObject <file:///ircseq.c>;
+                                                                     nie:interpretedAs <ni:///mh;1QEQ_ALT2vh39h2-E0O-EOkUVQ?ct=text/plain>;
+                                                                     nfo:belongsToContainer <ni:///mh;1QEQumTevR1Sg6GWTVeUPsh_Xg?ct=application/x-tar>;
+                                                                     nfo:fileLastModified "1996-07-02T12:15:55.000000+02:00"^^xsd:dateTime;
+                                                                     nfo:fileName "ircseq.c";
+                                                                     nfo:fileSize 6291 ;
+                                                                     a nfo:FileDataObject,
+                                                                       nfo:ArchiveItem;
+                                                                     skos:prefLabel "/ircseq.c".
+<ni:///mh;1QEQumTevR1Sg6GWTVeUPsh_Xg?ct=application/x-tar#/tcpip.h> at:pathObject <file:///tcpip.h>;
+                                                                    nie:interpretedAs <ni:///mh;1QEQuFEQZGT-HztuE6RgvhaT2w?ct=text/plain>;
+                                                                    nfo:belongsToContainer <ni:///mh;1QEQumTevR1Sg6GWTVeUPsh_Xg?ct=application/x-tar>;
+                                                                    nfo:fileLastModified "1996-07-02T12:16:05.000000+02:00"^^xsd:dateTime;
+                                                                    nfo:fileName "tcpip.h";
+                                                                    nfo:fileSize 6553 ;
+                                                                    a nfo:FileDataObject,
+                                                                      nfo:ArchiveItem;
+                                                                    skos:prefLabel "/tcpip.h".
+<urn:md5:B851106464FE1F3B6E13A460BE1693DB> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "uFEQZGT+HztuE6RgvhaT2w=="^^xsd:base64Binary.
+<urn:md5:BA64DEBD1D5283A1964D57943EC87F5E> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "umTevR1Sg6GWTVeUPsh/Xg=="^^xsd:base64Binary.
+<urn:md5:FC02D3DAF877F61DBE1343BE10E91455> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "/ALT2vh39h2+E0O+EOkUVQ=="^^xsd:base64Binary.

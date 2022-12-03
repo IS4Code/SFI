@@ -1,0 +1,38 @@
+@base <ni:///mh;1QEQjzVddI7wwSSIR7SXwKhPhA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///main.pdf>;
+     nie:interpretedAs <ni:///mh;1QEQjzVddI7wwSSIR7SXwKhPhA?ct=application/octet-stream>;
+     nfo:fileName "main.pdf";
+     nfo:fileSize 7915191 ;
+     a nfo:FileDataObject.
+<file:///main.pdf> at:extensionObject <https://w3id.org/uri4uri/suffix/pdf>.
+<ni:///mh;1QEQjzVddI7wwSSIR7SXwKhPhA?ct=application/octet-stream> at:digest <urn:md5:8F355D748EF0C1248847B497C0A84F84>;
+                                                                  dcterms:extent "7915191"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQjzVddI7wwSSIR7SXwKhPhA?ct=application/pdf>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (7.55 MiB)"@en.
+<ni:///mh;1QEQjzVddI7wwSSIR7SXwKhPhA?ct=application/pdf> dcterms:created "2001-04-18T02:08:06.000000Z"^^xsd:dateTime;
+                                                         dcterms:creator "Jean Brueggenjohann";
+                                                         dcterms:modified "2001-05-03T03:24:40.000000Z"^^xsd:dateTime;
+                                                         dcterms:title "Diesel Spotter Electronic";
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/pdf>;
+                                                         a schema:MediaObject,
+                                                           schema:DigitalDocument,
+                                                           nfo:Document;
+                                                         skos:prefLabel "PDF object (Diesel Spotter Electronic)"@en.
+<urn:md5:8F355D748EF0C1248847B497C0A84F84> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "jzVddI7wwSSIR7SXwKhPhA=="^^xsd:base64Binary.

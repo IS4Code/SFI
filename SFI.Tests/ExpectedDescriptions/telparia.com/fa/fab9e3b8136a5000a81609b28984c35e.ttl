@@ -1,0 +1,27 @@
+@base <ni:///mh;1QEQF7VN_U5kGop-MQOWlSuopw?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///flight%20of%20bumblebee.mod>;
+     nie:interpretedAs <ni:///mh;1QEQF7VN_U5kGop-MQOWlSuopw?ct=application/octet-stream>;
+     nfo:fileName "flight of bumblebee.mod";
+     nfo:fileSize 106964 ;
+     a nfo:FileDataObject.
+<file:///flight%20of%20bumblebee.mod> at:extensionObject <https://w3id.org/uri4uri/suffix/mod>.
+<ni:///mh;1QEQF7VN_U5kGop-MQOWlSuopw?ct=application/octet-stream> at:digest <urn:md5:17B54DFD4E641A8A7E310396952BA8A7>;
+                                                                  dcterms:extent "106964"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (104.46 KiB)"@en.
+<urn:md5:17B54DFD4E641A8A7E310396952BA8A7> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "F7VN/U5kGop+MQOWlSuopw=="^^xsd:base64Binary.

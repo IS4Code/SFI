@@ -1,0 +1,47 @@
+@base <ni:///mh;1QEQzxbH4i8hMbW6r-zjSBoosQ?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///ISA001.IMJ>;
+     nie:interpretedAs <ni:///mh;1QEQzxbH4i8hMbW6r-zjSBoosQ?ct=application/octet-stream>;
+     nfo:fileName "ISA001.IMJ";
+     nfo:fileSize 47122 ;
+     a nfo:FileDataObject.
+<file:///ISA001.IMJ> at:extensionObject <https://w3id.org/uri4uri/suffix/imj>.
+<ni:///mh;1QEQzxbH4i8hMbW6r-zjSBoosQ?ct=application/octet-stream> at:digest <urn:md5:CF16C7E22F2131B5BAAFECE3481A28B1>;
+                                                                  dcterms:extent "47122"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQzxbH4i8hMbW6r-zjSBoosQ?ct=image/tiff>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (46.02 KiB)"@en.
+<ni:///mh;1QEQzxbH4i8hMbW6r-zjSBoosQ?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
+                                                    nfo:height 480 ;
+                                                    nfo:width 640 ;
+                                                    a schema:MediaObject,
+                                                      exif:IFD,
+                                                      schema:ImageObject,
+                                                      nfo:Image;
+                                                    exif:compression 103 ;
+                                                    exif:imageLength 480 ;
+                                                    exif:imageWidth 640 ;
+                                                    exif:orientation 4 ;
+                                                    exif:photometricInterpretation 6 ;
+                                                    exif:resolutionUnit 1 ;
+                                                    exif:rowsPerStrip 480 ;
+                                                    exif:stripByteCounts 45258 ;
+                                                    exif:stripOffsets 8 ;
+                                                    skos:prefLabel "TIFF object (640×480)"@en.
+<urn:md5:CF16C7E22F2131B5BAAFECE3481A28B1> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "zxbH4i8hMbW6r+zjSBoosQ=="^^xsd:base64Binary.

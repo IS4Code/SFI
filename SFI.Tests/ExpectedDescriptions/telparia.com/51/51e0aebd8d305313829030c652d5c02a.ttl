@@ -1,0 +1,110 @@
+@base <ni:///mh;1QEQrp8n2U5PT228SWZd-yH71w?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///_DSC8834.ARW>;
+     nie:interpretedAs <ni:///mh;1QEQrp8n2U5PT228SWZd-yH71w?ct=application/octet-stream>;
+     nfo:fileName "_DSC8834.ARW";
+     nfo:fileSize 16711680 ;
+     a nfo:FileDataObject.
+<file:///_DSC8834.ARW> at:extensionObject <https://w3id.org/uri4uri/suffix/arw>.
+<ni:///mh;1QEQrp8n2U5PT228SWZd-yH71w?ct=application/octet-stream> at:digest <urn:md5:AE9F27D94E4F4F6DBC49665DFB21FBD7>;
+                                                                  dcterms:extent "16711680"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQrp8n2U5PT228SWZd-yH71w?ct=application/octet-stream#arw>,
+                                                                                    <ni:///mh;1QEQrp8n2U5PT228SWZd-yH71w?ct=image/arw>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (15.94 MiB)"@en.
+<ni:///mh;1QEQrp8n2U5PT228SWZd-yH71w?ct=application/octet-stream#arw> nfo:bitDepth 12 ;
+                                                                      nfo:hasMediaStream <ni:///mh;1QEQrp8n2U5PT228SWZd-yH71w?ct=application/octet-stream#arw/0>,
+                                                                                         <ni:///mh;1QEQrp8n2U5PT228SWZd-yH71w?ct=application/octet-stream#arw/1>;
+                                                                      a schema:MediaObject,
+                                                                        exif:IFD;
+                                                                      exif:bitsPerSample 12 ;
+                                                                      exif:brightnessValue "13347/1280"^^owl:rational;
+                                                                      exif:colorSpace 65535 ;
+                                                                      exif:componentsConfiguration "01020300"^^xsd:hexBinary;
+                                                                      exif:compressedBitsPerPixel 8 ;
+                                                                      exif:compression 6 ,
+                                                                                       32767 ;
+                                                                      exif:contrast 0 ;
+                                                                      exif:customRendered 0 ;
+                                                                      exif:dateTime "2020-04-27T16:08:56.000000"^^xsd:dateTime;
+                                                                      exif:dateTimeDigitized "2020-04-27T16:08:56.000000"^^xsd:dateTime;
+                                                                      exif:dateTimeOriginal "2020-04-27T16:08:56.000000"^^xsd:dateTime;
+                                                                      exif:digitalZoomRatio 1 ;
+                                                                      exif:exifVersion "30323330"^^xsd:hexBinary;
+                                                                      exif:exposureBiasValue 0 ;
+                                                                      exif:exposureMode 0 ;
+                                                                      exif:exposureProgram 4 ;
+                                                                      exif:exposureTime "1/200"^^owl:rational;
+                                                                      exif:fNumber 13 ;
+                                                                      exif:fileSource "03"^^xsd:hexBinary;
+                                                                      exif:flash 16 ;
+                                                                      exif:flashpixVersion "30313030"^^xsd:hexBinary;
+                                                                      exif:focalLength 50 ;
+                                                                      exif:focalLengthIn35mmFilm 75 ;
+                                                                      exif:imageLength 3276 ;
+                                                                      exif:imageWidth 4928 ;
+                                                                      exif:isoSpeedRatings 100 ;
+                                                                      exif:jpegInterchangeFormat 111266 ,
+                                                                                                 37236 ;
+                                                                      exif:jpegInterchangeFormatLength 436671 ,
+                                                                                                       5544 ;
+                                                                      exif:lightSource 0 ;
+                                                                      exif:make "SONY"^^xsd:string;
+                                                                      exif:maxApertureValue "217/128"^^owl:rational;
+                                                                      exif:meteringMode 2 ;
+                                                                      exif:model "SLT-A57"^^xsd:string;
+                                                                      exif:orientation 1 ;
+                                                                      exif:photometricInterpretation 32803 ;
+                                                                      exif:pixelXDimension 4912 ;
+                                                                      exif:pixelYDimension 3264 ;
+                                                                      exif:planarConfiguration 1 ;
+                                                                      exif:resolutionUnit 2 ;
+                                                                      exif:rowsPerStrip 3276 ;
+                                                                      exif:samplesPerPixel 1 ;
+                                                                      exif:saturation 1 ;
+                                                                      exif:sceneCaptureType 0 ;
+                                                                      exif:sceneType "01"^^xsd:hexBinary;
+                                                                      exif:sharpness 2 ;
+                                                                      exif:software "SLT-A57 v1.01"^^xsd:string;
+                                                                      exif:stripByteCounts 16144128 ;
+                                                                      exif:stripOffsets 549376 ;
+                                                                      exif:userComment "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="^^xsd:base64Binary;
+                                                                      exif:whiteBalance 0 ;
+                                                                      exif:xResolution 350 ,
+                                                                                       72 ;
+                                                                      exif:yCbCrPositioning 2 ;
+                                                                      exif:yResolution 350 ,
+                                                                                       72 ;
+                                                                      skos:prefLabel "ARW object (12-bit)"@en.
+<ni:///mh;1QEQrp8n2U5PT228SWZd-yH71w?ct=application/octet-stream#arw/0> nfo:bitDepth 12 ;
+                                                                        nfo:height 3276 ;
+                                                                        nfo:width 4928 ;
+                                                                        a nfo:MediaStream;
+                                                                        skos:prefLabel "0:Exif SubIFD (4928×3276, 12-bit)".
+<ni:///mh;1QEQrp8n2U5PT228SWZd-yH71w?ct=application/octet-stream#arw/1> nfo:height 3264 ;
+                                                                        nfo:width 4912 ;
+                                                                        a nfo:MediaStream;
+                                                                        skos:prefLabel "1:Exif SubIFD (4912×3264)".
+<ni:///mh;1QEQrp8n2U5PT228SWZd-yH71w?ct=image/arw> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/arw>;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "ARW object (15.94 MiB)"@en.
+<urn:md5:AE9F27D94E4F4F6DBC49665DFB21FBD7> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "rp8n2U5PT228SWZd+yH71w=="^^xsd:base64Binary.

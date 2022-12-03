@@ -1,0 +1,27 @@
+@base <ni:///mh;1QEQDbPlhSze5250qx3jxMJOSg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///gqq.olb>;
+     nie:interpretedAs <ni:///mh;1QEQDbPlhSze5250qx3jxMJOSg?ct=application/octet-stream>;
+     nfo:fileName "gqq.olb";
+     nfo:fileSize 301210 ;
+     a nfo:FileDataObject.
+<file:///gqq.olb> at:extensionObject <https://w3id.org/uri4uri/suffix/olb>.
+<ni:///mh;1QEQDbPlhSze5250qx3jxMJOSg?ct=application/octet-stream> at:digest <urn:md5:0DB3E5852CDEE76E74AB1DE3C4C24E4A>;
+                                                                  dcterms:extent "301210"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (294.15 KiB)"@en.
+<urn:md5:0DB3E5852CDEE76E74AB1DE3C4C24E4A> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "DbPlhSze5250qx3jxMJOSg=="^^xsd:base64Binary.

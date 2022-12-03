@@ -1,0 +1,35 @@
+@base <ni:///mh;1QEQpLQz8osOU3xOSB18wxzLpA?ct=application/x.exec.sh>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix schema: <http://schema.org/>.
+
+_:n1 at:pathObject <file:///CONFIG.SH>;
+     nie:interpretedAs <ni:///mh;1QEQpLQz8osOU3xOSB18wxzLpA?ct=text/plain>;
+     nfo:fileName "CONFIG.SH";
+     nfo:fileSize 1127 ;
+     a nfo:FileDataObject.
+<file:///CONFIG.SH> at:extensionObject <https://w3id.org/uri4uri/suffix/sh>.
+<ni:///mh;1QEQpLQz8osOU3xOSB18wxzLpA?ct=application/x.exec.sh> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.exec.sh>;
+                                                               a schema:MediaObject;
+                                                               skos:prefLabel "SH object (1.1 KiB)"@en.
+<ni:///mh;1QEQpLQz8osOU3xOSB18wxzLpA?ct=text/plain> at:digest <urn:md5:A4B433F28B0E537C4E481D7CC31CCBA4>;
+                                                    dcterms:extent "1127"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQpLQz8osOU3xOSB18wxzLpA?ct=application/x.exec.sh>;
+                                                    nie:hasPart <ni:///mh;1QEQpLQz8osOU3xOSB18wxzLpA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.1 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQpLQz8osOU3xOSB18wxzLpA?ct=text/plain#line=,1> rdf:value "#!/bin/sh".
+<urn:md5:A4B433F28B0E537C4E481D7CC31CCBA4> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "pLQz8osOU3xOSB18wxzLpA=="^^xsd:base64Binary.

@@ -1,0 +1,86 @@
+@base <ni:///mh;1QEQ_BB3QM6HVXsS4RKJ_7KVdw?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///General.tif.tif>;
+     nie:interpretedAs <ni:///mh;1QEQ_BB3QM6HVXsS4RKJ_7KVdw?ct=application/octet-stream>;
+     nfo:fileName "General.tif.tif";
+     nfo:fileSize 3929516 ;
+     a nfo:FileDataObject.
+<file:///General.tif.tif> at:extensionObject <https://w3id.org/uri4uri/suffix/tif>.
+<ni:///mh;1QEQ_BB3QM6HVXsS4RKJ_7KVdw?ct=application/octet-stream> at:digest <urn:md5:FC107740CE87557B12E11289FFB29577>;
+                                                                  dcterms:extent "3929516"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ_BB3QM6HVXsS4RKJ_7KVdw?ct=image/tiff>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (3.75 MiB)"@en.
+<ni:///mh;1QEQ_BB3QM6HVXsS4RKJ_7KVdw?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
+                                                    nfo:colorDepth 32 ;
+                                                    nfo:hasMediaStream <ni:///mh;1QEQ_BB3QM6HVXsS4RKJ_7KVdw?ct=image/tiff#/0>,
+                                                                       <ni:///mh;1QEQ_BB3QM6HVXsS4RKJ_7KVdw?ct=image/tiff#/1>;
+                                                    nfo:height 751 ;
+                                                    nfo:horizontalResolution 150 ;
+                                                    nfo:verticalResolution 150 ;
+                                                    nfo:width 1099 ;
+                                                    a schema:MediaObject,
+                                                      exif:IFD,
+                                                      schema:ImageObject,
+                                                      nfo:Image;
+                                                    exif:apertureValue 0 ;
+                                                    exif:brightnessValue 0 ;
+                                                    exif:colorSpace 65535 ;
+                                                    exif:compression 1 ;
+                                                    exif:exifVersion "30323130"^^xsd:hexBinary;
+                                                    exif:exposureBiasValue 0 ;
+                                                    exif:exposureTime 0 ;
+                                                    exif:fNumber 0 ;
+                                                    exif:flash 0 ;
+                                                    exif:flashpixVersion "30313030"^^xsd:hexBinary;
+                                                    exif:focalLength 0 ;
+                                                    exif:imageLength 751 ,
+                                                                     114 ;
+                                                    exif:imageWidth 1099 ,
+                                                                    167 ;
+                                                    exif:makerNote "00"^^xsd:hexBinary;
+                                                    exif:orientation 6 ;
+                                                    exif:photometricInterpretation 5 ,
+                                                                                   2 ;
+                                                    exif:planarConfiguration 1 ;
+                                                    exif:resolutionUnit 2 ;
+                                                    exif:rowsPerStrip 751 ,
+                                                                      114 ;
+                                                    exif:samplesPerPixel 4 ,
+                                                                         3 ;
+                                                    exif:shutterSpeedValue 0 ;
+                                                    exif:stripByteCounts 3301396 ,
+                                                                         57114 ;
+                                                    exif:stripOffsets 628120 ,
+                                                                      571006 ;
+                                                    exif:subjectDistance 0 ;
+                                                    exif:xResolution 150 ;
+                                                    exif:yResolution 150 ;
+                                                    skos:prefLabel "TIFF object (3.75 MiB)"@en,
+                                                                   "TIFF object (1099×751)"@en,
+                                                                   "TIF object (3.75 MiB)"@en.
+<ni:///mh;1QEQ_BB3QM6HVXsS4RKJ_7KVdw?ct=image/tiff#/0> nfo:height 751 ;
+                                                       nfo:width 1099 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "0:Exif IFD0 (1099×751)".
+<ni:///mh;1QEQ_BB3QM6HVXsS4RKJ_7KVdw?ct=image/tiff#/1> nfo:height 114 ;
+                                                       nfo:width 167 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "1:Exif Thumbnail (167×114)".
+<urn:md5:FC107740CE87557B12E11289FFB29577> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "/BB3QM6HVXsS4RKJ/7KVdw=="^^xsd:base64Binary.

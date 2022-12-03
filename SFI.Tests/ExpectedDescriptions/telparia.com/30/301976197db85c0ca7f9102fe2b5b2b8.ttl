@@ -1,0 +1,467 @@
+@base <ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///cablinux-1.0.3.cab>;
+     nie:interpretedAs <ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/octet-stream>;
+     nfo:fileName "cablinux-1.0.3.cab";
+     nfo:fileSize 18619 ;
+     a nfo:FileDataObject.
+<data:,CHECKSUM%20compute_checksum(byte%20*in%2C%20word%20ncbytes%2C%20CHECKSUM%20seed)%3B%0A> dcterms:extent "66"^^dt:byte;
+                                                                                               a cnt:ContentAsText;
+                                                                                               skos:prefLabel "text (66 B)"@en;
+                                                                                               cnt:characterEncoding "us-ascii";
+                                                                                               cnt:chars """CHECKSUM compute_checksum(byte *in, word ncbytes, CHECKSUM seed);
+"""^^xsd:string.
+<file:///cabdata.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///cabdata.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<file:///cabfile.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///cabfile.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<file:///cabfolder.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///cabfolder.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<file:///cabheader.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///cabheader.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<file:///cablinux-1.0.3> at:extensionObject <https://w3id.org/uri4uri/suffix/3>;
+                         at:pathObject <file:///cablinux-1.0.3>.
+<file:///cablinux-1.0.3.cab> at:extensionObject <https://w3id.org/uri4uri/suffix/cab>.
+<file:///cablinux-1.0.3/> at:pathObject <file:///cablinux-1.0.3/>.
+<file:///cablinux-1.0.3/Makefile> at:pathObject <file:///cablinux-1.0.3/Makefile>,
+                                                <file:///Makefile>.
+<file:///cablinux-1.0.3/README> at:pathObject <file:///cablinux-1.0.3/README>,
+                                              <file:///README>.
+<file:///cablinux-1.0.3/cabdata.c> at:pathObject <file:///cablinux-1.0.3/cabdata.c>,
+                                                 <file:///cabdata.c>.
+<file:///cablinux-1.0.3/cabdata.h> at:pathObject <file:///cablinux-1.0.3/cabdata.h>,
+                                                 <file:///cabdata.h>.
+<file:///cablinux-1.0.3/cabfile.c> at:pathObject <file:///cablinux-1.0.3/cabfile.c>,
+                                                 <file:///cabfile.c>.
+<file:///cablinux-1.0.3/cabfile.h> at:pathObject <file:///cablinux-1.0.3/cabfile.h>,
+                                                 <file:///cabfile.h>.
+<file:///cablinux-1.0.3/cabfolder.c> at:pathObject <file:///cablinux-1.0.3/cabfolder.c>,
+                                                   <file:///cabfolder.c>.
+<file:///cablinux-1.0.3/cabfolder.h> at:pathObject <file:///cablinux-1.0.3/cabfolder.h>,
+                                                   <file:///cabfolder.h>.
+<file:///cablinux-1.0.3/cabheader.c> at:pathObject <file:///cablinux-1.0.3/cabheader.c>,
+                                                   <file:///cabheader.c>.
+<file:///cablinux-1.0.3/cabheader.h> at:pathObject <file:///cablinux-1.0.3/cabheader.h>,
+                                                   <file:///cabheader.h>.
+<file:///cablinux-1.0.3/cablinux.c> at:pathObject <file:///cablinux-1.0.3/cablinux.c>,
+                                                  <file:///cablinux.c>.
+<file:///cablinux-1.0.3/cablinux.h> at:pathObject <file:///cablinux-1.0.3/cablinux.h>,
+                                                  <file:///cablinux.h>.
+<file:///cablinux-1.0.3/cabstruct.h> at:pathObject <file:///cablinux-1.0.3/cabstruct.h>,
+                                                   <file:///cabstruct.h>.
+<file:///cablinux-1.0.3/cabtypes.h> at:pathObject <file:///cablinux-1.0.3/cabtypes.h>,
+                                                  <file:///cabtypes.h>.
+<file:///cablinux-1.0.3/cabwrite.c> at:pathObject <file:///cablinux-1.0.3/cabwrite.c>,
+                                                  <file:///cabwrite.c>.
+<file:///cablinux-1.0.3/cabwrite.h> at:pathObject <file:///cablinux-1.0.3/cabwrite.h>,
+                                                  <file:///cabwrite.h>.
+<file:///cablinux-1.0.3/checksum.c> at:pathObject <file:///cablinux-1.0.3/checksum.c>,
+                                                  <file:///checksum.c>.
+<file:///cablinux-1.0.3/checksum.h> at:pathObject <file:///cablinux-1.0.3/checksum.h>,
+                                                  <file:///checksum.h>.
+<file:///cablinux-1.0.3/license> at:pathObject <file:///cablinux-1.0.3/license>,
+                                               <file:///license>.
+<file:///cablinux.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///cablinux.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<file:///cabstruct.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<file:///cabtypes.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<file:///cabwrite.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///cabwrite.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<file:///checksum.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///checksum.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<ni:///mh;1QEQBmT6N4jr5nxIQzD9lnzTgA?ct=text/plain> at:digest <urn:md5:0664FA3788EBE67C484330FD967CD380>;
+                                                    dcterms:extent "2059"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQBmT6N4jr5nxIQzD9lnzTgA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (2.01 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQBmT6N4jr5nxIQzD9lnzTgA?ct=text/plain#line=,1> rdf:value """#include \"cabstruct.h\"""".
+<ni:///mh;1QEQE7DLYRYBua23Z9-lTQdmNg?ct=text/plain> at:digest <urn:md5:13B0CB611601B9ADB767DFA54D076636>;
+                                                    dcterms:extent "624"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQE7DLYRYBua23Z9-lTQdmNg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (624 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQE7DLYRYBua23Z9-lTQdmNg?ct=text/plain#line=,1> rdf:value """#include \"cabtypes.h\"""".
+<ni:///mh;1QEQGsuSq38AR-4IXqmhbridrQ?ct=text/plain> at:digest <urn:md5:1ACB92AB7F0047EE085EA9A16EB89DAD>;
+                                                    dcterms:extent "5692"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQGsuSq38AR-4IXqmhbridrQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (5.56 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQGsuSq38AR-4IXqmhbridrQ?ct=text/plain#line=,1> rdf:value "#include <stdio.h>".
+<ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/octet-stream> at:digest <urn:md5:1E8577748A29F54C3B9D60232C2182FD>;
+                                                                  dcterms:extent "18619"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (18.18 KiB)"@en.
+<ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.ms-cab-compressed>;
+                                                                           a schema:MediaObject,
+                                                                             nfo:Archive;
+                                                                           skos:prefLabel "CAB object (18.18 KiB)"@en.
+<ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/.> at:pathObject <file:///>;
+                                                                              nie:interpretedAs <ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./>;
+                                                                              nfo:belongsToContainer <ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed>;
+                                                                              nfo:fileName ".";
+                                                                              a nfo:FileDataObject,
+                                                                                nfo:ArchiveItem;
+                                                                              skos:prefLabel "/.".
+<ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./> at:pathObject <file:///>;
+                                                                               a nfo:Folder;
+                                                                               skos:prefLabel "/./".
+<ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3> at:pathObject <file:///cablinux-1.0.3>;
+                                                                                             nie:interpretedAs <ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/>;
+                                                                                             nfo:belongsToContainer <ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./>;
+                                                                                             nfo:fileName "cablinux-1.0.3";
+                                                                                             a nfo:FileDataObject,
+                                                                                               nfo:ArchiveItem;
+                                                                                             skos:prefLabel "/./cablinux-1.0.3".
+<ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/> at:pathObject <file:///cablinux-1.0.3/>;
+                                                                                              a nfo:Folder;
+                                                                                              skos:prefLabel "/./cablinux-1.0.3/".
+<ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/Makefile> at:pathObject <file:///cablinux-1.0.3/Makefile>;
+                                                                                                      nie:interpretedAs <ni:///mh;1QEQjMqTgPcgHawDd6Wwn3rtuA?ct=text/plain>;
+                                                                                                      nfo:belongsToContainer <ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/>;
+                                                                                                      nfo:fileLastModified "2001-07-17T04:32:52.000000Z"^^xsd:dateTime;
+                                                                                                      nfo:fileName "Makefile";
+                                                                                                      nfo:fileSize 284 ;
+                                                                                                      a nfo:FileDataObject,
+                                                                                                        nfo:ArchiveItem;
+                                                                                                      skos:prefLabel "/./cablinux-1.0.3/Makefile".
+<ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/README> at:pathObject <file:///cablinux-1.0.3/README>;
+                                                                                                    nie:interpretedAs <ni:///mh;1QEQMdrzGg0688vnTm9p0MpJiw?ct=text/plain>;
+                                                                                                    nfo:belongsToContainer <ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/>;
+                                                                                                    nfo:fileLastModified "0001-01-01T00:00:00.000000"^^xsd:dateTime;
+                                                                                                    nfo:fileName "README";
+                                                                                                    nfo:fileSize 1007 ;
+                                                                                                    a nfo:FileDataObject,
+                                                                                                      nfo:ArchiveItem;
+                                                                                                    skos:prefLabel "/./cablinux-1.0.3/README".
+<ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/cabdata.c> at:pathObject <file:///cablinux-1.0.3/cabdata.c>;
+                                                                                                       nie:interpretedAs <ni:///mh;1QEQOFxubFlvC674SNdV3utInQ?ct=text/plain>;
+                                                                                                       nfo:belongsToContainer <ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/>;
+                                                                                                       nfo:fileLastModified "2001-07-19T11:22:02.000000Z"^^xsd:dateTime;
+                                                                                                       nfo:fileName "cabdata.c";
+                                                                                                       nfo:fileSize 570 ;
+                                                                                                       a nfo:FileDataObject,
+                                                                                                         nfo:ArchiveItem;
+                                                                                                       skos:prefLabel "/./cablinux-1.0.3/cabdata.c".
+<ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/cabdata.h> at:pathObject <file:///cablinux-1.0.3/cabdata.h>;
+                                                                                                       nie:interpretedAs <ni:///mh;1QEQYHzmViRVwcPBCtxCjnuKWQ?ct=text/plain>;
+                                                                                                       nfo:belongsToContainer <ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/>;
+                                                                                                       nfo:fileLastModified "2001-07-17T06:44:08.000000Z"^^xsd:dateTime;
+                                                                                                       nfo:fileName "cabdata.h";
+                                                                                                       nfo:fileSize 215 ;
+                                                                                                       a nfo:FileDataObject,
+                                                                                                         nfo:ArchiveItem;
+                                                                                                       skos:prefLabel "/./cablinux-1.0.3/cabdata.h".
+<ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/cabfile.c> at:pathObject <file:///cablinux-1.0.3/cabfile.c>;
+                                                                                                       nie:interpretedAs <ni:///mh;1QEQBmT6N4jr5nxIQzD9lnzTgA?ct=text/plain>;
+                                                                                                       nfo:belongsToContainer <ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/>;
+                                                                                                       nfo:fileLastModified "0001-01-01T00:00:00.000000"^^xsd:dateTime;
+                                                                                                       nfo:fileName "cabfile.c";
+                                                                                                       nfo:fileSize 2059 ;
+                                                                                                       a nfo:FileDataObject,
+                                                                                                         nfo:ArchiveItem;
+                                                                                                       skos:prefLabel "/./cablinux-1.0.3/cabfile.c".
+<ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/cabfile.h> at:pathObject <file:///cablinux-1.0.3/cabfile.h>;
+                                                                                                       nie:interpretedAs <ni:///mh;1QEQbCaV86Q1ovgBCCO0iRUvAw?ct=text/plain>;
+                                                                                                       nfo:belongsToContainer <ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/>;
+                                                                                                       nfo:fileLastModified "2001-07-17T22:38:48.000000Z"^^xsd:dateTime;
+                                                                                                       nfo:fileName "cabfile.h";
+                                                                                                       nfo:fileSize 186 ;
+                                                                                                       a nfo:FileDataObject,
+                                                                                                         nfo:ArchiveItem;
+                                                                                                       skos:prefLabel "/./cablinux-1.0.3/cabfile.h".
+<ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/cabfolder.c> at:pathObject <file:///cablinux-1.0.3/cabfolder.c>;
+                                                                                                         nie:interpretedAs <ni:///mh;1QEQyuO44iTc2XgbCjlTWSrg7w?ct=text/plain>;
+                                                                                                         nfo:belongsToContainer <ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/>;
+                                                                                                         nfo:fileLastModified "0001-01-01T00:00:00.000000"^^xsd:dateTime;
+                                                                                                         nfo:fileName "cabfolder.c";
+                                                                                                         nfo:fileSize 475 ;
+                                                                                                         a nfo:FileDataObject,
+                                                                                                           nfo:ArchiveItem;
+                                                                                                         skos:prefLabel "/./cablinux-1.0.3/cabfolder.c".
+<ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/cabfolder.h> at:pathObject <file:///cablinux-1.0.3/cabfolder.h>;
+                                                                                                         nie:interpretedAs <ni:///mh;1QEQKB2mMW8KgDFweh0UA7f0Hw?ct=text/plain>;
+                                                                                                         nfo:belongsToContainer <ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/>;
+                                                                                                         nfo:fileLastModified "0001-01-01T00:00:00.000000"^^xsd:dateTime;
+                                                                                                         nfo:fileName "cabfolder.h";
+                                                                                                         nfo:fileSize 184 ;
+                                                                                                         a nfo:FileDataObject,
+                                                                                                           nfo:ArchiveItem;
+                                                                                                         skos:prefLabel "/./cablinux-1.0.3/cabfolder.h".
+<ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/cabheader.c> at:pathObject <file:///cablinux-1.0.3/cabheader.c>;
+                                                                                                         nie:interpretedAs <ni:///mh;1QEQVyaAYijE9yc4fRhUON3SJg?ct=text/plain>;
+                                                                                                         nfo:belongsToContainer <ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/>;
+                                                                                                         nfo:fileLastModified "0001-01-01T00:00:00.000000"^^xsd:dateTime;
+                                                                                                         nfo:fileName "cabheader.c";
+                                                                                                         nfo:fileSize 905 ;
+                                                                                                         a nfo:FileDataObject,
+                                                                                                           nfo:ArchiveItem;
+                                                                                                         skos:prefLabel "/./cablinux-1.0.3/cabheader.c".
+<ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/cabheader.h> at:pathObject <file:///cablinux-1.0.3/cabheader.h>;
+                                                                                                         nie:interpretedAs <ni:///mh;1QEQsitL7kG7PVgzpZVt0W5xHw?ct=text/plain>;
+                                                                                                         nfo:belongsToContainer <ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/>;
+                                                                                                         nfo:fileLastModified "0001-01-01T00:00:00.000000"^^xsd:dateTime;
+                                                                                                         nfo:fileName "cabheader.h";
+                                                                                                         nfo:fileSize 319 ;
+                                                                                                         a nfo:FileDataObject,
+                                                                                                           nfo:ArchiveItem;
+                                                                                                         skos:prefLabel "/./cablinux-1.0.3/cabheader.h".
+<ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/cablinux.c> at:pathObject <file:///cablinux-1.0.3/cablinux.c>;
+                                                                                                        nie:interpretedAs <ni:///mh;1QEQGsuSq38AR-4IXqmhbridrQ?ct=text/plain>;
+                                                                                                        nfo:belongsToContainer <ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/>;
+                                                                                                        nfo:fileLastModified "0001-01-01T00:00:00.000000"^^xsd:dateTime;
+                                                                                                        nfo:fileName "cablinux.c";
+                                                                                                        nfo:fileSize 5692 ;
+                                                                                                        a nfo:FileDataObject,
+                                                                                                          nfo:ArchiveItem;
+                                                                                                        skos:prefLabel "/./cablinux-1.0.3/cablinux.c".
+<ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/cablinux.h> at:pathObject <file:///cablinux-1.0.3/cablinux.h>;
+                                                                                                        nie:interpretedAs <ni:///mh;1QEQrTfWXMi1xkxjdhq9MRDStQ?ct=text/plain>;
+                                                                                                        nfo:belongsToContainer <ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/>;
+                                                                                                        nfo:fileLastModified "0001-01-01T00:00:00.000000"^^xsd:dateTime;
+                                                                                                        nfo:fileName "cablinux.h";
+                                                                                                        nfo:fileSize 242 ;
+                                                                                                        a nfo:FileDataObject,
+                                                                                                          nfo:ArchiveItem;
+                                                                                                        skos:prefLabel "/./cablinux-1.0.3/cablinux.h".
+<ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/cabstruct.h> at:pathObject <file:///cablinux-1.0.3/cabstruct.h>;
+                                                                                                         nie:interpretedAs <ni:///mh;1QEQE7DLYRYBua23Z9-lTQdmNg?ct=text/plain>;
+                                                                                                         nfo:belongsToContainer <ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/>;
+                                                                                                         nfo:fileLastModified "0001-01-01T00:00:00.000000"^^xsd:dateTime;
+                                                                                                         nfo:fileName "cabstruct.h";
+                                                                                                         nfo:fileSize 624 ;
+                                                                                                         a nfo:FileDataObject,
+                                                                                                           nfo:ArchiveItem;
+                                                                                                         skos:prefLabel "/./cablinux-1.0.3/cabstruct.h".
+<ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/cabtypes.h> at:pathObject <file:///cablinux-1.0.3/cabtypes.h>;
+                                                                                                        nie:interpretedAs <ni:///mh;1QEQZBgParq4upT3pr9tsc9CFQ?ct=text/plain>;
+                                                                                                        nfo:belongsToContainer <ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/>;
+                                                                                                        nfo:fileLastModified "0001-01-01T00:00:00.000000"^^xsd:dateTime;
+                                                                                                        nfo:fileName "cabtypes.h";
+                                                                                                        nfo:fileSize 714 ;
+                                                                                                        a nfo:FileDataObject,
+                                                                                                          nfo:ArchiveItem;
+                                                                                                        skos:prefLabel "/./cablinux-1.0.3/cabtypes.h".
+<ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/cabwrite.c> at:pathObject <file:///cablinux-1.0.3/cabwrite.c>;
+                                                                                                        nie:interpretedAs <ni:///mh;1QEQYyTcIEXscilyLcDEXHVCkg?ct=text/plain>;
+                                                                                                        nfo:belongsToContainer <ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/>;
+                                                                                                        nfo:fileLastModified "2001-07-19T18:18:26.000000Z"^^xsd:dateTime;
+                                                                                                        nfo:fileName "cabwrite.c";
+                                                                                                        nfo:fileSize 2964 ;
+                                                                                                        a nfo:FileDataObject,
+                                                                                                          nfo:ArchiveItem;
+                                                                                                        skos:prefLabel "/./cablinux-1.0.3/cabwrite.c".
+<ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/cabwrite.h> at:pathObject <file:///cablinux-1.0.3/cabwrite.h>;
+                                                                                                        nie:interpretedAs <ni:///mh;1QEQtD4aN9drbX1PgAvB6G42iQ?ct=text/plain>;
+                                                                                                        nfo:belongsToContainer <ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/>;
+                                                                                                        nfo:fileLastModified "2001-07-19T07:16:14.000000Z"^^xsd:dateTime;
+                                                                                                        nfo:fileName "cabwrite.h";
+                                                                                                        nfo:fileSize 353 ;
+                                                                                                        a nfo:FileDataObject,
+                                                                                                          nfo:ArchiveItem;
+                                                                                                        skos:prefLabel "/./cablinux-1.0.3/cabwrite.h".
+<ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/checksum.c> at:pathObject <file:///cablinux-1.0.3/checksum.c>;
+                                                                                                        nie:interpretedAs <ni:///mh;1QEQl7IW3-oJcWmPwehFDzN86Q?ct=text/plain>;
+                                                                                                        nfo:belongsToContainer <ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/>;
+                                                                                                        nfo:fileLastModified "2001-07-17T16:47:56.000000Z"^^xsd:dateTime;
+                                                                                                        nfo:fileName "checksum.c";
+                                                                                                        nfo:fileSize 740 ;
+                                                                                                        a nfo:FileDataObject,
+                                                                                                          nfo:ArchiveItem;
+                                                                                                        skos:prefLabel "/./cablinux-1.0.3/checksum.c".
+<ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/checksum.h> at:pathObject <file:///cablinux-1.0.3/checksum.h>;
+                                                                                                        nie:interpretedAs <data:,CHECKSUM%20compute_checksum(byte%20*in%2C%20word%20ncbytes%2C%20CHECKSUM%20seed)%3B%0A>;
+                                                                                                        nfo:belongsToContainer <ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/>;
+                                                                                                        nfo:fileLastModified "0001-01-01T00:00:00.000000"^^xsd:dateTime;
+                                                                                                        nfo:fileName "checksum.h";
+                                                                                                        nfo:fileSize 66 ;
+                                                                                                        a nfo:FileDataObject,
+                                                                                                          nfo:ArchiveItem;
+                                                                                                        skos:prefLabel "/./cablinux-1.0.3/checksum.h".
+<ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/license> at:pathObject <file:///cablinux-1.0.3/license>;
+                                                                                                     nie:interpretedAs <ni:///mh;1QEQkLH76eu8PxQHcQzCp2zUYA?ct=text/plain>;
+                                                                                                     nfo:belongsToContainer <ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/vnd.ms-cab-compressed#/./cablinux-1.0.3/>;
+                                                                                                     nfo:fileLastModified "2002-04-24T19:36:16.000000Z"^^xsd:dateTime;
+                                                                                                     nfo:fileName "license";
+                                                                                                     nfo:fileSize 140 ;
+                                                                                                     a nfo:FileDataObject,
+                                                                                                       nfo:ArchiveItem;
+                                                                                                     skos:prefLabel "/./cablinux-1.0.3/license".
+<ni:///mh;1QEQKB2mMW8KgDFweh0UA7f0Hw?ct=text/plain> at:digest <urn:md5:281DA6316F0A8031707A1D1403B7F41F>;
+                                                    dcterms:extent "184"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQKB2mMW8KgDFweh0UA7f0Hw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (184 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQKB2mMW8KgDFweh0UA7f0Hw?ct=text/plain#line=,1> rdf:value "struct cabfolder cabfolder_init(struct cabfolder cf,".
+<ni:///mh;1QEQMdrzGg0688vnTm9p0MpJiw?ct=text/plain> at:digest <urn:md5:31DAF31A0D3AF3CBE74E6F69D0CA498B>;
+                                                    dcterms:extent "1007"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQMdrzGg0688vnTm9p0MpJiw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (0.98 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQMdrzGg0688vnTm9p0MpJiw?ct=text/plain#line=,1> rdf:value "WHAT:".
+<ni:///mh;1QEQOFxubFlvC674SNdV3utInQ?ct=text/plain> at:digest <urn:md5:385C6E6C596F0BAEF848D755DEEB489D>;
+                                                    dcterms:extent "570"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQOFxubFlvC674SNdV3utInQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (570 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQOFxubFlvC674SNdV3utInQ?ct=text/plain#line=,1> rdf:value """#include \"cabstruct.h\" """.
+<ni:///mh;1QEQVyaAYijE9yc4fRhUON3SJg?ct=text/plain> at:digest <urn:md5:5726806228C4F727387D185438DDD226>;
+                                                    dcterms:extent "905"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQVyaAYijE9yc4fRhUON3SJg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (905 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQVyaAYijE9yc4fRhUON3SJg?ct=text/plain#line=,1> rdf:value """#include \"cabstruct.h\"""".
+<ni:///mh;1QEQYHzmViRVwcPBCtxCjnuKWQ?ct=text/plain> at:digest <urn:md5:607CE6562455C1C3C10ADC428E7B8A59>;
+                                                    dcterms:extent "215"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQYHzmViRVwcPBCtxCjnuKWQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (215 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQYHzmViRVwcPBCtxCjnuKWQ?ct=text/plain#line=,1> rdf:value "struct cabdata cabdata_init(struct cabdata cd,".
+<ni:///mh;1QEQYyTcIEXscilyLcDEXHVCkg?ct=text/plain> at:digest <urn:md5:6324DC2045EC7229722DC0C45C754292>;
+                                                    dcterms:extent "2964"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQYyTcIEXscilyLcDEXHVCkg?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (2.89 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQYyTcIEXscilyLcDEXHVCkg?ct=text/plain#line=,1> rdf:value "#include <stdio.h>".
+<ni:///mh;1QEQZBgParq4upT3pr9tsc9CFQ?ct=text/plain> at:digest <urn:md5:64180F6ABAB8BA94F7A6BF6DB1CF4215>;
+                                                    dcterms:extent "714"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQZBgParq4upT3pr9tsc9CFQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (714 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQZBgParq4upT3pr9tsc9CFQ?ct=text/plain#line=,1> rdf:value "typedef unsigned char byte;".
+<ni:///mh;1QEQbCaV86Q1ovgBCCO0iRUvAw?ct=text/plain> at:digest <urn:md5:6C2695F3A435A2F8010823B489152F03>;
+                                                    dcterms:extent "186"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQbCaV86Q1ovgBCCO0iRUvAw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (186 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQbCaV86Q1ovgBCCO0iRUvAw?ct=text/plain#line=,1> rdf:value "struct cabfile cabfile_init(struct cabfile cf,".
+<ni:///mh;1QEQjMqTgPcgHawDd6Wwn3rtuA?ct=text/plain> at:digest <urn:md5:8CCA9380F7201DAC0377A5B09F7AEDB8>;
+                                                    dcterms:extent "284"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQjMqTgPcgHawDd6Wwn3rtuA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (284 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQjMqTgPcgHawDd6Wwn3rtuA?ct=text/plain#line=,1> rdf:value "# Makefile for cablinux".
+<ni:///mh;1QEQkLH76eu8PxQHcQzCp2zUYA?ct=text/plain> at:digest <urn:md5:90B1FBE9EBBC3F1407710CC2A76CD460>;
+                                                    dcterms:extent "140"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQkLH76eu8PxQHcQzCp2zUYA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (140 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQkLH76eu8PxQHcQzCp2zUYA?ct=text/plain#line=,1> rdf:value "This program is absolutley free! Distribute free, change the source, do ".
+<ni:///mh;1QEQl7IW3-oJcWmPwehFDzN86Q?ct=text/plain> at:digest <urn:md5:97B216DFEA0971698FC1E8450F337CE9>;
+                                                    dcterms:extent "740"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQl7IW3-oJcWmPwehFDzN86Q?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (740 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQl7IW3-oJcWmPwehFDzN86Q?ct=text/plain#line=,1> rdf:value "#include <stdio.h>".
+<ni:///mh;1QEQrTfWXMi1xkxjdhq9MRDStQ?ct=text/plain> at:digest <urn:md5:AD37D65CC8B5C64C63761ABD3110D2B5>;
+                                                    dcterms:extent "242"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQrTfWXMi1xkxjdhq9MRDStQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (242 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQrTfWXMi1xkxjdhq9MRDStQ?ct=text/plain#line=,1> rdf:value "#ifndef __CABLINUX_H__".
+<ni:///mh;1QEQsitL7kG7PVgzpZVt0W5xHw?ct=text/plain> at:digest <urn:md5:B22B4BEE41BB3D5833A5956DD16E711F>;
+                                                    dcterms:extent "319"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQsitL7kG7PVgzpZVt0W5xHw?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (319 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQsitL7kG7PVgzpZVt0W5xHw?ct=text/plain#line=,1> rdf:value "struct cabheader cabheader_init(struct cabheader ch,".
+<ni:///mh;1QEQtD4aN9drbX1PgAvB6G42iQ?ct=text/plain> at:digest <urn:md5:B43E1A37D76B6D7D4F800BC1E86E3689>;
+                                                    dcterms:extent "353"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQtD4aN9drbX1PgAvB6G42iQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (353 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQtD4aN9drbX1PgAvB6G42iQ?ct=text/plain#line=,1> rdf:value "int cabheaderwrite(struct cabheader ch, FILE *fpout);".
+<ni:///mh;1QEQyuO44iTc2XgbCjlTWSrg7w?ct=text/plain> at:digest <urn:md5:CAE3B8E224DCD9781B0A3953592AE0EF>;
+                                                    dcterms:extent "475"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQyuO44iTc2XgbCjlTWSrg7w?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (475 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQyuO44iTc2XgbCjlTWSrg7w?ct=text/plain#line=,1> rdf:value """#include \"cabstruct.h\"""".
+<urn:md5:0664FA3788EBE67C484330FD967CD380> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "BmT6N4jr5nxIQzD9lnzTgA=="^^xsd:base64Binary.
+<urn:md5:13B0CB611601B9ADB767DFA54D076636> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "E7DLYRYBua23Z9+lTQdmNg=="^^xsd:base64Binary.
+<urn:md5:1ACB92AB7F0047EE085EA9A16EB89DAD> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "GsuSq38AR+4IXqmhbridrQ=="^^xsd:base64Binary.
+<urn:md5:1E8577748A29F54C3B9D60232C2182FD> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "HoV3dIop9Uw7nWAjLCGC/Q=="^^xsd:base64Binary.
+<urn:md5:281DA6316F0A8031707A1D1403B7F41F> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "KB2mMW8KgDFweh0UA7f0Hw=="^^xsd:base64Binary.
+<urn:md5:31DAF31A0D3AF3CBE74E6F69D0CA498B> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "MdrzGg0688vnTm9p0MpJiw=="^^xsd:base64Binary.
+<urn:md5:385C6E6C596F0BAEF848D755DEEB489D> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "OFxubFlvC674SNdV3utInQ=="^^xsd:base64Binary.
+<urn:md5:5726806228C4F727387D185438DDD226> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "VyaAYijE9yc4fRhUON3SJg=="^^xsd:base64Binary.
+<urn:md5:607CE6562455C1C3C10ADC428E7B8A59> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "YHzmViRVwcPBCtxCjnuKWQ=="^^xsd:base64Binary.
+<urn:md5:6324DC2045EC7229722DC0C45C754292> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "YyTcIEXscilyLcDEXHVCkg=="^^xsd:base64Binary.
+<urn:md5:64180F6ABAB8BA94F7A6BF6DB1CF4215> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "ZBgParq4upT3pr9tsc9CFQ=="^^xsd:base64Binary.
+<urn:md5:6C2695F3A435A2F8010823B489152F03> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "bCaV86Q1ovgBCCO0iRUvAw=="^^xsd:base64Binary.
+<urn:md5:8CCA9380F7201DAC0377A5B09F7AEDB8> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "jMqTgPcgHawDd6Wwn3rtuA=="^^xsd:base64Binary.
+<urn:md5:90B1FBE9EBBC3F1407710CC2A76CD460> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "kLH76eu8PxQHcQzCp2zUYA=="^^xsd:base64Binary.
+<urn:md5:97B216DFEA0971698FC1E8450F337CE9> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "l7IW3+oJcWmPwehFDzN86Q=="^^xsd:base64Binary.
+<urn:md5:AD37D65CC8B5C64C63761ABD3110D2B5> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "rTfWXMi1xkxjdhq9MRDStQ=="^^xsd:base64Binary.
+<urn:md5:B22B4BEE41BB3D5833A5956DD16E711F> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "sitL7kG7PVgzpZVt0W5xHw=="^^xsd:base64Binary.
+<urn:md5:B43E1A37D76B6D7D4F800BC1E86E3689> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "tD4aN9drbX1PgAvB6G42iQ=="^^xsd:base64Binary.
+<urn:md5:CAE3B8E224DCD9781B0A3953592AE0EF> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "yuO44iTc2XgbCjlTWSrg7w=="^^xsd:base64Binary.

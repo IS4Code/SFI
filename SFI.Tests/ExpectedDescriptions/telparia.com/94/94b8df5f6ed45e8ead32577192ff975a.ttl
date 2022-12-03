@@ -1,0 +1,44 @@
+@base <ni:///mh;1QEQAs9mM7e-9D6nzBS60kNqHg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///ColorPubOpen.psd>;
+     nie:interpretedAs <ni:///mh;1QEQAs9mM7e-9D6nzBS60kNqHg?ct=application/octet-stream>;
+     nfo:fileName "ColorPubOpen.psd";
+     nfo:fileSize 3010229 ;
+     a nfo:FileDataObject.
+<file:///ColorPubOpen.psd> at:extensionObject <https://w3id.org/uri4uri/suffix/psd>.
+<ni:///mh;1QEQAs9mM7e-9D6nzBS60kNqHg?ct=application/octet-stream> at:digest <urn:md5:02CF6633B7BEF43EA7CC14BAD2436A1E>;
+                                                                  dcterms:extent "3010229"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQAs9mM7e-9D6nzBS60kNqHg?ct=image/vnd.adobe.photoshop>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (2.87 MiB)"@en.
+<ni:///mh;1QEQAs9mM7e-9D6nzBS60kNqHg?ct=image/vnd.adobe.photoshop> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/vnd.adobe.photoshop>;
+                                                                   nfo:hasMediaStream <ni:///mh;1QEQAs9mM7e-9D6nzBS60kNqHg?ct=image/vnd.adobe.photoshop#/0>,
+                                                                                      <ni:///mh;1QEQAs9mM7e-9D6nzBS60kNqHg?ct=image/vnd.adobe.photoshop#/1>;
+                                                                   nfo:height 408 ;
+                                                                   nfo:width 619 ;
+                                                                   a schema:MediaObject,
+                                                                     schema:ImageObject,
+                                                                     nfo:Image;
+                                                                   skos:prefLabel "PSD object (619×408)"@en.
+<ni:///mh;1QEQAs9mM7e-9D6nzBS60kNqHg?ct=image/vnd.adobe.photoshop#/0> nfo:height 408 ;
+                                                                      nfo:width 619 ;
+                                                                      a nfo:MediaStream;
+                                                                      skos:prefLabel "0:PSD Header (619×408)".
+<ni:///mh;1QEQAs9mM7e-9D6nzBS60kNqHg?ct=image/vnd.adobe.photoshop#/1> a nfo:MediaStream;
+                                                                      skos:prefLabel "1:Photoshop".
+<urn:md5:02CF6633B7BEF43EA7CC14BAD2436A1E> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "As9mM7e+9D6nzBS60kNqHg=="^^xsd:base64Binary.

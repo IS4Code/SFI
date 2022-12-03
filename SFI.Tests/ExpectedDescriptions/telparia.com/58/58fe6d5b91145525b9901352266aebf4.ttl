@@ -1,0 +1,56 @@
+@base <ni:///mh;1QEQ4zMn4BL4SLU4ES8yY3frng?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///06mwal00.avi>;
+     nie:interpretedAs <ni:///mh;1QEQ4zMn4BL4SLU4ES8yY3frng?ct=application/octet-stream>;
+     nfo:fileName "06mwal00.avi";
+     nfo:fileSize 167720 ;
+     a nfo:FileDataObject.
+<file:///06mwal00.avi> at:extensionObject <https://w3id.org/uri4uri/suffix/avi>.
+<ni:///mh;1QEQ4zMn4BL4SLU4ES8yY3frng?ct=application/octet-stream> at:digest <urn:md5:E33327E012F848B538112F326377EB9E>;
+                                                                  dcterms:extent "167720"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ4zMn4BL4SLU4ES8yY3frng?ct=video/vnd.avi>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (163.79 KiB)"@en.
+<ni:///mh;1QEQ4zMn4BL4SLU4ES8yY3frng?ct=video/vnd.avi> schema:encodingFormat <https://w3id.org/uri4uri/mime/video/vnd.avi>;
+                                                       nfo:bitsPerSample 8 ;
+                                                       nfo:channels 1 ;
+                                                       nfo:duration "PT5S"^^xsd:duration,
+                                                                    "PT4.66662S"^^xsd:duration;
+                                                       nfo:hasMediaStream <ni:///mh;1QEQ4zMn4BL4SLU4ES8yY3frng?ct=video/vnd.avi#/Video/0>,
+                                                                          <ni:///mh;1QEQ4zMn4BL4SLU4ES8yY3frng?ct=video/vnd.avi#/Audio/0>;
+                                                       nfo:height 150 ;
+                                                       nfo:sampleRate "22050"^^dt:hertz;
+                                                       nfo:width 133 ;
+                                                       a schema:MediaObject,
+                                                         schema:VideoObject,
+                                                         nfo:Video;
+                                                       skos:prefLabel "AVI object (133×150)"@en.
+<ni:///mh;1QEQ4zMn4BL4SLU4ES8yY3frng?ct=video/vnd.avi#/Audio/0> nfo:averageBitrate "176"^^dt:kilobitPerSecond;
+                                                                nfo:bitsPerSample 8 ;
+                                                                nfo:channels 1 ;
+                                                                nfo:compressionType nfo:losslessCompressionType;
+                                                                nfo:sampleRate "22050"^^dt:hertz;
+                                                                a nfo:Audio,
+                                                                  nfo:MediaStream;
+                                                                skos:prefLabel "0:Audio (22050 Hz, 1 channel)".
+<ni:///mh;1QEQ4zMn4BL4SLU4ES8yY3frng?ct=video/vnd.avi#/Video/0> nfo:height 150 ;
+                                                                nfo:width 133 ;
+                                                                a nfo:Video,
+                                                                  nfo:MediaStream;
+                                                                skos:prefLabel "0:Video (133×150)".
+<urn:md5:E33327E012F848B538112F326377EB9E> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "4zMn4BL4SLU4ES8yY3frng=="^^xsd:base64Binary.

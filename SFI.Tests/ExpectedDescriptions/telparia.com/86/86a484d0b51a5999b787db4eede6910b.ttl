@@ -1,0 +1,44 @@
+@base <ni:///mh;1QEQf3mZ1W9L8nByI-Y2FebFvw?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///sample1.heic>;
+     nie:interpretedAs <ni:///mh;1QEQf3mZ1W9L8nByI-Y2FebFvw?ct=application/octet-stream>;
+     nfo:fileName "sample1.heic";
+     nfo:fileSize 293608 ;
+     a nfo:FileDataObject.
+<file:///sample1.heic> at:extensionObject <https://w3id.org/uri4uri/suffix/heic>.
+<ni:///mh;1QEQf3mZ1W9L8nByI-Y2FebFvw?ct=application/octet-stream> at:digest <urn:md5:7F7999D56F4BF2707223E63615E6C5BF>;
+                                                                  dcterms:extent "293608"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQf3mZ1W9L8nByI-Y2FebFvw?ct=image/heic>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (286.73 KiB)"@en.
+<ni:///mh;1QEQf3mZ1W9L8nByI-Y2FebFvw?ct=image/heic> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/heic>;
+                                                    nfo:hasMediaStream <ni:///mh;1QEQf3mZ1W9L8nByI-Y2FebFvw?ct=image/heic#/0>,
+                                                                       <ni:///mh;1QEQf3mZ1W9L8nByI-Y2FebFvw?ct=image/heic#/1>;
+                                                    a schema:MediaObject,
+                                                      schema:ImageObject,
+                                                      nfo:Image;
+                                                    skos:prefLabel "HEIC object (286.73 KiB)"@en.
+<ni:///mh;1QEQf3mZ1W9L8nByI-Y2FebFvw?ct=image/heic#/0> nfo:height 960 ;
+                                                       nfo:width 1440 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "0:HEIC Primary Item Properties (1440×960)".
+<ni:///mh;1QEQf3mZ1W9L8nByI-Y2FebFvw?ct=image/heic#/1> nfo:height 160 ;
+                                                       nfo:width 240 ;
+                                                       a nfo:MediaStream;
+                                                       skos:prefLabel "1:HEIC Thumbnail Properties (240×160)".
+<urn:md5:7F7999D56F4BF2707223E63615E6C5BF> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "f3mZ1W9L8nByI+Y2FebFvw=="^^xsd:base64Binary.

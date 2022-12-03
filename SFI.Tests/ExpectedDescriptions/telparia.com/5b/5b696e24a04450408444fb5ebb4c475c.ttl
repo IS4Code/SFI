@@ -1,0 +1,27 @@
+@base <ni:///mh;1QEQG0S_DBZPhNG0gqK6T3j53Q?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///accounts.wdb>;
+     nie:interpretedAs <ni:///mh;1QEQG0S_DBZPhNG0gqK6T3j53Q?ct=application/octet-stream>;
+     nfo:fileName "accounts.wdb";
+     nfo:fileSize 4312 ;
+     a nfo:FileDataObject.
+<file:///accounts.wdb> at:extensionObject <https://w3id.org/uri4uri/suffix/wdb>.
+<ni:///mh;1QEQG0S_DBZPhNG0gqK6T3j53Q?ct=application/octet-stream> at:digest <urn:md5:1B44BF0C164F84D1B482A2BA4F78F9DD>;
+                                                                  dcterms:extent "4312"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (4.21 KiB)"@en.
+<urn:md5:1B44BF0C164F84D1B482A2BA4F78F9DD> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "G0S/DBZPhNG0gqK6T3j53Q=="^^xsd:base64Binary.

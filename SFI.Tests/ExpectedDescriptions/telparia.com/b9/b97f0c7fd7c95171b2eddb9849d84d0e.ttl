@@ -1,0 +1,29 @@
+@base <ni:///mh;1QEQFsGibrSgdNT93BzZTNxdpQ?ct=text/plain>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///VEREMPL1>;
+     nie:interpretedAs <ni:///mh;1QEQFsGibrSgdNT93BzZTNxdpQ?ct=text/plain>;
+     nfo:fileName "VEREMPL1";
+     nfo:fileSize 1140 ;
+     a nfo:FileDataObject.
+<ni:///mh;1QEQFsGibrSgdNT93BzZTNxdpQ?ct=text/plain> at:digest <urn:md5:16C1A26EB4A074D4FDDC1CD94CDC5DA5>;
+                                                    dcterms:extent "1140"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQFsGibrSgdNT93BzZTNxdpQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (1.11 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQFsGibrSgdNT93BzZTNxdpQ?ct=text/plain#line=,1> rdf:value "".
+<urn:md5:16C1A26EB4A074D4FDDC1CD94CDC5DA5> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "FsGibrSgdNT93BzZTNxdpQ=="^^xsd:base64Binary.

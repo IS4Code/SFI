@@ -1,0 +1,39 @@
+@base <ni:///mh;1QEQ_z2FvoTcjWrX56eS8BfI-A?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///CHORD1.WV>;
+     nie:interpretedAs <ni:///mh;1QEQ_z2FvoTcjWrX56eS8BfI-A?ct=application/octet-stream>;
+     nfo:fileName "CHORD1.WV";
+     nfo:fileSize 20164 ;
+     a nfo:FileDataObject.
+<file:///CHORD1.WV> at:extensionObject <https://w3id.org/uri4uri/suffix/wv>.
+<ni:///mh;1QEQ_z2FvoTcjWrX56eS8BfI-A?ct=application/octet-stream> at:digest <urn:md5:FF3D85BE84DC8D6AD7E7A792F017C8F8>;
+                                                                  dcterms:extent "20164"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ_z2FvoTcjWrX56eS8BfI-A?ct=audio/vnd.wave>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (19.69 KiB)"@en.
+<ni:///mh;1QEQ_z2FvoTcjWrX56eS8BfI-A?ct=audio/vnd.wave> schema:encodingFormat <https://w3id.org/uri4uri/mime/audio/vnd.wave>;
+                                                        nfo:bitsPerSample 8 ;
+                                                        nfo:channels 1 ;
+                                                        nfo:duration "PT1.8234013S"^^xsd:duration;
+                                                        nfo:sampleRate "11025"^^dt:hertz;
+                                                        a schema:MediaObject,
+                                                          schema:AudioObject,
+                                                          nfo:Audio;
+                                                        skos:prefLabel "WAV object (19.69 KiB)"@en,
+                                                                       "WAV object (8-bit, 11025 Hz, 1 channel)"@en.
+<urn:md5:FF3D85BE84DC8D6AD7E7A792F017C8F8> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "/z2FvoTcjWrX56eS8BfI+A=="^^xsd:base64Binary.

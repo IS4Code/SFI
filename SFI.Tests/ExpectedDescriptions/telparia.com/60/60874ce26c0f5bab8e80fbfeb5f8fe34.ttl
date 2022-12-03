@@ -1,0 +1,27 @@
+@base <ni:///mh;1QEQFmo2K9Xe6H52_G3qPd3GUg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///SpaceLobsters_Atari_RichardMunns.gr7>;
+     nie:interpretedAs <ni:///mh;1QEQFmo2K9Xe6H52_G3qPd3GUg?ct=application/octet-stream>;
+     nfo:fileName "SpaceLobsters_Atari_RichardMunns.gr7";
+     nfo:fileSize 3844 ;
+     a nfo:FileDataObject.
+<file:///SpaceLobsters_Atari_RichardMunns.gr7> at:extensionObject <https://w3id.org/uri4uri/suffix/gr7>.
+<ni:///mh;1QEQFmo2K9Xe6H52_G3qPd3GUg?ct=application/octet-stream> at:digest <urn:md5:166A362BD5DEE87E76FC6DEA3DDDC652>;
+                                                                  dcterms:extent "3844"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (3.75 KiB)"@en.
+<urn:md5:166A362BD5DEE87E76FC6DEA3DDDC652> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "Fmo2K9Xe6H52/G3qPd3GUg=="^^xsd:base64Binary.

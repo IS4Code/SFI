@@ -1,0 +1,71 @@
+@base <ni:///mh;1QEQxBg4skEmV3eycCOYjS3p-Q?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///CDXATOOL_5.RAR>;
+     nie:interpretedAs <ni:///mh;1QEQxBg4skEmV3eycCOYjS3p-Q?ct=application/octet-stream>;
+     nfo:fileName "CDXATOOL_5.RAR";
+     nfo:fileSize 11157 ;
+     a nfo:FileDataObject.
+<file:///CDXA.EXE> at:extensionObject <https://w3id.org/uri4uri/suffix/exe>.
+<file:///CDXAFIND.EXE> at:extensionObject <https://w3id.org/uri4uri/suffix/exe>.
+<file:///CDXATOOL.TXT> at:extensionObject <https://w3id.org/uri4uri/suffix/txt>.
+<file:///CDXATOOL_5.RAR> at:extensionObject <https://w3id.org/uri4uri/suffix/rar>.
+<ni:///mh;1QEQaymwsH5ytlMmDFge8UfwYQ?ct=text/plain> at:digest <urn:md5:6B29B0B07E72B653260C581EF147F061>;
+                                                    dcterms:extent "3967"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQaymwsH5ytlMmDFge8UfwYQ?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (3.87 KiB)"@en;
+                                                    cnt:characterEncoding "shift_jis".
+<ni:///mh;1QEQaymwsH5ytlMmDFge8UfwYQ?ct=text/plain#line=,1> rdf:value "".
+<ni:///mh;1QEQxBg4skEmV3eycCOYjS3p-Q?ct=application/octet-stream> at:digest <urn:md5:C41838B241265777B27023988D2DE9F9>;
+                                                                  dcterms:extent "11157"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQxBg4skEmV3eycCOYjS3p-Q?ct=application/vnd.rar>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (10.9 KiB)"@en.
+<ni:///mh;1QEQxBg4skEmV3eycCOYjS3p-Q?ct=application/vnd.rar> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.rar>;
+                                                             a schema:MediaObject,
+                                                               nfo:Archive;
+                                                             skos:prefLabel "RAR object (10.9 KiB)"@en.
+<ni:///mh;1QEQxBg4skEmV3eycCOYjS3p-Q?ct=application/vnd.rar#/CDXA.EXE> at:pathObject <file:///CDXA.EXE>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQxBg4skEmV3eycCOYjS3p-Q?ct=application/vnd.rar>;
+                                                                       nfo:fileLastModified "1997-02-03T02:53:22.000000+01:00"^^xsd:dateTime;
+                                                                       nfo:fileName "CDXA.EXE";
+                                                                       nfo:fileSize 11748 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/CDXA.EXE".
+<ni:///mh;1QEQxBg4skEmV3eycCOYjS3p-Q?ct=application/vnd.rar#/CDXAFIND.EXE> at:pathObject <file:///CDXAFIND.EXE>;
+                                                                           nfo:belongsToContainer <ni:///mh;1QEQxBg4skEmV3eycCOYjS3p-Q?ct=application/vnd.rar>;
+                                                                           nfo:fileLastModified "1997-02-03T02:56:12.000000+01:00"^^xsd:dateTime;
+                                                                           nfo:fileName "CDXAFIND.EXE";
+                                                                           nfo:fileSize 12674 ;
+                                                                           a nfo:FileDataObject,
+                                                                             nfo:ArchiveItem;
+                                                                           skos:prefLabel "/CDXAFIND.EXE".
+<ni:///mh;1QEQxBg4skEmV3eycCOYjS3p-Q?ct=application/vnd.rar#/CDXATOOL.TXT> at:pathObject <file:///CDXATOOL.TXT>;
+                                                                           nie:interpretedAs <ni:///mh;1QEQaymwsH5ytlMmDFge8UfwYQ?ct=text/plain>;
+                                                                           nfo:belongsToContainer <ni:///mh;1QEQxBg4skEmV3eycCOYjS3p-Q?ct=application/vnd.rar>;
+                                                                           nfo:fileLastModified "1997-02-11T01:28:48.000000+01:00"^^xsd:dateTime;
+                                                                           nfo:fileName "CDXATOOL.TXT";
+                                                                           nfo:fileSize 3967 ;
+                                                                           a nfo:FileDataObject,
+                                                                             nfo:ArchiveItem;
+                                                                           skos:prefLabel "/CDXATOOL.TXT".
+<urn:md5:6B29B0B07E72B653260C581EF147F061> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "aymwsH5ytlMmDFge8UfwYQ=="^^xsd:base64Binary.
+<urn:md5:C41838B241265777B27023988D2DE9F9> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "xBg4skEmV3eycCOYjS3p+Q=="^^xsd:base64Binary.

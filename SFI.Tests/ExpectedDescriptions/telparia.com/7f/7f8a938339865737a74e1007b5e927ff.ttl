@@ -1,0 +1,48 @@
+@base <ni:///mh;1QEQj6cbzxQkAi8MVXG6a6OHtg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///dagobah_badger.swf>;
+     nie:interpretedAs <ni:///mh;1QEQj6cbzxQkAi8MVXG6a6OHtg?ct=application/octet-stream>;
+     nfo:fileName "dagobah_badger.swf";
+     nfo:fileSize 446146 ;
+     a nfo:FileDataObject.
+<file:///dagobah_badger.swf> at:extensionObject <https://w3id.org/uri4uri/suffix/swf>.
+<ni:///mh;1QEQWUh1sWgoNJVl2LwMRVGn5g?ct=application/octet-stream> at:digest <urn:md5:594875B16828349565D8BC0C4551A7E6>;
+                                                                  dcterms:extent "287250"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (280.52 KiB)"@en.
+<ni:///mh;1QEQj6cbzxQkAi8MVXG6a6OHtg?ct=application/octet-stream> at:digest <urn:md5:8FA71BCF1424022F0C5571BA6BA387B6>;
+                                                                  dcterms:extent "446146"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQj6cbzxQkAi8MVXG6a6OHtg?ct=application/vnd.adobe.flash-movie>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (435.69 KiB)"@en.
+<ni:///mh;1QEQj6cbzxQkAi8MVXG6a6OHtg?ct=application/vnd.adobe.flash-movie> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.adobe.flash-movie>;
+                                                                           nie:hasPart <ni:///mh;1QEQWUh1sWgoNJVl2LwMRVGn5g?ct=application/octet-stream>;
+                                                                           nfo:frameCount 904 ;
+                                                                           nfo:frameRate "25"^^xsd:float;
+                                                                           nfo:height 400 ;
+                                                                           nfo:width 550 ;
+                                                                           a schema:MediaObject,
+                                                                             schema:SoftwareApplication,
+                                                                             nfo:Executable,
+                                                                             schema:VideoObject,
+                                                                             nfo:Video;
+                                                                           skos:prefLabel "SWF object (435.69 KiB)"@en.
+<urn:md5:594875B16828349565D8BC0C4551A7E6> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "WUh1sWgoNJVl2LwMRVGn5g=="^^xsd:base64Binary.
+<urn:md5:8FA71BCF1424022F0C5571BA6BA387B6> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "j6cbzxQkAi8MVXG6a6OHtg=="^^xsd:base64Binary.

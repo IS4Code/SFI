@@ -1,0 +1,48 @@
+@base <ni:///mh;1QEQ5yXvDhCIj9Qw0L5NdxnM8w?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix nid3: <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///example.wav>;
+     nie:interpretedAs <ni:///mh;1QEQ5yXvDhCIj9Qw0L5NdxnM8w?ct=application/octet-stream>;
+     nfo:fileName "example.wav";
+     nfo:fileSize 6357900 ;
+     a nfo:FileDataObject.
+<file:///example.wav> at:extensionObject <https://w3id.org/uri4uri/suffix/wav>.
+<ni:///mh;1QEQ5yXvDhCIj9Qw0L5NdxnM8w?ct=application/octet-stream> at:digest <urn:md5:E725EF0E10888FD430D0BE4D7719CCF3>;
+                                                                  dcterms:extent "6357900"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ5yXvDhCIj9Qw0L5NdxnM8w?ct=audio/vnd.wave>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (6.06 MiB)"@en.
+<ni:///mh;1QEQ5yXvDhCIj9Qw0L5NdxnM8w?ct=audio/vnd.wave> schema:encodingFormat <https://w3id.org/uri4uri/mime/audio/vnd.wave>;
+                                                        nfo:averageBitrate "1411"^^dt:kilobitPerSecond;
+                                                        nfo:bitsPerSample 16 ;
+                                                        nfo:channels 2 ;
+                                                        nfo:compressionType nfo:losslessCompressionType;
+                                                        nfo:duration "PT36.0412471S"^^xsd:duration;
+                                                        nfo:sampleRate "44100"^^dt:hertz;
+                                                        nid3:albumTitle "Example Files";
+                                                        nid3:backgroundArtist "Online-Convert.com";
+                                                        nid3:leadArtist "Online-Convert.com";
+                                                        nid3:title "WAV Test File";
+                                                        a schema:MediaObject,
+                                                          nfo:Audio,
+                                                          schema:AudioObject,
+                                                          nid3:ID3Audio;
+                                                        skos:prefLabel "WAV object (6.06 MiB)"@en,
+                                                                       "WAV object (16-bit, 44100 Hz, 2 channels)"@en,
+                                                                       "WAV object (44100 Hz, 2 channels, WAV Test File)"@en.
+<urn:md5:E725EF0E10888FD430D0BE4D7719CCF3> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "5yXvDhCIj9Qw0L5NdxnM8w=="^^xsd:base64Binary.

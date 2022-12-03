@@ -1,0 +1,67 @@
+@base <ni:///mh;1QEQm1jwW5hvBVkAMngOxhaEIg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+
+_:n1 at:pathObject <file:///avale.asf>;
+     nie:interpretedAs <ni:///mh;1QEQm1jwW5hvBVkAMngOxhaEIg?ct=application/octet-stream>;
+     nfo:fileName "avale.asf";
+     nfo:fileSize 236535 ;
+     a nfo:FileDataObject.
+<file:///avale.asf> at:extensionObject <https://w3id.org/uri4uri/suffix/asf>.
+<ni:///mh;1QEQm1jwW5hvBVkAMngOxhaEIg?ct=application/octet-stream> at:digest <urn:md5:9B58F05B986F05590032780EC6168422>;
+                                                                  dcterms:extent "236535"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQm1jwW5hvBVkAMngOxhaEIg?ct=audio/x-wma>,
+                                                                                    <ni:///mh;1QEQm1jwW5hvBVkAMngOxhaEIg?ct=audio/x-ms-wma>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (230.99 KiB)"@en.
+<ni:///mh;1QEQm1jwW5hvBVkAMngOxhaEIg?ct=audio/x-ms-wma> schema:encodingFormat <https://w3id.org/uri4uri/mime/audio/x-ms-wma>;
+                                                        nfo:bitsPerSample 16 ;
+                                                        nfo:channels 1 ;
+                                                        nfo:duration "PT18.39969S"^^xsd:duration;
+                                                        nfo:hasMediaStream <ni:///mh;1QEQm1jwW5hvBVkAMngOxhaEIg?ct=audio/x-ms-wma#/Audio/0>,
+                                                                           <ni:///mh;1QEQm1jwW5hvBVkAMngOxhaEIg?ct=audio/x-ms-wma#/Video/0>;
+                                                        nfo:height 120 ;
+                                                        nfo:sampleRate "22050"^^dt:hertz;
+                                                        nfo:width 160 ;
+                                                        <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#leadArtist> "Thierry";
+                                                        <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#title> "Les garçons sauront apprécier !";
+                                                        a schema:MediaObject,
+                                                          schema:AudioObject,
+                                                          nfo:Audio;
+                                                        skos:prefLabel "WMA object (160×120, Les garçons sauront apprécier !)"@en.
+<ni:///mh;1QEQm1jwW5hvBVkAMngOxhaEIg?ct=audio/x-ms-wma#/Audio/0> nfo:averageBitrate "20"^^dt:kilobitPerSecond;
+                                                                 nfo:bitsPerSample 16 ;
+                                                                 nfo:channels 1 ;
+                                                                 nfo:compressionType nfo:losslessCompressionType;
+                                                                 nfo:sampleRate "22050"^^dt:hertz;
+                                                                 a nfo:Audio,
+                                                                   nfo:MediaStream;
+                                                                 skos:prefLabel "0:Audio (22050 Hz, 1 channel)".
+<ni:///mh;1QEQm1jwW5hvBVkAMngOxhaEIg?ct=audio/x-ms-wma#/Video/0> nfo:height 120 ;
+                                                                 nfo:width 160 ;
+                                                                 a nfo:Video,
+                                                                   nfo:MediaStream;
+                                                                 skos:prefLabel "0:Video (160×120)".
+<ni:///mh;1QEQm1jwW5hvBVkAMngOxhaEIg?ct=audio/x-wma> schema:encodingFormat <https://w3id.org/uri4uri/mime/audio/x-wma>;
+                                                     nfo:bitsPerSample 16 ;
+                                                     nfo:channels 1 ;
+                                                     nfo:duration "PT18.6659977S"^^xsd:duration;
+                                                     nfo:sampleRate 22050 ;
+                                                     a schema:MediaObject,
+                                                       schema:AudioObject,
+                                                       nfo:Audio;
+                                                     skos:prefLabel "WMA object (230.99 KiB)"@en.
+<urn:md5:9B58F05B986F05590032780EC6168422> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "m1jwW5hvBVkAMngOxhaEIg=="^^xsd:base64Binary.

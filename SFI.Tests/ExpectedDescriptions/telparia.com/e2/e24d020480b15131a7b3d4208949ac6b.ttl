@@ -1,0 +1,54 @@
+@base <ni:///mh;1QEQFvbAp7m-kWF9YEIailP1ZA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///h10202.shp>;
+     nie:interpretedAs <ni:///mh;1QEQFvbAp7m-kWF9YEIailP1ZA?ct=application/octet-stream>;
+     nfo:fileName "h10202.shp";
+     nfo:fileSize 47616 ;
+     a nfo:FileDataObject.
+<file:///h10202.shp> at:extensionObject <https://w3id.org/uri4uri/suffix/shp>.
+<ni:///mh;1QEQA1LYM6w4dh-GjHRm-U6DMQ?ct=application/octet-stream> at:digest <urn:md5:0352D833AC38761F868C7466F94E8331>;
+                                                                  dcterms:extent "44961"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (43.91 KiB)"@en.
+<ni:///mh;1QEQFvbAp7m-kWF9YEIailP1ZA?ct=application/octet-stream> at:digest <urn:md5:16F6C0A7B9BE91617D60421A8A53F564>;
+                                                                  dcterms:extent "47616"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQFvbAp7m-kWF9YEIailP1ZA?ct=application/x-ole-storage>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (46.5 KiB)"@en.
+<ni:///mh;1QEQFvbAp7m-kWF9YEIailP1ZA?ct=application/x-ole-storage> at:pathObject <file:///>;
+                                                                   schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
+                                                                   nie:interpretedAs <ni:///mh;1QEQFvbAp7m-kWF9YEIailP1ZA?ct=application/x-ole-storage#/>;
+                                                                   nfo:fileLastModified "1995-06-12T16:06:40.000551Z"^^xsd:dateTime;
+                                                                   a schema:MediaObject,
+                                                                     nfo:EmbeddedFileDataObject;
+                                                                   skos:prefLabel "OLE object (46.5 KiB)"@en.
+<ni:///mh;1QEQFvbAp7m-kWF9YEIailP1ZA?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+                                                                     a nfo:Folder;
+                                                                     skos:prefLabel "/".
+<ni:///mh;1QEQFvbAp7m-kWF9YEIailP1ZA?ct=application/x-ole-storage#/Contents> at:pathObject <file:///Contents>;
+                                                                             nie:interpretedAs <ni:///mh;1QEQA1LYM6w4dh-GjHRm-U6DMQ?ct=application/octet-stream>;
+                                                                             nfo:belongsToContainer <ni:///mh;1QEQFvbAp7m-kWF9YEIailP1ZA?ct=application/x-ole-storage#/>;
+                                                                             nfo:fileName "Contents";
+                                                                             nfo:fileSize 44961 ;
+                                                                             a nfo:FileDataObject,
+                                                                               nfo:EmbeddedFileDataObject;
+                                                                             skos:prefLabel "/Contents".
+<urn:md5:0352D833AC38761F868C7466F94E8331> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "A1LYM6w4dh+GjHRm+U6DMQ=="^^xsd:base64Binary.
+<urn:md5:16F6C0A7B9BE91617D60421A8A53F564> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "FvbAp7m+kWF9YEIailP1ZA=="^^xsd:base64Binary.
