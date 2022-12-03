@@ -442,7 +442,7 @@ namespace IS4.SFI
         /// <returns>The RDF handler to use.</returns>
         private IRdfHandler CreateGraphHandler(out Graph graph)
         {
-            graph = new Graph();
+            graph = new Graph(true);
             return new VDS.RDF.Parsing.Handlers.GraphHandler(graph);
         }
 

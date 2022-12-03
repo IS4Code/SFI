@@ -24,7 +24,7 @@ namespace IS4.SFI
         public TemporaryGraphHandler(IRdfHandler baseHandler, out Graph graph)
         {
             this.baseHandler = baseHandler;
-            this.graph = graph = new Graph();
+            this.graph = graph = new Graph(true);
         }
 
         public bool HandleBaseUri(Uri baseUri)

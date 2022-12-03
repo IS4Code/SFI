@@ -62,7 +62,7 @@ namespace IS4.SFI.Analyzers
             }))
             {
                 node.Describe(uri => {
-                    var graph = new Graph();
+                    var graph = new Graph(true);
                     graph.BaseUri = uri;
                     RdfAParser.Load(graph, reader);
                     var buffer = new MemoryStream();
