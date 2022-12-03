@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
 using VDS.RDF;
@@ -22,7 +23,9 @@ namespace IS4.SFI.Extensions
     {
         readonly IRdfHandler defaultHandler;
         readonly IReadOnlyDictionary<Uri, IRdfHandler?> graphHandlers;
-        readonly ConcurrentDictionary<Guid, IBlankNode>? blankNodes;
+        readonly ConcurrentDictionary<Uri, IBlankNode>? blankNodes;
+
+        int blankNodeId;
 
         readonly ConcurrentDictionary<GraphUri, IRdfHandler?> graphUriCache = new();
         readonly ConcurrentDictionary<IRdfHandler, VocabularyCache<IUriNode>> graphCaches = new();
@@ -71,16 +74,18 @@ namespace IS4.SFI.Extensions
             this.graphHandlers = graphHandlers;
             this.queryTester = queryTester;
 
+            var uriComparer = new UriComparer();
+
             if(simplifyBlankNodes)
             {
-                blankNodes = new();
+                blankNodes = new(uriComparer);
             }
 
             graphCaches[defaultHandler] = this;
 
             Root = root;
 
-            PrefixMap = new ConcurrentDictionary<Uri, string>(Vocabulary.Vocabularies.Prefixes, new UriComparer());
+            PrefixMap = new ConcurrentDictionary<Uri, string>(Vocabulary.Vocabularies.Prefixes, uriComparer);
 
             VocabularyAdded += (vocabulary) => {
                 // When a new vocabulary is added, register it in all RDF handlers
@@ -188,11 +193,11 @@ namespace IS4.SFI.Extensions
         private IBlankNode CreateBlankNode(Uri blankUri, IRdfHandler handler)
         {
             IBlankNode bnode;
-            var uuid = UriTools.UuidFromUri(blankUri);
             if(blankNodes != null)
             {
-                bnode = blankNodes.GetOrAdd(uuid, _ => handler.CreateBlankNode());
+                bnode = blankNodes.GetOrAdd(blankUri, _ => handler.CreateBlankNode("n" + Interlocked.Increment(ref blankNodeId)));
             }else{
+                var uuid = UriTools.UuidFromUri(blankUri);
                 bnode = handler.CreateBlankNode($"b{uuid:N}");
             }
             // May be already added
