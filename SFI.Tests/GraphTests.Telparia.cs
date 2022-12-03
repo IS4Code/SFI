@@ -5,17 +5,6 @@ namespace IS4.SFI.Tests
 {
     partial class GraphTests
     {
-        [DataRow("https://telparia.com/fileFormatSamples/archive/anex86FDI/%E3%83%97%E3%83%AA%E3%83%B3%E3%82%BB%E3%82%B9%E3%83%A1%E3%83%BC%E3%82%AB%E3%83%BC2_a.FDI")]
-        [DataRow("https://telparia.com/fileFormatSamples/archive/anex86FDI/%E3%83%97%E3%83%AA%E3%83%B3%E3%82%BB%E3%82%B9%E3%83%A1%E3%83%BC%E3%82%AB%E3%83%BC2_b.FDI")]
-        [DataRow("https://telparia.com/fileFormatSamples/archive/anex86FDI/%E3%83%97%E3%83%AA%E3%83%B3%E3%82%BB%E3%82%B9%E3%83%A1%E3%83%BC%E3%82%AB%E3%83%BC2_d.FDI")]
-        [DataRow("https://telparia.com/fileFormatSamples/archive/anex86FDI/%E3%83%97%E3%83%AA%E3%83%B3%E3%82%BB%E3%82%B9%E3%83%A1%E3%83%BC%E3%82%AB%E3%83%BC2_e.FDI")]
-        [DataRow("https://telparia.com/fileFormatSamples/archive/anex86FDI/%E3%83%97%E3%83%AA%E3%83%B3%E3%82%BB%E3%82%B9%E3%83%A1%E3%83%BC%E3%82%AB%E3%83%BC2_f.FDI")]
-        [DataRow("https://telparia.com/fileFormatSamples/archive/anex86FDI/%E3%83%97%E3%83%AA%E3%83%B3%E3%82%BB%E3%82%B9%E3%83%A1%E3%83%BC%E3%82%AB%E3%83%BC2_g.FDI")]
-        [DataRow("https://telparia.com/fileFormatSamples/archive/anex86FDI/%E3%83%97%E3%83%AA%E3%83%B3%E3%82%BB%E3%82%B9%E3%83%A1%E3%83%BC%E3%82%AB%E3%83%BC2_h.FDI")]
-        [DataRow("https://telparia.com/fileFormatSamples/archive/anex86FDI/%E3%83%97%E3%83%AA%E3%83%B3%E3%82%BB%E3%82%B9%E3%83%A1%E3%83%BC%E3%82%AB%E3%83%BC2_i.FDI")]
-        [DataRow("https://telparia.com/fileFormatSamples/archive/anex86FDI/%E3%83%97%E3%83%AA%E3%83%B3%E3%82%BB%E3%82%B9%E3%83%A1%E3%83%BC%E3%82%AB%E3%83%BC2_j.FDI")]
-        [DataRow("https://telparia.com/fileFormatSamples/archive/anex86FDI/%E3%83%97%E3%83%AA%E3%83%B3%E3%82%BB%E3%82%B9%E3%83%A1%E3%83%BC%E3%82%AB%E3%83%BC2_k.FDI")]
-        [DataRow("https://telparia.com/fileFormatSamples/archive/anex86FDI/%E3%83%97%E3%83%AA%E3%83%B3%E3%82%BB%E3%82%B9%E3%83%A1%E3%83%BC%E3%82%AB%E3%83%BC2_l.FDI")]
         [DataRow("https://telparia.com/fileFormatSamples/archive/arj/%231GALAXY.EXE")]
         [DataRow("https://telparia.com/fileFormatSamples/archive/arj/BILLY.ARJ")]
         [DataRow("https://telparia.com/fileFormatSamples/archive/arj/HEROES.001")]
