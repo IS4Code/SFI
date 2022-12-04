@@ -12,6 +12,11 @@ namespace IS4.SFI.Analyzers
     /// </summary>
     public class X509CertificateAnalyzer : MediaObjectAnalyzer<X509Certificate>
     {
+        /// <summary>
+        /// Whether to use the certificate's extensions to provide additional description.
+        /// </summary>
+        public bool DescribeExtensions { get; set; } = true;
+
         /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>
         public X509CertificateAnalyzer() : base(Classes.X509Certificate)
         {
@@ -52,18 +57,21 @@ namespace IS4.SFI.Analyzers
                     node.Set(Properties.Expiration, expired);
                 }
 
-                var language = new LanguageCode(CultureInfo.InstalledUICulture);
-                foreach(var extension in cert2.Extensions)
+                if(DescribeExtensions)
                 {
-                    var value = extension.Format(false);
-                    node.Set(UriTools.OidUriFormatter, extension.Oid, value, language);
-                }
-                foreach(var extension in cert2.Extensions)
-                {
-                    var propNode = context.NodeFactory?.Create(UriTools.OidUriFormatter, extension.Oid);
-                    if(propNode != null)
+                    var language = new LanguageCode(CultureInfo.InstalledUICulture);
+                    foreach(var extension in cert2.Extensions)
                     {
-                        propNode.Set(Properties.Label, extension.Oid.FriendlyName, language);
+                        var value = extension.Format(false);
+                        node.Set(UriTools.OidUriFormatter, extension.Oid, value, language);
+                    }
+                    foreach(var extension in cert2.Extensions)
+                    {
+                        var propNode = context.NodeFactory?.Create(UriTools.OidUriFormatter, extension.Oid);
+                        if(propNode != null)
+                        {
+                            propNode.Set(Properties.Label, extension.Oid.FriendlyName, language);
+                        }
                     }
                 }
             }
