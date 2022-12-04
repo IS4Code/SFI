@@ -129,6 +129,24 @@
         public static readonly IndividualUri Crc32;
 
         /// <summary>
+        /// <see cref="At"/>:crc64.
+        /// </summary>
+        [Uri(At)]
+        public static readonly IndividualUri Crc64;
+
+        /// <summary>
+        /// <see cref="At"/>:xxhash32.
+        /// </summary>
+        [Uri(At)]
+        public static readonly IndividualUri XxHash32;
+
+        /// <summary>
+        /// <see cref="At"/>:xxhash64.
+        /// </summary>
+        [Uri(At)]
+        public static readonly IndividualUri XxHash64;
+
+        /// <summary>
         /// <see cref="Nfo"/>:losslessCompressionType.
         /// </summary>
         [Uri(Nfo)]
