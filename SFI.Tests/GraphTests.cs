@@ -37,7 +37,6 @@ namespace IS4.SFI.Tests
 
         static readonly IRdfReader turtleParser = new Notation3Parser();
         static readonly TurtleFormatter turtleFormatter = new();
-        static readonly GraphDiff graphDiff = new();
 
         async Task TestOutputGraph(string source)
         {
@@ -95,6 +94,7 @@ namespace IS4.SFI.Tests
             var graph2 = new Graph(true);
             turtleParser.Load(graph2, new StreamReader(buffer));
 
+            var graphDiff = new GraphDiff();
             GraphDiffReport? report = null;
             var thread = new Thread(() => report = graphDiff.Difference(graph, graph2));
             thread.IsBackground = true;
@@ -114,7 +114,7 @@ namespace IS4.SFI.Tests
                     Console.Error.WriteLine(turtleFormatter.Format(added));
                 }
                 Console.Error.WriteLine("Removed:");
-                foreach(var added in report.AddedTriples.Concat(report.AddedMSGs.SelectMany(g => g.Triples)))
+                foreach(var added in report.RemovedTriples.Concat(report.RemovedMSGs.SelectMany(g => g.Triples)))
                 {
                     Console.Error.WriteLine(turtleFormatter.Format(added));
                 }
