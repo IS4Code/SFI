@@ -18,11 +18,10 @@ _:n1 at:pathObject <file:///example.sdc>;
      nfo:fileName "example.sdc";
      nfo:fileSize 121344 ;
      a nfo:FileDataObject.
-<data:,%00%00> dcterms:extent "2"^^dt:byte;
-               a cnt:ContentAsText;
-               skos:prefLabel "text (2 B)"@en;
-               cnt:characterEncoding "us-ascii";
-               cnt:chars "␀␀"^^xsd:string.
+<data:application/octet-stream,%00%00> dcterms:extent "2"^^dt:byte;
+                                       a cnt:ContentAsBase64;
+                                       skos:prefLabel "binary data (2 B)"@en;
+                                       cnt:bytes "AAA="^^xsd:base64Binary.
 <data:application/octet-stream;base64,AQAAAgAAAAAAAAAAAAAAAAAAAAA=> dcterms:extent "20"^^dt:byte;
                                                                     a cnt:ContentAsBase64;
                                                                     skos:prefLabel "binary data (20 B)"@en;
@@ -192,7 +191,7 @@ _:n1 at:pathObject <file:///example.sdc>;
                                                                                                 nfo:EmbeddedFileDataObject;
                                                                                               skos:prefLabel "/Object 1/SfxStyleSheets".
 <ni:///mh;1QEQS-8EOk3xKmaiBv9_b5P8rg?ct=application/x-ole-storage#/Object%201/SfxWindows> at:pathObject <file:///Object%201/SfxWindows>;
-                                                                                          nie:interpretedAs <data:,%00%00>;
+                                                                                          nie:interpretedAs <data:application/octet-stream,%00%00>;
                                                                                           nfo:belongsToContainer <ni:///mh;1QEQS-8EOk3xKmaiBv9_b5P8rg?ct=application/x-ole-storage#/Object%201/>;
                                                                                           nfo:fileName "SfxWindows";
                                                                                           nfo:fileSize 2 ;

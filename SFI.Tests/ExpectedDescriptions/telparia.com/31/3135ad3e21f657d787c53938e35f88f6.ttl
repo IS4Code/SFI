@@ -58,9 +58,9 @@ _:n1 at:pathObject <file:///next>;
                                                     nfo:verticalResolution 72 ;
                                                     nfo:width 504 ;
                                                     a schema:MediaObject,
+                                                      nfo:Image,
                                                       exif:IFD,
-                                                      schema:ImageObject,
-                                                      nfo:Image;
+                                                      schema:ImageObject;
                                                     exif:bitsPerSample 2 ;
                                                     exif:compression 1 ;
                                                     exif:imageLength 2113 ;
@@ -73,8 +73,8 @@ _:n1 at:pathObject <file:///next>;
                                                     exif:stripOffsets 8 ;
                                                     exif:xResolution 72 ;
                                                     exif:yResolution 72 ;
-                                                    skos:prefLabel "TIFF object (504×2113, 2-bit)"@en,
-                                                                   "TIFF object (504×2113)"@en,
+                                                    skos:prefLabel "TIFF object (504×2113)"@en,
+                                                                   "TIFF object (504×2113, 2-bit)"@en,
                                                                    "TIF object (260.17 KiB)"@en.
 <ni:///mh;1QEQ72mITfgG7weEWKic20Y3gw?ct=application/postscript> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/postscript>;
                                                                 a schema:MediaObject;
@@ -98,7 +98,7 @@ _:n1 at:pathObject <file:///next>;
                                                     skos:prefLabel "text (60.63 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQOrkFpjaoYt0lxA7a1OyVLA?ct=text/plain#line=,1> rdf:value "#!DG_TEXT-Version-2".
-<ni:///mh;1QEQ_NMaDFBZ_yOB2D_2rU9P3g?ct=application/octet-stream> at:digest <urn:md5:FCD31A0C5059FF2381D83FF6AD4F4FDE>;
+<ni:///mh;1QEQRUN5KFPU9erXSiTmZ0cieA?ct=application/octet-stream> at:digest <urn:md5:4543792853D4F5EAD74A24E667472278>;
                                                                   dcterms:extent "12793"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (12.49 KiB)"@en.
@@ -154,7 +154,7 @@ _:n1 at:pathObject <file:///next>;
                                                                                 nfo:Folder;
                                                                               skos:prefLabel "/next/GEMini.Mesa/".
 <ni:///mh;1QEQyuqkPC8AJYxCXHBlnHHakw?ct=application/x-tar#/next/GEMini.Mesa/sheet> at:pathObject <file:///next/GEMini.Mesa/sheet>;
-                                                                                   nie:interpretedAs <ni:///mh;1QEQ_NMaDFBZ_yOB2D_2rU9P3g?ct=application/octet-stream>;
+                                                                                   nie:interpretedAs <ni:///mh;1QEQRUN5KFPU9erXSiTmZ0cieA?ct=application/octet-stream>;
                                                                                    nfo:belongsToContainer <ni:///mh;1QEQyuqkPC8AJYxCXHBlnHHakw?ct=application/x-tar#/next/GEMini.Mesa/>;
                                                                                    nfo:fileLastModified "1993-10-24T03:48:30.000000+02:00"^^xsd:dateTime;
                                                                                    nfo:fileName "sheet";
@@ -227,6 +227,9 @@ _:n1 at:pathObject <file:///next>;
 <urn:md5:3AB905A636A862DD25C40EDAD4EC952C> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "OrkFpjaoYt0lxA7a1OyVLA=="^^xsd:base64Binary.
+<urn:md5:4543792853D4F5EAD74A24E667472278> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "RUN5KFPU9erXSiTmZ0cieA=="^^xsd:base64Binary.
 <urn:md5:6F41EA505F6E61B68BEDC66CD89E6B3C> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "b0HqUF9uYbaL7cZs2J5rPA=="^^xsd:base64Binary.
@@ -242,6 +245,3 @@ _:n1 at:pathObject <file:///next>;
 <urn:md5:EF69884DF806EF078458A89CDB463783> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "72mITfgG7weEWKic20Y3gw=="^^xsd:base64Binary.
-<urn:md5:FCD31A0C5059FF2381D83FF6AD4F4FDE> a sec:Digest;
-                                           sec:digestAlgorithm dsm:md5;
-                                           sec:digestValue "/NMaDFBZ/yOB2D/2rU9P3g=="^^xsd:base64Binary.

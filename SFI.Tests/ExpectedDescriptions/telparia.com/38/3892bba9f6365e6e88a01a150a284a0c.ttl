@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQPzGdOOXK0Cs4iFO9pcymEQ?ct=application/octet-stream>.
+@base <ni:///mh;1QEQ9DOfF0BUXsRnkfC6ZMUJsA?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -14,20 +14,20 @@
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///REGISTER.RAR>;
-     nie:interpretedAs <ni:///mh;1QEQPzGdOOXK0Cs4iFO9pcymEQ?ct=application/octet-stream>;
+     nie:interpretedAs <ni:///mh;1QEQ9DOfF0BUXsRnkfC6ZMUJsA?ct=application/octet-stream>;
      nfo:fileName "REGISTER.RAR";
      nfo:fileSize 24457 ;
      a nfo:FileDataObject.
 <file:///REGISTER.RAR> at:extensionObject <https://w3id.org/uri4uri/suffix/rar>.
-<ni:///mh;1QEQPzGdOOXK0Cs4iFO9pcymEQ?ct=application/octet-stream> at:digest <urn:md5:3F319D38E5CAD02B388853BDA5CCA611>;
+<ni:///mh;1QEQ9DOfF0BUXsRnkfC6ZMUJsA?ct=application/octet-stream> at:digest <urn:md5:F4339F1740545EC46791F0BA64C509B0>;
                                                                   dcterms:extent "24457"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQPzGdOOXK0Cs4iFO9pcymEQ?ct=application/vnd.rar>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ9DOfF0BUXsRnkfC6ZMUJsA?ct=application/vnd.rar>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (23.88 KiB)"@en.
-<ni:///mh;1QEQPzGdOOXK0Cs4iFO9pcymEQ?ct=application/vnd.rar> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.rar>;
+<ni:///mh;1QEQ9DOfF0BUXsRnkfC6ZMUJsA?ct=application/vnd.rar> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.rar>;
                                                              a schema:MediaObject,
                                                                nfo:Archive;
                                                              skos:prefLabel "RAR object (23.88 KiB)"@en.
-<urn:md5:3F319D38E5CAD02B388853BDA5CCA611> a sec:Digest;
+<urn:md5:F4339F1740545EC46791F0BA64C509B0> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
-                                           sec:digestValue "PzGdOOXK0Cs4iFO9pcymEQ=="^^xsd:base64Binary.
+                                           sec:digestValue "9DOfF0BUXsRnkfC6ZMUJsA=="^^xsd:base64Binary.

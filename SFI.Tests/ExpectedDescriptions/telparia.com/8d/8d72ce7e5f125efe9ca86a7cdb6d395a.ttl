@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQMNogEkfQV6N0oSpEObVKLA?ct=application/octet-stream>.
+@base <ni:///mh;1QEQUI8tSESp6R2hZ5Cd7dKd8g?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -14,20 +14,20 @@
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///ZIPCRACK.RAR>;
-     nie:interpretedAs <ni:///mh;1QEQMNogEkfQV6N0oSpEObVKLA?ct=application/octet-stream>;
+     nie:interpretedAs <ni:///mh;1QEQUI8tSESp6R2hZ5Cd7dKd8g?ct=application/octet-stream>;
      nfo:fileName "ZIPCRACK.RAR";
      nfo:fileSize 1457500 ;
      a nfo:FileDataObject.
 <file:///ZIPCRACK.RAR> at:extensionObject <https://w3id.org/uri4uri/suffix/rar>.
-<ni:///mh;1QEQMNogEkfQV6N0oSpEObVKLA?ct=application/octet-stream> at:digest <urn:md5:30DA201247D057A374A12A4439B54A2C>;
+<ni:///mh;1QEQUI8tSESp6R2hZ5Cd7dKd8g?ct=application/octet-stream> at:digest <urn:md5:508F2D4844A9E91DA167909DEDD29DF2>;
                                                                   dcterms:extent "1457500"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQMNogEkfQV6N0oSpEObVKLA?ct=application/vnd.rar>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQUI8tSESp6R2hZ5Cd7dKd8g?ct=application/vnd.rar>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.39 MiB)"@en.
-<ni:///mh;1QEQMNogEkfQV6N0oSpEObVKLA?ct=application/vnd.rar> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.rar>;
+<ni:///mh;1QEQUI8tSESp6R2hZ5Cd7dKd8g?ct=application/vnd.rar> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.rar>;
                                                              a schema:MediaObject,
                                                                nfo:Archive;
                                                              skos:prefLabel "RAR object (1.39 MiB)"@en.
-<urn:md5:30DA201247D057A374A12A4439B54A2C> a sec:Digest;
+<urn:md5:508F2D4844A9E91DA167909DEDD29DF2> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
-                                           sec:digestValue "MNogEkfQV6N0oSpEObVKLA=="^^xsd:base64Binary.
+                                           sec:digestValue "UI8tSESp6R2hZ5Cd7dKd8g=="^^xsd:base64Binary.
