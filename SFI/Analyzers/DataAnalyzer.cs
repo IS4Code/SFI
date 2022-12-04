@@ -246,7 +246,7 @@ namespace IS4.SFI.Analyzers
 
                             if(couldBeUnicode == null)
                             {
-                                couldBeUnicode = DataTools.FindBom(buffer.AsSpan()) > 0;
+                                couldBeUnicode = DataTools.FindBom(buffer.AsSpan(0, read)) > 0;
                             }
 
                             if(!isBinary)
