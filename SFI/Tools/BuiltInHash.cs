@@ -39,6 +39,8 @@ namespace IS4.SFI.Tools
         /// </summary>
         public static readonly BuiltInHash? SHA512 = Create(Cryptography.SHA512.Create, Individuals.SHA512, "urn:sha512:", 0x13, "sha-512");
 
+        readonly Func<Cryptography.HashAlgorithm> factory;
+
         readonly ThreadLocal<Cryptography.HashAlgorithm> algorithm;
 
         /// <summary>
@@ -70,6 +72,7 @@ namespace IS4.SFI.Tools
         /// <param name="formattingMethod">The formatting method for creating URIs.</param>
         public BuiltInHash(Func<Cryptography.HashAlgorithm> factory, IndividualUri identifier, string prefix, int? numericIdentifier = null, string? niName = null, FormattingMethod formattingMethod = FormattingMethod.Base32) : base(identifier, GetHashSize(factory), prefix, formattingMethod)
         {
+            this.factory = factory;
             algorithm = new ThreadLocal<Cryptography.HashAlgorithm>(factory);
             NumericIdentifier = numericIdentifier;
             NiName = niName;
@@ -94,21 +97,16 @@ namespace IS4.SFI.Tools
         /// <inheritdoc/>
         public async override ValueTask<byte[]> ComputeHash(Stream input, IPersistentKey? key)
         {
-            var algorithm = Algorithm;
-
-            try{
-                const int bufferSize = 4096;
-                var buffer = new byte[bufferSize];
-                int bytesRead;
-                while((bytesRead = await input.ReadAsync(buffer, 0, bufferSize).ConfigureAwait(false)) != 0)
-                {
-                    algorithm.TransformBlock(buffer, 0, bytesRead, buffer, 0);
-                }
-                algorithm.TransformFinalBlock(buffer, 0, bytesRead);
-                return (byte[])algorithm.Hash.Clone();
-            }finally{
-                algorithm.Initialize();
+            using var algorithm = factory();
+            const int bufferSize = 4096;
+            var buffer = new byte[bufferSize];
+            int bytesRead;
+            while((bytesRead = await input.ReadAsync(buffer, 0, bufferSize).ConfigureAwait(false)) != 0)
+            {
+                algorithm.TransformBlock(buffer, 0, bytesRead, buffer, 0);
             }
+            algorithm.TransformFinalBlock(buffer, 0, bytesRead);
+            return (byte[])algorithm.Hash.Clone();
         }
 
         /// <inheritdoc/>
