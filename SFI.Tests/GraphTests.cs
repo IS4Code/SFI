@@ -165,6 +165,11 @@ namespace IS4.SFI.Tests
                 {
                     dosAnalyzer.Emulate = false;
                 }
+
+                if(Analyzers.OfType<X509CertificateAnalyzer>().FirstOrDefault() is X509CertificateAnalyzer x509Analyzer)
+                {
+                    x509Analyzer.DescribeExtensions = false;
+                }
             }
         }
 
