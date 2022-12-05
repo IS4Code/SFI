@@ -303,6 +303,12 @@
         public static readonly PropertyUri Category;
 
         /// <summary>
+        /// <see cref="Schema"/>:serialNumber.
+        /// </summary>
+        [Uri(Schema)]
+        public static readonly PropertyUri SerialNumber;
+
+        /// <summary>
         /// <see cref="Nie"/>:interpretedAs.
         /// </summary>
         [Uri(Nie)]

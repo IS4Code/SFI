@@ -28,8 +28,6 @@ namespace IS4.SFI.Analyzers
         {
             var node = GetNode(context);
 
-            node.Set(Properties.Notation, cert.ToString());
-
             var hash = cert.GetCertHash();
             await HashAlgorithm.AddHash(node, HashAlgorithm.FromLength(hash.Length), hash, context.NodeFactory, OnOutputFile);
 
@@ -55,6 +53,10 @@ namespace IS4.SFI.Analyzers
                 if(IsDefined(cert2.NotAfter, out var expired))
                 {
                     node.Set(Properties.Expiration, expired);
+                }
+                if(IsDefined(cert2.SerialNumber, out var serial))
+                {
+                    node.Set(Properties.SerialNumber, serial);
                 }
 
                 if(DescribeExtensions)
