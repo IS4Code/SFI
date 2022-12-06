@@ -16,22 +16,22 @@ namespace IS4.SFI.Tools
         /// <summary>
         /// The CRC-32 hash algorithm, using <see cref="Crc32"/>.
         /// </summary>
-        public static readonly BuiltInNonCryptographicHash CRC32 = Create(() => new Crc32(), Crc32.Hash, Individuals.Crc32, "urn:crc32:", formattingMethod: FormattingMethod.Hex);
+        public static readonly BuiltInNonCryptographicHash CRC32 = Create(() => new Crc32(), Crc32.Hash, Individuals.Crc32, "urn:crc32:", 0x0132, formattingMethod: FormattingMethod.Hex);
 
         /// <summary>
         /// The CRC-64 hash algorithm, using <see cref="Crc64"/>.
         /// </summary>
-        public static readonly BuiltInNonCryptographicHash CRC64 = Create(() => new Crc64(), Crc64.Hash, Individuals.Crc64, "urn:crc64:", formattingMethod: FormattingMethod.Hex);
+        public static readonly BuiltInNonCryptographicHash CRC64 = Create(() => new Crc64(), Crc64.Hash, Individuals.Crc64, "urn:crc64:", 0x0164, formattingMethod: FormattingMethod.Hex);
 
         /// <summary>
         /// The XxHash32 hash algorithm, using <see cref="XxHash32"/>.
         /// </summary>
-        public static readonly BuiltInNonCryptographicHash XXH32 = Create(() => new XxHash32(), span => XxHash32.Hash(span), Individuals.XxHash32, "urn:xxh32:", formattingMethod: FormattingMethod.Hex);
+        public static readonly BuiltInNonCryptographicHash XXH32 = Create(() => new XxHash32(), span => XxHash32.Hash(span), Individuals.XxHash32, "urn:xxh32:", 0xb3e1, formattingMethod: FormattingMethod.Hex);
 
         /// <summary>
         /// The XxHash64 hash algorithm, using <see cref="XxHash64"/>.
         /// </summary>
-        public static readonly BuiltInNonCryptographicHash XXH64 = Create(() => new XxHash64(), span => XxHash64.Hash(span), Individuals.XxHash64, "urn:xxh64:", formattingMethod: FormattingMethod.Hex);
+        public static readonly BuiltInNonCryptographicHash XXH64 = Create(() => new XxHash64(), span => XxHash64.Hash(span), Individuals.XxHash64, "urn:xxh64:", 0xb3e2, formattingMethod: FormattingMethod.Hex);
         
         readonly Func<NonCryptographicHashAlgorithm> factory;
 
