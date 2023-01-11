@@ -255,14 +255,17 @@ namespace IS4.SFI
 					properties.Remove(name);
 					var converter = TypeDescriptor.GetConverter(PropertyValueType(prop));
 					object? convertedValue = null;
+					Exception? conversionException = null;
 					try{
 						convertedValue = converter.ConvertFromInvariantString(value);
-                    }catch{
+                    }catch(Exception e)
+                    {
 						// Conversion failed (for any reason)
-                    }
+						conversionException = e;
+					}
 					if(convertedValue == null)
                     {
-						throw new ApplicationException($"Cannot convert value '{value}' for property {componentName}:{name} to type {TextTools.GetIdentifierFromType(prop.PropertyType)}!");
+						throw new ApplicationException($"Cannot convert value '{value}' for property {componentName}:{name} to type {TextTools.GetIdentifierFromType(prop.PropertyType)}!", conversionException);
                     }
                     try{
 						prop.SetValue(component, convertedValue);
