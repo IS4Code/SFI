@@ -146,7 +146,7 @@ namespace IS4.SFI
             foreach(var type in asm.ExportedTypes)
             {
                 // Only yield concrete instantiable types
-                if(type.IsClass && !type.IsAbstract && !type.IsGenericTypeDefinition)
+                if(!type.IsAbstract && !type.IsGenericTypeDefinition)
                 {
                     yield return new ComponentType(type, () => ActivatorUtilities.CreateInstance(serviceProvider, type), this);
                 }
