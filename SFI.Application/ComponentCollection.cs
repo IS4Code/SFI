@@ -112,6 +112,8 @@ namespace IS4.SFI.Application
     /// <typeparam name="T">The type of the components in the collection.</typeparam>
     public class ComponentCollection<T> : ComponentCollection where T : class
     {
+        static readonly Type elementType = typeof(T);
+
         /// <inheritdoc cref="ComponentCollection.Collection"/>
         public new ICollection<T> Collection => (ICollection<T>)base.Collection;
 
@@ -140,7 +142,7 @@ namespace IS4.SFI.Application
                     }
                 }
             }
-            if(!typeof(T).IsAssignableFrom(component.Type))
+            if(!elementType.IsAssignableFrom(component.Type))
             {
                 return default;
             }
