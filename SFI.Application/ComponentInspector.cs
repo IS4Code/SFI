@@ -3,7 +3,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
 
 namespace IS4.SFI
@@ -46,11 +45,11 @@ namespace IS4.SFI
         /// <param name="updateExisting">Whether to update previously found collections.</param>
         protected void CaptureCollections(object instance, bool updateExisting = false)
         {
-            foreach(var property in instance.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance))
+            foreach(System.ComponentModel.PropertyDescriptor property in System.ComponentModel.TypeDescriptor.GetProperties(instance))
             {
-                if(enumerableType.IsAssignableFrom(property.PropertyType))
+                if(property.IsBrowsable && enumerableType.IsAssignableFrom(property.PropertyType))
                 {
-                    var attribute = property.GetCustomAttribute<ComponentCollectionAttribute>();
+                    var attribute = property.Attributes.OfType<ComponentCollectionAttribute>().FirstOrDefault();
                     if(attribute != null)
                     {
                         var collection = (IEnumerable)property.GetValue(instance);
