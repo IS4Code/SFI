@@ -1,8 +1,10 @@
 ﻿using IS4.SFI.Application;
 using IS4.SFI.Services;
+using IS4.SFI.Tools;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.JSInterop;
 using System;
+using System.Buffers;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -97,17 +99,22 @@ namespace IS4.SFI.WebApp
             Disposed = true;
         }
 
+        /// <summary>
+        /// Provides a stream that uses a <see cref="TextWriter"/> instance
+        /// to write the characters in a given encoding.
+        /// </summary>
         class TextStream : Stream
         {
             readonly TextWriter writer;
-            readonly Encoding encoding;
             readonly IApplicationEnvironment? environment;
+            readonly Decoder decoder;
 
             public TextStream(TextWriter writer, Encoding encoding, IApplicationEnvironment? environment)
             {
                 this.writer = writer;
-                this.encoding = encoding;
                 this.environment = environment;
+
+                decoder = encoding.GetDecoder();
             }
 
             public override bool CanRead => false;
@@ -154,15 +161,23 @@ namespace IS4.SFI.WebApp
 
             public override void Write(byte[] buffer, int offset, int count)
             {
-                var text = encoding.GetString(buffer, offset, count);
-                writer.Write(text);
+                int size = decoder.GetCharCount(buffer, offset, count);
+                using var charsLease = ArrayPool<char>.Shared.Rent(size, out var chars);
+                size = decoder.GetChars(buffer, offset, count, chars, 0);
+                writer.Write(chars, 0, size);
             }
 
             public override Task WriteAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
             {
                 if(cancellationToken.IsCancellationRequested) return Task.FromCanceled(cancellationToken);
-                var text = encoding.GetString(buffer, offset, count);
-                return writer.WriteAsync(text);
+                return Inner();
+                async Task Inner()
+                {
+                    int size = decoder.GetCharCount(buffer, offset, count);
+                    using var charsLease = ArrayPool<char>.Shared.Rent(size, out var chars);
+                    size = decoder.GetChars(buffer, offset, count, chars, 0);
+                    await writer.WriteAsync(chars, 0, size);
+                }
             }
         }
     }
