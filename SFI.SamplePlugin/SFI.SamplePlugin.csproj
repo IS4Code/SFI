@@ -5,6 +5,7 @@
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <LangVersion>9.0</LangVersion>
     <Nullable>enable</Nullable>
+    <NoWarn>1701;1702;1998</NoWarn>
     <Authors>IS4</Authors>
     <RootNamespace>IS4.SFI.SamplePlugin</RootNamespace>
     <DocumentationFile>bin\SFI.SamplePlugin.xml</DocumentationFile>
@@ -19,7 +20,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Text.Json" Version="6.0.5" />
+    <PackageReference Include="murmurhash" Version="1.0.3" />
   </ItemGroup>
 
   <ItemGroup>
