@@ -55,66 +55,78 @@ namespace IS4.SFI
         }
 
         /// <summary>
-        /// A formatter which creates data: URI from the provided components:
-        /// the media type, charset, and the content. The type of the data:
-        /// URI (base64 or percent-encoded) is chosen based on which
-        /// variant is shorter. The result <see cref="Uri"/>
-        /// also implements <see cref="IIndividualUriFormatter{T}"/> of
-        /// <see cref="IFormatObject"/>.
+        /// A formatter which uses <see cref="CreateDataUri(string?, string?, ArraySegment{byte})"/>
+        /// to create a data: URI from its components.
         /// </summary>
         public static readonly IIndividualUriFormatter<(string? mediaType, string? charset, ArraySegment<byte> data)> DataUriFormatter = new DataUriFormatterClass();
-
+        
         class DataUriFormatterClass : IIndividualUriFormatter<(string?, string?, ArraySegment<byte>)>
         {
             public Uri this[(string?, string?, ArraySegment<byte>) value] {
                 get {
                     var (mediaType, charset, bytes) = value;
-                    string base64Encoded = ";base64," + bytes.ToBase64String();
-                    string uriEncoded = "," + EscapeDataBytes(bytes);
+                    return CreateDataUri(mediaType, charset, bytes);
+                }
+            }
+        }
 
-                    string data = uriEncoded.Length <= base64Encoded.Length ? uriEncoded : base64Encoded;
+        /// <summary>
+        /// Creates a data: URI from the provided components. The type of the data:
+        /// URI (base64 or percent-encoded) is chosen based on which
+        /// variant is shorter. The result <see cref="Uri"/>
+        /// also implements <see cref="IIndividualUriFormatter{T}"/> of
+        /// <see cref="IFormatObject"/>.
+        /// </summary>
+        /// <param name="mediaType">The media type of the resource.</param>
+        /// <param name="charset">The character set of the resource, if textual.</param>
+        /// <param name="bytes">The binary data of the resource.</param>
+        /// <returns>A newly created URI encoding the arguments.</returns>
+        public static Uri CreateDataUri(string? mediaType, string? charset, ArraySegment<byte> bytes)
+        {
+            string base64Encoded = ";base64," + bytes.ToBase64String();
+            string uriEncoded = "," + EscapeDataBytes(bytes);
 
-                    switch(charset?.ToLowerInvariant())
-                    {
-                        case null:
-                            return new DataUri(mediaType ?? "application/octet-stream", data);
-                        case "ascii":
-                        case "us-ascii":
-                            return new DataUri(mediaType, data);
-                        default:
-                            return new DataUri(mediaType + ";charset=" + charset, data);
-                    }
+            string data = uriEncoded.Length <= base64Encoded.Length ? uriEncoded : base64Encoded;
+
+            switch(charset?.ToLowerInvariant())
+            {
+                case null:
+                    return new DataUri(mediaType ?? "application/octet-stream", data);
+                case "ascii":
+                case "us-ascii":
+                    return new DataUri(mediaType, data);
+                default:
+                    return new DataUri(mediaType + ";charset=" + charset, data);
+            }
+        }
+        
+        /// <summary>
+        /// The data: URI produced by <see cref="CreateDataUri(string?, string?, ArraySegment{byte})"/>.
+        /// Formatting it using <see cref="IFormatObject"/> will replace
+        /// the media type stored by the URI.
+        /// </summary>
+        class DataUri : EncodedUri, IIndividualUriFormatter<IFormatObject>
+        {
+            readonly string data;
+
+            public DataUri(string? type, string data) : base(CreateUri(type, data), UriKind.Absolute)
+            {
+                this.data = data;
+            }
+
+            public Uri? this[IFormatObject value] {
+                get {
+                    var type = value.MediaType;
+                    return type == null ? null : new DataUri(type, data);
                 }
             }
 
-            /// <summary>
-            /// The data: URI produced by <see cref="DataUriFormatterClass"/>.
-            /// Formatting it using <see cref="IFormatObject"/> will replace
-            /// the media type stored by the URI.
-            /// </summary>
-            class DataUri : EncodedUri, IIndividualUriFormatter<IFormatObject>
+            static string CreateUri(string? type, string data)
             {
-                readonly string data;
-
-                public DataUri(string? type, string data) : base(CreateUri(type, data), UriKind.Absolute)
-                {
-                    this.data = data;
-                }
-
-                public Uri? this[IFormatObject value] {
-                    get {
-                        var type = value.MediaType;
-                        return type == null ? null : new DataUri(type, data);
-                    }
-                }
-
-                static string CreateUri(string? type, string data)
-                {
-                    var sb = new StringBuilder("data:");
-                    sb.Append(type);
-                    sb.Append(data);
-                    return sb.ToString();
-                }
+                var sb = new StringBuilder("data:");
+                sb.Append(type);
+                sb.Append(data);
+                return sb.ToString();
             }
         }
 
