@@ -71,11 +71,11 @@ namespace IS4.SFI
                         index = (byte)(((byte)(bytes[currentByte] << (16 - hi)) >> 3) | index);
                     }
                     hi -= 3;
-                }else if(hi == 8)
-                { 
+                } else if(hi == 8)
+                {
                     index = (byte)(bytes[currentByte++] >> 3);
-                    hi -= 3; 
-                }else{
+                    hi -= 3;
+                } else {
                     index = (byte)((byte)(bytes[currentByte] << (8 - hi)) >> 3);
                     hi += 5;
                 }
@@ -186,7 +186,7 @@ namespace IS4.SFI
         /// A collection of bytes encoding <paramref name="value"/>,
         /// in the form described by https://github.com/multiformats/unsigned-varint.
         /// </returns>
-        public static IEnumerable<byte> Varint(ulong value) 
+        public static IEnumerable<byte> Varint(ulong value)
         {
             while(value >= 0x80)
             {
@@ -211,7 +211,7 @@ namespace IS4.SFI
             multihash.AddRange(hash);
             return multihash;
         }
-        
+
         /// <summary>
         /// Text characters whose presence invalidates a signature.
         /// </summary>
@@ -341,9 +341,9 @@ namespace IS4.SFI
                 {
                     return replacement;
                 }
-                try{
+                try {
                     originalEncoding.GetBytes(replacement);
-                }catch(ArgumentException)
+                } catch(ArgumentException)
                 {
                     return replacement;
                 }
@@ -381,7 +381,7 @@ namespace IS4.SFI
             }
             return false;
         }
-        
+
         /// <summary>
         /// Creates a v5 (SHA1-encoded) UUID from a namespace UUID and a name.
         /// </summary>
@@ -408,25 +408,68 @@ namespace IS4.SFI
             return GuidFromHash(hash);
         }
 
+        /// <summary>
+        /// Creates a v5 <see cref="Guid"/> instance from a hash.
+        /// </summary>
+        /// <param name="hash">The bytes of the hash.</param>
+        /// <returns>The resulting <see cref="Guid"/>, created from the first 16 bytes of the hash.</returns>
         static Guid GuidFromHash(byte[] hash)
         {
-            // Variant 5
-            hash[6] = (byte)((hash[7] & 0x0F) | (5 << 4));
-            // Version 1
+            // Version 5
+            hash[6] = (byte)((hash[6] & 0x0F) | (5 << 4));
+            // Variant 1
             hash[8] = (byte)((hash[8] & 0x3F) | 0x80);
 
-            var span = hash.AsSpan();
-            var f4 = span.MemoryCast<int>();
-            // Flip time_low
-            f4[0] = (hash[0] << 24) | (hash[1] << 16) | (hash[2] << 8) | hash[3];
-            var f2 = f4.Slice(1).MemoryCast<short>();
-            // Flip time_mid
-            f2[0] = unchecked((short)((hash[4] << 8) | hash[5]));
-            // Flip time_hi_and_version
-            f2[1] = unchecked((short)((hash[6] << 8) | hash[7]));
+            return GuidFromBytes(hash.AsSpan());
+        }
 
-            // This should match the internal Guid structure
-            return span.MemoryCast<Guid>()[0];
+        const int testGuidA = 0x1B77D7F0;
+        const short testGuidB = 0x13A7;
+        const short testGuidC = 0x4B4C;
+        static byte[] testGuidD => new byte[]{ 0x84, 0x41, 0xE8, 0x9D, 0x23, 0x7E, 0x1D, 0xE5 };
+
+        /// <summary>
+        /// Indicates whether the memory layout of <see cref="Guid"/> on this platform
+        /// matches its <see cref="Guid.Guid(int, short, short, byte[])"/> constructor
+        /// and is therefore safe to construct from plain bytes in this format.
+        /// </summary>
+        static readonly bool guidIsMemoryCastSafe
+            = BitConverter.GetBytes(testGuidA).Concat(
+                BitConverter.GetBytes(testGuidB)
+            ).Concat(
+                BitConverter.GetBytes(testGuidC)
+            ).Concat(testGuidD).ToArray().AsSpan().SequenceEqual(
+                System.Runtime.InteropServices.MemoryMarshal.AsBytes(
+                    new[] { new Guid(testGuidA, testGuidB, testGuidC, testGuidD) }.AsSpan()
+                )
+            );
+
+        /// <summary>
+        /// Creates a <see cref="Guid"/> instance from the provided bytes.
+        /// </summary>
+        /// <param name="b">The byte span to use. May be modified during construction.</param>
+        /// <returns>A new <see cref="Guid"/> with the specified data.</returns>
+        static Guid GuidFromBytes(Span<byte> b)
+        {
+            var f4 = b.MemoryCast<int>();
+            var f2 = f4.Slice(1, 1).MemoryCast<short>();
+
+            if(BitConverter.IsLittleEndian)
+            {
+                // Flip time_low
+                f4[0] = (b[0] << 24) | (b[1] << 16) | (b[2] << 8) | b[3];
+                // Flip time_mid
+                f2[0] = unchecked((short)((b[4] << 8) | b[5]));
+                // Flip time_hi_and_version
+                f2[1] = unchecked((short)((b[6] << 8) | b[7]));
+            }
+
+            if(guidIsMemoryCastSafe)
+            {
+                // This should match the internal Guid structure
+                return b.MemoryCast<Guid>()[0];
+            }
+            return new Guid(f4[0], f2[0], f2[1], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15]);
         }
 
         /// <summary>
