@@ -212,10 +212,24 @@ namespace IS4.SFI
                 // Strip leading I for interfaces
                 string name = type.IsInterface ? interfaceLetter.Replace(type.Name, "") : type.Name;
                 var components = new List<string>();
-                if(type.IsNested)
+                var genArgs = type.GetGenericArguments();
+                int ownArgsStart = 0;
+                if(type.IsNested && !type.IsGenericParameter)
                 {
                     // Always include the name of the declaring type
-                    components.Add(GetTypeFriendlyName(type.DeclaringType));
+                    var declaringType = type.DeclaringType;
+                    if(declaringType.IsGenericTypeDefinition && type.IsGenericType)
+                    {
+                        // Nested type inherits generic parameters from declaring type
+                        var genParams = declaringType.GetGenericArguments();
+                        if(genArgs.Length > 0)
+                        {
+                            ownArgsStart = Math.Min(genArgs.Length, genParams.Length);
+                            Array.Copy(genArgs, 0, genParams, 0, ownArgsStart);
+                            declaringType = declaringType.MakeGenericType(genParams);
+                        }
+                    }
+                    components.Add(GetTypeFriendlyName(declaringType));
                 }else{
                     if(!String.IsNullOrEmpty(type.Namespace))
                     {
@@ -238,7 +252,7 @@ namespace IS4.SFI
                 if(index != -1) name = name.Substring(0, index);
                 // Add the base name and generic arguments
                 components.Add(FormatMimeName(name));
-                components.AddRange(type.GetGenericArguments().Select(GetTypeFriendlyName));
+                components.AddRange(genArgs.Skip(ownArgsStart).Select(GetTypeFriendlyName));
                 return String.Join(".", components);
             }
 
