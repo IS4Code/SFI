@@ -31,7 +31,7 @@ namespace IS4.SFI.Tools
             {
                 foreach(var t2 in SelectType(y.GetType()))
                 {
-                    int subOrder = t1.IsAssignableFrom(t2) ? -1 : t2.IsAssignableFrom(t1) ? 1 : 0;
+                    int subOrder = t1.Equals(t2) ? 0 : t1.IsAssignableFrom(t2) ? -1 : t2.IsAssignableFrom(t1) ? 1 : 0;
                     if(subOrder != 0)
                     {
                         // This pair is ordered
