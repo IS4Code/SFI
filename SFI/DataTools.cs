@@ -48,15 +48,13 @@ namespace IS4.SFI
 
         /// <summary>
         /// Computes a base32-encoded string from a sequence of bytes.
-        /// The alphabet is "QAZ2WSX3EDC4RFV5TGB6YHN7UJM8K9LP".
         /// </summary>
         /// <typeparam name="TList">The type of the byte sequence.</typeparam>
         /// <param name="bytes">The sequence to compute from.</param>
         /// <param name="sb">An instance of <see cref="StringBuilder"/> that receives the output.</param>
-        public static void Base32<TList>(TList bytes, StringBuilder sb) where TList : IReadOnlyList<byte>
+        /// <param name="alphabet">The alphabet to use; the default is "QAZ2WSX3EDC4RFV5TGB6YHN7UJM8K9LP".</param>
+        public static void Base32<TList>(TList bytes, StringBuilder sb, string alphabet = "QAZ2WSX3EDC4RFV5TGB6YHN7UJM8K9LP") where TList : IReadOnlyList<byte>
         {
-            const string chars = "QAZ2WSX3EDC4RFV5TGB6YHN7UJM8K9LP";
-
             byte index;
             int hi = 5;
             int currentByte = 0;
@@ -79,21 +77,18 @@ namespace IS4.SFI
                     index = (byte)((byte)(bytes[currentByte] << (8 - hi)) >> 3);
                     hi += 5;
                 }
-                sb.Append(chars[index]);
+                sb.Append(alphabet[index]);
             }
         }
 
-        const string base58Alphabet = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
-        static readonly BigInteger base58AlphabetLength = base58Alphabet.Length;
-
         /// <summary>
         /// Computes a base58-encoded string from a sequence of bytes.
-        /// The alphabet is "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz".
         /// </summary>
         /// <typeparam name="TList">The type of the byte sequence.</typeparam>
         /// <param name="bytes">The sequence to compute from.</param>
         /// <param name="sb">An instance of <see cref="StringBuilder"/> that receives the output.</param>
-        public static void Base58<TList>(TList bytes, StringBuilder sb) where TList : IReadOnlyList<byte>
+        /// <param name="alphabet">The alphabet to use; the default is "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz".</param>
+        public static void Base58<TList>(TList bytes, StringBuilder sb, string alphabet = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz") where TList : IReadOnlyList<byte>
         {
             int pos = 0;
             while(bytes[pos] == 0)
@@ -109,17 +104,17 @@ namespace IS4.SFI
                 data[len - 1 - i] = bytes[pos + i];
             }
             var num = new BigInteger(data);
-            foreach(var c in Base58Bytes(num).Reverse())
+            foreach(var c in Base58Bytes(num, alphabet.Length).Reverse())
             {
-                sb.Append(base58Alphabet[c]);
+                sb.Append(alphabet[c]);
             }
         }
 
-        static IEnumerable<int> Base58Bytes(BigInteger num)
+        static IEnumerable<int> Base58Bytes(BigInteger num, int alphabetLength)
         {
             while(num > 0)
             {
-                num = BigInteger.DivRem(num, base58AlphabetLength, out var rem);
+                num = BigInteger.DivRem(num, alphabetLength, out var rem);
                 yield return (int)rem;
             }
         }
