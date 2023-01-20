@@ -376,7 +376,7 @@ namespace IS4.SFI
                 // no useful name, or ToString is not overriden
                 if(type.IsCOMObject)
                 {
-                    // Use provided the COM interface instead
+                    // use the provided COM interface instead
                     type = typeof(T);
                 }
                 return GetUserFriendlyName(type);
