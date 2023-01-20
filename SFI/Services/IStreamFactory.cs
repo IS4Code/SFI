@@ -1,5 +1,7 @@
 ﻿using IS4.SFI.Tools;
 using System;
+using System.ComponentModel;
+using System.Globalization;
 using System.IO;
 
 namespace IS4.SFI.Services
@@ -7,6 +9,7 @@ namespace IS4.SFI.Services
     /// <summary>
     /// Represents any object that can be opened for reading.
     /// </summary>
+    [TypeConverter(typeof(IStreamFactoryConverter))]
     public interface IStreamFactory : IPersistentKey
     {
         /// <summary>
@@ -25,6 +28,35 @@ namespace IS4.SFI.Services
         /// </summary>
         /// <returns>A newly created stream pointing to the beginning of the data.</returns>
         Stream Open();
+    }
+
+    /// <summary>
+    /// An implementation of <see cref="TypeConverter"/> that provides a user-friendly
+    /// conversion to string from an arbitrary instance of <see cref="IStreamFactory"/>.
+    /// </summary>
+    public sealed class IStreamFactoryConverter : TypeConverter
+    {
+        static readonly Type stringType = typeof(string);
+
+        /// <inheritdoc/>
+        public override bool CanConvertTo(ITypeDescriptorContext? context, Type? destinationType)
+        {
+            return stringType.Equals(destinationType) || base.CanConvertTo(context, destinationType);
+        }
+
+        /// <inheritdoc/>
+        public override object? ConvertTo(ITypeDescriptorContext? context, CultureInfo? culture, object? value, Type destinationType)
+        {
+            if(stringType.Equals(destinationType))
+            {
+                if(value is IStreamFactory streamFactory)
+                {
+                    var length = streamFactory.Length;
+                    return $"Data ({TextTools.SizeSuffix(length, 2)})";
+                }
+            }
+            return base.ConvertTo(context, culture, value, destinationType);
+        }
     }
 
     /// <summary>

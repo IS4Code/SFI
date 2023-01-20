@@ -2,8 +2,10 @@
 using IS4.SFI.Tools;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -315,8 +317,6 @@ namespace IS4.SFI
             return "application/x.exec." + interpreter.ToLowerInvariant();
         }
 
-        static readonly Type streamFactoryType = typeof(IStreamFactory);
-
         /// <summary>
         /// Returns a user-friendly string representation of an object.
         /// </summary>
@@ -328,13 +328,17 @@ namespace IS4.SFI
         /// returns its name expressed in a C#-like syntax.
         /// </para>
         /// <para>
-        /// If <typeparamref name="T"/> is <see cref="IStreamFactory"/>,
-        /// returns the <see cref="IStreamFactory.Length"/> of <paramref name="entity"/>.
+        /// If <paramref name="entity"/> implements <see cref="IFormattable"/>,
+        /// <see cref="IFormattable.ToString(string, IFormatProvider)"/> is used,
+        /// using an invariant culture.
         /// </para>
         /// <para>
-        /// Otherwise calls <see cref="Object.ToString"/>; if the returned string
-        /// is empty or a result of the default implementation of <see cref="Object.ToString"/>,
-        /// calls <see cref="GetUserFriendlyName{T}(T)"/> on the type of <paramref name="entity"/>.
+        /// If <typeparamref name="T"/> explicitly provides an instance of
+        /// <see cref="TypeConverter"/> that defines <see cref="TypeConverter.ConvertToInvariantString(object)"/>,
+        /// that method is preferred for the result, otherwise <see cref="Object.ToString"/> is called.
+        /// If the returned string is empty or a result of the default implementation of <see cref="Object.ToString"/>,
+        /// calls <see cref="GetUserFriendlyName{T}(T)"/> on the type of <paramref name="entity"/> or the type
+        /// that was ultimately used by the <see cref="Object.ToString"/> implementation.
         /// </para>
         /// </returns>
         public static string GetUserFriendlyName<T>(T entity)
@@ -371,36 +375,103 @@ namespace IS4.SFI
 
             if(entity is IFormattable formattable)
             {
+                // trust IFormattable types to always provide a useful result
                 return formattable.ToString(null, CultureInfo.InvariantCulture);
-            }else if(streamFactoryType.Equals(typeof(T)))
+            }
+            string name;
+            type = entity.GetType();
+            var converter = TypeDescriptor.GetConverter(typeof(T));
+            if(TypeConverterHasDefinedStringConversion(converter))
             {
-                return $"Data ({((IStreamFactory)entity).Length} B)";
+                // the converter is viable to convert to string
+                var convertedName = converter.ConvertToInvariantString(entity);
+                if(GetTypeFromName<T>(type, convertedName) is not Type existingTypeFromConverter)
+                {
+                    // not the name of any type, so the converter or instance did actually provide its own string conversion
+                    return convertedName;
+                }
+                name = entity.ToString();
+                if(name == convertedName)
+                {
+                    // the converter just used the ToString on the entity, and we already know it corresponds to a type
+                    return GetUserFriendlyName(existingTypeFromConverter);
+                }
+            }else{
+                name = entity.ToString();
             }
 
-            var name = entity.ToString();
+            // it is not viable to check whether ToString is overridden,
+            // since wrapper types may just redirect it to another instance,
+            // in which case the type would have to be found anyway
+            if(GetTypeFromName<T>(type, name) is Type existingType)
+            {
+                // it is the name of a type, so use that type instead
+                return GetUserFriendlyName(existingType);
+            }
+            return name;
+        }
 
-            type = entity.GetType();
-            if(String.IsNullOrWhiteSpace(name) || name == type.ToString())
+        static readonly Type stringType = typeof(string);
+        static readonly Type typeConverterType = typeof(TypeConverter);
+        static readonly MethodInfo convertToMethod = ((MethodCallExpression)((Expression<Func<object>>)(
+            () => new TypeConverter().ConvertTo(null, default(CultureInfo), null, default(Type))
+        )).Body).Method;
+        static readonly ConditionalWeakTable<Type, object> converterTypeCache = new();
+
+        /// <summary>
+        /// Checks that a type converter has a defined conversion to string.
+        /// </summary>
+        static bool TypeConverterHasDefinedStringConversion(TypeConverter converter)
+        {
+            var type = converter.GetType();
+            if(type.Equals(converter))
+            {
+                // the basic conversion to string is not desirable
+                return false;
+            }
+            if(!converter.CanConvertTo(stringType))
+            {
+                // this converter rejects string (unlike the default implementation)
+                return false;
+            }
+            return (bool)converterTypeCache.GetValue(type, t => {
+                var methods = t.GetMethods().Where(m => m.Name == nameof(TypeConverter.ConvertTo));
+                if(methods.FirstOrDefault(m => convertToMethod.Equals(m.GetBaseDefinition())) is MethodInfo m)
+                {
+                    // check that the ConvertTo method is overridden (somewhere along the hierarchy to base)
+                    if(!typeConverterType.Equals(m.DeclaringType))
+                    {
+                        // the method is declared in the custom type, so it should be consulted
+                        return true;
+                    }
+                }
+                return false;
+            });
+        }
+
+        /// <summary>
+        /// Checks if <paramref name="name"/> corresponds to an existing type (or is empty).
+        /// </summary>
+        static Type? GetTypeFromName<T>(Type hintType, string name)
+        {
+            if(String.IsNullOrWhiteSpace(name) || name == hintType.ToString())
             {
                 // no useful name, or ToString is not overriden
-                if(type.IsCOMObject)
+                if(hintType.IsCOMObject)
                 {
                     // use the provided COM interface instead
-                    type = typeof(T);
+                    hintType = typeof(T);
                 }
-                return GetUserFriendlyName(type);
+                return hintType;
             }
 
             try{
-                type = AppDomain.CurrentDomain.GetAssemblies().Select(asm => asm.GetType(name, false)).FirstOrDefault(t => t != null);
-                if(type != null)
-                {
-                    return GetUserFriendlyName(type);
-                }
+                hintType = AppDomain.CurrentDomain.GetAssemblies().Select(asm => asm.GetType(name, false)).FirstOrDefault(t => t != null);
+                return hintType;
             }catch{
                 // name is not a valid type name
+                return null;
             }
-            return name;
         }
 
         /// <summary>
