@@ -315,6 +315,8 @@ namespace IS4.SFI
             return "application/x.exec." + interpreter.ToLowerInvariant();
         }
 
+        static readonly Type streamFactoryType = typeof(IStreamFactory);
+
         /// <summary>
         /// Returns a user-friendly string representation of an object.
         /// </summary>
@@ -367,8 +369,15 @@ namespace IS4.SFI
                 return sb.ToString();
             }
 
-            var name = typeof(T).Equals(typeof(IStreamFactory))
-                ? $"Data ({((IStreamFactory)entity).Length} B)" : entity.ToString();
+            if(entity is IFormattable formattable)
+            {
+                return formattable.ToString(null, CultureInfo.InvariantCulture);
+            }else if(streamFactoryType.Equals(typeof(T)))
+            {
+                return $"Data ({((IStreamFactory)entity).Length} B)";
+            }
+
+            var name = entity.ToString();
 
             type = entity.GetType();
             if(String.IsNullOrWhiteSpace(name) || name == type.ToString())
