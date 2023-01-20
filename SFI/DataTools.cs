@@ -241,7 +241,7 @@ namespace IS4.SFI
         public static string? ExtractSignature(ArraySegment<byte> header)
         {
             var magicSig = header.Take(maxSignatureLength + 1).TakeWhile(recognizedSigBytes.Contains).ToArray();
-            if(magicSig.Length >= 2 && magicSig.Length <= maxSignatureLength && !magicSig.Any(invalidSigBytes.Contains))
+            if(magicSig.Length >= 2 && magicSig.Length <= maxSignatureLength && magicSig.Length < header.Count && !magicSig.Any(invalidSigBytes.Contains))
             {
                 return Encoding.ASCII.GetString(magicSig);
             }
