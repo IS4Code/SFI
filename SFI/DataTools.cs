@@ -297,7 +297,7 @@ namespace IS4.SFI
         /// Matches a C0 control character that can't be displayed in a text.
         /// </summary>
         static readonly Regex controlReplacement = new(
-            @"[\x00-\x08\x0B\x0C\x0E-\x1F]"
+            @"[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]"
             , RegexOptions.Compiled);
 
         /// <summary>
@@ -336,9 +336,14 @@ namespace IS4.SFI
                 {
                     return replacement;
                 }
-                try {
-                    originalEncoding.GetBytes(replacement);
-                } catch(ArgumentException)
+                try{
+                    var bytes = originalEncoding.GetBytes(replacement);
+                    if(originalEncoding.GetString(bytes) != replacement)
+                    {
+                        // the replacement cannot be represented in the encoding, so it is safe
+                        return replacement;
+                    }
+                }catch(ArgumentException)
                 {
                     return replacement;
                 }
