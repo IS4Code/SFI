@@ -91,9 +91,9 @@ namespace IS4.SFI
         public static void Base58<TList>(TList bytes, StringBuilder sb, string alphabet = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz") where TList : IReadOnlyList<byte>
         {
             int pos = 0;
-            while(bytes[pos] == 0)
+            while(pos < bytes.Count && bytes[pos] == 0)
             {
-                sb.Append('1');
+                sb.Append(alphabet[0]);
                 pos++;
             }
             int len = bytes.Count - pos;
