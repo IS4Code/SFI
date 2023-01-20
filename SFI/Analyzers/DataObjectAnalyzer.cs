@@ -14,6 +14,12 @@ namespace IS4.SFI.Analyzers
     /// </summary>
     public class DataObjectAnalyzer : EntityAnalyzer<IDataObject>
     {
+        /// <summary>
+        /// Stores the number of digits used for <see cref="TextTools.SizeSuffix(long, int)"/>
+        /// when creating the label.
+        /// </summary>
+        public int LabelSizeSuffixDigits { get; set; } = 2;
+
         /// <inheritdoc/>
         public async override ValueTask<AnalysisResult> Analyze(IDataObject dataObject, AnalysisContext context, IEntityAnalyzers analyzers)
         {
@@ -48,7 +54,7 @@ namespace IS4.SFI.Analyzers
                 }
             }
 
-            var sizeSuffix = TextTools.SizeSuffix(dataObject.ActualLength, 2);
+            var sizeSuffix = TextTools.SizeSuffix(dataObject.ActualLength, LabelSizeSuffixDigits);
 
             var label = $"{(isBinary ? "binary data" : "text")} ({sizeSuffix})";
 

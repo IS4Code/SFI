@@ -12,6 +12,12 @@ namespace IS4.SFI.Analyzers
     /// </summary>
     public class FormatObjectAnalyzer : EntityAnalyzer<IFormatObject>, IResultFactory<AnalysisResult, (IFormatObject format, AnalysisContext context, IEntityAnalyzers analyzer)>
     {
+        /// <summary>
+        /// Stores the number of digits used for <see cref="TextTools.SizeSuffix(long, int)"/>
+        /// when creating the label.
+        /// </summary>
+        public int LabelSizeSuffixDigits { get; set; } = 2;
+
         /// <inheritdoc/>
         public override ValueTask<AnalysisResult> Analyze(IFormatObject format, AnalysisContext context, IEntityAnalyzers analyzers)
         {
@@ -66,7 +72,7 @@ namespace IS4.SFI.Analyzers
             var label = result.Label;
             if(format is IBinaryFormatObject binaryFormat)
             {
-                label ??= TextTools.SizeSuffix(binaryFormat.Data.StreamFactory.Length, 2);
+                label ??= TextTools.SizeSuffix(binaryFormat.Data.StreamFactory.Length, LabelSizeSuffixDigits);
             }
 
             if(format.Format is IXmlDocumentFormat xmlFormat)
