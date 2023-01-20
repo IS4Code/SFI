@@ -188,9 +188,9 @@ namespace IS4.SFI
 
         /// <summary>
         /// Matches a letter after which a hyphen could be placed, as either a lowercase letter followed
-        /// by an uppercase letter, or an uppercase letter followed by an uppercase letter and a lowercase letter.
+        /// by an uppercase letter or digit, or an uppercase letter or digit followed by an uppercase letter and a lowercase letter.
         /// </summary>
-        static readonly Regex hyphenCharacters = new(@"\p{Ll}(?=\p{Lu})|\p{Lu}(?=\p{Lu}\p{Ll})", RegexOptions.Compiled);
+        static readonly Regex hyphenCharacters = new(@"\p{Ll}(?=[\p{Lu}\p{N}])|[\p{Lu}\p{N}](?=\p{Lu}\p{Ll})", RegexOptions.Compiled);
 
         /// <summary>
         /// Matches any namespace that is located within <see cref="System"/> or <see cref="SFI"/>.
