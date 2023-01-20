@@ -20,11 +20,11 @@ namespace IS4.SFI
     {
         static readonly byte[][] knownBoms = new[]
         {
+            new UTF32Encoding(true, true),
+            new UTF32Encoding(false, true),
             Encoding.UTF8,
             Encoding.Unicode,
-            Encoding.BigEndianUnicode,
-            new UTF32Encoding(true, true),
-            new UTF32Encoding(false, true)
+            Encoding.BigEndianUnicode
         }.Select(e => e.GetPreamble()).ToArray();
 
         /// <summary>
