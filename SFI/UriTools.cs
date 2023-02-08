@@ -300,7 +300,7 @@ namespace IS4.SFI
         /// <returns>A v5 (SHA-1) based UUID, created using <see cref="DataTools.GuidFromName(byte[], string)"/>.</returns>
         public static Guid UuidFromUri(Uri uri)
         {
-            return DataTools.GuidFromName(urlNamespace, uri.AbsoluteUri);
+            return DataTools.GuidFromName(urlNamespace, uri.IsAbsoluteUri ? uri.AbsoluteUri : uri.OriginalString);
         }
 
         /// <summary>
