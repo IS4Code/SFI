@@ -14,10 +14,9 @@
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix cert: <http://www.w3.org/ns/auth/cert#>.
 @prefix ds: <http://www.w3.org/2000/09/xmldsig#>.
-@prefix owl: <http://www.w3.org/2002/07/owl#>.
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix dbo: <http://dbpedia.org/ontology/>.
 @prefix xis: <http://www.w3.org/2001/04/infoset#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 
 _:n1 at:pathObject <file:///install_flash_player_7.msi>;
      nie:interpretedAs <ni:///mh;1QEQ7KXNZVmEGOc2HeX91alt7g?ct=application/octet-stream>;
@@ -143,37 +142,11 @@ _:n1 at:pathObject <file:///install_flash_player_7.msi>;
                                                                 dcterms:creator """CN=VeriSign Class 3 Code Signing 2001 CA, OU=Terms of use at https://www.verisign.com/rpa (c)01, OU=VeriSign Trust Network, O=\"VeriSign, Inc.\"""";
                                                                 dcterms:subject """CN=\"Macromedia, Inc.\", OU=Digital ID Class 3 - Microsoft Software Validation v2, OU=Digital ID Class 3 - Microsoft Software Validation v2, O=\"Macromedia, Inc.\", L=San Francisco, S=CA, C=US""";
                                                                 schema:encodingFormat <https://w3id.org/uri4uri/mime/application/pkcs7-mime>;
+                                                                schema:serialNumber "0477FA2565EA111785DDD089A34E8D79";
                                                                 a schema:MediaObject,
                                                                   cert:X509Certificate;
-                                                                skos:notation """[Subject]
-  CN=\"Macromedia, Inc.\", OU=Digital ID Class 3 - Microsoft Software Validation v2, OU=Digital ID Class 3 - Microsoft Software Validation v2, O=\"Macromedia, Inc.\", L=San Francisco, S=CA, C=US
-
-[Issuer]
-  CN=VeriSign Class 3 Code Signing 2001 CA, OU=Terms of use at https://www.verisign.com/rpa (c)01, OU=VeriSign Trust Network, O=\"VeriSign, Inc.\"
-
-[Serial Number]
-  0477FA2565EA111785DDD089A34E8D79
-
-[Not Before]
-  27.5.2003 2:00:00
-
-[Not After]
-  10.6.2004 1:59:59
-
-[Thumbprint]
-  786B45DEA79310C8865815BA81418756C680C6BA
-""";
                                                                 skos:prefLabel "P7C object (5.34 KiB)"@en;
-                                                                sec:expiration "2004-06-10T01:59:59.000000+02:00"^^xsd:dateTime;
-                                                                <urn:uuid:a7ffa2c4-bd10-5484-9a4f-085cfff8c72d> "[1]Distribuční místo CRL: Název distribučního bodu:Jméno a příjmení:URL=http://crl.verisign.com/Class3CodeSigning2001.crl"@cs-cz;
-                                                                <urn:uuid:a80ef826-9384-5252-b468-3ba8e42b4d25> "[1]Certifikační zásady:Identifikátor zásad=2.16.840.1.113733.1.7.23.3, [1,1]Informace o kvalifikátoru zásad: ID kvalifikátoru zásad=CPS, Kvalifikátor: https://www.verisign.com/rpa"@cs-cz;
-                                                                <urn:uuid:c87f1fd3-1986-5686-874c-30b11100f02d> "ID klíče=35 2b f4 64 73 90 9c 03 6d 03 0d 67 60 6b dd 0b 10 3c bb 61"@cs-cz;
-                                                                <urn:uuid:d50190e8-68d6-5bcb-8095-1b564b15bc25> "Finanční informace=Není k dispozici"@cs-cz;
-                                                                <urn:uuid:d91b3b39-14e4-5fbf-97b8-76163173478f> "Typ předmětu=Koncová entita, Omezení délky cesty=Žádný"@cs-cz;
-                                                                <urn:uuid:e691989f-af8f-5828-8e74-bb33f2917c0f> "Digitální podpis (80)"@cs-cz;
-                                                                <urn:uuid:ecf05965-520d-5bdb-b5f4-7d5a2f9c482a> "Podpis kódu (1.3.6.1.5.5.7.3.3)"@cs-cz;
-                                                                <urn:uuid:f1c0f904-fa9a-5ece-8ae2-880ce3795dff> "[1]Přístup k informacím autority: Přístupová metoda=Protokol OCSP (1.3.6.1.5.5.7.48.1), Alternativní název=URL=https://ocsp.verisign.com"@cs-cz;
-                                                                <urn:uuid:f49693ca-3871-5434-9302-c2134d788c40> "Podpis (10)"@cs-cz.
+                                                                sec:expiration "2004-06-10T01:59:59.000000+02:00"^^xsd:dateTime.
 <ni:///mh;1QEQ7KXNZVmEGOc2HeX91alt7g?ct=application/octet-stream> at:digest <urn:md5:ECA5CD65598418E7361DE5FDD5A96DEE>;
                                                                   dcterms:extent "684032"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ7KXNZVmEGOc2HeX91alt7g?ct=application/x-ole-storage>;
@@ -470,38 +443,12 @@ _:n1 at:pathObject <file:///install_flash_player_7.msi>;
                                                                   dcterms:extent "99688"^^dt:byte;
                                                                   dcterms:hasFormat [a schema:MediaObject ; 
                                                                                      a cert:X509Certificate ; 
-                                                                                     skos:notation """[Subject]
-  CN=\"Macromedia, Inc.\", OU=Digital ID Class 3 - Microsoft Software Validation v2, OU=Digital ID Class 3 - Microsoft Software Validation v2, O=\"Macromedia, Inc.\", L=San Francisco, S=CA, C=US
-
-[Issuer]
-  CN=VeriSign Class 3 Code Signing 2001 CA, OU=Terms of use at https://www.verisign.com/rpa (c)01, OU=VeriSign Trust Network, O=\"VeriSign, Inc.\"
-
-[Serial Number]
-  0477FA2565EA111785DDD089A34E8D79
-
-[Not Before]
-  27.5.2003 2:00:00
-
-[Not After]
-  10.6.2004 1:59:59
-
-[Thumbprint]
-  786B45DEA79310C8865815BA81418756C680C6BA
-""" ; 
                                                                                      at:digest <urn:sha1:U8MCW5PY6WWTR2Z4HTV2UQ9TNBGAE247> ; 
                                                                                      dcterms:subject """CN=\"Macromedia, Inc.\", OU=Digital ID Class 3 - Microsoft Software Validation v2, OU=Digital ID Class 3 - Microsoft Software Validation v2, O=\"Macromedia, Inc.\", L=San Francisco, S=CA, C=US""" ; 
                                                                                      dcterms:creator """CN=VeriSign Class 3 Code Signing 2001 CA, OU=Terms of use at https://www.verisign.com/rpa (c)01, OU=VeriSign Trust Network, O=\"VeriSign, Inc.\"""" ; 
                                                                                      dcterms:created "2003-05-27T02:00:00.000000+02:00"^^xsd:dateTime ; 
                                                                                      sec:expiration "2004-06-10T01:59:59.000000+02:00"^^xsd:dateTime ; 
-                                                                                     <urn:uuid:d91b3b39-14e4-5fbf-97b8-76163173478f> "Typ předmětu=Koncová entita, Omezení délky cesty=Žádný"@cs-cz ; 
-                                                                                     <urn:uuid:e691989f-af8f-5828-8e74-bb33f2917c0f> "Digitální podpis (80)"@cs-cz ; 
-                                                                                     <urn:uuid:a7ffa2c4-bd10-5484-9a4f-085cfff8c72d> "[1]Distribuční místo CRL: Název distribučního bodu:Jméno a příjmení:URL=http://crl.verisign.com/Class3CodeSigning2001.crl"@cs-cz ; 
-                                                                                     <urn:uuid:a80ef826-9384-5252-b468-3ba8e42b4d25> "[1]Certifikační zásady:Identifikátor zásad=2.16.840.1.113733.1.7.23.3, [1,1]Informace o kvalifikátoru zásad: ID kvalifikátoru zásad=CPS, Kvalifikátor: https://www.verisign.com/rpa"@cs-cz ; 
-                                                                                     <urn:uuid:ecf05965-520d-5bdb-b5f4-7d5a2f9c482a> "Podpis kódu (1.3.6.1.5.5.7.3.3)"@cs-cz ; 
-                                                                                     <urn:uuid:f1c0f904-fa9a-5ece-8ae2-880ce3795dff> "[1]Přístup k informacím autority: Přístupová metoda=Protokol OCSP (1.3.6.1.5.5.7.48.1), Alternativní název=URL=https://ocsp.verisign.com"@cs-cz ; 
-                                                                                     <urn:uuid:c87f1fd3-1986-5686-874c-30b11100f02d> "ID klíče=35 2b f4 64 73 90 9c 03 6d 03 0d 67 60 6b dd 0b 10 3c bb 61"@cs-cz ; 
-                                                                                     <urn:uuid:f49693ca-3871-5434-9302-c2134d788c40> "Podpis (10)"@cs-cz ; 
-                                                                                     <urn:uuid:d50190e8-68d6-5bcb-8095-1b564b15bc25> "Finanční informace=Není k dispozici"@cs-cz],
+                                                                                     schema:serialNumber "0477FA2565EA111785DDD089A34E8D79"],
                                                                                     <ni:///mh;1QEQLKY8rS9WOruyXXrsUOqPKQ?ct=application/vnd.microsoft.portable-executable>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (97.35 KiB)"@en.
@@ -741,37 +688,11 @@ _:n1 at:pathObject <file:///install_flash_player_7.msi>;
                                                                     dcterms:creator """CN=VeriSign Class 3 Code Signing 2001 CA, OU=Terms of use at https://www.verisign.com/rpa (c)01, OU=VeriSign Trust Network, O=\"VeriSign, Inc.\"""";
                                                                     dcterms:subject """CN=\"Macromedia, Inc.\", OU=Digital ID Class 3 - Microsoft Software Validation v2, OU=Digital ID Class 3 - Microsoft Software Validation v2, O=\"Macromedia, Inc.\", L=San Francisco, S=CA, C=US""";
                                                                     schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-x509-ca-cert>;
+                                                                    schema:serialNumber "0477FA2565EA111785DDD089A34E8D79";
                                                                     a schema:MediaObject,
                                                                       cert:X509Certificate;
-                                                                    skos:notation """[Subject]
-  CN=\"Macromedia, Inc.\", OU=Digital ID Class 3 - Microsoft Software Validation v2, OU=Digital ID Class 3 - Microsoft Software Validation v2, O=\"Macromedia, Inc.\", L=San Francisco, S=CA, C=US
-
-[Issuer]
-  CN=VeriSign Class 3 Code Signing 2001 CA, OU=Terms of use at https://www.verisign.com/rpa (c)01, OU=VeriSign Trust Network, O=\"VeriSign, Inc.\"
-
-[Serial Number]
-  0477FA2565EA111785DDD089A34E8D79
-
-[Not Before]
-  27.5.2003 2:00:00
-
-[Not After]
-  10.6.2004 1:59:59
-
-[Thumbprint]
-  786B45DEA79310C8865815BA81418756C680C6BA
-""";
                                                                     skos:prefLabel "DER object (1.09 KiB)"@en;
-                                                                    sec:expiration "2004-06-10T01:59:59.000000+02:00"^^xsd:dateTime;
-                                                                    <urn:uuid:a7ffa2c4-bd10-5484-9a4f-085cfff8c72d> "[1]Distribuční místo CRL: Název distribučního bodu:Jméno a příjmení:URL=http://crl.verisign.com/Class3CodeSigning2001.crl"@cs-cz;
-                                                                    <urn:uuid:a80ef826-9384-5252-b468-3ba8e42b4d25> "[1]Certifikační zásady:Identifikátor zásad=2.16.840.1.113733.1.7.23.3, [1,1]Informace o kvalifikátoru zásad: ID kvalifikátoru zásad=CPS, Kvalifikátor: https://www.verisign.com/rpa"@cs-cz;
-                                                                    <urn:uuid:c87f1fd3-1986-5686-874c-30b11100f02d> "ID klíče=35 2b f4 64 73 90 9c 03 6d 03 0d 67 60 6b dd 0b 10 3c bb 61"@cs-cz;
-                                                                    <urn:uuid:d50190e8-68d6-5bcb-8095-1b564b15bc25> "Finanční informace=Není k dispozici"@cs-cz;
-                                                                    <urn:uuid:d91b3b39-14e4-5fbf-97b8-76163173478f> "Typ předmětu=Koncová entita, Omezení délky cesty=Žádný"@cs-cz;
-                                                                    <urn:uuid:e691989f-af8f-5828-8e74-bb33f2917c0f> "Digitální podpis (80)"@cs-cz;
-                                                                    <urn:uuid:ecf05965-520d-5bdb-b5f4-7d5a2f9c482a> "Podpis kódu (1.3.6.1.5.5.7.3.3)"@cs-cz;
-                                                                    <urn:uuid:f1c0f904-fa9a-5ece-8ae2-880ce3795dff> "[1]Přístup k informacím autority: Přístupová metoda=Protokol OCSP (1.3.6.1.5.5.7.48.1), Alternativní název=URL=https://ocsp.verisign.com"@cs-cz;
-                                                                    <urn:uuid:f49693ca-3871-5434-9302-c2134d788c40> "Podpis (10)"@cs-cz.
+                                                                    sec:expiration "2004-06-10T01:59:59.000000+02:00"^^xsd:dateTime.
 <ni:///mh;1QEQzlXMIbjDlBdabrC4sggFWA?ct=application/octet-stream> at:digest <urn:md5:CE55CC21B8C394175A6EB0B8B2080558>;
                                                                   dcterms:extent "372"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -1250,33 +1171,6 @@ _:n1 at:pathObject <file:///install_flash_player_7.msi>;
 <urn:md5:FAB40DD4CD9CD94D07764158D3B279E4> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "+rQN1M2c2U0HdkFY07J55A=="^^xsd:base64Binary.
-<urn:oid:1.3.6.1.4.1.311.2.1.27> rdfs:label "SpcFinancialCriteria"@cs-cz.
-<urn:oid:1.3.6.1.5.5.7.1.1> rdfs:label "Přístup k informacím autority"@cs-cz.
-<urn:oid:2.16.840.1.113730.1.1> rdfs:label "Typ certifikátu Netscape"@cs-cz.
-<urn:oid:2.5.29.15> rdfs:label "Použití klíče"@cs-cz.
-<urn:oid:2.5.29.19> rdfs:label "Základní omezení"@cs-cz.
-<urn:oid:2.5.29.31> rdfs:label "Distribuční místa seznamu odvolaných certifikátů"@cs-cz.
-<urn:oid:2.5.29.32> rdfs:label "Zásady certifikátu"@cs-cz.
-<urn:oid:2.5.29.35> rdfs:label "Identifikátor klíče autority"@cs-cz.
-<urn:oid:2.5.29.37> rdfs:label "Použití rozšířeného klíče"@cs-cz.
 <urn:sha1:U8MCW5PY6WWTR2Z4HTV2UQ9TNBGAE247> a sec:Digest;
                                             sec:digestAlgorithm ds:sha1;
                                             sec:digestValue "eGtF3qeTEMiGWBW6gUGHVsaAxro="^^xsd:base64Binary.
-<urn:uuid:a7ffa2c4-bd10-5484-9a4f-085cfff8c72d> owl:equivalentProperty <urn:oid:2.5.29.31>;
-                                                owl:sameAs <urn:oid:2.5.29.31>.
-<urn:uuid:a80ef826-9384-5252-b468-3ba8e42b4d25> owl:equivalentProperty <urn:oid:2.5.29.32>;
-                                                owl:sameAs <urn:oid:2.5.29.32>.
-<urn:uuid:c87f1fd3-1986-5686-874c-30b11100f02d> owl:equivalentProperty <urn:oid:2.5.29.35>;
-                                                owl:sameAs <urn:oid:2.5.29.35>.
-<urn:uuid:d50190e8-68d6-5bcb-8095-1b564b15bc25> owl:equivalentProperty <urn:oid:1.3.6.1.4.1.311.2.1.27>;
-                                                owl:sameAs <urn:oid:1.3.6.1.4.1.311.2.1.27>.
-<urn:uuid:d91b3b39-14e4-5fbf-97b8-76163173478f> owl:equivalentProperty <urn:oid:2.5.29.19>;
-                                                owl:sameAs <urn:oid:2.5.29.19>.
-<urn:uuid:e691989f-af8f-5828-8e74-bb33f2917c0f> owl:equivalentProperty <urn:oid:2.5.29.15>;
-                                                owl:sameAs <urn:oid:2.5.29.15>.
-<urn:uuid:ecf05965-520d-5bdb-b5f4-7d5a2f9c482a> owl:equivalentProperty <urn:oid:2.5.29.37>;
-                                                owl:sameAs <urn:oid:2.5.29.37>.
-<urn:uuid:f1c0f904-fa9a-5ece-8ae2-880ce3795dff> owl:equivalentProperty <urn:oid:1.3.6.1.5.5.7.1.1>;
-                                                owl:sameAs <urn:oid:1.3.6.1.5.5.7.1.1>.
-<urn:uuid:f49693ca-3871-5434-9302-c2134d788c40> owl:equivalentProperty <urn:oid:2.16.840.1.113730.1.1>;
-                                                owl:sameAs <urn:oid:2.16.840.1.113730.1.1>.

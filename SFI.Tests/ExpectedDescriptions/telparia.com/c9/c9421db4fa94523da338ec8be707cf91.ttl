@@ -15,9 +15,8 @@
 @prefix dbo: <http://dbpedia.org/ontology/>.
 @prefix cert: <http://www.w3.org/ns/auth/cert#>.
 @prefix ds: <http://www.w3.org/2000/09/xmldsig#>.
-@prefix owl: <http://www.w3.org/2002/07/owl#>.
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix xis: <http://www.w3.org/2001/04/infoset#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 
 _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
      nie:interpretedAs <ni:///mh;1QEQpjgTikQIZmU6Bzd1Az8UZA?ct=application/octet-stream>;
@@ -590,8 +589,8 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×15)"@en,
-                                                                  "BMP object (224 B)"@en.
+                                                   skos:prefLabel "BMP object (224 B)"@en,
+                                                                  "BMP object (16×15)"@en.
 <ni:///mh;1QEQ2UM-xYHcEoJOyXKlgydnqA?ct=application/octet-stream> at:digest <urn:md5:D9433EC581DC12824EC972A5832767A8>;
                                                                   dcterms:extent "310"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ2UM-xYHcEoJOyXKlgydnqA?ct=image/bmp>;
@@ -1496,58 +1495,15 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
 <ni:///mh;1QEQDTtahVAXuCVrni6TJPkErQ?ct=text/plain#line=,1> rdf:value "HKCR".
 <ni:///mh;1QEQDbBNhLBvdgvnqFKoz8IN8g?ct=application/octet-stream> at:digest <urn:md5:0DB04D84B06F760BE7A852A8CFC20DF2>;
                                                                   dcterms:extent "67376"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQDbBNhLBvdgvnqFKoz8IN8g?ct=application/vnd.microsoft.portable-executable>,
-                                                                                    [a schema:MediaObject ; 
+                                                                  dcterms:hasFormat [a schema:MediaObject ; 
                                                                                      a cert:X509Certificate ; 
-                                                                                     skos:notation """[Subject]
-  OU=Microsoft Corporation, CN=Microsoft Corporation, L=Redmond, S=Washington, C=US, OU=Digital ID Class 3 - Microsoft Software Validation v2, OU=\"www.verisign.com/repository/CPS Incorp. by Ref.,LIAB.LTD(c)96\", OU=VeriSign Commercial Software Publishers CA, O=\"VeriSign, Inc.\", L=Internet
-
-[Issuer]
-  OU=VeriSign Commercial Software Publishers CA, O=\"VeriSign, Inc.\", L=Internet
-
-[Serial Number]
-  7966966E83B0D0B601126E9DC0B46571
-
-[Not Before]
-  16.4.1998 2:00:00
-
-[Not After]
-  17.4.1999 1:59:59
-
-[Thumbprint]
-  D6CD0190B31B318581122314B517A0AACEF27BD5
-""" ; 
                                                                                      at:digest <urn:sha1:NV62QEVN8ERCUQCZ2ASC84QYCH6SP9HM> ; 
                                                                                      dcterms:subject """OU=Microsoft Corporation, CN=Microsoft Corporation, L=Redmond, S=Washington, C=US, OU=Digital ID Class 3 - Microsoft Software Validation v2, OU=\"www.verisign.com/repository/CPS Incorp. by Ref.,LIAB.LTD(c)96\", OU=VeriSign Commercial Software Publishers CA, O=\"VeriSign, Inc.\", L=Internet""" ; 
                                                                                      dcterms:creator """OU=VeriSign Commercial Software Publishers CA, O=\"VeriSign, Inc.\", L=Internet""" ; 
                                                                                      dcterms:created "1998-04-16T02:00:00.000000+02:00"^^xsd:dateTime ; 
                                                                                      sec:expiration "1999-04-17T01:59:59.000000+02:00"^^xsd:dateTime ; 
-                                                                                     <urn:uuid:d91b3b39-14e4-5fbf-97b8-76163173478f> "Typ předmětu=Koncová entita, Omezení délky cesty=Žádný"@cs-cz ; 
-                                                                                     <urn:uuid:e691989f-af8f-5828-8e74-bb33f2917c0f> "Digitální podpis, Šifrování klíče (a0)"@cs-cz ; 
-                                                                                     <urn:uuid:de31dd37-5198-5606-90e2-32c6efa1e230> """ID klíče=7b 96 e4 d1 43 fd 68 98 f3 38 cc 6e 3b f2 0b 82, Vystavitel certifikátu: OU=VeriSign Commercial Software Publishers CA, O=\"VeriSign, Inc.\", L=Internet, Sériové číslo certifikátu=02 b4 00 00 01"""@cs-cz ; 
-                                                                                     <urn:uuid:f6a1a652-ed36-5d4d-aad6-08f394363b27> "[1]ID certifikačních zásad=1.3.6.1.4.1.311.2.1.22, Omezené použití klíče=Digitální podpis (80)"@cs-cz ; 
-                                                                                     <urn:uuid:f764276e-77d4-5d7d-8995-713a0cbc962c> "Typ předmětu=Koncová entita, Omezení délky cesty=Žádný"@cs-cz ; 
-                                                                                     <urn:uuid:ea92d576-b62f-53a3-88b3-cddb729d71ee> """Informace o zásadách: URL=https://www.verisign.com/repository/CPS, Zobrazení zásad=This certificate incorporates by reference, and its use is strictly
-subject to, the VeriSign Certification Practice Statement (CPS)
-version 1.0, available in the VeriSign repository at:
-https://www.verisign.com; by E-mail at CPS-requests@verisign.com; or
-by mail at VeriSign, Inc., 2593 Coast Ave., Mountain View, CA 94043
-USA Copyright (c)1996 VeriSign, Inc.  All Rights Reserved. CERTAIN
-WARRANTIES DISCLAIMED AND LIABILITY LIMITED.
-
-WARNING: THE USE OF THIS CERTIFICATE IS STRICTLY SUBJECT TO THE
-VERISIGN CERTIFICATION PRACTICE STATEMENT.  THE ISSUING AUTHORITY
-DISCLAIMS CERTAIN IMPLIED AND EXPRESS WARRANTIES, INCLUDING WARRANTIES
-OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, AND WILL NOT
-BE LIABLE FOR CONSEQUENTIAL, PUNITIVE, AND CERTAIN OTHER DAMAGES. SEE
-THE CPS FOR DETAILS.
-
-Contents of the VeriSign registered nonverifiedSubjectAttributes
-extension value shall not be considered as accurate information
-validated by the IA.
-, Odkaz na logo zásad: URL=https://www.verisign.com/repository/verisignlogo.gif"""@cs-cz ; 
-                                                                                     <urn:uuid:a80ef826-9384-5252-b468-3ba8e42b4d25> "[1]Certifikační zásady:Identifikátor zásad=2.16.840.1.113733.1.7.1.1, [1,1]Informace o kvalifikátoru zásad: ID kvalifikátoru zásad=CPS, Kvalifikátor: https://www.verisign.com/CPS, [1,2]Informace o kvalifikátoru zásad: ID kvalifikátoru zásad=Uživatelské oznámení, Kvalifikátor: Odkaz oznámení:Organizace=VeriSign, Inc., Číslo oznámení=1, Text oznámení=VeriSign's CPS incorp. by reference liab. ltd. (c)97 VeriSign"@cs-cz ; 
-                                                                                     <urn:uuid:d50190e8-68d6-5bcb-8095-1b564b15bc25> "Finanční informace=K dispozici, Splňuje kritéria=Ano"@cs-cz];
+                                                                                     schema:serialNumber "7966966E83B0D0B601126E9DC0B46571"],
+                                                                                    <ni:///mh;1QEQDbBNhLBvdgvnqFKoz8IN8g?ct=application/vnd.microsoft.portable-executable>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (65.8 KiB)"@en.
 <ni:///mh;1QEQDbBNhLBvdgvnqFKoz8IN8g?ct=application/vnd.microsoft.portable-executable> at:digest <urn:md5:9EDC3E3336F2155CCEA32772458E16B0>;
@@ -3293,54 +3249,11 @@ validated by the IA.
                                                                     dcterms:creator """OU=VeriSign Commercial Software Publishers CA, O=\"VeriSign, Inc.\", L=Internet""";
                                                                     dcterms:subject """OU=Microsoft Corporation, CN=Microsoft Corporation, L=Redmond, S=Washington, C=US, OU=Digital ID Class 3 - Microsoft Software Validation v2, OU=\"www.verisign.com/repository/RPA Incorp. by Ref.,LIAB.LTD(c)98\", OU=VeriSign Commercial Software Publishers CA, O=\"VeriSign, Inc.\", L=Internet""";
                                                                     schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-x509-ca-cert>;
+                                                                    schema:serialNumber "75F28EF8A8FBEA6D11529714954B655C";
                                                                     a schema:MediaObject,
                                                                       cert:X509Certificate;
-                                                                    skos:notation """[Subject]
-  OU=Microsoft Corporation, CN=Microsoft Corporation, L=Redmond, S=Washington, C=US, OU=Digital ID Class 3 - Microsoft Software Validation v2, OU=\"www.verisign.com/repository/RPA Incorp. by Ref.,LIAB.LTD(c)98\", OU=VeriSign Commercial Software Publishers CA, O=\"VeriSign, Inc.\", L=Internet
-
-[Issuer]
-  OU=VeriSign Commercial Software Publishers CA, O=\"VeriSign, Inc.\", L=Internet
-
-[Serial Number]
-  75F28EF8A8FBEA6D11529714954B655C
-
-[Not Before]
-  4.4.2000 2:00:00
-
-[Not After]
-  18.4.2001 1:59:59
-
-[Thumbprint]
-  B159A52E3DD8CECD3A9A4A7A7392AA8DA7E7D67F
-""";
                                                                     skos:prefLabel "DER object (2.66 KiB)"@en;
-                                                                    sec:expiration "2001-04-18T01:59:59.000000+02:00"^^xsd:dateTime;
-                                                                    <urn:uuid:d50190e8-68d6-5bcb-8095-1b564b15bc25> "Finanční informace=K dispozici, Splňuje kritéria=Ano"@cs-cz;
-                                                                    <urn:uuid:d91b3b39-14e4-5fbf-97b8-76163173478f> "Typ předmětu=Koncová entita, Omezení délky cesty=Žádný"@cs-cz;
-                                                                    <urn:uuid:d9f0976a-2f3c-5b8b-96ce-77e647fe7001> "30 82 02 12 30 82 02 0e 30 82 02 0a 06 0b 60 86 48 01 86 f8 45 01 07 01 01 30 82 01 f9 16 82 01 a7 54 68 69 73 20 63 65 72 74 69 66 69 63 61 74 65 20 69 6e 63 6f 72 70 6f 72 61 74 65 73 20 62 79 20 72 65 66 65 72 65 6e 63 65 2c 20 61 6e 64 20 69 74 73 20 75 73 65 20 69 73 20 73 74 72 69 63 74 6c 79 20 73 75 62 6a 65 63 74 20 74 6f 2c 20 74 68 65 20 56 65 72 69 53 69 67 6e 20 43 65 72 74 69 66 69 63 61 74 69 6f 6e 20 50 72 61 63 74 69 63 65 20 53 74 61 74 65 6d 65 6e 74 20 28 43 50 53 29 2c 20 61 76 61 69 6c 61 62 6c 65 20 61 74 3a 20 68 74 74 70 73 3a 2f 2f 77 77 77 2e 76 65 72 69 73 69 67 6e 2e 63 6f 6d 2f 43 50 53 3b 20 62 79 20 45 2d 6d 61 69 6c 20 61 74 20 43 50 53 2d 72 65 71 75 65 73 74 73 40 76 65 72 69 73 69 67 6e 2e 63 6f 6d 3b 20 6f 72 20 62 79 20 6d 61 69 6c 20 61 74 20 56 65 72 69 53 69 67 6e 2c 20 49 6e 63 2e 2c 20 32 35 39 33 20 43 6f 61 73 74 20 41 76 65 2e 2c 20 4d 6f 75 6e 74 61 69 6e 20 56 69 65 77 2c 20 43 41 20 39 34 30 34 33 20 55 53 41 20 54 65 6c 2e 20 2b 31 20 28 34 31 35 29 20 39 36 31 2d 38 38 33 30 20 43 6f 70 79 72 69 67 68 74 20 28 63 29 20 31 39 39 36 20 56 65 72 69 53 69 67 6e 2c 20 49 6e 63 2e 20 20 41 6c 6c 20 52 69 67 68 74 73 20 52 65 73 65 72 76 65 64 2e 20 43 45 52 54 41 49 4e 20 57 41 52 52 41 4e 54 49 45 53 20 44 49 53 43 4c 41 49 4d 45 44 20 61 6e 64 20 4c 49 41 42 49 4c 49 54 59 20 4c 49 4d 49 54 45 44 2e a0 0e 06 0c 60 86 48 01 86 f8 45 01 07 01 01 01 a1 0e 06 0c 60 86 48 01 86 f8 45 01 07 01 01 02 30 2c 30 2a 16 28 68 74 74 70 73 3a 2f 2f 77 77 77 2e 76 65 72 69 73 69 67 6e 2e 63 6f 6d 2f 72 65 70 6f 73 69 74 6f 72 79 2f 43 50 53 20"@cs-cz;
-                                                                    <urn:uuid:de31dd37-5198-5606-90e2-32c6efa1e230> """ID klíče=7b 96 e4 d1 43 fd 68 98 f3 38 cc 6e 3b f2 0b 82, Vystavitel certifikátu: OU=VeriSign Commercial Software Publishers CA, O=\"VeriSign, Inc.\", L=Internet, Sériové číslo certifikátu=03 c7 8f 37 db 92 28 df 3c bb 1a ad 82 fa 67 10"""@cs-cz;
-                                                                    <urn:uuid:e691989f-af8f-5828-8e74-bb33f2917c0f> "Digitální podpis, Šifrování klíče (a0)"@cs-cz;
-                                                                    <urn:uuid:ea92d576-b62f-53a3-88b3-cddb729d71ee> """Informace o zásadách: URL=https://www.verisign.com/repository/CPS, Zobrazení zásad=This certificate incorporates by reference, and its use is strictly
-subject to, the VeriSign Certification Practice Statement (CPS)
-version 1.0, available in the VeriSign repository at:
-https://www.verisign.com; by E-mail at CPS-requests@verisign.com; or
-by mail at VeriSign, Inc., 2593 Coast Ave., Mountain View, CA 94043
-USA Copyright (c)1996 VeriSign, Inc.  All Rights Reserved. CERTAIN
-WARRANTIES DISCLAIMED AND LIABILITY LIMITED.
-
-WARNING: THE USE OF THIS CERTIFICATE IS STRICTLY SUBJECT TO THE
-VERISIGN CERTIFICATION PRACTICE STATEMENT.  THE ISSUING AUTHORITY
-DISCLAIMS CERTAIN IMPLIED AND EXPRESS WARRANTIES, INCLUDING WARRANTIES
-OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, AND WILL NOT
-BE LIABLE FOR CONSEQUENTIAL, PUNITIVE, AND CERTAIN OTHER DAMAGES. SEE
-THE CPS FOR DETAILS.
-
-Contents of the VeriSign registered nonverifiedSubjectAttributes
-extension value shall not be considered as accurate information
-validated by the IA.
-, Odkaz na logo zásad: URL=https://www.verisign.com/repository/verisignlogo.gif"""@cs-cz;
-                                                                    <urn:uuid:f6a1a652-ed36-5d4d-aad6-08f394363b27> "[1]ID certifikačních zásad=1.3.6.1.4.1.311.2.1.22, Omezené použití klíče=Digitální podpis (80)"@cs-cz;
-                                                                    <urn:uuid:f764276e-77d4-5d7d-8995-713a0cbc962c> "Typ předmětu=Koncová entita, Omezení délky cesty=Žádný"@cs-cz.
+                                                                    sec:expiration "2001-04-18T01:59:59.000000+02:00"^^xsd:dateTime.
 <ni:///mh;1QEQZrk5ZWFPgm77rSIttbVcvw?ct=application/octet-stream> at:digest <urn:md5:66B93965614F826EFBAD222DB5B55CBF>;
                                                                   dcterms:extent "758"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQZrk5ZWFPgm77rSIttbVcvw?ct=image/bmp>;
@@ -4591,54 +4504,11 @@ validated by the IA.
                                                                     dcterms:creator """OU=VeriSign Commercial Software Publishers CA, O=\"VeriSign, Inc.\", L=Internet""";
                                                                     dcterms:subject """OU=Microsoft Corporation, CN=Microsoft Corporation, L=Redmond, S=Washington, C=US, OU=Digital ID Class 3 - Microsoft Software Validation v2, OU=\"www.verisign.com/repository/CPS Incorp. by Ref.,LIAB.LTD(c)96\", OU=VeriSign Commercial Software Publishers CA, O=\"VeriSign, Inc.\", L=Internet""";
                                                                     schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-x509-ca-cert>;
+                                                                    schema:serialNumber "7966966E83B0D0B601126E9DC0B46571";
                                                                     a schema:MediaObject,
                                                                       cert:X509Certificate;
-                                                                    skos:notation """[Subject]
-  OU=Microsoft Corporation, CN=Microsoft Corporation, L=Redmond, S=Washington, C=US, OU=Digital ID Class 3 - Microsoft Software Validation v2, OU=\"www.verisign.com/repository/CPS Incorp. by Ref.,LIAB.LTD(c)96\", OU=VeriSign Commercial Software Publishers CA, O=\"VeriSign, Inc.\", L=Internet
-
-[Issuer]
-  OU=VeriSign Commercial Software Publishers CA, O=\"VeriSign, Inc.\", L=Internet
-
-[Serial Number]
-  7966966E83B0D0B601126E9DC0B46571
-
-[Not Before]
-  16.4.1998 2:00:00
-
-[Not After]
-  17.4.1999 1:59:59
-
-[Thumbprint]
-  D6CD0190B31B318581122314B517A0AACEF27BD5
-""";
                                                                     skos:prefLabel "DER object (2.42 KiB)"@en;
-                                                                    sec:expiration "1999-04-17T01:59:59.000000+02:00"^^xsd:dateTime;
-                                                                    <urn:uuid:a80ef826-9384-5252-b468-3ba8e42b4d25> "[1]Certifikační zásady:Identifikátor zásad=2.16.840.1.113733.1.7.1.1, [1,1]Informace o kvalifikátoru zásad: ID kvalifikátoru zásad=CPS, Kvalifikátor: https://www.verisign.com/CPS, [1,2]Informace o kvalifikátoru zásad: ID kvalifikátoru zásad=Uživatelské oznámení, Kvalifikátor: Odkaz oznámení:Organizace=VeriSign, Inc., Číslo oznámení=1, Text oznámení=VeriSign's CPS incorp. by reference liab. ltd. (c)97 VeriSign"@cs-cz;
-                                                                    <urn:uuid:d50190e8-68d6-5bcb-8095-1b564b15bc25> "Finanční informace=K dispozici, Splňuje kritéria=Ano"@cs-cz;
-                                                                    <urn:uuid:d91b3b39-14e4-5fbf-97b8-76163173478f> "Typ předmětu=Koncová entita, Omezení délky cesty=Žádný"@cs-cz;
-                                                                    <urn:uuid:de31dd37-5198-5606-90e2-32c6efa1e230> """ID klíče=7b 96 e4 d1 43 fd 68 98 f3 38 cc 6e 3b f2 0b 82, Vystavitel certifikátu: OU=VeriSign Commercial Software Publishers CA, O=\"VeriSign, Inc.\", L=Internet, Sériové číslo certifikátu=02 b4 00 00 01"""@cs-cz;
-                                                                    <urn:uuid:e691989f-af8f-5828-8e74-bb33f2917c0f> "Digitální podpis, Šifrování klíče (a0)"@cs-cz;
-                                                                    <urn:uuid:ea92d576-b62f-53a3-88b3-cddb729d71ee> """Informace o zásadách: URL=https://www.verisign.com/repository/CPS, Zobrazení zásad=This certificate incorporates by reference, and its use is strictly
-subject to, the VeriSign Certification Practice Statement (CPS)
-version 1.0, available in the VeriSign repository at:
-https://www.verisign.com; by E-mail at CPS-requests@verisign.com; or
-by mail at VeriSign, Inc., 2593 Coast Ave., Mountain View, CA 94043
-USA Copyright (c)1996 VeriSign, Inc.  All Rights Reserved. CERTAIN
-WARRANTIES DISCLAIMED AND LIABILITY LIMITED.
-
-WARNING: THE USE OF THIS CERTIFICATE IS STRICTLY SUBJECT TO THE
-VERISIGN CERTIFICATION PRACTICE STATEMENT.  THE ISSUING AUTHORITY
-DISCLAIMS CERTAIN IMPLIED AND EXPRESS WARRANTIES, INCLUDING WARRANTIES
-OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, AND WILL NOT
-BE LIABLE FOR CONSEQUENTIAL, PUNITIVE, AND CERTAIN OTHER DAMAGES. SEE
-THE CPS FOR DETAILS.
-
-Contents of the VeriSign registered nonverifiedSubjectAttributes
-extension value shall not be considered as accurate information
-validated by the IA.
-, Odkaz na logo zásad: URL=https://www.verisign.com/repository/verisignlogo.gif"""@cs-cz;
-                                                                    <urn:uuid:f6a1a652-ed36-5d4d-aad6-08f394363b27> "[1]ID certifikačních zásad=1.3.6.1.4.1.311.2.1.22, Omezené použití klíče=Digitální podpis (80)"@cs-cz;
-                                                                    <urn:uuid:f764276e-77d4-5d7d-8995-713a0cbc962c> "Typ předmětu=Koncová entita, Omezení délky cesty=Žádný"@cs-cz.
+                                                                    sec:expiration "1999-04-17T01:59:59.000000+02:00"^^xsd:dateTime.
 <ni:///mh;1QEQfw4XDAFcxNBeYxeSSFpUcg?ct=application/octet-stream> at:digest <urn:md5:7F0E170C015CC4D05E631792485A5472>;
                                                                   dcterms:extent "112640"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQfw4XDAFcxNBeYxeSSFpUcg?ct=application/x-ole-storage>;
@@ -5588,58 +5458,15 @@ validated by the IA.
                                                                   skos:prefLabel "binary data (372.16 KiB)"@en.
 <ni:///mh;1QEQtzgJqRbm18GuVvGCouj34g?ct=application/octet-stream> at:digest <urn:md5:B73809A916E6D7C1AE56F182A2E8F7E2>;
                                                                   dcterms:extent "140488"^^dt:byte;
-                                                                  dcterms:hasFormat [a schema:MediaObject ; 
+                                                                  dcterms:hasFormat <ni:///mh;1QEQtzgJqRbm18GuVvGCouj34g?ct=application/vnd.microsoft.portable-executable>,
+                                                                                    [a schema:MediaObject ; 
                                                                                      a cert:X509Certificate ; 
-                                                                                     skos:notation """[Subject]
-  OU=Microsoft Corporation, CN=Microsoft Corporation, L=Redmond, S=Washington, C=US, OU=Digital ID Class 3 - Microsoft Software Validation v2, OU=\"www.verisign.com/repository/RPA Incorp. by Ref.,LIAB.LTD(c)98\", OU=VeriSign Commercial Software Publishers CA, O=\"VeriSign, Inc.\", L=Internet
-
-[Issuer]
-  OU=VeriSign Commercial Software Publishers CA, O=\"VeriSign, Inc.\", L=Internet
-
-[Serial Number]
-  75F28EF8A8FBEA6D11529714954B655C
-
-[Not Before]
-  4.4.2000 2:00:00
-
-[Not After]
-  18.4.2001 1:59:59
-
-[Thumbprint]
-  B159A52E3DD8CECD3A9A4A7A7392AA8DA7E7D67F
-""" ; 
                                                                                      at:digest <urn:sha1:GFNCC7Y3UN68R9E6CBLX3DCHFKD5V4P5> ; 
                                                                                      dcterms:subject """OU=Microsoft Corporation, CN=Microsoft Corporation, L=Redmond, S=Washington, C=US, OU=Digital ID Class 3 - Microsoft Software Validation v2, OU=\"www.verisign.com/repository/RPA Incorp. by Ref.,LIAB.LTD(c)98\", OU=VeriSign Commercial Software Publishers CA, O=\"VeriSign, Inc.\", L=Internet""" ; 
                                                                                      dcterms:creator """OU=VeriSign Commercial Software Publishers CA, O=\"VeriSign, Inc.\", L=Internet""" ; 
                                                                                      dcterms:created "2000-04-04T02:00:00.000000+02:00"^^xsd:dateTime ; 
                                                                                      sec:expiration "2001-04-18T01:59:59.000000+02:00"^^xsd:dateTime ; 
-                                                                                     <urn:uuid:d91b3b39-14e4-5fbf-97b8-76163173478f> "Typ předmětu=Koncová entita, Omezení délky cesty=Žádný"@cs-cz ; 
-                                                                                     <urn:uuid:e691989f-af8f-5828-8e74-bb33f2917c0f> "Digitální podpis, Šifrování klíče (a0)"@cs-cz ; 
-                                                                                     <urn:uuid:de31dd37-5198-5606-90e2-32c6efa1e230> """ID klíče=7b 96 e4 d1 43 fd 68 98 f3 38 cc 6e 3b f2 0b 82, Vystavitel certifikátu: OU=VeriSign Commercial Software Publishers CA, O=\"VeriSign, Inc.\", L=Internet, Sériové číslo certifikátu=03 c7 8f 37 db 92 28 df 3c bb 1a ad 82 fa 67 10"""@cs-cz ; 
-                                                                                     <urn:uuid:f6a1a652-ed36-5d4d-aad6-08f394363b27> "[1]ID certifikačních zásad=1.3.6.1.4.1.311.2.1.22, Omezené použití klíče=Digitální podpis (80)"@cs-cz ; 
-                                                                                     <urn:uuid:f764276e-77d4-5d7d-8995-713a0cbc962c> "Typ předmětu=Koncová entita, Omezení délky cesty=Žádný"@cs-cz ; 
-                                                                                     <urn:uuid:ea92d576-b62f-53a3-88b3-cddb729d71ee> """Informace o zásadách: URL=https://www.verisign.com/repository/CPS, Zobrazení zásad=This certificate incorporates by reference, and its use is strictly
-subject to, the VeriSign Certification Practice Statement (CPS)
-version 1.0, available in the VeriSign repository at:
-https://www.verisign.com; by E-mail at CPS-requests@verisign.com; or
-by mail at VeriSign, Inc., 2593 Coast Ave., Mountain View, CA 94043
-USA Copyright (c)1996 VeriSign, Inc.  All Rights Reserved. CERTAIN
-WARRANTIES DISCLAIMED AND LIABILITY LIMITED.
-
-WARNING: THE USE OF THIS CERTIFICATE IS STRICTLY SUBJECT TO THE
-VERISIGN CERTIFICATION PRACTICE STATEMENT.  THE ISSUING AUTHORITY
-DISCLAIMS CERTAIN IMPLIED AND EXPRESS WARRANTIES, INCLUDING WARRANTIES
-OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, AND WILL NOT
-BE LIABLE FOR CONSEQUENTIAL, PUNITIVE, AND CERTAIN OTHER DAMAGES. SEE
-THE CPS FOR DETAILS.
-
-Contents of the VeriSign registered nonverifiedSubjectAttributes
-extension value shall not be considered as accurate information
-validated by the IA.
-, Odkaz na logo zásad: URL=https://www.verisign.com/repository/verisignlogo.gif"""@cs-cz ; 
-                                                                                     <urn:uuid:d9f0976a-2f3c-5b8b-96ce-77e647fe7001> "30 82 02 12 30 82 02 0e 30 82 02 0a 06 0b 60 86 48 01 86 f8 45 01 07 01 01 30 82 01 f9 16 82 01 a7 54 68 69 73 20 63 65 72 74 69 66 69 63 61 74 65 20 69 6e 63 6f 72 70 6f 72 61 74 65 73 20 62 79 20 72 65 66 65 72 65 6e 63 65 2c 20 61 6e 64 20 69 74 73 20 75 73 65 20 69 73 20 73 74 72 69 63 74 6c 79 20 73 75 62 6a 65 63 74 20 74 6f 2c 20 74 68 65 20 56 65 72 69 53 69 67 6e 20 43 65 72 74 69 66 69 63 61 74 69 6f 6e 20 50 72 61 63 74 69 63 65 20 53 74 61 74 65 6d 65 6e 74 20 28 43 50 53 29 2c 20 61 76 61 69 6c 61 62 6c 65 20 61 74 3a 20 68 74 74 70 73 3a 2f 2f 77 77 77 2e 76 65 72 69 73 69 67 6e 2e 63 6f 6d 2f 43 50 53 3b 20 62 79 20 45 2d 6d 61 69 6c 20 61 74 20 43 50 53 2d 72 65 71 75 65 73 74 73 40 76 65 72 69 73 69 67 6e 2e 63 6f 6d 3b 20 6f 72 20 62 79 20 6d 61 69 6c 20 61 74 20 56 65 72 69 53 69 67 6e 2c 20 49 6e 63 2e 2c 20 32 35 39 33 20 43 6f 61 73 74 20 41 76 65 2e 2c 20 4d 6f 75 6e 74 61 69 6e 20 56 69 65 77 2c 20 43 41 20 39 34 30 34 33 20 55 53 41 20 54 65 6c 2e 20 2b 31 20 28 34 31 35 29 20 39 36 31 2d 38 38 33 30 20 43 6f 70 79 72 69 67 68 74 20 28 63 29 20 31 39 39 36 20 56 65 72 69 53 69 67 6e 2c 20 49 6e 63 2e 20 20 41 6c 6c 20 52 69 67 68 74 73 20 52 65 73 65 72 76 65 64 2e 20 43 45 52 54 41 49 4e 20 57 41 52 52 41 4e 54 49 45 53 20 44 49 53 43 4c 41 49 4d 45 44 20 61 6e 64 20 4c 49 41 42 49 4c 49 54 59 20 4c 49 4d 49 54 45 44 2e a0 0e 06 0c 60 86 48 01 86 f8 45 01 07 01 01 01 a1 0e 06 0c 60 86 48 01 86 f8 45 01 07 01 01 02 30 2c 30 2a 16 28 68 74 74 70 73 3a 2f 2f 77 77 77 2e 76 65 72 69 73 69 67 6e 2e 63 6f 6d 2f 72 65 70 6f 73 69 74 6f 72 79 2f 43 50 53 20"@cs-cz ; 
-                                                                                     <urn:uuid:d50190e8-68d6-5bcb-8095-1b564b15bc25> "Finanční informace=K dispozici, Splňuje kritéria=Ano"@cs-cz],
-                                                                                    <ni:///mh;1QEQtzgJqRbm18GuVvGCouj34g?ct=application/vnd.microsoft.portable-executable>;
+                                                                                     schema:serialNumber "75F28EF8A8FBEA6D11529714954B655C"];
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (137.2 KiB)"@en.
 <ni:///mh;1QEQtzgJqRbm18GuVvGCouj34g?ct=application/vnd.microsoft.portable-executable> at:digest <urn:md5:483B6E630118CFB6B979FE403FCEF757>;
@@ -7602,35 +7429,9 @@ validated by the IA.
 <urn:md5:FF9B1210BB103D5E50B107AAEFA7E3AD> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "/5sSELsQPV5QsQeq76fjrQ=="^^xsd:base64Binary.
-<urn:oid:1.3.6.1.4.1.311.2.1.10> rdfs:label "SpcSpAgencyInfo"@cs-cz.
-<urn:oid:1.3.6.1.4.1.311.2.1.27> rdfs:label "SpcFinancialCriteria"@cs-cz.
-<urn:oid:2.5.29.1> rdfs:label "Identifikátor klíče autority"@cs-cz.
-<urn:oid:2.5.29.10> rdfs:label "Základní omezení"@cs-cz.
-<urn:oid:2.5.29.15> rdfs:label "Použití klíče"@cs-cz.
-<urn:oid:2.5.29.19> rdfs:label "Základní omezení"@cs-cz.
-<urn:oid:2.5.29.32> rdfs:label "Zásady certifikátu"@cs-cz.
-<urn:oid:2.5.29.4> rdfs:label "Omezení použití klíče"@cs-cz.
 <urn:sha1:GFNCC7Y3UN68R9E6CBLX3DCHFKD5V4P5> a sec:Digest;
                                             sec:digestAlgorithm ds:sha1;
                                             sec:digestValue "sVmlLj3Yzs06mkp6c5Kqjafn1n8="^^xsd:base64Binary.
 <urn:sha1:NV62QEVN8ERCUQCZ2ASC84QYCH6SP9HM> a sec:Digest;
                                             sec:digestAlgorithm ds:sha1;
                                             sec:digestValue "1s0BkLMbMYWBEiMUtRegqs7ye9U="^^xsd:base64Binary.
-<urn:uuid:a80ef826-9384-5252-b468-3ba8e42b4d25> owl:equivalentProperty <urn:oid:2.5.29.32>;
-                                                owl:sameAs <urn:oid:2.5.29.32>.
-<urn:uuid:d50190e8-68d6-5bcb-8095-1b564b15bc25> owl:equivalentProperty <urn:oid:1.3.6.1.4.1.311.2.1.27>;
-                                                owl:sameAs <urn:oid:1.3.6.1.4.1.311.2.1.27>.
-<urn:uuid:d91b3b39-14e4-5fbf-97b8-76163173478f> owl:equivalentProperty <urn:oid:2.5.29.19>;
-                                                owl:sameAs <urn:oid:2.5.29.19>.
-<urn:uuid:d9f0976a-2f3c-5b8b-96ce-77e647fe7001> owl:equivalentProperty <urn:oid:2.5.29.3>;
-                                                owl:sameAs <urn:oid:2.5.29.3>.
-<urn:uuid:de31dd37-5198-5606-90e2-32c6efa1e230> owl:equivalentProperty <urn:oid:2.5.29.1>;
-                                                owl:sameAs <urn:oid:2.5.29.1>.
-<urn:uuid:e691989f-af8f-5828-8e74-bb33f2917c0f> owl:equivalentProperty <urn:oid:2.5.29.15>;
-                                                owl:sameAs <urn:oid:2.5.29.15>.
-<urn:uuid:ea92d576-b62f-53a3-88b3-cddb729d71ee> owl:equivalentProperty <urn:oid:1.3.6.1.4.1.311.2.1.10>;
-                                                owl:sameAs <urn:oid:1.3.6.1.4.1.311.2.1.10>.
-<urn:uuid:f6a1a652-ed36-5d4d-aad6-08f394363b27> owl:equivalentProperty <urn:oid:2.5.29.4>;
-                                                owl:sameAs <urn:oid:2.5.29.4>.
-<urn:uuid:f764276e-77d4-5d7d-8995-713a0cbc962c> owl:equivalentProperty <urn:oid:2.5.29.10>;
-                                                owl:sameAs <urn:oid:2.5.29.10>.

@@ -14,11 +14,10 @@
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix cert: <http://www.w3.org/ns/auth/cert#>.
 @prefix ds: <http://www.w3.org/2000/09/xmldsig#>.
-@prefix owl: <http://www.w3.org/2002/07/owl#>.
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix enc: <http://www.w3.org/2001/04/xmlenc#>.
 @prefix dbo: <http://dbpedia.org/ontology/>.
 @prefix xis: <http://www.w3.org/2001/04/infoset#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 
 _:n1 at:pathObject <file:///PabloDraw.msi>;
      nie:interpretedAs <ni:///mh;1QEQG8SmXKQNK2N7S8gfnrDiSQ?ct=application/octet-stream>;
@@ -248,35 +247,11 @@ _:n1 at:pathObject <file:///PabloDraw.msi>;
                                                                     dcterms:creator "CN=Microsoft Code Signing PCA 2010, O=Microsoft Corporation, L=Redmond, S=Washington, C=US";
                                                                     dcterms:subject "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US";
                                                                     schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-x509-ca-cert>;
+                                                                    schema:serialNumber "3300000439F61F7A676DA000AF000000000439";
                                                                     a schema:MediaObject,
                                                                       cert:X509Certificate;
-                                                                    skos:notation """[Subject]
-  CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
-
-[Issuer]
-  CN=Microsoft Code Signing PCA 2010, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
-
-[Serial Number]
-  3300000439F61F7A676DA000AF000000000439
-
-[Not Before]
-  2.9.2021 20:25:58
-
-[Not After]
-  1.9.2022 20:25:58
-
-[Thumbprint]
-  5A257D333718C4B468A5DBC6643348AF667AEE3D
-""";
                                                                     skos:prefLabel "DER object (1.25 KiB)"@en;
-                                                                    sec:expiration "2022-09-01T20:25:58.000000+02:00"^^xsd:dateTime;
-                                                                    <urn:uuid:a7ffa2c4-bd10-5484-9a4f-085cfff8c72d> "[1]Distribuční místo CRL: Název distribučního bodu:Jméno a příjmení:URL=http://crl.microsoft.com/pki/crl/products/MicCodSigPCA_2010-07-06.crl"@cs-cz;
-                                                                    <urn:uuid:b2aa6923-599a-5b3b-9af1-23b34d386cf3> "c5 f0 26 06 6a fb 7a 2c 87 ca 96 80 cb af df f0 6f 25 42 c5"@cs-cz;
-                                                                    <urn:uuid:ba8b089b-41f9-5bdb-a26a-24ea12578533> """Umístění adresáře:SERIALNUMBER=\"230865+467398\", OU=Microsoft Operations Puerto Rico"""@cs-cz;
-                                                                    <urn:uuid:c87f1fd3-1986-5686-874c-30b11100f02d> "ID klíče=e6 fc 5f 7b bb 22 00 58 e4 72 4e b5 f4 21 74 23 32 e6 ef ac"@cs-cz;
-                                                                    <urn:uuid:d91b3b39-14e4-5fbf-97b8-76163173478f> "Typ předmětu=Koncová entita, Omezení délky cesty=Žádný"@cs-cz;
-                                                                    <urn:uuid:ecf05965-520d-5bdb-b5f4-7d5a2f9c482a> "Neznámé použití klíče (1.3.6.1.4.1.311.61.6.1), Podpis kódu (1.3.6.1.5.5.7.3.3)"@cs-cz;
-                                                                    <urn:uuid:f1c0f904-fa9a-5ece-8ae2-880ce3795dff> "[1]Přístup k informacím autority: Přístupová metoda=Vystavitel certifikátu autority (1.3.6.1.5.5.7.48.2), Alternativní název=URL=http://www.microsoft.com/pki/certs/MicCodSigPCA_2010-07-06.crt"@cs-cz.
+                                                                    sec:expiration "2022-09-01T20:25:58.000000+02:00"^^xsd:dateTime.
 <ni:///mh;1QEQD7Fx1avbTl0uSSDMC_1UMw?ct=application/octet-stream> at:digest <urn:md5:0FB171D5ABDB4E5D2E4920CC0BFD5433>;
                                                                   dcterms:extent "1142"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQD7Fx1avbTl0uSSDMC_1UMw?ct=image/bmp>;
@@ -421,39 +396,15 @@ _:n1 at:pathObject <file:///PabloDraw.msi>;
                                                                   skos:prefLabel "binary data (72 B)"@en.
 <ni:///mh;1QEQZSTX2859B4w66bXXm-t-tw?ct=application/octet-stream> at:digest <urn:md5:6524D7DBCE7D078C3AE9B5D79BEB7EB7>;
                                                                   dcterms:extent "1320832"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQZSTX2859B4w66bXXm-t-tw?ct=application/vnd.microsoft.portable-executable>,
-                                                                                    [a schema:MediaObject ; 
+                                                                  dcterms:hasFormat [a schema:MediaObject ; 
                                                                                      a cert:X509Certificate ; 
-                                                                                     skos:notation """[Subject]
-  CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
-
-[Issuer]
-  CN=Microsoft Code Signing PCA 2010, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
-
-[Serial Number]
-  3300000439F61F7A676DA000AF000000000439
-
-[Not Before]
-  2.9.2021 20:25:58
-
-[Not After]
-  1.9.2022 20:25:58
-
-[Thumbprint]
-  5A257D333718C4B468A5DBC6643348AF667AEE3D
-""" ; 
                                                                                      at:digest <urn:sha1:MCDM7JKXUQGD4YHY8NGDNJQD5HJY3773> ; 
                                                                                      dcterms:subject "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US" ; 
                                                                                      dcterms:creator "CN=Microsoft Code Signing PCA 2010, O=Microsoft Corporation, L=Redmond, S=Washington, C=US" ; 
                                                                                      dcterms:created "2021-09-02T20:25:58.000000+02:00"^^xsd:dateTime ; 
                                                                                      sec:expiration "2022-09-01T20:25:58.000000+02:00"^^xsd:dateTime ; 
-                                                                                     <urn:uuid:ecf05965-520d-5bdb-b5f4-7d5a2f9c482a> "Neznámé použití klíče (1.3.6.1.4.1.311.61.6.1), Podpis kódu (1.3.6.1.5.5.7.3.3)"@cs-cz ; 
-                                                                                     <urn:uuid:b2aa6923-599a-5b3b-9af1-23b34d386cf3> "c5 f0 26 06 6a fb 7a 2c 87 ca 96 80 cb af df f0 6f 25 42 c5"@cs-cz ; 
-                                                                                     <urn:uuid:ba8b089b-41f9-5bdb-a26a-24ea12578533> """Umístění adresáře:SERIALNUMBER=\"230865+467398\", OU=Microsoft Operations Puerto Rico"""@cs-cz ; 
-                                                                                     <urn:uuid:c87f1fd3-1986-5686-874c-30b11100f02d> "ID klíče=e6 fc 5f 7b bb 22 00 58 e4 72 4e b5 f4 21 74 23 32 e6 ef ac"@cs-cz ; 
-                                                                                     <urn:uuid:a7ffa2c4-bd10-5484-9a4f-085cfff8c72d> "[1]Distribuční místo CRL: Název distribučního bodu:Jméno a příjmení:URL=http://crl.microsoft.com/pki/crl/products/MicCodSigPCA_2010-07-06.crl"@cs-cz ; 
-                                                                                     <urn:uuid:f1c0f904-fa9a-5ece-8ae2-880ce3795dff> "[1]Přístup k informacím autority: Přístupová metoda=Vystavitel certifikátu autority (1.3.6.1.5.5.7.48.2), Alternativní název=URL=http://www.microsoft.com/pki/certs/MicCodSigPCA_2010-07-06.crt"@cs-cz ; 
-                                                                                     <urn:uuid:d91b3b39-14e4-5fbf-97b8-76163173478f> "Typ předmětu=Koncová entita, Omezení délky cesty=Žádný"@cs-cz];
+                                                                                     schema:serialNumber "3300000439F61F7A676DA000AF000000000439"],
+                                                                                    <ni:///mh;1QEQZSTX2859B4w66bXXm-t-tw?ct=application/vnd.microsoft.portable-executable>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.26 MiB)"@en.
 <ni:///mh;1QEQZSTX2859B4w66bXXm-t-tw?ct=application/vnd.microsoft.portable-executable> at:digest <urn:sha256:CDJBB4RX2C945TF52J5PV5WQXKSL5RTZM65SA4FCZ65EDYUPDSLQ>;
@@ -904,30 +855,9 @@ _:n1 at:pathObject <file:///PabloDraw.msi>;
 <urn:md5:F7EBF2FC8486915B64F6067F854A7311> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "9+vy/ISGkVtk9gZ/hUpzEQ=="^^xsd:base64Binary.
-<urn:oid:1.3.6.1.5.5.7.1.1> rdfs:label "Přístup k informacím autority"@cs-cz.
-<urn:oid:2.5.29.14> rdfs:label "Identifikátor klíče předmětu"@cs-cz.
-<urn:oid:2.5.29.17> rdfs:label "Alternativní název předmětu"@cs-cz.
-<urn:oid:2.5.29.19> rdfs:label "Základní omezení"@cs-cz.
-<urn:oid:2.5.29.31> rdfs:label "Distribuční místa seznamu odvolaných certifikátů"@cs-cz.
-<urn:oid:2.5.29.35> rdfs:label "Identifikátor klíče autority"@cs-cz.
-<urn:oid:2.5.29.37> rdfs:label "Použití rozšířeného klíče"@cs-cz.
 <urn:sha1:MCDM7JKXUQGD4YHY8NGDNJQD5HJY3773> a sec:Digest;
                                             sec:digestAlgorithm ds:sha1;
                                             sec:digestValue "WiV9MzcYxLRopdvGZDNIr2Z67j0="^^xsd:base64Binary.
 <urn:sha256:CDJBB4RX2C945TF52J5PV5WQXKSL5RTZM65SA4FCZ65EDYUPDSLQ> a sec:Digest;
                                                                   sec:digestAlgorithm enc:sha256;
                                                                   sec:digestValue "KmUpFzND9fVgeyO/7x4Bhhf/GBR6vhJWU2I+lCj+qXg="^^xsd:base64Binary.
-<urn:uuid:a7ffa2c4-bd10-5484-9a4f-085cfff8c72d> owl:equivalentProperty <urn:oid:2.5.29.31>;
-                                                owl:sameAs <urn:oid:2.5.29.31>.
-<urn:uuid:b2aa6923-599a-5b3b-9af1-23b34d386cf3> owl:equivalentProperty <urn:oid:2.5.29.14>;
-                                                owl:sameAs <urn:oid:2.5.29.14>.
-<urn:uuid:ba8b089b-41f9-5bdb-a26a-24ea12578533> owl:equivalentProperty <urn:oid:2.5.29.17>;
-                                                owl:sameAs <urn:oid:2.5.29.17>.
-<urn:uuid:c87f1fd3-1986-5686-874c-30b11100f02d> owl:equivalentProperty <urn:oid:2.5.29.35>;
-                                                owl:sameAs <urn:oid:2.5.29.35>.
-<urn:uuid:d91b3b39-14e4-5fbf-97b8-76163173478f> owl:equivalentProperty <urn:oid:2.5.29.19>;
-                                                owl:sameAs <urn:oid:2.5.29.19>.
-<urn:uuid:ecf05965-520d-5bdb-b5f4-7d5a2f9c482a> owl:equivalentProperty <urn:oid:2.5.29.37>;
-                                                owl:sameAs <urn:oid:2.5.29.37>.
-<urn:uuid:f1c0f904-fa9a-5ece-8ae2-880ce3795dff> owl:equivalentProperty <urn:oid:1.3.6.1.5.5.7.1.1>;
-                                                owl:sameAs <urn:oid:1.3.6.1.5.5.7.1.1>.
