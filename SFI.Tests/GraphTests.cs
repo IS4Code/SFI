@@ -52,6 +52,7 @@ namespace IS4.SFI.Tests
 
             const string cachedDir = "Cached";
             const string compareDir = "ExpectedDescriptions";
+            const string notmatchedDir = "NotMatchedDescriptions";
             var compareFile = Path.Combine(compareDir, id + ".ttl");
             Directory.CreateDirectory(Path.GetDirectoryName(compareFile)!);
 
@@ -108,6 +109,7 @@ namespace IS4.SFI.Tests
                 Assert.Inconclusive("The graphs could not be compared within the timeout.");
             }
 
+            string notmatchedFile = Path.Combine(notmatchedDir, id + ".ttl");
             if(!report!.AreEqual)
             {
                 Console.Error.WriteLine($"File: {compareFile}");
@@ -121,6 +123,8 @@ namespace IS4.SFI.Tests
                 {
                     Console.Error.WriteLine(turtleFormatter.Format(added));
                 }
+                Directory.CreateDirectory(Path.GetDirectoryName(notmatchedFile)!);
+                File.WriteAllBytes(notmatchedFile, buffer.ToArray());
             }
             Assert.IsTrue(report.AreEqual, "The graphs are not equal.");
         }
