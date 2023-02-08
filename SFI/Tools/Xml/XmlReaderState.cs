@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Schema;
 
@@ -263,6 +264,12 @@ namespace IS4.SFI.Tools.Xml
         public override string? LookupNamespace(string prefix)
         {
             return NamespaceMap.TryGetValue(prefix, out var value) ? value : null;
+        }
+
+        /// <inheritdoc/>
+        public override Task<string> GetValueAsync()
+        {
+            return Task.FromResult(Value);
         }
 
         /// <inheritdoc/>
