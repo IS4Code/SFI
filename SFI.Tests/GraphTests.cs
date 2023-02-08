@@ -48,6 +48,8 @@ namespace IS4.SFI.Tests
             if(!String.IsNullOrEmpty(host))
             {
                 id = host + Path.DirectorySeparatorChar + id;
+            }else{
+                id = "local" + Path.DirectorySeparatorChar + id;
             }
 
             const string cachedDir = "Cached";
@@ -190,7 +192,7 @@ namespace IS4.SFI.Tests
             readonly Uri uri;
             readonly string location;
 
-            public string? Name => Uri.UnescapeDataString(System.IO.Path.GetFileName(uri.AbsolutePath));
+            public string? Name => Uri.UnescapeDataString(System.IO.Path.GetFileName(uri.OriginalString));
             public string? SubName => null;
             public string? Path => null;
             public int? Revision => null;
