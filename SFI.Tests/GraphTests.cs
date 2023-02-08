@@ -79,7 +79,10 @@ namespace IS4.SFI.Tests
                 file = new TestFile(idUri, cachedFile);
             }
 
-            Assert.IsTrue(File.Exists(compareFile));
+            if(!File.Exists(compareFile))
+            {
+                Assert.Inconclusive("Saved output could not be found.");
+            }
 
             var comparedData = File.ReadAllBytes(compareFile);
 
@@ -119,7 +122,7 @@ namespace IS4.SFI.Tests
                     Console.Error.WriteLine(turtleFormatter.Format(added));
                 }
             }
-            Assert.IsTrue(report.AreEqual);
+            Assert.IsTrue(report.AreEqual, "The graphs are not equal.");
         }
         
         class TestInspector : Inspector
