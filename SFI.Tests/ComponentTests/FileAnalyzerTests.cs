@@ -8,7 +8,7 @@ using System.IO;
 using System.Threading.Tasks;
 using static IS4.SFI.Vocabulary.Properties;
 
-namespace IS4.SFI.Tests.Analyzers
+namespace IS4.SFI.Tests
 {
     /// <summary>
     /// Tests for <see cref="FileAnalyzer"/>.

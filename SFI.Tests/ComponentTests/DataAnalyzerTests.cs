@@ -6,7 +6,7 @@ using System;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IS4.SFI.Tests.Analyzers
+namespace IS4.SFI.Tests
 {
     /// <summary>
     /// Tests for <see cref="DataAnalyzer"/>.

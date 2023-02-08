@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
 
-namespace IS4.SFI.Tests.Analyzers
+namespace IS4.SFI.Tests
 {
     /// <summary>
     /// The base class for analyzer tests.
