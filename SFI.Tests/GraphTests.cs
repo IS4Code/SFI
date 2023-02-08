@@ -53,6 +53,7 @@ namespace IS4.SFI.Tests
             const string cachedDir = "Cached";
             const string compareDir = "ExpectedDescriptions";
             const string notmatchedDir = "NotMatchedDescriptions";
+            const string newDir = "NewDescriptions";
             var compareFile = Path.Combine(compareDir, id + ".ttl");
             Directory.CreateDirectory(Path.GetDirectoryName(compareFile)!);
 
@@ -80,9 +81,15 @@ namespace IS4.SFI.Tests
                 file = new TestFile(idUri, cachedFile);
             }
 
+            var buffer = new MemoryStream();
+            await inspector.Inspect(file, buffer, inspectorOptions);
+
             if(!File.Exists(compareFile))
             {
-                Assert.Inconclusive("Saved output could not be found.");
+                string newFile = Path.Combine(newDir, id + ".ttl");
+                Directory.CreateDirectory(Path.GetDirectoryName(newFile)!);
+                File.WriteAllBytes(newFile, buffer.ToArray());
+                Assert.Inconclusive($"Saved output could not be found. New description was saved to {newFile}.");
             }
 
             var comparedData = File.ReadAllBytes(compareFile);
@@ -90,8 +97,6 @@ namespace IS4.SFI.Tests
             var graph = new Graph(true);
             turtleParser.Load(graph, compareFile);
 
-            var buffer = new MemoryStream();
-            await inspector.Inspect(file, buffer, inspectorOptions);
             var data = buffer.GetData();
             buffer = new MemoryStream(data.Array!, data.Offset, data.Count, false);
 
@@ -126,7 +131,7 @@ namespace IS4.SFI.Tests
                 Directory.CreateDirectory(Path.GetDirectoryName(notmatchedFile)!);
                 File.WriteAllBytes(notmatchedFile, buffer.ToArray());
             }
-            Assert.IsTrue(report.AreEqual, "The graphs are not equal.");
+            Assert.IsTrue(report.AreEqual, $"The graphs are not equal. New description was saved to {notmatchedFile}.");
         }
         
         class TestInspector : Inspector
