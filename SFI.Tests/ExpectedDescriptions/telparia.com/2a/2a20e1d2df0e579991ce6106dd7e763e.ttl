@@ -23,8 +23,8 @@ _:n1 at:pathObject <file:///sample1.nef>;
 <file:///sample1.nef> at:extensionObject <https://w3id.org/uri4uri/suffix/nef>.
 <ni:///mh;1QEQ_LXPblRA-_nYj058NrAgfw?ct=application/octet-stream> at:digest <urn:md5:FCB5CF6E5440FBF9D88F4E7C36B0207F>;
                                                                   dcterms:extent "19300180"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQ_LXPblRA-_nYj058NrAgfw?ct=application/octet-stream#arw>,
-                                                                                    <ni:///mh;1QEQ_LXPblRA-_nYj058NrAgfw?ct=image/nef>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ_LXPblRA-_nYj058NrAgfw?ct=image/nef>,
+                                                                                    <ni:///mh;1QEQ_LXPblRA-_nYj058NrAgfw?ct=application/octet-stream#arw>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (18.41 MiB)"@en.
 <ni:///mh;1QEQ_LXPblRA-_nYj058NrAgfw?ct=application/octet-stream#arw> <http://ns.adobe.com/photoshop/1.0/DateCreated> "2008-03-15";
@@ -100,7 +100,7 @@ _:n1 at:pathObject <file:///sample1.nef>;
                                                                       exif:yResolution 300 ,
                                                                                        0 ;
                                                                       skos:prefLabel "ARW object (18.41 MiB)"@en;
-                                                                      <urn:uuid:a99445e2-5357-5323-afb2-6037f2fd7478> "0".
+                                                                      <urn:uuid:a99445e2-5357-5923-afb2-6037f2fd7478> "0".
 <ni:///mh;1QEQ_LXPblRA-_nYj058NrAgfw?ct=application/octet-stream#arw/0> nfo:height 320 ;
                                                                         nfo:width 212 ;
                                                                         a nfo:MediaStream;
@@ -129,5 +129,5 @@ _:n1 at:pathObject <file:///sample1.nef>;
 <urn:md5:FCB5CF6E5440FBF9D88F4E7C36B0207F> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "/LXPblRA+/nYj058NrAgfw=="^^xsd:base64Binary.
-<urn:uuid:a99445e2-5357-5323-afb2-6037f2fd7478> owl:equivalentProperty <http://ns.microsoft.com/photo/1.0Rating>;
+<urn:uuid:a99445e2-5357-5923-afb2-6037f2fd7478> owl:equivalentProperty <http://ns.microsoft.com/photo/1.0Rating>;
                                                 owl:sameAs <http://ns.microsoft.com/photo/1.0Rating>.
