@@ -441,6 +441,13 @@ namespace IS4.SFI.Tests
             return TestOutputGraph(source);
         }
         
+        [DataRow("https://telparia.com/fileFormatSamples/archive/warc/radius.vintagebox.de.warc")]
+        [TestMethod]
+        public Task warc(string source)
+        {
+            return TestOutputGraph(source);
+        }
+        
         [DataRow("https://telparia.com/fileFormatSamples/archive/windowsThumbDB/1630627129_Thumbs.db")]
         [DataRow("https://telparia.com/fileFormatSamples/archive/windowsThumbDB/1631206612_Thumbs.db")]
         [DataRow("https://telparia.com/fileFormatSamples/archive/windowsThumbDB/1644280295_Thumbs.db")]
