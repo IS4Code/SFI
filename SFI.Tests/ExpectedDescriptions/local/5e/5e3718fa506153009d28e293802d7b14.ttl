@@ -1,0 +1,52 @@
+@base <ni:///mh;1QEQGhSJ09q6Ai5KdmT-vYM79g?ct=text/plain>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix xis: <http://www.w3.org/2001/04/infoset#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+
+_:n1 at:pathObject <file:///rdf.xml>;
+     nie:interpretedAs <ni:///mh;1QEQGhSJ09q6Ai5KdmT-vYM79g?ct=text/plain>;
+     nfo:fileName "rdf.xml";
+     nfo:fileSize 558 ;
+     a nfo:FileDataObject.
+<file:///rdf.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<ni:///mh;1QEQGhSJ09q6Ai5KdmT-vYM79g?ct=application/rdf+xml> <http://purl.org/dc/elements/1.1/title> "The description of this file"@en;
+                                                             schema:encodingFormat <https://w3id.org/uri4uri/mime/application/rdf+xml>;
+                                                             a schema:MediaObject;
+                                                             skos:prefLabel "RDF object"@en.
+<ni:///mh;1QEQGhSJ09q6Ai5KdmT-vYM79g?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQGhSJ09q6Ai5KdmT-vYM79g?ct=application/rdf+xml>;
+                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
+                                                         a schema:MediaObject,
+                                                           cnt:ContentAsXML,
+                                                           xis:Document;
+                                                         xis:documentElement <ni:///mh;1QEQGhSJ09q6Ai5KdmT-vYM79g?ct=application/xml#element(/1)>;
+                                                         skos:prefLabel "XML object (rdf:RDF)"@en;
+                                                         cnt:version "1.0".
+<ni:///mh;1QEQGhSJ09q6Ai5KdmT-vYM79g?ct=application/xml#element(/1)> a xis:Element;
+                                                                     rdfs:seeAlso rdf:;
+                                                                     xis:localName "RDF";
+                                                                     xis:name "rdf:RDF";
+                                                                     xis:namespaceName "http://www.w3.org/1999/02/22-rdf-syntax-ns#"^^xsd:anyURI;
+                                                                     xis:prefix "rdf".
+<ni:///mh;1QEQGhSJ09q6Ai5KdmT-vYM79g?ct=text/plain> at:digest <urn:md5:1A1489D3DABA022E4A7664FEBD833BF6>;
+                                                    dcterms:extent "558"^^dt:byte;
+                                                    dcterms:hasFormat <ni:///mh;1QEQGhSJ09q6Ai5KdmT-vYM79g?ct=application/xml>;
+                                                    nie:hasPart <ni:///mh;1QEQGhSJ09q6Ai5KdmT-vYM79g?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (558 B)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQGhSJ09q6Ai5KdmT-vYM79g?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\"?>""".
+<urn:md5:1A1489D3DABA022E4A7664FEBD833BF6> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "GhSJ09q6Ai5KdmT+vYM79g=="^^xsd:base64Binary.

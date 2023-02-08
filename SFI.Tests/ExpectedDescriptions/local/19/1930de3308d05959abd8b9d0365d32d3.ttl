@@ -1,0 +1,31 @@
+@base <data:,%5BInternetShortcut%5D%0D%0AURL%3Dhttps%3A%2F%2Fwww.google.com%2F%0D%0A>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+
+_:n1 at:pathObject <file:///Google.url>;
+     nie:interpretedAs <data:,%5BInternetShortcut%5D%0D%0AURL%3Dhttps%3A%2F%2Fwww.google.com%2F%0D%0A>;
+     nfo:fileName "Google.url";
+     nfo:fileSize 49 ;
+     a nfo:FileDataObject.
+<data:,%5BInternetShortcut%5D%0D%0AURL%3Dhttps%3A%2F%2Fwww.google.com%2F%0D%0A> dcterms:extent "49"^^dt:byte;
+                                                                                dcterms:hasFormat <data:text/x-uri,%5BInternetShortcut%5D%0D%0AURL%3Dhttps%3A%2F%2Fwww.google.com%2F%0D%0A>;
+                                                                                a cnt:ContentAsText;
+                                                                                skos:prefLabel "text (49 B)"@en;
+                                                                                cnt:characterEncoding "us-ascii";
+                                                                                cnt:chars """[InternetShortcut]
+URL=https://www.google.com/
+"""^^xsd:string.
+<data:text/x-uri,%5BInternetShortcut%5D%0D%0AURL%3Dhttps%3A%2F%2Fwww.google.com%2F%0D%0A> schema:encodingFormat <https://w3id.org/uri4uri/mime/text/x-uri>;
+                                                                                          nie:links <https://www.google.com/>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "URL object (49 B)"@en.
+<file:///Google.url> at:extensionObject <https://w3id.org/uri4uri/suffix/url>.

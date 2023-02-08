@@ -1,0 +1,34 @@
+@base <ni:///mh;1QEQtGTcSHKMW4jJOU0Ll3GmGg?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///ExpandedVariables.lnk>;
+     nie:interpretedAs <ni:///mh;1QEQtGTcSHKMW4jJOU0Ll3GmGg?ct=application/octet-stream>;
+     nfo:fileName "ExpandedVariables.lnk";
+     nfo:fileSize 2010 ;
+     a nfo:FileDataObject.
+<file:///ExpandedVariables.lnk> at:extensionObject <https://w3id.org/uri4uri/suffix/lnk>.
+<ni:///mh;1QEQtGTcSHKMW4jJOU0Ll3GmGg?ct=application/octet-stream> at:digest <urn:md5:B464DC48728C5B88C9394D0B9771A61A>;
+                                                                  dcterms:extent "2010"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQtGTcSHKMW4jJOU0Ll3GmGg?ct=application/x-ms-shortcut>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.96 KiB)"@en.
+<ni:///mh;1QEQtGTcSHKMW4jJOU0Ll3GmGg?ct=application/x-ms-shortcut> dcterms:description "Link description";
+                                                                   schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ms-shortcut>;
+                                                                   nie:links <file:///APPDATA:/.minecraft>;
+                                                                   a schema:MediaObject;
+                                                                   skos:prefLabel "LNK object (1.96 KiB)"@en.
+<urn:md5:B464DC48728C5B88C9394D0B9771A61A> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "tGTcSHKMW4jJOU0Ll3GmGg=="^^xsd:base64Binary.
