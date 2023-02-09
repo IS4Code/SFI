@@ -20,6 +20,7 @@ _:n1 at:pathObject <file:///example.img>;
      a nfo:FileDataObject.
 <file:///EXAMPLE.PDF> at:extensionObject <https://w3id.org/uri4uri/suffix/pdf>.
 <file:///example.img> at:extensionObject <https://w3id.org/uri4uri/suffix/img>.
+<file:///example.pdf> at:extensionObject <https://w3id.org/uri4uri/suffix/pdf>.
 <ni:///mh;1QEQ4pDClxUWHSodvQIi5T4Rug?ct=application/octet-stream> at:digest <urn:md5:E290C29715161D2A1DBD0222E53E11BA>;
                                                                   dcterms:extent "143300"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ4pDClxUWHSodvQIi5T4Rug?ct=application/pdf>;
@@ -45,7 +46,8 @@ _:n1 at:pathObject <file:///example.img>;
                                                          skos:prefLabel "PDF object (139.94 KiB)"@en.
 <ni:///mh;1QEQPEOzrrLKkX9iY_ZaD96rVg?ct=application/octet-stream> at:digest <urn:md5:3C43B3AEB2CA917F6263F65A0FDEAB56>;
                                                                   dcterms:extent "1245184"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQPEOzrrLKkX9iY_ZaD96rVg?ct=application/x-iso9660-image>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQPEOzrrLKkX9iY_ZaD96rVg?ct=application/x-iso9660-image>,
+                                                                                    <ni:///mh;1QEQPEOzrrLKkX9iY_ZaD96rVg?ct=application/x-udf>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.19 MiB)"@en.
 <ni:///mh;1QEQPEOzrrLKkX9iY_ZaD96rVg?ct=application/x-iso9660-image> at:pathObject <file:///>;
@@ -71,6 +73,28 @@ _:n1 at:pathObject <file:///example.img>;
                                                                                     nfo:fileSize 143300 ;
                                                                                     a nfo:FileDataObject;
                                                                                     skos:prefLabel "/EXAMPLE.PDF".
+<ni:///mh;1QEQPEOzrrLKkX9iY_ZaD96rVg?ct=application/x-udf> at:pathObject <file:///>;
+                                                           at:volumeLabel "Desktop";
+                                                           schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-udf>;
+                                                           nie:interpretedAs <ni:///mh;1QEQPEOzrrLKkX9iY_ZaD96rVg?ct=application/x-udf#/>;
+                                                           nfo:filesystemType "OSTA Universal Disk Format";
+                                                           a schema:MediaObject,
+                                                             nfo:FilesystemImage,
+                                                             nfo:Filesystem;
+                                                           skos:prefLabel "UDF object (Desktop)"@en.
+<ni:///mh;1QEQPEOzrrLKkX9iY_ZaD96rVg?ct=application/x-udf#/> at:pathObject <file:///./>;
+                                                             a nfo:Folder;
+                                                             skos:prefLabel "/".
+<ni:///mh;1QEQPEOzrrLKkX9iY_ZaD96rVg?ct=application/x-udf#/example.pdf> at:pathObject <file:///example.pdf>;
+                                                                        nie:interpretedAs <ni:///mh;1QEQ4pDClxUWHSodvQIi5T4Rug?ct=application/octet-stream>;
+                                                                        nfo:belongsToContainer <ni:///mh;1QEQPEOzrrLKkX9iY_ZaD96rVg?ct=application/x-udf#/>;
+                                                                        nfo:fileCreated "2014-10-15T12:04:30.768000Z"^^xsd:dateTime;
+                                                                        nfo:fileLastAccessed "2014-10-15T12:04:30.758000Z"^^xsd:dateTime;
+                                                                        nfo:fileLastModified "2014-10-15T12:04:30.768000Z"^^xsd:dateTime;
+                                                                        nfo:fileName "example.pdf";
+                                                                        nfo:fileSize 143300 ;
+                                                                        a nfo:FileDataObject;
+                                                                        skos:prefLabel "/example.pdf".
 <urn:md5:3C43B3AEB2CA917F6263F65A0FDEAB56> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "PEOzrrLKkX9iY/ZaD96rVg=="^^xsd:base64Binary.

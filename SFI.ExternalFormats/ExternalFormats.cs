@@ -21,6 +21,7 @@ namespace IS4.SFI
             dataFormats.Add(new TagLibFormat());
             dataFormats.Add(new PdfFormat());
             dataFormats.Add(new IsoFormat());
+            dataFormats.Add(new UdfFormat());
             dataFormats.Add(new DosModuleExeFormat());
             dataFormats.Add(new DosModuleComFormat());
             dataFormats.Add(new Win32ModuleFormatManaged());
