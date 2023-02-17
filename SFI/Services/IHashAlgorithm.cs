@@ -151,12 +151,12 @@ namespace IS4.SFI.Services
         /// Computes the value of the hash from a directory, described by <see cref="IDirectoryInfo"/>.
         /// </summary>
         /// <param name="directory">The directory to compute the hash from.</param>
-        /// <param name="contents">
+        /// <param name="contentOnly">
         /// True if the directory should be used only as container of its entries
         /// and not be itself a part in the hashed hierarchy.
         /// </param>
         /// <returns>The bytes of the hash.</returns>
-        ValueTask<byte[]> ComputeHash(IDirectoryInfo directory, bool contents);
+        ValueTask<byte[]> ComputeHash(IDirectoryInfo directory, bool contentOnly);
     }
 
     /// <summary>

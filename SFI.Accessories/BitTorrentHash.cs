@@ -68,9 +68,9 @@ namespace IS4.SFI
         }
 
         /// <inheritdoc/>
-        public async override ValueTask<byte[]> ComputeHash(IDirectoryInfo directory, bool content)
+        public async override ValueTask<byte[]> ComputeHash(IDirectoryInfo directory, bool contentOnly)
         {
-            var dict = await CreateDictionary(directory, content);
+            var dict = await CreateDictionary(directory, contentOnly);
             var hash = await HashAlgorithm.ComputeHash(dict.EncodeAsBytes());
             bDictCache.Add(hash, dict);
             return hash;
