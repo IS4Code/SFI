@@ -17,7 +17,7 @@ namespace IS4.SFI.Services
     public interface ILinkedNode : IEquatable<ILinkedNode>
     {
         /// <summary>
-        /// The scheme of the URi identifying this node.
+        /// The scheme of the URI identifying this node.
         /// </summary>
         string Scheme { get; }
 

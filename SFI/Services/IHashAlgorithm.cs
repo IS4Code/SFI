@@ -21,12 +21,12 @@ namespace IS4.SFI.Services
         Hex,
 
         /// <summary>
-        /// <see cref="DataTools.Base32{TList}(TList, StringBuilder)"/> is used to format the bytes.
+        /// <see cref="DataTools.Base32{TList}(TList, StringBuilder, string)"/> is used to format the bytes.
         /// </summary>
         Base32,
 
         /// <summary>
-        /// <see cref="DataTools.Base58{TList}(TList, StringBuilder)"/> is used to format the bytes.
+        /// <see cref="DataTools.Base58{TList}(TList, StringBuilder, string)"/> is used to format the bytes.
         /// </summary>
         Base58,
 
