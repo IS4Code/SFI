@@ -68,7 +68,7 @@ namespace IS4.SFI.ConsoleApp
                 return Stream.Null;
             }
             var dir = Path.GetDirectoryName(path);
-            if(dir != null)
+            if(!String.IsNullOrWhiteSpace(dir))
             {
                 Directory.CreateDirectory(dir);
             }
