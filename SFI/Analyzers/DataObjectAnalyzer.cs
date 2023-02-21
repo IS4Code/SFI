@@ -83,7 +83,7 @@ namespace IS4.SFI.Analyzers
                 }
             }
 
-            if(primaryFormat == null)
+            if(primaryFormat == null && !dataObject.IsPlain)
             {
                 // Prepare an improvised format if no other format was recognized
                 ImprovisedFormat.Format? improvisedFormat = null;

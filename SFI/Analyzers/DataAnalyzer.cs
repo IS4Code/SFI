@@ -71,6 +71,12 @@ namespace IS4.SFI.Analyzers
         public int TripleSizeEstimate { get; set; } = 32;
 
         /// <summary>
+        /// The maximum depth the data is allowed to be as an entity in a hierarchy
+        /// in order to attempt to analyze formats.
+        /// </summary>
+        public int? MaxDepthForFormats { get; set; } = 200;
+
+        /// <summary>
         /// An instance of <see cref="TextWriter"/> to use for logging.
         /// </summary>
         public TextWriter? OutputLog { get; set; }
@@ -334,6 +340,8 @@ namespace IS4.SFI.Analyzers
 
                 public IReadOnlyDictionary<IBinaryFormatObject, AnalysisResult> Formats => formats;
 
+                public bool IsPlain { get; private set; }
+
                 public override string ToString()
                 {
                     return $"{(IsBinary ? "Binary" : $"Text ({Charset})")} ({ActualLength} B)";
@@ -416,12 +424,13 @@ namespace IS4.SFI.Analyzers
                         NodeTask = new ValueTask<ILinkedNode?>(node);
                     }
 
-                    if(ByteValue.Count != 0)
+                    if(ByteValue.Count != 0 && !(analysis.analyzer.MaxDepthForFormats is int maxDepth && (analysis.context.Depth < 0 || analysis.context.Depth > maxDepth)))
                     {
                         var matchingFormats = analyzer.DataFormats.Where(fmt => fmt.CheckHeader(ByteValue, isBinary, encodingDetector));
                         Results = matchingFormats.Select(fmt => new FormatResult(this, StreamFactory, fmt, NodeTask, context, analysis.analyzers)).ToList();
                     }else{
                         Results = Array.Empty<FormatResult>();
+                        IsPlain = true;
                     }
                 }
 

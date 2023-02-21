@@ -80,6 +80,11 @@ namespace IS4.SFI.Services
         public MatchContext MatchContext { get; }
 
         /// <summary>
+        /// The nesting depth of the analysis.
+        /// </summary>
+        public int Depth { get; }
+
+        /// <summary>
         /// Creates a new instance of the context.
         /// </summary>
         /// <param name="parent">The value of <see cref="Parent"/>.</param>
@@ -87,13 +92,15 @@ namespace IS4.SFI.Services
         /// <param name="initialized">The value of <see cref="Initialized"/>.</param>
         /// <param name="nodeFactory">The value of <see cref="NodeFactory"/>.</param>
         /// <param name="matchContext">The value of <see cref="MatchContext"/>.</param>
-        internal AnalysisContext(ILinkedNodeFactory nodeFactory, ILinkedNode? parent, ILinkedNode? node, bool initialized, MatchContext matchContext)
+        /// <param name="depth">The value of <see cref="Depth"/>.</param>
+        internal AnalysisContext(ILinkedNodeFactory nodeFactory, ILinkedNode? parent, ILinkedNode? node, bool initialized, MatchContext matchContext, int depth)
         {
             Parent = parent;
             Node = node;
             Initialized = initialized;
             NodeFactory = nodeFactory;
             MatchContext = matchContext;
+            Depth = depth;
         }
 
         /// <summary>
@@ -105,7 +112,7 @@ namespace IS4.SFI.Services
         /// <returns>A new instance with the specified objects.</returns>
         public static AnalysisContext Create(ILinkedNode? node, ILinkedNodeFactory nodeFactory)
         {
-            return new AnalysisContext(nodeFactory, null, node, false, default);
+            return new AnalysisContext(nodeFactory, null, node, false, default, 0);
         }
 
         /// <summary>
@@ -116,7 +123,7 @@ namespace IS4.SFI.Services
         /// <returns>The updated context.</returns>
         public AnalysisContext WithParent(ILinkedNode? parent)
         {
-            return new AnalysisContext(NodeFactory, parent, null, false, MatchContext);
+            return new AnalysisContext(NodeFactory, parent, null, false, MatchContext, unchecked(Depth + 1));
         }
 
         /// <summary>
@@ -130,7 +137,7 @@ namespace IS4.SFI.Services
         /// <returns>The updated context.</returns>
         public AnalysisContext WithNode(ILinkedNode? node)
         {
-            return new AnalysisContext(NodeFactory, Node != null && node != null && !Node.Equals(node) ? null : Parent, node, false, MatchContext);
+            return new AnalysisContext(NodeFactory, Node != null && node != null && !Node.Equals(node) ? null : Parent, node, false, MatchContext, Depth);
         }
 
         /// <summary>
@@ -141,7 +148,7 @@ namespace IS4.SFI.Services
         /// <returns>The updated context.</returns>
         public AnalysisContext WithMatchContext(MatchContext matchContext)
         {
-            return new AnalysisContext(NodeFactory, Parent, Node, false, matchContext);
+            return new AnalysisContext(NodeFactory, Parent, Node, false, matchContext, Depth);
         }
 
         /// <summary>
@@ -155,7 +162,7 @@ namespace IS4.SFI.Services
         /// <returns>The updated context.</returns>
         public AnalysisContext WithMatchContext(Func<MatchContext, MatchContext> matchContextTransform)
         {
-            return new AnalysisContext(NodeFactory, Parent, Node, false, matchContextTransform(MatchContext));
+            return new AnalysisContext(NodeFactory, Parent, Node, false, matchContextTransform(MatchContext), Depth);
         }
 
         /// <summary>
@@ -165,7 +172,7 @@ namespace IS4.SFI.Services
         /// <returns>The updated context.</returns>
         public AnalysisContext AsInitialized()
         {
-            return new AnalysisContext(NodeFactory, Parent, Node, true, MatchContext);
+            return new AnalysisContext(NodeFactory, Parent, Node, true, MatchContext, Depth);
         }
     }
 

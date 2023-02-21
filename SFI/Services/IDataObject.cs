@@ -42,6 +42,11 @@ namespace IS4.SFI.Services
         IReadOnlyDictionary<IBinaryFormatObject, AnalysisResult> Formats { get; }
 
         /// <summary>
+        /// Indicates whether the data is marked as not containing any structured data.
+        /// </summary>
+        bool IsPlain { get; }
+
+        /// <summary>
         /// The byte content of the data, possibly only an
         /// initial portion if <see cref="IsComplete"/> is false.
         /// </summary>
