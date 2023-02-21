@@ -263,7 +263,7 @@ namespace IS4.SFI
 						// Conversion failed (for any reason)
 						conversionException = e;
 					}
-					if(convertedValue == null)
+					if(convertedValue == null && !(String.IsNullOrEmpty(value) && conversionException == null))
                     {
 						throw new ApplicationException($"Cannot convert value '{value}' for property {componentName}:{name} to type {TextTools.GetIdentifierFromType(prop.PropertyType)}!", conversionException);
                     }
