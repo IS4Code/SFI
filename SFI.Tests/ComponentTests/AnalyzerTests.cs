@@ -33,7 +33,7 @@ namespace IS4.SFI.Tests
         {
             var uri = new EquatableUri("x.base:", UriKind.Absolute);
             Node = new StorageLinkedNode(uri, uri, Cache);
-            Context = new AnalysisContext(node: Node, nodeFactory: Node);
+            Context = AnalysisContext.Create(Node, Node);
         }
 
         /// <summary>

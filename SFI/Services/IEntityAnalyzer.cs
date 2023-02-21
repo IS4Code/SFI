@@ -87,13 +87,25 @@ namespace IS4.SFI.Services
         /// <param name="initialized">The value of <see cref="Initialized"/>.</param>
         /// <param name="nodeFactory">The value of <see cref="NodeFactory"/>.</param>
         /// <param name="matchContext">The value of <see cref="MatchContext"/>.</param>
-        public AnalysisContext(ILinkedNodeFactory nodeFactory, ILinkedNode? parent = null, ILinkedNode? node = null, bool initialized = false, MatchContext matchContext = default)
+        internal AnalysisContext(ILinkedNodeFactory nodeFactory, ILinkedNode? parent, ILinkedNode? node, bool initialized, MatchContext matchContext)
         {
             Parent = parent;
             Node = node;
             Initialized = initialized;
             NodeFactory = nodeFactory;
             MatchContext = matchContext;
+        }
+
+        /// <summary>
+        /// Creates a new instance of <see cref="AnalysisContext"/> starting from a particular
+        /// node and an instance of <see cref="ILinkedNodeFactory"/>.
+        /// </summary>
+        /// <param name="node">The value of <see cref="Node"/>.</param>
+        /// <param name="nodeFactory">The value of <see cref="NodeFactory"/>.</param>
+        /// <returns>A new instance with the specified objects.</returns>
+        public static AnalysisContext Create(ILinkedNode? node, ILinkedNodeFactory nodeFactory)
+        {
+            return new AnalysisContext(nodeFactory, null, node, false, default);
         }
 
         /// <summary>

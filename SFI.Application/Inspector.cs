@@ -346,7 +346,7 @@ namespace IS4.SFI
                 }
 
                 var node = options.Node != null ? handler.Create(UriFormatter.Instance, options.Node) : null;
-                return await this.Analyze(entity, new AnalysisContext(nodeFactory: handler, node: node));
+                return await this.Analyze(entity, AnalysisContext.Create(node, handler));
             }finally{
                 rdfHandler.EndRdf(true);
                 foreach(var graphHandler in graphHandlers)
