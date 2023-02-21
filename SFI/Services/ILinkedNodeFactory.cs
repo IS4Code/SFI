@@ -28,7 +28,7 @@ namespace IS4.SFI.Services
         /// </summary>
         /// <param name="str">The string value to check.</param>
         /// <returns>
-        /// True if the string is safe to use as a literal, false if it must be escaped or discarded.
+        /// <see langword="true"/> if the string is safe to use as a literal, <see langword="false"/> if it must be escaped or discarded.
         /// </returns>
         /// <remarks>
         /// A literal can be escaped with methods like <see cref="DataTools.CreateLiteralJsonLd(string)"/>.
@@ -41,7 +41,7 @@ namespace IS4.SFI.Services
         /// </summary>
         /// <param name="uri">The URI value to check.</param>
         /// <returns>
-        /// True if the URI is safe to use as a predicate, false if it must be escaped or discarded.
+        /// <see langword="true"/> if the URI is safe to use as a predicate, <see langword="false"/> if it must be escaped or discarded.
         /// </returns>
         /// <remarks>
         /// A predicate URI may be encoded using methods like <see cref="UriTools.UriToUuidUri(Uri)"/>.

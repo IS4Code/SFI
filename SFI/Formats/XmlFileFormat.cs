@@ -18,7 +18,7 @@ namespace IS4.SFI.Formats
         /// <list type="bullet">
         /// <item>
         ///     <term><see cref="XmlReaderSettings.CloseInput"/></term>
-        ///     <description>false</description>
+        ///     <description><see langword="false"/></description>
         /// </item>
         /// <item>
         ///     <term><see cref="XmlReaderSettings.DtdProcessing"/></term>
@@ -30,7 +30,7 @@ namespace IS4.SFI.Formats
         /// </item>
         /// <item>
         ///     <term><see cref="XmlReaderSettings.Async"/></term>
-        ///     <description>true</description>
+        ///     <description><see langword="true"/></description>
         /// </item>
         /// <item>
         ///     <term><see cref="XmlReaderSettings.XmlResolver"/></term>

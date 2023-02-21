@@ -121,7 +121,7 @@ namespace IS4.SFI.Formats.Modules
         /// <param name="width">The width of each line.</param>
         /// <param name="height">The height of the console.</param>
         /// <param name="encoding">The encoding to use to decode the bytes.</param>
-        /// <returns>The string contents of the memory, or null.</returns>
+        /// <returns>The string contents of the memory, or <see langword="null"/>.</returns>
         string? ReadTextMemory(Span<byte> memory, int width, int height, Encoding encoding)
         {
             StringBuilder? sb = null;

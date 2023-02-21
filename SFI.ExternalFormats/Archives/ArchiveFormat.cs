@@ -30,7 +30,7 @@ namespace IS4.SFI.Formats
         /// Checks that the provided <typeparamref name="TArchive"/> instance was correctly recognized.
         /// </summary>
         /// <param name="archive">The checked archive.</param>
-        /// <returns>True if the archive is valid.</returns>
+        /// <returns><see langword="true"/> if the archive is valid.</returns>
         protected bool CheckArchive(TArchive archive)
         {
             return archive != null && archive.TotalSize >= 0 && archive.TotalUncompressSize >= 0;

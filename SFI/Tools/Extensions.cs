@@ -31,13 +31,13 @@ namespace IS4.SFI.Tools
         }
 
         /// <summary>
-        /// Returns true if <paramref name="exception"/>, or one of its inner
+        /// Returns <see langword="true"/> if <paramref name="exception"/>, or one of its inner
         /// exceptions, is an instance of <typeparamref name="T"/>.
         /// </summary>
         /// <typeparam name="T">The exception type to check.</typeparam>
         /// <param name="exception">The input instance of <see cref="Exception"/>.</param>
         /// <returns>
-        /// True if <paramref name="exception"/> has <typeparamref name="T"/>
+        /// <see langword="true"/> if <paramref name="exception"/> has <typeparamref name="T"/>
         /// as one of its base classes, or if the same holds for its
         /// <see cref="Exception.InnerException"/> or one of
         /// <see cref="AggregateException.InnerExceptions"/>.
@@ -300,7 +300,7 @@ namespace IS4.SFI.Tools
         /// </summary>
         /// <param name="type">The type instance to check.</param>
         /// <returns>
-        /// True if one of the implemented interfaces is a concrete type
+        /// <see langword="true"/> if one of the implemented interfaces is a concrete type
         /// instantiated from <see cref="IEntityAnalyzer{T}"/>.
         /// </returns>
         public static bool IsEntityAnalyzerType(this Type type)
@@ -325,7 +325,7 @@ namespace IS4.SFI.Tools
         /// </summary>
         /// <param name="components">The sequence of texts to join.</param>
         /// <param name="separator">The separator placed between non-empty elements.</param>
-        /// <returns>A non-empty label, or null.</returns>
+        /// <returns>A non-empty label, or <see langword="null"/>.</returns>
         public static string? JoinAsLabel(this IEnumerable<string?> components, string separator = ", ")
         {
             var label = String.Join(separator, components.Where(c => !String.IsNullOrWhiteSpace(c)).Distinct());
@@ -393,7 +393,7 @@ namespace IS4.SFI.Tools
         /// </summary>
         /// <param name="encoding">The instance of <see cref="Encoding"/> to use.</param>
         /// <param name="data">The byte sequence to decode.</param>
-        /// <returns>The decoded string, or null if it could not be produced.</returns>
+        /// <returns>The decoded string, or <see langword="null"/> if it could not be produced.</returns>
         /// <remarks>
         /// The preamble, as returned by <see cref="Encoding.GetPreamble"/>, is
         /// attempted to be matched at the beginning of the data, and if it is found,

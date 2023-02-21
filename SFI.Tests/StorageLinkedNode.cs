@@ -17,7 +17,7 @@ namespace IS4.SFI.Tests
     public class StorageLinkedNode : LinkedNode<EquatableUri, EquatableUri, UriCache>, ILinkedNodeFactory
     {
         /// <summary>
-        /// True if <see cref="SetAsBase"/> has been called.
+        /// <see langword="true"/> if <see cref="SetAsBase"/> has been called.
         /// </summary>
         public bool IsBase { get; private set; }
 
@@ -42,7 +42,7 @@ namespace IS4.SFI.Tests
         /// </param>
         /// <returns>
         /// An instance of <see cref="Uri"/> if the value is a single node,
-        /// or a previously assigned object of arbitrary type, null if there is
+        /// or a previously assigned object of arbitrary type, <see langword="null"/> if there is
         /// no value of the property, or <see cref="IEnumerable{T}"/> of <see cref="object"/>
         /// if there are multiple distinct values.
         /// </returns>

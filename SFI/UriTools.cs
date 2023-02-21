@@ -169,7 +169,7 @@ namespace IS4.SFI
         /// encoded according to RFC 3151.
         /// </summary>
         /// <param name="uri">The urn:publicid: URI.</param>
-        /// <returns>The identifier stored in <paramref name="uri"/>, or null.</returns>
+        /// <returns>The identifier stored in <paramref name="uri"/>, or <see langword="null"/>.</returns>
         public static string? ExtractPublicId(Uri uri)
         {
             if(uri.IsAbsoluteUri && uri.Scheme == "urn" && String.IsNullOrEmpty(uri.Fragment))
@@ -310,7 +310,7 @@ namespace IS4.SFI
         /// <param name="uri">The parent URI.</param>
         /// <param name="component">The name of the component under <paramref name="uri"/>.</param>
         /// <param name="formRoot">
-        /// Whether the component should form a new hierarchy. If true,
+        /// Whether the component should form a new hierarchy. If <see langword="true"/>,
         /// <paramref name="uri"/> and <paramref name="component"/> may be
         /// joined with <c>#/</c>.
         /// </param>

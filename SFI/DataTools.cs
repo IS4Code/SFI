@@ -232,7 +232,7 @@ namespace IS4.SFI
         /// as a string if they could correspond to a valid signature.
         /// </summary>
         /// <param name="header">The initial part of a file's data.</param>
-        /// <returns>The signature bytes as an ASCII string, or null if there is no valid signature.</returns>
+        /// <returns>The signature bytes as an ASCII string, or <see langword="null"/> if there is no valid signature.</returns>
         /// <remarks>
         /// The signature is the portion at the beginning of the header between 2 and 8 characters,
         /// allowing to contain characters a-zA-Z0-9. If a whitespace character, a hyphen or an underscore
@@ -320,7 +320,7 @@ namespace IS4.SFI
         /// that is reversible, based on the capabilities of <paramref name="originalEncoding"/>.
         /// </summary>
         /// <param name="str">The string to replace characters in.</param>
-        /// <param name="originalEncoding">The original encoding in which the string was decoded, or null.</param>
+        /// <param name="originalEncoding">The original encoding in which the string was decoded, or <see langword="null"/>.</param>
         /// <returns>
         /// A string formed from the characters in <paramref name="str"/>, but with control characters
         /// replaced with their respective Unicode replacement characters starting from U+2400.
@@ -355,7 +355,7 @@ namespace IS4.SFI
         /// Determines whether a byte sequence encodes binary, or non-textual, data.
         /// </summary>
         /// <param name="data">A complete sequence of bytes to be checked.</param>
-        /// <returns>True if the data is not textual, false otherwise.</returns>
+        /// <returns><see langword="true"/> if the data is not textual, <see langword="false"/> otherwise.</returns>
         /// <remarks>
         /// Usually, text is not allowed to contain the NUL character.
         /// This condition is loosened a bit here: a text may end with
@@ -481,7 +481,7 @@ namespace IS4.SFI
         /// Determines whether <paramref name="str"/> is a string safe for displaying or storing as text.
         /// </summary>
         /// <param name="str"></param>
-        /// <returns>True if the string contains unsafe characters, false otherwise.</returns>
+        /// <returns><see langword="true"/> if the string contains unsafe characters, <see langword="false"/> otherwise.</returns>
         /// <remarks>
         /// XML 1.0 prohibits C0 control codes and discourages the use of C1, with the exception of line separators;
         /// such characters cannot be encoded in RDF/XML and therefore are semantically invalid.

@@ -152,7 +152,7 @@ namespace IS4.SFI.Services
         /// </summary>
         /// <param name="directory">The directory to compute the hash from.</param>
         /// <param name="contentOnly">
-        /// True if the directory should be used only as container of its entries
+        /// <see langword="true"/> if the directory should be used only as container of its entries
         /// and not be itself a part in the hashed hierarchy.
         /// </param>
         /// <returns>The bytes of the hash.</returns>
@@ -362,7 +362,7 @@ namespace IS4.SFI.Services
         /// that has the provided size of the output.
         /// </summary>
         /// <param name="length">The hash size in bytes.</param>
-        /// <returns>The respective instance, or null if there is none.</returns>
+        /// <returns>The respective instance, or <see langword="null"/> if there is none.</returns>
         public static BuiltInHash? FromLength(int length)
         {
             switch(length)

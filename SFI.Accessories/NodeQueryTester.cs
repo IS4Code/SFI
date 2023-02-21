@@ -40,7 +40,7 @@ namespace IS4.SFI
         /// </summary>
         /// <param name="subject">The matching node to be identified by the queries.</param>
         /// <param name="properties">Additional variables from a successful match, as instances of <see cref="Uri"/> or <see cref="String"/>.</param>
-        /// <returns>True if any of the queries successfully matched the node.</returns>
+        /// <returns><see langword="true"/> if any of the queries successfully matched the node.</returns>
         public bool Match(INode subject, out INodeMatchProperties properties)
         {
             Properties? variables = null;

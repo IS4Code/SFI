@@ -83,7 +83,7 @@ namespace IS4.SFI.Formats
         /// stored by the format and starts with it.
         /// </summary>
         /// <param name="header">A collection of bytes from the beginning of the file.</param>
-        /// <returns>True if the signature in the header matches.</returns>
+        /// <returns><see langword="true"/> if the signature in the header matches.</returns>
         protected virtual bool CheckSignature(ReadOnlySpan<byte> header)
         {
             return header.Length > signature.Length && header.StartsWith(signature);

@@ -100,7 +100,7 @@ namespace IS4.SFI.Application
         /// </summary>
         /// <param name="resultFactory">
         /// The function object, receiving the element and its name.
-        /// If it returns false, the element is removed from the collection.
+        /// If it returns <see langword="false"/>, the element is removed from the collection.
         /// </param>
         /// <returns>The total number of elements.</returns>
         public abstract ValueTask<int> Filter(IResultFactory<bool, string> resultFactory);

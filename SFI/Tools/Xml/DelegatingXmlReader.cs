@@ -15,7 +15,7 @@ namespace IS4.SFI.Tools.Xml
     public abstract class DelegatingXmlReader : XmlReader, IXmlLineInfo, IXmlNamespaceResolver
     {
         /// <summary>
-        /// True if <see cref="Close"/> has been called.
+        /// <see langword="true"/> if <see cref="Close"/> has been called.
         /// </summary>
         protected bool Closed { get; private set; }
 

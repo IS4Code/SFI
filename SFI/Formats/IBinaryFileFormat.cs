@@ -24,7 +24,7 @@ namespace IS4.SFI.Formats
         /// <param name="header">A collection of bytes from the beginning of the file.</param>
         /// <param name="isBinary">Whether the file was detected as binary or not.</param>
         /// <param name="encodingDetector">The specific instance of <see cref="IEncodingDetector"/> used to determine the encoding.</param>
-        /// <returns>False if the file cannot possibly be in this format, true otherwise.</returns>
+        /// <returns><see langword="false"/> if the file cannot possibly be in this format, <see langword="true"/> otherwise.</returns>
         bool CheckHeader(ArraySegment<byte> header, bool isBinary, IEncodingDetector? encodingDetector);
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace IS4.SFI.Formats
         /// <param name="header">A collection of bytes from the beginning of the file.</param>
         /// <param name="isBinary">Whether the file was detected as binary or not.</param>
         /// <param name="encodingDetector">The specific instance of <see cref="IEncodingDetector"/> used to determine the encoding.</param>
-        /// <returns>False if the file cannot possibly be in this format, true otherwise.</returns>
+        /// <returns><see langword="false"/> if the file cannot possibly be in this format, <see langword="true"/> otherwise.</returns>
         bool CheckHeader(ReadOnlySpan<byte> header, bool isBinary, IEncodingDetector? encodingDetector);
 
         /// <summary>

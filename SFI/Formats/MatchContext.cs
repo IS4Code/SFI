@@ -61,7 +61,7 @@ namespace IS4.SFI.Formats
         /// <typeparam name="T">The type of the service to retrieve.</typeparam>
         /// <returns>
         /// An instance of <typeparamref name="T"/>,
-        /// if stored in the context, or null otherwise.
+        /// if stored in the context, or <see langword="null"/> otherwise.
         /// </returns>
         public T? GetService<T>() where T : class
         {

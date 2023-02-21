@@ -48,13 +48,13 @@ namespace IS4.SFI.Services
 
         /// <summary>
         /// The byte content of the data, possibly only an
-        /// initial portion if <see cref="IsComplete"/> is false.
+        /// initial portion if <see cref="IsComplete"/> is <see langword="false"/>.
         /// </summary>
         ArraySegment<byte> ByteValue { get; }
 
         /// <summary>
         /// The string content of the data, possibly only an
-        /// initial portion if <see cref="IsComplete"/> is false.
+        /// initial portion if <see cref="IsComplete"/> is <see langword="false"/>.
         /// </summary>
         string? StringValue { get; }
 

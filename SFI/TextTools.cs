@@ -127,12 +127,12 @@ namespace IS4.SFI
         /// Creates a fake media type from a namespace URI, PUBLIC identifier,
         /// and the root element name in an XML document.
         /// </summary>
-        /// <param name="ns">The root namespace URI (may be null).</param>
-        /// <param name="publicId">The PUBLIC identifier (may be null).</param>
+        /// <param name="ns">The root namespace URI (may be <see langword="null"/>).</param>
+        /// <param name="publicId">The PUBLIC identifier (may be <see langword="null"/>).</param>
         /// <param name="rootName">The name of the root element.</param>
         /// <returns>A MIME type in the form of "application/x.ns.{path}+xml", where path
         /// is formed from the individual components of <paramref name="ns"/>, ending with <paramref name="rootName"/>.
-        /// If <paramref name="ns"/> is null and <paramref name="publicId"/> is provided,
+        /// If <paramref name="ns"/> is <see langword="null"/> and <paramref name="publicId"/> is provided,
         /// the namespace URI is created via <see cref="UriTools.CreatePublicId(string)"/>.
         /// </returns>
         public static string GetFakeMediaTypeFromXml(Uri? ns, string? publicId, string rootName)

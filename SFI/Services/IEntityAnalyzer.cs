@@ -63,7 +63,7 @@ namespace IS4.SFI.Services
         public ILinkedNode? Node { get; }
 
         /// <summary>
-        /// True if <see cref="Node"/> was already initialized (i.e.
+        /// <see langword="true"/> if <see cref="Node"/> was already initialized (i.e.
         /// by calling <see cref="ILinkedNode.SetClass(Vocabulary.ClassUri)"/>)
         /// and it is not necessary to initialize it again.
         /// </summary>
@@ -131,7 +131,7 @@ namespace IS4.SFI.Services
         /// and <see cref="MatchContext"/>.
         /// The <see cref="Parent"/> property also preserved,
         /// unless <paramref name="node"/> is different from <see cref="Node"/>
-        /// and both are non-null.
+        /// and both are non-<see langword="null"/>.
         /// </summary>
         /// <param name="node">The new value of <see cref="Node"/>.</param>
         /// <returns>The updated context.</returns>
@@ -167,7 +167,7 @@ namespace IS4.SFI.Services
 
         /// <summary>
         /// Creates a new context, keeping all properties but setting
-        /// <see cref="Initialized"/> to true.
+        /// <see cref="Initialized"/> to <see langword="true"/>.
         /// </summary>
         /// <returns>The updated context.</returns>
         public AnalysisContext AsInitialized()
@@ -183,7 +183,7 @@ namespace IS4.SFI.Services
     {
         /// <summary>
         /// The instance of <see cref="ILinkedNode"/> that was created or used for the
-        /// analyzed entity. Could be null if the analysis was not
+        /// analyzed entity. Could be <see langword="null"/> if the analysis was not
         /// successful.
         /// </summary>
         public ILinkedNode? Node { get; set; }
@@ -292,7 +292,7 @@ namespace IS4.SFI.Services
         /// This method is called when a node is obtained for the entity,
         /// initializing its default properties (usually via
         /// <see cref="ILinkedNode.SetClass(Vocabulary.ClassUri)"/>), unless
-        /// <see cref="AnalysisContext.Initialized"/> is set to true.
+        /// <see cref="AnalysisContext.Initialized"/> is set to <see langword="true"/>.
         /// The default implementation does nothing.
         /// </summary>
         /// <param name="node">The node to initialize.</param>
@@ -315,7 +315,7 @@ namespace IS4.SFI.Services
         /// <typeparam name="T">The type of the object.</typeparam>
         /// <param name="value">The value of the object.</param>
         /// <param name="result">The variable that receives the value of the object.</param>
-        /// <returns>True if the value is valid.</returns>
+        /// <returns><see langword="true"/> if the value is valid.</returns>
         protected static bool IsDefined<T>(T? value, out T result) where T : struct
         {
             result = value.GetValueOrDefault();

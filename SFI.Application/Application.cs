@@ -287,7 +287,7 @@ namespace IS4.SFI
 		/// </summary>
 		/// <remarks>
 		/// Configurable properties are those properties that can be set (not read-only),
-		/// which do not have [<see cref="BrowsableAttribute"/>(false)], and their type
+		/// which do not have [<see cref="BrowsableAttribute"/>(<see langword="false"/>)], and their type
 		/// can be converted to and from <see cref="string"/>.
 		/// </remarks>
 		private IEnumerable<PropertyDescriptor> GetConfigurableProperties(object component)
@@ -307,7 +307,7 @@ namespace IS4.SFI
 		/// <see cref="string"/>.
 		/// </summary>
 		/// <param name="converter">The converter to check.</param>
-		/// <returns>True if the conversion is permitted, false otherwise.</returns>
+		/// <returns><see langword="true"/> if the conversion is permitted, <see langword="false"/> otherwise.</returns>
 		private bool IsStringConvertible(TypeConverter converter)
         {
 			if(converter != null)

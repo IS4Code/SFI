@@ -98,8 +98,8 @@ namespace IS4.SFI.Services
         /// The parameter is a URI that should be used as the base.</param>
         /// <param name="subjectUris"><inheritdoc cref="Describe(XmlReader, IReadOnlyCollection{Uri}?)" path="/param[@name='subjectUris']"/></param>
         /// <returns>
-        /// True if <paramref name="loader"/> was correctly recognized
-        /// and executed, false otherwise.
+        /// <see langword="true"/> if <paramref name="loader"/> was correctly recognized
+        /// and executed, <see langword="false"/> otherwise.
         /// </returns>
         bool TryDescribe(object loader, Func<Uri, object?> dataSource, IReadOnlyCollection<Uri>? subjectUris = null);
 
@@ -300,7 +300,7 @@ namespace IS4.SFI.Services
         /// <see cref="IHasFileOutput"/> and <see cref="OutputFileDelegate"/>.
         /// </summary>
         /// <param name="properties">An object that provides custom match properties.</param>
-        /// <returns>True if the resource is matched, false otherwise.</returns>
+        /// <returns><see langword="true"/> if the resource is matched, <see langword="false"/> otherwise.</returns>
         bool Match([System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)] out INodeMatchProperties properties);
 
         /// <summary>
@@ -308,7 +308,7 @@ namespace IS4.SFI.Services
         /// by <paramref name="graph"/>.
         /// </summary>
         /// <param name="graph">The graph to use for storing the description of the resource.</param>
-        /// <returns>A new version of the node, or null if the graph is disabled.</returns>
+        /// <returns>A new version of the node, or <see langword="null"/> if the graph is disabled.</returns>
         ILinkedNode? In(GraphUri graph);
 
         /// <summary>
@@ -318,7 +318,7 @@ namespace IS4.SFI.Services
         /// <typeparam name="TGraph">The type of <paramref name="value"/>.</typeparam>
         /// <param name="graphFormatter">The formatter to use for storing the description of the resource.</param>
         /// <param name="value">The value to format using <paramref name="graphFormatter"/>.</param>
-        /// <returns>A new version of the node, or null if the graph is disabled.</returns>
+        /// <returns>A new version of the node, or <see langword="null"/> if the graph is disabled.</returns>
         ILinkedNode? In<TGraph>(IGraphUriFormatter<TGraph> graphFormatter, TGraph value);
     }
 
@@ -357,7 +357,7 @@ namespace IS4.SFI.Services
         /// <param name="graph">The value of <see cref="Graph"/>.</param>
         /// <param name="cache">The value of <see cref="Cache"/>.</param>
         /// <exception cref="ArgumentNullException">
-        /// Thrown when <paramref name="subject"/> is null.
+        /// Thrown when <paramref name="subject"/> is <see langword="null"/>.
         /// </exception>
         public LinkedNode(TNode subject, TGraphNode graph, TVocabularyCache cache)
         {

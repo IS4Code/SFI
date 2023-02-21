@@ -13,7 +13,7 @@ namespace IS4.SFI.Tools
     public class PersistenceStore<TKey, TValue> where TKey : IPersistentKey
     {
         /// <summary>
-        /// The identity of this object is used instead of a null value as the key.
+        /// The identity of this object is used instead of a <see langword="null"/> value as the key.
         /// </summary>
         static readonly object NullPlaceholder = new object();
 

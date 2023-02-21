@@ -10,12 +10,12 @@ namespace IS4.SFI.Formats
     public interface IArchiveInfo
     {
         /// <summary>
-        /// True if the archive is complete, i.e. there are no following parts.
+        /// <see langword="true"/> if the archive is complete, i.e. there are no following parts.
         /// </summary>
         bool IsComplete { get; }
 
         /// <summary>
-        /// True if the files in the archive are compressed as one single block.
+        /// <see langword="true"/> if the files in the archive are compressed as one single block.
         /// </summary>
         bool IsSolid { get; }
     }

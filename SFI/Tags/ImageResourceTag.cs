@@ -6,7 +6,7 @@
     public interface IImageResourceTag
     {
         /// <summary>
-        /// True if the image should be transparent, false otherwise.
+        /// <see langword="true"/> if the image should be transparent, <see langword="false"/> otherwise.
         /// </summary>
         bool IsTransparent { get; }
     }

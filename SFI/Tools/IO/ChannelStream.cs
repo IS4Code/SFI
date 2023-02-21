@@ -70,15 +70,15 @@ namespace IS4.SFI.Tools.IO
         /// <list type="bullet">
         /// <item>
         ///     <term><see cref="ChannelOptions.AllowSynchronousContinuations"/></term>
-        ///     <description>true</description>
+        ///     <description><see langword="true"/></description>
         /// </item>
         /// <item>
         ///     <term><see cref="ChannelOptions.SingleReader"/></term>
-        ///     <description>true</description>
+        ///     <description><see langword="true"/></description>
         /// </item>
         /// <item>
         ///     <term><see cref="ChannelOptions.SingleWriter"/></term>
-        ///     <description>true</description>
+        ///     <description><see langword="true"/></description>
         /// </item>
         /// <item>
         ///     <term><see cref="BoundedChannelOptions.FullMode"/> (if <paramref name="capacity"/> is provided)</term>
@@ -108,7 +108,7 @@ namespace IS4.SFI.Tools.IO
         /// Synchronously retrieves the next byte sequence from
         /// the channel and stores it in <see cref="current"/>.
         /// </summary>
-        /// <returns>True if a sequence was retrieved.</returns>
+        /// <returns><see langword="true"/> if a sequence was retrieved.</returns>
         private bool TryGetNext()
         {
             try{

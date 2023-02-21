@@ -125,7 +125,7 @@ namespace IS4.SFI.Tools.Xml
         public int LinePosition { get; }
 
         /// <summary>
-        /// True if the current state provides <see cref="LineNumber"/>
+        /// <see langword="true"/> if the current state provides <see cref="LineNumber"/>
         /// and <see cref="LinePosition"/>.
         /// </summary>
         public bool HasLineInfo { get; }

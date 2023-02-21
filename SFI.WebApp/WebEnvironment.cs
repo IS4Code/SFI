@@ -35,7 +35,7 @@ namespace IS4.SFI.WebApp
         public string NewLine { get; }
 
         /// <summary>
-        /// True if <see cref="Dispose"/> has been called.
+        /// <see langword="true"/> if <see cref="Dispose"/> has been called.
         /// </summary>
         public bool Disposed { get; private set; }
 

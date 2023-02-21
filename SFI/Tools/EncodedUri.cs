@@ -6,7 +6,7 @@ namespace IS4.SFI.Tools
     /// A class derived from <see cref="Uri"/> changing the default
     /// <see cref="Uri.ToString"/> implementation to use
     /// <see cref="Uri.AbsoluteUri"/> or <see cref="Uri.OriginalString"/>
-    /// instead, as long as <see cref="Enabled"/> is true.
+    /// instead, as long as <see cref="Enabled"/> is <see langword="true"/>.
     /// </summary>
     public class EncodedUri : Uri
     {

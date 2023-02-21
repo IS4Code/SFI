@@ -16,7 +16,7 @@ namespace IS4.SFI.Application
         public Type Type { get; }
 
         /// <summary>
-        /// True if an error occurred during the creation of the object.
+        /// <see langword="true"/> if an error occurred during the creation of the object.
         /// </summary>
         public bool Error { get; private set; }
 

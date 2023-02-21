@@ -15,7 +15,7 @@ namespace IS4.SFI.Formats
         /// </summary>
         /// <returns>
         /// An instance of <see cref="ICabinetArchiveFile"/> identifying the next file,
-        /// or null if the archive is at the end.
+        /// or <see langword="null"/> if the archive is at the end.
         /// </returns>
         ICabinetArchiveFile? GetNextFile();
     }

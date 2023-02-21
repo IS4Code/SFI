@@ -11,7 +11,7 @@ namespace IS4.SFI
 
         /// <summary>
         /// Whether to ignore recoverable exceptions; by default the exceptions
-        /// are not ignored only when <see cref="Debugger.IsAttached"/> is true.
+        /// are not ignored only when <see cref="Debugger.IsAttached"/> is <see langword="true"/>.
         /// </summary>
         public static bool SuppressNonCriticalExceptions {
             get {

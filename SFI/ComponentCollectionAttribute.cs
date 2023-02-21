@@ -15,7 +15,7 @@ namespace IS4.SFI
         public string Prefix { get; }
 
         /// <summary>
-        /// The common type of the objects in the collection, or null
+        /// The common type of the objects in the collection, or <see langword="null"/>
         /// if it can be deduced from the collection.
         /// </summary>
         public Type? CommonType { get; }
