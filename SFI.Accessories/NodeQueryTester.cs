@@ -20,6 +20,11 @@ namespace IS4.SFI
         readonly LeviathanQueryProcessor processor;
 
         /// <summary>
+        /// The name of the variable that must contain the current node in order to be extracted via a SELECT query.
+        /// </summary>
+        public const string NodeVariableName = "node";
+
+        /// <summary>
         /// Creates a new instance of the tester.
         /// </summary>
         /// <param name="rdfHandler">The RDF handler to use to store the result of CONSTRUCT queries.</param>
@@ -36,14 +41,14 @@ namespace IS4.SFI
         /// <summary>
         /// Matches an instance of <see cref="INode"/> against the stored SPARQL queries.
         /// In order for the match to be successful, the variables bound by the query
-        /// must contain a "?node" variable equal to <paramref name="subject"/>.
+        /// must contain a <see cref="NodeVariableName"/> variable equal to <paramref name="subject"/>.
         /// </summary>
         /// <param name="subject">The matching node to be identified by the queries.</param>
         /// <param name="properties">Additional variables from a successful match, as instances of <see cref="Uri"/> or <see cref="String"/>.</param>
         /// <returns><see langword="true"/> if any of the queries successfully matched the node.</returns>
         public bool Match(INode subject, out INodeMatchProperties properties)
         {
-            Properties? variables = null;
+            MatchProperties? variables = null;
             var success = false;
             foreach(var query in queries)
             {
@@ -52,27 +57,30 @@ namespace IS4.SFI
                     case IGraph resultsGraph:
                         foreach(var triple in resultsGraph.Triples)
                         {
-                            var copy = new Triple(
-                                VDS.RDF.Tools.CopyNode(triple.Subject, rdfHandler),
-                                VDS.RDF.Tools.CopyNode(triple.Predicate, rdfHandler),
-                                VDS.RDF.Tools.CopyNode(triple.Object, rdfHandler)
-                            );
-                            rdfHandler.HandleTriple(copy);
+                            lock(rdfHandler)
+                            {
+                                var copy = new Triple(
+                                    VDS.RDF.Tools.CopyNode(triple.Subject, rdfHandler),
+                                    VDS.RDF.Tools.CopyNode(triple.Predicate, rdfHandler),
+                                    VDS.RDF.Tools.CopyNode(triple.Object, rdfHandler)
+                                );
+                                rdfHandler.HandleTriple(copy);
+                            }
                         }
                         break;
                     case IEnumerable<SparqlResult> resultSet:
                         foreach(var result in resultSet)
                         {
-                            if(result.TryGetValue("node", out var node) && node.Equals(subject))
+                            if(result.TryGetValue(NodeVariableName, out var node) && node.Equals(subject))
                             {
                                 success = true;
                                 if(variables == null)
                                 {
-                                    variables = new Properties();
+                                    variables = new MatchProperties();
                                 }
                                 foreach(var pair in result)
                                 {
-                                    if(variables.Properites.TryGetValue(pair.Key, out var prop))
+                                    if(variables.Properties.TryGetValue(pair.Key, out var prop))
                                     {
                                         var conv = TypeDescriptor.GetConverter(prop.PropertyType);
                                         switch(pair.Value)
@@ -91,13 +99,13 @@ namespace IS4.SFI
                         break;
                 }
             }
-            properties = variables ?? Properties.Default;
+            properties = variables ?? MatchProperties.Default;
             return success;
         }
 
-        class Properties : INodeMatchProperties
+        class MatchProperties : INodeMatchProperties
         {
-            public static readonly Properties Default = new Properties();
+            public static readonly MatchProperties Default = new MatchProperties();
 
             /// <inheritdoc/>
             public string? Extension { get; set; }
@@ -116,7 +124,7 @@ namespace IS4.SFI
 
             Dictionary<string, PropertyDescriptor>? properties;
 
-            public Dictionary<string, PropertyDescriptor> Properites => properties ??= this.GetProperties().ToDictionary(p => p.Key, p => p.Value);
+            public Dictionary<string, PropertyDescriptor> Properties => properties ??= this.GetProperties().ToDictionary(p => p.Key, p => p.Value);
         }
     }
 }
