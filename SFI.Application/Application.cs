@@ -180,7 +180,14 @@ namespace IS4.SFI
 					throw new ApplicationException("No specified input files were found!");
 				}
 				
-				options.Queries = queries.SelectMany(query => environment.GetFiles(query).SelectMany(f => f.EnumerateFiles()));
+				var queryFiles = queries.SelectMany(query => environment.GetFiles(query).SelectMany(f => f.EnumerateFiles())).ToList();
+
+				if(queryFiles.Count == 0 && queries.Count > 0)
+				{
+					throw new ApplicationException("No specified SPARQL queries were found!");
+				}
+
+				options.Queries = queryFiles;
 
 				var update = environment.Update();
 				if(!update.Equals(default(ValueTask)))
