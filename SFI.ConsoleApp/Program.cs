@@ -40,21 +40,30 @@ namespace IS4.SFI.ConsoleApp
             await application.Run(args);
         }
 
-        public IEnumerable<IFileInfo> GetFiles(string path)
+        public IEnumerable<IFileNodeInfo> GetFiles(string path)
         {
-            if(path == "-") return new IFileInfo[] { new StandardInput() };
+            if(path == "-") return new IFileNodeInfo[] { new StandardInput() };
             var fileName = Path.GetFileName(path);
             if(fileName.Contains('*') || fileName.Contains('?'))
             {
                 var directory = Path.GetDirectoryName(path);
-                var files = Directory.GetFiles(String.IsNullOrEmpty(directory) ? Environment.CurrentDirectory : directory, fileName);
-                return files.Select(f => new FileInfoWrapper(new FileInfo(f)));
+                if(String.IsNullOrEmpty(directory))
+                {
+                    directory = Environment.CurrentDirectory;
+                }
+                IEnumerable<IFileNodeInfo> files = Directory.GetFiles(directory, fileName).Select(f => new FileInfoWrapper(new FileInfo(f)));
+                var directories = Directory.GetDirectories(directory, fileName).Select(d => new DirectoryInfoWrapper(new DirectoryInfo(d)));
+                return files.Concat(directories);
             }
-            if(!File.Exists(path))
+            if(File.Exists(path))
             {
-                return Array.Empty<IFileInfo>();
+                return new IFileNodeInfo[] { new FileInfoWrapper(new FileInfo(path)) };
             }
-            return new IFileInfo[] { new FileInfoWrapper(new FileInfo(path)) };
+            if(Directory.Exists(path))
+            {
+                return new IFileNodeInfo[] { new DirectoryInfoWrapper(new DirectoryInfo(path)) };
+            }
+            return Array.Empty<IFileNodeInfo>();
         }
 
         public Stream CreateFile(string path, string mediaType)

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace IS4.SFI.Services
 {
@@ -175,6 +177,34 @@ namespace IS4.SFI.Services
         public override string ToString()
         {
             return "/" + Path;
+        }
+    }
+
+    /// <summary>
+    /// The extension methods for <see cref="IFileNodeInfo"/>.
+    /// </summary>
+    public static class FileNodeInfoExtensions
+    {
+        /// <summary>
+        /// Enumerates all files under the <paramref name="fileNode"/> object, by recursively obtaining
+        /// <see cref="IDirectoryInfo.Entries"/> on the directories within.
+        /// </summary>
+        /// <param name="fileNode">An instance of either <see cref="IFileInfo"/> or <see cref="IDirectoryInfo"/>.</param>
+        /// <returns>A sequence of all instances of <see cref="IFileInfo"/> in the hierarchy.</returns>
+        public static IEnumerable<IFileInfo> EnumerateFiles(this IFileNodeInfo fileNode)
+        {
+            switch(fileNode)
+            {
+                case IDirectoryInfo directory:
+                    var entries = directory.Entries.SelectMany(EnumerateFiles);
+                    return directory is IFileInfo alsoFile
+                        ? entries.Concat(new[] { alsoFile })
+                        : entries;
+                case IFileInfo file:
+                    return new[] { file };
+                default:
+                    return Array.Empty<IFileInfo>();
+            }
         }
     }
 }

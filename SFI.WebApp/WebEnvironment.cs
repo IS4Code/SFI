@@ -61,11 +61,11 @@ namespace IS4.SFI.WebApp
         }
 
         /// <inheritdoc/>
-        public IEnumerable<IFileInfo> GetFiles(string path)
+        public IEnumerable<IFileNodeInfo> GetFiles(string path)
         {
             if(inputFiles == null)
             {
-                return Array.Empty<IFileInfo>();
+                return Array.Empty<IFileNodeInfo>();
             }
             var match = TextTools.ConvertWildcardToRegex(path);
             return inputFiles.Where(f => match.IsMatch(f.Key)).Select(f => new BrowserFileInfo(f.Value));

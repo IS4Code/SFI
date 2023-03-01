@@ -33,9 +33,9 @@ namespace IS4.SFI.Application
         /// <summary>
         /// Retrieves a collection of files identified by <paramref name="path"/>.
         /// </summary>
-        /// <param name="path">The path to the files, supporting wildcard.</param>
+        /// <param name="path">The path to the files, supporting wildcards.</param>
         /// <returns>The collection of files with names matching <paramref name="path"/>.</returns>
-        IEnumerable<IFileInfo> GetFiles(string path);
+        IEnumerable<IFileNodeInfo> GetFiles(string path);
 
         /// <summary>
         /// Creates an output file and opens a write stream to it.

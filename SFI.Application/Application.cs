@@ -180,7 +180,7 @@ namespace IS4.SFI
 					throw new ApplicationException("No specified input files were found!");
 				}
 				
-				options.Queries = queries.SelectMany(query => environment.GetFiles(query));
+				options.Queries = queries.SelectMany(query => environment.GetFiles(query).SelectMany(f => f.EnumerateFiles()));
 
 				var update = environment.Update();
 				if(!update.Equals(default(ValueTask)))
@@ -202,7 +202,7 @@ namespace IS4.SFI
 					if(dataOnly)
 					{
 						// The input should be treated as a byte sequence without file metadata
-						await inspector.Inspect<IStreamFactory>(inputFiles, Factory, options);
+						await inspector.Inspect<IStreamFactory>(inputFiles.SelectMany(f => f.EnumerateFiles()), Factory, options);
 					}else{
 						await inspector.Inspect(inputFiles, Factory, options);
 					}
