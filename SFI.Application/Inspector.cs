@@ -297,9 +297,15 @@ namespace IS4.SFI
                     queryParser.DefaultBaseUri = new Uri(options.Root, UriKind.Absolute);
                     queryParser.Warning += OutputLog.WriteLine;
                 }
-                using var stream = file.Open();
-                using var reader = new StreamReader(stream, Encoding.UTF8, true, 4096, true);
-                var query = queryParser.Parse(reader);
+                SparqlQuery query;
+                try{
+                    using var stream = file.Open();
+                    using var reader = new StreamReader(stream, Encoding.UTF8, true, 4096, true);
+                    query = queryParser.Parse(reader);
+                }catch(Exception e)
+                {
+                    throw new ApplicationException($"Error while parsing SPARQL query in {file.Name}: {e.Message}", e);
+                }
                 switch(query.QueryType)
                 {
                     case SparqlQueryType.Construct:
