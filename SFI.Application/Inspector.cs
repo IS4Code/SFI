@@ -309,11 +309,16 @@ namespace IS4.SFI
                 switch(query.QueryType)
                 {
                     case SparqlQueryType.Construct:
+                        break;
                     case SparqlQueryType.Select:
                     case SparqlQueryType.SelectAll:
                     case SparqlQueryType.SelectAllDistinct:
                     case SparqlQueryType.SelectDistinct:
                     case SparqlQueryType.SelectReduced:
+                        if(!query.Variables.Any(v => NodeQueryTester.NodeVariableName.Equals(v.Name)))
+                        {
+                            throw new ApplicationException($"The SELECT query in {file.Name} does not use the ?{NodeQueryTester.NodeVariableName} variable, which is necessary to use to match files for extraction.");
+                        }
                         break;
                     default:
                         throw new ApplicationException($"Query in {file.Name} has an unsupported type ({query.QueryType}), only SELECT or CONSTRUCT queries are allowed.");
