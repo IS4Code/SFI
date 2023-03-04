@@ -187,6 +187,15 @@ namespace IS4.SFI
 					throw new ApplicationException("No specified SPARQL queries were found!");
 				}
 
+				if(mode == Mode.Search)
+                {
+					options.OutputIsSparqlResults = true;
+					if(queryFiles.Count == 0)
+					{
+						throw new ApplicationException("A SPARQL query must be provided via -s for search!");
+					}
+				}
+
 				options.Queries = queryFiles;
 
 				var update = environment.Update();
@@ -395,6 +404,11 @@ namespace IS4.SFI
 			Describe,
 
 			/// <summary>
+			/// The application should search input files using SPARQL.
+			/// </summary>
+			Search,
+
+			/// <summary>
 			/// The application should list all available components.
 			/// </summary>
 			List,
@@ -415,7 +429,7 @@ namespace IS4.SFI
 				{"b", "buffered", null, "buffer all data in a graph before writing"},
 				{"h", "hash", "pattern", "set the main binary hash"},
 				{"r", "root", "uri", "set the hierarchy root URI prefix"},
-				{"s", "sparql-query", "file", "perform a SPARQL query on the result"},
+				{"s", "sparql-query", "file", "perform a SPARQL query during processing"},
 				{"?", "help", null, "displays this help message"},
 				{null, "[component]:[property]", "value", "sets a specific component's property (see list)"}
 			};

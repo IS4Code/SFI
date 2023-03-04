@@ -213,63 +213,161 @@ namespace IS4.SFI
             // Loads SPARQL queries to evaluate on the RDF
             var queries = GetQueries(options);
 
-            var formatStr = options.Format ?? MimeTypesHelper.DefaultTurtleExtension;
-            var format = MimeTypesHelper.GetDefinitionsByFileExtension(formatStr).Concat(MimeTypesHelper.GetDefinitions(formatStr)).FirstOrDefault(f => f.CanWriteRdf || f.CanWriteRdfDatasets);
+            bool sparql = options.OutputIsSparqlResults;
+
+            var formatStr = options.Format ?? (sparql ? MimeTypesHelper.DefaultSparqlXmlExtension : MimeTypesHelper.DefaultTurtleExtension);
+            var format = MimeTypesHelper.GetDefinitionsByFileExtension(formatStr).Concat(MimeTypesHelper.GetDefinitions(formatStr)).FirstOrDefault(f => sparql ? f.CanWriteSparqlResults : (f.CanWriteRdf || f.CanWriteRdfDatasets));
             if(format == null)
             {
                 throw new ApplicationException($"Format '{options.Format}' is not recognized or could not be used for writing!");
             }
             OutputLog.WriteLine($"Using {format.SyntaxName + (options.CompressedOutput ? " (compressed)" : "")} for output.");
 
-            if(options.DirectOutput)
+            Func<Stream> formatOutputFactory = () => outputFactory(GetOutputMimeType(format));
+
+            if(sparql)
             {
-                // The data is immediately saved to output without an intermediate storage
-                OutputLog.WriteLine("Writing data...");
-
-                using var disposable = CreateFileHandler(() => outputFactory(GetOutputMimeType(format)), out var mapper, options, format, out var handler);
-                Graph? queryGraph = null;
-                if(queries.Count > 0)
+                if(options.DirectOutput)
                 {
-                    handler = new TemporaryGraphHandler(handler, out queryGraph);
+                    await WriteSparqlToOutput(entities, queries, graphHandlers, formatOutputFactory, format, options);
+                }else{
+                    await SaveSparqlToOutput(entities, queries, graphHandlers, formatOutputFactory, format, options);
                 }
-
-                SetDefaultNamespaces(mapper);
-
-                NodeQueryTester? tester = null;
-                if(queryGraph != null)
+            }else{
+                if(options.DirectOutput)
                 {
-                    tester = new FileNodeQueryTester(handler, queryGraph, queries);
+                    await WriteRdfToOutput(entities, queries, graphHandlers, formatOutputFactory, format, options);
+                }else{
+                    await SaveRdfToOutput(entities, queries, graphHandlers, formatOutputFactory, format, options);
                 }
+            }
 
+            OutputLog.WriteLine("Done!");
+        }
+
+        /// <summary>
+        /// Immediately saves the data to output without an intermediate storage.
+        /// </summary>
+        private async Task WriteRdfToOutput<T>(IEnumerable<T> entities, IReadOnlyCollection<SparqlQuery> queries, IReadOnlyDictionary<Uri, IRdfHandler?> graphHandlers, Func<Stream> outputFactory, MimeTypeDefinition format, InspectorOptions options) where T : class
+        {
+            OutputLog.WriteLine("Writing to output...");
+
+            using var disposable = CreateRdfFileHandler(outputFactory, out var mapper, options, format, out var handler);
+            Graph? queryGraph = null;
+            if(queries.Count > 0)
+            {
+                handler = new TemporaryGraphHandler(handler, out queryGraph);
+            }
+
+            SetDefaultNamespaces(mapper);
+
+            NodeQueryTester? tester = null;
+            if(queryGraph != null)
+            {
+                tester = new FileNodeQueryTester(handler, queryGraph, queries);
+            }
+
+            foreach(var entity in entities)
+            {
+                await AnalyzeEntity(entity, handler, graphHandlers, mapper, tester, options);
+            }
+        }
+
+        /// <summary>
+        /// Stores the data in a graph and then saves it.
+        /// </summary>
+        private async Task SaveRdfToOutput<T>(IEnumerable<T> entities, IReadOnlyCollection<SparqlQuery> queries, IReadOnlyDictionary<Uri, IRdfHandler?> graphHandlers, Func<Stream> outputFactory, MimeTypeDefinition format, InspectorOptions options) where T : class
+        {
+            OutputLog.WriteLine("Creating graph...");
+
+            var handler = CreateGraphHandler(out var graph);
+
+            SetDefaultNamespaces(graph.NamespaceMap);
+
+            NodeQueryTester? tester = null;
+            if(queries.Count > 0)
+            {
+                tester = new FileNodeQueryTester(handler, graph, queries);
+            }
+
+            foreach(var entity in entities)
+            {
+                await AnalyzeEntity(entity, handler, graphHandlers, null, tester, options);
+            }
+
+            OutputLog.WriteLine("Saving...");
+
+            SaveGraph(graph, outputFactory, options, format);
+        }
+        
+        /// <summary>
+        /// Immediately saves the data to output without an intermediate storage.
+        /// </summary>
+        private async Task WriteSparqlToOutput<T>(IEnumerable<T> entities, IReadOnlyCollection<SparqlQuery> queries, IReadOnlyDictionary<Uri, IRdfHandler?> graphHandlers, Func<Stream> outputFactory, MimeTypeDefinition format, InspectorOptions options) where T : class
+        {
+            OutputLog.WriteLine("Searching...");
+
+            using var fileWriter = CreateSparqlFileHandler(outputFactory, out var mapper, options, format, out var handler, out var sparqlWriter, out var queryGraph);
+
+            SetDefaultNamespaces(mapper);
+
+            var tester = new SearchNodeQueryTester(handler, queryGraph, queries);
+
+            SparqlResultSet result;
+            try{
                 foreach(var entity in entities)
                 {
                     await AnalyzeEntity(entity, handler, graphHandlers, mapper, tester, options);
                 }
-            }else{
-                // The data is first stored in a graph and then saved
-                OutputLog.WriteLine("Reading data...");
+                result = tester.GetResultSet();
+            }catch(SearchNodeQueryTester.SearchEndedException searchEnded)
+            {
+                result = searchEnded.ResultSet;
+            }catch(InternalApplicationException outer) when(outer.InnerException is SearchNodeQueryTester.SearchEndedException searchEnded)
+            {
+                result = searchEnded.ResultSet;
+            }
 
-                var handler = CreateGraphHandler(out var graph);
+            OutputLog.WriteLine("Saving results...");
 
-                SetDefaultNamespaces(graph.NamespaceMap);
+            sparqlWriter.Save(result, fileWriter);
+        }
 
-                NodeQueryTester? tester = null;
-                if(queries.Count > 0)
-                {
-                    tester = new FileNodeQueryTester(handler, graph, queries);
-                }
+        /// <summary>
+        /// Stores the data in a graph and then saves it.
+        /// </summary>
+        private async Task SaveSparqlToOutput<T>(IEnumerable<T> entities, IReadOnlyCollection<SparqlQuery> queries, IReadOnlyDictionary<Uri, IRdfHandler?> graphHandlers, Func<Stream> outputFactory, MimeTypeDefinition format, InspectorOptions options) where T : class
+        {
+            OutputLog.WriteLine("Searching...");
 
+            var handler = CreateGraphHandler(out var graph);
+            handler = new ConcurrentHandler(handler);
+
+            var sparqlWriter = format.GetSparqlResultsWriter();
+
+            SetDefaultNamespaces(graph.NamespaceMap);
+
+            var tester = new SearchNodeQueryTester(handler, graph, queries);
+            
+            SparqlResultSet result;
+            try{
                 foreach(var entity in entities)
                 {
                     await AnalyzeEntity(entity, handler, graphHandlers, null, tester, options);
                 }
-
-                OutputLog.WriteLine("Saving...");
-
-                SaveGraph(graph, () => outputFactory(GetOutputMimeType(format)), options, format);
+                result = tester.GetResultSet();
+            }catch(SearchNodeQueryTester.SearchEndedException searchEnded)
+            {
+                result = searchEnded.ResultSet;
+            }catch(InternalApplicationException outer) when(outer.InnerException is SearchNodeQueryTester.SearchEndedException searchEnded)
+            {
+                result = searchEnded.ResultSet;
             }
 
-            OutputLog.WriteLine("Done!");
+            OutputLog.WriteLine("Saving results...");
+
+            using var fileWriter = OpenFile(outputFactory, options.CompressedOutput, options);
+            sparqlWriter.Save(result, fileWriter);
         }
 
         private string GetOutputMimeType(MimeTypeDefinition mime)
@@ -306,24 +404,39 @@ namespace IS4.SFI
                 {
                     throw new ApplicationException($"Error while parsing SPARQL query in {file.Name}: {e.Message}", e);
                 }
-                switch(query.QueryType)
+                if(options.OutputIsSparqlResults)
                 {
-                    case SparqlQueryType.Construct:
-                        break;
-                    case SparqlQueryType.Select:
-                    case SparqlQueryType.SelectAll:
-                    case SparqlQueryType.SelectAllDistinct:
-                    case SparqlQueryType.SelectDistinct:
-                    case SparqlQueryType.SelectReduced:
-                        if(!query.Variables.Any(v => FileNodeQueryTester.NodeVariableName.Equals(v.Name)))
-                        {
-                            throw new ApplicationException($"The SELECT query in {file.Name} does not use the ?{FileNodeQueryTester.NodeVariableName} variable, which is necessary to use to match files for extraction.");
-                        }
-                        break;
-                    default:
-                        throw new ApplicationException($"Query in {file.Name} has an unsupported type ({query.QueryType}), only SELECT or CONSTRUCT queries are allowed.");
+                    switch(query.QueryType)
+                    {
+                        case SparqlQueryType.Ask:
+                        case SparqlQueryType.Select:
+                        case SparqlQueryType.SelectAll:
+                        case SparqlQueryType.SelectAllDistinct:
+                        case SparqlQueryType.SelectDistinct:
+                        case SparqlQueryType.SelectReduced:
+                            results.Add(query);
+                            continue;
+                    }
+                }else{
+                    switch(query.QueryType)
+                    {
+                        case SparqlQueryType.Construct:
+                            results.Add(query);
+                            continue;
+                        case SparqlQueryType.Select:
+                        case SparqlQueryType.SelectAll:
+                        case SparqlQueryType.SelectAllDistinct:
+                        case SparqlQueryType.SelectDistinct:
+                        case SparqlQueryType.SelectReduced:
+                            if(!query.Variables.Any(v => FileNodeQueryTester.NodeVariableName.Equals(v.Name)))
+                            {
+                                throw new ApplicationException($"The SELECT query in {file.Name} does not use the ?{FileNodeQueryTester.NodeVariableName} variable, which is necessary to use to match files for extraction.");
+                            }
+                            results.Add(query);
+                            continue;
+                    }
                 }
-                results.Add(query);
+                throw new ApplicationException($"Query in {file.Name} has an unsupported type ({query.QueryType}).");
             }
             return results;
         }
@@ -396,7 +509,7 @@ namespace IS4.SFI
         /// <param name="format">The format to use for writing.</param>
         /// <param name="handler">A variable that receives the RDF handler to use.</param>
         /// <returns>An instance of <see cref="IDisposable"/> representing the open file.</returns>
-        private IDisposable CreateFileHandler(Func<Stream> outputFactory, out INamespaceMapper mapper, InspectorOptions options, MimeTypeDefinition format, out IRdfHandler handler)
+        private IDisposable CreateRdfFileHandler(Func<Stream> outputFactory, out INamespaceMapper mapper, InspectorOptions options, MimeTypeDefinition format, out IRdfHandler handler)
         {
             var writer = OpenFile(outputFactory, options.CompressedOutput, options);
             var qnameMapper = new QNameOutputMapper();
@@ -414,6 +527,28 @@ namespace IS4.SFI
                 handler = new VDS.RDF.Parsing.Handlers.WriteThroughHandler(formatter, writer, true);
                 handler = new NamespaceHandler(handler, qnameMapper);
             }
+            mapper = qnameMapper;
+            return writer;
+        }
+
+        /// <summary>
+        /// Creates a SPARQL writer for writing directly to the output file.
+        /// </summary>
+        /// <param name="outputFactory">The function to provide the output stream.</param>
+        /// <param name="mapper">A variable that receives the instance of <see cref="INamespaceMapper"/> representing the namespaces in use by the handler.</param>
+        /// <param name="options">Additional options.</param>
+        /// <param name="format">The format to use for writing.</param>
+        /// <param name="handler">A variable that receives the RDF handler to use.</param>
+        /// <param name="sparqlWriter">A variable that receives the SPARQL writer to use.</param>
+        /// <param name="queryGraph">A variable that receives the graph to use for temporary storage for queries.</param>
+        /// <returns>An instance of <see cref="TextWriter"/> representing the open file.</returns>
+        private TextWriter CreateSparqlFileHandler(Func<Stream> outputFactory, out INamespaceMapper mapper, InspectorOptions options, MimeTypeDefinition format, out IRdfHandler handler, out ISparqlResultsWriter sparqlWriter, out Graph queryGraph)
+        {
+            var writer = OpenFile(outputFactory, options.CompressedOutput, options);
+            var qnameMapper = new QNameOutputMapper();
+            sparqlWriter = format.GetSparqlResultsWriter();
+            handler = new TemporaryGraphHandler(out queryGraph);
+            handler = new ConcurrentHandler(handler);
             mapper = qnameMapper;
             return writer;
         }
@@ -457,7 +592,7 @@ namespace IS4.SFI
         private IRdfHandler CreateGraphHandler(out Graph graph)
         {
             graph = new Graph(true);
-            return new VDS.RDF.Parsing.Handlers.GraphHandler(graph);
+            return new DirectGraphHandler(graph);
         }
 
         /// <summary>

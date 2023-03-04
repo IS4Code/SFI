@@ -1,6 +1,8 @@
 ﻿using IS4.SFI.Services;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 using VDS.RDF;
 using VDS.RDF.Query;
 using VDS.RDF.Query.Datasets;
@@ -51,5 +53,38 @@ namespace IS4.SFI
         /// <param name="properties">Additional variables from a successful match, as instances of <see cref="Uri"/> or <see cref="String"/>.</param>
         /// <returns><see langword="true"/> if the node should be extracted.</returns>
         public abstract bool Match(INode subject, out INodeMatchProperties properties);
+
+        /// <summary>
+        /// The instance of <see cref="INodeMatchProperties"/> that can be used.
+        /// </summary>
+        protected class MatchProperties : INodeMatchProperties
+        {
+            /// <summary>
+            /// The default value of <see cref="INodeMatchProperties"/>.
+            /// </summary>
+            public static readonly MatchProperties Default = new MatchProperties();
+
+            /// <inheritdoc/>
+            public string? Extension { get; set; }
+
+            /// <inheritdoc/>
+            public string? MediaType { get; set; }
+
+            /// <inheritdoc/>
+            public long? Size { get; set; }
+
+            /// <inheritdoc/>
+            public string? Name { get; set; }
+
+            /// <inheritdoc/>
+            public string? PathFormat { get; set; }
+
+            Dictionary<string, PropertyDescriptor>? properties;
+
+            /// <summary>
+            /// A cached collection of properties obtained by calling <see cref="NodeMatchPropertiesExtensions.GetProperties(INodeMatchProperties)"/>.
+            /// </summary>
+            public Dictionary<string, PropertyDescriptor> Properties => properties ??= this.GetProperties().ToDictionary(p => p.Key, p => p.Value);
+        }
     }
 }

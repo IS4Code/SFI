@@ -37,6 +37,11 @@ namespace IS4.SFI
         public IEnumerable<IFileInfo> Queries { get; set; } = Array.Empty<IFileInfo>();
 
         /// <summary>
+        /// Whether the output file should be used to write SPARQL results.
+        /// </summary>
+        public bool OutputIsSparqlResults { get; set; }
+
+        /// <summary>
         /// The root of the URI hierarchy; by default <see cref="LinkedNodeHandler.BlankUriScheme"/>.
         /// </summary>
         public string Root { get; set; } = LinkedNodeHandler.BlankUriScheme + ":";

@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using VDS.RDF;
 using VDS.RDF.Query;
 
@@ -14,7 +13,6 @@ namespace IS4.SFI
     /// </summary>
     public class FileNodeQueryTester : NodeQueryTester
     {
-
         /// <summary>
         /// The name of the variable that must contain the current node in order to be extracted via a SELECT query.
         /// </summary>
@@ -89,30 +87,6 @@ namespace IS4.SFI
             }
             properties = variables ?? MatchProperties.Default;
             return extract;
-        }
-
-        class MatchProperties : INodeMatchProperties
-        {
-            public static readonly MatchProperties Default = new MatchProperties();
-
-            /// <inheritdoc/>
-            public string? Extension { get; set; }
-
-            /// <inheritdoc/>
-            public string? MediaType { get; set; }
-
-            /// <inheritdoc/>
-            public long? Size { get; set; }
-
-            /// <inheritdoc/>
-            public string? Name { get; set; }
-
-            /// <inheritdoc/>
-            public string? PathFormat { get; set; }
-
-            Dictionary<string, PropertyDescriptor>? properties;
-
-            public Dictionary<string, PropertyDescriptor> Properties => properties ??= this.GetProperties().ToDictionary(p => p.Key, p => p.Value);
         }
     }
 }
