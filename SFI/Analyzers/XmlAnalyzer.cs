@@ -205,6 +205,9 @@ namespace IS4.SFI.Analyzers
             try{
                 var obj = new FormatObject<T>(format, value);
                 return await analyzer.Analyze(obj, context);
+            }catch(InternalApplicationException)
+            {
+                throw;
             }catch(Exception e)
             {
                 throw new InternalApplicationException(e);

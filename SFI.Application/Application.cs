@@ -231,6 +231,9 @@ namespace IS4.SFI
 			}catch(ApplicationExitException)
 			{
 
+			}catch(InternalApplicationException e) when(GlobalOptions.SuppressNonCriticalExceptions)
+			{
+				environment.LogWriter.WriteLine(e.InnerException.Message);
 			}catch(Exception e) when(GlobalOptions.SuppressNonCriticalExceptions)
 			{
 				environment.LogWriter.WriteLine(e.Message);

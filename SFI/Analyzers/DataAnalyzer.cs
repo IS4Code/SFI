@@ -607,6 +607,9 @@ namespace IS4.SFI.Analyzers
                     Extension = formatObj.Extension;
                     MediaType = formatObj.MediaType;
                     return taskResult = await analyzer.Analyze(formatObj, streamContext.WithParent(parent));
+                }catch(InternalApplicationException)
+                {
+                    throw;
                 }catch(Exception e)
                 {
                     throw new InternalApplicationException(e);
