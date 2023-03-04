@@ -93,7 +93,6 @@ namespace IS4.SFI
                     OutputLog.WriteLine($"[{nameOrdinal}] No result!");
                 }catch(InternalApplicationException e)
                 {
-                    ExceptionDispatchInfo.Capture(e.InnerException).Throw();
                     throw;
                 }catch(Exception e) when(GlobalOptions.SuppressNonCriticalExceptions)
                 {
