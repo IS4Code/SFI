@@ -5,37 +5,25 @@ using System.ComponentModel;
 using System.Linq;
 using VDS.RDF;
 using VDS.RDF.Query;
-using VDS.RDF.Query.Datasets;
 
 namespace IS4.SFI
 {
     /// <summary>
-    /// Tests instances of <see cref="INode"/> whether they match
-    /// any of the input SPARQL queries.
+    /// Tests instances of <see cref="INode"/> against the input SPARQL queries
+    /// and selects those which should be extracted.
     /// </summary>
-    public class NodeQueryTester
+    public class FileNodeQueryTester : NodeQueryTester
     {
-        readonly IReadOnlyCollection<SparqlQuery> queries;
-        readonly IRdfHandler rdfHandler;
-        readonly LeviathanQueryProcessor processor;
 
         /// <summary>
         /// The name of the variable that must contain the current node in order to be extracted via a SELECT query.
         /// </summary>
         public const string NodeVariableName = "node";
 
-        /// <summary>
-        /// Creates a new instance of the tester.
-        /// </summary>
-        /// <param name="rdfHandler">The RDF handler to use to store the result of CONSTRUCT queries.</param>
-        /// <param name="queryGraph">The graph to process with the queries.</param>
-        /// <param name="queries">The collection of SPARQL queries to process.</param>
-        public NodeQueryTester(IRdfHandler rdfHandler, Graph queryGraph, IReadOnlyCollection<SparqlQuery> queries)
+        /// <inheritdoc/>
+        public FileNodeQueryTester(IRdfHandler rdfHandler, Graph queryGraph, IReadOnlyCollection<SparqlQuery> queries) : base(rdfHandler, queryGraph, queries)
         {
-            this.queries = queries;
-            this.rdfHandler = rdfHandler;
-            var dataset = new InMemoryDataset(queryGraph);
-            processor = new LeviathanQueryProcessor(dataset);
+
         }
 
         /// <summary>
@@ -46,25 +34,25 @@ namespace IS4.SFI
         /// <param name="subject">The matching node to be identified by the queries.</param>
         /// <param name="properties">Additional variables from a successful match, as instances of <see cref="Uri"/> or <see cref="String"/>.</param>
         /// <returns><see langword="true"/> if any of the queries successfully matched the node.</returns>
-        public bool Match(INode subject, out INodeMatchProperties properties)
+        public override bool Match(INode subject, out INodeMatchProperties properties)
         {
             MatchProperties? variables = null;
-            var success = false;
-            foreach(var query in queries)
+            var extract = false;
+            foreach(var query in Queries)
             {
-                switch(processor.ProcessQuery(query))
+                switch(Processor.ProcessQuery(query))
                 {
                     case IGraph resultsGraph:
                         foreach(var triple in resultsGraph.Triples)
                         {
-                            lock(rdfHandler)
+                            lock(Handler)
                             {
                                 var copy = new Triple(
-                                    VDS.RDF.Tools.CopyNode(triple.Subject, rdfHandler),
-                                    VDS.RDF.Tools.CopyNode(triple.Predicate, rdfHandler),
-                                    VDS.RDF.Tools.CopyNode(triple.Object, rdfHandler)
+                                    VDS.RDF.Tools.CopyNode(triple.Subject, Handler),
+                                    VDS.RDF.Tools.CopyNode(triple.Predicate, Handler),
+                                    VDS.RDF.Tools.CopyNode(triple.Object, Handler)
                                 );
-                                rdfHandler.HandleTriple(copy);
+                                Handler.HandleTriple(copy);
                             }
                         }
                         break;
@@ -73,7 +61,7 @@ namespace IS4.SFI
                         {
                             if(result.TryGetValue(NodeVariableName, out var node) && node.Equals(subject))
                             {
-                                success = true;
+                                extract = true;
                                 if(variables == null)
                                 {
                                     variables = new MatchProperties();
@@ -100,7 +88,7 @@ namespace IS4.SFI
                 }
             }
             properties = variables ?? MatchProperties.Default;
-            return success;
+            return extract;
         }
 
         class MatchProperties : INodeMatchProperties

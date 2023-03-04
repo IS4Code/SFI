@@ -238,7 +238,7 @@ namespace IS4.SFI
                 NodeQueryTester? tester = null;
                 if(queryGraph != null)
                 {
-                    tester = new NodeQueryTester(handler, queryGraph, queries);
+                    tester = new FileNodeQueryTester(handler, queryGraph, queries);
                 }
 
                 foreach(var entity in entities)
@@ -256,7 +256,7 @@ namespace IS4.SFI
                 NodeQueryTester? tester = null;
                 if(queries.Count > 0)
                 {
-                    tester = new NodeQueryTester(handler, graph, queries);
+                    tester = new FileNodeQueryTester(handler, graph, queries);
                 }
 
                 foreach(var entity in entities)
@@ -315,9 +315,9 @@ namespace IS4.SFI
                     case SparqlQueryType.SelectAllDistinct:
                     case SparqlQueryType.SelectDistinct:
                     case SparqlQueryType.SelectReduced:
-                        if(!query.Variables.Any(v => NodeQueryTester.NodeVariableName.Equals(v.Name)))
+                        if(!query.Variables.Any(v => FileNodeQueryTester.NodeVariableName.Equals(v.Name)))
                         {
-                            throw new ApplicationException($"The SELECT query in {file.Name} does not use the ?{NodeQueryTester.NodeVariableName} variable, which is necessary to use to match files for extraction.");
+                            throw new ApplicationException($"The SELECT query in {file.Name} does not use the ?{FileNodeQueryTester.NodeVariableName} variable, which is necessary to use to match files for extraction.");
                         }
                         break;
                     default:
