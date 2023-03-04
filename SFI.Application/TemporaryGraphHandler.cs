@@ -13,6 +13,8 @@ namespace IS4.SFI
 
         readonly Graph graph;
 
+        readonly bool isProxy;
+
         /// <summary>
         /// Creates a new instance of the handler.
         /// </summary>
@@ -25,6 +27,14 @@ namespace IS4.SFI
         {
             this.baseHandler = baseHandler;
             this.graph = graph = new Graph(true);
+            isProxy = true;
+        }
+
+        /// <inheritdoc cref="TemporaryGraphHandler.TemporaryGraphHandler(IRdfHandler, out Graph)"/>
+        public TemporaryGraphHandler(out Graph graph)
+        {
+            this.graph = graph = new Graph(true);
+            baseHandler = new DirectGraphHandler(graph);
         }
 
         public bool HandleBaseUri(Uri baseUri)
@@ -35,7 +45,7 @@ namespace IS4.SFI
 
         public bool HandleTriple(Triple t)
         {
-            graph.Assert(VDS.RDF.Tools.CopyTriple(t, graph));
+            if(isProxy) graph.Assert(VDS.RDF.Tools.CopyTriple(t, graph));
             return baseHandler.HandleTriple(t);
         }
 
