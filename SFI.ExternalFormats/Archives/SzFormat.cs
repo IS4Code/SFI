@@ -20,7 +20,7 @@ namespace IS4.SFI.Formats
         static readonly ConditionalWeakTable<IArchiveReader, string> storedTypes = new();
 
         /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
-        public SzFormat() : base(10, "SZ", null, "sz")
+        public SzFormat() : base(10, "SZ", "application/x-ms-compress-sz", "sz")
         {
 
         }
