@@ -89,10 +89,40 @@ namespace IS4.SFI
 				inspector.OutputLog = quiet ? TextWriter.Null : writer;
 				await inspector.AddDefault();
 
+				int componentCount = 0;
+				async Task ConfigureComponents()
+                {
+					// Filter out the components based on arguments
+
+					foreach(var collection in inspector.ComponentCollections)
+					{
+						componentCount += await collection.Filter(this);
+						foreach(var component in collection.Collection)
+						{
+							// Subscribe to the OutputFile event
+							if(component is IHasFileOutput fileOutput)
+							{
+								fileOutput.OutputFile += OnOutputFile;
+							}
+							if(componentProperties.Count > 0)
+							{
+								// Check if there are properties for this component
+								var id = collection.GetIdentifier(component);
+								if(componentProperties.TryGetValue(id, out var dict))
+								{
+									componentProperties.Remove(id);
+									SetProperties(component, id, dict);
+								}
+							}
+						}
+					}
+                }
+
 				// Print the available components
 				switch(mode)
 				{
 					case Mode.List:
+						await ConfigureComponents();
 						LogWriter.WriteLine("Included components:");
 						foreach(var collection in inspector.ComponentCollections)
 						{
@@ -111,31 +141,7 @@ namespace IS4.SFI
 					writer = TextWriter.Null;
 				}
 
-				// Filter out the components based on arguments
-
-				int componentCount = 0;
-				foreach(var collection in inspector.ComponentCollections)
-				{
-					componentCount += await collection.Filter(this);
-					foreach(var component in collection.Collection)
-					{
-						// Subscribe to the OutputFile event
-						if(component is IHasFileOutput fileOutput)
-						{
-							fileOutput.OutputFile += OnOutputFile;
-						}
-						if(componentProperties.Count > 0)
-						{
-							// Check if there are properties for this component
-							var id = collection.GetIdentifier(component);
-							if(componentProperties.TryGetValue(id, out var dict))
-                            {
-								componentProperties.Remove(id);
-								SetProperties(component, id, dict);
-                            }
-						}
-					}
-				}
+				await ConfigureComponents();
 
 				foreach(var matcher in componentMatchers)
                 {
