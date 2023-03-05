@@ -525,7 +525,7 @@ namespace IS4.SFI
             var rdfWriter = format.CanWriteRdf ? format.GetRdfWriter() as IFormatterBasedWriter : null;
             if(rdfWriter == null)
             {
-                throw new ApplicationException($"Format {format.SyntaxName} does not support direct output!");
+                throw new ApplicationException($"Format {format.SyntaxName} requires buffered output!");
             }
             var formatter = CreateFormatter(format.SyntaxName, rdfWriter.TripleFormatterType, qnameMapper);
             if(options.PrettyPrint && format.CanonicalMimeType == "text/turtle" && formatter is TurtleFormatter turtleFormatter)
