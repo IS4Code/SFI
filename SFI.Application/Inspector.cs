@@ -307,17 +307,20 @@ namespace IS4.SFI
         {
             OutputLog.WriteLine("Searching...");
 
-            using var fileWriter = CreateSparqlFileHandler(outputFactory, out var mapper, options, format, out var handler, out var sparqlWriter, out var queryGraph);
+            IRdfHandler handler = new TemporaryGraphHandler(out var graph);
+            handler = new ConcurrentHandler(handler);
 
-            SetDefaultNamespaces(mapper);
+            var sparqlWriter = format.GetSparqlResultsWriter();
 
-            var tester = new SearchNodeQueryTester(handler, queryGraph, queries);
+            SetDefaultNamespaces(graph.NamespaceMap);
+
+            var tester = new SearchNodeQueryTester(handler, graph, queries);
 
             SparqlResultSet result;
             try{
                 foreach(var entity in entities)
                 {
-                    await AnalyzeEntity(entity, handler, graphHandlers, mapper, tester, options);
+                    await AnalyzeEntity(entity, handler, graphHandlers, null, tester, options);
                 }
                 result = tester.GetResultSet();
             }catch(SearchNodeQueryTester.SearchEndedException searchEnded)
@@ -330,6 +333,7 @@ namespace IS4.SFI
 
             OutputLog.WriteLine("Saving results...");
 
+            using var fileWriter = OpenFile(outputFactory, options.CompressedOutput, options);
             sparqlWriter.Save(result, fileWriter);
         }
 
@@ -347,14 +351,14 @@ namespace IS4.SFI
 
             SetDefaultNamespaces(graph.NamespaceMap);
 
-            var tester = new SearchNodeQueryTester(handler, graph, queries);
-            
             SparqlResultSet result;
             try{
                 foreach(var entity in entities)
                 {
-                    await AnalyzeEntity(entity, handler, graphHandlers, null, tester, options);
+                    await AnalyzeEntity(entity, handler, graphHandlers, null, null, options);
                 }
+                var tester = new SearchNodeQueryTester(handler, graph, queries);
+                tester.Match(graph.CreateBlankNode(), out _);
                 result = tester.GetResultSet();
             }catch(SearchNodeQueryTester.SearchEndedException searchEnded)
             {
@@ -527,28 +531,6 @@ namespace IS4.SFI
                 handler = new VDS.RDF.Parsing.Handlers.WriteThroughHandler(formatter, writer, true);
                 handler = new NamespaceHandler(handler, qnameMapper);
             }
-            mapper = qnameMapper;
-            return writer;
-        }
-
-        /// <summary>
-        /// Creates a SPARQL writer for writing directly to the output file.
-        /// </summary>
-        /// <param name="outputFactory">The function to provide the output stream.</param>
-        /// <param name="mapper">A variable that receives the instance of <see cref="INamespaceMapper"/> representing the namespaces in use by the handler.</param>
-        /// <param name="options">Additional options.</param>
-        /// <param name="format">The format to use for writing.</param>
-        /// <param name="handler">A variable that receives the RDF handler to use.</param>
-        /// <param name="sparqlWriter">A variable that receives the SPARQL writer to use.</param>
-        /// <param name="queryGraph">A variable that receives the graph to use for temporary storage for queries.</param>
-        /// <returns>An instance of <see cref="TextWriter"/> representing the open file.</returns>
-        private TextWriter CreateSparqlFileHandler(Func<Stream> outputFactory, out INamespaceMapper mapper, InspectorOptions options, MimeTypeDefinition format, out IRdfHandler handler, out ISparqlResultsWriter sparqlWriter, out Graph queryGraph)
-        {
-            var writer = OpenFile(outputFactory, options.CompressedOutput, options);
-            var qnameMapper = new QNameOutputMapper();
-            sparqlWriter = format.GetSparqlResultsWriter();
-            handler = new TemporaryGraphHandler(out queryGraph);
-            handler = new ConcurrentHandler(handler);
             mapper = qnameMapper;
             return writer;
         }
