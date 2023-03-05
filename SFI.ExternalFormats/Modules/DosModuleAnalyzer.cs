@@ -12,6 +12,11 @@ namespace IS4.SFI.Analyzers
     public class DosModuleAnalyzer : MediaObjectAnalyzer<DosModule>
     {
         /// <summary>
+        /// Whether to attempt to run the executable to obtain additional data.
+        /// </summary>
+        public bool Emulate { get; set; } = true;
+
+        /// <summary>
         /// Contains the encoding used to decode texts produced by the module.
         /// </summary>
         public Encoding ConsoleEncoding { get; set; }
@@ -27,11 +32,6 @@ namespace IS4.SFI.Analyzers
                 ConsoleEncoding = Encoding.GetEncoding(value);
             }
         }
-
-        /// <summary>
-        /// Whether to attempt to run the executable to obtain additional data.
-        /// </summary>
-        public bool Emulate { get; set; } = true;
 
         /// <summary>
         /// The number of instruction to emulate in each step.
