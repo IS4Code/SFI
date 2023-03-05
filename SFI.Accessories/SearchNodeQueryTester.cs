@@ -65,14 +65,10 @@ namespace IS4.SFI
                         var offset = query.Offset;
                         var limit = query.Limit;
                         try{
+                            resultsHandler.LoadQuery(query);
                             // Ignore offset so that we know the number of skipped results
                             query.Offset = 0;
-                            if(limit >= 0)
-                            {
-                                query.Limit = limit + offset;
-                            }
-                            resultsHandler.Offset = offset;
-                            resultsHandler.Distinct = query.HasDistinctModifier;
+                            query.Limit = -1;
                             lock(Handler)
                             {
                                 Processor.ProcessQuery(Handler, resultsHandler, query);
@@ -128,19 +124,26 @@ namespace IS4.SFI
 
             public bool Result { get; private set; }
 
-            public int Offset { get; set; }
-
             public int Count { get; private set; }
 
             public bool Success { get; private set; }
 
-            public bool Distinct { get; set; }
+            int limit = -1;
+            int offset;
+            bool distinct;
 
             public SparqlResultsHandler(INodeFactory nodeFactory, IProducerConsumerCollection<SparqlResult> results, ConcurrentDictionary<SparqlResult, object?> distinctResults)
             {
                 this.nodeFactory = nodeFactory;
                 this.results = results;
                 this.distinctResults = distinctResults;
+            }
+
+            public void LoadQuery(SparqlQuery query)
+            {
+                limit = query.Limit;
+                offset = query.Offset;
+                distinct = query.HasDistinctModifier;
             }
 
             public void StartResults()
@@ -156,12 +159,16 @@ namespace IS4.SFI
 
             public bool HandleResult(SparqlResult result)
             {
-                ++Count;
-                if(Offset-- > 0)
+                if(limit >= 0 && Count >= limit)
+                {
+                    return false;
+                }
+                if(distinct && !distinctResults.TryAdd(result, null))
                 {
                     return true;
                 }
-                if(Distinct && !distinctResults.TryAdd(result, null))
+                ++Count;
+                if(offset-- > 0)
                 {
                     return true;
                 }
@@ -176,8 +183,9 @@ namespace IS4.SFI
             public void EndResults(bool ok)
             {
                 Success = ok;
-                Offset = 0;
-                Distinct = false;
+                limit = -1;
+                offset = 0;
+                distinct = false;
             }
 
             #region INodeFactory implementation
