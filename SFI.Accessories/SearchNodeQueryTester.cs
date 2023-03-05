@@ -17,6 +17,7 @@ namespace IS4.SFI
     public class SearchNodeQueryTester : NodeQueryTester
     {
         readonly ConcurrentQueue<SparqlResult> results = new();
+        readonly ConcurrentDictionary<SparqlResult, object?> distinctResults = new();
 
         /// <inheritdoc/>
         public SearchNodeQueryTester(IRdfHandler rdfHandler, Graph queryGraph, IReadOnlyCollection<SparqlQuery> queries) : base(rdfHandler, queryGraph, queries)
@@ -45,7 +46,7 @@ namespace IS4.SFI
         public override bool Match(INode subject, out INodeMatchProperties properties)
         {
             try{
-                var resultsHandler = new SparqlResultsHandler(Handler, results);
+                var resultsHandler = new SparqlResultsHandler(Handler, results, distinctResults);
                 var continuing = false;
                 foreach(var query in Queries)
                 {
@@ -70,6 +71,8 @@ namespace IS4.SFI
                             {
                                 query.Limit = limit + offset;
                             }
+                            resultsHandler.Offset = offset;
+                            resultsHandler.Distinct = query.HasDistinctModifier;
                             lock(Handler)
                             {
                                 Processor.ProcessQuery(Handler, resultsHandler, query);
@@ -121,17 +124,23 @@ namespace IS4.SFI
         {
             readonly INodeFactory nodeFactory;
             readonly IProducerConsumerCollection<SparqlResult> results;
+            readonly ConcurrentDictionary<SparqlResult, object?> distinctResults;
 
             public bool Result { get; private set; }
+
+            public int Offset { get; set; }
 
             public int Count { get; private set; }
 
             public bool Success { get; private set; }
 
-            public SparqlResultsHandler(INodeFactory nodeFactory, IProducerConsumerCollection<SparqlResult> results)
+            public bool Distinct { get; set; }
+
+            public SparqlResultsHandler(INodeFactory nodeFactory, IProducerConsumerCollection<SparqlResult> results, ConcurrentDictionary<SparqlResult, object?> distinctResults)
             {
                 this.nodeFactory = nodeFactory;
                 this.results = results;
+                this.distinctResults = distinctResults;
             }
 
             public void StartResults()
@@ -148,6 +157,14 @@ namespace IS4.SFI
             public bool HandleResult(SparqlResult result)
             {
                 ++Count;
+                if(Offset-- > 0)
+                {
+                    return true;
+                }
+                if(Distinct && !distinctResults.TryAdd(result, null))
+                {
+                    return true;
+                }
                 return results.TryAdd(result);
             }
 
@@ -159,6 +176,8 @@ namespace IS4.SFI
             public void EndResults(bool ok)
             {
                 Success = ok;
+                Offset = 0;
+                Distinct = false;
             }
 
             #region INodeFactory implementation
