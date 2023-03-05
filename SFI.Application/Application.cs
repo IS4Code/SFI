@@ -123,7 +123,7 @@ namespace IS4.SFI
 				{
 					case Mode.List:
 						await ConfigureComponents();
-						LogWriter.WriteLine("Included components:");
+						if(!quiet) LogWriter.WriteLine("Included components:");
 						foreach(var collection in inspector.ComponentCollections)
 						{
 							await collection.ForEach(this);
