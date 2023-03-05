@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using VDS.RDF;
 
 namespace IS4.SFI
@@ -9,9 +10,13 @@ namespace IS4.SFI
     /// </summary>
     sealed class TemporaryGraphHandler : IRdfHandler
     {
+        public const int Capacity = 2;
+
         readonly IRdfHandler baseHandler;
 
-        readonly Graph graph;
+        readonly Graph mergedGraph;
+        readonly Queue<Graph> graphHistory = new(Capacity);
+        Graph currentGraph;
 
         readonly bool isProxy;
 
@@ -30,30 +35,58 @@ namespace IS4.SFI
         public TemporaryGraphHandler(IRdfHandler baseHandler, out Graph graph)
         {
             this.baseHandler = baseHandler;
-            this.graph = graph = new Graph(true);
+            mergedGraph = graph = new Graph(true);
+            graphHistory.Enqueue(currentGraph = new Graph(true));
             isProxy = true;
         }
 
         /// <inheritdoc cref="TemporaryGraphHandler.TemporaryGraphHandler(IRdfHandler, out Graph)"/>
         public TemporaryGraphHandler(out Graph graph)
         {
-            this.graph = graph = new Graph(true);
+            mergedGraph = graph = new Graph(true);
+            graphHistory.Enqueue(currentGraph = new Graph(true));
             baseHandler = new DirectGraphHandler(graph);
+        }
+
+        void ClearTemporary()
+        {
+            if(graphHistory.Count == Capacity)
+            {
+                mergedGraph.Clear();
+                graphHistory.Dequeue();
+                foreach(var graph in graphHistory)
+                {
+                    mergedGraph.Merge(graph);
+                }
+            }
+            graphHistory.Enqueue(currentGraph = new Graph(true));
         }
 
         public bool HandleBaseUri(Uri baseUri)
         {
-            if(lastBaseUri != null && !comparer.Equals(lastBaseUri, baseUri))
+            if(lastBaseUri == null)
             {
                 lastBaseUri = baseUri;
-                graph.Clear();
+            }else if(!comparer.Equals(lastBaseUri, baseUri))
+            {
+                if(lastBaseUri.OriginalString.StartsWith(baseUri.OriginalString))
+                {
+                    // do not clear if new base is broader
+                    lastBaseUri = baseUri;
+                }else if(!baseUri.OriginalString.StartsWith(lastBaseUri.OriginalString))
+                {
+                    // only clear if unrelated
+                    ClearTemporary();
+                    lastBaseUri = baseUri;
+                }
             }
             return baseHandler.HandleBaseUri(baseUri);
         }
 
         public bool HandleTriple(Triple t)
         {
-            if(isProxy) graph.Assert(VDS.RDF.Tools.CopyTriple(t, graph));
+            if(isProxy) mergedGraph.Assert(VDS.RDF.Tools.CopyTriple(t, mergedGraph));
+            currentGraph.Assert(VDS.RDF.Tools.CopyTriple(t, currentGraph));
             return baseHandler.HandleTriple(t);
         }
 
