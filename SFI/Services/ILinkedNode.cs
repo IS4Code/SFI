@@ -289,7 +289,7 @@ namespace IS4.SFI.Services
 
         /// <summary>
         /// Informs the implementation that this resource is used as a base
-        /// for a larger hierarchy, in which this case it might use its URI
+        /// for a larger hierarchy, in which case it might use its URI
         /// as a base URI when producing RDF output.
         /// </summary>
         void SetAsBase();
