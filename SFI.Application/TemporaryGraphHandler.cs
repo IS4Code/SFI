@@ -15,6 +15,10 @@ namespace IS4.SFI
 
         readonly bool isProxy;
 
+        Uri? lastBaseUri;
+
+        static readonly UriComparer comparer = new();
+
         /// <summary>
         /// Creates a new instance of the handler.
         /// </summary>
@@ -39,7 +43,11 @@ namespace IS4.SFI
 
         public bool HandleBaseUri(Uri baseUri)
         {
-            graph.Clear();
+            if(lastBaseUri != null && !comparer.Equals(lastBaseUri, baseUri))
+            {
+                lastBaseUri = baseUri;
+                graph.Clear();
+            }
             return baseHandler.HandleBaseUri(baseUri);
         }
 
