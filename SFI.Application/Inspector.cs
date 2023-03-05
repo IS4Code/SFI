@@ -322,6 +322,7 @@ namespace IS4.SFI
                 {
                     await AnalyzeEntity(entity, handler, graphHandlers, null, tester, options);
                 }
+                tester.Match(graph.CreateBlankNode(), out _);
                 result = tester.GetResultSet();
             }catch(SearchNodeQueryTester.SearchEndedException searchEnded)
             {
@@ -344,20 +345,24 @@ namespace IS4.SFI
         {
             OutputLog.WriteLine("Searching...");
 
-            var handler = CreateGraphHandler(true, out var graph);
+            bool mayExitEarly = queries.Any(q => q.Limit >= 0);
+
+            var handler = CreateGraphHandler(mayExitEarly, out var graph);
             handler = new ConcurrentHandler(handler);
 
             var sparqlWriter = format.GetSparqlResultsWriter();
 
             SetDefaultNamespaces(graph.NamespaceMap);
 
+            var tester = mayExitEarly ? new SearchNodeQueryTester(handler, graph, queries) : null;
+
             SparqlResultSet result;
             try{
                 foreach(var entity in entities)
                 {
-                    await AnalyzeEntity(entity, handler, graphHandlers, null, null, options);
+                    await AnalyzeEntity(entity, handler, graphHandlers, null, tester, options);
                 }
-                var tester = new SearchNodeQueryTester(handler, graph, queries);
+                tester ??= new SearchNodeQueryTester(handler, graph, queries);
                 tester.Match(graph.CreateBlankNode(), out _);
                 result = tester.GetResultSet();
             }catch(SearchNodeQueryTester.SearchEndedException searchEnded)
