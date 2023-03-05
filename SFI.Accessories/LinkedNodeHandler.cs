@@ -361,12 +361,23 @@ namespace IS4.SFI.Extensions
 
             public override void SetAsBase()
             {
-                if(Subject is IUriNode subject)
+                switch(Subject)
                 {
-                    lock(Graph)
-                    {
-                        Graph.HandleBaseUri(subject.Uri);
-                    }
+                    case IUriNode uriSubject:
+                        lock(Graph)
+                        {
+                            Graph.HandleBaseUri(uriSubject.Uri);
+                        }
+                        break;
+                    case IBlankNode bnodeSubject:
+                        if(realUriCache.TryGetValue(bnodeSubject, out var uri))
+                        {
+                            lock(Graph)
+                            {
+                                Graph.HandleBaseUri(uri);
+                            }
+                        }
+                        break;
                 }
             }
 
