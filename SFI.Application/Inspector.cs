@@ -280,7 +280,7 @@ namespace IS4.SFI
         {
             OutputLog.WriteLine("Creating graph...");
 
-            var handler = CreateGraphHandler(out var graph);
+            var handler = CreateGraphHandler(queries.Count > 0, out var graph);
 
             SetDefaultNamespaces(graph.NamespaceMap);
 
@@ -340,7 +340,7 @@ namespace IS4.SFI
         {
             OutputLog.WriteLine("Searching...");
 
-            var handler = CreateGraphHandler(out var graph);
+            var handler = CreateGraphHandler(true, out var graph);
             handler = new ConcurrentHandler(handler);
 
             var sparqlWriter = format.GetSparqlResultsWriter();
@@ -587,12 +587,13 @@ namespace IS4.SFI
         /// <summary>
         /// Creates an RDF handler for asserting triples into a graph.
         /// </summary>
+        /// <param name="immediate">Whether the triples encountered by the handler have to be immediately added to the graph.</param>
         /// <param name="graph">The variable that receives the created graph.</param>
         /// <returns>The RDF handler to use.</returns>
-        private IRdfHandler CreateGraphHandler(out Graph graph)
+        private IRdfHandler CreateGraphHandler(bool immediate, out Graph graph)
         {
             graph = new Graph(true);
-            return new DirectGraphHandler(graph);
+            return immediate ? new DirectGraphHandler(graph) : new VDS.RDF.Parsing.Handlers.GraphHandler(graph);
         }
 
         /// <summary>
