@@ -299,9 +299,8 @@ namespace IS4.SFI.Services
         /// externally configured query. This may be used in combination with
         /// <see cref="IHasFileOutput"/> and <see cref="OutputFileDelegate"/>.
         /// </summary>
-        /// <param name="properties">An object that provides custom match properties.</param>
-        /// <returns><see langword="true"/> if the resource is matched, <see langword="false"/> otherwise.</returns>
-        bool Match([System.Diagnostics.CodeAnalysis.MaybeNullWhen(false)] out INodeMatchProperties properties);
+        /// <returns>A sequence of objects produced by the queries that matched the resource.</returns>
+        IEnumerable<INodeMatchProperties> Match();
 
         /// <summary>
         /// Returns a version of this node that writes output to a graph identified
@@ -508,7 +507,7 @@ namespace IS4.SFI.Services
         public abstract void SetAsBase();
 
         /// <inheritdoc/>
-        public abstract bool Match(out INodeMatchProperties properties);
+        public abstract IEnumerable<INodeMatchProperties> Match();
 
         /// <inheritdoc/>
         public void SetClass(ClassUri @class)

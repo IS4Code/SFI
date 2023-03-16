@@ -322,7 +322,7 @@ namespace IS4.SFI
                 {
                     await AnalyzeEntity(entity, handler, graphHandlers, null, tester, options);
                 }
-                tester.Match(graph.CreateBlankNode(), out _);
+                foreach(var _ in tester.Match(graph.CreateBlankNode()));
                 result = tester.GetResultSet();
             }catch(SearchNodeQueryTester.SearchEndedException searchEnded)
             {
@@ -363,7 +363,7 @@ namespace IS4.SFI
                     await AnalyzeEntity(entity, handler, graphHandlers, null, tester, options);
                 }
                 tester ??= new SearchNodeQueryTester(handler, graph, queries);
-                tester.Match(graph.CreateBlankNode(), out _);
+                foreach(var _ in tester.Match(graph.CreateBlankNode()));
                 result = tester.GetResultSet();
             }catch(SearchNodeQueryTester.SearchEndedException searchEnded)
             {

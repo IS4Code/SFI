@@ -222,10 +222,9 @@ namespace IS4.SFI.Tests
         }
 
         /// <inheritdoc/>
-        public override bool Match(out INodeMatchProperties properties)
+        public override IEnumerable<INodeMatchProperties> Match()
         {
-            properties = null!;
-            return false;
+            return Array.Empty<INodeMatchProperties>();
         }
 
         ILinkedNode ILinkedNodeFactory.Create<T>(IIndividualUriFormatter<T> formatter, T value)

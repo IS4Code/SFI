@@ -44,15 +44,14 @@ namespace IS4.SFI
             var dataset = new InMemoryDataset(queryGraph);
             Processor = new LeviathanQueryProcessor(dataset);
         }
-        
+
         /// <summary>
         /// Matches an instance of <see cref="INode"/> against the stored SPARQL queries,
-        /// and returns <see lang="true"/> if the node should be extracted.
+        /// and returns a sequence of <see cref="INodeMatchProperties"/> describing the matches.
         /// </summary>
         /// <param name="subject">The matching node to be identified by the queries.</param>
-        /// <param name="properties">Additional variables from a successful match, as instances of <see cref="Uri"/> or <see cref="String"/>.</param>
-        /// <returns><see langword="true"/> if the node should be extracted.</returns>
-        public abstract bool Match(INode subject, out INodeMatchProperties properties);
+        /// <returns>A sequence of objects containing additional variables from a successful match.</returns>
+        public abstract IEnumerable<INodeMatchProperties> Match(INode subject);
 
         /// <summary>
         /// The instance of <see cref="INodeMatchProperties"/> that can be used.

@@ -348,7 +348,7 @@ namespace IS4.SFI.Services
 
             if(algorithm is IEntityOutputProvider<byte[]> descProvider && output != null)
             {
-                if(hashNode.Match(out var properties))
+                foreach(var properties in hashNode.Match())
                 {
                     await descProvider.DescribeEntity(hash.Array, output, properties);
                 }

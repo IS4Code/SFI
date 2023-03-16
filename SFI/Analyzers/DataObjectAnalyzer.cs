@@ -112,7 +112,7 @@ namespace IS4.SFI.Analyzers
 
             label = primaryFormat?.Value.Label ?? label;
 
-            if(node.Match(out var properties))
+            foreach(var properties in node.Match())
             {
                 var format = primaryFormat?.Key;
                 if(format?.Extension is string extension)

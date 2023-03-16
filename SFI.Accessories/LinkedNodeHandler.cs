@@ -381,15 +381,14 @@ namespace IS4.SFI.Extensions
                 }
             }
 
-            public override bool Match(out INodeMatchProperties properties)
+            public override IEnumerable<INodeMatchProperties> Match()
             {
                 var tester = handler.queryTester;
                 if(tester == null)
                 {
-                    properties = null!;
-                    return false;
+                    return Array.Empty<INodeMatchProperties>();
                 }
-                return tester.Match(Subject, out properties);
+                return tester.Match(Subject);
             }
 
             protected override INode CreateNode(Uri uri)

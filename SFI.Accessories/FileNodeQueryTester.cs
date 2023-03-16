@@ -30,12 +30,9 @@ namespace IS4.SFI
         /// must contain a <see cref="NodeVariableName"/> variable equal to <paramref name="subject"/>.
         /// </summary>
         /// <param name="subject">The matching node to be identified by the queries.</param>
-        /// <param name="properties">Additional variables from a successful match, as instances of <see cref="Uri"/> or <see cref="String"/>.</param>
-        /// <returns><see langword="true"/> if any of the queries successfully matched the node.</returns>
-        public override bool Match(INode subject, out INodeMatchProperties properties)
+        /// <returns>A sequence of objects containing additional variables from a successful match.</returns>
+        public override IEnumerable<INodeMatchProperties> Match(INode subject)
         {
-            MatchProperties? variables = null;
-            var extract = false;
             foreach(var query in Queries)
             {
                 switch(Processor.ProcessQuery(query))
@@ -59,11 +56,7 @@ namespace IS4.SFI
                         {
                             if(result.TryGetValue(NodeVariableName, out var node) && node.Equals(subject))
                             {
-                                extract = true;
-                                if(variables == null)
-                                {
-                                    variables = new MatchProperties();
-                                }
+                                var variables = new MatchProperties();
                                 foreach(var pair in result)
                                 {
                                     if(variables.Properties.TryGetValue(pair.Key, out var prop))
@@ -80,13 +73,12 @@ namespace IS4.SFI
                                         }
                                     }
                                 }
+                                yield return variables;
                             }
                         }
                         break;
                 }
             }
-            properties = variables ?? MatchProperties.Default;
-            return extract;
         }
     }
 }

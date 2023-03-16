@@ -43,7 +43,7 @@ namespace IS4.SFI
         }
 
         /// <inheritdoc/>
-        public override bool Match(INode subject, out INodeMatchProperties properties)
+        public override IEnumerable<INodeMatchProperties> Match(INode subject)
         {
             try{
                 var resultsHandler = new SparqlResultsHandler(Handler, results, distinctResults);
@@ -112,8 +112,7 @@ namespace IS4.SFI
             {
                 throw new InternalApplicationException(e);
             }
-            properties = MatchProperties.Default;
-            return false;
+            return Array.Empty<INodeMatchProperties>();
         }
 
         class SparqlResultsHandler : ISparqlResultsHandler
