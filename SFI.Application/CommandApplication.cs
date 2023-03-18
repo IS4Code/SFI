@@ -137,7 +137,48 @@ namespace IS4.SFI
 		/// </summary>
 		protected virtual void Notes()
 		{
-			
+			LogWriter.WriteLine();
+			LogWriter.WriteLine("Examples:");
+
+			Args("describe dir/* out.ttl");
+			Desc("Describes all files in 'dir' using the default components, and saves the RDF output to 'out.ttl'.");
+
+			Args("describe -d -h sha1 dir out.ttl");
+			Desc("Same as above, but only loads the files in the directory as data ('-d'), without storing their names or other metadata.");
+			Desc("In addition to that, the SHA-1 hash algorithm is used to produce 'ni:' URIs for content.");
+
+			Args("describe -f rdf dir -");
+			Desc("As above, but writes the RDF description as RDF/XML to the standard output.");
+
+			Args("describe -b -f jsonld dir -");
+			Desc("Writes the RDF description in JSON-LD instead. This requires buffering the output ('-b').");
+
+			Args("describe -r urn:uuid: dir -");
+			Desc("Does not use blank nodes to identify entities, instead using URIs starting with 'urn:uuid:'.");
+
+			Args("describe -x *-hash:* -i data-hash:sha1 dir -");
+			Desc("Does not use any of the supported hash algorithms, with the exception of SHA-1, to describe data.");
+
+			Args("list -x *-format:* -i *-format:image/*");
+			Desc("Excludes all file formats from the list of components, but keeps specific image formats.");
+
+			Args("list -x * -i analyzer:stream-factory -i analyzer:data-object");
+			Desc("Only allows the analysis of actual data, not files.");
+
+			Args("list --analyzer:stream-factory:max-depth-for-formats \"\"");
+			Desc("Sets this property value to null, disabling depth checks.");
+
+			void Args(string str)
+			{
+				LogWriter.WriteLine();
+				LogWriter.WriteLine(str);
+			}
+
+			void Desc(string str)
+            {
+				LogWriter.Write("  ");
+				OutputWrapPad(str, 2, WindowWidth - 2);
+			}
 		}
 		
 		/// <summary>
