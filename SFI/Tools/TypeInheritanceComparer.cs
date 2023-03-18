@@ -24,8 +24,8 @@ namespace IS4.SFI.Tools
         /// <inheritdoc/>
         protected sealed override int CompareInner(T x, T y)
         {
-            if(x == null) throw new ArgumentException(null, nameof(x));
-            if(y == null) throw new ArgumentException(null, nameof(y));
+            if(x == null) throw new ArgumentNullException(nameof(x));
+            if(y == null) throw new ArgumentNullException(nameof(y));
             int order = 0;
             foreach(var t1 in SelectType(x.GetType()))
             {

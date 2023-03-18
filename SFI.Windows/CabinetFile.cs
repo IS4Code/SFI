@@ -41,7 +41,7 @@ namespace IS4.SFI.Windows
             try{
                 if(!readyToOpen.Task.Result)
                 {
-                    throw new ArgumentException(null, nameof(stream));
+                    throw new ArgumentException("Opening the Cabinet file failed.", nameof(stream));
                 }
             }catch(AggregateException e) when(e.InnerExceptions.Count == 1)
             {

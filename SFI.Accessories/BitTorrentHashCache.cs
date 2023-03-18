@@ -149,7 +149,7 @@ namespace IS4.SFI
             /// <returns>An instance of <see cref="FileInfo"/> storing the hash information.</returns>
             public static async Task<FileInfo> Create(int blockSize, IPersistentKey key)
             {
-                if(key is not IStreamFactory file) throw new ArgumentException(null, nameof(key));
+                if(key is not IStreamFactory file) throw new ArgumentException($"The object must derive from {typeof(IStreamFactory)}.", nameof(key));
                 using var stream = file.Open();
                 return new FileInfo(await HashData(blockSize, stream));
             }

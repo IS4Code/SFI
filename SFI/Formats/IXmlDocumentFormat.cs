@@ -225,19 +225,19 @@ namespace IS4.SFI.Formats
 
         string? IXmlDocumentFormat.GetPublicId(object value)
         {
-            if(value is not T obj) throw new ArgumentException(null, nameof(value));
+            if(value is not T obj) throw new ArgumentException($"The object must derive from {typeof(T)}.", nameof(value));
             return GetPublicId(obj);
         }
 
         string? IXmlDocumentFormat.GetSystemId(object value)
         {
-            if(value is not T obj) throw new ArgumentException(null, nameof(value));
+            if(value is not T obj) throw new ArgumentException($"The object must derive from {typeof(T)}.", nameof(value));
             return GetSystemId(obj);
         }
 
         Uri? IXmlDocumentFormat.GetNamespace(object value)
         {
-            if(value is not T obj) throw new ArgumentException(null, nameof(value));
+            if(value is not T obj) throw new ArgumentException($"The object must derive from {typeof(T)}.", nameof(value));
             return GetNamespace(obj);
         }
     }

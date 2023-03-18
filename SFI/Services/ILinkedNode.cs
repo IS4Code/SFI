@@ -588,7 +588,7 @@ namespace IS4.SFI.Services
         public void Set(PropertyUri property, ILinkedNode value)
         {
             if(value == null) throw new ArgumentNullException(nameof(value));
-            if(value is not LinkedNode<TNode, TGraphNode, TVocabularyCache> node) throw new ArgumentException(null, nameof(value));
+            if(value is not LinkedNode<TNode, TGraphNode, TVocabularyCache> node) throw new ArgumentException($"The object must derive from {typeof(LinkedNode<TNode, TGraphNode, TVocabularyCache>)}.", nameof(value));
             HandleTriple(Subject, Cache[property], node.Subject);
         }
 
@@ -677,7 +677,7 @@ namespace IS4.SFI.Services
         public void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, ILinkedNode value)
         {
             if(value == null) throw new ArgumentNullException(nameof(value));
-            if(value is not LinkedNode<TNode, TGraphNode, TVocabularyCache> node) throw new ArgumentException(null, nameof(value));
+            if(value is not LinkedNode<TNode, TGraphNode, TVocabularyCache> node) throw new ArgumentException($"The object must derive from {typeof(LinkedNode<TNode, TGraphNode, TVocabularyCache>)}.", nameof(value));
             HandleTriple(Subject, CreateNode(propertyFormatter, propertyValue), node.Subject);
         }
 

@@ -99,13 +99,13 @@ namespace IS4.SFI.Formats
 
         string? IFileFormat.GetExtension(object value)
         {
-            if(value is not T obj) throw new ArgumentException(null, nameof(value));
+            if(value is not T obj) throw new ArgumentException($"The object must derive from {typeof(T)}.", nameof(value));
             return GetExtension(obj);
         }
 
         string? IFileFormat.GetMediaType(object value)
         {
-            if(value is not T obj) throw new ArgumentException(null, nameof(value));
+            if(value is not T obj) throw new ArgumentException($"The object must derive from {typeof(T)}.", nameof(value));
             return GetMediaType(obj);
         }
 

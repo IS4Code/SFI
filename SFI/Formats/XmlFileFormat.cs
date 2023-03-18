@@ -112,7 +112,7 @@ namespace IS4.SFI.Formats
                 {
                     return GetEntityAsReader(absoluteUri, role);
                 }
-                throw new XmlException(null, new NotSupportedException());
+                throw new XmlException($"Only types {typeof(MemoryStream)} and {typeof(StringReader)} are supported.", new NotSupportedException());
             }
 
             public async override Task<object> GetEntityAsync(Uri absoluteUri, string role, Type ofObjectToReturn)

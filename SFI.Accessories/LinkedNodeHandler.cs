@@ -308,7 +308,7 @@ namespace IS4.SFI.Extensions
             /// <param name="cache"><inheritdoc path="/param[@name='cache']" cref="LinkedNode{TNode, TGraphNode, TVocabularyCache}.LinkedNode(TNode, TGraphNode, TVocabularyCache)"/></param>
             public UriNode(INode subject, IRdfHandler graph, Cache cache) : base(subject, graph, cache)
             {
-                if(!(subject is IUriNode || subject is IBlankNode)) throw new ArgumentException(null, nameof(subject));
+                if(!(subject is IUriNode || subject is IBlankNode)) throw new ArgumentException($"The object must derive from {typeof(IUriNode)} or {typeof(IBlankNode)}.", nameof(subject));
             }
 
             protected override void HandleTriple(INode? subj, INode? pred, INode? obj)
@@ -426,7 +426,7 @@ namespace IS4.SFI.Extensions
                     return LiteralExtensions.ToLiteral((dynamic)value, Graph);
                 }catch(RuntimeBinderException e)
                 {
-                    throw new ArgumentException(null, nameof(value), e);
+                    throw new ArgumentException("The object could not be converted to a literal node.", nameof(value), e);
                 }
             }
 
