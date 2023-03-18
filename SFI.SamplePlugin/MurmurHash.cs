@@ -19,7 +19,7 @@ namespace IS4.SFI.SamplePlugin
         /// <summary>
         /// The singleton instance of the algorithm.
         /// </summary>
-        public static readonly Murmur32Hash Instance = new Murmur32Hash();
+        public static readonly Murmur32Hash Instance = new();
 
         private Murmur32Hash() : base(() => MurmurHash.Create32(), Murmur32, "murmur32", 0x23, null, Services.FormattingMethod.Base64)
         {

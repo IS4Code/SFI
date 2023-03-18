@@ -15,7 +15,7 @@ namespace IS4.SFI.Analyzers
     /// </summary>
     public class WaveAnalyzer : MediaObjectAnalyzer<WaveStream>
     {
-        readonly PolarSpectrumGenerator generator = new PolarSpectrumGenerator(512, 512);
+        readonly PolarSpectrumGenerator generator = new(512, 512);
 
         /// <summary>
         /// Whether to produce spectrograms from the audio.

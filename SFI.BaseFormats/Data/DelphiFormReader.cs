@@ -51,7 +51,7 @@ namespace IS4.SFI.Formats.Data
 
         static readonly Regex validIdentifier = new(@"^[a-zA-Z_][a-zA-Z_0-9]*(\.[a-zA-Z_][a-zA-Z_0-9])*$", RegexOptions.Compiled);
 
-        static readonly object end = new object();
+        static readonly object end = new();
 
         /// <summary>
         /// Creates a new instance of the object from <see cref="BinaryReader"/>.

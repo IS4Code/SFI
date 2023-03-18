@@ -298,7 +298,7 @@ namespace IS4.SFI.Analyzers
         {
             public const string Value = "file:///./";
 
-            public static readonly RootDirectoryUri Instance = new RootDirectoryUri();
+            public static readonly RootDirectoryUri Instance = new();
 
             private RootDirectoryUri() : base(Value, UriKind.Absolute)
             {

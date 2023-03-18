@@ -45,7 +45,7 @@ namespace IS4.SFI.Analyzers
 
         }
 
-        static readonly ImageTag DefaultTag = new ImageTag();
+        static readonly ImageTag DefaultTag = new();
 
         /// <inheritdoc/>
         public async override ValueTask<AnalysisResult> Analyze(Image image, AnalysisContext context, IEntityAnalyzers analyzers)

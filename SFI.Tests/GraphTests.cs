@@ -21,8 +21,8 @@ namespace IS4.SFI.Tests
     [TestClass]
     public partial class GraphTests
     {
-        static readonly Uri currentDirectory = new Uri(Environment.CurrentDirectory + Path.DirectorySeparatorChar, UriKind.Absolute);
-        static readonly HttpClient httpClient = new HttpClient();
+        static readonly Uri currentDirectory = new(Environment.CurrentDirectory + Path.DirectorySeparatorChar, UriKind.Absolute);
+        static readonly HttpClient httpClient = new();
 
         static readonly Inspector inspector = new TestInspector();
         static readonly InspectorOptions inspectorOptions = new()

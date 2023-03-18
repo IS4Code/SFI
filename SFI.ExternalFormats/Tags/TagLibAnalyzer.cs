@@ -190,7 +190,7 @@ namespace IS4.SFI.Analyzers
 
         };
 
-        Uri IUriFormatter<string>.this[string name] => new Uri(Vocabularies.Uri.Nid3 + name, UriKind.Absolute);
+        Uri IUriFormatter<string>.this[string name] => new(Vocabularies.Uri.Nid3 + name, UriKind.Absolute);
 
         string? Analyze(ILinkedNode node, ICodec codec)
         {

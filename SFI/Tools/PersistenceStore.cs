@@ -15,7 +15,7 @@ namespace IS4.SFI.Tools
         /// <summary>
         /// The identity of this object is used instead of a <see langword="null"/> value as the key.
         /// </summary>
-        static readonly object NullPlaceholder = new object();
+        static readonly object NullPlaceholder = new();
 
         readonly ConditionalWeakTable<object, ConcurrentDictionary<object, Lazy<TValue>>> data = new();
         readonly Func<TKey, TValue> factory;

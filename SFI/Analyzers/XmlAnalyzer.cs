@@ -220,7 +220,7 @@ namespace IS4.SFI.Analyzers
         /// </summary>
         class ImprovisedXmlFormat : XmlDocumentFormat<ImprovisedXmlFormat.XmlFormat>
         {
-            public static readonly ImprovisedXmlFormat Instance = new ImprovisedXmlFormat();
+            public static readonly ImprovisedXmlFormat Instance = new();
 
             private ImprovisedXmlFormat() : base(null, null, null, null, null)
             {

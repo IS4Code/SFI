@@ -22,7 +22,7 @@ namespace IS4.SFI.MediaAnalysis.Images
         /// <summary>
         /// The singleton instance of the algorithm.
         /// </summary>
-        public static readonly DHash Instance = new DHash();
+        public static readonly DHash Instance = new();
 
         static readonly Color gray = Color.FromArgb(0xBC, 0xBC, 0xBC);
 

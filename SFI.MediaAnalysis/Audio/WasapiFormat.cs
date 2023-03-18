@@ -14,7 +14,7 @@ namespace IS4.SFI.Formats
     /// </summary>
     public class WasapiFormat : BinaryFileFormat<WaveStream>
     {
-        static readonly MediaFoundationReader.MediaFoundationReaderSettings settings = new MediaFoundationReader.MediaFoundationReaderSettings
+        static readonly MediaFoundationReader.MediaFoundationReaderSettings settings = new()
         {
             SingleReaderObject = true,
             RepositionInRead = false,
@@ -24,7 +24,7 @@ namespace IS4.SFI.Formats
         /// <summary>
         /// Source: https://gix.github.io/media-types/
         /// </summary>
-        static readonly Dictionary<Guid, (string type, string ext)> GuidTypes = new Dictionary<Guid, (string, string)>
+        static readonly Dictionary<Guid, (string type, string ext)> GuidTypes = new()
         {
             { new("00000001-0000-0010-8000-00AA00389B71"), ("audio/x-raw-int", "pcm") },
             { new("00000002-0000-0010-8000-00AA00389B71"), ("audio/x-adpcm", "adpcm") },
@@ -44,7 +44,7 @@ namespace IS4.SFI.Formats
             { new("00001610-0000-0010-8000-00AA00389B71"), ("audio/mpeg", "aac") }
         };
 
-        static readonly WaveFormat waveFormat = new WaveFormat();
+        static readonly WaveFormat waveFormat = new();
 
         readonly bool allowMp3;
 

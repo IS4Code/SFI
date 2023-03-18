@@ -135,7 +135,7 @@ namespace IS4.SFI.Analyzers
             }
         }
 
-        static readonly Regex fieldRegex = new Regex(@"^([^:]*):\s*(.*)\s*$", RegexOptions.Compiled);
+        static readonly Regex fieldRegex = new(@"^([^:]*):\s*(.*)\s*$", RegexOptions.Compiled);
 
         (string? line, IEnumerator<KeyValuePair<string, string>> fields) ParseHttp(string record)
         {
@@ -264,7 +264,7 @@ namespace IS4.SFI.Analyzers
             }
         }
 
-        static readonly Regex foldWhitespace = new Regex("^[ \t]+", RegexOptions.Compiled);
+        static readonly Regex foldWhitespace = new("^[ \t]+", RegexOptions.Compiled);
 
         class LineReader
         {

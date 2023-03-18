@@ -117,7 +117,7 @@ namespace IS4.SFI.Services
         /// Captures the core descriptive component of a MIME type, such as
         /// <c>bsf</c> from <c>application/vnd.3gpp.bsf+xml</c>.
         /// </summary>
-        static readonly Regex mimeCoreName = new Regex(@"^[^/]+/(?:[^.]+\.|x-)*([^;+]*[^;+.\d-][^;+]*)", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+        static readonly Regex mimeCoreName = new(@"^[^/]+/(?:[^.]+\.|x-)*([^;+]*[^;+.\d-][^;+]*)", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
 
         /// <summary>
         /// Applies the format referenced by this object to a URI

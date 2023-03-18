@@ -23,7 +23,7 @@ namespace IS4.SFI.Windows
     {
         readonly Task<ERF> fileTask;
 
-        readonly TaskCompletionSource<bool> readyToOpen = new TaskCompletionSource<bool>();
+        readonly TaskCompletionSource<bool> readyToOpen = new();
         BlockingCollection<FileInfo>? fileInfoChannel;
         BlockingCollection<bool>? fileControlChannel;
 
@@ -192,7 +192,7 @@ namespace IS4.SFI.Windows
 
             public SafeHFDI Handle { get; }
 
-            readonly ObjectMap objectMap = new ObjectMap();
+            readonly ObjectMap objectMap = new();
 
             readonly object error;
             GCHandle errorHandle;

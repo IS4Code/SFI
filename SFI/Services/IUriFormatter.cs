@@ -88,7 +88,7 @@ namespace IS4.SFI.Services
         /// <summary>
         /// The singleton instance of the formatter.
         /// </summary>
-        public static readonly UriFormatter Instance = new UriFormatter();
+        public static readonly UriFormatter Instance = new();
 
         private UriFormatter()
         {
@@ -100,7 +100,7 @@ namespace IS4.SFI.Services
         /// </summary>
         /// <param name="value">The absolute URI string.</param>
         /// <returns>The created URI.</returns>
-        public Uri this[string value] => new Uri(value, UriKind.Absolute);
+        public Uri this[string value] => new(value, UriKind.Absolute);
 
         /// <summary>
         /// Returns <paramref name="value"/> unchanged.

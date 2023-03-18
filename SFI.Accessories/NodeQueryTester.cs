@@ -61,7 +61,7 @@ namespace IS4.SFI
             /// <summary>
             /// The default value of <see cref="INodeMatchProperties"/>.
             /// </summary>
-            public static readonly MatchProperties Default = new MatchProperties();
+            public static readonly MatchProperties Default = new();
 
             /// <inheritdoc/>
             public string? Extension { get; set; }

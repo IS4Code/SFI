@@ -38,7 +38,7 @@ namespace IS4.SFI
             /// </summary>
             /// <param name="value">The value to append to the prefix.</param>
             /// <returns>The full URI formed from the prefix and <paramref name="value"/>.</returns>
-            public Uri this[string value] => new Uri(prefix + value, UriKind.Absolute);
+            public Uri this[string value] => new(prefix + value, UriKind.Absolute);
         }
 
         static readonly Regex pubIdRegex = new(@"(^\s+|\s+$)|(\s+)|(\/\/)|(::)|([+:\/;'?#%])", RegexOptions.Compiled);
@@ -239,7 +239,7 @@ namespace IS4.SFI
 
         class OidUriFormatterClass : IGenericUriFormatter<Oid>
         {
-            public Uri this[Oid value] => new Uri("urn:oid:" + value.Value, UriKind.Absolute);
+            public Uri this[Oid value] => new("urn:oid:" + value.Value, UriKind.Absolute);
         }
 
         /// <summary>

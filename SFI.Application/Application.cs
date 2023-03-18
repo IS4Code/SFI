@@ -466,7 +466,7 @@ namespace IS4.SFI
 			return OperandState.OnlyOperands;
 		}
 
-		static readonly Regex componentPropertyRegex = new Regex(@"^([^:]+:[^:]+):(.*)$", RegexOptions.Compiled);
+		static readonly Regex componentPropertyRegex = new(@"^([^:]+:[^:]+):(.*)$", RegexOptions.Compiled);
 
 		/// <inheritdoc/>
 		protected override OptionArgument OnOptionFound(string option)

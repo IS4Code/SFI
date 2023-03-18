@@ -189,7 +189,7 @@ namespace IS4.SFI.Analyzers
         /// </summary>
         class ImprovisedFormat : BinaryFileFormat<ImprovisedFormat.Format>
         {
-            public static readonly ImprovisedFormat Instance = new ImprovisedFormat();
+            public static readonly ImprovisedFormat Instance = new();
 
             private ImprovisedFormat() : base(0, null, null)
             {

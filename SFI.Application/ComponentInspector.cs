@@ -13,7 +13,7 @@ namespace IS4.SFI
     /// </summary>
     public class ComponentInspector : Inspector
     {
-        readonly HashSet<ComponentCollection> componentCollections = new HashSet<ComponentCollection>();
+        readonly HashSet<ComponentCollection> componentCollections = new();
 
         /// <summary>
         /// Stores all component collections managed by the instance.

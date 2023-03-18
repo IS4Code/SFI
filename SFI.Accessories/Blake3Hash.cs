@@ -15,7 +15,7 @@ namespace IS4.SFI
         /// <summary>
         /// The singleton instance of the algorithm.
         /// </summary>
-        public static readonly Blake3Hash Instance = new Blake3Hash();
+        public static readonly Blake3Hash Instance = new();
 
         /// <inheritdoc/>
         public override int? NumericIdentifier => 0x1e;
