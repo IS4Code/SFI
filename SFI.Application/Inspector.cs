@@ -123,6 +123,9 @@ namespace IS4.SFI
 
             // Not desirable due to EncodedUri and similar; vocabulary URIs are cached anyway
             Options.InternUris = false;
+
+            // Custom writer of SPARQL Results as SPARQL query with VALUES
+            MimeTypesHelper.RegisterWriter(new SparqlValuesQueryWriter(), new[] { MimeTypesHelper.SparqlQuery }, new[] { MimeTypesHelper.DefaultSparqlQueryExtension, "sparql" }.Distinct());
         }
 
         /// <summary>
