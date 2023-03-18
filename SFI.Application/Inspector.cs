@@ -1,5 +1,4 @@
 ﻿using IS4.SFI.Analyzers;
-using IS4.SFI.Extensions;
 using IS4.SFI.Formats;
 using IS4.SFI.Services;
 using IS4.SFI.Tools;
