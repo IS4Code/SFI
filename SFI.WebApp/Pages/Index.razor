@@ -48,7 +48,17 @@
 
     static readonly Regex lineWhitespace = new Regex(@"^\s+|\s+$", RegexOptions.Multiline | RegexOptions.Compiled);
 
+    protected override async Task OnInitializedAsync()
+    {
+        await RunCommand("-?");
+    }
+
     async void OnSubmit()
+    {
+        await RunCommand(lineWhitespace.Replace(Command, ""));
+    }
+
+    async Task RunCommand(string command)
     {
         var output = outputChunks = new List<string>();
         var logWriter = new EventWriter();
@@ -61,7 +71,7 @@
 
         try{
             var invocations = new List<string[]>();
-            using(var parser = new TextFieldParser(new StringReader(lineWhitespace.Replace(Command, "")))
+            using(var parser = new TextFieldParser(new StringReader(command))
             {
                 TextFieldType = FieldType.Delimited,
                 CommentTokens = new[] { "#" },
