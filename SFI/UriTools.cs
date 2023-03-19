@@ -19,7 +19,7 @@ namespace IS4.SFI
         /// A URI formatter which uses a prefix to prepend its argument when forming
         /// the resulting URI.
         /// </summary>
-        public class PrefixFormatter : IIndividualUriFormatter<string>
+        public class PrefixFormatter<T> : IGenericUriFormatter<T>
         {
             readonly string prefix;
 
@@ -38,7 +38,7 @@ namespace IS4.SFI
             /// </summary>
             /// <param name="value">The value to append to the prefix.</param>
             /// <returns>The full URI formed from the prefix and <paramref name="value"/>.</returns>
-            public Uri this[string value] => new(prefix + value, UriKind.Absolute);
+            public Uri this[T value] => new(prefix + value, UriKind.Absolute);
         }
 
         static readonly Regex pubIdRegex = new(@"(^\s+|\s+$)|(\s+)|(\/\/)|(::)|([+:\/;'?#%])", RegexOptions.Compiled);

@@ -1,5 +1,6 @@
 ﻿namespace IS4.SFI.Vocabulary
 {
+    using IS4.SFI.Services;
     using static Vocabularies.Uri;
 
     /// <summary>
@@ -31,6 +32,11 @@
         /// </summary>
         [Uri(Rdf)]
         public static readonly PropertyUri Rest;
+
+        /// <summary>
+        /// <see cref="Rdf"/>:_nnn.
+        /// </summary>
+        public static readonly IPropertyUriFormatter<int> MemberAt = new UriTools.PrefixFormatter<int>(Rdf + "_");
 
         /// <summary>
         /// <see cref="Rdfs"/>:label.

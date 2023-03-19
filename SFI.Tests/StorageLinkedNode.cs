@@ -70,7 +70,7 @@ namespace IS4.SFI.Tests
             }
         }
 
-        IIndividualUriFormatter<string> ILinkedNodeFactory.Root { get; } = new UriTools.PrefixFormatter("x.blank:");
+        IIndividualUriFormatter<string> ILinkedNodeFactory.Root { get; } = new UriTools.PrefixFormatter<string>("x.blank:");
 
         /// <summary>
         /// Creates a new node, from a supplied subject URI, graph URI, and the vocabulary cache instance to use.
