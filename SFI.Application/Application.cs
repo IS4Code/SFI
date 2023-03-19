@@ -258,8 +258,9 @@ namespace IS4.SFI
 
 			var name = TextTools.SubstituteVariables(path, properties.GetProperties().Select(p => new KeyValuePair<string, object?>(p.Key, p.Value.GetValue(properties))));
 
-			LogWriter?.WriteLine($"Extracting to '{name}'...");
-			using var stream = environment.CreateFile(name, mediaType ?? (isBinary ? "application/octet-stream" : "text/plain"));
+			mediaType ??= isBinary ? "application/octet-stream" : "text/plain";
+			LogWriter?.WriteLine($"Extracting {mediaType} to '{name}'...");
+			using var stream = environment.CreateFile(name, mediaType);
             await writer(stream);
         }
 
