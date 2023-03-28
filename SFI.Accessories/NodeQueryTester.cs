@@ -16,7 +16,7 @@ namespace IS4.SFI
     public abstract class NodeQueryTester
     {
         /// <summary>
-        /// The collection of queries to use when <see cref="Match(INode, out INodeMatchProperties)"/>
+        /// The collection of queries to use when <see cref="Match(INode)"/>
         /// is called.
         /// </summary>
         protected IReadOnlyCollection<SparqlQuery> Queries { get; }

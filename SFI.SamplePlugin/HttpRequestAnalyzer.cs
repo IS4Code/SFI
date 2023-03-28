@@ -26,18 +26,20 @@ namespace IS4.SFI.Analyzers
             node.Set(Properties.HttpMethodName, method);
             node.Set(Properties.HttpMethod, Vocabularies.Httpm, method);
 
-            var target = message.RequestUri;
-            if(target.IsAbsoluteUri)
+            if(message.RequestUri is Uri target)
             {
-                node.Set(Properties.HttpAbsoluteUri, target);
-            }else{
-                var targetText = target.OriginalString;
-                if(targetText.StartsWith("/"))
+                if(target.IsAbsoluteUri)
                 {
-                    node.Set(Properties.HttpAbsolutePath, targetText, Datatypes.AnyUri);
-                }else if(targetText.IndexOf("/", StringComparison.Ordinal) == -1 && Uri.IsWellFormedUriString("http://" + targetText, UriKind.Absolute))
-                {
-                    node.Set(Properties.HttpAuthority, targetText);
+                    node.Set(Properties.HttpAbsoluteUri, target);
+                }else{
+                    var targetText = target.OriginalString;
+                    if(targetText.StartsWith("/"))
+                    {
+                        node.Set(Properties.HttpAbsolutePath, targetText, Datatypes.AnyUri);
+                    }else if(targetText.IndexOf("/", StringComparison.Ordinal) == -1 && Uri.IsWellFormedUriString("http://" + targetText, UriKind.Absolute))
+                    {
+                        node.Set(Properties.HttpAuthority, targetText);
+                    }
                 }
             }
 

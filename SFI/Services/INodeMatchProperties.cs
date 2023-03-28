@@ -5,7 +5,7 @@ using System.Linq;
 namespace IS4.SFI.Services
 {
     /// <summary>
-    /// Contains properties relevant for saving a file as a result of <see cref="ILinkedNode.Match(out INodeMatchProperties)"/>,
+    /// Contains properties relevant for saving a file as a result of <see cref="ILinkedNode.Match"/>,
     /// such as through <see cref="OutputFileDelegate"/>. Additional properties can
     /// be retrieved via <see cref="TypeDescriptor.GetProperties(object)"/>.
     /// </summary>

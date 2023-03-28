@@ -91,7 +91,7 @@ namespace IS4.SFI
                         return result;
                     }
                     OutputLog.WriteLine($"[{nameOrdinal}] No result!");
-                }catch(InternalApplicationException e)
+                }catch(InternalApplicationException)
                 {
                     throw;
                 }catch(Exception e) when(GlobalOptions.SuppressNonCriticalExceptions)
