@@ -32,7 +32,7 @@
     Dictionary<string, IBrowserFile> inputFiles = new();
     public static Dictionary<string, IBrowserFile> PluginFiles { get; private set; } = new();
     Dictionary<string, BlobArrayStream> outputFiles = new();
-    string Command { get; set; } = "describe -r urn:uuid: -d -x *-hash:* -h sha256 * output.ttl";
+    string Command { get; set; } = "describe -r urn:uuid: -d -x *-hash:* -h xxh64 * output.ttl";
     List<string> outputChunks = new List<string>();
     WebEnvironment? webEnvironment;
 
