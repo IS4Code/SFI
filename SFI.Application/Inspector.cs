@@ -213,7 +213,7 @@ namespace IS4.SFI
             graphHandlers[new Uri(Graphs.ShortenedLinks.Value)] = null;
 
             // Loads SPARQL queries to evaluate on the RDF
-            var queries = GetQueries(options);
+            var queries = await GetQueries(options);
 
             bool sparql = options.OutputIsSparqlResults;
 
@@ -394,7 +394,7 @@ namespace IS4.SFI
         /// <summary>
         /// Loads SPARQL queries from options.
         /// </summary>
-        private IReadOnlyCollection<SparqlQuery> GetQueries(InspectorOptions options)
+        private async Task<IReadOnlyCollection<SparqlQuery>> GetQueries(InspectorOptions options)
         {
             SparqlQueryParser? queryParser = null;
             var results = new List<SparqlQuery>();
@@ -408,9 +408,22 @@ namespace IS4.SFI
                 }
                 SparqlQuery query;
                 try{
-                    using var stream = file.Open();
-                    using var reader = new StreamReader(stream, Encoding.UTF8, true, 4096, true);
-                    query = queryParser.Parse(reader);
+                    try{
+                        using var stream = file.Open();
+                        using var reader = new StreamReader(stream, Encoding.UTF8, true, 4096, true);
+                        query = queryParser.Parse(reader);
+                    }catch(NotSupportedException)
+                    {
+                        // If synchronous reading is not available
+                        using var buffer = new MemoryStream();
+                        using(var stream = file.Open())
+                        {
+                            await stream.CopyToAsync(buffer);
+                        }
+                        buffer.Position = 0;
+                        using var reader = new StreamReader(buffer, Encoding.UTF8, true, 4096, true);
+                        query = queryParser.Parse(reader);
+                    }
                 }catch(Exception e)
                 {
                     throw new ApplicationException($"Error while parsing SPARQL query in {file.Name}: {e.Message}", e);
