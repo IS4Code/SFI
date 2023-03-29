@@ -9,14 +9,14 @@
 
 <p><textarea @bind="Command" style="resize: both;" rows="4" cols="80" /></p>
 <form @onsubmit="OnSubmit" @onreset="OnReset">
-    <p><label>Input files: @foreach(int i in Enumerable.Range(0, inputFilesCount))
+    <p>Input files: @foreach(int i in Enumerable.Range(0, inputFilesCount))
     {
-        <InputFile OnChange="@(args => OnFileChange(i, args, inputFilesGroups, inputFiles))" multiple />
-    }</label></p>
-    <p><label>Plugins: @foreach(int i in Enumerable.Range(0, pluginFilesCount))
+        <InputFile OnChange="@(args => OnFileChange(i, args, inputFilesGroups, inputFiles))" multiple /><text>&#32;</text>
+    }</p>
+    <p>Plugins: @foreach(int i in Enumerable.Range(0, pluginFilesCount))
     {
-        <InputFile OnChange="@(args => OnFileChange(i, args, pluginFilesGroups, PluginFiles))" multiple />
-    }</label></p>
+        <InputFile OnChange="@(args => OnFileChange(i, args, pluginFilesGroups, PluginFiles))" multiple /><text>&#32;</text>
+    }</p>
     <p><button type="submit">Execute</button> <button type="reset">Reset</button></p>
 </form>
 
