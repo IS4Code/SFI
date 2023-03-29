@@ -87,7 +87,7 @@ namespace IS4.SFI.ConsoleApp
                 archive = ZipFile.OpenRead(file);
             }catch(Exception e)
             {
-                OutputLog?.WriteLine($"An error occurred while opening plugin archive {Path.GetFileName(file)}: " + e);
+                OutputLog?.WriteLine($"An error occurred while opening plugin archive {Path.GetFileName(file)}: " + e.Message);
                 return default;
             }
             return new Plugin(GetDirectory(archive), name);
