@@ -133,7 +133,12 @@ namespace IS4.SFI.Formats
                 public int Read(byte[] buffer, int offset, int length)
                 {
                     length = Math.Min(length, Length);
-                    module.stream.Position = data.OffsetToData - rsrc.VirtualAddress + rsrc.PointerToRawData;
+                    long position = data.OffsetToData - rsrc.VirtualAddress + rsrc.PointerToRawData;
+                    if(position > module.stream.Length)
+                    {
+                        return 0;
+                    }
+                    module.stream.Position = position;
                     return module.stream.Read(buffer, offset, length);
                 }
 
