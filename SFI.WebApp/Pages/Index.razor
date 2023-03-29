@@ -7,11 +7,17 @@
 
 <h1>Semantic File Inspector</h1>
 
-<form @onsubmit="OnSubmit">
-    <p><textarea @bind="Command" style="resize: both;" rows="4" cols="80" /></p>
-    <p><label>Input files: <InputFile OnChange="OnInputFileChange" multiple /></label></p>
-    <p><label>Plugins: <InputFile OnChange="OnPluginFileChange" multiple /></label></p>
-    <p><button type="submit">Execute</button></p>
+<p><textarea @bind="Command" style="resize: both;" rows="4" cols="80" /></p>
+<form @onsubmit="OnSubmit" @onreset="OnReset">
+    <p><label>Input files: @foreach(int i in Enumerable.Range(0, inputFilesCount))
+    {
+        <InputFile OnChange="@(args => OnFileChange(i, args, inputFilesGroups, inputFiles))" multiple />
+    }</label></p>
+    <p><label>Plugins: @foreach(int i in Enumerable.Range(0, pluginFilesCount))
+    {
+        <InputFile OnChange="@(args => OnFileChange(i, args, pluginFilesGroups, PluginFiles))" multiple />
+    }</label></p>
+    <p><button type="submit">Execute</button> <button type="reset">Reset</button></p>
 </form>
 
 <ul>
@@ -29,21 +35,30 @@
 </pre>
 
 @code {
+    SortedDictionary<int, IReadOnlyList<IBrowserFile>> inputFilesGroups = new();
+    SortedDictionary<int, IReadOnlyList<IBrowserFile>> pluginFilesGroups = new();
+
+    int inputFilesCount => inputFilesGroups.Count + 1;
+    int pluginFilesCount => pluginFilesGroups.Count + 1;
+
     Dictionary<string, IBrowserFile> inputFiles = new();
     public static Dictionary<string, IBrowserFile> PluginFiles { get; private set; } = new();
+
     Dictionary<string, BlobArrayStream> outputFiles = new();
-    string Command { get; set; } = "describe -r urn:uuid: -d -x *-hash:* -h xxh64 * output.ttl";
+    const string initialCommand = "describe -r urn:uuid: -d -x *-hash:* -h xxh64 * output.ttl";
+    string Command { get; set; } = initialCommand;
     List<string> outputChunks = new List<string>();
     WebEnvironment? webEnvironment;
 
-    void OnInputFileChange(InputFileChangeEventArgs e)
+    void OnFileChange(int index, InputFileChangeEventArgs e, SortedDictionary<int, IReadOnlyList<IBrowserFile>> groups, Dictionary<string, IBrowserFile> byName)
     {
-        inputFiles = e.GetMultipleFiles().ToDictionary(f => f.Name, f => f, StringComparer.Ordinal);
-    }
+        groups[index] = e.GetMultipleFiles();
 
-    void OnPluginFileChange(InputFileChangeEventArgs e)
-    {
-        PluginFiles = e.GetMultipleFiles().ToDictionary(f => f.Name, f => f, StringComparer.Ordinal);
+        byName.Clear();
+        foreach(var file in groups.Values.SelectMany(g => g))
+        {
+            byName[file.Name] = file;
+        }
     }
 
     static readonly Regex lineWhitespace = new Regex(@"^\s+|\s+$", RegexOptions.Multiline | RegexOptions.Compiled);
@@ -56,6 +71,16 @@
     async void OnSubmit()
     {
         await RunCommand(lineWhitespace.Replace(Command, ""));
+    }
+
+    async Task OnReset()
+    {
+        Command = initialCommand;
+        inputFilesGroups.Clear();
+        inputFiles.Clear();
+        pluginFilesGroups.Clear();
+        PluginFiles.Clear();
+        await RunCommand("-?");
     }
 
     async Task RunCommand(string command)
