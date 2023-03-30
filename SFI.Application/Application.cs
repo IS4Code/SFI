@@ -256,7 +256,7 @@ namespace IS4.SFI
 			var path = properties.PathFormat ?? "${name}${extension}";
 			properties.PathFormat = null;
 
-			var name = TextTools.SubstituteVariables(path, properties.GetProperties().Select(p => new KeyValuePair<string, object?>(p.Key, p.Value.GetValue(properties))));
+			var name = TextTools.SubstituteVariables(path, properties.GetPropertyValues());
 
 			mediaType ??= isBinary ? "application/octet-stream" : "text/plain";
 			LogWriter?.WriteLine($"Extracting {mediaType} to '{name}'...");

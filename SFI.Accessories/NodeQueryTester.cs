@@ -83,6 +83,7 @@ namespace IS4.SFI
             /// <summary>
             /// A cached collection of properties obtained by calling <see cref="NodeMatchPropertiesExtensions.GetProperties(INodeMatchProperties)"/>.
             /// </summary>
+            [Browsable(false)]
             public Dictionary<string, PropertyDescriptor> Properties => properties ??= this.GetProperties().ToDictionary(p => p.Key, p => p.Value);
         }
     }

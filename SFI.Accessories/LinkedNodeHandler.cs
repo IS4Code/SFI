@@ -388,7 +388,7 @@ namespace IS4.SFI
                 {
                     return Array.Empty<INodeMatchProperties>();
                 }
-                return tester.Match(Subject);
+                return tester.Match(Subject).Distinct(NodeMatchPropertiesComparer.Instance).ToArray();
             }
 
             protected override INode CreateNode(Uri uri)
