@@ -257,28 +257,37 @@ namespace IS4.SFI
                 components.AddRange(genArgs.Skip(ownArgsStart).Select(GetTypeFriendlyName));
                 return String.Join(".", components);
             }
+        }
 
-            static IEnumerable<Type> GetExportedTypes(Assembly asm)
-            {
+        static readonly ConditionalWeakTable<Assembly, Type[]> exportedTypesCache = new();
+
+        /// <summary>
+        /// Retrieves the collection of exported types in an assembly, with caching.
+        /// </summary>
+        /// <param name="asm">The <see cref="Assembly"/> instance to use.</param>
+        /// <returns>A collection of <see cref="Assembly.ExportedTypes"/>.</returns>
+        static IEnumerable<Type> GetExportedTypes(Assembly asm)
+        {
+            return exportedTypesCache.GetValue(asm, a => {
                 try{
-                    return asm.ExportedTypes;
+                    return a.GetExportedTypes();
                 }catch{
                     return Array.Empty<Type>();
                 }
-            }
+            });
+        }
 
-            /// <summary>
-            /// Returns the length of the common prefix of <paramref name="a"/> and <paramref name="b"/>.
-            /// </summary>
-            static int CommonPrefix(string a, string b)
+        /// <summary>
+        /// Returns the length of the common prefix of <paramref name="a"/> and <paramref name="b"/>.
+        /// </summary>
+        static int CommonPrefix(string a, string b)
+        {
+            int max = Math.Min(a.Length, b.Length);
+            for(int i = 0; i < max; i++)
             {
-                int max = Math.Min(a.Length, b.Length);
-                for(int i = 0; i < max; i++)
-                {
-                    if(a[i] != b[i]) return i;
-                }
-                return max;
+                if(a[i] != b[i]) return i;
             }
+            return max;
         }
 
         /// <summary>
