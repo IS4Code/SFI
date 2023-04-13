@@ -107,12 +107,7 @@ namespace IS4.SFI.Services
         /// <returns>The bytes of the hash.</returns>
         ValueTask<byte[]> ComputeHash(Stream input, IPersistentKey? key = null);
 
-        /// <summary>
-        /// Computes the value of the hash from a byte buffer.
-        /// </summary>
-        /// <param name="buffer">The array of bytes to compute the hash from.</param>
-        /// <param name="key">The <see cref="IPersistentKey"/> identifying the data, if needed for caching.</param>
-        /// <returns>The bytes of the hash.</returns>
+        /// <inheritdoc cref="ComputeHash(byte[], int, int, IPersistentKey?)"/>
         ValueTask<byte[]> ComputeHash(byte[] buffer, IPersistentKey? key = null);
 
         /// <summary>
@@ -123,7 +118,6 @@ namespace IS4.SFI.Services
         /// <param name="count">The number of bytes to read from the array.</param>
         /// <param name="key">The <see cref="IPersistentKey"/> identifying the data, if needed for caching.</param>
         /// <returns>The bytes of the hash.</returns>
-        /// <returns></returns>
         ValueTask<byte[]> ComputeHash(byte[] buffer, int offset, int count, IPersistentKey? key = null);
 
         /// <summary>

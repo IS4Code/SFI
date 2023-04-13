@@ -8,7 +8,7 @@ namespace IS4.SFI.Formats
     /// An extension of <see cref="BinaryFileFormat{T}"/> for formats identified
     /// using sequence of bytes at the start of the data, i.e. a signature.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T"><inheritdoc cref="IFileFormat{T}" path="/typeparam[@name='T']"/></typeparam>
     public abstract class SignatureFormat<T> : BinaryFileFormat<T> where T : class
     {
         readonly byte[] signature;

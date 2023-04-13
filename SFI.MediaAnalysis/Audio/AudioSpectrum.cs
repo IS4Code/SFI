@@ -183,7 +183,7 @@ namespace IS4.SFI.MediaAnalysis.Audio
         /// Applies the specific time space-to-frequency space transformation
         /// on the values in <paramref name="frame"/>.
         /// </summary>
-        /// <param name="frame"></param>
+        /// <param name="frame">The array segment that should be transformed.</param>
         protected abstract void Transform(ArraySegment<TComplex> frame);
 
         /// <inheritdoc/>

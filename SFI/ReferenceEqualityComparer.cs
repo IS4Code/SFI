@@ -10,7 +10,7 @@ namespace IS4.SFI
     /// implementations of <see cref="Object.Equals(object)"/> or
     /// <see cref="Object.GetHashCode"/>.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">The type of the compared instances.</typeparam>
     public class ReferenceEqualityComparer<T> : EqualityComparer<T> where T : class?
     {
         /// <summary>

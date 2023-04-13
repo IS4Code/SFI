@@ -10,7 +10,7 @@ namespace IS4.SFI.Formats
     /// The implementation of <see cref="CheckHeader(ReadOnlySpan{byte}, bool, IEncodingDetector)"/>
     /// checks the signature in the extended MZ header.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T"><inheritdoc cref="IFileFormat{T}" path="/typeparam[@name='T']"/></typeparam>
     public abstract class ModuleFormat<T> : SignatureFormat<T> where T : class
     {
         const int CommonMaxStubSize = 256;

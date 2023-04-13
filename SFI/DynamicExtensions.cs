@@ -74,7 +74,7 @@ namespace IS4.SFI
         /// Dynamically calls <see cref="ILinkedNode.Set{TProp, TValue}(IPropertyUriFormatter{TProp}, TProp, TValue)"/>
         /// based on the runtime type of <paramref name="value"/>.
         /// </summary>
-        /// <typeparam name="TProp"></typeparam>
+        /// <typeparam name="TProp">The type of <paramref name="propertyValue"/>.</typeparam>
         /// <param name="node">The instance of <see cref="ILinkedNode"/> to use.</param>
         /// <param name="propertyFormatter">The formatter to provide the property based on <paramref name="propertyValue"/>.</param>
         /// <param name="propertyValue">The value to pass to the <paramref name="propertyFormatter"/>.</param>

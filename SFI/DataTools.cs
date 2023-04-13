@@ -480,7 +480,7 @@ namespace IS4.SFI
         /// <summary>
         /// Determines whether <paramref name="str"/> is a string safe for displaying or storing as text.
         /// </summary>
-        /// <param name="str"></param>
+        /// <param name="str">The string to check.</param>
         /// <returns><see langword="true"/> if the string contains unsafe characters, <see langword="false"/> otherwise.</returns>
         /// <remarks>
         /// XML 1.0 prohibits C0 control codes and discourages the use of C1, with the exception of line separators;

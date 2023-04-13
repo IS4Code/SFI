@@ -25,7 +25,7 @@ namespace IS4.SFI.Tools
         /// Creates a new instance of <typeparamref name="T"/> and
         /// initializes it for new hashing.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A newly initialized instance of <typeparamref name="T"/>.</returns>
         protected abstract T Initialize();
 
         /// <summary>

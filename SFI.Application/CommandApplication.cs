@@ -302,7 +302,7 @@ namespace IS4.SFI
 		/// and initializes it with the values specified
 		/// by the arguments.
 		/// </summary>
-		/// <param name="args"></param>
+		/// <param name="args">The arguments to the application.</param>
 		/// <exception cref="ApplicationExitException">
 		/// Could be thrown from one of the option or operand handler
 		/// to indicate that the application should be terminated.

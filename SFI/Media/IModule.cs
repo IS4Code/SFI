@@ -18,7 +18,9 @@ namespace IS4.SFI.Formats
         /// Opens the list of resources in the module and returns them
         /// as a collection of <see cref="IModuleResource"/>.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        /// A sequence of <see cref="IModuleResource"/> instances representing the individual resources.
+        /// </returns>
         IEnumerable<IModuleResource> ReadResources();
 
         /// <summary>

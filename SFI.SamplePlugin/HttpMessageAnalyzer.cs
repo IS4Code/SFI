@@ -9,7 +9,7 @@ namespace IS4.SFI.Analyzers
     /// <summary>
     /// An analyzer of HTTP messages, as instances of <typeparamref name="TMessage"/>.
     /// </summary>
-    /// <typeparam name="TMessage"></typeparam>
+    /// <typeparam name="TMessage">The concrete HTTP message type.</typeparam>
     public abstract class HttpMessageAnalyzer<TMessage> : MediaObjectAnalyzer<TMessage> where TMessage : class, IDisposable
     {
         /// <inheritdoc cref="MediaObjectAnalyzer{T}.MediaObjectAnalyzer(Vocabulary.ClassUri[])"/>

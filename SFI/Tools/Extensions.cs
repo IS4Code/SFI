@@ -359,7 +359,7 @@ namespace IS4.SFI.Tools
         /// by calling <see cref="ArrayPool{T}.Rent(int)"/>, implementing
         /// <see cref="IDisposable"/> to automatically return the array to the pool.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">The element type of the array.</typeparam>
         public struct ArrayPoolLease<T> : IDisposable
         {
             readonly ArrayPool<T> arrayPool;

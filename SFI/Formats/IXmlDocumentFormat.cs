@@ -52,13 +52,13 @@ namespace IS4.SFI.Formats
         /// pointing at the root element. This instance
         /// is not expected to be modified.
         /// </param>
-        /// <returns></returns>
+        /// <returns><see langword="false"/> if the document cannot possibly be in this format, <see langword="true"/> otherwise.</returns>
         bool CheckDocument(XDocumentType? docType, XmlReader rootReader);
 
         /// <summary>
         /// Attempts to match this format from an XML document, producing
         /// an object that describes the media object stored in the file.
-        /// The object is obtained using the provided <see cref="IResultFactory{TResult, TArgs}"/>.
+        /// The object is obtained using <paramref name="resultFactory"/>.
         /// </summary>
         /// <typeparam name="TResult">User-specified result type passed to <paramref name="resultFactory"/>.</typeparam>
         /// <typeparam name="TArgs">User-specified arguments type passed to <paramref name="resultFactory"/>.</typeparam>
@@ -71,7 +71,7 @@ namespace IS4.SFI.Formats
         /// <param name="resultFactory">A receiver object that is provided the result of the match, if any.</param>
         /// <param name="args">User-specified arguments passed to <paramref name="resultFactory"/>.</param>
         /// <returns>
-        /// The result of <see cref="IResultFactory{TResult, TArgs}.Invoke{T}(T, TArgs)"/> when given the produced object,
+        /// The result of invoking <paramref name="resultFactory"/> when given the produced object,
         /// or the default value of <typeparamref name="TResult"/> when the match isn't successful.
         /// </returns>
         /// <exception cref="Exception">
@@ -85,74 +85,26 @@ namespace IS4.SFI.Formats
     /// based on XML, producing instances of <typeparamref name="T"/>
     /// to describe the media object.
     /// </summary>
-    /// <typeparam name="T">
-    /// The type of the instances produced as a result
-    /// of parsing the format.
-    /// </typeparam>
+    /// <typeparam name="T"><inheritdoc cref="IFileFormat{T}" path="/typeparam[@name='T']"/></typeparam>
     public interface IXmlDocumentFormat<T> : IFileFormat<T>, IXmlDocumentFormat where T : class
     {
-        /// <summary>
-        /// Returns the PUBLIC identifier of a document describing an instance of this formats.
-        /// </summary>
-        /// <param name="value">An object compatible with this format.</param>
-        /// <returns>A PUBLIC identifier based on <paramref name="value"/>.</returns>
-        /// <exception cref="ArgumentException">
-        /// Thrown if the argument is not compatible with the format.
-        /// </exception>
+        /// <inheritdoc cref="IXmlDocumentFormat.GetPublicId(object)"/>
         string? GetPublicId(T value);
 
-        /// <summary>
-        /// Returns the SYSTEM identifier of a document describing an instance of this formats.
-        /// </summary>
-        /// <param name="value">An object compatible with this format.</param>
-        /// <returns>A SYSTEM identifier based on <paramref name="value"/>.</returns>
-        /// <exception cref="ArgumentException">
-        /// Thrown if the argument is not compatible with the format.
-        /// </exception>
+        /// <inheritdoc cref="IXmlDocumentFormat.GetSystemId(object)"/>
         string? GetSystemId(T value);
 
-        /// <summary>
-        /// Returns the root element's namespace URI in a document describing an instance of this formats.
-        /// </summary>
-        /// <param name="value">An object compatible with this format.</param>
-        /// <returns>The namespace URI based on <paramref name="value"/>.</returns>
-        /// <exception cref="ArgumentException">
-        /// Thrown if the argument is not compatible with the format.
-        /// </exception>
+        /// <inheritdoc cref="IXmlDocumentFormat.GetNamespace(object)"/>
         Uri? GetNamespace(T value);
 
-        /// <summary>
-        /// Attempts to match this format from an XML document, producing
-        /// an object that describes the media object stored in the file.
-        /// The object is obtained using the provided <see cref="IResultFactory{TResult, TArgs}"/>.
-        /// </summary>
-        /// <typeparam name="TResult">User-specified result type passed to <paramref name="resultFactory"/>.</typeparam>
-        /// <typeparam name="TArgs">User-specified arguments type passed to <paramref name="resultFactory"/>.</typeparam>
-        /// <param name="reader">
-        /// An instance of <see cref="XmlReader"/> that can read the whole document.
-        /// The reader is pointed right before the root element.
-        /// </param>
-        /// <param name="docType">The DTD of the document.</param>
-        /// <param name="context">Additional information relevant to the match.</param>
-        /// <param name="resultFactory">A receiver object that is provided the result of the match, if any.</param>
-        /// <param name="args">User-specified arguments passed to <paramref name="resultFactory"/>.</param>
-        /// <returns>
-        /// The result of <see cref="IResultFactory{TResult, TArgs}.Invoke{T}(T, TArgs)"/> when given the produced object,
-        /// or the default value of <typeparamref name="TResult"/> when the match isn't successful.
-        /// </returns>
-        /// <exception cref="Exception">
-        /// Any exception may be caused during the internal parsing of the format.
-        /// </exception>
+        /// <inheritdoc cref="IXmlDocumentFormat.Match{TResult, TArgs}(XmlReader, XDocumentType?, MatchContext, IResultFactory{TResult, TArgs}, TArgs)"/>
         ValueTask<TResult?> Match<TResult, TArgs>(XmlReader reader, XDocumentType? docType, MatchContext context, ResultFactory<T, TResult, TArgs> resultFactory, TArgs args);
     }
 
     /// <summary>
     /// Provides a base implementation of <see cref="IXmlDocumentFormat{T}"/>.
     /// </summary>
-    /// <typeparam name="T">
-    /// The type of the instances produced as a result
-    /// of parsing the format.
-    /// </typeparam>
+    /// <typeparam name="T"><inheritdoc cref="IFileFormat{T}" path="/typeparam[@name='T']"/></typeparam>
     public abstract class XmlDocumentFormat<T> : FileFormat<T>, IXmlDocumentFormat<T> where T : class
     {
         /// <summary>

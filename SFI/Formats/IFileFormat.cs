@@ -56,10 +56,7 @@ namespace IS4.SFI.Formats
     /// <summary>
     /// Provides a base implementation of <see cref="IFileFormat{T}"/>.
     /// </summary>
-    /// <typeparam name="T">
-    /// The type of the instances produced as a result
-    /// of parsing the format.
-    /// </typeparam>
+    /// <typeparam name="T"><inheritdoc cref="IFileFormat{T}" path="/typeparam[@name='T']"/></typeparam>
     public abstract class FileFormat<T> : IFileFormat<T> where T : class
     {
         /// <summary>
