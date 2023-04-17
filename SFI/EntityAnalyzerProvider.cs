@@ -90,13 +90,13 @@ namespace IS4.SFI
                         }
                         return result;
                     }
-                    OutputLog.WriteLine($"[{nameOrdinal}] No result!");
+                    OutputLog.WriteLine($"[{nameOrdinal}] No result from {TextTools.GetUserFriendlyName(analyzer)}!");
                 }catch(InternalApplicationException)
                 {
                     throw;
                 }catch(Exception e) when(GlobalOptions.SuppressNonCriticalExceptions)
                 {
-                    OutputLog.WriteLine($"[{nameOrdinal}] Error!");
+                    OutputLog.WriteLine($"[{nameOrdinal}] Error from {TextTools.GetUserFriendlyName(analyzer)}!");
                     OutputLog.WriteLine(e);
                     return default;
                 }finally{
@@ -124,15 +124,24 @@ namespace IS4.SFI
             {
                 if(blocked == null || !blocked.Contains(containerProvider))
                 {
-                    var analyzer = containerProvider.MatchRoot(root, context);
-                    if(analyzer != null)
-                    {
-                        // If the provider is not blocked and the root matches, add it to the collection
-                        if(analyzerList == null)
+                    try{
+                        var analyzer = containerProvider.MatchRoot(root, context);
+                        if(analyzer != null)
                         {
-                            analyzerList = new List<ContainerAnalysisInfo>();
+                            // If the provider is not blocked and the root matches, add it to the collection
+                            if(analyzerList == null)
+                            {
+                                analyzerList = new List<ContainerAnalysisInfo>();
+                            }
+                            analyzerList.Add(new ContainerAnalysisInfo(analyzer, containerProvider));
                         }
-                        analyzerList.Add(new ContainerAnalysisInfo(analyzer, containerProvider));
+                    }catch(InternalApplicationException)
+                    {
+                        throw;
+                    }catch(Exception e) when(GlobalOptions.SuppressNonCriticalExceptions)
+                    {
+                        OutputLog.WriteLine($"[{TextTools.GetIdentifierFromType<TRoot>()}] Error from {TextTools.GetUserFriendlyName(containerProvider)}!");
+                        OutputLog.WriteLine(e);
                     }
                 }
             }
