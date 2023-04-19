@@ -326,6 +326,18 @@ namespace IS4.SFI
             return "application/x.exec." + interpreter.ToLowerInvariant();
         }
 
+        static readonly Regex mimeNameRegex = new(@"^[^/;]+/(?:vnd\.|prs\.|x-|)", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+        /// <summary>
+        /// Obtains the core name from a media type.
+        /// </summary>
+        /// <param name="type">The media type.</param>
+        /// <returns>The subtype part, without "vnd.", "prs.", or "x-".</returns>
+        public static string GetMimeTypeSimpleName(string type)
+        {
+            return mimeNameRegex.Replace(type, "");
+        }
+
         /// <summary>
         /// Returns a user-friendly string representation of an object.
         /// </summary>
