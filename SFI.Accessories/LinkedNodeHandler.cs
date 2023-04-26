@@ -5,6 +5,7 @@ using Microsoft.CSharp.RuntimeBinder;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -420,6 +421,7 @@ namespace IS4.SFI
                 return LiteralExtensions.ToLiteral(value, Graph);
             }
 
+            [DynamicDependency(nameof(LiteralExtensions.ToLiteral), typeof(LiteralExtensions))]
             protected override INode CreateNode<T>(T value)
             {
                 try{
