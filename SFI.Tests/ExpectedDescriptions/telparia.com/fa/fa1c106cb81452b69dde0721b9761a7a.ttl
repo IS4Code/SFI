@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQX-0BxF8XlVDAgaG_JUusZg?ct=application/octet-stream>.
+@base <x.blank:b373f156-1ca3-41c4-a081-14f32d071151>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -66,8 +66,8 @@ target:HMP300
                                                    a schema:MediaObject,
                                                      nfo:Image,
                                                      schema:ImageObject;
-                                                   skos:prefLabel "PNG object (160×90, 8-bit)"@en,
-                                                                  "PNG object (160×90)"@en,
+                                                   skos:prefLabel "PNG object (160×90)"@en,
+                                                                  "PNG object (160×90, 8-bit)"@en,
                                                                   "PNG object (2.09 KiB)"@en.
 <ni:///mh;1QEQ8A85aENsMWMRe7BT9BjukA?ct=application/octet-stream> at:digest <urn:md5:F00F3968436C3163117BB053F418EE90>;
                                                                   dcterms:extent "22096"^^dt:byte;
@@ -98,8 +98,8 @@ target:HMP300
                                                     nfo:verticalResolution 96 ;
                                                     nfo:width 1920 ;
                                                     a schema:MediaObject,
-                                                      schema:ImageObject,
-                                                      nfo:Image;
+                                                      nfo:Image,
+                                                      schema:ImageObject;
                                                     skos:prefLabel "JPG object (1920×1335)"@en,
                                                                    "JPG object (441.39 KiB)"@en.
 <ni:///mh;1QEQN5jkNeL7iNvg4jBNrDotZQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQN5jkNeL7iNvg4jBNrDotZQ?ct=image/svg+xml>;
@@ -293,8 +293,8 @@ target:HMP300
                                                     nfo:verticalResolution 96 ;
                                                     nfo:width 1920 ;
                                                     a schema:MediaObject,
-                                                      schema:ImageObject,
-                                                      nfo:Image;
+                                                      nfo:Image,
+                                                      schema:ImageObject;
                                                     skos:prefLabel "JPG object (1920×1461)"@en,
                                                                    "JPG object (678.74 KiB)"@en.
 <ni:///mh;1QEQcSsyiuEGSx9GW2MoySOVrA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQcSsyiuEGSx9GW2MoySOVrA?ct=image/svg+xml>;

@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQiB4b6WxwxVH6eVk16uq1nQ?ct=application/octet-stream>.
+@base <x.blank:6e02d941-aec2-4c35-95d2-1c32056803e2>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -382,10 +382,10 @@ DATA 0
                                                    nfo:verticalResolution 299.9994;
                                                    nfo:width 1756 ;
                                                    a schema:MediaObject,
-                                                     schema:ImageObject,
-                                                     nfo:Image;
-                                                   skos:prefLabel "PNG object (1756×1240, 8-bit)"@en,
-                                                                  "PNG object (1756×1240)"@en,
+                                                     nfo:Image,
+                                                     schema:ImageObject;
+                                                   skos:prefLabel "PNG object (1756×1240)"@en,
+                                                                  "PNG object (1756×1240, 8-bit)"@en,
                                                                   "PNG object (8.32 MiB)"@en.
 <ni:///mh;1QEQYkRSWQ-N8mYETcC1tElCjw?ct=application/octet-stream> at:digest <urn:md5:624452590F8DF266044DC0B5B449428F>;
                                                                   dcterms:extent "1174"^^dt:byte;
