@@ -6,6 +6,7 @@ using MorseCode.ITask;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -145,12 +146,21 @@ namespace IS4.SFI
 
             foreach(var type in asm.ExportedTypes)
             {
-                // Only yield concrete instantiable types
-                if(!type.IsAbstract && !type.IsGenericTypeDefinition)
+                // Only yield concrete instantiable browsable types
+                if(!type.IsAbstract && !type.IsGenericTypeDefinition && IsTypeBrowsable(type))
                 {
                     yield return new ComponentType(type, () => ActivatorUtilities.CreateInstance(serviceProvider, type), this);
                 }
             }
+        }
+
+        static readonly Type BrowsableAttributeType = typeof(BrowsableAttribute);
+
+        static bool IsTypeBrowsable(Type type)
+        {
+            return
+                (TypeDescriptor.GetAttributes(type)[BrowsableAttributeType] as BrowsableAttribute)
+                ?.Browsable ?? true;
         }
 
         class ZipArchiveWrapper : IDirectoryInfo
