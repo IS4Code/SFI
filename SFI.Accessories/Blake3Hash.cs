@@ -12,15 +12,11 @@ namespace IS4.SFI
     /// </summary>
     public class Blake3Hash : StreamDataHash<Hasher>
     {
-        /// <summary>
-        /// The singleton instance of the algorithm.
-        /// </summary>
-        public static readonly Blake3Hash Instance = new();
-
         /// <inheritdoc/>
         public override int? NumericIdentifier => 0x1e;
 
-        private Blake3Hash() : base(Individuals.Blake3, 32, "urn:blake3:", FormattingMethod.Base32)
+        /// <inheritdoc cref="StreamDataHash{T}.StreamDataHash(IndividualUri, int, string, FormattingMethod)"/>
+        public Blake3Hash() : base(Individuals.Blake3, 32, "urn:blake3:", FormattingMethod.Base32)
         {
 
         }

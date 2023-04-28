@@ -4,6 +4,7 @@ using IS4.SFI.Tools;
 using IS4.SFI.Vocabulary;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -17,6 +18,7 @@ namespace IS4.SFI.Analyzers
     /// storing the VS_VERSIONINFO structure. The parsing of the structure is done
     /// through P/Invoke.
     /// </summary>
+    [Browsable(false)]
     public class WinVersionAnalyzer : EntityAnalyzer<WinVersionInfo>
     {
         /// <inheritdoc/>

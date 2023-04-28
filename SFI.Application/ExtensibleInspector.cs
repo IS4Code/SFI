@@ -2,11 +2,8 @@
 using IS4.SFI.Services;
 using IS4.SFI.Tools;
 using Microsoft.Extensions.DependencyInjection;
-using MorseCode.ITask;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -18,7 +15,7 @@ namespace IS4.SFI
     /// <summary>
     /// An implementation of <see cref="Inspector"/> allowing loading of plugins.
     /// </summary>
-    public abstract class ExtensibleInspector : ComponentInspector, IResultFactory<object?, IEnumerable>
+    public abstract class ExtensibleInspector : ComponentInspector
     {
         /// <summary>
         /// Contains the collection of plugins loaded by the inspector.
@@ -45,19 +42,7 @@ namespace IS4.SFI
 
                 foreach(var component in LoadPlugin(plugin.Directory, plugin.MainFile))
                 {
-                    int componentCount = 0;
-
-                    foreach(var collection in ComponentCollections)
-                    {
-                        await foreach(var instance in collection.CreateInstance(component, this, collection.Collection))
-                        {
-                            if(instance != null)
-                            {
-                                componentCount++;
-                                CaptureCollections(instance);
-                            }
-                        }
-                    }
+                    int componentCount = await LoadIntoCollections(component);
 
                     if(componentCount > 0)
                     {
@@ -78,16 +63,6 @@ namespace IS4.SFI
                     OutputLog?.WriteLine($"Loaded {count} component{(count == 1 ? "" : "s")} from assembly {asm.GetName().Name}.");
                 }
             }
-        }
-
-        async ITask<object?> IResultFactory<object?, IEnumerable>.Invoke<T>(T value, IEnumerable sequence)
-        {
-            if(sequence is ICollection<T> collection)
-            {
-                collection.Add(value);
-                return value;
-            }
-            return null;
         }
 
         /// <summary>
@@ -151,23 +126,10 @@ namespace IS4.SFI
                 yield break;
             }
 
-            foreach(var type in asm.ExportedTypes)
+            foreach(var type in OpenAssembly(asm, serviceProvider))
             {
-                // Only yield concrete instantiable browsable types
-                if(!type.IsAbstract && !type.IsGenericTypeDefinition && IsTypeBrowsable(type))
-                {
-                    yield return new ComponentType(type, () => ActivatorUtilities.CreateInstance(serviceProvider, type), this);
-                }
+                yield return type;
             }
-        }
-
-        static readonly Type BrowsableAttributeType = typeof(BrowsableAttribute);
-
-        static bool IsTypeBrowsable(Type type)
-        {
-            return
-                (TypeDescriptor.GetAttributes(type)[BrowsableAttributeType] as BrowsableAttribute)
-                ?.Browsable ?? true;
         }
 
         class ZipArchiveWrapper : IDirectoryInfo

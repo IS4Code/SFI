@@ -1,6 +1,7 @@
 ﻿using IS4.SFI.Formats.Modules;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace IS4.SFI.Formats
     /// <summary>
     /// Represents the Windows PE module format, loaded using P/Invoke.
     /// </summary>
+    [Browsable(false)]
     public class Win32ModuleFormat : WinModuleFormat
     {
         /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>

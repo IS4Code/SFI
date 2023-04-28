@@ -1,6 +1,7 @@
 ﻿using IS4.SFI.Services;
 using MetadataExtractor.Util;
 using System;
+using System.ComponentModel;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -10,6 +11,7 @@ namespace IS4.SFI.Formats
     /// Represents a format using <see cref="FileTypeDetector.DetectFileType(Stream)"/>
     /// to detect the format, producing instances of <see cref="FileTypeWrapper"/>.
     /// </summary>
+    [Browsable(false)]
     public class MetadataExtractorFormat : BinaryFileFormat<MetadataExtractorFormat.FileTypeWrapper>
     {
         /// <inheritdoc cref="FileFormat{T}.FileFormat(string?, string?)"/>

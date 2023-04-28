@@ -24,9 +24,9 @@ namespace IS4.SFI.WebApp
         /// <inheritdoc/>
         public async override ValueTask AddDefault()
         {
-            BaseFormats.AddDefault(Analyzers, DataAnalyzer.DataFormats, XmlAnalyzer.XmlFormats, ContainerProviders);
-            ExternalFormats.AddDefault(Analyzers, DataAnalyzer.DataFormats, XmlAnalyzer.XmlFormats, ContainerProviders);
-            AccessoriesFormats.AddDefault(Analyzers, DataAnalyzer.DataFormats, XmlAnalyzer.XmlFormats, ContainerProviders);
+            await LoadAssembly(BaseFormats.Assembly);
+            await LoadAssembly(ExternalFormats.Assembly);
+            await LoadAssembly(AccessoriesFormats.Assembly);
 
             Plugins.Clear();
             await LoadPlugins();

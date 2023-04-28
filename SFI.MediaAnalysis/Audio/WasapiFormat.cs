@@ -3,6 +3,7 @@ using NAudio.MediaFoundation;
 using NAudio.Wave;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace IS4.SFI.Formats
     /// <summary>
     /// Represents an audio format backed by the WASAPI layer.
     /// </summary>
+    [Browsable(false)]
     public class WasapiFormat : BinaryFileFormat<WaveStream>
     {
         static readonly MediaFoundationReader.MediaFoundationReaderSettings settings = new()

@@ -46,11 +46,6 @@ namespace IS4.SFI
         /// </summary>
         public XmlAnalyzer XmlAnalyzer { get; }
 
-        /// <summary>
-        /// The BitTorrent Info-hash algorithm.
-        /// </summary>
-        public BitTorrentHash BitTorrentHash { get; }
-
         /// <inheritdoc cref="EntityAnalyzerProvider.OutputLog"/>
         public new TextWriter OutputLog {
             get {
@@ -103,8 +98,6 @@ namespace IS4.SFI
             DataAnalyzer.HashAlgorithms.Add(BuiltInNonCryptographicHash.CRC64);
             DataAnalyzer.HashAlgorithms.Add(BuiltInNonCryptographicHash.XXH32);
             DataAnalyzer.HashAlgorithms.Add(BuiltInNonCryptographicHash.XXH64);
-
-            FileAnalyzer.HashAlgorithms.Add(BitTorrentHash = new BitTorrentHash());
         }
 
         /// <summary>

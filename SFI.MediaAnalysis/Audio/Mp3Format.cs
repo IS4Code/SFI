@@ -1,6 +1,7 @@
 ﻿using IS4.SFI.Services;
 using NAudio.Wave;
 using System;
+using System.ComponentModel;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -9,6 +10,7 @@ namespace IS4.SFI.Formats
     /// <summary>
     /// The MP3 audio format.
     /// </summary>
+    [Browsable(false)]
     public class Mp3Format : BinaryFileFormat<WaveStream>
     {
         readonly Mp3FileReaderBase.FrameDecompressorBuilder frameDecompressorBuilder;

@@ -136,7 +136,7 @@ namespace IS4.SFI.Tests
             Assert.IsTrue(report.AreEqual, $"The graphs are not equal. New description was saved to {notmatchedFile}.");
         }
         
-        class TestInspector : Inspector
+        class TestInspector : ComponentInspector
         {
             /// <summary>
             /// The default image analyzer.
@@ -155,11 +155,11 @@ namespace IS4.SFI.Tests
             /// <inheritdoc/>
             public async override ValueTask AddDefault()
             {
-                BaseFormats.AddDefault(Analyzers, DataAnalyzer.DataFormats, XmlAnalyzer.XmlFormats, ContainerProviders);
-                ExternalFormats.AddDefault(Analyzers, DataAnalyzer.DataFormats, XmlAnalyzer.XmlFormats, ContainerProviders);
-                AccessoriesFormats.AddDefault(Analyzers, DataAnalyzer.DataFormats, XmlAnalyzer.XmlFormats, ContainerProviders);
-                MediaAnalysisFormats.AddDefault(Analyzers, DataAnalyzer.DataFormats, XmlAnalyzer.XmlFormats, ContainerProviders);
-                WindowsFormats.AddDefault(Analyzers, DataAnalyzer.DataFormats, XmlAnalyzer.XmlFormats, ContainerProviders);
+                await LoadAssembly(BaseFormats.Assembly);
+                await LoadAssembly(ExternalFormats.Assembly);
+                await LoadAssembly(AccessoriesFormats.Assembly);
+                await LoadAssembly(MediaAnalysisFormats.Assembly);
+                await LoadAssembly(WindowsFormats.Assembly);
 
                 await base.AddDefault();
 

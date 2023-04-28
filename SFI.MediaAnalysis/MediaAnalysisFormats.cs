@@ -1,23 +1,29 @@
-﻿using IS4.SFI.Analyzers;
-using IS4.SFI.Formats;
-using IS4.SFI.Services;
+﻿using IS4.SFI.Formats;
+using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace IS4.SFI
 {
     /// <inheritdoc cref="BaseFormats"/>
-    public static class MediaAnalysisFormats
+    public class MediaAnalysisFormats : IEnumerable<IBinaryFileFormat>
     {
-        /// <inheritdoc cref="BaseFormats.AddDefault(ICollection{object}, ICollection{IBinaryFileFormat}, ICollection{IXmlDocumentFormat}, ICollection{IContainerAnalyzerProvider})"/>
-        public static void AddDefault(ICollection<object> analyzers, ICollection<IBinaryFileFormat> dataFormats, ICollection<IXmlDocumentFormat> xmlFormats, ICollection<IContainerAnalyzerProvider> containerProviders)
-        {
-            dataFormats.Add(new ImageFormat());
-            dataFormats.Add(new WaveFormat());
-            dataFormats.Add(new OggFormat());
-            dataFormats.Add(new WasapiFormat(false));
-            dataFormats.Add(new WasapiFormat(true));
+        /// <inheritdoc cref="BaseFormats.Assembly"/>
+        public static readonly Assembly Assembly = Assembly.GetExecutingAssembly();
 
-            analyzers.Add(new WaveAnalyzer());
+        IBinaryFileFormat[] formats = new[] {
+            new WasapiFormat(false),
+            new WasapiFormat(true)
+        };
+
+        public IEnumerator<IBinaryFileFormat> GetEnumerator()
+        {
+            return ((IEnumerable<IBinaryFileFormat>)formats).GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }

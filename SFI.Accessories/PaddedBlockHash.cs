@@ -1,6 +1,7 @@
 ﻿using IS4.SFI.Services;
 using IS4.SFI.Vocabulary;
 using System;
+using System.ComponentModel;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -16,6 +17,7 @@ namespace IS4.SFI
     /// (<see cref="BitTorrentHashCache.FileInfo.LastHashPadded"/> and
     /// <see cref="BitTorrentHashCache.FileInfo.LastHash"/>)
     /// </summary>
+    [Browsable(false)]
     public class PaddedBlockHash : DataHashAlgorithm
     {
         /// <summary>

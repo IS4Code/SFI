@@ -1,6 +1,7 @@
 ﻿using IS4.SFI.Services;
 using IS4.SFI.Vocabulary;
 using System;
+using System.ComponentModel;
 using System.IO.Hashing;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ namespace IS4.SFI.Tools
     /// Represents a non-cryptographic hash algorithm backed using a <see cref="NonCryptographicHashAlgorithm"/>
     /// instance.
     /// </summary>
+    [Browsable(false)]
     public class BuiltInNonCryptographicHash : StreamDataHash<NonCryptographicHashAlgorithm>
     {
         /// <summary>

@@ -19,14 +19,10 @@ namespace IS4.SFI.MediaAnalysis.Images
     /// </summary>
     public class DHash : ObjectHashAlgorithm<Image>
     {
-        /// <summary>
-        /// The singleton instance of the algorithm.
-        /// </summary>
-        public static readonly DHash Instance = new();
-
         static readonly Color gray = Color.FromArgb(0xBC, 0xBC, 0xBC);
 
-        private DHash() : base(Individuals.DHash, 16, "urn:dhash:", FormattingMethod.Hex)
+        /// <inheritdoc cref="ObjectHashAlgorithm{T}.ObjectHashAlgorithm(IndividualUri, int, string, FormattingMethod)"/>
+        public DHash() : base(Individuals.DHash, 16, "urn:dhash:", FormattingMethod.Hex)
         {
 
         }
