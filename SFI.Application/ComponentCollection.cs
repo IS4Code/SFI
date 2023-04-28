@@ -84,8 +84,8 @@ namespace IS4.SFI.Application
         /// <param name="component">The component type to create an instance of.</param>
         /// <param name="resultFactory">A factory object receiving the created instance.</param>
         /// <param name="args">Arguments of <paramref name="resultFactory"/>.</param>
-        /// <returns>The result of <paramref name="resultFactory"/>.</returns>
-        public abstract ValueTask<TResult?> CreateInstance<TResult, TArgs>(ComponentType component, IResultFactory<TResult, TArgs> resultFactory, TArgs args);
+        /// <returns>The results of <paramref name="resultFactory"/>.</returns>
+        public abstract IAsyncEnumerable<TResult?> CreateInstance<TResult, TArgs>(ComponentType component, IResultFactory<TResult, TArgs> resultFactory, TArgs args);
 
         /// <summary>
         /// Invokes <paramref name="resultFactory"/> over each element in the collection.
@@ -124,33 +124,106 @@ namespace IS4.SFI.Application
         }
 
         /// <inheritdoc/>
-        public override async ValueTask<TResult?> CreateInstance<TResult, TArgs>(ComponentType component, IResultFactory<TResult, TArgs> resultFactory, TArgs args) where TResult : default
+        public override async IAsyncEnumerable<TResult?> CreateInstance<TResult, TArgs>(ComponentType component, IResultFactory<TResult, TArgs> resultFactory, TArgs args) where TResult : default
         {
-            var type = Attribute.CommonType;
-            if(type != null)
+            // Check that a type produced from the component can be added to the collection
+            if(MatchType(component.Type, true).Any(elementType.IsAssignableFrom))
             {
-                if(type.IsGenericTypeDefinition)
+                var inst = component.GetInstance();
+                if(inst is T instance)
                 {
-                    if(!component.Type.GetInterfaces().Any(i => i.IsGenericType && type.Equals(i.GetGenericTypeDefinition())))
+                    yield return await resultFactory.Invoke(instance, args);
+                }
+                if(inst is IAsyncEnumerable<T> asyncEnumerable)
+                {
+                    await foreach(var obj in asyncEnumerable)
                     {
-                        return default;
+                        yield return await resultFactory.Invoke(obj, args);
                     }
-                }else{
-                    if(!type.IsAssignableFrom(component.Type))
+                }else if(inst is IEnumerable<T> enumerable)
+                {
+                    foreach(var obj in enumerable)
                     {
-                        return default;
+                        yield return await resultFactory.Invoke(obj, args);
                     }
                 }
             }
-            if(!elementType.IsAssignableFrom(component.Type))
+        }
+
+        static readonly Type enumerableType = typeof(IEnumerable<>);
+        static readonly Type asyncEnumerableType = typeof(IAsyncEnumerable<>);
+
+        /// <summary>
+        /// Checks whether <paramref name="componentType"/> matches the type desired by this
+        /// collection, directly and through implementation of <see cref="IEnumerable{T}"/>
+        /// or <see cref="IAsyncEnumerable{T}"/>.
+        /// </summary>
+        /// <param name="componentType">The type of the component.</param>
+        /// <param name="allowCollections">Whether to allow collection types.</param>
+        /// <returns>The sequence of all types returned from the component.</returns>
+        IEnumerable<Type> MatchType(Type componentType, bool allowCollections)
+        {
+            var commonType = Attribute.CommonType;
+            if(commonType != null)
             {
-                return default;
+                if(!commonType.IsGenericTypeDefinition)
+                {
+                    // Type is directly assignable
+                    if(commonType.IsAssignableFrom(componentType))
+                    {
+                        yield return componentType;
+                    }
+                    // Continues below
+                }else{
+                    foreach(var i in componentType.GetInterfaces())
+                    {
+                        if(i.IsGenericType)
+                        {
+                            var def = i.GetGenericTypeDefinition();
+                            // The interface definition matches the collection type
+                            if(commonType.Equals(def))
+                            {
+                                yield return componentType;
+                                if(!allowCollections)
+                                {
+                                    // No need to check further
+                                    break;
+                                }
+                            }
+                            // Top-level interface is IEnumerable or IAsyncEnumerable
+                            if(allowCollections && (enumerableType.Equals(def) || asyncEnumerableType.Equals(def)))
+                            {
+                                foreach(var type in MatchType(i.GetGenericArguments()[0], false))
+                                {
+                                    yield return type;
+                                }
+                            }
+                        }
+                    }
+                    yield break;
+                }
+            }else{
+                // Automatically available
+                yield return componentType;
             }
-            if(component.GetInstance() is T obj)
+            if(allowCollections)
             {
-                return await resultFactory.Invoke(obj, args);
+                // It implements IEnumerable or IAsyncEnumerable of a matching type (only top-level)
+                foreach(var i in componentType.GetInterfaces())
+                {
+                    if(i.IsGenericType)
+                    {
+                        var def = i.GetGenericTypeDefinition();
+                        if(enumerableType.Equals(def) || asyncEnumerableType.Equals(def))
+                        {
+                            foreach(var type in MatchType(i.GetGenericArguments()[0], false))
+                            {
+                                yield return type;
+                            }
+                        }
+                    }
+                }
             }
-            return default;
         }
 
         /// <inheritdoc/>

@@ -18,7 +18,7 @@ namespace IS4.SFI
     /// <summary>
     /// An implementation of <see cref="Inspector"/> allowing loading of plugins.
     /// </summary>
-    public abstract class ExtensibleInspector : ComponentInspector, IResultFactory<bool, IEnumerable>
+    public abstract class ExtensibleInspector : ComponentInspector, IResultFactory<object?, IEnumerable>
     {
         /// <summary>
         /// Contains the collection of plugins loaded by the inspector.
@@ -45,21 +45,28 @@ namespace IS4.SFI
 
                 foreach(var component in LoadPlugin(plugin.Directory, plugin.MainFile))
                 {
+                    int componentCount = 0;
+
                     foreach(var collection in ComponentCollections)
                     {
-                        await collection.CreateInstance(component, this, collection.Collection);
+                        await foreach(var instance in collection.CreateInstance(component, this, collection.Collection))
+                        {
+                            if(instance != null)
+                            {
+                                componentCount++;
+                                CaptureCollections(instance);
+                            }
+                        }
                     }
 
-                    if(component.Instance != null)
+                    if(componentCount > 0)
                     {
                         var assembly = component.Type.Assembly;
                         if(!loaded.TryGetValue(assembly, out var count))
                         {
                             count = 0;
                         }
-                        loaded[assembly] = count + 1;
-
-                        CaptureCollections(component.Instance);
+                        loaded[assembly] = count + componentCount;
                     }
                 }
             }
@@ -73,14 +80,14 @@ namespace IS4.SFI
             }
         }
 
-        async ITask<bool> IResultFactory<bool, IEnumerable>.Invoke<T>(T value, IEnumerable sequence)
+        async ITask<object?> IResultFactory<object?, IEnumerable>.Invoke<T>(T value, IEnumerable sequence)
         {
             if(sequence is ICollection<T> collection)
             {
                 collection.Add(value);
-                return true;
+                return value;
             }
-            return false;
+            return null;
         }
 
         /// <summary>

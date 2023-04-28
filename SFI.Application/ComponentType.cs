@@ -8,7 +8,6 @@ namespace IS4.SFI.Application
     public class ComponentType
     {
         readonly ComponentInspector inspector;
-        readonly Func<object> factory;
 
         /// <summary>
         /// The type of the component.
@@ -16,14 +15,9 @@ namespace IS4.SFI.Application
         public Type Type { get; }
 
         /// <summary>
-        /// <see langword="true"/> if an error occurred during the creation of the object.
+        /// The instance of the component, or error.
         /// </summary>
-        public bool Error { get; private set; }
-
-        /// <summary>
-        /// The instance of the component, if previously created.
-        /// </summary>
-        public object? Instance { get; private set; }
+        readonly Lazy<(bool success, object result)> instance;
 
         /// <summary>
         /// Creates a new instance of the class.
@@ -34,8 +28,17 @@ namespace IS4.SFI.Application
         public ComponentType(Type type, Func<object> factory, ComponentInspector inspector)
         {
             this.inspector = inspector;
-            this.factory = factory;
             Type = type;
+
+            instance = new(() => {
+                try{
+                    return (true, factory());
+                }catch(Exception e) when(GlobalOptions.SuppressNonCriticalExceptions)
+                {
+                    inspector?.OutputLog?.WriteLine($"An exception occurred while creating an instance of type {Type} from assembly {Type.Assembly.GetName().Name}: {e}");
+                    return (false, e);
+                }
+            }, false);
         }
 
         /// <summary>
@@ -45,18 +48,8 @@ namespace IS4.SFI.Application
         public object? GetInstance()
         {
             // Re-use instance if already created
-            if(Instance == null && !Error)
-            {
-                try{
-                    Instance = factory();
-                }catch(Exception e) when(GlobalOptions.SuppressNonCriticalExceptions)
-                {
-                    inspector?.OutputLog?.WriteLine($"An exception occurred while creating an instance of type {Type} from assembly {Type.Assembly.GetName().Name}: {e}");
-                    // Prevents attempting to create the instance next time
-                    Error = true;
-                }
-            }
-            return Instance;
+            var (success, value) = instance.Value;
+            return success ? value : null;
         }
     }
 }
