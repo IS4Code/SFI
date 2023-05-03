@@ -109,7 +109,7 @@ namespace IS4.SFI.Formats
         /// <inheritdoc/>
         public override string ToString()
         {
-            return TextTools.GetMimeTypeSimpleName(MediaType ?? TextTools.GetFakeMediaTypeFromType<T>() ?? base.ToString());
+            return TextTools.GetMimeTypeSimpleName(MediaType ?? TextTools.GetDummyMediaTypeFromType<T>() ?? base.ToString());
         }
     }
 }

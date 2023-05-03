@@ -50,7 +50,7 @@ namespace IS4.SFI.Tests
         }
 
         /// <summary>
-        /// The tests for <see cref="FormatMimeName(string)"/>.
+        /// The tests for <see cref="FormatComponentName(string)"/>.
         /// </summary>
         [TestMethod]
         [DataRow("NormalTestName", "normal-test-name")]
@@ -58,10 +58,10 @@ namespace IS4.SFI.Tests
         [DataRow("NameWith1digit", "name-with1digit")]
         [DataRow("NameWith1Digit", "name-with1-digit")]
         [DataRow("abc-123_.-xyz", "abc-123_.-xyz")]
-        [DataRow("%&+/", "&25&26&2B&2F")]
-        public void FormatMimeNameTests(string name, string expected)
+        [DataRow("%&+/", "%&+/")]
+        public void FormatComponentNameTests(string name, string expected)
         {
-            var result = FormatMimeName(name);
+            var result = FormatComponentName(name);
             Assert.AreEqual(expected, result);
         }
 

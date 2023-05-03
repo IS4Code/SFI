@@ -52,7 +52,7 @@ namespace IS4.SFI.Services
         /// <returns>A sequence of pairs storing all properties of the instance.</returns>
         public static IEnumerable<KeyValuePair<string, PropertyDescriptor>> GetProperties(this INodeMatchProperties properties)
         {
-            return TypeDescriptor.GetProperties(properties).Cast<PropertyDescriptor>().Where(p => p.IsBrowsable).Select(p => new KeyValuePair<string, PropertyDescriptor>(TextTools.FormatMimeName(p.Name).Replace("-", "_"), p));
+            return TypeDescriptor.GetProperties(properties).Cast<PropertyDescriptor>().Where(p => p.IsBrowsable).Select(p => new KeyValuePair<string, PropertyDescriptor>(TextTools.FormatComponentName(p.Name).Replace("-", "_"), p));
         }
 
         /// <summary>

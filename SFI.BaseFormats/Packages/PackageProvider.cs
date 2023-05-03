@@ -49,7 +49,7 @@ namespace IS4.SFI.Formats
         /// <inheritdoc/>
         public override string ToString()
         {
-            return TextTools.GetMimeTypeSimpleName(TextTools.GetFakeMediaTypeFromType<TAnalyzer>() ?? base.ToString());
+            return TextTools.GetMimeTypeSimpleName(TextTools.GetDummyMediaTypeFromType<TAnalyzer>() ?? base.ToString());
         }
 
         /// <summary>

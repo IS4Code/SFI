@@ -150,9 +150,9 @@ namespace IS4.SFI.Analyzers
             public override string Extension { get; }
 
             /// <summary>
-            /// The media type is produced by <see cref="TextTools.GetFakeMediaTypeFromSignature(string)"/>.
+            /// The media type is produced by <see cref="TextTools.GetImpliedMediaTypeFromSignature(string)"/>.
             /// </summary>
-            public override string MediaType => TextTools.GetFakeMediaTypeFromSignature(Extension);
+            public override string MediaType => TextTools.GetImpliedMediaTypeFromSignature(Extension);
 
             public SignatureFormat(string signature)
             {
@@ -172,9 +172,9 @@ namespace IS4.SFI.Analyzers
             public override string Extension { get; }
 
             /// <summary>
-            /// The media type is produced by <see cref="TextTools.GetFakeMediaTypeFromInterpreter(string)"/>.
+            /// The media type is produced by <see cref="TextTools.GetImpliedMediaTypeFromInterpreter(string)"/>.
             /// </summary>
-            public override string MediaType => TextTools.GetFakeMediaTypeFromInterpreter(Extension);
+            public override string MediaType => TextTools.GetImpliedMediaTypeFromInterpreter(Extension);
 
             public InterpreterFormat(string interpreter)
             {

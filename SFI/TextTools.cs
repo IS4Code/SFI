@@ -42,129 +42,44 @@ namespace IS4.SFI
         }
 
         /// <summary>
-        /// Used to split the domain name or IP in the host portion of a URI.
-        /// </summary>
-        static readonly char[] hostSplitChars = { '.' };
-
-        /// <summary>
-        /// Used to split the path portion of a URI if the host is specified.
-        /// </summary>
-        static readonly char[] slashSplitChars = { '/' };
-
-        /// <summary>
-        /// Used to split the path portion of a URI if the host is not specified.
-        /// </summary>
-        static readonly char[] colonSplitChars = { ':' };
-
-        /// <summary>
-        /// Breaks down a URI according to its components in a natural hierarchy,
-        /// from the top-level domain name, towards its fragment.
-        /// </summary>
-        /// <param name="uri">The URI to dissect.</param>
-        /// <returns>The sequence of all URI components in order.</returns>
-        static IEnumerable<string> GetUriMediaTypeComponents(Uri uri)
-        {
-            switch(uri.HostNameType)
-            {
-                case UriHostNameType.Dns:
-                    // A domain is split into its individual domain names, starting from the TLD
-                    if(!String.IsNullOrEmpty(uri.IdnHost))
-                    {
-                        foreach(var name in uri.IdnHost.Split(hostSplitChars).Reverse())
-                        {
-                            yield return name;
-                        }
-                    }
-                    break;
-                case UriHostNameType.IPv4:
-                    // An IPv4 is split into its component octets
-                    if(!String.IsNullOrEmpty(uri.Host))
-                    {
-                        foreach(var component in uri.Host.Split(hostSplitChars))
-                        {
-                            yield return component;
-                        }
-                    }
-                    break;
-                case UriHostNameType.Unknown:
-                    break;
-                default:
-                    // Any other type of host is returned as is
-                    if(!String.IsNullOrEmpty(uri.Host))
-                    {
-                        yield return uri.Host;
-                    }
-                    break;
-            }
-            // The scheme and port are next
-            yield return uri.Scheme;
-            if(!uri.IsDefaultPort)
-            {
-                yield return uri.Port.ToString();
-            }
-            // The path is split by : or / based on the presence of the host (it usually corresponds)
-            foreach(var segment in uri.AbsolutePath.Split(uri.HostNameType != UriHostNameType.Unknown ? slashSplitChars : colonSplitChars, StringSplitOptions.RemoveEmptyEntries))
-            {
-                yield return segment;
-            }
-            // Followed by the query and fragment
-            if(!String.IsNullOrEmpty(uri.Query))
-            {
-                yield return uri.Query;
-            }
-            if(!String.IsNullOrEmpty(uri.Fragment))
-            {
-                yield return uri.Fragment;
-            }
-        }
-
-        /// <summary>
-        /// These characters are not allowed in a MIME type. The &amp; is allowed, but is used for other purposes.
-        /// </summary>
-        static readonly Regex badMimeCharacters = new(@"[^a-zA-Z0-9_.-]+", RegexOptions.Compiled);
-
-        /// <summary>
-        /// Creates a fake media type from a namespace URI, PUBLIC identifier,
+        /// Creates an implied media type from a namespace URI, PUBLIC identifier,
         /// and the root element name in an XML document.
         /// </summary>
         /// <param name="ns">The root namespace URI (may be <see langword="null"/>).</param>
         /// <param name="publicId">The PUBLIC identifier (may be <see langword="null"/>).</param>
         /// <param name="rootName">The name of the root element.</param>
-        /// <returns>A MIME type in the form of "application/x.ns.{path}+xml", where path
-        /// is formed from the individual components of <paramref name="ns"/>, ending with <paramref name="rootName"/>.
-        /// If <paramref name="ns"/> is <see langword="null"/> and <paramref name="publicId"/> is provided,
-        /// the namespace URI is created via <see cref="UriTools.CreatePublicId(string)"/>.
+        /// <returns>A MIME type in the form of
+        /// "application/prs.implied-document+xml;root={<paramref name="rootName"/>};ns={<paramref name="ns"/>};public={<paramref name="publicId"/>}".
         /// </returns>
-        public static string GetFakeMediaTypeFromXml(Uri? ns, string? publicId, string rootName)
+        public static string GetImpliedMediaTypeFromXml(Uri? ns, string? publicId, string rootName)
         {
-            if(ns == null)
+            var sb = new StringBuilder("application/prs.implied-document+xml;root=");
+            sb.Append(FormatMimeParameter(rootName));
+            if(ns != null)
             {
-                if(publicId != null)
-                {
-                    ns = UriTools.CreatePublicId(publicId);
-                }else{
-                    return $"application/x.ns.{rootName}+xml";
-                }
+                sb.Append(";ns=");
+                sb.Append(FormatMimeParameter(ns.AbsoluteUri));
             }
-            var replaced = String.Join(".",
-                GetUriMediaTypeComponents(ns)
-                .Select(c => badMimeCharacters.Replace(c, m => {
-                    return String.Join("", Encoding.UTF8.GetBytes(m.Value).Select(b => $"&{b:X2}"));
-                })));
-            return $"application/x.ns.{replaced}.{rootName}+xml";
+            if(publicId != null)
+            {
+                sb.Append(";public=");
+                sb.Append(FormatMimeParameter(publicId));
+            }
+            return sb.ToString();
         }
 
         /// <summary>
-        /// Creates a fake media type from a .NET type.
+        /// Creates a dummy media type from a .NET type.
         /// </summary>
         /// <typeparam name="T">The type to use for the media type.</typeparam>
-        /// <returns>A MIME type in the form of "application/x.obj.{name}", where name
-        /// is the result of <see cref="GetIdentifierFromType{T}"/>.
+        /// <returns>A MIME type in the form of
+        /// "application/octet-stream;type={name}",
+        /// where name is the result of <see cref="GetIdentifierFromType{T}"/>.
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static string GetFakeMediaTypeFromType<T>()
+        public static string GetDummyMediaTypeFromType<T>()
         {
-            return FakeTypeNameCache<T>.Name;
+            return DummyTypeNameCache<T>.Name;
         }
 
         /// <summary>
@@ -177,7 +92,7 @@ namespace IS4.SFI
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string GetIdentifierFromType<T>()
         {
-            return FakeTypeNameCache<T>.ShortName;
+            return DummyTypeNameCache<T>.ShortName;
         }
 
         /// <inheritdoc cref="GetIdentifierFromType{T}"/>
@@ -185,7 +100,7 @@ namespace IS4.SFI
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string GetIdentifierFromType(Type type)
         {
-            return FakeTypeNameCache<object>.GetTypeFriendlyName(type);
+            return DummyTypeNameCache<object>.GetTypeFriendlyName(type);
         }
 
         /// <summary>
@@ -204,10 +119,10 @@ namespace IS4.SFI
         /// </summary>
         static readonly Regex interfaceLetter = new(@"^I(?=\p{Lu})", RegexOptions.Compiled);
 
-        class FakeTypeNameCache<T>
+        class DummyTypeNameCache<T>
         {
             public static readonly string ShortName = GetTypeFriendlyName(typeof(T));
-            public static readonly string Name = "application/x.obj." + ShortName;
+            public static readonly string Name = "application/octet-stream;type=" + FormatMimeParameter(ShortName);
 
             public static string GetTypeFriendlyName(Type type)
             {
@@ -246,14 +161,14 @@ namespace IS4.SFI
                     if(!friendNamespace.IsMatch(type.Namespace))
                     {
                         // If this is in an external assembly, distinguish it by the assembly name
-                        components.Add(FormatMimeName(type.Assembly.GetName().Name));
+                        components.Add(FormatComponentName(type.Assembly.GetName().Name));
                     }
                 }
                 // Strip the arity
                 int index = name.IndexOf('`');
                 if(index != -1) name = name.Substring(0, index);
                 // Add the base name and generic arguments
-                components.Add(FormatMimeName(name));
+                components.Add(FormatComponentName(name));
                 components.AddRange(genArgs.Skip(ownArgsStart).Select(GetTypeFriendlyName));
                 return String.Join(".", components);
             }
@@ -291,39 +206,56 @@ namespace IS4.SFI
         }
 
         /// <summary>
-        /// Produces a MIME-friendly name by hyphenating the name, converting to lowercase and encoding unsafe characters.
+        /// Produces a component name by hyphenating the name and converting to lowercase.
         /// </summary>
         /// <param name="name">The name to format.</param>
         /// <returns>The resulting formatted name.</returns>
-        public static string FormatMimeName(string name)
+        public static string FormatComponentName(string name)
         {
             name = hyphenCharacters.Replace(name, "$0-").ToLowerInvariant();
-            name = badMimeCharacters.Replace(name, m => String.Join("", Encoding.UTF8.GetBytes(m.Value).Select(b => $"&{b:X2}")));
             return name;
         }
 
         /// <summary>
-        /// Creates a fake media type from a file signature characters.
+        /// Creates an implied media type from a file signature characters.
         /// </summary>
         /// <param name="signature">The signature of the file.</param>
-        /// <returns>A MIME type in the form of "application/x.sig.{<paramref name="signature"/>}"
-        /// (converted to lowercase).
+        /// <returns>A MIME type in the form of
+        /// "application/prs.implied-structure;signature={<paramref name="signature"/>}".
         /// </returns>
-        public static string GetFakeMediaTypeFromSignature(string signature)
+        public static string GetImpliedMediaTypeFromSignature(string signature)
         {
-            return "application/x.sig." + signature.ToLowerInvariant();
+            return "application/prs.implied-structure;signature=" + FormatMimeParameter(signature);
         }
 
         /// <summary>
-        /// Creates a fake media type from an interpreter command.
+        /// Creates an implied media type from an interpreter command.
         /// </summary>
         /// <param name="interpreter">The interpreter command.</param>
-        /// <returns>A MIME type in the form of "application/x.exec.{<paramref name="interpreter"/>}"
-        /// (converted to lowercase).
+        /// <returns>A MIME type in the form of
+        /// "application/prs.implied-executable;interpreter={<paramref name="interpreter"/>}".
         /// </returns>
-        public static string GetFakeMediaTypeFromInterpreter(string interpreter)
+        public static string GetImpliedMediaTypeFromInterpreter(string interpreter)
         {
-            return "application/x.exec." + interpreter.ToLowerInvariant();
+            return "application/prs.implied-executable;interpreter=" + FormatMimeParameter(interpreter);
+        }
+
+        static readonly Regex invalidTokenCharacters = new(@"[][()<>@,;:\\""/?=\x00-\x20\x7F]", RegexOptions.Compiled);
+
+        static readonly Regex escapedQuotedCharacters = new(@"[""\\\r]", RegexOptions.Compiled);
+
+        /// <summary>
+        /// Formats the value of a MIME parameter.
+        /// </summary>
+        /// <param name="value">The value to format.</param>
+        /// <returns>Either <paramref name="value"/> unchanged, or escaped and wrapped in quotes.</returns>
+        public static string FormatMimeParameter(string value)
+        {
+            if(!invalidTokenCharacters.IsMatch(value))
+            {
+                return value;
+            }
+            return "\"" + escapedQuotedCharacters.Replace(value, @"\\$0") + "\"";
         }
 
         static readonly Regex mimeNameRegex = new(@"^[^/;]+/(?:vnd\.|prs\.|x-|)", RegexOptions.Compiled | RegexOptions.IgnoreCase);

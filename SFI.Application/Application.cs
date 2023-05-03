@@ -274,7 +274,7 @@ namespace IS4.SFI
         {
 			foreach(var prop in GetConfigurableProperties(component))
             {
-				var name = TextTools.FormatMimeName(prop.Name);
+				var name = TextTools.FormatComponentName(prop.Name);
 				if(properties.TryGetValue(name, out var value))
 				{
 					// The property is assigned
@@ -380,7 +380,7 @@ namespace IS4.SFI
 					var value = prop.GetValue(component);
 					var type = Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType;
 					var converter = prop.Converter;
-					LogWriter?.WriteLine($"  - {id}:{TextTools.FormatMimeName(prop.Name)} ({TextTools.GetIdentifierFromType(type)}) = {converter.ConvertToInvariantString(value)}");
+					LogWriter?.WriteLine($"  - {id}:{TextTools.FormatComponentName(prop.Name)} ({TextTools.GetIdentifierFromType(type)}) = {converter.ConvertToInvariantString(value)}");
 				}
 			}
 			return default;
