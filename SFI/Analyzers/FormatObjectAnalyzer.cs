@@ -1,8 +1,10 @@
 ﻿using IS4.SFI.Formats;
 using IS4.SFI.Services;
+using IS4.SFI.Tools;
 using IS4.SFI.Vocabulary;
 using MorseCode.ITask;
 using System;
+using System.Net.Mime;
 using System.Threading.Tasks;
 
 namespace IS4.SFI.Analyzers
@@ -66,7 +68,12 @@ namespace IS4.SFI.Analyzers
                         node.SetClass(cls);
                     }
                 }
-                node.Set(Properties.EncodingFormat, Vocabularies.Urim, Uri.EscapeUriString(type));
+                var typeObject = ImmutableContentType.GetCached(type);
+                var typeNode = (await analyzers.Analyze<ContentType>(typeObject, context.WithParent(node))).Node;
+                if(typeNode != null)
+                {
+                    node.Set(Properties.EncodingFormat, typeNode);
+                }
             }
             
             var label = result.Label;

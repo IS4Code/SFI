@@ -1,4 +1,5 @@
 ﻿using IS4.SFI.Services;
+using IS4.SFI.Tools;
 using IS4.SFI.Vocabulary;
 using NPOI.OpenXml4Net.Exceptions;
 using NPOI.OpenXml4Net.OPC;
@@ -74,7 +75,12 @@ namespace IS4.SFI.Formats
 
                         if(contentType != null)
                         {
-                            node.Set(Properties.EncodingFormat, Vocabularies.Urim, Uri.EscapeUriString(contentType));
+                            var typeObject = ImmutableContentType.GetCached(contentType);
+                            var typeNode = (await analyzers.Analyze<System.Net.Mime.ContentType>(typeObject, context.WithParent(node))).Node;
+                            if(typeNode != null)
+                            {
+                                node.Set(Properties.EncodingFormat, typeNode);
+                            }
                         }
                     }catch(InvalidFormatException)
                     {

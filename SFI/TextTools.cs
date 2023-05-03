@@ -42,6 +42,11 @@ namespace IS4.SFI
         }
 
         /// <summary>
+        /// The prefix used for implied media types.
+        /// </summary>
+        public static readonly string ImpliedMediaTypePrefix = "application/prs.implied-";
+
+        /// <summary>
         /// Creates an implied media type from a namespace URI, PUBLIC identifier,
         /// and the root element name in an XML document.
         /// </summary>

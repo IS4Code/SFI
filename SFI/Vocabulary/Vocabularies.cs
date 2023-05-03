@@ -167,6 +167,11 @@ namespace IS4.SFI.Vocabulary
             public const string Dbo = "http://dbpedia.org/ontology/";
 
             /// <summary>
+            /// uri4uri vocabulary
+            /// </summary>
+            public const string Uriv = "https://w3id.org/uri4uri/vocab#";
+
+            /// <summary>
             /// uri4uri MIME types
             /// </summary>
             public const string Urim = "https://w3id.org/uri4uri/mime/";

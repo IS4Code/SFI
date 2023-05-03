@@ -212,6 +212,30 @@
         [Uri(Http, "MessageHeader")]
         public static readonly ClassUri HttpMessageHeader;
 
+        /// <summary>
+        /// <see cref="Uriv"/>:Mimetype.
+        /// </summary>
+        [Uri(Uriv, "Mimetype")]
+        public static readonly ClassUri MediaType;
+
+        /// <summary>
+        /// <see cref="Uriv"/>:Mimetype-Implied.
+        /// </summary>
+        [Uri(Uriv, "Mimetype-Implied")]
+        public static readonly ClassUri MediaTypeImplied;
+
+        /// <summary>
+        /// <see cref="Uriv"/>:Mimetype-Structured.
+        /// </summary>
+        [Uri(Uriv, "Mimetype-Structured")]
+        public static readonly ClassUri MediaTypeStructured;
+
+        /// <summary>
+        /// <see cref="Uriv"/>:Mimetype-Parametrized.
+        /// </summary>
+        [Uri(Uriv, "Mimetype-Parametrized")]
+        public static readonly ClassUri MediaTypeParametrized;
+
         static Classes()
         {
             typeof(Classes).InitializeUris();
