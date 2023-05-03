@@ -66,6 +66,25 @@ namespace IS4.SFI.Tests
         }
 
         /// <summary>
+        /// The tests for <see cref="FormatMimeParameter(string)"/>.
+        /// </summary>
+        [TestMethod]
+        [DataRow("token", "token")]
+        [DataRow("with space", "\"with space\"")]
+        [DataRow("with\nnewline", "\"with\nnewline\"")]
+        [DataRow("with\"quote", "\"with\\\"quote\"")]
+        [DataRow("with\rreturn", "\"with\\\rreturn\"")]
+        [DataRow("with\u00B7unicode", "\"=?utf-8?Q?with=C2=B7unicode?=\"")]
+        [DataRow("with\u00B7unicode and space", "\"=?utf-8?Q?with=C2=B7unicode_and_space?=\"")]
+        [DataRow("=?.?.?.?=", "\"=?utf-8?B?PT8uPy4/Lj89?=\"")]
+        [DataRow("=?.?.?very long text to warrant Q?=", "\"=?utf-8?Q?=3D=3F.=3F.=3Fvery_long_text_to_warrant_Q=3F=3D?=\"")]
+        public void FormatMimeParameterTests(string value, string expected)
+        {
+            var result = FormatMimeParameter(value);
+            Assert.AreEqual(expected, result);
+        }
+
+        /// <summary>
         /// The tests for <see cref="GetUserFriendlyName{T}(T)"/>.
         /// </summary>
         [TestMethod]

@@ -240,9 +240,11 @@ namespace IS4.SFI
             return "application/prs.implied-executable;interpreter=" + FormatMimeParameter(interpreter);
         }
 
-        static readonly Regex invalidTokenCharacters = new(@"[][()<>@,;:\\""/?=\x00-\x20\x7F]", RegexOptions.Compiled);
-
+        static readonly Regex invalidTokenCharacters = new(@"[][()<>@,;:\\""/?=\x00-\x20\x7F-\uFFFF]", RegexOptions.Compiled);
+        static readonly Regex encodedWord = new(@"^=\?[^?]*\?[^?]*\?[^?]*\?=$", RegexOptions.Compiled);
         static readonly Regex escapedQuotedCharacters = new(@"[""\\\r]", RegexOptions.Compiled);
+
+        static readonly Encoding mimeParamEncoding = Encoding.UTF8;
 
         /// <summary>
         /// Formats the value of a MIME parameter.
@@ -253,9 +255,53 @@ namespace IS4.SFI
         {
             if(!invalidTokenCharacters.IsMatch(value))
             {
+                // The value is okay as a standalone token.
                 return value;
             }
-            return "\"" + escapedQuotedCharacters.Replace(value, @"\\$0") + "\"";
+            if(!value.Any(c => c > '\x7F') && !encodedWord.IsMatch(value))
+            {
+                // The value does not need encoding.
+                return "\"" + escapedQuotedCharacters.Replace(value, @"\$0") + "\"";
+            }
+            // Produce encoded-word from the value (might not be according to RFC 2047,
+            // but corresponds to what the ContentType class does).
+            // TODO: Support for RFC 2231?
+            var bytes = mimeParamEncoding.GetBytes(value);
+            string base64Encoded = Convert.ToBase64String(bytes);
+            var qEncoded = new StringBuilder();
+            qEncoded.Append("\"=?");
+            var encodingName = mimeParamEncoding.WebName.ToLowerInvariant();
+            qEncoded.Append(encodingName);
+            qEncoded.Append("?Q?");
+            var prefixLength = qEncoded.Length;
+            foreach(var b in bytes)
+            {
+                switch(b)
+                {
+                    case (byte)' ':
+                        qEncoded.Append('_');
+                        break;
+                    case (byte)'\\':
+                    case (byte)'"':
+                        qEncoded.Append('\\');
+                        qEncoded.Append((char)b);
+                        break;
+                    case < 0x20 or > 0x7F or (byte)'=' or (byte)'?':
+                        qEncoded.Append('=');
+                        qEncoded.Append(b.ToString("X2"));
+                        break;
+                    default:
+                        qEncoded.Append((char)b);
+                        break;
+                }
+                if(qEncoded.Length - prefixLength > base64Encoded.Length)
+                {
+                    // Q-encoded is longer, use B
+                    return $"\"=?{encodingName}?B?{base64Encoded}?=\"";
+                }
+            }
+            qEncoded.Append("?=\"");
+            return qEncoded.ToString();
         }
 
         static readonly Regex mimeNameRegex = new(@"^[^/;]+/(?:vnd\.|prs\.|x-|)", RegexOptions.Compiled | RegexOptions.IgnoreCase);
