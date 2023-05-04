@@ -44,24 +44,24 @@ namespace IS4.SFI.Analyzers
             var result = await analyzers.Analyze(value, context.WithNode(node));
             node = result.Node ?? node;
 
-            var type = format.MediaType?.ToLowerInvariant();
+            var type = format.MediaType;
             if(type != null)
             {
                 node.SetClass(Classes.MediaObject);
                 // Some classes are set automatically based on the media type
-                if(type.StartsWith("audio/", StringComparison.Ordinal))
+                if(type.StartsWith("audio/", StringComparison.OrdinalIgnoreCase))
                 {
                     foreach(var cls in Common.AudioClasses)
                     {
                         node.SetClass(cls);
                     }
-                }else if(type.StartsWith("video/", StringComparison.Ordinal))
+                }else if(type.StartsWith("video/", StringComparison.OrdinalIgnoreCase))
                 {
                     foreach(var cls in Common.VideoClasses)
                     {
                         node.SetClass(cls);
                     }
-                }else if(type.StartsWith("image/", StringComparison.Ordinal))
+                }else if(type.StartsWith("image/", StringComparison.OrdinalIgnoreCase))
                 {
                     foreach(var cls in Common.ImageClasses)
                     {
