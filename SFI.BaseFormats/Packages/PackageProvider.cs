@@ -18,7 +18,7 @@ namespace IS4.SFI.Formats
         /// When implemented, creates an instance of <typeparamref name="TAnalyzer"/> to analyze
         /// the entities logically contained in a hierarchy starting at <paramref name="root"/>.
         /// </summary>
-        /// <param name="root">The root of the hierarchy, used e.g. as <see cref="IPersistentKey.ReferenceKey"/> if needed.</param>
+        /// <param name="root">The root of the hierarchy, used e.g. as <see cref="IIdentityKey.ReferenceKey"/> if needed.</param>
         /// <param name="context">The context of the analysis.</param>
         /// <returns>
         /// An instance of <typeparamref name="TAnalyzer"/> for <paramref name="root"/>.

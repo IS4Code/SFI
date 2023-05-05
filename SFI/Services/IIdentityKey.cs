@@ -1,14 +1,14 @@
 ﻿namespace IS4.SFI.Services
 {
     /// <summary>
-    /// Stores a pair of objects to server as a key when information
+    /// Stores a pair of objects to serve as a key when information
     /// about this instance need to be cached, usually via
-    /// <see cref="IS4.SFI.Tools.PersistenceStore{TKey, TValue}"/>.
+    /// <see cref="IS4.SFI.Tools.IdentityStore{TKey, TValue}"/>.
     /// This allows the instance to be reused or discarded as long as the
-    /// <see cref="ReferenceKey"/> and <see cref="DataKey"/> unique identify
+    /// <see cref="ReferenceKey"/> and <see cref="DataKey"/> uniquely identify
     /// the entity it describes.
     /// </summary>
-    public interface IPersistentKey
+    public interface IIdentityKey
     {
         /// <summary>
         /// The identity part of the key, intended to be compared by reference

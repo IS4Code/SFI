@@ -121,7 +121,7 @@ namespace IS4.SFI.Services
         public DriveInfo DriveInfo { get; }
 
         /// <inheritdoc/>
-        public DriveInfoWrapper(DriveInfo baseInfo, IPersistentKey? key = null) : base(baseInfo.RootDirectory, key)
+        public DriveInfoWrapper(DriveInfo baseInfo, IIdentityKey? key = null) : base(baseInfo.RootDirectory, key)
         {
             DriveInfo = baseInfo;
         }

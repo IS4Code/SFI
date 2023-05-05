@@ -126,14 +126,14 @@ namespace IS4.SFI.Formats.Archives
             /// <inheritdoc/>
             public int? Revision => null;
 
-            /// <inheritdoc cref="IPersistentKey.ReferenceKey"/>
+            /// <inheritdoc cref="IIdentityKey.ReferenceKey"/>
             protected virtual object? ReferenceKey => Entry?.Archive;
 
             /// <inheritdoc/>
-            object? IPersistentKey.ReferenceKey => ReferenceKey;
+            object? IIdentityKey.ReferenceKey => ReferenceKey;
 
             /// <inheritdoc/>
-            object? IPersistentKey.DataKey => Entry?.Key;
+            object? IIdentityKey.DataKey => Entry?.Key;
 
             /// <inheritdoc/>
             public FileKind Kind => FileKind.ArchiveItem;

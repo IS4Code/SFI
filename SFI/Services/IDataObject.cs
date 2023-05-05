@@ -7,7 +7,7 @@ namespace IS4.SFI.Services
     /// <summary>
     /// Stores the information obtained during data analysis.
     /// </summary>
-    public interface IDataObject : IPersistentKey
+    public interface IDataObject : IIdentityKey
     {
         /// <summary>
         /// The the data is binary, i.e. not textual.

@@ -14,7 +14,7 @@ namespace IS4.SFI.Tools
     /// <see cref="ImmutableContentType(string)"/>, but if the object is changed,
     /// the method throws an exception, signifying changes to the object.
     /// </remarks>
-    public class ImmutableContentType : ContentType, ICloneable, IEquatable<ContentType>, IPersistentKey
+    public class ImmutableContentType : ContentType, ICloneable, IEquatable<ContentType>, IIdentityKey
     {
         static readonly ConditionalWeakTable<string, ImmutableContentType> cache = new();
 
@@ -36,9 +36,9 @@ namespace IS4.SFI.Tools
 
         static readonly Type ContentTypeType = typeof(ContentType);
 
-        object? IPersistentKey.ReferenceKey => ContentTypeType;
+        object? IIdentityKey.ReferenceKey => ContentTypeType;
 
-        object? IPersistentKey.DataKey => ToString();
+        object? IIdentityKey.DataKey => ToString();
 
         /// <inheritdoc/>
         public ImmutableContentType(string contentType) : base(contentType)

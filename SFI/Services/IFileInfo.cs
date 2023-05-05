@@ -16,7 +16,7 @@ namespace IS4.SFI.Services
     public class FileInfoWrapper : FileSystemInfoWrapper<FileInfo>, IFileInfo
     {
         /// <inheritdoc/>
-        public FileInfoWrapper(FileInfo baseInfo, IPersistentKey? key = null) : base(baseInfo, key)
+        public FileInfoWrapper(FileInfo baseInfo, IIdentityKey? key = null) : base(baseInfo, key)
         {
 
         }

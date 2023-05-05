@@ -163,9 +163,9 @@ namespace IS4.SFI.Analyzers
 
             public FileAttributes Attributes => info.Attributes;
 
-            object IPersistentKey.ReferenceKey => info.FileSystem;
+            object IIdentityKey.ReferenceKey => info.FileSystem;
 
-            object IPersistentKey.DataKey => info.FullName;
+            object IIdentityKey.DataKey => info.FullName;
 
             public FileKind Kind => FileKind.None;
 

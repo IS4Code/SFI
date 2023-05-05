@@ -190,9 +190,9 @@ namespace IS4.SFI.Formats.Archives
 
             public int? Revision => null;
 
-            object? IPersistentKey.ReferenceKey => Reader;
+            object? IIdentityKey.ReferenceKey => Reader;
 
-            object? IPersistentKey.DataKey => Path;
+            object? IIdentityKey.DataKey => Path;
 
             public FileKind Kind => FileKind.ArchiveItem;
 

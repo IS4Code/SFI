@@ -16,11 +16,11 @@ namespace IS4.SFI
     {
         static IDataHashAlgorithm HashAlgorithm => BitTorrentHash.HashAlgorithm;
 
-        static readonly ConcurrentDictionary<int, PersistenceStore<IPersistentKey, Task<FileInfo>>> cache = new();
+        static readonly ConcurrentDictionary<int, IdentityStore<IIdentityKey, Task<FileInfo>>> cache = new();
 
-        static PersistenceStore<IPersistentKey, Task<FileInfo>> GetCache(int blockSize)
+        static IdentityStore<IIdentityKey, Task<FileInfo>> GetCache(int blockSize)
         {
-            return cache.GetOrAdd(blockSize, l => new PersistenceStore<IPersistentKey, Task<FileInfo>>(f => FileInfo.Create(l, f)));
+            return cache.GetOrAdd(blockSize, l => new IdentityStore<IIdentityKey, Task<FileInfo>>(f => FileInfo.Create(l, f)));
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace IS4.SFI
         /// <param name="stream">To stream to hash.</param>
         /// <param name="key">The key in the cache.</param>
         /// <returns>The information about the file.</returns>
-        public static Task<FileInfo> GetCachedInfo(int blockSize, Stream stream, IPersistentKey? key)
+        public static Task<FileInfo> GetCachedInfo(int blockSize, Stream stream, IIdentityKey? key)
         {
             async Task<FileInfo> Inner()
             {
@@ -147,7 +147,7 @@ namespace IS4.SFI
             /// <param name="blockSize">The hashed block size to use.</param>
             /// <param name="key">The object to retrieve the information for. Must be an instance of <see cref="IStreamFactory"/>.</param>
             /// <returns>An instance of <see cref="FileInfo"/> storing the hash information.</returns>
-            public static async Task<FileInfo> Create(int blockSize, IPersistentKey key)
+            public static async Task<FileInfo> Create(int blockSize, IIdentityKey key)
             {
                 if(key is not IStreamFactory file) throw new ArgumentException($"The object must derive from {typeof(IStreamFactory)}.", nameof(key));
                 using var stream = file.Open();

@@ -120,13 +120,13 @@ namespace IS4.SFI.Tools
         }
 
         /// <inheritdoc/>
-        public async override ValueTask<byte[]> ComputeHash(byte[] data, IPersistentKey? key = null)
+        public async override ValueTask<byte[]> ComputeHash(byte[] data, IIdentityKey? key = null)
         {
             return hasher(data.AsSpan());
         }
 
         /// <inheritdoc/>
-        public async override ValueTask<byte[]> ComputeHash(byte[] data, int offset, int count, IPersistentKey? key = null)
+        public async override ValueTask<byte[]> ComputeHash(byte[] data, int offset, int count, IIdentityKey? key = null)
         {
             return hasher(new ReadOnlySpan<byte>(data, offset, count));
         }

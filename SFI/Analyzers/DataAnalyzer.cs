@@ -545,9 +545,9 @@ namespace IS4.SFI.Analyzers
 
             Uri? IUriFormatter<Uri>.this[Uri value] => throw new NotImplementedException();
 
-            object? IPersistentKey.ReferenceKey => fileMatch.ReferenceKey;
+            object? IIdentityKey.ReferenceKey => fileMatch.ReferenceKey;
 
-            object? IPersistentKey.DataKey => (Format, fileMatch.DataKey);
+            object? IIdentityKey.DataKey => (Format, fileMatch.DataKey);
 
             public FormatResult(DataAnalysis.DataMatch fileMatch, IStreamFactory streamFactory, IBinaryFileFormat format, ValueTask<ILinkedNode?> parent, AnalysisContext context, IEntityAnalyzers analyzer)
 			{

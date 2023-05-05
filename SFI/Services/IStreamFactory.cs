@@ -10,7 +10,7 @@ namespace IS4.SFI.Services
     /// Represents any object that can be opened for reading.
     /// </summary>
     [TypeConverter(typeof(IStreamFactoryConverter))]
-    public interface IStreamFactory : IPersistentKey
+    public interface IStreamFactory : IIdentityKey
     {
         /// <summary>
         /// The assumed length of the data; might be different from the actual
@@ -104,8 +104,8 @@ namespace IS4.SFI.Services
         /// Creates a new instance of the stream factory from the given buffer.
         /// </summary>
         /// <param name="buffer">The array buffer to use for the stream.</param>
-        /// <param name="key">The object to provide the <see cref="IPersistentKey"/> implementation.</param>
-        public MemoryStreamFactory(ArraySegment<byte> buffer, IPersistentKey? key) : this(buffer, key?.ReferenceKey, key?.DataKey)
+        /// <param name="key">The object to provide the <see cref="IIdentityKey"/> implementation.</param>
+        public MemoryStreamFactory(ArraySegment<byte> buffer, IIdentityKey? key) : this(buffer, key?.ReferenceKey, key?.DataKey)
         {
 
         }

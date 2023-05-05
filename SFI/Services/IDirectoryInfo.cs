@@ -66,7 +66,7 @@ namespace IS4.SFI.Services
     public class DirectoryInfoWrapper : FileSystemInfoWrapper<DirectoryInfo>, IDirectoryInfo
     {
         /// <inheritdoc/>
-        public DirectoryInfoWrapper(DirectoryInfo baseInfo, IPersistentKey? key = null) : base(baseInfo, key)
+        public DirectoryInfoWrapper(DirectoryInfo baseInfo, IIdentityKey? key = null) : base(baseInfo, key)
         {
 
         }

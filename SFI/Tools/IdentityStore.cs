@@ -6,11 +6,11 @@ using System.Runtime.CompilerServices;
 namespace IS4.SFI.Tools
 {
     /// <summary>
-    /// Stores cached values pertaining to an instance of <see cref="IPersistentKey"/>.
+    /// Stores cached values pertaining to an instance of <see cref="IIdentityKey"/>.
     /// </summary>
     /// <typeparam name="TKey">The type of the keys.</typeparam>
     /// <typeparam name="TValue">The type of the values.</typeparam>
-    public class PersistenceStore<TKey, TValue> where TKey : IPersistentKey
+    public class IdentityStore<TKey, TValue> where TKey : IIdentityKey
     {
         /// <summary>
         /// The identity of this object is used instead of a <see langword="null"/> value as the key.
@@ -27,7 +27,7 @@ namespace IS4.SFI.Tools
         /// A function providing the cached value from a key.
         /// It is called only once for a given key.
         /// </param>
-        public PersistenceStore(Func<TKey, TValue> factory)
+        public IdentityStore(Func<TKey, TValue> factory)
         {
             this.factory = factory;
         }

@@ -35,7 +35,7 @@ namespace IS4.SFI
         }
 
         /// <inheritdoc/>
-        public async override ValueTask<byte[]> ComputeHash(Stream input, IPersistentKey? key = null)
+        public async override ValueTask<byte[]> ComputeHash(Stream input, IIdentityKey? key = null)
         {
             using var output = new MemoryStream();
             var info = await BitTorrentHashCache.GetCachedInfo(BlockSize, input, key);
@@ -51,14 +51,14 @@ namespace IS4.SFI
         }
 
         /// <inheritdoc/>
-        public async override ValueTask<byte[]> ComputeHash(byte[] data, IPersistentKey? key = null)
+        public async override ValueTask<byte[]> ComputeHash(byte[] data, IIdentityKey? key = null)
         {
             using var stream = new MemoryStream(data, false);
             return await ComputeHash(stream, key).ConfigureAwait(false);
         }
 
         /// <inheritdoc/>
-        public async override ValueTask<byte[]> ComputeHash(byte[] data, int offset, int count, IPersistentKey? key = null)
+        public async override ValueTask<byte[]> ComputeHash(byte[] data, int offset, int count, IIdentityKey? key = null)
         {
             using var stream = new MemoryStream(data, offset, count, false);
             return await ComputeHash(stream, key).ConfigureAwait(false);

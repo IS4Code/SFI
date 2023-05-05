@@ -41,7 +41,7 @@ namespace IS4.SFI
         /// </summary>
         public event Func<ValueTask>? Updated;
 
-        PersistenceStore<IPersistentKey, ConcurrentDictionary<Type, Task<AnalysisResult>>>? cachedResults;
+        IdentityStore<IIdentityKey, ConcurrentDictionary<Type, Task<AnalysisResult>>>? cachedResults;
 
         /// <summary>
         /// Whether to cache results for analyzed entities and reuse them later.
@@ -176,7 +176,7 @@ namespace IS4.SFI
             if(entity == null) return default;
 
             var cached = cachedResults;
-            if(cached != null && entity is IPersistentKey key)
+            if(cached != null && entity is IIdentityKey key)
             {
                 return new(cached[key].AddOrUpdate(typeof(T), _ => {
                     return AnalyzeInner(entity, context).AsTask();

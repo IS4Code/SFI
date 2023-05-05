@@ -50,7 +50,7 @@ namespace IS4.SFI.Tools
         protected abstract byte[] Output(ref T instance);
 
         /// <inheritdoc/>
-        public async override ValueTask<byte[]> ComputeHash(Stream input, IPersistentKey? key = null)
+        public async override ValueTask<byte[]> ComputeHash(Stream input, IIdentityKey? key = null)
         {
             var instance = Initialize();
             try{

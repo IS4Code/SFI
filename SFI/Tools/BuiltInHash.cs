@@ -95,7 +95,7 @@ namespace IS4.SFI.Tools
         }
 
         /// <inheritdoc/>
-        public async override ValueTask<byte[]> ComputeHash(Stream input, IPersistentKey? key)
+        public async override ValueTask<byte[]> ComputeHash(Stream input, IIdentityKey? key)
         {
             using var algorithm = factory();
             const int bufferSize = 4096;
@@ -110,13 +110,13 @@ namespace IS4.SFI.Tools
         }
 
         /// <inheritdoc/>
-        public async override ValueTask<byte[]> ComputeHash(byte[] data, IPersistentKey? key)
+        public async override ValueTask<byte[]> ComputeHash(byte[] data, IIdentityKey? key)
         {
             return Algorithm.ComputeHash(data);
         }
 
         /// <inheritdoc/>
-        public async override ValueTask<byte[]> ComputeHash(byte[] data, int offset, int count, IPersistentKey? key)
+        public async override ValueTask<byte[]> ComputeHash(byte[] data, int offset, int count, IIdentityKey? key)
         {
             return Algorithm.ComputeHash(data, offset, count);
         }

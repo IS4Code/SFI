@@ -47,14 +47,14 @@ namespace IS4.SFI
         }
 
         /// <inheritdoc/>
-        public async override ValueTask<byte[]> ComputeHash(byte[] data, IPersistentKey? key = null)
+        public async override ValueTask<byte[]> ComputeHash(byte[] data, IIdentityKey? key = null)
         {
             var hash = Hasher.Hash(new ReadOnlySpan<byte>(data));
             return hash.AsSpan().ToArray();
         }
 
         /// <inheritdoc/>
-        public async override ValueTask<byte[]> ComputeHash(byte[] data, int offset, int count, IPersistentKey? key = null)
+        public async override ValueTask<byte[]> ComputeHash(byte[] data, int offset, int count, IIdentityKey? key = null)
         {
             var hash = Hasher.Hash(new ReadOnlySpan<byte>(data, offset, count));
             return hash.AsSpan().ToArray();

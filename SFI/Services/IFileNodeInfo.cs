@@ -8,7 +8,7 @@ namespace IS4.SFI.Services
     /// <summary>
     /// Represents an entity in a file system.
     /// </summary>
-    public interface IFileNodeInfo : IPersistentKey
+    public interface IFileNodeInfo : IIdentityKey
     {
         /// <summary>
         /// The name of the file.
@@ -91,18 +91,18 @@ namespace IS4.SFI.Services
         /// </summary>
         public TInfo BaseInfo { get; }
 
-        readonly IPersistentKey? key;
+        readonly IIdentityKey? key;
 
         /// <summary>
         /// Creates a new instance of the wrapper.
         /// </summary>
         /// <param name="baseInfo">The value of <see cref="BaseInfo"/> to use when delegating properties.</param>
         /// <param name="key">
-        /// The implementation of <see cref="IPersistentKey"/> to use.
-        /// If none is provided, <see cref="IPersistentKey.ReferenceKey"/> is the type of <see cref="FileSystemInfo"/>
-        /// and <see cref="IPersistentKey.DataKey"/> is <see cref="FileSystemInfo.FullPath"/>.
+        /// The implementation of <see cref="IIdentityKey"/> to use.
+        /// If none is provided, <see cref="IIdentityKey.ReferenceKey"/> is the type of <see cref="FileSystemInfo"/>
+        /// and <see cref="IIdentityKey.DataKey"/> is <see cref="FileSystemInfo.FullPath"/>.
         /// </param>
-        public FileSystemInfoWrapper(TInfo baseInfo, IPersistentKey? key = null)
+        public FileSystemInfoWrapper(TInfo baseInfo, IIdentityKey? key = null)
         {
             if(!baseInfo.Exists)
             {
@@ -165,9 +165,9 @@ namespace IS4.SFI.Services
 
         static readonly Type FileSystemInfoType = typeof(FileSystemInfo);
 
-        object? IPersistentKey.ReferenceKey => key != null ? key.ReferenceKey : FileSystemInfoType;
+        object? IIdentityKey.ReferenceKey => key != null ? key.ReferenceKey : FileSystemInfoType;
 
-        object? IPersistentKey.DataKey => key != null ? key.DataKey : BaseInfo.FullName;
+        object? IIdentityKey.DataKey => key != null ? key.DataKey : BaseInfo.FullName;
 
         /// <inheritdoc/>
         public FileKind Kind => FileKind.None;
