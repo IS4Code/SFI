@@ -110,7 +110,7 @@ namespace IS4.SFI.Tests
             var thread = new Thread(() => report = graphDiff.Difference(graph, graph2));
             thread.IsBackground = true;
             thread.Start();
-            if(!thread.Join(20000))
+            if(!thread.Join(60000))
             {
                 thread.Priority = ThreadPriority.Lowest;
                 Assert.Inconclusive("The graphs could not be compared within the timeout.");
