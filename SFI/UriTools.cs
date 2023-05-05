@@ -232,6 +232,23 @@ namespace IS4.SFI
             });
         }
 
+        static readonly Regex urlPathRegex = new(@"[^!$&-;=@A-Z_a-z~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+", RegexOptions.Compiled);
+
+        /// <summary>
+        /// Escapes characters in <paramref name="uriString"/> that are invalid in a URI path
+        /// component or URI in general.
+        /// </summary>
+        /// <param name="uriString">The string to escape.</param>
+        /// <returns>
+        /// The escaped string.
+        /// </returns>
+        public static string EscapePathString(string uriString)
+        {
+            return urlPathRegex.Replace(uriString, m => {
+                return Uri.EscapeDataString(m.Value);
+            });
+        }
+
         /// <summary>
         /// A formatter producing urn:oid: URIs from instances of <see cref="Oid"/>.
         /// </summary>
