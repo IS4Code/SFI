@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQsm3faEDpn76ggjpQNNhE1g?ct=application/octet-stream>.
+@base <x.blank:6ba5244f-2132-44e0-8315-5ecc503b1a49>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -26,10 +26,10 @@ _:n1 at:pathObject <file:///abydos.odg>;
 <file:///manifest.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///meta.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///styles.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
-<ni:///mh;1QEQ0Rb_6SksG4IRnJeb1xBbTA?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.office.1.0.document-styles+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.urn.oasis.names.tc.opendocument.xmlns.office.1.0.document-styles+xml>;
-                                                                                                                               a schema:MediaObject;
-                                                                                                                               skos:prefLabel "DOCUMENT-STYLES object"@en.
-<ni:///mh;1QEQ0Rb_6SksG4IRnJeb1xBbTA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ0Rb_6SksG4IRnJeb1xBbTA?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.office.1.0.document-styles+xml>;
+<ni:///mh;1QEQ0Rb_6SksG4IRnJeb1xBbTA?ct=application/prs.implied-document+xml;root=document-styles;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=document-styles;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22>;
+                                                                                                                                                             a schema:MediaObject;
+                                                                                                                                                             skos:prefLabel "DOCUMENT-STYLES object"@en.
+<ni:///mh;1QEQ0Rb_6SksG4IRnJeb1xBbTA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ0Rb_6SksG4IRnJeb1xBbTA?ct=application/prs.implied-document+xml;root=document-styles;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -52,10 +52,10 @@ _:n1 at:pathObject <file:///abydos.odg>;
                                                     skos:prefLabel "text (5.05 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQ0Rb_6SksG4IRnJeb1xBbTA?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?>""".
-<ni:///mh;1QEQ6V4rTdQMiCagTVRmgmr2hw?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.office.1.0.document-meta+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.urn.oasis.names.tc.opendocument.xmlns.office.1.0.document-meta+xml>;
-                                                                                                                             a schema:MediaObject;
-                                                                                                                             skos:prefLabel "DOCUMENT-META object"@en.
-<ni:///mh;1QEQ6V4rTdQMiCagTVRmgmr2hw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ6V4rTdQMiCagTVRmgmr2hw?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.office.1.0.document-meta+xml>;
+<ni:///mh;1QEQ6V4rTdQMiCagTVRmgmr2hw?ct=application/prs.implied-document+xml;root=document-meta;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=document-meta;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22>;
+                                                                                                                                                           a schema:MediaObject;
+                                                                                                                                                           skos:prefLabel "DOCUMENT-META object"@en.
+<ni:///mh;1QEQ6V4rTdQMiCagTVRmgmr2hw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ6V4rTdQMiCagTVRmgmr2hw?ct=application/prs.implied-document+xml;root=document-meta;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -78,11 +78,11 @@ _:n1 at:pathObject <file:///abydos.odg>;
                                                     skos:prefLabel "text (1.15 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQ6V4rTdQMiCagTVRmgmr2hw?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?>""".
-<ni:///mh;1QEQGaBnXsToIzHZsbyBhUyHoA?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.manifest.1.0.manifest+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.urn.oasis.names.tc.opendocument.xmlns.manifest.1.0.manifest+xml>,
-                                                                                                                                                <urn:publicid:-:OpenOffice.org:DTD+Manifest+1.0:EN>;
-                                                                                                                          a schema:MediaObject;
-                                                                                                                          skos:prefLabel "MANIFEST object"@en.
-<ni:///mh;1QEQGaBnXsToIzHZsbyBhUyHoA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQGaBnXsToIzHZsbyBhUyHoA?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.manifest.1.0.manifest+xml>;
+<ni:///mh;1QEQGaBnXsToIzHZsbyBhUyHoA?ct=application/prs.implied-document+xml;root=manifest;ns=%22urn:oasis:names:tc:opendocument:xmlns:manifest:1.0%22;public=%22-//OpenOffice.org//DTD%20Manifest%201.0//EN%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=manifest;ns=%22urn:oasis:names:tc:opendocument:xmlns:manifest:1.0%22;public=%22-//OpenOffice.org//DTD%20Manifest%201.0//EN%22>,
+                                                                                                                                                                                                                                       <urn:publicid:-:OpenOffice.org:DTD+Manifest+1.0:EN>;
+                                                                                                                                                                                                                 a schema:MediaObject;
+                                                                                                                                                                                                                 skos:prefLabel "MANIFEST object"@en.
+<ni:///mh;1QEQGaBnXsToIzHZsbyBhUyHoA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQGaBnXsToIzHZsbyBhUyHoA?ct=application/prs.implied-document+xml;root=manifest;ns=%22urn:oasis:names:tc:opendocument:xmlns:manifest:1.0%22;public=%22-//OpenOffice.org//DTD%20Manifest%201.0//EN%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -111,10 +111,10 @@ _:n1 at:pathObject <file:///abydos.odg>;
                                                     skos:prefLabel "text (917 B)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQGaBnXsToIzHZsbyBhUyHoA?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?>""".
-<ni:///mh;1QEQdWqzp9q2Uoizj_hOMPSjjQ?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.office.1.0.document-content+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.urn.oasis.names.tc.opendocument.xmlns.office.1.0.document-content+xml>;
-                                                                                                                                a schema:MediaObject;
-                                                                                                                                skos:prefLabel "DOCUMENT-CONTENT object"@en.
-<ni:///mh;1QEQdWqzp9q2Uoizj_hOMPSjjQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQdWqzp9q2Uoizj_hOMPSjjQ?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.office.1.0.document-content+xml>;
+<ni:///mh;1QEQdWqzp9q2Uoizj_hOMPSjjQ?ct=application/prs.implied-document+xml;root=document-content;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=document-content;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22>;
+                                                                                                                                                              a schema:MediaObject;
+                                                                                                                                                              skos:prefLabel "DOCUMENT-CONTENT object"@en.
+<ni:///mh;1QEQdWqzp9q2Uoizj_hOMPSjjQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQdWqzp9q2Uoizj_hOMPSjjQ?ct=application/prs.implied-document+xml;root=document-content;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,

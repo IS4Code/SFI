@@ -1,4 +1,4 @@
-@base <x.blank:30fc4560-8d13-43fb-a695-568fc4db44b5>.
+@base <x.blank:c8a8212d-7fb4-4968-a89d-c836962d27dc>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -373,8 +373,8 @@ _:n1 at:pathObject <file:///Lanbyte%20Client-Server%20version%200.01.msi>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×15)"@en,
-                                                                  "BMP object (224 B)"@en.
+                                                   skos:prefLabel "BMP object (224 B)"@en,
+                                                                  "BMP object (16×15)"@en.
 <ni:///mh;1QEQG8bV1cDmr7VEIgMUjtNrnw?ct=application/octet-stream> at:digest <urn:md5:1BC6D5D5C0E6AFB5442203148ED36B9F>;
                                                                   dcterms:extent "758"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQG8bV1cDmr7VEIgMUjtNrnw?ct=image/bmp>;
@@ -417,12 +417,12 @@ _:n1 at:pathObject <file:///Lanbyte%20Client-Server%20version%200.01.msi>;
                                                                   skos:prefLabel "binary data (60.09 KiB)"@en.
 <ni:///mh;1QEQLlsW3xcP9iSquW4Oj_Xh0A?ct=application/octet-stream> at:digest <urn:md5:2E5B16DF170FF624AAB96E0E8FF5E1D0>;
                                                                   dcterms:extent "38960"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQLlsW3xcP9iSquW4Oj_Xh0A?ct=application/x.sig.msft>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQLlsW3xcP9iSquW4Oj_Xh0A?ct=application/prs.implied-structure;signature=MSFT>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (38.05 KiB)"@en.
-<ni:///mh;1QEQLlsW3xcP9iSquW4Oj_Xh0A?ct=application/x.sig.msft> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.msft>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "MSFT object (38.05 KiB)"@en.
+<ni:///mh;1QEQLlsW3xcP9iSquW4Oj_Xh0A?ct=application/prs.implied-structure;signature=MSFT> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=MSFT>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "MSFT object (38.05 KiB)"@en.
 <ni:///mh;1QEQPGdy3ykP5iQETl34fACnvw?ct=application/octet-stream> at:digest <urn:md5:3C6772DF290FE624044E5DF87C00A7BF>;
                                                                   dcterms:extent "346015"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQPGdy3ykP5iQETl34fACnvw?ct=application/vnd.ms-cab-compressed>;
@@ -696,8 +696,8 @@ _:n1 at:pathObject <file:///Lanbyte%20Client-Server%20version%200.01.msi>;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (48×48)"@en,
-                                                                     "ICO object (1.62 KiB)"@en.
+                                                      skos:prefLabel "ICO object (1.62 KiB)"@en,
+                                                                     "ICO object (48×48)"@en.
 <ni:///mh;1QEQXOTVnUbXjH5AvM7bb25s-w?ct=application/octet-stream> at:digest <urn:md5:5CE4D59D46D78C7E40BCCEDB6F6E6CFB>;
                                                                   dcterms:extent "108"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -1189,12 +1189,12 @@ _:n1 at:pathObject <file:///Lanbyte%20Client-Server%20version%200.01.msi>;
                                                                   skos:prefLabel "binary data (144 B)"@en.
 <ni:///mh;1QEQmWNUdX6Dr_2zkVMUeYstMw?ct=application/octet-stream> at:digest <urn:md5:996354757E83AFFDB3915314798B2D33>;
                                                                   dcterms:extent "12500"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQmWNUdX6Dr_2zkVMUeYstMw?ct=application/x.sig.msft>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQmWNUdX6Dr_2zkVMUeYstMw?ct=application/prs.implied-structure;signature=MSFT>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (12.21 KiB)"@en.
-<ni:///mh;1QEQmWNUdX6Dr_2zkVMUeYstMw?ct=application/x.sig.msft> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.msft>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "MSFT object (12.21 KiB)"@en.
+<ni:///mh;1QEQmWNUdX6Dr_2zkVMUeYstMw?ct=application/prs.implied-structure;signature=MSFT> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=MSFT>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "MSFT object (12.21 KiB)"@en.
 <ni:///mh;1QEQmrtUveNdZoYoKS13f9tHbw?ct=application/octet-stream> at:digest <urn:md5:9ABB54BDE35D668628292D777FDB476F>;
                                                                   dcterms:extent "120"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -1371,8 +1371,8 @@ _:n1 at:pathObject <file:///Lanbyte%20Client-Server%20version%200.01.msi>;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (48×48)"@en,
-                                                                     "ICO object (1.62 KiB)"@en.
+                                                      skos:prefLabel "ICO object (1.62 KiB)"@en,
+                                                                     "ICO object (48×48)"@en.
 <ni:///mh;1QEQxbKuEuVep4-BeVOiH6pwQw?ct=application/octet-stream> at:digest <urn:md5:C5B2AE12E55EA78F817953A21FAA7043>;
                                                                   dcterms:extent "310"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQxbKuEuVep4-BeVOiH6pwQw?ct=image/bmp>;
@@ -1419,12 +1419,12 @@ _:n1 at:pathObject <file:///Lanbyte%20Client-Server%20version%200.01.msi>;
                                                                            skos:prefLabel "CAB object (13.03 KiB)"@en.
 <ni:///mh;1QEQyxh3-Xz2iz7EsTAx5kud8g?ct=application/octet-stream> at:digest <urn:md5:CB1877F97CF68B3EC4B13031E64B9DF2>;
                                                                   dcterms:extent "22264"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQyxh3-Xz2iz7EsTAx5kud8g?ct=application/x.sig.msft>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQyxh3-Xz2iz7EsTAx5kud8g?ct=application/prs.implied-structure;signature=MSFT>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (21.74 KiB)"@en.
-<ni:///mh;1QEQyxh3-Xz2iz7EsTAx5kud8g?ct=application/x.sig.msft> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.msft>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "MSFT object (21.74 KiB)"@en.
+<ni:///mh;1QEQyxh3-Xz2iz7EsTAx5kud8g?ct=application/prs.implied-structure;signature=MSFT> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=MSFT>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "MSFT object (21.74 KiB)"@en.
 <ni:///mh;1QEQz01Ugh2Bsd5EX19wAERnkA?ct=application/octet-stream> at:digest <urn:md5:CF4D54821D81B1DE445F5F7000446790>;
                                                                   dcterms:extent "120"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -1450,12 +1450,12 @@ _:n1 at:pathObject <file:///Lanbyte%20Client-Server%20version%200.01.msi>;
                                                    skos:prefLabel "BMP object (32×32)"@en.
 <ni:///mh;1QEQzhL3gb7Mz0Z-Y-uKeLPwcA?ct=application/octet-stream> at:digest <urn:md5:CE12F781BECCCF467E63EB8A78B3F070>;
                                                                   dcterms:extent "20902"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQzhL3gb7Mz0Z-Y-uKeLPwcA?ct=application/x.sig.itsf>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQzhL3gb7Mz0Z-Y-uKeLPwcA?ct=application/prs.implied-structure;signature=ITSF>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (20.41 KiB)"@en.
-<ni:///mh;1QEQzhL3gb7Mz0Z-Y-uKeLPwcA?ct=application/x.sig.itsf> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.itsf>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "ITSF object (20.41 KiB)"@en.
+<ni:///mh;1QEQzhL3gb7Mz0Z-Y-uKeLPwcA?ct=application/prs.implied-structure;signature=ITSF> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=ITSF>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "ITSF object (20.41 KiB)"@en.
 <ni:///mh;1QEQE3K-2Y30KjA7LvpUuw4pdA%3Fct=application/vnd.ms-cab-compressed%23/%C2%A0.exe/mh;1QEQE3K-2Y30KjA7LvpUuw4pdA?ct=application/vnd.ms-cab-compressed#/%C2%A0.exe> at:pathObject <file:///%C2%A0.exe>;
                                                                                                                                                                           nie:interpretedAs <ni:///mh;1QEQ90B7wVXJTNm1u7wXTjHntA?ct=application/octet-stream>;
                                                                                                                                                                           nfo:belongsToContainer <ni:///mh;1QEQE3K-2Y30KjA7LvpUuw4pdA?ct=application/vnd.ms-cab-compressed>;

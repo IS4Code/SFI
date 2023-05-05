@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQlS2bNdHIsnQiOrj_0MhmKw?ct=application/octet-stream>.
+@base <x.blank:22f457f9-a102-4ec0-9d77-7878d3200246>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -66,10 +66,10 @@ _:n1 at:pathObject <file:///mb03.oxps>;
 <file:///msgothic.ttf> at:extensionObject <https://w3id.org/uri4uri/suffix/ttf>.
 <file:///mshei.ttf> at:extensionObject <https://w3id.org/uri4uri/suffix/ttf>.
 <file:///times.ttf> at:extensionObject <https://w3id.org/uri4uri/suffix/ttf>.
-<ni:///mh;1QEQ2xLNmw3mhOz43o5Qrg5kww?ct=application/x.ns.org.openxps.schemas.http.oxps.v1.0.FixedDocumentSequence+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxps.schemas.http.oxps.v1.0.fixeddocumentsequence+xml>;
-                                                                                                                       a schema:MediaObject;
-                                                                                                                       skos:prefLabel "FIXEDDOCUMENTSEQUENCE object"@en.
-<ni:///mh;1QEQ2xLNmw3mhOz43o5Qrg5kww?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ2xLNmw3mhOz43o5Qrg5kww?ct=application/x.ns.org.openxps.schemas.http.oxps.v1.0.FixedDocumentSequence+xml>;
+<ni:///mh;1QEQ2xLNmw3mhOz43o5Qrg5kww?ct=application/prs.implied-document+xml;root=FixedDocumentSequence;ns=%22http://schemas.openxps.org/oxps/v1.0%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=FixedDocumentSequence;ns=%22http://schemas.openxps.org/oxps/v1.0%22>;
+                                                                                                                                                       a schema:MediaObject;
+                                                                                                                                                       skos:prefLabel "FIXEDDOCUMENTSEQUENCE object"@en.
+<ni:///mh;1QEQ2xLNmw3mhOz43o5Qrg5kww?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ2xLNmw3mhOz43o5Qrg5kww?ct=application/prs.implied-document+xml;root=FixedDocumentSequence;ns=%22http://schemas.openxps.org/oxps/v1.0%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -91,10 +91,10 @@ _:n1 at:pathObject <file:///mb03.oxps>;
                                                     skos:prefLabel "text (194 B)"@en;
                                                     cnt:characterEncoding "utf-8".
 <ni:///mh;1QEQ2xLNmw3mhOz43o5Qrg5kww?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"utf-8\"?><FixedDocumentSequence xmlns=\"http://schemas.openxps.org/oxps/v1.0\"><DocumentReference Source=\"Documents/1/FixedDocument.fdoc\" /></FixedDocumentSequence>""".
-<ni:///mh;1QEQAMu4sO1bqZme-BFkTokvCg?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.Relationships+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.relationships+xml>;
-                                                                                                                                       a schema:MediaObject;
-                                                                                                                                       skos:prefLabel "RELATIONSHIPS object"@en.
-<ni:///mh;1QEQAMu4sO1bqZme-BFkTokvCg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQAMu4sO1bqZme-BFkTokvCg?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.Relationships+xml>;
+<ni:///mh;1QEQAMu4sO1bqZme-BFkTokvCg?ct=application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22>;
+                                                                                                                                                                       a schema:MediaObject;
+                                                                                                                                                                       skos:prefLabel "RELATIONSHIPS object"@en.
+<ni:///mh;1QEQAMu4sO1bqZme-BFkTokvCg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQAMu4sO1bqZme-BFkTokvCg?ct=application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -118,8 +118,8 @@ _:n1 at:pathObject <file:///mb03.oxps>;
 <ni:///mh;1QEQAMu4sO1bqZme-BFkTokvCg?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"utf-8\"?><Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Type=\"http://schemas.openxps.org/oxps/v1.0/fixedrepresentation\" Target=\"/FixedDocumentSequence.fdseq\" Id=\"Q8\" /></Relationships>""".
 <ni:///mh;1QEQL51UvNRL43QaU-z_vumTsg?ct=application/octet-stream> at:digest <urn:md5:2F9D54BCD44BE3741A53ECFFBEE993B2>;
                                                                   dcterms:extent "431732"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQL51UvNRL43QaU-z_vumTsg?ct=image/tiff>,
-                                                                                    <ni:///mh;1QEQL51UvNRL43QaU-z_vumTsg?ct=application/octet-stream#arw>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQL51UvNRL43QaU-z_vumTsg?ct=application/octet-stream#arw>,
+                                                                                    <ni:///mh;1QEQL51UvNRL43QaU-z_vumTsg?ct=image/tiff>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (421.61 KiB)"@en.
 <ni:///mh;1QEQL51UvNRL43QaU-z_vumTsg?ct=application/octet-stream#arw> nfo:height 178 ;
@@ -148,10 +148,10 @@ _:n1 at:pathObject <file:///mb03.oxps>;
                                                       schema:ImageObject;
                                                     skos:prefLabel "TIFF object (808×178)"@en,
                                                                    "TIF object (421.61 KiB)"@en.
-<ni:///mh;1QEQNLdmBoOvKtgGUoy8Xr-x8A?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.content-types.Types+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.package.2006.content-types.types+xml>;
-                                                                                                                               a schema:MediaObject;
-                                                                                                                               skos:prefLabel "TYPES object"@en.
-<ni:///mh;1QEQNLdmBoOvKtgGUoy8Xr-x8A?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQNLdmBoOvKtgGUoy8Xr-x8A?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.content-types.Types+xml>;
+<ni:///mh;1QEQNLdmBoOvKtgGUoy8Xr-x8A?ct=application/prs.implied-document+xml;root=Types;ns=%22http://schemas.openxmlformats.org/package/2006/content-types%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=Types;ns=%22http://schemas.openxmlformats.org/package/2006/content-types%22>;
+                                                                                                                                                               a schema:MediaObject;
+                                                                                                                                                               skos:prefLabel "TYPES object"@en.
+<ni:///mh;1QEQNLdmBoOvKtgGUoy8Xr-x8A?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQNLdmBoOvKtgGUoy8Xr-x8A?ct=application/prs.implied-document+xml;root=Types;ns=%22http://schemas.openxmlformats.org/package/2006/content-types%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -181,10 +181,10 @@ _:n1 at:pathObject <file:///mb03.oxps>;
                                                                   dcterms:extent "367112"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (358.51 KiB)"@en.
-<ni:///mh;1QEQbLg0uKawB7gN-dvLN_IQIA?ct=application/x.ns.org.openxps.schemas.http.oxps.v1.0.FixedDocument+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxps.schemas.http.oxps.v1.0.fixeddocument+xml>;
-                                                                                                               a schema:MediaObject;
-                                                                                                               skos:prefLabel "FIXEDDOCUMENT object"@en.
-<ni:///mh;1QEQbLg0uKawB7gN-dvLN_IQIA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQbLg0uKawB7gN-dvLN_IQIA?ct=application/x.ns.org.openxps.schemas.http.oxps.v1.0.FixedDocument+xml>;
+<ni:///mh;1QEQbLg0uKawB7gN-dvLN_IQIA?ct=application/prs.implied-document+xml;root=FixedDocument;ns=%22http://schemas.openxps.org/oxps/v1.0%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=FixedDocument;ns=%22http://schemas.openxps.org/oxps/v1.0%22>;
+                                                                                                                                               a schema:MediaObject;
+                                                                                                                                               skos:prefLabel "FIXEDDOCUMENT object"@en.
+<ni:///mh;1QEQbLg0uKawB7gN-dvLN_IQIA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQbLg0uKawB7gN-dvLN_IQIA?ct=application/prs.implied-document+xml;root=FixedDocument;ns=%22http://schemas.openxps.org/oxps/v1.0%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -214,10 +214,10 @@ _:n1 at:pathObject <file:///mb03.oxps>;
                                                                   dcterms:extent "409280"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (399.69 KiB)"@en.
-<ni:///mh;1QEQicXS3KP-30X2sgTn6KPbcg?ct=application/x.ns.org.openxps.schemas.http.oxps.v1.0.FixedPage+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxps.schemas.http.oxps.v1.0.fixedpage+xml>;
-                                                                                                           a schema:MediaObject;
-                                                                                                           skos:prefLabel "FIXEDPAGE object"@en.
-<ni:///mh;1QEQicXS3KP-30X2sgTn6KPbcg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQicXS3KP-30X2sgTn6KPbcg?ct=application/x.ns.org.openxps.schemas.http.oxps.v1.0.FixedPage+xml>;
+<ni:///mh;1QEQicXS3KP-30X2sgTn6KPbcg?ct=application/prs.implied-document+xml;root=FixedPage;ns=%22http://schemas.openxps.org/oxps/v1.0%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=FixedPage;ns=%22http://schemas.openxps.org/oxps/v1.0%22>;
+                                                                                                                                           a schema:MediaObject;
+                                                                                                                                           skos:prefLabel "FIXEDPAGE object"@en.
+<ni:///mh;1QEQicXS3KP-30X2sgTn6KPbcg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQicXS3KP-30X2sgTn6KPbcg?ct=application/prs.implied-document+xml;root=FixedPage;ns=%22http://schemas.openxps.org/oxps/v1.0%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -470,9 +470,9 @@ _:n1 at:pathObject <file:///mb03.oxps>;
                                                     nfo:verticalResolution 1200 ;
                                                     nfo:width 1600 ;
                                                     a schema:MediaObject,
+                                                      exif:IFD,
                                                       nfo:Image,
-                                                      schema:ImageObject,
-                                                      exif:IFD;
+                                                      schema:ImageObject;
                                                     exif:colorSpace 65535 ;
                                                     exif:compression 6 ;
                                                     exif:dateTime "2005-10-06T09:33:01.000000"^^xsd:dateTime;
@@ -487,8 +487,8 @@ _:n1 at:pathObject <file:///mb03.oxps>;
                                                                      72 ;
                                                     exif:yResolution 1200 ,
                                                                      72 ;
-                                                    skos:prefLabel "JPG object (1600×1200)"@en,
-                                                                   "JPG object (1.25 MiB)"@en.
+                                                    skos:prefLabel "JPG object (1.25 MiB)"@en,
+                                                                   "JPG object (1600×1200)"@en.
 <ni:///mh;1QEQpej1PReqYyuhU3EgodC2kw?ct=image/jpeg#/0> nfo:height 1200 ;
                                                        nfo:width 1600 ;
                                                        a nfo:MediaStream;
@@ -497,10 +497,10 @@ _:n1 at:pathObject <file:///mb03.oxps>;
                                                        nfo:width 1600 ;
                                                        a nfo:MediaStream;
                                                        skos:prefLabel "1:Exif SubIFD (1600×1200)".
-<ni:///mh;1QEQqR6abxJNYeKbIAiN2VvMGg?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.Relationships+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.relationships+xml>;
-                                                                                                                                       a schema:MediaObject;
-                                                                                                                                       skos:prefLabel "RELATIONSHIPS object"@en.
-<ni:///mh;1QEQqR6abxJNYeKbIAiN2VvMGg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQqR6abxJNYeKbIAiN2VvMGg?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.Relationships+xml>;
+<ni:///mh;1QEQqR6abxJNYeKbIAiN2VvMGg?ct=application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22>;
+                                                                                                                                                                       a schema:MediaObject;
+                                                                                                                                                                       skos:prefLabel "RELATIONSHIPS object"@en.
+<ni:///mh;1QEQqR6abxJNYeKbIAiN2VvMGg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQqR6abxJNYeKbIAiN2VvMGg?ct=application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,

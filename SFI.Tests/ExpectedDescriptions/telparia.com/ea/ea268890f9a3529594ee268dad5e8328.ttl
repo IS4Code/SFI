@@ -1,4 +1,4 @@
-@base <x.blank:050799a5-5617-4d06-996a-0ff00355a0c4>.
+@base <x.blank:c82049d0-b481-4941-bc72-ede49c20edc2>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -55,10 +55,10 @@ _:n1 at:pathObject <file:///example.epub>;
 <file:///stylesheet.css> at:extensionObject <https://w3id.org/uri4uri/suffix/css>.
 <file:///titlepage.xhtml> at:extensionObject <https://w3id.org/uri4uri/suffix/xhtml>.
 <file:///toc.ncx> at:extensionObject <https://w3id.org/uri4uri/suffix/ncx>.
-<ni:///mh;1QEQ0TUUgJY7IT7545HxOAF2PA?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
-                                                                                              a schema:MediaObject;
-                                                                                              skos:prefLabel "HTML object"@en.
-<ni:///mh;1QEQ0TUUgJY7IT7545HxOAF2PA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ0TUUgJY7IT7545HxOAF2PA?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
+<ni:///mh;1QEQ0TUUgJY7IT7545HxOAF2PA?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
+                                                                                                                              a schema:MediaObject;
+                                                                                                                              skos:prefLabel "HTML object"@en.
+<ni:///mh;1QEQ0TUUgJY7IT7545HxOAF2PA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ0TUUgJY7IT7545HxOAF2PA?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -105,10 +105,10 @@ _:n1 at:pathObject <file:///example.epub>;
                                                       schema:ImageObject;
                                                     skos:prefLabel "JPG object (164×165)"@en,
                                                                    "JPG object (4.97 KiB)"@en.
-<ni:///mh;1QEQBatfm1wK6Q4keacxHetyIw?ct=application/x.ns.org.daisy.www.http.z3986.2005.ncx.ncx+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.daisy.www.http.z3986.2005.ncx.ncx+xml>;
-                                                                                                    a schema:MediaObject;
-                                                                                                    skos:prefLabel "NCX object"@en.
-<ni:///mh;1QEQBatfm1wK6Q4keacxHetyIw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQBatfm1wK6Q4keacxHetyIw?ct=application/x.ns.org.daisy.www.http.z3986.2005.ncx.ncx+xml>;
+<ni:///mh;1QEQBatfm1wK6Q4keacxHetyIw?ct=application/prs.implied-document+xml;root=ncx;ns=%22http://www.daisy.org/z3986/2005/ncx/%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=ncx;ns=%22http://www.daisy.org/z3986/2005/ncx/%22>;
+                                                                                                                                     a schema:MediaObject;
+                                                                                                                                     skos:prefLabel "NCX object"@en.
+<ni:///mh;1QEQBatfm1wK6Q4keacxHetyIw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQBatfm1wK6Q4keacxHetyIw?ct=application/prs.implied-document+xml;root=ncx;ns=%22http://www.daisy.org/z3986/2005/ncx/%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -130,10 +130,10 @@ _:n1 at:pathObject <file:///example.epub>;
                                                     skos:prefLabel "text (701 B)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQBatfm1wK6Q4keacxHetyIw?ct=text/plain#line=,1> rdf:value "<?xml version='1.0' encoding='utf-8'?>".
-<ni:///mh;1QEQBv17j32TfZQhaFQZoto9eA?ct=application/x.ns.org.idpf.www.http.2007.opf.package+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.idpf.www.http.2007.opf.package+xml>;
-                                                                                                 a schema:MediaObject;
-                                                                                                 skos:prefLabel "PACKAGE object"@en.
-<ni:///mh;1QEQBv17j32TfZQhaFQZoto9eA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQBv17j32TfZQhaFQZoto9eA?ct=application/x.ns.org.idpf.www.http.2007.opf.package+xml>;
+<ni:///mh;1QEQBv17j32TfZQhaFQZoto9eA?ct=application/prs.implied-document+xml;root=package;ns=%22http://www.idpf.org/2007/opf%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=package;ns=%22http://www.idpf.org/2007/opf%22>;
+                                                                                                                                 a schema:MediaObject;
+                                                                                                                                 skos:prefLabel "PACKAGE object"@en.
+<ni:///mh;1QEQBv17j32TfZQhaFQZoto9eA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQBv17j32TfZQhaFQZoto9eA?ct=application/prs.implied-document+xml;root=package;ns=%22http://www.idpf.org/2007/opf%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -297,10 +297,10 @@ _:n1 at:pathObject <file:///example.epub>;
                                                                   a nfo:FileDataObject,
                                                                     nfo:ArchiveItem;
                                                                   skos:prefLabel "/toc.ncx".
-<ni:///mh;1QEQNd-tqQKd3MAnApUWGysBDA?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
-                                                                                              a schema:MediaObject;
-                                                                                              skos:prefLabel "HTML object"@en.
-<ni:///mh;1QEQNd-tqQKd3MAnApUWGysBDA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQNd-tqQKd3MAnApUWGysBDA?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
+<ni:///mh;1QEQNd-tqQKd3MAnApUWGysBDA?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
+                                                                                                                              a schema:MediaObject;
+                                                                                                                              skos:prefLabel "HTML object"@en.
+<ni:///mh;1QEQNd-tqQKd3MAnApUWGysBDA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQNd-tqQKd3MAnApUWGysBDA?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -322,8 +322,8 @@ _:n1 at:pathObject <file:///example.epub>;
                                                    skos:prefLabel "HTML object (799 B)"@en.
 <ni:///mh;1QEQNd-tqQKd3MAnApUWGysBDA?ct=text/plain> at:digest <urn:md5:35DFADA9029DDCC0270295161B2B010C>;
                                                     dcterms:extent "799"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQNd-tqQKd3MAnApUWGysBDA?ct=application/xml>,
-                                                                      <ni:///mh;1QEQNd-tqQKd3MAnApUWGysBDA?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQNd-tqQKd3MAnApUWGysBDA?ct=text/html>,
+                                                                      <ni:///mh;1QEQNd-tqQKd3MAnApUWGysBDA?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQNd-tqQKd3MAnApUWGysBDA?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (799 B)"@en;
@@ -346,10 +346,10 @@ _:n1 at:pathObject <file:///example.epub>;
                                                    skos:prefLabel "PNG object (296×103, 8-bit)"@en,
                                                                   "PNG object (296×103)"@en,
                                                                   "PNG object (13.58 KiB)"@en.
-<ni:///mh;1QEQSii0w5Spi-xSDaSNxr-rgg?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.container.container+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.urn.oasis.names.tc.opendocument.xmlns.container.container+xml>;
-                                                                                                                        a schema:MediaObject;
-                                                                                                                        skos:prefLabel "CONTAINER object"@en.
-<ni:///mh;1QEQSii0w5Spi-xSDaSNxr-rgg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQSii0w5Spi-xSDaSNxr-rgg?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.container.container+xml>;
+<ni:///mh;1QEQSii0w5Spi-xSDaSNxr-rgg?ct=application/prs.implied-document+xml;root=container;ns=%22urn:oasis:names:tc:opendocument:xmlns:container%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=container;ns=%22urn:oasis:names:tc:opendocument:xmlns:container%22>;
+                                                                                                                                                      a schema:MediaObject;
+                                                                                                                                                      skos:prefLabel "CONTAINER object"@en.
+<ni:///mh;1QEQSii0w5Spi-xSDaSNxr-rgg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQSii0w5Spi-xSDaSNxr-rgg?ct=application/prs.implied-document+xml;root=container;ns=%22urn:oasis:names:tc:opendocument:xmlns:container%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,

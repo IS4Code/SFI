@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQYk1ip3Nd3G9uF1idEjKkkA?ct=application/x.sig.swg2>.
+@base <x.blank:d7baff8b-87bb-436c-9bb2-eb71185007d0>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -21,12 +21,12 @@ _:n1 at:pathObject <file:///EINLKART.SDW>;
 <file:///EINLKART.SDW> at:extensionObject <https://w3id.org/uri4uri/suffix/sdw>.
 <ni:///mh;1QEQYk1ip3Nd3G9uF1idEjKkkA?ct=application/octet-stream> at:digest <urn:md5:624D62A7735DDC6F6E17589D1232A490>;
                                                                   dcterms:extent "6664"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQYk1ip3Nd3G9uF1idEjKkkA?ct=application/x.sig.swg2>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQYk1ip3Nd3G9uF1idEjKkkA?ct=application/prs.implied-structure;signature=SWG2>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (6.51 KiB)"@en.
-<ni:///mh;1QEQYk1ip3Nd3G9uF1idEjKkkA?ct=application/x.sig.swg2> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.swg2>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "SWG2 object (6.51 KiB)"@en.
+<ni:///mh;1QEQYk1ip3Nd3G9uF1idEjKkkA?ct=application/prs.implied-structure;signature=SWG2> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=SWG2>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "SWG2 object (6.51 KiB)"@en.
 <urn:md5:624D62A7735DDC6F6E17589D1232A490> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "Yk1ip3Nd3G9uF1idEjKkkA=="^^xsd:base64Binary.

@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQHXU_sLPBRFyYb4Ks9Pwf-w?ct=application/octet-stream>.
+@base <x.blank:273c91d5-54d4-4a98-86b9-83a5fc0c1070>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -167,14 +167,14 @@ _:n1 at:pathObject <file:///example.stw>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "PNG object (403×141, 8-bit)"@en,
-                                                                  "PNG object (403×141)"@en,
-                                                                  "PNG object (17.18 KiB)"@en.
-<ni:///mh;1QEQRTRoEBJOJyBWWjy3lJcStQ?ct=application/x.ns.org.openoffice.http.2000.office.document-content+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openoffice.http.2000.office.document-content+xml>,
-                                                                                                                                     <urn:publicid:-:OpenOffice.org:DTD+OfficeDocument+1.0:EN>;
-                                                                                                               a schema:MediaObject;
-                                                                                                               skos:prefLabel "DOCUMENT-CONTENT object"@en.
-<ni:///mh;1QEQRTRoEBJOJyBWWjy3lJcStQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQRTRoEBJOJyBWWjy3lJcStQ?ct=application/x.ns.org.openoffice.http.2000.office.document-content+xml>;
+                                                   skos:prefLabel "PNG object (17.18 KiB)"@en,
+                                                                  "PNG object (403×141, 8-bit)"@en,
+                                                                  "PNG object (403×141)"@en.
+<ni:///mh;1QEQRTRoEBJOJyBWWjy3lJcStQ?ct=application/prs.implied-document+xml;root=document-content;ns=%22http://openoffice.org/2000/office%22;public=%22-//OpenOffice.org//DTD%20OfficeDocument%201.0//EN%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=document-content;ns=%22http://openoffice.org/2000/office%22;public=%22-//OpenOffice.org//DTD%20OfficeDocument%201.0//EN%22>,
+                                                                                                                                                                                                                                    <urn:publicid:-:OpenOffice.org:DTD+OfficeDocument+1.0:EN>;
+                                                                                                                                                                                                              a schema:MediaObject;
+                                                                                                                                                                                                              skos:prefLabel "DOCUMENT-CONTENT object"@en.
+<ni:///mh;1QEQRTRoEBJOJyBWWjy3lJcStQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQRTRoEBJOJyBWWjy3lJcStQ?ct=application/prs.implied-document+xml;root=document-content;ns=%22http://openoffice.org/2000/office%22;public=%22-//OpenOffice.org//DTD%20OfficeDocument%201.0//EN%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -215,16 +215,16 @@ _:n1 at:pathObject <file:///example.stw>;
                                                    nfo:verticalResolution 559.1556;
                                                    nfo:width 542 ;
                                                    a schema:MediaObject,
-                                                     nfo:Image,
-                                                     schema:ImageObject;
-                                                   skos:prefLabel "PNG object (542×546)"@en,
-                                                                  "PNG object (542×546, 8-bit)"@en,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "PNG object (542×546, 8-bit)"@en,
+                                                                  "PNG object (542×546)"@en,
                                                                   "PNG object (19.25 KiB)"@en.
-<ni:///mh;1QEQiZnLTJ0oInNQJQAQJhcPeg?ct=application/x.ns.org.openoffice.http.2000.office.document-settings+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openoffice.http.2000.office.document-settings+xml>,
-                                                                                                                                      <urn:publicid:-:OpenOffice.org:DTD+OfficeDocument+1.0:EN>;
-                                                                                                                a schema:MediaObject;
-                                                                                                                skos:prefLabel "DOCUMENT-SETTINGS object"@en.
-<ni:///mh;1QEQiZnLTJ0oInNQJQAQJhcPeg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQiZnLTJ0oInNQJQAQJhcPeg?ct=application/x.ns.org.openoffice.http.2000.office.document-settings+xml>;
+<ni:///mh;1QEQiZnLTJ0oInNQJQAQJhcPeg?ct=application/prs.implied-document+xml;root=document-settings;ns=%22http://openoffice.org/2000/office%22;public=%22-//OpenOffice.org//DTD%20OfficeDocument%201.0//EN%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=document-settings;ns=%22http://openoffice.org/2000/office%22;public=%22-//OpenOffice.org//DTD%20OfficeDocument%201.0//EN%22>,
+                                                                                                                                                                                                                                     <urn:publicid:-:OpenOffice.org:DTD+OfficeDocument+1.0:EN>;
+                                                                                                                                                                                                               a schema:MediaObject;
+                                                                                                                                                                                                               skos:prefLabel "DOCUMENT-SETTINGS object"@en.
+<ni:///mh;1QEQiZnLTJ0oInNQJQAQJhcPeg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQiZnLTJ0oInNQJQAQJhcPeg?ct=application/prs.implied-document+xml;root=document-settings;ns=%22http://openoffice.org/2000/office%22;public=%22-//OpenOffice.org//DTD%20OfficeDocument%201.0//EN%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -253,11 +253,11 @@ _:n1 at:pathObject <file:///example.stw>;
                                                     skos:prefLabel "text (9.17 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQiZnLTJ0oInNQJQAQJhcPeg?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?>""".
-<ni:///mh;1QEQq_2JXSglpF8TrOvL_xMtIQ?ct=application/x.ns.org.openoffice.http.2000.office.document-meta+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openoffice.http.2000.office.document-meta+xml>,
-                                                                                                                                  <urn:publicid:-:OpenOffice.org:DTD+OfficeDocument+1.0:EN>;
-                                                                                                            a schema:MediaObject;
-                                                                                                            skos:prefLabel "DOCUMENT-META object"@en.
-<ni:///mh;1QEQq_2JXSglpF8TrOvL_xMtIQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQq_2JXSglpF8TrOvL_xMtIQ?ct=application/x.ns.org.openoffice.http.2000.office.document-meta+xml>;
+<ni:///mh;1QEQq_2JXSglpF8TrOvL_xMtIQ?ct=application/prs.implied-document+xml;root=document-meta;ns=%22http://openoffice.org/2000/office%22;public=%22-//OpenOffice.org//DTD%20OfficeDocument%201.0//EN%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=document-meta;ns=%22http://openoffice.org/2000/office%22;public=%22-//OpenOffice.org//DTD%20OfficeDocument%201.0//EN%22>,
+                                                                                                                                                                                                                                 <urn:publicid:-:OpenOffice.org:DTD+OfficeDocument+1.0:EN>;
+                                                                                                                                                                                                           a schema:MediaObject;
+                                                                                                                                                                                                           skos:prefLabel "DOCUMENT-META object"@en.
+<ni:///mh;1QEQq_2JXSglpF8TrOvL_xMtIQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQq_2JXSglpF8TrOvL_xMtIQ?ct=application/prs.implied-document+xml;root=document-meta;ns=%22http://openoffice.org/2000/office%22;public=%22-//OpenOffice.org//DTD%20OfficeDocument%201.0//EN%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -286,11 +286,11 @@ _:n1 at:pathObject <file:///example.stw>;
                                                     skos:prefLabel "text (1.04 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQq_2JXSglpF8TrOvL_xMtIQ?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?>""".
-<ni:///mh;1QEQr7U1k5r4eBmge4vozcLs6Q?ct=application/x.ns.org.openoffice.http.2001.manifest.manifest+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openoffice.http.2001.manifest.manifest+xml>,
-                                                                                                                               <urn:publicid:-:OpenOffice.org:DTD+Manifest+1.0:EN>;
-                                                                                                         a schema:MediaObject;
-                                                                                                         skos:prefLabel "MANIFEST object"@en.
-<ni:///mh;1QEQr7U1k5r4eBmge4vozcLs6Q?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQr7U1k5r4eBmge4vozcLs6Q?ct=application/x.ns.org.openoffice.http.2001.manifest.manifest+xml>;
+<ni:///mh;1QEQr7U1k5r4eBmge4vozcLs6Q?ct=application/prs.implied-document+xml;root=manifest;ns=%22http://openoffice.org/2001/manifest%22;public=%22-//OpenOffice.org//DTD%20Manifest%201.0//EN%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=manifest;ns=%22http://openoffice.org/2001/manifest%22;public=%22-//OpenOffice.org//DTD%20Manifest%201.0//EN%22>,
+                                                                                                                                                                                                                        <urn:publicid:-:OpenOffice.org:DTD+Manifest+1.0:EN>;
+                                                                                                                                                                                                  a schema:MediaObject;
+                                                                                                                                                                                                  skos:prefLabel "MANIFEST object"@en.
+<ni:///mh;1QEQr7U1k5r4eBmge4vozcLs6Q?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQr7U1k5r4eBmge4vozcLs6Q?ct=application/prs.implied-document+xml;root=manifest;ns=%22http://openoffice.org/2001/manifest%22;public=%22-//OpenOffice.org//DTD%20Manifest%201.0//EN%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -319,11 +319,11 @@ _:n1 at:pathObject <file:///example.stw>;
                                                     skos:prefLabel "text (1.09 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQr7U1k5r4eBmge4vozcLs6Q?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?>""".
-<ni:///mh;1QEQvxO_69r2iz-RIC670g6h9A?ct=application/x.ns.org.openoffice.http.2000.office.document-styles+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openoffice.http.2000.office.document-styles+xml>,
-                                                                                                                                    <urn:publicid:-:OpenOffice.org:DTD+OfficeDocument+1.0:EN>;
-                                                                                                              a schema:MediaObject;
-                                                                                                              skos:prefLabel "DOCUMENT-STYLES object"@en.
-<ni:///mh;1QEQvxO_69r2iz-RIC670g6h9A?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQvxO_69r2iz-RIC670g6h9A?ct=application/x.ns.org.openoffice.http.2000.office.document-styles+xml>;
+<ni:///mh;1QEQvxO_69r2iz-RIC670g6h9A?ct=application/prs.implied-document+xml;root=document-styles;ns=%22http://openoffice.org/2000/office%22;public=%22-//OpenOffice.org//DTD%20OfficeDocument%201.0//EN%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=document-styles;ns=%22http://openoffice.org/2000/office%22;public=%22-//OpenOffice.org//DTD%20OfficeDocument%201.0//EN%22>,
+                                                                                                                                                                                                                                   <urn:publicid:-:OpenOffice.org:DTD+OfficeDocument+1.0:EN>;
+                                                                                                                                                                                                             a schema:MediaObject;
+                                                                                                                                                                                                             skos:prefLabel "DOCUMENT-STYLES object"@en.
+<ni:///mh;1QEQvxO_69r2iz-RIC670g6h9A?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQvxO_69r2iz-RIC670g6h9A?ct=application/prs.implied-document+xml;root=document-styles;ns=%22http://openoffice.org/2000/office%22;public=%22-//OpenOffice.org//DTD%20OfficeDocument%201.0//EN%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -364,10 +364,10 @@ _:n1 at:pathObject <file:///example.stw>;
                                                    nfo:verticalResolution 95.9866;
                                                    nfo:width 2048 ;
                                                    a schema:MediaObject,
-                                                     nfo:Image,
-                                                     schema:ImageObject;
-                                                   skos:prefLabel "PNG object (2048×1361)"@en,
-                                                                  "PNG object (2048×1361, 8-bit)"@en,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "PNG object (2048×1361, 8-bit)"@en,
+                                                                  "PNG object (2048×1361)"@en,
                                                                   "PNG object (6.12 MiB)"@en.
 <urn:md5:1D753FB0B3C1445C986F82ACF4FC1FFB> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;

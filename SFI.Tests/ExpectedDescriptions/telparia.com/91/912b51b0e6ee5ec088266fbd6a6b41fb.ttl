@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQf_b4GGmm_XNRGtUHbhh9cA?ct=application/x.sig.form>.
+@base <x.blank:c84a5c67-219b-4f4f-bafd-03199ea5563f>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -20,12 +20,12 @@ _:n1 at:pathObject <file:///brainson>;
      a nfo:FileDataObject.
 <ni:///mh;1QEQf_b4GGmm_XNRGtUHbhh9cA?ct=application/octet-stream> at:digest <urn:md5:7FF6F81869A6FD73511AD5076E187D70>;
                                                                   dcterms:extent "3758690"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQf_b4GGmm_XNRGtUHbhh9cA?ct=application/x.sig.form>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQf_b4GGmm_XNRGtUHbhh9cA?ct=application/prs.implied-structure;signature=FORM>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (3.58 MiB)"@en.
-<ni:///mh;1QEQf_b4GGmm_XNRGtUHbhh9cA?ct=application/x.sig.form> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.form>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "FORM object (3.58 MiB)"@en.
+<ni:///mh;1QEQf_b4GGmm_XNRGtUHbhh9cA?ct=application/prs.implied-structure;signature=FORM> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=FORM>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "FORM object (3.58 MiB)"@en.
 <urn:md5:7FF6F81869A6FD73511AD5076E187D70> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "f/b4GGmm/XNRGtUHbhh9cA=="^^xsd:base64Binary.

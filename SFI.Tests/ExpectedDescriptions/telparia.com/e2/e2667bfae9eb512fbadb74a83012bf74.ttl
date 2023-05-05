@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQpk1VHJhUuvRNsky7xGfSbQ?ct=application/octet-stream>.
+@base <x.blank:2e34100d-15ab-4d91-af52-112f4eef1327>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -80,8 +80,8 @@ _:n1 at:pathObject <file:///iedata.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (364 B)"@en,
-                                                                  "BMP object (39×13)"@en.
+                                                   skos:prefLabel "BMP object (39×13)"@en,
+                                                                  "BMP object (364 B)"@en.
 <ni:///mh;1QEQ2IFMylT1AWhjw2z11V2Rgg?ct=text/plain> at:digest <urn:md5:D8814CCA54F5016863C36CF5D55D9182>;
                                                     dcterms:extent "1234"^^dt:byte;
                                                     nie:hasPart <ni:///mh;1QEQ2IFMylT1AWhjw2z11V2Rgg?ct=text/plain#line=,1>;
@@ -164,12 +164,12 @@ _:n1 at:pathObject <file:///iedata.cab>;
 <ni:///mh;1QEQZ6TZ5-LCupHuQ7Il07o_AQ?ct=text/plain#line=,1> rdf:value "".
 <ni:///mh;1QEQaqto7VbRHE3TPAyOLGKgPA?ct=application/octet-stream> at:digest <urn:md5:6AAB68ED56D11C4DD33C0C8E2C62A03C>;
                                                                   dcterms:extent "5348"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQaqto7VbRHE3TPAyOLGKgPA?ct=application/x.sig.msft>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQaqto7VbRHE3TPAyOLGKgPA?ct=application/prs.implied-structure;signature=MSFT>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (5.22 KiB)"@en.
-<ni:///mh;1QEQaqto7VbRHE3TPAyOLGKgPA?ct=application/x.sig.msft> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.msft>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "MSFT object (5.22 KiB)"@en.
+<ni:///mh;1QEQaqto7VbRHE3TPAyOLGKgPA?ct=application/prs.implied-structure;signature=MSFT> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=MSFT>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "MSFT object (5.22 KiB)"@en.
 <ni:///mh;1QEQetzGpK9E6vjQ8Gp3bma9qQ?ct=application/octet-stream> at:digest <urn:md5:7ADCC6A4AF44EAF8D0F06A776E66BDA9>;
                                                                   dcterms:extent "73696"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQetzGpK9E6vjQ8Gp3bma9qQ?ct=application/vnd.microsoft.portable-executable>;

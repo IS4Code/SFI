@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQFJ-68R8l9o9vFkAIZSJppw?ct=application/octet-stream>.
+@base <x.blank:dd450947-33b4-4d60-8b71-e800ff87a6c3>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -69,10 +69,10 @@ _:n1 at:pathObject <file:///example.odp>;
 <file:///settings.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///styles.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///thumbnail.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
-<ni:///mh;1QEQ-RwcxMsS80r51CFkLF9Quw?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.office.1.0.document-settings+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.urn.oasis.names.tc.opendocument.xmlns.office.1.0.document-settings+xml>;
-                                                                                                                                 a schema:MediaObject;
-                                                                                                                                 skos:prefLabel "DOCUMENT-SETTINGS object"@en.
-<ni:///mh;1QEQ-RwcxMsS80r51CFkLF9Quw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ-RwcxMsS80r51CFkLF9Quw?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.office.1.0.document-settings+xml>;
+<ni:///mh;1QEQ-RwcxMsS80r51CFkLF9Quw?ct=application/prs.implied-document+xml;root=document-settings;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=document-settings;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22>;
+                                                                                                                                                               a schema:MediaObject;
+                                                                                                                                                               skos:prefLabel "DOCUMENT-SETTINGS object"@en.
+<ni:///mh;1QEQ-RwcxMsS80r51CFkLF9Quw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ-RwcxMsS80r51CFkLF9Quw?ct=application/prs.implied-document+xml;root=document-settings;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -95,10 +95,10 @@ _:n1 at:pathObject <file:///example.odp>;
                                                     skos:prefLabel "text (28.4 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQ-RwcxMsS80r51CFkLF9Quw?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?>""".
-<ni:///mh;1QEQ0D7hAWYGqp6txRjoLFPo6Q?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.manifest.1.0.manifest+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.urn.oasis.names.tc.opendocument.xmlns.manifest.1.0.manifest+xml>;
-                                                                                                                          a schema:MediaObject;
-                                                                                                                          skos:prefLabel "MANIFEST object"@en.
-<ni:///mh;1QEQ0D7hAWYGqp6txRjoLFPo6Q?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ0D7hAWYGqp6txRjoLFPo6Q?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.manifest.1.0.manifest+xml>;
+<ni:///mh;1QEQ0D7hAWYGqp6txRjoLFPo6Q?ct=application/prs.implied-document+xml;root=manifest;ns=%22urn:oasis:names:tc:opendocument:xmlns:manifest:1.0%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=manifest;ns=%22urn:oasis:names:tc:opendocument:xmlns:manifest:1.0%22>;
+                                                                                                                                                        a schema:MediaObject;
+                                                                                                                                                        skos:prefLabel "MANIFEST object"@en.
+<ni:///mh;1QEQ0D7hAWYGqp6txRjoLFPo6Q?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ0D7hAWYGqp6txRjoLFPo6Q?ct=application/prs.implied-document+xml;root=manifest;ns=%22urn:oasis:names:tc:opendocument:xmlns:manifest:1.0%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -134,15 +134,15 @@ _:n1 at:pathObject <file:///example.odp>;
                                                    nfo:verticalResolution 96 ;
                                                    nfo:width 256 ;
                                                    a schema:MediaObject,
-                                                     schema:ImageObject,
-                                                     nfo:Image;
+                                                     nfo:Image,
+                                                     schema:ImageObject;
                                                    skos:prefLabel "PNG object (256×192, 8-bit)"@en,
-                                                                  "PNG object (7.5 KiB)"@en,
-                                                                  "PNG object (256×192)"@en.
-<ni:///mh;1QEQ97VIEAQNrz7X4G_a7trW8g?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.office.1.0.document-content+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.urn.oasis.names.tc.opendocument.xmlns.office.1.0.document-content+xml>;
-                                                                                                                                a schema:MediaObject;
-                                                                                                                                skos:prefLabel "DOCUMENT-CONTENT object"@en.
-<ni:///mh;1QEQ97VIEAQNrz7X4G_a7trW8g?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ97VIEAQNrz7X4G_a7trW8g?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.office.1.0.document-content+xml>;
+                                                                  "PNG object (256×192)"@en,
+                                                                  "PNG object (7.5 KiB)"@en.
+<ni:///mh;1QEQ97VIEAQNrz7X4G_a7trW8g?ct=application/prs.implied-document+xml;root=document-content;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=document-content;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22>;
+                                                                                                                                                              a schema:MediaObject;
+                                                                                                                                                              skos:prefLabel "DOCUMENT-CONTENT object"@en.
+<ni:///mh;1QEQ97VIEAQNrz7X4G_a7trW8g?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ97VIEAQNrz7X4G_a7trW8g?ct=application/prs.implied-document+xml;root=document-content;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -165,10 +165,10 @@ _:n1 at:pathObject <file:///example.odp>;
                                                     skos:prefLabel "text (23.24 KiB)"@en;
                                                     cnt:characterEncoding "utf-8".
 <ni:///mh;1QEQ97VIEAQNrz7X4G_a7trW8g?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?>""".
-<ni:///mh;1QEQDf4Agli8ZW5zoSdVrj3LIg?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.office.1.0.document-meta+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.urn.oasis.names.tc.opendocument.xmlns.office.1.0.document-meta+xml>;
-                                                                                                                             a schema:MediaObject;
-                                                                                                                             skos:prefLabel "DOCUMENT-META object"@en.
-<ni:///mh;1QEQDf4Agli8ZW5zoSdVrj3LIg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQDf4Agli8ZW5zoSdVrj3LIg?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.office.1.0.document-meta+xml>;
+<ni:///mh;1QEQDf4Agli8ZW5zoSdVrj3LIg?ct=application/prs.implied-document+xml;root=document-meta;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=document-meta;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22>;
+                                                                                                                                                           a schema:MediaObject;
+                                                                                                                                                           skos:prefLabel "DOCUMENT-META object"@en.
+<ni:///mh;1QEQDf4Agli8ZW5zoSdVrj3LIg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQDf4Agli8ZW5zoSdVrj3LIg?ct=application/prs.implied-document+xml;root=document-meta;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -467,8 +467,8 @@ _:n1 at:pathObject <file:///example.odp>;
                                                      nfo:Image,
                                                      schema:ImageObject;
                                                    skos:prefLabel "PNG object (88×31)"@en,
-                                                                  "PNG object (4.96 KiB)"@en,
-                                                                  "PNG object (88×31, 8-bit)"@en.
+                                                                  "PNG object (88×31, 8-bit)"@en,
+                                                                  "PNG object (4.96 KiB)"@en.
 <ni:///mh;1QEQdpXU2AJpewb5HIBVWVfWEA?ct=application/octet-stream> at:digest <urn:md5:7695D4D802697B06F91C80555957D610>;
                                                                   dcterms:extent "678668"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQdpXU2AJpewb5HIBVWVfWEA?ct=image/jpeg>;
@@ -503,10 +503,10 @@ _:n1 at:pathObject <file:///example.odp>;
                                                    skos:prefLabel "PNG object (542×546)"@en,
                                                                   "PNG object (542×546, 8-bit)"@en,
                                                                   "PNG object (19.25 KiB)"@en.
-<ni:///mh;1QEQqk9AdGNmbG2FhWkr-Kw_2Q?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.office.1.0.document-styles+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.urn.oasis.names.tc.opendocument.xmlns.office.1.0.document-styles+xml>;
-                                                                                                                               a schema:MediaObject;
-                                                                                                                               skos:prefLabel "DOCUMENT-STYLES object"@en.
-<ni:///mh;1QEQqk9AdGNmbG2FhWkr-Kw_2Q?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQqk9AdGNmbG2FhWkr-Kw_2Q?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.office.1.0.document-styles+xml>;
+<ni:///mh;1QEQqk9AdGNmbG2FhWkr-Kw_2Q?ct=application/prs.implied-document+xml;root=document-styles;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=document-styles;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22>;
+                                                                                                                                                             a schema:MediaObject;
+                                                                                                                                                             skos:prefLabel "DOCUMENT-STYLES object"@en.
+<ni:///mh;1QEQqk9AdGNmbG2FhWkr-Kw_2Q?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQqk9AdGNmbG2FhWkr-Kw_2Q?ct=application/prs.implied-document+xml;root=document-styles;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,

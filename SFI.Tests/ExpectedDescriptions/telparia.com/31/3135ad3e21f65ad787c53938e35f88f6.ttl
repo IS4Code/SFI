@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQyuqkPC8AJYxCXHBlnHHakw?ct=application/octet-stream>.
+@base <x.blank:0fc41428-6c18-4780-809c-38af55e800fb>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -73,8 +73,8 @@ _:n1 at:pathObject <file:///next>;
                                                     exif:stripOffsets 8 ;
                                                     exif:xResolution 72 ;
                                                     exif:yResolution 72 ;
-                                                    skos:prefLabel "TIFF object (504×2113)"@en,
-                                                                   "TIFF object (504×2113, 2-bit)"@en,
+                                                    skos:prefLabel "TIFF object (504×2113, 2-bit)"@en,
+                                                                   "TIFF object (504×2113)"@en,
                                                                    "TIF object (260.17 KiB)"@en.
 <ni:///mh;1QEQ72mITfgG7weEWKic20Y3gw?ct=application/postscript> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/postscript>;
                                                                 a schema:MediaObject;
@@ -87,12 +87,12 @@ _:n1 at:pathObject <file:///next>;
                                                     skos:prefLabel "text (76.88 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQ72mITfgG7weEWKic20Y3gw?ct=text/plain#line=,1> rdf:value "%!PS-Adobe-2.0 EPSF-2.0".
-<ni:///mh;1QEQOrkFpjaoYt0lxA7a1OyVLA?ct=application/x.exec.dg_text-version-2> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.exec.dg_text-version-2>;
-                                                                              a schema:MediaObject;
-                                                                              skos:prefLabel "DG_TEXT-VERSION-2 object (60.63 KiB)"@en.
+<ni:///mh;1QEQOrkFpjaoYt0lxA7a1OyVLA?ct=application/prs.implied-executable;interpreter=DG_TEXT-Version-2> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-executable;interpreter=DG_TEXT-Version-2>;
+                                                                                                          a schema:MediaObject;
+                                                                                                          skos:prefLabel "DG_TEXT-VERSION-2 object (60.63 KiB)"@en.
 <ni:///mh;1QEQOrkFpjaoYt0lxA7a1OyVLA?ct=text/plain> at:digest <urn:md5:3AB905A636A862DD25C40EDAD4EC952C>;
                                                     dcterms:extent "62084"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQOrkFpjaoYt0lxA7a1OyVLA?ct=application/x.exec.dg_text-version-2>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQOrkFpjaoYt0lxA7a1OyVLA?ct=application/prs.implied-executable;interpreter=DG_TEXT-Version-2>;
                                                     nie:hasPart <ni:///mh;1QEQOrkFpjaoYt0lxA7a1OyVLA?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (60.63 KiB)"@en;

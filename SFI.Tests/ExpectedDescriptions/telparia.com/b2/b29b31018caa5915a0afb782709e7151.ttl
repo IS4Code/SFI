@@ -1,4 +1,4 @@
-@base <data:application/x.sig.kwaj;base64,S1dBSojwJ9EDAA4AAAAAAAABdAGAGACAOkQCAJ6AIAAdQgIEAoAOsQGAJ8FQAAdggQATjcQIA7RAoAcG5AQB>.
+@base <x.blank:89c14c3e-dadd-46e9-92d9-71daa7230df2>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -17,11 +17,11 @@ _:n1 at:pathObject <file:///DATA_USA.ID_>;
      nfo:fileSize 63 ;
      a nfo:FileDataObject.
 <data:application/octet-stream;base64,S1dBSojwJ9EDAA4AAAAAAAABdAGAGACAOkQCAJ6AIAAdQgIEAoAOsQGAJ8FQAAdggQATjcQIA7RAoAcG5AQB> dcterms:extent "63"^^dt:byte;
-                                                                                                                            dcterms:hasFormat <data:application/x.sig.kwaj;base64,S1dBSojwJ9EDAA4AAAAAAAABdAGAGACAOkQCAJ6AIAAdQgIEAoAOsQGAJ8FQAAdggQATjcQIA7RAoAcG5AQB>;
+                                                                                                                            dcterms:hasFormat <data:application/prs.implied-structure;signature=KWAJ;base64,S1dBSojwJ9EDAA4AAAAAAAABdAGAGACAOkQCAJ6AIAAdQgIEAoAOsQGAJ8FQAAdggQATjcQIA7RAoAcG5AQB>;
                                                                                                                             a cnt:ContentAsBase64;
                                                                                                                             skos:prefLabel "binary data (63 B)"@en;
                                                                                                                             cnt:bytes "S1dBSojwJ9EDAA4AAAAAAAABdAGAGACAOkQCAJ6AIAAdQgIEAoAOsQGAJ8FQAAdggQATjcQIA7RAoAcG5AQB"^^xsd:base64Binary.
-<data:application/x.sig.kwaj;base64,S1dBSojwJ9EDAA4AAAAAAAABdAGAGACAOkQCAJ6AIAAdQgIEAoAOsQGAJ8FQAAdggQATjcQIA7RAoAcG5AQB> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.kwaj>;
-                                                                                                                          a schema:MediaObject;
-                                                                                                                          skos:prefLabel "KWAJ object (63 B)"@en.
+<data:application/prs.implied-structure;signature=KWAJ;base64,S1dBSojwJ9EDAA4AAAAAAAABdAGAGACAOkQCAJ6AIAAdQgIEAoAOsQGAJ8FQAAdggQATjcQIA7RAoAcG5AQB> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=KWAJ>;
+                                                                                                                                                    a schema:MediaObject;
+                                                                                                                                                    skos:prefLabel "KWAJ object (63 B)"@en.
 <file:///DATA_USA.ID_> at:extensionObject <https://w3id.org/uri4uri/suffix/id_>.

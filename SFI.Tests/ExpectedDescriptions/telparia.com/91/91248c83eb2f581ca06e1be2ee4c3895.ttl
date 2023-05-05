@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQUIMnfjaTjXu4pImUxMBtBQ?ct=application/x.exec.bash>.
+@base <x.blank:4448fb70-51de-46bc-a8bf-c726f117f6af>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -19,12 +19,12 @@ _:n1 at:pathObject <file:///generate_tbbvars.sh>;
      nfo:fileSize 4294 ;
      a nfo:FileDataObject.
 <file:///generate_tbbvars.sh> at:extensionObject <https://w3id.org/uri4uri/suffix/sh>.
-<ni:///mh;1QEQUIMnfjaTjXu4pImUxMBtBQ?ct=application/x.exec.bash> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.exec.bash>;
-                                                                 a schema:MediaObject;
-                                                                 skos:prefLabel "BASH object (4.19 KiB)"@en.
+<ni:///mh;1QEQUIMnfjaTjXu4pImUxMBtBQ?ct=application/prs.implied-executable;interpreter=bash> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-executable;interpreter=bash>;
+                                                                                             a schema:MediaObject;
+                                                                                             skos:prefLabel "BASH object (4.19 KiB)"@en.
 <ni:///mh;1QEQUIMnfjaTjXu4pImUxMBtBQ?ct=text/plain> at:digest <urn:md5:5083277E36938D7BB8A48994C4C06D05>;
                                                     dcterms:extent "4294"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQUIMnfjaTjXu4pImUxMBtBQ?ct=application/x.exec.bash>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQUIMnfjaTjXu4pImUxMBtBQ?ct=application/prs.implied-executable;interpreter=bash>;
                                                     nie:hasPart <ni:///mh;1QEQUIMnfjaTjXu4pImUxMBtBQ?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (4.19 KiB)"@en;

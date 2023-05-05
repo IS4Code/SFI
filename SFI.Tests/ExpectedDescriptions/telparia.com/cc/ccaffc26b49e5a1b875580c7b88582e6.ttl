@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQKMc88AZueKrT0Q1ITVMG6w?ct=application/x.sig.sanxion>.
+@base <x.blank:fd0b74c1-3796-4ebc-b45a-1bfb432ce85f>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -20,12 +20,12 @@ _:n1 at:pathObject <file:///SANXION>;
      a nfo:FileDataObject.
 <ni:///mh;1QEQKMc88AZueKrT0Q1ITVMG6w?ct=application/octet-stream> at:digest <urn:md5:28C73CF0066E78AAD3D10D484D5306EB>;
                                                                   dcterms:extent "1312"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQKMc88AZueKrT0Q1ITVMG6w?ct=application/x.sig.sanxion>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQKMc88AZueKrT0Q1ITVMG6w?ct=application/prs.implied-structure;signature=SANXION>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.28 KiB)"@en.
-<ni:///mh;1QEQKMc88AZueKrT0Q1ITVMG6w?ct=application/x.sig.sanxion> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.sanxion>;
-                                                                   a schema:MediaObject;
-                                                                   skos:prefLabel "SANXION object (1.28 KiB)"@en.
+<ni:///mh;1QEQKMc88AZueKrT0Q1ITVMG6w?ct=application/prs.implied-structure;signature=SANXION> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=SANXION>;
+                                                                                             a schema:MediaObject;
+                                                                                             skos:prefLabel "SANXION object (1.28 KiB)"@en.
 <urn:md5:28C73CF0066E78AAD3D10D484D5306EB> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "KMc88AZueKrT0Q1ITVMG6w=="^^xsd:base64Binary.

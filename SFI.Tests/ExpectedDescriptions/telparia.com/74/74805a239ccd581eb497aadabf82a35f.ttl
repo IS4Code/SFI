@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQ4Mc-sWuKNL6ZabfRhvvPFw?ct=application/octet-stream>.
+@base <x.blank:c578bf01-5204-40d8-96d7-c2351349268d>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -19,13 +19,13 @@ _:n1 at:pathObject <file:///CarCare.wdb>;
      nfo:fileSize 10240 ;
      a nfo:FileDataObject.
 <data:application/octet-stream;base64,TkQAAAEAAAAAAAAABAA=> dcterms:extent "14"^^dt:byte;
-                                                            dcterms:hasFormat <data:application/x.sig.nd;base64,TkQAAAEAAAAAAAAABAA=>;
+                                                            dcterms:hasFormat <data:application/prs.implied-structure;signature=ND;base64,TkQAAAEAAAAAAAAABAA=>;
                                                             a cnt:ContentAsBase64;
                                                             skos:prefLabel "binary data (14 B)"@en;
                                                             cnt:bytes "TkQAAAEAAAAAAAAABAA="^^xsd:base64Binary.
-<data:application/x.sig.nd;base64,TkQAAAEAAAAAAAAABAA=> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.nd>;
-                                                        a schema:MediaObject;
-                                                        skos:prefLabel "ND object (14 B)"@en.
+<data:application/prs.implied-structure;signature=ND;base64,TkQAAAEAAAAAAAAABAA=> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=ND>;
+                                                                                  a schema:MediaObject;
+                                                                                  skos:prefLabel "ND object (14 B)"@en.
 <file:///CarCare.wdb> at:extensionObject <https://w3id.org/uri4uri/suffix/wdb>.
 <ni:///mh;1QEQ4Mc-sWuKNL6ZabfRhvvPFw?ct=application/octet-stream> at:digest <urn:md5:E0C73EB16B8A34BE9969B7D186FBCF17>;
                                                                   dcterms:extent "10240"^^dt:byte;

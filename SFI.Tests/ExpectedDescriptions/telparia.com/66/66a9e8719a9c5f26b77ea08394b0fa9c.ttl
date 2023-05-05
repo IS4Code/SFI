@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQF72Git-F3KltrD-U40AVog?ct=application/x.sig.flac>.
+@base <x.blank:911ddd0c-19d1-44b3-aa6d-528826efb38a>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -21,12 +21,12 @@ _:n1 at:pathObject <file:///BACKGR_1.043>;
 <file:///BACKGR_1.043> at:extensionObject <https://w3id.org/uri4uri/suffix/043>.
 <ni:///mh;1QEQF72Git-F3KltrD-U40AVog?ct=application/octet-stream> at:digest <urn:md5:17BD868ADF85DCA96DAC3F94E34015A2>;
                                                                   dcterms:extent "77508"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQF72Git-F3KltrD-U40AVog?ct=application/x.sig.flac>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQF72Git-F3KltrD-U40AVog?ct=application/prs.implied-structure;signature=fLaC>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (75.69 KiB)"@en.
-<ni:///mh;1QEQF72Git-F3KltrD-U40AVog?ct=application/x.sig.flac> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.flac>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "FLAC object (75.69 KiB)"@en.
+<ni:///mh;1QEQF72Git-F3KltrD-U40AVog?ct=application/prs.implied-structure;signature=fLaC> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=fLaC>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "FLAC object (75.69 KiB)"@en.
 <urn:md5:17BD868ADF85DCA96DAC3F94E34015A2> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "F72Git+F3KltrD+U40AVog=="^^xsd:base64Binary.

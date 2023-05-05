@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQEq1fkL3qm53XJZhLDVeKOA?ct=application/octet-stream>.
+@base <x.blank:282b1222-4576-4520-b6e6-61d7ca24ff8a>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -65,10 +65,10 @@ _:n1 at:pathObject <file:///example_multipage.docx>;
 <file:///word/numbering.xml> at:pathObject <file:///numbering.xml>.
 <file:///word/settings.xml> at:pathObject <file:///settings.xml>.
 <file:///word/styles.xml> at:pathObject <file:///styles.xml>.
-<ni:///mh;1QEQ-mVCJjdOqG6PhyOeyrA5ow?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.Relationships+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.relationships+xml>;
-                                                                                                                                       a schema:MediaObject;
-                                                                                                                                       skos:prefLabel "RELATIONSHIPS object"@en.
-<ni:///mh;1QEQ-mVCJjdOqG6PhyOeyrA5ow?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ-mVCJjdOqG6PhyOeyrA5ow?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.Relationships+xml>;
+<ni:///mh;1QEQ-mVCJjdOqG6PhyOeyrA5ow?ct=application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22>;
+                                                                                                                                                                       a schema:MediaObject;
+                                                                                                                                                                       skos:prefLabel "RELATIONSHIPS object"@en.
+<ni:///mh;1QEQ-mVCJjdOqG6PhyOeyrA5ow?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ-mVCJjdOqG6PhyOeyrA5ow?ct=application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -90,10 +90,10 @@ _:n1 at:pathObject <file:///example_multipage.docx>;
                                                     skos:prefLabel "text (2.25 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQ-mVCJjdOqG6PhyOeyrA5ow?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?>""".
-<ni:///mh;1QEQ1s6SsN7HymLOBrmmQ72M1w?ct=application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.styles+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.styles+xml>;
-                                                                                                                                a schema:MediaObject;
-                                                                                                                                skos:prefLabel "STYLES object"@en.
-<ni:///mh;1QEQ1s6SsN7HymLOBrmmQ72M1w?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ1s6SsN7HymLOBrmmQ72M1w?ct=application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.styles+xml>;
+<ni:///mh;1QEQ1s6SsN7HymLOBrmmQ72M1w?ct=application/prs.implied-document+xml;root=styles;ns=%22http://schemas.openxmlformats.org/wordprocessingml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=styles;ns=%22http://schemas.openxmlformats.org/wordprocessingml/2006/main%22>;
+                                                                                                                                                                a schema:MediaObject;
+                                                                                                                                                                skos:prefLabel "STYLES object"@en.
+<ni:///mh;1QEQ1s6SsN7HymLOBrmmQ72M1w?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ1s6SsN7HymLOBrmmQ72M1w?ct=application/prs.implied-document+xml;root=styles;ns=%22http://schemas.openxmlformats.org/wordprocessingml/2006/main%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -117,10 +117,10 @@ _:n1 at:pathObject <file:///example_multipage.docx>;
                                                     skos:prefLabel "text (6.32 KiB)"@en;
                                                     cnt:characterEncoding "utf-8".
 <ni:///mh;1QEQ1s6SsN7HymLOBrmmQ72M1w?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
-<ni:///mh;1QEQ4UFCewffU4J0pHEpIgzvPg?ct=application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.numbering+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.numbering+xml>;
-                                                                                                                                   a schema:MediaObject;
-                                                                                                                                   skos:prefLabel "NUMBERING object"@en.
-<ni:///mh;1QEQ4UFCewffU4J0pHEpIgzvPg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ4UFCewffU4J0pHEpIgzvPg?ct=application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.numbering+xml>;
+<ni:///mh;1QEQ4UFCewffU4J0pHEpIgzvPg?ct=application/prs.implied-document+xml;root=numbering;ns=%22http://schemas.openxmlformats.org/wordprocessingml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=numbering;ns=%22http://schemas.openxmlformats.org/wordprocessingml/2006/main%22>;
+                                                                                                                                                                   a schema:MediaObject;
+                                                                                                                                                                   skos:prefLabel "NUMBERING object"@en.
+<ni:///mh;1QEQ4UFCewffU4J0pHEpIgzvPg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ4UFCewffU4J0pHEpIgzvPg?ct=application/prs.implied-document+xml;root=numbering;ns=%22http://schemas.openxmlformats.org/wordprocessingml/2006/main%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -156,10 +156,10 @@ _:n1 at:pathObject <file:///example_multipage.docx>;
                                                    nfo:verticalResolution 219.9894;
                                                    nfo:width 164 ;
                                                    a schema:MediaObject,
-                                                     schema:ImageObject,
-                                                     nfo:Image;
-                                                   skos:prefLabel "PNG object (164×165, 8-bit)"@en,
-                                                                  "PNG object (164×165)"@en,
+                                                     nfo:Image,
+                                                     schema:ImageObject;
+                                                   skos:prefLabel "PNG object (164×165)"@en,
+                                                                  "PNG object (164×165, 8-bit)"@en,
                                                                   "PNG object (6.94 KiB)"@en.
 <ni:///mh;1QEQEq1fkL3qm53XJZhLDVeKOA?ct=application/octet-stream> at:digest <urn:md5:12AD5F90BDEA9B9DD725984B0D578A38>;
                                                                   dcterms:extent "1393238"^^dt:byte;
@@ -411,10 +411,10 @@ _:n1 at:pathObject <file:///example_multipage.docx>;
                                                                           a nfo:FileDataObject,
                                                                             nfo:ArchiveItem;
                                                                           skos:prefLabel "/word/styles.xml".
-<ni:///mh;1QEQH2tM4_qyGSfr_wTeDO477g?ct=application/x.ns.org.openxmlformats.schemas.http.officeDocument.2006.extended-properties.Properties+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.officedocument.2006.extended-properties.properties+xml>;
-                                                                                                                                                 a schema:MediaObject;
-                                                                                                                                                 skos:prefLabel "PROPERTIES object"@en.
-<ni:///mh;1QEQH2tM4_qyGSfr_wTeDO477g?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQH2tM4_qyGSfr_wTeDO477g?ct=application/x.ns.org.openxmlformats.schemas.http.officeDocument.2006.extended-properties.Properties+xml>;
+<ni:///mh;1QEQH2tM4_qyGSfr_wTeDO477g?ct=application/prs.implied-document+xml;root=Properties;ns=%22http://schemas.openxmlformats.org/officeDocument/2006/extended-properties%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=Properties;ns=%22http://schemas.openxmlformats.org/officeDocument/2006/extended-properties%22>;
+                                                                                                                                                                                 a schema:MediaObject;
+                                                                                                                                                                                 skos:prefLabel "PROPERTIES object"@en.
+<ni:///mh;1QEQH2tM4_qyGSfr_wTeDO477g?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQH2tM4_qyGSfr_wTeDO477g?ct=application/prs.implied-document+xml;root=Properties;ns=%22http://schemas.openxmlformats.org/officeDocument/2006/extended-properties%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -437,10 +437,10 @@ _:n1 at:pathObject <file:///example_multipage.docx>;
                                                     skos:prefLabel "text (557 B)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQH2tM4_qyGSfr_wTeDO477g?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
-<ni:///mh;1QEQHuoKtASg4AckhtsdXkw6Tg?ct=application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.document+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.document+xml>;
-                                                                                                                                  a schema:MediaObject;
-                                                                                                                                  skos:prefLabel "DOCUMENT object"@en.
-<ni:///mh;1QEQHuoKtASg4AckhtsdXkw6Tg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQHuoKtASg4AckhtsdXkw6Tg?ct=application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.document+xml>;
+<ni:///mh;1QEQHuoKtASg4AckhtsdXkw6Tg?ct=application/prs.implied-document+xml;root=document;ns=%22http://schemas.openxmlformats.org/wordprocessingml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=document;ns=%22http://schemas.openxmlformats.org/wordprocessingml/2006/main%22>;
+                                                                                                                                                                  a schema:MediaObject;
+                                                                                                                                                                  skos:prefLabel "DOCUMENT object"@en.
+<ni:///mh;1QEQHuoKtASg4AckhtsdXkw6Tg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQHuoKtASg4AckhtsdXkw6Tg?ct=application/prs.implied-document+xml;root=document;ns=%22http://schemas.openxmlformats.org/wordprocessingml/2006/main%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -478,13 +478,13 @@ _:n1 at:pathObject <file:///example_multipage.docx>;
                                                    a schema:MediaObject,
                                                      nfo:Image,
                                                      schema:ImageObject;
-                                                   skos:prefLabel "PNG object (403×141, 8-bit)"@en,
-                                                                  "PNG object (403×141)"@en,
+                                                   skos:prefLabel "PNG object (403×141)"@en,
+                                                                  "PNG object (403×141, 8-bit)"@en,
                                                                   "PNG object (17.18 KiB)"@en.
-<ni:///mh;1QEQWLNxx2imopimkLBZko2RBw?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.Relationships+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.relationships+xml>;
-                                                                                                                                       a schema:MediaObject;
-                                                                                                                                       skos:prefLabel "RELATIONSHIPS object"@en.
-<ni:///mh;1QEQWLNxx2imopimkLBZko2RBw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQWLNxx2imopimkLBZko2RBw?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.Relationships+xml>;
+<ni:///mh;1QEQWLNxx2imopimkLBZko2RBw?ct=application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22>;
+                                                                                                                                                                       a schema:MediaObject;
+                                                                                                                                                                       skos:prefLabel "RELATIONSHIPS object"@en.
+<ni:///mh;1QEQWLNxx2imopimkLBZko2RBw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQWLNxx2imopimkLBZko2RBw?ct=application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -506,10 +506,10 @@ _:n1 at:pathObject <file:///example_multipage.docx>;
                                                     skos:prefLabel "text (720 B)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQWLNxx2imopimkLBZko2RBw?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?>""".
-<ni:///mh;1QEQZLXzDevKnSMB1KUftQfsGw?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.metadata.core-properties.coreProperties+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.package.2006.metadata.core-properties.coreproperties+xml>;
-                                                                                                                                                   a schema:MediaObject;
-                                                                                                                                                   skos:prefLabel "COREPROPERTIES object"@en.
-<ni:///mh;1QEQZLXzDevKnSMB1KUftQfsGw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQZLXzDevKnSMB1KUftQfsGw?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.metadata.core-properties.coreProperties+xml>;
+<ni:///mh;1QEQZLXzDevKnSMB1KUftQfsGw?ct=application/prs.implied-document+xml;root=coreProperties;ns=%22http://schemas.openxmlformats.org/package/2006/metadata/core-properties%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=coreProperties;ns=%22http://schemas.openxmlformats.org/package/2006/metadata/core-properties%22>;
+                                                                                                                                                                                   a schema:MediaObject;
+                                                                                                                                                                                   skos:prefLabel "COREPROPERTIES object"@en.
+<ni:///mh;1QEQZLXzDevKnSMB1KUftQfsGw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQZLXzDevKnSMB1KUftQfsGw?ct=application/prs.implied-document+xml;root=coreProperties;ns=%22http://schemas.openxmlformats.org/package/2006/metadata/core-properties%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -533,10 +533,10 @@ _:n1 at:pathObject <file:///example_multipage.docx>;
                                                     skos:prefLabel "text (734 B)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQZLXzDevKnSMB1KUftQfsGw?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
-<ni:///mh;1QEQZdPo_CukUa90xZqFr1x-4A?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.content-types.Types+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.package.2006.content-types.types+xml>;
-                                                                                                                               a schema:MediaObject;
-                                                                                                                               skos:prefLabel "TYPES object"@en.
-<ni:///mh;1QEQZdPo_CukUa90xZqFr1x-4A?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQZdPo_CukUa90xZqFr1x-4A?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.content-types.Types+xml>;
+<ni:///mh;1QEQZdPo_CukUa90xZqFr1x-4A?ct=application/prs.implied-document+xml;root=Types;ns=%22http://schemas.openxmlformats.org/package/2006/content-types%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=Types;ns=%22http://schemas.openxmlformats.org/package/2006/content-types%22>;
+                                                                                                                                                               a schema:MediaObject;
+                                                                                                                                                               skos:prefLabel "TYPES object"@en.
+<ni:///mh;1QEQZdPo_CukUa90xZqFr1x-4A?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQZdPo_CukUa90xZqFr1x-4A?ct=application/prs.implied-document+xml;root=Types;ns=%22http://schemas.openxmlformats.org/package/2006/content-types%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -571,14 +571,14 @@ _:n1 at:pathObject <file:///example_multipage.docx>;
                                                     nfo:width 2048 ;
                                                     <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#comments> "*";
                                                     a schema:MediaObject,
-                                                      schema:ImageObject,
-                                                      nfo:Image;
+                                                      nfo:Image,
+                                                      schema:ImageObject;
                                                     skos:prefLabel "JPG object (2048×1361)"@en,
                                                                    "JPG object (662.76 KiB)"@en.
-<ni:///mh;1QEQjUx7qoAvNAIZzQEeZHEdAA?ct=application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.settings+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.settings+xml>;
-                                                                                                                                  a schema:MediaObject;
-                                                                                                                                  skos:prefLabel "SETTINGS object"@en.
-<ni:///mh;1QEQjUx7qoAvNAIZzQEeZHEdAA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQjUx7qoAvNAIZzQEeZHEdAA?ct=application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.settings+xml>;
+<ni:///mh;1QEQjUx7qoAvNAIZzQEeZHEdAA?ct=application/prs.implied-document+xml;root=settings;ns=%22http://schemas.openxmlformats.org/wordprocessingml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=settings;ns=%22http://schemas.openxmlformats.org/wordprocessingml/2006/main%22>;
+                                                                                                                                                                  a schema:MediaObject;
+                                                                                                                                                                  skos:prefLabel "SETTINGS object"@en.
+<ni:///mh;1QEQjUx7qoAvNAIZzQEeZHEdAA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQjUx7qoAvNAIZzQEeZHEdAA?ct=application/prs.implied-document+xml;root=settings;ns=%22http://schemas.openxmlformats.org/wordprocessingml/2006/main%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -602,10 +602,10 @@ _:n1 at:pathObject <file:///example_multipage.docx>;
                                                     skos:prefLabel "text (230 B)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQjUx7qoAvNAIZzQEeZHEdAA?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
-<ni:///mh;1QEQjlQ9WT5Nm0Jy918DFMZJwQ?ct=application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.fonts+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.fonts+xml>;
-                                                                                                                               a schema:MediaObject;
-                                                                                                                               skos:prefLabel "FONTS object"@en.
-<ni:///mh;1QEQjlQ9WT5Nm0Jy918DFMZJwQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQjlQ9WT5Nm0Jy918DFMZJwQ?ct=application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.fonts+xml>;
+<ni:///mh;1QEQjlQ9WT5Nm0Jy918DFMZJwQ?ct=application/prs.implied-document+xml;root=fonts;ns=%22http://schemas.openxmlformats.org/wordprocessingml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=fonts;ns=%22http://schemas.openxmlformats.org/wordprocessingml/2006/main%22>;
+                                                                                                                                                               a schema:MediaObject;
+                                                                                                                                                               skos:prefLabel "FONTS object"@en.
+<ni:///mh;1QEQjlQ9WT5Nm0Jy918DFMZJwQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQjlQ9WT5Nm0Jy918DFMZJwQ?ct=application/prs.implied-document+xml;root=fonts;ns=%22http://schemas.openxmlformats.org/wordprocessingml/2006/main%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -629,10 +629,10 @@ _:n1 at:pathObject <file:///example_multipage.docx>;
                                                     skos:prefLabel "text (1.3 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQjlQ9WT5Nm0Jy918DFMZJwQ?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
-<ni:///mh;1QEQpBziMedPk0aYXlDBj9mTbQ?ct=application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.ftr+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.ftr+xml>;
-                                                                                                                             a schema:MediaObject;
-                                                                                                                             skos:prefLabel "FTR object"@en.
-<ni:///mh;1QEQpBziMedPk0aYXlDBj9mTbQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQpBziMedPk0aYXlDBj9mTbQ?ct=application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.ftr+xml>;
+<ni:///mh;1QEQpBziMedPk0aYXlDBj9mTbQ?ct=application/prs.implied-document+xml;root=ftr;ns=%22http://schemas.openxmlformats.org/wordprocessingml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=ftr;ns=%22http://schemas.openxmlformats.org/wordprocessingml/2006/main%22>;
+                                                                                                                                                             a schema:MediaObject;
+                                                                                                                                                             skos:prefLabel "FTR object"@en.
+<ni:///mh;1QEQpBziMedPk0aYXlDBj9mTbQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQpBziMedPk0aYXlDBj9mTbQ?ct=application/prs.implied-document+xml;root=ftr;ns=%22http://schemas.openxmlformats.org/wordprocessingml/2006/main%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -656,10 +656,10 @@ _:n1 at:pathObject <file:///example_multipage.docx>;
                                                     skos:prefLabel "text (1.13 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQpBziMedPk0aYXlDBj9mTbQ?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
-<ni:///mh;1QEQpVIxwlvcb4OSsnnWI_MQEA?ct=application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.ftr+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.ftr+xml>;
-                                                                                                                             a schema:MediaObject;
-                                                                                                                             skos:prefLabel "FTR object"@en.
-<ni:///mh;1QEQpVIxwlvcb4OSsnnWI_MQEA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQpVIxwlvcb4OSsnnWI_MQEA?ct=application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.ftr+xml>;
+<ni:///mh;1QEQpVIxwlvcb4OSsnnWI_MQEA?ct=application/prs.implied-document+xml;root=ftr;ns=%22http://schemas.openxmlformats.org/wordprocessingml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=ftr;ns=%22http://schemas.openxmlformats.org/wordprocessingml/2006/main%22>;
+                                                                                                                                                             a schema:MediaObject;
+                                                                                                                                                             skos:prefLabel "FTR object"@en.
+<ni:///mh;1QEQpVIxwlvcb4OSsnnWI_MQEA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQpVIxwlvcb4OSsnnWI_MQEA?ct=application/prs.implied-document+xml;root=ftr;ns=%22http://schemas.openxmlformats.org/wordprocessingml/2006/main%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -683,10 +683,10 @@ _:n1 at:pathObject <file:///example_multipage.docx>;
                                                     skos:prefLabel "text (1.13 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQpVIxwlvcb4OSsnnWI_MQEA?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
-<ni:///mh;1QEQpsORjmdl2B6p02vWD8jP7g?ct=application/x.ns.org.openxmlformats.schemas.http.officeDocument.2006.custom-properties.Properties+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.officedocument.2006.custom-properties.properties+xml>;
-                                                                                                                                               a schema:MediaObject;
-                                                                                                                                               skos:prefLabel "PROPERTIES object"@en.
-<ni:///mh;1QEQpsORjmdl2B6p02vWD8jP7g?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQpsORjmdl2B6p02vWD8jP7g?ct=application/x.ns.org.openxmlformats.schemas.http.officeDocument.2006.custom-properties.Properties+xml>;
+<ni:///mh;1QEQpsORjmdl2B6p02vWD8jP7g?ct=application/prs.implied-document+xml;root=Properties;ns=%22http://schemas.openxmlformats.org/officeDocument/2006/custom-properties%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=Properties;ns=%22http://schemas.openxmlformats.org/officeDocument/2006/custom-properties%22>;
+                                                                                                                                                                               a schema:MediaObject;
+                                                                                                                                                                               skos:prefLabel "PROPERTIES object"@en.
+<ni:///mh;1QEQpsORjmdl2B6p02vWD8jP7g?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQpsORjmdl2B6p02vWD8jP7g?ct=application/prs.implied-document+xml;root=Properties;ns=%22http://schemas.openxmlformats.org/officeDocument/2006/custom-properties%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -709,10 +709,10 @@ _:n1 at:pathObject <file:///example_multipage.docx>;
                                                     skos:prefLabel "text (939 B)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQpsORjmdl2B6p02vWD8jP7g?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
-<ni:///mh;1QEQuhDWuvnsZRmqNXzwdNviQw?ct=application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.ftr+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.ftr+xml>;
-                                                                                                                             a schema:MediaObject;
-                                                                                                                             skos:prefLabel "FTR object"@en.
-<ni:///mh;1QEQuhDWuvnsZRmqNXzwdNviQw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQuhDWuvnsZRmqNXzwdNviQw?ct=application/x.ns.org.openxmlformats.schemas.http.wordprocessingml.2006.main.ftr+xml>;
+<ni:///mh;1QEQuhDWuvnsZRmqNXzwdNviQw?ct=application/prs.implied-document+xml;root=ftr;ns=%22http://schemas.openxmlformats.org/wordprocessingml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=ftr;ns=%22http://schemas.openxmlformats.org/wordprocessingml/2006/main%22>;
+                                                                                                                                                             a schema:MediaObject;
+                                                                                                                                                             skos:prefLabel "FTR object"@en.
+<ni:///mh;1QEQuhDWuvnsZRmqNXzwdNviQw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQuhDWuvnsZRmqNXzwdNviQw?ct=application/prs.implied-document+xml;root=ftr;ns=%22http://schemas.openxmlformats.org/wordprocessingml/2006/main%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,

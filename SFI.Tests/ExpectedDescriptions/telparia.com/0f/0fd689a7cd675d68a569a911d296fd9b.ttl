@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQLTHiMM6G0UPQ4m1h_Y_M9w?ct=text/plain>.
+@base <x.blank:c8c7a9af-1f9d-4d5c-8d96-f253d23b84f4>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -21,11 +21,11 @@ _:n1 at:pathObject <file:///bi2cf.xml>;
      nfo:fileSize 5651 ;
      a nfo:FileDataObject.
 <file:///bi2cf.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
-<ni:///mh;1QEQLTHiMM6G0UPQ4m1h_Y_M9w?ct=application/x.ns.urn.publicid.-.OASIS.DTD&2BDocBook&2BXML&2BV4.2.EN.refentry+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.urn.publicid.-.oasis.dtd&2bdocbook&2bxml&2bv4.2.en.refentry+xml>,
-                                                                                                                                                <urn:publicid:-:OASIS:DTD+DocBook+XML+V4.2:EN>;
-                                                                                                                          a schema:MediaObject;
-                                                                                                                          skos:prefLabel "REFENTRY object"@en.
-<ni:///mh;1QEQLTHiMM6G0UPQ4m1h_Y_M9w?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQLTHiMM6G0UPQ4m1h_Y_M9w?ct=application/x.ns.urn.publicid.-.OASIS.DTD&2BDocBook&2BXML&2BV4.2.EN.refentry+xml>;
+<ni:///mh;1QEQLTHiMM6G0UPQ4m1h_Y_M9w?ct=application/prs.implied-document+xml;root=refentry;public=%22-//OASIS//DTD%20DocBook%20XML%20V4.2//EN%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=refentry;public=%22-//OASIS//DTD%20DocBook%20XML%20V4.2//EN%22>,
+                                                                                                                                                                        <urn:publicid:-:OASIS:DTD+DocBook+XML+V4.2:EN>;
+                                                                                                                                                  a schema:MediaObject;
+                                                                                                                                                  skos:prefLabel "REFENTRY object"@en.
+<ni:///mh;1QEQLTHiMM6G0UPQ4m1h_Y_M9w?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQLTHiMM6G0UPQ4m1h_Y_M9w?ct=application/prs.implied-document+xml;root=refentry;public=%22-//OASIS//DTD%20DocBook%20XML%20V4.2//EN%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,

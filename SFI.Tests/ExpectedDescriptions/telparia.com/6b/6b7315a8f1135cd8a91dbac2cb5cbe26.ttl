@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQifcRHgQSHdyCzf-Mw-ql_Q?ct=application/octet-stream>.
+@base <x.blank:01b69d6d-a2af-4d99-9746-0ec32082519f>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -26,10 +26,10 @@ _:n1 at:pathObject <file:///example.html>;
                                                                                     <ni:///mh;1QEQifcRHgQSHdyCzf-Mw-ql_Q?ct=text/html>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (133.58 KiB)"@en.
-<ni:///mh;1QEQifcRHgQSHdyCzf-Mw-ql_Q?ct=application/x.ns.html+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.html+xml>;
-                                                                   a schema:MediaObject;
-                                                                   skos:prefLabel "HTML object"@en.
-<ni:///mh;1QEQifcRHgQSHdyCzf-Mw-ql_Q?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQifcRHgQSHdyCzf-Mw-ql_Q?ct=application/x.ns.html+xml>;
+<ni:///mh;1QEQifcRHgQSHdyCzf-Mw-ql_Q?ct=application/prs.implied-document+xml;root=html> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=html>;
+                                                                                        a schema:MediaObject;
+                                                                                        skos:prefLabel "HTML object"@en.
+<ni:///mh;1QEQifcRHgQSHdyCzf-Mw-ql_Q?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQifcRHgQSHdyCzf-Mw-ql_Q?ct=application/prs.implied-document+xml;root=html>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,

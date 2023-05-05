@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQpjgTikQIZmU6Bzd1Az8UZA?ct=application/octet-stream>.
+@base <x.blank:85600ee8-f028-4b45-aa01-8722a4747c6a>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -461,12 +461,12 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
                                                                   skos:prefLabel "binary data (92 B)"@en.
 <ni:///mh;1QEQ-YImSPaaT1CK1yrQnca5yw?ct=application/octet-stream> at:digest <urn:md5:F9822648F69A4F508AD72AD09DC6B9CB>;
                                                                   dcterms:extent "7908"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQ-YImSPaaT1CK1yrQnca5yw?ct=application/x.sig.pw4i>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ-YImSPaaT1CK1yrQnca5yw?ct=application/prs.implied-structure;signature=pw4i>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (7.72 KiB)"@en.
-<ni:///mh;1QEQ-YImSPaaT1CK1yrQnca5yw?ct=application/x.sig.pw4i> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.pw4i>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "PW4I object (7.72 KiB)"@en.
+<ni:///mh;1QEQ-YImSPaaT1CK1yrQnca5yw?ct=application/prs.implied-structure;signature=pw4i> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=pw4i>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "PW4I object (7.72 KiB)"@en.
 <ni:///mh;1QEQ-Zj1EiOduCaGUlXm81g4cA?ct=application/octet-stream> at:digest <urn:md5:F998F512239DB826865255E6F3583870>;
                                                                   dcterms:extent "8668"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -568,12 +568,12 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
                                                                   "BMP object (364 B)"@en.
 <ni:///mh;1QEQ1tJ7kVC2qtddP2UjIWL1SA?ct=application/octet-stream> at:digest <urn:md5:D6D27B9150B6AAD75D3F65232162F548>;
                                                                   dcterms:extent "5592"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQ1tJ7kVC2qtddP2UjIWL1SA?ct=application/x.sig.msft>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ1tJ7kVC2qtddP2UjIWL1SA?ct=application/prs.implied-structure;signature=MSFT>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (5.46 KiB)"@en.
-<ni:///mh;1QEQ1tJ7kVC2qtddP2UjIWL1SA?ct=application/x.sig.msft> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.msft>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "MSFT object (5.46 KiB)"@en.
+<ni:///mh;1QEQ1tJ7kVC2qtddP2UjIWL1SA?ct=application/prs.implied-structure;signature=MSFT> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=MSFT>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "MSFT object (5.46 KiB)"@en.
 <ni:///mh;1QEQ23P1-0Qv86_YjRDt_7B0Bw?ct=application/octet-stream> at:digest <urn:md5:DB73F5FB442FF3AFD88D10EDFFB07407>;
                                                                   dcterms:extent "238"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ23P1-0Qv86_YjRDt_7B0Bw?ct=image/bmp>;
@@ -589,8 +589,8 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (224 B)"@en,
-                                                                  "BMP object (16×15)"@en.
+                                                   skos:prefLabel "BMP object (16×15)"@en,
+                                                                  "BMP object (224 B)"@en.
 <ni:///mh;1QEQ2UM-xYHcEoJOyXKlgydnqA?ct=application/octet-stream> at:digest <urn:md5:D9433EC581DC12824EC972A5832767A8>;
                                                                   dcterms:extent "310"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ2UM-xYHcEoJOyXKlgydnqA?ct=image/bmp>;
@@ -641,20 +641,20 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
                                                                   skos:prefLabel "binary data (128 B)"@en.
 <ni:///mh;1QEQ45IPaG-5AidaSjCLnxLKBA?ct=application/octet-stream> at:digest <urn:md5:E3920F686FB902275A4A308B9F12CA04>;
                                                                   dcterms:extent "52248"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQ45IPaG-5AidaSjCLnxLKBA?ct=application/x.sig.msft>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ45IPaG-5AidaSjCLnxLKBA?ct=application/prs.implied-structure;signature=MSFT>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (51.02 KiB)"@en.
-<ni:///mh;1QEQ45IPaG-5AidaSjCLnxLKBA?ct=application/x.sig.msft> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.msft>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "MSFT object (51.02 KiB)"@en.
+<ni:///mh;1QEQ45IPaG-5AidaSjCLnxLKBA?ct=application/prs.implied-structure;signature=MSFT> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=MSFT>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "MSFT object (51.02 KiB)"@en.
 <ni:///mh;1QEQ4AYQtyRsYTdfRPts7mnJ5w?ct=application/octet-stream> at:digest <urn:md5:E00610B7246C61375F44FB6CEE69C9E7>;
                                                                   dcterms:extent "3592"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQ4AYQtyRsYTdfRPts7mnJ5w?ct=application/x.sig.msft>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ4AYQtyRsYTdfRPts7mnJ5w?ct=application/prs.implied-structure;signature=MSFT>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (3.51 KiB)"@en.
-<ni:///mh;1QEQ4AYQtyRsYTdfRPts7mnJ5w?ct=application/x.sig.msft> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.msft>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "MSFT object (3.51 KiB)"@en.
+<ni:///mh;1QEQ4AYQtyRsYTdfRPts7mnJ5w?ct=application/prs.implied-structure;signature=MSFT> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=MSFT>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "MSFT object (3.51 KiB)"@en.
 <ni:///mh;1QEQ4KzCJ9RumDDuKSgIaCp5MQ?ct=application/octet-stream> at:digest <urn:md5:E0ACC227D46E9830EE292808682A7931>;
                                                                   dcterms:extent "4046960"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -700,12 +700,12 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
                                                                   skos:prefLabel "binary data (15.7 KiB)"@en.
 <ni:///mh;1QEQ67OVHOV4XjHXUzv_2kcEFg?ct=application/octet-stream> at:digest <urn:md5:EBB3951CE5785E31D7533BFFDA470416>;
                                                                   dcterms:extent "40974"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQ67OVHOV4XjHXUzv_2kcEFg?ct=application/x.sig.itsf>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ67OVHOV4XjHXUzv_2kcEFg?ct=application/prs.implied-structure;signature=ITSF>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (40.01 KiB)"@en.
-<ni:///mh;1QEQ67OVHOV4XjHXUzv_2kcEFg?ct=application/x.sig.itsf> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.itsf>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "ITSF object (40.01 KiB)"@en.
+<ni:///mh;1QEQ67OVHOV4XjHXUzv_2kcEFg?ct=application/prs.implied-structure;signature=ITSF> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=ITSF>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "ITSF object (40.01 KiB)"@en.
 <ni:///mh;1QEQ6Pj-E_O6rp-QWLXl_ZNIAQ?ct=application/octet-stream> at:digest <urn:md5:E8F8FE13F3BAAE9F9058B5E5FD934801>;
                                                                   dcterms:extent "193518"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -854,12 +854,12 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
                                                    skos:prefLabel "BMP object (32×32)"@en.
 <ni:///mh;1QEQ8e-hoUy4IbjGhpzHeuGbNg?ct=application/octet-stream> at:digest <urn:md5:F1EFA1A14CB821B8C6869CC77AE19B36>;
                                                                   dcterms:extent "43066"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQ8e-hoUy4IbjGhpzHeuGbNg?ct=application/x.sig.itsf>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ8e-hoUy4IbjGhpzHeuGbNg?ct=application/prs.implied-structure;signature=ITSF>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (42.06 KiB)"@en.
-<ni:///mh;1QEQ8e-hoUy4IbjGhpzHeuGbNg?ct=application/x.sig.itsf> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.itsf>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "ITSF object (42.06 KiB)"@en.
+<ni:///mh;1QEQ8e-hoUy4IbjGhpzHeuGbNg?ct=application/prs.implied-structure;signature=ITSF> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=ITSF>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "ITSF object (42.06 KiB)"@en.
 <ni:///mh;1QEQ8j9qLBec5uCjvYJ-1nNUMQ?ct=application/octet-stream> at:digest <urn:md5:F23F6A2C179CE6E0A3BD827ED6735431>;
                                                                   dcterms:extent "758"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ8j9qLBec5uCjvYJ-1nNUMQ?ct=image/bmp>;
@@ -1601,12 +1601,12 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
 <ni:///mh;1QEQEqJwHOTh5N4G_HWowwRzaA?ct=text/plain#line=,1> rdf:value """{\"@value\":\"ê\\u0003ê\\u0003ê\\u0003ê\\u0003ê\\u0003ê\\u0003ê\\u0003ê\\u0003ê\\u0003ê\\u0003ê\\u0003ê\\u0003ê\\u0003ê\\u0003ê\\u0003ê\\u0003ê\\u0003ê\\u0003ê\\u0003ê\\u0003ê\\u0003ê\\u0003ê\\u0003ê\\u0003ê\\u0003ê\\u0003¢\\u0003\\u0001\\u0006:\\u0007K\\u0007y\"}"""^^rdf:JSON.
 <ni:///mh;1QEQExozVj0z6Tk3SOgVMPJxsg?ct=application/octet-stream> at:digest <urn:md5:131A33563D33E9393748E81530F271B2>;
                                                                   dcterms:extent "14912"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQExozVj0z6Tk3SOgVMPJxsg?ct=application/x.sig.msft>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQExozVj0z6Tk3SOgVMPJxsg?ct=application/prs.implied-structure;signature=MSFT>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (14.56 KiB)"@en.
-<ni:///mh;1QEQExozVj0z6Tk3SOgVMPJxsg?ct=application/x.sig.msft> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.msft>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "MSFT object (14.56 KiB)"@en.
+<ni:///mh;1QEQExozVj0z6Tk3SOgVMPJxsg?ct=application/prs.implied-structure;signature=MSFT> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=MSFT>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "MSFT object (14.56 KiB)"@en.
 <ni:///mh;1QEQF9yxqQuxqjnG1LFoEZFFtQ?ct=application/octet-stream> at:digest <urn:md5:17DCB1A90BB1AA39C6D4B168119145B5>;
                                                                   dcterms:extent "766"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQF9yxqQuxqjnG1LFoEZFFtQ?ct=image/x-icon>;
@@ -1636,12 +1636,12 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
 <ni:///mh;1QEQFGZyHM8zdWkqxlctacd-RQ?ct=text/plain#line=,1> rdf:value "HKCR".
 <ni:///mh;1QEQFLZx-0klETMh6D457uSuPw?ct=application/octet-stream> at:digest <urn:md5:14B671FB4925113321E83E39EEE4AE3F>;
                                                                   dcterms:extent "13376"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQFLZx-0klETMh6D457uSuPw?ct=application/x.sig.msft>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQFLZx-0klETMh6D457uSuPw?ct=application/prs.implied-structure;signature=MSFT>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (13.06 KiB)"@en.
-<ni:///mh;1QEQFLZx-0klETMh6D457uSuPw?ct=application/x.sig.msft> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.msft>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "MSFT object (13.06 KiB)"@en.
+<ni:///mh;1QEQFLZx-0klETMh6D457uSuPw?ct=application/prs.implied-structure;signature=MSFT> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=MSFT>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "MSFT object (13.06 KiB)"@en.
 <ni:///mh;1QEQGwJXfwrd6jLrAqUNSkzdHg?ct=application/octet-stream> at:digest <urn:md5:1B02577F0ADDEA32EB02A50D4A4CDD1E>;
                                                                   dcterms:extent "17920"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQGwJXfwrd6jLrAqUNSkzdHg?ct=application/vnd.microsoft.portable-executable>;
@@ -1920,12 +1920,12 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
                                                    skos:prefLabel "BMP object (32×32)"@en.
 <ni:///mh;1QEQHeZpDT1LPWJ8-eeHWWpcEw?ct=application/octet-stream> at:digest <urn:md5:1DE6690D3D4B3D627CF9E787596A5C13>;
                                                                   dcterms:extent "164004"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQHeZpDT1LPWJ8-eeHWWpcEw?ct=application/x.sig.msft>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQHeZpDT1LPWJ8-eeHWWpcEw?ct=application/prs.implied-structure;signature=MSFT>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (160.16 KiB)"@en.
-<ni:///mh;1QEQHeZpDT1LPWJ8-eeHWWpcEw?ct=application/x.sig.msft> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.msft>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "MSFT object (160.16 KiB)"@en.
+<ni:///mh;1QEQHeZpDT1LPWJ8-eeHWWpcEw?ct=application/prs.implied-structure;signature=MSFT> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=MSFT>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "MSFT object (160.16 KiB)"@en.
 <ni:///mh;1QEQIKXc3QZtQkyceonnxgKL2A?ct=application/octet-stream> at:digest <urn:md5:20A5DCDD066D424C9C7A89E7C6028BD8>;
                                                                   dcterms:extent "156"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -2004,8 +2004,8 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
                                                     a schema:MediaObject,
                                                       schema:ImageObject,
                                                       nfo:Image;
-                                                    skos:prefLabel "JPG object (1.01 KiB)"@en,
-                                                                   "JPG object (499×58)"@en.
+                                                    skos:prefLabel "JPG object (499×58)"@en,
+                                                                   "JPG object (1.01 KiB)"@en.
 <ni:///mh;1QEQJC91xKXXGVuj5vs8YBVytg?ct=application/octet-stream> at:digest <urn:md5:242F75C4A5D7195BA3E6FB3C601572B6>;
                                                                   dcterms:extent "1933923"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -2115,12 +2115,12 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
                                                                   skos:prefLabel "binary data (234.78 KiB)"@en.
 <ni:///mh;1QEQMleSNyXJI-yq4bgPjwj0-A?ct=application/octet-stream> at:digest <urn:md5:3257923725C923ECAAE1B80F8F08F4F8>;
                                                                   dcterms:extent "23784"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQMleSNyXJI-yq4bgPjwj0-A?ct=application/x.sig.msft>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQMleSNyXJI-yq4bgPjwj0-A?ct=application/prs.implied-structure;signature=MSFT>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (23.23 KiB)"@en.
-<ni:///mh;1QEQMleSNyXJI-yq4bgPjwj0-A?ct=application/x.sig.msft> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.msft>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "MSFT object (23.23 KiB)"@en.
+<ni:///mh;1QEQMleSNyXJI-yq4bgPjwj0-A?ct=application/prs.implied-structure;signature=MSFT> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=MSFT>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "MSFT object (23.23 KiB)"@en.
 <ni:///mh;1QEQMoNT_BEGpCCVRTVGuofPwg?ct=application/octet-stream> at:digest <urn:md5:328353FC1106A42095453546BA87CFC2>;
                                                                   dcterms:extent "450"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -2156,8 +2156,8 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (32×32)"@en,
-                                                                     "ICO object (766 B)"@en.
+                                                      skos:prefLabel "ICO object (766 B)"@en,
+                                                                     "ICO object (32×32)"@en.
 <ni:///mh;1QEQNKd6RAnbrcWwHbiJgvSoXg?ct=application/octet-stream> at:digest <urn:md5:34A77A4409DBADC5B01DB88982F4A85E>;
                                                                   dcterms:extent "16132"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -2190,8 +2190,8 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
                                                         a schema:MediaObject,
                                                           schema:AudioObject,
                                                           nfo:Audio;
-                                                        skos:prefLabel "WAV object (16-bit, 11025 Hz, 1 channel)"@en,
-                                                                       "WAV object (45.81 KiB)"@en.
+                                                        skos:prefLabel "WAV object (45.81 KiB)"@en,
+                                                                       "WAV object (16-bit, 11025 Hz, 1 channel)"@en.
 <ni:///mh;1QEQNXuTh5hhvx1EVbb5cCYQ9Q?ct=application/octet-stream> at:digest <urn:md5:357B93879861BF1D4455B6F9702610F5>;
                                                                   dcterms:extent "1279692"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -2261,12 +2261,12 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
                                                                                        skos:prefLabel "DLL object (comcat.dll)"@en.
 <ni:///mh;1QEQPKTHdx0th6NMiCNX9jwGaQ?ct=application/octet-stream> at:digest <urn:md5:3CA4C7771D2D87A34C882357F63C0669>;
                                                                   dcterms:extent "7672"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQPKTHdx0th6NMiCNX9jwGaQ?ct=application/x.sig.msft>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQPKTHdx0th6NMiCNX9jwGaQ?ct=application/prs.implied-structure;signature=MSFT>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (7.49 KiB)"@en.
-<ni:///mh;1QEQPKTHdx0th6NMiCNX9jwGaQ?ct=application/x.sig.msft> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.msft>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "MSFT object (7.49 KiB)"@en.
+<ni:///mh;1QEQPKTHdx0th6NMiCNX9jwGaQ?ct=application/prs.implied-structure;signature=MSFT> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=MSFT>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "MSFT object (7.49 KiB)"@en.
 <ni:///mh;1QEQPSan-wLAdZa6FYUlKscU3Q?ct=application/octet-stream> at:digest <urn:md5:3D26A7FB02C07596BA1585252AC714DD>;
                                                                   dcterms:extent "9073"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -3107,20 +3107,20 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
                                                    skos:prefLabel "BMP object (16×16)"@en.
 <ni:///mh;1QEQVxJQUK7s981HjoHc4g91OA?ct=application/octet-stream> at:digest <urn:md5:57125050AEECF7CD478E81DCE20F7538>;
                                                                   dcterms:extent "8396"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQVxJQUK7s981HjoHc4g91OA?ct=application/x.sig.msft>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQVxJQUK7s981HjoHc4g91OA?ct=application/prs.implied-structure;signature=MSFT>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (8.2 KiB)"@en.
-<ni:///mh;1QEQVxJQUK7s981HjoHc4g91OA?ct=application/x.sig.msft> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.msft>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "MSFT object (8.2 KiB)"@en.
+<ni:///mh;1QEQVxJQUK7s981HjoHc4g91OA?ct=application/prs.implied-structure;signature=MSFT> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=MSFT>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "MSFT object (8.2 KiB)"@en.
 <ni:///mh;1QEQWVG983VktugwGy57S12adA?ct=application/octet-stream> at:digest <urn:md5:5951BDF37564B6E8301B2E7B4B5D9A74>;
                                                                   dcterms:extent "59756"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQWVG983VktugwGy57S12adA?ct=application/x.sig.msft>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQWVG983VktugwGy57S12adA?ct=application/prs.implied-structure;signature=MSFT>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (58.36 KiB)"@en.
-<ni:///mh;1QEQWVG983VktugwGy57S12adA?ct=application/x.sig.msft> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.msft>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "MSFT object (58.36 KiB)"@en.
+<ni:///mh;1QEQWVG983VktugwGy57S12adA?ct=application/prs.implied-structure;signature=MSFT> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=MSFT>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "MSFT object (58.36 KiB)"@en.
 <ni:///mh;1QEQX5eRDB_5vm5xHlx_MNb3rA?ct=text/plain> at:digest <urn:md5:5F97910C1FF9BE6E711E5C7F30D6F7AC>;
                                                     dcterms:extent "718"^^dt:byte;
                                                     nie:hasPart <ni:///mh;1QEQX5eRDB_5vm5xHlx_MNb3rA?ct=text/plain#line=,1>;
@@ -3130,12 +3130,12 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
 <ni:///mh;1QEQX5eRDB_5vm5xHlx_MNb3rA?ct=text/plain#line=,1> rdf:value "HKCR".
 <ni:///mh;1QEQX8N2L9slF-z3cycaPDFaYQ?ct=application/octet-stream> at:digest <urn:md5:5FC3762FDB2517ECF773271A3C315A61>;
                                                                   dcterms:extent "15788"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQX8N2L9slF-z3cycaPDFaYQ?ct=application/x.sig.msft>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQX8N2L9slF-z3cycaPDFaYQ?ct=application/prs.implied-structure;signature=MSFT>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (15.42 KiB)"@en.
-<ni:///mh;1QEQX8N2L9slF-z3cycaPDFaYQ?ct=application/x.sig.msft> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.msft>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "MSFT object (15.42 KiB)"@en.
+<ni:///mh;1QEQX8N2L9slF-z3cycaPDFaYQ?ct=application/prs.implied-structure;signature=MSFT> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=MSFT>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "MSFT object (15.42 KiB)"@en.
 <ni:///mh;1QEQXP85YTOvyCzbywlBkQbxzQ?ct=application/octet-stream> at:digest <urn:md5:5CFF396133AFC82CDBCB09419106F1CD>;
                                                                   dcterms:extent "318"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQXP85YTOvyCzbywlBkQbxzQ?ct=image/bmp>;
@@ -4401,12 +4401,12 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
                                                                   skos:prefLabel "binary data (3.27 KiB)"@en.
 <ni:///mh;1QEQeDujXmxU-h3t4vKIuQHIDw?ct=application/octet-stream> at:digest <urn:md5:783BA35E6C54FA1DEDE2F288B901C80F>;
                                                                   dcterms:extent "144200"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQeDujXmxU-h3t4vKIuQHIDw?ct=application/x.sig.msft>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQeDujXmxU-h3t4vKIuQHIDw?ct=application/prs.implied-structure;signature=MSFT>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (140.82 KiB)"@en.
-<ni:///mh;1QEQeDujXmxU-h3t4vKIuQHIDw?ct=application/x.sig.msft> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.msft>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "MSFT object (140.82 KiB)"@en.
+<ni:///mh;1QEQeDujXmxU-h3t4vKIuQHIDw?ct=application/prs.implied-structure;signature=MSFT> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=MSFT>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "MSFT object (140.82 KiB)"@en.
 <ni:///mh;1QEQeQgA1q61p82Hx4WsRKFGnQ?ct=application/octet-stream> at:digest <urn:md5:790800D6AEB5A7CD87C785AC44A1469D>;
                                                                   dcterms:extent "172"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -4473,12 +4473,12 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
                                                                                        skos:prefLabel "DLL object (OLEAUT32.DLL)"@en.
 <ni:///mh;1QEQf7kghlbrVBBwrg1TdpCU3Q?ct=application/octet-stream> at:digest <urn:md5:7FB9208656EB541070AE0D53769094DD>;
                                                                   dcterms:extent "42687"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQf7kghlbrVBBwrg1TdpCU3Q?ct=application/x.sig.itsf>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQf7kghlbrVBBwrg1TdpCU3Q?ct=application/prs.implied-structure;signature=ITSF>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (41.69 KiB)"@en.
-<ni:///mh;1QEQf7kghlbrVBBwrg1TdpCU3Q?ct=application/x.sig.itsf> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.itsf>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "ITSF object (41.69 KiB)"@en.
+<ni:///mh;1QEQf7kghlbrVBBwrg1TdpCU3Q?ct=application/prs.implied-structure;signature=ITSF> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=ITSF>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "ITSF object (41.69 KiB)"@en.
 <ni:///mh;1QEQfJvmO2STUrr_bOocjQ52hg?ct=application/octet-stream> at:digest <urn:md5:7C9BE63B649352BAFF6CEA1C8D0E7686>;
                                                                   dcterms:extent "758"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQfJvmO2STUrr_bOocjQ52hg?ct=image/bmp>;
@@ -5252,8 +5252,8 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (288×24)"@en,
-                                                                  "BMP object (2.2 KiB)"@en.
+                                                   skos:prefLabel "BMP object (2.2 KiB)"@en,
+                                                                  "BMP object (288×24)"@en.
 <ni:///mh;1QEQqJnE2xL1-a6GnlhVRsU98A?ct=text/plain> at:digest <urn:md5:A899C4DB12F5F9AE869E585546C53DF0>;
                                                     dcterms:extent "745"^^dt:byte;
                                                     nie:hasPart <ni:///mh;1QEQqJnE2xL1-a6GnlhVRsU98A?ct=text/plain#line=,1>;
@@ -5845,12 +5845,12 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
                                                                   "BMP object (616 B)"@en.
 <ni:///mh;1QEQvwKtCz031TufIiGAT0rrvQ?ct=application/octet-stream> at:digest <urn:md5:BF02AD0B3D37D53B9F2221804F4AEBBD>;
                                                                   dcterms:extent "12443"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQvwKtCz031TufIiGAT0rrvQ?ct=application/x.sig.sltg>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQvwKtCz031TufIiGAT0rrvQ?ct=application/prs.implied-structure;signature=SLTG>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (12.15 KiB)"@en.
-<ni:///mh;1QEQvwKtCz031TufIiGAT0rrvQ?ct=application/x.sig.sltg> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.sltg>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "SLTG object (12.15 KiB)"@en.
+<ni:///mh;1QEQvwKtCz031TufIiGAT0rrvQ?ct=application/prs.implied-structure;signature=SLTG> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=SLTG>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "SLTG object (12.15 KiB)"@en.
 <ni:///mh;1QEQwA_C6VHxTYiePW9Q4XYaHA?ct=text/plain> at:digest <urn:md5:C00FC2E951F14D889E3D6F50E1761A1C>;
                                                     dcterms:extent "211"^^dt:byte;
                                                     nie:hasPart <ni:///mh;1QEQwA_C6VHxTYiePW9Q4XYaHA?ct=text/plain#line=,1>;
@@ -5947,16 +5947,16 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
 <ni:///mh;1QEQxMdqoFCV3H8HQYQKo4izJw?ct=text/plain#line=,1> rdf:value "HKCR".
 <ni:///mh;1QEQxa94OGErkwxpAvuUFGCO0w?ct=application/octet-stream> at:digest <urn:md5:C5AF7838612B930C6902FB9414608ED3>;
                                                                   dcterms:extent "25392"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQxa94OGErkwxpAvuUFGCO0w?ct=application/x.sig.msft>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQxa94OGErkwxpAvuUFGCO0w?ct=application/prs.implied-structure;signature=MSFT>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (24.8 KiB)"@en.
-<ni:///mh;1QEQxa94OGErkwxpAvuUFGCO0w?ct=application/x.sig.msft> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.msft>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "MSFT object (24.8 KiB)"@en.
-<ni:///mh;1QEQxel-U1SEeXwTGFyLlY5_2Q?ct=application/x.ns.urn.schemas-microsoft-com.asm.v1.assembly+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.urn.schemas-microsoft-com.asm.v1.assembly+xml>;
-                                                                                                        a schema:MediaObject;
-                                                                                                        skos:prefLabel "ASSEMBLY object"@en.
-<ni:///mh;1QEQxel-U1SEeXwTGFyLlY5_2Q?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQxel-U1SEeXwTGFyLlY5_2Q?ct=application/x.ns.urn.schemas-microsoft-com.asm.v1.assembly+xml>;
+<ni:///mh;1QEQxa94OGErkwxpAvuUFGCO0w?ct=application/prs.implied-structure;signature=MSFT> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=MSFT>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "MSFT object (24.8 KiB)"@en.
+<ni:///mh;1QEQxel-U1SEeXwTGFyLlY5_2Q?ct=application/prs.implied-document+xml;root=assembly;ns=%22urn:schemas-microsoft-com:asm.v1%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=assembly;ns=%22urn:schemas-microsoft-com:asm.v1%22>;
+                                                                                                                                      a schema:MediaObject;
+                                                                                                                                      skos:prefLabel "ASSEMBLY object"@en.
+<ni:///mh;1QEQxel-U1SEeXwTGFyLlY5_2Q?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQxel-U1SEeXwTGFyLlY5_2Q?ct=application/prs.implied-document+xml;root=assembly;ns=%22urn:schemas-microsoft-com:asm.v1%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,

@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQ7XcgBY9ecZZKUBc1RYDp-A?ct=application/octet-stream>.
+@base <x.blank:b875545e-e1ff-43e8-af86-7ebb6c952c49>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -26,10 +26,10 @@ _:n1 at:pathObject <file:///example.fb2>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ7XcgBY9ecZZKUBc1RYDp-A?ct=application/xml>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (869.75 KiB)"@en.
-<ni:///mh;1QEQ7XcgBY9ecZZKUBc1RYDp-A?ct=application/x.ns.ru.gribuser.www.http.xml.fictionbook.2.0.FictionBook+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.ru.gribuser.www.http.xml.fictionbook.2.0.fictionbook+xml>;
-                                                                                                                   a schema:MediaObject;
-                                                                                                                   skos:prefLabel "FICTIONBOOK object"@en.
-<ni:///mh;1QEQ7XcgBY9ecZZKUBc1RYDp-A?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ7XcgBY9ecZZKUBc1RYDp-A?ct=application/x.ns.ru.gribuser.www.http.xml.fictionbook.2.0.FictionBook+xml>;
+<ni:///mh;1QEQ7XcgBY9ecZZKUBc1RYDp-A?ct=application/prs.implied-document+xml;root=FictionBook;ns=%22http://www.gribuser.ru/xml/fictionbook/2.0%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=FictionBook;ns=%22http://www.gribuser.ru/xml/fictionbook/2.0%22>;
+                                                                                                                                                   a schema:MediaObject;
+                                                                                                                                                   skos:prefLabel "FICTIONBOOK object"@en.
+<ni:///mh;1QEQ7XcgBY9ecZZKUBc1RYDp-A?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ7XcgBY9ecZZKUBc1RYDp-A?ct=application/prs.implied-document+xml;root=FictionBook;ns=%22http://www.gribuser.ru/xml/fictionbook/2.0%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,

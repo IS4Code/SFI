@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQdkEx7r41pOZUxaJ9UcEBmw?ct=application/octet-stream>.
+@base <x.blank:72f06cde-dbb0-452f-897f-74c89990173a>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -26,10 +26,10 @@ _:n1 at:pathObject <file:///VisioTest.vdx>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQdkEx7r41pOZUxaJ9UcEBmw?ct=application/xml>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (138.79 KiB)"@en.
-<ni:///mh;1QEQdkEx7r41pOZUxaJ9UcEBmw?ct=application/x.ns.com.microsoft.schemas.http.visio.2003.core.VisioDocument+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.com.microsoft.schemas.http.visio.2003.core.visiodocument+xml>;
-                                                                                                                       a schema:MediaObject;
-                                                                                                                       skos:prefLabel "VISIODOCUMENT object"@en.
-<ni:///mh;1QEQdkEx7r41pOZUxaJ9UcEBmw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQdkEx7r41pOZUxaJ9UcEBmw?ct=application/x.ns.com.microsoft.schemas.http.visio.2003.core.VisioDocument+xml>;
+<ni:///mh;1QEQdkEx7r41pOZUxaJ9UcEBmw?ct=application/prs.implied-document+xml;root=VisioDocument;ns=%22http://schemas.microsoft.com/visio/2003/core%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=VisioDocument;ns=%22http://schemas.microsoft.com/visio/2003/core%22>;
+                                                                                                                                                       a schema:MediaObject;
+                                                                                                                                                       skos:prefLabel "VISIODOCUMENT object"@en.
+<ni:///mh;1QEQdkEx7r41pOZUxaJ9UcEBmw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQdkEx7r41pOZUxaJ9UcEBmw?ct=application/prs.implied-document+xml;root=VisioDocument;ns=%22http://schemas.microsoft.com/visio/2003/core%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,

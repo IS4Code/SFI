@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQMpoXo2fT_-MHyPLSQD4scA?ct=application/octet-stream>.
+@base <x.blank:c9cfdccc-9427-48f4-a0fc-33b1daa7646a>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -121,12 +121,12 @@ _:n1 at:pathObject <file:///NS.ZIP>;
                                                      skos:prefLabel "PCX object (47.25 KiB)"@en.
 <ni:///mh;1QEQKKPMK29wA8QETmYN9jSPNg?ct=application/octet-stream> at:digest <urn:md5:28A3CC2B6F7003C4044E660DF6348F36>;
                                                                   dcterms:extent "60900"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQKKPMK29wA8QETmYN9jSPNg?ct=application/x.sig.fbov>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQKKPMK29wA8QETmYN9jSPNg?ct=application/prs.implied-structure;signature=FBOV>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (59.47 KiB)"@en.
-<ni:///mh;1QEQKKPMK29wA8QETmYN9jSPNg?ct=application/x.sig.fbov> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.fbov>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "FBOV object (59.47 KiB)"@en.
+<ni:///mh;1QEQKKPMK29wA8QETmYN9jSPNg?ct=application/prs.implied-structure;signature=FBOV> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=FBOV>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "FBOV object (59.47 KiB)"@en.
 <ni:///mh;1QEQKKwvxyGNFKHi3-2MpD-IYg?ct=application/octet-stream> at:digest <urn:md5:28AC2FC7218D14A1E2DFED8CA43F8862>;
                                                                   dcterms:extent "26702"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQKKwvxyGNFKHi3-2MpD-IYg?ct=image/x-pcx>;

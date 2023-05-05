@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQ7KXNZVmEGOc2HeX91alt7g?ct=application/octet-stream>.
+@base <x.blank:3ee3e7cf-4a40-4e12-9edd-24ba7fc81615>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -528,12 +528,12 @@ _:n1 at:pathObject <file:///install_flash_player_7.msi>;
                                                    skos:prefLabel "BMP object (16×16)"@en.
 <ni:///mh;1QEQOmhpd5lwtDNCKnex7cFOhQ?ct=application/octet-stream> at:digest <urn:md5:3A6869779970B433422A77B1EDC14E85>;
                                                                   dcterms:extent "12292"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQOmhpd5lwtDNCKnex7cFOhQ?ct=application/x.sig.msft>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQOmhpd5lwtDNCKnex7cFOhQ?ct=application/prs.implied-structure;signature=MSFT>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (12 KiB)"@en.
-<ni:///mh;1QEQOmhpd5lwtDNCKnex7cFOhQ?ct=application/x.sig.msft> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.msft>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "MSFT object (12 KiB)"@en.
+<ni:///mh;1QEQOmhpd5lwtDNCKnex7cFOhQ?ct=application/prs.implied-structure;signature=MSFT> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=MSFT>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "MSFT object (12 KiB)"@en.
 <ni:///mh;1QEQSs6oZFn0e2MZ86G6IW08Ug?ct=application/octet-stream> at:digest <urn:md5:4ACEA86459F47B6319F3A1BA216D3C52>;
                                                                   dcterms:extent "426"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -601,12 +601,12 @@ _:n1 at:pathObject <file:///install_flash_player_7.msi>;
                                                                   skos:prefLabel "binary data (172 B)"@en.
 <ni:///mh;1QEQgzkMYGYtiWjB_oM1Vo54Fg?ct=application/octet-stream> at:digest <urn:md5:83390C60662D8968C1FE8335568E7816>;
                                                                   dcterms:extent "1984"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQgzkMYGYtiWjB_oM1Vo54Fg?ct=application/x.sig.msft>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQgzkMYGYtiWjB_oM1Vo54Fg?ct=application/prs.implied-structure;signature=MSFT>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.94 KiB)"@en.
-<ni:///mh;1QEQgzkMYGYtiWjB_oM1Vo54Fg?ct=application/x.sig.msft> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.msft>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "MSFT object (1.94 KiB)"@en.
+<ni:///mh;1QEQgzkMYGYtiWjB_oM1Vo54Fg?ct=application/prs.implied-structure;signature=MSFT> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=MSFT>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "MSFT object (1.94 KiB)"@en.
 <ni:///mh;1QEQkzKSFu8apX3Kzy278yPy6w?ct=application/octet-stream> at:digest <urn:md5:93329216EF1AA57DCACF2DBBF323F2EB>;
                                                                   dcterms:extent "7462"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -644,10 +644,10 @@ _:n1 at:pathObject <file:///install_flash_player_7.msi>;
                                                                   dcterms:extent "72"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (72 B)"@en.
-<ni:///mh;1QEQvbCTRoabSdvLrYdBlBOT9g?ct=application/x.ns.urn.schemas-microsoft-com.asm.v1.assembly+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.urn.schemas-microsoft-com.asm.v1.assembly+xml>;
-                                                                                                        a schema:MediaObject;
-                                                                                                        skos:prefLabel "ASSEMBLY object"@en.
-<ni:///mh;1QEQvbCTRoabSdvLrYdBlBOT9g?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQvbCTRoabSdvLrYdBlBOT9g?ct=application/x.ns.urn.schemas-microsoft-com.asm.v1.assembly+xml>;
+<ni:///mh;1QEQvbCTRoabSdvLrYdBlBOT9g?ct=application/prs.implied-document+xml;root=assembly;ns=%22urn:schemas-microsoft-com:asm.v1%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=assembly;ns=%22urn:schemas-microsoft-com:asm.v1%22>;
+                                                                                                                                      a schema:MediaObject;
+                                                                                                                                      skos:prefLabel "ASSEMBLY object"@en.
+<ni:///mh;1QEQvbCTRoabSdvLrYdBlBOT9g?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQvbCTRoabSdvLrYdBlBOT9g?ct=application/prs.implied-document+xml;root=assembly;ns=%22urn:schemas-microsoft-com:asm.v1%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,

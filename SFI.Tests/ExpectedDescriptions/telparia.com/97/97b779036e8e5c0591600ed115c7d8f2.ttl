@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/octet-stream>.
+@base <x.blank:7b23ac8d-9c19-4284-a5f2-d7fcbc22c8dc>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -51,10 +51,10 @@ _:n1 at:pathObject <file:///childrens-literature.epub>;
 <file:///package.opf> at:extensionObject <https://w3id.org/uri4uri/suffix/opf>.
 <file:///s04.xhtml> at:extensionObject <https://w3id.org/uri4uri/suffix/xhtml>.
 <file:///toc.ncx> at:extensionObject <https://w3id.org/uri4uri/suffix/ncx>.
-<ni:///mh;1QEQ0u1Dzl9x-tRWSJpFwB2AOQ?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.container.container+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.urn.oasis.names.tc.opendocument.xmlns.container.container+xml>;
-                                                                                                                        a schema:MediaObject;
-                                                                                                                        skos:prefLabel "CONTAINER object"@en.
-<ni:///mh;1QEQ0u1Dzl9x-tRWSJpFwB2AOQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ0u1Dzl9x-tRWSJpFwB2AOQ?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.container.container+xml>;
+<ni:///mh;1QEQ0u1Dzl9x-tRWSJpFwB2AOQ?ct=application/prs.implied-document+xml;root=container;ns=%22urn:oasis:names:tc:opendocument:xmlns:container%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=container;ns=%22urn:oasis:names:tc:opendocument:xmlns:container%22>;
+                                                                                                                                                      a schema:MediaObject;
+                                                                                                                                                      skos:prefLabel "CONTAINER object"@en.
+<ni:///mh;1QEQ0u1Dzl9x-tRWSJpFwB2AOQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ0u1Dzl9x-tRWSJpFwB2AOQ?ct=application/prs.implied-document+xml;root=container;ns=%22urn:oasis:names:tc:opendocument:xmlns:container%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -220,10 +220,10 @@ _:n1 at:pathObject <file:///childrens-literature.epub>;
                                                                    a nfo:FileDataObject,
                                                                      nfo:ArchiveItem;
                                                                    skos:prefLabel "/mimetype".
-<ni:///mh;1QEQTgdI_wDrtlOjWWKa-6TB4g?ct=application/x.ns.org.idpf.www.http.2007.opf.package+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.idpf.www.http.2007.opf.package+xml>;
-                                                                                                 a schema:MediaObject;
-                                                                                                 skos:prefLabel "PACKAGE object"@en.
-<ni:///mh;1QEQTgdI_wDrtlOjWWKa-6TB4g?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQTgdI_wDrtlOjWWKa-6TB4g?ct=application/x.ns.org.idpf.www.http.2007.opf.package+xml>;
+<ni:///mh;1QEQTgdI_wDrtlOjWWKa-6TB4g?ct=application/prs.implied-document+xml;root=package;ns=%22http://www.idpf.org/2007/opf%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=package;ns=%22http://www.idpf.org/2007/opf%22>;
+                                                                                                                                 a schema:MediaObject;
+                                                                                                                                 skos:prefLabel "PACKAGE object"@en.
+<ni:///mh;1QEQTgdI_wDrtlOjWWKa-6TB4g?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQTgdI_wDrtlOjWWKa-6TB4g?ct=application/prs.implied-document+xml;root=package;ns=%22http://www.idpf.org/2007/opf%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -245,10 +245,10 @@ _:n1 at:pathObject <file:///childrens-literature.epub>;
                                                     skos:prefLabel "text (2 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQTgdI_wDrtlOjWWKa-6TB4g?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?>""".
-<ni:///mh;1QEQevV-8jqxY-u7pA9J-_RAxw?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
-                                                                                              a schema:MediaObject;
-                                                                                              skos:prefLabel "HTML object"@en.
-<ni:///mh;1QEQevV-8jqxY-u7pA9J-_RAxw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQevV-8jqxY-u7pA9J-_RAxw?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
+<ni:///mh;1QEQevV-8jqxY-u7pA9J-_RAxw?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
+                                                                                                                              a schema:MediaObject;
+                                                                                                                              skos:prefLabel "HTML object"@en.
+<ni:///mh;1QEQevV-8jqxY-u7pA9J-_RAxw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQevV-8jqxY-u7pA9J-_RAxw?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -279,10 +279,10 @@ _:n1 at:pathObject <file:///childrens-literature.epub>;
                                                     skos:prefLabel "text (12.36 KiB)"@en;
                                                     cnt:characterEncoding "utf-8".
 <ni:///mh;1QEQevV-8jqxY-u7pA9J-_RAxw?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"utf-8\"?>""".
-<ni:///mh;1QEQguRKD_vOS3RhJ2l5-2oLZw?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
-                                                                                              a schema:MediaObject;
-                                                                                              skos:prefLabel "HTML object"@en.
-<ni:///mh;1QEQguRKD_vOS3RhJ2l5-2oLZw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQguRKD_vOS3RhJ2l5-2oLZw?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
+<ni:///mh;1QEQguRKD_vOS3RhJ2l5-2oLZw?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
+                                                                                                                              a schema:MediaObject;
+                                                                                                                              skos:prefLabel "HTML object"@en.
+<ni:///mh;1QEQguRKD_vOS3RhJ2l5-2oLZw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQguRKD_vOS3RhJ2l5-2oLZw?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -305,17 +305,17 @@ _:n1 at:pathObject <file:///childrens-literature.epub>;
                                                    skos:prefLabel "HTML object (334.9 KiB)"@en.
 <ni:///mh;1QEQguRKD_vOS3RhJ2l5-2oLZw?ct=text/plain> at:digest <urn:md5:82E44A0FFBCE4B7461276979FB6A0B67>;
                                                     dcterms:extent "342935"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQguRKD_vOS3RhJ2l5-2oLZw?ct=application/xml>,
-                                                                      <ni:///mh;1QEQguRKD_vOS3RhJ2l5-2oLZw?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQguRKD_vOS3RhJ2l5-2oLZw?ct=text/html>,
+                                                                      <ni:///mh;1QEQguRKD_vOS3RhJ2l5-2oLZw?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQguRKD_vOS3RhJ2l5-2oLZw?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (334.9 KiB)"@en;
                                                     cnt:characterEncoding "utf-8".
 <ni:///mh;1QEQguRKD_vOS3RhJ2l5-2oLZw?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?>""".
-<ni:///mh;1QEQhHuAEadpeZFqpQaI-YDjoA?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
-                                                                                              a schema:MediaObject;
-                                                                                              skos:prefLabel "HTML object"@en.
-<ni:///mh;1QEQhHuAEadpeZFqpQaI-YDjoA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQhHuAEadpeZFqpQaI-YDjoA?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
+<ni:///mh;1QEQhHuAEadpeZFqpQaI-YDjoA?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
+                                                                                                                              a schema:MediaObject;
+                                                                                                                              skos:prefLabel "HTML object"@en.
+<ni:///mh;1QEQhHuAEadpeZFqpQaI-YDjoA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQhHuAEadpeZFqpQaI-YDjoA?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -345,10 +345,10 @@ _:n1 at:pathObject <file:///childrens-literature.epub>;
                                                     skos:prefLabel "text (392 B)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQhHuAEadpeZFqpQaI-YDjoA?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?>""".
-<ni:///mh;1QEQk6o5wctOzJRYeIJjiGeUiA?ct=application/x.ns.org.daisy.www.http.z3986.2005.ncx.ncx+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.daisy.www.http.z3986.2005.ncx.ncx+xml>;
-                                                                                                    a schema:MediaObject;
-                                                                                                    skos:prefLabel "NCX object"@en.
-<ni:///mh;1QEQk6o5wctOzJRYeIJjiGeUiA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQk6o5wctOzJRYeIJjiGeUiA?ct=application/x.ns.org.daisy.www.http.z3986.2005.ncx.ncx+xml>;
+<ni:///mh;1QEQk6o5wctOzJRYeIJjiGeUiA?ct=application/prs.implied-document+xml;root=ncx;ns=%22http://www.daisy.org/z3986/2005/ncx/%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=ncx;ns=%22http://www.daisy.org/z3986/2005/ncx/%22>;
+                                                                                                                                     a schema:MediaObject;
+                                                                                                                                     skos:prefLabel "NCX object"@en.
+<ni:///mh;1QEQk6o5wctOzJRYeIJjiGeUiA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQk6o5wctOzJRYeIJjiGeUiA?ct=application/prs.implied-document+xml;root=ncx;ns=%22http://www.daisy.org/z3986/2005/ncx/%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,

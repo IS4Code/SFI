@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQL9ZqgNYs5BAyqGb7GPdj9A?ct=application/octet-stream>.
+@base <x.blank:a025de72-59fa-41a6-8dc1-3e79bab4639d>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -40,12 +40,12 @@ _:n1 at:pathObject <file:///swflash.cab>;
 <file:///swflash.inf> at:extensionObject <https://w3id.org/uri4uri/suffix/inf>.
 <ni:///mh;1QEQC_YrNU9s7OcGLOT5JOGB3g?ct=application/octet-stream> at:digest <urn:md5:0BF62B354F6CECE7062CE4F924E181DE>;
                                                                   dcterms:extent "9884"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQC_YrNU9s7OcGLOT5JOGB3g?ct=application/x.sig.msft>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQC_YrNU9s7OcGLOT5JOGB3g?ct=application/prs.implied-structure;signature=MSFT>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (9.65 KiB)"@en.
-<ni:///mh;1QEQC_YrNU9s7OcGLOT5JOGB3g?ct=application/x.sig.msft> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.msft>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "MSFT object (9.65 KiB)"@en.
+<ni:///mh;1QEQC_YrNU9s7OcGLOT5JOGB3g?ct=application/prs.implied-structure;signature=MSFT> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=MSFT>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "MSFT object (9.65 KiB)"@en.
 <ni:///mh;1QEQEGL9TnVw7X-bNj_NVig70A?ct=application/octet-stream> at:digest <urn:md5:1062FD4E7570ED7F9B363FCD56283BD0>;
                                                                   dcterms:extent "318"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQEGL9TnVw7X-bNj_NVig70A?ct=image/bmp>;
@@ -76,8 +76,8 @@ _:n1 at:pathObject <file:///swflash.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (224 B)"@en,
-                                                                  "BMP object (16×15)"@en.
+                                                   skos:prefLabel "BMP object (16×15)"@en,
+                                                                  "BMP object (224 B)"@en.
 <ni:///mh;1QEQKdHchWs9ore0hPi8bYhMtA?ct=application/octet-stream> at:digest <urn:md5:29D1DC856B3DA2B7B484F8BC6D884CB4>;
                                                                   dcterms:extent "318"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQKdHchWs9ore0hPi8bYhMtA?ct=image/bmp>;

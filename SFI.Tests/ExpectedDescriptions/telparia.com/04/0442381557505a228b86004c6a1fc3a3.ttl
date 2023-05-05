@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQVGD_LHz5F3CfEAJgSqrq-Q?ct=application/octet-stream>.
+@base <x.blank:ff751019-e755-4b84-a207-971a2620f9a4>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -153,24 +153,24 @@ _:n1 at:pathObject <file:///AzureBay%20Screen%20Saver%203.4.msi>;
                                                                   skos:prefLabel "binary data (10.46 KiB)"@en.
 <ni:///mh;1QEQ1tJ7kVC2qtddP2UjIWL1SA?ct=application/octet-stream> at:digest <urn:md5:D6D27B9150B6AAD75D3F65232162F548>;
                                                                   dcterms:extent "5592"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQ1tJ7kVC2qtddP2UjIWL1SA?ct=application/x.sig.msft>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ1tJ7kVC2qtddP2UjIWL1SA?ct=application/prs.implied-structure;signature=MSFT>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (5.46 KiB)"@en.
-<ni:///mh;1QEQ1tJ7kVC2qtddP2UjIWL1SA?ct=application/x.sig.msft> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.msft>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "MSFT object (5.46 KiB)"@en.
+<ni:///mh;1QEQ1tJ7kVC2qtddP2UjIWL1SA?ct=application/prs.implied-structure;signature=MSFT> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=MSFT>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "MSFT object (5.46 KiB)"@en.
 <ni:///mh;1QEQ2toEPnqSgRDlKlaA0fRtYQ?ct=application/octet-stream> at:digest <urn:md5:DADA043E7A928110E52A5680D1F46D61>;
                                                                   dcterms:extent "232"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (232 B)"@en.
 <ni:///mh;1QEQ4AYQtyRsYTdfRPts7mnJ5w?ct=application/octet-stream> at:digest <urn:md5:E00610B7246C61375F44FB6CEE69C9E7>;
                                                                   dcterms:extent "3592"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQ4AYQtyRsYTdfRPts7mnJ5w?ct=application/x.sig.msft>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ4AYQtyRsYTdfRPts7mnJ5w?ct=application/prs.implied-structure;signature=MSFT>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (3.51 KiB)"@en.
-<ni:///mh;1QEQ4AYQtyRsYTdfRPts7mnJ5w?ct=application/x.sig.msft> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.msft>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "MSFT object (3.51 KiB)"@en.
+<ni:///mh;1QEQ4AYQtyRsYTdfRPts7mnJ5w?ct=application/prs.implied-structure;signature=MSFT> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=MSFT>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "MSFT object (3.51 KiB)"@en.
 <ni:///mh;1QEQA7TWFfh6InNMg7L0ol9KQg?ct=application/octet-stream> at:digest <urn:md5:03B4D615F87A22734C83B2F4A25F4A42>;
                                                                   dcterms:extent "106496"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQA7TWFfh6InNMg7L0ol9KQg?ct=application/vnd.microsoft.portable-executable>;
@@ -206,8 +206,8 @@ _:n1 at:pathObject <file:///AzureBay%20Screen%20Saver%203.4.msi>;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (766 B)"@en,
-                                                                     "ICO object (32×32)"@en.
+                                                      skos:prefLabel "ICO object (32×32)"@en,
+                                                                     "ICO object (766 B)"@en.
 <ni:///mh;1QEQGTjQROu0n_jjMATlnFGa9w?ct=application/octet-stream> at:digest <urn:md5:1938D044EBB49FF8E33004E59C519AF7>;
                                                                   dcterms:extent "180"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -230,8 +230,8 @@ _:n1 at:pathObject <file:///AzureBay%20Screen%20Saver%203.4.msi>;
                                                     a schema:MediaObject,
                                                       schema:ImageObject,
                                                       nfo:Image;
-                                                    skos:prefLabel "JPG object (1.01 KiB)"@en,
-                                                                   "JPG object (499×58)"@en.
+                                                    skos:prefLabel "JPG object (499×58)"@en,
+                                                                   "JPG object (1.01 KiB)"@en.
 <ni:///mh;1QEQKc3nlqn5jladF-y2bFVJDA?ct=application/octet-stream> at:digest <urn:md5:29CDE796A9F98E569D17ECB66C55490C>;
                                                                   dcterms:extent "104"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -242,12 +242,12 @@ _:n1 at:pathObject <file:///AzureBay%20Screen%20Saver%203.4.msi>;
                                                                   skos:prefLabel "binary data (8.59 KiB)"@en.
 <ni:///mh;1QEQMleSNyXJI-yq4bgPjwj0-A?ct=application/octet-stream> at:digest <urn:md5:3257923725C923ECAAE1B80F8F08F4F8>;
                                                                   dcterms:extent "23784"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQMleSNyXJI-yq4bgPjwj0-A?ct=application/x.sig.msft>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQMleSNyXJI-yq4bgPjwj0-A?ct=application/prs.implied-structure;signature=MSFT>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (23.23 KiB)"@en.
-<ni:///mh;1QEQMleSNyXJI-yq4bgPjwj0-A?ct=application/x.sig.msft> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.msft>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "MSFT object (23.23 KiB)"@en.
+<ni:///mh;1QEQMleSNyXJI-yq4bgPjwj0-A?ct=application/prs.implied-structure;signature=MSFT> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=MSFT>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "MSFT object (23.23 KiB)"@en.
 <ni:///mh;1QEQMxkGNujhbMKuudFqnt99gQ?ct=application/octet-stream> at:digest <urn:md5:33190636E8E16CC2AEB9D16A9EDF7D81>;
                                                                   dcterms:extent "766"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQMxkGNujhbMKuudFqnt99gQ?ct=image/x-icon>;
@@ -389,12 +389,12 @@ _:n1 at:pathObject <file:///AzureBay%20Screen%20Saver%203.4.msi>;
                                                                   skos:prefLabel "binary data (240 B)"@en.
 <ni:///mh;1QEQX8N2L9slF-z3cycaPDFaYQ?ct=application/octet-stream> at:digest <urn:md5:5FC3762FDB2517ECF773271A3C315A61>;
                                                                   dcterms:extent "15788"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQX8N2L9slF-z3cycaPDFaYQ?ct=application/x.sig.msft>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQX8N2L9slF-z3cycaPDFaYQ?ct=application/prs.implied-structure;signature=MSFT>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (15.42 KiB)"@en.
-<ni:///mh;1QEQX8N2L9slF-z3cycaPDFaYQ?ct=application/x.sig.msft> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.msft>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "MSFT object (15.42 KiB)"@en.
+<ni:///mh;1QEQX8N2L9slF-z3cycaPDFaYQ?ct=application/prs.implied-structure;signature=MSFT> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=MSFT>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "MSFT object (15.42 KiB)"@en.
 <ni:///mh;1QEQYFIiC0EiAPz-LI53zOfEKg?ct=application/octet-stream> at:digest <urn:md5:6052220B412200FCFE2C8E77CCE7C42A>;
                                                                   dcterms:extent "766"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQYFIiC0EiAPz-LI53zOfEKg?ct=image/x-icon>;
@@ -883,8 +883,8 @@ _:n1 at:pathObject <file:///AzureBay%20Screen%20Saver%203.4.msi>;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (318 B)"@en,
-                                                                     "ICO object (16×16)"@en.
+                                                      skos:prefLabel "ICO object (16×16)"@en,
+                                                                     "ICO object (318 B)"@en.
 <ni:///mh;1QEQxalA_Eq8HrahC0S3LHsjPQ?ct=application/octet-stream> at:digest <urn:md5:C5A940FC4ABC1EB6A10B44B72C7B233D>;
                                                                   dcterms:extent "14876"^^dt:byte;
                                                                   a cnt:ContentAsBase64;

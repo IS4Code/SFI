@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQ3yz3-sIk5PsTdR49vQ3Rsg?ct=text/plain>.
+@base <x.blank:c5fe4e07-2e0a-4cf4-b74c-3207e5ecb2cc>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -20,10 +20,10 @@ _:n1 at:pathObject <file:///hires.html>;
      nfo:fileSize 1653 ;
      a nfo:FileDataObject.
 <file:///hires.html> at:extensionObject <https://w3id.org/uri4uri/suffix/html>.
-<ni:///mh;1QEQ3yz3-sIk5PsTdR49vQ3Rsg?ct=application/x.ns.HTML+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.html+xml>;
-                                                                   a schema:MediaObject;
-                                                                   skos:prefLabel "HTML object"@en.
-<ni:///mh;1QEQ3yz3-sIk5PsTdR49vQ3Rsg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ3yz3-sIk5PsTdR49vQ3Rsg?ct=application/x.ns.HTML+xml>;
+<ni:///mh;1QEQ3yz3-sIk5PsTdR49vQ3Rsg?ct=application/prs.implied-document+xml;root=HTML> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=HTML>;
+                                                                                        a schema:MediaObject;
+                                                                                        skos:prefLabel "HTML object"@en.
+<ni:///mh;1QEQ3yz3-sIk5PsTdR49vQ3Rsg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ3yz3-sIk5PsTdR49vQ3Rsg?ct=application/prs.implied-document+xml;root=HTML>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,

@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQsx85YGd7Rn9uuEpEo8-ekQ?ct=application/octet-stream>.
+@base <x.blank:13aea8b5-3bdd-4116-8b13-c1bab534fa1d>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -778,10 +778,10 @@ _:n1 at:pathObject <file:///jong%20belegen%20%28renoise%202.1%20version%29.xrns>
                                                       nfo:Audio,
                                                       schema:AudioObject;
                                                     skos:prefLabel "FLAC object (44100 Hz, 2 channels)"@en.
-<ni:///mh;1QEQi538Hbxcs4utAps3S2acAg?ct=application/x.ns.RenoiseSong+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.renoisesong+xml>;
-                                                                          a schema:MediaObject;
-                                                                          skos:prefLabel "RENOISESONG object"@en.
-<ni:///mh;1QEQi538Hbxcs4utAps3S2acAg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQi538Hbxcs4utAps3S2acAg?ct=application/x.ns.RenoiseSong+xml>;
+<ni:///mh;1QEQi538Hbxcs4utAps3S2acAg?ct=application/prs.implied-document+xml;root=RenoiseSong> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=RenoiseSong>;
+                                                                                               a schema:MediaObject;
+                                                                                               skos:prefLabel "RENOISESONG object"@en.
+<ni:///mh;1QEQi538Hbxcs4utAps3S2acAg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQi538Hbxcs4utAps3S2acAg?ct=application/prs.implied-document+xml;root=RenoiseSong>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,

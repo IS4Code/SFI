@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQFBJXiJ7TkcwlivYsD4rUpQ?ct=application/octet-stream>.
+@base <x.blank:dbf29b51-1a1c-4db9-a1b6-28d1646bbd8f>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -569,12 +569,12 @@ URL=http://www.microsoft.com/netshow/
                                                    skos:prefLabel "BMP object (32×32)"@en.
 <ni:///mh;1QEQ8jkPrkGK4JWB03-NBNxsCA?ct=application/octet-stream> at:digest <urn:md5:F2390FAE418AE09581D37F8D04DC6C08>;
                                                                   dcterms:extent "5842"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQ8jkPrkGK4JWB03-NBNxsCA?ct=application/x.sig.sltg>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ8jkPrkGK4JWB03-NBNxsCA?ct=application/prs.implied-structure;signature=SLTG>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (5.71 KiB)"@en.
-<ni:///mh;1QEQ8jkPrkGK4JWB03-NBNxsCA?ct=application/x.sig.sltg> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.sltg>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "SLTG object (5.71 KiB)"@en.
+<ni:///mh;1QEQ8jkPrkGK4JWB03-NBNxsCA?ct=application/prs.implied-structure;signature=SLTG> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=SLTG>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "SLTG object (5.71 KiB)"@en.
 <ni:///mh;1QEQB_em_NMz5hfVRAtivYSg9g?ct=text/plain> at:digest <urn:md5:07F7A6FCD333E617D5440B62BD84A0F6>;
                                                     dcterms:extent "1200"^^dt:byte;
                                                     nie:hasPart <ni:///mh;1QEQB_em_NMz5hfVRAtivYSg9g?ct=text/plain#line=,1>;
@@ -1088,15 +1088,15 @@ URL=http://www.microsoft.com/netshow/
                                                                                        skos:prefLabel "DLL object (vivog723)"@en.
 <ni:///mh;1QEQVtj8ZZ96PkEO32pMfkDtgQ?ct=application/octet-stream> at:digest <urn:md5:56D8FC659F7A3E410EDF6A4C7E40ED81>;
                                                                   dcterms:extent "88464"^^dt:byte;
-                                                                  dcterms:hasFormat [a schema:MediaObject ; 
+                                                                  dcterms:hasFormat <ni:///mh;1QEQVtj8ZZ96PkEO32pMfkDtgQ?ct=application/vnd.microsoft.portable-executable>,
+                                                                                    [a schema:MediaObject ; 
                                                                                      a cert:X509Certificate ; 
                                                                                      at:digest <urn:sha1:AEG7ZUALD4T2ES6VCYMDMDRY3V5CJE5X> ; 
                                                                                      dcterms:subject """CN=VDOnet Corp, L=Palo Alto, S=California, C=US, OU=\"www.verisign.com/repository/CPS Incorp. by Ref.,LIAB.LTD(c)96\", OU=Digital ID Class 3 - Microsoft Software Validation, OU=VeriSign Commercial Software Publishers CA, O=\"VeriSign, Inc.\", L=Internet""" ; 
                                                                                      dcterms:creator """OU=VeriSign Commercial Software Publishers CA, O=\"VeriSign, Inc.\", L=Internet""" ; 
                                                                                      dcterms:created "1996-08-09T02:00:00.000000+02:00"^^xsd:dateTime ; 
                                                                                      sec:expiration "1997-08-10T01:59:59.000000+02:00"^^xsd:dateTime ; 
-                                                                                     schema:serialNumber "78E75F67DB651B981AB7C25B946BA3BE"],
-                                                                                    <ni:///mh;1QEQVtj8ZZ96PkEO32pMfkDtgQ?ct=application/vnd.microsoft.portable-executable>;
+                                                                                     schema:serialNumber "78E75F67DB651B981AB7C25B946BA3BE"];
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (86.39 KiB)"@en.
 <ni:///mh;1QEQVtj8ZZ96PkEO32pMfkDtgQ?ct=application/vnd.microsoft.portable-executable> dbo:originalName "Decvw_32.dll";
@@ -1559,8 +1559,8 @@ URL=http://www.microsoft.com/netshow/
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (464 B)"@en,
-                                                                  "BMP object (48×15)"@en.
+                                                   skos:prefLabel "BMP object (48×15)"@en,
+                                                                  "BMP object (464 B)"@en.
 <ni:///mh;1QEQuK2Ema0WfG2RI1TStqJjcw?ct=application/octet-stream> at:digest <urn:md5:B8AD8499AD167C6D912354D2B6A26373>;
                                                                   dcterms:extent "115172"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -1603,12 +1603,12 @@ URL=http://www.microsoft.com/netshow/
                                                                   "BMP object (2.23 KiB)"@en.
 <ni:///mh;1QEQxk8-6zzWeMhsHhU2bvqszw?ct=application/octet-stream> at:digest <urn:md5:C64F3EEB3CD678C86C1E15366EFAACCF>;
                                                                   dcterms:extent "21904"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQxk8-6zzWeMhsHhU2bvqszw?ct=application/x.sig.sltg>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQxk8-6zzWeMhsHhU2bvqszw?ct=application/prs.implied-structure;signature=SLTG>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (21.39 KiB)"@en.
-<ni:///mh;1QEQxk8-6zzWeMhsHhU2bvqszw?ct=application/x.sig.sltg> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.sltg>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "SLTG object (21.39 KiB)"@en.
+<ni:///mh;1QEQxk8-6zzWeMhsHhU2bvqszw?ct=application/prs.implied-structure;signature=SLTG> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=SLTG>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "SLTG object (21.39 KiB)"@en.
 <ni:///mh;1QEQyDaIaUIyc_IKTcZB1cBLfw?ct=application/octet-stream> at:digest <urn:md5:C8368869423273F20A4DC641D5C04B7F>;
                                                                   dcterms:extent "246"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQyDaIaUIyc_IKTcZB1cBLfw?ct=image/bmp>;
@@ -1656,8 +1656,8 @@ URL=http://www.microsoft.com/netshow/
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (584 B)"@en,
-                                                                  "BMP object (64×15)"@en.
+                                                   skos:prefLabel "BMP object (64×15)"@en,
+                                                                  "BMP object (584 B)"@en.
 <urn:md5:063A656E7F85C8698B187A7BA5F80CD4> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "Bjplbn+FyGmLGHp7pfgM1A=="^^xsd:base64Binary.

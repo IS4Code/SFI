@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQt_9ssZUzteucRfqWJ4LhdA?ct=application/octet-stream>.
+@base <x.blank:d9fc05d4-c5e6-4b80-910b-5dd4d999175c>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -27,13 +27,13 @@ _:n1 at:pathObject <file:///PICTURE.WP>;
                                                                                                                             skos:prefLabel "binary data (61 B)"@en;
                                                                                                                             cnt:bytes "AQD+/wMKAAD/////BwADAAAAAADAAAAAAAAARhIAAABNaWNyb3NvZnQgRHJhd2luZwAHAAAATVNEcmF3AA=="^^xsd:base64Binary.
 <data:application/octet-stream;base64,TkQAAAEAAAAHAAAAAgA=> dcterms:extent "14"^^dt:byte;
-                                                            dcterms:hasFormat <data:application/x.sig.nd;base64,TkQAAAEAAAAHAAAAAgA=>;
+                                                            dcterms:hasFormat <data:application/prs.implied-structure;signature=ND;base64,TkQAAAEAAAAHAAAAAgA=>;
                                                             a cnt:ContentAsBase64;
                                                             skos:prefLabel "binary data (14 B)"@en;
                                                             cnt:bytes "TkQAAAEAAAAHAAAAAgA="^^xsd:base64Binary.
-<data:application/x.sig.nd;base64,TkQAAAEAAAAHAAAAAgA=> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.nd>;
-                                                        a schema:MediaObject;
-                                                        skos:prefLabel "ND object (14 B)"@en.
+<data:application/prs.implied-structure;signature=ND;base64,TkQAAAEAAAAHAAAAAgA=> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=ND>;
+                                                                                  a schema:MediaObject;
+                                                                                  skos:prefLabel "ND object (14 B)"@en.
 <file:///MatOST/MatadorObject1> at:pathObject <file:///MatadorObject1>.
 <file:///MatOST/MatadorObject1/> at:pathObject <file:///MatadorObject1/>.
 <file:///MatOST/MatadorObject1/%01CompObj> at:pathObject <file:///MatadorObject1/%01CompObj>.

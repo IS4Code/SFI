@@ -1,4 +1,4 @@
-@base <x.blank:0e91d4d6-9222-4aa3-b32f-8803fe816112>.
+@base <x.blank:6fec494d-667b-4ccb-a90f-c0b6f6701829>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -1200,12 +1200,12 @@ echo $1 $2
                                                     skos:prefLabel "text (425 B)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQHQsRgUJBNHlharsebgsDkw?ct=text/plain#line=,1> rdf:value "/* quit.h -- How to handle SIGINT gracefully. */".
-<ni:///mh;1QEQHl5vDGvQ5Sy8Z27ZdAsfbA?ct=application/x.exec.sh> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.exec.sh>;
-                                                               a schema:MediaObject;
-                                                               skos:prefLabel "SH object (251 B)"@en.
+<ni:///mh;1QEQHl5vDGvQ5Sy8Z27ZdAsfbA?ct=application/prs.implied-executable;interpreter=sh> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-executable;interpreter=sh>;
+                                                                                           a schema:MediaObject;
+                                                                                           skos:prefLabel "SH object (251 B)"@en.
 <ni:///mh;1QEQHl5vDGvQ5Sy8Z27ZdAsfbA?ct=text/plain> at:digest <urn:md5:1E5E6F0C6BD0E52CBC676ED9740B1F6C>;
                                                     dcterms:extent "251"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQHl5vDGvQ5Sy8Z27ZdAsfbA?ct=application/x.exec.sh>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQHl5vDGvQ5Sy8Z27ZdAsfbA?ct=application/prs.implied-executable;interpreter=sh>;
                                                     nie:hasPart <ni:///mh;1QEQHl5vDGvQ5Sy8Z27ZdAsfbA?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (251 B)"@en;
@@ -1253,12 +1253,12 @@ echo $1 $2
                                                     skos:prefLabel "text (12.96 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQIG4FYf-ERnij5TOOYwj5fw?ct=text/plain#line=,1> rdf:value "/* print_command -- A way to make readable commands from a command tree. */".
-<ni:///mh;1QEQIpZhV53yrf1zCsQ55fhb_w?ct=application/x.exec.bash> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.exec.bash>;
-                                                                 a schema:MediaObject;
-                                                                 skos:prefLabel "BASH object (50.44 KiB)"@en.
+<ni:///mh;1QEQIpZhV53yrf1zCsQ55fhb_w?ct=application/prs.implied-executable;interpreter=bash> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-executable;interpreter=bash>;
+                                                                                             a schema:MediaObject;
+                                                                                             skos:prefLabel "BASH object (50.44 KiB)"@en.
 <ni:///mh;1QEQIpZhV53yrf1zCsQ55fhb_w?ct=text/plain> at:digest <urn:md5:229661579DF2ADFD730AC439E5F85BFF>;
                                                     dcterms:extent "51655"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQIpZhV53yrf1zCsQ55fhb_w?ct=application/x.exec.bash>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQIpZhV53yrf1zCsQ55fhb_w?ct=application/prs.implied-executable;interpreter=bash>;
                                                     nie:hasPart <ni:///mh;1QEQIpZhV53yrf1zCsQ55fhb_w?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (50.44 KiB)"@en;
@@ -1941,8 +1941,8 @@ echo $1 $2
 <ni:///mh;1QEQigrzmN7wFJAH87P75AVl_Q?ct=text/plain#line=,1> rdf:value "/* variables.c -- Functions for hacking shell variables. */".
 <ni:///mh;1QEQigw2vjP5vrYDcHLMLL4irg?ct=application/octet-stream> at:digest <urn:md5:8A0C36BE33F9BEB6037072CC2CBE22AE>;
                                                                   dcterms:extent "36027"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQigw2vjP5vrYDcHLMLL4irg?ct=application/vnd.microsoft.portable-executable>,
-                                                                                    <ni:///mh;1QEQigw2vjP5vrYDcHLMLL4irg?ct=application/x-msdownload;format=le>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQigw2vjP5vrYDcHLMLL4irg?ct=application/x-msdownload;format=le>,
+                                                                                    <ni:///mh;1QEQigw2vjP5vrYDcHLMLL4irg?ct=application/vnd.microsoft.portable-executable>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (35.18 KiB)"@en.
 <ni:///mh;1QEQigw2vjP5vrYDcHLMLL4irg?ct=application/vnd.microsoft.portable-executable> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
@@ -2136,12 +2136,12 @@ echo $1 $2
                                                     skos:prefLabel "text (4.3 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQpdOqd91wogyWG4eR3mTRsA?ct=text/plain#line=,1> rdf:value "This file is bind.def, from which is created bind.c.".
-<ni:///mh;1QEQpdPEkTv1aJPYeAOGdk5KmA?ct=application/x.exec.bash.exe> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.exec.bash.exe>;
-                                                                     a schema:MediaObject;
-                                                                     skos:prefLabel "BASH.EXE object (219 B)"@en.
+<ni:///mh;1QEQpdPEkTv1aJPYeAOGdk5KmA?ct=application/prs.implied-executable;interpreter=bash.exe> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-executable;interpreter=bash.exe>;
+                                                                                                 a schema:MediaObject;
+                                                                                                 skos:prefLabel "BASH.EXE object (219 B)"@en.
 <ni:///mh;1QEQpdPEkTv1aJPYeAOGdk5KmA?ct=text/plain> at:digest <urn:md5:A5D3C4913BF56893D8780386764E4A98>;
                                                     dcterms:extent "219"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQpdPEkTv1aJPYeAOGdk5KmA?ct=application/x.exec.bash.exe>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQpdPEkTv1aJPYeAOGdk5KmA?ct=application/prs.implied-executable;interpreter=bash.exe>;
                                                     nie:hasPart <ni:///mh;1QEQpdPEkTv1aJPYeAOGdk5KmA?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (219 B)"@en;

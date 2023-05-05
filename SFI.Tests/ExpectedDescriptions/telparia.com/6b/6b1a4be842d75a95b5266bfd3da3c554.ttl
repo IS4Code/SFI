@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=application/octet-stream>.
+@base <x.blank:ba69a799-1df2-40aa-92e6-ee675194a9e9>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -23,15 +23,15 @@ _:n1 at:pathObject <file:///test.html>;
 <file:///test.html> at:extensionObject <https://w3id.org/uri4uri/suffix/html>.
 <ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=application/octet-stream> at:digest <urn:md5:019DB3B07FF46E22830BAA39D77DBA39>;
                                                                   dcterms:extent "68393"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=text/html>,
-                                                                                    <ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=application/xml>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=application/xml>,
+                                                                                    <ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=text/html>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (66.79 KiB)"@en.
-<ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=application/x.ns.urn.publicid.-.W3C.DTD&2BHTML&2B4.01.EN.html+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.urn.publicid.-.w3c.dtd&2bhtml&2b4.01.en.html+xml>,
-                                                                                                                                 <urn:publicid:-:W3C:DTD+HTML+4.01:EN>;
-                                                                                                           a schema:MediaObject;
-                                                                                                           skos:prefLabel "HTML object"@en.
-<ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=application/x.ns.urn.publicid.-.W3C.DTD&2BHTML&2B4.01.EN.html+xml>;
+<ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=application/prs.implied-document+xml;root=html;public=%22-//W3C//DTD%20HTML%204.01//EN%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=html;public=%22-//W3C//DTD%20HTML%204.01//EN%22>,
+                                                                                                                                                         <urn:publicid:-:W3C:DTD+HTML+4.01:EN>;
+                                                                                                                                   a schema:MediaObject;
+                                                                                                                                   skos:prefLabel "HTML object"@en.
+<ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=application/prs.implied-document+xml;root=html;public=%22-//W3C//DTD%20HTML%204.01//EN%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,

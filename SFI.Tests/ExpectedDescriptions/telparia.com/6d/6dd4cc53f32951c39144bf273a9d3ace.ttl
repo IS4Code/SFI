@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQgVkaHg-aPfYvh8Z1HWEr5g?ct=application/octet-stream>.
+@base <x.blank:d71960a9-4fb7-4b8c-be60-ded7712b110d>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -26,10 +26,10 @@ _:n1 at:pathObject <file:///test.xml>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQgVkaHg-aPfYvh8Z1HWEr5g?ct=application/xml>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (102.25 KiB)"@en.
-<ni:///mh;1QEQgVkaHg-aPfYvh8Z1HWEr5g?ct=application/x.ns.org.w3.www.http.2005.Atom.feed+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.w3.www.http.2005.atom.feed+xml>;
-                                                                                             a schema:MediaObject;
-                                                                                             skos:prefLabel "FEED object"@en.
-<ni:///mh;1QEQgVkaHg-aPfYvh8Z1HWEr5g?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQgVkaHg-aPfYvh8Z1HWEr5g?ct=application/x.ns.org.w3.www.http.2005.Atom.feed+xml>;
+<ni:///mh;1QEQgVkaHg-aPfYvh8Z1HWEr5g?ct=application/prs.implied-document+xml;root=feed;ns=%22http://www.w3.org/2005/Atom%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=feed;ns=%22http://www.w3.org/2005/Atom%22>;
+                                                                                                                             a schema:MediaObject;
+                                                                                                                             skos:prefLabel "FEED object"@en.
+<ni:///mh;1QEQgVkaHg-aPfYvh8Z1HWEr5g?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQgVkaHg-aPfYvh8Z1HWEr5g?ct=application/prs.implied-document+xml;root=feed;ns=%22http://www.w3.org/2005/Atom%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,

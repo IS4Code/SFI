@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQlSu84y88AdwIkEyMcVDKHQ?ct=application/octet-stream>.
+@base <x.blank:632e5f3a-9ace-4022-be69-f4259da6f2f1>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -42,12 +42,12 @@ _:n1 at:pathObject <file:///example.sdd>;
 <file:///example.sdd> at:extensionObject <https://w3id.org/uri4uri/suffix/sdd>.
 <ni:///mh;1QEQB-qITXV_yxntxqe6XbR6aw?ct=application/octet-stream> at:digest <urn:md5:07EA884D757FCB19EDC6A7BA5DB47A6B>;
                                                                   dcterms:extent "6469114"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQB-qITXV_yxntxqe6XbR6aw?ct=application/x.sig.drmd>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQB-qITXV_yxntxqe6XbR6aw?ct=application/prs.implied-structure;signature=DrMd>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (6.17 MiB)"@en.
-<ni:///mh;1QEQB-qITXV_yxntxqe6XbR6aw?ct=application/x.sig.drmd> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.drmd>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "DRMD object (6.17 MiB)"@en.
+<ni:///mh;1QEQB-qITXV_yxntxqe6XbR6aw?ct=application/prs.implied-structure;signature=DrMd> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=DrMd>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "DRMD object (6.17 MiB)"@en.
 <ni:///mh;1QEQJ5UP6cssTIKn4_WwKzAgWg?ct=application/octet-stream> at:digest <urn:md5:27950FE9CB2C4C82A7E3F5B02B30205A>;
                                                                   dcterms:extent "918"^^dt:byte;
                                                                   a cnt:ContentAsBase64;

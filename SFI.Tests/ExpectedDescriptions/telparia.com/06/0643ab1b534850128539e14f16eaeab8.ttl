@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQKmzw-TIzyeXT6sqSDEwtBA?ct=application/x.sig.clhammer>.
+@base <x.blank:57c162e7-0b70-4b0e-b3af-8fc7cf704b33>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -21,12 +21,12 @@ _:n1 at:pathObject <file:///BPHAMMER.BS>;
 <file:///BPHAMMER.BS> at:extensionObject <https://w3id.org/uri4uri/suffix/bs>.
 <ni:///mh;1QEQKmzw-TIzyeXT6sqSDEwtBA?ct=application/octet-stream> at:digest <urn:md5:2A6CF0F93233C9E5D3EACA920C4C2D04>;
                                                                   dcterms:extent "22272"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQKmzw-TIzyeXT6sqSDEwtBA?ct=application/x.sig.clhammer>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQKmzw-TIzyeXT6sqSDEwtBA?ct=application/prs.implied-structure;signature=CLHAMMER>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (21.75 KiB)"@en.
-<ni:///mh;1QEQKmzw-TIzyeXT6sqSDEwtBA?ct=application/x.sig.clhammer> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.clhammer>;
-                                                                    a schema:MediaObject;
-                                                                    skos:prefLabel "CLHAMMER object (21.75 KiB)"@en.
+<ni:///mh;1QEQKmzw-TIzyeXT6sqSDEwtBA?ct=application/prs.implied-structure;signature=CLHAMMER> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=CLHAMMER>;
+                                                                                              a schema:MediaObject;
+                                                                                              skos:prefLabel "CLHAMMER object (21.75 KiB)"@en.
 <urn:md5:2A6CF0F93233C9E5D3EACA920C4C2D04> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "Kmzw+TIzyeXT6sqSDEwtBA=="^^xsd:base64Binary.

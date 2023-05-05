@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQeuw0U5bn0bamjQICnEaUkw?ct=application/octet-stream>.
+@base <x.blank:ae49873c-f641-486f-9cd4-fb6153045fbc>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -140,10 +140,10 @@ _:n1 at:pathObject <file:///example_multipage_large.odt>;
                                                    skos:prefLabel "PNG object (164×165)"@en,
                                                                   "PNG object (164×165, 8-bit)"@en,
                                                                   "PNG object (6.94 KiB)"@en.
-<ni:///mh;1QEQCKoLd1kcVT-D5TRDgwBIkQ?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.office.1.0.document-settings+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.urn.oasis.names.tc.opendocument.xmlns.office.1.0.document-settings+xml>;
-                                                                                                                                 a schema:MediaObject;
-                                                                                                                                 skos:prefLabel "DOCUMENT-SETTINGS object"@en.
-<ni:///mh;1QEQCKoLd1kcVT-D5TRDgwBIkQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQCKoLd1kcVT-D5TRDgwBIkQ?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.office.1.0.document-settings+xml>;
+<ni:///mh;1QEQCKoLd1kcVT-D5TRDgwBIkQ?ct=application/prs.implied-document+xml;root=document-settings;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=document-settings;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22>;
+                                                                                                                                                               a schema:MediaObject;
+                                                                                                                                                               skos:prefLabel "DOCUMENT-SETTINGS object"@en.
+<ni:///mh;1QEQCKoLd1kcVT-D5TRDgwBIkQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQCKoLd1kcVT-D5TRDgwBIkQ?ct=application/prs.implied-document+xml;root=document-settings;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -166,10 +166,10 @@ _:n1 at:pathObject <file:///example_multipage_large.odt>;
                                                     skos:prefLabel "text (10.77 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQCKoLd1kcVT-D5TRDgwBIkQ?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?>""".
-<ni:///mh;1QEQEtx0pkf43abTz59o6TVhtQ?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.office.1.0.document-meta+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.urn.oasis.names.tc.opendocument.xmlns.office.1.0.document-meta+xml>;
-                                                                                                                             a schema:MediaObject;
-                                                                                                                             skos:prefLabel "DOCUMENT-META object"@en.
-<ni:///mh;1QEQEtx0pkf43abTz59o6TVhtQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQEtx0pkf43abTz59o6TVhtQ?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.office.1.0.document-meta+xml>;
+<ni:///mh;1QEQEtx0pkf43abTz59o6TVhtQ?ct=application/prs.implied-document+xml;root=document-meta;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=document-meta;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22>;
+                                                                                                                                                           a schema:MediaObject;
+                                                                                                                                                           skos:prefLabel "DOCUMENT-META object"@en.
+<ni:///mh;1QEQEtx0pkf43abTz59o6TVhtQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQEtx0pkf43abTz59o6TVhtQ?ct=application/prs.implied-document+xml;root=document-meta;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -209,10 +209,10 @@ _:n1 at:pathObject <file:///example_multipage_large.odt>;
                                                    skos:prefLabel "PNG object (403×141)"@en,
                                                                   "PNG object (403×141, 8-bit)"@en,
                                                                   "PNG object (17.18 KiB)"@en.
-<ni:///mh;1QEQbT1rwbdEZyUHbqZ88lfXlQ?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.office.1.0.document-content+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.urn.oasis.names.tc.opendocument.xmlns.office.1.0.document-content+xml>;
-                                                                                                                                a schema:MediaObject;
-                                                                                                                                skos:prefLabel "DOCUMENT-CONTENT object"@en.
-<ni:///mh;1QEQbT1rwbdEZyUHbqZ88lfXlQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQbT1rwbdEZyUHbqZ88lfXlQ?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.office.1.0.document-content+xml>;
+<ni:///mh;1QEQbT1rwbdEZyUHbqZ88lfXlQ?ct=application/prs.implied-document+xml;root=document-content;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=document-content;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22>;
+                                                                                                                                                              a schema:MediaObject;
+                                                                                                                                                              skos:prefLabel "DOCUMENT-CONTENT object"@en.
+<ni:///mh;1QEQbT1rwbdEZyUHbqZ88lfXlQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQbT1rwbdEZyUHbqZ88lfXlQ?ct=application/prs.implied-document+xml;root=document-content;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -540,10 +540,10 @@ _:n1 at:pathObject <file:///example_multipage_large.odt>;
                                                                      a nfo:FileDataObject,
                                                                        nfo:ArchiveItem;
                                                                      skos:prefLabel "/styles.xml".
-<ni:///mh;1QEQhZXAqbWQ0tGLmKpLQSAwHw?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.office.1.0.document-styles+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.urn.oasis.names.tc.opendocument.xmlns.office.1.0.document-styles+xml>;
-                                                                                                                               a schema:MediaObject;
-                                                                                                                               skos:prefLabel "DOCUMENT-STYLES object"@en.
-<ni:///mh;1QEQhZXAqbWQ0tGLmKpLQSAwHw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQhZXAqbWQ0tGLmKpLQSAwHw?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.office.1.0.document-styles+xml>;
+<ni:///mh;1QEQhZXAqbWQ0tGLmKpLQSAwHw?ct=application/prs.implied-document+xml;root=document-styles;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=document-styles;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22>;
+                                                                                                                                                             a schema:MediaObject;
+                                                                                                                                                             skos:prefLabel "DOCUMENT-STYLES object"@en.
+<ni:///mh;1QEQhZXAqbWQ0tGLmKpLQSAwHw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQhZXAqbWQ0tGLmKpLQSAwHw?ct=application/prs.implied-document+xml;root=document-styles;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -566,10 +566,10 @@ _:n1 at:pathObject <file:///example_multipage_large.odt>;
                                                     skos:prefLabel "text (23.09 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQhZXAqbWQ0tGLmKpLQSAwHw?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?>""".
-<ni:///mh;1QEQjpjZ5C1nGaUN7r6eiM-grA?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.manifest.1.0.manifest+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.urn.oasis.names.tc.opendocument.xmlns.manifest.1.0.manifest+xml>;
-                                                                                                                          a schema:MediaObject;
-                                                                                                                          skos:prefLabel "MANIFEST object"@en.
-<ni:///mh;1QEQjpjZ5C1nGaUN7r6eiM-grA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQjpjZ5C1nGaUN7r6eiM-grA?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.manifest.1.0.manifest+xml>;
+<ni:///mh;1QEQjpjZ5C1nGaUN7r6eiM-grA?ct=application/prs.implied-document+xml;root=manifest;ns=%22urn:oasis:names:tc:opendocument:xmlns:manifest:1.0%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=manifest;ns=%22urn:oasis:names:tc:opendocument:xmlns:manifest:1.0%22>;
+                                                                                                                                                        a schema:MediaObject;
+                                                                                                                                                        skos:prefLabel "MANIFEST object"@en.
+<ni:///mh;1QEQjpjZ5C1nGaUN7r6eiM-grA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQjpjZ5C1nGaUN7r6eiM-grA?ct=application/prs.implied-document+xml;root=manifest;ns=%22urn:oasis:names:tc:opendocument:xmlns:manifest:1.0%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,

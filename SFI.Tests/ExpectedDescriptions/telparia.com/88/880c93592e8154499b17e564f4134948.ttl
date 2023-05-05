@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQEg4EGJfx9_xB7brB94GEgg?ct=application/x.sig.s101>.
+@base <x.blank:8e0887d0-d40e-4729-962a-0eb3266374cd>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -21,12 +21,12 @@ _:n1 at:pathObject <file:///SHPOON.G9S>;
 <file:///SHPOON.G9S> at:extensionObject <https://w3id.org/uri4uri/suffix/g9s>.
 <ni:///mh;1QEQEg4EGJfx9_xB7brB94GEgg?ct=application/octet-stream> at:digest <urn:md5:120E041897F1F7FC41EDBAC1F7818482>;
                                                                   dcterms:extent "4774"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQEg4EGJfx9_xB7brB94GEgg?ct=application/x.sig.s101>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQEg4EGJfx9_xB7brB94GEgg?ct=application/prs.implied-structure;signature=S101>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (4.66 KiB)"@en.
-<ni:///mh;1QEQEg4EGJfx9_xB7brB94GEgg?ct=application/x.sig.s101> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.s101>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "S101 object (4.66 KiB)"@en.
+<ni:///mh;1QEQEg4EGJfx9_xB7brB94GEgg?ct=application/prs.implied-structure;signature=S101> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=S101>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "S101 object (4.66 KiB)"@en.
 <urn:md5:120E041897F1F7FC41EDBAC1F7818482> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "Eg4EGJfx9/xB7brB94GEgg=="^^xsd:base64Binary.

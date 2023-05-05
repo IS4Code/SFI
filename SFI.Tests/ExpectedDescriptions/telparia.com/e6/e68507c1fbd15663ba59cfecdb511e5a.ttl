@@ -1,4 +1,4 @@
-@base <x.blank:633e184b-ae15-41c0-a6b5-23657c2a07af>.
+@base <x.blank:ba2ed23b-bd7c-434d-ad5a-26daeb0558f2>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -42,10 +42,10 @@ page1.dat"""^^xsd:string.
                                                                                         cnt:chars """<?xml version=\"1.0\" encoding=\"UTF-8\" ?>
 <linkInfo />
 """^^xsd:string.
-<data:application/x.ns.linkInfo+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiID8+CjxsaW5rSW5mbyAvPgo=> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.linkinfo+xml>;
-                                                                                                                     a schema:MediaObject;
-                                                                                                                     skos:prefLabel "LINKINFO object"@en.
-<data:application/xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiID8+CjxsaW5rSW5mbyAvPgo=> dcterms:hasFormat <data:application/x.ns.linkInfo+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiID8+CjxsaW5rSW5mbyAvPgo=>;
+<data:application/prs.implied-document+xml;root=linkInfo;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiID8+CjxsaW5rSW5mbyAvPgo=> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=linkInfo>;
+                                                                                                                                          a schema:MediaObject;
+                                                                                                                                          skos:prefLabel "LINKINFO object"@en.
+<data:application/xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiID8+CjxsaW5rSW5mbyAvPgo=> dcterms:hasFormat <data:application/prs.implied-document+xml;root=linkInfo;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiID8+CjxsaW5rSW5mbyAvPgo=>;
                                                                                                        schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                                                                        a schema:MediaObject,
                                                                                                          cnt:ContentAsXML,
@@ -115,10 +115,10 @@ page1.dat"""^^xsd:string.
 <file:///textinfo.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///thumbnail.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
 <file:///uswebcoatedswop.icc> at:extensionObject <https://w3id.org/uri4uri/suffix/icc>.
-<ni:///mh;1QEQ8roYprnkt-LZU9la-dUasA?ct=application/x.ns.Color+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.color+xml>;
-                                                                    a schema:MediaObject;
-                                                                    skos:prefLabel "COLOR object"@en.
-<ni:///mh;1QEQ8roYprnkt-LZU9la-dUasA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ8roYprnkt-LZU9la-dUasA?ct=application/x.ns.Color+xml>;
+<ni:///mh;1QEQ8roYprnkt-LZU9la-dUasA?ct=application/prs.implied-document+xml;root=Color> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=Color>;
+                                                                                         a schema:MediaObject;
+                                                                                         skos:prefLabel "COLOR object"@en.
+<ni:///mh;1QEQ8roYprnkt-LZU9la-dUasA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ8roYprnkt-LZU9la-dUasA?ct=application/prs.implied-document+xml;root=Color>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -143,12 +143,12 @@ page1.dat"""^^xsd:string.
                                                     cnt:characterEncoding "utf-16BE".
 <ni:///mh;1QEQD9erTMs0lFsuKlkvacIiZg?ct=application/octet-stream> at:digest <urn:md5:0FD7AB4CCB34945B2E2A592F69C22266>;
                                                                   dcterms:extent "1642871"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQD9erTMs0lFsuKlkvacIiZg?ct=application/x.sig.bi>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQD9erTMs0lFsuKlkvacIiZg?ct=application/prs.implied-structure;signature=BI>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.57 MiB)"@en.
-<ni:///mh;1QEQD9erTMs0lFsuKlkvacIiZg?ct=application/x.sig.bi> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.bi>;
-                                                              a schema:MediaObject;
-                                                              skos:prefLabel "BI object (1.57 MiB)"@en.
+<ni:///mh;1QEQD9erTMs0lFsuKlkvacIiZg?ct=application/prs.implied-structure;signature=BI> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=BI>;
+                                                                                        a schema:MediaObject;
+                                                                                        skos:prefLabel "BI object (1.57 MiB)"@en.
 <ni:///mh;1QEQHT_aLttKiatgojxffH2B3Q?ct=application/octet-stream> at:digest <urn:md5:1D3FDA2EDB4A89AB60A23C5F7C7D81DD>;
                                                                   dcterms:extent "3144"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -167,9 +167,9 @@ page1.dat"""^^xsd:string.
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "PNG object (39.69 KiB)"@en,
-                                                                  "PNG object (256×256, 8-bit)"@en,
-                                                                  "PNG object (256×256)"@en.
+                                                   skos:prefLabel "PNG object (256×256, 8-bit)"@en,
+                                                                  "PNG object (256×256)"@en,
+                                                                  "PNG object (39.69 KiB)"@en.
 <ni:///mh;1QEQLwPLwTdXxW4SyEVBpo7fqQ?ct=text/plain> at:digest <urn:md5:2F03CBC13757C56E12C84541A68EDFA9>;
                                                     dcterms:extent "15628"^^dt:byte;
                                                     nie:hasPart <ni:///mh;1QEQLwPLwTdXxW4SyEVBpo7fqQ?ct=text/plain#line=,1>;
@@ -177,10 +177,10 @@ page1.dat"""^^xsd:string.
                                                     skos:prefLabel "text (15.26 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQLwPLwTdXxW4SyEVBpo7fqQ?ct=text/plain#line=,1> rdf:value "{".
-<ni:///mh;1QEQNmG9BDmEjKhFwIvbQVfOYg?ct=application/x.ns.palette+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.palette+xml>;
-                                                                      a schema:MediaObject;
-                                                                      skos:prefLabel "PALETTE object"@en.
-<ni:///mh;1QEQNmG9BDmEjKhFwIvbQVfOYg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQNmG9BDmEjKhFwIvbQVfOYg?ct=application/x.ns.palette+xml>;
+<ni:///mh;1QEQNmG9BDmEjKhFwIvbQVfOYg?ct=application/prs.implied-document+xml;root=palette> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=palette>;
+                                                                                           a schema:MediaObject;
+                                                                                           skos:prefLabel "PALETTE object"@en.
+<ni:///mh;1QEQNmG9BDmEjKhFwIvbQVfOYg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQNmG9BDmEjKhFwIvbQVfOYg?ct=application/prs.implied-document+xml;root=palette>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -199,10 +199,10 @@ page1.dat"""^^xsd:string.
                                                     skos:prefLabel "text (102 B)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQNmG9BDmEjKhFwIvbQVfOYg?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\"?>""".
-<ni:///mh;1QEQSgHe5lrV-N24rqE6V-vkcA?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.container.container+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.urn.oasis.names.tc.opendocument.xmlns.container.container+xml>;
-                                                                                                                        a schema:MediaObject;
-                                                                                                                        skos:prefLabel "CONTAINER object"@en.
-<ni:///mh;1QEQSgHe5lrV-N24rqE6V-vkcA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQSgHe5lrV-N24rqE6V-vkcA?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.container.container+xml>;
+<ni:///mh;1QEQSgHe5lrV-N24rqE6V-vkcA?ct=application/prs.implied-document+xml;root=container;ns=%22urn:oasis:names:tc:opendocument:xmlns:container%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=container;ns=%22urn:oasis:names:tc:opendocument:xmlns:container%22>;
+                                                                                                                                                      a schema:MediaObject;
+                                                                                                                                                      skos:prefLabel "CONTAINER object"@en.
+<ni:///mh;1QEQSgHe5lrV-N24rqE6V-vkcA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQSgHe5lrV-N24rqE6V-vkcA?ct=application/prs.implied-document+xml;root=container;ns=%22urn:oasis:names:tc:opendocument:xmlns:container%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -232,10 +232,10 @@ page1.dat"""^^xsd:string.
 <ni:///mh;1QEQYxvUVEiap9SPfbTT6IWTSg?ct=application/x-riff> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-riff>;
                                                             a schema:MediaObject;
                                                             skos:prefLabel "RIFF object (50 KiB)"@en.
-<ni:///mh;1QEQdnST_NuwF8q_fgqpFw1HTA?ct=application/x.ns.adobe.ns.meta&2F.xmpmeta+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.adobe.ns.meta&2f.xmpmeta+xml>;
-                                                                                       a schema:MediaObject;
-                                                                                       skos:prefLabel "XMPMETA object"@en.
-<ni:///mh;1QEQdnST_NuwF8q_fgqpFw1HTA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQdnST_NuwF8q_fgqpFw1HTA?ct=application/x.ns.adobe.ns.meta&2F.xmpmeta+xml>;
+<ni:///mh;1QEQdnST_NuwF8q_fgqpFw1HTA?ct=application/prs.implied-document+xml;root=xmpmeta;ns=%22adobe:ns:meta/%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=xmpmeta;ns=%22adobe:ns:meta/%22>;
+                                                                                                                   a schema:MediaObject;
+                                                                                                                   skos:prefLabel "XMPMETA object"@en.
+<ni:///mh;1QEQdnST_NuwF8q_fgqpFw1HTA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQdnST_NuwF8q_fgqpFw1HTA?ct=application/prs.implied-document+xml;root=xmpmeta;ns=%22adobe:ns:meta/%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -262,10 +262,10 @@ page1.dat"""^^xsd:string.
                                                                   dcterms:extent "557168"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (544.11 KiB)"@en.
-<ni:///mh;1QEQi3pDe2R8L2Bjdf8fbwNU6A?ct=application/x.ns.adobe.ns.meta&2F.xmpmeta+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.adobe.ns.meta&2f.xmpmeta+xml>;
-                                                                                       a schema:MediaObject;
-                                                                                       skos:prefLabel "XMPMETA object"@en.
-<ni:///mh;1QEQi3pDe2R8L2Bjdf8fbwNU6A?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQi3pDe2R8L2Bjdf8fbwNU6A?ct=application/x.ns.adobe.ns.meta&2F.xmpmeta+xml>;
+<ni:///mh;1QEQi3pDe2R8L2Bjdf8fbwNU6A?ct=application/prs.implied-document+xml;root=xmpmeta;ns=%22adobe:ns:meta/%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=xmpmeta;ns=%22adobe:ns:meta/%22>;
+                                                                                                                   a schema:MediaObject;
+                                                                                                                   skos:prefLabel "XMPMETA object"@en.
+<ni:///mh;1QEQi3pDe2R8L2Bjdf8fbwNU6A?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQi3pDe2R8L2Bjdf8fbwNU6A?ct=application/prs.implied-document+xml;root=xmpmeta;ns=%22adobe:ns:meta/%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,

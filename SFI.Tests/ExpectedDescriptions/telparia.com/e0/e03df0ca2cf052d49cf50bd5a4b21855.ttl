@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQ8k6E4_Q0vhz6N0GTq_tgfQ?ct=text/plain>.
+@base <x.blank:509cf71a-f7b7-4c2d-b520-58d7ba814046>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -20,10 +20,10 @@ _:n1 at:pathObject <file:///wordsrch.html>;
      nfo:fileSize 1190 ;
      a nfo:FileDataObject.
 <file:///wordsrch.html> at:extensionObject <https://w3id.org/uri4uri/suffix/html>.
-<ni:///mh;1QEQ8k6E4_Q0vhz6N0GTq_tgfQ?ct=application/x.ns.HTML+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.html+xml>;
-                                                                   a schema:MediaObject;
-                                                                   skos:prefLabel "HTML object"@en.
-<ni:///mh;1QEQ8k6E4_Q0vhz6N0GTq_tgfQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ8k6E4_Q0vhz6N0GTq_tgfQ?ct=application/x.ns.HTML+xml>;
+<ni:///mh;1QEQ8k6E4_Q0vhz6N0GTq_tgfQ?ct=application/prs.implied-document+xml;root=HTML> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=HTML>;
+                                                                                        a schema:MediaObject;
+                                                                                        skos:prefLabel "HTML object"@en.
+<ni:///mh;1QEQ8k6E4_Q0vhz6N0GTq_tgfQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ8k6E4_Q0vhz6N0GTq_tgfQ?ct=application/prs.implied-document+xml;root=HTML>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,

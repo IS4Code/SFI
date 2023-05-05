@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQiNRCMOMpb_5ejB5GmnEJFw?ct=application/octet-stream>.
+@base <x.blank:b598e08c-40c2-42c8-b235-37dd0fda9271>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -424,8 +424,8 @@ _:n1 at:pathObject <file:///jong%20belegen.xrns>;
                                                          a schema:MediaObject,
                                                            nfo:Audio,
                                                            schema:AudioObject;
-                                                         skos:prefLabel "OGG object (4.84 KiB)"@en,
-                                                                        "OGG object (44100 Hz, 1 channel)"@en.
+                                                         skos:prefLabel "OGG object (44100 Hz, 1 channel)"@en,
+                                                                        "OGG object (4.84 KiB)"@en.
 <ni:///mh;1QEQI2S71m0dy3oR-i3yBoFG5A?ct=application/octet-stream> at:digest <urn:md5:2364BBD66D1DCB7A11FA2DF2068146E4>;
                                                                   dcterms:extent "12876"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQI2S71m0dy3oR-i3yBoFG5A?ct=application/ogg>;
@@ -454,10 +454,10 @@ _:n1 at:pathObject <file:///jong%20belegen.xrns>;
                                                          nfo:duration "PT0.1587301S"^^xsd:duration;
                                                          nfo:sampleRate "44100"^^dt:hertz;
                                                          a schema:MediaObject,
-                                                           nfo:Audio,
-                                                           schema:AudioObject;
-                                                         skos:prefLabel "OGG object (44100 Hz, 2 channels)"@en,
-                                                                        "OGG object (6.72 KiB)"@en.
+                                                           schema:AudioObject,
+                                                           nfo:Audio;
+                                                         skos:prefLabel "OGG object (6.72 KiB)"@en,
+                                                                        "OGG object (44100 Hz, 2 channels)"@en.
 <ni:///mh;1QEQLGSBNiNSiNWyh25wiMuikA?ct=application/octet-stream> at:digest <urn:md5:2C648136235288D5B2876E7088CBA290>;
                                                                   dcterms:extent "7954"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQLGSBNiNSiNWyh25wiMuikA?ct=application/ogg>;
@@ -470,10 +470,10 @@ _:n1 at:pathObject <file:///jong%20belegen.xrns>;
                                                          nfo:duration "PT0.3705442S"^^xsd:duration;
                                                          nfo:sampleRate "44100"^^dt:hertz;
                                                          a schema:MediaObject,
-                                                           schema:AudioObject,
-                                                           nfo:Audio;
-                                                         skos:prefLabel "OGG object (7.77 KiB)"@en,
-                                                                        "OGG object (44100 Hz, 1 channel)"@en.
+                                                           nfo:Audio,
+                                                           schema:AudioObject;
+                                                         skos:prefLabel "OGG object (44100 Hz, 1 channel)"@en,
+                                                                        "OGG object (7.77 KiB)"@en.
 <ni:///mh;1QEQMxbvTWU7G3hJnYDxczt3jw?ct=application/octet-stream> at:digest <urn:md5:3316EF4D653B1B78499D80F1733B778F>;
                                                                   dcterms:extent "8690"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQMxbvTWU7G3hJnYDxczt3jw?ct=application/ogg>;
@@ -646,10 +646,10 @@ _:n1 at:pathObject <file:///jong%20belegen.xrns>;
                                                          nfo:duration "PT0.1223129S"^^xsd:duration;
                                                          nfo:sampleRate "44100"^^dt:hertz;
                                                          a schema:MediaObject,
-                                                           nfo:Audio,
-                                                           schema:AudioObject;
-                                                         skos:prefLabel "OGG object (44100 Hz, 2 channels)"@en,
-                                                                        "OGG object (6.05 KiB)"@en.
+                                                           schema:AudioObject,
+                                                           nfo:Audio;
+                                                         skos:prefLabel "OGG object (6.05 KiB)"@en,
+                                                                        "OGG object (44100 Hz, 2 channels)"@en.
 <ni:///mh;1QEQZDoGZazW7hOE-niFNAEbeA?ct=application/octet-stream> at:digest <urn:md5:643A0665ACD6EE1384FA788534011B78>;
                                                                   dcterms:extent "36058"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQZDoGZazW7hOE-niFNAEbeA?ct=application/ogg>;
@@ -666,10 +666,10 @@ _:n1 at:pathObject <file:///jong%20belegen.xrns>;
                                                            schema:AudioObject;
                                                          skos:prefLabel "OGG object (44100 Hz, 2 channels)"@en,
                                                                         "OGG object (35.21 KiB)"@en.
-<ni:///mh;1QEQ_Y3e7cmtZWbo7lYHaFKXaQ?ct=application/x.ns.RenoiseSong+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.renoisesong+xml>;
-                                                                          a schema:MediaObject;
-                                                                          skos:prefLabel "RENOISESONG object"@en.
-<ni:///mh;1QEQ_Y3e7cmtZWbo7lYHaFKXaQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ_Y3e7cmtZWbo7lYHaFKXaQ?ct=application/x.ns.RenoiseSong+xml>;
+<ni:///mh;1QEQ_Y3e7cmtZWbo7lYHaFKXaQ?ct=application/prs.implied-document+xml;root=RenoiseSong> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=RenoiseSong>;
+                                                                                               a schema:MediaObject;
+                                                                                               skos:prefLabel "RENOISESONG object"@en.
+<ni:///mh;1QEQ_Y3e7cmtZWbo7lYHaFKXaQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ_Y3e7cmtZWbo7lYHaFKXaQ?ct=application/prs.implied-document+xml;root=RenoiseSong>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1356,10 +1356,10 @@ _:n1 at:pathObject <file:///jong%20belegen.xrns>;
                                                          nfo:duration "PT0.1131065S"^^xsd:duration;
                                                          nfo:sampleRate "44100"^^dt:hertz;
                                                          a schema:MediaObject,
-                                                           schema:AudioObject,
-                                                           nfo:Audio;
-                                                         skos:prefLabel "OGG object (6.14 KiB)"@en,
-                                                                        "OGG object (44100 Hz, 2 channels)"@en.
+                                                           nfo:Audio,
+                                                           schema:AudioObject;
+                                                         skos:prefLabel "OGG object (44100 Hz, 2 channels)"@en,
+                                                                        "OGG object (6.14 KiB)"@en.
 <ni:///mh;1QEQkK85AHwkpCBIrDh1J84CEw?ct=application/octet-stream> at:digest <urn:md5:90AF39007C24A42048AC387527CE0213>;
                                                                   dcterms:extent "6313"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQkK85AHwkpCBIrDh1J84CEw?ct=application/ogg>;
@@ -1390,8 +1390,8 @@ _:n1 at:pathObject <file:///jong%20belegen.xrns>;
                                                          a schema:MediaObject,
                                                            nfo:Audio,
                                                            schema:AudioObject;
-                                                         skos:prefLabel "OGG object (44100 Hz, 1 channel)"@en,
-                                                                        "OGG object (5.11 KiB)"@en.
+                                                         skos:prefLabel "OGG object (5.11 KiB)"@en,
+                                                                        "OGG object (44100 Hz, 1 channel)"@en.
 <ni:///mh;1QEQkZu-JBF6B7n9fge1gU5JpA?ct=application/octet-stream> at:digest <urn:md5:919BBE24117A07B9FD7E07B5814E49A4>;
                                                                   dcterms:extent "6285"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQkZu-JBF6B7n9fge1gU5JpA?ct=application/ogg>;
@@ -1548,10 +1548,10 @@ _:n1 at:pathObject <file:///jong%20belegen.xrns>;
                                                          nfo:duration "PT0.7270748S"^^xsd:duration;
                                                          nfo:sampleRate "44100"^^dt:hertz;
                                                          a schema:MediaObject,
-                                                           nfo:Audio,
-                                                           schema:AudioObject;
-                                                         skos:prefLabel "OGG object (44100 Hz, 2 channels)"@en,
-                                                                        "OGG object (11.95 KiB)"@en.
+                                                           schema:AudioObject,
+                                                           nfo:Audio;
+                                                         skos:prefLabel "OGG object (11.95 KiB)"@en,
+                                                                        "OGG object (44100 Hz, 2 channels)"@en.
 <ni:///mh;1QEQxgG0nQUzaWeYBaV15XP23w?ct=application/octet-stream> at:digest <urn:md5:C601B49D053369679805A575E573F6DF>;
                                                                   dcterms:extent "6472"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQxgG0nQUzaWeYBaV15XP23w?ct=application/ogg>;
@@ -1564,8 +1564,8 @@ _:n1 at:pathObject <file:///jong%20belegen.xrns>;
                                                          nfo:duration "PT0.3588662S"^^xsd:duration;
                                                          nfo:sampleRate "44100"^^dt:hertz;
                                                          a schema:MediaObject,
-                                                           schema:AudioObject,
-                                                           nfo:Audio;
+                                                           nfo:Audio,
+                                                           schema:AudioObject;
                                                          skos:prefLabel "OGG object (6.32 KiB)"@en,
                                                                         "OGG object (44100 Hz, 1 channel)"@en.
 <ni:///mh;1QEQz89B-7DKnUmw5VlTXM4zMQ?ct=application/octet-stream> at:digest <urn:md5:CFCF41FBB0CA9D49B0E559535CCE3331>;

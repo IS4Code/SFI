@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQGdpheZS3PiQyQbmAvDMOew?ct=application/octet-stream>.
+@base <x.blank:a00f6f70-2555-4af0-b8e4-38c13bc72329>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -174,12 +174,12 @@ _:n1 at:pathObject <file:///STAR.SDD>;
                                                                   skos:prefLabel "binary data (108 B)"@en.
 <ni:///mh;1QEQoBEy_38gDHHzJ3UTWUX0WQ?ct=application/octet-stream> at:digest <urn:md5:A01132FF7F200C71F32775135945F459>;
                                                                   dcterms:extent "67528"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQoBEy_38gDHHzJ3UTWUX0WQ?ct=application/x.sig.drmd>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQoBEy_38gDHHzJ3UTWUX0WQ?ct=application/prs.implied-structure;signature=DrMd>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (65.95 KiB)"@en.
-<ni:///mh;1QEQoBEy_38gDHHzJ3UTWUX0WQ?ct=application/x.sig.drmd> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.drmd>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "DRMD object (65.95 KiB)"@en.
+<ni:///mh;1QEQoBEy_38gDHHzJ3UTWUX0WQ?ct=application/prs.implied-structure;signature=DrMd> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=DrMd>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "DRMD object (65.95 KiB)"@en.
 <ni:///mh;1QEQxGL8kuDI1qE7eiSOc68Z7Q?ct=text/plain> at:digest <urn:md5:C462FC92E0C8D6A13B7A248E73AF19ED>;
                                                     dcterms:extent "200"^^dt:byte;
                                                     a cnt:ContentAsText;

@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQMlIpoztGjHliWoMqGU43XA?ct=application/octet-stream>.
+@base <x.blank:b67f72d4-2071-4f90-9e46-a1777e9f2d8b>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -159,12 +159,12 @@ _:n1 at:pathObject <file:///example.sda>;
                                                     cnt:characterEncoding "x-iso-10646-ucs-4-3412".
 <ni:///mh;1QEQ_EM1EeL29EZLbRQIB-XxOg?ct=application/octet-stream> at:digest <urn:md5:FC433511E2F6F4464B6D140807E5F13A>;
                                                                   dcterms:extent "6472475"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQ_EM1EeL29EZLbRQIB-XxOg?ct=application/x.sig.drmd>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ_EM1EeL29EZLbRQIB-XxOg?ct=application/prs.implied-structure;signature=DrMd>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (6.17 MiB)"@en.
-<ni:///mh;1QEQ_EM1EeL29EZLbRQIB-XxOg?ct=application/x.sig.drmd> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.drmd>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "DRMD object (6.17 MiB)"@en.
+<ni:///mh;1QEQ_EM1EeL29EZLbRQIB-XxOg?ct=application/prs.implied-structure;signature=DrMd> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=DrMd>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "DRMD object (6.17 MiB)"@en.
 <ni:///mh;1QEQdP37tsjwEQ1xSB7SrsA-TQ?ct=application/octet-stream> at:digest <urn:md5:74FDFBB6C8F0110D71481ED2AEC03E4D>;
                                                                   dcterms:extent "885"^^dt:byte;
                                                                   a cnt:ContentAsBase64;

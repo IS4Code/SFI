@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQ7FI-B8Fdh1qCtzDhiFzHVg?ct=application/octet-stream>.
+@base <x.blank:b5ed836d-a368-4a0f-9322-c64693582ef4>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -148,10 +148,10 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                       schema:ImageObject;
                                                     skos:prefLabel "JPG object (600×837)"@en,
                                                                    "JPG object (176.75 KiB)"@en.
-<ni:///mh;1QEQ148B1mqBSLWBJImJtIq22A?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
-                                                                                              a schema:MediaObject;
-                                                                                              skos:prefLabel "HTML object"@en.
-<ni:///mh;1QEQ148B1mqBSLWBJImJtIq22A?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ148B1mqBSLWBJImJtIq22A?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
+<ni:///mh;1QEQ148B1mqBSLWBJImJtIq22A?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
+                                                                                                                              a schema:MediaObject;
+                                                                                                                              skos:prefLabel "HTML object"@en.
+<ni:///mh;1QEQ148B1mqBSLWBJImJtIq22A?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ148B1mqBSLWBJImJtIq22A?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -174,8 +174,8 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                    skos:prefLabel "HTML object (1.87 KiB)"@en.
 <ni:///mh;1QEQ148B1mqBSLWBJImJtIq22A?ct=text/plain> at:digest <urn:md5:D78F01D66A8148B581248989B48AB6D8>;
                                                     dcterms:extent "1918"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQ148B1mqBSLWBJImJtIq22A?ct=text/html>,
-                                                                      <ni:///mh;1QEQ148B1mqBSLWBJImJtIq22A?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ148B1mqBSLWBJImJtIq22A?ct=application/xml>,
+                                                                      <ni:///mh;1QEQ148B1mqBSLWBJImJtIq22A?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQ148B1mqBSLWBJImJtIq22A?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (1.87 KiB)"@en;
@@ -188,10 +188,10 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                     skos:prefLabel "text (74 B)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQ21C_iCBaa5Ace2YW7fkd7A?ct=text/plain#line=,1> rdf:value "h1.ja-jp, h2.ja-jp, h3.ja-jp, p.ja-jp, dt.ja-jp, dd.ja-jp {display: none;}".
-<ni:///mh;1QEQ2NAlWNxr0_0p2dR3ek6YgA?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
-                                                                                              a schema:MediaObject;
-                                                                                              skos:prefLabel "HTML object"@en.
-<ni:///mh;1QEQ2NAlWNxr0_0p2dR3ek6YgA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ2NAlWNxr0_0p2dR3ek6YgA?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
+<ni:///mh;1QEQ2NAlWNxr0_0p2dR3ek6YgA?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
+                                                                                                                              a schema:MediaObject;
+                                                                                                                              skos:prefLabel "HTML object"@en.
+<ni:///mh;1QEQ2NAlWNxr0_0p2dR3ek6YgA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ2NAlWNxr0_0p2dR3ek6YgA?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -615,10 +615,10 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                                    a nfo:FileDataObject,
                                                                      nfo:ArchiveItem;
                                                                    skos:prefLabel "/mimetype".
-<ni:///mh;1QEQBB5Nz7BjctUmvZBwfUss0A?ct=application/x.ns.org.daisy.www.http.z3986.2005.ncx.ncx+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.daisy.www.http.z3986.2005.ncx.ncx+xml>;
-                                                                                                    a schema:MediaObject;
-                                                                                                    skos:prefLabel "NCX object"@en.
-<ni:///mh;1QEQBB5Nz7BjctUmvZBwfUss0A?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQBB5Nz7BjctUmvZBwfUss0A?ct=application/x.ns.org.daisy.www.http.z3986.2005.ncx.ncx+xml>;
+<ni:///mh;1QEQBB5Nz7BjctUmvZBwfUss0A?ct=application/prs.implied-document+xml;root=ncx;ns=%22http://www.daisy.org/z3986/2005/ncx/%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=ncx;ns=%22http://www.daisy.org/z3986/2005/ncx/%22>;
+                                                                                                                                     a schema:MediaObject;
+                                                                                                                                     skos:prefLabel "NCX object"@en.
+<ni:///mh;1QEQBB5Nz7BjctUmvZBwfUss0A?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQBB5Nz7BjctUmvZBwfUss0A?ct=application/prs.implied-document+xml;root=ncx;ns=%22http://www.daisy.org/z3986/2005/ncx/%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -642,10 +642,10 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                     skos:prefLabel "text (1.14 KiB)"@en;
                                                     cnt:characterEncoding "utf-8".
 <ni:///mh;1QEQBB5Nz7BjctUmvZBwfUss0A?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"no\"?>""".
-<ni:///mh;1QEQGKNpxuPLoaiWcA6UEW5GKA?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.container.container+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.urn.oasis.names.tc.opendocument.xmlns.container.container+xml>;
-                                                                                                                        a schema:MediaObject;
-                                                                                                                        skos:prefLabel "CONTAINER object"@en.
-<ni:///mh;1QEQGKNpxuPLoaiWcA6UEW5GKA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQGKNpxuPLoaiWcA6UEW5GKA?ct=application/x.ns.urn.oasis.names.tc.opendocument.xmlns.container.container+xml>;
+<ni:///mh;1QEQGKNpxuPLoaiWcA6UEW5GKA?ct=application/prs.implied-document+xml;root=container;ns=%22urn:oasis:names:tc:opendocument:xmlns:container%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=container;ns=%22urn:oasis:names:tc:opendocument:xmlns:container%22>;
+                                                                                                                                                      a schema:MediaObject;
+                                                                                                                                                      skos:prefLabel "CONTAINER object"@en.
+<ni:///mh;1QEQGKNpxuPLoaiWcA6UEW5GKA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQGKNpxuPLoaiWcA6UEW5GKA?ct=application/prs.implied-document+xml;root=container;ns=%22urn:oasis:names:tc:opendocument:xmlns:container%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -684,10 +684,10 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                       schema:ImageObject;
                                                     skos:prefLabel "JPG object (600×837)"@en,
                                                                    "JPG object (193.25 KiB)"@en.
-<ni:///mh;1QEQGsCe1LNcFrhZl0RE9QASbw?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
-                                                                                              a schema:MediaObject;
-                                                                                              skos:prefLabel "HTML object"@en.
-<ni:///mh;1QEQGsCe1LNcFrhZl0RE9QASbw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQGsCe1LNcFrhZl0RE9QASbw?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
+<ni:///mh;1QEQGsCe1LNcFrhZl0RE9QASbw?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
+                                                                                                                              a schema:MediaObject;
+                                                                                                                              skos:prefLabel "HTML object"@en.
+<ni:///mh;1QEQGsCe1LNcFrhZl0RE9QASbw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQGsCe1LNcFrhZl0RE9QASbw?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -733,10 +733,10 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                       schema:ImageObject;
                                                     skos:prefLabel "JPG object (600×837)"@en,
                                                                    "JPG object (178.45 KiB)"@en.
-<ni:///mh;1QEQHqEivzScaMBmZ1S3D8yBcw?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
-                                                                                              a schema:MediaObject;
-                                                                                              skos:prefLabel "HTML object"@en.
-<ni:///mh;1QEQHqEivzScaMBmZ1S3D8yBcw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQHqEivzScaMBmZ1S3D8yBcw?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
+<ni:///mh;1QEQHqEivzScaMBmZ1S3D8yBcw?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
+                                                                                                                              a schema:MediaObject;
+                                                                                                                              skos:prefLabel "HTML object"@en.
+<ni:///mh;1QEQHqEivzScaMBmZ1S3D8yBcw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQHqEivzScaMBmZ1S3D8yBcw?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -758,17 +758,17 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                    skos:prefLabel "HTML object (683 B)"@en.
 <ni:///mh;1QEQHqEivzScaMBmZ1S3D8yBcw?ct=text/plain> at:digest <urn:md5:1EA122BF349C68C0666754B70FCC8173>;
                                                     dcterms:extent "683"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQHqEivzScaMBmZ1S3D8yBcw?ct=text/html>,
-                                                                      <ni:///mh;1QEQHqEivzScaMBmZ1S3D8yBcw?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQHqEivzScaMBmZ1S3D8yBcw?ct=application/xml>,
+                                                                      <ni:///mh;1QEQHqEivzScaMBmZ1S3D8yBcw?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQHqEivzScaMBmZ1S3D8yBcw?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (683 B)"@en;
                                                     cnt:characterEncoding "utf-8".
 <ni:///mh;1QEQHqEivzScaMBmZ1S3D8yBcw?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"utf-8\"?>""".
-<ni:///mh;1QEQHzHdkSZE_ktBSNVjfF2Fiw?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
-                                                                                              a schema:MediaObject;
-                                                                                              skos:prefLabel "HTML object"@en.
-<ni:///mh;1QEQHzHdkSZE_ktBSNVjfF2Fiw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQHzHdkSZE_ktBSNVjfF2Fiw?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
+<ni:///mh;1QEQHzHdkSZE_ktBSNVjfF2Fiw?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
+                                                                                                                              a schema:MediaObject;
+                                                                                                                              skos:prefLabel "HTML object"@en.
+<ni:///mh;1QEQHzHdkSZE_ktBSNVjfF2Fiw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQHzHdkSZE_ktBSNVjfF2Fiw?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -790,17 +790,17 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                    skos:prefLabel "HTML object (656 B)"@en.
 <ni:///mh;1QEQHzHdkSZE_ktBSNVjfF2Fiw?ct=text/plain> at:digest <urn:md5:1F31DD912644FE4B4148D5637C5D858B>;
                                                     dcterms:extent "656"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQHzHdkSZE_ktBSNVjfF2Fiw?ct=text/html>,
-                                                                      <ni:///mh;1QEQHzHdkSZE_ktBSNVjfF2Fiw?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQHzHdkSZE_ktBSNVjfF2Fiw?ct=application/xml>,
+                                                                      <ni:///mh;1QEQHzHdkSZE_ktBSNVjfF2Fiw?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQHzHdkSZE_ktBSNVjfF2Fiw?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (656 B)"@en;
                                                     cnt:characterEncoding "utf-8".
 <ni:///mh;1QEQHzHdkSZE_ktBSNVjfF2Fiw?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"utf-8\"?>""".
-<ni:///mh;1QEQJfHynNc0e1kRz41nZAIjkQ?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
-                                                                                              a schema:MediaObject;
-                                                                                              skos:prefLabel "HTML object"@en.
-<ni:///mh;1QEQJfHynNc0e1kRz41nZAIjkQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQJfHynNc0e1kRz41nZAIjkQ?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
+<ni:///mh;1QEQJfHynNc0e1kRz41nZAIjkQ?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
+                                                                                                                              a schema:MediaObject;
+                                                                                                                              skos:prefLabel "HTML object"@en.
+<ni:///mh;1QEQJfHynNc0e1kRz41nZAIjkQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQJfHynNc0e1kRz41nZAIjkQ?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -822,8 +822,8 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                    skos:prefLabel "HTML object (563 B)"@en.
 <ni:///mh;1QEQJfHynNc0e1kRz41nZAIjkQ?ct=text/plain> at:digest <urn:md5:25F1F29CD7347B5911CF8D6764022391>;
                                                     dcterms:extent "563"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQJfHynNc0e1kRz41nZAIjkQ?ct=text/html>,
-                                                                      <ni:///mh;1QEQJfHynNc0e1kRz41nZAIjkQ?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQJfHynNc0e1kRz41nZAIjkQ?ct=application/xml>,
+                                                                      <ni:///mh;1QEQJfHynNc0e1kRz41nZAIjkQ?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQJfHynNc0e1kRz41nZAIjkQ?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (563 B)"@en;
@@ -846,10 +846,10 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                       schema:ImageObject;
                                                     skos:prefLabel "JPG object (600×837)"@en,
                                                                    "JPG object (205.16 KiB)"@en.
-<ni:///mh;1QEQOiT31K3fzrURxVEiC5DCGg?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
-                                                                                              a schema:MediaObject;
-                                                                                              skos:prefLabel "HTML object"@en.
-<ni:///mh;1QEQOiT31K3fzrURxVEiC5DCGg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQOiT31K3fzrURxVEiC5DCGg?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
+<ni:///mh;1QEQOiT31K3fzrURxVEiC5DCGg?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
+                                                                                                                              a schema:MediaObject;
+                                                                                                                              skos:prefLabel "HTML object"@en.
+<ni:///mh;1QEQOiT31K3fzrURxVEiC5DCGg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQOiT31K3fzrURxVEiC5DCGg?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -871,8 +871,8 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                    skos:prefLabel "HTML object (657 B)"@en.
 <ni:///mh;1QEQOiT31K3fzrURxVEiC5DCGg?ct=text/plain> at:digest <urn:md5:3A24F7D4ADDFCEB511C551220B90C21A>;
                                                     dcterms:extent "657"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQOiT31K3fzrURxVEiC5DCGg?ct=text/html>,
-                                                                      <ni:///mh;1QEQOiT31K3fzrURxVEiC5DCGg?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQOiT31K3fzrURxVEiC5DCGg?ct=application/xml>,
+                                                                      <ni:///mh;1QEQOiT31K3fzrURxVEiC5DCGg?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQOiT31K3fzrURxVEiC5DCGg?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (657 B)"@en;
@@ -895,10 +895,10 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                       schema:ImageObject;
                                                     skos:prefLabel "JPG object (600×837)"@en,
                                                                    "JPG object (180.99 KiB)"@en.
-<ni:///mh;1QEQR0NzKHSVWlzKln6o5Kd3TQ?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
-                                                                                              a schema:MediaObject;
-                                                                                              skos:prefLabel "HTML object"@en.
-<ni:///mh;1QEQR0NzKHSVWlzKln6o5Kd3TQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQR0NzKHSVWlzKln6o5Kd3TQ?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
+<ni:///mh;1QEQR0NzKHSVWlzKln6o5Kd3TQ?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
+                                                                                                                              a schema:MediaObject;
+                                                                                                                              skos:prefLabel "HTML object"@en.
+<ni:///mh;1QEQR0NzKHSVWlzKln6o5Kd3TQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQR0NzKHSVWlzKln6o5Kd3TQ?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -927,10 +927,10 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                     skos:prefLabel "text (476 B)"@en;
                                                     cnt:characterEncoding "utf-8".
 <ni:///mh;1QEQR0NzKHSVWlzKln6o5Kd3TQ?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"utf-8\"?>""".
-<ni:///mh;1QEQTU788ipjN1lh0SpaQ-mhgA?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
-                                                                                              a schema:MediaObject;
-                                                                                              skos:prefLabel "HTML object"@en.
-<ni:///mh;1QEQTU788ipjN1lh0SpaQ-mhgA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQTU788ipjN1lh0SpaQ-mhgA?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
+<ni:///mh;1QEQTU788ipjN1lh0SpaQ-mhgA?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
+                                                                                                                              a schema:MediaObject;
+                                                                                                                              skos:prefLabel "HTML object"@en.
+<ni:///mh;1QEQTU788ipjN1lh0SpaQ-mhgA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQTU788ipjN1lh0SpaQ-mhgA?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -952,8 +952,8 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                    skos:prefLabel "HTML object (875 B)"@en.
 <ni:///mh;1QEQTU788ipjN1lh0SpaQ-mhgA?ct=text/plain> at:digest <urn:md5:4D4EFCF22A63375961D12A5A43E9A180>;
                                                     dcterms:extent "875"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQTU788ipjN1lh0SpaQ-mhgA?ct=text/html>,
-                                                                      <ni:///mh;1QEQTU788ipjN1lh0SpaQ-mhgA?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQTU788ipjN1lh0SpaQ-mhgA?ct=application/xml>,
+                                                                      <ni:///mh;1QEQTU788ipjN1lh0SpaQ-mhgA?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQTU788ipjN1lh0SpaQ-mhgA?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (875 B)"@en;
@@ -993,10 +993,10 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                       schema:ImageObject;
                                                     skos:prefLabel "JPG object (600×837)"@en,
                                                                    "JPG object (204.76 KiB)"@en.
-<ni:///mh;1QEQaWdgNHDgr9f1-downM49Zg?ct=application/x.ns.org.idpf.www.http.2007.opf.package+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.idpf.www.http.2007.opf.package+xml>;
-                                                                                                 a schema:MediaObject;
-                                                                                                 skos:prefLabel "PACKAGE object"@en.
-<ni:///mh;1QEQaWdgNHDgr9f1-downM49Zg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQaWdgNHDgr9f1-downM49Zg?ct=application/x.ns.org.idpf.www.http.2007.opf.package+xml>;
+<ni:///mh;1QEQaWdgNHDgr9f1-downM49Zg?ct=application/prs.implied-document+xml;root=package;ns=%22http://www.idpf.org/2007/opf%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=package;ns=%22http://www.idpf.org/2007/opf%22>;
+                                                                                                                                 a schema:MediaObject;
+                                                                                                                                 skos:prefLabel "PACKAGE object"@en.
+<ni:///mh;1QEQaWdgNHDgr9f1-downM49Zg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQaWdgNHDgr9f1-downM49Zg?ct=application/prs.implied-document+xml;root=package;ns=%22http://www.idpf.org/2007/opf%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1016,10 +1016,10 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (4.38 KiB)"@en;
                                                     cnt:characterEncoding "utf-8".
-<ni:///mh;1QEQajKP07CQkJRk9KG8VIcYKQ?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
-                                                                                              a schema:MediaObject;
-                                                                                              skos:prefLabel "HTML object"@en.
-<ni:///mh;1QEQajKP07CQkJRk9KG8VIcYKQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQajKP07CQkJRk9KG8VIcYKQ?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
+<ni:///mh;1QEQajKP07CQkJRk9KG8VIcYKQ?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
+                                                                                                                              a schema:MediaObject;
+                                                                                                                              skos:prefLabel "HTML object"@en.
+<ni:///mh;1QEQajKP07CQkJRk9KG8VIcYKQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQajKP07CQkJRk9KG8VIcYKQ?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1080,10 +1080,10 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                       schema:ImageObject;
                                                     skos:prefLabel "JPG object (600×837)"@en,
                                                                    "JPG object (171.17 KiB)"@en.
-<ni:///mh;1QEQngDFJFDtII9ZJYbr3u57ig?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
-                                                                                              a schema:MediaObject;
-                                                                                              skos:prefLabel "HTML object"@en.
-<ni:///mh;1QEQngDFJFDtII9ZJYbr3u57ig?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQngDFJFDtII9ZJYbr3u57ig?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
+<ni:///mh;1QEQngDFJFDtII9ZJYbr3u57ig?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
+                                                                                                                              a schema:MediaObject;
+                                                                                                                              skos:prefLabel "HTML object"@en.
+<ni:///mh;1QEQngDFJFDtII9ZJYbr3u57ig?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQngDFJFDtII9ZJYbr3u57ig?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1119,10 +1119,10 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                     skos:prefLabel "text (353 B)"@en;
                                                     cnt:characterEncoding "utf-8".
 <ni:///mh;1QEQo7T0QBK_msgXw3zuYZLDcg?ct=text/plain#line=,1> rdf:value """@charset \"utf-8\";""".
-<ni:///mh;1QEQqkJ7CeRCR_HR0eFu4JoK1Q?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
-                                                                                              a schema:MediaObject;
-                                                                                              skos:prefLabel "HTML object"@en.
-<ni:///mh;1QEQqkJ7CeRCR_HR0eFu4JoK1Q?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQqkJ7CeRCR_HR0eFu4JoK1Q?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
+<ni:///mh;1QEQqkJ7CeRCR_HR0eFu4JoK1Q?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
+                                                                                                                              a schema:MediaObject;
+                                                                                                                              skos:prefLabel "HTML object"@en.
+<ni:///mh;1QEQqkJ7CeRCR_HR0eFu4JoK1Q?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQqkJ7CeRCR_HR0eFu4JoK1Q?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1171,10 +1171,10 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                       schema:ImageObject;
                                                     skos:prefLabel "JPG object (600×837)"@en,
                                                                    "JPG object (185.65 KiB)"@en.
-<ni:///mh;1QEQtQr_q0EgzLkembYF5kwEfQ?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
-                                                                                              a schema:MediaObject;
-                                                                                              skos:prefLabel "HTML object"@en.
-<ni:///mh;1QEQtQr_q0EgzLkembYF5kwEfQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQtQr_q0EgzLkembYF5kwEfQ?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
+<ni:///mh;1QEQtQr_q0EgzLkembYF5kwEfQ?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
+                                                                                                                              a schema:MediaObject;
+                                                                                                                              skos:prefLabel "HTML object"@en.
+<ni:///mh;1QEQtQr_q0EgzLkembYF5kwEfQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQtQr_q0EgzLkembYF5kwEfQ?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1196,17 +1196,17 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                    skos:prefLabel "HTML object (500 B)"@en.
 <ni:///mh;1QEQtQr_q0EgzLkembYF5kwEfQ?ct=text/plain> at:digest <urn:md5:B50AFFAB4120CCB91E99B605E64C047D>;
                                                     dcterms:extent "500"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQtQr_q0EgzLkembYF5kwEfQ?ct=text/html>,
-                                                                      <ni:///mh;1QEQtQr_q0EgzLkembYF5kwEfQ?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQtQr_q0EgzLkembYF5kwEfQ?ct=application/xml>,
+                                                                      <ni:///mh;1QEQtQr_q0EgzLkembYF5kwEfQ?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQtQr_q0EgzLkembYF5kwEfQ?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (500 B)"@en;
                                                     cnt:characterEncoding "utf-8".
 <ni:///mh;1QEQtQr_q0EgzLkembYF5kwEfQ?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"utf-8\"?>""".
-<ni:///mh;1QEQwhScIRI3rN7fagl0yOUqkg?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
-                                                                                              a schema:MediaObject;
-                                                                                              skos:prefLabel "HTML object"@en.
-<ni:///mh;1QEQwhScIRI3rN7fagl0yOUqkg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQwhScIRI3rN7fagl0yOUqkg?ct=application/x.ns.org.w3.www.http.1999.xhtml.html+xml>;
+<ni:///mh;1QEQwhScIRI3rN7fagl0yOUqkg?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
+                                                                                                                              a schema:MediaObject;
+                                                                                                                              skos:prefLabel "HTML object"@en.
+<ni:///mh;1QEQwhScIRI3rN7fagl0yOUqkg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQwhScIRI3rN7fagl0yOUqkg?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1228,8 +1228,8 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                    skos:prefLabel "HTML object (668 B)"@en.
 <ni:///mh;1QEQwhScIRI3rN7fagl0yOUqkg?ct=text/plain> at:digest <urn:md5:C2149C211237ACDEDF6A0974C8E52A92>;
                                                     dcterms:extent "668"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQwhScIRI3rN7fagl0yOUqkg?ct=application/xml>,
-                                                                      <ni:///mh;1QEQwhScIRI3rN7fagl0yOUqkg?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQwhScIRI3rN7fagl0yOUqkg?ct=text/html>,
+                                                                      <ni:///mh;1QEQwhScIRI3rN7fagl0yOUqkg?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQwhScIRI3rN7fagl0yOUqkg?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (668 B)"@en;

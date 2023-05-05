@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQs0WxQngnhQ8dXsy6OlkG4g?ct=text/plain>.
+@base <x.blank:a00936de-d8b9-4462-87a7-32fa9c8f02d3>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -6,8 +6,8 @@
 @prefix schema: <http://schema.org/>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xis: <http://www.w3.org/2001/04/infoset#>.
-@prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix sec: <https://w3id.org/security#>.
@@ -20,10 +20,10 @@ _:n1 at:pathObject <file:///Invalid%E8%A8%AD%E5%AE%9A.html>;
      nfo:fileSize 3034 ;
      a nfo:FileDataObject.
 <file:///Invalid%E8%A8%AD%E5%AE%9A.html> at:extensionObject <https://w3id.org/uri4uri/suffix/html>.
-<ni:///mh;1QEQs0WxQngnhQ8dXsy6OlkG4g?ct=application/x.ns.HTML+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.html+xml>;
-                                                                   a schema:MediaObject;
-                                                                   skos:prefLabel "HTML object"@en.
-<ni:///mh;1QEQs0WxQngnhQ8dXsy6OlkG4g?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQs0WxQngnhQ8dXsy6OlkG4g?ct=application/x.ns.HTML+xml>;
+<ni:///mh;1QEQs0WxQngnhQ8dXsy6OlkG4g?ct=application/prs.implied-document+xml;root=HTML> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=HTML>;
+                                                                                        a schema:MediaObject;
+                                                                                        skos:prefLabel "HTML object"@en.
+<ni:///mh;1QEQs0WxQngnhQ8dXsy6OlkG4g?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQs0WxQngnhQ8dXsy6OlkG4g?ct=application/prs.implied-document+xml;root=HTML>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -41,8 +41,8 @@ _:n1 at:pathObject <file:///Invalid%E8%A8%AD%E5%AE%9A.html>;
                                                    skos:prefLabel "HTML object (2.96 KiB)"@en.
 <ni:///mh;1QEQs0WxQngnhQ8dXsy6OlkG4g?ct=text/plain> at:digest <urn:md5:B345B1427827850F1D5ECCBA3A5906E2>;
                                                     dcterms:extent "3034"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQs0WxQngnhQ8dXsy6OlkG4g?ct=text/html>,
-                                                                      <ni:///mh;1QEQs0WxQngnhQ8dXsy6OlkG4g?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQs0WxQngnhQ8dXsy6OlkG4g?ct=application/xml>,
+                                                                      <ni:///mh;1QEQs0WxQngnhQ8dXsy6OlkG4g?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQs0WxQngnhQ8dXsy6OlkG4g?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (2.96 KiB)"@en;

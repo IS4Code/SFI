@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQ85IMWK2seNOCsP4klMujUA?ct=application/octet-stream>.
+@base <x.blank:28c13975-69ea-4abf-bfa1-5ca68541514e>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -105,10 +105,10 @@ _:n1 at:pathObject <file:///example.xps>;
                                                                   dcterms:extent "176988"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (172.84 KiB)"@en.
-<ni:///mh;1QEQ1XU7dv-_oti972E97aXzvA?ct=application/x.ns.com.microsoft.schemas.http.xps.2005.06.documentstructure.StoryFragments+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.com.microsoft.schemas.http.xps.2005.06.documentstructure.storyfragments+xml>;
-                                                                                                                                      a schema:MediaObject;
-                                                                                                                                      skos:prefLabel "STORYFRAGMENTS object"@en.
-<ni:///mh;1QEQ1XU7dv-_oti972E97aXzvA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ1XU7dv-_oti972E97aXzvA?ct=application/x.ns.com.microsoft.schemas.http.xps.2005.06.documentstructure.StoryFragments+xml>;
+<ni:///mh;1QEQ1XU7dv-_oti972E97aXzvA?ct=application/prs.implied-document+xml;root=StoryFragments;ns=%22http://schemas.microsoft.com/xps/2005/06/documentstructure%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=StoryFragments;ns=%22http://schemas.microsoft.com/xps/2005/06/documentstructure%22>;
+                                                                                                                                                                      a schema:MediaObject;
+                                                                                                                                                                      skos:prefLabel "STORYFRAGMENTS object"@en.
+<ni:///mh;1QEQ1XU7dv-_oti972E97aXzvA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ1XU7dv-_oti972E97aXzvA?ct=application/prs.implied-document+xml;root=StoryFragments;ns=%22http://schemas.microsoft.com/xps/2005/06/documentstructure%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -128,10 +128,10 @@ _:n1 at:pathObject <file:///example.xps>;
                                                     skos:prefLabel "text (11.6 KiB)"@en;
                                                     cnt:characterEncoding "utf-16".
 <ni:///mh;1QEQ1XU7dv-_oti972E97aXzvA?ct=text/plain#line=,1> rdf:value "<StoryFragments".
-<ni:///mh;1QEQ2vP76XGxYzYzZFW4KyIZ4g?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.metadata.core-properties.coreProperties+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.package.2006.metadata.core-properties.coreproperties+xml>;
-                                                                                                                                                   a schema:MediaObject;
-                                                                                                                                                   skos:prefLabel "COREPROPERTIES object"@en.
-<ni:///mh;1QEQ2vP76XGxYzYzZFW4KyIZ4g?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ2vP76XGxYzYzZFW4KyIZ4g?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.metadata.core-properties.coreProperties+xml>;
+<ni:///mh;1QEQ2vP76XGxYzYzZFW4KyIZ4g?ct=application/prs.implied-document+xml;root=coreProperties;ns=%22http://schemas.openxmlformats.org/package/2006/metadata/core-properties%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=coreProperties;ns=%22http://schemas.openxmlformats.org/package/2006/metadata/core-properties%22>;
+                                                                                                                                                                                   a schema:MediaObject;
+                                                                                                                                                                                   skos:prefLabel "COREPROPERTIES object"@en.
+<ni:///mh;1QEQ2vP76XGxYzYzZFW4KyIZ4g?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ2vP76XGxYzYzZFW4KyIZ4g?ct=application/prs.implied-document+xml;root=coreProperties;ns=%22http://schemas.openxmlformats.org/package/2006/metadata/core-properties%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -483,15 +483,15 @@ _:n1 at:pathObject <file:///example.xps>;
                                                    nfo:verticalResolution 219.964;
                                                    nfo:width 164 ;
                                                    a schema:MediaObject,
-                                                     nfo:Image,
-                                                     schema:ImageObject;
+                                                     schema:ImageObject,
+                                                     nfo:Image;
                                                    skos:prefLabel "PNG object (164×165, 8-bit)"@en,
                                                                   "PNG object (164×165)"@en,
                                                                   "PNG object (4.63 KiB)"@en.
-<ni:///mh;1QEQCp67yoZ_8jNwgAiwVt5hsQ?ct=application/x.ns.com.microsoft.schemas.http.xps.2005.06.documentstructure.DocumentStructure+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.com.microsoft.schemas.http.xps.2005.06.documentstructure.documentstructure+xml>;
-                                                                                                                                         a schema:MediaObject;
-                                                                                                                                         skos:prefLabel "DOCUMENTSTRUCTURE object"@en.
-<ni:///mh;1QEQCp67yoZ_8jNwgAiwVt5hsQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQCp67yoZ_8jNwgAiwVt5hsQ?ct=application/x.ns.com.microsoft.schemas.http.xps.2005.06.documentstructure.DocumentStructure+xml>;
+<ni:///mh;1QEQCp67yoZ_8jNwgAiwVt5hsQ?ct=application/prs.implied-document+xml;root=DocumentStructure;ns=%22http://schemas.microsoft.com/xps/2005/06/documentstructure%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=DocumentStructure;ns=%22http://schemas.microsoft.com/xps/2005/06/documentstructure%22>;
+                                                                                                                                                                         a schema:MediaObject;
+                                                                                                                                                                         skos:prefLabel "DOCUMENTSTRUCTURE object"@en.
+<ni:///mh;1QEQCp67yoZ_8jNwgAiwVt5hsQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQCp67yoZ_8jNwgAiwVt5hsQ?ct=application/prs.implied-document+xml;root=DocumentStructure;ns=%22http://schemas.microsoft.com/xps/2005/06/documentstructure%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -513,16 +513,16 @@ _:n1 at:pathObject <file:///example.xps>;
 <ni:///mh;1QEQCp67yoZ_8jNwgAiwVt5hsQ?ct=text/plain#line=,1> rdf:value "<DocumentStructure".
 <ni:///mh;1QEQF1-W5osrGBuFhdCwwwJV0A?ct=application/octet-stream> at:digest <urn:md5:175F96E68B2B181B8585D0B0C30255D0>;
                                                                   dcterms:extent "205488"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQF1-W5osrGBuFhdCwwwJV0A?ct=application/x.sig.0f4>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQF1-W5osrGBuFhdCwwwJV0A?ct=application/prs.implied-structure;signature=0f4>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (200.67 KiB)"@en.
-<ni:///mh;1QEQF1-W5osrGBuFhdCwwwJV0A?ct=application/x.sig.0f4> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.0f4>;
-                                                               a schema:MediaObject;
-                                                               skos:prefLabel "0F4 object (200.67 KiB)"@en.
-<ni:///mh;1QEQHxeHFF_K4BY1xKg2kqqjCQ?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.Relationships+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.relationships+xml>;
-                                                                                                                                       a schema:MediaObject;
-                                                                                                                                       skos:prefLabel "RELATIONSHIPS object"@en.
-<ni:///mh;1QEQHxeHFF_K4BY1xKg2kqqjCQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQHxeHFF_K4BY1xKg2kqqjCQ?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.Relationships+xml>;
+<ni:///mh;1QEQF1-W5osrGBuFhdCwwwJV0A?ct=application/prs.implied-structure;signature=0f4> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=0f4>;
+                                                                                         a schema:MediaObject;
+                                                                                         skos:prefLabel "0F4 object (200.67 KiB)"@en.
+<ni:///mh;1QEQHxeHFF_K4BY1xKg2kqqjCQ?ct=application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22>;
+                                                                                                                                                                       a schema:MediaObject;
+                                                                                                                                                                       skos:prefLabel "RELATIONSHIPS object"@en.
+<ni:///mh;1QEQHxeHFF_K4BY1xKg2kqqjCQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQHxeHFF_K4BY1xKg2kqqjCQ?ct=application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -545,10 +545,10 @@ _:n1 at:pathObject <file:///example.xps>;
                                                     skos:prefLabel "text (287 B)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQHxeHFF_K4BY1xKg2kqqjCQ?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
-<ni:///mh;1QEQKS8Ca3Qg4fzc-hJKkBZGdw?ct=application/x.ns.com.microsoft.schemas.http.xps.2005.06.FixedDocument+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.com.microsoft.schemas.http.xps.2005.06.fixeddocument+xml>;
-                                                                                                                   a schema:MediaObject;
-                                                                                                                   skos:prefLabel "FIXEDDOCUMENT object"@en.
-<ni:///mh;1QEQKS8Ca3Qg4fzc-hJKkBZGdw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQKS8Ca3Qg4fzc-hJKkBZGdw?ct=application/x.ns.com.microsoft.schemas.http.xps.2005.06.FixedDocument+xml>;
+<ni:///mh;1QEQKS8Ca3Qg4fzc-hJKkBZGdw?ct=application/prs.implied-document+xml;root=FixedDocument;ns=%22http://schemas.microsoft.com/xps/2005/06%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=FixedDocument;ns=%22http://schemas.microsoft.com/xps/2005/06%22>;
+                                                                                                                                                   a schema:MediaObject;
+                                                                                                                                                   skos:prefLabel "FIXEDDOCUMENT object"@en.
+<ni:///mh;1QEQKS8Ca3Qg4fzc-hJKkBZGdw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQKS8Ca3Qg4fzc-hJKkBZGdw?ct=application/prs.implied-document+xml;root=FixedDocument;ns=%22http://schemas.microsoft.com/xps/2005/06%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -604,10 +604,10 @@ _:n1 at:pathObject <file:///example.xps>;
                                                                   dcterms:extent "178260"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (174.08 KiB)"@en.
-<ni:///mh;1QEQXFohQJ8Au4z8QB56jRyYtw?ct=application/x.ns.com.microsoft.schemas.http.xps.2005.06.FixedPage+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.com.microsoft.schemas.http.xps.2005.06.fixedpage+xml>;
-                                                                                                               a schema:MediaObject;
-                                                                                                               skos:prefLabel "FIXEDPAGE object"@en.
-<ni:///mh;1QEQXFohQJ8Au4z8QB56jRyYtw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQXFohQJ8Au4z8QB56jRyYtw?ct=application/x.ns.com.microsoft.schemas.http.xps.2005.06.FixedPage+xml>;
+<ni:///mh;1QEQXFohQJ8Au4z8QB56jRyYtw?ct=application/prs.implied-document+xml;root=FixedPage;ns=%22http://schemas.microsoft.com/xps/2005/06%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=FixedPage;ns=%22http://schemas.microsoft.com/xps/2005/06%22>;
+                                                                                                                                               a schema:MediaObject;
+                                                                                                                                               skos:prefLabel "FIXEDPAGE object"@en.
+<ni:///mh;1QEQXFohQJ8Au4z8QB56jRyYtw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQXFohQJ8Au4z8QB56jRyYtw?ct=application/prs.implied-document+xml;root=FixedPage;ns=%22http://schemas.microsoft.com/xps/2005/06%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -627,10 +627,10 @@ _:n1 at:pathObject <file:///example.xps>;
                                                     skos:prefLabel "text (114.2 KiB)"@en;
                                                     cnt:characterEncoding "utf-16".
 <ni:///mh;1QEQXFohQJ8Au4z8QB56jRyYtw?ct=text/plain#line=,1> rdf:value """<FixedPage xmlns=\"http://schemas.microsoft.com/xps/2005/06\" Width=\"794\"""".
-<ni:///mh;1QEQak5C3L_-RLAUIeBDX0Q0nA?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.Relationships+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.relationships+xml>;
-                                                                                                                                       a schema:MediaObject;
-                                                                                                                                       skos:prefLabel "RELATIONSHIPS object"@en.
-<ni:///mh;1QEQak5C3L_-RLAUIeBDX0Q0nA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQak5C3L_-RLAUIeBDX0Q0nA?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.Relationships+xml>;
+<ni:///mh;1QEQak5C3L_-RLAUIeBDX0Q0nA?ct=application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22>;
+                                                                                                                                                                       a schema:MediaObject;
+                                                                                                                                                                       skos:prefLabel "RELATIONSHIPS object"@en.
+<ni:///mh;1QEQak5C3L_-RLAUIeBDX0Q0nA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQak5C3L_-RLAUIeBDX0Q0nA?ct=application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -657,10 +657,10 @@ _:n1 at:pathObject <file:///example.xps>;
                                                                   dcterms:extent "189284"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (184.85 KiB)"@en.
-<ni:///mh;1QEQm1drXNETlkJzRZj5J1rmGw?ct=application/x.ns.com.microsoft.schemas.http.xps.2005.06.FixedDocumentSequence+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.com.microsoft.schemas.http.xps.2005.06.fixeddocumentsequence+xml>;
-                                                                                                                           a schema:MediaObject;
-                                                                                                                           skos:prefLabel "FIXEDDOCUMENTSEQUENCE object"@en.
-<ni:///mh;1QEQm1drXNETlkJzRZj5J1rmGw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQm1drXNETlkJzRZj5J1rmGw?ct=application/x.ns.com.microsoft.schemas.http.xps.2005.06.FixedDocumentSequence+xml>;
+<ni:///mh;1QEQm1drXNETlkJzRZj5J1rmGw?ct=application/prs.implied-document+xml;root=FixedDocumentSequence;ns=%22http://schemas.microsoft.com/xps/2005/06%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=FixedDocumentSequence;ns=%22http://schemas.microsoft.com/xps/2005/06%22>;
+                                                                                                                                                           a schema:MediaObject;
+                                                                                                                                                           skos:prefLabel "FIXEDDOCUMENTSEQUENCE object"@en.
+<ni:///mh;1QEQm1drXNETlkJzRZj5J1rmGw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQm1drXNETlkJzRZj5J1rmGw?ct=application/prs.implied-document+xml;root=FixedDocumentSequence;ns=%22http://schemas.microsoft.com/xps/2005/06%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -680,10 +680,10 @@ _:n1 at:pathObject <file:///example.xps>;
                                                     skos:prefLabel "text (320 B)"@en;
                                                     cnt:characterEncoding "utf-16".
 <ni:///mh;1QEQm1drXNETlkJzRZj5J1rmGw?ct=text/plain#line=,1> rdf:value """<FixedDocumentSequence xmlns=\"http://schemas.microsoft.com/xps/2005/06\">""".
-<ni:///mh;1QEQpdcfq_XXAgNQaOilPOwCvA?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.content-types.Types+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.package.2006.content-types.types+xml>;
-                                                                                                                               a schema:MediaObject;
-                                                                                                                               skos:prefLabel "TYPES object"@en.
-<ni:///mh;1QEQpdcfq_XXAgNQaOilPOwCvA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQpdcfq_XXAgNQaOilPOwCvA?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.content-types.Types+xml>;
+<ni:///mh;1QEQpdcfq_XXAgNQaOilPOwCvA?ct=application/prs.implied-document+xml;root=Types;ns=%22http://schemas.openxmlformats.org/package/2006/content-types%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=Types;ns=%22http://schemas.openxmlformats.org/package/2006/content-types%22>;
+                                                                                                                                                               a schema:MediaObject;
+                                                                                                                                                               skos:prefLabel "TYPES object"@en.
+<ni:///mh;1QEQpdcfq_XXAgNQaOilPOwCvA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQpdcfq_XXAgNQaOilPOwCvA?ct=application/prs.implied-document+xml;root=Types;ns=%22http://schemas.openxmlformats.org/package/2006/content-types%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -706,10 +706,10 @@ _:n1 at:pathObject <file:///example.xps>;
                                                     skos:prefLabel "text (1.09 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQpdcfq_XXAgNQaOilPOwCvA?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
-<ni:///mh;1QEQsJZH8hVbra6IYGNaTqilUw?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.Relationships+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.relationships+xml>;
-                                                                                                                                       a schema:MediaObject;
-                                                                                                                                       skos:prefLabel "RELATIONSHIPS object"@en.
-<ni:///mh;1QEQsJZH8hVbra6IYGNaTqilUw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQsJZH8hVbra6IYGNaTqilUw?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.Relationships+xml>;
+<ni:///mh;1QEQsJZH8hVbra6IYGNaTqilUw?ct=application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22>;
+                                                                                                                                                                       a schema:MediaObject;
+                                                                                                                                                                       skos:prefLabel "RELATIONSHIPS object"@en.
+<ni:///mh;1QEQsJZH8hVbra6IYGNaTqilUw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQsJZH8hVbra6IYGNaTqilUw?ct=application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,

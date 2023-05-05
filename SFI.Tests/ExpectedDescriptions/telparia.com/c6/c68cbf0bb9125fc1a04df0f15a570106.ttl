@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQG8SmXKQNK2N7S8gfnrDiSQ?ct=application/octet-stream>.
+@base <x.blank:f71c16b0-692e-41c4-9fd6-44a7e3bbd25b>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -12,9 +12,9 @@
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix enc: <http://www.w3.org/2001/04/xmlenc#>.
 @prefix cert: <http://www.w3.org/ns/auth/cert#>.
 @prefix ds: <http://www.w3.org/2000/09/xmldsig#>.
-@prefix enc: <http://www.w3.org/2001/04/xmlenc#>.
 @prefix dbo: <http://dbpedia.org/ontology/>.
 @prefix xis: <http://www.w3.org/2001/04/infoset#>.
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
@@ -396,15 +396,15 @@ _:n1 at:pathObject <file:///PabloDraw.msi>;
                                                                   skos:prefLabel "binary data (72 B)"@en.
 <ni:///mh;1QEQZSTX2859B4w66bXXm-t-tw?ct=application/octet-stream> at:digest <urn:md5:6524D7DBCE7D078C3AE9B5D79BEB7EB7>;
                                                                   dcterms:extent "1320832"^^dt:byte;
-                                                                  dcterms:hasFormat [a schema:MediaObject ; 
+                                                                  dcterms:hasFormat <ni:///mh;1QEQZSTX2859B4w66bXXm-t-tw?ct=application/vnd.microsoft.portable-executable>,
+                                                                                    [a schema:MediaObject ; 
                                                                                      a cert:X509Certificate ; 
                                                                                      at:digest <urn:sha1:MCDM7JKXUQGD4YHY8NGDNJQD5HJY3773> ; 
                                                                                      dcterms:subject "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US" ; 
                                                                                      dcterms:creator "CN=Microsoft Code Signing PCA 2010, O=Microsoft Corporation, L=Redmond, S=Washington, C=US" ; 
                                                                                      dcterms:created "2021-09-02T20:25:58.000000+02:00"^^xsd:dateTime ; 
                                                                                      sec:expiration "2022-09-01T20:25:58.000000+02:00"^^xsd:dateTime ; 
-                                                                                     schema:serialNumber "3300000439F61F7A676DA000AF000000000439"],
-                                                                                    <ni:///mh;1QEQZSTX2859B4w66bXXm-t-tw?ct=application/vnd.microsoft.portable-executable>;
+                                                                                     schema:serialNumber "3300000439F61F7A676DA000AF000000000439"];
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.26 MiB)"@en.
 <ni:///mh;1QEQZSTX2859B4w66bXXm-t-tw?ct=application/vnd.microsoft.portable-executable> at:digest <urn:sha256:CDJBB4RX2C945TF52J5PV5WQXKSL5RTZM65SA4FCZ65EDYUPDSLQ>;
@@ -473,10 +473,10 @@ _:n1 at:pathObject <file:///PabloDraw.msi>;
                                                                                          schema:SoftwareApplication,
                                                                                          nfo:Executable;
                                                                                        skos:prefLabel "EXE object (900 KiB)"@en.
-<ni:///mh;1QEQt9uEmR8jpoDfjpWviUb5yQ?ct=application/x.ns.urn.schemas-microsoft-com.asm.v1.assembly+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.urn.schemas-microsoft-com.asm.v1.assembly+xml>;
-                                                                                                        a schema:MediaObject;
-                                                                                                        skos:prefLabel "ASSEMBLY object"@en.
-<ni:///mh;1QEQt9uEmR8jpoDfjpWviUb5yQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQt9uEmR8jpoDfjpWviUb5yQ?ct=application/x.ns.urn.schemas-microsoft-com.asm.v1.assembly+xml>;
+<ni:///mh;1QEQt9uEmR8jpoDfjpWviUb5yQ?ct=application/prs.implied-document+xml;root=assembly;ns=%22urn:schemas-microsoft-com:asm.v1%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=assembly;ns=%22urn:schemas-microsoft-com:asm.v1%22>;
+                                                                                                                                      a schema:MediaObject;
+                                                                                                                                      skos:prefLabel "ASSEMBLY object"@en.
+<ni:///mh;1QEQt9uEmR8jpoDfjpWviUb5yQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQt9uEmR8jpoDfjpWviUb5yQ?ct=application/prs.implied-document+xml;root=assembly;ns=%22urn:schemas-microsoft-com:asm.v1%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,

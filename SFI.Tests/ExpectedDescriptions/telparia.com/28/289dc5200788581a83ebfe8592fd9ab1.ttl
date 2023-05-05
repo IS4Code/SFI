@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQj_XKFF3F2YBp-OaO49AM2g?ct=application/octet-stream>.
+@base <x.blank:1b2d43f7-6709-4782-8e09-781de0e3bd75>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -21,10 +21,10 @@ _:n1 at:pathObject <file:///valleyball.xrns>;
      a nfo:FileDataObject.
 <file:///Song.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///valleyball.xrns> at:extensionObject <https://w3id.org/uri4uri/suffix/xrns>.
-<ni:///mh;1QEQUzZr9ePrHo1HD5iZC-2Vtg?ct=application/x.ns.RenoiseSong+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.renoisesong+xml>;
-                                                                          a schema:MediaObject;
-                                                                          skos:prefLabel "RENOISESONG object"@en.
-<ni:///mh;1QEQUzZr9ePrHo1HD5iZC-2Vtg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQUzZr9ePrHo1HD5iZC-2Vtg?ct=application/x.ns.RenoiseSong+xml>;
+<ni:///mh;1QEQUzZr9ePrHo1HD5iZC-2Vtg?ct=application/prs.implied-document+xml;root=RenoiseSong> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=RenoiseSong>;
+                                                                                               a schema:MediaObject;
+                                                                                               skos:prefLabel "RENOISESONG object"@en.
+<ni:///mh;1QEQUzZr9ePrHo1HD5iZC-2Vtg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQUzZr9ePrHo1HD5iZC-2Vtg?ct=application/prs.implied-document+xml;root=RenoiseSong>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,

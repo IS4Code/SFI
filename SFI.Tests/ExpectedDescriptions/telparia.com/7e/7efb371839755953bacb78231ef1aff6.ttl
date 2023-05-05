@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQJJ5vavvhvASUiH5gcB6EBw?ct=text/plain>.
+@base <x.blank:1c10269a-4828-4647-989b-f9b46c4e51af>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -20,10 +20,10 @@ _:n1 at:pathObject <file:///xinlines.xml>;
      nfo:fileSize 165 ;
      a nfo:FileDataObject.
 <file:///xinlines.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
-<ni:///mh;1QEQJJ5vavvhvASUiH5gcB6EBw?ct=application/x.ns.book+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.book+xml>;
-                                                                   a schema:MediaObject;
-                                                                   skos:prefLabel "BOOK object"@en.
-<ni:///mh;1QEQJJ5vavvhvASUiH5gcB6EBw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQJJ5vavvhvASUiH5gcB6EBw?ct=application/x.ns.book+xml>;
+<ni:///mh;1QEQJJ5vavvhvASUiH5gcB6EBw?ct=application/prs.implied-document+xml;root=book> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=book>;
+                                                                                        a schema:MediaObject;
+                                                                                        skos:prefLabel "BOOK object"@en.
+<ni:///mh;1QEQJJ5vavvhvASUiH5gcB6EBw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQJJ5vavvhvASUiH5gcB6EBw?ct=application/prs.implied-document+xml;root=book>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,

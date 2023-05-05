@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQvn-uWb2QBlL3c1t1q98P3Q?ct=application/octet-stream>.
+@base <x.blank:97d3d384-b259-4ae0-b482-6840211bb601>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -155,7 +155,7 @@ _:n1 at:pathObject <file:///offer.msg>;
                                                     skos:prefLabel "binary data (8 B)"@en;
                                                     cnt:bytes "VIUAAAYAAgA="^^xsd:base64Binary.
 <data:application/octet-stream;base64,ZTezDP6j0RGQxgCgyRvJFA==> dcterms:extent "16"^^dt:byte;
-                                                                dcterms:hasFormat <data:application/x.sig.e7;base64,ZTezDP6j0RGQxgCgyRvJFA==>;
+                                                                dcterms:hasFormat <data:application/prs.implied-structure;signature=e7;base64,ZTezDP6j0RGQxgCgyRvJFA==>;
                                                                 a cnt:ContentAsBase64;
                                                                 skos:prefLabel "binary data (16 B)"@en;
                                                                 cnt:bytes "ZTezDP6j0RGQxgCgyRvJFA=="^^xsd:base64Binary.
@@ -163,9 +163,9 @@ _:n1 at:pathObject <file:///offer.msg>;
                                                     a cnt:ContentAsBase64;
                                                     skos:prefLabel "binary data (8 B)"@en;
                                                     cnt:bytes "g4UAAAYAAwA="^^xsd:base64Binary.
-<data:application/x.sig.e7;base64,ZTezDP6j0RGQxgCgyRvJFA==> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.e7>;
-                                                            a schema:MediaObject;
-                                                            skos:prefLabel "E7 object (16 B)"@en.
+<data:application/prs.implied-structure;signature=e7;base64,ZTezDP6j0RGQxgCgyRvJFA==> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=e7>;
+                                                                                      a schema:MediaObject;
+                                                                                      skos:prefLabel "E7 object (16 B)"@en.
 <file:///__attach_version1.0_%2300000000> at:extensionObject <https://w3id.org/uri4uri/suffix/0_%2300000000>.
 <file:///__attach_version1.0_%2300000000/__properties_version1.0> at:pathObject <file:///__properties_version1.0>.
 <file:///__attach_version1.0_%2300000000/__substg1.0_0FF90102> at:pathObject <file:///__substg1.0_0FF90102>.
@@ -289,8 +289,8 @@ _:n1 at:pathObject <file:///offer.msg>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "GIF object (2.67 KiB)"@en,
-                                                                  "GIF object (104×50)"@en.
+                                                   skos:prefLabel "GIF object (104×50)"@en,
+                                                                  "GIF object (2.67 KiB)"@en.
 <ni:///mh;1QEQXSkGBUj62IyjWYI4nKX62A?ct=image/gif#/0> nfo:height 50 ;
                                                       nfo:width 104 ;
                                                       a nfo:MediaStream;
@@ -351,8 +351,8 @@ _:n1 at:pathObject <file:///offer.msg>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "GIF object (3.38 KiB)"@en,
-                                                                  "GIF object (132×30)"@en.
+                                                   skos:prefLabel "GIF object (132×30)"@en,
+                                                                  "GIF object (3.38 KiB)"@en.
 <ni:///mh;1QEQjRLARlqZHyEWn8U7n3A4lw?ct=image/gif#/0> nfo:height 30 ;
                                                       nfo:width 132 ;
                                                       a nfo:MediaStream;
@@ -378,8 +378,8 @@ _:n1 at:pathObject <file:///offer.msg>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "GIF object (2.93 KiB)"@en,
-                                                                  "GIF object (132×43)"@en.
+                                                   skos:prefLabel "GIF object (132×43)"@en,
+                                                                  "GIF object (2.93 KiB)"@en.
 <ni:///mh;1QEQpq-7XSRVl2ya3Ikn9QM1oA?ct=image/gif#/0> nfo:height 43 ;
                                                       nfo:width 132 ;
                                                       a nfo:MediaStream;

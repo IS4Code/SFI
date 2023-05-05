@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQa55H-noBua3bYd2LMRxVwQ?ct=application/octet-stream>.
+@base <x.blank:fd803789-2880-48ce-b94b-9a3d72bddea0>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -6,8 +6,8 @@
 @prefix schema: <http://schema.org/>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xis: <http://www.w3.org/2001/04/infoset#>.
-@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
@@ -22,14 +22,14 @@ _:n1 at:pathObject <file:///apple.html>;
 <file:///apple.html> at:extensionObject <https://w3id.org/uri4uri/suffix/html>.
 <ni:///mh;1QEQa55H-noBua3bYd2LMRxVwQ?ct=application/octet-stream> at:digest <urn:md5:6B9E47FA7A01B9ADDB61DD8B311C55C1>;
                                                                   dcterms:extent "9097"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQa55H-noBua3bYd2LMRxVwQ?ct=application/xml>,
-                                                                                    <ni:///mh;1QEQa55H-noBua3bYd2LMRxVwQ?ct=text/html>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQa55H-noBua3bYd2LMRxVwQ?ct=text/html>,
+                                                                                    <ni:///mh;1QEQa55H-noBua3bYd2LMRxVwQ?ct=application/xml>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (8.88 KiB)"@en.
-<ni:///mh;1QEQa55H-noBua3bYd2LMRxVwQ?ct=application/x.ns.HTML+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.html+xml>;
-                                                                   a schema:MediaObject;
-                                                                   skos:prefLabel "HTML object"@en.
-<ni:///mh;1QEQa55H-noBua3bYd2LMRxVwQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQa55H-noBua3bYd2LMRxVwQ?ct=application/x.ns.HTML+xml>;
+<ni:///mh;1QEQa55H-noBua3bYd2LMRxVwQ?ct=application/prs.implied-document+xml;root=HTML> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=HTML>;
+                                                                                        a schema:MediaObject;
+                                                                                        skos:prefLabel "HTML object"@en.
+<ni:///mh;1QEQa55H-noBua3bYd2LMRxVwQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQa55H-noBua3bYd2LMRxVwQ?ct=application/prs.implied-document+xml;root=HTML>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,

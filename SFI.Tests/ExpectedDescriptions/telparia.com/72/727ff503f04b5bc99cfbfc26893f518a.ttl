@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQRmQpmAG1qsiubnDOzptvuw?ct=text/plain>.
+@base <x.blank:b313bfe3-1e84-47a1-9813-fe712dd4d74b>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -20,10 +20,10 @@ _:n1 at:pathObject <file:///newton.pad>;
      nfo:fileSize 8654 ;
      a nfo:FileDataObject.
 <file:///newton.pad> at:extensionObject <https://w3id.org/uri4uri/suffix/pad>.
-<ni:///mh;1QEQRmQpmAG1qsiubnDOzptvuw?ct=application/x.ns.XML_DIZ_INFO+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.xml_diz_info+xml>;
-                                                                           a schema:MediaObject;
-                                                                           skos:prefLabel "XML_DIZ_INFO object"@en.
-<ni:///mh;1QEQRmQpmAG1qsiubnDOzptvuw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQRmQpmAG1qsiubnDOzptvuw?ct=application/x.ns.XML_DIZ_INFO+xml>;
+<ni:///mh;1QEQRmQpmAG1qsiubnDOzptvuw?ct=application/prs.implied-document+xml;root=XML_DIZ_INFO> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=XML_DIZ_INFO>;
+                                                                                                a schema:MediaObject;
+                                                                                                skos:prefLabel "XML_DIZ_INFO object"@en.
+<ni:///mh;1QEQRmQpmAG1qsiubnDOzptvuw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQRmQpmAG1qsiubnDOzptvuw?ct=application/prs.implied-document+xml;root=XML_DIZ_INFO>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,

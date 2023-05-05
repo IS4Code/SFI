@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQZks_8Ny6dIoqYB4k4Qur3Q?ct=application/x.sig.ff>.
+@base <x.blank:8f9e0f02-a981-41bf-bd8a-fd11fc83af40>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -21,12 +21,12 @@ _:n1 at:pathObject <file:///guard.hip>;
 <file:///guard.hip> at:extensionObject <https://w3id.org/uri4uri/suffix/hip>.
 <ni:///mh;1QEQZks_8Ny6dIoqYB4k4Qur3Q?ct=application/octet-stream> at:digest <urn:md5:664B3FF0DCBA748A2A601E24E10BABDD>;
                                                                   dcterms:extent "16009"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQZks_8Ny6dIoqYB4k4Qur3Q?ct=application/x.sig.ff>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQZks_8Ny6dIoqYB4k4Qur3Q?ct=application/prs.implied-structure;signature=fF>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (15.63 KiB)"@en.
-<ni:///mh;1QEQZks_8Ny6dIoqYB4k4Qur3Q?ct=application/x.sig.ff> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.ff>;
-                                                              a schema:MediaObject;
-                                                              skos:prefLabel "FF object (15.63 KiB)"@en.
+<ni:///mh;1QEQZks_8Ny6dIoqYB4k4Qur3Q?ct=application/prs.implied-structure;signature=fF> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=fF>;
+                                                                                        a schema:MediaObject;
+                                                                                        skos:prefLabel "FF object (15.63 KiB)"@en.
 <urn:md5:664B3FF0DCBA748A2A601E24E10BABDD> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "Zks/8Ny6dIoqYB4k4Qur3Q=="^^xsd:base64Binary.

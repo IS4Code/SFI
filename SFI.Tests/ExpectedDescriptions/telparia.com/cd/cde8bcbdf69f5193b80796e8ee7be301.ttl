@@ -1,4 +1,4 @@
-@base <x.blank:53bd764a-7e70-4478-9f75-e941c90f506c>.
+@base <x.blank:3192c685-92c9-4573-bf1b-491119e08dac>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -139,12 +139,12 @@ _:n1 at:pathObject <file:///ttywatcher-1_0a_tar>;
                                                     skos:prefLabel "text (171 B)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQ-UayP0RF31N8gv8pe1h3zg?ct=text/plain#line=,1> rdf:value "#! /bin/sh".
-<ni:///mh;1QEQ421yO45XyXbnlLfHhU177A?ct=application/x.exec.sh> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.exec.sh>;
-                                                               a schema:MediaObject;
-                                                               skos:prefLabel "SH object (1.42 KiB)"@en.
+<ni:///mh;1QEQ421yO45XyXbnlLfHhU177A?ct=application/prs.implied-executable;interpreter=sh> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-executable;interpreter=sh>;
+                                                                                           a schema:MediaObject;
+                                                                                           skos:prefLabel "SH object (1.42 KiB)"@en.
 <ni:///mh;1QEQ421yO45XyXbnlLfHhU177A?ct=text/plain> at:digest <urn:md5:E36D723B8E57C976E794B7C7854D7BEC>;
                                                     dcterms:extent "1451"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQ421yO45XyXbnlLfHhU177A?ct=application/x.exec.sh>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ421yO45XyXbnlLfHhU177A?ct=application/prs.implied-executable;interpreter=sh>;
                                                     nie:hasPart <ni:///mh;1QEQ421yO45XyXbnlLfHhU177A?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (1.42 KiB)"@en;
@@ -185,12 +185,12 @@ _:n1 at:pathObject <file:///ttywatcher-1_0a_tar>;
                                                     skos:prefLabel "text (8.01 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQE-qacKLwFQZwbEKKv6-c3A?ct=text/plain#line=,1> rdf:value "/* Loadable STREAMS device driver and module for Solaris */".
-<ni:///mh;1QEQIFj7y-Ll2Q8mAFPojpJyRg?ct=application/x.exec.sh> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.exec.sh>;
-                                                               a schema:MediaObject;
-                                                               skos:prefLabel "SH object (91 B)"@en.
+<ni:///mh;1QEQIFj7y-Ll2Q8mAFPojpJyRg?ct=application/prs.implied-executable;interpreter=sh> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-executable;interpreter=sh>;
+                                                                                           a schema:MediaObject;
+                                                                                           skos:prefLabel "SH object (91 B)"@en.
 <ni:///mh;1QEQIFj7y-Ll2Q8mAFPojpJyRg?ct=text/plain> at:digest <urn:md5:2058FBCBE2E5D90F260053E88E927246>;
                                                     dcterms:extent "91"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQIFj7y-Ll2Q8mAFPojpJyRg?ct=application/x.exec.sh>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQIFj7y-Ll2Q8mAFPojpJyRg?ct=application/prs.implied-executable;interpreter=sh>;
                                                     nie:hasPart <ni:///mh;1QEQIFj7y-Ll2Q8mAFPojpJyRg?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (91 B)"@en;

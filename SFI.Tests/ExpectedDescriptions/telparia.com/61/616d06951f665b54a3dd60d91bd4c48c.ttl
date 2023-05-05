@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQI92t5rgGGW_BgtjKRyqsbA?ct=application/x.sig.hsi1>.
+@base <x.blank:ed8f0b32-9ecd-45e8-a83c-dfcf48443d8a>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -21,12 +21,12 @@ _:n1 at:pathObject <file:///ring_mo4.jpg>;
 <file:///ring_mo4.jpg> at:extensionObject <https://w3id.org/uri4uri/suffix/jpg>.
 <ni:///mh;1QEQI92t5rgGGW_BgtjKRyqsbA?ct=application/octet-stream> at:digest <urn:md5:23DDADE6B806196FC182D8CA472AAC6C>;
                                                                   dcterms:extent "63328"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQI92t5rgGGW_BgtjKRyqsbA?ct=application/x.sig.hsi1>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQI92t5rgGGW_BgtjKRyqsbA?ct=application/prs.implied-structure;signature=hsi1>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (61.84 KiB)"@en.
-<ni:///mh;1QEQI92t5rgGGW_BgtjKRyqsbA?ct=application/x.sig.hsi1> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.hsi1>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "HSI1 object (61.84 KiB)"@en.
+<ni:///mh;1QEQI92t5rgGGW_BgtjKRyqsbA?ct=application/prs.implied-structure;signature=hsi1> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=hsi1>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "HSI1 object (61.84 KiB)"@en.
 <urn:md5:23DDADE6B806196FC182D8CA472AAC6C> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "I92t5rgGGW/BgtjKRyqsbA=="^^xsd:base64Binary.

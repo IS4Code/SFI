@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQEx5_Li_syLNPVIHNq8bZmg?ct=application/octet-stream>.
+@base <x.blank:ca954d71-2486-48da-9cd1-76eb58d4a794>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -113,10 +113,10 @@ _:n1 at:pathObject <file:///CWPT_FULL.EXE>;
                                                      schema:ImageObject,
                                                      nfo:Image;
                                                    skos:prefLabel "BMP object (16×16)"@en.
-<ni:///mh;1QEQwEeiOBfKw89Lat4szg8kUg?ct=application/x.ns.urn.schemas-microsoft-com.asm.v1.assembly+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.urn.schemas-microsoft-com.asm.v1.assembly+xml>;
-                                                                                                        a schema:MediaObject;
-                                                                                                        skos:prefLabel "ASSEMBLY object"@en.
-<ni:///mh;1QEQwEeiOBfKw89Lat4szg8kUg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQwEeiOBfKw89Lat4szg8kUg?ct=application/x.ns.urn.schemas-microsoft-com.asm.v1.assembly+xml>;
+<ni:///mh;1QEQwEeiOBfKw89Lat4szg8kUg?ct=application/prs.implied-document+xml;root=assembly;ns=%22urn:schemas-microsoft-com:asm.v1%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=assembly;ns=%22urn:schemas-microsoft-com:asm.v1%22>;
+                                                                                                                                      a schema:MediaObject;
+                                                                                                                                      skos:prefLabel "ASSEMBLY object"@en.
+<ni:///mh;1QEQwEeiOBfKw89Lat4szg8kUg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQwEeiOBfKw89Lat4szg8kUg?ct=application/prs.implied-document+xml;root=assembly;ns=%22urn:schemas-microsoft-com:asm.v1%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,

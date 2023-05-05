@@ -1,4 +1,4 @@
-@base <x.blank:6e02d941-aec2-4c35-95d2-1c32056803e2>.
+@base <x.blank:4f3536e3-0a85-4ddb-bf4f-76108becf511>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -330,11 +330,11 @@ DATA 0
                                                    skos:prefLabel "PNG object (256×256, 8-bit)"@en,
                                                                   "PNG object (256×256)"@en,
                                                                   "PNG object (5.2 KiB)"@en.
-<ni:///mh;1QEQO-Qj7n9EWmrKqJ-txWCoNQ?ct=application/x.ns.org.calligra.www.http.DTD.document-info.document-info+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.calligra.www.http.dtd.document-info.document-info+xml>,
-                                                                                                                                          <urn:publicid:-:KDE:DTD+document-info+1.1:EN>;
-                                                                                                                    a schema:MediaObject;
-                                                                                                                    skos:prefLabel "DOCUMENT-INFO object"@en.
-<ni:///mh;1QEQO-Qj7n9EWmrKqJ-txWCoNQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQO-Qj7n9EWmrKqJ-txWCoNQ?ct=application/x.ns.org.calligra.www.http.DTD.document-info.document-info+xml>;
+<ni:///mh;1QEQO-Qj7n9EWmrKqJ-txWCoNQ?ct=application/prs.implied-document+xml;root=document-info;ns=%22http://www.calligra.org/DTD/document-info%22;public=%22-//KDE//DTD%20document-info%201.1//EN%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=document-info;ns=%22http://www.calligra.org/DTD/document-info%22;public=%22-//KDE//DTD%20document-info%201.1//EN%22>,
+                                                                                                                                                                                                                             <urn:publicid:-:KDE:DTD+document-info+1.1:EN>;
+                                                                                                                                                                                                       a schema:MediaObject;
+                                                                                                                                                                                                       skos:prefLabel "DOCUMENT-INFO object"@en.
+<ni:///mh;1QEQO-Qj7n9EWmrKqJ-txWCoNQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQO-Qj7n9EWmrKqJ-txWCoNQ?ct=application/prs.implied-document+xml;root=document-info;ns=%22http://www.calligra.org/DTD/document-info%22;public=%22-//KDE//DTD%20document-info%201.1//EN%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1311,11 +1311,11 @@ DATA 0
                                                                   dcterms:extent "12396"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (12.11 KiB)"@en.
-<ni:///mh;1QEQxZ4b8azuq7YFstW22QT3IQ?ct=application/x.ns.org.calligra.www.http.DTD.krita.DOC+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.calligra.www.http.dtd.krita.doc+xml>,
-                                                                                                                        <urn:publicid:-:KDE:DTD+krita+2.0:EN>;
-                                                                                                  a schema:MediaObject;
-                                                                                                  skos:prefLabel "DOC object"@en.
-<ni:///mh;1QEQxZ4b8azuq7YFstW22QT3IQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQxZ4b8azuq7YFstW22QT3IQ?ct=application/x.ns.org.calligra.www.http.DTD.krita.DOC+xml>;
+<ni:///mh;1QEQxZ4b8azuq7YFstW22QT3IQ?ct=application/prs.implied-document+xml;root=DOC;ns=%22http://www.calligra.org/DTD/krita%22;public=%22-//KDE//DTD%20krita%202.0//EN%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=DOC;ns=%22http://www.calligra.org/DTD/krita%22;public=%22-//KDE//DTD%20krita%202.0//EN%22>,
+                                                                                                                                                                                                   <urn:publicid:-:KDE:DTD+krita+2.0:EN>;
+                                                                                                                                                                             a schema:MediaObject;
+                                                                                                                                                                             skos:prefLabel "DOC object"@en.
+<ni:///mh;1QEQxZ4b8azuq7YFstW22QT3IQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQxZ4b8azuq7YFstW22QT3IQ?ct=application/prs.implied-document+xml;root=DOC;ns=%22http://www.calligra.org/DTD/krita%22;public=%22-//KDE//DTD%20krita%202.0//EN%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,

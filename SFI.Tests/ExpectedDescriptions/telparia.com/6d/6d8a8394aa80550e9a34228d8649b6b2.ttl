@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQ52yQSPLrvhGnPvMtFHY5DQ?ct=application/octet-stream>.
+@base <x.blank:5e5dbd12-0c10-42cd-a3fe-4289aef0f7a7>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -1124,11 +1124,11 @@ _:n1 at:pathObject <file:///Peggy.kra>;
                                                                   dcterms:extent "87309"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (85.26 KiB)"@en.
-<ni:///mh;1QEQcPEc89wE1_1tI8Qfz9dcbQ?ct=application/x.ns.org.calligra.www.http.DTD.document-info.document-info+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.calligra.www.http.dtd.document-info.document-info+xml>,
-                                                                                                                                          <urn:publicid:-:KDE:DTD+document-info+1.1:EN>;
-                                                                                                                    a schema:MediaObject;
-                                                                                                                    skos:prefLabel "DOCUMENT-INFO object"@en.
-<ni:///mh;1QEQcPEc89wE1_1tI8Qfz9dcbQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQcPEc89wE1_1tI8Qfz9dcbQ?ct=application/x.ns.org.calligra.www.http.DTD.document-info.document-info+xml>;
+<ni:///mh;1QEQcPEc89wE1_1tI8Qfz9dcbQ?ct=application/prs.implied-document+xml;root=document-info;ns=%22http://www.calligra.org/DTD/document-info%22;public=%22-//KDE//DTD%20document-info%201.1//EN%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=document-info;ns=%22http://www.calligra.org/DTD/document-info%22;public=%22-//KDE//DTD%20document-info%201.1//EN%22>,
+                                                                                                                                                                                                                             <urn:publicid:-:KDE:DTD+document-info+1.1:EN>;
+                                                                                                                                                                                                       a schema:MediaObject;
+                                                                                                                                                                                                       skos:prefLabel "DOCUMENT-INFO object"@en.
+<ni:///mh;1QEQcPEc89wE1_1tI8Qfz9dcbQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQcPEc89wE1_1tI8Qfz9dcbQ?ct=application/prs.implied-document+xml;root=document-info;ns=%22http://www.calligra.org/DTD/document-info%22;public=%22-//KDE//DTD%20document-info%201.1//EN%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1172,11 +1172,11 @@ _:n1 at:pathObject <file:///Peggy.kra>;
                                                                   dcterms:extent "43521"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (42.5 KiB)"@en.
-<ni:///mh;1QEQoO1r3Q8RWtbhU88T3rCATw?ct=application/x.ns.org.calligra.www.http.DTD.krita.DOC+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.calligra.www.http.dtd.krita.doc+xml>,
-                                                                                                                        <urn:publicid:-:KDE:DTD+krita+2.0:EN>;
-                                                                                                  a schema:MediaObject;
-                                                                                                  skos:prefLabel "DOC object"@en.
-<ni:///mh;1QEQoO1r3Q8RWtbhU88T3rCATw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQoO1r3Q8RWtbhU88T3rCATw?ct=application/x.ns.org.calligra.www.http.DTD.krita.DOC+xml>;
+<ni:///mh;1QEQoO1r3Q8RWtbhU88T3rCATw?ct=application/prs.implied-document+xml;root=DOC;ns=%22http://www.calligra.org/DTD/krita%22;public=%22-//KDE//DTD%20krita%202.0//EN%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=DOC;ns=%22http://www.calligra.org/DTD/krita%22;public=%22-//KDE//DTD%20krita%202.0//EN%22>,
+                                                                                                                                                                                                   <urn:publicid:-:KDE:DTD+krita+2.0:EN>;
+                                                                                                                                                                             a schema:MediaObject;
+                                                                                                                                                                             skos:prefLabel "DOC object"@en.
+<ni:///mh;1QEQoO1r3Q8RWtbhU88T3rCATw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQoO1r3Q8RWtbhU88T3rCATw?ct=application/prs.implied-document+xml;root=DOC;ns=%22http://www.calligra.org/DTD/krita%22;public=%22-//KDE//DTD%20krita%202.0//EN%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1240,8 +1240,8 @@ _:n1 at:pathObject <file:///Peggy.kra>;
                                                    nfo:verticalResolution 143.9926;
                                                    nfo:width 210 ;
                                                    a schema:MediaObject,
-                                                     schema:ImageObject,
-                                                     nfo:Image;
+                                                     nfo:Image,
+                                                     schema:ImageObject;
                                                    skos:prefLabel "PNG object (210×225, 8-bit)"@en,
                                                                   "PNG object (210×225)"@en,
                                                                   "PNG object (42.26 KiB)"@en.

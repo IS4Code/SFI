@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQFSCF0oepqfntzyiZsaHGng?ct=application/octet-stream>.
+@base <x.blank:8bc7ee4f-b6bd-4f3c-8d65-0e0eb8c183c9>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -264,12 +264,12 @@ _:n1 at:pathObject <file:///BatMemv1.31c.exe>;
                                                                   skos:prefLabel "binary data (304 B)"@en.
 <ni:///mh;1QEQXckZvw2LL5s14-hrjHNa8A?ct=application/octet-stream> at:digest <urn:md5:5DC919BF0D8B2F9B35E3E86B8C735AF0>;
                                                                   dcterms:extent "304"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQXckZvw2LL5s14-hrjHNa8A?ct=application/x.sig.ilenamea>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQXckZvw2LL5s14-hrjHNa8A?ct=application/prs.implied-structure;signature=ileNameA>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (304 B)"@en.
-<ni:///mh;1QEQXckZvw2LL5s14-hrjHNa8A?ct=application/x.sig.ilenamea> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.ilenamea>;
-                                                                    a schema:MediaObject;
-                                                                    skos:prefLabel "ILENAMEA object (308 B)"@en.
+<ni:///mh;1QEQXckZvw2LL5s14-hrjHNa8A?ct=application/prs.implied-structure;signature=ileNameA> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=ileNameA>;
+                                                                                              a schema:MediaObject;
+                                                                                              skos:prefLabel "ILENAMEA object (308 B)"@en.
 <ni:///mh;1QEQYyjOgly9jzJndMXArRMjdg?ct=application/octet-stream> at:digest <urn:md5:6328CE825CBD8F326774C5C0AD132376>;
                                                                   dcterms:extent "318"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQYyjOgly9jzJndMXArRMjdg?ct=image/bmp>;

@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQAi1P3kONUUmWPS-ByLIGSw?ct=application/x.sig.erection>.
+@base <x.blank:950455fa-faba-4b33-85a2-a8ffed95f612>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -21,12 +21,12 @@ _:n1 at:pathObject <file:///mod.erection>;
 <file:///mod.erection> at:extensionObject <https://w3id.org/uri4uri/suffix/erection>.
 <ni:///mh;1QEQAi1P3kONUUmWPS-ByLIGSw?ct=application/octet-stream> at:digest <urn:md5:022D4FDE438D5149963D2F81C8B2064B>;
                                                                   dcterms:extent "39040"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQAi1P3kONUUmWPS-ByLIGSw?ct=application/x.sig.erection>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQAi1P3kONUUmWPS-ByLIGSw?ct=application/prs.implied-structure;signature=erection>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (38.13 KiB)"@en.
-<ni:///mh;1QEQAi1P3kONUUmWPS-ByLIGSw?ct=application/x.sig.erection> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.erection>;
-                                                                    a schema:MediaObject;
-                                                                    skos:prefLabel "ERECTION object (38.13 KiB)"@en.
+<ni:///mh;1QEQAi1P3kONUUmWPS-ByLIGSw?ct=application/prs.implied-structure;signature=erection> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=erection>;
+                                                                                              a schema:MediaObject;
+                                                                                              skos:prefLabel "ERECTION object (38.13 KiB)"@en.
 <urn:md5:022D4FDE438D5149963D2F81C8B2064B> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "Ai1P3kONUUmWPS+ByLIGSw=="^^xsd:base64Binary.

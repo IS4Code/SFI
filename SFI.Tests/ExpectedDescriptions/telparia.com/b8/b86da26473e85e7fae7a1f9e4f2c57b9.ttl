@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQuk0kytD4CWAn1HTyQ4rAmw?ct=application/octet-stream>.
+@base <x.blank:1cd2d2c6-39d7-49e1-8e63-582bec743805>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -23,13 +23,13 @@ _:n1 at:pathObject <file:///TEAMNEWS.WP>;
                                                                                                                                 skos:prefLabel "binary data (65 B)"@en;
                                                                                                                                 cnt:bytes "AQD+/wMKAAD/////AhMCAAAAAADAAAAAAAAARhAAAABNaWNyb3NvZnQgV29ya3MADQAAAE1TV29ya3NXUERvYwA="^^xsd:base64Binary.
 <data:application/octet-stream;base64,TkQAAAEAAAAAAAAAAgA=> dcterms:extent "14"^^dt:byte;
-                                                            dcterms:hasFormat <data:application/x.sig.nd;base64,TkQAAAEAAAAAAAAAAgA=>;
+                                                            dcterms:hasFormat <data:application/prs.implied-structure;signature=ND;base64,TkQAAAEAAAAAAAAAAgA=>;
                                                             a cnt:ContentAsBase64;
                                                             skos:prefLabel "binary data (14 B)"@en;
                                                             cnt:bytes "TkQAAAEAAAAAAAAAAgA="^^xsd:base64Binary.
-<data:application/x.sig.nd;base64,TkQAAAEAAAAAAAAAAgA=> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.nd>;
-                                                        a schema:MediaObject;
-                                                        skos:prefLabel "ND object (14 B)"@en.
+<data:application/prs.implied-structure;signature=ND;base64,TkQAAAEAAAAAAAAAAgA=> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=ND>;
+                                                                                  a schema:MediaObject;
+                                                                                  skos:prefLabel "ND object (14 B)"@en.
 <file:///TEAMNEWS.WP> at:extensionObject <https://w3id.org/uri4uri/suffix/wp>.
 <ni:///mh;1QEQOVhyRkP-jVTWbglESZ2NwQ?ct=application/octet-stream> at:digest <urn:md5:3958724643FE8D54D66E0944499D8DC1>;
                                                                   dcterms:extent "3272"^^dt:byte;

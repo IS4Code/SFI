@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQkYtyxzlFYzoZvaoyUcQtSQ?ct=application/x.sig.pk>.
+@base <x.blank:2e8644c0-33b5-4d32-a944-a6ed02246db0>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -21,12 +21,12 @@ _:n1 at:pathObject <file:///XOR110.ZIP>;
 <file:///XOR110.ZIP> at:extensionObject <https://w3id.org/uri4uri/suffix/zip>.
 <ni:///mh;1QEQkYtyxzlFYzoZvaoyUcQtSQ?ct=application/octet-stream> at:digest <urn:md5:918B72C73945633A19BDAA3251C42D49>;
                                                                   dcterms:extent "262082"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQkYtyxzlFYzoZvaoyUcQtSQ?ct=application/x.sig.pk>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQkYtyxzlFYzoZvaoyUcQtSQ?ct=application/prs.implied-structure;signature=PK>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (255.94 KiB)"@en.
-<ni:///mh;1QEQkYtyxzlFYzoZvaoyUcQtSQ?ct=application/x.sig.pk> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.pk>;
-                                                              a schema:MediaObject;
-                                                              skos:prefLabel "PK object (255.94 KiB)"@en.
+<ni:///mh;1QEQkYtyxzlFYzoZvaoyUcQtSQ?ct=application/prs.implied-structure;signature=PK> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=PK>;
+                                                                                        a schema:MediaObject;
+                                                                                        skos:prefLabel "PK object (255.94 KiB)"@en.
 <urn:md5:918B72C73945633A19BDAA3251C42D49> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "kYtyxzlFYzoZvaoyUcQtSQ=="^^xsd:base64Binary.

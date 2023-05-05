@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQAfLCBCbKvjdbgDG4kfG70w?ct=application/x.sig.er>.
+@base <x.blank:c61d54bf-ddc2-47a9-9e35-d17cf9617943>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -21,12 +21,12 @@ _:n1 at:pathObject <file:///Graphics%20and%20Sound%20Programming%20Techniques%20
 <file:///Graphics%20and%20Sound%20Programming%20Techniques%20for%20the%20Mac.iso> at:extensionObject <https://w3id.org/uri4uri/suffix/iso>.
 <ni:///mh;1QEQAfLCBCbKvjdbgDG4kfG70w?ct=application/octet-stream> at:digest <urn:md5:01F2C20426CABE375B8031B891F1BBD3>;
                                                                   dcterms:extent "68544512"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQAfLCBCbKvjdbgDG4kfG70w?ct=application/x.sig.er>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQAfLCBCbKvjdbgDG4kfG70w?ct=application/prs.implied-structure;signature=ER>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (65.37 MiB)"@en.
-<ni:///mh;1QEQAfLCBCbKvjdbgDG4kfG70w?ct=application/x.sig.er> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.er>;
-                                                              a schema:MediaObject;
-                                                              skos:prefLabel "ER object (65.37 MiB)"@en.
+<ni:///mh;1QEQAfLCBCbKvjdbgDG4kfG70w?ct=application/prs.implied-structure;signature=ER> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=ER>;
+                                                                                        a schema:MediaObject;
+                                                                                        skos:prefLabel "ER object (65.37 MiB)"@en.
 <urn:md5:01F2C20426CABE375B8031B891F1BBD3> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "AfLCBCbKvjdbgDG4kfG70w=="^^xsd:base64Binary.

@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQH86XvGQSveNDjCyna1rCTQ?ct=application/x.exec.sh>.
+@base <x.blank:8b1280de-11e4-4d0d-a21c-f814a2f1f62f>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -19,12 +19,12 @@ _:n1 at:pathObject <file:///CONF.SH>;
      nfo:fileSize 15563 ;
      a nfo:FileDataObject.
 <file:///CONF.SH> at:extensionObject <https://w3id.org/uri4uri/suffix/sh>.
-<ni:///mh;1QEQH86XvGQSveNDjCyna1rCTQ?ct=application/x.exec.sh> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.exec.sh>;
-                                                               a schema:MediaObject;
-                                                               skos:prefLabel "SH object (15.2 KiB)"@en.
+<ni:///mh;1QEQH86XvGQSveNDjCyna1rCTQ?ct=application/prs.implied-executable;interpreter=sh> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-executable;interpreter=sh>;
+                                                                                           a schema:MediaObject;
+                                                                                           skos:prefLabel "SH object (15.2 KiB)"@en.
 <ni:///mh;1QEQH86XvGQSveNDjCyna1rCTQ?ct=text/plain> at:digest <urn:md5:1FCE97BC6412BDE3438C2CA76B5AC24D>;
                                                     dcterms:extent "15563"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQH86XvGQSveNDjCyna1rCTQ?ct=application/x.exec.sh>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQH86XvGQSveNDjCyna1rCTQ?ct=application/prs.implied-executable;interpreter=sh>;
                                                     nie:hasPart <ni:///mh;1QEQH86XvGQSveNDjCyna1rCTQ?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (15.2 KiB)"@en;

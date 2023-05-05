@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQ9_Az332lEffS27JkI0__cw?ct=application/x.sig.wlm>.
+@base <x.blank:4486a529-1e5a-49a6-8457-7b653be48c07>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -21,12 +21,12 @@ _:n1 at:pathObject <file:///FLAG.CDR>;
 <file:///FLAG.CDR> at:extensionObject <https://w3id.org/uri4uri/suffix/cdr>.
 <ni:///mh;1QEQ9_Az332lEffS27JkI0__cw?ct=application/octet-stream> at:digest <urn:md5:F7F033DF7DA511F7D2DBB264234FFF73>;
                                                                   dcterms:extent "8534"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQ9_Az332lEffS27JkI0__cw?ct=application/x.sig.wlm>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ9_Az332lEffS27JkI0__cw?ct=application/prs.implied-structure;signature=WLm>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (8.33 KiB)"@en.
-<ni:///mh;1QEQ9_Az332lEffS27JkI0__cw?ct=application/x.sig.wlm> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.wlm>;
-                                                               a schema:MediaObject;
-                                                               skos:prefLabel "WLM object (8.33 KiB)"@en.
+<ni:///mh;1QEQ9_Az332lEffS27JkI0__cw?ct=application/prs.implied-structure;signature=WLm> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=WLm>;
+                                                                                         a schema:MediaObject;
+                                                                                         skos:prefLabel "WLM object (8.33 KiB)"@en.
 <urn:md5:F7F033DF7DA511F7D2DBB264234FFF73> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "9/Az332lEffS27JkI0//cw=="^^xsd:base64Binary.

@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQafGKZst3aCaW77cZqY2jcQ?ct=application/octet-stream>.
+@base <x.blank:51e4431d-72fa-42af-913e-d6c51fe54c05>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -30,12 +30,12 @@ _:n1 at:pathObject <file:///BJBBS.PHN>;
 <file:///phonebook/version> at:pathObject <file:///version>.
 <ni:///mh;1QEQHu-AJ6YEGiLdRpn1-IH5xA?ct=application/octet-stream> at:digest <urn:md5:1EEF8027A6041A22DD4699F5F881F9C4>;
                                                                   dcterms:extent "6608"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQHu-AJ6YEGiLdRpn1-IH5xA?ct=application/x.sig.il>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQHu-AJ6YEGiLdRpn1-IH5xA?ct=application/prs.implied-structure;signature=IL>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (6.45 KiB)"@en.
-<ni:///mh;1QEQHu-AJ6YEGiLdRpn1-IH5xA?ct=application/x.sig.il> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.il>;
-                                                              a schema:MediaObject;
-                                                              skos:prefLabel "IL object (6.45 KiB)"@en.
+<ni:///mh;1QEQHu-AJ6YEGiLdRpn1-IH5xA?ct=application/prs.implied-structure;signature=IL> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=IL>;
+                                                                                        a schema:MediaObject;
+                                                                                        skos:prefLabel "IL object (6.45 KiB)"@en.
 <ni:///mh;1QEQPtdqx_gkFKguWR5DLznF7g?ct=application/octet-stream> at:digest <urn:md5:3ED76AC7F82414A82E591E432F39C5EE>;
                                                                   dcterms:extent "5752"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -113,12 +113,12 @@ _:n1 at:pathObject <file:///BJBBS.PHN>;
                                                                   skos:prefLabel "binary data (1.08 KiB)"@en.
 <ni:///mh;1QEQz-CWXEpStqJYzY6RajMCeA?ct=application/octet-stream> at:digest <urn:md5:CFE0965C4A52B6A258CD8E916A330278>;
                                                                   dcterms:extent "25808"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQz-CWXEpStqJYzY6RajMCeA?ct=application/x.sig.il>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQz-CWXEpStqJYzY6RajMCeA?ct=application/prs.implied-structure;signature=IL>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (25.2 KiB)"@en.
-<ni:///mh;1QEQz-CWXEpStqJYzY6RajMCeA?ct=application/x.sig.il> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.il>;
-                                                              a schema:MediaObject;
-                                                              skos:prefLabel "IL object (25.2 KiB)"@en.
+<ni:///mh;1QEQz-CWXEpStqJYzY6RajMCeA?ct=application/prs.implied-structure;signature=IL> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=IL>;
+                                                                                        a schema:MediaObject;
+                                                                                        skos:prefLabel "IL object (25.2 KiB)"@en.
 <urn:md5:1EEF8027A6041A22DD4699F5F881F9C4> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "Hu+AJ6YEGiLdRpn1+IH5xA=="^^xsd:base64Binary.

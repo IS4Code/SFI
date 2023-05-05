@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQDfW3XauZa0KT9eQL56uFYw?ct=application/octet-stream>.
+@base <x.blank:c53bdb8d-5b2b-4e67-a97b-91fd6edeac21>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -212,10 +212,10 @@ _:n1 at:pathObject <file:///example.pptm>;
 <file:///theme/theme2.xml> at:pathObject <file:///theme2.xml>.
 <file:///theme1.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///theme2.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
-<ni:///mh;1QEQ-4P_NhF0XMeOSXxw-2uEow?ct=application/x.ns.org.openxmlformats.schemas.http.drawingml.2006.main.theme+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.drawingml.2006.main.theme+xml>;
-                                                                                                                        a schema:MediaObject;
-                                                                                                                        skos:prefLabel "THEME object"@en.
-<ni:///mh;1QEQ-4P_NhF0XMeOSXxw-2uEow?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ-4P_NhF0XMeOSXxw-2uEow?ct=application/x.ns.org.openxmlformats.schemas.http.drawingml.2006.main.theme+xml>;
+<ni:///mh;1QEQ-4P_NhF0XMeOSXxw-2uEow?ct=application/prs.implied-document+xml;root=theme;ns=%22http://schemas.openxmlformats.org/drawingml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=theme;ns=%22http://schemas.openxmlformats.org/drawingml/2006/main%22>;
+                                                                                                                                                        a schema:MediaObject;
+                                                                                                                                                        skos:prefLabel "THEME object"@en.
+<ni:///mh;1QEQ-4P_NhF0XMeOSXxw-2uEow?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ-4P_NhF0XMeOSXxw-2uEow?ct=application/prs.implied-document+xml;root=theme;ns=%22http://schemas.openxmlformats.org/drawingml/2006/main%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -239,10 +239,10 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                     skos:prefLabel "text (6.27 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQ-4P_NhF0XMeOSXxw-2uEow?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
-<ni:///mh;1QEQ2eQWPkF2Fmg7XIu_y_1a8A?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.Relationships+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.relationships+xml>;
-                                                                                                                                       a schema:MediaObject;
-                                                                                                                                       skos:prefLabel "RELATIONSHIPS object"@en.
-<ni:///mh;1QEQ2eQWPkF2Fmg7XIu_y_1a8A?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ2eQWPkF2Fmg7XIu_y_1a8A?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.Relationships+xml>;
+<ni:///mh;1QEQ2eQWPkF2Fmg7XIu_y_1a8A?ct=application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22>;
+                                                                                                                                                                       a schema:MediaObject;
+                                                                                                                                                                       skos:prefLabel "RELATIONSHIPS object"@en.
+<ni:///mh;1QEQ2eQWPkF2Fmg7XIu_y_1a8A?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ2eQWPkF2Fmg7XIu_y_1a8A?ct=application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -264,10 +264,10 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                     skos:prefLabel "text (2.08 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQ2eQWPkF2Fmg7XIu_y_1a8A?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?>""".
-<ni:///mh;1QEQ4CqteTU-4lGHXx1SsHwARw?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sld+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sld+xml>;
-                                                                                                                           a schema:MediaObject;
-                                                                                                                           skos:prefLabel "SLD object"@en.
-<ni:///mh;1QEQ4CqteTU-4lGHXx1SsHwARw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ4CqteTU-4lGHXx1SsHwARw?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sld+xml>;
+<ni:///mh;1QEQ4CqteTU-4lGHXx1SsHwARw?ct=application/prs.implied-document+xml;root=sld;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=sld;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
+                                                                                                                                                           a schema:MediaObject;
+                                                                                                                                                           skos:prefLabel "SLD object"@en.
+<ni:///mh;1QEQ4CqteTU-4lGHXx1SsHwARw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ4CqteTU-4lGHXx1SsHwARw?ct=application/prs.implied-document+xml;root=sld;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -291,10 +291,10 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                     skos:prefLabel "text (7.28 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQ4CqteTU-4lGHXx1SsHwARw?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
-<ni:///mh;1QEQ6GZpM0Ycddb3g96HeajxAw?ct=application/x.ns.org.openxmlformats.schemas.http.drawingml.2006.main.theme+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.drawingml.2006.main.theme+xml>;
-                                                                                                                        a schema:MediaObject;
-                                                                                                                        skos:prefLabel "THEME object"@en.
-<ni:///mh;1QEQ6GZpM0Ycddb3g96HeajxAw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ6GZpM0Ycddb3g96HeajxAw?ct=application/x.ns.org.openxmlformats.schemas.http.drawingml.2006.main.theme+xml>;
+<ni:///mh;1QEQ6GZpM0Ycddb3g96HeajxAw?ct=application/prs.implied-document+xml;root=theme;ns=%22http://schemas.openxmlformats.org/drawingml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=theme;ns=%22http://schemas.openxmlformats.org/drawingml/2006/main%22>;
+                                                                                                                                                        a schema:MediaObject;
+                                                                                                                                                        skos:prefLabel "THEME object"@en.
+<ni:///mh;1QEQ6GZpM0Ycddb3g96HeajxAw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ6GZpM0Ycddb3g96HeajxAw?ct=application/prs.implied-document+xml;root=theme;ns=%22http://schemas.openxmlformats.org/drawingml/2006/main%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -318,10 +318,10 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                     skos:prefLabel "text (6.27 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQ6GZpM0Ycddb3g96HeajxAw?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
-<ni:///mh;1QEQ7HXQ4SrIjQkCJlojhbuKwg?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldLayout+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldlayout+xml>;
-                                                                                                                                 a schema:MediaObject;
-                                                                                                                                 skos:prefLabel "SLDLAYOUT object"@en.
-<ni:///mh;1QEQ7HXQ4SrIjQkCJlojhbuKwg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ7HXQ4SrIjQkCJlojhbuKwg?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldLayout+xml>;
+<ni:///mh;1QEQ7HXQ4SrIjQkCJlojhbuKwg?ct=application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
+                                                                                                                                                                 a schema:MediaObject;
+                                                                                                                                                                 skos:prefLabel "SLDLAYOUT object"@en.
+<ni:///mh;1QEQ7HXQ4SrIjQkCJlojhbuKwg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ7HXQ4SrIjQkCJlojhbuKwg?ct=application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -973,10 +973,10 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                                                a nfo:FileDataObject,
                                                                                  nfo:ArchiveItem;
                                                                                skos:prefLabel "/ppt/theme/theme2.xml".
-<ni:///mh;1QEQDoW_ijt_DB4jop7gfSqcoQ?ct=application/x.ns.org.openxmlformats.schemas.http.officeDocument.2006.custom-properties.Properties+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.officedocument.2006.custom-properties.properties+xml>;
-                                                                                                                                               a schema:MediaObject;
-                                                                                                                                               skos:prefLabel "PROPERTIES object"@en.
-<ni:///mh;1QEQDoW_ijt_DB4jop7gfSqcoQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQDoW_ijt_DB4jop7gfSqcoQ?ct=application/x.ns.org.openxmlformats.schemas.http.officeDocument.2006.custom-properties.Properties+xml>;
+<ni:///mh;1QEQDoW_ijt_DB4jop7gfSqcoQ?ct=application/prs.implied-document+xml;root=Properties;ns=%22http://schemas.openxmlformats.org/officeDocument/2006/custom-properties%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=Properties;ns=%22http://schemas.openxmlformats.org/officeDocument/2006/custom-properties%22>;
+                                                                                                                                                                               a schema:MediaObject;
+                                                                                                                                                                               skos:prefLabel "PROPERTIES object"@en.
+<ni:///mh;1QEQDoW_ijt_DB4jop7gfSqcoQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQDoW_ijt_DB4jop7gfSqcoQ?ct=application/prs.implied-document+xml;root=Properties;ns=%22http://schemas.openxmlformats.org/officeDocument/2006/custom-properties%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1016,10 +1016,10 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                    skos:prefLabel "PNG object (88×31)"@en,
                                                                   "PNG object (88×31, 8-bit)"@en,
                                                                   "PNG object (4.96 KiB)"@en.
-<ni:///mh;1QEQIcn4LDfpniSbwinI3IGmyQ?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldLayout+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldlayout+xml>;
-                                                                                                                                 a schema:MediaObject;
-                                                                                                                                 skos:prefLabel "SLDLAYOUT object"@en.
-<ni:///mh;1QEQIcn4LDfpniSbwinI3IGmyQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQIcn4LDfpniSbwinI3IGmyQ?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldLayout+xml>;
+<ni:///mh;1QEQIcn4LDfpniSbwinI3IGmyQ?ct=application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
+                                                                                                                                                                 a schema:MediaObject;
+                                                                                                                                                                 skos:prefLabel "SLDLAYOUT object"@en.
+<ni:///mh;1QEQIcn4LDfpniSbwinI3IGmyQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQIcn4LDfpniSbwinI3IGmyQ?ct=application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1043,10 +1043,10 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                     skos:prefLabel "text (2.55 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQIcn4LDfpniSbwinI3IGmyQ?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
-<ni:///mh;1QEQJPegTTEhLSN8ePcsniTzKA?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.Relationships+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.relationships+xml>;
-                                                                                                                                       a schema:MediaObject;
-                                                                                                                                       skos:prefLabel "RELATIONSHIPS object"@en.
-<ni:///mh;1QEQJPegTTEhLSN8ePcsniTzKA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQJPegTTEhLSN8ePcsniTzKA?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.Relationships+xml>;
+<ni:///mh;1QEQJPegTTEhLSN8ePcsniTzKA?ct=application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22>;
+                                                                                                                                                                       a schema:MediaObject;
+                                                                                                                                                                       skos:prefLabel "RELATIONSHIPS object"@en.
+<ni:///mh;1QEQJPegTTEhLSN8ePcsniTzKA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQJPegTTEhLSN8ePcsniTzKA?ct=application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1068,10 +1068,10 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                     skos:prefLabel "text (723 B)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQJPegTTEhLSN8ePcsniTzKA?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?>""".
-<ni:///mh;1QEQLTqWUM68emx0-ol1iHKRrQ?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.presentation+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.presentation+xml>;
-                                                                                                                                    a schema:MediaObject;
-                                                                                                                                    skos:prefLabel "PRESENTATION object"@en.
-<ni:///mh;1QEQLTqWUM68emx0-ol1iHKRrQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQLTqWUM68emx0-ol1iHKRrQ?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.presentation+xml>;
+<ni:///mh;1QEQLTqWUM68emx0-ol1iHKRrQ?ct=application/prs.implied-document+xml;root=presentation;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=presentation;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
+                                                                                                                                                                    a schema:MediaObject;
+                                                                                                                                                                    skos:prefLabel "PRESENTATION object"@en.
+<ni:///mh;1QEQLTqWUM68emx0-ol1iHKRrQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQLTqWUM68emx0-ol1iHKRrQ?ct=application/prs.implied-document+xml;root=presentation;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1095,10 +1095,10 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                     skos:prefLabel "text (824 B)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQLTqWUM68emx0-ol1iHKRrQ?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
-<ni:///mh;1QEQLuL1RpODfXBgxLZstma-Kw?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldLayout+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldlayout+xml>;
-                                                                                                                                 a schema:MediaObject;
-                                                                                                                                 skos:prefLabel "SLDLAYOUT object"@en.
-<ni:///mh;1QEQLuL1RpODfXBgxLZstma-Kw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQLuL1RpODfXBgxLZstma-Kw?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldLayout+xml>;
+<ni:///mh;1QEQLuL1RpODfXBgxLZstma-Kw?ct=application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
+                                                                                                                                                                 a schema:MediaObject;
+                                                                                                                                                                 skos:prefLabel "SLDLAYOUT object"@en.
+<ni:///mh;1QEQLuL1RpODfXBgxLZstma-Kw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQLuL1RpODfXBgxLZstma-Kw?ct=application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1122,10 +1122,10 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                     skos:prefLabel "text (3.11 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQLuL1RpODfXBgxLZstma-Kw?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
-<ni:///mh;1QEQP5tuIlaDnn9qrpdxReIxow?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.Relationships+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.relationships+xml>;
-                                                                                                                                       a schema:MediaObject;
-                                                                                                                                       skos:prefLabel "RELATIONSHIPS object"@en.
-<ni:///mh;1QEQP5tuIlaDnn9qrpdxReIxow?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQP5tuIlaDnn9qrpdxReIxow?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.Relationships+xml>;
+<ni:///mh;1QEQP5tuIlaDnn9qrpdxReIxow?ct=application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22>;
+                                                                                                                                                                       a schema:MediaObject;
+                                                                                                                                                                       skos:prefLabel "RELATIONSHIPS object"@en.
+<ni:///mh;1QEQP5tuIlaDnn9qrpdxReIxow?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQP5tuIlaDnn9qrpdxReIxow?ct=application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1147,10 +1147,10 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                     skos:prefLabel "text (430 B)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQP5tuIlaDnn9qrpdxReIxow?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?>""".
-<ni:///mh;1QEQQk4r5F66Fp_zxdtzBLIENg?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.notes+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.notes+xml>;
-                                                                                                                             a schema:MediaObject;
-                                                                                                                             skos:prefLabel "NOTES object"@en.
-<ni:///mh;1QEQQk4r5F66Fp_zxdtzBLIENg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQQk4r5F66Fp_zxdtzBLIENg?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.notes+xml>;
+<ni:///mh;1QEQQk4r5F66Fp_zxdtzBLIENg?ct=application/prs.implied-document+xml;root=notes;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=notes;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
+                                                                                                                                                             a schema:MediaObject;
+                                                                                                                                                             skos:prefLabel "NOTES object"@en.
+<ni:///mh;1QEQQk4r5F66Fp_zxdtzBLIENg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQQk4r5F66Fp_zxdtzBLIENg?ct=application/prs.implied-document+xml;root=notes;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1174,10 +1174,10 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                     skos:prefLabel "text (2.14 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQQk4r5F66Fp_zxdtzBLIENg?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
-<ni:///mh;1QEQQocfjHqfOdes-un5xeQsYw?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.content-types.Types+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.package.2006.content-types.types+xml>;
-                                                                                                                               a schema:MediaObject;
-                                                                                                                               skos:prefLabel "TYPES object"@en.
-<ni:///mh;1QEQQocfjHqfOdes-un5xeQsYw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQQocfjHqfOdes-un5xeQsYw?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.content-types.Types+xml>;
+<ni:///mh;1QEQQocfjHqfOdes-un5xeQsYw?ct=application/prs.implied-document+xml;root=Types;ns=%22http://schemas.openxmlformats.org/package/2006/content-types%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=Types;ns=%22http://schemas.openxmlformats.org/package/2006/content-types%22>;
+                                                                                                                                                               a schema:MediaObject;
+                                                                                                                                                               skos:prefLabel "TYPES object"@en.
+<ni:///mh;1QEQQocfjHqfOdes-un5xeQsYw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQQocfjHqfOdes-un5xeQsYw?ct=application/prs.implied-document+xml;root=Types;ns=%22http://schemas.openxmlformats.org/package/2006/content-types%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1199,10 +1199,10 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                     skos:prefLabel "text (6.25 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQQocfjHqfOdes-un5xeQsYw?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?>""".
-<ni:///mh;1QEQQsGnidQGDPUAuFqNvMJ2gg?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldLayout+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldlayout+xml>;
-                                                                                                                                 a schema:MediaObject;
-                                                                                                                                 skos:prefLabel "SLDLAYOUT object"@en.
-<ni:///mh;1QEQQsGnidQGDPUAuFqNvMJ2gg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQQsGnidQGDPUAuFqNvMJ2gg?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldLayout+xml>;
+<ni:///mh;1QEQQsGnidQGDPUAuFqNvMJ2gg?ct=application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
+                                                                                                                                                                 a schema:MediaObject;
+                                                                                                                                                                 skos:prefLabel "SLDLAYOUT object"@en.
+<ni:///mh;1QEQQsGnidQGDPUAuFqNvMJ2gg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQQsGnidQGDPUAuFqNvMJ2gg?ct=application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1240,13 +1240,13 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                    a schema:MediaObject,
                                                      nfo:Image,
                                                      schema:ImageObject;
-                                                   skos:prefLabel "PNG object (213×215, 8-bit)"@en,
-                                                                  "PNG object (213×215)"@en,
+                                                   skos:prefLabel "PNG object (213×215)"@en,
+                                                                  "PNG object (213×215, 8-bit)"@en,
                                                                   "PNG object (9.66 KiB)"@en.
-<ni:///mh;1QEQUiNsczXoasQVyyeLmEGVlA?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.metadata.core-properties.coreProperties+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.package.2006.metadata.core-properties.coreproperties+xml>;
-                                                                                                                                                   a schema:MediaObject;
-                                                                                                                                                   skos:prefLabel "COREPROPERTIES object"@en.
-<ni:///mh;1QEQUiNsczXoasQVyyeLmEGVlA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQUiNsczXoasQVyyeLmEGVlA?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.metadata.core-properties.coreProperties+xml>;
+<ni:///mh;1QEQUiNsczXoasQVyyeLmEGVlA?ct=application/prs.implied-document+xml;root=coreProperties;ns=%22http://schemas.openxmlformats.org/package/2006/metadata/core-properties%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=coreProperties;ns=%22http://schemas.openxmlformats.org/package/2006/metadata/core-properties%22>;
+                                                                                                                                                                                   a schema:MediaObject;
+                                                                                                                                                                                   skos:prefLabel "COREPROPERTIES object"@en.
+<ni:///mh;1QEQUiNsczXoasQVyyeLmEGVlA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQUiNsczXoasQVyyeLmEGVlA?ct=application/prs.implied-document+xml;root=coreProperties;ns=%22http://schemas.openxmlformats.org/package/2006/metadata/core-properties%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1270,10 +1270,10 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                     skos:prefLabel "text (763 B)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQUiNsczXoasQVyyeLmEGVlA?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
-<ni:///mh;1QEQUpfosazNFh-ONnN73lM2tw?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.Relationships+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.relationships+xml>;
-                                                                                                                                       a schema:MediaObject;
-                                                                                                                                       skos:prefLabel "RELATIONSHIPS object"@en.
-<ni:///mh;1QEQUpfosazNFh-ONnN73lM2tw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQUpfosazNFh-ONnN73lM2tw?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.Relationships+xml>;
+<ni:///mh;1QEQUpfosazNFh-ONnN73lM2tw?ct=application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22>;
+                                                                                                                                                                       a schema:MediaObject;
+                                                                                                                                                                       skos:prefLabel "RELATIONSHIPS object"@en.
+<ni:///mh;1QEQUpfosazNFh-ONnN73lM2tw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQUpfosazNFh-ONnN73lM2tw?ct=application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1295,10 +1295,10 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                     skos:prefLabel "text (840 B)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQUpfosazNFh-ONnN73lM2tw?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?>""".
-<ni:///mh;1QEQUwkC7T0IljMxSY6UqCSnzQ?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.notes+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.notes+xml>;
-                                                                                                                             a schema:MediaObject;
-                                                                                                                             skos:prefLabel "NOTES object"@en.
-<ni:///mh;1QEQUwkC7T0IljMxSY6UqCSnzQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQUwkC7T0IljMxSY6UqCSnzQ?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.notes+xml>;
+<ni:///mh;1QEQUwkC7T0IljMxSY6UqCSnzQ?ct=application/prs.implied-document+xml;root=notes;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=notes;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
+                                                                                                                                                             a schema:MediaObject;
+                                                                                                                                                             skos:prefLabel "NOTES object"@en.
+<ni:///mh;1QEQUwkC7T0IljMxSY6UqCSnzQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQUwkC7T0IljMxSY6UqCSnzQ?ct=application/prs.implied-document+xml;root=notes;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1322,10 +1322,10 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                     skos:prefLabel "text (2.14 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQUwkC7T0IljMxSY6UqCSnzQ?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
-<ni:///mh;1QEQXdtTlq8hY9JRum50yRrfEw?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldLayout+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldlayout+xml>;
-                                                                                                                                 a schema:MediaObject;
-                                                                                                                                 skos:prefLabel "SLDLAYOUT object"@en.
-<ni:///mh;1QEQXdtTlq8hY9JRum50yRrfEw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQXdtTlq8hY9JRum50yRrfEw?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldLayout+xml>;
+<ni:///mh;1QEQXdtTlq8hY9JRum50yRrfEw?ct=application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
+                                                                                                                                                                 a schema:MediaObject;
+                                                                                                                                                                 skos:prefLabel "SLDLAYOUT object"@en.
+<ni:///mh;1QEQXdtTlq8hY9JRum50yRrfEw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQXdtTlq8hY9JRum50yRrfEw?ct=application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1349,10 +1349,10 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                     skos:prefLabel "text (1.4 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQXdtTlq8hY9JRum50yRrfEw?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
-<ni:///mh;1QEQYE_l0v8Bwnai1huXJY0w0w?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.Relationships+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.relationships+xml>;
-                                                                                                                                       a schema:MediaObject;
-                                                                                                                                       skos:prefLabel "RELATIONSHIPS object"@en.
-<ni:///mh;1QEQYE_l0v8Bwnai1huXJY0w0w?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQYE_l0v8Bwnai1huXJY0w0w?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.Relationships+xml>;
+<ni:///mh;1QEQYE_l0v8Bwnai1huXJY0w0w?ct=application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22>;
+                                                                                                                                                                       a schema:MediaObject;
+                                                                                                                                                                       skos:prefLabel "RELATIONSHIPS object"@en.
+<ni:///mh;1QEQYE_l0v8Bwnai1huXJY0w0w?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQYE_l0v8Bwnai1huXJY0w0w?ct=application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1374,10 +1374,10 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                     skos:prefLabel "text (430 B)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQYE_l0v8Bwnai1huXJY0w0w?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?>""".
-<ni:///mh;1QEQZaIpPVz82ICp5NvZCj74Hw?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldLayout+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldlayout+xml>;
-                                                                                                                                 a schema:MediaObject;
-                                                                                                                                 skos:prefLabel "SLDLAYOUT object"@en.
-<ni:///mh;1QEQZaIpPVz82ICp5NvZCj74Hw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQZaIpPVz82ICp5NvZCj74Hw?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldLayout+xml>;
+<ni:///mh;1QEQZaIpPVz82ICp5NvZCj74Hw?ct=application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
+                                                                                                                                                                 a schema:MediaObject;
+                                                                                                                                                                 skos:prefLabel "SLDLAYOUT object"@en.
+<ni:///mh;1QEQZaIpPVz82ICp5NvZCj74Hw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQZaIpPVz82ICp5NvZCj74Hw?ct=application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1401,10 +1401,10 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                     skos:prefLabel "text (1.98 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQZaIpPVz82ICp5NvZCj74Hw?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
-<ni:///mh;1QEQdYHQ1lSNcwah8cRNKSuI_A?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldLayout+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldlayout+xml>;
-                                                                                                                                 a schema:MediaObject;
-                                                                                                                                 skos:prefLabel "SLDLAYOUT object"@en.
-<ni:///mh;1QEQdYHQ1lSNcwah8cRNKSuI_A?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQdYHQ1lSNcwah8cRNKSuI_A?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldLayout+xml>;
+<ni:///mh;1QEQdYHQ1lSNcwah8cRNKSuI_A?ct=application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
+                                                                                                                                                                 a schema:MediaObject;
+                                                                                                                                                                 skos:prefLabel "SLDLAYOUT object"@en.
+<ni:///mh;1QEQdYHQ1lSNcwah8cRNKSuI_A?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQdYHQ1lSNcwah8cRNKSuI_A?ct=application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1444,10 +1444,10 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                       schema:ImageObject;
                                                     skos:prefLabel "JPG object (833×553)"@en,
                                                                    "JPG object (227.85 KiB)"@en.
-<ni:///mh;1QEQfnGU42PAhgkPOyaA-ABnyQ?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.Relationships+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.relationships+xml>;
-                                                                                                                                       a schema:MediaObject;
-                                                                                                                                       skos:prefLabel "RELATIONSHIPS object"@en.
-<ni:///mh;1QEQfnGU42PAhgkPOyaA-ABnyQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQfnGU42PAhgkPOyaA-ABnyQ?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.Relationships+xml>;
+<ni:///mh;1QEQfnGU42PAhgkPOyaA-ABnyQ?ct=application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22>;
+                                                                                                                                                                       a schema:MediaObject;
+                                                                                                                                                                       skos:prefLabel "RELATIONSHIPS object"@en.
+<ni:///mh;1QEQfnGU42PAhgkPOyaA-ABnyQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQfnGU42PAhgkPOyaA-ABnyQ?ct=application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1469,10 +1469,10 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                     skos:prefLabel "text (1.41 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQfnGU42PAhgkPOyaA-ABnyQ?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?>""".
-<ni:///mh;1QEQgC6Xp6gHLSlNR108cTmh6w?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.notesMaster+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.notesmaster+xml>;
-                                                                                                                                   a schema:MediaObject;
-                                                                                                                                   skos:prefLabel "NOTESMASTER object"@en.
-<ni:///mh;1QEQgC6Xp6gHLSlNR108cTmh6w?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQgC6Xp6gHLSlNR108cTmh6w?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.notesMaster+xml>;
+<ni:///mh;1QEQgC6Xp6gHLSlNR108cTmh6w?ct=application/prs.implied-document+xml;root=notesMaster;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=notesMaster;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
+                                                                                                                                                                   a schema:MediaObject;
+                                                                                                                                                                   skos:prefLabel "NOTESMASTER object"@en.
+<ni:///mh;1QEQgC6Xp6gHLSlNR108cTmh6w?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQgC6Xp6gHLSlNR108cTmh6w?ct=application/prs.implied-document+xml;root=notesMaster;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1496,10 +1496,10 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                     skos:prefLabel "text (4.26 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQgC6Xp6gHLSlNR108cTmh6w?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
-<ni:///mh;1QEQjIg89OmddW86_qlBez-9ZQ?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.Relationships+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.relationships+xml>;
-                                                                                                                                       a schema:MediaObject;
-                                                                                                                                       skos:prefLabel "RELATIONSHIPS object"@en.
-<ni:///mh;1QEQjIg89OmddW86_qlBez-9ZQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQjIg89OmddW86_qlBez-9ZQ?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.Relationships+xml>;
+<ni:///mh;1QEQjIg89OmddW86_qlBez-9ZQ?ct=application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22>;
+                                                                                                                                                                       a schema:MediaObject;
+                                                                                                                                                                       skos:prefLabel "RELATIONSHIPS object"@en.
+<ni:///mh;1QEQjIg89OmddW86_qlBez-9ZQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQjIg89OmddW86_qlBez-9ZQ?ct=application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1521,10 +1521,10 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                     skos:prefLabel "text (294 B)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQjIg89OmddW86_qlBez-9ZQ?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?>""".
-<ni:///mh;1QEQkVRNwtaQRrPu7J_HtXbvNw?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sld+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sld+xml>;
-                                                                                                                           a schema:MediaObject;
-                                                                                                                           skos:prefLabel "SLD object"@en.
-<ni:///mh;1QEQkVRNwtaQRrPu7J_HtXbvNw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQkVRNwtaQRrPu7J_HtXbvNw?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sld+xml>;
+<ni:///mh;1QEQkVRNwtaQRrPu7J_HtXbvNw?ct=application/prs.implied-document+xml;root=sld;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=sld;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
+                                                                                                                                                           a schema:MediaObject;
+                                                                                                                                                           skos:prefLabel "SLD object"@en.
+<ni:///mh;1QEQkVRNwtaQRrPu7J_HtXbvNw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQkVRNwtaQRrPu7J_HtXbvNw?ct=application/prs.implied-document+xml;root=sld;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1548,10 +1548,10 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                     skos:prefLabel "text (11.29 KiB)"@en;
                                                     cnt:characterEncoding "utf-8".
 <ni:///mh;1QEQkVRNwtaQRrPu7J_HtXbvNw?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
-<ni:///mh;1QEQkin0nuLbAGYkTSny5nokwQ?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldLayout+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldlayout+xml>;
-                                                                                                                                 a schema:MediaObject;
-                                                                                                                                 skos:prefLabel "SLDLAYOUT object"@en.
-<ni:///mh;1QEQkin0nuLbAGYkTSny5nokwQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQkin0nuLbAGYkTSny5nokwQ?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldLayout+xml>;
+<ni:///mh;1QEQkin0nuLbAGYkTSny5nokwQ?ct=application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
+                                                                                                                                                                 a schema:MediaObject;
+                                                                                                                                                                 skos:prefLabel "SLDLAYOUT object"@en.
+<ni:///mh;1QEQkin0nuLbAGYkTSny5nokwQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQkin0nuLbAGYkTSny5nokwQ?ct=application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1575,10 +1575,10 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                     skos:prefLabel "text (1.42 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQkin0nuLbAGYkTSny5nokwQ?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
-<ni:///mh;1QEQlM21SHPTOMi-0Pu4owngYg?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldLayout+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldlayout+xml>;
-                                                                                                                                 a schema:MediaObject;
-                                                                                                                                 skos:prefLabel "SLDLAYOUT object"@en.
-<ni:///mh;1QEQlM21SHPTOMi-0Pu4owngYg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQlM21SHPTOMi-0Pu4owngYg?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldLayout+xml>;
+<ni:///mh;1QEQlM21SHPTOMi-0Pu4owngYg?ct=application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
+                                                                                                                                                                 a schema:MediaObject;
+                                                                                                                                                                 skos:prefLabel "SLDLAYOUT object"@en.
+<ni:///mh;1QEQlM21SHPTOMi-0Pu4owngYg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQlM21SHPTOMi-0Pu4owngYg?ct=application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1602,10 +1602,10 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                     skos:prefLabel "text (888 B)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQlM21SHPTOMi-0Pu4owngYg?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
-<ni:///mh;1QEQnI6NTF-DZzKRzW_R2LSUFg?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldLayout+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldlayout+xml>;
-                                                                                                                                 a schema:MediaObject;
-                                                                                                                                 skos:prefLabel "SLDLAYOUT object"@en.
-<ni:///mh;1QEQnI6NTF-DZzKRzW_R2LSUFg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQnI6NTF-DZzKRzW_R2LSUFg?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldLayout+xml>;
+<ni:///mh;1QEQnI6NTF-DZzKRzW_R2LSUFg?ct=application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
+                                                                                                                                                                 a schema:MediaObject;
+                                                                                                                                                                 skos:prefLabel "SLDLAYOUT object"@en.
+<ni:///mh;1QEQnI6NTF-DZzKRzW_R2LSUFg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQnI6NTF-DZzKRzW_R2LSUFg?ct=application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1629,10 +1629,10 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                     skos:prefLabel "text (4.76 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQnI6NTF-DZzKRzW_R2LSUFg?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
-<ni:///mh;1QEQpP2waH5CueTlL4Ond8hQHg?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.Relationships+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.relationships+xml>;
-                                                                                                                                       a schema:MediaObject;
-                                                                                                                                       skos:prefLabel "RELATIONSHIPS object"@en.
-<ni:///mh;1QEQpP2waH5CueTlL4Ond8hQHg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQpP2waH5CueTlL4Ond8hQHg?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.Relationships+xml>;
+<ni:///mh;1QEQpP2waH5CueTlL4Ond8hQHg?ct=application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22>;
+                                                                                                                                                                       a schema:MediaObject;
+                                                                                                                                                                       skos:prefLabel "RELATIONSHIPS object"@en.
+<ni:///mh;1QEQpP2waH5CueTlL4Ond8hQHg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQpP2waH5CueTlL4Ond8hQHg?ct=application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1654,10 +1654,10 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                     skos:prefLabel "text (581 B)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQpP2waH5CueTlL4Ond8hQHg?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?>""".
-<ni:///mh;1QEQuBNFe0bXGBU-BQL1pjRplw?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldLayout+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldlayout+xml>;
-                                                                                                                                 a schema:MediaObject;
-                                                                                                                                 skos:prefLabel "SLDLAYOUT object"@en.
-<ni:///mh;1QEQuBNFe0bXGBU-BQL1pjRplw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQuBNFe0bXGBU-BQL1pjRplw?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldLayout+xml>;
+<ni:///mh;1QEQuBNFe0bXGBU-BQL1pjRplw?ct=application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
+                                                                                                                                                                 a schema:MediaObject;
+                                                                                                                                                                 skos:prefLabel "SLDLAYOUT object"@en.
+<ni:///mh;1QEQuBNFe0bXGBU-BQL1pjRplw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQuBNFe0bXGBU-BQL1pjRplw?ct=application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1681,10 +1681,10 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                     skos:prefLabel "text (1.95 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQuBNFe0bXGBU-BQL1pjRplw?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
-<ni:///mh;1QEQuaY1XkKp9MmdcijJzMwabA?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldLayout+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldlayout+xml>;
-                                                                                                                                 a schema:MediaObject;
-                                                                                                                                 skos:prefLabel "SLDLAYOUT object"@en.
-<ni:///mh;1QEQuaY1XkKp9MmdcijJzMwabA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQuaY1XkKp9MmdcijJzMwabA?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldLayout+xml>;
+<ni:///mh;1QEQuaY1XkKp9MmdcijJzMwabA?ct=application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
+                                                                                                                                                                 a schema:MediaObject;
+                                                                                                                                                                 skos:prefLabel "SLDLAYOUT object"@en.
+<ni:///mh;1QEQuaY1XkKp9MmdcijJzMwabA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQuaY1XkKp9MmdcijJzMwabA?ct=application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1708,10 +1708,10 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                     skos:prefLabel "text (3.11 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQuaY1XkKp9MmdcijJzMwabA?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
-<ni:///mh;1QEQwxjn8Mfj2Z7tYDa24zq7Ug?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldMaster+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldmaster+xml>;
-                                                                                                                                 a schema:MediaObject;
-                                                                                                                                 skos:prefLabel "SLDMASTER object"@en.
-<ni:///mh;1QEQwxjn8Mfj2Z7tYDa24zq7Ug?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQwxjn8Mfj2Z7tYDa24zq7Ug?ct=application/x.ns.org.openxmlformats.schemas.http.presentationml.2006.main.sldMaster+xml>;
+<ni:///mh;1QEQwxjn8Mfj2Z7tYDa24zq7Ug?ct=application/prs.implied-document+xml;root=sldMaster;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=sldMaster;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
+                                                                                                                                                                 a schema:MediaObject;
+                                                                                                                                                                 skos:prefLabel "SLDMASTER object"@en.
+<ni:///mh;1QEQwxjn8Mfj2Z7tYDa24zq7Ug?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQwxjn8Mfj2Z7tYDa24zq7Ug?ct=application/prs.implied-document+xml;root=sldMaster;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1735,10 +1735,10 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                     skos:prefLabel "text (8.75 KiB)"@en;
                                                     cnt:characterEncoding "utf-8".
 <ni:///mh;1QEQwxjn8Mfj2Z7tYDa24zq7Ug?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>""".
-<ni:///mh;1QEQycUOSbR9AkdlChMc2zb2xQ?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.Relationships+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.relationships+xml>;
-                                                                                                                                       a schema:MediaObject;
-                                                                                                                                       skos:prefLabel "RELATIONSHIPS object"@en.
-<ni:///mh;1QEQycUOSbR9AkdlChMc2zb2xQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQycUOSbR9AkdlChMc2zb2xQ?ct=application/x.ns.org.openxmlformats.schemas.http.package.2006.relationships.Relationships+xml>;
+<ni:///mh;1QEQycUOSbR9AkdlChMc2zb2xQ?ct=application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22>;
+                                                                                                                                                                       a schema:MediaObject;
+                                                                                                                                                                       skos:prefLabel "RELATIONSHIPS object"@en.
+<ni:///mh;1QEQycUOSbR9AkdlChMc2zb2xQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQycUOSbR9AkdlChMc2zb2xQ?ct=application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -1760,10 +1760,10 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                     skos:prefLabel "text (275 B)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQycUOSbR9AkdlChMc2zb2xQ?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"UTF-8\"?>""".
-<ni:///mh;1QEQyrRvTuY3wMjXgB0rU3d_dw?ct=application/x.ns.org.openxmlformats.schemas.http.officeDocument.2006.extended-properties.Properties+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.org.openxmlformats.schemas.http.officedocument.2006.extended-properties.properties+xml>;
-                                                                                                                                                 a schema:MediaObject;
-                                                                                                                                                 skos:prefLabel "PROPERTIES object"@en.
-<ni:///mh;1QEQyrRvTuY3wMjXgB0rU3d_dw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQyrRvTuY3wMjXgB0rU3d_dw?ct=application/x.ns.org.openxmlformats.schemas.http.officeDocument.2006.extended-properties.Properties+xml>;
+<ni:///mh;1QEQyrRvTuY3wMjXgB0rU3d_dw?ct=application/prs.implied-document+xml;root=Properties;ns=%22http://schemas.openxmlformats.org/officeDocument/2006/extended-properties%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=Properties;ns=%22http://schemas.openxmlformats.org/officeDocument/2006/extended-properties%22>;
+                                                                                                                                                                                 a schema:MediaObject;
+                                                                                                                                                                                 skos:prefLabel "PROPERTIES object"@en.
+<ni:///mh;1QEQyrRvTuY3wMjXgB0rU3d_dw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQyrRvTuY3wMjXgB0rU3d_dw?ct=application/prs.implied-document+xml;root=Properties;ns=%22http://schemas.openxmlformats.org/officeDocument/2006/extended-properties%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,

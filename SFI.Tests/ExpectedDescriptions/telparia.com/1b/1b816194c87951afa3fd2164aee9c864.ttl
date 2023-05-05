@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQij-AaB0_nVBonNpqQx72Yg?ct=application/x.sig.uuuu>.
+@base <x.blank:3dbcfdc0-99cc-4e9c-8b05-db3cbef87498>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -21,12 +21,12 @@ _:n1 at:pathObject <file:///piorun-bbsl_warriors.cin>;
 <file:///piorun-bbsl_warriors.cin> at:extensionObject <https://w3id.org/uri4uri/suffix/cin>.
 <ni:///mh;1QEQij-AaB0_nVBonNpqQx72Yg?ct=application/octet-stream> at:digest <urn:md5:8A3F80681D3F9D50689CDA6A431EF662>;
                                                                   dcterms:extent "16384"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQij-AaB0_nVBonNpqQx72Yg?ct=application/x.sig.uuuu>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQij-AaB0_nVBonNpqQx72Yg?ct=application/prs.implied-structure;signature=UUUU>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (16 KiB)"@en.
-<ni:///mh;1QEQij-AaB0_nVBonNpqQx72Yg?ct=application/x.sig.uuuu> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.uuuu>;
-                                                                a schema:MediaObject;
-                                                                skos:prefLabel "UUUU object (16 KiB)"@en.
+<ni:///mh;1QEQij-AaB0_nVBonNpqQx72Yg?ct=application/prs.implied-structure;signature=UUUU> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=UUUU>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "UUUU object (16 KiB)"@en.
 <urn:md5:8A3F80681D3F9D50689CDA6A431EF662> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "ij+AaB0/nVBonNpqQx72Yg=="^^xsd:base64Binary.

@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQtiENoKf5xQQqbP6QfvriIQ?ct=application/octet-stream>.
+@base <x.blank:62ed6fa1-9468-40a2-95e8-0994ade480a0>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -23,13 +23,13 @@ _:n1 at:pathObject <file:///AUNTMADG.WP>;
                                  skos:prefLabel "binary data (0 B)"@en;
                                  cnt:bytes ""^^xsd:base64Binary.
 <data:application/octet-stream;base64,TkQAAAEAAAAAAAAAAgA=> dcterms:extent "14"^^dt:byte;
-                                                            dcterms:hasFormat <data:application/x.sig.nd;base64,TkQAAAEAAAAAAAAAAgA=>;
+                                                            dcterms:hasFormat <data:application/prs.implied-structure;signature=ND;base64,TkQAAAEAAAAAAAAAAgA=>;
                                                             a cnt:ContentAsBase64;
                                                             skos:prefLabel "binary data (14 B)"@en;
                                                             cnt:bytes "TkQAAAEAAAAAAAAAAgA="^^xsd:base64Binary.
-<data:application/x.sig.nd;base64,TkQAAAEAAAAAAAAAAgA=> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.nd>;
-                                                        a schema:MediaObject;
-                                                        skos:prefLabel "ND object (14 B)"@en.
+<data:application/prs.implied-structure;signature=ND;base64,TkQAAAEAAAAAAAAAAgA=> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=ND>;
+                                                                                  a schema:MediaObject;
+                                                                                  skos:prefLabel "ND object (14 B)"@en.
 <file:///AUNTMADG.WP> at:extensionObject <https://w3id.org/uri4uri/suffix/wp>.
 <ni:///mh;1QEQKcmbfCCruj-_f7JbhBmJ-g?ct=application/octet-stream> at:digest <urn:md5:29C99B7C20ABBA3FBF7FB25B841989FA>;
                                                                   dcterms:extent "6338"^^dt:byte;

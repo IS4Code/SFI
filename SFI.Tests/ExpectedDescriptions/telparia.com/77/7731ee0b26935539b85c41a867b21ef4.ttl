@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQf9vuxlFt051qCkNTTyx04Q?ct=application/x.sig.wll>.
+@base <x.blank:d2e5874d-dce7-4ccd-8a00-c2fef2ae70d0>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -21,12 +21,12 @@ _:n1 at:pathObject <file:///MENU.CDR>;
 <file:///MENU.CDR> at:extensionObject <https://w3id.org/uri4uri/suffix/cdr>.
 <ni:///mh;1QEQf9vuxlFt051qCkNTTyx04Q?ct=application/octet-stream> at:digest <urn:md5:7FDBEEC6516DD39D6A0A43534F2C74E1>;
                                                                   dcterms:extent "20956"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQf9vuxlFt051qCkNTTyx04Q?ct=application/x.sig.wll>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQf9vuxlFt051qCkNTTyx04Q?ct=application/prs.implied-structure;signature=WLl>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (20.46 KiB)"@en.
-<ni:///mh;1QEQf9vuxlFt051qCkNTTyx04Q?ct=application/x.sig.wll> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.wll>;
-                                                               a schema:MediaObject;
-                                                               skos:prefLabel "WLL object (20.46 KiB)"@en.
+<ni:///mh;1QEQf9vuxlFt051qCkNTTyx04Q?ct=application/prs.implied-structure;signature=WLl> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=WLl>;
+                                                                                         a schema:MediaObject;
+                                                                                         skos:prefLabel "WLL object (20.46 KiB)"@en.
 <urn:md5:7FDBEEC6516DD39D6A0A43534F2C74E1> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "f9vuxlFt051qCkNTTyx04Q=="^^xsd:base64Binary.

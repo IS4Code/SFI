@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQ5qayZI66R0fYT3z83Gmyhg?ct=text/plain>.
+@base <x.blank:aec84d69-b66d-4026-82dd-fdfd6bd91e53>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -20,10 +20,10 @@ _:n1 at:pathObject <file:///instruct.html>;
      nfo:fileSize 6332 ;
      a nfo:FileDataObject.
 <file:///instruct.html> at:extensionObject <https://w3id.org/uri4uri/suffix/html>.
-<ni:///mh;1QEQ5qayZI66R0fYT3z83Gmyhg?ct=application/x.ns.HTML+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.html+xml>;
-                                                                   a schema:MediaObject;
-                                                                   skos:prefLabel "HTML object"@en.
-<ni:///mh;1QEQ5qayZI66R0fYT3z83Gmyhg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ5qayZI66R0fYT3z83Gmyhg?ct=application/x.ns.HTML+xml>;
+<ni:///mh;1QEQ5qayZI66R0fYT3z83Gmyhg?ct=application/prs.implied-document+xml;root=HTML> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=HTML>;
+                                                                                        a schema:MediaObject;
+                                                                                        skos:prefLabel "HTML object"@en.
+<ni:///mh;1QEQ5qayZI66R0fYT3z83Gmyhg?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQ5qayZI66R0fYT3z83Gmyhg?ct=application/prs.implied-document+xml;root=HTML>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
@@ -40,8 +40,8 @@ _:n1 at:pathObject <file:///instruct.html>;
                                                    skos:prefLabel "HTML object (6.18 KiB)"@en.
 <ni:///mh;1QEQ5qayZI66R0fYT3z83Gmyhg?ct=text/plain> at:digest <urn:md5:E6A6B2648EBA4747D84F7CFCDC69B286>;
                                                     dcterms:extent "6332"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQ5qayZI66R0fYT3z83Gmyhg?ct=application/xml>,
-                                                                      <ni:///mh;1QEQ5qayZI66R0fYT3z83Gmyhg?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ5qayZI66R0fYT3z83Gmyhg?ct=text/html>,
+                                                                      <ni:///mh;1QEQ5qayZI66R0fYT3z83Gmyhg?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQ5qayZI66R0fYT3z83Gmyhg?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (6.18 KiB)"@en;

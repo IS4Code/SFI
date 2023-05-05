@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQLCdo-6xCsTQ8F0oZmYO2Aw?ct=application/octet-stream>.
+@base <x.blank:f4eb3723-05cf-4335-8222-b5f2641241fc>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -26,10 +26,10 @@ _:n1 at:pathObject <file:///abydos.fxg>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQLCdo-6xCsTQ8F0oZmYO2Aw?ct=application/xml>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (29.94 KiB)"@en.
-<ni:///mh;1QEQLCdo-6xCsTQ8F0oZmYO2Aw?ct=application/x.ns.com.adobe.ns.http.fxg.2008.Graphic+xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.ns.com.adobe.ns.http.fxg.2008.graphic+xml>;
-                                                                                                 a schema:MediaObject;
-                                                                                                 skos:prefLabel "GRAPHIC object"@en.
-<ni:///mh;1QEQLCdo-6xCsTQ8F0oZmYO2Aw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQLCdo-6xCsTQ8F0oZmYO2Aw?ct=application/x.ns.com.adobe.ns.http.fxg.2008.Graphic+xml>;
+<ni:///mh;1QEQLCdo-6xCsTQ8F0oZmYO2Aw?ct=application/prs.implied-document+xml;root=Graphic;ns=%22http://ns.adobe.com/fxg/2008%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=Graphic;ns=%22http://ns.adobe.com/fxg/2008%22>;
+                                                                                                                                 a schema:MediaObject;
+                                                                                                                                 skos:prefLabel "GRAPHIC object"@en.
+<ni:///mh;1QEQLCdo-6xCsTQ8F0oZmYO2Aw?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQLCdo-6xCsTQ8F0oZmYO2Aw?ct=application/prs.implied-document+xml;root=Graphic;ns=%22http://ns.adobe.com/fxg/2008%22>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,

@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQSEKSitnhJRFp95WX6tW_zg?ct=application/x.sig.commando>.
+@base <x.blank:32d81216-c4bd-433f-a1f2-183a7ed20420>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -21,12 +21,12 @@ _:n1 at:pathObject <file:///BP.Commando>;
 <file:///BP.Commando> at:extensionObject <https://w3id.org/uri4uri/suffix/commando>.
 <ni:///mh;1QEQSEKSitnhJRFp95WX6tW_zg?ct=application/octet-stream> at:digest <urn:md5:4842928AD9E1251169F79597EAD5BFCE>;
                                                                   dcterms:extent "19130"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQSEKSitnhJRFp95WX6tW_zg?ct=application/x.sig.commando>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQSEKSitnhJRFp95WX6tW_zg?ct=application/prs.implied-structure;signature=COMMANDO>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (18.68 KiB)"@en.
-<ni:///mh;1QEQSEKSitnhJRFp95WX6tW_zg?ct=application/x.sig.commando> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x.sig.commando>;
-                                                                    a schema:MediaObject;
-                                                                    skos:prefLabel "COMMANDO object (18.68 KiB)"@en.
+<ni:///mh;1QEQSEKSitnhJRFp95WX6tW_zg?ct=application/prs.implied-structure;signature=COMMANDO> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=COMMANDO>;
+                                                                                              a schema:MediaObject;
+                                                                                              skos:prefLabel "COMMANDO object (18.68 KiB)"@en.
 <urn:md5:4842928AD9E1251169F79597EAD5BFCE> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "SEKSitnhJRFp95WX6tW/zg=="^^xsd:base64Binary.
