@@ -9,6 +9,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
@@ -342,6 +343,12 @@ namespace IS4.SFI.Analyzers
 
                 public bool IsPlain { get; private set; }
 
+                static readonly Type DataMatchType = typeof(DataMatch);
+
+                public object? ReferenceKey => IsComplete ? DataMatchType : this;
+
+                public object? DataKey => IsComplete ? DataTools.GetStringKey(ByteValue) : "";
+
                 public override string ToString()
                 {
                     return $"{(IsBinary ? "Binary" : $"Text ({Charset})")} ({ActualLength} B)";
@@ -537,6 +544,10 @@ namespace IS4.SFI.Analyzers
             IFileFormat IFormatObject.Format => Format;
 
             Uri? IUriFormatter<Uri>.this[Uri value] => throw new NotImplementedException();
+
+            object? IPersistentKey.ReferenceKey => fileMatch.ReferenceKey;
+
+            object? IPersistentKey.DataKey => (Format, fileMatch.DataKey);
 
             public FormatResult(DataAnalysis.DataMatch fileMatch, IStreamFactory streamFactory, IBinaryFileFormat format, ValueTask<ILinkedNode?> parent, AnalysisContext context, IEntityAnalyzers analyzer)
 			{

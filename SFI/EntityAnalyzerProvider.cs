@@ -41,6 +41,20 @@ namespace IS4.SFI
         /// </summary>
         public event Func<ValueTask>? Updated;
 
+        PersistenceStore<IPersistentKey, ConcurrentDictionary<Type, Task<AnalysisResult>>>? cachedResults;
+
+        /// <summary>
+        /// Whether to cache results for analyzed entities and reuse them later.
+        /// </summary>
+        public bool CacheResults {
+            get {
+                return cachedResults != null;
+            }
+            set {
+                cachedResults = value ? (cachedResults ?? new(_ => new())) : null;
+            }
+        }
+
         /// <summary>
         /// Invokes the <see cref="Updated"/> event.
         /// </summary>
@@ -66,12 +80,7 @@ namespace IS4.SFI
         /// </summary>
         private async ValueTask<AnalysisResult> Analyze<T>(T entity, AnalysisContext context, IEntityAnalyzers analyzers) where T : class
         {
-            var nameKey = TextTools.GetIdentifierFromType<T>();
-            var id = Interlocked.Increment(ref typeCounters.GetOrAdd(nameKey, _ => new StrongBox<long>(0)).Value);
-            
-            var nameOrdinal = nameKey + "#" + id;
-            var nameFriendly = TextTools.GetUserFriendlyName(entity);
-
+            GetNewEntityNames(entity, out var nameOrdinal, out var nameFriendly, out var nameKey);
             bool any = false;
             foreach(var analyzer in Analyzers.OfType<IEntityAnalyzer<T>>())
             {
@@ -153,11 +162,36 @@ namespace IS4.SFI
             return null;
         }
 
+        void GetNewEntityNames<T>(T entity, out string nameOrdinal, out string nameFriendly, out string nameKey)
+        {
+            nameKey = TextTools.GetIdentifierFromType<T>();
+            var id = Interlocked.Increment(ref typeCounters.GetOrAdd(nameKey, _ => new StrongBox<long>(0)).Value);
+            nameOrdinal = nameKey + "#" + id;
+            nameFriendly = TextTools.GetUserFriendlyName(entity);
+        }
+
         /// <inheritdoc/>
-        public async ValueTask<AnalysisResult> Analyze<T>(T entity, AnalysisContext context) where T : class
+        public ValueTask<AnalysisResult> Analyze<T>(T? entity, AnalysisContext context) where T : class
         {
             if(entity == null) return default;
 
+            var cached = cachedResults;
+            if(cached != null && entity is IPersistentKey key)
+            {
+                return new(cached[key].AddOrUpdate(typeof(T), _ => {
+                    return AnalyzeInner(entity, context).AsTask();
+                }, (t, old) => {
+                    GetNewEntityNames(entity, out var nameOrdinal, out var nameFriendly, out _);
+                    OutputLog.WriteLine($"[{nameOrdinal}] Reusing cached {nameFriendly}.");
+                    return old;
+                }));
+            }
+
+            return AnalyzeInner(entity, context);
+        }
+
+        async ValueTask<AnalysisResult> AnalyzeInner<T>(T entity, AnalysisContext context) where T : class
+        {
             var wrapper = MatchRoot(entity, context, this, null);
             if(wrapper != null)
             {

@@ -8,7 +8,7 @@ namespace IS4.SFI.Services
     /// <summary>
     /// Contains information about a recognized format from data.
     /// </summary>
-    public interface IFormatObject : IIndividualUriFormatter<Uri>
+    public interface IFormatObject : IIndividualUriFormatter<Uri>, IPersistentKey
     {
         /// <summary>
         /// The common extension of the format.
@@ -91,6 +91,16 @@ namespace IS4.SFI.Services
         /// <inheritdoc/>
         public T Value { get; }
 
+        /// <inheritdoc cref="IPersistentKey.ReferenceKey"/>
+        protected virtual object? ReferenceKey => Value is IPersistentKey key ? key.ReferenceKey : Value;
+
+        /// <inheritdoc cref="IPersistentKey.DataKey"/>
+        protected virtual object? DataKey => Value is IPersistentKey key ? (Format, key.DataKey) : Format;
+
+        object? IPersistentKey.ReferenceKey => ReferenceKey;
+
+        object? IPersistentKey.DataKey => DataKey;
+
         /// <summary>
         /// Creates a new instance of the format object.
         /// </summary>
@@ -166,6 +176,12 @@ namespace IS4.SFI.Services
 
         /// <inheritdoc cref="FormatObject{T}.Format"/>
         public new IBinaryFileFormat Format => (IBinaryFileFormat)base.Format;
+
+        /// <inheritdoc/>
+        protected override object? ReferenceKey => Data.ReferenceKey;
+
+        /// <inheritdoc/>
+        protected override object? DataKey => (Data.DataKey, base.DataKey);
 
         /// <param name="data">The value of <see cref="Data"/>.</param>
         /// <inheritdoc cref="FormatObject{T}.FormatObject(IFileFormat, T)"/>

@@ -1,6 +1,7 @@
 ﻿using IS4.SFI.Services;
 using IS4.SFI.Tools;
 using System;
+using System.Buffers;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -470,6 +471,89 @@ namespace IS4.SFI
                 return b.MemoryCast<Guid>()[0];
             }
             return new Guid(f4[0], f2[0], f2[1], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15]);
+        }
+
+        /// <summary>
+        /// Obtains a string that represents <paramref name="bytes"/> in a fast
+        /// but implementation-defined way.
+        /// </summary>
+        /// <param name="bytes">The bytes sequence to use.</param>
+        /// <returns>A string with characters matching <paramref name="bytes"/>.</returns>
+        public static string GetStringKey(ArraySegment<byte> bytes)
+        {
+            return GetStringKey(bytes.AsSpan());
+        }
+
+        /// <inheritdoc cref="GetStringKey(ArraySegment{byte})"/>
+        public static unsafe string GetStringKey(ReadOnlySpan<byte> bytes)
+        {
+            fixed(byte* bytesPtr = bytes)
+            {
+                return RawCopyStringEncoding.Instance.GetString(bytesPtr, bytes.Length);
+            }
+        }
+
+        class RawCopyStringEncoding : Encoding
+        {
+            public static readonly RawCopyStringEncoding Instance = new();
+
+            private RawCopyStringEncoding()
+            {
+
+            }
+
+            public override unsafe int GetChars(byte* bytes, int byteCount, char* chars, int charCount)
+            {
+                if(GetCount(byteCount) != charCount)
+                {
+                    throw new ArgumentException("Destination string was not properly allocated.", nameof(charCount));
+                }
+                var span = new Span<char>(chars, charCount);
+                span[0] = (char)('#' + (byteCount % sizeof(char)));
+                span[charCount - 1] = '\0';
+                new Span<byte>(bytes, byteCount).CopyTo(span.Slice(1).MemoryCast<byte>());
+                return charCount;
+            }
+
+            public override unsafe int GetCharCount(byte* bytes, int count)
+            {
+                return GetCount(count);
+            }
+
+            public override int GetCharCount(byte[] bytes, int index, int count)
+            {
+                return GetCount(count);
+            }
+
+            public override int GetMaxCharCount(int byteCount)
+            {
+                return GetCount(byteCount);
+            }
+
+            int GetCount(int count)
+            {
+                return (count + 1) / 2 + 1;
+            }
+
+            public override int GetByteCount(char[] chars, int index, int count)
+            {
+                throw new NotImplementedException();
+            }
+
+            public override int GetBytes(char[] chars, int charIndex, int charCount, byte[] bytes, int byteIndex)
+            {
+                throw new NotImplementedException();
+            }
+
+            public override int GetChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex)
+            {
+                throw new NotImplementedException();
+            }
+
+            public override int GetMaxByteCount(int charCount)
+            {
+                throw new NotImplementedException();
+            }
         }
 
         /// <summary>

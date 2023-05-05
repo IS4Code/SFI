@@ -68,12 +68,13 @@ namespace IS4.SFI
 		bool quiet;
 		bool rootSpecified;
 		bool dataOnly;
+		bool onlyOnce;
 
-		/// <summary>
-		/// Runs the application with the supplied arguments.
-		/// </summary>
-		/// <param name="args">The arguments to the application.</param>
-		public async ValueTask Run(params string[] args)
+        /// <summary>
+        /// Runs the application with the supplied arguments.
+        /// </summary>
+        /// <param name="args">The arguments to the application.</param>
+        public async ValueTask Run(params string[] args)
         {
 			try{
 				Parse(args);
@@ -86,6 +87,7 @@ namespace IS4.SFI
 				}
 
 				var inspector = new TInspector();
+				inspector.CacheResults = onlyOnce;
 				inspector.OutputLog = quiet ? TextWriter.Null : writer;
 				await inspector.AddDefault();
 
@@ -506,7 +508,15 @@ namespace IS4.SFI
 					}
 					dataOnly = true;
 					return OptionArgument.None;
-				case "b":
+                case "o":
+                case "only-once":
+                    if(onlyOnce)
+                    {
+                        throw OptionAlreadySpecified(option);
+                    }
+                    onlyOnce = true;
+                    return OptionArgument.None;
+                case "b":
 				case "buffered":
 					if(!options.DirectOutput)
 					{
