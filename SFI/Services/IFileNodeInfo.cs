@@ -99,7 +99,7 @@ namespace IS4.SFI.Services
         /// <param name="baseInfo">The value of <see cref="BaseInfo"/> to use when delegating properties.</param>
         /// <param name="key">
         /// The implementation of <see cref="IPersistentKey"/> to use.
-        /// If none is provided, <see cref="IPersistentKey.ReferenceKey"/> is <see cref="AppDomain.CurrentDomain"/>
+        /// If none is provided, <see cref="IPersistentKey.ReferenceKey"/> is the type of <see cref="FileSystemInfo"/>
         /// and <see cref="IPersistentKey.DataKey"/> is <see cref="FileSystemInfo.FullPath"/>.
         /// </param>
         public FileSystemInfoWrapper(TInfo baseInfo, IPersistentKey? key = null)
@@ -163,7 +163,9 @@ namespace IS4.SFI.Services
         /// <inheritdoc/>
         public StreamFactoryAccess Access => StreamFactoryAccess.Parallel;
 
-        object? IPersistentKey.ReferenceKey => key != null ? key.ReferenceKey : AppDomain.CurrentDomain;
+        static readonly Type FileSystemInfoType = typeof(FileSystemInfo);
+
+        object? IPersistentKey.ReferenceKey => key != null ? key.ReferenceKey : FileSystemInfoType;
 
         object? IPersistentKey.DataKey => key != null ? key.DataKey : BaseInfo.FullName;
 

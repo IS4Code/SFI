@@ -208,7 +208,8 @@ namespace IS4.SFI.Tests
             public FileAttributes Attributes => FileAttributes.Normal;
             public long Length => new FileInfo(location).Length;
             public StreamFactoryAccess Access => StreamFactoryAccess.Parallel;
-            public object? ReferenceKey => AppDomain.CurrentDomain;
+            static readonly Type FileSystemInfoType = typeof(FileSystemInfo);
+            public object? ReferenceKey => FileSystemInfoType;
             public object? DataKey => location;
 
             public TestFile(Uri uri, string location)

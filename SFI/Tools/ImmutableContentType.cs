@@ -34,7 +34,9 @@ namespace IS4.SFI.Tools
 
         bool Changed => reparsedValue != base.ToString();
 
-        object? IPersistentKey.ReferenceKey => null;
+        static readonly Type ContentTypeType = typeof(ContentType);
+
+        object? IPersistentKey.ReferenceKey => ContentTypeType;
 
         object? IPersistentKey.DataKey => ToString();
 
