@@ -184,6 +184,11 @@ namespace IS4.SFI.Tests
                 {
                     x509Analyzer.DescribeExtensions = false;
                 }
+
+                if(Analyzers.OfType<MediaTypeAnalyzer>().FirstOrDefault() is MediaTypeAnalyzer mediaTypeAnalyzer)
+                {
+                    mediaTypeAnalyzer.AddClasses = false;
+                }
             }
         }
 
