@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Runtime.ExceptionServices;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -97,6 +96,12 @@ namespace IS4.SFI
                         }else{
                             OutputLog.WriteLine($"[{nameOrdinal}] OK!");
                         }
+#if DEBUG
+                        if(context.Linked is StrongBox<bool> linked && !linked.Value)
+                        {
+                            throw new InvalidOperationException($"The analyzer {analyzer} returned success but did not initialize the node.");
+                        }
+#endif
                         return result;
                     }
                     OutputLog.WriteLine($"[{nameOrdinal}] No result from {TextTools.GetUserFriendlyName(analyzer)}!");

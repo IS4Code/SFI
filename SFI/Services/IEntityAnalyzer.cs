@@ -69,6 +69,14 @@ namespace IS4.SFI.Services
         /// </summary>
         public PropertyUri? Link { get; }
 
+#if DEBUG
+        /// <summary>
+        /// A reference to a shared object that is used as a check
+        /// whether the value was definitely linked or not.
+        /// </summary>
+        internal StrongBox<bool>? Linked { get; }
+#endif
+
         /// <summary>
         /// <see langword="true"/> if <see cref="Node"/> was already initialized (i.e.
         /// by calling <see cref="ILinkedNode.SetClass(Vocabulary.ClassUri)"/>)
@@ -101,11 +109,20 @@ namespace IS4.SFI.Services
         /// <param name="nodeFactory">The value of <see cref="NodeFactory"/>.</param>
         /// <param name="matchContext">The value of <see cref="MatchContext"/>.</param>
         /// <param name="depth">The value of <see cref="Depth"/>.</param>
-        private AnalysisContext(ILinkedNodeFactory nodeFactory, ILinkedNode? parent, ILinkedNode? node, PropertyUri? link, bool initialized, MatchContext matchContext, int depth)
+        private AnalysisContext(ILinkedNodeFactory nodeFactory, ILinkedNode? parent, ILinkedNode? node, PropertyUri? link,
+#if DEBUG
+#pragma warning disable 1573
+            StrongBox<bool>? linked,
+#pragma warning restore
+#endif
+            bool initialized, MatchContext matchContext, int depth)
         {
             Parent = parent;
             Node = node;
             Link = link;
+#if DEBUG
+            Linked = linked;
+#endif
             Initialized = initialized;
             NodeFactory = nodeFactory;
             MatchContext = matchContext;
@@ -121,7 +138,11 @@ namespace IS4.SFI.Services
         /// <returns>A new instance with the specified objects.</returns>
         public static AnalysisContext Create(ILinkedNode? node, ILinkedNodeFactory nodeFactory)
         {
-            return new AnalysisContext(nodeFactory, null, node, null, false, default, 0);
+            return new AnalysisContext(nodeFactory, null, node, null,
+#if DEBUG
+            null,
+#endif
+            false, default, 0);
         }
 
         /// <summary>
@@ -131,7 +152,11 @@ namespace IS4.SFI.Services
         /// <returns>The updated context.</returns>
         public AnalysisContext WithParent(ILinkedNode? parent)
         {
-            return new AnalysisContext(NodeFactory, parent, null, null, false, MatchContext, unchecked(Depth + 1));
+            return new AnalysisContext(NodeFactory, parent, null,
+#if DEBUG
+            null,
+#endif
+            null, false, MatchContext, unchecked(Depth + 1));
         }
 
         /// <summary>
@@ -143,7 +168,11 @@ namespace IS4.SFI.Services
         /// <returns>The updated context.</returns>
         public AnalysisContext WithParentLink(ILinkedNode? parent, PropertyUri link)
         {
-            return new AnalysisContext(NodeFactory, parent, null, link, false, MatchContext, unchecked(Depth + 1));
+            return new AnalysisContext(NodeFactory, parent, null, link,
+#if DEBUG
+            new(),
+#endif
+            false, MatchContext, unchecked(Depth + 1));
         }
 
         /// <summary>
@@ -158,7 +187,11 @@ namespace IS4.SFI.Services
         public AnalysisContext WithNode(ILinkedNode? node)
         {
             bool reset = Node != null && node != null && !Node.Equals(node);
-            return new AnalysisContext(NodeFactory, reset ? null : Parent, node, reset ? null : Link, reset ? false : Initialized, MatchContext, Depth);
+            return new AnalysisContext(NodeFactory, reset ? null : Parent, node, reset ? null : Link,
+#if DEBUG
+            reset ? null : Linked,
+#endif
+            reset ? false : Initialized, MatchContext, Depth);
         }
 
         /// <summary>
@@ -168,7 +201,11 @@ namespace IS4.SFI.Services
         /// <returns>The updated context.</returns>
         public AnalysisContext WithMatchContext(MatchContext matchContext)
         {
-            return new AnalysisContext(NodeFactory, Parent, Node, Link, Initialized, matchContext, Depth);
+            return new AnalysisContext(NodeFactory, Parent, Node, Link,
+#if DEBUG
+            Linked,
+#endif
+            Initialized, matchContext, Depth);
         }
 
         /// <summary>
@@ -181,7 +218,11 @@ namespace IS4.SFI.Services
         /// <returns>The updated context.</returns>
         public AnalysisContext WithMatchContext(Func<MatchContext, MatchContext> matchContextTransform)
         {
-            return new AnalysisContext(NodeFactory, Parent, Node, Link, Initialized, matchContextTransform(MatchContext), Depth);
+            return new AnalysisContext(NodeFactory, Parent, Node, Link,
+#if DEBUG
+            Linked,
+#endif
+            Initialized, matchContextTransform(MatchContext), Depth);
         }
 
         /// <summary>
@@ -191,7 +232,11 @@ namespace IS4.SFI.Services
         /// <returns>The updated context.</returns>
         public AnalysisContext AsInitialized()
         {
-            return new AnalysisContext(NodeFactory, Parent, Node, null, true, MatchContext, Depth);
+            return new AnalysisContext(NodeFactory, Parent, Node, null,
+#if DEBUG
+            null,
+#endif
+            true, MatchContext, Depth);
         }
     }
 
@@ -330,6 +375,9 @@ namespace IS4.SFI.Services
             if(context.Link is PropertyUri link)
             {
                 context.Parent?.Set(link, node);
+#if DEBUG
+                context.Linked!.Value = true;
+#endif
             }
         }
 
