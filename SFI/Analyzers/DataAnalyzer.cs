@@ -9,7 +9,6 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
@@ -434,8 +433,36 @@ namespace IS4.SFI.Analyzers
 
                     if(ByteValue.Count != 0 && !(analysis.analyzer.MaxDepthForFormats is int maxDepth && (analysis.context.Depth < 0 || analysis.context.Depth > maxDepth)))
                     {
-                        var matchingFormats = analyzer.DataFormats.Where(fmt => fmt.CheckHeader(ByteValue, isBinary, encodingDetector));
-                        Results = matchingFormats.Select(fmt => new FormatResult(this, StreamFactory, fmt, NodeTask, context, analysis.analyzers)).ToList();
+                        List<IBinaryFileFormat>? removedFormats = null;
+                        List<FormatResult>? formatResults = null;
+                        foreach(var format in analyzer.DataFormats)
+                        {
+                            bool matched;
+                            try{
+                                matched = format.CheckHeader(ByteValue, isBinary, encodingDetector);
+                            }catch(Exception e) when(GlobalOptions.SuppressNonCriticalExceptions)
+                            {
+                                analyzer.OutputLog?.WriteLine($"{TextTools.GetUserFriendlyName(format.GetType())}: {e.Message}");
+                                if(IsFatalComponentException(format, e))
+                                {
+                                    (removedFormats ??= new()).Add(format);
+                                }
+                                continue;
+                            }
+                            if(matched)
+                            {
+                                var result = new FormatResult(this, StreamFactory, format, NodeTask, context, analysis.analyzers);
+                                (formatResults ??= new()).Add(result);
+                            }
+                        }
+                        Results = (IReadOnlyList<FormatResult>?)formatResults ?? Array.Empty<FormatResult>();
+                        if(removedFormats != null)
+                        {
+                            foreach(var removed in removedFormats)
+                            {
+                                analyzer.DataFormats.Remove(removed);
+                            }
+                        }
                     }else{
                         Results = Array.Empty<FormatResult>();
                         IsPlain = true;
@@ -466,7 +493,7 @@ namespace IS4.SFI.Analyzers
                         }catch(InternalApplicationException)
                         {
                             throw;
-                        }catch(Exception e) when(IsFatalFormatException(e))
+                        }catch(Exception e) when(IsFatalComponentException(result.Format, e))
                         {
                             analysis.analyzer.OutputLog?.WriteLine($"{TextTools.GetUserFriendlyName(result.Format.GetType())}: {e.Message}");
                             analysis.analyzer.DataFormats.Remove(result.Format);
@@ -476,15 +503,6 @@ namespace IS4.SFI.Analyzers
                     }
 
                     return match;
-                }
-
-                private static bool IsFatalFormatException(Exception e)
-                {
-                    return
-                        e is PlatformNotSupportedException ||
-                        e is FileLoadException ||
-                        e is FileNotFoundException ||
-                        e is TypeLoadException;
                 }
             }
         }

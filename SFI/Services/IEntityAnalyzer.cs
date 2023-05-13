@@ -3,6 +3,7 @@ using IS4.SFI.Tools;
 using IS4.SFI.Vocabulary;
 using System;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -453,6 +454,24 @@ namespace IS4.SFI.Services
             }catch{
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Checks whether an exception indicates an unrecoverable error
+        /// in a component.
+        /// </summary>
+        /// <param name="component">The component that is the source of the exception.</param>
+        /// <param name="exception">The exception to check.</param>
+        /// <returns>
+        /// Whether <paramref name="exception"/> indicates an error in the component
+        /// and the component cannot operate correctly.
+        /// </returns>
+        protected static bool IsFatalComponentException(object component, Exception exception)
+        {
+            return
+                exception is PlatformNotSupportedException
+                or FileLoadException or FileNotFoundException
+                or TypeLoadException or TypeInitializationException;
         }
     }
 
