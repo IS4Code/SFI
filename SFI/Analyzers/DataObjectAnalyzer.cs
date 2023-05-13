@@ -101,11 +101,7 @@ namespace IS4.SFI.Analyzers
                 if(improvisedFormat != null)
                 {
                     var formatObj = new BinaryFormatObject<ImprovisedFormat.Format>(dataObject, ImprovisedFormat.Instance, improvisedFormat);
-                    var formatNode = (await analyzers.Analyze(formatObj, context.WithParent(node))).Node;
-                    if(formatNode != null)
-                    {
-                        node.Set(Properties.HasFormat, formatNode);
-                    }
+                    await analyzers.Analyze(formatObj, context.WithParentLink(node, Properties.HasFormat));
                     primaryFormat = new(formatObj, default);
                 }
             }

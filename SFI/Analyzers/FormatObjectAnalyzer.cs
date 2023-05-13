@@ -69,11 +69,7 @@ namespace IS4.SFI.Analyzers
                     }
                 }
                 var typeObject = ImmutableContentType.GetCached(type);
-                var typeNode = (await analyzers.Analyze<ContentType>(typeObject, context.WithParent(node))).Node;
-                if(typeNode != null)
-                {
-                    node.Set(Properties.EncodingFormat, typeNode);
-                }
+                await analyzers.Analyze<ContentType>(typeObject, context.WithParentLink(node, Properties.EncodingFormat));
             }
             
             var label = result.Label;

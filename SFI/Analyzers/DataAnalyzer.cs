@@ -397,38 +397,39 @@ namespace IS4.SFI.Analyzers
 
                     var node = context.Node;
 
-                    if(node == null)
+                    if(node != null)
                     {
-                        if(IsComplete)
+                        NodeTask = new ValueTask<ILinkedNode?>(analysis.analyzer.InitNewNode(node, context));
+                    }else if(IsComplete)
+                    {
+                        node = context.NodeFactory.Create(UriTools.DataUriFormatter, (null, charsetMatch?.Charset, ByteValue));
+                        NodeTask = new ValueTask<ILinkedNode?>(analysis.analyzer.InitNewNode(node, context));
+                    }else{
+                        async ValueTask<ILinkedNode?> HashNode()
                         {
-                            node = context.NodeFactory.Create(UriTools.DataUriFormatter, (null, charsetMatch?.Charset, ByteValue));
-                            NodeTask = new ValueTask<ILinkedNode?>(node);
-                        }else{
-                            async ValueTask<ILinkedNode?> HashNode()
+                            var nodeFactory = context.NodeFactory;
+                            var formatter = analyzer.ContentUriFormatter;
+                            var hashes = analysis.hashes;
+                            ILinkedNode? node = null;
+                            if(formatter != null)
                             {
-                                var nodeFactory = context.NodeFactory;
-                                var formatter = analyzer.ContentUriFormatter;
-                                var hashes = analysis.hashes;
-                                if(formatter != null)
+                                foreach(var algorithm in formatter.SuitableAlgorithms.OfType<IDataHashAlgorithm>())
                                 {
-                                    foreach(var algorithm in formatter.SuitableAlgorithms.OfType<IDataHashAlgorithm>())
+                                    if(hashes.TryGetValue(algorithm, out var info))
                                     {
-                                        if(hashes.TryGetValue(algorithm, out var info))
+                                        var hashNode = nodeFactory.Create(formatter, (algorithm, await info.data, IsBinary));
+                                        if(hashNode != null)
                                         {
-                                            var hashNode = nodeFactory.Create(formatter, (algorithm, await info.data, IsBinary));
-                                            if(hashNode != null)
-                                            {
-                                                return hashNode;
-                                            }
+                                            node = hashNode;
+                                            break;
                                         }
                                     }
                                 }
-                                return nodeFactory.CreateUnique();
                             }
-                            NodeTask = HashNode();
+                            node ??= nodeFactory.CreateUnique();
+                            return analysis.analyzer.InitNewNode(node, context);
                         }
-                    }else{
-                        NodeTask = new ValueTask<ILinkedNode?>(node);
+                        NodeTask = HashNode();
                     }
 
                     if(ByteValue.Count != 0 && !(analysis.analyzer.MaxDepthForFormats is int maxDepth && (analysis.context.Depth < 0 || analysis.context.Depth > maxDepth)))

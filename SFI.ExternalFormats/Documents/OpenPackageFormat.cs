@@ -76,11 +76,7 @@ namespace IS4.SFI.Formats
                         if(contentType != null)
                         {
                             var typeObject = ImmutableContentType.GetCached(contentType);
-                            var typeNode = (await analyzers.Analyze<System.Net.Mime.ContentType>(typeObject, context.WithParent(node))).Node;
-                            if(typeNode != null)
-                            {
-                                node.Set(Properties.EncodingFormat, typeNode);
-                            }
+                            await analyzers.Analyze<System.Net.Mime.ContentType>(typeObject, context.WithParentLink(node, Properties.EncodingFormat));
                         }
                     }catch(InvalidFormatException)
                     {

@@ -76,22 +76,14 @@ namespace IS4.SFI.Analyzers
                         continue;
                     }
                     cache[(resource.Type, resource.Name)] = info;
-                    var infoNode = (await analyzers.Analyze<IFileInfo>(info, context.WithParent(node[info.Type]))).Node;
-                    if(infoNode != null)
-                    {
-                        node.Set(Properties.HasPart, infoNode);
-                    }
+                    await analyzers.Analyze<IFileInfo>(info, context.WithParentLink(node, Properties.HasPart).WithNode(node[info.ToString()]));
                     ordinal++;
                 }
             }
             foreach(var info in groups)
             {
                 info.MakeGroup(cache);
-                var infoNode = (await analyzers.Analyze<IFileInfo>(info, context.WithParent(node[info.Type]))).Node;
-                if(infoNode != null)
-                {
-                    node.Set(Properties.HasPart, infoNode);
-                }
+                await analyzers.Analyze<IFileInfo>(info, context.WithParentLink(node, Properties.HasPart).WithNode(node[info.ToString()]));
             }
             return label;
         }
@@ -102,12 +94,7 @@ namespace IS4.SFI.Analyzers
             await HashAlgorithm.AddHash(node, signature.HashAlgorithm, signature.Hash, context.NodeFactory, OnOutputFile);
 
             var data = signature.Certificate.GetRawCertData();
-            var result = (await analyzers.Analyze(data, context.WithParent(node))).Node;
-
-            if(result != null)
-            {
-                node.Set(Properties.HasPart, result);
-            }
+            await analyzers.Analyze(data, context.WithParentLink(node, Properties.HasPart));
         }
 
         class ResourceInfo : IFileInfo, IImageResourceTag

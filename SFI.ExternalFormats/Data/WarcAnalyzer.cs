@@ -209,11 +209,7 @@ namespace IS4.SFI.Analyzers
         {
             if(payload.Length > 0 || digest != null)
             {
-                var bodyNode = (await analyzers.Analyze(payload, context.WithNode(null))).Node;
-                if(bodyNode != null)
-                {
-                    node.Set(Properties.HttpBody, bodyNode);
-                }
+                await analyzers.Analyze(payload, context.WithParentLink(node, Properties.HttpBody));
             }
         }
 

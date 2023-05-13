@@ -30,13 +30,12 @@ namespace IS4.SFI.Analyzers
 
         private ILinkedNode CreateNode(IFileNodeInfo info, AnalysisContext context)
         {
-            if(context.Node != null) return context.Node;
             var name = Uri.EscapeDataString(info.Name ?? "");
             if(info.SubName is string subName)
             {
                 name += ":" + Uri.EscapeDataString(subName);
             }
-            return context.Parent?[name] ?? context.NodeFactory.CreateUnique();
+            return GetNode(name, context);
         }
 
         private ILinkedNode AnalyzeFileNode(IFileNodeInfo info, AnalysisContext context)
@@ -137,11 +136,7 @@ namespace IS4.SFI.Analyzers
                 {
                     node.Set(Properties.EncryptionStatus, Individuals.EncryptedStatus);
                 }else{
-                    var content = (await analyzer.Analyze<IStreamFactory>(file, context.WithParent(node))).Node;
-                    if(content != null)
-                    {
-                        node.Set(Properties.InterpretedAs, content);
-                    }
+                    await analyzer.Analyze<IStreamFactory>(file, context.WithParentLink(node, Properties.InterpretedAs));
                 }
 
                 foreach(var alg in HashAlgorithms)
@@ -209,9 +204,8 @@ namespace IS4.SFI.Analyzers
                 foreach(var entry in directory.Entries)
                 {
                     var entryNode = CreateNode(entry, context);
-
-                    await analyzer.Analyze(entry, context.WithNode(entryNode));
                     entryNode.Set(Properties.BelongsToContainer, folder);
+                    await analyzer.Analyze(entry, context.WithNode(entryNode));
                 }
             }
 

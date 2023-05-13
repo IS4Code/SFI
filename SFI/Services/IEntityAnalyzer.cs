@@ -4,6 +4,7 @@ using IS4.SFI.Vocabulary;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace IS4.SFI.Services
@@ -63,6 +64,12 @@ namespace IS4.SFI.Services
         public ILinkedNode? Node { get; }
 
         /// <summary>
+        /// The linking property of the newly created node to its parent,
+        /// used as a subject.
+        /// </summary>
+        public PropertyUri? Link { get; }
+
+        /// <summary>
         /// <see langword="true"/> if <see cref="Node"/> was already initialized (i.e.
         /// by calling <see cref="ILinkedNode.SetClass(Vocabulary.ClassUri)"/>)
         /// and it is not necessary to initialize it again.
@@ -89,14 +96,16 @@ namespace IS4.SFI.Services
         /// </summary>
         /// <param name="parent">The value of <see cref="Parent"/>.</param>
         /// <param name="node">The value of <see cref="Node"/>.</param>
+        /// <param name="link">The value of <see cref="Link"/>.</param>
         /// <param name="initialized">The value of <see cref="Initialized"/>.</param>
         /// <param name="nodeFactory">The value of <see cref="NodeFactory"/>.</param>
         /// <param name="matchContext">The value of <see cref="MatchContext"/>.</param>
         /// <param name="depth">The value of <see cref="Depth"/>.</param>
-        internal AnalysisContext(ILinkedNodeFactory nodeFactory, ILinkedNode? parent, ILinkedNode? node, bool initialized, MatchContext matchContext, int depth)
+        private AnalysisContext(ILinkedNodeFactory nodeFactory, ILinkedNode? parent, ILinkedNode? node, PropertyUri? link, bool initialized, MatchContext matchContext, int depth)
         {
             Parent = parent;
             Node = node;
+            Link = link;
             Initialized = initialized;
             NodeFactory = nodeFactory;
             MatchContext = matchContext;
@@ -112,24 +121,35 @@ namespace IS4.SFI.Services
         /// <returns>A new instance with the specified objects.</returns>
         public static AnalysisContext Create(ILinkedNode? node, ILinkedNodeFactory nodeFactory)
         {
-            return new AnalysisContext(nodeFactory, null, node, false, default, 0);
+            return new AnalysisContext(nodeFactory, null, node, null, false, default, 0);
         }
 
         /// <summary>
-        /// Creates a new context, keeping the <see cref="NodeFactory"/>
-        /// and <see cref="MatchContext"/>.
+        /// Creates a new context, with a new value of <see cref="Parent"/>.
         /// </summary>
         /// <param name="parent">The new value of <see cref="Parent"/>.</param>
         /// <returns>The updated context.</returns>
         public AnalysisContext WithParent(ILinkedNode? parent)
         {
-            return new AnalysisContext(NodeFactory, parent, null, false, MatchContext, unchecked(Depth + 1));
+            return new AnalysisContext(NodeFactory, parent, null, null, false, MatchContext, unchecked(Depth + 1));
+        }
+
+        /// <summary>
+        /// Creates a new context, with a new value of <see cref="Parent"/>
+        /// and <see cref="Link"/>.
+        /// </summary>
+        /// <param name="parent">The new value of <see cref="Parent"/>.</param>
+        /// <param name="link">The new value of <see cref="Link"/>.</param>
+        /// <returns>The updated context.</returns>
+        public AnalysisContext WithParentLink(ILinkedNode? parent, PropertyUri link)
+        {
+            return new AnalysisContext(NodeFactory, parent, null, link, false, MatchContext, unchecked(Depth + 1));
         }
 
         /// <summary>
         /// Creates a new context, keeping the <see cref="NodeFactory"/>
         /// and <see cref="MatchContext"/>.
-        /// The <see cref="Parent"/> property also preserved,
+        /// The <see cref="Parent"/>, <see cref="Link"/>, and <see cref="Initialized"/> properties also preserved,
         /// unless <paramref name="node"/> is different from <see cref="Node"/>
         /// and both are non-<see langword="null"/>.
         /// </summary>
@@ -137,23 +157,22 @@ namespace IS4.SFI.Services
         /// <returns>The updated context.</returns>
         public AnalysisContext WithNode(ILinkedNode? node)
         {
-            return new AnalysisContext(NodeFactory, Node != null && node != null && !Node.Equals(node) ? null : Parent, node, false, MatchContext, Depth);
+            bool reset = Node != null && node != null && !Node.Equals(node);
+            return new AnalysisContext(NodeFactory, reset ? null : Parent, node, reset ? null : Link, reset ? false : Initialized, MatchContext, Depth);
         }
 
         /// <summary>
-        /// Creates a new context, keeping the <see cref="Parent"/>,
-        /// <see cref="Node"/>, and <see cref="NodeFactory"/>.
+        /// Creates a new context, updating the value of <see cref="MatchContext"/>.
         /// </summary>
         /// <param name="matchContext">The new value of <see cref="MatchContext"/>.</param>
         /// <returns>The updated context.</returns>
         public AnalysisContext WithMatchContext(MatchContext matchContext)
         {
-            return new AnalysisContext(NodeFactory, Parent, Node, false, matchContext, Depth);
+            return new AnalysisContext(NodeFactory, Parent, Node, Link, Initialized, matchContext, Depth);
         }
 
         /// <summary>
-        /// Creates a new context, keeping the <see cref="Parent"/>,
-        /// <see cref="Node"/>, and <see cref="NodeFactory"/>.
+        /// Creates a new context, updating the value of <see cref="MatchContext"/>.
         /// </summary>
         /// <param name="matchContextTransform">
         /// A function which receives the old value of <see cref="MatchContext"/>
@@ -162,7 +181,7 @@ namespace IS4.SFI.Services
         /// <returns>The updated context.</returns>
         public AnalysisContext WithMatchContext(Func<MatchContext, MatchContext> matchContextTransform)
         {
-            return new AnalysisContext(NodeFactory, Parent, Node, false, matchContextTransform(MatchContext), Depth);
+            return new AnalysisContext(NodeFactory, Parent, Node, Link, Initialized, matchContextTransform(MatchContext), Depth);
         }
 
         /// <summary>
@@ -172,7 +191,7 @@ namespace IS4.SFI.Services
         /// <returns>The updated context.</returns>
         public AnalysisContext AsInitialized()
         {
-            return new AnalysisContext(NodeFactory, Parent, Node, true, MatchContext, Depth);
+            return new AnalysisContext(NodeFactory, Parent, Node, null, true, MatchContext, Depth);
         }
     }
 
@@ -282,7 +301,15 @@ namespace IS4.SFI.Services
                 InitNewNode(context.Node ?? context.Parent?[formatter] ?? context.NodeFactory.CreateUnique(), context);
         }
 
-        private ILinkedNode InitNewNode(ILinkedNode node, AnalysisContext context)
+        /// <summary>
+        /// This method should be called to initialize a newly constructed node
+        /// when such a node is not obtained from <see cref="GetNode(AnalysisContext)"/>
+        /// or its overloads. The method calls <see cref="InitNode(ILinkedNode, AnalysisContext)"/>
+        /// if <see cref="AnalysisContext.Initialized"/> is not <see langword="true"/>.
+        /// </summary>
+        /// <param name="node">The node to initialize.</param>
+        /// <param name="context">The context to use.</param>
+        protected ILinkedNode InitNewNode(ILinkedNode node, AnalysisContext context)
         {
             if(!context.Initialized) InitNode(node, context);
             return node;
@@ -293,13 +320,17 @@ namespace IS4.SFI.Services
         /// initializing its default properties (usually via
         /// <see cref="ILinkedNode.SetClass(Vocabulary.ClassUri)"/>), unless
         /// <see cref="AnalysisContext.Initialized"/> is set to <see langword="true"/>.
-        /// The default implementation does nothing.
+        /// The default implementation links <paramref name="node"/> to
+        /// <see cref="AnalysisContext.Parent"/> using <see cref="AnalysisContext.Link"/>.
         /// </summary>
         /// <param name="node">The node to initialize.</param>
         /// <param name="context">The context to use.</param>
         protected virtual void InitNode(ILinkedNode node, AnalysisContext context)
         {
-
+            if(context.Link is PropertyUri link)
+            {
+                context.Parent?.Set(link, node);
+            }
         }
 
         /// <inheritdoc/>

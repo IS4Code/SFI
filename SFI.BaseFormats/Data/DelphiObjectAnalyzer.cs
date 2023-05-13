@@ -20,11 +20,7 @@ namespace IS4.SFI.Analyzers
             var node = GetNode(context);
             foreach(var (key, value) in FindBlobs(null, obj))
             {
-                var infoNode = (await analyzers.Analyze<IFileInfo>(new BlobInfo(key, value), context.WithParent(node))).Node;
-                if(infoNode != null)
-                {
-                    node.Set(Properties.HasPart, infoNode);
-                }
+                await analyzers.Analyze<IFileInfo>(new BlobInfo(key, value), context.WithParentLink(node, Properties.HasPart));
             }
             return new AnalysisResult(node, obj.Name);
         }

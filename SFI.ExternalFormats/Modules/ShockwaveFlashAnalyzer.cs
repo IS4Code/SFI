@@ -50,11 +50,7 @@ namespace IS4.SFI.Analyzers
             {
                 if(tag is DefineTag defineTag)
                 {
-                    var childNode = (await analyzers.TryAnalyze(defineTag, context.WithParent(node))).Node;
-                    if(childNode != null)
-                    {
-                        node.Set(Properties.HasPart, childNode);
-                    }
+                    await analyzers.TryAnalyze(defineTag, context.WithParentLink(node, Properties.HasPart));
                 }
             }
 

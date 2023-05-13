@@ -61,11 +61,7 @@ namespace IS4.SFI.Analyzers
             var uncompressed = module.GetCompressedContents();
             if(uncompressed != null)
             {
-                var infoNode = (await analyzers.Analyze<IFileInfo>(uncompressed, context.WithParent(node))).Node;
-                if(infoNode != null)
-                {
-                    node.Set(Properties.HasPart, infoNode);
-                }
+                await analyzers.Analyze(uncompressed, context.WithParentLink(node, Properties.HasPart));
             }else if(Emulate)
             {
                 var text = module.Emulate(ConsoleEncoding, InstructionStep, InstructionLimit);

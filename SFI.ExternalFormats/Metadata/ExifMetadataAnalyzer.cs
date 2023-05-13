@@ -65,11 +65,7 @@ namespace IS4.SFI.Analyzers
                         node.TrySet(property, v);
                         continue;
                     case object o:
-                        var node2 = (await analyzers.TryAnalyze(o, context)).Node;
-                        if(node2 != null)
-                        {
-                            node.Set(property, node2);
-                        }
+                        await analyzers.TryAnalyze(o, context.WithParentLink(node, property));
                         continue;
                     default:
                         continue;

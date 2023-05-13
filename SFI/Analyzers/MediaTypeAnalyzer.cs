@@ -26,7 +26,7 @@ namespace IS4.SFI.Analyzers
         public async override ValueTask<AnalysisResult> Analyze(ContentType entity, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var type = entity.ToString();
-            var node = context.NodeFactory.Create(Vocabularies.Urim, UriTools.EscapePathString(type));
+            var node = InitNewNode(context.Node ?? context.NodeFactory.Create(Vocabularies.Urim, UriTools.EscapePathString(type)), context);
             if(AddClasses)
             {
                 node.SetClass(Classes.MediaType);
