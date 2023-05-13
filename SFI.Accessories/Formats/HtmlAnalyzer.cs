@@ -81,7 +81,7 @@ namespace IS4.SFI.Analyzers
             var langNodes = node.SelectNodes("ancestor-or-self::*[@lang]");
             if(langNodes == null || langNodes.Count == 0) return null;
             var lang = langNodes[langNodes.Count - 1].GetAttributeValue("lang", null);
-            if(lang == null) return null;
+            if(String.IsNullOrEmpty(lang)) return null;
             return new LanguageCode(lang);
         }
 
