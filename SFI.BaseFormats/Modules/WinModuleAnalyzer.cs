@@ -76,14 +76,16 @@ namespace IS4.SFI.Analyzers
                         continue;
                     }
                     cache[(resource.Type, resource.Name)] = info;
-                    await analyzers.Analyze<IFileInfo>(info, context.WithParentLink(node, Properties.HasPart).WithNode(node[info.ToString()]));
+                    var resNode = node[UriTools.EscapePathString(info.ToString())];
+                    await analyzers.Analyze<IFileInfo>(info, context.WithParentLink(node, Properties.HasPart).WithNode(resNode));
                     ordinal++;
                 }
             }
             foreach(var info in groups)
             {
                 info.MakeGroup(cache);
-                await analyzers.Analyze<IFileInfo>(info, context.WithParentLink(node, Properties.HasPart).WithNode(node[info.ToString()]));
+                var resNode = node[UriTools.EscapePathString(info.ToString())];
+                await analyzers.Analyze<IFileInfo>(info, context.WithParentLink(node, Properties.HasPart).WithNode(resNode));
             }
             return label;
         }
