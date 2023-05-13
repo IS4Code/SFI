@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQKazzK2pSx-4jPs-MyMrsBA?ct=application/octet-stream>.
+@base <x.blank:d8201ae9-0f62-411b-b384-4fd3041f9712>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -23,8 +23,8 @@ _:n1 at:pathObject <file:///RAW_NIKON_D5000.NEF>;
 <file:///RAW_NIKON_D5000.NEF> at:extensionObject <https://w3id.org/uri4uri/suffix/nef>.
 <ni:///mh;1QEQKazzK2pSx-4jPs-MyMrsBA?ct=application/octet-stream> at:digest <urn:md5:29ACF32B6A52C7EE233ECF8CC8CAEC04>;
                                                                   dcterms:extent "11741824"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQKazzK2pSx-4jPs-MyMrsBA?ct=image/tiff>,
-                                                                                    <ni:///mh;1QEQKazzK2pSx-4jPs-MyMrsBA?ct=image/nef>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQKazzK2pSx-4jPs-MyMrsBA?ct=image/nef>,
+                                                                                    <ni:///mh;1QEQKazzK2pSx-4jPs-MyMrsBA?ct=image/tiff>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (11.2 MiB)"@en.
 <ni:///mh;1QEQKazzK2pSx-4jPs-MyMrsBA?ct=image/nef> <http://ns.microsoft.com/photo/1.0/Rating> "0";
@@ -36,7 +36,8 @@ _:n1 at:pathObject <file:///RAW_NIKON_D5000.NEF>;
                                                      nfo:Image,
                                                      schema:ImageObject;
                                                    skos:prefLabel "NEF object (160×120)"@en.
-<ni:///mh;1QEQKazzK2pSx-4jPs-MyMrsBA?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
+<ni:///mh;1QEQKazzK2pSx-4jPs-MyMrsBA?ct=image/tiff> <http://ns.microsoft.com/photo/1.0Rating> "0";
+                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
                                                     nfo:hasMediaStream <ni:///mh;1QEQKazzK2pSx-4jPs-MyMrsBA?ct=image/tiff#/0>,
                                                                        <ni:///mh;1QEQKazzK2pSx-4jPs-MyMrsBA?ct=image/tiff#/1>;
                                                     a schema:MediaObject,
@@ -72,10 +73,10 @@ _:n1 at:pathObject <file:///RAW_NIKON_D5000.NEF>;
                                                     exif:jpegInterchangeFormat 187084 ;
                                                     exif:jpegInterchangeFormatLength 1790265 ;
                                                     exif:lightSource 0 ;
-                                                    exif:make "NIKON CORPORATION"^^xsd:string;
+                                                    exif:make "NIKON CORPORATION";
                                                     exif:maxApertureValue "37/10"^^owl:rational;
                                                     exif:meteringMode 5 ;
-                                                    exif:model "NIKON D5000"^^xsd:string;
+                                                    exif:model "NIKON D5000";
                                                     exif:orientation 1 ;
                                                     exif:photometricInterpretation 2 ,
                                                                                    32803 ;
@@ -90,14 +91,14 @@ _:n1 at:pathObject <file:///RAW_NIKON_D5000.NEF>;
                                                     exif:sceneType "01"^^xsd:hexBinary;
                                                     exif:sensingMethod 2 ;
                                                     exif:sharpness 0 ;
-                                                    exif:software "Nikon Transfer 1.4 W"^^xsd:string;
+                                                    exif:software "Nikon Transfer 1.4 W";
                                                     exif:stripByteCounts 57600 ,
                                                                          9764475 ;
                                                     exif:stripOffsets 19530 ,
                                                                       1977349 ;
-                                                    exif:subSecTime "50"^^xsd:string;
-                                                    exif:subSecTimeDigitized "50"^^xsd:string;
-                                                    exif:subSecTimeOriginal "50"^^xsd:string;
+                                                    exif:subSecTime "50";
+                                                    exif:subSecTimeDigitized "50";
+                                                    exif:subSecTimeOriginal "50";
                                                     exif:subjectDistanceRange 0 ;
                                                     exif:userComment "QVNDSUkAAAAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA="^^xsd:base64Binary;
                                                     exif:whiteBalance 0 ;
@@ -105,8 +106,7 @@ _:n1 at:pathObject <file:///RAW_NIKON_D5000.NEF>;
                                                                      "1/65536"^^owl:rational;
                                                     exif:yResolution 300 ,
                                                                      0 ;
-                                                    skos:prefLabel "TIFF object (11.2 MiB)"@en;
-                                                    <urn:uuid:a99445e2-5357-5923-afb2-6037f2fd7478> "0".
+                                                    skos:prefLabel "TIFF object (11.2 MiB)"@en.
 <ni:///mh;1QEQKazzK2pSx-4jPs-MyMrsBA?ct=image/tiff#/0> nfo:height 120 ;
                                                        nfo:width 160 ;
                                                        a nfo:MediaStream;
@@ -118,5 +118,3 @@ _:n1 at:pathObject <file:///RAW_NIKON_D5000.NEF>;
 <urn:md5:29ACF32B6A52C7EE233ECF8CC8CAEC04> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "KazzK2pSx+4jPs+MyMrsBA=="^^xsd:base64Binary.
-<urn:uuid:a99445e2-5357-5923-afb2-6037f2fd7478> owl:equivalentProperty <http://ns.microsoft.com/photo/1.0Rating>;
-                                                owl:sameAs <http://ns.microsoft.com/photo/1.0Rating>.

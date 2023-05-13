@@ -42,16 +42,11 @@ namespace IS4.SFI
                         {
                             lock(Handler)
                             {
-                                var copy = new Triple(
-                                    VDS.RDF.Tools.CopyNode(triple.Subject, Handler),
-                                    VDS.RDF.Tools.CopyNode(triple.Predicate, Handler),
-                                    VDS.RDF.Tools.CopyNode(triple.Object, Handler)
-                                );
-                                Handler.HandleTriple(copy);
+                                Handler.HandleTriple(triple);
                             }
                         }
                         break;
-                    case IEnumerable<SparqlResult> resultSet:
+                    case IEnumerable<ISparqlResult> resultSet:
                         foreach(var result in resultSet)
                         {
                             if(result.TryGetValue(NodeVariableName, out var node) && node.Equals(subject))

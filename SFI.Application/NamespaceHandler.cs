@@ -34,6 +34,13 @@ namespace IS4.SFI
         #region Implementation
         public bool AcceptsAll => baseHandler.AcceptsAll;
 
+        public Uri BaseUri { get => baseHandler.BaseUri; set => baseHandler.BaseUri = value; }
+
+        public INamespaceMapper NamespaceMap => baseHandler.NamespaceMap;
+
+        public IUriFactory UriFactory { get => baseHandler.UriFactory; set => baseHandler.UriFactory = value; }
+        public bool NormalizeLiteralValues { get => baseHandler.NormalizeLiteralValues; set => baseHandler.NormalizeLiteralValues = value; }
+
         public IBlankNode CreateBlankNode()
         {
             return baseHandler.CreateBlankNode();
@@ -102,6 +109,31 @@ namespace IS4.SFI
         public void StartRdf()
         {
             baseHandler.StartRdf();
+        }
+
+        public bool HandleQuad(Triple t, IRefNode graph)
+        {
+            return baseHandler.HandleQuad(t, graph);
+        }
+
+        public IUriNode CreateUriNode(string qName)
+        {
+            return baseHandler.CreateUriNode(qName);
+        }
+
+        public IUriNode CreateUriNode()
+        {
+            return baseHandler.CreateUriNode();
+        }
+
+        public ITripleNode CreateTripleNode(Triple triple)
+        {
+            return baseHandler.CreateTripleNode(triple);
+        }
+
+        public Uri ResolveQName(string qName)
+        {
+            return baseHandler.ResolveQName(qName);
         }
         #endregion
     }

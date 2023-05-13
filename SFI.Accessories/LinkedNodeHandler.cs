@@ -354,7 +354,7 @@ namespace IS4.SFI
                 if(Subject.Equals(subj) && !(obj is IBlankNode))
                 {
                     // The triple is accepted only if it fully described the current node
-                    HandleTriple(Subject, VDS.RDF.Tools.CopyNode(pred, Graph), VDS.RDF.Tools.CopyNode(obj, Graph));
+                    HandleTriple(Subject, pred, obj);
                     return true;
                 }
                 return false;
@@ -448,7 +448,7 @@ namespace IS4.SFI
                 {
                     return null;
                 }
-                return new UriNode(VDS.RDF.Tools.CopyNode(Subject, graph), graph, handler.GetGraphCache(graph));
+                return new UriNode(Subject, graph, handler.GetGraphCache(graph));
             }
 
             protected override IRdfHandler? CreateGraphNode(Uri uri)
@@ -633,23 +633,15 @@ namespace IS4.SFI
 
                 static readonly UriComparer comparer = new();
 
-                /// <summary>
-                /// The base URI uses the graph's unique scheme.
-                /// </summary>
-                public override Uri BaseUri {
-                    get {
-                        return base.BaseUri;
-                    }
-                    set {
-
-                    }
-                }
-
-                public DataGraph(UriNode describingNode, IReadOnlyCollection<Uri>? subjectUris) : base(true)
+                public DataGraph(UriNode describingNode, IReadOnlyCollection<Uri>? subjectUris)
+                    : base(
+                          null,
+                          nodeFactory: new FixedBaseNodeFactory(new Uri($"x.{Guid.NewGuid():N}:", UriKind.Absolute)),
+                          emptyNamespaceMap: true
+                          )
                 {
                     this.describingNode = describingNode;
                     this.subjectUris = subjectUris ?? Array.Empty<Uri>();
-                    base.BaseUri = new Uri($"x.{Guid.NewGuid():N}:", UriKind.Absolute);
                 }
 
                 public override bool Assert(Triple t)
@@ -684,6 +676,104 @@ namespace IS4.SFI
                         }
                     }
                     return node;
+                }
+
+                class FixedBaseNodeFactory : INodeFactory
+                {
+                    readonly INodeFactory inner;
+
+                    public FixedBaseNodeFactory(Uri baseUri)
+                    {
+                        inner = new NodeFactory(new NodeFactoryOptions
+                        {
+                            BaseUri = baseUri,
+                            ValidateLanguageSpecifiers = false
+                        });
+                    }
+
+                    public Uri BaseUri {
+                        get => inner.BaseUri;
+                        set {
+
+                        }
+                    }
+
+                    #region INodeFactory implementation
+                    public INamespaceMapper NamespaceMap => inner.NamespaceMap;
+
+                    public IUriFactory UriFactory { get => inner.UriFactory; set => inner.UriFactory = value; }
+                    public bool NormalizeLiteralValues { get => inner.NormalizeLiteralValues; set => inner.NormalizeLiteralValues = value; }
+
+                    public IBlankNode CreateBlankNode()
+                    {
+                        return inner.CreateBlankNode();
+                    }
+
+                    public IBlankNode CreateBlankNode(string nodeId)
+                    {
+                        return inner.CreateBlankNode(nodeId);
+                    }
+
+                    public IGraphLiteralNode CreateGraphLiteralNode()
+                    {
+                        return inner.CreateGraphLiteralNode();
+                    }
+
+                    public IGraphLiteralNode CreateGraphLiteralNode(IGraph subgraph)
+                    {
+                        return inner.CreateGraphLiteralNode(subgraph);
+                    }
+
+                    public ILiteralNode CreateLiteralNode(string literal, Uri datatype)
+                    {
+                        return inner.CreateLiteralNode(literal, datatype);
+                    }
+
+                    public ILiteralNode CreateLiteralNode(string literal)
+                    {
+                        return inner.CreateLiteralNode(literal);
+                    }
+
+                    public ILiteralNode CreateLiteralNode(string literal, string langSpec)
+                    {
+                        return inner.CreateLiteralNode(literal, langSpec);
+                    }
+
+                    public ITripleNode CreateTripleNode(Triple triple)
+                    {
+                        return inner.CreateTripleNode(triple);
+                    }
+
+                    public IUriNode CreateUriNode(Uri uri)
+                    {
+                        return inner.CreateUriNode(uri);
+                    }
+
+                    public IUriNode CreateUriNode(string qName)
+                    {
+                        return inner.CreateUriNode(qName);
+                    }
+
+                    public IUriNode CreateUriNode()
+                    {
+                        return inner.CreateUriNode();
+                    }
+
+                    public IVariableNode CreateVariableNode(string varName)
+                    {
+                        return inner.CreateVariableNode(varName);
+                    }
+
+                    public string GetNextBlankNodeID()
+                    {
+                        return inner.GetNextBlankNodeID();
+                    }
+
+                    public Uri ResolveQName(string qName)
+                    {
+                        return inner.ResolveQName(qName);
+                    }
+                    #endregion
                 }
             }
         }

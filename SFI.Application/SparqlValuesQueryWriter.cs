@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Text;
 using VDS.RDF;
 using VDS.RDF.Query;
 using VDS.RDF.Writing.Formatting;
@@ -24,6 +25,13 @@ namespace IS4.SFI
         public void Save(SparqlResultSet results, string filename)
         {
             using var writer = File.CreateText(filename);
+            Save(results, writer);
+        }
+
+        public void Save(SparqlResultSet results, string filename, Encoding encoding)
+        {
+            using var stream = new FileStream(filename, FileMode.Create, FileAccess.Write);
+            using var writer = new StreamWriter(stream, encoding);
             Save(results, writer);
         }
 

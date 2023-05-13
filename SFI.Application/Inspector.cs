@@ -115,7 +115,7 @@ namespace IS4.SFI
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
             // Not desirable due to EncodedUri and similar; vocabulary URIs are cached anyway
-            Options.InternUris = false;
+            UriFactory.InternUris = false;
 
             // Custom writer of SPARQL Results as SPARQL query with VALUES
             MimeTypesHelper.RegisterWriter(new SparqlValuesQueryWriter(), new[] { MimeTypesHelper.SparqlQuery }, new[] { MimeTypesHelper.DefaultSparqlQueryExtension, "sparql" }.Distinct());
@@ -542,11 +542,22 @@ namespace IS4.SFI
                 // Use the custom Turtle handler with @base support
                 handler = new TurtleHandler<TurtleFormatter>(writer, turtleFormatter, qnameMapper);
             }else{
-                handler = new VDS.RDF.Parsing.Handlers.WriteThroughHandler(formatter, writer, true);
+                handler = new WriteThroughHandler(formatter, writer, true);
                 handler = new NamespaceHandler(handler, qnameMapper);
             }
             mapper = qnameMapper;
             return writer;
+        }
+
+        class WriteThroughHandler : VDS.RDF.Parsing.Handlers.WriteThroughHandler
+        {
+            public WriteThroughHandler(ITripleFormatter formatter, TextWriter writer, bool closeOnEnd) : base(formatter, writer, closeOnEnd)
+            {
+                if(NodeFactory is NodeFactory nodeFactory)
+                {
+                    nodeFactory.ValidateLanguageSpecifiers = false;
+                }
+            }
         }
 
         /// <summary>
@@ -588,7 +599,14 @@ namespace IS4.SFI
         /// <returns>The RDF handler to use.</returns>
         private IRdfHandler CreateGraphHandler(bool immediate, out Graph graph)
         {
-            graph = new Graph(true);
+            graph = new Graph(
+                null,
+                nodeFactory: new NodeFactory(new NodeFactoryOptions()
+                {
+                    ValidateLanguageSpecifiers = false
+                }),
+                emptyNamespaceMap: true
+            );
             return immediate ? new DirectGraphHandler(graph) : new VDS.RDF.Parsing.Handlers.GraphHandler(graph);
         }
 

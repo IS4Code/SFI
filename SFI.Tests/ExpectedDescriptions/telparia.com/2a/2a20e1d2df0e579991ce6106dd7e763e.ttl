@@ -1,4 +1,4 @@
-@base <ni:///mh;1QEQ_LXPblRA-_nYj058NrAgfw?ct=application/octet-stream>.
+@base <x.blank:86517d7f-e2e2-4e62-8cef-fb9c569d9184>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -33,6 +33,7 @@ _:n1 at:pathObject <file:///sample1.nef>;
                                                                       <http://ns.adobe.com/xap/1.0/rights/WebStatement> "www.luminescentphoto.com";
                                                                       <http://ns.camerabits.com/photomechanic/1.0/Prefs> "0:0:0:005166";
                                                                       <http://ns.camerabits.com/photomechanic/1.0/TimeCreated> "074421-0700";
+                                                                      <http://ns.microsoft.com/photo/1.0Rating> "0";
                                                                       nfo:hasMediaStream <ni:///mh;1QEQ_LXPblRA-_nYj058NrAgfw?ct=application/octet-stream#arw/0>,
                                                                                          <ni:///mh;1QEQ_LXPblRA-_nYj058NrAgfw?ct=application/octet-stream#arw/1>;
                                                                       a schema:MediaObject,
@@ -44,7 +45,7 @@ _:n1 at:pathObject <file:///sample1.nef>;
                                                                                        34713 ;
                                                                       exif:contrast 0 ;
                                                                       exif:customRendered 0 ;
-                                                                      exif:dateTime "2008:06:01 02:10:-113246208"^^xsd:string;
+                                                                      exif:dateTime "2008:06:01 02:10:-113246208";
                                                                       exif:dateTimeDigitized "2008-03-15T07:44:21.000000"^^xsd:dateTime;
                                                                       exif:dateTimeOriginal "2008-03-15T07:44:21.000000"^^xsd:dateTime;
                                                                       exif:digitalZoomRatio 1 ;
@@ -66,10 +67,10 @@ _:n1 at:pathObject <file:///sample1.nef>;
                                                                       exif:jpegInterchangeFormat 236882 ;
                                                                       exif:jpegInterchangeFormatLength 6421232 ;
                                                                       exif:lightSource 0 ;
-                                                                      exif:make "NIKON CORPORATION"^^xsd:string;
+                                                                      exif:make "NIKON CORPORATION";
                                                                       exif:maxApertureValue 3 ;
                                                                       exif:meteringMode 5 ;
-                                                                      exif:model "NIKON D3"^^xsd:string;
+                                                                      exif:model "NIKON D3";
                                                                       exif:orientation 1 ;
                                                                       exif:photometricInterpretation 2 ,
                                                                                                      32803 ;
@@ -84,14 +85,14 @@ _:n1 at:pathObject <file:///sample1.nef>;
                                                                       exif:sceneType "01"^^xsd:hexBinary;
                                                                       exif:sensingMethod 2 ;
                                                                       exif:sharpness 0 ;
-                                                                      exif:software "Capture NX 2.0.0 M"^^xsd:string;
+                                                                      exif:software "Capture NX 2.0.0 M";
                                                                       exif:stripByteCounts 203520 ,
                                                                                            12642066 ;
                                                                       exif:stripOffsets 33362 ,
                                                                                         6658114 ;
-                                                                      exif:subSecTime "49"^^xsd:string;
-                                                                      exif:subSecTimeDigitized "49"^^xsd:string;
-                                                                      exif:subSecTimeOriginal "49"^^xsd:string;
+                                                                      exif:subSecTime "49";
+                                                                      exif:subSecTimeDigitized "49";
+                                                                      exif:subSecTimeOriginal "49";
                                                                       exif:subjectDistanceRange 0 ;
                                                                       exif:userComment "QVNDSUkAAAAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA="^^xsd:base64Binary;
                                                                       exif:whiteBalance 0 ;
@@ -99,8 +100,7 @@ _:n1 at:pathObject <file:///sample1.nef>;
                                                                                        1 ;
                                                                       exif:yResolution 300 ,
                                                                                        0 ;
-                                                                      skos:prefLabel "ARW object (18.41 MiB)"@en;
-                                                                      <urn:uuid:a99445e2-5357-5923-afb2-6037f2fd7478> "0".
+                                                                      skos:prefLabel "ARW object (18.41 MiB)"@en.
 <ni:///mh;1QEQ_LXPblRA-_nYj058NrAgfw?ct=application/octet-stream#arw/0> nfo:height 320 ;
                                                                         nfo:width 212 ;
                                                                         a nfo:MediaStream;
@@ -129,5 +129,3 @@ _:n1 at:pathObject <file:///sample1.nef>;
 <urn:md5:FCB5CF6E5440FBF9D88F4E7C36B0207F> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "/LXPblRA+/nYj058NrAgfw=="^^xsd:base64Binary.
-<urn:uuid:a99445e2-5357-5923-afb2-6037f2fd7478> owl:equivalentProperty <http://ns.microsoft.com/photo/1.0Rating>;
-                                                owl:sameAs <http://ns.microsoft.com/photo/1.0Rating>.

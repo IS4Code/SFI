@@ -16,8 +16,8 @@ namespace IS4.SFI
     /// </summary>
     public class SearchNodeQueryTester : NodeQueryTester
     {
-        readonly ConcurrentQueue<SparqlResult> results = new();
-        readonly ConcurrentDictionary<SparqlResult, object?> distinctResults = new();
+        readonly ConcurrentQueue<ISparqlResult> results = new();
+        readonly ConcurrentDictionary<ISparqlResult, object?> distinctResults = new();
 
         /// <inheritdoc/>
         public SearchNodeQueryTester(IRdfHandler rdfHandler, Graph queryGraph, IReadOnlyCollection<SparqlQuery> queries) : base(rdfHandler, queryGraph, queries)
@@ -118,8 +118,8 @@ namespace IS4.SFI
         class SparqlResultsHandler : ISparqlResultsHandler
         {
             readonly INodeFactory nodeFactory;
-            readonly IProducerConsumerCollection<SparqlResult> results;
-            readonly ConcurrentDictionary<SparqlResult, object?> distinctResults;
+            readonly IProducerConsumerCollection<ISparqlResult> results;
+            readonly ConcurrentDictionary<ISparqlResult, object?> distinctResults;
 
             public bool Result { get; private set; }
 
@@ -127,11 +127,18 @@ namespace IS4.SFI
 
             public bool Success { get; private set; }
 
+            public Uri BaseUri { get => nodeFactory.BaseUri; set => nodeFactory.BaseUri = value; }
+
+            public INamespaceMapper NamespaceMap => nodeFactory.NamespaceMap;
+
+            public IUriFactory UriFactory { get => nodeFactory.UriFactory; set => nodeFactory.UriFactory = value; }
+            public bool NormalizeLiteralValues { get => nodeFactory.NormalizeLiteralValues; set => nodeFactory.NormalizeLiteralValues = value; }
+
             int limit = -1;
             int offset;
             bool distinct;
 
-            public SparqlResultsHandler(INodeFactory nodeFactory, IProducerConsumerCollection<SparqlResult> results, ConcurrentDictionary<SparqlResult, object?> distinctResults)
+            public SparqlResultsHandler(INodeFactory nodeFactory, IProducerConsumerCollection<ISparqlResult> results, ConcurrentDictionary<ISparqlResult, object?> distinctResults)
             {
                 this.nodeFactory = nodeFactory;
                 this.results = results;
@@ -156,7 +163,7 @@ namespace IS4.SFI
                 return true;
             }
 
-            public bool HandleResult(SparqlResult result)
+            public bool HandleResult(ISparqlResult result)
             {
                 if(limit >= 0 && Count >= limit)
                 {
@@ -236,6 +243,26 @@ namespace IS4.SFI
             public string GetNextBlankNodeID()
             {
                 return nodeFactory.GetNextBlankNodeID();
+            }
+
+            public IUriNode CreateUriNode(string qName)
+            {
+                return nodeFactory.CreateUriNode(qName);
+            }
+
+            public IUriNode CreateUriNode()
+            {
+                return nodeFactory.CreateUriNode();
+            }
+
+            public ITripleNode CreateTripleNode(Triple triple)
+            {
+                return nodeFactory.CreateTripleNode(triple);
+            }
+
+            public Uri ResolveQName(string qName)
+            {
+                return nodeFactory.ResolveQName(qName);
             }
             #endregion
         }

@@ -28,5 +28,15 @@ namespace IS4.SFI
         {
             return graph.Assert(t);
         }
+
+        /// <inheritdoc/>
+        protected override bool HandleQuadInternal(Triple t, IRefNode graph)
+        {
+            if(graph.Equals(this.graph.Name))
+            {
+                return HandleTripleInternal(t);
+            }
+            return true;
+        }
     }
 }

@@ -85,13 +85,29 @@ namespace IS4.SFI
 
         public bool HandleTriple(Triple t)
         {
-            if(isProxy) mergedGraph.Assert(VDS.RDF.Tools.CopyTriple(t, mergedGraph));
-            currentGraph.Assert(VDS.RDF.Tools.CopyTriple(t, currentGraph));
+            if(isProxy) mergedGraph.Assert(t);
+            currentGraph.Assert(t);
             return baseHandler.HandleTriple(t);
+        }
+
+        public bool HandleQuad(Triple t, IRefNode graph)
+        {
+            if(graph.Equals(mergedGraph.Name))
+            {
+                return HandleTriple(t);
+            }
+            return true;
         }
 
         #region Implementation
         public bool AcceptsAll => baseHandler.AcceptsAll;
+
+        public Uri BaseUri { get => baseHandler.BaseUri; set => baseHandler.BaseUri = value; }
+
+        public INamespaceMapper NamespaceMap => baseHandler.NamespaceMap;
+
+        public IUriFactory UriFactory { get => baseHandler.UriFactory; set => baseHandler.UriFactory = value; }
+        public bool NormalizeLiteralValues { get => baseHandler.NormalizeLiteralValues; set => baseHandler.NormalizeLiteralValues = value; }
 
         public IBlankNode CreateBlankNode()
         {
@@ -156,6 +172,26 @@ namespace IS4.SFI
         public void StartRdf()
         {
             baseHandler.StartRdf();
+        }
+
+        public IUriNode CreateUriNode(string qName)
+        {
+            return baseHandler.CreateUriNode(qName);
+        }
+
+        public IUriNode CreateUriNode()
+        {
+            return baseHandler.CreateUriNode();
+        }
+
+        public ITripleNode CreateTripleNode(Triple triple)
+        {
+            return baseHandler.CreateTripleNode(triple);
+        }
+
+        public Uri ResolveQName(string qName)
+        {
+            return baseHandler.ResolveQName(qName);
         }
         #endregion
     }

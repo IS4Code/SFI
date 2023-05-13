@@ -28,6 +28,18 @@ namespace IS4.SFI
         }
 
         /// <inheritdoc/>
+        public Uri BaseUri { get => inner.BaseUri; set => inner.BaseUri = value; }
+
+        /// <inheritdoc/>
+        public INamespaceMapper NamespaceMap => inner.NamespaceMap;
+
+        /// <inheritdoc/>
+        public IUriFactory UriFactory { get => inner.UriFactory; set => inner.UriFactory = value; }
+
+        /// <inheritdoc/>
+        public bool NormalizeLiteralValues { get => inner.NormalizeLiteralValues; set => inner.NormalizeLiteralValues = value; }
+
+        /// <inheritdoc/>
         public IBlankNode CreateBlankNode()
         {
             lock(inner) return inner.CreateBlankNode();
@@ -70,9 +82,27 @@ namespace IS4.SFI
         }
 
         /// <inheritdoc/>
+        public ITripleNode CreateTripleNode(Triple triple)
+        {
+            lock(inner) return inner.CreateTripleNode(triple);
+        }
+
+        /// <inheritdoc/>
         public IUriNode CreateUriNode(Uri uri)
         {
             lock(inner) return inner.CreateUriNode(uri);
+        }
+
+        /// <inheritdoc/>
+        public IUriNode CreateUriNode(string qName)
+        {
+            lock(inner) return inner.CreateUriNode(qName);
+        }
+
+        /// <inheritdoc/>
+        public IUriNode CreateUriNode()
+        {
+            lock(inner) return inner.CreateUriNode();
         }
 
         /// <inheritdoc/>
@@ -106,9 +136,21 @@ namespace IS4.SFI
         }
 
         /// <inheritdoc/>
+        public bool HandleQuad(Triple t, IRefNode graph)
+        {
+            lock(inner) return inner.HandleQuad(t, graph);
+        }
+
+        /// <inheritdoc/>
         public bool HandleTriple(Triple t)
         {
             lock(inner) return inner.HandleTriple(t);
+        }
+
+        /// <inheritdoc/>
+        public Uri ResolveQName(string qName)
+        {
+            return inner.ResolveQName(qName);
         }
 
         /// <inheritdoc/>

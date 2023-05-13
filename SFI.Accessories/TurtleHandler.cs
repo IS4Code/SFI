@@ -33,6 +33,11 @@ namespace IS4.SFI
         /// <param name="uriComparer">The comparer of <see cref="Uri"/> instances.</param>
         public TurtleHandler(TextWriter output, TFormatter formatter, INamespaceMapper namespaceMapper, IEqualityComparer<Uri>? uriComparer = null)
         {
+            if(NodeFactory is NodeFactory nodeFactory)
+            {
+                nodeFactory.ValidateLanguageSpecifiers = false;
+            }
+
             this.output = output;
             this.formatter = formatter;
             this.namespaceMapper = namespaceMapper;
@@ -128,6 +133,12 @@ namespace IS4.SFI
                 Write($"  {pred} {obj}");
             }
             return true;
+        }
+
+        /// <inheritdoc/>
+        protected override bool HandleQuadInternal(Triple t, IRefNode graph)
+        {
+            throw new NotSupportedException();
         }
 
         string linePart = "";
