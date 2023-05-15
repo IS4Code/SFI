@@ -380,7 +380,7 @@ namespace IS4.SFI
             if(entity is IFormattable formattable)
             {
                 // trust IFormattable types to always provide a useful result
-                return formattable.ToString(null, CultureInfo.InvariantCulture);
+                return NormalizeUserFriendlyString(formattable.ToString(null, CultureInfo.InvariantCulture));
             }
             string name;
             type = entity.GetType();
@@ -392,7 +392,7 @@ namespace IS4.SFI
                 if(GetTypeFromName<T>(type, convertedName) is not Type existingTypeFromConverter)
                 {
                     // not the name of any type, so the converter or instance did actually provide its own string conversion
-                    return convertedName;
+                    return NormalizeUserFriendlyString(convertedName);
                 }
                 name = entity.ToString();
                 if(name == convertedName)
@@ -412,7 +412,7 @@ namespace IS4.SFI
                 // it is the name of a type, so use that type instead
                 return GetUserFriendlyName(existingType);
             }
-            return name;
+            return NormalizeUserFriendlyString(name);
         }
 
         static readonly Type stringType = typeof(string);
@@ -421,6 +421,16 @@ namespace IS4.SFI
             () => new TypeConverter().ConvertTo(null, default(CultureInfo), null, default(Type))
         )).Body).Method;
         static readonly ConditionalWeakTable<Type, object> converterTypeCache = new();
+
+        static readonly Regex whitespaceRegex = new(@"\s+", RegexOptions.Compiled);
+
+        /// <summary>
+        /// Makes a string suitable for text writing and logging.
+        /// </summary>
+        static string NormalizeUserFriendlyString(string str)
+        {
+            return whitespaceRegex.Replace(str, " ");
+        }
 
         /// <summary>
         /// Checks that a type converter has a defined conversion to string.
