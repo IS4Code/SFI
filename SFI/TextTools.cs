@@ -309,7 +309,7 @@ namespace IS4.SFI
             return qEncoded.ToString();
         }
 
-        static readonly Regex mimeNameRegex = new(@"^[^/;]+/(?:vnd\.|prs\.|x-|)", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+        static readonly Regex mimeNameRegex = new(@"^[^/;]+/(?:vnd\.|prs\.|x-|octet-stream;type=|)", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
         /// <summary>
         /// Obtains the core name from a media type.
