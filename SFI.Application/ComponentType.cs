@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 
 namespace IS4.SFI.Application
 {
@@ -35,7 +36,7 @@ namespace IS4.SFI.Application
                     return (true, factory());
                 }catch(Exception e) when(GlobalOptions.SuppressNonCriticalExceptions)
                 {
-                    inspector?.OutputLog?.WriteLine($"An exception occurred while creating an instance of type {Type} from assembly {Type.Assembly.GetName().Name}: {e}");
+                    inspector?.OutputLog?.LogError(e, $"An exception occurred while creating an instance of type {Type} from assembly {Type.Assembly.GetName().Name}.");
                     return (false, e);
                 }
             }, false);

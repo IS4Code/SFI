@@ -1,6 +1,7 @@
 ﻿using IS4.SFI.Analyzers;
 using IS4.SFI.Application;
 using IS4.SFI.Services;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -84,7 +85,7 @@ namespace IS4.SFI.ConsoleApp
                 archive = ZipFile.OpenRead(file);
             }catch(Exception e)
             {
-                OutputLog?.WriteLine($"An error occurred while opening plugin archive {Path.GetFileName(file)}: " + e.Message);
+                OutputLog?.LogError(e, $"An error occurred while opening plugin archive {Path.GetFileName(file)}.");
                 return default;
             }
             return new Plugin(GetDirectory(archive), name);

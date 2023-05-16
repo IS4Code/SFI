@@ -2,6 +2,7 @@
 using IS4.SFI.Services;
 using IS4.SFI.Tools;
 using IS4.SFI.Tools.IO;
+using Microsoft.Extensions.Logging;
 using MorseCode.ITask;
 using System;
 using System.Buffers;
@@ -77,9 +78,9 @@ namespace IS4.SFI.Analyzers
         public int? MaxDepthForFormats { get; set; } = 200;
 
         /// <summary>
-        /// An instance of <see cref="TextWriter"/> to use for logging.
+        /// An instance of <see cref="ILogger"/> to use for logging.
         /// </summary>
-        public TextWriter? OutputLog { get; set; }
+        public ILogger? OutputLog { get; set; }
 
         /// <summary>
         /// Calculates the maximum allowed length of input above which the node
@@ -437,12 +438,13 @@ namespace IS4.SFI.Analyzers
                         List<FormatResult>? formatResults = null;
                         foreach(var format in analyzer.DataFormats)
                         {
+                            using var scope = analyzer.OutputLog?.BeginScope(format);
                             bool matched;
                             try{
                                 matched = format.CheckHeader(ByteValue, isBinary, encodingDetector);
                             }catch(Exception e) when(GlobalOptions.SuppressNonCriticalExceptions)
                             {
-                                analyzer.OutputLog?.WriteLine($"{TextTools.GetUserFriendlyName(format.GetType())}: {e.Message}");
+                                analyzer.OutputLog?.LogError(e, $"Exception calling {nameof(format.CheckHeader)} on a format.");
                                 if(IsFatalComponentException(format, e))
                                 {
                                     (removedFormats ??= new()).Add(format);
@@ -495,7 +497,8 @@ namespace IS4.SFI.Analyzers
                             throw;
                         }catch(Exception e) when(IsFatalComponentException(result.Format, e))
                         {
-                            analysis.analyzer.OutputLog?.WriteLine($"{TextTools.GetUserFriendlyName(result.Format.GetType())}: {e.Message}");
+                            using var scope = analysis.analyzer.OutputLog?.BeginScope(result.Format);
+                            analysis.analyzer.OutputLog?.LogError(e, $"Exception calling {nameof(result.Format.Match)} on a format.");
                             analysis.analyzer.DataFormats.Remove(result.Format);
                         }catch{
 

@@ -2,6 +2,8 @@
 using IS4.SFI.Services;
 using IS4.SFI.Tools;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -60,7 +62,7 @@ namespace IS4.SFI
             {
                 foreach(var (asm, count) in loaded)
                 {
-                    OutputLog?.WriteLine($"Loaded {count} component{(count == 1 ? "" : "s")} from assembly {asm.GetName().Name}.");
+                    OutputLog?.LogInformation($"Loaded {count} component{(count == 1 ? "" : "s")} from assembly {asm.GetName().Name}.");
                 }
             }
         }
@@ -104,7 +106,7 @@ namespace IS4.SFI
             // Add DI services:
             var services = new ServiceCollection();
             services.AddSingleton<Inspector>(this);
-            services.AddSingleton(OutputLog);
+            services.AddSingleton(OutputLog ?? NullLogger.Instance);
             services.AddSingleton(mainDirectory);
             var serviceProvider = services.BuildServiceProvider();
 
@@ -114,7 +116,7 @@ namespace IS4.SFI
 
                 if(mainEntry == null)
                 {
-                    OutputLog?.WriteLine($"Cannot find main library file {mainFile} inside the plugin.");
+                    OutputLog?.LogWarning($"Cannot find main library file {mainFile} inside the plugin.");
                     yield break;
                 }
 
@@ -122,7 +124,7 @@ namespace IS4.SFI
             }catch(Exception e)
             {
                 var pluginName = Path.GetFileNameWithoutExtension(mainFile);
-                OutputLog?.WriteLine($"An error occurred while loading plugin {pluginName}: " + e);
+                OutputLog?.LogError(e, $"An error occurred while loading plugin {pluginName}.");
                 yield break;
             }
 

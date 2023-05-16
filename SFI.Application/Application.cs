@@ -1,5 +1,6 @@
 ﻿using IS4.SFI.Application;
 using IS4.SFI.Services;
+using Microsoft.Extensions.Logging;
 using MorseCode.ITask;
 using System;
 using System.Collections.Generic;
@@ -88,7 +89,11 @@ namespace IS4.SFI
 
 				var inspector = new TInspector();
 				inspector.CacheResults = onlyOnce;
-				inspector.OutputLog = quiet ? TextWriter.Null : writer;
+				if(!quiet)
+                {
+					inspector.OutputLog = new ComponentLogger(writer);
+                }
+				var logger = inspector.OutputLog;
 				await inspector.AddDefault();
 
 				int componentCount = 0;
@@ -149,16 +154,16 @@ namespace IS4.SFI
                 {
 					if(!matcher.HadEffect && matcher.Pattern != null)
 					{
-						writer.WriteLine($"Warning: Pattern '{matcher.Pattern}' did not {(matcher.Result ? "include" : "exclude")} any components!");
+                        logger?.LogWarning($"Warning: Pattern '{matcher.Pattern}' did not {(matcher.Result ? "include" : "exclude")} any components!");
 					}
 				}
 
 				foreach(var properties in componentProperties)
 				{
-					LogWriter?.WriteLine($"Warning: Properties for component {properties.Key} could not be found!");
+					logger?.LogWarning($"Warning: Properties for component {properties.Key} could not be found!");
 				}
 
-				writer.WriteLine($"Included {componentCount} components in total.");
+				logger?.LogInformation($"Included {componentCount} components in total.");
 
 				if(mainHash != null)
                 {

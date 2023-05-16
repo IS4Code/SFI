@@ -3,6 +3,7 @@ using IS4.SFI.Formats;
 using IS4.SFI.Services;
 using IS4.SFI.Tools;
 using IS4.SFI.Vocabulary;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -47,7 +48,7 @@ namespace IS4.SFI
         public XmlAnalyzer XmlAnalyzer { get; }
 
         /// <inheritdoc cref="EntityAnalyzerProvider.OutputLog"/>
-        public new TextWriter OutputLog {
+        public new ILogger? OutputLog {
             get {
                 return base.OutputLog;
             }
@@ -217,7 +218,7 @@ namespace IS4.SFI
             {
                 throw new ApplicationException($"Format '{options.Format}' is not recognized or could not be used for writing!");
             }
-            OutputLog.WriteLine($"Using {format.SyntaxName + (options.CompressedOutput ? " (compressed)" : "")} for output.");
+            OutputLog?.LogInformation($"Using {format.SyntaxName + (options.CompressedOutput ? " (compressed)" : "")} for output.");
 
             Func<Stream> formatOutputFactory = () => outputFactory(GetOutputMimeType(format));
 
@@ -238,7 +239,7 @@ namespace IS4.SFI
                 }
             }
 
-            OutputLog.WriteLine("Done!");
+            OutputLog?.LogInformation("Done!");
         }
 
         /// <summary>
@@ -246,7 +247,7 @@ namespace IS4.SFI
         /// </summary>
         private async Task WriteRdfToOutput<T>(IEnumerable<T> entities, IReadOnlyCollection<SparqlQuery> queries, IReadOnlyDictionary<Uri, IRdfHandler?> graphHandlers, Func<Stream> outputFactory, MimeTypeDefinition format, InspectorOptions options) where T : class
         {
-            OutputLog.WriteLine("Writing to output...");
+            OutputLog?.LogInformation("Writing to output...");
 
             using var disposable = CreateRdfFileHandler(outputFactory, out var mapper, options, format, out var handler);
             Graph? queryGraph = null;
@@ -274,7 +275,7 @@ namespace IS4.SFI
         /// </summary>
         private async Task SaveRdfToOutput<T>(IEnumerable<T> entities, IReadOnlyCollection<SparqlQuery> queries, IReadOnlyDictionary<Uri, IRdfHandler?> graphHandlers, Func<Stream> outputFactory, MimeTypeDefinition format, InspectorOptions options) where T : class
         {
-            OutputLog.WriteLine("Creating graph...");
+            OutputLog?.LogInformation("Creating graph...");
 
             var handler = CreateGraphHandler(queries.Count > 0, out var graph);
 
@@ -291,7 +292,7 @@ namespace IS4.SFI
                 await AnalyzeEntity(entity, handler, graphHandlers, null, tester, options);
             }
 
-            OutputLog.WriteLine("Saving...");
+            OutputLog?.LogInformation("Saving...");
 
             SaveGraph(graph, outputFactory, options, format);
         }
@@ -301,7 +302,7 @@ namespace IS4.SFI
         /// </summary>
         private async Task WriteSparqlToOutput<T>(IEnumerable<T> entities, IReadOnlyCollection<SparqlQuery> queries, IReadOnlyDictionary<Uri, IRdfHandler?> graphHandlers, Func<Stream> outputFactory, MimeTypeDefinition format, InspectorOptions options) where T : class
         {
-            OutputLog.WriteLine("Searching...");
+            OutputLog?.LogInformation("Searching...");
 
             IRdfHandler handler = new TemporaryGraphHandler(out var graph);
             handler = new ConcurrentHandler(handler);
@@ -328,7 +329,7 @@ namespace IS4.SFI
                 result = searchEnded.ResultSet;
             }
 
-            OutputLog.WriteLine("Saving results...");
+            OutputLog?.LogInformation("Saving results...");
 
             using var fileWriter = OpenFile(outputFactory, options.CompressedOutput, options);
             sparqlWriter.Save(result, fileWriter);
@@ -339,7 +340,7 @@ namespace IS4.SFI
         /// </summary>
         private async Task SaveSparqlToOutput<T>(IEnumerable<T> entities, IReadOnlyCollection<SparqlQuery> queries, IReadOnlyDictionary<Uri, IRdfHandler?> graphHandlers, Func<Stream> outputFactory, MimeTypeDefinition format, InspectorOptions options) where T : class
         {
-            OutputLog.WriteLine("Searching...");
+            OutputLog?.LogInformation("Searching...");
 
             bool mayExitEarly = queries.Any(q => q.Limit >= 0);
 
@@ -369,7 +370,7 @@ namespace IS4.SFI
                 result = searchEnded.ResultSet;
             }
 
-            OutputLog.WriteLine("Saving results...");
+            OutputLog?.LogInformation("Saving results...");
 
             using var fileWriter = OpenFile(outputFactory, options.CompressedOutput, options);
             sparqlWriter.Save(result, fileWriter);
@@ -398,7 +399,7 @@ namespace IS4.SFI
                 {
                     queryParser = new SparqlQueryParser(SparqlQuerySyntax.Extended);
                     queryParser.DefaultBaseUri = new Uri(options.Root, UriKind.Absolute);
-                    queryParser.Warning += OutputLog.WriteLine;
+                    queryParser.Warning += msg => OutputLog?.LogWarning(msg);
                 }
                 SparqlQuery query;
                 try{

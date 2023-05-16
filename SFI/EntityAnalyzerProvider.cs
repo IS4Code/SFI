@@ -1,5 +1,6 @@
 ﻿using IS4.SFI.Services;
 using IS4.SFI.Tools;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -31,9 +32,9 @@ namespace IS4.SFI
         public ICollection<IContainerAnalyzerProvider> ContainerProviders { get; } = new List<IContainerAnalyzerProvider>();
 
         /// <summary>
-        /// An instance of <see cref="TextWriter"/> to use for logging.
+        /// An instance of <see cref="ILogger"/> to use for logging.
         /// </summary>
-        public TextWriter OutputLog { get; set; } = Console.Error;
+        public ILogger? OutputLog { get; set; }
 
         /// <summary>
         /// Called when a new entity is or was analyzed.
@@ -63,14 +64,9 @@ namespace IS4.SFI
         }
 
         /// <summary>
-        /// Stores a counter for every encountered entity type identifier.
+        /// Stores whether a warning has been already issued for an analyzer missing for a particular type. 
         /// </summary>
-        readonly ConcurrentDictionary<string, StrongBox<long>> typeCounters = new(StringComparer.OrdinalIgnoreCase);
-
-        /// <summary>
-        /// Stores if a 
-        /// </summary>
-        readonly ConcurrentDictionary<string, bool> noAnalyzerWarned = new(StringComparer.OrdinalIgnoreCase);
+        readonly ConcurrentDictionary<Type, bool> noAnalyzerWarned = new();
 
         /// <summary>
         /// Traverses the <see cref="Analyzers"/> and picks the first to implement
@@ -79,12 +75,13 @@ namespace IS4.SFI
         /// </summary>
         private async ValueTask<AnalysisResult> Analyze<T>(T entity, AnalysisContext context, IEntityAnalyzers analyzers) where T : class
         {
-            GetNewEntityNames(entity, out var nameOrdinal, out var nameFriendly, out var nameKey);
+            using var scope1 = OutputLog?.BeginScope(entity);
+            var nameFriendly = TextTools.GetUserFriendlyName(entity);
             bool any = false;
             foreach(var analyzer in Analyzers.OfType<IEntityAnalyzer<T>>())
             {
                 any = true;
-                OutputLog.WriteLine($"[{nameOrdinal}] Analyzing: {nameFriendly}...");
+                OutputLog?.LogInformation($"Analyzing: {nameFriendly}...");
                 await Update();
                 try{
                     var result = await analyzer.Analyze(entity, context, analyzers);
@@ -92,9 +89,9 @@ namespace IS4.SFI
                     {
                         if(!String.IsNullOrEmpty(result.Label))
                         {
-                            OutputLog.WriteLine($"[{nameOrdinal}] OK! {result.Label}");
+                            OutputLog?.LogInformation($"OK! {result.Label}");
                         }else{
-                            OutputLog.WriteLine($"[{nameOrdinal}] OK!");
+                            OutputLog?.LogInformation($"OK!");
                         }
 #if DEBUG
                         if(context.Linked is StrongBox<bool> linked && !linked.Value)
@@ -104,23 +101,25 @@ namespace IS4.SFI
 #endif
                         return result;
                     }
-                    OutputLog.WriteLine($"[{nameOrdinal}] No result from {TextTools.GetUserFriendlyName(analyzer)}!");
+                    using var scope2 = OutputLog?.BeginScope(analyzer);
+                    OutputLog?.LogWarning($"No result from {TextTools.GetUserFriendlyName(analyzer)}!");
                 }catch(InternalApplicationException)
                 {
                     throw;
                 }catch(Exception e) when(GlobalOptions.SuppressNonCriticalExceptions)
                 {
-                    OutputLog.WriteLine($"[{nameOrdinal}] Error from {TextTools.GetUserFriendlyName(analyzer)}!");
-                    OutputLog.WriteLine(e);
+                    using var scope2 = OutputLog?.BeginScope(analyzer);
+                    OutputLog?.LogError(e, $"Error from {TextTools.GetUserFriendlyName(analyzer)}!");
                     return default;
                 }finally{
                     await Update();
                 }
             }
-            if(any || !noAnalyzerWarned.ContainsKey(nameKey))
+            var type = typeof(T);
+            if(any || !noAnalyzerWarned.ContainsKey(type))
             {
-                OutputLog.WriteLine($"[{nameOrdinal}] No analyzer for {nameFriendly}.");
-                noAnalyzerWarned[nameKey] = true;
+                OutputLog?.LogWarning($"No analyzer for {nameFriendly}.");
+                noAnalyzerWarned[type] = true;
                 await Update();
             }
             return default;
@@ -133,6 +132,7 @@ namespace IS4.SFI
         /// </summary>
         private ContainerNode<object, IContainerNode>? MatchRoot<TRoot>(TRoot root, AnalysisContext context, IEntityAnalyzers analyzers, IReadOnlyCollection<IContainerAnalyzerProvider>? blocked) where TRoot : class
         {
+            using var scope1 = OutputLog?.BeginScope(root);
             List<ContainerAnalysisInfo>? analyzerList = null;
             foreach(var containerProvider in ContainerProviders)
             {
@@ -154,8 +154,8 @@ namespace IS4.SFI
                         throw;
                     }catch(Exception e) when(GlobalOptions.SuppressNonCriticalExceptions)
                     {
-                        OutputLog.WriteLine($"[{TextTools.GetIdentifierFromType<TRoot>()}] Error from {TextTools.GetUserFriendlyName(containerProvider)}!");
-                        OutputLog.WriteLine(e);
+                        using var scope2 = OutputLog?.BeginScope(containerProvider);
+                        OutputLog?.LogError(e, $"Error from {TextTools.GetUserFriendlyName(containerProvider)}!");
                     }
                 }
             }
@@ -165,14 +165,6 @@ namespace IS4.SFI
                 return new ContainerNode<object, IContainerNode>(null, null, analyzerList, this, analyzers);
             }
             return null;
-        }
-
-        void GetNewEntityNames<T>(T entity, out string nameOrdinal, out string nameFriendly, out string nameKey)
-        {
-            nameKey = TextTools.GetIdentifierFromType<T>();
-            var id = Interlocked.Increment(ref typeCounters.GetOrAdd(nameKey, _ => new StrongBox<long>(0)).Value);
-            nameOrdinal = nameKey + "#" + id;
-            nameFriendly = TextTools.GetUserFriendlyName(entity);
         }
 
         /// <inheritdoc/>
@@ -186,8 +178,9 @@ namespace IS4.SFI
                 return new(cached[key].AddOrUpdate(typeof(T), _ => {
                     return AnalyzeInner(entity, context).AsTask();
                 }, (t, old) => {
-                    GetNewEntityNames(entity, out var nameOrdinal, out var nameFriendly, out _);
-                    OutputLog.WriteLine($"[{nameOrdinal}] Reusing cached {nameFriendly}.");
+                    using var scope = OutputLog?.BeginScope(entity);
+                    var nameFriendly = TextTools.GetUserFriendlyName(entity);
+                    OutputLog?.LogInformation($"Reusing cached {nameFriendly}.");
                     return old;
                 }));
             }
