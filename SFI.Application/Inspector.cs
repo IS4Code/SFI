@@ -243,6 +243,15 @@ namespace IS4.SFI
         }
 
         /// <summary>
+        /// Assigns configured properties to a newly created component.
+        /// </summary>
+        /// <param name="component">The created component.</param>
+        protected virtual void ConfigureNewComponent(object component)
+        {
+
+        }
+
+        /// <summary>
         /// Immediately saves the data to output without an intermediate storage.
         /// </summary>
         private async Task WriteRdfToOutput<T>(IEnumerable<T> entities, IReadOnlyCollection<SparqlQuery> queries, IReadOnlyDictionary<Uri, IRdfHandler?> graphHandlers, Func<Stream> outputFactory, MimeTypeDefinition format, InspectorOptions options) where T : class
@@ -308,6 +317,7 @@ namespace IS4.SFI
             handler = new ConcurrentHandler(handler);
 
             var sparqlWriter = format.GetSparqlResultsWriter();
+            ConfigureNewComponent(sparqlWriter);
 
             SetDefaultNamespaces(graph.NamespaceMap);
 
@@ -348,6 +358,7 @@ namespace IS4.SFI
             handler = new ConcurrentHandler(handler);
 
             var sparqlWriter = format.GetSparqlResultsWriter();
+            ConfigureNewComponent(sparqlWriter);
 
             SetDefaultNamespaces(graph.NamespaceMap);
 
@@ -538,6 +549,7 @@ namespace IS4.SFI
                 throw new ApplicationException($"Format {format.SyntaxName} requires buffered output!");
             }
             var formatter = CreateFormatter(format.SyntaxName, rdfWriter.TripleFormatterType, qnameMapper);
+            ConfigureNewComponent(formatter);
             if(options.PrettyPrint && format.CanonicalMimeType == "text/turtle" && formatter is TurtleFormatter turtleFormatter)
             {
                 // Use the custom Turtle handler with @base support
@@ -681,6 +693,7 @@ namespace IS4.SFI
             {
                 namespaceWriter.DefaultNamespaces.Clear();
             }
+            ConfigureNewComponent(writer);
         }
     }
 }

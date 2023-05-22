@@ -7,6 +7,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using VDS.RDF;
+using VDS.RDF.Writing;
+using VDS.RDF.Writing.Formatting;
 
 namespace IS4.SFI
 {
@@ -23,10 +26,77 @@ namespace IS4.SFI
         /// </summary>
         public IReadOnlyCollection<ComponentCollection> ComponentCollections => componentCollections;
 
+        /// <summary>
+        /// Stores the configuration for all instances of <see cref="ITripleFormatter"/>.
+        /// </summary>
+        public TypeConfigurationCollection FormatterCollection { get; } = new("rdf-formatter");
+
+        /// <summary>
+        /// Stores the configuration for all instances of <see cref="IRdfWriter"/>,
+        /// <see cref="IStoreWriter"/>, and <see cref="ISparqlResultsWriter"/>.
+        /// </summary>
+        public TypeConfigurationCollection RdfWriterCollection { get; } = new("rdf-writer");
+
+        /// <summary>
+        /// Stores the configuration for all instances of <see cref="ISparqlResultsWriter"/>.
+        /// </summary>
+        public TypeConfigurationCollection SparqlWriterCollection { get; } = new("sparql-writer");
+
         /// <inheritdoc/>
         public ComponentInspector()
         {
             CaptureCollections(this);
+
+            foreach(var definition in MimeTypesHelper.Definitions)
+            {
+                var id = TextTools.GetMimeTypeSimpleName(definition.CanonicalMimeType);
+                if(definition.CanWriteRdf)
+                {
+                    RdfWriterCollection.AddType(definition.RdfWriterType, id);
+                    if(definition.GetRdfWriter() is IFormatterBasedWriter { TripleFormatterType: Type formatter })
+                    {
+                        FormatterCollection.AddType(formatter, id);
+                    }
+                }
+                if(definition.CanWriteRdfDatasets)
+                {
+                    RdfWriterCollection.AddType(definition.RdfDatasetWriterType, id);
+                    if(definition.GetRdfDatasetWriter() is IFormatterBasedWriter { TripleFormatterType: Type formatter })
+                    {
+                        FormatterCollection.AddType(formatter, id);
+                    }
+                }
+                if(definition.CanWriteSparqlResults)
+                {
+                    SparqlWriterCollection.AddType(definition.SparqlResultsWriterType, id);
+                    if(definition.GetSparqlResultsWriter() is IFormatterBasedWriter { TripleFormatterType: Type formatter })
+                    {
+                        FormatterCollection.AddType(formatter, id);
+                    }
+                }
+            }
+
+            componentCollections.Add(FormatterCollection);
+            componentCollections.Add(RdfWriterCollection);
+            componentCollections.Add(SparqlWriterCollection);
+        }
+
+        /// <inheritdoc/>
+        protected override void ConfigureNewComponent(object component)
+        {
+            base.ConfigureNewComponent(component);
+
+            var type = component.GetType();
+            foreach(var collection in ComponentCollections.OfType<TypeConfigurationCollection>())
+            {
+                if(collection.TypeMap.TryGetValue(type, out var configuration))
+                {
+                    foreach(var property in configuration.Properties)
+                    {
+                        property.Key.SetValue(component, property.Value);
+                    }
+                }
+            }
         }
 
         /// <inheritdoc/>

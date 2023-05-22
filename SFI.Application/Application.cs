@@ -376,7 +376,7 @@ namespace IS4.SFI
 		{
 			if(IsIncluded(component, id))
 			{
-				LogWriter?.WriteLine($" - {id} ({TextTools.GetUserFriendlyName(component.GetType())})");
+				LogWriter?.WriteLine($" - {id} ({TextTools.GetUserFriendlyName(TypeDescriptor.GetReflectionType(component))})");
 				if(componentProperties.TryGetValue(id, out var dict))
 				{
 					componentProperties.Remove(id);
@@ -387,7 +387,13 @@ namespace IS4.SFI
 					var value = prop.GetValue(component);
 					var type = Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType;
 					var converter = prop.Converter;
-					LogWriter?.WriteLine($"  - {id}:{TextTools.FormatComponentName(prop.Name)} ({TextTools.GetIdentifierFromType(type)}) = {converter.ConvertToInvariantString(value)}");
+					var line = $"{id}:{TextTools.FormatComponentName(prop.Name)} ({TextTools.GetIdentifierFromType(type)})";
+					if(value != null)
+					{
+						LogWriter?.WriteLine($"  - {line} = {converter.ConvertToInvariantString(value)}");
+					}else{
+						LogWriter?.WriteLine($"  - {line}");
+					}
 				}
 			}
 			return default;
