@@ -1,6 +1,7 @@
 ﻿using IS4.SFI.Analyzers;
 using IS4.SFI.Application;
 using IS4.SFI.Services;
+using Microsoft.Extensions.Logging;
 using System;
 using System.IO;
 using System.IO.Compression;
@@ -63,7 +64,7 @@ namespace IS4.SFI.WebApp
                     archive = new ZipArchive(buffer, ZipArchiveMode.Read);
                 }catch(Exception e)
                 {
-                    OutputLog?.WriteLine($"An error occurred while opening plugin archive {name}: " + e);
+                    OutputLog?.LogError(e, $"An error occurred while opening plugin archive {name}.");
                     continue;
                 }
                 Plugins.Add(new Plugin(GetDirectory(archive), Path.ChangeExtension(name, ".dll")));
