@@ -3,6 +3,7 @@ using IS4.SFI.Services;
 using Microsoft.Extensions.Logging;
 using MorseCode.ITask;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -387,8 +388,20 @@ namespace IS4.SFI
 					var value = prop.GetValue(component);
 					var type = Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType;
 					var converter = prop.Converter;
-					var line = $"{id}:{TextTools.FormatComponentName(prop.Name)} ({TextTools.GetIdentifierFromType(type)})";
-					if(value != null)
+					string typeDesc;
+					if(!type.IsPrimitive && converter.GetStandardValuesSupported() && converter.GetStandardValues() is { Count: > 0 } values)
+					{
+						const int maxShown = 10;
+                        typeDesc = String.Join("|", values.Cast<object>().Take(maxShown).Select(converter.ConvertToInvariantString));
+						if(!converter.GetStandardValuesExclusive() || values.Count > maxShown)
+                        {
+                            typeDesc = $"{TextTools.GetIdentifierFromType(type)}: {typeDesc}...";
+						}
+					}else{
+						typeDesc = TextTools.GetIdentifierFromType(type);
+					}
+					var line = $"{id}:{TextTools.FormatComponentName(prop.Name)} ({typeDesc})";
+                    if(value != null)
 					{
 						LogWriter?.WriteLine($"  - {line} = {converter.ConvertToInvariantString(value)}");
 					}else{
