@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -96,6 +97,8 @@ namespace IS4.SFI
                 }
 				var logger = inspector.OutputLog;
 				await inspector.AddDefault();
+
+				RegisterCustomDescriptors();
 
 				int componentCount = 0;
 				async Task ConfigureComponents()
@@ -254,6 +257,12 @@ namespace IS4.SFI
 			}
         }
 
+		static void RegisterCustomDescriptors()
+		{
+			var provider = TypeDescriptor.GetProvider(typeof(Encoding));
+			TypeDescriptor.AddProvider(new EncodingTypeDescriptionProvider(provider), typeof(Encoding));
+		}
+
 		/// <summary>
 		/// Called from an analyzer when an output file should be created.
 		/// </summary>
@@ -389,7 +398,7 @@ namespace IS4.SFI
 					var type = Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType;
 					var converter = prop.Converter;
 					string typeDesc;
-					if(!type.IsPrimitive && converter.GetStandardValuesSupported() && converter.GetStandardValues() is { Count: > 0 } values)
+					if(!(type.IsPrimitive || Type.GetTypeCode(type) != TypeCode.Object) && converter.GetStandardValuesSupported() && converter.GetStandardValues() is { Count: > 0 } values)
 					{
 						const int maxShown = 10;
                         typeDesc = String.Join("|", values.Cast<object>().Take(maxShown).Select(converter.ConvertToInvariantString));
