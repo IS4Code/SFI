@@ -22,18 +22,6 @@ namespace IS4.SFI.Analyzers
         public Encoding ConsoleEncoding { get; set; }
 
         /// <summary>
-        /// Contains the name of <see cref="ConsoleEncoding"/>.
-        /// </summary>
-        public string ConsoleEncodingName {
-            get {
-                return ConsoleEncoding.WebName;
-            }
-            set {
-                ConsoleEncoding = Encoding.GetEncoding(value);
-            }
-        }
-
-        /// <summary>
         /// The number of instruction to emulate in each step.
         /// </summary>
         public int InstructionStep { get; set; } = 1024;

@@ -15,18 +15,6 @@ namespace IS4.SFI.Formats
         /// </summary>
         public Encoding DefaultEncoding { get; set; }
 
-        /// <summary>
-        /// Contains the name of <see cref="DefaultEncoding"/>.
-        /// </summary>
-        public string DefaultEncodingName {
-            get {
-                return DefaultEncoding.WebName;
-            }
-            set {
-                DefaultEncoding = Encoding.GetEncoding(value);
-            }
-        }
-
         /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public DelphiFormFormat() : base("TPF0", "application/x-delphi-form", "dfm")
         {

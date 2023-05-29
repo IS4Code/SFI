@@ -17,18 +17,6 @@ namespace IS4.SFI.Formats
         /// </summary>
         public Encoding DefaultEncoding { get; set; } = Encoding.UTF8;
 
-        /// <summary>
-        /// Contains the name of <see cref="DefaultEncoding"/>.
-        /// </summary>
-        public string DefaultEncodingName {
-            get {
-                return DefaultEncoding.WebName;
-            }
-            set {
-                DefaultEncoding = Encoding.GetEncoding(value);
-            }
-        }
-
         /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public HtmlFormat() : base(1, "text/html", "html")
         {
