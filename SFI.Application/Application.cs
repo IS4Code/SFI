@@ -398,7 +398,7 @@ namespace IS4.SFI
 					var type = Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType;
 					var converter = prop.Converter;
 					string typeDesc;
-					if(!(type.IsPrimitive || Type.GetTypeCode(type) != TypeCode.Object) && converter.GetStandardValuesSupported() && converter.GetStandardValues() is { Count: > 0 } values)
+					if(!(type.IsPrimitive || (!type.IsEnum && Type.GetTypeCode(type) != TypeCode.Object)) && converter.GetStandardValuesSupported() && converter.GetStandardValues() is { Count: > 0 } values)
 					{
 						const int maxShown = 10;
                         typeDesc = String.Join("|", values.Cast<object>().Take(maxShown).Select(converter.ConvertToInvariantString));
