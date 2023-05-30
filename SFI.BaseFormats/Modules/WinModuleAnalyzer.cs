@@ -17,9 +17,7 @@ namespace IS4.SFI.Analyzers
     /// </summary>
     public class WinModuleAnalyzer : MediaObjectAnalyzer<IModule>
     {
-        /// <summary>
-        /// Creates a new instance of the module.
-        /// </summary>
+        /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>
         public WinModuleAnalyzer() : base(Common.ApplicationClasses)
         {
 
