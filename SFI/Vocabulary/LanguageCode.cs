@@ -19,6 +19,11 @@ namespace IS4.SFI.Vocabulary
         public string Value { get; }
 
         /// <summary>
+        /// Whether the value corresponds to a non-empty language code.
+        /// </summary>
+        public bool IsEmpty => String.IsNullOrEmpty(Value);
+
+        /// <summary>
         /// Creates a new instance of the language code.
         /// </summary>
         /// <param name="value">The value of <see cref="Value"/>.</param>

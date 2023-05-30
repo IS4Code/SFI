@@ -574,8 +574,7 @@ namespace IS4.SFI.Services
         public void Set(PropertyUri property, string value, LanguageCode language)
         {
             if(value == null) throw new ArgumentNullException(nameof(value));
-            if(language.Value == null) throw new ArgumentNullException(nameof(language));
-            HandleTriple(Subject, Cache[property], CreateNode(value, language.Value));
+            HandleTriple(Subject, Cache[property], language.IsEmpty ? CreateNode(value) : CreateNode(value, language.Value));
         }
 
         /// <inheritdoc/>
@@ -663,8 +662,7 @@ namespace IS4.SFI.Services
         public void Set<TProp>(IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, string value, LanguageCode language)
         {
             if(value == null) throw new ArgumentNullException(nameof(value));
-            if(language.Value == null) throw new ArgumentNullException(nameof(language));
-            HandleTriple(Subject, CreateNode(propertyFormatter, propertyValue), CreateNode(value, language.Value));
+            HandleTriple(Subject, CreateNode(propertyFormatter, propertyValue), language.IsEmpty ? CreateNode(value) : CreateNode(value, language.Value));
         }
 
         /// <inheritdoc/>
