@@ -70,6 +70,7 @@ namespace IS4.SFI
             Analyzers.Add(XmlAnalyzer = new XmlAnalyzer());
             Analyzers.Add(new MediaTypeAnalyzer());
             Analyzers.Add(new X509CertificateAnalyzer());
+            Analyzers.Add(new AssemblyAnalyzer());
             Analyzers.Add(new FormatObjectAnalyzer());
 
             if(BuiltInHash.MD5 != null)
