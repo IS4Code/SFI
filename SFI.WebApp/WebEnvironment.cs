@@ -82,6 +82,10 @@ namespace IS4.SFI.WebApp
             {
                 return Stream.Null;
             }
+            if(path == "/dev/clipboard")
+            {
+                return new ClipboardStream(js);
+            }
             return outputFiles[path] = new BlobArrayStream(js, mediaType);
         }
 

@@ -76,6 +76,10 @@ namespace IS4.SFI.ConsoleApp
             {
                 return Stream.Null;
             }
+            if(path == "/dev/clipboard")
+            {
+                return new ClipboardStream();
+            }
             var dir = Path.GetDirectoryName(path);
             if(!String.IsNullOrWhiteSpace(dir))
             {

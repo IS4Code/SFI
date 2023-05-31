@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <LangVersion>9.0</LangVersion>
     <Nullable>enable</Nullable>
     <NoWarn>1701;1702;1998</NoWarn>
@@ -17,6 +17,8 @@
     <PublishTrimmed>true</PublishTrimmed>
     <AssemblyTitle>Semantic File Inspector Console Application</AssemblyTitle>
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <_SuppressWinFormsTrimError>true</_SuppressWinFormsTrimError>
+    <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -32,10 +34,6 @@
     <ProjectReference Include="..\SFI.BaseFormats\SFI.BaseFormats.csproj" />
     <ProjectReference Include="..\SFI.Windows\SFI.Windows.csproj" />
     <ProjectReference Include="..\SFI\SFI.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Properties\" />
   </ItemGroup>
 
 </Project>
