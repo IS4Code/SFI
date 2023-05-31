@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace IS4.SFI.ConsoleApp
@@ -71,12 +72,10 @@ namespace IS4.SFI.ConsoleApp
             if(path == "-")
             {
                 return Console.OpenStandardOutput();
-            }
-            if(path.Equals("nul", StringComparison.OrdinalIgnoreCase) || path == "/dev/null")
+            }else if(path == "/dev/null" || (path.Equals("nul", StringComparison.OrdinalIgnoreCase) && RuntimeInformation.IsOSPlatform(OSPlatform.Windows)))
             {
                 return Stream.Null;
-            }
-            if(path == "/dev/clipboard")
+            }else if(path == "/dev/clipboard")
             {
                 return new ClipboardStream();
             }

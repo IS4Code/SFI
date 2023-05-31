@@ -77,12 +77,10 @@ namespace IS4.SFI.WebApp
             if(path == "-")
             {
                 return new TextStream(LogWriter, Encoding.UTF8, this);
-            }
-            if(path.Equals("nul", StringComparison.OrdinalIgnoreCase) || path == "/dev/null")
+            }else if(path == "/dev/null")
             {
                 return Stream.Null;
-            }
-            if(path == "/dev/clipboard")
+            }else if(path == "/dev/clipboard")
             {
                 return new ClipboardStream(js);
             }
