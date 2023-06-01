@@ -544,20 +544,26 @@ namespace IS4.SFI
         {
             var writer = OpenFile(outputFactory, options.CompressedOutput, options);
             var qnameMapper = new QNameOutputMapper();
-            var rdfWriter = format.CanWriteRdf ? format.GetRdfWriter() as IFormatterBasedWriter : null;
-            if(rdfWriter == null)
+            if(options.PrettyPrint && format.CanonicalMimeType == "application/ld+json")
             {
-                throw new ApplicationException($"Format {format.SyntaxName} requires buffered output!");
-            }
-            var formatter = CreateFormatter(format.SyntaxName, rdfWriter.TripleFormatterType, qnameMapper);
-            ConfigureNewComponent(formatter);
-            if(options.PrettyPrint && format.CanonicalMimeType == "text/turtle" && formatter is TurtleFormatter turtleFormatter)
-            {
-                // Use the custom Turtle handler with @base support
-                handler = new TurtleHandler<TurtleFormatter>(writer, turtleFormatter, qnameMapper);
+                // Use the custom JSON-LD handler
+                handler = new JsonLdHandler(writer, qnameMapper);
             }else{
-                handler = new WriteThroughHandler(formatter, writer, true);
-                handler = new NamespaceHandler(handler, qnameMapper);
+                var rdfWriter = format.CanWriteRdf ? format.GetRdfWriter() as IFormatterBasedWriter : null;
+                if(rdfWriter == null)
+                {
+                    throw new ApplicationException($"Format {format.SyntaxName} requires buffered output!");
+                }
+                var formatter = CreateFormatter(format.SyntaxName, rdfWriter.TripleFormatterType, qnameMapper);
+                ConfigureNewComponent(formatter);
+                if(options.PrettyPrint && format.CanonicalMimeType == "text/turtle" && formatter is TurtleFormatter turtleFormatter)
+                {
+                    // Use the custom Turtle handler
+                    handler = new TurtleHandler<TurtleFormatter>(writer, turtleFormatter, qnameMapper);
+                }else{
+                    handler = new WriteThroughHandler(formatter, writer, true);
+                    handler = new NamespaceHandler(handler, qnameMapper);
+                }
             }
             mapper = qnameMapper;
             return writer;
