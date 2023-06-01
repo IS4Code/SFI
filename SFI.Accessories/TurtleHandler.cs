@@ -25,6 +25,22 @@ namespace IS4.SFI
         Uri? lastBase;
 
         /// <summary>
+        /// Whether to ignore <see cref="IRdfHandler.HandleBaseUri(Uri)"/> calls
+        /// and never produce relative URIs.
+        /// </summary>
+        public bool IgnoreBase { get; set; }
+
+        /// <summary>
+        /// Number of space characters to indent with.
+        /// </summary>
+        public int IndentSize {
+            get => __.Length;
+            set => __ = new string(' ', value);
+        }
+
+        string __ = "  ";
+
+        /// <summary>
         /// Creates a new instance of the Turtle handler.
         /// </summary>
         /// <param name="output">The output writer to write Turtle to.</param>
@@ -72,7 +88,7 @@ namespace IS4.SFI
         /// <inheritdoc/>
         protected override bool HandleBaseUriInternal(Uri baseUri)
         {
-            if(lastBase == null || !uriComparer.Equals(baseUri, lastBase))
+            if(!IgnoreBase && (lastBase == null || !uriComparer.Equals(baseUri, lastBase)))
             {
                 EndSubject("@base");
                 WriteLine(formatter.FormatBaseUri(ResolveUri(baseUri)));
@@ -125,12 +141,12 @@ namespace IS4.SFI
                     Write($"{subj} a {obj}");
                 }else{
                     WriteLine(subj);
-                    Write($"  {pred} {obj}");
+                    Write($"{__}{pred} {obj}");
                 }
                 lastSubject = subj;
             }else{
                 WriteLine(" ;");
-                Write($"  {pred} {obj}");
+                Write($"{__}{pred} {obj}");
             }
             return true;
         }

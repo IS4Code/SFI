@@ -32,10 +32,15 @@ namespace IS4.SFI
         public TypeConfigurationCollection FormatterCollection { get; } = new("rdf-formatter");
 
         /// <summary>
-        /// Stores the configuration for all instances of <see cref="IRdfWriter"/>,
-        /// <see cref="IStoreWriter"/>, and <see cref="ISparqlResultsWriter"/>.
+        /// Stores the configuration for all instances of <see cref="IRdfWriter"/>
+        /// and <see cref="IStoreWriter"/>.
         /// </summary>
         public TypeConfigurationCollection RdfWriterCollection { get; } = new("rdf-writer");
+
+        /// <summary>
+        /// Stores the configuration for all instances of <see cref="IRdfHandler"/>.
+        /// </summary>
+        public TypeConfigurationCollection RdfHandlerCollection { get; } = new("rdf-handler");
 
         /// <summary>
         /// Stores the configuration for all instances of <see cref="ISparqlResultsWriter"/>.
@@ -76,8 +81,12 @@ namespace IS4.SFI
                 }
             }
 
+            RdfHandlerCollection.AddType(typeof(TurtleHandler<TurtleFormatter>), TextTools.GetMimeTypeSimpleName("text/turtle"));
+            RdfHandlerCollection.AddType(typeof(JsonLdHandler), TextTools.GetMimeTypeSimpleName("application/ld+json"));
+
             componentCollections.Add(FormatterCollection);
             componentCollections.Add(RdfWriterCollection);
+            componentCollections.Add(RdfHandlerCollection);
             componentCollections.Add(SparqlWriterCollection);
         }
 

@@ -548,6 +548,7 @@ namespace IS4.SFI
             {
                 // Use the custom JSON-LD handler
                 handler = new JsonLdHandler(writer, qnameMapper);
+                ConfigureNewComponent(handler);
             }else{
                 var rdfWriter = format.CanWriteRdf ? format.GetRdfWriter() as IFormatterBasedWriter : null;
                 if(rdfWriter == null)
@@ -560,6 +561,7 @@ namespace IS4.SFI
                 {
                     // Use the custom Turtle handler
                     handler = new TurtleHandler<TurtleFormatter>(writer, turtleFormatter, qnameMapper);
+                    ConfigureNewComponent(handler);
                 }else{
                     handler = new WriteThroughHandler(formatter, writer, true);
                     handler = new NamespaceHandler(handler, qnameMapper);

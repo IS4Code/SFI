@@ -43,7 +43,15 @@ namespace IS4.SFI
         readonly State initialState;
         State state;
 
-        const string __ = "  ";
+        /// <summary>
+        /// Number of space characters to indent with.
+        /// </summary>
+        public int IndentSize {
+            get => __.Length;
+            set => __ = new string(' ', value);
+        }
+
+        string __ = "  ";
 
         /// <summary>
         /// Create a new JSON-LD handler with default formatting options.
