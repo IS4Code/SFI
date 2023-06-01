@@ -49,8 +49,8 @@ namespace IS4.SFI.Analyzers
                 var firstLineNode = node["#line=,1"];
                 if(firstLineNode != null)
                 {
-                    firstLineNode.Set(Properties.Value, firstLine);
                     node.Set(Properties.HasPart, firstLineNode);
+                    firstLineNode.Set(Properties.Value, firstLine);
                 }
             }
 
