@@ -160,7 +160,7 @@ namespace IS4.SFI.Services
 
         /// <summary>
         /// The ni: URI supports individual formatting based on an instance of <see cref="IFormatObject"/>
-        /// to use instead of the default media type specified as part of the URI (via ct).
+        /// to use instead of the default media type specified as part of the URI (via <c>ct</c>).
         /// </summary>
         class NiUri : Uri, IIndividualUriFormatter<IFormatObject>
         {
@@ -180,7 +180,7 @@ namespace IS4.SFI.Services
                 sb.Append(';');
                 DataTools.Base64Url(hashValue, sb);
                 sb.Append("?ct=");
-                sb.Append(type);
+                sb.Append(UriTools.EscapeQueryString(type));
                 return sb.ToString();
             }
 

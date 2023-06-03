@@ -88,6 +88,13 @@ namespace IS4.SFI
 
             string data = uriEncoded.Length <= base64Encoded.Length ? uriEncoded : base64Encoded;
 
+            if(mediaType != null)
+            {
+                mediaType = dataMimeRegex.Replace(mediaType, m => {
+                    return Uri.EscapeDataString(m.Value);
+                });
+            }
+
             switch(charset?.ToLowerInvariant())
             {
                 case null:
@@ -99,7 +106,14 @@ namespace IS4.SFI
                     return new DataUri(mediaType + ";charset=" + charset, data);
             }
         }
-        
+
+        /// <summary>
+        /// Regular expression matching characters that must be escaped in a data: URI
+        /// media type. This differs from <see cref="urlPathRegex"/> by excluding
+        /// <c>,</c>.
+        /// </summary>
+        static readonly Regex dataMimeRegex = new(@$"[^!$&-+\--;=@{baseUnreservedUriChars}]+", RegexOptions.Compiled);
+
         /// <summary>
         /// The data: URI produced by <see cref="CreateDataUri(string?, string?, ArraySegment{byte})"/>.
         /// Formatting it using <see cref="IFormatObject"/> will replace
@@ -232,7 +246,14 @@ namespace IS4.SFI
             });
         }
 
-        static readonly Regex urlPathRegex = new(@"[^!$&-;=@A-Z_a-z~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+", RegexOptions.Compiled);
+        const string baseUnreservedUriChars = @"A-Z_a-z~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF";
+
+        /// <summary>
+        /// Regular expression matching characters that must be escaped in a URI path,
+        /// such as those invalid in URIs in general and gen-delims that would cause it
+        /// to leave the path component (i.e. <c>?</c> and <c>#</c>).
+        /// </summary>
+        static readonly Regex urlPathRegex = new(@$"[^!$&-;=@{baseUnreservedUriChars}]+", RegexOptions.Compiled);
 
         /// <summary>
         /// Escapes characters in <paramref name="uriString"/> that are invalid in a URI path
@@ -245,6 +266,28 @@ namespace IS4.SFI
         public static string EscapePathString(string uriString)
         {
             return urlPathRegex.Replace(uriString, m => {
+                return Uri.EscapeDataString(m.Value);
+            });
+        }
+
+        /// <summary>
+        /// Regular expression matching characters that must be escaped in a URI query value,
+        /// such as those invalid in URIs in general and gen-delims and sub-delims that would cause it
+        /// to leave the value component (i.e. <c>&</c> and <c>#</c>).
+        /// </summary>
+        static readonly Regex urlQueryRegex = new(@$"[^!$'-;=?@{baseUnreservedUriChars}]+", RegexOptions.Compiled);
+
+        /// <summary>
+        /// Escapes characters in <paramref name="uriString"/> that are invalid in a URI query
+        /// component or URI in general.
+        /// </summary>
+        /// <param name="uriString">The string to escape.</param>
+        /// <returns>
+        /// The escaped string.
+        /// </returns>
+        public static string EscapeQueryString(string uriString)
+        {
+            return urlQueryRegex.Replace(uriString, m => {
                 return Uri.EscapeDataString(m.Value);
             });
         }
