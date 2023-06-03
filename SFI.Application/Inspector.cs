@@ -68,6 +68,8 @@ namespace IS4.SFI
             Analyzers.Add(DataAnalyzer = new DataAnalyzer(() => new UdeEncodingDetector()));
             Analyzers.Add(DataObjectAnalyzer = new DataObjectAnalyzer());
             Analyzers.Add(XmlAnalyzer = new XmlAnalyzer());
+            Analyzers.Add(new PathObjectAnalyzer());
+            Analyzers.Add(new ExtensionObjectAnalyzer());
             Analyzers.Add(new MediaTypeAnalyzer());
             Analyzers.Add(new X509CertificateAnalyzer());
             Analyzers.Add(new AssemblyAnalyzer());

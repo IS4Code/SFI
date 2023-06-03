@@ -38,7 +38,7 @@ namespace IS4.SFI.Analyzers
             return GetNode(name, context);
         }
 
-        private ILinkedNode AnalyzeFileNode(IFileNodeInfo info, AnalysisContext context)
+        private async ValueTask<ILinkedNode> AnalyzeFileNode(IFileNodeInfo info, AnalysisContext context, IEntityAnalyzers analyzer)
         {
             var node = CreateNode(info, context);
 
@@ -60,10 +60,10 @@ namespace IS4.SFI.Analyzers
 
             if(info.Path != null)
             {
-                LinkDirectories(node, info.Path, false, context.NodeFactory);
+                await AnalyzePath(node, info.Path, false, context, analyzer);
             }else if(info.Name != null)
             {
-                LinkDirectories(node, info.Name, false, context.NodeFactory);
+                await AnalyzePath(node, info.Name, false, context, analyzer);
             }
 
             var label = info.ToString();
@@ -124,7 +124,7 @@ namespace IS4.SFI.Analyzers
         /// <inheritdoc/>
         public async ValueTask<AnalysisResult> Analyze(IFileInfo file, AnalysisContext context, IEntityAnalyzers analyzer)
         {
-            var node = AnalyzeFileNode(file, context);
+            var node = await AnalyzeFileNode(file, context, analyzer);
             if(node != null)
             {
                 if(file.Length >= 0)
@@ -172,7 +172,7 @@ namespace IS4.SFI.Analyzers
         /// <inheritdoc/>
         public async ValueTask<AnalysisResult> Analyze(IDirectoryInfo directory, AnalysisContext context, IEntityAnalyzers analyzer)
         {
-            var node = AnalyzeFileNode(directory, context);
+            var node = await AnalyzeFileNode(directory, context, analyzer);
             if(node != null)
             {
                 await AnalyzeDirectory(node, directory, context, analyzer);
@@ -192,7 +192,7 @@ namespace IS4.SFI.Analyzers
 
                 folder.Set(Properties.PrefLabel, DataTools.ReplaceControlCharacters(directory.ToString() + "/", null));
 
-                LinkDirectories(folder, directory.Path, true, context.NodeFactory);
+                await AnalyzePath(folder, directory.Path, true, context, analyzer);
 
                 foreach(var alg in HashAlgorithms)
                 {
@@ -212,47 +212,13 @@ namespace IS4.SFI.Analyzers
             return folder;
         }
 
-        static readonly string[] directoryEnding = { "" };
-
-        private void LinkDirectories(ILinkedNode initial, string? path, bool directory, ILinkedNodeFactory nodeFactory)
+        private async ValueTask AnalyzePath(ILinkedNode initial, string? path, bool directory, AnalysisContext context, IEntityAnalyzers analyzer)
         {
             if(path == null) return;
-            var parts = path.Split('/');
-            if(parts.Length == 0) return;
-            for(int i = 0; i < parts.Length; i++)
-            {
-                var escapedParts = parts.Skip(i).Select(Uri.EscapeDataString);
-                if(directory)
-                {
-                    escapedParts = escapedParts.Concat(directoryEnding);
-                }
-                var local = String.Join("/", escapedParts);
-                ILinkedNode file;
-                if(directory && local == "/")
-                {
-                    file = nodeFactory.Create(RootDirectoryUri.Instance, default);
-                }else{
-                    file = nodeFactory.Create(Vocabularies.File, local);
-                }
-                initial.Set(Properties.PathObject, file);
-                initial = file;
-            }
 
-            if(!directory)
-            {
-                string? ext;
-                try{
-                    ext = Path.GetExtension(parts[parts.Length - 1]);
-                }catch(ArgumentException)
-                {
-                    ext = null;
-                }
-                if(!String.IsNullOrEmpty(ext))
-                {
-                    ext = ext!.Substring(1).ToLowerInvariant();
-                    initial.Set(Properties.ExtensionObject, Vocabularies.Uris, Uri.EscapeDataString(ext));
-                }
-            }
+            var pathObject = new PathObject(path + (directory ? "/" : ""));
+
+            await analyzer.Analyze(pathObject, context.WithParentLink(initial, Properties.PathObject));
         }
 
         /// <inheritdoc/>
@@ -281,29 +247,6 @@ namespace IS4.SFI.Analyzers
                 case IFileInfo file: return await Analyze(file, context, analyzer);
                 case IDirectoryInfo dir: return await Analyze(dir, context, analyzer);
                 default: return new AnalysisResult(CreateNode(entity, context));
-            }
-        }
-
-        /// <summary>
-        /// This class is used to provide a fake URI with the value of
-        /// <see cref="RootDirectoryUri.Value"/> when .NET would like to change it.
-        /// </summary>
-        class RootDirectoryUri : Uri, IIndividualUriFormatter<ValueTuple>
-        {
-            public const string Value = "file:///./";
-
-            public static readonly RootDirectoryUri Instance = new();
-
-            private RootDirectoryUri() : base(Value, UriKind.Absolute)
-            {
-
-            }
-
-            public Uri this[ValueTuple value] => this;
-
-            public override string ToString()
-            {
-                return Value;
             }
         }
     }
