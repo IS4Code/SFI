@@ -28,14 +28,14 @@ namespace IS4.SFI.Services
         /// <param name="rdfXmlReader">
         /// An XML reader for a valid RDF/XML document. The document
         /// shall describe the node by using a blank relative URI,
-        /// i.e. &lt;rdf:Description rdf:about=""&gt;
+        /// i.e. <c>&lt;rdf:Description rdf:about=""&gt;</c>
         /// </param>
         /// <param name="subjectUris">
         /// Stores a collection of URIs that represent this node.
         /// </param>
         /// <exception cref="ArgumentException">
         /// <paramref name="rdfXmlReader"/> is not positioned on an
-        /// {http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF element.
+        /// <c>{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF</c> element.
         /// </exception>
         void Describe(XmlReader rdfXmlReader, IReadOnlyCollection<Uri>? subjectUris = null);
 
@@ -54,7 +54,7 @@ namespace IS4.SFI.Services
         /// <exception cref="ArgumentException">
         /// The reader returned by <paramref name="rdfXmlReaderFactory"/>
         /// is not positioned on an
-        /// {http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF element.
+        /// <c>{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF</c> element.
         /// </exception>
         void Describe(Func<Uri, XmlReader?> rdfXmlReaderFactory, IReadOnlyCollection<Uri>? subjectUris = null);
 
@@ -68,7 +68,7 @@ namespace IS4.SFI.Services
         /// <param name="rdfXmlDocument">
         /// A valid RDF/XML document. The document
         /// shall describe the node by using a blank relative URI,
-        /// i.e. &lt;rdf:Description rdf:about=""&gt;
+        /// i.e. <c>&lt;rdf:Description rdf:about=""&gt;</c>
         /// </param>
         /// <param name="subjectUris"><inheritdoc cref="Describe(XmlReader, IReadOnlyCollection{Uri}?)" path="/param[@name='subjectUris']"/></param>
         void Describe(XmlDocument rdfXmlDocument, IReadOnlyCollection<Uri>? subjectUris = null);

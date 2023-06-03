@@ -24,7 +24,7 @@ namespace IS4.SFI.Formats
         };
 
         /// <summary>
-        /// Source: https://gix.github.io/media-types/
+        /// Source: <see href="https://gix.github.io/media-types/"/>
         /// </summary>
         static readonly Dictionary<Guid, (string type, string ext)> GuidTypes = new()
         {

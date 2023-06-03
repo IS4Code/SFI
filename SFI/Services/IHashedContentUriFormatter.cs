@@ -92,7 +92,7 @@ namespace IS4.SFI.Services
     }
 
     /// <summary>
-    /// Creates ni: URIs, either using the <see cref="IHashAlgorithm.NiName"/>
+    /// Creates <c>ni:</c> URIs, either using the <see cref="IHashAlgorithm.NiName"/>
     /// or via its multihash representation.
     /// </summary>
     public class NiHashedContentUriFormatter : IHashedContentUriFormatter
@@ -159,7 +159,7 @@ namespace IS4.SFI.Services
         }
 
         /// <summary>
-        /// The ni: URI supports individual formatting based on an instance of <see cref="IFormatObject"/>
+        /// The <c>ni:</c> URI supports individual formatting based on an instance of <see cref="IFormatObject"/>
         /// to use instead of the default media type specified as part of the URI (via <c>ct</c>).
         /// </summary>
         class NiUri : Uri, IIndividualUriFormatter<IFormatObject>

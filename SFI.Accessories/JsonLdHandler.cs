@@ -58,6 +58,7 @@ namespace IS4.SFI
         /// </summary>
         /// <param name="output">The text output to format to.</param>
         /// <param name="namespaceMapper">The namespace mapper to register namespaces to.</param>
+        /// <param name="options">The options to use when writing JSON-LD.</param>
         /// <param name="uriFormatter">The formatter to convert <see cref="Uri"/> instances to strings.</param>
         /// <param name="uriComparer">The comparer of <see cref="Uri"/> instances.</param>
         public JsonLdHandler(TextWriter output, INamespaceMapper namespaceMapper, JsonLdWriterOptions? options = null, IUriFormatter? uriFormatter = null, IEqualityComparer<Uri>? uriComparer = null)

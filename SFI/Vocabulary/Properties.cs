@@ -10,744 +10,744 @@
     public static class Properties
     {
         /// <summary>
-        /// <see cref="Rdf"/>:type.
+        /// <c><see cref="Rdf"/>:type</c>.
         /// </summary>
         [Uri(Rdf)]
         public static readonly PropertyUri Type;
 
         /// <summary>
-        /// <see cref="Rdf"/>:value.
+        /// <c><see cref="Rdf"/>:value</c>.
         /// </summary>
         [Uri(Rdf)]
         public static readonly PropertyUri Value;
 
         /// <summary>
-        /// <see cref="Rdf"/>:first.
+        /// <c><see cref="Rdf"/>:first</c>.
         /// </summary>
         [Uri(Rdf)]
         public static readonly PropertyUri First;
 
         /// <summary>
-        /// <see cref="Rdf"/>:rest.
+        /// <c><see cref="Rdf"/>:rest</c>.
         /// </summary>
         [Uri(Rdf)]
         public static readonly PropertyUri Rest;
 
         /// <summary>
-        /// <see cref="Rdf"/>:_nnn.
+        /// <c><see cref="Rdf"/>:_nnn</c>.
         /// </summary>
         public static readonly IPropertyUriFormatter<int> MemberAt = new UriTools.PrefixFormatter<int>(Rdf + "_");
 
         /// <summary>
-        /// <see cref="Rdfs"/>:label.
+        /// <c><see cref="Rdfs"/>:label</c>.
         /// </summary>
         [Uri(Rdfs)]
         public static readonly PropertyUri Label;
 
         /// <summary>
-        /// <see cref="Rdfs"/>:seeAlso.
+        /// <c><see cref="Rdfs"/>:seeAlso</c>.
         /// </summary>
         [Uri(Rdfs)]
         public static readonly PropertyUri SeeAlso;
 
         /// <summary>
-        /// <see cref="Rdfs"/>:isDefinedBy.
+        /// <c><see cref="Rdfs"/>:isDefinedBy</c>.
         /// </summary>
         [Uri(Rdfs)]
         public static readonly PropertyUri IsDefinedBy;
 
         /// <summary>
-        /// <see cref="Owl"/>:sameAs.
+        /// <c><see cref="Owl"/>:sameAs</c>.
         /// </summary>
         [Uri(Owl)]
         public static readonly PropertyUri SameAs;
 
         /// <summary>
-        /// <see cref="Owl"/>:equivalentProperty.
+        /// <c><see cref="Owl"/>:equivalentProperty</c>.
         /// </summary>
         [Uri(Owl)]
         public static readonly PropertyUri EquivalentProperty;
 
         /// <summary>
-        /// <see cref="Dcterms"/>:description.
+        /// <c><see cref="Dcterms"/>:description</c>.
         /// </summary>
         [Uri(Dcterms)]
         public static readonly PropertyUri Description;
 
         /// <summary>
-        /// <see cref="Dcterms"/>:hasFormat.
+        /// <c><see cref="Dcterms"/>:hasFormat</c>.
         /// </summary>
         [Uri(Dcterms)]
         public static readonly PropertyUri HasFormat;
 
         /// <summary>
-        /// <see cref="Dcterms"/>:extent.
+        /// <c><see cref="Dcterms"/>:extent</c>.
         /// </summary>
         [Uri(Dcterms)]
         public static readonly PropertyUri Extent;
 
         /// <summary>
-        /// <see cref="Dcterms"/>:creator.
+        /// <c><see cref="Dcterms"/>:creator</c>.
         /// </summary>
         [Uri(Dcterms)]
         public static readonly PropertyUri Creator;
 
         /// <summary>
-        /// <see cref="Dcterms"/>:subject.
+        /// <c><see cref="Dcterms"/>:subject</c>.
         /// </summary>
         [Uri(Dcterms)]
         public static readonly PropertyUri Subject;
 
         /// <summary>
-        /// <see cref="Dcterms"/>:identifier.
+        /// <c><see cref="Dcterms"/>:identifier</c>.
         /// </summary>
         [Uri(Dcterms)]
         public static readonly PropertyUri Identifier;
 
         /// <summary>
-        /// <see cref="Dcterms"/>:title.
+        /// <c><see cref="Dcterms"/>:title</c>.
         /// </summary>
         [Uri(Dcterms)]
         public static readonly PropertyUri Title;
 
         /// <summary>
-        /// <see cref="Dcterms"/>:language.
+        /// <c><see cref="Dcterms"/>:language</c>.
         /// </summary>
         [Uri(Dcterms)]
         public static readonly PropertyUri Language;
 
         /// <summary>
-        /// <see cref="Dcterms"/>:modified.
+        /// <c><see cref="Dcterms"/>:modified</c>.
         /// </summary>
         [Uri(Dcterms)]
         public static readonly PropertyUri Modified;
 
         /// <summary>
-        /// <see cref="Dcterms"/>:created.
+        /// <c><see cref="Dcterms"/>:created</c>.
         /// </summary>
         [Uri(Dcterms)]
         public static readonly PropertyUri Created;
 
         /// <summary>
-        /// <see cref="Dcterms"/>:date.
+        /// <c><see cref="Dcterms"/>:date</c>.
         /// </summary>
         [Uri(Dcterms)]
         public static readonly PropertyUri Date;
 
         /// <summary>
-        /// <see cref="Dcterms"/>:provenance.
+        /// <c><see cref="Dcterms"/>:provenance</c>.
         /// </summary>
         [Uri(Dcterms)]
         public static readonly PropertyUri Provenance;
 
         /// <summary>
-        /// <see cref="Dbo"/>:originalName.
+        /// <c><see cref="Dbo"/>:originalName</c>.
         /// </summary>
         [Uri(Dbo)]
         public static readonly PropertyUri OriginalName;
 
         /// <summary>
-        /// <see cref="Cnt"/>:bytes.
+        /// <c><see cref="Cnt"/>:bytes</c>.
         /// </summary>
         [Uri(Cnt)]
         public static readonly PropertyUri Bytes;
 
         /// <summary>
-        /// <see cref="Cnt"/>:chars.
+        /// <c><see cref="Cnt"/>:chars</c>.
         /// </summary>
         [Uri(Cnt)]
         public static readonly PropertyUri Chars;
 
         /// <summary>
-        /// <see cref="Cnt"/>:characterEncoding.
+        /// <c><see cref="Cnt"/>:characterEncoding</c>.
         /// </summary>
         [Uri(Cnt)]
         public static readonly PropertyUri CharacterEncoding;
 
         /// <summary>
-        /// <see cref="Cnt"/>:rest.
+        /// <c><see cref="Cnt"/>:rest</c>.
         /// </summary>
         [Uri(Cnt, "rest")]
         public static readonly PropertyUri RestXml;
 
         /// <summary>
-        /// <see cref="Cnt"/>:doctypeName.
+        /// <c><see cref="Cnt"/>:doctypeName</c>.
         /// </summary>
         [Uri(Cnt)]
         public static readonly PropertyUri DoctypeName;
 
         /// <summary>
-        /// <see cref="Cnt"/>:publicId.
+        /// <c><see cref="Cnt"/>:publicId</c>.
         /// </summary>
         [Uri(Cnt)]
         public static readonly PropertyUri PublicId;
 
         /// <summary>
-        /// <see cref="Cnt"/>:systemId.
+        /// <c><see cref="Cnt"/>:systemId</c>.
         /// </summary>
         [Uri(Cnt)]
         public static readonly PropertyUri SystemId;
 
         /// <summary>
-        /// <see cref="Cnt"/>:version.
+        /// <c><see cref="Cnt"/>:version</c>.
         /// </summary>
         [Uri(Cnt, "version")]
         public static readonly PropertyUri XmlVersion;
 
         /// <summary>
-        /// <see cref="Cnt"/>:declaredEncoding.
+        /// <c><see cref="Cnt"/>:declaredEncoding</c>.
         /// </summary>
         [Uri(Cnt, "declaredEncoding")]
         public static readonly PropertyUri XmlEncoding;
 
         /// <summary>
-        /// <see cref="Cnt"/>:standalone.
+        /// <c><see cref="Cnt"/>:standalone</c>.
         /// </summary>
         [Uri(Cnt, "standalone")]
         public static readonly PropertyUri XmlStandalone;
 
         /// <summary>
-        /// <see cref="Cnt"/>:dtDecl.
+        /// <c><see cref="Cnt"/>:dtDecl</c>.
         /// </summary>
         [Uri(Cnt)]
         public static readonly PropertyUri DtDecl;
 
         /// <summary>
-        /// <see cref="Foaf"/>:depicts.
+        /// <c><see cref="Foaf"/>:depicts</c>.
         /// </summary>
         [Uri(Foaf)]
         public static readonly PropertyUri Depicts;
 
         /// <summary>
-        /// <see cref="Sec"/>:canonicalizationAlgorithm.
+        /// <c><see cref="Sec"/>:canonicalizationAlgorithm</c>.
         /// </summary>
         [Uri(Sec)]
         public static readonly PropertyUri CanonicalizationAlgorithm;
 
         /// <summary>
-        /// <see cref="Sec"/>:digestAlgorithm.
+        /// <c><see cref="Sec"/>:digestAlgorithm</c>.
         /// </summary>
         [Uri(Sec)]
         public static readonly PropertyUri DigestAlgorithm;
 
         /// <summary>
-        /// <see cref="Sec"/>:digestValue.
+        /// <c><see cref="Sec"/>:digestValue</c>.
         /// </summary>
         [Uri(Sec)]
         public static readonly PropertyUri DigestValue;
 
         /// <summary>
-        /// <see cref="Sec"/>:expiration.
+        /// <c><see cref="Sec"/>:expiration</c>.
         /// </summary>
         [Uri(Sec)]
         public static readonly PropertyUri Expiration;
 
         /// <summary>
-        /// <see cref="Schema"/>:name.
+        /// <c><see cref="Schema"/>:name</c>.
         /// </summary>
         [Uri(Schema)]
         public static readonly PropertyUri Name;
 
         /// <summary>
-        /// <see cref="Schema"/>:downloadUrl.
+        /// <c><see cref="Schema"/>:downloadUrl</c>.
         /// </summary>
         [Uri(Schema)]
         public static readonly PropertyUri DownloadUrl;
 
         /// <summary>
-        /// <see cref="Schema"/>:encoding.
+        /// <c><see cref="Schema"/>:encoding</c>.
         /// </summary>
         [Uri(Schema)]
         public static readonly PropertyUri Encoding;
 
         /// <summary>
-        /// <see cref="Schema"/>:encodingFormat.
+        /// <c><see cref="Schema"/>:encodingFormat</c>.
         /// </summary>
         [Uri(Schema)]
         public static readonly PropertyUri EncodingFormat;
 
         /// <summary>
-        /// <see cref="Schema"/>:version.
+        /// <c><see cref="Schema"/>:version</c>.
         /// </summary>
         [Uri(Schema)]
         public static readonly PropertyUri Version;
 
         /// <summary>
-        /// <see cref="Schema"/>:softwareVersion.
+        /// <c><see cref="Schema"/>:softwareVersion</c>.
         /// </summary>
         [Uri(Schema)]
         public static readonly PropertyUri SoftwareVersion;
 
         /// <summary>
-        /// <see cref="Schema"/>:thumbnail.
+        /// <c><see cref="Schema"/>:thumbnail</c>.
         /// </summary>
         [Uri(Schema)]
         public static readonly PropertyUri Thumbnail;
 
         /// <summary>
-        /// <see cref="Schema"/>:image.
+        /// <c><see cref="Schema"/>:image</c>.
         /// </summary>
         [Uri(Schema)]
         public static readonly PropertyUri Image;
 
         /// <summary>
-        /// <see cref="Schema"/>:copyrightNotice.
+        /// <c><see cref="Schema"/>:copyrightNotice</c>.
         /// </summary>
         [Uri(Schema)]
         public static readonly PropertyUri CopyrightNotice;
 
         /// <summary>
-        /// <see cref="Schema"/>:keywords.
+        /// <c><see cref="Schema"/>:keywords</c>.
         /// </summary>
         [Uri(Schema)]
         public static readonly PropertyUri Keywords;
 
         /// <summary>
-        /// <see cref="Schema"/>:category.
+        /// <c><see cref="Schema"/>:category</c>.
         /// </summary>
         [Uri(Schema)]
         public static readonly PropertyUri Category;
 
         /// <summary>
-        /// <see cref="Schema"/>:serialNumber.
+        /// <c><see cref="Schema"/>:serialNumber</c>.
         /// </summary>
         [Uri(Schema)]
         public static readonly PropertyUri SerialNumber;
 
         /// <summary>
-        /// <see cref="Nie"/>:interpretedAs.
+        /// <c><see cref="Nie"/>:interpretedAs</c>.
         /// </summary>
         [Uri(Nie)]
         public static readonly PropertyUri InterpretedAs;
 
         /// <summary>
-        /// <see cref="Nie"/>:links.
+        /// <c><see cref="Nie"/>:links</c>.
         /// </summary>
         [Uri(Nie)]
         public static readonly PropertyUri Links;
 
         /// <summary>
-        /// <see cref="Nie"/>:hasPart.
+        /// <c><see cref="Nie"/>:hasPart</c>.
         /// </summary>
         [Uri(Nie)]
         public static readonly PropertyUri HasPart;
 
         /// <summary>
-        /// <see cref="Nie"/>:mimeType.
+        /// <c><see cref="Nie"/>:mimeType</c>.
         /// </summary>
         [Uri(Nie)]
         public static readonly PropertyUri MimeType;
 
         /// <summary>
-        /// <see cref="Nfo"/>:fileName.
+        /// <c><see cref="Nfo"/>:fileName</c>.
         /// </summary>
         [Uri(Nfo)]
         public static readonly PropertyUri FileName;
 
         /// <summary>
-        /// <see cref="Nfo"/>:belongsToContainer.
+        /// <c><see cref="Nfo"/>:belongsToContainer</c>.
         /// </summary>
         [Uri(Nfo)]
         public static readonly PropertyUri BelongsToContainer;
 
         /// <summary>
-        /// <see cref="Nfo"/>:fileCreated.
+        /// <c><see cref="Nfo"/>:fileCreated</c>.
         /// </summary>
         [Uri(Nfo)]
         public static readonly PropertyUri FileCreated;
 
         /// <summary>
-        /// <see cref="Nfo"/>:fileLastAccessed.
+        /// <c><see cref="Nfo"/>:fileLastAccessed</c>.
         /// </summary>
         [Uri(Nfo)]
         public static readonly PropertyUri FileLastAccessed;
 
         /// <summary>
-        /// <see cref="Nfo"/>:fileLastModified.
+        /// <c><see cref="Nfo"/>:fileLastModified</c>.
         /// </summary>
         [Uri(Nfo)]
         public static readonly PropertyUri FileLastModified;
 
         /// <summary>
-        /// <see cref="Nfo"/>:fileSize.
+        /// <c><see cref="Nfo"/>:fileSize</c>.
         /// </summary>
         [Uri(Nfo)]
         public static readonly PropertyUri FileSize;
 
         /// <summary>
-        /// <see cref="Nfo"/>:freeSpace.
+        /// <c><see cref="Nfo"/>:freeSpace</c>.
         /// </summary>
         [Uri(Nfo)]
         public static readonly PropertyUri FreeSpace;
 
         /// <summary>
-        /// <see cref="Nfo"/>:occupiedSpace.
+        /// <c><see cref="Nfo"/>:occupiedSpace</c>.
         /// </summary>
         [Uri(Nfo)]
         public static readonly PropertyUri OccupiedSpace;
 
         /// <summary>
-        /// <see cref="Nfo"/>:totalSpace.
+        /// <c><see cref="Nfo"/>:totalSpace</c>.
         /// </summary>
         [Uri(Nfo)]
         public static readonly PropertyUri TotalSpace;
 
         /// <summary>
-        /// <see cref="Nfo"/>:filesystemType.
+        /// <c><see cref="Nfo"/>:filesystemType</c>.
         /// </summary>
         [Uri(Nfo)]
         public static readonly PropertyUri FilesystemType;
 
         /// <summary>
-        /// <see cref="Nfo"/>:width.
+        /// <c><see cref="Nfo"/>:width</c>.
         /// </summary>
         [Uri(Nfo)]
         public static readonly PropertyUri Width;
 
         /// <summary>
-        /// <see cref="Nfo"/>:height.
+        /// <c><see cref="Nfo"/>:height</c>.
         /// </summary>
         [Uri(Nfo)]
         public static readonly PropertyUri Height;
 
         /// <summary>
-        /// <see cref="Nfo"/>:bitDepth.
+        /// <c><see cref="Nfo"/>:bitDepth</c>.
         /// </summary>
         [Uri(Nfo)]
         public static readonly PropertyUri BitDepth;
 
         /// <summary>
-        /// <see cref="Nfo"/>:colorDepth.
+        /// <c><see cref="Nfo"/>:colorDepth</c>.
         /// </summary>
         [Uri(Nfo)]
         public static readonly PropertyUri ColorDepth;
 
         /// <summary>
-        /// <see cref="Nfo"/>:horizontalResolution.
+        /// <c><see cref="Nfo"/>:horizontalResolution</c>.
         /// </summary>
         [Uri(Nfo)]
         public static readonly PropertyUri HorizontalResolution;
 
         /// <summary>
-        /// <see cref="Nfo"/>:verticalResolution.
+        /// <c><see cref="Nfo"/>:verticalResolution</c>.
         /// </summary>
         [Uri(Nfo)]
         public static readonly PropertyUri VerticalResolution;
 
         /// <summary>
-        /// <see cref="Nfo"/>:paletteSize.
+        /// <c><see cref="Nfo"/>:paletteSize</c>.
         /// </summary>
         [Uri(Nfo)]
         public static readonly PropertyUri PaletteSize;
 
         /// <summary>
-        /// <see cref="Nfo"/>:bitsPerSample.
+        /// <c><see cref="Nfo"/>:bitsPerSample</c>.
         /// </summary>
         [Uri(Nfo)]
         public static readonly PropertyUri BitsPerSample;
 
         /// <summary>
-        /// <see cref="Nfo"/>:channels.
+        /// <c><see cref="Nfo"/>:channels</c>.
         /// </summary>
         [Uri(Nfo)]
         public static readonly PropertyUri Channels;
 
         /// <summary>
-        /// <see cref="Nfo"/>:sampleCount.
+        /// <c><see cref="Nfo"/>:sampleCount</c>.
         /// </summary>
         [Uri(Nfo)]
         public static readonly PropertyUri SampleCount;
 
         /// <summary>
-        /// <see cref="Nfo"/>:sampleRate.
+        /// <c><see cref="Nfo"/>:sampleRate</c>.
         /// </summary>
         [Uri(Nfo)]
         public static readonly PropertyUri SampleRate;
 
         /// <summary>
-        /// <see cref="Nfo"/>:duration.
+        /// <c><see cref="Nfo"/>:duration</c>.
         /// </summary>
         [Uri(Nfo)]
         public static readonly PropertyUri Duration;
 
         /// <summary>
-        /// <see cref="Nfo"/>:hasMediaStream.
+        /// <c><see cref="Nfo"/>:hasMediaStream</c>.
         /// </summary>
         [Uri(Nfo)]
         public static readonly PropertyUri HasMediaStream;
 
         /// <summary>
-        /// <see cref="Nfo"/>:averageBitrate.
+        /// <c><see cref="Nfo"/>:averageBitrate</c>.
         /// </summary>
         [Uri(Nfo)]
         public static readonly PropertyUri AverageBitrate;
 
         /// <summary>
-        /// <see cref="Nfo"/>:compressionType.
+        /// <c><see cref="Nfo"/>:compressionType</c>.
         /// </summary>
         [Uri(Nfo)]
         public static readonly PropertyUri CompressionType;
 
         /// <summary>
-        /// <see cref="Nfo"/>:encryptionStatus.
+        /// <c><see cref="Nfo"/>:encryptionStatus</c>.
         /// </summary>
         [Uri(Nfo)]
         public static readonly PropertyUri EncryptionStatus;
 
         /// <summary>
-        /// <see cref="Nfo"/>:characterCount.
+        /// <c><see cref="Nfo"/>:characterCount</c>.
         /// </summary>
         [Uri(Nfo)]
         public static readonly PropertyUri CharacterCount;
 
         /// <summary>
-        /// <see cref="Nfo"/>:lineCount.
+        /// <c><see cref="Nfo"/>:lineCount</c>.
         /// </summary>
         [Uri(Nfo)]
         public static readonly PropertyUri LineCount;
 
         /// <summary>
-        /// <see cref="Nfo"/>:wordCount.
+        /// <c><see cref="Nfo"/>:wordCount</c>.
         /// </summary>
         [Uri(Nfo)]
         public static readonly PropertyUri WordCount;
 
         /// <summary>
-        /// <see cref="Nfo"/>:pageCount.
+        /// <c><see cref="Nfo"/>:pageCount</c>.
         /// </summary>
         [Uri(Nfo)]
         public static readonly PropertyUri PageCount;
 
         /// <summary>
-        /// <see cref="Nfo"/>:frameCount.
+        /// <c><see cref="Nfo"/>:frameCount</c>.
         /// </summary>
         [Uri(Nfo)]
         public static readonly PropertyUri FrameCount;
 
         /// <summary>
-        /// <see cref="Nfo"/>:frameRate.
+        /// <c><see cref="Nfo"/>:frameRate</c>.
         /// </summary>
         [Uri(Nfo)]
         public static readonly PropertyUri FrameRate;
 
         /// <summary>
-        /// <see cref="Nmo"/>:messageId.
+        /// <c><see cref="Nmo"/>:messageId</c>.
         /// </summary>
         [Uri(Nmo)]
         public static readonly PropertyUri MessageId;
 
         /// <summary>
-        /// <see cref="Nmo"/>:inReplyTo.
+        /// <c><see cref="Nmo"/>:inReplyTo</c>.
         /// </summary>
         [Uri(Nmo)]
         public static readonly PropertyUri InReplyTo;
 
         /// <summary>
-        /// <see cref="Nmo"/>:messageHeader.
+        /// <c><see cref="Nmo"/>:messageHeader</c>.
         /// </summary>
         [Uri(Nmo)]
         public static readonly PropertyUri MessageHeader;
 
         /// <summary>
-        /// <see cref="Skos"/>:broader.
+        /// <c><see cref="Skos"/>:broader</c>.
         /// </summary>
         [Uri(Skos)]
         public static readonly PropertyUri Broader;
 
         /// <summary>
-        /// <see cref="Skos"/>:exactMatch.
+        /// <c><see cref="Skos"/>:exactMatch</c>.
         /// </summary>
         [Uri(Skos)]
         public static readonly PropertyUri ExactMatch;
 
         /// <summary>
-        /// <see cref="Skos"/>:closeMatch.
+        /// <c><see cref="Skos"/>:closeMatch</c>.
         /// </summary>
         [Uri(Skos)]
         public static readonly PropertyUri CloseMatch;
 
         /// <summary>
-        /// <see cref="Skos"/>:prefLabel.
+        /// <c><see cref="Skos"/>:prefLabel</c>.
         /// </summary>
         [Uri(Skos)]
         public static readonly PropertyUri PrefLabel;
 
         /// <summary>
-        /// <see cref="Skos"/>:altLabel.
+        /// <c><see cref="Skos"/>:altLabel</c>.
         /// </summary>
         [Uri(Skos)]
         public static readonly PropertyUri AltLabel;
 
         /// <summary>
-        /// <see cref="Skos"/>:notation.
+        /// <c><see cref="Skos"/>:notation</c>.
         /// </summary>
         [Uri(Skos)]
         public static readonly PropertyUri Notation;
 
         /// <summary>
-        /// <see cref="Xis"/>:documentElement.
+        /// <c><see cref="Xis"/>:documentElement</c>.
         /// </summary>
         [Uri(Xis)]
         public static readonly PropertyUri DocumentElement;
 
         /// <summary>
-        /// <see cref="Xis"/>:localName.
+        /// <c><see cref="Xis"/>:localName</c>.
         /// </summary>
         [Uri(Xis)]
         public static readonly PropertyUri LocalName;
 
         /// <summary>
-        /// <see cref="Xis"/>:name.
+        /// <c><see cref="Xis"/>:name</c>.
         /// </summary>
         [Uri(Xis, "name")]
         public static readonly PropertyUri XmlName;
 
         /// <summary>
-        /// <see cref="Xis"/>:prefix.
+        /// <c><see cref="Xis"/>:prefix</c>.
         /// </summary>
         [Uri(Xis, "prefix")]
         public static readonly PropertyUri XmlPrefix;
 
         /// <summary>
-        /// <see cref="Xis"/>:namespaceName.
+        /// <c><see cref="Xis"/>:namespaceName</c>.
         /// </summary>
         [Uri(Xis)]
         public static readonly PropertyUri NamespaceName;
 
         /// <summary>
-        /// <see cref="Http"/>:resp.
+        /// <c><see cref="Http"/>:resp</c>.
         /// </summary>
         [Uri(Http, "resp")]
         public static readonly PropertyUri HttpResponse;
 
         /// <summary>
-        /// <see cref="Http"/>:methodName.
+        /// <c><see cref="Http"/>:methodName</c>.
         /// </summary>
         [Uri(Http, "methodName")]
         public static readonly PropertyUri HttpMethodName;
 
         /// <summary>
-        /// <see cref="Http"/>:mthd.
+        /// <c><see cref="Http"/>:mthd</c>.
         /// </summary>
         [Uri(Http, "mthd")]
         public static readonly PropertyUri HttpMethod;
 
         /// <summary>
-        /// <see cref="Http"/>:absoluteURI.
+        /// <c><see cref="Http"/>:absoluteURI</c>.
         /// </summary>
         [Uri(Http, "absoluteURI")]
         public static readonly PropertyUri HttpAbsoluteUri;
 
         /// <summary>
-        /// <see cref="Http"/>:absolutePath.
+        /// <c><see cref="Http"/>:absolutePath</c>.
         /// </summary>
         [Uri(Http, "absolutePath")]
         public static readonly PropertyUri HttpAbsolutePath;
 
         /// <summary>
-        /// <see cref="Http"/>:authority.
+        /// <c><see cref="Http"/>:authority</c>.
         /// </summary>
         [Uri(Http, "authority")]
         public static readonly PropertyUri HttpAuthority;
 
         /// <summary>
-        /// <see cref="Http"/>:httpVersion.
+        /// <c><see cref="Http"/>:httpVersion</c>.
         /// </summary>
         [Uri(Http)]
         public static readonly PropertyUri HttpVersion;
 
         /// <summary>
-        /// <see cref="Http"/>:statusCodeValue.
+        /// <c><see cref="Http"/>:statusCodeValue</c>.
         /// </summary>
         [Uri(Http, "statusCodeValue")]
         public static readonly PropertyUri HttpStatusCodeValue;
 
         /// <summary>
-        /// <see cref="Http"/>:sc.
+        /// <c><see cref="Http"/>:sc</c>.
         /// </summary>
         [Uri(Http, "sc")]
         public static readonly PropertyUri HttpStatusCode;
 
         /// <summary>
-        /// <see cref="Http"/>:reasonPhrase.
+        /// <c><see cref="Http"/>:reasonPhrase</c>.
         /// </summary>
         [Uri(Http, "reasonPhrase")]
         public static readonly PropertyUri HttpReasonPhrase;
 
         /// <summary>
-        /// <see cref="Http"/>:headers.
+        /// <c><see cref="Http"/>:headers</c>.
         /// </summary>
         [Uri(Http, "headers")]
         public static readonly PropertyUri HttpHeaders;
 
         /// <summary>
-        /// <see cref="Http"/>:fieldName.
+        /// <c><see cref="Http"/>:fieldName</c>.
         /// </summary>
         [Uri(Http, "fieldName")]
         public static readonly PropertyUri HttpFieldName;
 
         /// <summary>
-        /// <see cref="Http"/>:hdrName.
+        /// <c><see cref="Http"/>:hdrName</c>.
         /// </summary>
         [Uri(Http, "hdrName")]
         public static readonly PropertyUri HttpHeaderName;
 
         /// <summary>
-        /// <see cref="Http"/>:fieldValue.
+        /// <c><see cref="Http"/>:fieldValue</c>.
         /// </summary>
         [Uri(Http, "fieldValue")]
         public static readonly PropertyUri HttpFieldValue;
 
         /// <summary>
-        /// <see cref="Http"/>:body.
+        /// <c><see cref="Http"/>:body</c>.
         /// </summary>
         [Uri(Http, "body")]
         public static readonly PropertyUri HttpBody;
 
         /// <summary>
-        /// <see cref="At"/>:digest.
+        /// <c><see cref="At"/>:digest</c>.
         /// </summary>
         [Uri(At)]
         public static readonly PropertyUri Digest;
 
         /// <summary>
-        /// <see cref="At"/>:source.
+        /// <c><see cref="At"/>:source</c>.
         /// </summary>
         [Uri(At)]
         public static readonly PropertyUri Source;
 
         /// <summary>
-        /// <see cref="At"/>:prefLabel.
+        /// <c><see cref="At"/>:prefLabel</c>.
         /// </summary>
         [Uri(At, "prefLabel")]
         public static readonly PropertyUri AtPrefLabel;
 
         /// <summary>
-        /// <see cref="At"/>:altLabel.
+        /// <c><see cref="At"/>:altLabel</c>.
         /// </summary>
         [Uri(At, "altLabel")]
         public static readonly PropertyUri AtAltLabel;
 
         /// <summary>
-        /// <see cref="At"/>:pathObject.
+        /// <c><see cref="At"/>:pathObject</c>.
         /// </summary>
         [Uri(At)]
         public static readonly PropertyUri PathObject;
 
         /// <summary>
-        /// <see cref="At"/>:extensionObject.
+        /// <c><see cref="At"/>:extensionObject</c>.
         /// </summary>
         [Uri(At)]
         public static readonly PropertyUri ExtensionObject;
 
         /// <summary>
-        /// <see cref="At"/>:volumeLabel.
+        /// <c><see cref="At"/>:volumeLabel</c>.
         /// </summary>
         [Uri(At)]
         public static readonly PropertyUri VolumeLabel;
 
         /// <summary>
-        /// <see cref="At"/>:visited.
+        /// <c><see cref="At"/>:visited</c>.
         /// </summary>
         [Uri(At)]
         public static readonly PropertyUri Visited;

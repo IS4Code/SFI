@@ -9,85 +9,85 @@
     public static class Datatypes
     {
         /// <summary>
-        /// <see cref="Rdf"/>:XMLLiteral.
+        /// <c><see cref="Rdf"/>:XMLLiteral</c>.
         /// </summary>
         [Uri(Rdf, "XMLLiteral")]
         public static readonly DatatypeUri XmlLiteral;
 
         /// <summary>
-        /// <see cref="Rdf"/>:HTML.
+        /// <c><see cref="Rdf"/>:HTML</c>.
         /// </summary>
         [Uri(Rdf, "HTML")]
         public static readonly DatatypeUri Html;
 
         /// <summary>
-        /// <see cref="Rdf"/>:JSON.
+        /// <c><see cref="Rdf"/>:JSON</c>.
         /// </summary>
         [Uri(Rdf, "JSON")]
         public static readonly DatatypeUri Json;
 
         /// <summary>
-        /// <see cref="Xsd"/>:anyURI.
+        /// <c><see cref="Xsd"/>:anyURI</c>.
         /// </summary>
         [Uri(Xsd, "anyURI")]
         public static readonly DatatypeUri AnyUri;
 
         /// <summary>
-        /// <see cref="Xsd"/>:hexBinary.
+        /// <c><see cref="Xsd"/>:hexBinary</c>.
         /// </summary>
         [Uri(Xsd)]
         public static readonly DatatypeUri HexBinary;
 
         /// <summary>
-        /// <see cref="Xsd"/>:base64Binary.
+        /// <c><see cref="Xsd"/>:base64Binary</c>.
         /// </summary>
         [Uri(Xsd)]
         public static readonly DatatypeUri Base64Binary;
 
         /// <summary>
-        /// <see cref="Xsd"/>:integer.
+        /// <c><see cref="Xsd"/>:integer</c>.
         /// </summary>
         [Uri(Xsd)]
         public static readonly DatatypeUri Integer;
 
         /// <summary>
-        /// <see cref="Xsd"/>:string.
+        /// <c><see cref="Xsd"/>:string</c>.
         /// </summary>
         [Uri(Xsd)]
         public static readonly DatatypeUri String;
 
         /// <summary>
-        /// <see cref="Xsd"/>:dateTime.
+        /// <c><see cref="Xsd"/>:dateTime</c>.
         /// </summary>
         [Uri(Xsd)]
         public static readonly DatatypeUri DateTime;
 
         /// <summary>
-        /// <see cref="Owl"/>:rational.
+        /// <c><see cref="Owl"/>:rational</c>.
         /// </summary>
         [Uri(Owl)]
         public static readonly DatatypeUri Rational;
 
         /// <summary>
-        /// <see cref="Dt"/>:byte.
+        /// <c><see cref="Dt"/>:byte</c>.
         /// </summary>
         [Uri(Dt)]
         public static readonly DatatypeUri Byte;
 
         /// <summary>
-        /// <see cref="Dt"/>:hertz.
+        /// <c><see cref="Dt"/>:hertz</c>.
         /// </summary>
         [Uri(Dt)]
         public static readonly DatatypeUri Hertz;
 
         /// <summary>
-        /// <see cref="Dt"/>:bitPerSecond.
+        /// <c><see cref="Dt"/>:bitPerSecond</c>.
         /// </summary>
         [Uri(Dt)]
         public static readonly DatatypeUri BitPerSecond;
 
         /// <summary>
-        /// <see cref="Dt"/>:kilobitPerSecond.
+        /// <c><see cref="Dt"/>:kilobitPerSecond</c>.
         /// </summary>
         [Uri(Dt)]
         public static readonly DatatypeUri KilobitPerSecond;

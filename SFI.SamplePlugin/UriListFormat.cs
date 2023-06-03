@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace IS4.SFI.Formats
 {
     /// <summary>
-    /// The text/uri-list format, containing a list of <see cref="Uri"/> instances.
+    /// The <c>text/uri-list</c> format, containing a list of <see cref="Uri"/> instances.
     /// </summary>
     public class UriListFormat : BinaryFileFormat<IReadOnlyList<Uri>>
     {

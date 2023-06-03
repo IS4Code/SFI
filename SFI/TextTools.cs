@@ -47,14 +47,14 @@ namespace IS4.SFI
         public static readonly string ImpliedMediaTypePrefix = "application/prs.implied-";
 
         /// <summary>
-        /// Creates an implied media type from a namespace URI, PUBLIC identifier,
+        /// Creates an implied media type from a namespace URI, <c>PUBLIC</c> identifier,
         /// and the root element name in an XML document.
         /// </summary>
         /// <param name="ns">The root namespace URI (may be <see langword="null"/>).</param>
-        /// <param name="publicId">The PUBLIC identifier (may be <see langword="null"/>).</param>
+        /// <param name="publicId">The <c>PUBLIC</c> identifier (may be <see langword="null"/>).</param>
         /// <param name="rootName">The name of the root element.</param>
         /// <returns>A MIME type in the form of
-        /// "application/prs.implied-document+xml;root={<paramref name="rootName"/>};ns={<paramref name="ns"/>};public={<paramref name="publicId"/>}".
+        /// <c>application/prs.implied-document+xml;root={<paramref name="rootName"/>};ns={<paramref name="ns"/>};public={<paramref name="publicId"/>}</c>.
         /// </returns>
         public static string GetImpliedMediaTypeFromXml(Uri? ns, string? publicId, string rootName)
         {
@@ -78,7 +78,7 @@ namespace IS4.SFI
         /// </summary>
         /// <typeparam name="T">The type to use for the media type.</typeparam>
         /// <returns>A MIME type in the form of
-        /// "application/octet-stream;type={name}",
+        /// <c>application/octet-stream;type={name}</c>,
         /// where name is the result of <see cref="GetIdentifierFromType{T}"/>.
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -226,7 +226,7 @@ namespace IS4.SFI
         /// </summary>
         /// <param name="signature">The signature of the file.</param>
         /// <returns>A MIME type in the form of
-        /// "application/prs.implied-structure;signature={<paramref name="signature"/>}".
+        /// <c>application/prs.implied-structure;signature={<paramref name="signature"/>}</c>.
         /// </returns>
         public static string GetImpliedMediaTypeFromSignature(string signature)
         {
@@ -238,7 +238,7 @@ namespace IS4.SFI
         /// </summary>
         /// <param name="interpreter">The interpreter command.</param>
         /// <returns>A MIME type in the form of
-        /// "application/prs.implied-executable;interpreter={<paramref name="interpreter"/>}".
+        /// <c>application/prs.implied-executable;interpreter={<paramref name="interpreter"/>}</c>.
         /// </returns>
         public static string GetImpliedMediaTypeFromInterpreter(string interpreter)
         {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace IS4.SFI.Analyzers
 {
     /// <summary>
-    /// An analyzer for the text/uri-list format, as a list of <see cref="Uri"/> instances.
+    /// An analyzer for the <c>text/uri-list</c> format, as a list of <see cref="Uri"/> instances.
     /// </summary>
     public class UriListAnalyzer : EntityAnalyzer<IReadOnlyList<Uri>>
     {

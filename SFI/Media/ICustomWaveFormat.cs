@@ -29,13 +29,13 @@ namespace IS4.SFI.Formats
 
         /// <summary>
         /// The <see cref="Guid"/> that specifies the major type of the media sample,
-        /// see https://docs.microsoft.com/en-us/windows/win32/directshow/media-types.
+        /// see <see href="https://docs.microsoft.com/en-us/windows/win32/directshow/media-types"/>.
         /// </summary>
         Guid? MajorType { get; }
 
         /// <summary>
         /// The <see cref="Guid"/> that specifies the subtype of the media sample,
-        /// see https://docs.microsoft.com/en-us/windows/win32/directshow/media-types.
+        /// see <see href="https://docs.microsoft.com/en-us/windows/win32/directshow/media-types"/>.
         /// </summary>
         Guid? SubType { get; }
     }

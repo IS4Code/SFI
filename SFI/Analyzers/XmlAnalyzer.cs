@@ -215,7 +215,7 @@ namespace IS4.SFI.Analyzers
         }
 
         /// <summary>
-        /// This is an improvised format implied by the root namespace or PUBLIC identifier
+        /// This is an improvised format implied by the root namespace or <c>PUBLIC</c> identifier
         /// referenced by the document.
         /// </summary>
         class ImprovisedXmlFormat : XmlDocumentFormat<ImprovisedXmlFormat.XmlFormat>

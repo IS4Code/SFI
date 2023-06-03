@@ -457,7 +457,7 @@ namespace IS4.SFI
             }
 
             /// <summary>
-            /// Ensures that the argument stores an rdf:RDF element, and returns an
+            /// Ensures that the argument stores an <c>rdf:RDF</c> element, and returns an
             /// instance of <see cref="BaseXmlDocument"/>.
             /// </summary>
             private static BaseXmlDocument PrepareXmlDocument(XmlReader rdfXmlReader)

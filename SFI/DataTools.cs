@@ -180,7 +180,7 @@ namespace IS4.SFI
         /// <param name="value">The input value to encode.</param>
         /// <returns>
         /// A collection of bytes encoding <paramref name="value"/>,
-        /// in the form described by https://github.com/multiformats/unsigned-varint.
+        /// in the form described by <see href="https://github.com/multiformats/unsigned-varint"/>.
         /// </returns>
         public static IEnumerable<byte> Varint(ulong value)
         {
@@ -193,7 +193,7 @@ namespace IS4.SFI
         }
 
         /// <summary>
-        /// Encodes a multihash value. See https://github.com/multiformats/multihash for details.
+        /// Encodes a multihash value. See <see href="https://github.com/multiformats/multihash"/> for details.
         /// </summary>
         /// <param name="id">The identifier of the particular hash.</param>
         /// <param name="hash">An array storing the bytes of the hash.</param>
@@ -303,7 +303,7 @@ namespace IS4.SFI
 
         /// <summary>
         /// Returns a replacement character for a C0 control character, in
-        /// the Unicode block starting from U+2400.
+        /// the Unicode block starting from <c>U+2400</c>.
         /// </summary>
         static int GetReplacementChar(char c)
         {
@@ -324,7 +324,7 @@ namespace IS4.SFI
         /// <param name="originalEncoding">The original encoding in which the string was decoded, or <see langword="null"/>.</param>
         /// <returns>
         /// A string formed from the characters in <paramref name="str"/>, but with control characters
-        /// replaced with their respective Unicode replacement characters starting from U+2400.
+        /// replaced with their respective Unicode replacement characters starting from <c>U+2400</c>.
         /// If <paramref name="originalEncoding"/> is a Unicode encoding or other encoding
         /// that can encode the replacement characters, the characters are left unchanged,
         /// because it would be ambiguous whether they were a part of the original text or not.
@@ -358,10 +358,10 @@ namespace IS4.SFI
         /// <param name="data">A complete sequence of bytes to be checked.</param>
         /// <returns><see langword="true"/> if the data is not textual, <see langword="false"/> otherwise.</returns>
         /// <remarks>
-        /// Usually, text is not allowed to contain the NUL character.
+        /// Usually, text is not allowed to contain the <c>NUL</c> character.
         /// This condition is loosened a bit here: a text may end with
-        /// any number of NUL characters, but it cannot contain a non-NUL character
-        /// after a NUL character, and it cannot start with a NUL character.
+        /// any number of <c>NUL</c> characters, but it cannot contain a non-<c>NUL</c> character
+        /// after a <c>NUL</c> character, and it cannot start with a <c>NUL</c> character.
         /// </remarks>
         public static bool IsBinary(ArraySegment<byte> data)
         {
@@ -620,12 +620,12 @@ namespace IS4.SFI
         }
 
         /// <summary>
-        /// Stores the qualified name of the &lt;x:xmpmeta&gt; element.
+        /// Stores the qualified name of the <c>&lt;x:xmpmeta&gt;</c> element.
         /// </summary>
         public static readonly XmlQualifiedName XmpMetaName = new("xmpmeta", "adobe:ns:meta/");
 
         /// <summary>
-        /// Stores the qualified name of the &lt;rdf:RDF&gt; element.
+        /// Stores the qualified name of the <c>&lt;rdf:RDF&gt;</c> element.
         /// </summary>
         public static readonly XmlQualifiedName RdfName = new("RDF", "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
 

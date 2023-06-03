@@ -12,20 +12,20 @@ namespace IS4.SFI.Formats
     public interface IXmlDocumentFormat : IFileFormat
     {
         /// <summary>
-        /// Returns the PUBLIC identifier of a document describing an instance of this formats.
+        /// Returns the <c>PUBLIC</c> identifier of a document describing an instance of this formats.
         /// </summary>
         /// <param name="value">An object compatible with this format.</param>
-        /// <returns>A PUBLIC identifier based on <paramref name="value"/>.</returns>
+        /// <returns>A <c>PUBLIC</c> identifier based on <paramref name="value"/>.</returns>
         /// <exception cref="ArgumentException">
         /// Thrown if the argument is not compatible with the format.
         /// </exception>
         string? GetPublicId(object value);
 
         /// <summary>
-        /// Returns the SYSTEM identifier of a document describing an instance of this formats.
+        /// Returns the <c>SYSTEM</c> identifier of a document describing an instance of this formats.
         /// </summary>
         /// <param name="value">An object compatible with this format.</param>
-        /// <returns>A SYSTEM identifier based on <paramref name="value"/>.</returns>
+        /// <returns>A <c>SYSTEM</c> identifier based on <paramref name="value"/>.</returns>
         /// <exception cref="ArgumentException">
         /// Thrown if the argument is not compatible with the format.
         /// </exception>
@@ -108,19 +108,19 @@ namespace IS4.SFI.Formats
     public abstract class XmlDocumentFormat<T> : FileFormat<T>, IXmlDocumentFormat<T> where T : class
     {
         /// <summary>
-        /// The common PUBLIC identifier, used if there is no other implementation
+        /// The common <c>PUBLIC</c> identifier, used if there is no other implementation
         /// of <see cref="GetPublicId(T)"/>.
         /// </summary>
         public string? PublicId { get; }
 
         /// <summary>
-        /// The common SYSTEM identifier, used if there is no other implementation
+        /// The common <c>SYSTEM</c> identifier, used if there is no other implementation
         /// of <see cref="GetSystemId(T)"/>.
         /// </summary>
         public string? SystemId { get; }
 
         /// <summary>
-        /// The common SYSTEM identifier, used if there is no other implementation
+        /// The common <c>SYSTEM</c> identifier, used if there is no other implementation
         /// of <see cref="GetSystemId(T)"/>.
         /// </summary>
         public Uri? Namespace { get; }

@@ -35,7 +35,7 @@ namespace IS4.SFI.Analyzers
         public ICollection<IDataHashAlgorithm> DataHashAlgorithms { get; } = new List<IDataHashAlgorithm>();
 
         /// <summary>
-        /// Whether to produce a small thumbnail data: node from the image.
+        /// Whether to produce a small thumbnail <c>data:</c> node from the image.
         /// </summary>
         public bool MakeThumbnail { get; set; } = true;
 

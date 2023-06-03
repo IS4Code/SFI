@@ -72,7 +72,7 @@ namespace IS4.SFI.Services
 
         /// <summary>
         /// The multihash identifier of the algorithm; see
-        /// https://github.com/multiformats/multicodec/blob/master/table.csv.
+        /// <see href="https://github.com/multiformats/multicodec/blob/master/table.csv"/>.
         /// </summary>
         int? NumericIdentifier { get; }
 
@@ -89,7 +89,7 @@ namespace IS4.SFI.Services
 
         /// <summary>
         /// The name of the algorithm in the Named Information Hash Algorithm Registry
-        /// (https://www.iana.org/assignments/named-information/named-information.xhtml).
+        /// (<see href="https://www.iana.org/assignments/named-information/named-information.xhtml"/>).
         /// </summary>
         string? NiName { get; }
     }

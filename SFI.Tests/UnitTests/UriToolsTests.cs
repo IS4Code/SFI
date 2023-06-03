@@ -37,7 +37,7 @@ namespace IS4.SFI.Tests
 
         /// <summary>
         /// The tests for <see cref="CreatePublicId(string)"/> and <see cref="ExtractPublicId(Uri)"/>,
-        /// taken from RFC 3151 (https://www.rfc-editor.org/rfc/rfc3151).
+        /// taken from <see href="https://www.ietf.org/rfc/rfc3151.txt">RFC 3151</see>.
         /// </summary>
         [TestMethod]
         [DataRow("ISO/IEC 10179:1996//DTD DSSSL Architecture//EN", "urn:publicid:ISO%2FIEC+10179%3A1996:DTD+DSSSL+Architecture:EN")]

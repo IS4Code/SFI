@@ -17,7 +17,7 @@ namespace IS4.SFI.Vocabulary
         public static readonly IIndividualUriFormatter<string> Ad = new VocabularyUri(Uri.Ad);
 
         /// <summary>
-        /// The vocabulary of all local file: URIs.
+        /// The vocabulary of all local <c>file:</c> URIs.
         /// </summary>
         public static readonly IIndividualUriFormatter<string> File = new VocabularyUri(Uri.File);
 
@@ -207,12 +207,12 @@ namespace IS4.SFI.Vocabulary
             public const string Httpsc = "http://www.w3.org/2011/http-statusCodes#";
 
             /// <summary>
-            /// The i18n Namespace for language tags and directions
+            /// The <c>i18n</c> Namespace for language tags and directions
             /// </summary>
             public const string I18n = "https://www.w3.org/ns/i18n#";
 
             /// <summary>
-            /// file: URIs
+            /// <c>file:</c> URIs
             /// </summary>
             public const string File = "file:///";
 

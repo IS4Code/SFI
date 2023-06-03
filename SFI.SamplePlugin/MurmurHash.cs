@@ -12,7 +12,7 @@ namespace IS4.SFI.SamplePlugin
     public class Murmur32Hash : BuiltInHash<Murmur32>
     {
         /// <summary>
-        /// <see cref="Vocabularies.Uri.At"/>:murmur32.
+        /// <c><see cref="Vocabularies.Uri.At"/>:murmur32</c>.
         /// </summary>
         [Uri(Vocabularies.Uri.At)]
         public static readonly IndividualUri Murmur32;

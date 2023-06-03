@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 namespace IS4.SFI
 {
     /// <summary>
-    /// The hash algorithm that produces urn:btih: hashes. This algorithm collects
+    /// The hash algorithm that produces <c>urn:btih:</c> hashes. This algorithm collects
     /// information about files and directories and uses it to create the "info"
-    /// section used normally in .torrent files. This section is hashed to produce
+    /// section used normally in <c>.torrent</c> files. This section is hashed to produce
     /// the final output of the algorithm.
-    /// The .torrent files are also available through its
+    /// The <c>.torrent</c> files are also available through its
     /// <see cref="IEntityOutputProvider{T}"/> implementation.
     /// </summary>
     /// <remarks>
@@ -23,7 +23,7 @@ namespace IS4.SFI
     /// bytes and hashes each of them individually. In the case of directories,
     /// the files inside are concatenated without any padding, which would break any sort
     /// of caching of hashes necessary for the proper and efficient function of this algorithm.
-    /// Instead, .pad/{size} files are introduced (see https://www.bittorrent.org/beps/bep_0047.html)
+    /// Instead, <c>.pad/{size}</c> files are introduced (see <see href="https://www.bittorrent.org/beps/bep_0047.html"/>)
     /// when hashing directories. These files logically contain zeros and are added after each
     /// file whose size is not a multiple of <see cref="BlockSize"/>.
     /// </remarks>
@@ -79,10 +79,10 @@ namespace IS4.SFI
         /// <summary>
         /// If <paramref name="hash"/> was previously created as a result of
         /// <see cref="ComputeHash(IFileInfo)"/> or <see cref="ComputeHash(IDirectoryInfo, bool)"/>,
-        /// invokes the provided <paramref name="output"/> to produce a .torrent file corresponding
+        /// invokes the provided <paramref name="output"/> to produce a <c>.torrent</c> file corresponding
         /// to the hash.
         /// </summary>
-        /// <param name="hash">The result of hashing a .torrent "info" section with <see cref="HashAlgorithm"/>.</param>
+        /// <param name="hash">The result of hashing a <c>.torrent</c> "info" section with <see cref="HashAlgorithm"/>.</param>
         /// <param name="output">The instance of <see cref="OutputFileDelegate"/> to receive the file.</param>
         /// <param name="properties">Additional properties passed to <paramref name="output"/>.</param>
         /// <returns>Whether a description of the hash was properly retrieved.</returns>

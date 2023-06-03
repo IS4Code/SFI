@@ -92,10 +92,10 @@ namespace IS4.SFI.Analyzers
         /// <returns>The minimum length of the input at which using hashes to identify it becomes more efficient.</returns>
         /// <remarks>
         /// <para>
-        /// A data object is identified either by its actual content as a "data:" URI,
+        /// A data object is identified either by its actual content as a <c>data:</c> URI,
         /// or through the collection of its hashes as determined by <see cref="HashAlgorithms"/>.
         /// Since there is no need to store the hashes when the data itself is present,
-        /// there is a minimum size at which using a "data:" URI becomes inefficient.
+        /// there is a minimum size at which using a <c>data:</c> URI becomes inefficient.
         /// This is estimated based on the number of triples required to store one hash,
         /// taken from <see cref="TripleSizeEstimate"/> and <see cref="HashAlgorithm.TriplesPerHash"/>,
         /// the size of URI identifying each has, as returned by <see cref="IHashAlgorithm.EstimateUriSize(int)"/>,

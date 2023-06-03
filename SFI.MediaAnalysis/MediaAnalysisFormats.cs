@@ -16,6 +16,10 @@ namespace IS4.SFI
             new WasapiFormat(true)
         };
 
+        /// <summary>
+        /// Enumerates the additional formats provided by this assembly.
+        /// </summary>
+        /// <returns>Two instances of <see cref="WasapiFormat"/>.</returns>
         public IEnumerator<IBinaryFileFormat> GetEnumerator()
         {
             return ((IEnumerable<IBinaryFileFormat>)formats).GetEnumerator();
