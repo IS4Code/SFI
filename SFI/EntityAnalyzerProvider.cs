@@ -73,7 +73,7 @@ namespace IS4.SFI
         /// <see cref="IEntityAnalyzer{T}"/> of <typeparamref name="T"/> to analyze
         /// <paramref name="entity"/>.
         /// </summary>
-        private async ValueTask<AnalysisResult> Analyze<T>(T entity, AnalysisContext context, IEntityAnalyzers analyzers) where T : class
+        private async ValueTask<AnalysisResult> Analyze<T>(T entity, AnalysisContext context, IEntityAnalyzers analyzers) where T : notnull
         {
             using var scope1 = OutputLog?.BeginScope(entity);
             var nameFriendly = TextTools.GetUserFriendlyName(entity);
@@ -130,7 +130,7 @@ namespace IS4.SFI
         /// <see cref="IContainerAnalyzerProvider.MatchRoot{TRoot}(TRoot, AnalysisContext)"/>
         /// of the particular <paramref name="root"/>.
         /// </summary>
-        private ContainerNode<object, IContainerNode>? MatchRoot<TRoot>(TRoot root, AnalysisContext context, IEntityAnalyzers analyzers, IReadOnlyCollection<IContainerAnalyzerProvider>? blocked) where TRoot : class
+        private ContainerNode<object, IContainerNode>? MatchRoot<TRoot>(TRoot root, AnalysisContext context, IEntityAnalyzers analyzers, IReadOnlyCollection<IContainerAnalyzerProvider>? blocked) where TRoot : notnull
         {
             using var scope1 = OutputLog?.BeginScope(root);
             List<ContainerAnalysisInfo>? analyzerList = null;
@@ -168,7 +168,7 @@ namespace IS4.SFI
         }
 
         /// <inheritdoc/>
-        public ValueTask<AnalysisResult> Analyze<T>(T? entity, AnalysisContext context) where T : class
+        public ValueTask<AnalysisResult> Analyze<T>(T? entity, AnalysisContext context) where T : notnull
         {
             if(entity == null) return default;
 
@@ -188,7 +188,7 @@ namespace IS4.SFI
             return AnalyzeInner(entity, context);
         }
 
-        async ValueTask<AnalysisResult> AnalyzeInner<T>(T entity, AnalysisContext context) where T : class
+        async ValueTask<AnalysisResult> AnalyzeInner<T>(T entity, AnalysisContext context) where T : notnull
         {
             var wrapper = MatchRoot(entity, context, this, null);
             if(wrapper != null)
@@ -207,7 +207,7 @@ namespace IS4.SFI
         /// </summary>
         /// <typeparam name="TValue">The type of <see cref="Value"/>.</typeparam>
         /// <typeparam name="TParent">The type of <see cref="ParentNode"/>.</typeparam>
-        class ContainerNode<TValue, TParent> : IEntityAnalyzers, IContainerNode<TValue, TParent> where TValue : class where TParent : IContainerNode
+        class ContainerNode<TValue, TParent> : IEntityAnalyzers, IContainerNode<TValue, TParent> where TValue : notnull where TParent : IContainerNode
         {
             public TParent? ParentNode { get; }
             public TValue? Value { get; }
@@ -236,7 +236,7 @@ namespace IS4.SFI
 
             object? IContainerNode.Value => Value;
 
-            public async ValueTask<AnalysisResult> Analyze<TEntity>(TEntity entity, AnalysisContext context) where TEntity : class
+            public async ValueTask<AnalysisResult> Analyze<TEntity>(TEntity entity, AnalysisContext context) where TEntity : notnull
             {
                 List<ContainerAnalysisInfo>? followedAnalyzers = null;
                 List<IContainerAnalyzerProvider>? blocked = null;

@@ -27,14 +27,14 @@ namespace IS4.SFI.Services
         /// The result of the analysis, or the default value of <see cref="AnalysisResult"/>
         /// if it was not successful.
         /// </returns>
-        ValueTask<AnalysisResult> Analyze<T>(T entity, AnalysisContext context) where T : class;
+        ValueTask<AnalysisResult> Analyze<T>(T entity, AnalysisContext context) where T : notnull;
     }
 
     /// <summary>
     /// Supports analysis of entities of type <typeparamref name="T"/>.
     /// </summary>
     /// <typeparam name="T">The supported type of the entity.</typeparam>
-    public interface IEntityAnalyzer<in T> where T : class
+    public interface IEntityAnalyzer<in T> where T : notnull
     {
         /// <summary>
         /// Analyzes <paramref name="entity"/>.
@@ -480,7 +480,7 @@ namespace IS4.SFI.Services
     /// <typeparamref name="T"/> is the primary analyzable type.
     /// </summary>
     /// <typeparam name="T">The primary type of entities accepted by this analyzer.</typeparam>
-    public abstract class EntityAnalyzer<T> : EntityAnalyzer, IEntityAnalyzer<T> where T : class
+    public abstract class EntityAnalyzer<T> : EntityAnalyzer, IEntityAnalyzer<T> where T : notnull
     {
         /// <inheritdoc/>
         public abstract ValueTask<AnalysisResult> Analyze(T entity, AnalysisContext context, IEntityAnalyzers analyzers);

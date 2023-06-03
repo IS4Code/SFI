@@ -64,7 +64,7 @@ namespace IS4.SFI.Formats
             public string? Root { get; private set; }
 
             /// <inheritdoc cref="IContainerAnalyzer.Analyze{TParent, TEntity}(TParent, TEntity, AnalysisContext, AnalyzeInner, IEntityAnalyzers)"/>
-            protected abstract ValueTask<AnalysisResult> Analyze<TPath, TNode>(TPath? parentPath, TNode node, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzers analyzers) where TNode : class where TPath : IContainerNode?;
+            protected abstract ValueTask<AnalysisResult> Analyze<TPath, TNode>(TPath? parentPath, TNode node, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzers analyzers) where TNode : notnull where TPath : IContainerNode?;
 
             ValueTask<AnalysisResult> IContainerAnalyzer.Analyze<TPath, TNode>(TPath? parentPath, TNode node, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzers analyzers) where TPath : default
             {

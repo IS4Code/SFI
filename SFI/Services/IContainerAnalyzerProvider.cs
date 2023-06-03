@@ -19,12 +19,12 @@ namespace IS4.SFI.Services
         /// An instance of <see cref="IContainerAnalyzer"/> if the root is
         /// recognized, null otherwise.
         /// </returns>
-        IContainerAnalyzer? MatchRoot<TRoot>(TRoot root, AnalysisContext context) where TRoot : class;
+        IContainerAnalyzer? MatchRoot<TRoot>(TRoot root, AnalysisContext context) where TRoot : notnull;
     }
 
     /// <typeparam name="TRoot">The root object type recognized by the provider.</typeparam>
     /// <inheritdoc cref="IContainerAnalyzerProvider"/>
-    public interface IContainerAnalyzerProvider<in TRoot> : IContainerAnalyzerProvider where TRoot : class
+    public interface IContainerAnalyzerProvider<in TRoot> : IContainerAnalyzerProvider where TRoot : notnull
     {
         /// <inheritdoc cref="IContainerAnalyzerProvider.MatchRoot{TRoot}(TRoot, AnalysisContext)"/>
         IContainerAnalyzer? MatchRoot(TRoot root, AnalysisContext context);
@@ -84,13 +84,13 @@ namespace IS4.SFI.Services
         /// </param>
         /// <param name="analyzers"><inheritdoc cref="IEntityAnalyzer{T}.Analyze(T, AnalysisContext, IEntityAnalyzers)" path="/param[@name='analyzers']"/></param>
         /// <param name="context"><inheritdoc cref="IEntityAnalyzer{T}.Analyze(T, AnalysisContext, IEntityAnalyzers)" path="/param[@name='context']"/></param>
-        ValueTask<AnalysisResult> Analyze<TParent, TEntity>(TParent? parentNode, TEntity entity, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzers analyzers) where TEntity : class where TParent : IContainerNode;
+        ValueTask<AnalysisResult> Analyze<TParent, TEntity>(TParent? parentNode, TEntity entity, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzers analyzers) where TEntity : notnull where TParent : IContainerNode;
     }
 
     /// <typeparam name="TParent">The type of the parent node, implementing <see cref="IContainerNode"/>.</typeparam>
     /// <typeparam name="TEntity">The type of the entity.</typeparam>
     /// <inheritdoc cref="IContainerAnalyzer"/>
-    public interface IContainerAnalyzer<in TParent, in TEntity> where TEntity : class where TParent : IContainerNode
+    public interface IContainerAnalyzer<in TParent, in TEntity> where TEntity : notnull where TParent : IContainerNode
     {
         /// <inheritdoc cref="IContainerAnalyzer.Analyze{TParent, TEntity}(TParent, TEntity, AnalysisContext, AnalyzeInner, IEntityAnalyzers)"/>
         ValueTask<AnalysisResult> Analyze(TParent? parentNode, TEntity entity, AnalysisContext context, AnalyzeInner inner, IEntityAnalyzers analyzers);
@@ -115,7 +115,7 @@ namespace IS4.SFI.Services
     /// <typeparam name="TValue">The type of <see cref="Value"/>.</typeparam>
     /// <typeparam name="TParent">The type of <see cref="ParentNode"/>, implementing <see cref="IContainerNode"/>.</typeparam>
     /// <inheritdoc cref="IContainerNode"/>
-    public interface IContainerNode<out TValue, out TParent> : IContainerNode where TValue : class where TParent : IContainerNode
+    public interface IContainerNode<out TValue, out TParent> : IContainerNode where TValue : notnull where TParent : IContainerNode
     {
         /// <inheritdoc cref="IContainerNode.ParentNode"/>
         new TParent? ParentNode { get; }

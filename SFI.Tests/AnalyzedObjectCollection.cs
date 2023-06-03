@@ -19,7 +19,7 @@ namespace IS4.SFI.Tests
         public ConcurrentDictionary<Type, List<(object entity, AnalysisContext context)>> Analyzed { get; } = new ConcurrentDictionary<Type, List<(object, AnalysisContext)>>();
 
         /// <inheritdoc/>
-        public async ValueTask<AnalysisResult> Analyze<T>(T entity, AnalysisContext context) where T : class
+        public async ValueTask<AnalysisResult> Analyze<T>(T entity, AnalysisContext context) where T : notnull
         {
             if(!Analyzed.TryGetValue(typeof(T), out var list))
             {
