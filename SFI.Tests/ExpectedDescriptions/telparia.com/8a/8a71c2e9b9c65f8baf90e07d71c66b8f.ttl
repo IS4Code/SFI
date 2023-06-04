@@ -3,8 +3,8 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -22,32 +22,32 @@ _:n1 at:pathObject <file:///welcome.msg>;
                                                                    a cnt:ContentAsText;
                                                                    skos:prefLabel "text (50 B)"@en;
                                                                    cnt:characterEncoding "us-ascii";
-                                                                   cnt:chars "<BFF90FB6CF66D111BF4F0000F840DB85095767BB@LASSIE>␀"^^xsd:string.
+                                                                   cnt:chars "<BFF90FB6CF66D111BF4F0000F840DB85095767BB@LASSIE>␀".
 <data:,593190304-28041999%00> dcterms:extent "19"^^dt:byte;
                               a cnt:ContentAsText;
                               skos:prefLabel "text (19 B)"@en;
                               cnt:characterEncoding "us-ascii";
-                              cnt:chars "593190304-28041999␀"^^xsd:string.
+                              cnt:chars "593190304-28041999␀".
 <data:,9.0%00> dcterms:extent "4"^^dt:byte;
                a cnt:ContentAsText;
                skos:prefLabel "text (4 B)"@en;
                cnt:characterEncoding "us-ascii";
-               cnt:chars "9.0␀"^^xsd:string.
+               cnt:chars "9.0␀".
 <data:,Alex%20Heaton%20(Exchange)%00> dcterms:extent "23"^^dt:byte;
                                       a cnt:ContentAsText;
                                       skos:prefLabel "text (23 B)"@en;
                                       cnt:characterEncoding "us-ascii";
-                                      cnt:chars "Alex Heaton (Exchange)␀"^^xsd:string.
+                                      cnt:chars "Alex Heaton (Exchange)␀".
 <data:,IPM.Note%00> dcterms:extent "9"^^dt:byte;
                     a cnt:ContentAsText;
                     skos:prefLabel "text (9 B)"@en;
                     cnt:characterEncoding "us-ascii";
-                    cnt:chars "IPM.Note␀"^^xsd:string.
+                    cnt:chars "IPM.Note␀".
 <data:,New%20Team%20Intranet%20Site%20Deployed!%00> dcterms:extent "33"^^dt:byte;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (33 B)"@en;
                                                     cnt:characterEncoding "us-ascii";
-                                                    cnt:chars "New Team Intranet Site Deployed!␀"^^xsd:string.
+                                                    cnt:chars "New Team Intranet Site Deployed!␀".
 <data:application/octet-stream,> dcterms:extent "0"^^dt:byte;
                                  a cnt:ContentAsBase64;
                                  skos:prefLabel "binary data (0 B)"@en;
@@ -105,6 +105,7 @@ _:n1 at:pathObject <file:///welcome.msg>;
                                                     skos:prefLabel "binary data (8 B)"@en;
                                                     cnt:bytes "g4UAAAYACQA="^^xsd:base64Binary.
 <file:///__nameid_version1.0> at:extensionObject <https://w3id.org/uri4uri/suffix/0>.
+<file:///__nameid_version1.0/> at:pathObject <file:///>.
 <file:///__nameid_version1.0/__substg1.0_00020102> at:pathObject <file:///__substg1.0_00020102>.
 <file:///__nameid_version1.0/__substg1.0_00030102> at:pathObject <file:///__substg1.0_00030102>.
 <file:///__nameid_version1.0/__substg1.0_00040102> at:pathObject <file:///__substg1.0_00040102>.
@@ -174,7 +175,7 @@ _:n1 at:pathObject <file:///welcome.msg>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQdxj7cmo4hduHkZe2uT3uvw?ct=application/x-ole-storage>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (13.5 KiB)"@en.
-<ni:///mh;1QEQdxj7cmo4hduHkZe2uT3uvw?ct=application/x-ole-storage> at:pathObject <file:///>;
+<ni:///mh;1QEQdxj7cmo4hduHkZe2uT3uvw?ct=application/x-ole-storage> at:pathObject <file:///.>;
                                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
                                                                    nie:interpretedAs <ni:///mh;1QEQdxj7cmo4hduHkZe2uT3uvw?ct=application/x-ole-storage#/>;
                                                                    nfo:fileCreated "1601-01-05T18:46:15.853875Z"^^xsd:dateTime;
@@ -182,7 +183,7 @@ _:n1 at:pathObject <file:///welcome.msg>;
                                                                    a schema:MediaObject,
                                                                      nfo:EmbeddedFileDataObject;
                                                                    skos:prefLabel "OLE object (13.5 KiB)"@en.
-<ni:///mh;1QEQdxj7cmo4hduHkZe2uT3uvw?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQdxj7cmo4hduHkZe2uT3uvw?ct=application/x-ole-storage#/> at:pathObject <file:///>;
                                                                      a nfo:Folder;
                                                                      skos:prefLabel "/".
 <ni:///mh;1QEQdxj7cmo4hduHkZe2uT3uvw?ct=application/x-ole-storage#/__nameid_version1.0> at:pathObject <file:///__nameid_version1.0>;

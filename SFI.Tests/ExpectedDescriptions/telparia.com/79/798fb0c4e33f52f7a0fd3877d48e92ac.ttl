@@ -1,10 +1,10 @@
-@base <x.blank:f447ffa6-8121-430a-841c-5d3b69fe6541>.
+@base <ni:///mh;1QEQfNIDymdKrpHkv3dW5hsQnQ?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -24,9 +24,11 @@ _:n1 at:pathObject <file:///idxexample.sxw>;
                                          a cnt:ContentAsText;
                                          skos:prefLabel "text (30 B)"@en;
                                          cnt:characterEncoding "us-ascii";
-                                         cnt:chars "application/vnd.sun.xml.writer"^^xsd:string.
+                                         cnt:chars "application/vnd.sun.xml.writer".
 <file:///2000008400001923000012C2580E2C7B.wmf> at:extensionObject <https://w3id.org/uri4uri/suffix/wmf>.
+<file:///META-INF/> at:pathObject <file:///>.
 <file:///META-INF/manifest.xml> at:pathObject <file:///manifest.xml>.
+<file:///Pictures/> at:pathObject <file:///>.
 <file:///Pictures/2000008400001923000012C2580E2C7B.wmf> at:pathObject <file:///2000008400001923000012C2580E2C7B.wmf>.
 <file:///content.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///idxexample.sxw> at:extensionObject <https://w3id.org/uri4uri/suffix/sxw>.
@@ -190,13 +192,13 @@ _:n1 at:pathObject <file:///idxexample.sxw>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQfNIDymdKrpHkv3dW5hsQnQ?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (19.54 KiB)"@en.
-<ni:///mh;1QEQfNIDymdKrpHkv3dW5hsQnQ?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQfNIDymdKrpHkv3dW5hsQnQ?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQfNIDymdKrpHkv3dW5hsQnQ?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (19.54 KiB)"@en.
-<ni:///mh;1QEQfNIDymdKrpHkv3dW5hsQnQ?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQfNIDymdKrpHkv3dW5hsQnQ?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQfNIDymdKrpHkv3dW5hsQnQ?ct=application/zip#/META-INF> at:pathObject <file:///META-INF>;

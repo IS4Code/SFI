@@ -3,8 +3,8 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -22,22 +22,22 @@ _:n1 at:pathObject <file:///appt.oft>;
                                                                              a cnt:ContentAsText;
                                                                              skos:prefLabel "text (48 B)"@en;
                                                                              cnt:characterEncoding "us-ascii";
-                                                                             cnt:chars "(GMT-08:00) Pacific Time (US & Canada); Tijuana␀"^^xsd:string.
+                                                                             cnt:chars "(GMT-08:00) Pacific Time (US & Canada); Tijuana␀".
 <data:,8.0%00> dcterms:extent "4"^^dt:byte;
                a cnt:ContentAsText;
                skos:prefLabel "text (4 B)"@en;
                cnt:characterEncoding "us-ascii";
-               cnt:chars "8.0␀"^^xsd:string.
+               cnt:chars "8.0␀".
 <data:,IPM.Appointment%00> dcterms:extent "16"^^dt:byte;
                            a cnt:ContentAsText;
                            skos:prefLabel "text (16 B)"@en;
                            cnt:characterEncoding "us-ascii";
-                           cnt:chars "IPM.Appointment␀"^^xsd:string.
+                           cnt:chars "IPM.Appointment␀".
 <data:,Scott%20Thurlow%20(Exchange)%00> dcterms:extent "25"^^dt:byte;
                                         a cnt:ContentAsText;
                                         skos:prefLabel "text (25 B)"@en;
                                         cnt:characterEncoding "us-ascii";
-                                        cnt:chars "Scott Thurlow (Exchange)␀"^^xsd:string.
+                                        cnt:chars "Scott Thurlow (Exchange)␀".
 <data:application/octet-stream,%00> dcterms:extent "1"^^dt:byte;
                                     a cnt:ContentAsBase64;
                                     skos:prefLabel "binary data (1 B)"@en;
@@ -183,6 +183,7 @@ _:n1 at:pathObject <file:///appt.oft>;
                                                                 skos:prefLabel "binary data (16 B)"@en;
                                                                 cnt:bytes "ytorCUcA0BG44gCAX2pgYA=="^^xsd:base64Binary.
 <file:///__nameid_version1.0> at:extensionObject <https://w3id.org/uri4uri/suffix/0>.
+<file:///__nameid_version1.0/> at:pathObject <file:///>.
 <file:///__nameid_version1.0/__substg1.0_00020102> at:pathObject <file:///__substg1.0_00020102>.
 <file:///__nameid_version1.0/__substg1.0_00030102> at:pathObject <file:///__substg1.0_00030102>.
 <file:///__nameid_version1.0/__substg1.0_00040102> at:pathObject <file:///__substg1.0_00040102>.
@@ -283,7 +284,7 @@ _:n1 at:pathObject <file:///appt.oft>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ_LNVR-xA5QcoYzn3GnzKew?ct=application/x-ole-storage>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (14.5 KiB)"@en.
-<ni:///mh;1QEQ_LNVR-xA5QcoYzn3GnzKew?ct=application/x-ole-storage> at:pathObject <file:///>;
+<ni:///mh;1QEQ_LNVR-xA5QcoYzn3GnzKew?ct=application/x-ole-storage> at:pathObject <file:///.>;
                                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
                                                                    nie:interpretedAs <ni:///mh;1QEQ_LNVR-xA5QcoYzn3GnzKew?ct=application/x-ole-storage#/>;
                                                                    nfo:fileCreated "1703-07-31T07:52:03.618827Z"^^xsd:dateTime;
@@ -291,7 +292,7 @@ _:n1 at:pathObject <file:///appt.oft>;
                                                                    a schema:MediaObject,
                                                                      nfo:EmbeddedFileDataObject;
                                                                    skos:prefLabel "OLE object (14.5 KiB)"@en.
-<ni:///mh;1QEQ_LNVR-xA5QcoYzn3GnzKew?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQ_LNVR-xA5QcoYzn3GnzKew?ct=application/x-ole-storage#/> at:pathObject <file:///>;
                                                                      a nfo:Folder;
                                                                      skos:prefLabel "/".
 <ni:///mh;1QEQ_LNVR-xA5QcoYzn3GnzKew?ct=application/x-ole-storage#/__nameid_version1.0> at:pathObject <file:///__nameid_version1.0>;

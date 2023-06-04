@@ -3,8 +3,8 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -25,20 +25,24 @@ _:n1 at:pathObject <file:///XBAA006a.pzp>;
                             cnt:chars """1
 1
 0
-"""^^xsd:string.
+""".
 <data:application/octet-stream;base64,BAAAAAMAAAAAAAAAAAAAAA==> dcterms:extent "16"^^dt:byte;
                                                                 a cnt:ContentAsBase64;
                                                                 skos:prefLabel "binary data (16 B)"@en;
                                                                 cnt:bytes "BAAAAAMAAAAAAAAAAAAAAA=="^^xsd:base64Binary.
+<file:///0/> at:pathObject <file:///>.
 <file:///0/ITEM> at:pathObject <file:///ITEM>.
 <file:///0/THUMBNAIL.png> at:pathObject <file:///THUMBNAIL.png>.
+<file:///1/> at:pathObject <file:///>.
 <file:///1/IMAGE.jpg> at:pathObject <file:///IMAGE.jpg>.
 <file:///1/ITEM> at:pathObject <file:///ITEM>.
 <file:///1/THUMBNAIL.png> at:pathObject <file:///THUMBNAIL.png>.
+<file:///2/> at:pathObject <file:///>.
 <file:///2/IMAGE.jpg> at:pathObject <file:///IMAGE.jpg>.
 <file:///2/ITEM> at:pathObject <file:///ITEM>.
 <file:///2/THUMBNAIL.png> at:pathObject <file:///THUMBNAIL.png>.
 <file:///Catalog_0.msc> at:extensionObject <https://w3id.org/uri4uri/suffix/msc>.
+<file:///Catalog_0.msc/> at:pathObject <file:///>.
 <file:///Catalog_0.msc/0> at:pathObject <file:///0>.
 <file:///Catalog_0.msc/0/> at:pathObject <file:///0/>.
 <file:///Catalog_0.msc/0/ITEM> at:pathObject <file:///0/ITEM>.
@@ -71,8 +75,8 @@ _:n1 at:pathObject <file:///XBAA006a.pzp>;
                                                     nfo:verticalResolution 96 ;
                                                     nfo:width 700 ;
                                                     a schema:MediaObject,
-                                                      schema:ImageObject,
-                                                      nfo:Image;
+                                                      nfo:Image,
+                                                      schema:ImageObject;
                                                     skos:prefLabel "JPG object (700×400)"@en,
                                                                    "JPG object (12.98 KiB)"@en.
 <ni:///mh;1QEQ7yclamHNbeM8BWjsKGh0hA?ct=application/octet-stream> at:digest <urn:md5:EF27256A61CD6DE33C0568EC28687484>;
@@ -87,10 +91,10 @@ _:n1 at:pathObject <file:///XBAA006a.pzp>;
                                                    nfo:verticalResolution 96 ;
                                                    nfo:width 10 ;
                                                    a schema:MediaObject,
-                                                     schema:ImageObject,
-                                                     nfo:Image;
-                                                   skos:prefLabel "PNG object (10×10, 8-bit)"@en,
-                                                                  "PNG object (10×10)"@en,
+                                                     nfo:Image,
+                                                     schema:ImageObject;
+                                                   skos:prefLabel "PNG object (10×10)"@en,
+                                                                  "PNG object (10×10, 8-bit)"@en,
                                                                   "PNG object (78 B)"@en.
 <ni:///mh;1QEQL9F3t6IjXiQKgMdS26c1rw?ct=application/octet-stream> at:digest <urn:md5:2FD177B7A2235E240A80C752DBA735AF>;
                                                                   dcterms:extent "1458"^^dt:byte;
@@ -108,10 +112,10 @@ _:n1 at:pathObject <file:///XBAA006a.pzp>;
                                                    nfo:verticalResolution 96 ;
                                                    nfo:width 128 ;
                                                    a schema:MediaObject,
-                                                     schema:ImageObject,
-                                                     nfo:Image;
-                                                   skos:prefLabel "PNG object (128×73, 8-bit)"@en,
-                                                                  "PNG object (128×73)"@en,
+                                                     nfo:Image,
+                                                     schema:ImageObject;
+                                                   skos:prefLabel "PNG object (128×73)"@en,
+                                                                  "PNG object (128×73, 8-bit)"@en,
                                                                   "PNG object (421 B)"@en.
 <ni:///mh;1QEQLKDMzZzl8iFltY--bHgJ1A?ct=application/octet-stream> at:digest <urn:md5:2CA0CCCD9CE5F22165B58FBE6C7809D4>;
                                                                   dcterms:extent "1490"^^dt:byte;
@@ -128,8 +132,8 @@ _:n1 at:pathObject <file:///XBAA006a.pzp>;
                                                      schema:ImageObject,
                                                      nfo:Image;
                                                    skos:prefLabel "PNG object (128×73, 8-bit)"@en,
-                                                                  "PNG object (1.46 KiB)"@en,
-                                                                  "PNG object (128×73)"@en.
+                                                                  "PNG object (128×73)"@en,
+                                                                  "PNG object (1.46 KiB)"@en.
 <ni:///mh;1QEQQO3u-E2OLQS4haqcigvC9w?ct=application/octet-stream> at:digest <urn:md5:40EDEEF84D8E2D04B885AA9C8A0BC2F7>;
                                                                   dcterms:extent "1138"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -139,14 +143,14 @@ _:n1 at:pathObject <file:///XBAA006a.pzp>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQcRbitGg-IGk4QPfczF7m1A?ct=application/x-ole-storage>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (42.5 KiB)"@en.
-<ni:///mh;1QEQcRbitGg-IGk4QPfczF7m1A?ct=application/x-ole-storage> at:pathObject <file:///>;
+<ni:///mh;1QEQcRbitGg-IGk4QPfczF7m1A?ct=application/x-ole-storage> at:pathObject <file:///.>;
                                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
                                                                    nie:interpretedAs <ni:///mh;1QEQcRbitGg-IGk4QPfczF7m1A?ct=application/x-ole-storage#/>;
                                                                    nfo:fileLastModified "1998-08-11T15:13:51.250000Z"^^xsd:dateTime;
                                                                    a schema:MediaObject,
                                                                      nfo:EmbeddedFileDataObject;
                                                                    skos:prefLabel "OLE object (42.5 KiB)"@en.
-<ni:///mh;1QEQcRbitGg-IGk4QPfczF7m1A?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQcRbitGg-IGk4QPfczF7m1A?ct=application/x-ole-storage#/> at:pathObject <file:///>;
                                                                      a nfo:Folder;
                                                                      skos:prefLabel "/".
 <ni:///mh;1QEQcRbitGg-IGk4QPfczF7m1A?ct=application/x-ole-storage#/Catalog_0.msc> at:pathObject <file:///Catalog_0.msc>;
@@ -325,10 +329,10 @@ _:n1 at:pathObject <file:///XBAA006a.pzp>;
                                                    nfo:verticalResolution 96 ;
                                                    nfo:width 128 ;
                                                    a schema:MediaObject,
-                                                     nfo:Image,
-                                                     schema:ImageObject;
-                                                   skos:prefLabel "PNG object (128×73)"@en,
-                                                                  "PNG object (128×73, 8-bit)"@en,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "PNG object (128×73, 8-bit)"@en,
+                                                                  "PNG object (128×73)"@en,
                                                                   "PNG object (397 B)"@en.
 <ni:///mh;1QEQvfQC7EscIROk8X5CJIhmnA?ct=application/octet-stream> at:digest <urn:md5:BDF402EC4B1C2113A4F17E422488669C>;
                                                                   dcterms:extent "629"^^dt:byte;
@@ -342,8 +346,8 @@ _:n1 at:pathObject <file:///XBAA006a.pzp>;
                                                     nfo:verticalResolution 96 ;
                                                     nfo:width 10 ;
                                                     a schema:MediaObject,
-                                                      schema:ImageObject,
-                                                      nfo:Image;
+                                                      nfo:Image,
+                                                      schema:ImageObject;
                                                     skos:prefLabel "JPG object (10×10)"@en,
                                                                    "JPG object (629 B)"@en.
 <urn:md5:2C23A4A327FE5BAED6DE8AA38D4BDB72> a sec:Digest;

@@ -1,10 +1,10 @@
-@base <x.blank:cb4a72ed-abb7-49ab-ac08-dadedd36913f>.
+@base <ni:///mh;1QEQrkyT4S8fKMkq2VGoAtt4Hg?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xis: <http://www.w3.org/2001/04/infoset#>.
@@ -25,6 +25,7 @@ _:n1 at:pathObject <file:///example.oxps>;
 <file:///1.JPG> at:extensionObject <https://w3id.org/uri4uri/suffix/jpg>.
 <file:///1.fpage> at:extensionObject <https://w3id.org/uri4uri/suffix/fpage>.
 <file:///1.fpage.rels> at:extensionObject <https://w3id.org/uri4uri/suffix/rels>.
+<file:///1/> at:pathObject <file:///>.
 <file:///1/FixedDocument.fdoc> at:pathObject <file:///FixedDocument.fdoc>.
 <file:///1/Metadata> at:pathObject <file:///Metadata>.
 <file:///1/Metadata/> at:pathObject <file:///Metadata/>.
@@ -55,6 +56,7 @@ _:n1 at:pathObject <file:///example.oxps>;
 <file:///3.JPG> at:extensionObject <https://w3id.org/uri4uri/suffix/jpg>.
 <file:///3A8E8595-F3DE-4A7E-8F48-C5F459C781F8.odttf> at:extensionObject <https://w3id.org/uri4uri/suffix/odttf>.
 <file:///7A44D749-45CF-406A-B248-43A01F0B50E5.odttf> at:extensionObject <https://w3id.org/uri4uri/suffix/odttf>.
+<file:///Documents/> at:pathObject <file:///>.
 <file:///Documents/1> at:pathObject <file:///1>.
 <file:///Documents/1/> at:pathObject <file:///1/>.
 <file:///Documents/1/FixedDocument.fdoc> at:pathObject <file:///1/FixedDocument.fdoc>.
@@ -88,24 +90,29 @@ _:n1 at:pathObject <file:///example.oxps>;
 <file:///FixedDocument.fdoc.rels> at:extensionObject <https://w3id.org/uri4uri/suffix/rels>.
 <file:///FixedDocumentSequence.fdseq> at:extensionObject <https://w3id.org/uri4uri/suffix/fdseq>.
 <file:///FixedDocumentSequence.fdseq.rels> at:extensionObject <https://w3id.org/uri4uri/suffix/rels>.
+<file:///Fonts/> at:pathObject <file:///>.
 <file:///Fonts/3A8E8595-F3DE-4A7E-8F48-C5F459C781F8.odttf> at:pathObject <file:///3A8E8595-F3DE-4A7E-8F48-C5F459C781F8.odttf>.
 <file:///Fonts/7A44D749-45CF-406A-B248-43A01F0B50E5.odttf> at:pathObject <file:///7A44D749-45CF-406A-B248-43A01F0B50E5.odttf>.
 <file:///Fonts/E28A6FF5-A7D2-4D0A-929E-87442A9AD0CA.odttf> at:pathObject <file:///E28A6FF5-A7D2-4D0A-929E-87442A9AD0CA.odttf>.
+<file:///Images/> at:pathObject <file:///>.
 <file:///Images/1.JPG> at:pathObject <file:///1.JPG>.
 <file:///Images/2.JPG> at:pathObject <file:///2.JPG>.
 <file:///Images/3.JPG> at:pathObject <file:///3.JPG>.
 <file:///Job_PT.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///MXDC_Empty_PT.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///Metadata/> at:pathObject <file:///>.
 <file:///Metadata/Job_PT.xml> at:pathObject <file:///Job_PT.xml>.
 <file:///Metadata/MXDC_Empty_PT.xml> at:pathObject <file:///MXDC_Empty_PT.xml>.
 <file:///Metadata/Page1_PT.xml> at:pathObject <file:///Page1_PT.xml>.
 <file:///Metadata/Page1_Thumbnail.JPG> at:pathObject <file:///Page1_Thumbnail.JPG>.
 <file:///Page1_PT.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///Page1_Thumbnail.JPG> at:extensionObject <https://w3id.org/uri4uri/suffix/jpg>.
+<file:///Pages/> at:pathObject <file:///>.
 <file:///Pages/1.fpage> at:pathObject <file:///1.fpage>.
 <file:///Pages/_rels> at:pathObject <file:///_rels>.
 <file:///Pages/_rels/> at:pathObject <file:///_rels/>.
 <file:///Pages/_rels/1.fpage.rels> at:pathObject <file:///_rels/1.fpage.rels>.
+<file:///Resources/> at:pathObject <file:///>.
 <file:///Resources/Fonts> at:pathObject <file:///Fonts>.
 <file:///Resources/Fonts/> at:pathObject <file:///Fonts/>.
 <file:///Resources/Fonts/3A8E8595-F3DE-4A7E-8F48-C5F459C781F8.odttf> at:pathObject <file:///Fonts/3A8E8595-F3DE-4A7E-8F48-C5F459C781F8.odttf>.
@@ -116,6 +123,7 @@ _:n1 at:pathObject <file:///example.oxps>;
 <file:///Resources/Images/1.JPG> at:pathObject <file:///Images/1.JPG>.
 <file:///Resources/Images/2.JPG> at:pathObject <file:///Images/2.JPG>.
 <file:///Resources/Images/3.JPG> at:pathObject <file:///Images/3.JPG>.
+<file:///_rels/> at:pathObject <file:///>.
 <file:///_rels/.rels> at:pathObject <file:///.rels>.
 <file:///_rels/1.fpage.rels> at:pathObject <file:///1.fpage.rels>.
 <file:///_rels/FixedDocument.fdoc.rels> at:pathObject <file:///FixedDocument.fdoc.rels>.
@@ -372,13 +380,13 @@ _:n1 at:pathObject <file:///example.oxps>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQrkyT4S8fKMkq2VGoAtt4Hg?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (636.63 KiB)"@en.
-<ni:///mh;1QEQrkyT4S8fKMkq2VGoAtt4Hg?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQrkyT4S8fKMkq2VGoAtt4Hg?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQrkyT4S8fKMkq2VGoAtt4Hg?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (636.63 KiB)"@en.
-<ni:///mh;1QEQrkyT4S8fKMkq2VGoAtt4Hg?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQrkyT4S8fKMkq2VGoAtt4Hg?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQrkyT4S8fKMkq2VGoAtt4Hg?ct=application/zip#/%5BContent_Types%5D.xml> at:pathObject <file:///%5BContent_Types%5D.xml>;
@@ -755,8 +763,8 @@ _:n1 at:pathObject <file:///example.oxps>;
                                                     nfo:verticalResolution 96 ;
                                                     nfo:width 2048 ;
                                                     a schema:MediaObject,
-                                                      schema:ImageObject,
-                                                      nfo:Image;
+                                                      nfo:Image,
+                                                      schema:ImageObject;
                                                     skos:prefLabel "JPG object (2048×1361)"@en,
                                                                    "JPG object (370.71 KiB)"@en.
 <urn:md5:0738279F7DB2F4AF932E9F6F9AA5FE4E> a sec:Digest;

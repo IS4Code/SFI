@@ -1,12 +1,12 @@
-@base <x.blank:0fc78ea0-a7af-4dd6-ae91-059fd2198776>.
+@base <ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xis: <http://www.w3.org/2001/04/infoset#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -22,10 +22,12 @@ _:n1 at:pathObject <file:///testing.docx>;
      a nfo:FileDataObject.
 <file:///%5BContent_Types%5D.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///.rels> at:extensionObject <https://w3id.org/uri4uri/suffix/rels>.
+<file:///_rels/> at:pathObject <file:///>.
 <file:///_rels/.rels> at:pathObject <file:///.rels>.
 <file:///_rels/document.xml.rels> at:pathObject <file:///document.xml.rels>.
 <file:///app.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///core.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///docProps/> at:pathObject <file:///>.
 <file:///docProps/app.xml> at:pathObject <file:///app.xml>.
 <file:///docProps/core.xml> at:pathObject <file:///core.xml>.
 <file:///document.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
@@ -34,9 +36,11 @@ _:n1 at:pathObject <file:///testing.docx>;
 <file:///settings.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///styles.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///testing.docx> at:extensionObject <https://w3id.org/uri4uri/suffix/docx>.
+<file:///theme/> at:pathObject <file:///>.
 <file:///theme/theme1.xml> at:pathObject <file:///theme1.xml>.
 <file:///theme1.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///webSettings.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///word/> at:pathObject <file:///>.
 <file:///word/_rels> at:pathObject <file:///_rels>.
 <file:///word/_rels/> at:pathObject <file:///_rels/>.
 <file:///word/_rels/document.xml.rels> at:pathObject <file:///_rels/document.xml.rels>.
@@ -186,13 +190,13 @@ _:n1 at:pathObject <file:///testing.docx>;
                                                                                                                    schema:DigitalDocument,
                                                                                                                    nfo:Document;
                                                                                                                  skos:prefLabel "DOCX object"@en.
-<ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (10.48 KiB)"@en.
-<ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/%5BContent_Types%5D.xml> at:pathObject <file:///%5BContent_Types%5D.xml>;

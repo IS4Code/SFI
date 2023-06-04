@@ -1,10 +1,10 @@
-@base <x.blank:51e4431d-72fa-42af-913e-d6c51fe54c05>.
+@base <ni:///mh;1QEQafGKZst3aCaW77cZqY2jcQ?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
@@ -23,6 +23,7 @@ _:n1 at:pathObject <file:///BJBBS.PHN>;
                                              skos:prefLabel "binary data (4 B)"@en;
                                              cnt:bytes "AAACAA=="^^xsd:base64Binary.
 <file:///BJBBS.PHN> at:extensionObject <https://w3id.org/uri4uri/suffix/phn>.
+<file:///phonebook/> at:pathObject <file:///>.
 <file:///phonebook/entries> at:pathObject <file:///entries>.
 <file:///phonebook/groups> at:pathObject <file:///groups>.
 <file:///phonebook/large> at:pathObject <file:///large>.
@@ -45,14 +46,14 @@ _:n1 at:pathObject <file:///BJBBS.PHN>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQafGKZst3aCaW77cZqY2jcQ?ct=application/x-ole-storage>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (45 KiB)"@en.
-<ni:///mh;1QEQafGKZst3aCaW77cZqY2jcQ?ct=application/x-ole-storage> at:pathObject <file:///>;
+<ni:///mh;1QEQafGKZst3aCaW77cZqY2jcQ?ct=application/x-ole-storage> at:pathObject <file:///.>;
                                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
                                                                    nie:interpretedAs <ni:///mh;1QEQafGKZst3aCaW77cZqY2jcQ?ct=application/x-ole-storage#/>;
                                                                    nfo:fileLastModified "1997-05-11T15:22:17.560000Z"^^xsd:dateTime;
                                                                    a schema:MediaObject,
                                                                      nfo:EmbeddedFileDataObject;
                                                                    skos:prefLabel "OLE object (45 KiB)"@en.
-<ni:///mh;1QEQafGKZst3aCaW77cZqY2jcQ?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQafGKZst3aCaW77cZqY2jcQ?ct=application/x-ole-storage#/> at:pathObject <file:///>;
                                                                      a nfo:Folder;
                                                                      skos:prefLabel "/".
 <ni:///mh;1QEQafGKZst3aCaW77cZqY2jcQ?ct=application/x-ole-storage#/phonebook> at:pathObject <file:///phonebook>;

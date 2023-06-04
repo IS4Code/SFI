@@ -1,12 +1,12 @@
-@base <x.blank:913eb82c-c001-40f2-a3d5-693bf791274a>.
+@base <ni:///mh;1QEQHoV3dIop9Uw7nWAjLCGC_Q?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix sec: <https://w3id.org/security#>.
@@ -23,7 +23,8 @@ _:n1 at:pathObject <file:///cablinux-1.0.3.cab>;
                                                                                                skos:prefLabel "text (66 B)"@en;
                                                                                                cnt:characterEncoding "us-ascii";
                                                                                                cnt:chars """CHECKSUM compute_checksum(byte *in, word ncbytes, CHECKSUM seed);
-"""^^xsd:string.
+""".
+<file:///> at:pathObject <file:///>.
 <file:///cabdata.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
 <file:///cabdata.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
 <file:///cabfile.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
@@ -35,7 +36,8 @@ _:n1 at:pathObject <file:///cablinux-1.0.3.cab>;
 <file:///cablinux-1.0.3> at:extensionObject <https://w3id.org/uri4uri/suffix/3>;
                          at:pathObject <file:///cablinux-1.0.3>.
 <file:///cablinux-1.0.3.cab> at:extensionObject <https://w3id.org/uri4uri/suffix/cab>.
-<file:///cablinux-1.0.3/> at:pathObject <file:///cablinux-1.0.3/>.
+<file:///cablinux-1.0.3/> at:pathObject <file:///cablinux-1.0.3/>,
+                                        <file:///>.
 <file:///cablinux-1.0.3/Makefile> at:pathObject <file:///cablinux-1.0.3/Makefile>,
                                                 <file:///Makefile>.
 <file:///cablinux-1.0.3/README> at:pathObject <file:///cablinux-1.0.3/README>,

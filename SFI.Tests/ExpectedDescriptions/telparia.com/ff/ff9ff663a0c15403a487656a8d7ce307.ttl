@@ -1,12 +1,12 @@
-@base <x.blank:2e34ac61-46b8-4ed2-8371-0df88cb5b849>.
+@base <ni:///mh;1QEQqXYWRFjcsoQElb9lQp5HQg?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xis: <http://www.w3.org/2001/04/infoset#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -22,6 +22,7 @@ _:n1 at:pathObject <file:///example.ppsx>;
      a nfo:FileDataObject.
 <file:///%5BContent_Types%5D.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///.rels> at:extensionObject <https://w3id.org/uri4uri/suffix/rels>.
+<file:///_rels/> at:pathObject <file:///>.
 <file:///_rels/.rels> at:pathObject <file:///.rels>.
 <file:///_rels/notesMaster1.xml.rels> at:pathObject <file:///notesMaster1.xml.rels>.
 <file:///_rels/notesSlide1.xml.rels> at:pathObject <file:///notesSlide1.xml.rels>.
@@ -44,17 +45,20 @@ _:n1 at:pathObject <file:///example.ppsx>;
 <file:///_rels/slideMaster1.xml.rels> at:pathObject <file:///slideMaster1.xml.rels>.
 <file:///app.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///core.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///docProps/> at:pathObject <file:///>.
 <file:///docProps/app.xml> at:pathObject <file:///app.xml>.
 <file:///docProps/core.xml> at:pathObject <file:///core.xml>.
 <file:///example.ppsx> at:extensionObject <https://w3id.org/uri4uri/suffix/ppsx>.
 <file:///image1.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
 <file:///image2.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
 <file:///image3.jpeg> at:extensionObject <https://w3id.org/uri4uri/suffix/jpeg>.
+<file:///media/> at:pathObject <file:///>.
 <file:///media/image1.png> at:pathObject <file:///image1.png>.
 <file:///media/image2.png> at:pathObject <file:///image2.png>.
 <file:///media/image3.jpeg> at:pathObject <file:///image3.jpeg>.
 <file:///notesMaster1.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///notesMaster1.xml.rels> at:extensionObject <https://w3id.org/uri4uri/suffix/rels>.
+<file:///notesMasters/> at:pathObject <file:///>.
 <file:///notesMasters/_rels> at:pathObject <file:///_rels>.
 <file:///notesMasters/_rels/> at:pathObject <file:///_rels/>.
 <file:///notesMasters/_rels/notesMaster1.xml.rels> at:pathObject <file:///_rels/notesMaster1.xml.rels>.
@@ -63,12 +67,14 @@ _:n1 at:pathObject <file:///example.ppsx>;
 <file:///notesSlide1.xml.rels> at:extensionObject <https://w3id.org/uri4uri/suffix/rels>.
 <file:///notesSlide2.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///notesSlide2.xml.rels> at:extensionObject <https://w3id.org/uri4uri/suffix/rels>.
+<file:///notesSlides/> at:pathObject <file:///>.
 <file:///notesSlides/_rels> at:pathObject <file:///_rels>.
 <file:///notesSlides/_rels/> at:pathObject <file:///_rels/>.
 <file:///notesSlides/_rels/notesSlide1.xml.rels> at:pathObject <file:///_rels/notesSlide1.xml.rels>.
 <file:///notesSlides/_rels/notesSlide2.xml.rels> at:pathObject <file:///_rels/notesSlide2.xml.rels>.
 <file:///notesSlides/notesSlide1.xml> at:pathObject <file:///notesSlide1.xml>.
 <file:///notesSlides/notesSlide2.xml> at:pathObject <file:///notesSlide2.xml>.
+<file:///ppt/> at:pathObject <file:///>.
 <file:///ppt/_rels> at:pathObject <file:///_rels>.
 <file:///ppt/_rels/> at:pathObject <file:///_rels/>.
 <file:///ppt/_rels/presentation.xml.rels> at:pathObject <file:///_rels/presentation.xml.rels>.
@@ -168,6 +174,7 @@ _:n1 at:pathObject <file:///example.ppsx>;
 <file:///slideLayout8.xml.rels> at:extensionObject <https://w3id.org/uri4uri/suffix/rels>.
 <file:///slideLayout9.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///slideLayout9.xml.rels> at:extensionObject <https://w3id.org/uri4uri/suffix/rels>.
+<file:///slideLayouts/> at:pathObject <file:///>.
 <file:///slideLayouts/_rels> at:pathObject <file:///_rels>.
 <file:///slideLayouts/_rels/> at:pathObject <file:///_rels/>.
 <file:///slideLayouts/_rels/slideLayout1.xml.rels> at:pathObject <file:///_rels/slideLayout1.xml.rels>.
@@ -196,16 +203,19 @@ _:n1 at:pathObject <file:///example.ppsx>;
 <file:///slideLayouts/slideLayout9.xml> at:pathObject <file:///slideLayout9.xml>.
 <file:///slideMaster1.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///slideMaster1.xml.rels> at:extensionObject <https://w3id.org/uri4uri/suffix/rels>.
+<file:///slideMasters/> at:pathObject <file:///>.
 <file:///slideMasters/_rels> at:pathObject <file:///_rels>.
 <file:///slideMasters/_rels/> at:pathObject <file:///_rels/>.
 <file:///slideMasters/_rels/slideMaster1.xml.rels> at:pathObject <file:///_rels/slideMaster1.xml.rels>.
 <file:///slideMasters/slideMaster1.xml> at:pathObject <file:///slideMaster1.xml>.
+<file:///slides/> at:pathObject <file:///>.
 <file:///slides/_rels> at:pathObject <file:///_rels>.
 <file:///slides/_rels/> at:pathObject <file:///_rels/>.
 <file:///slides/_rels/slide1.xml.rels> at:pathObject <file:///_rels/slide1.xml.rels>.
 <file:///slides/_rels/slide2.xml.rels> at:pathObject <file:///_rels/slide2.xml.rels>.
 <file:///slides/slide1.xml> at:pathObject <file:///slide1.xml>.
 <file:///slides/slide2.xml> at:pathObject <file:///slide2.xml>.
+<file:///theme/> at:pathObject <file:///>.
 <file:///theme/theme1.xml> at:pathObject <file:///theme1.xml>.
 <file:///theme/theme2.xml> at:pathObject <file:///theme2.xml>.
 <file:///theme1.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
@@ -1049,13 +1059,13 @@ _:n1 at:pathObject <file:///example.ppsx>;
                                                                                                                    schema:DigitalDocument,
                                                                                                                    nfo:Document;
                                                                                                                  skos:prefLabel "DOCX object (PPT test file)"@en.
-<ni:///mh;1QEQqXYWRFjcsoQElb9lQp5HQg?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQqXYWRFjcsoQElb9lQp5HQg?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQqXYWRFjcsoQElb9lQp5HQg?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (272.07 KiB)"@en.
-<ni:///mh;1QEQqXYWRFjcsoQElb9lQp5HQg?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQqXYWRFjcsoQElb9lQp5HQg?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQqXYWRFjcsoQElb9lQp5HQg?ct=application/zip#/%5BContent_Types%5D.xml> at:pathObject <file:///%5BContent_Types%5D.xml>;

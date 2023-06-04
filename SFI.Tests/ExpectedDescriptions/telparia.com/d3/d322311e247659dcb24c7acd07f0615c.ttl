@@ -1,10 +1,10 @@
-@base <x.blank:26683ef9-e084-4130-9a81-22ff47351a6b>.
+@base <ni:///mh;1QEQ-kE_-3wnGJip5R-_sz-nyQ?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -24,7 +24,7 @@ _:n1 at:pathObject <file:///example.odt>;
                                                   a cnt:ContentAsText;
                                                   skos:prefLabel "text (39 B)"@en;
                                                   cnt:characterEncoding "us-ascii";
-                                                  cnt:chars "application/vnd.oasis.opendocument.text"^^xsd:string.
+                                                  cnt:chars "application/vnd.oasis.opendocument.text".
 <data:application/octet-stream,> dcterms:extent "0"^^dt:byte;
                                  a cnt:ContentAsBase64;
                                  skos:prefLabel "binary data (0 B)"@en;
@@ -32,6 +32,8 @@ _:n1 at:pathObject <file:///example.odt>;
 <file:///1000000000000800000005516A9C38BA1E85250A.jpg> at:extensionObject <https://w3id.org/uri4uri/suffix/jpg>.
 <file:///10000201000000A4000000A54F89FCF2E9D9946F.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
 <file:///10000201000001930000008DD2F2440C686B80D0.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
+<file:///Bitmaps/> at:pathObject <file:///>.
+<file:///Configurations2/> at:pathObject <file:///>.
 <file:///Configurations2/accelerator> at:pathObject <file:///accelerator>.
 <file:///Configurations2/accelerator/> at:pathObject <file:///accelerator/>.
 <file:///Configurations2/accelerator/current.xml> at:pathObject <file:///accelerator/current.xml>.
@@ -53,35 +55,47 @@ _:n1 at:pathObject <file:///example.odt>;
 <file:///Configurations2/toolbar/> at:pathObject <file:///toolbar/>.
 <file:///Configurations2/toolpanel> at:pathObject <file:///toolpanel>.
 <file:///Configurations2/toolpanel/> at:pathObject <file:///toolpanel/>.
+<file:///META-INF/> at:pathObject <file:///>.
 <file:///META-INF/manifest.xml> at:pathObject <file:///manifest.xml>.
+<file:///Pictures/> at:pathObject <file:///>.
 <file:///Pictures/1000000000000800000005516A9C38BA1E85250A.jpg> at:pathObject <file:///1000000000000800000005516A9C38BA1E85250A.jpg>.
 <file:///Pictures/10000201000000A4000000A54F89FCF2E9D9946F.png> at:pathObject <file:///10000201000000A4000000A54F89FCF2E9D9946F.png>.
 <file:///Pictures/10000201000001930000008DD2F2440C686B80D0.png> at:pathObject <file:///10000201000001930000008DD2F2440C686B80D0.png>.
+<file:///Thumbnails/> at:pathObject <file:///>.
 <file:///Thumbnails/thumbnail.png> at:pathObject <file:///thumbnail.png>.
+<file:///accelerator/> at:pathObject <file:///>.
 <file:///accelerator/current.xml> at:pathObject <file:///current.xml>.
 <file:///content.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///current.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///example.odt> at:extensionObject <https://w3id.org/uri4uri/suffix/odt>.
+<file:///floater/> at:pathObject <file:///>.
+<file:///images/> at:pathObject <file:///>.
 <file:///images/Bitmaps> at:pathObject <file:///Bitmaps>.
 <file:///images/Bitmaps/> at:pathObject <file:///Bitmaps/>.
 <file:///manifest.rdf> at:extensionObject <https://w3id.org/uri4uri/suffix/rdf>.
 <file:///manifest.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///menubar/> at:pathObject <file:///>.
 <file:///meta.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///popupmenu/> at:pathObject <file:///>.
+<file:///progressbar/> at:pathObject <file:///>.
 <file:///settings.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///statusbar/> at:pathObject <file:///>.
 <file:///styles.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///thumbnail.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
+<file:///toolbar/> at:pathObject <file:///>.
+<file:///toolpanel/> at:pathObject <file:///>.
 <ni:///mh;1QEQ-kE_-3wnGJip5R-_sz-nyQ?ct=application/octet-stream> at:digest <urn:md5:FA413FFB7C271898A9E51FBFB33FA7C9>;
                                                                   dcterms:extent "728493"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ-kE_-3wnGJip5R-_sz-nyQ?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (711.42 KiB)"@en.
-<ni:///mh;1QEQ-kE_-3wnGJip5R-_sz-nyQ?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQ-kE_-3wnGJip5R-_sz-nyQ?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQ-kE_-3wnGJip5R-_sz-nyQ?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (711.42 KiB)"@en.
-<ni:///mh;1QEQ-kE_-3wnGJip5R-_sz-nyQ?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQ-kE_-3wnGJip5R-_sz-nyQ?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQ-kE_-3wnGJip5R-_sz-nyQ?ct=application/zip#/Configurations2> at:pathObject <file:///Configurations2>;
@@ -514,8 +528,8 @@ _:n1 at:pathObject <file:///example.odt>;
                                                      nfo:Image,
                                                      schema:ImageObject;
                                                    skos:prefLabel "PNG object (181×256, 8-bit)"@en,
-                                                                  "PNG object (181×256)"@en,
-                                                                  "PNG object (12.99 KiB)"@en.
+                                                                  "PNG object (12.99 KiB)"@en,
+                                                                  "PNG object (181×256)"@en.
 <ni:///mh;1QEQqzLwEhknNkCNa_435_3AlA?ct=application/prs.implied-document+xml;root=document-styles;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=document-styles;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22>;
                                                                                                                                                              a schema:MediaObject;
                                                                                                                                                              skos:prefLabel "DOCUMENT-STYLES object"@en.

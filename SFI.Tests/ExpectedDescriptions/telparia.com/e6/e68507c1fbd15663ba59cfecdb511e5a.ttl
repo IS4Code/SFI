@@ -1,10 +1,10 @@
-@base <x.blank:ba2ed23b-bd7c-434d-ad5a-26daeb0558f2>.
+@base <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -24,7 +24,7 @@ _:n1 at:pathObject <file:///example.cdr>;
                                                           a cnt:ContentAsText;
                                                           skos:prefLabel "text (45 B)"@en;
                                                           cnt:characterEncoding "us-ascii";
-                                                          cnt:chars "application/x-vnd.corel.zcf.draw.document+zip"^^xsd:string.
+                                                          cnt:chars "application/x-vnd.corel.zcf.draw.document+zip".
 <data:,data1.dat%0ABitmaps.dat%0Adata2.dat%0AmasterPage.dat%0Apage1.dat> dcterms:extent "56"^^dt:byte;
                                                                          a cnt:ContentAsText;
                                                                          skos:prefLabel "text (56 B)"@en;
@@ -33,7 +33,7 @@ _:n1 at:pathObject <file:///example.cdr>;
 Bitmaps.dat
 data2.dat
 masterPage.dat
-page1.dat"""^^xsd:string.
+page1.dat""".
 <data:;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiID8+CjxsaW5rSW5mbyAvPgo=> dcterms:extent "53"^^dt:byte;
                                                                                         dcterms:hasFormat <data:application/xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiID8+CjxsaW5rSW5mbyAvPgo=>;
                                                                                         a cnt:ContentAsText;
@@ -41,7 +41,7 @@ page1.dat"""^^xsd:string.
                                                                                         cnt:characterEncoding "us-ascii";
                                                                                         cnt:chars """<?xml version=\"1.0\" encoding=\"UTF-8\" ?>
 <linkInfo />
-"""^^xsd:string.
+""".
 <data:application/prs.implied-document+xml;root=linkInfo;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiID8+CjxsaW5rSW5mbyAvPgo=> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=linkInfo>;
                                                                                                                                           a schema:MediaObject;
                                                                                                                                           skos:prefLabel "LINKINFO object"@en.
@@ -58,12 +58,15 @@ page1.dat"""^^xsd:string.
                                                                                                                    xis:localName "linkInfo";
                                                                                                                    xis:name "linkInfo".
 <file:///Bitmaps.dat> at:extensionObject <https://w3id.org/uri4uri/suffix/dat>.
+<file:///META-INF/> at:pathObject <file:///>.
 <file:///META-INF/container.xml> at:pathObject <file:///container.xml>.
 <file:///META-INF/links.xml> at:pathObject <file:///links.xml>.
 <file:///META-INF/metadata.xml> at:pathObject <file:///metadata.xml>.
 <file:///META-INF/textinfo.xml> at:pathObject <file:///textinfo.xml>.
+<file:///cmyk/> at:pathObject <file:///>.
 <file:///cmyk/uswebcoatedswop.icc> at:pathObject <file:///uswebcoatedswop.icc>.
 <file:///color.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///color/> at:pathObject <file:///>.
 <file:///color/color.xml> at:pathObject <file:///color.xml>.
 <file:///color/docPalette.xml> at:pathObject <file:///docPalette.xml>.
 <file:///color/profiles> at:pathObject <file:///profiles>.
@@ -75,6 +78,7 @@ page1.dat"""^^xsd:string.
 <file:///color/profiles/rgb/> at:pathObject <file:///profiles/rgb/>.
 <file:///color/profiles/rgb/srgb%20color%20space%20profile.icm> at:pathObject <file:///profiles/rgb/srgb%20color%20space%20profile.icm>.
 <file:///container.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///content/> at:pathObject <file:///>.
 <file:///content/data> at:pathObject <file:///data>.
 <file:///content/data/> at:pathObject <file:///data/>.
 <file:///content/data/Bitmaps.dat> at:pathObject <file:///data/Bitmaps.dat>.
@@ -84,6 +88,7 @@ page1.dat"""^^xsd:string.
 <file:///content/data/page1.dat> at:pathObject <file:///data/page1.dat>.
 <file:///content/dataFileList.dat> at:pathObject <file:///dataFileList.dat>.
 <file:///content/root.dat> at:pathObject <file:///root.dat>.
+<file:///data/> at:pathObject <file:///>.
 <file:///data/Bitmaps.dat> at:pathObject <file:///Bitmaps.dat>.
 <file:///data/data1.dat> at:pathObject <file:///data1.dat>.
 <file:///data/data2.dat> at:pathObject <file:///data2.dat>.
@@ -100,17 +105,21 @@ page1.dat"""^^xsd:string.
 <file:///metadata.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///page1.dat> at:extensionObject <https://w3id.org/uri4uri/suffix/dat>.
 <file:///page1.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
+<file:///previews/> at:pathObject <file:///>.
 <file:///previews/page1.png> at:pathObject <file:///page1.png>.
 <file:///previews/thumbnail.png> at:pathObject <file:///thumbnail.png>.
+<file:///profiles/> at:pathObject <file:///>.
 <file:///profiles/cmyk> at:pathObject <file:///cmyk>.
 <file:///profiles/cmyk/> at:pathObject <file:///cmyk/>.
 <file:///profiles/cmyk/uswebcoatedswop.icc> at:pathObject <file:///cmyk/uswebcoatedswop.icc>.
 <file:///profiles/rgb> at:pathObject <file:///rgb>.
 <file:///profiles/rgb/> at:pathObject <file:///rgb/>.
 <file:///profiles/rgb/srgb%20color%20space%20profile.icm> at:pathObject <file:///rgb/srgb%20color%20space%20profile.icm>.
+<file:///rgb/> at:pathObject <file:///>.
 <file:///rgb/srgb%20color%20space%20profile.icm> at:pathObject <file:///srgb%20color%20space%20profile.icm>.
 <file:///root.dat> at:extensionObject <https://w3id.org/uri4uri/suffix/dat>.
 <file:///srgb%20color%20space%20profile.icm> at:extensionObject <https://w3id.org/uri4uri/suffix/icm>.
+<file:///styles/> at:pathObject <file:///>.
 <file:///styles/document.cdss> at:pathObject <file:///document.cdss>.
 <file:///textinfo.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///thumbnail.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
@@ -165,10 +174,10 @@ page1.dat"""^^xsd:string.
                                                    nfo:verticalResolution 95.9866;
                                                    nfo:width 256 ;
                                                    a schema:MediaObject,
-                                                     schema:ImageObject,
-                                                     nfo:Image;
-                                                   skos:prefLabel "PNG object (256×256, 8-bit)"@en,
-                                                                  "PNG object (256×256)"@en,
+                                                     nfo:Image,
+                                                     schema:ImageObject;
+                                                   skos:prefLabel "PNG object (256×256)"@en,
+                                                                  "PNG object (256×256, 8-bit)"@en,
                                                                   "PNG object (39.69 KiB)"@en.
 <ni:///mh;1QEQLwPLwTdXxW4SyEVBpo7fqQ?ct=text/plain> at:digest <urn:md5:2F03CBC13757C56E12C84541A68EDFA9>;
                                                     dcterms:extent "15628"^^dt:byte;
@@ -322,13 +331,13 @@ page1.dat"""^^xsd:string.
                                                                   dcterms:hasFormat <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.26 MiB)"@en.
-<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (1.26 MiB)"@en.
-<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQsnndknqpf_3CCcJffnFhPA?ct=application/zip#/META-INF> at:pathObject <file:///META-INF>;

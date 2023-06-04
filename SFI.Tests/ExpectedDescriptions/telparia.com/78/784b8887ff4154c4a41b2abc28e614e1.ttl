@@ -3,8 +3,8 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
@@ -20,10 +20,12 @@ _:n1 at:pathObject <file:///example_multilevel.zip>;
      a nfo:FileDataObject.
 <file:///example.pdf> at:extensionObject <https://w3id.org/uri4uri/suffix/pdf>.
 <file:///example1.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
+<file:///example1/> at:pathObject <file:///>.
 <file:///example1/example.pdf> at:pathObject <file:///example.pdf>.
 <file:///example1/example1.png> at:pathObject <file:///example1.png>.
 <file:///example1/example2.png> at:pathObject <file:///example2.png>.
 <file:///example2.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
+<file:///example2/> at:pathObject <file:///>.
 <file:///example2/example.pdf> at:pathObject <file:///example.pdf>.
 <file:///example2/example1.png> at:pathObject <file:///example1.png>.
 <file:///example2/example2.png> at:pathObject <file:///example2.png>.
@@ -63,13 +65,13 @@ _:n1 at:pathObject <file:///example_multilevel.zip>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQfQOPYXGnPJg_LQnMJRanvw?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (4.06 MiB)"@en.
-<ni:///mh;1QEQfQOPYXGnPJg_LQnMJRanvw?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQfQOPYXGnPJg_LQnMJRanvw?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQfQOPYXGnPJg_LQnMJRanvw?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (4.06 MiB)"@en.
-<ni:///mh;1QEQfQOPYXGnPJg_LQnMJRanvw?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQfQOPYXGnPJg_LQnMJRanvw?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQfQOPYXGnPJg_LQnMJRanvw?ct=application/zip#/example.pdf> at:pathObject <file:///example.pdf>;

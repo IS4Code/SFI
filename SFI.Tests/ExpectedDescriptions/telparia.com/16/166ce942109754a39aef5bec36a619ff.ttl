@@ -1,10 +1,10 @@
-@base <x.blank:dcae1722-2ed9-44e9-9598-35a97a2abe93>.
+@base <ni:///mh;1QEQG6zht4tEdz3S1CDq-1juXA?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -24,13 +24,15 @@ _:n1 at:pathObject <file:///example.ods>;
                                                          a cnt:ContentAsText;
                                                          skos:prefLabel "text (46 B)"@en;
                                                          cnt:characterEncoding "us-ascii";
-                                                         cnt:chars "application/vnd.oasis.opendocument.spreadsheet"^^xsd:string.
+                                                         cnt:chars "application/vnd.oasis.opendocument.spreadsheet".
 <data:application/octet-stream,> dcterms:extent "0"^^dt:byte;
                                  a cnt:ContentAsBase64;
                                  skos:prefLabel "binary data (0 B)"@en;
                                  cnt:bytes ""^^xsd:base64Binary.
 <file:///10000201000000C8000000C8BA601793.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
 <file:///10000201000001930000008D0A797014.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
+<file:///Bitmaps/> at:pathObject <file:///>.
+<file:///Configurations2/> at:pathObject <file:///>.
 <file:///Configurations2/accelerator> at:pathObject <file:///accelerator>.
 <file:///Configurations2/accelerator/> at:pathObject <file:///accelerator/>.
 <file:///Configurations2/accelerator/current.xml> at:pathObject <file:///accelerator/current.xml>.
@@ -52,26 +54,40 @@ _:n1 at:pathObject <file:///example.ods>;
 <file:///Configurations2/toolbar/> at:pathObject <file:///toolbar/>.
 <file:///Configurations2/toolpanel> at:pathObject <file:///toolpanel>.
 <file:///Configurations2/toolpanel/> at:pathObject <file:///toolpanel/>.
+<file:///META-INF/> at:pathObject <file:///>.
 <file:///META-INF/manifest.xml> at:pathObject <file:///manifest.xml>.
+<file:///Object%201/> at:pathObject <file:///>.
 <file:///Object%201/content.xml> at:pathObject <file:///content.xml>.
 <file:///Object%201/meta.xml> at:pathObject <file:///meta.xml>.
 <file:///Object%201/styles.xml> at:pathObject <file:///styles.xml>.
+<file:///ObjectReplacements/> at:pathObject <file:///>.
 <file:///ObjectReplacements/Object%201> at:pathObject <file:///Object%201>.
+<file:///Pictures/> at:pathObject <file:///>.
 <file:///Pictures/10000201000000C8000000C8BA601793.png> at:pathObject <file:///10000201000000C8000000C8BA601793.png>.
 <file:///Pictures/10000201000001930000008D0A797014.png> at:pathObject <file:///10000201000001930000008D0A797014.png>.
+<file:///Thumbnails/> at:pathObject <file:///>.
 <file:///Thumbnails/thumbnail.png> at:pathObject <file:///thumbnail.png>.
+<file:///accelerator/> at:pathObject <file:///>.
 <file:///accelerator/current.xml> at:pathObject <file:///current.xml>.
 <file:///content.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///current.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///example.ods> at:extensionObject <https://w3id.org/uri4uri/suffix/ods>.
+<file:///floater/> at:pathObject <file:///>.
+<file:///images/> at:pathObject <file:///>.
 <file:///images/Bitmaps> at:pathObject <file:///Bitmaps>.
 <file:///images/Bitmaps/> at:pathObject <file:///Bitmaps/>.
 <file:///manifest.rdf> at:extensionObject <https://w3id.org/uri4uri/suffix/rdf>.
 <file:///manifest.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///menubar/> at:pathObject <file:///>.
 <file:///meta.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///popupmenu/> at:pathObject <file:///>.
+<file:///progressbar/> at:pathObject <file:///>.
 <file:///settings.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///statusbar/> at:pathObject <file:///>.
 <file:///styles.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///thumbnail.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
+<file:///toolbar/> at:pathObject <file:///>.
+<file:///toolpanel/> at:pathObject <file:///>.
 <ni:///mh;1QEQ-EVSLifG1-1wJsXskrY5Pw?ct=application/prs.implied-document+xml;root=document-settings;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=document-settings;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22>;
                                                                                                                                                                a schema:MediaObject;
                                                                                                                                                                skos:prefLabel "DOCUMENT-SETTINGS object"@en.
@@ -235,13 +251,13 @@ _:n1 at:pathObject <file:///example.ods>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQG6zht4tEdz3S1CDq-1juXA?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (45.37 KiB)"@en.
-<ni:///mh;1QEQG6zht4tEdz3S1CDq-1juXA?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQG6zht4tEdz3S1CDq-1juXA?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQG6zht4tEdz3S1CDq-1juXA?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (45.37 KiB)"@en.
-<ni:///mh;1QEQG6zht4tEdz3S1CDq-1juXA?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQG6zht4tEdz3S1CDq-1juXA?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQG6zht4tEdz3S1CDq-1juXA?ct=application/zip#/Configurations2> at:pathObject <file:///Configurations2>;
@@ -654,10 +670,10 @@ _:n1 at:pathObject <file:///example.ods>;
                                                    nfo:verticalResolution 206.0702;
                                                    nfo:width 200 ;
                                                    a schema:MediaObject,
-                                                     nfo:Image,
-                                                     schema:ImageObject;
-                                                   skos:prefLabel "PNG object (200×200)"@en,
-                                                                  "PNG object (200×200, 8-bit)"@en,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "PNG object (200×200, 8-bit)"@en,
+                                                                  "PNG object (200×200)"@en,
                                                                   "PNG object (7.36 KiB)"@en.
 <ni:///mh;1QEQxHYw6Rt7COhhrUX6JAiaiQ?ct=application/prs.implied-document+xml;root=document-styles;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=document-styles;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22>;
                                                                                                                                                              a schema:MediaObject;

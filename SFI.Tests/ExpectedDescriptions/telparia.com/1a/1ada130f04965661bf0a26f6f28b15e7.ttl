@@ -1,10 +1,10 @@
-@base <x.blank:e774e1ef-9957-441f-b486-370362aa9b50>.
+@base <ni:///mh;1QEQNJHb8G5JUC_SWup-Go0g2w?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -25,10 +25,12 @@ _:n1 at:pathObject <file:///moby-dick.epub>;
                                  a cnt:ContentAsText;
                                  skos:prefLabel "text (20 B)"@en;
                                  cnt:characterEncoding "us-ascii";
-                                 cnt:chars "application/epub+zip"^^xsd:string.
+                                 cnt:chars "application/epub+zip".
 <file:///9780316000000.jpg> at:extensionObject <https://w3id.org/uri4uri/suffix/jpg>.
+<file:///META-INF/> at:pathObject <file:///>.
 <file:///META-INF/container.xml> at:pathObject <file:///container.xml>.
 <file:///Moby-Dick_FE_title_page.jpg> at:extensionObject <https://w3id.org/uri4uri/suffix/jpg>.
+<file:///OPS/> at:pathObject <file:///>.
 <file:///OPS/chapter_001.xhtml> at:pathObject <file:///chapter_001.xhtml>.
 <file:///OPS/chapter_002.xhtml> at:pathObject <file:///chapter_002.xhtml>.
 <file:///OPS/chapter_003.xhtml> at:pathObject <file:///chapter_003.xhtml>.
@@ -330,12 +332,15 @@ _:n1 at:pathObject <file:///moby-dick.epub>;
 <file:///container.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///copyright.xhtml> at:extensionObject <https://w3id.org/uri4uri/suffix/xhtml>.
 <file:///cover.xhtml> at:extensionObject <https://w3id.org/uri4uri/suffix/xhtml>.
+<file:///css/> at:pathObject <file:///>.
 <file:///css/stylesheet.css> at:pathObject <file:///stylesheet.css>.
 <file:///epigraph_001.xhtml> at:extensionObject <https://w3id.org/uri4uri/suffix/xhtml>.
+<file:///fonts/> at:pathObject <file:///>.
 <file:///fonts/STIXGeneral.otf> at:pathObject <file:///STIXGeneral.otf>.
 <file:///fonts/STIXGeneralBol.otf> at:pathObject <file:///STIXGeneralBol.otf>.
 <file:///fonts/STIXGeneralBolIta.otf> at:pathObject <file:///STIXGeneralBolIta.otf>.
 <file:///fonts/STIXGeneralItalic.otf> at:pathObject <file:///STIXGeneralItalic.otf>.
+<file:///images/> at:pathObject <file:///>.
 <file:///images/9780316000000.jpg> at:pathObject <file:///9780316000000.jpg>.
 <file:///images/Moby-Dick_FE_title_page.jpg> at:pathObject <file:///Moby-Dick_FE_title_page.jpg>.
 <file:///introduction_001.xhtml> at:extensionObject <https://w3id.org/uri4uri/suffix/xhtml>.
@@ -441,8 +446,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (27.14 KiB)"@en.
 <ni:///mh;1QEQ0wBOOzbaxriwA3xPBI7qAg?ct=text/plain> at:digest <urn:md5:D3004E3B36DAC6B8B0037C4F048EEA02>;
                                                     dcterms:extent "27791"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQ0wBOOzbaxriwA3xPBI7qAg?ct=text/html>,
-                                                                      <ni:///mh;1QEQ0wBOOzbaxriwA3xPBI7qAg?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ0wBOOzbaxriwA3xPBI7qAg?ct=application/xml>,
+                                                                      <ni:///mh;1QEQ0wBOOzbaxriwA3xPBI7qAg?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQ0wBOOzbaxriwA3xPBI7qAg?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (27.14 KiB)"@en;
@@ -475,8 +480,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (15.67 KiB)"@en.
 <ni:///mh;1QEQ0zgira6OlZXAM5eeH_H6aA?ct=text/plain> at:digest <urn:md5:D33822ADAE8E9595C033979E1FF1FA68>;
                                                     dcterms:extent "16047"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQ0zgira6OlZXAM5eeH_H6aA?ct=text/html>,
-                                                                      <ni:///mh;1QEQ0zgira6OlZXAM5eeH_H6aA?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ0zgira6OlZXAM5eeH_H6aA?ct=application/xml>,
+                                                                      <ni:///mh;1QEQ0zgira6OlZXAM5eeH_H6aA?ct=text/html>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (15.67 KiB)"@en;
                                                     cnt:characterEncoding "utf-8".
@@ -549,8 +554,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (4.17 KiB)"@en.
 <ni:///mh;1QEQ2gr1Dr1Pru5tapWgoo0N-g?ct=text/plain> at:digest <urn:md5:DA0AF50EBD4FAEEE6D6A95A0A28D0DFA>;
                                                     dcterms:extent "4272"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQ2gr1Dr1Pru5tapWgoo0N-g?ct=text/html>,
-                                                                      <ni:///mh;1QEQ2gr1Dr1Pru5tapWgoo0N-g?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ2gr1Dr1Pru5tapWgoo0N-g?ct=application/xml>,
+                                                                      <ni:///mh;1QEQ2gr1Dr1Pru5tapWgoo0N-g?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQ2gr1Dr1Pru5tapWgoo0N-g?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (4.17 KiB)"@en;
@@ -583,8 +588,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (9.22 KiB)"@en.
 <ni:///mh;1QEQ3ZpFjveB3FhH78murrRhCw?ct=text/plain> at:digest <urn:md5:DD9A458EF781DC5847EFC9AEAEB4610B>;
                                                     dcterms:extent "9439"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQ3ZpFjveB3FhH78murrRhCw?ct=application/xml>,
-                                                                      <ni:///mh;1QEQ3ZpFjveB3FhH78murrRhCw?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ3ZpFjveB3FhH78murrRhCw?ct=text/html>,
+                                                                      <ni:///mh;1QEQ3ZpFjveB3FhH78murrRhCw?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQ3ZpFjveB3FhH78murrRhCw?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (9.22 KiB)"@en;
@@ -617,8 +622,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (9.97 KiB)"@en.
 <ni:///mh;1QEQ3kbpC5PEodHzpIAHwWrMhA?ct=text/plain> at:digest <urn:md5:DE46E90B93C4A1D1F3A48007C16ACC84>;
                                                     dcterms:extent "10212"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQ3kbpC5PEodHzpIAHwWrMhA?ct=text/html>,
-                                                                      <ni:///mh;1QEQ3kbpC5PEodHzpIAHwWrMhA?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ3kbpC5PEodHzpIAHwWrMhA?ct=application/xml>,
+                                                                      <ni:///mh;1QEQ3kbpC5PEodHzpIAHwWrMhA?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQ3kbpC5PEodHzpIAHwWrMhA?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (9.97 KiB)"@en;
@@ -651,8 +656,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (5.5 KiB)"@en.
 <ni:///mh;1QEQ4DUsVYFsSc9SFXpTvS4WXQ?ct=text/plain> at:digest <urn:md5:E0352C55816C49CF52157A53BD2E165D>;
                                                     dcterms:extent "5629"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQ4DUsVYFsSc9SFXpTvS4WXQ?ct=application/xml>,
-                                                                      <ni:///mh;1QEQ4DUsVYFsSc9SFXpTvS4WXQ?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ4DUsVYFsSc9SFXpTvS4WXQ?ct=text/html>,
+                                                                      <ni:///mh;1QEQ4DUsVYFsSc9SFXpTvS4WXQ?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQ4DUsVYFsSc9SFXpTvS4WXQ?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (5.5 KiB)"@en;
@@ -787,8 +792,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (4.42 KiB)"@en.
 <ni:///mh;1QEQ5Gv1zBGgtMx1EAay-IOCsQ?ct=text/plain> at:digest <urn:md5:E46BF5CC11A0B4CC751006B2F88382B1>;
                                                     dcterms:extent "4522"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQ5Gv1zBGgtMx1EAay-IOCsQ?ct=text/html>,
-                                                                      <ni:///mh;1QEQ5Gv1zBGgtMx1EAay-IOCsQ?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ5Gv1zBGgtMx1EAay-IOCsQ?ct=application/xml>,
+                                                                      <ni:///mh;1QEQ5Gv1zBGgtMx1EAay-IOCsQ?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQ5Gv1zBGgtMx1EAay-IOCsQ?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (4.42 KiB)"@en;
@@ -821,8 +826,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (45.8 KiB)"@en.
 <ni:///mh;1QEQ5oXjjRbNOV46Qm-Wv1QbUw?ct=text/plain> at:digest <urn:md5:E685E38D16CD395E3A426F96BF541B53>;
                                                     dcterms:extent "46900"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQ5oXjjRbNOV46Qm-Wv1QbUw?ct=text/html>,
-                                                                      <ni:///mh;1QEQ5oXjjRbNOV46Qm-Wv1QbUw?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ5oXjjRbNOV46Qm-Wv1QbUw?ct=application/xml>,
+                                                                      <ni:///mh;1QEQ5oXjjRbNOV46Qm-Wv1QbUw?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQ5oXjjRbNOV46Qm-Wv1QbUw?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (45.8 KiB)"@en;
@@ -855,8 +860,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (7.26 KiB)"@en.
 <ni:///mh;1QEQ6NCEMVXNljXEJ9EO8PBxBQ?ct=text/plain> at:digest <urn:md5:E8D0843155CD9635C427D10EF0F07105>;
                                                     dcterms:extent "7438"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQ6NCEMVXNljXEJ9EO8PBxBQ?ct=text/html>,
-                                                                      <ni:///mh;1QEQ6NCEMVXNljXEJ9EO8PBxBQ?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ6NCEMVXNljXEJ9EO8PBxBQ?ct=application/xml>,
+                                                                      <ni:///mh;1QEQ6NCEMVXNljXEJ9EO8PBxBQ?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQ6NCEMVXNljXEJ9EO8PBxBQ?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (7.26 KiB)"@en;
@@ -923,8 +928,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (3.18 KiB)"@en.
 <ni:///mh;1QEQ7-UBVU2qVx5CS3NxW2zU8g?ct=text/plain> at:digest <urn:md5:EFE501554DAA571E424B73715B6CD4F2>;
                                                     dcterms:extent "3259"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQ7-UBVU2qVx5CS3NxW2zU8g?ct=application/xml>,
-                                                                      <ni:///mh;1QEQ7-UBVU2qVx5CS3NxW2zU8g?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ7-UBVU2qVx5CS3NxW2zU8g?ct=text/html>,
+                                                                      <ni:///mh;1QEQ7-UBVU2qVx5CS3NxW2zU8g?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQ7-UBVU2qVx5CS3NxW2zU8g?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (3.18 KiB)"@en;
@@ -957,8 +962,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (1.99 KiB)"@en.
 <ni:///mh;1QEQ89gR-2ZOIWakTqDQmp_8mA?ct=text/plain> at:digest <urn:md5:F3D811FB664E2166A44EA0D09A9FFC98>;
                                                     dcterms:extent "2036"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQ89gR-2ZOIWakTqDQmp_8mA?ct=application/xml>,
-                                                                      <ni:///mh;1QEQ89gR-2ZOIWakTqDQmp_8mA?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ89gR-2ZOIWakTqDQmp_8mA?ct=text/html>,
+                                                                      <ni:///mh;1QEQ89gR-2ZOIWakTqDQmp_8mA?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQ89gR-2ZOIWakTqDQmp_8mA?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (1.99 KiB)"@en;
@@ -1059,8 +1064,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (11.23 KiB)"@en.
 <ni:///mh;1QEQ8jBsoOOpbYLfX6Dg2SoEVA?ct=text/plain> at:digest <urn:md5:F2306CA0E3A96D82DF5FA0E0D92A0454>;
                                                     dcterms:extent "11504"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQ8jBsoOOpbYLfX6Dg2SoEVA?ct=application/xml>,
-                                                                      <ni:///mh;1QEQ8jBsoOOpbYLfX6Dg2SoEVA?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ8jBsoOOpbYLfX6Dg2SoEVA?ct=text/html>,
+                                                                      <ni:///mh;1QEQ8jBsoOOpbYLfX6Dg2SoEVA?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQ8jBsoOOpbYLfX6Dg2SoEVA?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (11.23 KiB)"@en;
@@ -1093,8 +1098,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (5.5 KiB)"@en.
 <ni:///mh;1QEQ8zOE0JIc1NMdpHGCa0zxMA?ct=text/plain> at:digest <urn:md5:F33384D0921CD4D31DA471826B4CF130>;
                                                     dcterms:extent "5629"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQ8zOE0JIc1NMdpHGCa0zxMA?ct=text/html>,
-                                                                      <ni:///mh;1QEQ8zOE0JIc1NMdpHGCa0zxMA?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ8zOE0JIc1NMdpHGCa0zxMA?ct=application/xml>,
+                                                                      <ni:///mh;1QEQ8zOE0JIc1NMdpHGCa0zxMA?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQ8zOE0JIc1NMdpHGCa0zxMA?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (5.5 KiB)"@en;
@@ -1127,8 +1132,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (7.19 KiB)"@en.
 <ni:///mh;1QEQ8zZMna3t1FX3M77U6PFigA?ct=text/plain> at:digest <urn:md5:F3364C9DADEDD455F733BED4E8F16280>;
                                                     dcterms:extent "7364"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQ8zZMna3t1FX3M77U6PFigA?ct=application/xml>,
-                                                                      <ni:///mh;1QEQ8zZMna3t1FX3M77U6PFigA?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ8zZMna3t1FX3M77U6PFigA?ct=text/html>,
+                                                                      <ni:///mh;1QEQ8zZMna3t1FX3M77U6PFigA?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQ8zZMna3t1FX3M77U6PFigA?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (7.19 KiB)"@en;
@@ -1202,8 +1207,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (8.68 KiB)"@en.
 <ni:///mh;1QEQ9VhwXYQpOfOJxVdj9hXvVA?ct=text/plain> at:digest <urn:md5:F558705D842939F389C55763F615EF54>;
                                                     dcterms:extent "8884"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQ9VhwXYQpOfOJxVdj9hXvVA?ct=text/html>,
-                                                                      <ni:///mh;1QEQ9VhwXYQpOfOJxVdj9hXvVA?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ9VhwXYQpOfOJxVdj9hXvVA?ct=application/xml>,
+                                                                      <ni:///mh;1QEQ9VhwXYQpOfOJxVdj9hXvVA?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQ9VhwXYQpOfOJxVdj9hXvVA?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (8.68 KiB)"@en;
@@ -1236,8 +1241,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (5.81 KiB)"@en.
 <ni:///mh;1QEQ9qxSlcACwVpbwEJKNniHtA?ct=text/plain> at:digest <urn:md5:F6AC5295C002C15A5BC0424A367887B4>;
                                                     dcterms:extent "5953"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQ9qxSlcACwVpbwEJKNniHtA?ct=text/html>,
-                                                                      <ni:///mh;1QEQ9qxSlcACwVpbwEJKNniHtA?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ9qxSlcACwVpbwEJKNniHtA?ct=application/xml>,
+                                                                      <ni:///mh;1QEQ9qxSlcACwVpbwEJKNniHtA?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQ9qxSlcACwVpbwEJKNniHtA?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (5.81 KiB)"@en;
@@ -1270,8 +1275,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (32.71 KiB)"@en.
 <ni:///mh;1QEQAMPz8RiWDk1Fp7Bh0r8KSA?ct=text/plain> at:digest <urn:md5:00C3F3F118960E4D45A7B061D2BF0A48>;
                                                     dcterms:extent "33498"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQAMPz8RiWDk1Fp7Bh0r8KSA?ct=application/xml>,
-                                                                      <ni:///mh;1QEQAMPz8RiWDk1Fp7Bh0r8KSA?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQAMPz8RiWDk1Fp7Bh0r8KSA?ct=text/html>,
+                                                                      <ni:///mh;1QEQAMPz8RiWDk1Fp7Bh0r8KSA?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQAMPz8RiWDk1Fp7Bh0r8KSA?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (32.71 KiB)"@en;
@@ -1338,8 +1343,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (27.79 KiB)"@en.
 <ni:///mh;1QEQBa8V2UNWS0KRBJOn-2NNFA?ct=text/plain> at:digest <urn:md5:05AF15D943564B42910493A7FB634D14>;
                                                     dcterms:extent "28461"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQBa8V2UNWS0KRBJOn-2NNFA?ct=application/xml>,
-                                                                      <ni:///mh;1QEQBa8V2UNWS0KRBJOn-2NNFA?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQBa8V2UNWS0KRBJOn-2NNFA?ct=text/html>,
+                                                                      <ni:///mh;1QEQBa8V2UNWS0KRBJOn-2NNFA?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQBa8V2UNWS0KRBJOn-2NNFA?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (27.79 KiB)"@en;
@@ -1440,8 +1445,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (30 KiB)"@en.
 <ni:///mh;1QEQC_-tBqQ02qLnSSXw9Nm-ng?ct=text/plain> at:digest <urn:md5:0BFFAD06A434DAA2E74925F0F4D9BE9E>;
                                                     dcterms:extent "30722"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQC_-tBqQ02qLnSSXw9Nm-ng?ct=text/html>,
-                                                                      <ni:///mh;1QEQC_-tBqQ02qLnSSXw9Nm-ng?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQC_-tBqQ02qLnSSXw9Nm-ng?ct=application/xml>,
+                                                                      <ni:///mh;1QEQC_-tBqQ02qLnSSXw9Nm-ng?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQC_-tBqQ02qLnSSXw9Nm-ng?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (30 KiB)"@en;
@@ -1474,8 +1479,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (2.23 KiB)"@en.
 <ni:///mh;1QEQCdaYbqzZFr4L8ogNQ60N-Q?ct=text/plain> at:digest <urn:md5:09D6986EACD916BE0BF2880D43AD0DF9>;
                                                     dcterms:extent "2286"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQCdaYbqzZFr4L8ogNQ60N-Q?ct=text/html>,
-                                                                      <ni:///mh;1QEQCdaYbqzZFr4L8ogNQ60N-Q?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQCdaYbqzZFr4L8ogNQ60N-Q?ct=application/xml>,
+                                                                      <ni:///mh;1QEQCdaYbqzZFr4L8ogNQ60N-Q?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQCdaYbqzZFr4L8ogNQ60N-Q?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (2.23 KiB)"@en;
@@ -1526,7 +1531,7 @@ Moby-Dick""";
                                                     exif:pixelXDimension 840 ;
                                                     exif:pixelYDimension 1380 ;
                                                     exif:resolutionUnit 2 ;
-                                                    exif:software "Adobe Photoshop CS4 Macintosh"^^xsd:string;
+                                                    exif:software "Adobe Photoshop CS4 Macintosh";
                                                     exif:xResolution 72 ;
                                                     exif:yResolution 72 ;
                                                     skos:prefLabel "JPG object (840×1380)"@en,
@@ -1746,7 +1751,7 @@ Moby-Dick""";
                                                     exif:pixelXDimension 646 ;
                                                     exif:pixelYDimension 902 ;
                                                     exif:resolutionUnit 2 ;
-                                                    exif:software "Adobe Photoshop CS4 Macintosh"^^xsd:string;
+                                                    exif:software "Adobe Photoshop CS4 Macintosh";
                                                     exif:xResolution 72 ;
                                                     exif:yResolution 72 ;
                                                     skos:prefLabel "JPG object (340.53 KiB)"@en,
@@ -1786,8 +1791,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (8.35 KiB)"@en.
 <ni:///mh;1QEQFYpf3lq3OvwWrqI53-kb5w?ct=text/plain> at:digest <urn:md5:158A5FDE5AB73AFC16AEA239DFE91BE7>;
                                                     dcterms:extent "8554"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQFYpf3lq3OvwWrqI53-kb5w?ct=application/xml>,
-                                                                      <ni:///mh;1QEQFYpf3lq3OvwWrqI53-kb5w?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQFYpf3lq3OvwWrqI53-kb5w?ct=text/html>,
+                                                                      <ni:///mh;1QEQFYpf3lq3OvwWrqI53-kb5w?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQFYpf3lq3OvwWrqI53-kb5w?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (8.35 KiB)"@en;
@@ -1820,8 +1825,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (3.84 KiB)"@en.
 <ni:///mh;1QEQFidazrY8TBu-uqNNUTfXGg?ct=text/plain> at:digest <urn:md5:16275ACEB63C4C1BBEBAA34D5137D71A>;
                                                     dcterms:extent "3934"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQFidazrY8TBu-uqNNUTfXGg?ct=application/xml>,
-                                                                      <ni:///mh;1QEQFidazrY8TBu-uqNNUTfXGg?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQFidazrY8TBu-uqNNUTfXGg?ct=text/html>,
+                                                                      <ni:///mh;1QEQFidazrY8TBu-uqNNUTfXGg?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQFidazrY8TBu-uqNNUTfXGg?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (3.84 KiB)"@en;
@@ -1854,8 +1859,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (6.13 KiB)"@en.
 <ni:///mh;1QEQGBL8NP2ijLfJeIQIDak2EA?ct=text/plain> at:digest <urn:md5:1812FC34FDA28CB7C97884080DA93610>;
                                                     dcterms:extent "6280"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQGBL8NP2ijLfJeIQIDak2EA?ct=text/html>,
-                                                                      <ni:///mh;1QEQGBL8NP2ijLfJeIQIDak2EA?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQGBL8NP2ijLfJeIQIDak2EA?ct=application/xml>,
+                                                                      <ni:///mh;1QEQGBL8NP2ijLfJeIQIDak2EA?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQGBL8NP2ijLfJeIQIDak2EA?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (6.13 KiB)"@en;
@@ -1888,8 +1893,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (10.25 KiB)"@en.
 <ni:///mh;1QEQGRW9vFzT-Jxid2mBgaNU2Q?ct=text/plain> at:digest <urn:md5:1915BDBC5CD3F89C6277698181A354D9>;
                                                     dcterms:extent "10491"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQGRW9vFzT-Jxid2mBgaNU2Q?ct=application/xml>,
-                                                                      <ni:///mh;1QEQGRW9vFzT-Jxid2mBgaNU2Q?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQGRW9vFzT-Jxid2mBgaNU2Q?ct=text/html>,
+                                                                      <ni:///mh;1QEQGRW9vFzT-Jxid2mBgaNU2Q?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQGRW9vFzT-Jxid2mBgaNU2Q?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (10.25 KiB)"@en;
@@ -1922,8 +1927,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (7.47 KiB)"@en.
 <ni:///mh;1QEQGfR7z8GmRycpM2MZLtOMNg?ct=text/plain> at:digest <urn:md5:19F47BCFC1A64727293363192ED38C36>;
                                                     dcterms:extent "7648"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQGfR7z8GmRycpM2MZLtOMNg?ct=text/html>,
-                                                                      <ni:///mh;1QEQGfR7z8GmRycpM2MZLtOMNg?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQGfR7z8GmRycpM2MZLtOMNg?ct=application/xml>,
+                                                                      <ni:///mh;1QEQGfR7z8GmRycpM2MZLtOMNg?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQGfR7z8GmRycpM2MZLtOMNg?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (7.47 KiB)"@en;
@@ -1956,8 +1961,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (24.93 KiB)"@en.
 <ni:///mh;1QEQGh-XZKcaxevLTbC3v9AH5A?ct=text/plain> at:digest <urn:md5:1A1F9764A71AC5EBCB4DB0B7BFD007E4>;
                                                     dcterms:extent "25525"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQGh-XZKcaxevLTbC3v9AH5A?ct=text/html>,
-                                                                      <ni:///mh;1QEQGh-XZKcaxevLTbC3v9AH5A?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQGh-XZKcaxevLTbC3v9AH5A?ct=application/xml>,
+                                                                      <ni:///mh;1QEQGh-XZKcaxevLTbC3v9AH5A?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQGh-XZKcaxevLTbC3v9AH5A?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (24.93 KiB)"@en;
@@ -1990,8 +1995,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (4.67 KiB)"@en.
 <ni:///mh;1QEQGsnbM84Z0JosZNTXa3f8Tw?ct=text/plain> at:digest <urn:md5:1AC9DB33CE19D09A2C64D4D76B77FC4F>;
                                                     dcterms:extent "4783"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQGsnbM84Z0JosZNTXa3f8Tw?ct=text/html>,
-                                                                      <ni:///mh;1QEQGsnbM84Z0JosZNTXa3f8Tw?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQGsnbM84Z0JosZNTXa3f8Tw?ct=application/xml>,
+                                                                      <ni:///mh;1QEQGsnbM84Z0JosZNTXa3f8Tw?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQGsnbM84Z0JosZNTXa3f8Tw?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (4.67 KiB)"@en;
@@ -2024,8 +2029,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (9 KiB)"@en.
 <ni:///mh;1QEQHSifyUbVmbaoyCyVfys_Kg?ct=text/plain> at:digest <urn:md5:1D289FC946D599B6A8C82C957F2B3F2A>;
                                                     dcterms:extent "9211"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQHSifyUbVmbaoyCyVfys_Kg?ct=text/html>,
-                                                                      <ni:///mh;1QEQHSifyUbVmbaoyCyVfys_Kg?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQHSifyUbVmbaoyCyVfys_Kg?ct=application/xml>,
+                                                                      <ni:///mh;1QEQHSifyUbVmbaoyCyVfys_Kg?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQHSifyUbVmbaoyCyVfys_Kg?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (9 KiB)"@en;
@@ -2092,8 +2097,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (9.64 KiB)"@en.
 <ni:///mh;1QEQHVqaGwxy6oz8h0piCatipw?ct=text/plain> at:digest <urn:md5:1D5A9A1B0C72EA8CFC874A6209AB62A7>;
                                                     dcterms:extent "9874"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQHVqaGwxy6oz8h0piCatipw?ct=application/xml>,
-                                                                      <ni:///mh;1QEQHVqaGwxy6oz8h0piCatipw?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQHVqaGwxy6oz8h0piCatipw?ct=text/html>,
+                                                                      <ni:///mh;1QEQHVqaGwxy6oz8h0piCatipw?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQHVqaGwxy6oz8h0piCatipw?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (9.64 KiB)"@en;
@@ -2126,8 +2131,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (13.58 KiB)"@en.
 <ni:///mh;1QEQILKRcSVS82bzmdJjCzeXkQ?ct=text/plain> at:digest <urn:md5:20B291712552F366F399D2630B379791>;
                                                     dcterms:extent "13911"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQILKRcSVS82bzmdJjCzeXkQ?ct=text/html>,
-                                                                      <ni:///mh;1QEQILKRcSVS82bzmdJjCzeXkQ?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQILKRcSVS82bzmdJjCzeXkQ?ct=application/xml>,
+                                                                      <ni:///mh;1QEQILKRcSVS82bzmdJjCzeXkQ?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQILKRcSVS82bzmdJjCzeXkQ?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (13.58 KiB)"@en;
@@ -2160,8 +2165,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (9.65 KiB)"@en.
 <ni:///mh;1QEQIPyVM5gmiOtnKcp7TIX_Zg?ct=text/plain> at:digest <urn:md5:20FC9533982688EB6729CA7B4C85FF66>;
                                                     dcterms:extent "9883"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQIPyVM5gmiOtnKcp7TIX_Zg?ct=application/xml>,
-                                                                      <ni:///mh;1QEQIPyVM5gmiOtnKcp7TIX_Zg?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQIPyVM5gmiOtnKcp7TIX_Zg?ct=text/html>,
+                                                                      <ni:///mh;1QEQIPyVM5gmiOtnKcp7TIX_Zg?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQIPyVM5gmiOtnKcp7TIX_Zg?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (9.65 KiB)"@en;
@@ -2194,8 +2199,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (5.89 KiB)"@en.
 <ni:///mh;1QEQITWMz456s5bDvnTa60CnmQ?ct=text/plain> at:digest <urn:md5:21358CCF8E7AB396C3BE74DAEB40A799>;
                                                     dcterms:extent "6032"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQITWMz456s5bDvnTa60CnmQ?ct=text/html>,
-                                                                      <ni:///mh;1QEQITWMz456s5bDvnTa60CnmQ?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQITWMz456s5bDvnTa60CnmQ?ct=application/xml>,
+                                                                      <ni:///mh;1QEQITWMz456s5bDvnTa60CnmQ?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQITWMz456s5bDvnTa60CnmQ?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (5.89 KiB)"@en;
@@ -2228,8 +2233,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (9.78 KiB)"@en.
 <ni:///mh;1QEQIZ2P8fOkHyU4aCq-GIRE6A?ct=text/plain> at:digest <urn:md5:219D8FF1F3A41F2538682ABE188444E8>;
                                                     dcterms:extent "10010"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQIZ2P8fOkHyU4aCq-GIRE6A?ct=application/xml>,
-                                                                      <ni:///mh;1QEQIZ2P8fOkHyU4aCq-GIRE6A?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQIZ2P8fOkHyU4aCq-GIRE6A?ct=text/html>,
+                                                                      <ni:///mh;1QEQIZ2P8fOkHyU4aCq-GIRE6A?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQIZ2P8fOkHyU4aCq-GIRE6A?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (9.78 KiB)"@en;
@@ -2262,8 +2267,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (31.28 KiB)"@en.
 <ni:///mh;1QEQIsagttLrDlZh6FKkbf9rYA?ct=text/plain> at:digest <urn:md5:22C6A0B6D2EB0E5661E852A46DFF6B60>;
                                                     dcterms:extent "32030"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQIsagttLrDlZh6FKkbf9rYA?ct=application/xml>,
-                                                                      <ni:///mh;1QEQIsagttLrDlZh6FKkbf9rYA?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQIsagttLrDlZh6FKkbf9rYA?ct=text/html>,
+                                                                      <ni:///mh;1QEQIsagttLrDlZh6FKkbf9rYA?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQIsagttLrDlZh6FKkbf9rYA?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (31.28 KiB)"@en;
@@ -2398,8 +2403,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (7.32 KiB)"@en.
 <ni:///mh;1QEQKekVp95hb7IC1owXiTogqg?ct=text/plain> at:digest <urn:md5:29E915A7DE616FB202D68C17893A20AA>;
                                                     dcterms:extent "7491"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQKekVp95hb7IC1owXiTogqg?ct=text/html>,
-                                                                      <ni:///mh;1QEQKekVp95hb7IC1owXiTogqg?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQKekVp95hb7IC1owXiTogqg?ct=application/xml>,
+                                                                      <ni:///mh;1QEQKekVp95hb7IC1owXiTogqg?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQKekVp95hb7IC1owXiTogqg?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (7.32 KiB)"@en;
@@ -2478,13 +2483,13 @@ Moby-Dick""";
                                                                   dcterms:hasFormat <ni:///mh;1QEQNJHb8G5JUC_SWup-Go0g2w?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.55 MiB)"@en.
-<ni:///mh;1QEQNJHb8G5JUC_SWup-Go0g2w?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQNJHb8G5JUC_SWup-Go0g2w?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQNJHb8G5JUC_SWup-Go0g2w?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (1.55 MiB)"@en.
-<ni:///mh;1QEQNJHb8G5JUC_SWup-Go0g2w?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQNJHb8G5JUC_SWup-Go0g2w?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQNJHb8G5JUC_SWup-Go0g2w?ct=application/zip#/META-INF> at:pathObject <file:///META-INF>;
@@ -3950,8 +3955,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (3.04 KiB)"@en.
 <ni:///mh;1QEQNWc7F5GraWmSyNyAqi4KTQ?ct=text/plain> at:digest <urn:md5:35673B1791AB696992C8DC80AA2E0A4D>;
                                                     dcterms:extent "3114"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQNWc7F5GraWmSyNyAqi4KTQ?ct=text/html>,
-                                                                      <ni:///mh;1QEQNWc7F5GraWmSyNyAqi4KTQ?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQNWc7F5GraWmSyNyAqi4KTQ?ct=application/xml>,
+                                                                      <ni:///mh;1QEQNWc7F5GraWmSyNyAqi4KTQ?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQNWc7F5GraWmSyNyAqi4KTQ?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (3.04 KiB)"@en;
@@ -3984,8 +3989,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (4.27 KiB)"@en.
 <ni:///mh;1QEQNkVvOGHi1aTuF5geo8PbRw?ct=text/plain> at:digest <urn:md5:36456F3861E2D5A4EE17981EA3C3DB47>;
                                                     dcterms:extent "4373"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQNkVvOGHi1aTuF5geo8PbRw?ct=text/html>,
-                                                                      <ni:///mh;1QEQNkVvOGHi1aTuF5geo8PbRw?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQNkVvOGHi1aTuF5geo8PbRw?ct=application/xml>,
+                                                                      <ni:///mh;1QEQNkVvOGHi1aTuF5geo8PbRw?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQNkVvOGHi1aTuF5geo8PbRw?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (4.27 KiB)"@en;
@@ -4018,8 +4023,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (1.04 KiB)"@en.
 <ni:///mh;1QEQOeqY9B3y_PBHADN93cuBnA?ct=text/plain> at:digest <urn:md5:39EA98F41DF2FCF04700337DDDCB819C>;
                                                     dcterms:extent "1065"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQOeqY9B3y_PBHADN93cuBnA?ct=text/html>,
-                                                                      <ni:///mh;1QEQOeqY9B3y_PBHADN93cuBnA?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQOeqY9B3y_PBHADN93cuBnA?ct=application/xml>,
+                                                                      <ni:///mh;1QEQOeqY9B3y_PBHADN93cuBnA?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQOeqY9B3y_PBHADN93cuBnA?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (1.04 KiB)"@en;
@@ -4297,8 +4302,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (5.45 KiB)"@en.
 <ni:///mh;1QEQRbDnTj66fMz2SvY9sa-8sA?ct=text/plain> at:digest <urn:md5:45B0E74E3EBA7CCCF64AF63DB1AFBCB0>;
                                                     dcterms:extent "5581"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQRbDnTj66fMz2SvY9sa-8sA?ct=text/html>,
-                                                                      <ni:///mh;1QEQRbDnTj66fMz2SvY9sa-8sA?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQRbDnTj66fMz2SvY9sa-8sA?ct=application/xml>,
+                                                                      <ni:///mh;1QEQRbDnTj66fMz2SvY9sa-8sA?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQRbDnTj66fMz2SvY9sa-8sA?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (5.45 KiB)"@en;
@@ -4365,8 +4370,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (6.83 KiB)"@en.
 <ni:///mh;1QEQRkKEfybH7awEfW9tSZrg1g?ct=text/plain> at:digest <urn:md5:4642847F26C7EDAC047D6F6D499AE0D6>;
                                                     dcterms:extent "6993"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQRkKEfybH7awEfW9tSZrg1g?ct=text/html>,
-                                                                      <ni:///mh;1QEQRkKEfybH7awEfW9tSZrg1g?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQRkKEfybH7awEfW9tSZrg1g?ct=application/xml>,
+                                                                      <ni:///mh;1QEQRkKEfybH7awEfW9tSZrg1g?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQRkKEfybH7awEfW9tSZrg1g?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (6.83 KiB)"@en;
@@ -4466,8 +4471,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (1.96 KiB)"@en.
 <ni:///mh;1QEQTi3Pm8bC3LQRjKURec8r4A?ct=text/plain> at:digest <urn:md5:4E2DCF9BC6C2DCB4118CA51179CF2BE0>;
                                                     dcterms:extent "2005"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQTi3Pm8bC3LQRjKURec8r4A?ct=application/xml>,
-                                                                      <ni:///mh;1QEQTi3Pm8bC3LQRjKURec8r4A?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQTi3Pm8bC3LQRjKURec8r4A?ct=text/html>,
+                                                                      <ni:///mh;1QEQTi3Pm8bC3LQRjKURec8r4A?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQTi3Pm8bC3LQRjKURec8r4A?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (1.96 KiB)"@en;
@@ -4500,8 +4505,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (23 KiB)"@en.
 <ni:///mh;1QEQU99ybuadlOLcKJ75Z5y11w?ct=text/plain> at:digest <urn:md5:53DF726EE69D94E2DC289EF9679CB5D7>;
                                                     dcterms:extent "23549"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQU99ybuadlOLcKJ75Z5y11w?ct=application/xml>,
-                                                                      <ni:///mh;1QEQU99ybuadlOLcKJ75Z5y11w?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQU99ybuadlOLcKJ75Z5y11w?ct=text/html>,
+                                                                      <ni:///mh;1QEQU99ybuadlOLcKJ75Z5y11w?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQU99ybuadlOLcKJ75Z5y11w?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (23 KiB)"@en;
@@ -4534,8 +4539,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (6.3 KiB)"@en.
 <ni:///mh;1QEQUB1OlnYhRLOM561Qe4-t5A?ct=text/plain> at:digest <urn:md5:501D4E96762144B38CE7AD507B8FADE4>;
                                                     dcterms:extent "6452"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQUB1OlnYhRLOM561Qe4-t5A?ct=application/xml>,
-                                                                      <ni:///mh;1QEQUB1OlnYhRLOM561Qe4-t5A?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQUB1OlnYhRLOM561Qe4-t5A?ct=text/html>,
+                                                                      <ni:///mh;1QEQUB1OlnYhRLOM561Qe4-t5A?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQUB1OlnYhRLOM561Qe4-t5A?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (6.3 KiB)"@en;
@@ -4602,8 +4607,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (11.71 KiB)"@en.
 <ni:///mh;1QEQV8E7nJmR_OxagVLAUiBfyg?ct=text/plain> at:digest <urn:md5:57C13B9C9991FCEC5A8152C052205FCA>;
                                                     dcterms:extent "11991"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQV8E7nJmR_OxagVLAUiBfyg?ct=text/html>,
-                                                                      <ni:///mh;1QEQV8E7nJmR_OxagVLAUiBfyg?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQV8E7nJmR_OxagVLAUiBfyg?ct=application/xml>,
+                                                                      <ni:///mh;1QEQV8E7nJmR_OxagVLAUiBfyg?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQV8E7nJmR_OxagVLAUiBfyg?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (11.71 KiB)"@en;
@@ -4738,8 +4743,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (21.31 KiB)"@en.
 <ni:///mh;1QEQXo_pBR8f7tdF8eT6acHlbQ?ct=text/plain> at:digest <urn:md5:5E8FE9051F1FEED745F1E4FA69C1E56D>;
                                                     dcterms:extent "21822"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQXo_pBR8f7tdF8eT6acHlbQ?ct=text/html>,
-                                                                      <ni:///mh;1QEQXo_pBR8f7tdF8eT6acHlbQ?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQXo_pBR8f7tdF8eT6acHlbQ?ct=application/xml>,
+                                                                      <ni:///mh;1QEQXo_pBR8f7tdF8eT6acHlbQ?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQXo_pBR8f7tdF8eT6acHlbQ?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (21.31 KiB)"@en;
@@ -4772,8 +4777,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (9.64 KiB)"@en.
 <ni:///mh;1QEQYAlNS9HzE80pQWrx4zqPQg?ct=text/plain> at:digest <urn:md5:60094D4BD1F313CD29416AF1E33A8F42>;
                                                     dcterms:extent "9867"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQYAlNS9HzE80pQWrx4zqPQg?ct=text/html>,
-                                                                      <ni:///mh;1QEQYAlNS9HzE80pQWrx4zqPQg?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQYAlNS9HzE80pQWrx4zqPQg?ct=application/xml>,
+                                                                      <ni:///mh;1QEQYAlNS9HzE80pQWrx4zqPQg?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQYAlNS9HzE80pQWrx4zqPQg?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (9.64 KiB)"@en;
@@ -4840,8 +4845,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (9.42 KiB)"@en.
 <ni:///mh;1QEQYt4xvQDpykonJvtS8DL5FQ?ct=text/plain> at:digest <urn:md5:62DE31BD00E9CA4A2726FB52F032F915>;
                                                     dcterms:extent "9650"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQYt4xvQDpykonJvtS8DL5FQ?ct=text/html>,
-                                                                      <ni:///mh;1QEQYt4xvQDpykonJvtS8DL5FQ?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQYt4xvQDpykonJvtS8DL5FQ?ct=application/xml>,
+                                                                      <ni:///mh;1QEQYt4xvQDpykonJvtS8DL5FQ?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQYt4xvQDpykonJvtS8DL5FQ?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (9.42 KiB)"@en;
@@ -4873,8 +4878,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (376 B)"@en.
 <ni:///mh;1QEQ_UKXX2A38ezSFGxDA-WBwA?ct=text/plain> at:digest <urn:md5:FD42975F6037F1ECD2146C4303E581C0>;
                                                     dcterms:extent "376"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQ_UKXX2A38ezSFGxDA-WBwA?ct=text/html>,
-                                                                      <ni:///mh;1QEQ_UKXX2A38ezSFGxDA-WBwA?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ_UKXX2A38ezSFGxDA-WBwA?ct=application/xml>,
+                                                                      <ni:///mh;1QEQ_UKXX2A38ezSFGxDA-WBwA?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQ_UKXX2A38ezSFGxDA-WBwA?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (376 B)"@en;
@@ -4907,8 +4912,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (10.1 KiB)"@en.
 <ni:///mh;1QEQ_WRjYjkKlGggKbW2NJR2sQ?ct=text/plain> at:digest <urn:md5:FD646362390A94682029B5B6349476B1>;
                                                     dcterms:extent "10344"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQ_WRjYjkKlGggKbW2NJR2sQ?ct=text/html>,
-                                                                      <ni:///mh;1QEQ_WRjYjkKlGggKbW2NJR2sQ?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ_WRjYjkKlGggKbW2NJR2sQ?ct=application/xml>,
+                                                                      <ni:///mh;1QEQ_WRjYjkKlGggKbW2NJR2sQ?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQ_WRjYjkKlGggKbW2NJR2sQ?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (10.1 KiB)"@en;
@@ -4975,8 +4980,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (8 KiB)"@en.
 <ni:///mh;1QEQa3GaZ978aY_dVBu7_n0Y0g?ct=text/plain> at:digest <urn:md5:6B719A67DEFC698FDD541BBBFE7D18D2>;
                                                     dcterms:extent "8193"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQa3GaZ978aY_dVBu7_n0Y0g?ct=application/xml>,
-                                                                      <ni:///mh;1QEQa3GaZ978aY_dVBu7_n0Y0g?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQa3GaZ978aY_dVBu7_n0Y0g?ct=text/html>,
+                                                                      <ni:///mh;1QEQa3GaZ978aY_dVBu7_n0Y0g?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQa3GaZ978aY_dVBu7_n0Y0g?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (8 KiB)"@en;
@@ -5043,8 +5048,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (3.5 KiB)"@en.
 <ni:///mh;1QEQa6yhRBB1ADcw7JDe3PHcnQ?ct=text/plain> at:digest <urn:md5:6BACA1441075003730EC90DEDCF1DC9D>;
                                                     dcterms:extent "3583"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQa6yhRBB1ADcw7JDe3PHcnQ?ct=text/html>,
-                                                                      <ni:///mh;1QEQa6yhRBB1ADcw7JDe3PHcnQ?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQa6yhRBB1ADcw7JDe3PHcnQ?ct=application/xml>,
+                                                                      <ni:///mh;1QEQa6yhRBB1ADcw7JDe3PHcnQ?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQa6yhRBB1ADcw7JDe3PHcnQ?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (3.5 KiB)"@en;
@@ -5111,8 +5116,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (13.18 KiB)"@en.
 <ni:///mh;1QEQbkm8SkqFFhc0E2YXIyPnog?ct=text/plain> at:digest <urn:md5:6E49BC4A4A851617341366172323E7A2>;
                                                     dcterms:extent "13498"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQbkm8SkqFFhc0E2YXIyPnog?ct=text/html>,
-                                                                      <ni:///mh;1QEQbkm8SkqFFhc0E2YXIyPnog?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQbkm8SkqFFhc0E2YXIyPnog?ct=application/xml>,
+                                                                      <ni:///mh;1QEQbkm8SkqFFhc0E2YXIyPnog?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQbkm8SkqFFhc0E2YXIyPnog?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (13.18 KiB)"@en;
@@ -5179,8 +5184,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (5.71 KiB)"@en.
 <ni:///mh;1QEQc2f7ign9CKH83qPE8Jg5Yw?ct=text/plain> at:digest <urn:md5:7367FB8A09FD08A1FCDEA3C4F0983963>;
                                                     dcterms:extent "5845"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQc2f7ign9CKH83qPE8Jg5Yw?ct=application/xml>,
-                                                                      <ni:///mh;1QEQc2f7ign9CKH83qPE8Jg5Yw?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQc2f7ign9CKH83qPE8Jg5Yw?ct=text/html>,
+                                                                      <ni:///mh;1QEQc2f7ign9CKH83qPE8Jg5Yw?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQc2f7ign9CKH83qPE8Jg5Yw?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (5.71 KiB)"@en;
@@ -5213,8 +5218,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (3.2 KiB)"@en.
 <ni:///mh;1QEQdj8zAJJhE2uvoPVFxidX2A?ct=text/plain> at:digest <urn:md5:763F33009261136BAFA0F545C62757D8>;
                                                     dcterms:extent "3274"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQdj8zAJJhE2uvoPVFxidX2A?ct=application/xml>,
-                                                                      <ni:///mh;1QEQdj8zAJJhE2uvoPVFxidX2A?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQdj8zAJJhE2uvoPVFxidX2A?ct=text/html>,
+                                                                      <ni:///mh;1QEQdj8zAJJhE2uvoPVFxidX2A?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQdj8zAJJhE2uvoPVFxidX2A?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (3.2 KiB)"@en;
@@ -5247,8 +5252,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (5.63 KiB)"@en.
 <ni:///mh;1QEQe5KWRDCRbg0W3t-ABAPDJw?ct=text/plain> at:digest <urn:md5:7B92964430916E0D16DEDF800403C327>;
                                                     dcterms:extent "5765"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQe5KWRDCRbg0W3t-ABAPDJw?ct=text/html>,
-                                                                      <ni:///mh;1QEQe5KWRDCRbg0W3t-ABAPDJw?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQe5KWRDCRbg0W3t-ABAPDJw?ct=application/xml>,
+                                                                      <ni:///mh;1QEQe5KWRDCRbg0W3t-ABAPDJw?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQe5KWRDCRbg0W3t-ABAPDJw?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (5.63 KiB)"@en;
@@ -5315,8 +5320,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (8.83 KiB)"@en.
 <ni:///mh;1QEQeDlxp_Awdign4qh3Edzn4w?ct=text/plain> at:digest <urn:md5:783971A7F030762827E2A87711DCE7E3>;
                                                     dcterms:extent "9039"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQeDlxp_Awdign4qh3Edzn4w?ct=text/html>,
-                                                                      <ni:///mh;1QEQeDlxp_Awdign4qh3Edzn4w?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQeDlxp_Awdign4qh3Edzn4w?ct=application/xml>,
+                                                                      <ni:///mh;1QEQeDlxp_Awdign4qh3Edzn4w?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQeDlxp_Awdign4qh3Edzn4w?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (8.83 KiB)"@en;
@@ -5417,8 +5422,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (9.42 KiB)"@en.
 <ni:///mh;1QEQfTKIpj_n-JtZEp2hbZwz9g?ct=text/plain> at:digest <urn:md5:7D3288A63FE7F89B59129DA16D9C33F6>;
                                                     dcterms:extent "9641"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQfTKIpj_n-JtZEp2hbZwz9g?ct=application/xml>,
-                                                                      <ni:///mh;1QEQfTKIpj_n-JtZEp2hbZwz9g?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQfTKIpj_n-JtZEp2hbZwz9g?ct=text/html>,
+                                                                      <ni:///mh;1QEQfTKIpj_n-JtZEp2hbZwz9g?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQfTKIpj_n-JtZEp2hbZwz9g?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (9.42 KiB)"@en;
@@ -5527,8 +5532,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (2 KiB)"@en.
 <ni:///mh;1QEQhDsgxbPJ3WjE8n8RBb8xnw?ct=text/plain> at:digest <urn:md5:843B20C5B3C9DD68C4F27F1105BF319F>;
                                                     dcterms:extent "2049"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQhDsgxbPJ3WjE8n8RBb8xnw?ct=application/xml>,
-                                                                      <ni:///mh;1QEQhDsgxbPJ3WjE8n8RBb8xnw?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQhDsgxbPJ3WjE8n8RBb8xnw?ct=text/html>,
+                                                                      <ni:///mh;1QEQhDsgxbPJ3WjE8n8RBb8xnw?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQhDsgxbPJ3WjE8n8RBb8xnw?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (2 KiB)"@en;
@@ -5671,8 +5676,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (6.79 KiB)"@en.
 <ni:///mh;1QEQjswrjEMky1Hy56xONfyMkg?ct=text/plain> at:digest <urn:md5:8ECC2B8C4324CB51F2E7AC4E35FC8C92>;
                                                     dcterms:extent "6952"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQjswrjEMky1Hy56xONfyMkg?ct=application/xml>,
-                                                                      <ni:///mh;1QEQjswrjEMky1Hy56xONfyMkg?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQjswrjEMky1Hy56xONfyMkg?ct=text/html>,
+                                                                      <ni:///mh;1QEQjswrjEMky1Hy56xONfyMkg?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQjswrjEMky1Hy56xONfyMkg?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (6.79 KiB)"@en;
@@ -5773,8 +5778,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (2.95 KiB)"@en.
 <ni:///mh;1QEQkN8x9eSwYEtObpl3vDbEeg?ct=text/plain> at:digest <urn:md5:90DF31F5E4B0604B4E6E9977BC36C47A>;
                                                     dcterms:extent "3024"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQkN8x9eSwYEtObpl3vDbEeg?ct=text/html>,
-                                                                      <ni:///mh;1QEQkN8x9eSwYEtObpl3vDbEeg?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQkN8x9eSwYEtObpl3vDbEeg?ct=application/xml>,
+                                                                      <ni:///mh;1QEQkN8x9eSwYEtObpl3vDbEeg?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQkN8x9eSwYEtObpl3vDbEeg?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (2.95 KiB)"@en;
@@ -5807,8 +5812,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (5.59 KiB)"@en.
 <ni:///mh;1QEQkkmj0ZCGjx3tAoFzJ9GCbg?ct=text/plain> at:digest <urn:md5:9249A3D190868F1DED02817327D1826E>;
                                                     dcterms:extent "5720"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQkkmj0ZCGjx3tAoFzJ9GCbg?ct=text/html>,
-                                                                      <ni:///mh;1QEQkkmj0ZCGjx3tAoFzJ9GCbg?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQkkmj0ZCGjx3tAoFzJ9GCbg?ct=application/xml>,
+                                                                      <ni:///mh;1QEQkkmj0ZCGjx3tAoFzJ9GCbg?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQkkmj0ZCGjx3tAoFzJ9GCbg?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (5.59 KiB)"@en;
@@ -5909,8 +5914,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (6.53 KiB)"@en.
 <ni:///mh;1QEQmPgvgHS1KiEuB7LhTiHTQg?ct=text/plain> at:digest <urn:md5:98F82F8074B52A212E07B2E14E21D342>;
                                                     dcterms:extent "6683"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQmPgvgHS1KiEuB7LhTiHTQg?ct=application/xml>,
-                                                                      <ni:///mh;1QEQmPgvgHS1KiEuB7LhTiHTQg?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQmPgvgHS1KiEuB7LhTiHTQg?ct=text/html>,
+                                                                      <ni:///mh;1QEQmPgvgHS1KiEuB7LhTiHTQg?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQmPgvgHS1KiEuB7LhTiHTQg?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (6.53 KiB)"@en;
@@ -6002,8 +6007,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (10.71 KiB)"@en.
 <ni:///mh;1QEQn-Z7U_Oohp91YjPVEfLT_Q?ct=text/plain> at:digest <urn:md5:9FE67B53F3A8869F756233D511F2D3FD>;
                                                     dcterms:extent "10963"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQn-Z7U_Oohp91YjPVEfLT_Q?ct=text/html>,
-                                                                      <ni:///mh;1QEQn-Z7U_Oohp91YjPVEfLT_Q?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQn-Z7U_Oohp91YjPVEfLT_Q?ct=application/xml>,
+                                                                      <ni:///mh;1QEQn-Z7U_Oohp91YjPVEfLT_Q?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQn-Z7U_Oohp91YjPVEfLT_Q?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (10.71 KiB)"@en;
@@ -6171,8 +6176,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (14.97 KiB)"@en.
 <ni:///mh;1QEQovZ6MTzVXDacCg_s-55MCQ?ct=text/plain> at:digest <urn:md5:A2F67A313CD55C369C0A0FECFB9E4C09>;
                                                     dcterms:extent "15328"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQovZ6MTzVXDacCg_s-55MCQ?ct=application/xml>,
-                                                                      <ni:///mh;1QEQovZ6MTzVXDacCg_s-55MCQ?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQovZ6MTzVXDacCg_s-55MCQ?ct=text/html>,
+                                                                      <ni:///mh;1QEQovZ6MTzVXDacCg_s-55MCQ?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQovZ6MTzVXDacCg_s-55MCQ?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (14.97 KiB)"@en;
@@ -6239,8 +6244,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (16.57 KiB)"@en.
 <ni:///mh;1QEQr36Ujpx2VQtLhm1Emvxu8Q?ct=text/plain> at:digest <urn:md5:AF7E948E9C76550B4B866D449AFC6EF1>;
                                                     dcterms:extent "16966"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQr36Ujpx2VQtLhm1Emvxu8Q?ct=application/xml>,
-                                                                      <ni:///mh;1QEQr36Ujpx2VQtLhm1Emvxu8Q?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQr36Ujpx2VQtLhm1Emvxu8Q?ct=text/html>,
+                                                                      <ni:///mh;1QEQr36Ujpx2VQtLhm1Emvxu8Q?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQr36Ujpx2VQtLhm1Emvxu8Q?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (16.57 KiB)"@en;
@@ -6409,8 +6414,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (4.17 KiB)"@en.
 <ni:///mh;1QEQvZ5SLKWpfnvqlQvru1JEeg?ct=text/plain> at:digest <urn:md5:BD9E522CA5A97E7BEA950BEBBB52447A>;
                                                     dcterms:extent "4274"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQvZ5SLKWpfnvqlQvru1JEeg?ct=application/xml>,
-                                                                      <ni:///mh;1QEQvZ5SLKWpfnvqlQvru1JEeg?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQvZ5SLKWpfnvqlQvru1JEeg?ct=text/html>,
+                                                                      <ni:///mh;1QEQvZ5SLKWpfnvqlQvru1JEeg?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQvZ5SLKWpfnvqlQvru1JEeg?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (4.17 KiB)"@en;
@@ -6443,8 +6448,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (13.85 KiB)"@en.
 <ni:///mh;1QEQwBUtiesYRMhyrAgKT_6fIA?ct=text/plain> at:digest <urn:md5:C0152D89EB1844C872AC080A4FFE9F20>;
                                                     dcterms:extent "14186"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQwBUtiesYRMhyrAgKT_6fIA?ct=text/html>,
-                                                                      <ni:///mh;1QEQwBUtiesYRMhyrAgKT_6fIA?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQwBUtiesYRMhyrAgKT_6fIA?ct=application/xml>,
+                                                                      <ni:///mh;1QEQwBUtiesYRMhyrAgKT_6fIA?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQwBUtiesYRMhyrAgKT_6fIA?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (13.85 KiB)"@en;
@@ -6477,8 +6482,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (10.05 KiB)"@en.
 <ni:///mh;1QEQwTIZI3t6g7sXkeLBlPt1_w?ct=text/plain> at:digest <urn:md5:C13219237B7A83BB1791E2C194FB75FF>;
                                                     dcterms:extent "10287"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQwTIZI3t6g7sXkeLBlPt1_w?ct=text/html>,
-                                                                      <ni:///mh;1QEQwTIZI3t6g7sXkeLBlPt1_w?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQwTIZI3t6g7sXkeLBlPt1_w?ct=application/xml>,
+                                                                      <ni:///mh;1QEQwTIZI3t6g7sXkeLBlPt1_w?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQwTIZI3t6g7sXkeLBlPt1_w?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (10.05 KiB)"@en;
@@ -6511,8 +6516,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (7.07 KiB)"@en.
 <ni:///mh;1QEQwg849uECoV78MUiFA2eDqA?ct=text/plain> at:digest <urn:md5:C20F38F6E102A15EFC314885036783A8>;
                                                     dcterms:extent "7242"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQwg849uECoV78MUiFA2eDqA?ct=text/html>,
-                                                                      <ni:///mh;1QEQwg849uECoV78MUiFA2eDqA?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQwg849uECoV78MUiFA2eDqA?ct=application/xml>,
+                                                                      <ni:///mh;1QEQwg849uECoV78MUiFA2eDqA?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQwg849uECoV78MUiFA2eDqA?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (7.07 KiB)"@en;
@@ -6545,8 +6550,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (6.99 KiB)"@en.
 <ni:///mh;1QEQyIz5G2sKMklI3cP9X3cw5A?ct=text/plain> at:digest <urn:md5:C88CF91B6B0A324948DDC3FD5F7730E4>;
                                                     dcterms:extent "7158"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQyIz5G2sKMklI3cP9X3cw5A?ct=text/html>,
-                                                                      <ni:///mh;1QEQyIz5G2sKMklI3cP9X3cw5A?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQyIz5G2sKMklI3cP9X3cw5A?ct=application/xml>,
+                                                                      <ni:///mh;1QEQyIz5G2sKMklI3cP9X3cw5A?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQyIz5G2sKMklI3cP9X3cw5A?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (6.99 KiB)"@en;
@@ -6681,8 +6686,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (12.34 KiB)"@en.
 <ni:///mh;1QEQz3D7wMls3pvkCm7w_7tZXQ?ct=text/plain> at:digest <urn:md5:CF70FBC0C96CDE9BE40A6EF0FFBB595D>;
                                                     dcterms:extent "12638"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQz3D7wMls3pvkCm7w_7tZXQ?ct=application/xml>,
-                                                                      <ni:///mh;1QEQz3D7wMls3pvkCm7w_7tZXQ?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQz3D7wMls3pvkCm7w_7tZXQ?ct=text/html>,
+                                                                      <ni:///mh;1QEQz3D7wMls3pvkCm7w_7tZXQ?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQz3D7wMls3pvkCm7w_7tZXQ?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (12.34 KiB)"@en;
@@ -6817,8 +6822,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (5.92 KiB)"@en.
 <ni:///mh;1QEQze5n-c3et2mH12v-5cJv-A?ct=text/plain> at:digest <urn:md5:CDEE67F9CDDEB76987D76BFEE5C26FF8>;
                                                     dcterms:extent "6065"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQze5n-c3et2mH12v-5cJv-A?ct=text/html>,
-                                                                      <ni:///mh;1QEQze5n-c3et2mH12v-5cJv-A?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQze5n-c3et2mH12v-5cJv-A?ct=application/xml>,
+                                                                      <ni:///mh;1QEQze5n-c3et2mH12v-5cJv-A?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQze5n-c3et2mH12v-5cJv-A?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (5.92 KiB)"@en;
@@ -6851,8 +6856,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (11.53 KiB)"@en.
 <ni:///mh;1QEQzer_DDrrPeDegw6aQWPLyQ?ct=text/plain> at:digest <urn:md5:CDEAFF0C3AEB3DE0DE830E9A4163CBC9>;
                                                     dcterms:extent "11806"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQzer_DDrrPeDegw6aQWPLyQ?ct=text/html>,
-                                                                      <ni:///mh;1QEQzer_DDrrPeDegw6aQWPLyQ?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQzer_DDrrPeDegw6aQWPLyQ?ct=application/xml>,
+                                                                      <ni:///mh;1QEQzer_DDrrPeDegw6aQWPLyQ?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQzer_DDrrPeDegw6aQWPLyQ?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (11.53 KiB)"@en;
@@ -6885,8 +6890,8 @@ Moby-Dick""";
                                                    skos:prefLabel "HTML object (8.35 KiB)"@en.
 <ni:///mh;1QEQzofnD8aEFMFtb6kaOrhu3w?ct=text/plain> at:digest <urn:md5:CE87E70FC68414C16D6FA91A3AB86EDF>;
                                                     dcterms:extent "8550"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQzofnD8aEFMFtb6kaOrhu3w?ct=application/xml>,
-                                                                      <ni:///mh;1QEQzofnD8aEFMFtb6kaOrhu3w?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQzofnD8aEFMFtb6kaOrhu3w?ct=text/html>,
+                                                                      <ni:///mh;1QEQzofnD8aEFMFtb6kaOrhu3w?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQzofnD8aEFMFtb6kaOrhu3w?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (8.35 KiB)"@en;

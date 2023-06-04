@@ -3,8 +3,8 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
@@ -22,8 +22,9 @@ _:n1 at:pathObject <file:///test.zip>;
                                            a cnt:ContentAsText;
                                            skos:prefLabel "text (24 B)"@en;
                                            cnt:characterEncoding "us-ascii";
-                                           cnt:chars "This is just a text file"^^xsd:string.
+                                           cnt:chars "This is just a text file".
 <file:///pewpewpew.flac> at:extensionObject <https://w3id.org/uri4uri/suffix/flac>.
+<file:///subdir/> at:pathObject <file:///>.
 <file:///subdir/zip_smile.png> at:pathObject <file:///zip_smile.png>.
 <file:///test.zip> at:extensionObject <https://w3id.org/uri4uri/suffix/zip>.
 <file:///zip_hello.txt> at:extensionObject <https://w3id.org/uri4uri/suffix/txt>.
@@ -33,13 +34,13 @@ _:n1 at:pathObject <file:///test.zip>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ-bKArAiBIsGrekQVKn0eVQ?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (64.65 KiB)"@en.
-<ni:///mh;1QEQ-bKArAiBIsGrekQVKn0eVQ?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQ-bKArAiBIsGrekQVKn0eVQ?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQ-bKArAiBIsGrekQVKn0eVQ?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (64.65 KiB)"@en.
-<ni:///mh;1QEQ-bKArAiBIsGrekQVKn0eVQ?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQ-bKArAiBIsGrekQVKn0eVQ?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQ-bKArAiBIsGrekQVKn0eVQ?ct=application/zip#/pewpewpew.flac> at:pathObject <file:///pewpewpew.flac>;
@@ -93,11 +94,11 @@ _:n1 at:pathObject <file:///test.zip>;
                                                    nfo:width 32 ;
                                                    <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#comments> "Created with GIMP";
                                                    a schema:MediaObject,
-                                                     schema:ImageObject,
-                                                     nfo:Image;
+                                                     nfo:Image,
+                                                     schema:ImageObject;
                                                    skos:prefLabel "PNG object (32×40, 8-bit)"@en,
-                                                                  "PNG object (314 B)"@en,
-                                                                  "PNG object (32×40)"@en.
+                                                                  "PNG object (32×40)"@en,
+                                                                  "PNG object (314 B)"@en.
 <ni:///mh;1QEQuc3Z6Rb3ZH5YMJolQqQUmQ?ct=application/octet-stream> at:digest <urn:md5:B9CDD9E916F7647E58309A2542A41499>;
                                                                   dcterms:extent "76721"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQuc3Z6Rb3ZH5YMJolQqQUmQ?ct=audio/flac>;

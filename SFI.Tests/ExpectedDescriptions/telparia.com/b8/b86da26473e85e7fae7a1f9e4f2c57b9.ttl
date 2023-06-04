@@ -1,10 +1,10 @@
-@base <x.blank:1cd2d2c6-39d7-49e1-8e63-582bec743805>.
+@base <ni:///mh;1QEQuk0kytD4CWAn1HTyQ4rAmw?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -30,6 +30,7 @@ _:n1 at:pathObject <file:///TEAMNEWS.WP>;
 <data:application/prs.implied-structure;signature=ND;base64,TkQAAAEAAAAAAAAAAgA=> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=ND>;
                                                                                   a schema:MediaObject;
                                                                                   skos:prefLabel "ND object (14 B)"@en.
+<file:///MatOST/> at:pathObject <file:///>.
 <file:///TEAMNEWS.WP> at:extensionObject <https://w3id.org/uri4uri/suffix/wp>.
 <ni:///mh;1QEQOVhyRkP-jVTWbglESZ2NwQ?ct=application/octet-stream> at:digest <urn:md5:3958724643FE8D54D66E0944499D8DC1>;
                                                                   dcterms:extent "3272"^^dt:byte;
@@ -40,14 +41,14 @@ _:n1 at:pathObject <file:///TEAMNEWS.WP>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQuk0kytD4CWAn1HTyQ4rAmw?ct=application/x-ole-storage>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (6 KiB)"@en.
-<ni:///mh;1QEQuk0kytD4CWAn1HTyQ4rAmw?ct=application/x-ole-storage> at:pathObject <file:///>;
+<ni:///mh;1QEQuk0kytD4CWAn1HTyQ4rAmw?ct=application/x-ole-storage> at:pathObject <file:///.>;
                                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
                                                                    nie:interpretedAs <ni:///mh;1QEQuk0kytD4CWAn1HTyQ4rAmw?ct=application/x-ole-storage#/>;
                                                                    nfo:fileLastModified "1993-10-11T10:15:34.000551Z"^^xsd:dateTime;
                                                                    a schema:MediaObject,
                                                                      nfo:EmbeddedFileDataObject;
                                                                    skos:prefLabel "OLE object (6 KiB)"@en.
-<ni:///mh;1QEQuk0kytD4CWAn1HTyQ4rAmw?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQuk0kytD4CWAn1HTyQ4rAmw?ct=application/x-ole-storage#/> at:pathObject <file:///>;
                                                                      a nfo:Folder;
                                                                      skos:prefLabel "/".
 <ni:///mh;1QEQuk0kytD4CWAn1HTyQ4rAmw?ct=application/x-ole-storage#/%01CompObj> at:pathObject <file:///%01CompObj>;

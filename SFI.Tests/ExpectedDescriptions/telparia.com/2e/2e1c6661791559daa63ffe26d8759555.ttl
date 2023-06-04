@@ -1,10 +1,10 @@
-@base <x.blank:1fac08ae-5bad-45bf-a01b-e1bffcb83ede>.
+@base <ni:///mh;1QEQ3FkZnZiqJVZPfRSctRHM_Q?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xis: <http://www.w3.org/2001/04/infoset#>.
@@ -25,6 +25,7 @@ _:n1 at:pathObject <file:///testing.xps>;
 <file:///1.fpage> at:extensionObject <https://w3id.org/uri4uri/suffix/fpage>.
 <file:///1.fpage.rels> at:extensionObject <https://w3id.org/uri4uri/suffix/rels>.
 <file:///1.frag> at:extensionObject <https://w3id.org/uri4uri/suffix/frag>.
+<file:///1/> at:pathObject <file:///>.
 <file:///1/FixedDoc.fdoc> at:pathObject <file:///FixedDoc.fdoc>.
 <file:///1/Pages> at:pathObject <file:///Pages>.
 <file:///1/Pages/> at:pathObject <file:///Pages/>.
@@ -46,6 +47,7 @@ _:n1 at:pathObject <file:///testing.xps>;
 <file:///49E33FC6-65B3-0E3C-6861-7E7F9A24A024.odttf> at:extensionObject <https://w3id.org/uri4uri/suffix/odttf>.
 <file:///4DC327EF-127A-162E-3778-9D22192A0757.odttf> at:extensionObject <https://w3id.org/uri4uri/suffix/odttf>.
 <file:///DocStructure.struct> at:extensionObject <https://w3id.org/uri4uri/suffix/struct>.
+<file:///Documents/> at:pathObject <file:///>.
 <file:///Documents/1> at:pathObject <file:///1>.
 <file:///Documents/1/> at:pathObject <file:///1/>.
 <file:///Documents/1/FixedDoc.fdoc> at:pathObject <file:///1/FixedDoc.fdoc>.
@@ -67,23 +69,29 @@ _:n1 at:pathObject <file:///testing.xps>;
 <file:///FixedDoc.fdoc> at:extensionObject <https://w3id.org/uri4uri/suffix/fdoc>.
 <file:///FixedDoc.fdoc.rels> at:extensionObject <https://w3id.org/uri4uri/suffix/rels>.
 <file:///FixedDocSeq.fdseq> at:extensionObject <https://w3id.org/uri4uri/suffix/fdseq>.
+<file:///Fragments/> at:pathObject <file:///>.
 <file:///Fragments/1.frag> at:pathObject <file:///1.frag>.
+<file:///Pages/> at:pathObject <file:///>.
 <file:///Pages/1.fpage> at:pathObject <file:///1.fpage>.
 <file:///Pages/_rels> at:pathObject <file:///_rels>.
 <file:///Pages/_rels/> at:pathObject <file:///_rels/>.
 <file:///Pages/_rels/1.fpage.rels> at:pathObject <file:///_rels/1.fpage.rels>.
+<file:///Resources/> at:pathObject <file:///>.
 <file:///Resources/1D600122-7989-28D4-4E0C-C317E9755133.odttf> at:pathObject <file:///1D600122-7989-28D4-4E0C-C317E9755133.odttf>.
 <file:///Resources/2D914E2E-3076-650F-1C6E-5C02970B6761.odttf> at:pathObject <file:///2D914E2E-3076-650F-1C6E-5C02970B6761.odttf>.
 <file:///Resources/49E33FC6-65B3-0E3C-6861-7E7F9A24A024.odttf> at:pathObject <file:///49E33FC6-65B3-0E3C-6861-7E7F9A24A024.odttf>.
 <file:///Resources/4DC327EF-127A-162E-3778-9D22192A0757.odttf> at:pathObject <file:///4DC327EF-127A-162E-3778-9D22192A0757.odttf>.
+<file:///Structure/> at:pathObject <file:///>.
 <file:///Structure/DocStructure.struct> at:pathObject <file:///DocStructure.struct>.
 <file:///Structure/Fragments> at:pathObject <file:///Fragments>.
 <file:///Structure/Fragments/> at:pathObject <file:///Fragments/>.
 <file:///Structure/Fragments/1.frag> at:pathObject <file:///Fragments/1.frag>.
+<file:///_rels/> at:pathObject <file:///>.
 <file:///_rels/.rels> at:pathObject <file:///.rels>.
 <file:///_rels/1.fpage.rels> at:pathObject <file:///1.fpage.rels>.
 <file:///_rels/FixedDoc.fdoc.rels> at:pathObject <file:///FixedDoc.fdoc.rels>.
 <file:///core.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///docProps/> at:pathObject <file:///>.
 <file:///docProps/core.xml> at:pathObject <file:///core.xml>.
 <file:///docProps/thumbnail.jpeg> at:pathObject <file:///thumbnail.jpeg>.
 <file:///testing.xps> at:extensionObject <https://w3id.org/uri4uri/suffix/xps>.
@@ -120,13 +128,13 @@ _:n1 at:pathObject <file:///testing.xps>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ3FkZnZiqJVZPfRSctRHM_Q?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (368.42 KiB)"@en.
-<ni:///mh;1QEQ3FkZnZiqJVZPfRSctRHM_Q?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQ3FkZnZiqJVZPfRSctRHM_Q?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQ3FkZnZiqJVZPfRSctRHM_Q?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (368.42 KiB)"@en.
-<ni:///mh;1QEQ3FkZnZiqJVZPfRSctRHM_Q?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQ3FkZnZiqJVZPfRSctRHM_Q?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQ3FkZnZiqJVZPfRSctRHM_Q?ct=application/zip#/%5BContent_Types%5D.xml> at:pathObject <file:///%5BContent_Types%5D.xml>;

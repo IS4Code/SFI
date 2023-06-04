@@ -1,10 +1,10 @@
-@base <x.blank:edd3fa9b-60c6-4b48-825d-0dab2dd9f6e8>.
+@base <ni:///mh;1QEQpDSSmfwD_YLAs8rDt4KjYQ?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -24,13 +24,13 @@ _:n1 at:pathObject <file:///example_multipage_large.epub>;
                                  a cnt:ContentAsText;
                                  skos:prefLabel "text (20 B)"@en;
                                  cnt:characterEncoding "us-ascii";
-                                 cnt:chars "application/epub+zip"^^xsd:string.
+                                 cnt:chars "application/epub+zip".
 <data:,calibre_current_page_bookmark*%7C!%7C%3F%7C*0*%7C!%7C%3F%7C*0.0%0A> dcterms:extent "48"^^dt:byte;
                                                                            a cnt:ContentAsText;
                                                                            skos:prefLabel "text (48 B)"@en;
                                                                            cnt:characterEncoding "us-ascii";
                                                                            cnt:chars """calibre_current_page_bookmark*|!|?|*0*|!|?|*0.0
-"""^^xsd:string.
+""".
 <data:;base64,QHBhZ2UgewogICAgbWFyZ2luLWJvdHRvbTogNXB0OwogICAgbWFyZ2luLXRvcDogNXB0CiAgICB9Cg==> dcterms:extent "58"^^dt:byte;
                                                                                                 a cnt:ContentAsText;
                                                                                                 skos:prefLabel "text (58 B)"@en;
@@ -39,13 +39,15 @@ _:n1 at:pathObject <file:///example_multipage_large.epub>;
     margin-bottom: 5pt;
     margin-top: 5pt
     }
-"""^^xsd:string.
+""".
 <file:///1000000000000800000005516A9C38BA1E85250A.jpg> at:extensionObject <https://w3id.org/uri4uri/suffix/jpg>.
 <file:///100000000000080000000551F8810621E32E6DD5.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
 <file:///10000201000000A4000000A5CE58174845D81014.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
 <file:///10000201000001930000008D386EE98019482980.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
+<file:///META-INF/> at:pathObject <file:///>.
 <file:///META-INF/calibre_bookmarks.txt> at:pathObject <file:///calibre_bookmarks.txt>.
 <file:///META-INF/container.xml> at:pathObject <file:///container.xml>.
+<file:///Pictures/> at:pathObject <file:///>.
 <file:///Pictures/1000000000000800000005516A9C38BA1E85250A.jpg> at:pathObject <file:///1000000000000800000005516A9C38BA1E85250A.jpg>.
 <file:///Pictures/100000000000080000000551F8810621E32E6DD5.png> at:pathObject <file:///100000000000080000000551F8810621E32E6DD5.png>.
 <file:///Pictures/10000201000000A4000000A5CE58174845D81014.png> at:pathObject <file:///10000201000000A4000000A5CE58174845D81014.png>.
@@ -152,8 +154,8 @@ _:n1 at:pathObject <file:///example_multipage_large.epub>;
                                                    skos:prefLabel "HTML object (1.33 KiB)"@en.
 <ni:///mh;1QEQ01R5DKz21soX1klQ-V4-NA?ct=text/plain> at:digest <urn:md5:D354790CACF6D6CA17D64950F95E3E34>;
                                                     dcterms:extent "1358"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQ01R5DKz21soX1klQ-V4-NA?ct=text/html>,
-                                                                      <ni:///mh;1QEQ01R5DKz21soX1klQ-V4-NA?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ01R5DKz21soX1klQ-V4-NA?ct=application/xml>,
+                                                                      <ni:///mh;1QEQ01R5DKz21soX1klQ-V4-NA?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQ01R5DKz21soX1klQ-V4-NA?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (1.33 KiB)"@en;
@@ -220,8 +222,8 @@ _:n1 at:pathObject <file:///example_multipage_large.epub>;
                                                    skos:prefLabel "HTML object (1.4 KiB)"@en.
 <ni:///mh;1QEQ0XD5TKH6Ia_M0ozciqu9gg?ct=text/plain> at:digest <urn:md5:D170F94CA1FA21AFCCD28CDC8AABBD82>;
                                                     dcterms:extent "1431"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQ0XD5TKH6Ia_M0ozciqu9gg?ct=text/html>,
-                                                                      <ni:///mh;1QEQ0XD5TKH6Ia_M0ozciqu9gg?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ0XD5TKH6Ia_M0ozciqu9gg?ct=application/xml>,
+                                                                      <ni:///mh;1QEQ0XD5TKH6Ia_M0ozciqu9gg?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQ0XD5TKH6Ia_M0ozciqu9gg?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (1.4 KiB)"@en;
@@ -275,8 +277,8 @@ _:n1 at:pathObject <file:///example_multipage_large.epub>;
                                                    a schema:MediaObject,
                                                      nfo:Image,
                                                      schema:ImageObject;
-                                                   skos:prefLabel "PNG object (566×376, 8-bit)"@en,
-                                                                  "PNG object (566×376)"@en,
+                                                   skos:prefLabel "PNG object (566×376)"@en,
+                                                                  "PNG object (566×376, 8-bit)"@en,
                                                                   "PNG object (440.65 KiB)"@en.
 <ni:///mh;1QEQAJZavF8MAkzzmsAVw_OhLw?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
                                                                                                                               a schema:MediaObject;
@@ -390,8 +392,8 @@ _:n1 at:pathObject <file:///example_multipage_large.epub>;
                                                    skos:prefLabel "HTML object (1.43 KiB)"@en.
 <ni:///mh;1QEQDA0qD0Zo5zdmS8SkO_BTpQ?ct=text/plain> at:digest <urn:md5:0C0D2A0F4668E737664BC4A43BF053A5>;
                                                     dcterms:extent "1465"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQDA0qD0Zo5zdmS8SkO_BTpQ?ct=text/html>,
-                                                                      <ni:///mh;1QEQDA0qD0Zo5zdmS8SkO_BTpQ?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQDA0qD0Zo5zdmS8SkO_BTpQ?ct=application/xml>,
+                                                                      <ni:///mh;1QEQDA0qD0Zo5zdmS8SkO_BTpQ?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQDA0qD0Zo5zdmS8SkO_BTpQ?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (1.43 KiB)"@en;
@@ -424,8 +426,8 @@ _:n1 at:pathObject <file:///example_multipage_large.epub>;
                                                    skos:prefLabel "HTML object (2.55 KiB)"@en.
 <ni:///mh;1QEQEKS82kfkC4uRAc8nuRxjsw?ct=text/plain> at:digest <urn:md5:10A4BCDA47E40B8B9101CF27B91C63B3>;
                                                     dcterms:extent "2609"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQEKS82kfkC4uRAc8nuRxjsw?ct=application/xml>,
-                                                                      <ni:///mh;1QEQEKS82kfkC4uRAc8nuRxjsw?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQEKS82kfkC4uRAc8nuRxjsw?ct=text/html>,
+                                                                      <ni:///mh;1QEQEKS82kfkC4uRAc8nuRxjsw?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQEKS82kfkC4uRAc8nuRxjsw?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (2.55 KiB)"@en;
@@ -533,8 +535,8 @@ _:n1 at:pathObject <file:///example_multipage_large.epub>;
                                                    skos:prefLabel "HTML object (1.56 KiB)"@en.
 <ni:///mh;1QEQL_eZo2W2OsAH-w31JAP8TQ?ct=text/plain> at:digest <urn:md5:2FF799A365B63AC007FB0DF52403FC4D>;
                                                     dcterms:extent "1601"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQL_eZo2W2OsAH-w31JAP8TQ?ct=application/xml>,
-                                                                      <ni:///mh;1QEQL_eZo2W2OsAH-w31JAP8TQ?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQL_eZo2W2OsAH-w31JAP8TQ?ct=text/html>,
+                                                                      <ni:///mh;1QEQL_eZo2W2OsAH-w31JAP8TQ?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQL_eZo2W2OsAH-w31JAP8TQ?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (1.56 KiB)"@en;
@@ -552,10 +554,10 @@ _:n1 at:pathObject <file:///example_multipage_large.epub>;
                                                    nfo:verticalResolution 300.228;
                                                    nfo:width 403 ;
                                                    a schema:MediaObject,
-                                                     schema:ImageObject,
-                                                     nfo:Image;
-                                                   skos:prefLabel "PNG object (403×141, 8-bit)"@en,
-                                                                  "PNG object (403×141)"@en,
+                                                     nfo:Image,
+                                                     schema:ImageObject;
+                                                   skos:prefLabel "PNG object (403×141)"@en,
+                                                                  "PNG object (403×141, 8-bit)"@en,
                                                                   "PNG object (17.18 KiB)"@en.
 <ni:///mh;1QEQNd-tqQKd3MAnApUWGysBDA?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
                                                                                                                               a schema:MediaObject;
@@ -582,8 +584,8 @@ _:n1 at:pathObject <file:///example_multipage_large.epub>;
                                                    skos:prefLabel "HTML object (799 B)"@en.
 <ni:///mh;1QEQNd-tqQKd3MAnApUWGysBDA?ct=text/plain> at:digest <urn:md5:35DFADA9029DDCC0270295161B2B010C>;
                                                     dcterms:extent "799"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQNd-tqQKd3MAnApUWGysBDA?ct=text/html>,
-                                                                      <ni:///mh;1QEQNd-tqQKd3MAnApUWGysBDA?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQNd-tqQKd3MAnApUWGysBDA?ct=application/xml>,
+                                                                      <ni:///mh;1QEQNd-tqQKd3MAnApUWGysBDA?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQNd-tqQKd3MAnApUWGysBDA?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (799 B)"@en;
@@ -616,8 +618,8 @@ _:n1 at:pathObject <file:///example_multipage_large.epub>;
                                                    skos:prefLabel "HTML object (1.43 KiB)"@en.
 <ni:///mh;1QEQOTqlZArJ-j4KFK5kPs8yfg?ct=text/plain> at:digest <urn:md5:393AA5640AC9FA3E0A14AE643ECF327E>;
                                                     dcterms:extent "1466"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQOTqlZArJ-j4KFK5kPs8yfg?ct=application/xml>,
-                                                                      <ni:///mh;1QEQOTqlZArJ-j4KFK5kPs8yfg?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQOTqlZArJ-j4KFK5kPs8yfg?ct=text/html>,
+                                                                      <ni:///mh;1QEQOTqlZArJ-j4KFK5kPs8yfg?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQOTqlZArJ-j4KFK5kPs8yfg?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (1.43 KiB)"@en;
@@ -650,8 +652,8 @@ _:n1 at:pathObject <file:///example_multipage_large.epub>;
                                                    skos:prefLabel "HTML object (2.52 KiB)"@en.
 <ni:///mh;1QEQPP6lNvbub0OfxzGc40utAA?ct=text/plain> at:digest <urn:md5:3CFEA536F6EE6F439FC7319CE34BAD00>;
                                                     dcterms:extent "2583"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQPP6lNvbub0OfxzGc40utAA?ct=text/html>,
-                                                                      <ni:///mh;1QEQPP6lNvbub0OfxzGc40utAA?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQPP6lNvbub0OfxzGc40utAA?ct=application/xml>,
+                                                                      <ni:///mh;1QEQPP6lNvbub0OfxzGc40utAA?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQPP6lNvbub0OfxzGc40utAA?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (2.52 KiB)"@en;
@@ -684,8 +686,8 @@ _:n1 at:pathObject <file:///example_multipage_large.epub>;
                                                    skos:prefLabel "HTML object (1.86 KiB)"@en.
 <ni:///mh;1QEQPmjyUXzz10NKhe2Ax7df-g?ct=text/plain> at:digest <urn:md5:3E68F2517CF3D7434A85ED80C7B75FFA>;
                                                     dcterms:extent "1903"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQPmjyUXzz10NKhe2Ax7df-g?ct=application/xml>,
-                                                                      <ni:///mh;1QEQPmjyUXzz10NKhe2Ax7df-g?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQPmjyUXzz10NKhe2Ax7df-g?ct=text/html>,
+                                                                      <ni:///mh;1QEQPmjyUXzz10NKhe2Ax7df-g?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQPmjyUXzz10NKhe2Ax7df-g?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (1.86 KiB)"@en;
@@ -827,8 +829,8 @@ _:n1 at:pathObject <file:///example_multipage_large.epub>;
                                                     nfo:verticalResolution 96 ;
                                                     nfo:width 566 ;
                                                     a schema:MediaObject,
-                                                      schema:ImageObject,
-                                                      nfo:Image;
+                                                      nfo:Image,
+                                                      schema:ImageObject;
                                                     skos:prefLabel "JPG object (566×376)"@en,
                                                                    "JPG object (53.3 KiB)"@en.
 <ni:///mh;1QEQbz262jUeDFhgz4dnWlMEkw?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
@@ -858,8 +860,8 @@ _:n1 at:pathObject <file:///example_multipage_large.epub>;
                                                    skos:prefLabel "HTML object (1.41 KiB)"@en.
 <ni:///mh;1QEQbz262jUeDFhgz4dnWlMEkw?ct=text/plain> at:digest <urn:md5:6F3DBADA351E0C5860CF87675A530493>;
                                                     dcterms:extent "1445"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQbz262jUeDFhgz4dnWlMEkw?ct=text/html>,
-                                                                      <ni:///mh;1QEQbz262jUeDFhgz4dnWlMEkw?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQbz262jUeDFhgz4dnWlMEkw?ct=application/xml>,
+                                                                      <ni:///mh;1QEQbz262jUeDFhgz4dnWlMEkw?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQbz262jUeDFhgz4dnWlMEkw?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (1.41 KiB)"@en;
@@ -892,8 +894,8 @@ _:n1 at:pathObject <file:///example_multipage_large.epub>;
                                                    skos:prefLabel "HTML object (2.05 KiB)"@en.
 <ni:///mh;1QEQdDaMMgQrLS_Hw8fMMsJlnA?ct=text/plain> at:digest <urn:md5:74368C32042B2D2FC7C3C7CC32C2659C>;
                                                     dcterms:extent "2103"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQdDaMMgQrLS_Hw8fMMsJlnA?ct=application/xml>,
-                                                                      <ni:///mh;1QEQdDaMMgQrLS_Hw8fMMsJlnA?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQdDaMMgQrLS_Hw8fMMsJlnA?ct=text/html>,
+                                                                      <ni:///mh;1QEQdDaMMgQrLS_Hw8fMMsJlnA?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQdDaMMgQrLS_Hw8fMMsJlnA?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (2.05 KiB)"@en;
@@ -960,8 +962,8 @@ _:n1 at:pathObject <file:///example_multipage_large.epub>;
                                                    skos:prefLabel "HTML object (531 B)"@en.
 <ni:///mh;1QEQg19f4Wgfp_ttyL-Je2apsQ?ct=text/plain> at:digest <urn:md5:835F5FE1681FA7FB6DC8BF897B66A9B1>;
                                                     dcterms:extent "531"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQg19f4Wgfp_ttyL-Je2apsQ?ct=text/html>,
-                                                                      <ni:///mh;1QEQg19f4Wgfp_ttyL-Je2apsQ?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQg19f4Wgfp_ttyL-Je2apsQ?ct=application/xml>,
+                                                                      <ni:///mh;1QEQg19f4Wgfp_ttyL-Je2apsQ?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQg19f4Wgfp_ttyL-Je2apsQ?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (531 B)"@en;
@@ -1028,8 +1030,8 @@ _:n1 at:pathObject <file:///example_multipage_large.epub>;
                                                    skos:prefLabel "HTML object (1.33 KiB)"@en.
 <ni:///mh;1QEQke95vXxGcQ0fvYswxoI1Ug?ct=text/plain> at:digest <urn:md5:91EF79BD7C46710D1FBD8B30C6823552>;
                                                     dcterms:extent "1359"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQke95vXxGcQ0fvYswxoI1Ug?ct=application/xml>,
-                                                                      <ni:///mh;1QEQke95vXxGcQ0fvYswxoI1Ug?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQke95vXxGcQ0fvYswxoI1Ug?ct=text/html>,
+                                                                      <ni:///mh;1QEQke95vXxGcQ0fvYswxoI1Ug?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQke95vXxGcQ0fvYswxoI1Ug?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (1.33 KiB)"@en;
@@ -1096,8 +1098,8 @@ _:n1 at:pathObject <file:///example_multipage_large.epub>;
                                                    skos:prefLabel "HTML object (2.53 KiB)"@en.
 <ni:///mh;1QEQlfgPTaVFDjj90-KXfEORZw?ct=text/plain> at:digest <urn:md5:95F80F4DA5450E38FDD3E2977C439167>;
                                                     dcterms:extent "2594"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQlfgPTaVFDjj90-KXfEORZw?ct=text/html>,
-                                                                      <ni:///mh;1QEQlfgPTaVFDjj90-KXfEORZw?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQlfgPTaVFDjj90-KXfEORZw?ct=application/xml>,
+                                                                      <ni:///mh;1QEQlfgPTaVFDjj90-KXfEORZw?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQlfgPTaVFDjj90-KXfEORZw?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (2.53 KiB)"@en;
@@ -1176,13 +1178,13 @@ _:n1 at:pathObject <file:///example_multipage_large.epub>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQpDSSmfwD_YLAs8rDt4KjYQ?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.04 MiB)"@en.
-<ni:///mh;1QEQpDSSmfwD_YLAs8rDt4KjYQ?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQpDSSmfwD_YLAs8rDt4KjYQ?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQpDSSmfwD_YLAs8rDt4KjYQ?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (1.04 MiB)"@en.
-<ni:///mh;1QEQpDSSmfwD_YLAs8rDt4KjYQ?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQpDSSmfwD_YLAs8rDt4KjYQ?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQpDSSmfwD_YLAs8rDt4KjYQ?ct=application/zip#/META-INF> at:pathObject <file:///META-INF>;
@@ -1673,8 +1675,8 @@ _:n1 at:pathObject <file:///example_multipage_large.epub>;
                                                    skos:prefLabel "HTML object (2.04 KiB)"@en.
 <ni:///mh;1QEQrdVqAf0uPpsz7twCEn3UjA?ct=text/plain> at:digest <urn:md5:ADD56A01FD2E3E9B33EEDC02127DD48C>;
                                                     dcterms:extent "2092"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQrdVqAf0uPpsz7twCEn3UjA?ct=text/html>,
-                                                                      <ni:///mh;1QEQrdVqAf0uPpsz7twCEn3UjA?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQrdVqAf0uPpsz7twCEn3UjA?ct=application/xml>,
+                                                                      <ni:///mh;1QEQrdVqAf0uPpsz7twCEn3UjA?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQrdVqAf0uPpsz7twCEn3UjA?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (2.04 KiB)"@en;
@@ -1707,8 +1709,8 @@ _:n1 at:pathObject <file:///example_multipage_large.epub>;
                                                    skos:prefLabel "HTML object (1.66 KiB)"@en.
 <ni:///mh;1QEQtf48VWWdm-A8GweEr0APhw?ct=text/plain> at:digest <urn:md5:B5FE3C55659D9BE03C1B0784AF400F87>;
                                                     dcterms:extent "1699"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQtf48VWWdm-A8GweEr0APhw?ct=text/html>,
-                                                                      <ni:///mh;1QEQtf48VWWdm-A8GweEr0APhw?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQtf48VWWdm-A8GweEr0APhw?ct=application/xml>,
+                                                                      <ni:///mh;1QEQtf48VWWdm-A8GweEr0APhw?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQtf48VWWdm-A8GweEr0APhw?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (1.66 KiB)"@en;
@@ -1775,8 +1777,8 @@ _:n1 at:pathObject <file:///example_multipage_large.epub>;
                                                    skos:prefLabel "HTML object (686 B)"@en.
 <ni:///mh;1QEQvq9P8h53PCGdrPvRJMd6Fg?ct=text/plain> at:digest <urn:md5:BEAF4FF21E773C219DACFBD124C77A16>;
                                                     dcterms:extent "686"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQvq9P8h53PCGdrPvRJMd6Fg?ct=application/xml>,
-                                                                      <ni:///mh;1QEQvq9P8h53PCGdrPvRJMd6Fg?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQvq9P8h53PCGdrPvRJMd6Fg?ct=text/html>,
+                                                                      <ni:///mh;1QEQvq9P8h53PCGdrPvRJMd6Fg?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQvq9P8h53PCGdrPvRJMd6Fg?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (686 B)"@en;
@@ -1809,8 +1811,8 @@ _:n1 at:pathObject <file:///example_multipage_large.epub>;
                                                    skos:prefLabel "HTML object (1.33 KiB)"@en.
 <ni:///mh;1QEQxU0SlSo7M9WMdS-0GqCnHA?ct=text/plain> at:digest <urn:md5:C54D12952A3B33D58C752FB41AA0A71C>;
                                                     dcterms:extent "1359"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQxU0SlSo7M9WMdS-0GqCnHA?ct=application/xml>,
-                                                                      <ni:///mh;1QEQxU0SlSo7M9WMdS-0GqCnHA?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQxU0SlSo7M9WMdS-0GqCnHA?ct=text/html>,
+                                                                      <ni:///mh;1QEQxU0SlSo7M9WMdS-0GqCnHA?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQxU0SlSo7M9WMdS-0GqCnHA?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (1.33 KiB)"@en;

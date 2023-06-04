@@ -1,10 +1,10 @@
-@base <x.blank:c82049d0-b481-4941-bc72-ede49c20edc2>.
+@base <ni:///mh;1QEQNNifC9aSvcavM5ZdJ5ZfaQ?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -24,13 +24,13 @@ _:n1 at:pathObject <file:///example.epub>;
                                  a cnt:ContentAsText;
                                  skos:prefLabel "text (20 B)"@en;
                                  cnt:characterEncoding "us-ascii";
-                                 cnt:chars "application/epub+zip"^^xsd:string.
+                                 cnt:chars "application/epub+zip".
 <data:,calibre_current_page_bookmark*%7C!%7C%3F%7C*0*%7C!%7C%3F%7C*0.0%0A> dcterms:extent "48"^^dt:byte;
                                                                            a cnt:ContentAsText;
                                                                            skos:prefLabel "text (48 B)"@en;
                                                                            cnt:characterEncoding "us-ascii";
                                                                            cnt:chars """calibre_current_page_bookmark*|!|?|*0*|!|?|*0.0
-"""^^xsd:string.
+""".
 <data:;base64,QHBhZ2UgewogICAgbWFyZ2luLWJvdHRvbTogNXB0OwogICAgbWFyZ2luLXRvcDogNXB0CiAgICB9Cg==> dcterms:extent "58"^^dt:byte;
                                                                                                 a cnt:ContentAsText;
                                                                                                 skos:prefLabel "text (58 B)"@en;
@@ -39,7 +39,8 @@ _:n1 at:pathObject <file:///example.epub>;
     margin-bottom: 5pt;
     margin-top: 5pt
     }
-"""^^xsd:string.
+""".
+<file:///META-INF/> at:pathObject <file:///>.
 <file:///META-INF/calibre_bookmarks.txt> at:pathObject <file:///calibre_bookmarks.txt>.
 <file:///META-INF/container.xml> at:pathObject <file:///container.xml>.
 <file:///calibre_bookmarks.txt> at:extensionObject <https://w3id.org/uri4uri/suffix/txt>.
@@ -82,8 +83,8 @@ _:n1 at:pathObject <file:///example.epub>;
                                                    skos:prefLabel "HTML object (4.14 KiB)"@en.
 <ni:///mh;1QEQ0TUUgJY7IT7545HxOAF2PA?ct=text/plain> at:digest <urn:md5:D1351480963B213EF9E391F13801763C>;
                                                     dcterms:extent "4244"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQ0TUUgJY7IT7545HxOAF2PA?ct=text/html>,
-                                                                      <ni:///mh;1QEQ0TUUgJY7IT7545HxOAF2PA?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ0TUUgJY7IT7545HxOAF2PA?ct=application/xml>,
+                                                                      <ni:///mh;1QEQ0TUUgJY7IT7545HxOAF2PA?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQ0TUUgJY7IT7545HxOAF2PA?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (4.14 KiB)"@en;
@@ -160,13 +161,13 @@ _:n1 at:pathObject <file:///example.epub>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQNNifC9aSvcavM5ZdJ5ZfaQ?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (656.29 KiB)"@en.
-<ni:///mh;1QEQNNifC9aSvcavM5ZdJ5ZfaQ?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQNNifC9aSvcavM5ZdJ5ZfaQ?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQNNifC9aSvcavM5ZdJ5ZfaQ?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (656.29 KiB)"@en.
-<ni:///mh;1QEQNNifC9aSvcavM5ZdJ5ZfaQ?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQNNifC9aSvcavM5ZdJ5ZfaQ?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQNNifC9aSvcavM5ZdJ5ZfaQ?ct=application/zip#/META-INF> at:pathObject <file:///META-INF>;
@@ -343,8 +344,8 @@ _:n1 at:pathObject <file:///example.epub>;
                                                    a schema:MediaObject,
                                                      nfo:Image,
                                                      schema:ImageObject;
-                                                   skos:prefLabel "PNG object (296×103, 8-bit)"@en,
-                                                                  "PNG object (296×103)"@en,
+                                                   skos:prefLabel "PNG object (296×103)"@en,
+                                                                  "PNG object (296×103, 8-bit)"@en,
                                                                   "PNG object (13.58 KiB)"@en.
 <ni:///mh;1QEQSii0w5Spi-xSDaSNxr-rgg?ct=application/prs.implied-document+xml;root=container;ns=%22urn:oasis:names:tc:opendocument:xmlns:container%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=container;ns=%22urn:oasis:names:tc:opendocument:xmlns:container%22>;
                                                                                                                                                       a schema:MediaObject;
@@ -406,8 +407,8 @@ _:n1 at:pathObject <file:///example.epub>;
                                                     nfo:verticalResolution 220 ;
                                                     nfo:width 566 ;
                                                     a schema:MediaObject,
-                                                      nfo:Image,
-                                                      schema:ImageObject;
+                                                      schema:ImageObject,
+                                                      nfo:Image;
                                                     skos:prefLabel "JPG object (566×376)"@en,
                                                                    "JPG object (100.46 KiB)"@en.
 <urn:md5:0006AD83E0C78DCDBFEFDF82AD453D15> a sec:Digest;

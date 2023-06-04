@@ -1,10 +1,10 @@
-@base <x.blank:a00f6f70-2555-4af0-b8e4-38c13bc72329>.
+@base <ni:///mh;1QEQGdpheZS3PiQyQbmAvDMOew?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -35,13 +35,14 @@ _:n1 at:pathObject <file:///STAR.SDD>;
                                                                                                                 skos:prefLabel "binary data (52 B)"@en;
                                                                                                                 cnt:bytes "NAAAAAEANAAAAJEUAgABCABTdGFuZGFyZAsATElCSU1CRURERUQLAExJQklNQkVEREVEAA=="^^xsd:base64Binary.
 <file:///STAR.SDD> at:extensionObject <https://w3id.org/uri4uri/suffix/sdd>.
+<file:///StarBASIC/> at:pathObject <file:///>.
 <file:///StarBASIC/Standard> at:pathObject <file:///Standard>.
 <ni:///mh;1QEQGdpheZS3PiQyQbmAvDMOew?ct=application/octet-stream> at:digest <urn:md5:19DA617994B73E243241B980BC330E7B>;
                                                                   dcterms:extent "583680"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQGdpheZS3PiQyQbmAvDMOew?ct=application/x-ole-storage>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (570 KiB)"@en.
-<ni:///mh;1QEQGdpheZS3PiQyQbmAvDMOew?ct=application/x-ole-storage> at:pathObject <file:///>;
+<ni:///mh;1QEQGdpheZS3PiQyQbmAvDMOew?ct=application/x-ole-storage> at:pathObject <file:///.>;
                                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
                                                                    nie:interpretedAs <ni:///mh;1QEQGdpheZS3PiQyQbmAvDMOew?ct=application/x-ole-storage#/>;
                                                                    nfo:fileCreated "1996-07-04T11:03:46.640000Z"^^xsd:dateTime;
@@ -49,7 +50,7 @@ _:n1 at:pathObject <file:///STAR.SDD>;
                                                                    a schema:MediaObject,
                                                                      nfo:EmbeddedFileDataObject;
                                                                    skos:prefLabel "OLE object (570 KiB)"@en.
-<ni:///mh;1QEQGdpheZS3PiQyQbmAvDMOew?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQGdpheZS3PiQyQbmAvDMOew?ct=application/x-ole-storage#/> at:pathObject <file:///>;
                                                                      a nfo:Folder;
                                                                      skos:prefLabel "/".
 <ni:///mh;1QEQGdpheZS3PiQyQbmAvDMOew?ct=application/x-ole-storage#/%01CompObj> at:pathObject <file:///%01CompObj>;

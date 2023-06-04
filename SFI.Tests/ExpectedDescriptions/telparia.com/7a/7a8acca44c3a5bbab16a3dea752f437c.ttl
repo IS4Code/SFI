@@ -1,12 +1,12 @@
-@base <x.blank:0eebca90-ecf3-4822-8355-69ff98986117>.
+@base <ni:///mh;1QEQc_9Hk9TumYbAQP7tyV7FtA?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xis: <http://www.w3.org/2001/04/infoset#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -22,6 +22,7 @@ _:n1 at:pathObject <file:///example.xlsx>;
      a nfo:FileDataObject.
 <file:///%5BContent_Types%5D.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///.rels> at:extensionObject <https://w3id.org/uri4uri/suffix/rels>.
+<file:///_rels/> at:pathObject <file:///>.
 <file:///_rels/.rels> at:pathObject <file:///.rels>.
 <file:///_rels/drawing1.xml.rels> at:pathObject <file:///drawing1.xml.rels>.
 <file:///_rels/sheet1.xml.rels> at:pathObject <file:///sheet1.xml.rels>.
@@ -29,12 +30,15 @@ _:n1 at:pathObject <file:///example.xlsx>;
 <file:///app.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///calcChain.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///chart1.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///charts/> at:pathObject <file:///>.
 <file:///charts/chart1.xml> at:pathObject <file:///chart1.xml>.
 <file:///core.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///docProps/> at:pathObject <file:///>.
 <file:///docProps/app.xml> at:pathObject <file:///app.xml>.
 <file:///docProps/core.xml> at:pathObject <file:///core.xml>.
 <file:///drawing1.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///drawing1.xml.rels> at:extensionObject <https://w3id.org/uri4uri/suffix/rels>.
+<file:///drawings/> at:pathObject <file:///>.
 <file:///drawings/_rels> at:pathObject <file:///_rels>.
 <file:///drawings/_rels/> at:pathObject <file:///_rels/>.
 <file:///drawings/_rels/drawing1.xml.rels> at:pathObject <file:///_rels/drawing1.xml.rels>.
@@ -42,8 +46,10 @@ _:n1 at:pathObject <file:///example.xlsx>;
 <file:///example.xlsx> at:extensionObject <https://w3id.org/uri4uri/suffix/xlsx>.
 <file:///image1.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
 <file:///image2.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
+<file:///media/> at:pathObject <file:///>.
 <file:///media/image1.png> at:pathObject <file:///image1.png>.
 <file:///media/image2.png> at:pathObject <file:///image2.png>.
+<file:///printerSettings/> at:pathObject <file:///>.
 <file:///printerSettings/printerSettings1.bin> at:pathObject <file:///printerSettings1.bin>.
 <file:///printerSettings1.bin> at:extensionObject <https://w3id.org/uri4uri/suffix/bin>.
 <file:///sharedStrings.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
@@ -52,16 +58,19 @@ _:n1 at:pathObject <file:///example.xlsx>;
 <file:///sheet2.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///sheet3.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///styles.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///theme/> at:pathObject <file:///>.
 <file:///theme/theme1.xml> at:pathObject <file:///theme1.xml>.
 <file:///theme1.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///workbook.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///workbook.xml.rels> at:extensionObject <https://w3id.org/uri4uri/suffix/rels>.
+<file:///worksheets/> at:pathObject <file:///>.
 <file:///worksheets/_rels> at:pathObject <file:///_rels>.
 <file:///worksheets/_rels/> at:pathObject <file:///_rels/>.
 <file:///worksheets/_rels/sheet1.xml.rels> at:pathObject <file:///_rels/sheet1.xml.rels>.
 <file:///worksheets/sheet1.xml> at:pathObject <file:///sheet1.xml>.
 <file:///worksheets/sheet2.xml> at:pathObject <file:///sheet2.xml>.
 <file:///worksheets/sheet3.xml> at:pathObject <file:///sheet3.xml>.
+<file:///xl/> at:pathObject <file:///>.
 <file:///xl/_rels> at:pathObject <file:///_rels>.
 <file:///xl/_rels/> at:pathObject <file:///_rels/>.
 <file:///xl/_rels/workbook.xml.rels> at:pathObject <file:///_rels/workbook.xml.rels>.
@@ -240,11 +249,11 @@ _:n1 at:pathObject <file:///example.xlsx>;
                                                    nfo:verticalResolution 219.9894;
                                                    nfo:width 213 ;
                                                    a schema:MediaObject,
-                                                     nfo:Image,
-                                                     schema:ImageObject;
-                                                   skos:prefLabel "PNG object (213×215)"@en,
-                                                                  "PNG object (9.66 KiB)"@en,
-                                                                  "PNG object (213×215, 8-bit)"@en.
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "PNG object (213×215, 8-bit)"@en,
+                                                                  "PNG object (213×215)"@en,
+                                                                  "PNG object (9.66 KiB)"@en.
 <ni:///mh;1QEQT8z51vjQ9v8rEE2Bgny3dw?ct=application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22>;
                                                                                                                                                                        a schema:MediaObject;
                                                                                                                                                                        skos:prefLabel "RELATIONSHIPS object"@en.
@@ -350,13 +359,13 @@ _:n1 at:pathObject <file:///example.xlsx>;
                                                                                                                    schema:DigitalDocument,
                                                                                                                    nfo:Document;
                                                                                                                  skos:prefLabel "DOCX object"@en.
-<ni:///mh;1QEQc_9Hk9TumYbAQP7tyV7FtA?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQc_9Hk9TumYbAQP7tyV7FtA?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQc_9Hk9TumYbAQP7tyV7FtA?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (38.5 KiB)"@en.
-<ni:///mh;1QEQc_9Hk9TumYbAQP7tyV7FtA?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQc_9Hk9TumYbAQP7tyV7FtA?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQc_9Hk9TumYbAQP7tyV7FtA?ct=application/zip#/%5BContent_Types%5D.xml> at:pathObject <file:///%5BContent_Types%5D.xml>;
@@ -881,8 +890,8 @@ _:n1 at:pathObject <file:///example.xlsx>;
                                                    nfo:verticalResolution 219.9894;
                                                    nfo:width 296 ;
                                                    a schema:MediaObject,
-                                                     schema:ImageObject,
-                                                     nfo:Image;
+                                                     nfo:Image,
+                                                     schema:ImageObject;
                                                    skos:prefLabel "PNG object (296×103, 8-bit)"@en,
                                                                   "PNG object (296×103)"@en,
                                                                   "PNG object (12.97 KiB)"@en.

@@ -1,10 +1,10 @@
-@base <x.blank:7d3f183b-b9ae-4793-ad0c-9233b1576d9b>.
+@base <ni:///mh;1QEQyE0j1OFb1T6Cm_PviCgpbg?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -38,9 +38,11 @@ _:n1 at:pathObject <file:///example.sdw>;
                                                                                                                 a cnt:ContentAsBase64;
                                                                                                                 skos:prefLabel "binary data (52 B)"@en;
                                                                                                                 cnt:bytes "NAAAAAEANAAAAJEUAgABCABTdGFuZGFyZAsATElCSU1CRURERUQLAExJQklNQkVEREVEAA=="^^xsd:base64Binary.
+<file:///EmbeddedPictures/> at:pathObject <file:///>.
 <file:///EmbeddedPictures/Pic0018EDFD> at:pathObject <file:///Pic0018EDFD>.
 <file:///EmbeddedPictures/Pic0018EDFE> at:pathObject <file:///Pic0018EDFE>.
 <file:///EmbeddedPictures/Pic0018EDFF> at:pathObject <file:///Pic0018EDFF>.
+<file:///StarBASIC/> at:pathObject <file:///>.
 <file:///StarBASIC/Standard> at:pathObject <file:///Standard>.
 <file:///example.sdw> at:extensionObject <https://w3id.org/uri4uri/suffix/sdw>.
 <ni:///mh;1QEQ-VK37OUDWDDd4PRJ-TCEVA?ct=application/octet-stream> at:digest <urn:md5:F952B7ECE5035830DDE0F449F9308454>;
@@ -113,13 +115,13 @@ _:n1 at:pathObject <file:///example.sdw>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQyE0j1OFb1T6Cm_PviCgpbg?ct=application/x-ole-storage>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (6.23 MiB)"@en.
-<ni:///mh;1QEQyE0j1OFb1T6Cm_PviCgpbg?ct=application/x-ole-storage> at:pathObject <file:///>;
+<ni:///mh;1QEQyE0j1OFb1T6Cm_PviCgpbg?ct=application/x-ole-storage> at:pathObject <file:///.>;
                                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
                                                                    nie:interpretedAs <ni:///mh;1QEQyE0j1OFb1T6Cm_PviCgpbg?ct=application/x-ole-storage#/>;
                                                                    a schema:MediaObject,
                                                                      nfo:EmbeddedFileDataObject;
                                                                    skos:prefLabel "OLE object (6.23 MiB)"@en.
-<ni:///mh;1QEQyE0j1OFb1T6Cm_PviCgpbg?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQyE0j1OFb1T6Cm_PviCgpbg?ct=application/x-ole-storage#/> at:pathObject <file:///>;
                                                                      a nfo:Folder;
                                                                      skos:prefLabel "/".
 <ni:///mh;1QEQyE0j1OFb1T6Cm_PviCgpbg?ct=application/x-ole-storage#/%01CompObj> at:pathObject <file:///%01CompObj>;

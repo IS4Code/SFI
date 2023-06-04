@@ -1,10 +1,10 @@
-@base <x.blank:7f5e4199-cedf-4e5b-bf76-0c1d83b9a6ba>.
+@base <ni:///mh;1QEQXqmnJUj6zB-wlPCxtlmRrQ?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -35,6 +35,7 @@ _:n1 at:pathObject <file:///JUNGLE.SDD>;
                                                                                                                 skos:prefLabel "binary data (52 B)"@en;
                                                                                                                 cnt:bytes "NAAAAAEANAAAAJEUAgABCABTdGFuZGFyZAsATElCSU1CRURERUQLAExJQklNQkVEREVEAA=="^^xsd:base64Binary.
 <file:///JUNGLE.SDD> at:extensionObject <https://w3id.org/uri4uri/suffix/sdd>.
+<file:///StarBASIC/> at:pathObject <file:///>.
 <file:///StarBASIC/Standard> at:pathObject <file:///Standard>.
 <ni:///mh;1QEQ6mQSnn7SPzNfrqVXQKcpjg?ct=application/octet-stream> at:digest <urn:md5:EA64129E7ED23F335FAEA55740A7298E>;
                                                                   dcterms:extent "18770"^^dt:byte;
@@ -53,7 +54,7 @@ _:n1 at:pathObject <file:///JUNGLE.SDD>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQXqmnJUj6zB-wlPCxtlmRrQ?ct=application/x-ole-storage>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (45 KiB)"@en.
-<ni:///mh;1QEQXqmnJUj6zB-wlPCxtlmRrQ?ct=application/x-ole-storage> at:pathObject <file:///>;
+<ni:///mh;1QEQXqmnJUj6zB-wlPCxtlmRrQ?ct=application/x-ole-storage> at:pathObject <file:///.>;
                                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
                                                                    nie:interpretedAs <ni:///mh;1QEQXqmnJUj6zB-wlPCxtlmRrQ?ct=application/x-ole-storage#/>;
                                                                    nfo:fileCreated "1996-07-04T11:04:00.640000Z"^^xsd:dateTime;
@@ -61,7 +62,7 @@ _:n1 at:pathObject <file:///JUNGLE.SDD>;
                                                                    a schema:MediaObject,
                                                                      nfo:EmbeddedFileDataObject;
                                                                    skos:prefLabel "OLE object (45 KiB)"@en.
-<ni:///mh;1QEQXqmnJUj6zB-wlPCxtlmRrQ?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQXqmnJUj6zB-wlPCxtlmRrQ?ct=application/x-ole-storage#/> at:pathObject <file:///>;
                                                                      a nfo:Folder;
                                                                      skos:prefLabel "/".
 <ni:///mh;1QEQXqmnJUj6zB-wlPCxtlmRrQ?ct=application/x-ole-storage#/%01CompObj> at:pathObject <file:///%01CompObj>;

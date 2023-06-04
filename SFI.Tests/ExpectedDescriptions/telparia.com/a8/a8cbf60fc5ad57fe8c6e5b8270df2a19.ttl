@@ -3,8 +3,8 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -33,19 +33,20 @@ _:n1 at:pathObject <file:///MSPublisherv2.PUB>;
                                               nfo:Image;
                                             skos:prefLabel "ICO object (12 B)"@en.
 <file:///MSPublisherv2.PUB> at:extensionObject <https://w3id.org/uri4uri/suffix/pub>.
+<file:///Objects/> at:pathObject <file:///>.
 <ni:///mh;1QEQ4wN5S6REmB41PwU8qWHxLQ?ct=application/octet-stream> at:digest <urn:md5:E303794BA444981E353F053CA961F12D>;
                                                                   dcterms:extent "24576"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ4wN5S6REmB41PwU8qWHxLQ?ct=application/x-ole-storage>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (24 KiB)"@en.
-<ni:///mh;1QEQ4wN5S6REmB41PwU8qWHxLQ?ct=application/x-ole-storage> at:pathObject <file:///>;
+<ni:///mh;1QEQ4wN5S6REmB41PwU8qWHxLQ?ct=application/x-ole-storage> at:pathObject <file:///.>;
                                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
                                                                    nie:interpretedAs <ni:///mh;1QEQ4wN5S6REmB41PwU8qWHxLQ?ct=application/x-ole-storage#/>;
                                                                    nfo:fileLastModified "1993-06-18T11:16:24.000551Z"^^xsd:dateTime;
                                                                    a schema:MediaObject,
                                                                      nfo:EmbeddedFileDataObject;
                                                                    skos:prefLabel "OLE object (24 KiB)"@en.
-<ni:///mh;1QEQ4wN5S6REmB41PwU8qWHxLQ?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQ4wN5S6REmB41PwU8qWHxLQ?ct=application/x-ole-storage#/> at:pathObject <file:///>;
                                                                      a nfo:Folder;
                                                                      skos:prefLabel "/".
 <ni:///mh;1QEQ4wN5S6REmB41PwU8qWHxLQ?ct=application/x-ole-storage#/%01CompObj> at:pathObject <file:///%01CompObj>;

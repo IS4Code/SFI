@@ -3,8 +3,8 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
@@ -27,6 +27,7 @@ _:n1 at:pathObject <file:///disp135.zip>;
 <file:///COPYING.DJ> at:extensionObject <https://w3id.org/uri4uri/suffix/dj>.
 <file:///COPYING.GNU> at:extensionObject <https://w3id.org/uri4uri/suffix/gnu>.
 <file:///DISPLAY.EXE> at:extensionObject <https://w3id.org/uri4uri/suffix/exe>.
+<file:///DRIVER/> at:pathObject <file:///>.
 <file:///DRIVER/AHEADA.GRD> at:pathObject <file:///AHEADA.GRD>.
 <file:///DRIVER/AHEADB.GRD> at:pathObject <file:///AHEADB.GRD>.
 <file:///DRIVER/ATIULTRA.GRN> at:pathObject <file:///ATIULTRA.GRN>.
@@ -192,13 +193,13 @@ _:n1 at:pathObject <file:///disp135.zip>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (258.71 KiB)"@en.
-<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (258.71 KiB)"@en.
-<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQlhimNLnTy3Y44O1g7YIFSA?ct=application/zip#/CHANGE> at:pathObject <file:///CHANGE>;

@@ -3,10 +3,10 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix sec: <https://w3id.org/security#>.
@@ -18,6 +18,7 @@ _:n1 at:pathObject <file:///cablinux-1.0.2.cab>;
      nfo:fileName "cablinux-1.0.2.cab";
      nfo:fileSize 79333 ;
      a nfo:FileDataObject.
+<file:///> at:pathObject <file:///>.
 <file:///cabdata.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
 <file:///cabdata.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
 <file:///cabfile.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
@@ -29,7 +30,8 @@ _:n1 at:pathObject <file:///cablinux-1.0.2.cab>;
 <file:///cablinux-1.0.2> at:extensionObject <https://w3id.org/uri4uri/suffix/2>;
                          at:pathObject <file:///cablinux-1.0.2>.
 <file:///cablinux-1.0.2.cab> at:extensionObject <https://w3id.org/uri4uri/suffix/cab>.
-<file:///cablinux-1.0.2/> at:pathObject <file:///cablinux-1.0.2/>.
+<file:///cablinux-1.0.2/> at:pathObject <file:///cablinux-1.0.2/>,
+                                        <file:///>.
 <file:///cablinux-1.0.2/Makefile> at:pathObject <file:///cablinux-1.0.2/Makefile>,
                                                 <file:///Makefile>.
 <file:///cablinux-1.0.2/README> at:pathObject <file:///cablinux-1.0.2/README>,

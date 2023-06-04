@@ -1,10 +1,10 @@
-@base <x.blank:b5ed836d-a368-4a0f-9322-c64693582ef4>.
+@base <ni:///mh;1QEQ7FI-B8Fdh1qCtzDhiFzHVg?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -24,12 +24,12 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                  a cnt:ContentAsText;
                                  skos:prefLabel "text (20 B)"@en;
                                  cnt:characterEncoding "us-ascii";
-                                 cnt:chars "application/epub+zip"^^xsd:string.
+                                 cnt:chars "application/epub+zip".
 <data:;base64,aDEuZW4sIGgyLmVuLCBoMy5lbiwgcC5lbiwgZHQuZW4sIGRkLmVuIHtkaXNwbGF5OiBub25lO30=> dcterms:extent "56"^^dt:byte;
                                                                                             a cnt:ContentAsText;
                                                                                             skos:prefLabel "text (56 B)"@en;
                                                                                             cnt:characterEncoding "us-ascii";
-                                                                                            cnt:chars "h1.en, h2.en, h3.en, p.en, dt.en, dd.en {display: none;}"^^xsd:string.
+                                                                                            cnt:chars "h1.en, h2.en, h3.en, p.en, dt.en, dd.en {display: none;}".
 <file:///01.jpg> at:extensionObject <https://w3id.org/uri4uri/suffix/jpg>.
 <file:///02.jpg> at:extensionObject <https://w3id.org/uri4uri/suffix/jpg>.
 <file:///03.jpg> at:extensionObject <https://w3id.org/uri4uri/suffix/jpg>.
@@ -43,7 +43,9 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
 <file:///11.jpg> at:extensionObject <https://w3id.org/uri4uri/suffix/jpg>.
 <file:///12.jpg> at:extensionObject <https://w3id.org/uri4uri/suffix/jpg>.
 <file:///AboutThisDocument.xhtml> at:extensionObject <https://w3id.org/uri4uri/suffix/xhtml>.
+<file:///META-INF/> at:pathObject <file:///>.
 <file:///META-INF/container.xml> at:pathObject <file:///container.xml>.
+<file:///OPS/> at:pathObject <file:///>.
 <file:///OPS/css> at:pathObject <file:///css>.
 <file:///OPS/css/> at:pathObject <file:///css/>.
 <file:///OPS/css/default.css> at:pathObject <file:///css/default.css>.
@@ -82,12 +84,14 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
 <file:///OPS/xhtml/toc.ncx> at:pathObject <file:///xhtml/toc.ncx>.
 <file:///OPS/xhtml/toc.xhtml> at:pathObject <file:///xhtml/toc.xhtml>.
 <file:///container.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///css/> at:pathObject <file:///>.
 <file:///css/default.css> at:pathObject <file:///default.css>.
 <file:///css/en.css> at:pathObject <file:///en.css>.
 <file:///css/ja-jp.css> at:pathObject <file:///ja-jp.css>.
 <file:///default.css> at:extensionObject <https://w3id.org/uri4uri/suffix/css>.
 <file:///en.css> at:extensionObject <https://w3id.org/uri4uri/suffix/css>.
 <file:///haruko-html-jpeg.epub> at:extensionObject <https://w3id.org/uri4uri/suffix/epub>.
+<file:///images/> at:pathObject <file:///>.
 <file:///images/01.jpg> at:pathObject <file:///01.jpg>.
 <file:///images/02.jpg> at:pathObject <file:///02.jpg>.
 <file:///images/03.jpg> at:pathObject <file:///03.jpg>.
@@ -116,6 +120,7 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
 <file:///package.opf> at:extensionObject <https://w3id.org/uri4uri/suffix/opf>.
 <file:///toc.ncx> at:extensionObject <https://w3id.org/uri4uri/suffix/ncx>.
 <file:///toc.xhtml> at:extensionObject <https://w3id.org/uri4uri/suffix/xhtml>.
+<file:///xhtml/> at:pathObject <file:///>.
 <file:///xhtml/AboutThisDocument.xhtml> at:pathObject <file:///AboutThisDocument.xhtml>.
 <file:///xhtml/p01.xhtml> at:pathObject <file:///p01.xhtml>.
 <file:///xhtml/p02.xhtml> at:pathObject <file:///p02.xhtml>.
@@ -174,8 +179,8 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                    skos:prefLabel "HTML object (1.87 KiB)"@en.
 <ni:///mh;1QEQ148B1mqBSLWBJImJtIq22A?ct=text/plain> at:digest <urn:md5:D78F01D66A8148B581248989B48AB6D8>;
                                                     dcterms:extent "1918"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQ148B1mqBSLWBJImJtIq22A?ct=application/xml>,
-                                                                      <ni:///mh;1QEQ148B1mqBSLWBJImJtIq22A?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ148B1mqBSLWBJImJtIq22A?ct=text/html>,
+                                                                      <ni:///mh;1QEQ148B1mqBSLWBJImJtIq22A?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQ148B1mqBSLWBJImJtIq22A?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (1.87 KiB)"@en;
@@ -213,8 +218,8 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                    skos:prefLabel "HTML object (728 B)"@en.
 <ni:///mh;1QEQ2NAlWNxr0_0p2dR3ek6YgA?ct=text/plain> at:digest <urn:md5:D8D02558DC6BD3FD29D9D4777A4E9880>;
                                                     dcterms:extent "728"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQ2NAlWNxr0_0p2dR3ek6YgA?ct=text/html>,
-                                                                      <ni:///mh;1QEQ2NAlWNxr0_0p2dR3ek6YgA?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQ2NAlWNxr0_0p2dR3ek6YgA?ct=application/xml>,
+                                                                      <ni:///mh;1QEQ2NAlWNxr0_0p2dR3ek6YgA?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQ2NAlWNxr0_0p2dR3ek6YgA?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (728 B)"@en;
@@ -233,8 +238,8 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                     nfo:verticalResolution 600 ;
                                                     nfo:width 600 ;
                                                     a schema:MediaObject,
-                                                      nfo:Image,
-                                                      schema:ImageObject;
+                                                      schema:ImageObject,
+                                                      nfo:Image;
                                                     skos:prefLabel "JPG object (600×837)"@en,
                                                                    "JPG object (204.06 KiB)"@en.
 <ni:///mh;1QEQ6jF5axjNdnx_rHB47_LxPg?ct=application/octet-stream> at:digest <urn:md5:EA31796B18CD767C7FAC7078EFF2F13E>;
@@ -259,13 +264,13 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ7FI-B8Fdh1qCtzDhiFzHVg?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (2.14 MiB)"@en.
-<ni:///mh;1QEQ7FI-B8Fdh1qCtzDhiFzHVg?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQ7FI-B8Fdh1qCtzDhiFzHVg?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQ7FI-B8Fdh1qCtzDhiFzHVg?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (2.14 MiB)"@en.
-<ni:///mh;1QEQ7FI-B8Fdh1qCtzDhiFzHVg?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQ7FI-B8Fdh1qCtzDhiFzHVg?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQ7FI-B8Fdh1qCtzDhiFzHVg?ct=application/zip#/META-INF> at:pathObject <file:///META-INF>;
@@ -709,8 +714,8 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                    skos:prefLabel "HTML object (653 B)"@en.
 <ni:///mh;1QEQGsCe1LNcFrhZl0RE9QASbw?ct=text/plain> at:digest <urn:md5:1AC09ED4B35C16B859974444F500126F>;
                                                     dcterms:extent "653"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQGsCe1LNcFrhZl0RE9QASbw?ct=application/xml>,
-                                                                      <ni:///mh;1QEQGsCe1LNcFrhZl0RE9QASbw?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQGsCe1LNcFrhZl0RE9QASbw?ct=text/html>,
+                                                                      <ni:///mh;1QEQGsCe1LNcFrhZl0RE9QASbw?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQGsCe1LNcFrhZl0RE9QASbw?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (653 B)"@en;
@@ -758,8 +763,8 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                    skos:prefLabel "HTML object (683 B)"@en.
 <ni:///mh;1QEQHqEivzScaMBmZ1S3D8yBcw?ct=text/plain> at:digest <urn:md5:1EA122BF349C68C0666754B70FCC8173>;
                                                     dcterms:extent "683"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQHqEivzScaMBmZ1S3D8yBcw?ct=application/xml>,
-                                                                      <ni:///mh;1QEQHqEivzScaMBmZ1S3D8yBcw?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQHqEivzScaMBmZ1S3D8yBcw?ct=text/html>,
+                                                                      <ni:///mh;1QEQHqEivzScaMBmZ1S3D8yBcw?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQHqEivzScaMBmZ1S3D8yBcw?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (683 B)"@en;
@@ -790,8 +795,8 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                    skos:prefLabel "HTML object (656 B)"@en.
 <ni:///mh;1QEQHzHdkSZE_ktBSNVjfF2Fiw?ct=text/plain> at:digest <urn:md5:1F31DD912644FE4B4148D5637C5D858B>;
                                                     dcterms:extent "656"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQHzHdkSZE_ktBSNVjfF2Fiw?ct=application/xml>,
-                                                                      <ni:///mh;1QEQHzHdkSZE_ktBSNVjfF2Fiw?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQHzHdkSZE_ktBSNVjfF2Fiw?ct=text/html>,
+                                                                      <ni:///mh;1QEQHzHdkSZE_ktBSNVjfF2Fiw?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQHzHdkSZE_ktBSNVjfF2Fiw?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (656 B)"@en;
@@ -822,8 +827,8 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                    skos:prefLabel "HTML object (563 B)"@en.
 <ni:///mh;1QEQJfHynNc0e1kRz41nZAIjkQ?ct=text/plain> at:digest <urn:md5:25F1F29CD7347B5911CF8D6764022391>;
                                                     dcterms:extent "563"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQJfHynNc0e1kRz41nZAIjkQ?ct=application/xml>,
-                                                                      <ni:///mh;1QEQJfHynNc0e1kRz41nZAIjkQ?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQJfHynNc0e1kRz41nZAIjkQ?ct=text/html>,
+                                                                      <ni:///mh;1QEQJfHynNc0e1kRz41nZAIjkQ?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQJfHynNc0e1kRz41nZAIjkQ?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (563 B)"@en;
@@ -871,8 +876,8 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                    skos:prefLabel "HTML object (657 B)"@en.
 <ni:///mh;1QEQOiT31K3fzrURxVEiC5DCGg?ct=text/plain> at:digest <urn:md5:3A24F7D4ADDFCEB511C551220B90C21A>;
                                                     dcterms:extent "657"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQOiT31K3fzrURxVEiC5DCGg?ct=application/xml>,
-                                                                      <ni:///mh;1QEQOiT31K3fzrURxVEiC5DCGg?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQOiT31K3fzrURxVEiC5DCGg?ct=text/html>,
+                                                                      <ni:///mh;1QEQOiT31K3fzrURxVEiC5DCGg?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQOiT31K3fzrURxVEiC5DCGg?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (657 B)"@en;
@@ -920,8 +925,8 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                    skos:prefLabel "HTML object (476 B)"@en.
 <ni:///mh;1QEQR0NzKHSVWlzKln6o5Kd3TQ?ct=text/plain> at:digest <urn:md5:4743732874955A5CCA967EA8E4A7774D>;
                                                     dcterms:extent "476"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQR0NzKHSVWlzKln6o5Kd3TQ?ct=application/xml>,
-                                                                      <ni:///mh;1QEQR0NzKHSVWlzKln6o5Kd3TQ?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQR0NzKHSVWlzKln6o5Kd3TQ?ct=text/html>,
+                                                                      <ni:///mh;1QEQR0NzKHSVWlzKln6o5Kd3TQ?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQR0NzKHSVWlzKln6o5Kd3TQ?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (476 B)"@en;
@@ -952,8 +957,8 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                    skos:prefLabel "HTML object (875 B)"@en.
 <ni:///mh;1QEQTU788ipjN1lh0SpaQ-mhgA?ct=text/plain> at:digest <urn:md5:4D4EFCF22A63375961D12A5A43E9A180>;
                                                     dcterms:extent "875"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQTU788ipjN1lh0SpaQ-mhgA?ct=application/xml>,
-                                                                      <ni:///mh;1QEQTU788ipjN1lh0SpaQ-mhgA?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQTU788ipjN1lh0SpaQ-mhgA?ct=text/html>,
+                                                                      <ni:///mh;1QEQTU788ipjN1lh0SpaQ-mhgA?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQTU788ipjN1lh0SpaQ-mhgA?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (875 B)"@en;
@@ -972,8 +977,8 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                     nfo:verticalResolution 600 ;
                                                     nfo:width 600 ;
                                                     a schema:MediaObject,
-                                                      nfo:Image,
-                                                      schema:ImageObject;
+                                                      schema:ImageObject,
+                                                      nfo:Image;
                                                     skos:prefLabel "JPG object (600×837)"@en,
                                                                    "JPG object (171.57 KiB)"@en.
 <ni:///mh;1QEQYze3knAJhPzdEJHWneS3Og?ct=application/octet-stream> at:digest <urn:md5:6337B792700984FCDD1091D69DE4B73A>;
@@ -1041,8 +1046,8 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                    skos:prefLabel "HTML object (573 B)"@en.
 <ni:///mh;1QEQajKP07CQkJRk9KG8VIcYKQ?ct=text/plain> at:digest <urn:md5:6A328FD3B090909464F4A1BC54871829>;
                                                     dcterms:extent "573"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQajKP07CQkJRk9KG8VIcYKQ?ct=application/xml>,
-                                                                      <ni:///mh;1QEQajKP07CQkJRk9KG8VIcYKQ?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQajKP07CQkJRk9KG8VIcYKQ?ct=text/html>,
+                                                                      <ni:///mh;1QEQajKP07CQkJRk9KG8VIcYKQ?ct=application/xml>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (573 B)"@en;
                                                     cnt:characterEncoding "utf-8".
@@ -1105,8 +1110,8 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                    skos:prefLabel "HTML object (740 B)"@en.
 <ni:///mh;1QEQngDFJFDtII9ZJYbr3u57ig?ct=text/plain> at:digest <urn:md5:9E00C52450ED208F592586EBDEEE7B8A>;
                                                     dcterms:extent "740"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQngDFJFDtII9ZJYbr3u57ig?ct=application/xml>,
-                                                                      <ni:///mh;1QEQngDFJFDtII9ZJYbr3u57ig?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQngDFJFDtII9ZJYbr3u57ig?ct=text/html>,
+                                                                      <ni:///mh;1QEQngDFJFDtII9ZJYbr3u57ig?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQngDFJFDtII9ZJYbr3u57ig?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (740 B)"@en;
@@ -1149,8 +1154,8 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                    skos:prefLabel "HTML object (2.45 KiB)"@en.
 <ni:///mh;1QEQqkJ7CeRCR_HR0eFu4JoK1Q?ct=text/plain> at:digest <urn:md5:AA427B09E44247F1D1D1E16EE09A0AD5>;
                                                     dcterms:extent "2506"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQqkJ7CeRCR_HR0eFu4JoK1Q?ct=application/xml>,
-                                                                      <ni:///mh;1QEQqkJ7CeRCR_HR0eFu4JoK1Q?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQqkJ7CeRCR_HR0eFu4JoK1Q?ct=text/html>,
+                                                                      <ni:///mh;1QEQqkJ7CeRCR_HR0eFu4JoK1Q?ct=application/xml>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (2.45 KiB)"@en;
                                                     cnt:characterEncoding "utf-8".
@@ -1228,8 +1233,8 @@ _:n1 at:pathObject <file:///haruko-html-jpeg.epub>;
                                                    skos:prefLabel "HTML object (668 B)"@en.
 <ni:///mh;1QEQwhScIRI3rN7fagl0yOUqkg?ct=text/plain> at:digest <urn:md5:C2149C211237ACDEDF6A0974C8E52A92>;
                                                     dcterms:extent "668"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQwhScIRI3rN7fagl0yOUqkg?ct=text/html>,
-                                                                      <ni:///mh;1QEQwhScIRI3rN7fagl0yOUqkg?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQwhScIRI3rN7fagl0yOUqkg?ct=application/xml>,
+                                                                      <ni:///mh;1QEQwhScIRI3rN7fagl0yOUqkg?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQwhScIRI3rN7fagl0yOUqkg?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (668 B)"@en;

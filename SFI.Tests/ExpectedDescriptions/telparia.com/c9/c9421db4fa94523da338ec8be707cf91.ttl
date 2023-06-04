@@ -1,10 +1,10 @@
-@base <x.blank:85600ee8-f028-4b45-aa01-8722a4747c6a>.
+@base <ni:///mh;1QEQpjgTikQIZmU6Bzd1Az8UZA?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
@@ -27,22 +27,22 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
                                           a cnt:ContentAsText;
                                           skos:prefLabel "text (4 B)"@en;
                                           cnt:characterEncoding "windows-1252";
-                                          cnt:chars "¶␃µ␃"^^xsd:string.
+                                          cnt:chars "¶␃µ␃".
 <data:;charset=windows-1252,%D2%06%00%00> dcterms:extent "4"^^dt:byte;
                                           a cnt:ContentAsText;
                                           skos:prefLabel "text (4 B)"@en;
                                           cnt:characterEncoding "windows-1252";
-                                          cnt:chars "Ò␆␀␀"^^xsd:string.
+                                          cnt:chars "Ò␆␀␀".
 <data:;charset=windows-1252;base64,AYA1gLUDwA+/DwAA> dcterms:extent "12"^^dt:byte;
                                                      a cnt:ContentAsText;
                                                      skos:prefLabel "text (12 B)"@en;
                                                      cnt:characterEncoding "windows-1252";
-                                                     cnt:chars "␁€5€µ␃À␏¿␏␀␀"^^xsd:string.
+                                                     cnt:chars "␁€5€µ␃À␏¿␏␀␀".
 <data:;charset=windows-1252;base64,dgymD6gMuQ8=> dcterms:extent "8"^^dt:byte;
                                                  a cnt:ContentAsText;
                                                  skos:prefLabel "text (8 B)"@en;
                                                  cnt:characterEncoding "windows-1252";
-                                                 cnt:chars "v␌¦␏¨␌¹␏"^^xsd:string.
+                                                 cnt:chars "v␌¦␏¨␌¹␏".
 <data:application/octet-stream,%00%00%00%00> dcterms:extent "4"^^dt:byte;
                                              a cnt:ContentAsBase64;
                                              skos:prefLabel "binary data (4 B)"@en;
@@ -433,6 +433,7 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
 <file:///Global_VC_CRT_f0.51D569E0_8A28_11D2_B962_006097C4DE24> at:extensionObject <https://w3id.org/uri4uri/suffix/51d569e0_8a28_11d2_b962_006097c4de24>.
 <file:///Global_VC_MFC42ANSICore_f0.51D569E2_8A28_11D2_B962_006097C4DE24> at:extensionObject <https://w3id.org/uri4uri/suffix/51d569e2_8a28_11d2_b962_006097c4de24>.
 <file:///The%20Axe%20Effect.msi> at:extensionObject <https://w3id.org/uri4uri/suffix/msi>.
+<file:///articles/> at:pathObject <file:///>.
 <file:///articles/sess1.art> at:pathObject <file:///sess1.art>.
 <file:///articles/sess10.art> at:pathObject <file:///sess10.art>.
 <file:///articles/sess11.art> at:pathObject <file:///sess11.art>.
@@ -2004,8 +2005,8 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
                                                     a schema:MediaObject,
                                                       schema:ImageObject,
                                                       nfo:Image;
-                                                    skos:prefLabel "JPG object (499×58)"@en,
-                                                                   "JPG object (1.01 KiB)"@en.
+                                                    skos:prefLabel "JPG object (1.01 KiB)"@en,
+                                                                   "JPG object (499×58)"@en.
 <ni:///mh;1QEQJC91xKXXGVuj5vs8YBVytg?ct=application/octet-stream> at:digest <urn:md5:242F75C4A5D7195BA3E6FB3C601572B6>;
                                                                   dcterms:extent "1933923"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -2156,8 +2157,8 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (766 B)"@en,
-                                                                     "ICO object (32×32)"@en.
+                                                      skos:prefLabel "ICO object (32×32)"@en,
+                                                                     "ICO object (766 B)"@en.
 <ni:///mh;1QEQNKd6RAnbrcWwHbiJgvSoXg?ct=application/octet-stream> at:digest <urn:md5:34A77A4409DBADC5B01DB88982F4A85E>;
                                                                   dcterms:extent "16132"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -2190,8 +2191,8 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
                                                         a schema:MediaObject,
                                                           schema:AudioObject,
                                                           nfo:Audio;
-                                                        skos:prefLabel "WAV object (45.81 KiB)"@en,
-                                                                       "WAV object (16-bit, 11025 Hz, 1 channel)"@en.
+                                                        skos:prefLabel "WAV object (16-bit, 11025 Hz, 1 channel)"@en,
+                                                                       "WAV object (45.81 KiB)"@en.
 <ni:///mh;1QEQNXuTh5hhvx1EVbb5cCYQ9Q?ct=application/octet-stream> at:digest <urn:md5:357B93879861BF1D4455B6F9702610F5>;
                                                                   dcterms:extent "1279692"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -2848,8 +2849,8 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (192×16)"@en,
-                                                                  "BMP object (1.28 KiB)"@en.
+                                                   skos:prefLabel "BMP object (1.28 KiB)"@en,
+                                                                  "BMP object (192×16)"@en.
 <ni:///mh;1QEQRe-H3rKVSSGMVwCoxsefOw?ct=text/plain> at:digest <urn:md5:45EF87DEB29549218C5700A8C6C79F3B>;
                                                     dcterms:extent "204"^^dt:byte;
                                                     nie:hasPart <ni:///mh;1QEQRe-H3rKVSSGMVwCoxsefOw?ct=text/plain#line=,1>;
@@ -3180,8 +3181,8 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (240×16)"@en,
-                                                                  "BMP object (1.77 KiB)"@en.
+                                                   skos:prefLabel "BMP object (1.77 KiB)"@en,
+                                                                  "BMP object (240×16)"@en.
 <ni:///mh;1QEQYFIiC0EiAPz-LI53zOfEKg?ct=application/octet-stream> at:digest <urn:md5:6052220B412200FCFE2C8E77CCE7C42A>;
                                                                   dcterms:extent "766"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQYFIiC0EiAPz-LI53zOfEKg?ct=image/x-icon>;
@@ -3283,8 +3284,8 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (32×32)"@en,
-                                                                     "ICO object (766 B)"@en.
+                                                      skos:prefLabel "ICO object (766 B)"@en,
+                                                                     "ICO object (32×32)"@en.
 <ni:///mh;1QEQ_5BLwNjEygYuOJSqNyvpGA?ct=application/octet-stream> at:digest <urn:md5:FF904BC0D8C4CA062E3894AA372BE918>;
                                                                   dcterms:extent "318"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ_5BLwNjEygYuOJSqNyvpGA?ct=image/bmp>;
@@ -3319,8 +3320,8 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (232 B)"@en,
-                                                                  "BMP object (16×16)"@en.
+                                                   skos:prefLabel "BMP object (16×16)"@en,
+                                                                  "BMP object (232 B)"@en.
 <ni:///mh;1QEQ_FQpkE4U3uqnO9Ik7gZeUg?ct=text/plain> at:digest <urn:md5:FC5429904E14DEEAA73BD224EE065E52>;
                                                     dcterms:extent "1738"^^dt:byte;
                                                     nie:hasPart <ni:///mh;1QEQ_FQpkE4U3uqnO9Ik7gZeUg?ct=text/plain#line=,1>;
@@ -4514,14 +4515,14 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQfw4XDAFcxNBeYxeSSFpUcg?ct=application/x-ole-storage>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (110 KiB)"@en.
-<ni:///mh;1QEQfw4XDAFcxNBeYxeSSFpUcg?ct=application/x-ole-storage> at:pathObject <file:///>;
+<ni:///mh;1QEQfw4XDAFcxNBeYxeSSFpUcg?ct=application/x-ole-storage> at:pathObject <file:///.>;
                                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
                                                                    nie:interpretedAs <ni:///mh;1QEQfw4XDAFcxNBeYxeSSFpUcg?ct=application/x-ole-storage#/>;
                                                                    nfo:fileLastModified "2001-07-24T08:57:17.813000Z"^^xsd:dateTime;
                                                                    a schema:MediaObject,
                                                                      nfo:EmbeddedFileDataObject;
                                                                    skos:prefLabel "OLE object (110 KiB)"@en.
-<ni:///mh;1QEQfw4XDAFcxNBeYxeSSFpUcg?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQfw4XDAFcxNBeYxeSSFpUcg?ct=application/x-ole-storage#/> at:pathObject <file:///>;
                                                                      a nfo:Folder;
                                                                      skos:prefLabel "/".
 <ni:///mh;1QEQfw4XDAFcxNBeYxeSSFpUcg?ct=application/x-ole-storage#/SRMODEINFO> at:pathObject <file:///SRMODEINFO>;
@@ -4703,8 +4704,8 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (16×16)"@en,
-                                                                     "ICO object (318 B)"@en.
+                                                      skos:prefLabel "ICO object (318 B)"@en,
+                                                                     "ICO object (16×16)"@en.
 <ni:///mh;1QEQgARGvIhLruw-46DF53X-iw?ct=application/octet-stream> at:digest <urn:md5:800446BC884BAEEC3EE3A0C5E775FE8B>;
                                                                   dcterms:extent "246"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQgARGvIhLruw-46DF53X-iw?ct=image/bmp>;
@@ -5021,8 +5022,8 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (20×12)"@en,
-                                                                  "BMP object (248 B)"@en.
+                                                   skos:prefLabel "BMP object (248 B)"@en,
+                                                                  "BMP object (20×12)"@en.
 <ni:///mh;1QEQlwyveTUjzPwo7SqWCZr_pw?ct=text/plain> at:digest <urn:md5:970CAF793523CCFC28ED2A96099AFFA7>;
                                                     dcterms:extent "624"^^dt:byte;
                                                     nie:hasPart <ni:///mh;1QEQlwyveTUjzPwo7SqWCZr_pw?ct=text/plain#line=,1>;
@@ -5108,8 +5109,8 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (32×32)"@en,
-                                                                     "ICO object (766 B)"@en.
+                                                      skos:prefLabel "ICO object (766 B)"@en,
+                                                                     "ICO object (32×32)"@en.
 <ni:///mh;1QEQnQq7_xYWvRAMBNS5fK2ffw?ct=application/octet-stream> at:digest <urn:md5:9D0ABBFF1616BD100C04D4B97CAD9F7F>;
                                                                   dcterms:extent "4046960"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -5205,14 +5206,14 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQpjgTikQIZmU6Bzd1Az8UZA?ct=application/x-ole-storage>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (42.93 MiB)"@en.
-<ni:///mh;1QEQpjgTikQIZmU6Bzd1Az8UZA?ct=application/x-ole-storage> at:pathObject <file:///>;
+<ni:///mh;1QEQpjgTikQIZmU6Bzd1Az8UZA?ct=application/x-ole-storage> at:pathObject <file:///.>;
                                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
                                                                    nie:interpretedAs <ni:///mh;1QEQpjgTikQIZmU6Bzd1Az8UZA?ct=application/x-ole-storage#/>;
                                                                    nfo:fileLastModified "2005-01-25T20:50:16.119000Z"^^xsd:dateTime;
                                                                    a schema:MediaObject,
                                                                      nfo:EmbeddedFileDataObject;
                                                                    skos:prefLabel "OLE object (42.93 MiB)"@en.
-<ni:///mh;1QEQpjgTikQIZmU6Bzd1Az8UZA?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQpjgTikQIZmU6Bzd1Az8UZA?ct=application/x-ole-storage#/> at:pathObject <file:///>;
                                                                      a nfo:Folder;
                                                                      skos:prefLabel "/".
 <ni:///mh;1QEQpjgTikQIZmU6Bzd1Az8UZA?ct=application/x-ole-storage#/%05SummaryInformation> at:pathObject <file:///%05SummaryInformation>;
@@ -5252,8 +5253,8 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (2.2 KiB)"@en,
-                                                                  "BMP object (288×24)"@en.
+                                                   skos:prefLabel "BMP object (288×24)"@en,
+                                                                  "BMP object (2.2 KiB)"@en.
 <ni:///mh;1QEQqJnE2xL1-a6GnlhVRsU98A?ct=text/plain> at:digest <urn:md5:A899C4DB12F5F9AE869E585546C53DF0>;
                                                     dcterms:extent "745"^^dt:byte;
                                                     nie:hasPart <ni:///mh;1QEQqJnE2xL1-a6GnlhVRsU98A?ct=text/plain#line=,1>;
@@ -5458,15 +5459,15 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
                                                                   skos:prefLabel "binary data (372.16 KiB)"@en.
 <ni:///mh;1QEQtzgJqRbm18GuVvGCouj34g?ct=application/octet-stream> at:digest <urn:md5:B73809A916E6D7C1AE56F182A2E8F7E2>;
                                                                   dcterms:extent "140488"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQtzgJqRbm18GuVvGCouj34g?ct=application/vnd.microsoft.portable-executable>,
-                                                                                    [a schema:MediaObject ; 
+                                                                  dcterms:hasFormat [a schema:MediaObject ; 
                                                                                      a cert:X509Certificate ; 
                                                                                      at:digest <urn:sha1:GFNCC7Y3UN68R9E6CBLX3DCHFKD5V4P5> ; 
                                                                                      dcterms:subject """OU=Microsoft Corporation, CN=Microsoft Corporation, L=Redmond, S=Washington, C=US, OU=Digital ID Class 3 - Microsoft Software Validation v2, OU=\"www.verisign.com/repository/RPA Incorp. by Ref.,LIAB.LTD(c)98\", OU=VeriSign Commercial Software Publishers CA, O=\"VeriSign, Inc.\", L=Internet""" ; 
                                                                                      dcterms:creator """OU=VeriSign Commercial Software Publishers CA, O=\"VeriSign, Inc.\", L=Internet""" ; 
                                                                                      dcterms:created "2000-04-04T02:00:00.000000+02:00"^^xsd:dateTime ; 
                                                                                      sec:expiration "2001-04-18T01:59:59.000000+02:00"^^xsd:dateTime ; 
-                                                                                     schema:serialNumber "75F28EF8A8FBEA6D11529714954B655C"];
+                                                                                     schema:serialNumber "75F28EF8A8FBEA6D11529714954B655C"],
+                                                                                    <ni:///mh;1QEQtzgJqRbm18GuVvGCouj34g?ct=application/vnd.microsoft.portable-executable>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (137.2 KiB)"@en.
 <ni:///mh;1QEQtzgJqRbm18GuVvGCouj34g?ct=application/vnd.microsoft.portable-executable> at:digest <urn:md5:483B6E630118CFB6B979FE403FCEF757>;
@@ -5899,8 +5900,8 @@ _:n1 at:pathObject <file:///The%20Axe%20Effect.msi>;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (16×16)"@en,
-                                                                     "ICO object (318 B)"@en.
+                                                      skos:prefLabel "ICO object (318 B)"@en,
+                                                                     "ICO object (16×16)"@en.
 <ni:///mh;1QEQwlWWkjL_T-sNs3_2MuFYCA?ct=application/octet-stream> at:digest <urn:md5:C255969232FF4FEB0DB37FF632E15808>;
                                                                   dcterms:extent "132299"^^dt:byte;
                                                                   a cnt:ContentAsBase64;

@@ -1,10 +1,10 @@
-@base <x.blank:225775cc-5978-47f1-9fc3-3eb2e13e28f7>.
+@base <ni:///mh;1QEQMsKB4wQ129q9njZ8bhlqzQ?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
@@ -29,11 +29,15 @@ _:n1 at:pathObject <file:///example.hwp>;
 <file:///BIN0001.jpg> at:extensionObject <https://w3id.org/uri4uri/suffix/jpg>.
 <file:///BIN0002.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
 <file:///BIN0003.svg> at:extensionObject <https://w3id.org/uri4uri/suffix/svg>.
+<file:///BinData/> at:pathObject <file:///>.
 <file:///BinData/BIN0001.jpg> at:pathObject <file:///BIN0001.jpg>.
 <file:///BinData/BIN0002.png> at:pathObject <file:///BIN0002.png>.
 <file:///BinData/BIN0003.svg> at:pathObject <file:///BIN0003.svg>.
+<file:///BodyText/> at:pathObject <file:///>.
 <file:///BodyText/Section0> at:pathObject <file:///Section0>.
+<file:///DocOptions/> at:pathObject <file:///>.
 <file:///DocOptions/_LinkDoc> at:pathObject <file:///_LinkDoc>.
+<file:///Scripts/> at:pathObject <file:///>.
 <file:///Scripts/DefaultJScript> at:pathObject <file:///DefaultJScript>.
 <file:///Scripts/JScriptVersion> at:pathObject <file:///JScriptVersion>.
 <file:///example.hwp> at:extensionObject <https://w3id.org/uri4uri/suffix/hwp>.
@@ -63,8 +67,8 @@ _:n1 at:pathObject <file:///example.hwp>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "GIF object (177×250)"@en,
-                                                                  "GIF object (4 KiB)"@en.
+                                                   skos:prefLabel "GIF object (4 KiB)"@en,
+                                                                  "GIF object (177×250)"@en.
 <ni:///mh;1QEQA7cGisUncoCmRn93JHcoCQ?ct=image/gif#/0> nfo:height 250 ;
                                                       nfo:width 177 ;
                                                       a nfo:MediaStream;
@@ -86,14 +90,14 @@ _:n1 at:pathObject <file:///example.hwp>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQMsKB4wQ129q9njZ8bhlqzQ?ct=application/x-ole-storage>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (719.5 KiB)"@en.
-<ni:///mh;1QEQMsKB4wQ129q9njZ8bhlqzQ?ct=application/x-ole-storage> at:pathObject <file:///>;
+<ni:///mh;1QEQMsKB4wQ129q9njZ8bhlqzQ?ct=application/x-ole-storage> at:pathObject <file:///.>;
                                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
                                                                    nie:interpretedAs <ni:///mh;1QEQMsKB4wQ129q9njZ8bhlqzQ?ct=application/x-ole-storage#/>;
                                                                    nfo:fileLastModified "2015-10-01T08:33:48.128000Z"^^xsd:dateTime;
                                                                    a schema:MediaObject,
                                                                      nfo:EmbeddedFileDataObject;
                                                                    skos:prefLabel "OLE object (719.5 KiB)"@en.
-<ni:///mh;1QEQMsKB4wQ129q9njZ8bhlqzQ?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQMsKB4wQ129q9njZ8bhlqzQ?ct=application/x-ole-storage#/> at:pathObject <file:///>;
                                                                      a nfo:Folder;
                                                                      skos:prefLabel "/".
 <ni:///mh;1QEQMsKB4wQ129q9njZ8bhlqzQ?ct=application/x-ole-storage#/%05HwpSummaryInformation> at:pathObject <file:///%05HwpSummaryInformation>;

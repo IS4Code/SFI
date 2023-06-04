@@ -1,10 +1,10 @@
-@base <x.blank:6ba5244f-2132-44e0-8315-5ecc503b1a49>.
+@base <ni:///mh;1QEQsm3faEDpn76ggjpQNNhE1g?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xis: <http://www.w3.org/2001/04/infoset#>.
@@ -20,6 +20,7 @@ _:n1 at:pathObject <file:///abydos.odg>;
      nfo:fileName "abydos.odg";
      nfo:fileSize 25743 ;
      a nfo:FileDataObject.
+<file:///META-INF/> at:pathObject <file:///>.
 <file:///META-INF/manifest.xml> at:pathObject <file:///manifest.xml>.
 <file:///abydos.odg> at:extensionObject <https://w3id.org/uri4uri/suffix/odg>.
 <file:///content.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
@@ -142,13 +143,13 @@ _:n1 at:pathObject <file:///abydos.odg>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQsm3faEDpn76ggjpQNNhE1g?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (25.14 KiB)"@en.
-<ni:///mh;1QEQsm3faEDpn76ggjpQNNhE1g?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQsm3faEDpn76ggjpQNNhE1g?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQsm3faEDpn76ggjpQNNhE1g?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (25.14 KiB)"@en.
-<ni:///mh;1QEQsm3faEDpn76ggjpQNNhE1g?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQsm3faEDpn76ggjpQNNhE1g?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQsm3faEDpn76ggjpQNNhE1g?ct=application/zip#/META-INF> at:pathObject <file:///META-INF>;

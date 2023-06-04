@@ -3,8 +3,8 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
@@ -26,12 +26,14 @@ _:n1 at:pathObject <file:///cdacceso.man>;
                                                                     a cnt:ContentAsBase64;
                                                                     skos:prefLabel "binary data (20 B)"@en;
                                                                     cnt:bytes "AQAAAgAAAAAAAAAAAAAAAAAAAAA="^^xsd:base64Binary.
+<file:///ObjectPool/> at:pathObject <file:///>.
 <file:///ObjectPool/_857904156> at:pathObject <file:///_857904156>.
 <file:///ObjectPool/_857904156/> at:pathObject <file:///_857904156/>.
 <file:///ObjectPool/_857904156/%01CompObj> at:pathObject <file:///_857904156/%01CompObj>.
 <file:///ObjectPool/_857904156/%01Ole> at:pathObject <file:///_857904156/%01Ole>.
 <file:///ObjectPool/_857904156/%01Ole10Native> at:pathObject <file:///_857904156/%01Ole10Native>.
 <file:///ObjectPool/_857904156/%03ObjInfo> at:pathObject <file:///_857904156/%03ObjInfo>.
+<file:///_857904156/> at:pathObject <file:///>.
 <file:///_857904156/%01CompObj> at:pathObject <file:///%01CompObj>.
 <file:///_857904156/%01Ole> at:pathObject <file:///%01Ole>.
 <file:///_857904156/%01Ole10Native> at:pathObject <file:///%01Ole10Native>.
@@ -59,14 +61,14 @@ _:n1 at:pathObject <file:///cdacceso.man>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQcWCbUqHSXcHbLcbPhBOIUA?ct=application/x-ole-storage>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (120.5 KiB)"@en.
-<ni:///mh;1QEQcWCbUqHSXcHbLcbPhBOIUA?ct=application/x-ole-storage> at:pathObject <file:///>;
+<ni:///mh;1QEQcWCbUqHSXcHbLcbPhBOIUA?ct=application/x-ole-storage> at:pathObject <file:///.>;
                                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
                                                                    nie:interpretedAs <ni:///mh;1QEQcWCbUqHSXcHbLcbPhBOIUA?ct=application/x-ole-storage#/>;
                                                                    nfo:fileLastModified "1995-03-31T13:11:06.000551Z"^^xsd:dateTime;
                                                                    a schema:MediaObject,
                                                                      nfo:EmbeddedFileDataObject;
                                                                    skos:prefLabel "OLE object (120.5 KiB)"@en.
-<ni:///mh;1QEQcWCbUqHSXcHbLcbPhBOIUA?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQcWCbUqHSXcHbLcbPhBOIUA?ct=application/x-ole-storage#/> at:pathObject <file:///>;
                                                                      a nfo:Folder;
                                                                      skos:prefLabel "/".
 <ni:///mh;1QEQcWCbUqHSXcHbLcbPhBOIUA?ct=application/x-ole-storage#/%01CompObj> at:pathObject <file:///%01CompObj>;

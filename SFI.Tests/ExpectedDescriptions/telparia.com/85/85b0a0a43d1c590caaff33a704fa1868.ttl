@@ -1,10 +1,10 @@
-@base <x.blank:62ed6fa1-9468-40a2-95e8-0994ade480a0>.
+@base <ni:///mh;1QEQtiENoKf5xQQqbP6QfvriIQ?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -31,6 +31,7 @@ _:n1 at:pathObject <file:///AUNTMADG.WP>;
                                                                                   a schema:MediaObject;
                                                                                   skos:prefLabel "ND object (14 B)"@en.
 <file:///AUNTMADG.WP> at:extensionObject <https://w3id.org/uri4uri/suffix/wp>.
+<file:///MatOST/> at:pathObject <file:///>.
 <ni:///mh;1QEQKcmbfCCruj-_f7JbhBmJ-g?ct=application/octet-stream> at:digest <urn:md5:29C99B7C20ABBA3FBF7FB25B841989FA>;
                                                                   dcterms:extent "6338"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -40,14 +41,14 @@ _:n1 at:pathObject <file:///AUNTMADG.WP>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQtiENoKf5xQQqbP6QfvriIQ?ct=application/x-ole-storage>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (10.5 KiB)"@en.
-<ni:///mh;1QEQtiENoKf5xQQqbP6QfvriIQ?ct=application/x-ole-storage> at:pathObject <file:///>;
+<ni:///mh;1QEQtiENoKf5xQQqbP6QfvriIQ?ct=application/x-ole-storage> at:pathObject <file:///.>;
                                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
                                                                    nie:interpretedAs <ni:///mh;1QEQtiENoKf5xQQqbP6QfvriIQ?ct=application/x-ole-storage#/>;
                                                                    nfo:fileLastModified "1993-06-15T15:25:36.000551Z"^^xsd:dateTime;
                                                                    a schema:MediaObject,
                                                                      nfo:EmbeddedFileDataObject;
                                                                    skos:prefLabel "OLE object (10.5 KiB)"@en.
-<ni:///mh;1QEQtiENoKf5xQQqbP6QfvriIQ?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQtiENoKf5xQQqbP6QfvriIQ?ct=application/x-ole-storage#/> at:pathObject <file:///>;
                                                                      a nfo:Folder;
                                                                      skos:prefLabel "/".
 <ni:///mh;1QEQtiENoKf5xQQqbP6QfvriIQ?ct=application/x-ole-storage#/MM> at:pathObject <file:///MM>;

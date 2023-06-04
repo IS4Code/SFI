@@ -1,4 +1,4 @@
-@base <x.blank:8b255dd4-03de-4363-8596-2214d53638f5>.
+@base <ni:///mh;1QEQiNRCMOMpb_5ejB5GmnEJFw?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -19,6 +19,7 @@ _:n1 at:pathObject <file:///jong%20belegen.xrns>;
      nfo:fileName "jong belegen.xrns";
      nfo:fileSize 513298 ;
      a nfo:FileDataObject.
+<file:///Instrument00%20(kit909)/> at:pathObject <file:///>.
 <file:///Instrument00%20(kit909)/Sample00%20(bassdrum).ogg> at:pathObject <file:///Sample00%20(bassdrum).ogg>.
 <file:///Instrument00%20(kit909)/Sample01%20(snaredrum).ogg> at:pathObject <file:///Sample01%20(snaredrum).ogg>.
 <file:///Instrument00%20(kit909)/Sample02%20(clap).ogg> at:pathObject <file:///Sample02%20(clap).ogg>.
@@ -27,13 +28,17 @@ _:n1 at:pathObject <file:///jong%20belegen.xrns>;
 <file:///Instrument00%20(kit909)/Sample05%20(tom_low).ogg> at:pathObject <file:///Sample05%20(tom_low).ogg>.
 <file:///Instrument00%20(kit909)/Sample06%20(909_d4).ogg> at:pathObject <file:///Sample06%20(909_d4).ogg>.
 <file:///Instrument00%20(kit909)/Sample07%20(crash_cymbal).ogg> at:pathObject <file:///Sample07%20(crash_cymbal).ogg>.
+<file:///Instrument01%20(chipSquare)/> at:pathObject <file:///>.
 <file:///Instrument01%20(chipSquare)/Sample00%20(Square).flac> at:pathObject <file:///Sample00%20(Square).flac>.
+<file:///Instrument02%20(kitLofi)/> at:pathObject <file:///>.
 <file:///Instrument02%20(kitLofi)/Sample00%20(lofidrums).ogg> at:pathObject <file:///Sample00%20(lofidrums).ogg>.
 <file:///Instrument02%20(kitLofi)/Sample01%20(sidsnares).ogg> at:pathObject <file:///Sample01%20(sidsnares).ogg>.
 <file:///Instrument02%20(kitLofi)/Sample02%20(sidsnares).ogg> at:pathObject <file:///Sample02%20(sidsnares).ogg>.
 <file:///Instrument02%20(kitLofi)/Sample03%20(lofidrums).ogg> at:pathObject <file:///Sample03%20(lofidrums).ogg>.
 <file:///Instrument02%20(kitLofi)/Sample04%20(HI).ogg> at:pathObject <file:///Sample04%20(HI).ogg>.
+<file:///Instrument03%20(chipSine)/> at:pathObject <file:///>.
 <file:///Instrument03%20(chipSine)/Sample00%20(Sine).flac> at:pathObject <file:///Sample00%20(Sine).flac>.
+<file:///Instrument04%20(breakApache)/> at:pathObject <file:///>.
 <file:///Instrument04%20(breakApache)/Sample00%20(Apache).ogg> at:pathObject <file:///Sample00%20(Apache).ogg>.
 <file:///Instrument04%20(breakApache)/Sample01%20(New%20Sample%2001).ogg> at:pathObject <file:///Sample01%20(New%20Sample%2001).ogg>.
 <file:///Instrument04%20(breakApache)/Sample02%20(New%20Sample%2002).flac> at:pathObject <file:///Sample02%20(New%20Sample%2002).flac>.
@@ -59,6 +64,7 @@ _:n1 at:pathObject <file:///jong%20belegen.xrns>;
 <file:///Instrument04%20(breakApache)/Sample22%20(New%20Sample%2022).ogg> at:pathObject <file:///Sample22%20(New%20Sample%2022).ogg>.
 <file:///Instrument04%20(breakApache)/Sample23%20(New%20Sample%2023).ogg> at:pathObject <file:///Sample23%20(New%20Sample%2023).ogg>.
 <file:///Instrument04%20(breakApache)/Sample24%20(New%20Sample%2024).ogg> at:pathObject <file:///Sample24%20(New%20Sample%2024).ogg>.
+<file:///Instrument05%20(kitReal)/> at:pathObject <file:///>.
 <file:///Instrument05%20(kitReal)/Sample00%20(studio_bassdrum3).ogg> at:pathObject <file:///Sample00%20(studio_bassdrum3).ogg>.
 <file:///Instrument05%20(kitReal)/Sample01%20(studio_snare1_laut).ogg> at:pathObject <file:///Sample01%20(studio_snare1_laut).ogg>.
 <file:///Instrument05%20(kitReal)/Sample02%20(studio_snare2_leise).ogg> at:pathObject <file:///Sample02%20(studio_snare2_leise).ogg>.
@@ -121,6 +127,7 @@ _:n1 at:pathObject <file:///jong%20belegen.xrns>;
 <file:///Sample22%20(New%20Sample%2022).ogg> at:extensionObject <https://w3id.org/uri4uri/suffix/ogg>.
 <file:///Sample23%20(New%20Sample%2023).ogg> at:extensionObject <https://w3id.org/uri4uri/suffix/ogg>.
 <file:///Sample24%20(New%20Sample%2024).ogg> at:extensionObject <https://w3id.org/uri4uri/suffix/ogg>.
+<file:///SampleData/> at:pathObject <file:///>.
 <file:///SampleData/Instrument00%20(kit909)> at:pathObject <file:///Instrument00%20(kit909)>.
 <file:///SampleData/Instrument00%20(kit909)/> at:pathObject <file:///Instrument00%20(kit909)/>.
 <file:///SampleData/Instrument00%20(kit909)/Sample00%20(bassdrum).ogg> at:pathObject <file:///Instrument00%20(kit909)/Sample00%20(bassdrum).ogg>.
@@ -326,10 +333,10 @@ _:n1 at:pathObject <file:///jong%20belegen.xrns>;
                                                          nfo:duration "PT2.6064399S"^^xsd:duration;
                                                          nfo:sampleRate "44100"^^dt:hertz;
                                                          a schema:MediaObject,
-                                                           schema:AudioObject,
-                                                           nfo:Audio;
-                                                         skos:prefLabel "OGG object (29.87 KiB)"@en,
-                                                                        "OGG object (44100 Hz, 2 channels)"@en.
+                                                           nfo:Audio,
+                                                           schema:AudioObject;
+                                                         skos:prefLabel "OGG object (44100 Hz, 2 channels)"@en,
+                                                                        "OGG object (29.87 KiB)"@en.
 <ni:///mh;1QEQEZncOo790u0zaFZF7iGfzg?ct=application/octet-stream> at:digest <urn:md5:1199DC3A8EFDD2ED33685645EE219FCE>;
                                                                   dcterms:extent "10382"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQEZncOo790u0zaFZF7iGfzg?ct=application/ogg>;
@@ -344,8 +351,8 @@ _:n1 at:pathObject <file:///jong%20belegen.xrns>;
                                                          a schema:MediaObject,
                                                            nfo:Audio,
                                                            schema:AudioObject;
-                                                         skos:prefLabel "OGG object (10.14 KiB)"@en,
-                                                                        "OGG object (44100 Hz, 2 channels)"@en.
+                                                         skos:prefLabel "OGG object (44100 Hz, 2 channels)"@en,
+                                                                        "OGG object (10.14 KiB)"@en.
 <ni:///mh;1QEQEuwuRoRmuZp-W-TXr7QclA?ct=application/octet-stream> at:digest <urn:md5:12EC2E468466B99A7E5BE4D7AFB41C94>;
                                                                   dcterms:extent "6143"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQEuwuRoRmuZp-W-TXr7QclA?ct=application/ogg>;
@@ -534,10 +541,10 @@ _:n1 at:pathObject <file:///jong%20belegen.xrns>;
                                                          nfo:duration "PT3.053424S"^^xsd:duration;
                                                          nfo:sampleRate "44100"^^dt:hertz;
                                                          a schema:MediaObject,
-                                                           schema:AudioObject,
-                                                           nfo:Audio;
-                                                         skos:prefLabel "OGG object (39.77 KiB)"@en,
-                                                                        "OGG object (44100 Hz, 2 channels)"@en.
+                                                           nfo:Audio,
+                                                           schema:AudioObject;
+                                                         skos:prefLabel "OGG object (44100 Hz, 2 channels)"@en,
+                                                                        "OGG object (39.77 KiB)"@en.
 <ni:///mh;1QEQNuQjALfwOFyQdpvzl5M7og?ct=application/octet-stream> at:digest <urn:md5:36E42300B7F0385C90769BF397933BA2>;
                                                                   dcterms:extent "8157"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQNuQjALfwOFyQdpvzl5M7og?ct=application/ogg>;
@@ -790,13 +797,13 @@ _:n1 at:pathObject <file:///jong%20belegen.xrns>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQiNRCMOMpb_5ejB5GmnEJFw?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (501.27 KiB)"@en.
-<ni:///mh;1QEQiNRCMOMpb_5ejB5GmnEJFw?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQiNRCMOMpb_5ejB5GmnEJFw?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQiNRCMOMpb_5ejB5GmnEJFw?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (501.27 KiB)"@en.
-<ni:///mh;1QEQiNRCMOMpb_5ejB5GmnEJFw?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQiNRCMOMpb_5ejB5GmnEJFw?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQiNRCMOMpb_5ejB5GmnEJFw?ct=application/zip#/SampleData> at:pathObject <file:///SampleData>;
@@ -1454,8 +1461,8 @@ _:n1 at:pathObject <file:///jong%20belegen.xrns>;
                                                          a schema:MediaObject,
                                                            nfo:Audio,
                                                            schema:AudioObject;
-                                                         skos:prefLabel "OGG object (6.03 KiB)"@en,
-                                                                        "OGG object (44100 Hz, 1 channel)"@en.
+                                                         skos:prefLabel "OGG object (44100 Hz, 1 channel)"@en,
+                                                                        "OGG object (6.03 KiB)"@en.
 <ni:///mh;1QEQnk7es0ESVxuNLMeBdrZ7Vw?ct=application/octet-stream> at:digest <urn:md5:9E4EDEB34112571B8D2CC78176B67B57>;
                                                                   dcterms:extent "8216"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQnk7es0ESVxuNLMeBdrZ7Vw?ct=application/ogg>;
@@ -1550,8 +1557,8 @@ _:n1 at:pathObject <file:///jong%20belegen.xrns>;
                                                          a schema:MediaObject,
                                                            nfo:Audio,
                                                            schema:AudioObject;
-                                                         skos:prefLabel "OGG object (11.95 KiB)"@en,
-                                                                        "OGG object (44100 Hz, 2 channels)"@en.
+                                                         skos:prefLabel "OGG object (44100 Hz, 2 channels)"@en,
+                                                                        "OGG object (11.95 KiB)"@en.
 <ni:///mh;1QEQxgG0nQUzaWeYBaV15XP23w?ct=application/octet-stream> at:digest <urn:md5:C601B49D053369679805A575E573F6DF>;
                                                                   dcterms:extent "6472"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQxgG0nQUzaWeYBaV15XP23w?ct=application/ogg>;

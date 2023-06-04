@@ -1,15 +1,15 @@
-@base <x.blank:f42143aa-52ec-4a3a-aeee-36ccba806635>.
+@base <ni:///mh;1QEQoCaSrAJ3UBWG5w30K6JnPA?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix dt: <http://dbpedia.org/datatype/>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 
@@ -23,15 +23,19 @@ _:n1 at:pathObject <file:///badTar.tar>;
                  skos:prefLabel "text (6 B)"@en;
                  cnt:characterEncoding "us-ascii";
                  cnt:chars """hello
-"""^^xsd:string.
+""".
 <data:application/octet-stream,> dcterms:extent "0"^^dt:byte;
                                  a cnt:ContentAsBase64;
                                  skos:prefLabel "binary data (0 B)"@en;
                                  cnt:bytes ""^^xsd:base64Binary.
+<file:///b/> at:pathObject <file:///>.
 <file:///b/hi.txt> at:pathObject <file:///hi.txt>.
+<file:///bad/> at:pathObject <file:///>.
 <file:///bad/hosts> at:pathObject <file:///hosts>.
+<file:///bad2/> at:pathObject <file:///>.
 <file:///bad2/outside.omg> at:pathObject <file:///outside.omg>.
 <file:///badTar.tar> at:extensionObject <https://w3id.org/uri4uri/suffix/tar>.
+<file:///badTar/> at:pathObject <file:///>.
 <file:///badTar/a> at:pathObject <file:///a>.
 <file:///badTar/b> at:pathObject <file:///b>.
 <file:///badTar/b/> at:pathObject <file:///b/>.
@@ -47,6 +51,7 @@ _:n1 at:pathObject <file:///badTar.tar>;
 <file:///badTar/c/> at:pathObject <file:///c/>.
 <file:///badTar/c/hi.txt> at:pathObject <file:///c/hi.txt>.
 <file:///badTar/hi.txt> at:pathObject <file:///hi.txt>.
+<file:///c/> at:pathObject <file:///>.
 <file:///c/hi.txt> at:pathObject <file:///hi.txt>.
 <file:///hi.txt> at:extensionObject <https://w3id.org/uri4uri/suffix/txt>.
 <file:///outside.omg> at:extensionObject <https://w3id.org/uri4uri/suffix/omg>.

@@ -3,8 +3,8 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
@@ -19,21 +19,25 @@ _:n1 at:pathObject <file:///decision_computer_datacap_extracted.7z>;
      nfo:fileSize 137136 ;
      a nfo:FileDataObject.
 <file:///DATACAP.EXE> at:extensionObject <https://w3id.org/uri4uri/suffix/exe>.
+<file:///DCS/> at:pathObject <file:///>.
 <file:///DCS/DATACAP.EXE> at:pathObject <file:///DATACAP.EXE>.
 <file:///IO.H> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
 <file:///IO.LIB> at:extensionObject <https://w3id.org/uri4uri/suffix/lib>.
+<file:///LIB/> at:pathObject <file:///>.
 <file:///LIB/IO.H> at:pathObject <file:///IO.H>.
 <file:///LIB/IO.LIB> at:pathObject <file:///IO.LIB>.
 <file:///TEST.C> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
 <file:///TEST.EXE> at:extensionObject <https://w3id.org/uri4uri/suffix/exe>.
 <file:///TEST.OBJ> at:extensionObject <https://w3id.org/uri4uri/suffix/obj>.
 <file:///TEST.PRJ> at:extensionObject <https://w3id.org/uri4uri/suffix/prj>.
+<file:///TEST/> at:pathObject <file:///>.
 <file:///TEST/TEST.C> at:pathObject <file:///TEST.C>.
 <file:///TEST/TEST.EXE> at:pathObject <file:///TEST.EXE>.
 <file:///TEST/TEST.OBJ> at:pathObject <file:///TEST.OBJ>.
 <file:///TEST/TEST.PRJ> at:pathObject <file:///TEST.PRJ>.
 <file:///decision_computer_datacap_extracted.7z> at:extensionObject <https://w3id.org/uri4uri/suffix/7z>.
 <file:///files.txt> at:extensionObject <https://w3id.org/uri4uri/suffix/txt>.
+<file:///files/> at:pathObject <file:///>.
 <file:///files/DCS> at:pathObject <file:///DCS>.
 <file:///files/DCS/> at:pathObject <file:///DCS/>.
 <file:///files/DCS/DATACAP.EXE> at:pathObject <file:///DCS/DATACAP.EXE>.
@@ -66,13 +70,13 @@ _:n1 at:pathObject <file:///decision_computer_datacap_extracted.7z>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (133.92 KiB)"@en.
-<ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed> at:pathObject <file:///>;
+<ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed> at:pathObject <file:///.>;
                                                                      schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-7z-compressed>;
                                                                      nie:interpretedAs <ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/>;
                                                                      a schema:MediaObject,
                                                                        nfo:Archive;
                                                                      skos:prefLabel "7Z object (133.92 KiB)"@en.
-<ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/> at:pathObject <file:///>;
                                                                        a nfo:Folder;
                                                                        skos:prefLabel "/".
 <ni:///mh;1QEQd2fyCOWxvNIdKiamsVZkSA?ct=application/x-7z-compressed#/files> at:pathObject <file:///files>;

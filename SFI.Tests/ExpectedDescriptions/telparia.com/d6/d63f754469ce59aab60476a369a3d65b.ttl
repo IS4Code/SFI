@@ -1,10 +1,10 @@
-@base <x.blank:f531c570-505e-4bf0-987f-5f1979d322f3>.
+@base <ni:///mh;1QEQhEvLZLIx_WOHLQQQ5hpIlA?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -24,8 +24,9 @@ _:n1 at:pathObject <file:///FontOOo.sxw>;
                                          a cnt:ContentAsText;
                                          skos:prefLabel "text (30 B)"@en;
                                          cnt:characterEncoding "us-ascii";
-                                         cnt:chars "application/vnd.sun.xml.writer"^^xsd:string.
+                                         cnt:chars "application/vnd.sun.xml.writer".
 <file:///10000201000002B400000142538C99C0.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
+<file:///Basic/> at:pathObject <file:///>.
 <file:///Basic/FontOOoLib> at:pathObject <file:///FontOOoLib>.
 <file:///Basic/FontOOoLib/> at:pathObject <file:///FontOOoLib/>.
 <file:///Basic/FontOOoLib/InstallFontOOo.xml> at:pathObject <file:///FontOOoLib/InstallFontOOo.xml>.
@@ -41,6 +42,7 @@ _:n1 at:pathObject <file:///FontOOo.sxw>;
 <file:///Basic/Standard/> at:pathObject <file:///Standard/>.
 <file:///Basic/Standard/script-lb.xml> at:pathObject <file:///Standard/script-lb.xml>.
 <file:///Basic/script-lc.xml> at:pathObject <file:///script-lc.xml>.
+<file:///Dialogs/> at:pathObject <file:///>.
 <file:///Dialogs/FontOOoLib> at:pathObject <file:///FontOOoLib>.
 <file:///Dialogs/FontOOoLib/> at:pathObject <file:///FontOOoLib/>.
 <file:///Dialogs/FontOOoLib/DlgImages.xml> at:pathObject <file:///FontOOoLib/DlgImages.xml>.
@@ -52,6 +54,7 @@ _:n1 at:pathObject <file:///FontOOo.sxw>;
 <file:///Dialogs/dialog-lc.xml> at:pathObject <file:///dialog-lc.xml>.
 <file:///DlgImages.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///FontOOo.sxw> at:extensionObject <https://w3id.org/uri4uri/suffix/sxw>.
+<file:///FontOOoLib/> at:pathObject <file:///>.
 <file:///FontOOoLib/DlgImages.xml> at:pathObject <file:///DlgImages.xml>.
 <file:///FontOOoLib/InstallFontOOo.xml> at:pathObject <file:///InstallFontOOo.xml>.
 <file:///FontOOoLib/Moteur.xml> at:pathObject <file:///Moteur.xml>.
@@ -65,13 +68,16 @@ _:n1 at:pathObject <file:///FontOOo.sxw>;
 <file:///FontOOoLib/dialog-lb.xml> at:pathObject <file:///dialog-lb.xml>.
 <file:///FontOOoLib/script-lb.xml> at:pathObject <file:///script-lb.xml>.
 <file:///InstallFontOOo.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///META-INF/> at:pathObject <file:///>.
 <file:///META-INF/manifest.xml> at:pathObject <file:///manifest.xml>.
 <file:///Moteur.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///OffLinePack.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///Outils.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///Pictures/> at:pathObject <file:///>.
 <file:///Pictures/10000201000002B400000142538C99C0.png> at:pathObject <file:///10000201000002B400000142538C99C0.png>.
 <file:///PreviewFonts.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///SpecifMac.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///Standard/> at:pathObject <file:///>.
 <file:///Standard/dialog-lb.xml> at:pathObject <file:///dialog-lb.xml>.
 <file:///Standard/script-lb.xml> at:pathObject <file:///script-lb.xml>.
 <file:///Translation.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
@@ -527,8 +533,8 @@ _:n1 at:pathObject <file:///FontOOo.sxw>;
                                                    nfo:verticalResolution 96.266;
                                                    nfo:width 692 ;
                                                    a schema:MediaObject,
-                                                     schema:ImageObject,
-                                                     nfo:Image;
+                                                     nfo:Image,
+                                                     schema:ImageObject;
                                                    skos:prefLabel "PNG object (692×322, 8-bit)"@en,
                                                                   "PNG object (692×322)"@en,
                                                                   "PNG object (21.06 KiB)"@en.
@@ -607,13 +613,13 @@ _:n1 at:pathObject <file:///FontOOo.sxw>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQhEvLZLIx_WOHLQQQ5hpIlA?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (88.39 KiB)"@en.
-<ni:///mh;1QEQhEvLZLIx_WOHLQQQ5hpIlA?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQhEvLZLIx_WOHLQQQ5hpIlA?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQhEvLZLIx_WOHLQQQ5hpIlA?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (88.39 KiB)"@en.
-<ni:///mh;1QEQhEvLZLIx_WOHLQQQ5hpIlA?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQhEvLZLIx_WOHLQQQ5hpIlA?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQhEvLZLIx_WOHLQQQ5hpIlA?ct=application/zip#/Basic> at:pathObject <file:///Basic>;

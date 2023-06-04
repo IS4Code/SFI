@@ -1,10 +1,10 @@
-@base <x.blank:0ed7d21c-b8ec-4e18-9f8a-f01aa2f64e27>.
+@base <ni:///mh;1QEQ4nt_MfStkSJ_18bRD4lx6g?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -24,10 +24,14 @@ _:n1 at:pathObject <file:///pri-mail_l.ott>;
                                                            a cnt:ContentAsText;
                                                            skos:prefLabel "text (48 B)"@en;
                                                            cnt:characterEncoding "us-ascii";
-                                                           cnt:chars "application/vnd.oasis.opendocument.text-template"^^xsd:string.
+                                                           cnt:chars "application/vnd.oasis.opendocument.text-template".
 <file:///200000430000271100001205CAE80946.wmf> at:extensionObject <https://w3id.org/uri4uri/suffix/wmf>.
+<file:///Configurations2/> at:pathObject <file:///>.
+<file:///META-INF/> at:pathObject <file:///>.
 <file:///META-INF/manifest.xml> at:pathObject <file:///manifest.xml>.
+<file:///Pictures/> at:pathObject <file:///>.
 <file:///Pictures/200000430000271100001205CAE80946.wmf> at:pathObject <file:///200000430000271100001205CAE80946.wmf>.
+<file:///Thumbnails/> at:pathObject <file:///>.
 <file:///Thumbnails/thumbnail.png> at:pathObject <file:///thumbnail.png>.
 <file:///content.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///manifest.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
@@ -67,13 +71,13 @@ _:n1 at:pathObject <file:///pri-mail_l.ott>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ4nt_MfStkSJ_18bRD4lx6g?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (24.13 KiB)"@en.
-<ni:///mh;1QEQ4nt_MfStkSJ_18bRD4lx6g?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQ4nt_MfStkSJ_18bRD4lx6g?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQ4nt_MfStkSJ_18bRD4lx6g?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (24.13 KiB)"@en.
-<ni:///mh;1QEQ4nt_MfStkSJ_18bRD4lx6g?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQ4nt_MfStkSJ_18bRD4lx6g?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQ4nt_MfStkSJ_18bRD4lx6g?ct=application/zip#/Configurations2> at:pathObject <file:///Configurations2>;
@@ -229,8 +233,8 @@ _:n1 at:pathObject <file:///pri-mail_l.ott>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "PNG object (124×160)"@en,
-                                                                  "PNG object (124×160, 8-bit)"@en,
+                                                   skos:prefLabel "PNG object (124×160, 8-bit)"@en,
+                                                                  "PNG object (124×160)"@en,
                                                                   "PNG object (1.03 KiB)"@en.
 <ni:///mh;1QEQdJuMNZcg356WENGxi6h3dw?ct=application/prs.implied-document+xml;root=document-settings;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=document-settings;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22>;
                                                                                                                                                                a schema:MediaObject;

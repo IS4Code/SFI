@@ -1,10 +1,10 @@
-@base <x.blank:d9fc05d4-c5e6-4b80-910b-5dd4d999175c>.
+@base <ni:///mh;1QEQt_9ssZUzteucRfqWJ4LhdA?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -34,6 +34,7 @@ _:n1 at:pathObject <file:///PICTURE.WP>;
 <data:application/prs.implied-structure;signature=ND;base64,TkQAAAEAAAAHAAAAAgA=> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=ND>;
                                                                                   a schema:MediaObject;
                                                                                   skos:prefLabel "ND object (14 B)"@en.
+<file:///MatOST/> at:pathObject <file:///>.
 <file:///MatOST/MatadorObject1> at:pathObject <file:///MatadorObject1>.
 <file:///MatOST/MatadorObject1/> at:pathObject <file:///MatadorObject1/>.
 <file:///MatOST/MatadorObject1/%01CompObj> at:pathObject <file:///MatadorObject1/%01CompObj>.
@@ -46,10 +47,12 @@ _:n1 at:pathObject <file:///PICTURE.WP>;
 <file:///MatOST/MatadorObject6/%01Ole> at:pathObject <file:///MatadorObject6/%01Ole>.
 <file:///MatOST/MatadorObject6/%01Ole10Native> at:pathObject <file:///MatadorObject6/%01Ole10Native>.
 <file:///MatOST/MatadorObject6/%02OlePres000> at:pathObject <file:///MatadorObject6/%02OlePres000>.
+<file:///MatadorObject1/> at:pathObject <file:///>.
 <file:///MatadorObject1/%01CompObj> at:pathObject <file:///%01CompObj>.
 <file:///MatadorObject1/%01Ole> at:pathObject <file:///%01Ole>.
 <file:///MatadorObject1/%01Ole10Native> at:pathObject <file:///%01Ole10Native>.
 <file:///MatadorObject1/%02OlePres000> at:pathObject <file:///%02OlePres000>.
+<file:///MatadorObject6/> at:pathObject <file:///>.
 <file:///MatadorObject6/%01CompObj> at:pathObject <file:///%01CompObj>.
 <file:///MatadorObject6/%01Ole> at:pathObject <file:///%01Ole>.
 <file:///MatadorObject6/%01Ole10Native> at:pathObject <file:///%01Ole10Native>.
@@ -84,14 +87,14 @@ _:n1 at:pathObject <file:///PICTURE.WP>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQt_9ssZUzteucRfqWJ4LhdA?ct=application/x-ole-storage>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (20 KiB)"@en.
-<ni:///mh;1QEQt_9ssZUzteucRfqWJ4LhdA?ct=application/x-ole-storage> at:pathObject <file:///>;
+<ni:///mh;1QEQt_9ssZUzteucRfqWJ4LhdA?ct=application/x-ole-storage> at:pathObject <file:///.>;
                                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
                                                                    nie:interpretedAs <ni:///mh;1QEQt_9ssZUzteucRfqWJ4LhdA?ct=application/x-ole-storage#/>;
                                                                    nfo:fileLastModified "1993-08-17T10:49:10.000551Z"^^xsd:dateTime;
                                                                    a schema:MediaObject,
                                                                      nfo:EmbeddedFileDataObject;
                                                                    skos:prefLabel "OLE object (20 KiB)"@en.
-<ni:///mh;1QEQt_9ssZUzteucRfqWJ4LhdA?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQt_9ssZUzteucRfqWJ4LhdA?ct=application/x-ole-storage#/> at:pathObject <file:///>;
                                                                      a nfo:Folder;
                                                                      skos:prefLabel "/".
 <ni:///mh;1QEQt_9ssZUzteucRfqWJ4LhdA?ct=application/x-ole-storage#/MM> at:pathObject <file:///MM>;

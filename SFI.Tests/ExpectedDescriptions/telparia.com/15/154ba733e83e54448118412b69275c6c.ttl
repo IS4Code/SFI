@@ -1,10 +1,10 @@
-@base <x.blank:b15d681e-ab5c-447c-a148-e13831df9409>.
+@base <ni:///mh;1QEQi89n5Lqu0P_sHwGpiIfEsQ?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -24,7 +24,7 @@ _:n1 at:pathObject <file:///cole-voyage-of-life-tol.epub>;
                                  a cnt:ContentAsText;
                                  skos:prefLabel "text (20 B)"@en;
                                  cnt:characterEncoding "us-ascii";
-                                 cnt:chars "application/epub+zip"^^xsd:string.
+                                 cnt:chars "application/epub+zip".
 <file:///0-intro.xhtml> at:extensionObject <https://w3id.org/uri4uri/suffix/xhtml>.
 <file:///1-childhood-1024.jpg> at:extensionObject <https://w3id.org/uri4uri/suffix/jpg>.
 <file:///1-childhood-320.jpg> at:extensionObject <https://w3id.org/uri4uri/suffix/jpg>.
@@ -38,6 +38,7 @@ _:n1 at:pathObject <file:///cole-voyage-of-life-tol.epub>;
 <file:///4-oldage-1024.jpg> at:extensionObject <https://w3id.org/uri4uri/suffix/jpg>.
 <file:///4-oldage-320.jpg> at:extensionObject <https://w3id.org/uri4uri/suffix/jpg>.
 <file:///4-oldage.xhtml> at:extensionObject <https://w3id.org/uri4uri/suffix/xhtml>.
+<file:///EPUB/> at:pathObject <file:///>.
 <file:///EPUB/cole.opf> at:pathObject <file:///cole.opf>.
 <file:///EPUB/css> at:pathObject <file:///css>.
 <file:///EPUB/css/> at:pathObject <file:///css/>.
@@ -65,12 +66,15 @@ _:n1 at:pathObject <file:///cole-voyage-of-life-tol.epub>;
 <file:///EPUB/xhtml/3-manhood.xhtml> at:pathObject <file:///xhtml/3-manhood.xhtml>.
 <file:///EPUB/xhtml/4-oldage.xhtml> at:pathObject <file:///xhtml/4-oldage.xhtml>.
 <file:///EPUB/xhtml/nav.xhtml> at:pathObject <file:///xhtml/nav.xhtml>.
+<file:///META-INF/> at:pathObject <file:///>.
 <file:///META-INF/container.xml> at:pathObject <file:///container.xml>.
 <file:///cole-voyage-of-life-tol.epub> at:extensionObject <https://w3id.org/uri4uri/suffix/epub>.
 <file:///cole.css> at:extensionObject <https://w3id.org/uri4uri/suffix/css>.
 <file:///cole.opf> at:extensionObject <https://w3id.org/uri4uri/suffix/opf>.
 <file:///container.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///css/> at:pathObject <file:///>.
 <file:///css/cole.css> at:pathObject <file:///cole.css>.
+<file:///images/> at:pathObject <file:///>.
 <file:///images/1-childhood-1024.jpg> at:pathObject <file:///1-childhood-1024.jpg>.
 <file:///images/1-childhood-320.jpg> at:pathObject <file:///1-childhood-320.jpg>.
 <file:///images/2-youth-1024.jpg> at:pathObject <file:///2-youth-1024.jpg>.
@@ -83,9 +87,11 @@ _:n1 at:pathObject <file:///cole-voyage-of-life-tol.epub>;
 <file:///jquery-1.7.1.min.js> at:extensionObject <https://w3id.org/uri4uri/suffix/js>.
 <file:///nav.xhtml> at:extensionObject <https://w3id.org/uri4uri/suffix/xhtml>.
 <file:///portrait.jpg> at:extensionObject <https://w3id.org/uri4uri/suffix/jpg>.
+<file:///script/> at:pathObject <file:///>.
 <file:///script/jquery-1.7.1.min.js> at:pathObject <file:///jquery-1.7.1.min.js>.
 <file:///script/togglage.js> at:pathObject <file:///togglage.js>.
 <file:///togglage.js> at:extensionObject <https://w3id.org/uri4uri/suffix/js>.
+<file:///xhtml/> at:pathObject <file:///>.
 <file:///xhtml/0-intro.xhtml> at:pathObject <file:///0-intro.xhtml>.
 <file:///xhtml/1-childhood.xhtml> at:pathObject <file:///1-childhood.xhtml>.
 <file:///xhtml/2-youth.xhtml> at:pathObject <file:///2-youth.xhtml>.
@@ -202,8 +208,8 @@ _:n1 at:pathObject <file:///cole-voyage-of-life-tol.epub>;
                                                    skos:prefLabel "HTML object (2.21 KiB)"@en.
 <ni:///mh;1QEQTffiIbFv868Z2wy4YqqYxw?ct=text/plain> at:digest <urn:md5:4DF7E221B16FF3AF19DB0CB862AA98C7>;
                                                     dcterms:extent "2264"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQTffiIbFv868Z2wy4YqqYxw?ct=text/html>,
-                                                                      <ni:///mh;1QEQTffiIbFv868Z2wy4YqqYxw?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQTffiIbFv868Z2wy4YqqYxw?ct=application/xml>,
+                                                                      <ni:///mh;1QEQTffiIbFv868Z2wy4YqqYxw?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQTffiIbFv868Z2wy4YqqYxw?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (2.21 KiB)"@en;
@@ -279,13 +285,13 @@ _:n1 at:pathObject <file:///cole-voyage-of-life-tol.epub>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQi89n5Lqu0P_sHwGpiIfEsQ?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (979.16 KiB)"@en.
-<ni:///mh;1QEQi89n5Lqu0P_sHwGpiIfEsQ?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQi89n5Lqu0P_sHwGpiIfEsQ?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQi89n5Lqu0P_sHwGpiIfEsQ?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (979.16 KiB)"@en.
-<ni:///mh;1QEQi89n5Lqu0P_sHwGpiIfEsQ?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQi89n5Lqu0P_sHwGpiIfEsQ?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQi89n5Lqu0P_sHwGpiIfEsQ?ct=application/zip#/EPUB> at:pathObject <file:///EPUB>;
@@ -638,8 +644,8 @@ _:n1 at:pathObject <file:///cole-voyage-of-life-tol.epub>;
                                                     nfo:verticalResolution 199 ;
                                                     nfo:width 1024 ;
                                                     a schema:MediaObject,
-                                                      nfo:Image,
-                                                      schema:ImageObject;
+                                                      schema:ImageObject,
+                                                      nfo:Image;
                                                     skos:prefLabel "JPG object (1024×696)"@en,
                                                                    "JPG object (233.06 KiB)"@en.
 <ni:///mh;1QEQs0zRR-EWW-4TFtA3QSslMw?ct=application/octet-stream> at:digest <urn:md5:B34CD147E1165BEE1316D037412B2533>;
@@ -716,8 +722,8 @@ _:n1 at:pathObject <file:///cole-voyage-of-life-tol.epub>;
                                                    skos:prefLabel "HTML object (2.48 KiB)"@en.
 <ni:///mh;1QEQwdF4HCJRfVPuYIqdhgJMkA?ct=text/plain> at:digest <urn:md5:C1D1781C22517D53EE608A9D86024C90>;
                                                     dcterms:extent "2542"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQwdF4HCJRfVPuYIqdhgJMkA?ct=text/html>,
-                                                                      <ni:///mh;1QEQwdF4HCJRfVPuYIqdhgJMkA?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQwdF4HCJRfVPuYIqdhgJMkA?ct=application/xml>,
+                                                                      <ni:///mh;1QEQwdF4HCJRfVPuYIqdhgJMkA?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQwdF4HCJRfVPuYIqdhgJMkA?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (2.48 KiB)"@en;
@@ -765,8 +771,8 @@ _:n1 at:pathObject <file:///cole-voyage-of-life-tol.epub>;
                                                    skos:prefLabel "HTML object (1.94 KiB)"@en.
 <ni:///mh;1QEQySbwAeUmFVzh2hjijMOXng?ct=text/plain> at:digest <urn:md5:C926F001E526155CE1DA18E28CC3979E>;
                                                     dcterms:extent "1987"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQySbwAeUmFVzh2hjijMOXng?ct=application/xml>,
-                                                                      <ni:///mh;1QEQySbwAeUmFVzh2hjijMOXng?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQySbwAeUmFVzh2hjijMOXng?ct=text/html>,
+                                                                      <ni:///mh;1QEQySbwAeUmFVzh2hjijMOXng?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQySbwAeUmFVzh2hjijMOXng?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (1.94 KiB)"@en;

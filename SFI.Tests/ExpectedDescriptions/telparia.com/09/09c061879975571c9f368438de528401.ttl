@@ -1,4 +1,4 @@
-@base <x.blank:6af20c14-8407-4a8d-94f8-6865e1556b21>.
+@base <ni:///mh;1QEQ-GGTmh726lHlIAcyTbtWXA?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -34,6 +34,7 @@ _:n1 at:pathObject <file:///space1.qm>;
                                                                                                 a cnt:ContentAsBase64;
                                                                                                 skos:prefLabel "binary data (40 B)"@en;
                                                                                                 cnt:bytes "AABeASYCAAAAAAAABgADAAAAAAAAAAAAAAAAAAAAAAABAP///wABAA=="^^xsd:base64Binary.
+<file:///NONOLE/> at:pathObject <file:///>.
 <file:///NONOLE/MovieHeader> at:pathObject <file:///MovieHeader>.
 <file:///NONOLE/PaletteTable> at:pathObject <file:///PaletteTable>.
 <file:///NONOLE/TResourceArray> at:pathObject <file:///TResourceArray>.
@@ -61,6 +62,7 @@ _:n1 at:pathObject <file:///space1.qm>;
 <file:///NONOLE/Template@Inf@BGF> at:pathObject <file:///Template@Inf@BGF>.
 <file:///NONOLE/Template@Inf@BGG> at:pathObject <file:///Template@Inf@BGG>.
 <file:///NONOLE/Template@Inf@BGW> at:pathObject <file:///Template@Inf@BGW>.
+<file:///TResourceArray/> at:pathObject <file:///>.
 <file:///TResourceArray/Resource0> at:pathObject <file:///Resource0>.
 <file:///TResourceArray/Resource1> at:pathObject <file:///Resource1>.
 <file:///TResourceArray/Resource2> at:pathObject <file:///Resource2>.
@@ -72,6 +74,7 @@ _:n1 at:pathObject <file:///space1.qm>;
 <file:///TResourceArray/Resource8> at:pathObject <file:///Resource8>.
 <file:///TResourceArray/Resource9> at:pathObject <file:///Resource9>.
 <file:///TResourceArray/TResourceArray> at:pathObject <file:///TResourceArray>.
+<file:///TStyleList/> at:pathObject <file:///>.
 <file:///TStyleList/TStyleList> at:pathObject <file:///TStyleList>.
 <file:///space1.qm> at:extensionObject <https://w3id.org/uri4uri/suffix/qm>.
 <ni:///mh;1QEQ-GGTmh726lHlIAcyTbtWXA?ct=application/octet-stream> at:digest <urn:md5:F861939A1EF6EA51E52007324DBB565C>;
@@ -79,14 +82,14 @@ _:n1 at:pathObject <file:///space1.qm>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ-GGTmh726lHlIAcyTbtWXA?ct=application/x-ole-storage>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (8.5 KiB)"@en.
-<ni:///mh;1QEQ-GGTmh726lHlIAcyTbtWXA?ct=application/x-ole-storage> at:pathObject <file:///>;
+<ni:///mh;1QEQ-GGTmh726lHlIAcyTbtWXA?ct=application/x-ole-storage> at:pathObject <file:///.>;
                                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
                                                                    nie:interpretedAs <ni:///mh;1QEQ-GGTmh726lHlIAcyTbtWXA?ct=application/x-ole-storage#/>;
                                                                    nfo:fileLastModified "1994-04-20T15:12:20.000551Z"^^xsd:dateTime;
                                                                    a schema:MediaObject,
                                                                      nfo:EmbeddedFileDataObject;
                                                                    skos:prefLabel "OLE object (8.5 KiB)"@en.
-<ni:///mh;1QEQ-GGTmh726lHlIAcyTbtWXA?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQ-GGTmh726lHlIAcyTbtWXA?ct=application/x-ole-storage#/> at:pathObject <file:///>;
                                                                      a nfo:Folder;
                                                                      skos:prefLabel "/".
 <ni:///mh;1QEQ-GGTmh726lHlIAcyTbtWXA?ct=application/x-ole-storage#/NONOLE> at:pathObject <file:///NONOLE>;

@@ -3,8 +3,8 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -31,6 +31,7 @@ _:n1 at:pathObject <file:///MILEAGE.VOR>;
                                                                                                                 skos:prefLabel "binary data (52 B)"@en;
                                                                                                                 cnt:bytes "NAAAAAEANAAAAJEUAgABCABTdGFuZGFyZAsATElCSU1CRURERUQLAExJQklNQkVEREVEAA=="^^xsd:base64Binary.
 <file:///MILEAGE.VOR> at:extensionObject <https://w3id.org/uri4uri/suffix/vor>.
+<file:///StarBASIC/> at:pathObject <file:///>.
 <file:///StarBASIC/Standard> at:pathObject <file:///Standard>.
 <ni:///mh;1QEQ03rCOPurRx9qIXTcyt9KPw?ct=application/octet-stream> at:digest <urn:md5:D37AC238FBAB471F6A2174DCCADF4A3F>;
                                                                   dcterms:extent "108"^^dt:byte;
@@ -69,7 +70,7 @@ _:n1 at:pathObject <file:///MILEAGE.VOR>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQw9CkJ_fJNocyFcI0KAKJ0w?ct=application/x-ole-storage>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (58.5 KiB)"@en.
-<ni:///mh;1QEQw9CkJ_fJNocyFcI0KAKJ0w?ct=application/x-ole-storage> at:pathObject <file:///>;
+<ni:///mh;1QEQw9CkJ_fJNocyFcI0KAKJ0w?ct=application/x-ole-storage> at:pathObject <file:///.>;
                                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
                                                                    nie:interpretedAs <ni:///mh;1QEQw9CkJ_fJNocyFcI0KAKJ0w?ct=application/x-ole-storage#/>;
                                                                    nfo:fileCreated "1996-07-03T22:00:00.840000Z"^^xsd:dateTime;
@@ -77,7 +78,7 @@ _:n1 at:pathObject <file:///MILEAGE.VOR>;
                                                                    a schema:MediaObject,
                                                                      nfo:EmbeddedFileDataObject;
                                                                    skos:prefLabel "OLE object (58.5 KiB)"@en.
-<ni:///mh;1QEQw9CkJ_fJNocyFcI0KAKJ0w?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQw9CkJ_fJNocyFcI0KAKJ0w?ct=application/x-ole-storage#/> at:pathObject <file:///>;
                                                                      a nfo:Folder;
                                                                      skos:prefLabel "/".
 <ni:///mh;1QEQw9CkJ_fJNocyFcI0KAKJ0w?ct=application/x-ole-storage#/%01CompObj> at:pathObject <file:///%01CompObj>;

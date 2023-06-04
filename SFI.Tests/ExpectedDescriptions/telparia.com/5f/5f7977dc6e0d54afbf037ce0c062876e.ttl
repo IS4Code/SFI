@@ -3,8 +3,8 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -25,20 +25,24 @@ _:n1 at:pathObject <file:///XGFA031a.pzp>;
                             cnt:chars """1
 1
 0
-"""^^xsd:string.
+""".
 <data:application/octet-stream;base64,BAAAAAMAAAAAAAAAAAAAAA==> dcterms:extent "16"^^dt:byte;
                                                                 a cnt:ContentAsBase64;
                                                                 skos:prefLabel "binary data (16 B)"@en;
                                                                 cnt:bytes "BAAAAAMAAAAAAAAAAAAAAA=="^^xsd:base64Binary.
+<file:///0/> at:pathObject <file:///>.
 <file:///0/ITEM> at:pathObject <file:///ITEM>.
 <file:///0/THUMBNAIL.png> at:pathObject <file:///THUMBNAIL.png>.
+<file:///1/> at:pathObject <file:///>.
 <file:///1/IMAGE.jpg> at:pathObject <file:///IMAGE.jpg>.
 <file:///1/ITEM> at:pathObject <file:///ITEM>.
 <file:///1/THUMBNAIL.png> at:pathObject <file:///THUMBNAIL.png>.
+<file:///2/> at:pathObject <file:///>.
 <file:///2/IMAGE.jpg> at:pathObject <file:///IMAGE.jpg>.
 <file:///2/ITEM> at:pathObject <file:///ITEM>.
 <file:///2/THUMBNAIL.png> at:pathObject <file:///THUMBNAIL.png>.
 <file:///Catalog_0.msc> at:extensionObject <https://w3id.org/uri4uri/suffix/msc>.
+<file:///Catalog_0.msc/> at:pathObject <file:///>.
 <file:///Catalog_0.msc/0> at:pathObject <file:///0>.
 <file:///Catalog_0.msc/0/> at:pathObject <file:///0/>.
 <file:///Catalog_0.msc/0/ITEM> at:pathObject <file:///0/ITEM>.
@@ -71,8 +75,8 @@ _:n1 at:pathObject <file:///XGFA031a.pzp>;
                                                     nfo:verticalResolution 96 ;
                                                     nfo:width 975 ;
                                                     a schema:MediaObject,
-                                                      nfo:Image,
-                                                      schema:ImageObject;
+                                                      schema:ImageObject,
+                                                      nfo:Image;
                                                     skos:prefLabel "JPG object (975×727)"@en,
                                                                    "JPG object (86.4 KiB)"@en.
 <ni:///mh;1QEQ4T6yi6VqQcQoibO-CZ4H1w?ct=application/octet-stream> at:digest <urn:md5:E13EB28BA56A41C42889B3BE099E07D7>;
@@ -121,8 +125,8 @@ _:n1 at:pathObject <file:///XGFA031a.pzp>;
                                                     nfo:verticalResolution 96 ;
                                                     nfo:width 975 ;
                                                     a schema:MediaObject,
-                                                      schema:ImageObject,
-                                                      nfo:Image;
+                                                      nfo:Image,
+                                                      schema:ImageObject;
                                                     skos:prefLabel "JPG object (975×727)"@en,
                                                                    "JPG object (399.88 KiB)"@en.
 <ni:///mh;1QEQaOo1I6e3Wz0T0ZuAbfZcHQ?ct=application/octet-stream> at:digest <urn:md5:68EA3523A7B75B3D13D19B806DF65C1D>;
@@ -158,10 +162,10 @@ _:n1 at:pathObject <file:///XGFA031a.pzp>;
                                                    nfo:verticalResolution 96 ;
                                                    nfo:width 127 ;
                                                    a schema:MediaObject,
-                                                     nfo:Image,
-                                                     schema:ImageObject;
-                                                   skos:prefLabel "PNG object (127×95)"@en,
-                                                                  "PNG object (127×95, 8-bit)"@en,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "PNG object (127×95, 8-bit)"@en,
+                                                                  "PNG object (127×95)"@en,
                                                                   "PNG object (8.21 KiB)"@en.
 <ni:///mh;1QEQvEhTVKBL3v1-RUdSKCOnRA?ct=application/octet-stream> at:digest <urn:md5:BC485354A04BDEFD7E4547522823A744>;
                                                                   dcterms:extent "1138"^^dt:byte;
@@ -179,8 +183,8 @@ _:n1 at:pathObject <file:///XGFA031a.pzp>;
                                                     nfo:verticalResolution 96 ;
                                                     nfo:width 10 ;
                                                     a schema:MediaObject,
-                                                      nfo:Image,
-                                                      schema:ImageObject;
+                                                      schema:ImageObject,
+                                                      nfo:Image;
                                                     skos:prefLabel "JPG object (10×10)"@en,
                                                                    "JPG object (629 B)"@en.
 <ni:///mh;1QEQzQe8G6hvxcoU_vd4PgRrLQ?ct=application/octet-stream> at:digest <urn:md5:CD07BC1BA86FC5CA14FEF7783E046B2D>;
@@ -188,14 +192,14 @@ _:n1 at:pathObject <file:///XGFA031a.pzp>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQzQe8G6hvxcoU_vd4PgRrLQ?ct=application/x-ole-storage>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (523.5 KiB)"@en.
-<ni:///mh;1QEQzQe8G6hvxcoU_vd4PgRrLQ?ct=application/x-ole-storage> at:pathObject <file:///>;
+<ni:///mh;1QEQzQe8G6hvxcoU_vd4PgRrLQ?ct=application/x-ole-storage> at:pathObject <file:///.>;
                                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
                                                                    nie:interpretedAs <ni:///mh;1QEQzQe8G6hvxcoU_vd4PgRrLQ?ct=application/x-ole-storage#/>;
                                                                    nfo:fileLastModified "1998-08-11T18:45:58.210000Z"^^xsd:dateTime;
                                                                    a schema:MediaObject,
                                                                      nfo:EmbeddedFileDataObject;
                                                                    skos:prefLabel "OLE object (523.5 KiB)"@en.
-<ni:///mh;1QEQzQe8G6hvxcoU_vd4PgRrLQ?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQzQe8G6hvxcoU_vd4PgRrLQ?ct=application/x-ole-storage#/> at:pathObject <file:///>;
                                                                      a nfo:Folder;
                                                                      skos:prefLabel "/".
 <ni:///mh;1QEQzQe8G6hvxcoU_vd4PgRrLQ?ct=application/x-ole-storage#/Catalog_0.msc> at:pathObject <file:///Catalog_0.msc>;

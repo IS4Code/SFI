@@ -3,8 +3,8 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
@@ -22,7 +22,7 @@ _:n1 at:pathObject <file:///KNW.PPT>;
                               a cnt:ContentAsText;
                               skos:prefLabel "text (17 B)"@en;
                               cnt:characterEncoding "us-ascii";
-                              cnt:chars "␐Thomas Feldmeier"^^xsd:string.
+                              cnt:chars "␐Thomas Feldmeier".
 <data:application/octet-stream,%00%00%00%00> dcterms:extent "4"^^dt:byte;
                                              a cnt:ContentAsBase64;
                                              skos:prefLabel "binary data (4 B)"@en;
@@ -36,6 +36,7 @@ _:n1 at:pathObject <file:///KNW.PPT>;
                                                             skos:prefLabel "binary data (15 B)"@en;
                                                             cnt:bytes "CwAAADAgMCA1ODcgMjgA"^^xsd:base64Binary.
 <file:///KNW.PPT> at:extensionObject <https://w3id.org/uri4uri/suffix/ppt>.
+<file:///Object2/> at:pathObject <file:///>.
 <file:///Object2/%01CompObj> at:pathObject <file:///%01CompObj>.
 <file:///Object2/%01Ole> at:pathObject <file:///%01Ole>.
 <file:///Object2/%01Ole10ItemName> at:pathObject <file:///%01Ole10ItemName>.
@@ -62,14 +63,14 @@ _:n1 at:pathObject <file:///KNW.PPT>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQwY5oJT5czgveGvAec5p1FA?ct=application/x-ole-storage>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (3.94 MiB)"@en.
-<ni:///mh;1QEQwY5oJT5czgveGvAec5p1FA?ct=application/x-ole-storage> at:pathObject <file:///>;
+<ni:///mh;1QEQwY5oJT5czgveGvAec5p1FA?ct=application/x-ole-storage> at:pathObject <file:///.>;
                                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
                                                                    nie:interpretedAs <ni:///mh;1QEQwY5oJT5czgveGvAec5p1FA?ct=application/x-ole-storage#/>;
                                                                    nfo:fileLastModified "1995-10-28T06:29:16.000551Z"^^xsd:dateTime;
                                                                    a schema:MediaObject,
                                                                      nfo:EmbeddedFileDataObject;
                                                                    skos:prefLabel "OLE object (3.94 MiB)"@en.
-<ni:///mh;1QEQwY5oJT5czgveGvAec5p1FA?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQwY5oJT5czgveGvAec5p1FA?ct=application/x-ole-storage#/> at:pathObject <file:///>;
                                                                      a nfo:Folder;
                                                                      skos:prefLabel "/".
 <ni:///mh;1QEQwY5oJT5czgveGvAec5p1FA?ct=application/x-ole-storage#/%05SummaryInformation> at:pathObject <file:///%05SummaryInformation>;

@@ -1,12 +1,12 @@
-@base <x.blank:dba191ae-4fa1-457e-bd0e-1390d488eeab>.
+@base <ni:///mh;1QEQkj3MEUD--vjnycOtcD8MCQ?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix sec: <https://w3id.org/security#>.
@@ -18,6 +18,7 @@ _:n1 at:pathObject <file:///TAR_14>;
      nfo:fileName "TAR_14";
      nfo:fileSize 14551 ;
      a nfo:FileDataObject.
+<file:///etc/> at:pathObject <file:///>.
 <file:///etc/issue> at:pathObject <file:///issue>.
 <file:///etc/italic.fnt> at:pathObject <file:///italic.fnt>.
 <file:///etc/large.fnt> at:pathObject <file:///large.fnt>.

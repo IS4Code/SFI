@@ -1,10 +1,10 @@
-@base <x.blank:d052edfc-c19e-4ee9-8417-1ddd1d6579a6>.
+@base <ni:///mh;1QEQqzXUGNMFiKyLwQZj5FCC7Q?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -24,7 +24,7 @@ _:n1 at:pathObject <file:///example.msg>;
                                                  a cnt:ContentAsText;
                                                  skos:prefLabel "text (34 B)"@en;
                                                  cnt:characterEncoding "us-ascii";
-                                                 cnt:chars "SMTP:TIME2TALK@ONLINE-CONVERT.COM␀"^^xsd:string.
+                                                 cnt:chars "SMTP:TIME2TALK@ONLINE-CONVERT.COM␀".
 <data:application/octet-stream,> dcterms:extent "0"^^dt:byte;
                                  a cnt:ContentAsBase64;
                                  skos:prefLabel "binary data (0 B)"@en;
@@ -108,6 +108,7 @@ _:n1 at:pathObject <file:///example.msg>;
 <file:///%5BContent_Types%5D.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///.rels> at:extensionObject <https://w3id.org/uri4uri/suffix/rels>.
 <file:///__nameid_version1.0> at:extensionObject <https://w3id.org/uri4uri/suffix/0>.
+<file:///__nameid_version1.0/> at:pathObject <file:///>.
 <file:///__nameid_version1.0/__substg1.0_00020102> at:pathObject <file:///__substg1.0_00020102>.
 <file:///__nameid_version1.0/__substg1.0_00030102> at:pathObject <file:///__substg1.0_00030102>.
 <file:///__nameid_version1.0/__substg1.0_00040102> at:pathObject <file:///__substg1.0_00040102>.
@@ -122,6 +123,7 @@ _:n1 at:pathObject <file:///example.msg>;
 <file:///__nameid_version1.0/__substg1.0_101E0102> at:pathObject <file:///__substg1.0_101E0102>.
 <file:///__properties_version1.0> at:extensionObject <https://w3id.org/uri4uri/suffix/0>.
 <file:///__recip_version1.0_%2300000000> at:extensionObject <https://w3id.org/uri4uri/suffix/0_%2300000000>.
+<file:///__recip_version1.0_%2300000000/> at:pathObject <file:///>.
 <file:///__recip_version1.0_%2300000000/__properties_version1.0> at:pathObject <file:///__properties_version1.0>.
 <file:///__recip_version1.0_%2300000000/__substg1.0_0FF60102> at:pathObject <file:///__substg1.0_0FF60102>.
 <file:///__recip_version1.0_%2300000000/__substg1.0_0FF90102> at:pathObject <file:///__substg1.0_0FF90102>.
@@ -166,9 +168,11 @@ _:n1 at:pathObject <file:///example.msg>;
 <file:///__substg1.0_8004001F> at:extensionObject <https://w3id.org/uri4uri/suffix/0_8004001f>.
 <file:///__substg1.0_80080102> at:extensionObject <https://w3id.org/uri4uri/suffix/0_80080102>.
 <file:///__substg1.0_80090102> at:extensionObject <https://w3id.org/uri4uri/suffix/0_80090102>.
+<file:///_rels/> at:pathObject <file:///>.
 <file:///_rels/.rels> at:pathObject <file:///.rels>.
 <file:///_rels/themeManager.xml.rels> at:pathObject <file:///themeManager.xml.rels>.
 <file:///example.msg> at:extensionObject <https://w3id.org/uri4uri/suffix/msg>.
+<file:///theme/> at:pathObject <file:///>.
 <file:///theme/_rels> at:pathObject <file:///_rels>.
 <file:///theme/_rels/> at:pathObject <file:///_rels/>.
 <file:///theme/_rels/themeManager.xml.rels> at:pathObject <file:///_rels/themeManager.xml.rels>.
@@ -211,13 +215,13 @@ _:n1 at:pathObject <file:///example.msg>;
                                                                                                                    schema:DigitalDocument,
                                                                                                                    nfo:Document;
                                                                                                                  skos:prefLabel "DOCX object"@en.
-<ni:///mh;1QEQTDv4t3r3K9mVMnT3pH8U7w?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQTDv4t3r3K9mVMnT3pH8U7w?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQTDv4t3r3K9mVMnT3pH8U7w?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (3.06 KiB)"@en.
-<ni:///mh;1QEQTDv4t3r3K9mVMnT3pH8U7w?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQTDv4t3r3K9mVMnT3pH8U7w?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQTDv4t3r3K9mVMnT3pH8U7w?ct=application/zip#/%5BContent_Types%5D.xml> at:pathObject <file:///%5BContent_Types%5D.xml>;
@@ -367,14 +371,14 @@ _:n1 at:pathObject <file:///example.msg>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQqzXUGNMFiKyLwQZj5FCC7Q?ct=application/x-ole-storage>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (31 KiB)"@en.
-<ni:///mh;1QEQqzXUGNMFiKyLwQZj5FCC7Q?ct=application/x-ole-storage> at:pathObject <file:///>;
+<ni:///mh;1QEQqzXUGNMFiKyLwQZj5FCC7Q?ct=application/x-ole-storage> at:pathObject <file:///.>;
                                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
                                                                    nie:interpretedAs <ni:///mh;1QEQqzXUGNMFiKyLwQZj5FCC7Q?ct=application/x-ole-storage#/>;
                                                                    nfo:fileLastModified "2016-02-23T14:57:51.115000Z"^^xsd:dateTime;
                                                                    a schema:MediaObject,
                                                                      nfo:EmbeddedFileDataObject;
                                                                    skos:prefLabel "OLE object (31 KiB)"@en.
-<ni:///mh;1QEQqzXUGNMFiKyLwQZj5FCC7Q?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQqzXUGNMFiKyLwQZj5FCC7Q?ct=application/x-ole-storage#/> at:pathObject <file:///>;
                                                                      a nfo:Folder;
                                                                      skos:prefLabel "/".
 <ni:///mh;1QEQqzXUGNMFiKyLwQZj5FCC7Q?ct=application/x-ole-storage#/__nameid_version1.0> at:pathObject <file:///__nameid_version1.0>;

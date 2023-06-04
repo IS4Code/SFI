@@ -1,10 +1,10 @@
-@base <x.blank:22f457f9-a102-4ec0-9d77-7878d3200246>.
+@base <ni:///mh;1QEQlS2bNdHIsnQiOrj_0MhmKw?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xis: <http://www.w3.org/2001/04/infoset#>.
@@ -25,6 +25,7 @@ _:n1 at:pathObject <file:///mb03.oxps>;
 <file:///.rels> at:extensionObject <https://w3id.org/uri4uri/suffix/rels>.
 <file:///1.fpage> at:extensionObject <https://w3id.org/uri4uri/suffix/fpage>.
 <file:///1.fpage.rels> at:extensionObject <https://w3id.org/uri4uri/suffix/rels>.
+<file:///1/> at:pathObject <file:///>.
 <file:///1/FixedDocument.fdoc> at:pathObject <file:///FixedDocument.fdoc>.
 <file:///1/Pages> at:pathObject <file:///Pages>.
 <file:///1/Pages/> at:pathObject <file:///Pages/>.
@@ -32,6 +33,7 @@ _:n1 at:pathObject <file:///mb03.oxps>;
 <file:///1/Pages/_rels> at:pathObject <file:///Pages/_rels>.
 <file:///1/Pages/_rels/> at:pathObject <file:///Pages/_rels/>.
 <file:///1/Pages/_rels/1.fpage.rels> at:pathObject <file:///Pages/_rels/1.fpage.rels>.
+<file:///Documents/> at:pathObject <file:///>.
 <file:///Documents/1> at:pathObject <file:///1>.
 <file:///Documents/1/> at:pathObject <file:///1/>.
 <file:///Documents/1/FixedDocument.fdoc> at:pathObject <file:///1/FixedDocument.fdoc>.
@@ -43,12 +45,14 @@ _:n1 at:pathObject <file:///mb03.oxps>;
 <file:///Documents/1/Pages/_rels/1.fpage.rels> at:pathObject <file:///1/Pages/_rels/1.fpage.rels>.
 <file:///FixedDocument.fdoc> at:extensionObject <https://w3id.org/uri4uri/suffix/fdoc>.
 <file:///FixedDocumentSequence.fdseq> at:extensionObject <https://w3id.org/uri4uri/suffix/fdseq>.
+<file:///Pages/> at:pathObject <file:///>.
 <file:///Pages/1.fpage> at:pathObject <file:///1.fpage>.
 <file:///Pages/_rels> at:pathObject <file:///_rels>.
 <file:///Pages/_rels/> at:pathObject <file:///_rels/>.
 <file:///Pages/_rels/1.fpage.rels> at:pathObject <file:///_rels/1.fpage.rels>.
 <file:///QL_logo_color.tif> at:extensionObject <https://w3id.org/uri4uri/suffix/tif>.
 <file:///R08LN_NN.jpg> at:extensionObject <https://w3id.org/uri4uri/suffix/jpg>.
+<file:///Resources/> at:pathObject <file:///>.
 <file:///Resources/QL_logo_color.tif> at:pathObject <file:///QL_logo_color.tif>.
 <file:///Resources/R08LN_NN.jpg> at:pathObject <file:///R08LN_NN.jpg>.
 <file:///Resources/arial.ttf> at:pathObject <file:///arial.ttf>.
@@ -57,6 +61,7 @@ _:n1 at:pathObject <file:///mb03.oxps>;
 <file:///Resources/msgothic.ttf> at:pathObject <file:///msgothic.ttf>.
 <file:///Resources/mshei.ttf> at:pathObject <file:///mshei.ttf>.
 <file:///Resources/times.ttf> at:pathObject <file:///times.ttf>.
+<file:///_rels/> at:pathObject <file:///>.
 <file:///_rels/.rels> at:pathObject <file:///.rels>.
 <file:///_rels/1.fpage.rels> at:pathObject <file:///1.fpage.rels>.
 <file:///arial.ttf> at:extensionObject <https://w3id.org/uri4uri/suffix/ttf>.
@@ -118,8 +123,8 @@ _:n1 at:pathObject <file:///mb03.oxps>;
 <ni:///mh;1QEQAMu4sO1bqZme-BFkTokvCg?ct=text/plain#line=,1> rdf:value """<?xml version=\"1.0\" encoding=\"utf-8\"?><Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Type=\"http://schemas.openxps.org/oxps/v1.0/fixedrepresentation\" Target=\"/FixedDocumentSequence.fdseq\" Id=\"Q8\" /></Relationships>""".
 <ni:///mh;1QEQL51UvNRL43QaU-z_vumTsg?ct=application/octet-stream> at:digest <urn:md5:2F9D54BCD44BE3741A53ECFFBEE993B2>;
                                                                   dcterms:extent "431732"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQL51UvNRL43QaU-z_vumTsg?ct=application/octet-stream#arw>,
-                                                                                    <ni:///mh;1QEQL51UvNRL43QaU-z_vumTsg?ct=image/tiff>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQL51UvNRL43QaU-z_vumTsg?ct=image/tiff>,
+                                                                                    <ni:///mh;1QEQL51UvNRL43QaU-z_vumTsg?ct=application/octet-stream#arw>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (421.61 KiB)"@en.
 <ni:///mh;1QEQL51UvNRL43QaU-z_vumTsg?ct=application/octet-stream#arw> nfo:height 178 ;
@@ -242,13 +247,13 @@ _:n1 at:pathObject <file:///mb03.oxps>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQlS2bNdHIsnQiOrj_0MhmKw?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (13.76 MiB)"@en.
-<ni:///mh;1QEQlS2bNdHIsnQiOrj_0MhmKw?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQlS2bNdHIsnQiOrj_0MhmKw?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQlS2bNdHIsnQiOrj_0MhmKw?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (13.76 MiB)"@en.
-<ni:///mh;1QEQlS2bNdHIsnQiOrj_0MhmKw?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQlS2bNdHIsnQiOrj_0MhmKw?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQlS2bNdHIsnQiOrj_0MhmKw?ct=application/zip#/%5BContent_Types%5D.xml> at:pathObject <file:///%5BContent_Types%5D.xml>;
@@ -482,13 +487,13 @@ _:n1 at:pathObject <file:///mb03.oxps>;
                                                     exif:pixelXDimension 1600 ;
                                                     exif:pixelYDimension 1200 ;
                                                     exif:resolutionUnit 2 ;
-                                                    exif:software "Adobe Photoshop CS Windows"^^xsd:string;
+                                                    exif:software "Adobe Photoshop CS Windows";
                                                     exif:xResolution 1200 ,
                                                                      72 ;
                                                     exif:yResolution 1200 ,
                                                                      72 ;
-                                                    skos:prefLabel "JPG object (1.25 MiB)"@en,
-                                                                   "JPG object (1600×1200)"@en.
+                                                    skos:prefLabel "JPG object (1600×1200)"@en,
+                                                                   "JPG object (1.25 MiB)"@en.
 <ni:///mh;1QEQpej1PReqYyuhU3EgodC2kw?ct=image/jpeg#/0> nfo:height 1200 ;
                                                        nfo:width 1600 ;
                                                        a nfo:MediaStream;

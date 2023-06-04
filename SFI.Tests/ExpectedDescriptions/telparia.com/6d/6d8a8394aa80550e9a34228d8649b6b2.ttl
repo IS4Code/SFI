@@ -1,10 +1,10 @@
-@base <x.blank:5e5dbd12-0c10-42cd-a3fe-4289aef0f7a7>.
+@base <ni:///mh;1QEQ52yQSPLrvhGnPvMtFHY5DQ?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -24,17 +24,19 @@ _:n1 at:pathObject <file:///Peggy.kra>;
                               a cnt:ContentAsText;
                               skos:prefLabel "text (19 B)"@en;
                               cnt:characterEncoding "us-ascii";
-                              cnt:chars "application/x-krita"^^xsd:string.
+                              cnt:chars "application/x-krita".
 <data:application/octet-stream,%00%00%00%00> dcterms:extent "4"^^dt:byte;
                                              a cnt:ContentAsBase64;
                                              skos:prefLabel "binary data (4 B)"@en;
                                              cnt:bytes "AAAAAA=="^^xsd:base64Binary.
 <file:///Peggy.kra> at:extensionObject <https://w3id.org/uri4uri/suffix/kra>.
+<file:///annotations/> at:pathObject <file:///>.
 <file:///annotations/icc> at:pathObject <file:///icc>.
 <file:///annotations/proofing> at:pathObject <file:///proofing>.
 <file:///annotations/proofing/> at:pathObject <file:///proofing/>.
 <file:///annotations/proofing/icc> at:pathObject <file:///proofing/icc>.
 <file:///documentinfo.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///environment%20concept/> at:pathObject <file:///>.
 <file:///environment%20concept/annotations> at:pathObject <file:///annotations>.
 <file:///environment%20concept/annotations/> at:pathObject <file:///annotations/>.
 <file:///environment%20concept/annotations/icc> at:pathObject <file:///annotations/icc>.
@@ -168,6 +170,7 @@ _:n1 at:pathObject <file:///Peggy.kra>;
 <file:///layer8.icc> at:extensionObject <https://w3id.org/uri4uri/suffix/icc>.
 <file:///layer9.defaultpixel> at:extensionObject <https://w3id.org/uri4uri/suffix/defaultpixel>.
 <file:///layer9.icc> at:extensionObject <https://w3id.org/uri4uri/suffix/icc>.
+<file:///layers/> at:pathObject <file:///>.
 <file:///layers/layer10> at:pathObject <file:///layer10>.
 <file:///layers/layer10.defaultpixel> at:pathObject <file:///layer10.defaultpixel>.
 <file:///layers/layer10.icc> at:pathObject <file:///layer10.icc>.
@@ -246,6 +249,7 @@ _:n1 at:pathObject <file:///Peggy.kra>;
 <file:///maindoc.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///mergedimage.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
 <file:///preview.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
+<file:///proofing/> at:pathObject <file:///>.
 <file:///proofing/icc> at:pathObject <file:///icc>.
 <ni:///mh;1QEQ-hzp88abEvQaMEawLJS0BA?ct=application/octet-stream> at:digest <urn:md5:FA1CE9F3C69B12F41A3046B02C94B404>;
                                                                   dcterms:extent "52848"^^dt:byte;
@@ -260,13 +264,13 @@ _:n1 at:pathObject <file:///Peggy.kra>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ52yQSPLrvhGnPvMtFHY5DQ?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (2.16 MiB)"@en.
-<ni:///mh;1QEQ52yQSPLrvhGnPvMtFHY5DQ?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQ52yQSPLrvhGnPvMtFHY5DQ?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQ52yQSPLrvhGnPvMtFHY5DQ?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (2.16 MiB)"@en.
-<ni:///mh;1QEQ52yQSPLrvhGnPvMtFHY5DQ?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQ52yQSPLrvhGnPvMtFHY5DQ?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQ52yQSPLrvhGnPvMtFHY5DQ?ct=application/zip#/documentinfo.xml> at:pathObject <file:///documentinfo.xml>;
@@ -1091,10 +1095,10 @@ _:n1 at:pathObject <file:///Peggy.kra>;
                                                    nfo:verticalResolution 99.9744;
                                                    nfo:width 893 ;
                                                    a schema:MediaObject,
-                                                     schema:ImageObject,
-                                                     nfo:Image;
-                                                   skos:prefLabel "PNG object (893×935, 8-bit)"@en,
-                                                                  "PNG object (893×935)"@en,
+                                                     nfo:Image,
+                                                     schema:ImageObject;
+                                                   skos:prefLabel "PNG object (893×935)"@en,
+                                                                  "PNG object (893×935, 8-bit)"@en,
                                                                   "PNG object (3.19 MiB)"@en.
 <ni:///mh;1QEQOZm7yoOocyLD2WWvWJ1HtA?ct=application/octet-stream> at:digest <urn:md5:3999BBCA83A87322C3D965AF589D47B4>;
                                                                   dcterms:extent "7567"^^dt:byte;
@@ -1240,8 +1244,8 @@ _:n1 at:pathObject <file:///Peggy.kra>;
                                                    nfo:verticalResolution 143.9926;
                                                    nfo:width 210 ;
                                                    a schema:MediaObject,
-                                                     nfo:Image,
-                                                     schema:ImageObject;
+                                                     schema:ImageObject,
+                                                     nfo:Image;
                                                    skos:prefLabel "PNG object (210×225, 8-bit)"@en,
                                                                   "PNG object (210×225)"@en,
                                                                   "PNG object (42.26 KiB)"@en.

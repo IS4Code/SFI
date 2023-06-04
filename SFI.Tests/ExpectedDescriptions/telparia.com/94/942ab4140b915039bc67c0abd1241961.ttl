@@ -3,6 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
@@ -11,7 +12,6 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///example_multilevel.tar.gz>;
      nie:interpretedAs <ni:///mh;1QEQ0cDibPcAB5FfcK14m4zaBA?ct=application/octet-stream>;
@@ -20,10 +20,12 @@ _:n1 at:pathObject <file:///example_multilevel.tar.gz>;
      a nfo:FileDataObject.
 <file:///example.pdf> at:extensionObject <https://w3id.org/uri4uri/suffix/pdf>.
 <file:///example1.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
+<file:///example1/> at:pathObject <file:///>.
 <file:///example1/example.pdf> at:pathObject <file:///example.pdf>.
 <file:///example1/example1.png> at:pathObject <file:///example1.png>.
 <file:///example1/example2.png> at:pathObject <file:///example2.png>.
 <file:///example2.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
+<file:///example2/> at:pathObject <file:///>.
 <file:///example2/example.pdf> at:pathObject <file:///example.pdf>.
 <file:///example2/example1.png> at:pathObject <file:///example1.png>.
 <file:///example2/example2.png> at:pathObject <file:///example2.png>.
@@ -171,10 +173,10 @@ _:n1 at:pathObject <file:///example_multilevel.tar.gz>;
                                                    nfo:verticalResolution 299.9994;
                                                    nfo:width 500 ;
                                                    a schema:MediaObject,
-                                                     schema:ImageObject,
-                                                     nfo:Image;
-                                                   skos:prefLabel "PNG object (500×333, 8-bit)"@en,
-                                                                  "PNG object (500×333)"@en,
+                                                     nfo:Image,
+                                                     schema:ImageObject;
+                                                   skos:prefLabel "PNG object (500×333)"@en,
+                                                                  "PNG object (500×333, 8-bit)"@en,
                                                                   "PNG object (325.4 KiB)"@en.
 <ni:///mh;1QEQYr1AKfZiSgZxgEYX00X2NQ?ct=application/octet-stream> at:digest <urn:md5:62BD4029F6624A0671804617D345F635>;
                                                                   dcterms:extent "761773"^^dt:byte;

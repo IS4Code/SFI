@@ -3,10 +3,10 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix sec: <https://w3id.org/security#>.
@@ -20,6 +20,7 @@ _:n1 at:pathObject <file:///sping.gz>;
      a nfo:FileDataObject.
 <file:///in.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
 <file:///in_systm.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<file:///include/> at:pathObject <file:///>.
 <file:///include/netdb.h> at:pathObject <file:///netdb.h>.
 <file:///include/netinet> at:pathObject <file:///netinet>.
 <file:///include/netinet/> at:pathObject <file:///netinet/>.
@@ -34,11 +35,13 @@ _:n1 at:pathObject <file:///sping.gz>;
 <file:///ip.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
 <file:///ip_icmp.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
 <file:///netdb.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<file:///netinet/> at:pathObject <file:///>.
 <file:///netinet/in.h> at:pathObject <file:///in.h>.
 <file:///netinet/in_systm.h> at:pathObject <file:///in_systm.h>.
 <file:///netinet/ip.h> at:pathObject <file:///ip.h>.
 <file:///netinet/ip_icmp.h> at:pathObject <file:///ip_icmp.h>.
 <file:///socket.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<file:///sping-/> at:pathObject <file:///>.
 <file:///sping-/include> at:pathObject <file:///include>.
 <file:///sping-/include/> at:pathObject <file:///include/>.
 <file:///sping-/include/netdb.h> at:pathObject <file:///include/netdb.h>.
@@ -57,6 +60,7 @@ _:n1 at:pathObject <file:///sping.gz>;
 <file:///sping.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
 <file:///sping.gz> at:extensionObject <https://w3id.org/uri4uri/suffix/gz>.
 <file:///sping.tar> at:extensionObject <https://w3id.org/uri4uri/suffix/tar>.
+<file:///sys/> at:pathObject <file:///>.
 <file:///sys/socket.h> at:pathObject <file:///socket.h>.
 <file:///sys/types.h> at:pathObject <file:///types.h>.
 <file:///types.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.

@@ -1,10 +1,10 @@
-@base <x.blank:4f3536e3-0a85-4ddb-bf4f-76108becf511>.
+@base <ni:///mh;1QEQiB4b6WxwxVH6eVk16uq1nQ?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -29,17 +29,18 @@ TILEWIDTH 64
 TILEHEIGHT 64
 PIXELSIZE 4
 DATA 0
-"""^^xsd:string.
+""".
 <data:,application%2Fx-krita> dcterms:extent "19"^^dt:byte;
                               a cnt:ContentAsText;
                               skos:prefLabel "text (19 B)"@en;
                               cnt:characterEncoding "us-ascii";
-                              cnt:chars "application/x-krita"^^xsd:string.
+                              cnt:chars "application/x-krita".
 <data:application/octet-stream,%00%00%00%00> dcterms:extent "4"^^dt:byte;
                                              a cnt:ContentAsBase64;
                                              skos:prefLabel "binary data (4 B)"@en;
                                              cnt:bytes "AAAAAA=="^^xsd:base64Binary.
 <file:///Anim-Jp-EN.kra> at:extensionObject <https://w3id.org/uri4uri/suffix/kra>.
+<file:///Anim-Jp-EN/> at:pathObject <file:///>.
 <file:///Anim-Jp-EN/annotations> at:pathObject <file:///annotations>.
 <file:///Anim-Jp-EN/annotations/> at:pathObject <file:///annotations/>.
 <file:///Anim-Jp-EN/annotations/icc> at:pathObject <file:///annotations/icc>.
@@ -135,6 +136,7 @@ DATA 0
 <file:///Anim-Jp-EN/layers/layer7> at:pathObject <file:///layers/layer7>.
 <file:///Anim-Jp-EN/layers/layer7.defaultpixel> at:pathObject <file:///layers/layer7.defaultpixel>.
 <file:///Anim-Jp-EN/layers/layer7.icc> at:pathObject <file:///layers/layer7.icc>.
+<file:///annotations/> at:pathObject <file:///>.
 <file:///annotations/icc> at:pathObject <file:///icc>.
 <file:///annotations/proofing> at:pathObject <file:///proofing>.
 <file:///annotations/proofing/> at:pathObject <file:///proofing/>.
@@ -198,6 +200,7 @@ DATA 0
 <file:///layer6.icc> at:extensionObject <https://w3id.org/uri4uri/suffix/icc>.
 <file:///layer7.defaultpixel> at:extensionObject <https://w3id.org/uri4uri/suffix/defaultpixel>.
 <file:///layer7.icc> at:extensionObject <https://w3id.org/uri4uri/suffix/icc>.
+<file:///layers/> at:pathObject <file:///>.
 <file:///layers/layer10> at:pathObject <file:///layer10>.
 <file:///layers/layer10.defaultpixel> at:pathObject <file:///layer10.defaultpixel>.
 <file:///layers/layer10.icc> at:pathObject <file:///layer10.icc>.
@@ -288,6 +291,7 @@ DATA 0
 <file:///maindoc.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///mergedimage.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
 <file:///preview.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
+<file:///proofing/> at:pathObject <file:///>.
 <file:///proofing/icc> at:pathObject <file:///icc>.
 <ni:///mh;1QEQ-gO5R_QsrqJj_DtSTggzTg?ct=application/octet-stream> at:digest <urn:md5:FA03B947F42CAEA263FC3B524E08334E>;
                                                                   dcterms:extent "207620"^^dt:byte;
@@ -408,13 +412,13 @@ DATA 0
                                                                   dcterms:hasFormat <ni:///mh;1QEQiB4b6WxwxVH6eVk16uq1nQ?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (3.37 MiB)"@en.
-<ni:///mh;1QEQiB4b6WxwxVH6eVk16uq1nQ?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQiB4b6WxwxVH6eVk16uq1nQ?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQiB4b6WxwxVH6eVk16uq1nQ?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (3.37 MiB)"@en.
-<ni:///mh;1QEQiB4b6WxwxVH6eVk16uq1nQ?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQiB4b6WxwxVH6eVk16uq1nQ?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQiB4b6WxwxVH6eVk16uq1nQ?ct=application/zip#/Anim-Jp-EN> at:pathObject <file:///Anim-Jp-EN>;

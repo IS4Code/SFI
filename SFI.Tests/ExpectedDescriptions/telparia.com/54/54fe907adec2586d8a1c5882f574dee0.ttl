@@ -1,10 +1,10 @@
-@base <x.blank:0796cbdf-ac51-45e6-afa5-2d9d7f0f0da8>.
+@base <ni:///mh;1QEQxo2MiGTZsL3HnGMCxGdAOg?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -27,6 +27,7 @@ _:n1 at:pathObject <file:///Dining.wdb>;
                                                                                   a schema:MediaObject;
                                                                                   skos:prefLabel "ND object (14 B)"@en.
 <file:///Dining.wdb> at:extensionObject <https://w3id.org/uri4uri/suffix/wdb>.
+<file:///MatOST/> at:pathObject <file:///>.
 <ni:///mh;1QEQAm5ERHoCGaDGr7D3Aa_T9A?ct=application/octet-stream> at:digest <urn:md5:026E44447A0219A0C6AFB0F701AFD3F4>;
                                                                   dcterms:extent "4059"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -40,14 +41,14 @@ _:n1 at:pathObject <file:///Dining.wdb>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQxo2MiGTZsL3HnGMCxGdAOg?ct=application/x-ole-storage>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (7 KiB)"@en.
-<ni:///mh;1QEQxo2MiGTZsL3HnGMCxGdAOg?ct=application/x-ole-storage> at:pathObject <file:///>;
+<ni:///mh;1QEQxo2MiGTZsL3HnGMCxGdAOg?ct=application/x-ole-storage> at:pathObject <file:///.>;
                                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
                                                                    nie:interpretedAs <ni:///mh;1QEQxo2MiGTZsL3HnGMCxGdAOg?ct=application/x-ole-storage#/>;
                                                                    nfo:fileLastModified "2003-08-18T19:53:28.811000Z"^^xsd:dateTime;
                                                                    a schema:MediaObject,
                                                                      nfo:EmbeddedFileDataObject;
                                                                    skos:prefLabel "OLE object (7 KiB)"@en.
-<ni:///mh;1QEQxo2MiGTZsL3HnGMCxGdAOg?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQxo2MiGTZsL3HnGMCxGdAOg?ct=application/x-ole-storage#/> at:pathObject <file:///>;
                                                                      a nfo:Folder;
                                                                      skos:prefLabel "/".
 <ni:///mh;1QEQxo2MiGTZsL3HnGMCxGdAOg?ct=application/x-ole-storage#/%01CompObj> at:pathObject <file:///%01CompObj>;

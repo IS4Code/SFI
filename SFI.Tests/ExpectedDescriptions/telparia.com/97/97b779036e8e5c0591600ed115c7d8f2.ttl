@@ -1,10 +1,10 @@
-@base <x.blank:7b23ac8d-9c19-4284-a5f2-d7fcbc22c8dc>.
+@base <ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -24,7 +24,8 @@ _:n1 at:pathObject <file:///childrens-literature.epub>;
                                  a cnt:ContentAsText;
                                  skos:prefLabel "text (20 B)"@en;
                                  cnt:characterEncoding "us-ascii";
-                                 cnt:chars "application/epub+zip"^^xsd:string.
+                                 cnt:chars "application/epub+zip".
+<file:///EPUB/> at:pathObject <file:///>.
 <file:///EPUB/cover.xhtml> at:pathObject <file:///cover.xhtml>.
 <file:///EPUB/css> at:pathObject <file:///css>.
 <file:///EPUB/css/> at:pathObject <file:///css/>.
@@ -37,14 +38,17 @@ _:n1 at:pathObject <file:///childrens-literature.epub>;
 <file:///EPUB/package.opf> at:pathObject <file:///package.opf>.
 <file:///EPUB/s04.xhtml> at:pathObject <file:///s04.xhtml>.
 <file:///EPUB/toc.ncx> at:pathObject <file:///toc.ncx>.
+<file:///META-INF/> at:pathObject <file:///>.
 <file:///META-INF/container.xml> at:pathObject <file:///container.xml>.
 <file:///childrens-literature.epub> at:extensionObject <https://w3id.org/uri4uri/suffix/epub>.
 <file:///container.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///cover.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
 <file:///cover.xhtml> at:extensionObject <https://w3id.org/uri4uri/suffix/xhtml>.
+<file:///css/> at:pathObject <file:///>.
 <file:///css/epub.css> at:pathObject <file:///epub.css>.
 <file:///css/nav.css> at:pathObject <file:///nav.css>.
 <file:///epub.css> at:extensionObject <https://w3id.org/uri4uri/suffix/css>.
+<file:///images/> at:pathObject <file:///>.
 <file:///images/cover.png> at:pathObject <file:///cover.png>.
 <file:///nav.css> at:extensionObject <https://w3id.org/uri4uri/suffix/css>.
 <file:///nav.xhtml> at:extensionObject <https://w3id.org/uri4uri/suffix/xhtml>.
@@ -81,13 +85,13 @@ _:n1 at:pathObject <file:///childrens-literature.epub>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (157.51 KiB)"@en.
-<ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (157.51 KiB)"@en.
-<ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQQ_ENUuXEhtFDJBdwGkAvyw?ct=application/zip#/EPUB> at:pathObject <file:///EPUB>;
@@ -272,8 +276,8 @@ _:n1 at:pathObject <file:///childrens-literature.epub>;
                                                    skos:prefLabel "HTML object (12.36 KiB)"@en.
 <ni:///mh;1QEQevV-8jqxY-u7pA9J-_RAxw?ct=text/plain> at:digest <urn:md5:7AF57EF23AB163EBBBA40F49FBF440C7>;
                                                     dcterms:extent "12655"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQevV-8jqxY-u7pA9J-_RAxw?ct=application/xml>,
-                                                                      <ni:///mh;1QEQevV-8jqxY-u7pA9J-_RAxw?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQevV-8jqxY-u7pA9J-_RAxw?ct=text/html>,
+                                                                      <ni:///mh;1QEQevV-8jqxY-u7pA9J-_RAxw?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQevV-8jqxY-u7pA9J-_RAxw?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (12.36 KiB)"@en;
@@ -305,8 +309,8 @@ _:n1 at:pathObject <file:///childrens-literature.epub>;
                                                    skos:prefLabel "HTML object (334.9 KiB)"@en.
 <ni:///mh;1QEQguRKD_vOS3RhJ2l5-2oLZw?ct=text/plain> at:digest <urn:md5:82E44A0FFBCE4B7461276979FB6A0B67>;
                                                     dcterms:extent "342935"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQguRKD_vOS3RhJ2l5-2oLZw?ct=text/html>,
-                                                                      <ni:///mh;1QEQguRKD_vOS3RhJ2l5-2oLZw?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQguRKD_vOS3RhJ2l5-2oLZw?ct=application/xml>,
+                                                                      <ni:///mh;1QEQguRKD_vOS3RhJ2l5-2oLZw?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQguRKD_vOS3RhJ2l5-2oLZw?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (334.9 KiB)"@en;

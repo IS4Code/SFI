@@ -1,10 +1,10 @@
-@base <x.blank:b373f156-1ca3-41c4-a081-14f32d071151>.
+@base <ni:///mh;1QEQX-0BxF8XlVDAgaG_JUusZg?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
@@ -26,7 +26,7 @@ _:n1 at:pathObject <file:///Interactive_travel_sample.7z>;
                                                              cnt:characterEncoding "us-ascii";
                                                              cnt:chars """required-firmware-version:3.2
 target:HMP300
-"""^^xsd:string.
+""".
 <file:///.preview.Bali.jpg.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
 <file:///.preview.Click%20to%20Switch.svg.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
 <file:///.preview.Maldives.jpg.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
@@ -34,6 +34,7 @@ target:HMP300
 <file:///.spxproperties> at:extensionObject <https://w3id.org/uri4uri/suffix/spxproperties>.
 <file:///Bali.jpg> at:extensionObject <https://w3id.org/uri4uri/suffix/jpg>.
 <file:///Click%20to%20Switch.svg> at:extensionObject <https://w3id.org/uri4uri/suffix/svg>.
+<file:///Interactive%20travel%20sample/> at:pathObject <file:///>.
 <file:///Interactive%20travel%20sample/.preview.Click%20to%20Switch.svg.png> at:pathObject <file:///.preview.Click%20to%20Switch.svg.png>.
 <file:///Interactive%20travel%20sample/.preview.index.svg.png> at:pathObject <file:///.preview.index.svg.png>.
 <file:///Interactive%20travel%20sample/.spxproperties> at:pathObject <file:///.spxproperties>.
@@ -48,6 +49,7 @@ target:HMP300
 <file:///Interactive_travel_sample.7z> at:extensionObject <https://w3id.org/uri4uri/suffix/7z>.
 <file:///Maldives.jpg> at:extensionObject <https://w3id.org/uri4uri/suffix/jpg>.
 <file:///index.svg> at:extensionObject <https://w3id.org/uri4uri/suffix/svg>.
+<file:///media/> at:pathObject <file:///>.
 <file:///media/.preview.Bali.jpg.png> at:pathObject <file:///.preview.Bali.jpg.png>.
 <file:///media/.preview.Maldives.jpg.png> at:pathObject <file:///.preview.Maldives.jpg.png>.
 <file:///media/Bali.jpg> at:pathObject <file:///Bali.jpg>.
@@ -169,13 +171,13 @@ target:HMP300
                                                                   dcterms:hasFormat <ni:///mh;1QEQX-0BxF8XlVDAgaG_JUusZg?ct=application/x-7z-compressed>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.15 MiB)"@en.
-<ni:///mh;1QEQX-0BxF8XlVDAgaG_JUusZg?ct=application/x-7z-compressed> at:pathObject <file:///>;
+<ni:///mh;1QEQX-0BxF8XlVDAgaG_JUusZg?ct=application/x-7z-compressed> at:pathObject <file:///.>;
                                                                      schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-7z-compressed>;
                                                                      nie:interpretedAs <ni:///mh;1QEQX-0BxF8XlVDAgaG_JUusZg?ct=application/x-7z-compressed#/>;
                                                                      a schema:MediaObject,
                                                                        nfo:Archive;
                                                                      skos:prefLabel "7Z object (1.15 MiB)"@en.
-<ni:///mh;1QEQX-0BxF8XlVDAgaG_JUusZg?ct=application/x-7z-compressed#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQX-0BxF8XlVDAgaG_JUusZg?ct=application/x-7z-compressed#/> at:pathObject <file:///>;
                                                                        a nfo:Folder;
                                                                        skos:prefLabel "/".
 <ni:///mh;1QEQX-0BxF8XlVDAgaG_JUusZg?ct=application/x-7z-compressed#/Interactive%20travel%20sample> at:pathObject <file:///Interactive%20travel%20sample>;

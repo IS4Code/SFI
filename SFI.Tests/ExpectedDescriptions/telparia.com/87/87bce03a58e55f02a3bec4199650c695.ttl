@@ -3,8 +3,8 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
@@ -24,14 +24,14 @@ _:n1 at:pathObject <file:///p205.zip>;
                                skos:prefLabel "text (14 B)"@en;
                                cnt:characterEncoding "us-ascii";
                                cnt:chars """ICON 1 p.ico
-"""^^xsd:string.
+""".
 <data:,NAME%20P%20WINDOWCOMPAT%0D%0ASTACKSIZE%200x10000%0D%0A> dcterms:extent "40"^^dt:byte;
                                                                a cnt:ContentAsText;
                                                                skos:prefLabel "text (40 B)"@en;
                                                                cnt:characterEncoding "us-ascii";
                                                                cnt:chars """NAME P WINDOWCOMPAT
 STACKSIZE 0x10000
-"""^^xsd:string.
+""".
 <data:image/bmp,ICON%201%20p.ico%0D%0A> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                         a schema:MediaObject,
                                           schema:ImageObject,
@@ -49,6 +49,7 @@ STACKSIZE 0x10000
 <file:///errmsgs.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
 <file:///error.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
 <file:///error.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<file:///exesrc/> at:pathObject <file:///>.
 <file:///exesrc/brw.c> at:pathObject <file:///brw.c>.
 <file:///exesrc/brw.h> at:pathObject <file:///brw.h>.
 <file:///exesrc/callback.c> at:pathObject <file:///callback.c>.
@@ -217,7 +218,7 @@ STACKSIZE 0x10000
                                                                   dcterms:hasFormat <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (128.9 KiB)"@en.
-<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip> at:pathObject <file:///.>;
                                                          dcterms:description """P is a freeware 32-bit file transfer
 protocol package providing fast and
 multitasking friendly Zmodem, Ymodem-g,
@@ -231,7 +232,7 @@ used with your own applications!
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (128.9 KiB)"@en.
-<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQVtLryKg-2jb6RtHcqYInSw?ct=application/zip#/ckop200.ini> at:pathObject <file:///ckop200.ini>;

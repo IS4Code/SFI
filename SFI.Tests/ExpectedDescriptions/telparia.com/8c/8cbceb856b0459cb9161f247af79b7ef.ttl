@@ -3,8 +3,8 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
@@ -18,6 +18,7 @@ _:n1 at:pathObject <file:///tm1053.mix>;
      nfo:fileName "tm1053.mix";
      nfo:fileSize 2103296 ;
      a nfo:FileDataObject.
+<file:///Data%20Object%20Store%20000002/> at:pathObject <file:///>.
 <file:///Data%20Object%20Store%20000002/%01CompObj> at:pathObject <file:///%01CompObj>.
 <file:///Data%20Object%20Store%20000002/%05Image%20Contents> at:pathObject <file:///%05Image%20Contents>.
 <file:///Data%20Object%20Store%20000002/%05SummaryInformation> at:pathObject <file:///%05SummaryInformation>.
@@ -41,6 +42,7 @@ _:n1 at:pathObject <file:///tm1053.mix>;
 <file:///Data%20Object%20Store%20000002/Resolution%200004/> at:pathObject <file:///Resolution%200004/>.
 <file:///Data%20Object%20Store%20000002/Resolution%200004/Subimage%200000%20Data> at:pathObject <file:///Resolution%200004/Subimage%200000%20Data>.
 <file:///Data%20Object%20Store%20000002/Resolution%200004/Subimage%200000%20Header> at:pathObject <file:///Resolution%200004/Subimage%200000%20Header>.
+<file:///Data%20Object%20Store%20000008/> at:pathObject <file:///>.
 <file:///Data%20Object%20Store%20000008/%01CompObj> at:pathObject <file:///%01CompObj>.
 <file:///Data%20Object%20Store%20000008/%05Image%20Contents> at:pathObject <file:///%05Image%20Contents>.
 <file:///Data%20Object%20Store%20000008/%05SummaryInformation> at:pathObject <file:///%05SummaryInformation>.
@@ -64,14 +66,19 @@ _:n1 at:pathObject <file:///tm1053.mix>;
 <file:///Data%20Object%20Store%20000008/Resolution%200004/> at:pathObject <file:///Resolution%200004/>.
 <file:///Data%20Object%20Store%20000008/Resolution%200004/Subimage%200000%20Data> at:pathObject <file:///Resolution%200004/Subimage%200000%20Data>.
 <file:///Data%20Object%20Store%20000008/Resolution%200004/Subimage%200000%20Header> at:pathObject <file:///Resolution%200004/Subimage%200000%20Header>.
+<file:///Resolution%200000/> at:pathObject <file:///>.
 <file:///Resolution%200000/Subimage%200000%20Data> at:pathObject <file:///Subimage%200000%20Data>.
 <file:///Resolution%200000/Subimage%200000%20Header> at:pathObject <file:///Subimage%200000%20Header>.
+<file:///Resolution%200001/> at:pathObject <file:///>.
 <file:///Resolution%200001/Subimage%200000%20Data> at:pathObject <file:///Subimage%200000%20Data>.
 <file:///Resolution%200001/Subimage%200000%20Header> at:pathObject <file:///Subimage%200000%20Header>.
+<file:///Resolution%200002/> at:pathObject <file:///>.
 <file:///Resolution%200002/Subimage%200000%20Data> at:pathObject <file:///Subimage%200000%20Data>.
 <file:///Resolution%200002/Subimage%200000%20Header> at:pathObject <file:///Subimage%200000%20Header>.
+<file:///Resolution%200003/> at:pathObject <file:///>.
 <file:///Resolution%200003/Subimage%200000%20Data> at:pathObject <file:///Subimage%200000%20Data>.
 <file:///Resolution%200003/Subimage%200000%20Header> at:pathObject <file:///Subimage%200000%20Header>.
+<file:///Resolution%200004/> at:pathObject <file:///>.
 <file:///Resolution%200004/Subimage%200000%20Data> at:pathObject <file:///Subimage%200000%20Data>.
 <file:///Resolution%200004/Subimage%200000%20Header> at:pathObject <file:///Subimage%200000%20Header>.
 <file:///tm1053.mix> at:extensionObject <https://w3id.org/uri4uri/suffix/mix>.
@@ -319,14 +326,14 @@ _:n1 at:pathObject <file:///tm1053.mix>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQqFNnIvngLwTkAGF3ePGylQ?ct=application/x-ole-storage>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (2.01 MiB)"@en.
-<ni:///mh;1QEQqFNnIvngLwTkAGF3ePGylQ?ct=application/x-ole-storage> at:pathObject <file:///>;
+<ni:///mh;1QEQqFNnIvngLwTkAGF3ePGylQ?ct=application/x-ole-storage> at:pathObject <file:///.>;
                                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
                                                                    nie:interpretedAs <ni:///mh;1QEQqFNnIvngLwTkAGF3ePGylQ?ct=application/x-ole-storage#/>;
                                                                    nfo:fileLastModified "1999-07-21T22:38:39.718000Z"^^xsd:dateTime;
                                                                    a schema:MediaObject,
                                                                      nfo:EmbeddedFileDataObject;
                                                                    skos:prefLabel "OLE object (2.01 MiB)"@en.
-<ni:///mh;1QEQqFNnIvngLwTkAGF3ePGylQ?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQqFNnIvngLwTkAGF3ePGylQ?ct=application/x-ole-storage#/> at:pathObject <file:///>;
                                                                      a nfo:Folder;
                                                                      skos:prefLabel "/".
 <ni:///mh;1QEQqFNnIvngLwTkAGF3ePGylQ?ct=application/x-ole-storage#/%01CompObj> at:pathObject <file:///%01CompObj>;

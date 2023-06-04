@@ -1,15 +1,15 @@
-@base <x.blank:6fec494d-667b-4ccb-a90f-c0b6f6701829>.
+@base <ni:///mh;1QEQr0W26Dgym5mUk8_MX-5tOw?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix dt: <http://dbpedia.org/datatype/>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 
@@ -23,25 +23,25 @@ _:n1 at:pathObject <file:///bash-112.tar>;
                                          skos:prefLabel "text (24 B)"@en;
                                          cnt:characterEncoding "us-ascii";
                                          cnt:chars """* Nothing happens here.
-"""^^xsd:string.
+""".
 <data:,0%0D%0A> dcterms:extent "3"^^dt:byte;
                 a cnt:ContentAsText;
                 skos:prefLabel "text (3 B)"@en;
                 cnt:characterEncoding "us-ascii";
                 cnt:chars """0
-"""^^xsd:string.
+""".
 <data:,1.12%0A> dcterms:extent "5"^^dt:byte;
                 a cnt:ContentAsText;
                 skos:prefLabel "text (5 B)"@en;
                 cnt:characterEncoding "us-ascii";
                 cnt:chars """1.12
-"""^^xsd:string.
+""".
 <data:,Nothing%20happens%20here.%0A> dcterms:extent "22"^^dt:byte;
                                      a cnt:ContentAsText;
                                      skos:prefLabel "text (22 B)"@en;
                                      cnt:characterEncoding "us-ascii";
                                      cnt:chars """Nothing happens here.
-"""^^xsd:string.
+""".
 <data:;base64,IyEgYmFzaA0KZWNobyAiVGhpcyBpcyB0ZXN0QXJnIg0KZWNobyAkMSAkMg0K> dcterms:extent "45"^^dt:byte;
                                                                             a cnt:ContentAsText;
                                                                             skos:prefLabel "text (45 B)"@en;
@@ -49,7 +49,7 @@ _:n1 at:pathObject <file:///bash-112.tar>;
                                                                             cnt:chars """#! bash
 echo \"This is testArg\"
 echo $1 $2
-"""^^xsd:string.
+""".
 <data:;base64,bWFpbigpDQp7IA0KfQ0K> dcterms:extent "15"^^dt:byte;
                                     a cnt:ContentAsText;
                                     skos:prefLabel "text (15 B)"@en;
@@ -57,7 +57,7 @@ echo $1 $2
                                     cnt:chars """main()
 { 
 }
-"""^^xsd:string.
+""".
 <data:application/octet-stream,> dcterms:extent "0"^^dt:byte;
                                  a cnt:ContentAsBase64;
                                  skos:prefLabel "binary data (0 B)"@en;
@@ -71,6 +71,7 @@ echo $1 $2
 <file:///alloca.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
 <file:///bad.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
 <file:///bash-1.12> at:extensionObject <https://w3id.org/uri4uri/suffix/12>.
+<file:///bash-1.12/> at:pathObject <file:///>.
 <file:///bash-1.12/.build> at:pathObject <file:///.build>.
 <file:///bash-1.12/.distribution> at:pathObject <file:///.distribution>.
 <file:///bash-1.12/alias.c> at:pathObject <file:///alias.c>.
@@ -375,6 +376,7 @@ echo $1 $2
 <file:///builtin.def> at:extensionObject <https://w3id.org/uri4uri/suffix/def>.
 <file:///builtins.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
 <file:///builtins.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<file:///builtins/> at:pathObject <file:///>.
 <file:///builtins/alias.c> at:pathObject <file:///alias.c>.
 <file:///builtins/alias.def> at:pathObject <file:///alias.def>.
 <file:///builtins/bind.c> at:pathObject <file:///bind.c>.
@@ -502,6 +504,7 @@ echo $1 $2
 <file:///declare.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
 <file:///declare.def> at:extensionObject <https://w3id.org/uri4uri/suffix/def>.
 <file:///dispose_cmd.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///doc/> at:pathObject <file:///>.
 <file:///doc/hist.texinfo> at:pathObject <file:///hist.texinfo>.
 <file:///doc/history.dvi> at:pathObject <file:///history.dvi>.
 <file:///doc/history.info> at:pathObject <file:///history.info>.
@@ -515,6 +518,7 @@ echo $1 $2
 <file:///doc/rluser.texinfo> at:pathObject <file:///rluser.texinfo>.
 <file:///doc/texindex.c> at:pathObject <file:///texindex.c>.
 <file:///doc/texinfo.tex> at:pathObject <file:///texinfo.tex>.
+<file:///documentation/> at:pathObject <file:///>.
 <file:///documentation/bash.1> at:pathObject <file:///bash.1>.
 <file:///documentation/bash.man> at:pathObject <file:///bash.man>.
 <file:///documentation/features.dvi> at:pathObject <file:///features.dvi>.
@@ -526,6 +530,7 @@ echo $1 $2
 <file:///echo.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
 <file:///echo.def> at:extensionObject <https://w3id.org/uri4uri/suffix/def>.
 <file:///emacs_keymap.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///emx/> at:pathObject <file:///>.
 <file:///emx/findexecutable.c> at:pathObject <file:///findexecutable.c>.
 <file:///emx/fork.c> at:pathObject <file:///fork.c>.
 <file:///emx/proc_spawnve.c> at:pathObject <file:///proc_spawnve.c>.
@@ -543,6 +548,7 @@ echo $1 $2
 <file:///error.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
 <file:///eval.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
 <file:///eval.def> at:extensionObject <https://w3id.org/uri4uri/suffix/def>.
+<file:///examples/> at:pathObject <file:///>.
 <file:///examples/alias-conv.sh> at:pathObject <file:///alias-conv.sh>.
 <file:///examples/fileman.c> at:pathObject <file:///fileman.c>.
 <file:///examples/inputrc> at:pathObject <file:///inputrc>.
@@ -583,6 +589,7 @@ echo $1 $2
 <file:///getpagesize.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
 <file:///glob.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
 <file:///glob.texinfo> at:extensionObject <https://w3id.org/uri4uri/suffix/texinfo>.
+<file:///glob/> at:pathObject <file:///>.
 <file:///glob/changelog> at:pathObject <file:///changelog>.
 <file:///glob/fnmatch.c> at:pathObject <file:///fnmatch.c>.
 <file:///glob/fnmatch.h> at:pathObject <file:///fnmatch.h>.
@@ -617,6 +624,7 @@ echo $1 $2
 <file:///kill.def> at:extensionObject <https://w3id.org/uri4uri/suffix/def>.
 <file:///let.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
 <file:///let.def> at:extensionObject <https://w3id.org/uri4uri/suffix/def>.
+<file:///lib/> at:pathObject <file:///>.
 <file:///lib/glob> at:pathObject <file:///glob>.
 <file:///lib/glob/> at:pathObject <file:///glob/>.
 <file:///lib/glob/changelog> at:pathObject <file:///glob/changelog>.
@@ -681,6 +689,7 @@ echo $1 $2
 <file:///make_cmd.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
 <file:///makefile.os2> at:extensionObject <https://w3id.org/uri4uri/suffix/os2>.
 <file:///malloc.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///malloc/> at:pathObject <file:///>.
 <file:///malloc/alloca.c> at:pathObject <file:///alloca.c>.
 <file:///malloc/getpagesize.h> at:pathObject <file:///getpagesize.h>.
 <file:///malloc/i386-alloca.s> at:pathObject <file:///i386-alloca.s>.
@@ -695,6 +704,7 @@ echo $1 $2
 <file:///newversion.exe> at:extensionObject <https://w3id.org/uri4uri/suffix/exe>.
 <file:///nojobs.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
 <file:///ob_signals.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///objects/> at:pathObject <file:///>.
 <file:///os2getch.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
 <file:///os2getch.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
 <file:///parse.y> at:extensionObject <https://w3id.org/uri4uri/suffix/y>.
@@ -714,6 +724,7 @@ echo $1 $2
 <file:///readline.dvi> at:extensionObject <https://w3id.org/uri4uri/suffix/dvi>.
 <file:///readline.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
 <file:///readline.info> at:extensionObject <https://w3id.org/uri4uri/suffix/info>.
+<file:///readline/> at:pathObject <file:///>.
 <file:///readline/changelog> at:pathObject <file:///changelog>.
 <file:///readline/chardefs.h> at:pathObject <file:///chardefs.h>.
 <file:///readline/copying> at:pathObject <file:///copying>.
@@ -778,6 +789,7 @@ echo $1 $2
 <file:///suspend.def> at:extensionObject <https://w3id.org/uri4uri/suffix/def>.
 <file:///syscalls.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
 <file:///sysdefs.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
+<file:///test-suite/> at:pathObject <file:///>.
 <file:///test-suite/precedence> at:pathObject <file:///precedence>.
 <file:///test.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
 <file:///test.def> at:extensionObject <https://w3id.org/uri4uri/suffix/def>.
@@ -1870,8 +1882,8 @@ echo $1 $2
 <ni:///mh;1QEQgP2p3qp8_DlMzbBF04xqpA?ct=text/plain#line=,1> rdf:value "This file is jobs.def, from which is created jobs.c.".
 <ni:///mh;1QEQgn4aPUeHG33MezAbxQG8pQ?ct=application/octet-stream> at:digest <urn:md5:827E1A3D47871B7DCC7B301BC501BCA5>;
                                                                   dcterms:extent "30920"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQgn4aPUeHG33MezAbxQG8pQ?ct=application/vnd.microsoft.portable-executable>,
-                                                                                    <ni:///mh;1QEQgn4aPUeHG33MezAbxQG8pQ?ct=application/x-msdownload;format=le>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQgn4aPUeHG33MezAbxQG8pQ?ct=application/x-msdownload;format=le>,
+                                                                                    <ni:///mh;1QEQgn4aPUeHG33MezAbxQG8pQ?ct=application/vnd.microsoft.portable-executable>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (30.2 KiB)"@en.
 <ni:///mh;1QEQgn4aPUeHG33MezAbxQG8pQ?ct=application/vnd.microsoft.portable-executable> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;

@@ -3,8 +3,8 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
@@ -39,6 +39,7 @@ _:n1 at:pathObject <file:///ASMTUT.DOC>;
                                                                 skos:prefLabel "binary data (16 B)"@en;
                                                                 cnt:bytes "DAAAADAgMCAzNjkgMjY1AA=="^^xsd:base64Binary.
 <file:///ASMTUT.DOC> at:extensionObject <https://w3id.org/uri4uri/suffix/doc>.
+<file:///ObjectPool/> at:pathObject <file:///>.
 <file:///ObjectPool/_854111255> at:pathObject <file:///_854111255>.
 <file:///ObjectPool/_854111255/> at:pathObject <file:///_854111255/>.
 <file:///ObjectPool/_854111255/%01CompObj> at:pathObject <file:///_854111255/%01CompObj>.
@@ -66,6 +67,7 @@ _:n1 at:pathObject <file:///ASMTUT.DOC>;
 <file:///ObjectPool/_854470295/%03META> at:pathObject <file:///_854470295/%03META>.
 <file:///ObjectPool/_854470295/%03ObjInfo> at:pathObject <file:///_854470295/%03ObjInfo>.
 <file:///ObjectPool/_854470295/%03PIC> at:pathObject <file:///_854470295/%03PIC>.
+<file:///_854111255/> at:pathObject <file:///>.
 <file:///_854111255/%01CompObj> at:pathObject <file:///%01CompObj>.
 <file:///_854111255/%01Ole> at:pathObject <file:///%01Ole>.
 <file:///_854111255/%01Ole10ItemName> at:pathObject <file:///%01Ole10ItemName>.
@@ -73,6 +75,7 @@ _:n1 at:pathObject <file:///ASMTUT.DOC>;
 <file:///_854111255/%03META> at:pathObject <file:///%03META>.
 <file:///_854111255/%03ObjInfo> at:pathObject <file:///%03ObjInfo>.
 <file:///_854111255/%03PIC> at:pathObject <file:///%03PIC>.
+<file:///_854466093/> at:pathObject <file:///>.
 <file:///_854466093/%01CompObj> at:pathObject <file:///%01CompObj>.
 <file:///_854466093/%01Ole> at:pathObject <file:///%01Ole>.
 <file:///_854466093/%01Ole10ItemName> at:pathObject <file:///%01Ole10ItemName>.
@@ -80,6 +83,7 @@ _:n1 at:pathObject <file:///ASMTUT.DOC>;
 <file:///_854466093/%03META> at:pathObject <file:///%03META>.
 <file:///_854466093/%03ObjInfo> at:pathObject <file:///%03ObjInfo>.
 <file:///_854466093/%03PIC> at:pathObject <file:///%03PIC>.
+<file:///_854470295/> at:pathObject <file:///>.
 <file:///_854470295/%01CompObj> at:pathObject <file:///%01CompObj>.
 <file:///_854470295/%01Ole> at:pathObject <file:///%01Ole>.
 <file:///_854470295/%01Ole10ItemName> at:pathObject <file:///%01Ole10ItemName>.
@@ -121,14 +125,14 @@ _:n1 at:pathObject <file:///ASMTUT.DOC>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQUq31vPl3QDwmbLu2FxuN_g?ct=application/x-ole-storage>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (936.5 KiB)"@en.
-<ni:///mh;1QEQUq31vPl3QDwmbLu2FxuN_g?ct=application/x-ole-storage> at:pathObject <file:///>;
+<ni:///mh;1QEQUq31vPl3QDwmbLu2FxuN_g?ct=application/x-ole-storage> at:pathObject <file:///.>;
                                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
                                                                    nie:interpretedAs <ni:///mh;1QEQUq31vPl3QDwmbLu2FxuN_g?ct=application/x-ole-storage#/>;
                                                                    nfo:fileLastModified "1995-02-19T12:16:06.894000Z"^^xsd:dateTime;
                                                                    a schema:MediaObject,
                                                                      nfo:EmbeddedFileDataObject;
                                                                    skos:prefLabel "OLE object (936.5 KiB)"@en.
-<ni:///mh;1QEQUq31vPl3QDwmbLu2FxuN_g?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQUq31vPl3QDwmbLu2FxuN_g?ct=application/x-ole-storage#/> at:pathObject <file:///>;
                                                                      a nfo:Folder;
                                                                      skos:prefLabel "/".
 <ni:///mh;1QEQUq31vPl3QDwmbLu2FxuN_g?ct=application/x-ole-storage#/%01CompObj> at:pathObject <file:///%01CompObj>;

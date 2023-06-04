@@ -1,10 +1,10 @@
-@base <x.blank:38f8cc5b-8a87-49b6-9a54-a6cdf7a4a574>.
+@base <ni:///mh;1QEQERBUSApnwUaxC9gUrty-9g?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -24,8 +24,9 @@ _:n1 at:pathObject <file:///DicOOo.sxw>;
                                          a cnt:ContentAsText;
                                          skos:prefLabel "text (30 B)"@en;
                                          cnt:characterEncoding "us-ascii";
-                                         cnt:chars "application/vnd.sun.xml.writer"^^xsd:string.
+                                         cnt:chars "application/vnd.sun.xml.writer".
 <file:///10000000000003CC00000262903BC08A.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
+<file:///Basic/> at:pathObject <file:///>.
 <file:///Basic/InstallDicOO> at:pathObject <file:///InstallDicOO>.
 <file:///Basic/InstallDicOO/> at:pathObject <file:///InstallDicOO/>.
 <file:///Basic/InstallDicOO/InstallDicOO.xml> at:pathObject <file:///InstallDicOO/InstallDicOO.xml>.
@@ -40,6 +41,7 @@ _:n1 at:pathObject <file:///DicOOo.sxw>;
 <file:///Basic/Standard/> at:pathObject <file:///Standard/>.
 <file:///Basic/Standard/script-lb.xml> at:pathObject <file:///Standard/script-lb.xml>.
 <file:///Basic/script-lc.xml> at:pathObject <file:///script-lc.xml>.
+<file:///Dialogs/> at:pathObject <file:///>.
 <file:///Dialogs/InstallDicOO> at:pathObject <file:///InstallDicOO>.
 <file:///Dialogs/InstallDicOO/> at:pathObject <file:///InstallDicOO/>.
 <file:///Dialogs/InstallDicOO/WizInstall.xml> at:pathObject <file:///InstallDicOO/WizInstall.xml>.
@@ -50,6 +52,7 @@ _:n1 at:pathObject <file:///DicOOo.sxw>;
 <file:///Dialogs/dialog-lc.xml> at:pathObject <file:///dialog-lc.xml>.
 <file:///DicOOo.sxw> at:extensionObject <https://w3id.org/uri4uri/suffix/sxw>.
 <file:///InstallDicOO.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///InstallDicOO/> at:pathObject <file:///>.
 <file:///InstallDicOO/InstallDicOO.xml> at:pathObject <file:///InstallDicOO.xml>.
 <file:///InstallDicOO/LangPack.xml> at:pathObject <file:///LangPack.xml>.
 <file:///InstallDicOO/Moteur.xml> at:pathObject <file:///Moteur.xml>.
@@ -61,11 +64,14 @@ _:n1 at:pathObject <file:///DicOOo.sxw>;
 <file:///InstallDicOO/dialog-lb.xml> at:pathObject <file:///dialog-lb.xml>.
 <file:///InstallDicOO/script-lb.xml> at:pathObject <file:///script-lb.xml>.
 <file:///LangPack.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///META-INF/> at:pathObject <file:///>.
 <file:///META-INF/manifest.xml> at:pathObject <file:///manifest.xml>.
 <file:///Moteur.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///Outils.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///Pictures/> at:pathObject <file:///>.
 <file:///Pictures/10000000000003CC00000262903BC08A.png> at:pathObject <file:///10000000000003CC00000262903BC08A.png>.
 <file:///SpecifMac.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///Standard/> at:pathObject <file:///>.
 <file:///Standard/dialog-lb.xml> at:pathObject <file:///dialog-lb.xml>.
 <file:///Standard/script-lb.xml> at:pathObject <file:///script-lb.xml>.
 <file:///Translation.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
@@ -221,13 +227,13 @@ _:n1 at:pathObject <file:///DicOOo.sxw>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQERBUSApnwUaxC9gUrty-9g?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (97.92 KiB)"@en.
-<ni:///mh;1QEQERBUSApnwUaxC9gUrty-9g?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQERBUSApnwUaxC9gUrty-9g?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQERBUSApnwUaxC9gUrty-9g?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (97.92 KiB)"@en.
-<ni:///mh;1QEQERBUSApnwUaxC9gUrty-9g?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQERBUSApnwUaxC9gUrty-9g?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQERBUSApnwUaxC9gUrty-9g?ct=application/zip#/Basic> at:pathObject <file:///Basic>;

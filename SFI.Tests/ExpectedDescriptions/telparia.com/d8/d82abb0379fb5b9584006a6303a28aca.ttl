@@ -1,10 +1,10 @@
-@base <x.blank:11ec4b53-8f6e-4552-8398-ac697a26d738>.
+@base <ni:///mh;1QEQgrtfqWQAvO-FbF6iifLPow?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -24,16 +24,17 @@ _:n1 at:pathObject <file:///abydos.kra>;
                               a cnt:ContentAsText;
                               skos:prefLabel "text (19 B)"@en;
                               cnt:characterEncoding "us-ascii";
-                              cnt:chars "application/x-krita"^^xsd:string.
+                              cnt:chars "application/x-krita".
 <data:;charset=windows-1252,%FF> dcterms:extent "1"^^dt:byte;
                                  a cnt:ContentAsText;
                                  skos:prefLabel "text (1 B)"@en;
                                  cnt:characterEncoding "windows-1252";
-                                 cnt:chars "ÿ"^^xsd:string.
+                                 cnt:chars "ÿ".
 <data:application/octet-stream,%00%00%00%00> dcterms:extent "4"^^dt:byte;
                                              a cnt:ContentAsBase64;
                                              skos:prefLabel "binary data (4 B)"@en;
                                              cnt:bytes "AAAAAA=="^^xsd:base64Binary.
+<file:///Namnl%C3%B6s/> at:pathObject <file:///>.
 <file:///Namnl%C3%B6s/annotations> at:pathObject <file:///annotations>.
 <file:///Namnl%C3%B6s/annotations/> at:pathObject <file:///annotations/>.
 <file:///Namnl%C3%B6s/annotations/icc> at:pathObject <file:///annotations/icc>.
@@ -51,6 +52,7 @@ _:n1 at:pathObject <file:///abydos.kra>;
 <file:///Namnl%C3%B6s/layers/mask5.pixelselection> at:pathObject <file:///layers/mask5.pixelselection>.
 <file:///Namnl%C3%B6s/layers/mask5.pixelselection.defaultpixel> at:pathObject <file:///layers/mask5.pixelselection.defaultpixel>.
 <file:///abydos.kra> at:extensionObject <https://w3id.org/uri4uri/suffix/kra>.
+<file:///annotations/> at:pathObject <file:///>.
 <file:///annotations/icc> at:pathObject <file:///icc>.
 <file:///documentinfo.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///layer2.defaultpixel> at:extensionObject <https://w3id.org/uri4uri/suffix/defaultpixel>.
@@ -59,6 +61,7 @@ _:n1 at:pathObject <file:///abydos.kra>;
 <file:///layer3.icc> at:extensionObject <https://w3id.org/uri4uri/suffix/icc>.
 <file:///layer4.defaultpixel> at:extensionObject <https://w3id.org/uri4uri/suffix/defaultpixel>.
 <file:///layer4.icc> at:extensionObject <https://w3id.org/uri4uri/suffix/icc>.
+<file:///layers/> at:pathObject <file:///>.
 <file:///layers/layer2> at:pathObject <file:///layer2>.
 <file:///layers/layer2.defaultpixel> at:pathObject <file:///layer2.defaultpixel>.
 <file:///layers/layer2.icc> at:pathObject <file:///layer2.icc>.
@@ -89,8 +92,8 @@ _:n1 at:pathObject <file:///abydos.kra>;
                                                    a schema:MediaObject,
                                                      nfo:Image,
                                                      schema:ImageObject;
-                                                   skos:prefLabel "PNG object (800×600, 8-bit)"@en,
-                                                                  "PNG object (800×600)"@en,
+                                                   skos:prefLabel "PNG object (800×600)"@en,
+                                                                  "PNG object (800×600, 8-bit)"@en,
                                                                   "PNG object (1.83 MiB)"@en.
 <ni:///mh;1QEQJgUflp5lwd3BfTFMrG3BkA?ct=application/octet-stream> at:digest <urn:md5:26051F969E65C1DDC17D314CAC6DC190>;
                                                                   dcterms:extent "9080"^^dt:byte;
@@ -116,8 +119,8 @@ _:n1 at:pathObject <file:///abydos.kra>;
                                                    nfo:verticalResolution 96.01199;
                                                    nfo:width 256 ;
                                                    a schema:MediaObject,
-                                                     schema:ImageObject,
-                                                     nfo:Image;
+                                                     nfo:Image,
+                                                     schema:ImageObject;
                                                    skos:prefLabel "PNG object (256×192, 8-bit)"@en,
                                                                   "PNG object (256×192)"@en,
                                                                   "PNG object (42.14 KiB)"@en.
@@ -162,13 +165,13 @@ _:n1 at:pathObject <file:///abydos.kra>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQgrtfqWQAvO-FbF6iifLPow?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (3.36 MiB)"@en.
-<ni:///mh;1QEQgrtfqWQAvO-FbF6iifLPow?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQgrtfqWQAvO-FbF6iifLPow?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQgrtfqWQAvO-FbF6iifLPow?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (3.36 MiB)"@en.
-<ni:///mh;1QEQgrtfqWQAvO-FbF6iifLPow?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQgrtfqWQAvO-FbF6iifLPow?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQgrtfqWQAvO-FbF6iifLPow?ct=application/zip#/documentinfo.xml> at:pathObject <file:///documentinfo.xml>;

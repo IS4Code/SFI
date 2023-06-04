@@ -1,10 +1,10 @@
-@base <x.blank:983a411d-6bc9-4843-911f-9ec0021bdda4>.
+@base <ni:///mh;1QEQRLyxGZxgo64nG7OmygpFKA?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
@@ -31,16 +31,20 @@ _:n1 at:pathObject <file:///PagePlusX3-Sample.ppp>;
 <file:///Root.xml%00> at:extensionObject <https://w3id.org/uri4uri/suffix/xml%00>.
 <file:///document.xml%00> at:extensionObject <https://w3id.org/uri4uri/suffix/xml%00>.
 <file:///fonts.xml%00> at:extensionObject <https://w3id.org/uri4uri/suffix/xml%00>.
+<file:///fonts/> at:pathObject <file:///>.
 <file:///fonts/00000000.ttf%00> at:pathObject <file:///00000000.ttf%00>.
 <file:///fonts/00000001.ttf%00> at:pathObject <file:///00000001.ttf%00>.
 <file:///fonts/00000002.ttf%00> at:pathObject <file:///00000002.ttf%00>.
 <file:///fonts/00000003.ttf%00> at:pathObject <file:///00000003.ttf%00>.
+<file:///masterspreads/> at:pathObject <file:///>.
 <file:///masterspreads/1.xml%00> at:pathObject <file:///1.xml%00>.
 <file:///preview.jpg%00> at:extensionObject <https://w3id.org/uri4uri/suffix/jpg%00>.
+<file:///spreads/> at:pathObject <file:///>.
 <file:///spreads/1.xml%00> at:pathObject <file:///1.xml%00>.
 <file:///story.xml%00> at:extensionObject <https://w3id.org/uri4uri/suffix/xml%00>.
 <file:///stylesheet.xml%00> at:extensionObject <https://w3id.org/uri4uri/suffix/xml%00>.
 <file:///summary.xml%00> at:extensionObject <https://w3id.org/uri4uri/suffix/xml%00>.
+<file:///typedspreads/> at:pathObject <file:///>.
 <file:///typedspreads/1.xml%00> at:pathObject <file:///1.xml%00>.
 <file:///typedspreads/2.xml%00> at:pathObject <file:///2.xml%00>.
 <file:///typedspreads/3.xml%00> at:pathObject <file:///3.xml%00>.
@@ -173,13 +177,13 @@ _:n1 at:pathObject <file:///PagePlusX3-Sample.ppp>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQRLyxGZxgo64nG7OmygpFKA?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (758.42 KiB)"@en.
-<ni:///mh;1QEQRLyxGZxgo64nG7OmygpFKA?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQRLyxGZxgo64nG7OmygpFKA?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQRLyxGZxgo64nG7OmygpFKA?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (758.42 KiB)"@en.
-<ni:///mh;1QEQRLyxGZxgo64nG7OmygpFKA?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQRLyxGZxgo64nG7OmygpFKA?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQRLyxGZxgo64nG7OmygpFKA?ct=application/zip#/Root.xml%00> at:pathObject <file:///Root.xml%00>;

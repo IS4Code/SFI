@@ -1,10 +1,10 @@
-@base <x.blank:c937c269-6aa1-4cac-9469-a081ccffe067>.
+@base <ni:///mh;1QEQiP6nHGtNZKEJJSB9rgGH0Q?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -23,9 +23,11 @@ _:n1 at:pathObject <file:///abydos.ora>;
                            a cnt:ContentAsText;
                            skos:prefLabel "text (16 B)"@en;
                            cnt:characterEncoding "us-ascii";
-                           cnt:chars "image/openraster"^^xsd:string.
+                           cnt:chars "image/openraster".
+<file:///Thumbnails/> at:pathObject <file:///>.
 <file:///Thumbnails/thumbnail.png> at:pathObject <file:///thumbnail.png>.
 <file:///abydos.ora> at:extensionObject <https://w3id.org/uri4uri/suffix/ora>.
+<file:///data/> at:pathObject <file:///>.
 <file:///data/layer0.png> at:pathObject <file:///layer0.png>.
 <file:///data/layer1.png> at:pathObject <file:///layer1.png>.
 <file:///data/layer2.png> at:pathObject <file:///layer2.png>.
@@ -47,10 +49,10 @@ _:n1 at:pathObject <file:///abydos.ora>;
                                                    nfo:verticalResolution 71.9836;
                                                    nfo:width 800 ;
                                                    a schema:MediaObject,
-                                                     nfo:Image,
-                                                     schema:ImageObject;
-                                                   skos:prefLabel "PNG object (800×600)"@en,
-                                                                  "PNG object (800×600, 8-bit)"@en,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "PNG object (800×600, 8-bit)"@en,
+                                                                  "PNG object (800×600)"@en,
                                                                   "PNG object (1.83 MiB)"@en.
 <ni:///mh;1QEQaIMPagDHLxBrdPkE1K0ntA?ct=application/octet-stream> at:digest <urn:md5:68830F6A00C72F106B74F904D4AD27B4>;
                                                                   dcterms:extent "1923782"^^dt:byte;
@@ -64,11 +66,11 @@ _:n1 at:pathObject <file:///abydos.ora>;
                                                    nfo:verticalResolution 71.9836;
                                                    nfo:width 800 ;
                                                    a schema:MediaObject,
-                                                     schema:ImageObject,
-                                                     nfo:Image;
-                                                   skos:prefLabel "PNG object (1.83 MiB)"@en,
+                                                     nfo:Image,
+                                                     schema:ImageObject;
+                                                   skos:prefLabel "PNG object (800×600)"@en,
                                                                   "PNG object (800×600, 8-bit)"@en,
-                                                                  "PNG object (800×600)"@en.
+                                                                  "PNG object (1.83 MiB)"@en.
 <ni:///mh;1QEQaxNkx488UHXSMcDZFn4KAw?ct=application/octet-stream> at:digest <urn:md5:6B1364C78F3C5075D231C0D9167E0A03>;
                                                                   dcterms:extent "50440"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQaxNkx488UHXSMcDZFn4KAw?ct=image/png>;
@@ -101,8 +103,8 @@ _:n1 at:pathObject <file:///abydos.ora>;
                                                      schema:ImageObject,
                                                      nfo:Image;
                                                    skos:prefLabel "PNG object (800×600, 8-bit)"@en,
-                                                                  "PNG object (1.83 MiB)"@en,
-                                                                  "PNG object (800×600)"@en.
+                                                                  "PNG object (800×600)"@en,
+                                                                  "PNG object (1.83 MiB)"@en.
 <ni:///mh;1QEQfgaY-Ylzg5OdMQ9S59x7Rg?ct=application/prs.implied-document+xml;root=image> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=image>;
                                                                                          a schema:MediaObject;
                                                                                          skos:prefLabel "IMAGE object"@en.
@@ -129,13 +131,13 @@ _:n1 at:pathObject <file:///abydos.ora>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQiP6nHGtNZKEJJSB9rgGH0Q?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (693.1 KiB)"@en.
-<ni:///mh;1QEQiP6nHGtNZKEJJSB9rgGH0Q?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQiP6nHGtNZKEJJSB9rgGH0Q?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQiP6nHGtNZKEJJSB9rgGH0Q?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (693.1 KiB)"@en.
-<ni:///mh;1QEQiP6nHGtNZKEJJSB9rgGH0Q?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQiP6nHGtNZKEJJSB9rgGH0Q?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQiP6nHGtNZKEJJSB9rgGH0Q?ct=application/zip#/Thumbnails> at:pathObject <file:///Thumbnails>;

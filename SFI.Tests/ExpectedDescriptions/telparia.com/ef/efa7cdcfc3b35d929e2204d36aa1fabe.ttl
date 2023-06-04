@@ -1,12 +1,12 @@
-@base <x.blank:282b1222-4576-4520-b6e6-61d7ca24ff8a>.
+@base <ni:///mh;1QEQEq1fkL3qm53XJZhLDVeKOA?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xis: <http://www.w3.org/2001/04/infoset#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -22,11 +22,13 @@ _:n1 at:pathObject <file:///example_multipage.docx>;
      a nfo:FileDataObject.
 <file:///%5BContent_Types%5D.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///.rels> at:extensionObject <https://w3id.org/uri4uri/suffix/rels>.
+<file:///_rels/> at:pathObject <file:///>.
 <file:///_rels/.rels> at:pathObject <file:///.rels>.
 <file:///_rels/document.xml.rels> at:pathObject <file:///document.xml.rels>.
 <file:///app.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///core.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///custom.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///docProps/> at:pathObject <file:///>.
 <file:///docProps/app.xml> at:pathObject <file:///app.xml>.
 <file:///docProps/core.xml> at:pathObject <file:///core.xml>.
 <file:///docProps/custom.xml> at:pathObject <file:///custom.xml>.
@@ -41,6 +43,7 @@ _:n1 at:pathObject <file:///example_multipage.docx>;
 <file:///image2.jpeg> at:extensionObject <https://w3id.org/uri4uri/suffix/jpeg>.
 <file:///image3.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
 <file:///image4.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
+<file:///media/> at:pathObject <file:///>.
 <file:///media/image1.jpeg> at:pathObject <file:///image1.jpeg>.
 <file:///media/image2.jpeg> at:pathObject <file:///image2.jpeg>.
 <file:///media/image3.png> at:pathObject <file:///image3.png>.
@@ -48,6 +51,7 @@ _:n1 at:pathObject <file:///example_multipage.docx>;
 <file:///numbering.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///settings.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///styles.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///word/> at:pathObject <file:///>.
 <file:///word/_rels> at:pathObject <file:///_rels>.
 <file:///word/_rels/> at:pathObject <file:///_rels/>.
 <file:///word/_rels/document.xml.rels> at:pathObject <file:///_rels/document.xml.rels>.
@@ -159,8 +163,8 @@ _:n1 at:pathObject <file:///example_multipage.docx>;
                                                      nfo:Image,
                                                      schema:ImageObject;
                                                    skos:prefLabel "PNG object (164×165)"@en,
-                                                                  "PNG object (164×165, 8-bit)"@en,
-                                                                  "PNG object (6.94 KiB)"@en.
+                                                                  "PNG object (6.94 KiB)"@en,
+                                                                  "PNG object (164×165, 8-bit)"@en.
 <ni:///mh;1QEQEq1fkL3qm53XJZhLDVeKOA?ct=application/octet-stream> at:digest <urn:md5:12AD5F90BDEA9B9DD725984B0D578A38>;
                                                                   dcterms:extent "1393238"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQEq1fkL3qm53XJZhLDVeKOA?ct=application/zip>;
@@ -190,13 +194,13 @@ _:n1 at:pathObject <file:///example_multipage.docx>;
                                                                                                                    schema:DigitalDocument,
                                                                                                                    nfo:Document;
                                                                                                                  skos:prefLabel "DOCX object"@en.
-<ni:///mh;1QEQEq1fkL3qm53XJZhLDVeKOA?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQEq1fkL3qm53XJZhLDVeKOA?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQEq1fkL3qm53XJZhLDVeKOA?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (1.33 MiB)"@en.
-<ni:///mh;1QEQEq1fkL3qm53XJZhLDVeKOA?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQEq1fkL3qm53XJZhLDVeKOA?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQEq1fkL3qm53XJZhLDVeKOA?ct=application/zip#/%5BContent_Types%5D.xml> at:pathObject <file:///%5BContent_Types%5D.xml>;

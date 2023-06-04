@@ -1,10 +1,10 @@
-@base <x.blank:c578bf01-5204-40d8-96d7-c2351349268d>.
+@base <ni:///mh;1QEQ4Mc-sWuKNL6ZabfRhvvPFw?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -27,19 +27,20 @@ _:n1 at:pathObject <file:///CarCare.wdb>;
                                                                                   a schema:MediaObject;
                                                                                   skos:prefLabel "ND object (14 B)"@en.
 <file:///CarCare.wdb> at:extensionObject <https://w3id.org/uri4uri/suffix/wdb>.
+<file:///MatOST/> at:pathObject <file:///>.
 <ni:///mh;1QEQ4Mc-sWuKNL6ZabfRhvvPFw?ct=application/octet-stream> at:digest <urn:md5:E0C73EB16B8A34BE9969B7D186FBCF17>;
                                                                   dcterms:extent "10240"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ4Mc-sWuKNL6ZabfRhvvPFw?ct=application/x-ole-storage>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (10 KiB)"@en.
-<ni:///mh;1QEQ4Mc-sWuKNL6ZabfRhvvPFw?ct=application/x-ole-storage> at:pathObject <file:///>;
+<ni:///mh;1QEQ4Mc-sWuKNL6ZabfRhvvPFw?ct=application/x-ole-storage> at:pathObject <file:///.>;
                                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
                                                                    nie:interpretedAs <ni:///mh;1QEQ4Mc-sWuKNL6ZabfRhvvPFw?ct=application/x-ole-storage#/>;
                                                                    nfo:fileLastModified "2003-09-07T00:16:34.335000Z"^^xsd:dateTime;
                                                                    a schema:MediaObject,
                                                                      nfo:EmbeddedFileDataObject;
                                                                    skos:prefLabel "OLE object (10 KiB)"@en.
-<ni:///mh;1QEQ4Mc-sWuKNL6ZabfRhvvPFw?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQ4Mc-sWuKNL6ZabfRhvvPFw?ct=application/x-ole-storage#/> at:pathObject <file:///>;
                                                                      a nfo:Folder;
                                                                      skos:prefLabel "/".
 <ni:///mh;1QEQ4Mc-sWuKNL6ZabfRhvvPFw?ct=application/x-ole-storage#/%01CompObj> at:pathObject <file:///%01CompObj>;

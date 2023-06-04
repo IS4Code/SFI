@@ -1,10 +1,10 @@
-@base <x.blank:3779129b-1e96-4e6f-9bfc-d11498e84122>.
+@base <ni:///mh;1QEQLKouY6mX963KrwR2O76kRw?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -24,11 +24,13 @@ _:n1 at:pathObject <file:///example.sxw>;
                                          a cnt:ContentAsText;
                                          skos:prefLabel "text (30 B)"@en;
                                          cnt:characterEncoding "us-ascii";
-                                         cnt:chars "application/vnd.sun.xml.writer"^^xsd:string.
+                                         cnt:chars "application/vnd.sun.xml.writer".
 <file:///10000000000008000000055153DE4C4D.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
 <file:///10000201000001930000008D0A797014.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
 <file:///100002010000021E00000222488D75C4.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
+<file:///META-INF/> at:pathObject <file:///>.
 <file:///META-INF/manifest.xml> at:pathObject <file:///manifest.xml>.
+<file:///Pictures/> at:pathObject <file:///>.
 <file:///Pictures/10000000000008000000055153DE4C4D.png> at:pathObject <file:///10000000000008000000055153DE4C4D.png>.
 <file:///Pictures/10000201000001930000008D0A797014.png> at:pathObject <file:///10000201000001930000008D0A797014.png>.
 <file:///Pictures/100002010000021E00000222488D75C4.png> at:pathObject <file:///100002010000021E00000222488D75C4.png>.
@@ -43,13 +45,13 @@ _:n1 at:pathObject <file:///example.sxw>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQLKouY6mX963KrwR2O76kRw?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (6.17 MiB)"@en.
-<ni:///mh;1QEQLKouY6mX963KrwR2O76kRw?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQLKouY6mX963KrwR2O76kRw?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQLKouY6mX963KrwR2O76kRw?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (6.17 MiB)"@en.
-<ni:///mh;1QEQLKouY6mX963KrwR2O76kRw?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQLKouY6mX963KrwR2O76kRw?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQLKouY6mX963KrwR2O76kRw?ct=application/zip#/META-INF> at:pathObject <file:///META-INF>;
@@ -165,10 +167,10 @@ _:n1 at:pathObject <file:///example.sxw>;
                                                    nfo:verticalResolution 300.228;
                                                    nfo:width 403 ;
                                                    a schema:MediaObject,
-                                                     schema:ImageObject,
-                                                     nfo:Image;
-                                                   skos:prefLabel "PNG object (403×141, 8-bit)"@en,
-                                                                  "PNG object (403×141)"@en,
+                                                     nfo:Image,
+                                                     schema:ImageObject;
+                                                   skos:prefLabel "PNG object (403×141)"@en,
+                                                                  "PNG object (403×141, 8-bit)"@en,
                                                                   "PNG object (17.18 KiB)"@en.
 <ni:///mh;1QEQfCEN2tXHjAR3ARpWslLXJg?ct=application/octet-stream> at:digest <urn:md5:7C210DDAD5C78C0477011A56B252D726>;
                                                                   dcterms:extent "19708"^^dt:byte;
@@ -364,10 +366,10 @@ _:n1 at:pathObject <file:///example.sxw>;
                                                    nfo:verticalResolution 95.9866;
                                                    nfo:width 2048 ;
                                                    a schema:MediaObject,
-                                                     schema:ImageObject,
-                                                     nfo:Image;
-                                                   skos:prefLabel "PNG object (2048×1361, 8-bit)"@en,
-                                                                  "PNG object (2048×1361)"@en,
+                                                     nfo:Image,
+                                                     schema:ImageObject;
+                                                   skos:prefLabel "PNG object (2048×1361)"@en,
+                                                                  "PNG object (2048×1361, 8-bit)"@en,
                                                                   "PNG object (6.12 MiB)"@en.
 <urn:md5:2CAA2E63A997F7ADCAAF04763BBEA447> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;

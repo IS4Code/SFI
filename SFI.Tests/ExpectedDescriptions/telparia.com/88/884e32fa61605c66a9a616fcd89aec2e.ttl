@@ -3,8 +3,8 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
@@ -32,14 +32,19 @@ _:n1 at:pathObject <file:///example.pub>;
                                               schema:ImageObject,
                                               nfo:Image;
                                             skos:prefLabel "ICO object (12 B)"@en.
+<file:///Escher/> at:pathObject <file:///>.
 <file:///Escher/EscherDelayStm> at:pathObject <file:///EscherDelayStm>.
 <file:///Escher/EscherStm> at:pathObject <file:///EscherStm>.
+<file:///Objects/> at:pathObject <file:///>.
+<file:///Quill/> at:pathObject <file:///>.
 <file:///Quill/QuillSub> at:pathObject <file:///QuillSub>.
 <file:///Quill/QuillSub/> at:pathObject <file:///QuillSub/>.
 <file:///Quill/QuillSub/%01CompObj> at:pathObject <file:///QuillSub/%01CompObj>.
 <file:///Quill/QuillSub/CONTENTS> at:pathObject <file:///QuillSub/CONTENTS>.
+<file:///QuillSub/> at:pathObject <file:///>.
 <file:///QuillSub/%01CompObj> at:pathObject <file:///%01CompObj>.
 <file:///QuillSub/CONTENTS> at:pathObject <file:///CONTENTS>.
+<file:///VBA/> at:pathObject <file:///>.
 <file:///example.pub> at:extensionObject <https://w3id.org/uri4uri/suffix/pub>.
 <ni:///mh;1QEQ0aKxv5oTDD16SZCmwXiHMQ?ct=application/octet-stream> at:digest <urn:md5:D1A2B1BF9A130C3D7A4990A6C1788731>;
                                                                   dcterms:extent "16896"^^dt:byte;
@@ -79,14 +84,14 @@ _:n1 at:pathObject <file:///example.pub>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQrtakKxdVTj_WUPVnc6j1sw?ct=application/x-ole-storage>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (241 KiB)"@en.
-<ni:///mh;1QEQrtakKxdVTj_WUPVnc6j1sw?ct=application/x-ole-storage> at:pathObject <file:///>;
+<ni:///mh;1QEQrtakKxdVTj_WUPVnc6j1sw?ct=application/x-ole-storage> at:pathObject <file:///.>;
                                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
                                                                    nie:interpretedAs <ni:///mh;1QEQrtakKxdVTj_WUPVnc6j1sw?ct=application/x-ole-storage#/>;
                                                                    nfo:fileLastModified "2019-02-22T17:09:13.479000Z"^^xsd:dateTime;
                                                                    a schema:MediaObject,
                                                                      nfo:EmbeddedFileDataObject;
                                                                    skos:prefLabel "OLE object (241 KiB)"@en.
-<ni:///mh;1QEQrtakKxdVTj_WUPVnc6j1sw?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQrtakKxdVTj_WUPVnc6j1sw?ct=application/x-ole-storage#/> at:pathObject <file:///>;
                                                                      a nfo:Folder;
                                                                      skos:prefLabel "/".
 <ni:///mh;1QEQrtakKxdVTj_WUPVnc6j1sw?ct=application/x-ole-storage#/%01CompObj> at:pathObject <file:///%01CompObj>;

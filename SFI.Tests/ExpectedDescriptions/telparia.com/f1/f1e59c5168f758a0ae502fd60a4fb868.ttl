@@ -3,8 +3,8 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
@@ -18,6 +18,7 @@ _:n1 at:pathObject <file:///right.fpx>;
      nfo:fileName "right.fpx";
      nfo:fileSize 1013248 ;
      a nfo:FileDataObject.
+<file:///Data%20Object%20Store%20000001/> at:pathObject <file:///>.
 <file:///Data%20Object%20Store%20000001/%01CompObj> at:pathObject <file:///%01CompObj>.
 <file:///Data%20Object%20Store%20000001/%05Image%20Contents> at:pathObject <file:///%05Image%20Contents>.
 <file:///Data%20Object%20Store%20000001/%05SummaryInformation> at:pathObject <file:///%05SummaryInformation>.
@@ -45,16 +46,22 @@ _:n1 at:pathObject <file:///right.fpx>;
 <file:///Data%20Object%20Store%20000001/Resolution%200005/> at:pathObject <file:///Resolution%200005/>.
 <file:///Data%20Object%20Store%20000001/Resolution%200005/Subimage%200000%20Data> at:pathObject <file:///Resolution%200005/Subimage%200000%20Data>.
 <file:///Data%20Object%20Store%20000001/Resolution%200005/Subimage%200000%20Header> at:pathObject <file:///Resolution%200005/Subimage%200000%20Header>.
+<file:///Resolution%200000/> at:pathObject <file:///>.
 <file:///Resolution%200000/Subimage%200000%20Data> at:pathObject <file:///Subimage%200000%20Data>.
 <file:///Resolution%200000/Subimage%200000%20Header> at:pathObject <file:///Subimage%200000%20Header>.
+<file:///Resolution%200001/> at:pathObject <file:///>.
 <file:///Resolution%200001/Subimage%200000%20Data> at:pathObject <file:///Subimage%200000%20Data>.
 <file:///Resolution%200001/Subimage%200000%20Header> at:pathObject <file:///Subimage%200000%20Header>.
+<file:///Resolution%200002/> at:pathObject <file:///>.
 <file:///Resolution%200002/Subimage%200000%20Data> at:pathObject <file:///Subimage%200000%20Data>.
 <file:///Resolution%200002/Subimage%200000%20Header> at:pathObject <file:///Subimage%200000%20Header>.
+<file:///Resolution%200003/> at:pathObject <file:///>.
 <file:///Resolution%200003/Subimage%200000%20Data> at:pathObject <file:///Subimage%200000%20Data>.
 <file:///Resolution%200003/Subimage%200000%20Header> at:pathObject <file:///Subimage%200000%20Header>.
+<file:///Resolution%200004/> at:pathObject <file:///>.
 <file:///Resolution%200004/Subimage%200000%20Data> at:pathObject <file:///Subimage%200000%20Data>.
 <file:///Resolution%200004/Subimage%200000%20Header> at:pathObject <file:///Subimage%200000%20Header>.
+<file:///Resolution%200005/> at:pathObject <file:///>.
 <file:///Resolution%200005/Subimage%200000%20Data> at:pathObject <file:///Subimage%200000%20Data>.
 <file:///Resolution%200005/Subimage%200000%20Header> at:pathObject <file:///Subimage%200000%20Header>.
 <file:///right.fpx> at:extensionObject <https://w3id.org/uri4uri/suffix/fpx>.
@@ -103,14 +110,14 @@ _:n1 at:pathObject <file:///right.fpx>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQU6hHHEeeVpgtuoaEHuflug?ct=application/x-ole-storage>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (989.5 KiB)"@en.
-<ni:///mh;1QEQU6hHHEeeVpgtuoaEHuflug?ct=application/x-ole-storage> at:pathObject <file:///>;
+<ni:///mh;1QEQU6hHHEeeVpgtuoaEHuflug?ct=application/x-ole-storage> at:pathObject <file:///.>;
                                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
                                                                    nie:interpretedAs <ni:///mh;1QEQU6hHHEeeVpgtuoaEHuflug?ct=application/x-ole-storage#/>;
                                                                    nfo:fileLastModified "1998-07-10T18:52:30.540000Z"^^xsd:dateTime;
                                                                    a schema:MediaObject,
                                                                      nfo:EmbeddedFileDataObject;
                                                                    skos:prefLabel "OLE object (989.5 KiB)"@en.
-<ni:///mh;1QEQU6hHHEeeVpgtuoaEHuflug?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQU6hHHEeeVpgtuoaEHuflug?ct=application/x-ole-storage#/> at:pathObject <file:///>;
                                                                      a nfo:Folder;
                                                                      skos:prefLabel "/".
 <ni:///mh;1QEQU6hHHEeeVpgtuoaEHuflug?ct=application/x-ole-storage#/%01CompObj> at:pathObject <file:///%01CompObj>;

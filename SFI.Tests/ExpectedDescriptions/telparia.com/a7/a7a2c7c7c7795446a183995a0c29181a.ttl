@@ -1,10 +1,10 @@
-@base <x.blank:cc318150-c63c-40f5-8722-9be57ab35cdd>.
+@base <ni:///mh;1QEQJfiotAGg3-zwpcmsVos7ig?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -24,12 +24,15 @@ _:n1 at:pathObject <file:///example.sxc>;
                                        a cnt:ContentAsText;
                                        skos:prefLabel "text (28 B)"@en;
                                        cnt:characterEncoding "us-ascii";
-                                       cnt:chars "application/vnd.sun.xml.calc"^^xsd:string.
+                                       cnt:chars "application/vnd.sun.xml.calc".
 <file:///10000201000001930000008D0A797014.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
 <file:///100002010000021E00000222488D75C4.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
+<file:///META-INF/> at:pathObject <file:///>.
 <file:///META-INF/manifest.xml> at:pathObject <file:///manifest.xml>.
+<file:///Object%201/> at:pathObject <file:///>.
 <file:///Object%201/content.xml> at:pathObject <file:///content.xml>.
 <file:///Object%201/styles.xml> at:pathObject <file:///styles.xml>.
+<file:///Pictures/> at:pathObject <file:///>.
 <file:///Pictures/10000201000001930000008D0A797014.png> at:pathObject <file:///10000201000001930000008D0A797014.png>.
 <file:///Pictures/100002010000021E00000222488D75C4.png> at:pathObject <file:///100002010000021E00000222488D75C4.png>.
 <file:///content.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
@@ -142,13 +145,13 @@ _:n1 at:pathObject <file:///example.sxc>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQJfiotAGg3-zwpcmsVos7ig?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (46.61 KiB)"@en.
-<ni:///mh;1QEQJfiotAGg3-zwpcmsVos7ig?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQJfiotAGg3-zwpcmsVos7ig?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQJfiotAGg3-zwpcmsVos7ig?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (46.61 KiB)"@en.
-<ni:///mh;1QEQJfiotAGg3-zwpcmsVos7ig?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQJfiotAGg3-zwpcmsVos7ig?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQJfiotAGg3-zwpcmsVos7ig?ct=application/zip#/META-INF> at:pathObject <file:///META-INF>;

@@ -1,10 +1,10 @@
-@base <x.blank:44738447-ba23-4852-9134-8dd336aad907>.
+@base <ni:///mh;1QEQWsjhVYysOHUj7JeXpLhlag?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xis: <http://www.w3.org/2001/04/infoset#>.
@@ -29,26 +29,29 @@ TILEWIDTH 64
 TILEHEIGHT 64
 PIXELSIZE 4
 DATA 0
-"""^^xsd:string.
+""".
 <data:,application%2Fx-krita> dcterms:extent "19"^^dt:byte;
                               a cnt:ContentAsText;
                               skos:prefLabel "text (19 B)"@en;
                               cnt:characterEncoding "us-ascii";
-                              cnt:chars "application/x-krita"^^xsd:string.
+                              cnt:chars "application/x-krita".
 <data:application/octet-stream,%00%00%00%00> dcterms:extent "4"^^dt:byte;
                                              a cnt:ContentAsBase64;
                                              skos:prefLabel "binary data (4 B)"@en;
                                              cnt:bytes "AAAAAA=="^^xsd:base64Binary.
 <file:///Texture4k8bitsrgb.kra> at:extensionObject <https://w3id.org/uri4uri/suffix/kra>.
+<file:///annotations/> at:pathObject <file:///>.
 <file:///annotations/icc> at:pathObject <file:///icc>.
 <file:///documentinfo.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///layer2.defaultpixel> at:extensionObject <https://w3id.org/uri4uri/suffix/defaultpixel>.
 <file:///layer2.icc> at:extensionObject <https://w3id.org/uri4uri/suffix/icc>.
+<file:///layers/> at:pathObject <file:///>.
 <file:///layers/layer2> at:pathObject <file:///layer2>.
 <file:///layers/layer2.defaultpixel> at:pathObject <file:///layer2.defaultpixel>.
 <file:///layers/layer2.icc> at:pathObject <file:///layer2.icc>.
 <file:///maindoc.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///preview.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
+<file:///unnamed/> at:pathObject <file:///>.
 <file:///unnamed/annotations> at:pathObject <file:///annotations>.
 <file:///unnamed/annotations/> at:pathObject <file:///annotations/>.
 <file:///unnamed/annotations/icc> at:pathObject <file:///annotations/icc>.
@@ -126,13 +129,13 @@ DATA 0
                                                                   dcterms:hasFormat <ni:///mh;1QEQWsjhVYysOHUj7JeXpLhlag?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (2.79 KiB)"@en.
-<ni:///mh;1QEQWsjhVYysOHUj7JeXpLhlag?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQWsjhVYysOHUj7JeXpLhlag?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQWsjhVYysOHUj7JeXpLhlag?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (2.79 KiB)"@en.
-<ni:///mh;1QEQWsjhVYysOHUj7JeXpLhlag?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQWsjhVYysOHUj7JeXpLhlag?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQWsjhVYysOHUj7JeXpLhlag?ct=application/zip#/documentinfo.xml> at:pathObject <file:///documentinfo.xml>;

@@ -3,8 +3,8 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
@@ -30,6 +30,7 @@ _:n1 at:pathObject <file:///WINTER11.DOC>;
                                                                     a cnt:ContentAsBase64;
                                                                     skos:prefLabel "binary data (20 B)"@en;
                                                                     cnt:bytes "AQAAAgAAAAAAAAAAAAAAAAAAAAA="^^xsd:base64Binary.
+<file:///ObjectPool/> at:pathObject <file:///>.
 <file:///ObjectPool/_846074005> at:pathObject <file:///_846074005>.
 <file:///ObjectPool/_846074005/> at:pathObject <file:///_846074005/>.
 <file:///ObjectPool/_846074005/%01CompObj> at:pathObject <file:///_846074005/%01CompObj>.
@@ -49,6 +50,7 @@ _:n1 at:pathObject <file:///WINTER11.DOC>;
 <file:///ObjectPool/_846074094/%03ObjInfo> at:pathObject <file:///_846074094/%03ObjInfo>.
 <file:///ObjectPool/_846074094/%03PIC> at:pathObject <file:///_846074094/%03PIC>.
 <file:///WINTER11.DOC> at:extensionObject <https://w3id.org/uri4uri/suffix/doc>.
+<file:///_846074005/> at:pathObject <file:///>.
 <file:///_846074005/%01CompObj> at:pathObject <file:///%01CompObj>.
 <file:///_846074005/%01Ole> at:pathObject <file:///%01Ole>.
 <file:///_846074005/%01Ole10ItemName> at:pathObject <file:///%01Ole10ItemName>.
@@ -56,6 +58,7 @@ _:n1 at:pathObject <file:///WINTER11.DOC>;
 <file:///_846074005/%03META> at:pathObject <file:///%03META>.
 <file:///_846074005/%03ObjInfo> at:pathObject <file:///%03ObjInfo>.
 <file:///_846074005/%03PIC> at:pathObject <file:///%03PIC>.
+<file:///_846074094/> at:pathObject <file:///>.
 <file:///_846074094/%01CompObj> at:pathObject <file:///%01CompObj>.
 <file:///_846074094/%01Ole> at:pathObject <file:///%01Ole>.
 <file:///_846074094/%01Ole10ItemName> at:pathObject <file:///%01Ole10ItemName>.
@@ -84,14 +87,14 @@ _:n1 at:pathObject <file:///WINTER11.DOC>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQZvuJwfHeqbHjtXqQqYCYpQ?ct=application/x-ole-storage>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (684.5 KiB)"@en.
-<ni:///mh;1QEQZvuJwfHeqbHjtXqQqYCYpQ?ct=application/x-ole-storage> at:pathObject <file:///>;
+<ni:///mh;1QEQZvuJwfHeqbHjtXqQqYCYpQ?ct=application/x-ole-storage> at:pathObject <file:///.>;
                                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
                                                                    nie:interpretedAs <ni:///mh;1QEQZvuJwfHeqbHjtXqQqYCYpQ?ct=application/x-ole-storage#/>;
                                                                    nfo:fileLastModified "1995-03-26T15:28:34.000551Z"^^xsd:dateTime;
                                                                    a schema:MediaObject,
                                                                      nfo:EmbeddedFileDataObject;
                                                                    skos:prefLabel "OLE object (684.5 KiB)"@en.
-<ni:///mh;1QEQZvuJwfHeqbHjtXqQqYCYpQ?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQZvuJwfHeqbHjtXqQqYCYpQ?ct=application/x-ole-storage#/> at:pathObject <file:///>;
                                                                      a nfo:Folder;
                                                                      skos:prefLabel "/".
 <ni:///mh;1QEQZvuJwfHeqbHjtXqQqYCYpQ?ct=application/x-ole-storage#/%01CompObj> at:pathObject <file:///%01CompObj>;

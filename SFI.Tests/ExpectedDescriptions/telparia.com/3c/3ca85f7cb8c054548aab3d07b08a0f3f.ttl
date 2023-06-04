@@ -1,10 +1,10 @@
-@base <x.blank:1baf92a7-24d6-41fb-bb23-bafd419e8503>.
+@base <ni:///mh;1QEQ4WeqFHl2crUmTxpl1mJ4zQ?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xis: <http://www.w3.org/2001/04/infoset#>.
@@ -26,13 +26,17 @@ _:n1 at:pathObject <file:///PagePlusX8-Sample.ppp>;
 <file:///PagePlusX8-Sample.ppp> at:extensionObject <https://w3id.org/uri4uri/suffix/ppp>.
 <file:///Root.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///document.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///masterspreads/> at:pathObject <file:///>.
 <file:///masterspreads/1.xml> at:pathObject <file:///1.xml>.
 <file:///preview.png> at:extensionObject <https://w3id.org/uri4uri/suffix/png>.
+<file:///spreads/> at:pathObject <file:///>.
 <file:///spreads/1.xml> at:pathObject <file:///1.xml>.
 <file:///story.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///story/> at:pathObject <file:///>.
 <file:///story/1.xml> at:pathObject <file:///1.xml>.
 <file:///stylesheet.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
 <file:///summary.xml> at:extensionObject <https://w3id.org/uri4uri/suffix/xml>.
+<file:///typedspreads/> at:pathObject <file:///>.
 <file:///typedspreads/1.xml> at:pathObject <file:///1.xml>.
 <file:///typedspreads/2.xml> at:pathObject <file:///2.xml>.
 <file:///typedspreads/3.xml> at:pathObject <file:///3.xml>.
@@ -88,13 +92,13 @@ _:n1 at:pathObject <file:///PagePlusX8-Sample.ppp>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ4WeqFHl2crUmTxpl1mJ4zQ?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (14.02 KiB)"@en.
-<ni:///mh;1QEQ4WeqFHl2crUmTxpl1mJ4zQ?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQ4WeqFHl2crUmTxpl1mJ4zQ?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQ4WeqFHl2crUmTxpl1mJ4zQ?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (14.02 KiB)"@en.
-<ni:///mh;1QEQ4WeqFHl2crUmTxpl1mJ4zQ?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQ4WeqFHl2crUmTxpl1mJ4zQ?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQ4WeqFHl2crUmTxpl1mJ4zQ?ct=application/zip#/Root.xml> at:pathObject <file:///Root.xml>;
@@ -406,8 +410,8 @@ _:n1 at:pathObject <file:///PagePlusX8-Sample.ppp>;
                                                    a schema:MediaObject,
                                                      nfo:Image,
                                                      schema:ImageObject;
-                                                   skos:prefLabel "PNG object (311×400, 8-bit)"@en,
-                                                                  "PNG object (311×400)"@en,
+                                                   skos:prefLabel "PNG object (311×400)"@en,
+                                                                  "PNG object (311×400, 8-bit)"@en,
                                                                   "PNG object (1.23 KiB)"@en.
 <ni:///mh;1QEQZIROzDvHNJNGNw0FqF65iQ?ct=application/prs.implied-document+xml;root=SerifXML> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=SerifXML>;
                                                                                             a schema:MediaObject;

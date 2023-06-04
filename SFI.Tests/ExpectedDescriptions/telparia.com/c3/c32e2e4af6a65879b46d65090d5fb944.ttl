@@ -3,8 +3,8 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -43,11 +43,13 @@ _:n1 at:pathObject <file:///CERTMGR.MSC>;
                                                                                                                                     a cnt:ContentAsBase64;
                                                                                                                                     skos:prefLabel "binary data (68 B)"@en;
                                                                                                                                     cnt:bytes "RAAAACwAAAAAAAAAAQAAAP////////////////////+EAAAAhAAAACQDAACEAgAAAAAAAAEAAAAAAAAAAAAAAAAAAAA="^^xsd:base64Binary.
+<file:///1/> at:pathObject <file:///>.
 <file:///1/data> at:pathObject <file:///data>.
 <file:///1/data/> at:pathObject <file:///data/>.
 <file:///1/tree> at:pathObject <file:///tree>.
 <file:///1/view> at:pathObject <file:///view>.
 <file:///1/view/> at:pathObject <file:///view/>.
+<file:///2/> at:pathObject <file:///>.
 <file:///2/data> at:pathObject <file:///data>.
 <file:///2/data/> at:pathObject <file:///data/>.
 <file:///2/data/n9fu3h4xyvew1h9ut9e6gun9r> at:pathObject <file:///data/n9fu3h4xyvew1h9ut9e6gun9r>.
@@ -57,9 +59,12 @@ _:n1 at:pathObject <file:///CERTMGR.MSC>;
 <file:///2/view/3> at:pathObject <file:///view/3>.
 <file:///2/view/3/> at:pathObject <file:///view/3/>.
 <file:///2/view/3/n9fu3h4xyvew1h9ut9e6gun9r> at:pathObject <file:///view/3/n9fu3h4xyvew1h9ut9e6gun9r>.
+<file:///3/> at:pathObject <file:///>.
 <file:///3/n9fu3h4xyvew1h9ut9e6gun9r> at:pathObject <file:///n9fu3h4xyvew1h9ut9e6gun9r>.
 <file:///CERTMGR.MSC> at:extensionObject <https://w3id.org/uri4uri/suffix/msc>.
+<file:///data/> at:pathObject <file:///>.
 <file:///data/n9fu3h4xyvew1h9ut9e6gun9r> at:pathObject <file:///n9fu3h4xyvew1h9ut9e6gun9r>.
+<file:///nodes/> at:pathObject <file:///>.
 <file:///nodes/1> at:pathObject <file:///1>.
 <file:///nodes/1/> at:pathObject <file:///1/>.
 <file:///nodes/1/data> at:pathObject <file:///1/data>.
@@ -78,6 +83,7 @@ _:n1 at:pathObject <file:///CERTMGR.MSC>;
 <file:///nodes/2/view/3> at:pathObject <file:///2/view/3>.
 <file:///nodes/2/view/3/> at:pathObject <file:///2/view/3/>.
 <file:///nodes/2/view/3/n9fu3h4xyvew1h9ut9e6gun9r> at:pathObject <file:///2/view/3/n9fu3h4xyvew1h9ut9e6gun9r>.
+<file:///view/> at:pathObject <file:///>.
 <file:///view/3> at:pathObject <file:///3>.
 <file:///view/3/> at:pathObject <file:///3/>.
 <file:///view/3/n9fu3h4xyvew1h9ut9e6gun9r> at:pathObject <file:///3/n9fu3h4xyvew1h9ut9e6gun9r>.
@@ -94,14 +100,14 @@ _:n1 at:pathObject <file:///CERTMGR.MSC>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQljxZ-RAdtq_TcUyrL9mbiQ?ct=application/x-ole-storage>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (10 KiB)"@en.
-<ni:///mh;1QEQljxZ-RAdtq_TcUyrL9mbiQ?ct=application/x-ole-storage> at:pathObject <file:///>;
+<ni:///mh;1QEQljxZ-RAdtq_TcUyrL9mbiQ?ct=application/x-ole-storage> at:pathObject <file:///.>;
                                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
                                                                    nie:interpretedAs <ni:///mh;1QEQljxZ-RAdtq_TcUyrL9mbiQ?ct=application/x-ole-storage#/>;
                                                                    nfo:fileLastModified "1998-04-16T18:55:59.117000Z"^^xsd:dateTime;
                                                                    a schema:MediaObject,
                                                                      nfo:EmbeddedFileDataObject;
                                                                    skos:prefLabel "OLE object (10 KiB)"@en.
-<ni:///mh;1QEQljxZ-RAdtq_TcUyrL9mbiQ?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQljxZ-RAdtq_TcUyrL9mbiQ?ct=application/x-ole-storage#/> at:pathObject <file:///>;
                                                                      a nfo:Folder;
                                                                      skos:prefLabel "/".
 <ni:///mh;1QEQljxZ-RAdtq_TcUyrL9mbiQ?ct=application/x-ole-storage#/FrameData> at:pathObject <file:///FrameData>;

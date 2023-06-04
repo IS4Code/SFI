@@ -3,8 +3,8 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
@@ -29,10 +29,13 @@ _:n1 at:pathObject <file:///MSPublisher98-Sample.pub>;
                                               nfo:Image;
                                             skos:prefLabel "ICO object (12 B)"@en.
 <file:///MSPublisher98-Sample.pub> at:extensionObject <https://w3id.org/uri4uri/suffix/pub>.
+<file:///Objects/> at:pathObject <file:///>.
+<file:///Quill/> at:pathObject <file:///>.
 <file:///Quill/QuillSub> at:pathObject <file:///QuillSub>.
 <file:///Quill/QuillSub/> at:pathObject <file:///QuillSub/>.
 <file:///Quill/QuillSub/%01CompObj> at:pathObject <file:///QuillSub/%01CompObj>.
 <file:///Quill/QuillSub/CONTENTS> at:pathObject <file:///QuillSub/CONTENTS>.
+<file:///QuillSub/> at:pathObject <file:///>.
 <file:///QuillSub/%01CompObj> at:pathObject <file:///%01CompObj>.
 <file:///QuillSub/CONTENTS> at:pathObject <file:///CONTENTS>.
 <ni:///mh;1QEQ9aE5LYhe27qJquOQMhfzXQ?ct=application/octet-stream> at:digest <urn:md5:F5A1392D885EDBBA89AAE3903217F35D>;
@@ -61,14 +64,14 @@ _:n1 at:pathObject <file:///MSPublisher98-Sample.pub>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/x-ole-storage>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (19 KiB)"@en.
-<ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/x-ole-storage> at:pathObject <file:///>;
+<ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/x-ole-storage> at:pathObject <file:///.>;
                                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
                                                                    nie:interpretedAs <ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/x-ole-storage#/>;
                                                                    nfo:fileLastModified "2020-09-28T23:11:49.870000Z"^^xsd:dateTime;
                                                                    a schema:MediaObject,
                                                                      nfo:EmbeddedFileDataObject;
                                                                    skos:prefLabel "OLE object (19 KiB)"@en.
-<ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/x-ole-storage#/> at:pathObject <file:///>;
                                                                      a nfo:Folder;
                                                                      skos:prefLabel "/".
 <ni:///mh;1QEQvniMfKfn8zI8VAWHrd2SgA?ct=application/x-ole-storage#/%01CompObj> at:pathObject <file:///%01CompObj>;
