@@ -236,6 +236,12 @@
         [Uri(Uriv, "Mimetype-Parametrized")]
         public static readonly ClassUri MediaTypeParametrized;
 
+        /// <summary>
+        /// <c><see cref="Uriv"/>:Suffix</c>.
+        /// </summary>
+        [Uri(Uriv, "Suffix")]
+        public static readonly ClassUri Extension;
+
         static Classes()
         {
             typeof(Classes).InitializeUris();

@@ -189,6 +189,11 @@ namespace IS4.SFI.Tests
                 {
                     mediaTypeAnalyzer.AddClasses = false;
                 }
+
+                if(Analyzers.OfType<ExtensionObjectAnalyzer>().FirstOrDefault() is ExtensionObjectAnalyzer extensionObjectAnalyzer)
+                {
+                    extensionObjectAnalyzer.AddClasses = false;
+                }
             }
         }
 
