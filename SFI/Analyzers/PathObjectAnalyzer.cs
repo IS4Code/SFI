@@ -21,9 +21,12 @@ namespace IS4.SFI.Analyzers
         {
             if(context.Node is not ILinkedNode node)
             {
-                if(path.IsRootDirectory)
+                if(path.IsRoot)
                 {
-                    node = context.NodeFactory.Create(RootDirectoryUri.Instance, default);
+                    node = context.NodeFactory.Create(RootFileUri.Instance, default);
+                }else if(path.IsRootDirectory)
+                {
+                    node = context.NodeFactory.Create(Vocabularies.File, "");
                 }else{
                     var local = UriTools.EscapePathString(path.Value.Value ?? "");
                     node = context.NodeFactory.Create(Vocabularies.File, local);
@@ -47,15 +50,15 @@ namespace IS4.SFI.Analyzers
 
         /// <summary>
         /// This class is used to provide a fake URI with the value of
-        /// <see cref="RootDirectoryUri.Value"/> when .NET would like to change it.
+        /// <see cref="RootFileUri.Value"/> when .NET would like to change it.
         /// </summary>
-        class RootDirectoryUri : Uri, IIndividualUriFormatter<ValueTuple>
+        class RootFileUri : Uri, IIndividualUriFormatter<ValueTuple>
         {
-            public const string Value = "file:///./";
+            public const string Value = "file:///.";
 
-            public static readonly RootDirectoryUri Instance = new();
+            public static readonly RootFileUri Instance = new();
 
-            private RootDirectoryUri() : base(Value, UriKind.Absolute)
+            private RootFileUri() : base(Value, UriKind.Absolute)
             {
 
             }
