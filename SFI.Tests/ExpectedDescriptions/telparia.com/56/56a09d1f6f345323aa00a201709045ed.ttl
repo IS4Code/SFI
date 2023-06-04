@@ -1,8 +1,9 @@
-@base <ni:///mh;1QEQkio9hTPGny-D9fe6uOlxCQ?ct=application/octet-stream>.
+@base <x.blank:cbe7862d-a71c-44e6-b5e9-b67fc87ff5f9>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
@@ -10,14 +11,13 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
-_:n1 at:pathObject <file:///%402CLOUD9.EXE>;
+_:n1 at:pathObject <file:///@2CLOUD9.EXE>;
      nie:interpretedAs <ni:///mh;1QEQkio9hTPGny-D9fe6uOlxCQ?ct=application/octet-stream>;
      nfo:fileName "@2CLOUD9.EXE";
      nfo:fileSize 1939 ;
      a nfo:FileDataObject.
-<file:///%402CLOUD9.EXE> at:extensionObject <https://w3id.org/uri4uri/suffix/exe>.
+<file:///@2CLOUD9.EXE> at:extensionObject <https://w3id.org/uri4uri/suffix/exe>.
 <ni:///mh;1QEQkio9hTPGny-D9fe6uOlxCQ?ct=application/octet-stream> at:digest <urn:md5:922A3D8533C69F2F83F5F7BAB8E97109>;
                                                                   dcterms:extent "1939"^^dt:byte;
                                                                   a cnt:ContentAsBase64;

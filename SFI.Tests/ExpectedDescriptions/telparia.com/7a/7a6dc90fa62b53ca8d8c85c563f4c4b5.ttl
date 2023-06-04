@@ -1,15 +1,15 @@
-@base <x.blank:fb7e7cc7-3d42-4529-bed1-167f763736d1>.
+@base <x.blank:d8b05284-cebf-4175-a439-4eb6134bf0fb>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix dt: <http://dbpedia.org/datatype/>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 
@@ -23,7 +23,7 @@ _:n1 at:pathObject <file:///xgif.tar>;
                                       skos:prefLabel "text (21 B)"@en;
                                       cnt:characterEncoding "us-ascii";
                                       cnt:chars """#define PATCHLEVEL 2
-"""^^xsd:string.
+""".
 <data:application/octet-stream,> dcterms:extent "0"^^dt:byte;
                                  a cnt:ContentAsBase64;
                                  skos:prefLabel "binary data (0 B)"@en;
@@ -33,7 +33,6 @@ _:n1 at:pathObject <file:///xgif.tar>;
 <file:///xgif.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
 <file:///xgif.man> at:extensionObject <https://w3id.org/uri4uri/suffix/man>.
 <file:///xgif.tar> at:extensionObject <https://w3id.org/uri4uri/suffix/tar>.
-<file:///xgif/> at:pathObject <file:///>.
 <file:///xgif/AUTHOR> at:pathObject <file:///AUTHOR>.
 <file:///xgif/Imakefile> at:pathObject <file:///Imakefile>.
 <file:///xgif/Makefile> at:pathObject <file:///Makefile>.

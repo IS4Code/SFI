@@ -1,8 +1,9 @@
-@base <ni:///mh;1QEQUYj54ypTKIFKZ0SKRsck7g?ct=application/octet-stream>.
+@base <x.blank:3b2833f3-1c73-4492-9b8b-7b23e6d9341d>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
@@ -10,14 +11,13 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
-_:n1 at:pathObject <file:///King%27sEdit1.36%2868k%29.rsrc>;
+_:n1 at:pathObject <file:///King'sEdit1.36(68k).rsrc>;
      nie:interpretedAs <ni:///mh;1QEQUYj54ypTKIFKZ0SKRsck7g?ct=application/octet-stream>;
      nfo:fileName "King'sEdit1.36(68k).rsrc";
      nfo:fileSize 511621 ;
      a nfo:FileDataObject.
-<file:///King%27sEdit1.36%2868k%29.rsrc> at:extensionObject <https://w3id.org/uri4uri/suffix/rsrc>.
+<file:///King'sEdit1.36(68k).rsrc> at:extensionObject <https://w3id.org/uri4uri/suffix/rsrc>.
 <ni:///mh;1QEQUYj54ypTKIFKZ0SKRsck7g?ct=application/octet-stream> at:digest <urn:md5:5188F9E32A5328814A67448A46C724EE>;
                                                                   dcterms:extent "511621"^^dt:byte;
                                                                   a cnt:ContentAsBase64;

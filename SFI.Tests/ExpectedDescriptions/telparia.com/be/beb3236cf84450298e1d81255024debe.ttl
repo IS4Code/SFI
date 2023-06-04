@@ -1,8 +1,9 @@
-@base <ni:///mh;1QEQkFRiJy00JCS9-_C0rFhYwA?ct=application/octet-stream>.
+@base <x.blank:806f711f-6e98-45a1-9838-5896cec27fb7>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
@@ -11,14 +12,13 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
-_:n1 at:pathObject <file:///hotel%20california%20%28cover%29.sndh>;
+_:n1 at:pathObject <file:///hotel%20california%20(cover).sndh>;
      nie:interpretedAs <ni:///mh;1QEQkFRiJy00JCS9-_C0rFhYwA?ct=application/octet-stream>;
      nfo:fileName "hotel california (cover).sndh";
      nfo:fileSize 2818 ;
      a nfo:FileDataObject.
-<file:///hotel%20california%20%28cover%29.sndh> at:extensionObject <https://w3id.org/uri4uri/suffix/sndh>.
+<file:///hotel%20california%20(cover).sndh> at:extensionObject <https://w3id.org/uri4uri/suffix/sndh>.
 <ni:///mh;1QEQkFRiJy00JCS9-_C0rFhYwA?ct=application/octet-stream> at:digest <urn:md5:905462272D342424BDFBF0B4AC5858C0>;
                                                                   dcterms:extent "2818"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQkFRiJy00JCS9-_C0rFhYwA?ct=image/bmp>;

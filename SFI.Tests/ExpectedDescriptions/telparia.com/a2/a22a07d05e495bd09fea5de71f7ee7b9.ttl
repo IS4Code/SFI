@@ -1,15 +1,15 @@
-@base <x.blank:30ce79e3-2fad-41a5-bb5c-2d3be408ee86>.
+@base <x.blank:bcf51037-c18c-4b40-8f02-171a967ae865>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix dt: <http://dbpedia.org/datatype/>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 
@@ -24,7 +24,7 @@ _:n1 at:pathObject <file:///xv200.tar>;
                                                                                               cnt:characterEncoding "us-ascii";
                                                                                               cnt:chars """Sys$Library:DECW$XlibShr /Share
 Sys$Library:VAXCRTL.EXE /Share
-"""^^xsd:string.
+""".
 <data:application/octet-stream,> dcterms:extent "0"^^dt:byte;
                                  a cnt:ContentAsBase64;
                                  skos:prefLabel "binary data (0 B)"@en;
@@ -36,7 +36,6 @@ Sys$Library:VAXCRTL.EXE /Share
 <file:///Makefile.std> at:extensionObject <https://w3id.org/uri4uri/suffix/std>.
 <file:///OPTIONS.OPT> at:extensionObject <https://w3id.org/uri4uri/suffix/opt>.
 <file:///README.VMS> at:extensionObject <https://w3id.org/uri4uri/suffix/vms>.
-<file:///VMS/> at:pathObject <file:///>.
 <file:///VMS/ARGPROC.C> at:pathObject <file:///ARGPROC.C>.
 <file:///VMS/DESCRIP.MMS> at:pathObject <file:///DESCRIP.MMS>.
 <file:///VMS/INCLUDES.H> at:pathObject <file:///INCLUDES.H>.
@@ -48,7 +47,6 @@ Sys$Library:VAXCRTL.EXE /Share
 <file:///bggen.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
 <file:///bggen.man> at:extensionObject <https://w3id.org/uri4uri/suffix/man>.
 <file:///bitmaps.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
-<file:///bitmaps/> at:pathObject <file:///>.
 <file:///bitmaps/cb_off> at:pathObject <file:///cb_off>.
 <file:///bitmaps/cb_off1> at:pathObject <file:///cb_off1>.
 <file:///bitmaps/cb_on> at:pathObject <file:///cb_on>.
@@ -114,7 +112,6 @@ Sys$Library:VAXCRTL.EXE /Share
 <file:///cjpeg.1> at:extensionObject <https://w3id.org/uri4uri/suffix/1>.
 <file:///config.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
 <file:///djpeg.1> at:extensionObject <https://w3id.org/uri4uri/suffix/1>.
-<file:///docs/> at:pathObject <file:///>.
 <file:///docs/INFO.OLD> at:pathObject <file:///INFO.OLD>.
 <file:///docs/README> at:pathObject <file:///README>.
 <file:///docs/bggen.man> at:pathObject <file:///bggen.man>.
@@ -161,7 +158,6 @@ Sys$Library:VAXCRTL.EXE /Share
 <file:///jerror.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
 <file:///jfwddct.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
 <file:///jinclude.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
-<file:///jpeg/> at:pathObject <file:///>.
 <file:///jpeg/CHANGELOG> at:pathObject <file:///CHANGELOG>.
 <file:///jpeg/Makefile> at:pathObject <file:///Makefile>.
 <file:///jpeg/Makefile.std> at:pathObject <file:///Makefile.std>.
@@ -274,7 +270,6 @@ Sys$Library:VAXCRTL.EXE /Share
 <file:///testimg.jpg> at:extensionObject <https://w3id.org/uri4uri/suffix/jpg>.
 <file:///testimg.ppm> at:extensionObject <https://w3id.org/uri4uri/suffix/ppm>.
 <file:///testorig.jpg> at:extensionObject <https://w3id.org/uri4uri/suffix/jpg>.
-<file:///unsupt/> at:pathObject <file:///>.
 <file:///unsupt/README> at:pathObject <file:///README>.
 <file:///unsupt/VMS> at:pathObject <file:///VMS>.
 <file:///unsupt/VMS/> at:pathObject <file:///VMS/>.
@@ -290,7 +285,6 @@ Sys$Library:VAXCRTL.EXE /Share
 <file:///unsupt/vis> at:pathObject <file:///vis>.
 <file:///vprintf.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
 <file:///xv-2.00> at:extensionObject <https://w3id.org/uri4uri/suffix/00>.
-<file:///xv-2.00/> at:pathObject <file:///>.
 <file:///xv-2.00/CHANGELOG> at:pathObject <file:///CHANGELOG>.
 <file:///xv-2.00/Imakefile> at:pathObject <file:///Imakefile>.
 <file:///xv-2.00/Makefile> at:pathObject <file:///Makefile>.
@@ -3531,8 +3525,8 @@ Sys$Library:VAXCRTL.EXE /Share
                                                     nfo:verticalResolution 96 ;
                                                     nfo:width 125 ;
                                                     a schema:MediaObject,
-                                                      nfo:Image,
-                                                      schema:ImageObject;
+                                                      schema:ImageObject,
+                                                      nfo:Image;
                                                     skos:prefLabel "JPG object (125×125)"@en,
                                                                    "JPG object (4.28 KiB)"@en.
 <ni:///mh;1QEQoxjwiwfuhSxCljF-Y08aSA?ct=text/plain> at:digest <urn:md5:A318F08B07EE852C4296317E634F1A48>;

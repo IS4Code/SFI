@@ -1,10 +1,10 @@
-@base <ni:///mh;1QEQY-HkyLzNpveKj5SGyxqAFw?ct=application/octet-stream>.
+@base <x.blank:0cab6fcb-8e6a-4133-b926-de3e653db130>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
@@ -18,8 +18,8 @@ _:n1 at:pathObject <file:///ucf-tp32.zip>;
      nfo:fileName "ucf-tp32.zip";
      nfo:fileSize 12818 ;
      a nfo:FileDataObject.
-<file:///ED%21SON.NFO> at:extensionObject <https://w3id.org/uri4uri/suffix/nfo>.
-<file:///ED%21TP32.EXE> at:extensionObject <https://w3id.org/uri4uri/suffix/exe>.
+<file:///ED!SON.NFO> at:extensionObject <https://w3id.org/uri4uri/suffix/nfo>.
+<file:///ED!TP32.EXE> at:extensionObject <https://w3id.org/uri4uri/suffix/exe>.
 <file:///FILE_ID.DIZ> at:extensionObject <https://w3id.org/uri4uri/suffix/diz>.
 <file:///UCF96.NFO> at:extensionObject <https://w3id.org/uri4uri/suffix/nfo>.
 <file:///ucf-tp32.zip> at:extensionObject <https://w3id.org/uri4uri/suffix/zip>.
@@ -56,7 +56,7 @@ _:n1 at:pathObject <file:///ucf-tp32.zip>;
 <ni:///mh;1QEQY-HkyLzNpveKj5SGyxqAFw?ct=application/zip#/> at:pathObject <file:///./>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
-<ni:///mh;1QEQY-HkyLzNpveKj5SGyxqAFw?ct=application/zip#/ED%21SON.NFO> at:pathObject <file:///ED%21SON.NFO>;
+<ni:///mh;1QEQY-HkyLzNpveKj5SGyxqAFw?ct=application/zip#/ED%21SON.NFO> at:pathObject <file:///ED!SON.NFO>;
                                                                        nie:interpretedAs <ni:///mh;1QEQC9uL6F93wvGeOUY3LF84Aw?ct=application/octet-stream>;
                                                                        nfo:belongsToContainer <ni:///mh;1QEQY-HkyLzNpveKj5SGyxqAFw?ct=application/zip#/>;
                                                                        nfo:fileLastModified "1996-04-14T17:18:38.000000+02:00"^^xsd:dateTime;
@@ -65,7 +65,7 @@ _:n1 at:pathObject <file:///ucf-tp32.zip>;
                                                                        a nfo:FileDataObject,
                                                                          nfo:ArchiveItem;
                                                                        skos:prefLabel "/ED!SON.NFO".
-<ni:///mh;1QEQY-HkyLzNpveKj5SGyxqAFw?ct=application/zip#/ED%21TP32.EXE> at:pathObject <file:///ED%21TP32.EXE>;
+<ni:///mh;1QEQY-HkyLzNpveKj5SGyxqAFw?ct=application/zip#/ED%21TP32.EXE> at:pathObject <file:///ED!TP32.EXE>;
                                                                         nie:interpretedAs <ni:///mh;1QEQQlsCCuRV7FKffkE5qRqnSg?ct=application/octet-stream>;
                                                                         nfo:belongsToContainer <ni:///mh;1QEQY-HkyLzNpveKj5SGyxqAFw?ct=application/zip#/>;
                                                                         nfo:fileLastModified "1996-04-16T16:28:38.000000+02:00"^^xsd:dateTime;

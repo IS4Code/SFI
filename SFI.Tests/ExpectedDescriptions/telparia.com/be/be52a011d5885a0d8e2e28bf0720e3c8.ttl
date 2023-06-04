@@ -1,8 +1,9 @@
-@base <ni:///mh;1QEQ_Dpv9dk42Az2YN3gsOBDAw?ct=application/octet-stream>.
+@base <x.blank:56ee1981-8f89-4a72-9453-1d6ba412270c>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
@@ -10,14 +11,13 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
-_:n1 at:pathObject <file:///LIGHT-ROM%201%20%28Amiga%20Library%20Services%29%281994%29%20Insert_0000.jp2>;
+_:n1 at:pathObject <file:///LIGHT-ROM%201%20(Amiga%20Library%20Services)(1994)%20Insert_0000.jp2>;
      nie:interpretedAs <ni:///mh;1QEQ_Dpv9dk42Az2YN3gsOBDAw?ct=application/octet-stream>;
      nfo:fileName "LIGHT-ROM 1 (Amiga Library Services)(1994) Insert_0000.jp2";
      nfo:fileSize 445325 ;
      a nfo:FileDataObject.
-<file:///LIGHT-ROM%201%20%28Amiga%20Library%20Services%29%281994%29%20Insert_0000.jp2> at:extensionObject <https://w3id.org/uri4uri/suffix/jp2>.
+<file:///LIGHT-ROM%201%20(Amiga%20Library%20Services)(1994)%20Insert_0000.jp2> at:extensionObject <https://w3id.org/uri4uri/suffix/jp2>.
 <ni:///mh;1QEQ_Dpv9dk42Az2YN3gsOBDAw?ct=application/octet-stream> at:digest <urn:md5:FC3A6FF5D938D80CF660DDE0B0E04303>;
                                                                   dcterms:extent "445325"^^dt:byte;
                                                                   a cnt:ContentAsBase64;

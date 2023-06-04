@@ -1,8 +1,9 @@
-@base <ni:///mh;1QEQYVtmdF3AnnUC95rLB814kg?ct=application/octet-stream>.
+@base <x.blank:80c67403-9f0f-4eb4-b7d2-55d62dfb9259>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
@@ -12,14 +13,13 @@
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
-_:n1 at:pathObject <file:///CD%20Front%20%28Alt.%29.tif>;
+_:n1 at:pathObject <file:///CD%20Front%20(Alt.).tif>;
      nie:interpretedAs <ni:///mh;1QEQYVtmdF3AnnUC95rLB814kg?ct=application/octet-stream>;
      nfo:fileName "CD Front (Alt.).tif";
      nfo:fileSize 17879838 ;
      a nfo:FileDataObject.
-<file:///CD%20Front%20%28Alt.%29.tif> at:extensionObject <https://w3id.org/uri4uri/suffix/tif>.
+<file:///CD%20Front%20(Alt.).tif> at:extensionObject <https://w3id.org/uri4uri/suffix/tif>.
 <ni:///mh;1QEQYVtmdF3AnnUC95rLB814kg?ct=application/octet-stream> at:digest <urn:md5:615B66745DC09E7502F79ACB07CD7892>;
                                                                   dcterms:extent "17879838"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQYVtmdF3AnnUC95rLB814kg?ct=image/tiff>;
@@ -37,9 +37,9 @@ _:n1 at:pathObject <file:///CD%20Front%20%28Alt.%29.tif>;
                                                     nfo:verticalResolution 600 ;
                                                     nfo:width 2934 ;
                                                     a schema:MediaObject,
-                                                      nfo:Image,
                                                       exif:IFD,
-                                                      schema:ImageObject;
+                                                      schema:ImageObject,
+                                                      nfo:Image;
                                                     exif:colorSpace 1 ;
                                                     exif:compression 5 ;
                                                     exif:dateTime "2019-11-21T13:55:20.000000"^^xsd:dateTime;
@@ -57,15 +57,15 @@ _:n1 at:pathObject <file:///CD%20Front%20%28Alt.%29.tif>;
                                                                       12 ;
                                                     exif:samplesPerPixel 3 ,
                                                                          4 ;
-                                                    exif:software "Windows Photo Editor 10.0.10011.16384"^^xsd:string;
-                                                    exif:subSecTimeDigitized "00"^^xsd:string;
-                                                    exif:subSecTimeOriginal "00"^^xsd:string;
+                                                    exif:software "Windows Photo Editor 10.0.10011.16384";
+                                                    exif:subSecTimeDigitized "00";
+                                                    exif:subSecTimeOriginal "00";
                                                     exif:xResolution 600 ,
                                                                      96 ;
                                                     exif:yResolution 600 ,
                                                                      96 ;
-                                                    skos:prefLabel "TIFF object (2934×2942)"@en,
-                                                                   "TIFF object (17.05 MiB)"@en,
+                                                    skos:prefLabel "TIFF object (17.05 MiB)"@en,
+                                                                   "TIFF object (2934×2942)"@en,
                                                                    "TIF object (17.05 MiB)"@en.
 <ni:///mh;1QEQYVtmdF3AnnUC95rLB814kg?ct=image/tiff#/0> nfo:height 2942 ;
                                                        nfo:width 2934 ;

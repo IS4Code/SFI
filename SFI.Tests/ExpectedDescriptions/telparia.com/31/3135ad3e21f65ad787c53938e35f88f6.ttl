@@ -1,15 +1,15 @@
-@base <x.blank:0fc41428-6c18-4780-809c-38af55e800fb>.
+@base <x.blank:5e773c8c-7a51-45c7-9486-dc4c9c5b9d9d>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix dt: <http://dbpedia.org/datatype/>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
@@ -25,16 +25,13 @@ _:n1 at:pathObject <file:///next>;
                                  cnt:bytes ""^^xsd:base64Binary.
 <file:///Colors.clr> at:extensionObject <https://w3id.org/uri4uri/suffix/clr>.
 <file:///GEMini.Mesa> at:extensionObject <https://w3id.org/uri4uri/suffix/mesa>.
-<file:///GEMini.Mesa/> at:pathObject <file:///>.
 <file:///GEMini.Mesa/sheet> at:pathObject <file:///sheet>.
 <file:///GEMini.diagram2> at:extensionObject <https://w3id.org/uri4uri/suffix/diagram2>.
-<file:///GEMini.diagram2/> at:pathObject <file:///>.
 <file:///GEMini.diagram2/Colors.clr> at:pathObject <file:///Colors.clr>.
 <file:///GEMini.diagram2/DiagramText> at:pathObject <file:///DiagramText>.
 <file:///GEMini.diagram2/PrintInfo> at:pathObject <file:///PrintInfo>.
 <file:///GEMini.eps> at:extensionObject <https://w3id.org/uri4uri/suffix/eps>.
 <file:///GEMini.tiff> at:extensionObject <https://w3id.org/uri4uri/suffix/tiff>.
-<file:///next/> at:pathObject <file:///>.
 <file:///next/GEMini.Mesa> at:pathObject <file:///GEMini.Mesa>.
 <file:///next/GEMini.Mesa/> at:pathObject <file:///GEMini.Mesa/>.
 <file:///next/GEMini.Mesa/sheet> at:pathObject <file:///GEMini.Mesa/sheet>.
@@ -58,8 +55,8 @@ _:n1 at:pathObject <file:///next>;
                                                     nfo:verticalResolution 72 ;
                                                     nfo:width 504 ;
                                                     a schema:MediaObject,
-                                                      nfo:Image,
                                                       exif:IFD,
+                                                      nfo:Image,
                                                       schema:ImageObject;
                                                     exif:bitsPerSample 2 ;
                                                     exif:compression 1 ;

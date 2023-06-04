@@ -1,8 +1,9 @@
-@base <ni:///mh;1QEQTab_JWNWUM7AfV54BRMmVQ?ct=application/octet-stream>.
+@base <x.blank:e6237bc4-720f-48a8-97f0-3a6f2afbd279>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
@@ -11,14 +12,13 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
-_:n1 at:pathObject <file:///m%26ms.wmv>;
+_:n1 at:pathObject <file:///m&ms.wmv>;
      nie:interpretedAs <ni:///mh;1QEQTab_JWNWUM7AfV54BRMmVQ?ct=application/octet-stream>;
      nfo:fileName "m&ms.wmv";
      nfo:fileSize 1034737 ;
      a nfo:FileDataObject.
-<file:///m%26ms.wmv> at:extensionObject <https://w3id.org/uri4uri/suffix/wmv>.
+<file:///m&ms.wmv> at:extensionObject <https://w3id.org/uri4uri/suffix/wmv>.
 <ni:///mh;1QEQTab_JWNWUM7AfV54BRMmVQ?ct=application/octet-stream> at:digest <urn:md5:4DA6FF25635650CEC07D5E7805132655>;
                                                                   dcterms:extent "1034737"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQTab_JWNWUM7AfV54BRMmVQ?ct=audio/x-ms-wma>,

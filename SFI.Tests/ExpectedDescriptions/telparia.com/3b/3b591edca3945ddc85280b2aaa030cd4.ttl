@@ -1,15 +1,15 @@
-@base <ni:///mh;1QEQz2Tytjys_TqtNKMKnbcfLw?ct=application/octet-stream>.
+@base <x.blank:996d14d9-4014-41ed-9d84-95ad1b87a618>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix dt: <http://dbpedia.org/datatype/>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 
@@ -22,17 +22,14 @@ _:n1 at:pathObject <file:///xschm22.tar>;
                                  a cnt:ContentAsBase64;
                                  skos:prefLabel "binary data (0 B)"@en;
                                  cnt:bytes ""^^xsd:base64Binary.
-<file:///doc/> at:pathObject <file:///>.
 <file:///doc/xscheme.doc> at:pathObject <file:///xscheme.doc>.
 <file:///macros.s> at:extensionObject <https://w3id.org/uri4uri/suffix/s>.
 <file:///makefile.tos> at:extensionObject <https://w3id.org/uri4uri/suffix/tos>.
 <file:///osdefs.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
 <file:///osptrs.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
 <file:///qquote.s> at:extensionObject <https://w3id.org/uri4uri/suffix/s>.
-<file:///scm/> at:pathObject <file:///>.
 <file:///scm/macros.s> at:pathObject <file:///macros.s>.
 <file:///scm/qquote.s> at:pathObject <file:///qquote.s>.
-<file:///src/> at:pathObject <file:///>.
 <file:///src/makefile.tos> at:pathObject <file:///makefile.tos>.
 <file:///src/osdefs.h> at:pathObject <file:///osdefs.h>.
 <file:///src/osptrs.h> at:pathObject <file:///osptrs.h>.

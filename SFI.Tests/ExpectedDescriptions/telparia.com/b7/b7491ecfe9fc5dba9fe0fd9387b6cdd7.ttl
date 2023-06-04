@@ -1,8 +1,9 @@
-@base <ni:///mh;1QEQb3FmVL5btpalukaSdfsXbg?ct=application/octet-stream>.
+@base <x.blank:e199dbd1-db45-4a2d-a766-e1c602289e8c>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
@@ -10,14 +11,13 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
-_:n1 at:pathObject <file:///Dazzling%20-%20Hara%20Kumiko%20by%20Tatsuo%20Watanabe%20%28Japan%29%20%28Track%203%29.bin>;
+_:n1 at:pathObject <file:///Dazzling%20-%20Hara%20Kumiko%20by%20Tatsuo%20Watanabe%20(Japan)%20(Track%203).bin>;
      nie:interpretedAs <ni:///mh;1QEQb3FmVL5btpalukaSdfsXbg?ct=application/octet-stream>;
      nfo:fileName "Dazzling - Hara Kumiko by Tatsuo Watanabe (Japan) (Track 3).bin";
      nfo:fileSize 90584928 ;
      a nfo:FileDataObject.
-<file:///Dazzling%20-%20Hara%20Kumiko%20by%20Tatsuo%20Watanabe%20%28Japan%29%20%28Track%203%29.bin> at:extensionObject <https://w3id.org/uri4uri/suffix/bin>.
+<file:///Dazzling%20-%20Hara%20Kumiko%20by%20Tatsuo%20Watanabe%20(Japan)%20(Track%203).bin> at:extensionObject <https://w3id.org/uri4uri/suffix/bin>.
 <ni:///mh;1QEQb3FmVL5btpalukaSdfsXbg?ct=application/octet-stream> at:digest <urn:md5:6F716654BE5BB696A5BA469275FB176E>;
                                                                   dcterms:extent "90584928"^^dt:byte;
                                                                   a cnt:ContentAsBase64;

@@ -1,8 +1,9 @@
-@base <ni:///mh;1QEQpSDGSxLUBIlWYuZCcH3ptg?ct=application/octet-stream>.
+@base <x.blank:9b48f679-cbe0-438f-804b-7f06d03f3147>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
@@ -11,14 +12,13 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
-_:n1 at:pathObject <file:///leisure%20suit%20larry%20%28main%29.sndh>;
+_:n1 at:pathObject <file:///leisure%20suit%20larry%20(main).sndh>;
      nie:interpretedAs <ni:///mh;1QEQpSDGSxLUBIlWYuZCcH3ptg?ct=application/octet-stream>;
      nfo:fileName "leisure suit larry (main).sndh";
      nfo:fileSize 3180 ;
      a nfo:FileDataObject.
-<file:///leisure%20suit%20larry%20%28main%29.sndh> at:extensionObject <https://w3id.org/uri4uri/suffix/sndh>.
+<file:///leisure%20suit%20larry%20(main).sndh> at:extensionObject <https://w3id.org/uri4uri/suffix/sndh>.
 <ni:///mh;1QEQpSDGSxLUBIlWYuZCcH3ptg?ct=application/octet-stream> at:digest <urn:md5:A520C64B12D404895662E642707DE9B6>;
                                                                   dcterms:extent "3180"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQpSDGSxLUBIlWYuZCcH3ptg?ct=image/bmp>;
