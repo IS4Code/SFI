@@ -371,7 +371,7 @@ namespace IS4.SFI
                         }
                         break;
                     case IBlankNode bnodeSubject:
-                        if(realUriCache.TryGetValue(bnodeSubject, out var uri))
+                        if(realUriCache.TryGetValue(bnodeSubject, out var uri) && uri.Scheme != BlankUriScheme)
                         {
                             lock(Graph)
                             {
