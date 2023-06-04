@@ -9,7 +9,7 @@ namespace IS4.SFI.Analyzers
     /// <summary>
     /// An analyzer of media types, as instances of <see cref="ContentType"/>.
     /// </summary>
-    public sealed class MediaTypeAnalyzer : EntityAnalyzer<ContentType>
+    public class MediaTypeAnalyzer : EntityAnalyzer<ContentType>
     {
         /// <summary>
         /// Whether to add class information to the created node.
