@@ -75,13 +75,14 @@ namespace IS4.SFI
         /// </summary>
         private async ValueTask<AnalysisResult> Analyze<T>(T entity, AnalysisContext context, IEntityAnalyzers analyzers) where T : notnull
         {
-            using var scope1 = OutputLog?.BeginScope(entity);
+            var log = TypeInfo<T>.IsValueType ? null : OutputLog;
+            using var scope1 = log?.BeginScope(entity);
             var nameFriendly = TextTools.GetUserFriendlyName(entity);
             bool any = false;
             foreach(var analyzer in Analyzers.OfType<IEntityAnalyzer<T>>())
             {
                 any = true;
-                OutputLog?.LogInformation($"Analyzing: {nameFriendly}...");
+                log?.LogInformation($"Analyzing: {nameFriendly}...");
                 await Update();
                 try{
                     var result = await analyzer.Analyze(entity, context, analyzers);
@@ -89,9 +90,9 @@ namespace IS4.SFI
                     {
                         if(!String.IsNullOrEmpty(result.Label))
                         {
-                            OutputLog?.LogInformation($"OK! {result.Label}");
+                            log?.LogInformation($"OK! {result.Label}");
                         }else{
-                            OutputLog?.LogInformation($"OK!");
+                            log?.LogInformation($"OK!");
                         }
 #if DEBUG
                         if(context.Linked is StrongBox<bool> linked && !linked.Value)
@@ -178,14 +179,19 @@ namespace IS4.SFI
                 return new(cached[key].AddOrUpdate(typeof(T), _ => {
                     return AnalyzeInner(entity, context).AsTask();
                 }, (t, old) => {
-                    using var scope = OutputLog?.BeginScope(entity);
-                    var nameFriendly = TextTools.GetUserFriendlyName(entity);
-                    OutputLog?.LogInformation($"Reusing cached {nameFriendly}.");
+                    var log = TypeInfo<T>.IsValueType ? null : OutputLog;
+                    using var scope = log?.BeginScope(entity);
+                    log?.LogInformation($"Reusing cached {TextTools.GetUserFriendlyName(entity)}.");
                     return old;
                 }));
             }
 
             return AnalyzeInner(entity, context);
+        }
+
+        static class TypeInfo<T>
+        {
+            public static readonly bool IsValueType = typeof(T).IsValueType;
         }
 
         async ValueTask<AnalysisResult> AnalyzeInner<T>(T entity, AnalysisContext context) where T : notnull
