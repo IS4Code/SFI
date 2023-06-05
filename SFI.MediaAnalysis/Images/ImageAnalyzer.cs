@@ -107,8 +107,8 @@ namespace IS4.SFI.Analyzers
                     }
 
                     var thumbNode = context.NodeFactory.Create(UriTools.DataUriFormatter, ("image/png", null, thumbnailData));
-                    thumbNode.Set(Properties.AtPrefLabel, "Thumbnail image");
                     node.Set(Properties.Thumbnail, thumbNode);
+                    thumbNode.Set(Properties.AtPrefLabel, "Thumbnail image");
                 }
 
                 if(tag.LowFrequencyHash)

@@ -333,12 +333,12 @@ namespace IS4.SFI.Services
 
             var hashNode = nodeFactory.Create(algorithm, hash);
 
+            node.Set(Properties.Digest, hashNode);
+
             hashNode.SetClass(Classes.Digest);
 
             hashNode.Set(Properties.DigestAlgorithm, algorithm.Identifier);
             hashNode.Set(Properties.DigestValue, hash.ToBase64String(), Datatypes.Base64Binary);
-
-            node.Set(Properties.Digest, hashNode);
 
             if(algorithm is IEntityOutputProvider<byte[]> descProvider && output != null)
             {
