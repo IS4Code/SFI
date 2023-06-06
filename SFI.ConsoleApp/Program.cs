@@ -1,4 +1,5 @@
 ﻿using IS4.SFI.Application;
+using IS4.SFI.Application.Tools;
 using IS4.SFI.Services;
 using System;
 using System.Collections.Generic;
@@ -43,7 +44,10 @@ namespace IS4.SFI.ConsoleApp
 
         public IEnumerable<IFileNodeInfo> GetFiles(string path)
         {
-            if(path == "-") return new IFileNodeInfo[] { new StandardInput() };
+            if(StandardPaths.IsInput(path))
+            {
+                return new IFileNodeInfo[] { new StandardInput() };
+            }
             var fileName = Path.GetFileName(path);
             if(fileName.Contains('*') || fileName.Contains('?'))
             {
@@ -69,13 +73,16 @@ namespace IS4.SFI.ConsoleApp
 
         public Stream CreateFile(string path, string mediaType)
         {
-            if(path == "-")
+            if(StandardPaths.IsOutput(path))
             {
                 return Console.OpenStandardOutput();
-            }else if(path == "/dev/null" || (path.Equals("nul", StringComparison.OrdinalIgnoreCase) && RuntimeInformation.IsOSPlatform(OSPlatform.Windows)))
+            }else if(StandardPaths.IsError(path))
+            {
+                return Console.OpenStandardError();
+            }else if(StandardPaths.IsNull(path))
             {
                 return Stream.Null;
-            }else if(path == "/dev/clipboard")
+            }else if(StandardPaths.IsClipboard(path))
             {
                 return new ClipboardStream();
             }

@@ -1,4 +1,5 @@
 ﻿using IS4.SFI.Application;
+using IS4.SFI.Application.Tools;
 using IS4.SFI.Services;
 using IS4.SFI.Tools;
 using Microsoft.AspNetCore.Components.Forms;
@@ -74,13 +75,13 @@ namespace IS4.SFI.WebApp
         /// <inheritdoc/>
         public Stream CreateFile(string path, string mediaType)
         {
-            if(path == "-")
+            if(StandardPaths.IsOutput(path) || StandardPaths.IsError(path))
             {
                 return new TextStream(LogWriter, Encoding.UTF8, this);
-            }else if(path == "/dev/null")
+            }else if(StandardPaths.IsNull(path))
             {
                 return Stream.Null;
-            }else if(path == "/dev/clipboard")
+            }else if(StandardPaths.IsClipboard(path))
             {
                 return new ClipboardStream(js);
             }
