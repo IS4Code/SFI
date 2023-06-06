@@ -1,6 +1,6 @@
 ﻿using IS4.SFI.Services;
 
-namespace IS4.SFI.Application
+namespace IS4.SFI.Application.Plugins
 {
     /// <summary>
     /// Stores information about a plugin.

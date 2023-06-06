@@ -4,11 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace IS4.SFI
+namespace IS4.SFI.Application
 {
-	/// <summary>
-	/// An abstract command-based application.
-	/// </summary>
+    /// <summary>
+    /// An abstract command-based application.
+    /// </summary>
     public abstract class CommandApplication
 	{
 		/// <summary>

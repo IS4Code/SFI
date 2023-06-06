@@ -6,7 +6,7 @@ using VDS.RDF;
 using VDS.RDF.Query;
 using VDS.RDF.Writing.Formatting;
 
-namespace IS4.SFI
+namespace IS4.SFI.Application.Tools
 {
     /// <summary>
     /// Provides an implementation of <see cref="ISparqlResultsWriter"/> that produces

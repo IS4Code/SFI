@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace IS4.SFI
+namespace IS4.SFI.Application
 {
     /// <summary>
     /// Additional options and configuration of <see cref="Inspector"/>.

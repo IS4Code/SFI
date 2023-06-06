@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Text;
 
-namespace IS4.SFI.Application
+namespace IS4.SFI.Application.Tools
 {
     internal class EncodingTypeDescriptionProvider : TypeDescriptionProvider
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using VDS.RDF;
 
-namespace IS4.SFI
+namespace IS4.SFI.Application.Tools
 {
     /// <summary>
     /// An implementation of <see cref="IRdfHandler"/> that wraps

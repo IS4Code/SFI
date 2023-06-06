@@ -1,9 +1,9 @@
 ﻿using IS4.SFI.Application;
+using IS4.SFI.Application.Tools;
 using IS4.SFI.Services;
 using Microsoft.Extensions.Logging;
 using MorseCode.ITask;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;

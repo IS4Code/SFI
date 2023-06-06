@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace IS4.SFI.Application
+namespace IS4.SFI.Application.Tools
 {
     /// <summary>
     /// Provides an implementation of <see cref="ComponentCollection{T}"/> of

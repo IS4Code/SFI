@@ -1,4 +1,4 @@
-﻿using IS4.SFI.Application;
+﻿using IS4.SFI.Application.Plugins;
 using IS4.SFI.Services;
 using IS4.SFI.Tools;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,7 +12,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace IS4.SFI
+namespace IS4.SFI.Application
 {
     /// <summary>
     /// An implementation of <see cref="Inspector"/> allowing loading of plugins.

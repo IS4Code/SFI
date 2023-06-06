@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using VDS.RDF;
 
-namespace IS4.SFI
+namespace IS4.SFI.Application.Tools
 {
     /// <summary>
     /// An RDF handler that asserts triples in a temporary graph

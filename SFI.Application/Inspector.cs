@@ -1,4 +1,5 @@
 ﻿using IS4.SFI.Analyzers;
+using IS4.SFI.Application.Tools;
 using IS4.SFI.Formats;
 using IS4.SFI.Services;
 using IS4.SFI.Tools;
@@ -19,7 +20,7 @@ using VDS.RDF.Query;
 using VDS.RDF.Writing;
 using VDS.RDF.Writing.Formatting;
 
-namespace IS4.SFI
+namespace IS4.SFI.Application
 {
     /// <summary>
     /// Provides the support for describing input files

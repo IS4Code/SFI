@@ -6,7 +6,7 @@ using System.IO;
 using System.Runtime.CompilerServices;
 using System.Threading;
 
-namespace IS4.SFI.Application
+namespace IS4.SFI.Application.Tools
 {
     /// <summary>
     /// Provides an implementation of <see cref="ILogger"/> that prepends the name

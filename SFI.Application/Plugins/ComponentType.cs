@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
 
-namespace IS4.SFI.Application
+namespace IS4.SFI.Application.Plugins
 {
     /// <summary>
     /// Stores information about an externally loadable component.

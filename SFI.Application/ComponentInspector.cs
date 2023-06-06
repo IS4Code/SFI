@@ -1,4 +1,5 @@
-﻿using IS4.SFI.Application;
+﻿using IS4.SFI.Application.Plugins;
+using IS4.SFI.Application.Tools;
 using Microsoft.Extensions.DependencyInjection;
 using MorseCode.ITask;
 using System;
@@ -11,7 +12,7 @@ using VDS.RDF;
 using VDS.RDF.Writing;
 using VDS.RDF.Writing.Formatting;
 
-namespace IS4.SFI
+namespace IS4.SFI.Application
 {
     /// <summary>
     /// An implementation of <see cref="Inspector"/> allowing automatic management
