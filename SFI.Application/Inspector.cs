@@ -151,7 +151,7 @@ namespace IS4.SFI.Application
         /// <param name="options">Additional options.</param>
         public ValueTask Inspect<T>(T entity, string output, InspectorOptions options) where T : class
         {
-            return Inspect(new[] { entity }, _ => new FileStream(output, FileMode.Create, FileAccess.Write, FileShare.Read), options);
+            return Inspect(new[] { entity }, _ => new(new FileStream(output, FileMode.Create, FileAccess.Write, FileShare.Read)), options);
         }
 
         /// <summary>
@@ -163,7 +163,7 @@ namespace IS4.SFI.Application
         /// <param name="options">Additional options.</param>
         public ValueTask Inspect<T>(T entity, Stream output, InspectorOptions options) where T : class
         {
-            return Inspect(new[] { entity }, _ => output, options);
+            return Inspect(new[] { entity }, _ => new(output), options);
         }
 
         /// <summary>
@@ -175,7 +175,7 @@ namespace IS4.SFI.Application
         /// <param name="options">Additional options.</param>
         public ValueTask Inspect<T>(IEnumerable<T> entities, string output, InspectorOptions options) where T : class
         {
-            return Inspect(entities, _ => new FileStream(output, FileMode.Create, FileAccess.Write, FileShare.Read), options);
+            return Inspect(entities, _ => new(new FileStream(output, FileMode.Create, FileAccess.Write, FileShare.Read)), options);
         }
 
         /// <summary>
@@ -187,7 +187,7 @@ namespace IS4.SFI.Application
         /// <param name="options">Additional options.</param>
         public ValueTask Inspect<T>(IEnumerable<T> entities, Stream output, InspectorOptions options) where T : class
         {
-            return Inspect(entities, _ => output, options);
+            return Inspect(entities, _ => new(output), options);
         }
 
         /// <summary>
@@ -197,7 +197,19 @@ namespace IS4.SFI.Application
         /// <param name="entities">The entities to describe.</param>
         /// <param name="outputFactory">A function producing the output stream where to store the RDF description, with the format MIME type as the argument.</param>
         /// <param name="options">Additional options.</param>
-        public async ValueTask Inspect<T>(IEnumerable<T> entities, Func<string, Stream> outputFactory, InspectorOptions options) where T : class
+        public ValueTask Inspect<T>(IEnumerable<T> entities, Func<string, Stream> outputFactory, InspectorOptions options) where T : class
+        {
+            return Inspect(entities, mime => new(outputFactory(mime)), options);
+        }
+
+        /// <summary>
+        /// Describes a collection of entities.
+        /// </summary>
+        /// <typeparam name="T">The types of <paramref name="entities"/>.</typeparam>
+        /// <param name="entities">The entities to describe.</param>
+        /// <param name="outputFactory">A function producing the output stream where to store the RDF description, with the format MIME type as the argument.</param>
+        /// <param name="options">Additional options.</param>
+        public async ValueTask Inspect<T>(IEnumerable<T> entities, Func<string, ValueTask<Stream>> outputFactory, InspectorOptions options) where T : class
         {
             if(options == null) throw new ArgumentNullException(nameof(options));
 
@@ -224,7 +236,7 @@ namespace IS4.SFI.Application
             }
             OutputLog?.LogInformation($"Using {format.SyntaxName + (options.CompressedOutput ? " (compressed)" : "")} for output.");
 
-            Func<Stream> formatOutputFactory = () => outputFactory(GetOutputMimeType(format));
+            Func<ValueTask<Stream>> formatOutputFactory = () => outputFactory(GetOutputMimeType(format));
 
             if(sparql)
             {
@@ -258,11 +270,12 @@ namespace IS4.SFI.Application
         /// <summary>
         /// Immediately saves the data to output without an intermediate storage.
         /// </summary>
-        private async Task WriteRdfToOutput<T>(IEnumerable<T> entities, IReadOnlyCollection<SparqlQuery> queries, IReadOnlyDictionary<Uri, IRdfHandler?> graphHandlers, Func<Stream> outputFactory, MimeTypeDefinition format, InspectorOptions options) where T : class
+        private async Task WriteRdfToOutput<T>(IEnumerable<T> entities, IReadOnlyCollection<SparqlQuery> queries, IReadOnlyDictionary<Uri, IRdfHandler?> graphHandlers, Func<ValueTask<Stream>> outputFactory, MimeTypeDefinition format, InspectorOptions options) where T : class
         {
             OutputLog?.LogInformation("Writing to output...");
 
-            using var disposable = CreateRdfFileHandler(outputFactory, out var mapper, options, format, out var handler);
+            using var writer = await OpenFile(outputFactory, options);
+            CreateRdfFileHandler(writer, out var mapper, options, format, out var handler);
             Graph? queryGraph = null;
             if(queries.Count > 0)
             {
@@ -286,8 +299,9 @@ namespace IS4.SFI.Application
         /// <summary>
         /// Stores the data in a graph and then saves it.
         /// </summary>
-        private async Task SaveRdfToOutput<T>(IEnumerable<T> entities, IReadOnlyCollection<SparqlQuery> queries, IReadOnlyDictionary<Uri, IRdfHandler?> graphHandlers, Func<Stream> outputFactory, MimeTypeDefinition format, InspectorOptions options) where T : class
+        private async Task SaveRdfToOutput<T>(IEnumerable<T> entities, IReadOnlyCollection<SparqlQuery> queries, IReadOnlyDictionary<Uri, IRdfHandler?> graphHandlers, Func<ValueTask<Stream>> outputFactory, MimeTypeDefinition format, InspectorOptions options) where T : class
         {
+            using var textWriter = await OpenFile(outputFactory, options);
             OutputLog?.LogInformation("Creating graph...");
 
             var handler = CreateGraphHandler(queries.Count > 0, out var graph);
@@ -306,15 +320,16 @@ namespace IS4.SFI.Application
             }
 
             OutputLog?.LogInformation("Saving...");
-
-            SaveGraph(graph, outputFactory, options, format);
+            SaveGraph(graph, textWriter, options, format);
         }
         
         /// <summary>
         /// Immediately saves the data to output without an intermediate storage.
         /// </summary>
-        private async Task WriteSparqlToOutput<T>(IEnumerable<T> entities, IReadOnlyCollection<SparqlQuery> queries, IReadOnlyDictionary<Uri, IRdfHandler?> graphHandlers, Func<Stream> outputFactory, MimeTypeDefinition format, InspectorOptions options) where T : class
+        private async Task WriteSparqlToOutput<T>(IEnumerable<T> entities, IReadOnlyCollection<SparqlQuery> queries, IReadOnlyDictionary<Uri, IRdfHandler?> graphHandlers, Func<ValueTask<Stream>> outputFactory, MimeTypeDefinition format, InspectorOptions options) where T : class
         {
+            using var fileWriter = await OpenFile(outputFactory, options);
+
             OutputLog?.LogInformation("Searching...");
 
             IRdfHandler handler = new TemporaryGraphHandler(out var graph);
@@ -344,16 +359,16 @@ namespace IS4.SFI.Application
             }
 
             OutputLog?.LogInformation("Saving results...");
-
-            using var fileWriter = OpenFile(outputFactory, options.CompressedOutput, options);
             sparqlWriter.Save(result, fileWriter);
         }
 
         /// <summary>
         /// Stores the data in a graph and then saves it.
         /// </summary>
-        private async Task SaveSparqlToOutput<T>(IEnumerable<T> entities, IReadOnlyCollection<SparqlQuery> queries, IReadOnlyDictionary<Uri, IRdfHandler?> graphHandlers, Func<Stream> outputFactory, MimeTypeDefinition format, InspectorOptions options) where T : class
+        private async Task SaveSparqlToOutput<T>(IEnumerable<T> entities, IReadOnlyCollection<SparqlQuery> queries, IReadOnlyDictionary<Uri, IRdfHandler?> graphHandlers, Func<ValueTask<Stream>> outputFactory, MimeTypeDefinition format, InspectorOptions options) where T : class
         {
+            using var fileWriter = await OpenFile(outputFactory, options);
+
             OutputLog?.LogInformation("Searching...");
 
             bool mayExitEarly = queries.Any(q => q.Limit >= 0);
@@ -386,8 +401,6 @@ namespace IS4.SFI.Application
             }
 
             OutputLog?.LogInformation("Saving results...");
-
-            using var fileWriter = OpenFile(outputFactory, options.CompressedOutput, options);
             sparqlWriter.Save(result, fileWriter);
         }
 
@@ -518,13 +531,12 @@ namespace IS4.SFI.Application
         /// Opens an output file as text.
         /// </summary>
         /// <param name="fileFactory">The function to provide the output stream.</param>
-        /// <param name="compressed">Whether to compress the output with gzip.</param>
         /// <param name="options">Additional options.</param>
         /// <returns>Text writer to the output file.</returns>
-        private TextWriter OpenFile(Func<Stream> fileFactory, bool compressed, InspectorOptions options)
+        private async ValueTask<TextWriter> OpenFile(Func<ValueTask<Stream>> fileFactory, InspectorOptions options)
         {
-            var stream = fileFactory();
-            if(compressed)
+            var stream = await fileFactory();
+            if(options.CompressedOutput)
             {
                 stream = new GZipStream(stream, CompressionLevel.Optimal, false);
             }
@@ -537,15 +549,13 @@ namespace IS4.SFI.Application
         /// <summary>
         /// Creates an RDF handler for writing directly to the output file.
         /// </summary>
-        /// <param name="outputFactory">The function to provide the output stream.</param>
+        /// <param name="writer">The writer to save the data to.</param>
         /// <param name="mapper">A variable that receives the instance of <see cref="INamespaceMapper"/> representing the namespaces in use by the handler.</param>
         /// <param name="options">Additional options.</param>
         /// <param name="format">The format to use for writing.</param>
         /// <param name="handler">A variable that receives the RDF handler to use.</param>
-        /// <returns>An instance of <see cref="IDisposable"/> representing the open file.</returns>
-        private IDisposable CreateRdfFileHandler(Func<Stream> outputFactory, out INamespaceMapper mapper, InspectorOptions options, MimeTypeDefinition format, out IRdfHandler handler)
+        private void CreateRdfFileHandler(TextWriter writer, out INamespaceMapper mapper, InspectorOptions options, MimeTypeDefinition format, out IRdfHandler handler)
         {
-            var writer = OpenFile(outputFactory, options.CompressedOutput, options);
             var qnameMapper = new QNameOutputMapper();
             if(options.PrettyPrint && format.CanonicalMimeType == "application/ld+json")
             {
@@ -571,7 +581,6 @@ namespace IS4.SFI.Application
                 }
             }
             mapper = qnameMapper;
-            return writer;
         }
 
         class WriteThroughHandler : VDS.RDF.Parsing.Handlers.WriteThroughHandler
@@ -669,12 +678,11 @@ namespace IS4.SFI.Application
         /// Saves a graph to the output.
         /// </summary>
         /// <param name="graph">The graph to save.</param>
-        /// <param name="outputFactory">The function to provide the output stream.</param>
+        /// <param name="textWriter">The writer to save the data to.</param>
         /// <param name="options">Additional options.</param>
         /// <param name="format">The format to use for writing.</param>
-        private void SaveGraph(Graph graph, Func<Stream> outputFactory, InspectorOptions options, MimeTypeDefinition format)
+        private void SaveGraph(Graph graph, TextWriter textWriter, InspectorOptions options, MimeTypeDefinition format)
         {
-            using var textWriter = OpenFile(outputFactory, options.CompressedOutput, options);
             if(format.CanWriteRdf)
             {
                 var writer = format.GetRdfWriter();
