@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -6,7 +6,7 @@
     <RootNamespace>IS4.SFI.Formats</RootNamespace>
     <LangVersion>9.0</LangVersion>
     <Nullable>enable</Nullable>
-    <NoWarn>1701;1702;1998</NoWarn>
+    <NoWarn>1701;1702;1998;NU1602;NU1603</NoWarn>
     <Authors>IS4</Authors>
     <DocumentationFile>bin\SemanticFileInspector.ExternalFormats.xml</DocumentationFile>
     <AssemblyTitle>Semantic File Inspector External Formats</AssemblyTitle>
@@ -27,7 +27,9 @@
     <PackageReference Include="ScratchPad.NPOI.HWPF" Version="2.5.6" />
     <PackageReference Include="SharpCompress" Version="0.28.3" />
     <PackageReference Include="Svg" Version="3.2.3" />
-    <PackageReference Include="SwfDotNet.IO" Version="1.0.0.1" />
+    <PackageReference Include="SwfDotNet.IO" Version="1.0.0.1">
+      <NoWarn>NU1602;NU1603;NU1701</NoWarn>
+    </PackageReference>
     <PackageReference Include="System.Drawing.Common" Version="5.0.3" />
     <PackageReference Include="System.Reflection.MetadataLoadContext" Version="7.0.0" />
     <PackageReference Include="TagLibSharp" Version="2.2.0" />
