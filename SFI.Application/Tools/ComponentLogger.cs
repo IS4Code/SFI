@@ -3,6 +3,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading;
 
@@ -63,6 +64,8 @@ namespace IS4.SFI.Application.Tools
 
         class AsyncState
         {
+            static readonly MethodInfo defaultFormatterMethod = new CaptureLogger().LastFormatterMethod;
+
             readonly LinkedList<Scope> scopes = new();
 
             readonly ComponentLogger logger;
@@ -74,7 +77,13 @@ namespace IS4.SFI.Application.Tools
 
             public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
             {
-                var message = formatter(state, exception);
+                string message;
+                if(formatter.Method.Equals(defaultFormatterMethod) && exception != null)
+                {
+                    message = state?.ToString() + Environment.NewLine + exception;
+                }else{
+                    message = formatter(state, exception);
+                }
                 if(scopes.Last is { Value: var scope })
                 {
                     logger.output?.WriteLine(scope + " " + message);
@@ -133,6 +142,36 @@ namespace IS4.SFI.Application.Tools
             public long GetId(object obj)
             {
                 return counter.GetValue(obj, _ => new(Interlocked.Increment(ref count))).Value;
+            }
+        }
+
+        class CaptureLogger : ILogger, IDisposable
+        {
+            public MethodInfo LastFormatterMethod { get; private set; } = null!;
+
+            public CaptureLogger()
+            {
+                this.LogError(null);
+            }
+
+            IDisposable ILogger.BeginScope<TState>(TState state)
+            {
+                return this;
+            }
+
+            bool ILogger.IsEnabled(LogLevel logLevel)
+            {
+                return false;
+            }
+
+            void ILogger.Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
+            {
+                LastFormatterMethod = formatter.Method;
+            }
+
+            void IDisposable.Dispose()
+            {
+                
             }
         }
     }
