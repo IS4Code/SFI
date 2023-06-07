@@ -76,7 +76,7 @@ namespace IS4.SFI.Tools.IO
             }
             set {
                 if(value < 0 || value > Int32.MaxValue) throw new ArgumentOutOfRangeException(nameof(value));
-                row = Math.DivRem((int)value, rowBytes, out var column);
+                row = Math.DivRem((int)value, rowBytes, out columnOffset);
             }
         }
 
