@@ -1,7 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
 
-#pragma warning disable 1591
+#pragma warning disable 1591, IDE1006
 
 namespace IS4.SFI.Tests
 {

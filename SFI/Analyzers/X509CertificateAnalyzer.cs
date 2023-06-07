@@ -70,10 +70,7 @@ namespace IS4.SFI.Analyzers
                     foreach(var extension in cert2.Extensions)
                     {
                         var propNode = context.NodeFactory?.Create(UriTools.OidUriFormatter, extension.Oid);
-                        if(propNode != null)
-                        {
-                            propNode.Set(Properties.Label, extension.Oid.FriendlyName, language);
-                        }
+                        propNode?.Set(Properties.Label, extension.Oid.FriendlyName, language);
                     }
                 }
             }

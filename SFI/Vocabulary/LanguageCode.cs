@@ -6,7 +6,7 @@ namespace IS4.SFI.Vocabulary
     /// <summary>
     /// A language code used as a language tag of an RDF literal.
     /// </summary>
-    public struct LanguageCode : IEquatable<LanguageCode>
+    public readonly struct LanguageCode : IEquatable<LanguageCode>
     {
         /// <summary>
         /// The language code for the English language.

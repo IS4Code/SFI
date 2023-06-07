@@ -273,7 +273,7 @@ namespace IS4.SFI
         /// Implements <see cref="IVocabularyCache{TTerm, TNode}"/> for all RDF terms,
         /// based on a shared instance of <see cref="VocabularyCache{TNode}"/>.
         /// </summary>
-        struct Cache :
+        readonly struct Cache :
             IVocabularyCache<ClassUri, IUriNode>, IVocabularyCache<PropertyUri, IUriNode>,
             IVocabularyCache<IndividualUri, IUriNode>, IVocabularyCache<DatatypeUri, IUriNode>,
             IVocabularyCache<GraphUri, IRdfHandler?>
@@ -351,7 +351,7 @@ namespace IS4.SFI
             /// </summary>
             private bool HandleExternalTriple(INode subj, INode pred, INode obj)
             {
-                if(Subject.Equals(subj) && !(obj is IBlankNode))
+                if(Subject.Equals(subj) && obj is not IBlankNode)
                 {
                     // The triple is accepted only if it fully described the current node
                     HandleTriple(Subject, pred, obj);

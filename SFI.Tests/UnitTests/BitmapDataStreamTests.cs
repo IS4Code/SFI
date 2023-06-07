@@ -47,8 +47,7 @@ namespace IS4.SFI.Tests
             rnd.NextBytes(data);
 
             var ptr = Marshal.AllocHGlobal(Math.Abs(stride) * height);
-            try
-            {
+            try{
                 var scan0 = ptr + (negativeStride
                     ? -stride * (height - 1)
                     : 0);
@@ -58,15 +57,12 @@ namespace IS4.SFI.Tests
                     Marshal.Copy(data, i * width, scan0 + i * stride, width);
                 }
 
-                using(var stream = new BitmapDataStream(scan0, stride, height, width))
-                {
-                    using var buffer = new MemoryStream();
-                    stream.CopyTo(buffer);
+                using var stream = new BitmapDataStream(scan0, stride, height, width);
+                using var buffer = new MemoryStream();
+                stream.CopyTo(buffer);
 
-                    CollectionAssert.AreEqual(data, buffer.ToArray());
-                }
-            } finally
-            {
+                CollectionAssert.AreEqual(data, buffer.ToArray());
+            }finally{
                 Marshal.FreeHGlobal(ptr);
             }
         }

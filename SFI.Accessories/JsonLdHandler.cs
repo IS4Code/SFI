@@ -322,8 +322,10 @@ namespace IS4.SFI
                     state.LastObject = null;
                     // Open a new state
                     stateStack.Push(state);
-                    state = new();
-                    state.Indent = indent;
+                    state = new()
+                    {
+                        Indent = indent
+                    };
 
                     WriteLine("{");
                     WriteLine($"{__}\"@id\": {FormatSimpleNode(t.Subject)},");

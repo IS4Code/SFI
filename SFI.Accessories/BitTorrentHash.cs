@@ -94,10 +94,12 @@ namespace IS4.SFI
                 properties.Extension ??= ".torrent";
                 await (output?.Invoke(
                     true, properties, async stream => {
-                    var dict = new BDictionary();
-                    dict["info"] = info;
-                    await dict.EncodeToAsync(stream);
-                })).GetValueOrDefault();
+                        await new BDictionary
+                        {
+                            ["info"] = info
+                        }.EncodeToAsync(stream);
+                    }
+                )).GetValueOrDefault();
                 return true;
             }
             return false;
@@ -140,10 +142,11 @@ namespace IS4.SFI
                     var filesList = new BList<BDictionary>();
                     foreach(var (cachedInfo, path) in files)
                     {
-                        var fileDict = new BDictionary();
-                        fileDict["path"] = path;
-                        fileDict["length"] = new BNumber(cachedInfo.Length);
-                        filesList.Add(fileDict);
+                        filesList.Add(new BDictionary
+                        {
+                            ["path"] = path,
+                            ["length"] = new BNumber(cachedInfo.Length)
+                        });
 
                         foreach(var hash in cachedInfo.BlockHashes)
                         {

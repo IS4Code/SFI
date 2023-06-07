@@ -1,10 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>SemanticFileInspector.WebApp</AssemblyName>
     <LangVersion>9.0</LangVersion>
     <Nullable>enable</Nullable>
+    <NoWarn>NU1602;NU1603;NU1701</NoWarn>
     <RootNamespace>IS4.SFI.WebApp</RootNamespace>
     <Authors>IS4</Authors>
     <DocumentationFile>bin\SemanticFileInspector.WebApp.xml</DocumentationFile>

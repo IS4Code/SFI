@@ -231,7 +231,7 @@ namespace IS4.SFI.WebApp
                 return openFunc();
             }
 
-            public override string ToString()
+            public override string? ToString()
             {
                 return null;
             }

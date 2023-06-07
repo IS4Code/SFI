@@ -144,10 +144,7 @@ namespace IS4.SFI
                         if(analyzer != null)
                         {
                             // If the provider is not blocked and the root matches, add it to the collection
-                            if(analyzerList == null)
-                            {
-                                analyzerList = new List<ContainerAnalysisInfo>();
-                            }
+                            analyzerList ??= new List<ContainerAnalysisInfo>();
                             analyzerList.Add(new ContainerAnalysisInfo(analyzer, containerProvider));
                         }
                     }catch(InternalApplicationException)
@@ -309,7 +306,7 @@ namespace IS4.SFI
         /// <summary>
         /// Stores information about an instance of <see cref="IContainerAnalyzer"/>.
         /// </summary>
-        struct ContainerAnalysisInfo
+        readonly struct ContainerAnalysisInfo
         {
             /// <summary>
             /// The stored analyzer.

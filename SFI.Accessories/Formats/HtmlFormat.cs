@@ -38,8 +38,10 @@ namespace IS4.SFI.Formats
         /// <inheritdoc/>
         public override async ValueTask<TResult?> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<HtmlDocument, TResult, TArgs> resultFactory, TArgs args) where TResult : default
         {
-            var doc = new HtmlDocument();
-            doc.OptionDefaultStreamEncoding = DefaultEncoding;
+            var doc = new HtmlDocument
+            {
+                OptionDefaultStreamEncoding = DefaultEncoding
+            };
             doc.Load(stream, true);
             if(doc.DocumentNode.Element("html") == null)
             {

@@ -89,9 +89,11 @@ namespace IS4.SFI
 					throw new ApplicationException($"Mode must be specified (one of {String.Join(", ", modeNames)})! Use -? for help.");
 				}
 
-				var inspector = new TInspector();
-				inspector.CacheResults = onlyOnce;
-				if(!quiet)
+                var inspector = new TInspector
+                {
+                    CacheResults = onlyOnce
+                };
+                if(!quiet)
                 {
 					inspector.OutputLog = new ComponentLogger(writer);
                 }

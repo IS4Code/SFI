@@ -142,7 +142,7 @@ namespace IS4.SFI.Tools.IO
                 return false;
             }catch(AggregateException agg) when(agg.InnerExceptions.Count == 1)
             {
-                if(!(agg.InnerException is ChannelClosedException))
+                if(agg.InnerException is not ChannelClosedException)
                 {
                     ExceptionDispatchInfo.Capture(agg.InnerException).Throw();
                     throw;

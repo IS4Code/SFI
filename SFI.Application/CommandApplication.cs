@@ -557,7 +557,7 @@ namespace IS4.SFI.Application
 		/// <summary>
 		/// Represents a single option.
 		/// </summary>
-		public struct OptionInfo
+		public readonly struct OptionInfo
 		{
 			/// <summary>
 			/// The short name of the option.

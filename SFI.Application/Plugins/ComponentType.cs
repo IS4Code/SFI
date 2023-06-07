@@ -8,8 +8,6 @@ namespace IS4.SFI.Application.Plugins
     /// </summary>
     public class ComponentType
     {
-        readonly ComponentInspector inspector;
-
         /// <summary>
         /// The type of the component.
         /// </summary>
@@ -28,7 +26,6 @@ namespace IS4.SFI.Application.Plugins
         /// <param name="inspector">The instance of <see cref="ComponentInspector"/> storing the components.</param>
         public ComponentType(Type type, Func<object> factory, ComponentInspector inspector)
         {
-            this.inspector = inspector;
             Type = type;
 
             instance = new(() => {

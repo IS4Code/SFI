@@ -52,7 +52,7 @@ namespace IS4.SFI.Services
     /// <summary>
     /// Additional state used during analysis.
     /// </summary>
-    public struct AnalysisContext
+    public readonly struct AnalysisContext
     {
         /// <summary>
         /// The parent node logically containing the analyzed entity.
@@ -290,7 +290,7 @@ namespace IS4.SFI.Services
         /// <inheritdoc/>
         public event OutputFileDelegate? OutputFile;
 
-        static readonly OutputFileDelegate defaultOutputFile = delegate { return default(ValueTask); };
+        static readonly OutputFileDelegate defaultOutputFile = delegate { return default; };
 
         /// <summary>
         /// Retrieves the <see cref="OutputFile"/> event caller.

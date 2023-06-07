@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Runtime.Versioning;
 using System.Threading.Tasks;
 using static IS4.SFI.Vocabulary.Properties;
 
@@ -14,6 +15,7 @@ namespace IS4.SFI.Tests
     /// Tests for <see cref="ImageAnalyzer"/>.
     /// </summary>
     [TestClass]
+    [SupportedOSPlatform("windows")]
     public class ImageAnalyzerTests : AnalyzerTests
     {
         /// <summary>

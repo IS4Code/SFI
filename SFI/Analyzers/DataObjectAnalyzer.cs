@@ -72,10 +72,7 @@ namespace IS4.SFI.Analyzers
 
             foreach(var pair in dataObject.Formats)
             {
-                if(primaryFormat == null)
-                {
-                    primaryFormat = pair;
-                }
+                primaryFormat ??= pair;
                 var formatNode = pair.Value.Node;
                 if(formatNode != null)
                 {

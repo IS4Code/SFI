@@ -5,7 +5,7 @@ namespace IS4.SFI.Application.Plugins
     /// <summary>
     /// Stores information about a plugin.
     /// </summary>
-    public struct Plugin
+    public readonly struct Plugin
     {
         /// <summary>
         /// The main directory of the plugin.

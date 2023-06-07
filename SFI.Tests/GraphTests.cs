@@ -7,6 +7,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Runtime.ExceptionServices;
 using System.Threading;
 using System.Threading.Tasks;
 using VDS.RDF;
@@ -39,7 +40,7 @@ namespace IS4.SFI.Tests
         static readonly IRdfReader turtleParser = new Notation3Parser();
         static readonly TurtleFormatter turtleFormatter = new();
 
-        async Task TestOutputGraph(string source)
+        static async Task TestOutputGraph(string source)
         {
             var idUri = new Uri(source, UriKind.RelativeOrAbsolute);
             var id = UriTools.UuidFromUri(idUri).ToString("N");
@@ -75,11 +76,9 @@ namespace IS4.SFI.Tests
                 if(!File.Exists(cachedFile))
                 {
                     Directory.CreateDirectory(Path.GetDirectoryName(cachedFile)!);
-                    using(var stream = await httpClient.GetStreamAsync(uri.AbsoluteUri))
-                    {
-                        using var fileStream = File.Create(cachedFile);
-                        await stream.CopyToAsync(fileStream);
-                    }
+                    using var stream = await httpClient.GetStreamAsync(uri.AbsoluteUri);
+                    using var fileStream = File.Create(cachedFile);
+                    await stream.CopyToAsync(fileStream);
                 }
                 file = new TestFile(idUri, cachedFile);
             }
@@ -150,7 +149,21 @@ namespace IS4.SFI.Tests
                 Analyzers.Add(ImageAnalyzer = new ImageAnalyzer());
                 ImageAnalyzer.MakeThumbnail = false;
 
-                _ = AddDefault();
+                var valueTask = AddDefault();
+                if(valueTask.IsCompletedSuccessfully)
+                {
+                    return;
+                }else if(valueTask.IsFaulted)
+                {
+                    var task = valueTask.AsTask();
+                    if(task.Exception!.InnerExceptions.Count == 1)
+                    {
+                        ExceptionDispatchInfo.Capture(task.Exception.InnerException!).Throw();
+                    }
+                    throw task.Exception;
+                }else{
+                    valueTask.AsTask().Wait();
+                }
             }
 
             /// <inheritdoc/>

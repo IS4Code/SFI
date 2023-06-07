@@ -10,8 +10,8 @@ namespace IS4.SFI
     {
         /// <inheritdoc cref="BaseFormats.Assembly"/>
         public static readonly Assembly Assembly = Assembly.GetExecutingAssembly();
-
-        IBinaryFileFormat[] formats = new[] {
+        
+        readonly IBinaryFileFormat[] formats = new[] {
             new WasapiFormat(false),
             new WasapiFormat(true)
         };

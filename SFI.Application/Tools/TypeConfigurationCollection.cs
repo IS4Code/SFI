@@ -70,8 +70,6 @@ namespace IS4.SFI.Application.Tools
             /// </summary>
             public IReadOnlyDictionary<PropertyDescriptor, object?> Properties => properties;
 
-            readonly Type[] interfaces;
-
             /// <summary>
             /// Creates a new instance of the component.
             /// </summary>
@@ -80,7 +78,6 @@ namespace IS4.SFI.Application.Tools
             public Configuration(Type type, string? identifier = null)
             {
                 Type = type;
-                interfaces = type.GetInterfaces();
                 Identifier = identifier ?? TextTools.GetIdentifierFromType(Type);
             }
 

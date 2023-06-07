@@ -280,9 +280,9 @@ namespace IS4.SFI.Analyzers
                             await Task.WhenAll(writing);
                         }
 
-                        foreach(var hash in activeHashes)
+                        foreach(var (writer, _) in activeHashes)
                         {
-                            hash.writer.Complete();
+                            writer.Complete();
                         }
 
                         encodingDetector?.End();

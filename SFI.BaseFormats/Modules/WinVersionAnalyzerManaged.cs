@@ -209,7 +209,7 @@ namespace IS4.SFI.Analyzers
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        struct VS_FIXEDFILEINFO
+        readonly struct VS_FIXEDFILEINFO
         {
             public readonly uint dwSignature;
             public readonly uint dwStrucVersion;
@@ -227,7 +227,7 @@ namespace IS4.SFI.Analyzers
         }
         
         [StructLayout(LayoutKind.Sequential)]
-        struct LANGANDCODEPAGE
+        readonly struct LANGANDCODEPAGE
         {
             public readonly ushort wLanguage;
             public readonly ushort wCodePage;

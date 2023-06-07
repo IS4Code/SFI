@@ -102,16 +102,11 @@ namespace IS4.SFI.Formats.Modules
 
         bool IsVMException(Exception e)
         {
-            return
-                e is EndOfProgramException ||
-                e is NotImplementedException ||
-                e is NotSupportedException ||
-                e is ArgumentException ||
-                e is InvalidOperationException ||
-                e is InvalidDataException ||
-                e is FileNotFoundException ||
-                e is EmulatedException ||
-                e is EnableInstructionTrapException;
+            return e is EndOfProgramException or NotImplementedException
+                or NotSupportedException or ArgumentException
+                or InvalidOperationException or InvalidDataException
+                or FileNotFoundException or EmulatedException
+                or EnableInstructionTrapException;
         }
 
         /// <summary>

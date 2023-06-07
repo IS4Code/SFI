@@ -145,7 +145,7 @@ namespace IS4.SFI.ConsoleApp
                 return openFunc();
             }
 
-            public override string ToString()
+            public override string? ToString()
             {
                 return null;
             }
