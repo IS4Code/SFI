@@ -5,8 +5,11 @@ using MorseCode.ITask;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using VDS.RDF;
 using VDS.RDF.Writing;
@@ -202,7 +205,7 @@ namespace IS4.SFI.Application
             foreach(var type in assembly.ExportedTypes)
             {
                 // Only yield concrete instantiable browsable types
-                if(!type.IsAbstract && !type.IsGenericTypeDefinition && IsTypeBrowsable(type))
+                if(!type.IsAbstract && !type.IsGenericTypeDefinition && IsTypeLoadable(type))
                 {
                     yield return new ComponentType(type, () => ActivatorUtilities.CreateInstance(serviceProvider, type), this);
                 }
@@ -229,13 +232,74 @@ namespace IS4.SFI.Application
             return count;
         }
 
-        static readonly Type BrowsableAttributeType = typeof(System.ComponentModel.BrowsableAttribute);
+        static readonly Type BrowsableAttributeType = typeof(BrowsableAttribute);
 
-        static bool IsTypeBrowsable(Type type)
+        static bool IsTypeLoadable(Type type)
         {
-            return
-                (System.ComponentModel.TypeDescriptor.GetAttributes(type)[BrowsableAttributeType] as System.ComponentModel.BrowsableAttribute)
-                ?.Browsable ?? true;
+            var attributes = TypeDescriptor.GetAttributes(type);
+            if(attributes[BrowsableAttributeType] is BrowsableAttribute { Browsable: false })
+            {
+                return false;
+            }
+            bool foundSupported = false;
+            foreach(var attributeData in type.GetCustomAttributesData())
+            {
+                var args = attributeData.ConstructorArguments;
+                if(args.Count == 1 && args[0].Value is string arg)
+                {
+                    switch(attributeData.AttributeType.FullName)
+                    {
+                        case "System.Runtime.Versioning.SupportedOSPlatformAttribute":
+                            foundSupported = true;
+                            if(IsOSPlatform(arg))
+                            {
+                                return true;
+                            }
+                            break;
+                        case "System.Runtime.Versioning.UnsupportedOSPlatformAttribute":
+                            if(IsOSPlatform(arg))
+                            {
+                                return false;
+                            }
+                            break;
+                    }
+                }
+            }
+            return !foundSupported;
+        }
+
+        static readonly Regex architectureRegex = new Regex("^(.+?)-([^-]+)$", RegexOptions.Compiled);
+
+        static readonly Regex versionRegex = new Regex(@"^(.+?)\.?((?:\d+\.)*\d+)$", RegexOptions.Compiled);
+
+        static bool IsOSPlatform(string platform)
+        {
+            if(architectureRegex.Match(platform) is { Success: true } architectureMatch && Enum.TryParse<Architecture>(architectureMatch.Groups[2].Value, out var architecture))
+            {
+                if(RuntimeInformation.ProcessArchitecture != architecture)
+                {
+                    return false;
+                }
+                platform = architectureMatch.Groups[1].Value;
+            }
+            if(versionRegex.Match(platform) is { Success: true } versionMatch && Version.TryParse(versionMatch.Groups[2].Value, out var version))
+            {
+                if(Environment.OSVersion.Version < version)
+                {
+                    return false;
+                }
+                platform = versionMatch.Groups[1].Value;
+            }
+            if(platform is "*" or "")
+            {
+                return true;
+            }
+            var osPlatform = OSPlatform.Create(platform);
+            if(!RuntimeInformation.IsOSPlatform(osPlatform))
+            {
+                return false;
+            }
+            return true;
         }
     }
 }
