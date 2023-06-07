@@ -1,12 +1,16 @@
-﻿using IS4.SFI.Tools;
+﻿using IS4.SFI.Application.Tools;
 using Microsoft.JSInterop;
+using System;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace IS4.SFI.WebApp
 {
-    internal class ClipboardStream : MemoryStream
+    internal class ClipboardStream : MappedStream
     {
+        static readonly Encoding encoding = Encoding.UTF8;
+
         readonly IJSInProcessRuntime runtime;
 
         public ClipboardStream(IJSInProcessRuntime runtime)
@@ -14,15 +18,17 @@ namespace IS4.SFI.WebApp
             this.runtime = runtime;
         }
 
-        public override void Close()
+        protected override ValueTask Store(ArraySegment<byte> data)
         {
-            var array = this.GetData();
+            var text = encoding.GetString(data);
+            return runtime.InvokeVoidAsync("navigator.clipboard.writeText", text);
+        }
 
-            var text = Encoding.UTF8.GetString(array);
-
-            runtime.InvokeVoid("navigator.clipboard.writeText", text);
-
-            base.Close();
+        protected async override ValueTask Load()
+        {
+            var text = await runtime.InvokeAsync<string>("navigator.clipboard.readText");
+            using var writer = new StreamWriter(this, encoding: encoding, leaveOpen: true);
+            writer.Write(text);
         }
     }
 }

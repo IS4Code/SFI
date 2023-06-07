@@ -46,7 +46,10 @@ namespace IS4.SFI.ConsoleApp
         {
             if(StandardPaths.IsInput(path))
             {
-                return new IFileNodeInfo[] { new StandardInput() };
+                return new IFileNodeInfo[] { new DeviceInput(Console.OpenStandardInput) };
+            }else if(StandardPaths.IsClipboard(path))
+            {
+                return new IFileNodeInfo[] { new DeviceInput(() => new ClipboardStream()) };
             }
             var fileName = Path.GetFileName(path);
             if(fileName.Contains('*') || fileName.Contains('?'))
@@ -100,10 +103,17 @@ namespace IS4.SFI.ConsoleApp
         }
 
         /// <summary>
-        /// This class represents the standard input as a file.
+        /// This class represents a device as a file.
         /// </summary>
-        class StandardInput : IFileInfo
+        class DeviceInput : IFileInfo
         {
+            readonly Func<Stream> openFunc;
+
+            public DeviceInput(Func<Stream> openFunc)
+            {
+                this.openFunc = openFunc;
+            }
+
             public string? Name => null;
 
             public string? SubName => null;
@@ -132,7 +142,12 @@ namespace IS4.SFI.ConsoleApp
 
             public Stream Open()
             {
-                return Console.OpenStandardInput();
+                return openFunc();
+            }
+
+            public override string ToString()
+            {
+                return null;
             }
         }
     }

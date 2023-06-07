@@ -1,30 +1,57 @@
-﻿using IS4.SFI.Tools;
+﻿using IS4.SFI.Application.Tools;
+using System;
 using System.IO;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
+using System.Threading.Tasks.Schedulers;
 using System.Windows.Forms;
 
 namespace IS4.SFI.ConsoleApp
 {
-    internal class ClipboardStream : MemoryStream
+    internal class ClipboardStream : MappedStream
     {
-        public override void Close()
+        static readonly Encoding encoding = Encoding.UTF8;
+
+        readonly TaskScheduler staTaskScheduler = new StaTaskScheduler(1);
+
+        static void SetText(string text)
         {
-            var array = this.GetData();
+            Clipboard.SetText(text, TextDataFormat.UnicodeText);
+        }
 
-            var text = Encoding.UTF8.GetString(array);
+        static string GetText()
+        {
+            var text = Clipboard.GetText(TextDataFormat.UnicodeText);
+            if(String.IsNullOrEmpty(text))
+            {
+                return Clipboard.GetText(TextDataFormat.Text);
+            }
+            return text;
+        }
 
+        protected async override ValueTask Store(ArraySegment<byte> data)
+        {
+            var text = encoding.GetString(data);
             if(Thread.CurrentThread.GetApartmentState() == ApartmentState.STA)
             {
-                Clipboard.SetText(text, TextDataFormat.UnicodeText);
+                SetText(text);
             }else{
-                var thread = new Thread(() => Clipboard.SetText(text, TextDataFormat.UnicodeText));
-                thread.SetApartmentState(ApartmentState.STA);
-                thread.Start();
-                thread.Join();
+                await Task.Factory.StartNew(() => SetText(text), CancellationToken.None, 0, staTaskScheduler);
             }
+        }
 
-            base.Close();
+        protected async override ValueTask Load()
+        {
+            string text;
+            if(Thread.CurrentThread.GetApartmentState() == ApartmentState.STA)
+            {
+                text = GetText();
+            }else{
+                text = await Task.Factory.StartNew(GetText, CancellationToken.None, 0, staTaskScheduler);
+            }
+            using var writer = new StreamWriter(this, encoding: encoding, leaveOpen: true);
+            writer.Write(text);
         }
     }
 }

@@ -27,6 +27,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ParallelExtensionsExtras.CrossPlatform" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SFI.MediaAnalysis\SFI.MediaAnalysis.csproj" />
     <ProjectReference Include="..\SFI.Application\SFI.Application.csproj" />
     <ProjectReference Include="..\SFI.ExternalFormats\SFI.ExternalFormats.csproj" />
