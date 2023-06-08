@@ -37,14 +37,6 @@ namespace IS4.SFI.WebApp
             await base.AddDefault();
         }
 
-        /// <inheritdoc/>
-        protected override Assembly LoadFromFile(IFileInfo file, IDirectoryInfo mainDirectory)
-        {
-            var context = new PluginLoadContext();
-            context.AddDirectory(mainDirectory);
-            return context.LoadFromFile(file);
-        }
-
         async ValueTask LoadPlugins()
         {
             var files = Pages.Index.PluginFiles.ToList();

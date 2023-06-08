@@ -93,14 +93,11 @@ namespace IS4.SFI.ConsoleApp
             return new Plugin(GetDirectory(archive), name);
         }
 
-        protected override Assembly LoadFromFile(IFileInfo file, IDirectoryInfo mainDirectory)
+        /// <inheritdoc/>
+        protected override void AddLoadDirectories(PluginLoadContext context)
         {
-            // Add directories for assembly lookup:
-            var context = new PluginLoadContext();
-            context.AddDirectory(mainDirectory);
             context.AddDirectory(baseDirectory);
             context.AddDirectory(AppContext.BaseDirectory);
-            return context.LoadFromFile(file);
         }
     }
 }

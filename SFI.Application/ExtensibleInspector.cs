@@ -1,4 +1,5 @@
 ﻿using IS4.SFI.Application.Plugins;
+using IS4.SFI.Application.Tools;
 using IS4.SFI.Services;
 using IS4.SFI.Tools;
 using Microsoft.Extensions.DependencyInjection;
@@ -68,12 +69,14 @@ namespace IS4.SFI.Application
         }
 
         /// <summary>
-        /// Loads an assembly from a file.
+        /// Add additional directories for assembly lookup to an instance
+        /// of <see cref="PluginLoadContext"/>.
         /// </summary>
-        /// <param name="file">The assembly file.</param>
-        /// <param name="mainDirectory">The directory storing the file, used for dependency lookup.</param>
-        /// <returns>The newly loaded assembly.</returns>
-        protected abstract Assembly LoadFromFile(IFileInfo file, IDirectoryInfo mainDirectory);
+        /// <param name="loadContext">The assembly load context to add to.</param>
+        protected virtual void AddLoadDirectories(PluginLoadContext loadContext)
+        {
+
+        }
 
         /// <summary>
         /// Opens a ZIP archive as a directory.
@@ -120,7 +123,10 @@ namespace IS4.SFI.Application
                     yield break;
                 }
 
-                asm = LoadFromFile(mainEntry, mainDirectory);
+                var context = new PluginLoadContext();
+                context.AddDirectory(mainDirectory);
+                AddLoadDirectories(context);
+                asm = context.LoadFromFile(mainEntry);
             }catch(Exception e)
             {
                 var pluginName = Path.GetFileNameWithoutExtension(mainFile);
