@@ -1,6 +1,7 @@
 ﻿using IS4.SFI.Analyzers;
 using IS4.SFI.Application;
 using IS4.SFI.Application.Plugins;
+using IS4.SFI.Application.Tools;
 using IS4.SFI.Services;
 using Microsoft.Extensions.Logging;
 using System;
