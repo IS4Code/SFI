@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -15,10 +15,10 @@
     <PackageId>$(AssemblyName)</PackageId>
     <Title>$(AssemblyTitle)</Title>
     <Description>Provides the BitTorrent info-hash algorithm.</Description>
-    <PackageProjectUrl>https://github.com/IS4Code/SFI/tree/HEAD/SFI.Hashes/BitTorrent</PackageProjectUrl>
-    <PackageIcon>icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/IS4Code/SFI</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>$(RepositoryUrl)/tree/HEAD/SFI.Hashes/BitTorrent</PackageProjectUrl>
+    <PackageIcon>icon.png</PackageIcon>
     <PackageTags>linked-data;sparql;rdf;semantic-search;metadata-extraction;hash-algorithm;bittorrent</PackageTags>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>

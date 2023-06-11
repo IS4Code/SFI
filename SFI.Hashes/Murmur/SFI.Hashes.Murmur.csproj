@@ -15,10 +15,10 @@
     <PackageId>$(AssemblyName)</PackageId>
     <Title>$(AssemblyTitle)</Title>
     <Description>Provides the Murmur 32 and 128-bit hash algorithm.</Description>
-    <PackageProjectUrl>https://github.com/IS4Code/SFI/tree/HEAD/SFI.Hashes/Murmur</PackageProjectUrl>
-    <PackageIcon>icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/IS4Code/SFI</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>$(RepositoryUrl)/tree/HEAD/SFI.Hashes/Murmur</PackageProjectUrl>
+    <PackageIcon>icon.png</PackageIcon>
     <PackageTags>linked-data;sparql;rdf;semantic-search;metadata-extraction;hash-algorithm;murmur-hash</PackageTags>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>

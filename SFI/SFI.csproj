@@ -18,10 +18,10 @@
     <PackageId>$(AssemblyName)</PackageId>
     <Title>$(AssemblyTitle)</Title>
     <Description>Contains the necessary classes and interfaces for supporting $(Product) components.</Description>
-    <PackageProjectUrl>https://github.com/IS4Code/SFI/tree/HEAD/SFI</PackageProjectUrl>
-    <PackageIcon>icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/IS4Code/SFI</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>$(RepositoryUrl)/tree/HEAD/SFI</PackageProjectUrl>
+    <PackageIcon>icon.png</PackageIcon>
     <PackageTags>linked-data;sparql;rdf;semantic-search;metadata-extraction</PackageTags>
     <IncludeSymbols>True</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
