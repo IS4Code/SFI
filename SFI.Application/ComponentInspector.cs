@@ -203,7 +203,7 @@ namespace IS4.SFI.Application
         /// <returns>The collection of all applicable component types.</returns>
         protected virtual IEnumerable<ComponentType> OpenAssembly(Assembly assembly, IServiceProvider serviceProvider)
         {
-            foreach(var type in assembly.ExportedTypes)
+            foreach(var type in assembly.ExportedTypes.Concat(assembly.GetForwardedTypes().Where(t => t.IsPublic)))
             {
                 // Only yield concrete instantiable browsable types
                 if(!type.IsAbstract && !type.IsGenericTypeDefinition && IsTypeLoadable(type))
