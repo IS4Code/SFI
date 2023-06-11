@@ -1,4 +1,5 @@
 ﻿using IS4.SFI.Analyzers;
+using IS4.SFI.Application.Tools;
 using IS4.SFI.Services;
 using IS4.SFI.Tools;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

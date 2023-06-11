@@ -1,9 +1,10 @@
 ﻿using IS4.SFI.Services;
+using IS4.SFI.Tools;
 using System;
 using System.Buffers;
 using Ude;
 
-namespace IS4.SFI.Tools
+namespace IS4.SFI.Application.Tools
 {
     /// <summary>
     /// An implementation of <see cref="IEncodingDetector"/>
