@@ -1,14 +1,14 @@
 ﻿using BencodeNET.Objects;
 using IS4.SFI.Services;
 using IS4.SFI.Tools;
-using IS4.SFI.Vocabulary;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
-namespace IS4.SFI
+namespace IS4.SFI.Hashes
 {
     /// <summary>
     /// The hash algorithm that produces <c>urn:btih:</c> hashes. This algorithm collects
@@ -27,12 +27,13 @@ namespace IS4.SFI
     /// when hashing directories. These files logically contain zeros and are added after each
     /// file whose size is not a multiple of <see cref="BlockSize"/>.
     /// </remarks>
+    [Description("The BitTorrent info-hash algorithm, producing urn:btih: hashes for magnet: links.")]
     public class BitTorrentHash : FileHashAlgorithm, IEntityOutputProvider<byte[]>
     {
         /// <summary>
         /// The hash algorithm used for hashing the info section.
         /// </summary>
-        public static readonly IDataHashAlgorithm HashAlgorithm = BuiltInHash.SHA1 ?? throw new NotSupportedException();
+        public static readonly IDataHashAlgorithm HashAlgorithm = BuiltInHash.SHA1 ?? throw new PlatformNotSupportedException("The SHA-1 hash is not supported on this platform.");
 
         /// <summary>
         /// Caches the original <see cref="BDictionary"/> instance for a given hash.

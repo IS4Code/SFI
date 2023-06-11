@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace IS4.SFI
+namespace IS4.SFI.Hashes
 {
     /// <summary>
     /// Represents a chunked hash that stores a variable number of SHA-1 hashes

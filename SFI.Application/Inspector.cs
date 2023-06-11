@@ -96,10 +96,6 @@ namespace IS4.SFI.Application
             {
                 DataAnalyzer.HashAlgorithms.Add(BuiltInHash.SHA512);
             }
-            if(BitTorrentHash.HashAlgorithm != null)
-            {
-                DataAnalyzer.HashAlgorithms.Add(new PaddedBlockHash(Individuals.BSHA1_256, "urn:bsha1-256:", 262144));
-            }
             DataAnalyzer.HashAlgorithms.Add(BuiltInNonCryptographicHash.CRC32);
             DataAnalyzer.HashAlgorithms.Add(BuiltInNonCryptographicHash.CRC64);
             DataAnalyzer.HashAlgorithms.Add(BuiltInNonCryptographicHash.XXH32);

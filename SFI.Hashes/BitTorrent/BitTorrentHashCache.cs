@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace IS4.SFI
+namespace IS4.SFI.Hashes
 {
     /// <summary>
     /// The cache of file hashes shared by <see cref="BitTorrentHash"/> and
