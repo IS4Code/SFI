@@ -80,7 +80,7 @@ namespace IS4.SFI.Application.Tools.NuGet
                 if(library.Type == "runtimepack" && libraryName.StartsWith("runtimepack.", StringComparison.Ordinal))
                 {
                     libraryName = libraryName.Substring("runtimepack.".Length);
-                }else if(library.Type != "package")
+                }else if(library.Type is not ("package" or "project"))
                 {
                     continue;
                 }
