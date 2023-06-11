@@ -5,28 +5,35 @@
     <AssemblyName>IS4.SFI</AssemblyName>
     <VersionPrefix>1.1</VersionPrefix>
     <Product>Semantic File Inspector</Product>
+    <Authors>IS4</Authors>
+    <Copyright>Copyright (c) $(Authors) $([System.DateTime]::UtcNow.ToString('yyyy'))</Copyright>
     <RootNamespace>IS4.SFI</RootNamespace>
     <LangVersion>10.0</LangVersion>
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <NoWarn>1701;1702;1998</NoWarn>
-    <Authors>IS4</Authors>
-    <DocumentationFile>bin\SemanticFileInspector.xml</DocumentationFile>
+    <DocumentationFile>bin\$(AssemblyName).xml</DocumentationFile>
     <AssemblyTitle>$(Product) Base Library</AssemblyTitle>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>$(AssemblyName)</PackageId>
     <Title>$(AssemblyTitle)</Title>
     <Description>Contains the necessary classes and interfaces for supporting $(Product) components.</Description>
-    <PackageProjectUrl>https://github.com/IS4Code/SFI</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/IS4Code/SFI/tree/HEAD/SFI</PackageProjectUrl>
     <PackageIcon>icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/IS4Code/SFI</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
     <PackageTags>linked-data;sparql;rdf;semantic-search;metadata-extraction</PackageTags>
     <IncludeSymbols>True</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="..\icon.png" Visible="false">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\LICENSE" Visible="false">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>

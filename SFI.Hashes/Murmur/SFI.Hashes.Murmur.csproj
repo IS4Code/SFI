@@ -4,11 +4,12 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>IS4.SFI.Hashes.Murmur</AssemblyName>
     <Product>Semantic File Inspector</Product>
+    <Authors>IS4</Authors>
+    <Copyright>Copyright (c) $(Authors) $([System.DateTime]::UtcNow.ToString('yyyy'))</Copyright>
     <RootNamespace>IS4.SFI.Hashes</RootNamespace>
     <LangVersion>9.0</LangVersion>
     <Nullable>enable</Nullable>
     <NoWarn>1701;1702;1998</NoWarn>
-    <Authors>IS4</Authors>
     <AssemblyTitle>$(Product) Murmur Hash Algorithm</AssemblyTitle>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>$(AssemblyName)</PackageId>
@@ -17,11 +18,17 @@
     <PackageProjectUrl>https://github.com/IS4Code/SFI/tree/HEAD/SFI.Hashes/Murmur</PackageProjectUrl>
     <PackageIcon>icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/IS4Code/SFI</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
     <PackageTags>linked-data;sparql;rdf;semantic-search;metadata-extraction;hash-algorithm;murmur-hash</PackageTags>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="..\..\icon.png" Visible="false">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\LICENSE" Visible="false">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
