@@ -20,9 +20,9 @@ namespace IS4.SFI.Application.Tools.NuGet
         public string? Path { get; }
 
         /// <inheritdoc/>
-        public long Length => data.Value.Count;
+        public long Length => data.Count;
 
-        readonly Lazy<ArraySegment<byte>> data;
+        readonly ArraySegment<byte> data;
 
         /// <summary>
         /// Creates a new instance of the file.
@@ -36,12 +36,11 @@ namespace IS4.SFI.Application.Tools.NuGet
             var index = path.LastIndexOf('/');
             Name = index != -1 ? path.Substring(index + 1) : path;
 
-            data = new(() => {
-                using var stream = package.GetStream(Path);
-                using var buffer = new MemoryStream();
-                stream.CopyTo(buffer);
-                return buffer.GetData();
-            });
+            using var buffer = new MemoryStream();
+            using var stream = package.GetStream(path);
+            stream.CopyTo(buffer);
+
+            data = buffer.GetData();
         }
 
         string? IFileNodeInfo.SubName => null;
@@ -67,8 +66,7 @@ namespace IS4.SFI.Application.Tools.NuGet
         /// <inheritdoc/>
         public Stream Open()
         {
-            var segment = data.Value;
-            return new MemoryStream(segment.Array!, segment.Offset, segment.Count, false);
+            return new MemoryStream(data.Array!, data.Offset, data.Count, false);
         }
 
         /// <inheritdoc/>
