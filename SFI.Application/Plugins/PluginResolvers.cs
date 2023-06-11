@@ -1,4 +1,5 @@
 ﻿using IS4.SFI.Application.Tools;
+using IS4.SFI.Application.Tools.NuGet;
 using IS4.SFI.Services;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,9 +13,12 @@ namespace IS4.SFI.Application.Plugins
     /// <summary>
     /// Provides resolution for plugin identifiers.
     /// </summary>
-    public class PluginResolvers
+    public class PluginResolvers : IPluginResolver
     {
         readonly ILogger? logger;
+        NuGetPluginResolver? nugetResolver;
+
+        static readonly string sfiPrefix = $"{nameof(IS4)}.{nameof(SFI)}.";
 
         /// <summary>
         /// Creates a new instance of the resolvers.
@@ -22,16 +26,10 @@ namespace IS4.SFI.Application.Plugins
         /// <param name="logger">The logger to use.</param>
         public PluginResolvers(ILogger? logger)
         {
-
+            this.logger = logger;
         }
 
-        /// <summary>
-        /// Retrieves a new <see cref="Plugin"/> instance from its identifier.
-        /// </summary>
-        /// <param name="id">The identifier of the plugin.</param>
-        /// <param name="cancellationToken">The token to cancel the operation.</param>
-        /// <returns>A plugin instance based on <paramref name="id"/>.</returns>
-        /// <exception cref="ArgumentException">The identifier could not be resolved.</exception>
+        /// <inheritdoc/>
         public async ValueTask<Plugin> GetPluginAsync(string id, CancellationToken cancellationToken)
         {
             if(!Uri.TryCreate(id, UriKind.RelativeOrAbsolute, out var uri))
@@ -62,6 +60,11 @@ namespace IS4.SFI.Application.Plugins
                             }
                             throw new ArgumentException($"The plugin identifier '{Path.GetFileName(path)}' does not correspond to a known format.", nameof(id));
                     }
+                case "sfi":
+                    id = sfiPrefix + id.Replace("-", "");
+                    goto case "nuget";
+                case "nuget":
+                    return await GetPluginFromNuGet(id, cancellationToken);
                 default:
                     throw new ArgumentException($"The plugin identifier '{id}' does not correspond to a known format.", nameof(id));
             }
@@ -119,6 +122,19 @@ namespace IS4.SFI.Application.Plugins
                 return default;
             }
             return new Plugin(new ZipArchiveWrapper(archive), name);
+        }
+
+        /// <summary>
+        /// Retrieves a new <see cref="Plugin"/> instance from NuGet.
+        /// </summary>
+        /// <param name="id">The identifier of the plugin, as <c>{package}/{version}</c>.</param>
+        /// <param name="cancellationToken">The token to cancel the operation.</param>
+        /// <returns>A plugin instance based on <paramref name="id"/>.</returns>
+        public async ValueTask<Plugin> GetPluginFromNuGet(string id, CancellationToken cancellationToken)
+        {
+            nugetResolver ??= new($"{nameof(SFI)} plugins", logger);
+
+            return await nugetResolver.GetPluginAsync(id, cancellationToken);
         }
     }
 }
