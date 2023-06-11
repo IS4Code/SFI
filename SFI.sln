@@ -32,7 +32,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Components", "Components", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Programs", "Programs", "{0EBED11D-F0BE-4482-9988-B21CCE34D3DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFI.Hashes.BitTorrent", "SFI.Hashes\BitTorrent\SFI.Hashes.BitTorrent.csproj", "{72B2A037-4BA1-41B4-B417-8D8ED3603767}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFI.Hashes.BitTorrent", "SFI.Hashes\BitTorrent\SFI.Hashes.BitTorrent.csproj", "{72B2A037-4BA1-41B4-B417-8D8ED3603767}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFI.Hashes.Blake3", "SFI.Hashes\Blake3\SFI.Hashes.Blake3.csproj", "{093A4878-52CF-48E5-86A6-031BEE5A9E53}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -92,6 +94,10 @@ Global
 		{72B2A037-4BA1-41B4-B417-8D8ED3603767}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72B2A037-4BA1-41B4-B417-8D8ED3603767}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72B2A037-4BA1-41B4-B417-8D8ED3603767}.Release|Any CPU.Build.0 = Release|Any CPU
+		{093A4878-52CF-48E5-86A6-031BEE5A9E53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{093A4878-52CF-48E5-86A6-031BEE5A9E53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{093A4878-52CF-48E5-86A6-031BEE5A9E53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{093A4878-52CF-48E5-86A6-031BEE5A9E53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -110,6 +116,7 @@ Global
 		{64C56D58-890E-4FC2-882C-5A5FA7643891} = {0EBED11D-F0BE-4482-9988-B21CCE34D3DE}
 		{2AD2065A-3ECC-45FB-B46C-AA919FAF2C14} = {D9A70FC8-2F32-4F35-968D-5E392BF338FD}
 		{72B2A037-4BA1-41B4-B417-8D8ED3603767} = {D9A70FC8-2F32-4F35-968D-5E392BF338FD}
+		{093A4878-52CF-48E5-86A6-031BEE5A9E53} = {D9A70FC8-2F32-4F35-968D-5E392BF338FD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7FE705AC-0B51-403F-8065-6129A1C8AAEA}

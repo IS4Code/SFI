@@ -93,12 +93,6 @@
         public static readonly IndividualUri DHash;
 
         /// <summary>
-        /// <c><see cref="At"/>:blake3-256</c>.
-        /// </summary>
-        [Uri(At, "blake3-256")]
-        public static readonly IndividualUri Blake3;
-
-        /// <summary>
         /// <c><see cref="At"/>:crc32</c>.
         /// </summary>
         [Uri(At)]

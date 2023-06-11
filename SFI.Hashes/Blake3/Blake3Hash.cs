@@ -3,20 +3,28 @@ using IS4.SFI.Services;
 using IS4.SFI.Tools;
 using IS4.SFI.Vocabulary;
 using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 
-namespace IS4.SFI
+namespace IS4.SFI.Hashes
 {
     /// <summary>
     /// The BLAKE3 hash algorithm, using <see cref="Blake3.Hasher"/>.
     /// </summary>
+    [Description("The BLAKE3 hash algorithm.")]
     public class Blake3Hash : StreamDataHash<Hasher>
     {
+        /// <summary>
+        /// <c><see cref="Vocabularies.Uri.At"/>:blake3-256</c>.
+        /// </summary>
+        [Uri(Vocabularies.Uri.At, "blake3-256")]
+        public static readonly IndividualUri Blake3;
+
         /// <inheritdoc/>
         public override int? NumericIdentifier => 0x1e;
 
         /// <inheritdoc cref="StreamDataHash{T}.StreamDataHash(IndividualUri, int, string, FormattingMethod)"/>
-        public Blake3Hash() : base(Individuals.Blake3, 32, "urn:blake3:", FormattingMethod.Base32)
+        public Blake3Hash() : base(Blake3, 32, "urn:blake3:", FormattingMethod.Base32)
         {
 
         }
@@ -58,6 +66,11 @@ namespace IS4.SFI
         {
             var hash = Hasher.Hash(new ReadOnlySpan<byte>(data, offset, count));
             return hash.AsSpan().ToArray();
+        }
+
+        static Blake3Hash()
+        {
+            typeof(Blake3Hash).InitializeUris();
         }
     }
 }
