@@ -18,7 +18,7 @@ namespace IS4.SFI
     /// The main application for analyzing input files and producing output.
     /// </summary>
     /// <typeparam name="TInspector">The type of <see cref="Inspector"/> to use.</typeparam>
-    public class Application<TInspector> : CommandApplication, IResultFactory<ValueTuple, string>, IResultFactory<bool, string> where TInspector : ComponentInspector, new()
+    public class Application<TInspector> : CommandApplication, IResultFactory<ValueTuple, string>, IResultFactory<bool, string> where TInspector : ExtensibleInspector, new()
     {
         readonly IApplicationEnvironment environment;
 
@@ -60,8 +60,9 @@ namespace IS4.SFI
 
 		Mode? mode;
 		readonly List<string> inputs = new();
-		readonly List<string> queries = new();
-		readonly List<Matcher> componentMatchers = new();
+        readonly List<string> queries = new();
+        readonly List<string> plugins = new();
+        readonly List<Matcher> componentMatchers = new();
 		Regex? mainHash;
 		string? mainHashName;
 		string? output;
@@ -97,6 +98,10 @@ namespace IS4.SFI
                 {
 					inspector.OutputLog = new ComponentLogger(writer);
                 }
+				foreach(var plugin in plugins)
+				{
+					inspector.AdditionalPluginIdentifiers.Add(plugin);
+				}
 				var logger = inspector.OutputLog;
 				await inspector.AddDefault();
 
@@ -477,7 +482,8 @@ namespace IS4.SFI
 				{"h", "hash", "pattern", "set the main binary hash"},
 				{"r", "root", "uri", "set the hierarchy root URI prefix"},
 				{"s", "sparql-query", "file", "perform a SPARQL query during processing"},
-				{"?", "help", null, "displays this help message"},
+                {"p", "plugin", "id", "loads a plugin with a particular identifier"},
+                {"?", "help", null, "displays this help message"},
 				{null, "[component]:[property]", "value", "sets a specific component's property (see list)"}
 			};
 		}
@@ -585,6 +591,9 @@ namespace IS4.SFI
 				case "f":
 				case "format":
 					return OptionArgument.Required;
+				case "p":
+				case "plugin":
+					return OptionArgument.Required;
 				case "?":
 				case "help":
 					Help();
@@ -652,7 +661,11 @@ namespace IS4.SFI
 					}
 					options.Format = argument!;
 					break;
-				default:
+                case "p":
+                case "plugin":
+					plugins.Add(argument!);
+					break;
+                default:
 					if(componentPropertyRegex.Match(option) is { Success: true } propMatch)
                     {
 						var componentId = propMatch.Groups[1].Value.ToLowerInvariant();

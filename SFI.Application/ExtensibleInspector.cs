@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace IS4.SFI.Application
@@ -25,6 +26,11 @@ namespace IS4.SFI.Application
         public ICollection<Plugin> Plugins { get; } = new List<Plugin>();
 
         /// <summary>
+        /// Contains the collection of additional plugin identifiers to load.
+        /// </summary>
+        public ICollection<string> AdditionalPluginIdentifiers { get; } = new List<string>();
+
+        /// <summary>
         /// Provides support for resolving plugins.
         /// </summary>
         protected PluginResolvers PluginResolvers { get; }
@@ -38,6 +44,11 @@ namespace IS4.SFI.Application
         /// <inheritdoc/>
         public async override ValueTask AddDefault()
         {
+            foreach(var pluginId in AdditionalPluginIdentifiers)
+            {
+                Plugins.Add(await PluginResolvers.GetPluginAsync(pluginId, CancellationToken.None));
+            }
+
             await base.AddDefault();
 
             await LoadPlugins();
