@@ -2,7 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>SemanticFileInspector</AssemblyName>
+    <AssemblyName>IS4.SFI</AssemblyName>
+    <VersionPrefix>1.1</VersionPrefix>
+    <Product>Semantic File Inspector</Product>
     <RootNamespace>IS4.SFI</RootNamespace>
     <LangVersion>10.0</LangVersion>
     <Nullable>enable</Nullable>
@@ -10,8 +12,25 @@
     <NoWarn>1701;1702;1998</NoWarn>
     <Authors>IS4</Authors>
     <DocumentationFile>bin\SemanticFileInspector.xml</DocumentationFile>
-    <AssemblyTitle>Semantic File Inspector Base Library</AssemblyTitle>
+    <AssemblyTitle>$(Product) Base Library</AssemblyTitle>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>$(AssemblyName)</PackageId>
+    <Title>$(AssemblyTitle)</Title>
+    <Description>Contains the necessary classes and interfaces for supporting $(Product) components.</Description>
+    <PackageProjectUrl>https://github.com/IS4Code/SFI</PackageProjectUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <RepositoryUrl>https://github.com/IS4Code/SFI</RepositoryUrl>
+    <PackageTags>linked-data;sparql;rdf;semantic-search;metadata-extraction</PackageTags>
+    <IncludeSymbols>True</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\icon.png" Visible="false">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="7.0.0" />
