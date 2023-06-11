@@ -166,8 +166,16 @@ namespace IS4.SFI.Application.Tools.NuGet
                     return true;
                 }
                 var identity = action.PackageIdentity;
-                if(runtimeLibraries.TryGetValue(identity.Id, out var existingVersion))
+                var id = identity.Id;
+                if(runtimeLibraries.TryGetValue(id, out var existingVersion))
                 {
+                    const string sfiId = nameof(IS4) + "." + nameof(SFI);
+                    if(
+                        id.Equals(sfiId, StringComparison.OrdinalIgnoreCase) ||
+                        id.StartsWith(sfiId + ".", StringComparison.OrdinalIgnoreCase))
+                    {
+                        return true;
+                    }
                     var versionRange = action.VersionRange;
                     if(versionRange != null && versionRange.Satisfies(existingVersion))
                     {
@@ -228,6 +236,10 @@ namespace IS4.SFI.Application.Tools.NuGet
                 var libs = libGroups.GetNearest(TargetFramework);
                 var plugin = currentPlugin;
                 AddPackage(new(identity, libs?.TargetFramework ?? TargetFramework));
+                if(runtimeLibraries.TryGetValue(identity.Id, out var runtimeVersion) && runtimeVersion >= identity.Version)
+                {
+                    return true;
+                }
                 if(plugin != null && libs != null)
                 {
                     foreach(var file in libs.Items)
