@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 using VDS.RDF;
 using VDS.RDF.Query;
 
-namespace IS4.SFI
+namespace IS4.SFI.RDF
 {
     /// <summary>
     /// Tests instances of <see cref="INode"/> against the input SPARQL queries

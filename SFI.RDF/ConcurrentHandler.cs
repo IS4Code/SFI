@@ -1,7 +1,7 @@
 ﻿using System;
 using VDS.RDF;
 
-namespace IS4.SFI
+namespace IS4.SFI.RDF
 {
     /// <summary>
     /// Locks operations on an instance of <see cref="IRdfHandler"/>

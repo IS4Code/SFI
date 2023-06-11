@@ -12,7 +12,7 @@ using VDS.RDF.Parsing.Handlers;
 using VDS.RDF.Writing;
 using VDS.RDF.Writing.Formatting;
 
-namespace IS4.SFI
+namespace IS4.SFI.RDF
 {
     /// <summary>
     /// A custom RDF handler that writes JSON-LD output to a file.

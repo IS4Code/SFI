@@ -24,7 +24,7 @@ namespace IS4.SFI.WebApp
         {
             await LoadAssembly(BaseFormats.Assembly);
             await LoadAssembly(ExternalFormats.Assembly);
-            await LoadAssembly(AccessoriesFormats.Assembly);
+            await LoadAssembly(RdfFormats.Assembly);
 
             Plugins.Clear();
             await LoadPlugins();

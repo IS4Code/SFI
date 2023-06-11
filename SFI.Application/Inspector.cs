@@ -1,6 +1,7 @@
 ﻿using IS4.SFI.Analyzers;
 using IS4.SFI.Application.Tools;
 using IS4.SFI.Formats;
+using IS4.SFI.RDF;
 using IS4.SFI.Services;
 using IS4.SFI.Tools;
 using IS4.SFI.Vocabulary;

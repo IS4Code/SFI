@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -23,8 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SFI.BaseFormats\SFI.BaseFormats.csproj" />
     <ProjectReference Include="..\SFI\SFI.csproj" />
+    <ProjectReference Include="..\SFI.BaseFormats\SFI.BaseFormats.csproj" />
   </ItemGroup>
 
   <ItemGroup>

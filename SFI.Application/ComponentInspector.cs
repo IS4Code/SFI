@@ -1,5 +1,6 @@
 ﻿using IS4.SFI.Application.Plugins;
 using IS4.SFI.Application.Tools;
+using IS4.SFI.RDF;
 using Microsoft.Extensions.DependencyInjection;
 using MorseCode.ITask;
 using System;

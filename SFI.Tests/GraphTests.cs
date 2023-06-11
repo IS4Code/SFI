@@ -171,7 +171,7 @@ namespace IS4.SFI.Tests
             {
                 await LoadAssembly(BaseFormats.Assembly);
                 await LoadAssembly(ExternalFormats.Assembly);
-                await LoadAssembly(AccessoriesFormats.Assembly);
+                await LoadAssembly(RdfFormats.Assembly);
                 await LoadAssembly(MediaAnalysisFormats.Assembly);
                 await LoadAssembly(WindowsFormats.Assembly);
 

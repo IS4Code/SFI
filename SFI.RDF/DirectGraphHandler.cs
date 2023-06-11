@@ -1,7 +1,7 @@
 ﻿using VDS.RDF;
 using VDS.RDF.Parsing.Handlers;
 
-namespace IS4.SFI
+namespace IS4.SFI.RDF
 {
     /// <summary>
     /// Represents an <see cref="IRdfHandler"/> that asserts triples directly

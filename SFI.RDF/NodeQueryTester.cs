@@ -7,7 +7,7 @@ using VDS.RDF;
 using VDS.RDF.Query;
 using VDS.RDF.Query.Datasets;
 
-namespace IS4.SFI
+namespace IS4.SFI.RDF
 {
     /// <summary>
     /// Tests instances of <see cref="INode"/> whether they match

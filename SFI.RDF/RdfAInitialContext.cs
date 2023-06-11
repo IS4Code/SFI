@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VDS.RDF;
 
-namespace IS4.SFI
+namespace IS4.SFI.RDF
 {
     /// <summary>
     /// Provides the RDFa Core Initial Context to assign default namespaces.

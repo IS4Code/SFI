@@ -1,4 +1,5 @@
 ﻿using HtmlAgilityPack;
+using IS4.SFI.RDF;
 using IS4.SFI.Services;
 using IS4.SFI.Vocabulary;
 using System;
@@ -15,7 +16,7 @@ using VDS.RDF.Parsing;
 namespace IS4.SFI.Analyzers
 {
     /// <summary>
-    /// Analyzer of RDF/XML documents, as instances of <see cref="HtmlDocument"/>.
+    /// Analyzer of HTML documents, as instances of <see cref="HtmlDocument"/>.
     /// </summary>
     public class HtmlAnalyzer : MediaObjectAnalyzer<HtmlDocument>
     {

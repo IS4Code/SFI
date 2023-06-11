@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using VDS.RDF;
 
-namespace IS4.SFI
+namespace IS4.SFI.RDF
 {
     /// <summary>
     /// Provides an implementation of <see cref="ILinkedNodeFactory"/>

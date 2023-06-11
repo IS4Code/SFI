@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IS4.SFI.RDF;
+using System;
 using System.Collections.Generic;
 using VDS.RDF;
 
