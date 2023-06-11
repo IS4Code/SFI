@@ -5,6 +5,9 @@ using static IS4.SFI.Vocabulary.Vocabularies.Uri;
 
 namespace IS4.SFI.Hashes
 {
+    /// <summary>
+    /// Instances of <see cref="IndividualUri"/> related to BitTorrent.
+    /// </summary>
     public static class BitTorrentIndividuals
     {
         /// <summary>
