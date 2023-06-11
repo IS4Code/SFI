@@ -39,11 +39,14 @@ namespace IS4.SFI.Application
 
             var loaded = new Dictionary<Assembly, int>();
 
+            var loadContext = new PluginLoadContext();
+            AddLoadDirectories(loadContext);
+
             foreach(var plugin in Plugins)
             {
                 if(plugin.Directory == null) continue;
 
-                foreach(var component in LoadPlugin(plugin.Directory, plugin.MainFile))
+                foreach(var component in LoadPlugin(plugin.Directory, plugin.MainFile, ref loadContext))
                 {
                     int componentCount = await LoadIntoCollections(component);
 
@@ -103,8 +106,9 @@ namespace IS4.SFI.Application
         /// </summary>
         /// <param name="mainDirectory">The directory to search.</param>
         /// <param name="mainFile">The name of the main file.</param>
+        /// <param name="previousContext">The context used to load the previous plugin.</param>
         /// <returns>A collection of all instantiable types in the assembly, together with their constructor.</returns>
-        IEnumerable<ComponentType> LoadPlugin(IDirectoryInfo mainDirectory, string mainFile)
+        IEnumerable<ComponentType> LoadPlugin(IDirectoryInfo mainDirectory, string mainFile, ref PluginLoadContext? previousContext)
         {
             // Add DI services:
             var services = new ServiceCollection();
@@ -120,24 +124,21 @@ namespace IS4.SFI.Application
                 if(mainEntry == null)
                 {
                     OutputLog?.LogWarning($"Cannot find main library file {mainFile} inside the plugin.");
-                    yield break;
+                    return Array.Empty<ComponentType>();
                 }
 
-                var context = new PluginLoadContext();
+                var context = new PluginLoadContext(previousContext);
                 context.AddDirectory(mainDirectory);
-                AddLoadDirectories(context);
                 asm = context.LoadFromFile(mainEntry);
+                previousContext = context;
             }catch(Exception e)
             {
                 var pluginName = Path.GetFileNameWithoutExtension(mainFile);
                 OutputLog?.LogError(e, $"An error occurred while loading plugin {pluginName}.");
-                yield break;
+                return Array.Empty<ComponentType>();
             }
 
-            foreach(var type in OpenAssembly(asm, serviceProvider))
-            {
-                yield return type;
-            }
+            return OpenAssembly(asm, serviceProvider);
         }
 
         class ZipArchiveWrapper : IDirectoryInfo

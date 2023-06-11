@@ -13,14 +13,18 @@ namespace IS4.SFI.Application.Tools
     /// </summary>
     public class PluginLoadContext : AssemblyLoadContext
     {
+        readonly AssemblyLoadContext? parentContext;
+
         readonly List<IDirectoryInfo> directories = new();
 
         /// <summary>
         /// Creates a new instance of the context.
         /// </summary>
-        public PluginLoadContext()
+        /// <param name="parentContext">Parent context to use for resolution.</param>
+        public PluginLoadContext(AssemblyLoadContext? parentContext = null)
         {
             Resolving += AssemblyResolve;
+            this.parentContext = parentContext;
         }
 
         /// <summary>
@@ -64,14 +68,19 @@ namespace IS4.SFI.Application.Tools
         /// <inheritdoc/>
         protected override Assembly? Load(AssemblyName assemblyName)
         {
-            return null;
+            try{
+                return parentContext?.LoadFromAssemblyName(assemblyName);
+            }catch(FileNotFoundException)
+            {
+                return null;
+            }
         }
 
         private Assembly? AssemblyResolve(AssemblyLoadContext context, AssemblyName name)
         {
+            var fileName = name.Name + ".dll";
             foreach(var dir in directories)
             {
-                var fileName = name.Name + ".dll";
                 var entry = dir.Entries.OfType<IFileInfo>().FirstOrDefault(e => fileName.Equals(e.Name, StringComparison.OrdinalIgnoreCase));
                 if(entry != null)
                 {
