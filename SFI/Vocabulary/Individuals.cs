@@ -93,30 +93,6 @@
         public static readonly IndividualUri DHash;
 
         /// <summary>
-        /// <c><see cref="At"/>:crc32</c>.
-        /// </summary>
-        [Uri(At)]
-        public static readonly IndividualUri Crc32;
-
-        /// <summary>
-        /// <c><see cref="At"/>:crc64</c>.
-        /// </summary>
-        [Uri(At)]
-        public static readonly IndividualUri Crc64;
-
-        /// <summary>
-        /// <c><see cref="At"/>:xxhash32</c>.
-        /// </summary>
-        [Uri(At)]
-        public static readonly IndividualUri XxHash32;
-
-        /// <summary>
-        /// <c><see cref="At"/>:xxhash64</c>.
-        /// </summary>
-        [Uri(At)]
-        public static readonly IndividualUri XxHash64;
-
-        /// <summary>
         /// <c><see cref="Nfo"/>:losslessCompressionType</c>.
         /// </summary>
         [Uri(Nfo)]

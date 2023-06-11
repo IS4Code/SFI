@@ -96,10 +96,6 @@ namespace IS4.SFI.Application
             {
                 DataAnalyzer.HashAlgorithms.Add(BuiltInHash.SHA512);
             }
-            DataAnalyzer.HashAlgorithms.Add(BuiltInNonCryptographicHash.CRC32);
-            DataAnalyzer.HashAlgorithms.Add(BuiltInNonCryptographicHash.CRC64);
-            DataAnalyzer.HashAlgorithms.Add(BuiltInNonCryptographicHash.XXH32);
-            DataAnalyzer.HashAlgorithms.Add(BuiltInNonCryptographicHash.XXH64);
         }
 
         /// <summary>
