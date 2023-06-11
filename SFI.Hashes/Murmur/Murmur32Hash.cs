@@ -3,12 +3,14 @@ using IS4.SFI.Tools;
 using IS4.SFI.Vocabulary;
 using Murmur;
 using System;
+using System.ComponentModel;
 
-namespace IS4.SFI.SamplePlugin
+namespace IS4.SFI.Hashes
 {
     /// <summary>
     /// The 32-bit MurmurHash non-cryptographic hash algorithm, using <see cref="Murmur32"/>.
     /// </summary>
+    [Description("The 32-bit MurmurHash non-cryptographic hash algorithm.")]
     public class Murmur32Hash : BuiltInHash<Murmur32>
     {
         /// <summary>
@@ -18,7 +20,7 @@ namespace IS4.SFI.SamplePlugin
         public static readonly IndividualUri Murmur32;
 
         /// <inheritdoc cref="HashAlgorithm.HashAlgorithm(IndividualUri, int, string, FormattingMethod)"/>
-        public Murmur32Hash() : base(() => MurmurHash.Create32(), Murmur32, "urn:murmur32:", 0x23, null, Services.FormattingMethod.Base64)
+        public Murmur32Hash() : base(() => MurmurHash.Create32(), Murmur32, "urn:murmur32:", 0x23, null, FormattingMethod.Base64)
         {
 
         }

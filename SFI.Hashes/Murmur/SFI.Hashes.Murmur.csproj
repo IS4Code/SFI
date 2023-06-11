@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>IS4.SFI.Hashes.Murmur</AssemblyName>
+    <Product>Semantic File Inspector</Product>
+    <RootNamespace>IS4.SFI.Hashes</RootNamespace>
+    <LangVersion>9.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <NoWarn>1701;1702;1998</NoWarn>
+    <Authors>IS4</Authors>
+    <AssemblyTitle>$(Product) Murmur Hash Algorithm</AssemblyTitle>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>$(AssemblyName)</PackageId>
+    <Title>$(AssemblyTitle)</Title>
+    <Description>Provides the Murmur 32 and 128-bit hash algorithm.</Description>
+    <PackageProjectUrl>https://github.com/IS4Code/SFI/tree/HEAD/SFI.Hashes/Murmur</PackageProjectUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <RepositoryUrl>https://github.com/IS4Code/SFI</RepositoryUrl>
+    <PackageTags>linked-data;sparql;rdf;semantic-search;metadata-extraction;hash-algorithm;murmur-hash</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\icon.png" Visible="false">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="murmurhash" Version="1.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\SFI\SFI.csproj" />
+  </ItemGroup>
+
+</Project>
