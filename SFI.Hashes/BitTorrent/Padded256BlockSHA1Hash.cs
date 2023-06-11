@@ -9,7 +9,7 @@ namespace IS4.SFI.Hashes
     [Description("Hashes 256-KiB chunks using SHA-1.")]
     public class Padded256BlockSHA1Hash : PaddedBlockHash
     {
-        public Padded256BlockSHA1Hash() : base(Individuals.BSHA1_256, "urn:bsha1-256:", 262144)
+        public Padded256BlockSHA1Hash() : base(BitTorrentIndividuals.BSHA1_256, "urn:bsha1-256:", 262144)
         {
 
         }

@@ -1,14 +1,12 @@
 ﻿using IS4.SFI.Vocabulary;
 using System;
 
-#pragma warning disable 649
+using static IS4.SFI.Vocabulary.Vocabularies.Uri;
 
 namespace IS4.SFI.Hashes
 {
-    internal static class Individuals
+    public static class BitTorrentIndividuals
     {
-        const string At = Vocabularies.Uri.At;
-
         /// <summary>
         /// <c><see cref="At"/>:btih</c>.
         /// </summary>
@@ -33,9 +31,9 @@ namespace IS4.SFI.Hashes
         [Uri(At, "bsha1-1024")]
         public static readonly IndividualUri BSHA1_1024;
 
-        static Individuals()
+        static BitTorrentIndividuals()
         {
-            typeof(Individuals).InitializeUris();
+            typeof(BitTorrentIndividuals).InitializeUris();
         }
     }
 }

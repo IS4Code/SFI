@@ -48,7 +48,7 @@ namespace IS4.SFI.Hashes
         /// <summary>
         /// Creates a new instance of the algorithm.
         /// </summary>
-        public BitTorrentHash() : base(Individuals.BTIH, HashAlgorithm.GetHashSize(0), "urn:btih:", FormattingMethod.Hex)
+        public BitTorrentHash() : base(BitTorrentIndividuals.BTIH, HashAlgorithm.GetHashSize(0), "urn:btih:", FormattingMethod.Hex)
         {
 
         }
