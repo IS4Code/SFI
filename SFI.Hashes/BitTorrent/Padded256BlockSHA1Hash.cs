@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using IS4.SFI.Vocabulary;
+using System.ComponentModel;
 
 namespace IS4.SFI.Hashes
 {

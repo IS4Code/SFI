@@ -1,6 +1,7 @@
 ﻿using BencodeNET.Objects;
 using IS4.SFI.Services;
 using IS4.SFI.Tools;
+using IS4.SFI.Vocabulary;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
