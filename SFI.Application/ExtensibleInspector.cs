@@ -8,7 +8,6 @@ using Microsoft.Extensions.Logging.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.IO.Compression;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -18,12 +17,23 @@ namespace IS4.SFI.Application
     /// <summary>
     /// An implementation of <see cref="Inspector"/> allowing loading of plugins.
     /// </summary>
-    public abstract class ExtensibleInspector : ComponentInspector
+    public abstract class ExtensibleInspector : ComponentInspector, ILogger
     {
         /// <summary>
         /// Contains the collection of plugins loaded by the inspector.
         /// </summary>
         public ICollection<Plugin> Plugins { get; } = new List<Plugin>();
+
+        /// <summary>
+        /// Provides support for resolving plugins.
+        /// </summary>
+        protected PluginResolvers PluginResolvers { get; }
+
+        /// <inheritdoc/>
+        public ExtensibleInspector()
+        {
+            PluginResolvers = new(this);
+        }
 
         /// <inheritdoc/>
         public async override ValueTask AddDefault()
@@ -82,26 +92,6 @@ namespace IS4.SFI.Application
         }
 
         /// <summary>
-        /// Opens a ZIP archive as a directory.
-        /// </summary>
-        /// <param name="archive">The ZIP archive to use.</param>
-        /// <returns>An instance of <see cref="IDirectoryInfo"/> for the archive.</returns>
-        protected IDirectoryInfo GetDirectory(ZipArchive archive)
-        {
-            return new ZipArchiveWrapper(archive);
-        }
-
-        /// <summary>
-        /// Opens an instance of <see cref="DirectoryInfo"/> as a directory.
-        /// </summary>
-        /// <param name="directory">The directory to use.</param>
-        /// <returns>An instance of <see cref="IDirectoryInfo"/> for the directory.</returns>
-        protected IDirectoryInfo GetDirectory(DirectoryInfo directory)
-        {
-            return new DirectoryInfoWrapper(directory);
-        }
-
-        /// <summary>
         /// Loads a plugin from a file in a directory.
         /// </summary>
         /// <param name="mainDirectory">The directory to search.</param>
@@ -141,68 +131,21 @@ namespace IS4.SFI.Application
             return OpenAssembly(asm, serviceProvider);
         }
 
-        class ZipArchiveWrapper : IDirectoryInfo
+        #region ILogger implementation
+        void ILogger.Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
         {
-            readonly ZipArchive archive;
-
-            public ZipArchiveWrapper(ZipArchive archive)
-            {
-                this.archive = archive;
-            }
-
-            public IEnumerable<IFileNodeInfo> Entries => archive.Entries.Select(e => new ZipEntryWrapper(e));
-
-            public string? Name => null;
-            public string? SubName => null;
-            public string? Path => null;
-            public int? Revision => null;
-            public DateTime? CreationTime => null;
-            public DateTime? LastWriteTime => null;
-            public DateTime? LastAccessTime => null;
-            public FileKind Kind => FileKind.ArchiveItem;
-            public FileAttributes Attributes => FileAttributes.Directory;
-            public Environment.SpecialFolder? SpecialFolderType => null;
-            public object? ReferenceKey => archive;
-            public object? DataKey => null;
-
-            class ZipEntryWrapper : IFileInfo
-            {
-                readonly ZipArchiveEntry entry;
-
-                public ZipEntryWrapper(ZipArchiveEntry entry)
-                {
-                    this.entry = entry;
-                }
-
-                public string? Name => entry.Name;
-                public string? SubName => null;
-                public string? Path => entry.FullName;
-                public int? Revision => null;
-                public DateTime? CreationTime => null;
-                public DateTime? LastWriteTime => entry.LastWriteTime.UtcDateTime;
-                public DateTime? LastAccessTime => null;
-                public FileKind Kind => FileKind.ArchiveItem;
-                public FileAttributes Attributes => FileAttributes.Normal;
-                public long Length => entry.Length;
-                public StreamFactoryAccess Access => StreamFactoryAccess.Parallel;
-                public object? ReferenceKey => entry;
-                public object? DataKey => null;
-
-                public Stream Open()
-                {
-                    // DEFLATE stream does not support Length, so use a buffer
-                    var buffer = new MemoryStream();
-                    using(var stream = entry.Open())
-                    {
-                        stream.CopyTo(buffer);
-                    }
-                    if(!buffer.TryGetBuffer(out var segment))
-                    {
-                        segment = new ArraySegment<byte>(buffer.ToArray());
-                    }
-                    return new MemoryStream(segment.Array!, segment.Offset, segment.Count, false);
-                }
-            }
+            OutputLog?.Log(logLevel, eventId, state, exception, formatter);
         }
+
+        bool ILogger.IsEnabled(LogLevel logLevel)
+        {
+            return OutputLog?.IsEnabled(logLevel) ?? false;
+        }
+
+        IDisposable? ILogger.BeginScope<TState>(TState state)
+        {
+            return OutputLog?.BeginScope(state);
+        }
+        #endregion
     }
 }

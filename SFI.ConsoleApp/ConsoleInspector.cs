@@ -2,13 +2,9 @@
 using IS4.SFI.Application;
 using IS4.SFI.Application.Plugins;
 using IS4.SFI.Application.Tools;
-using IS4.SFI.Services;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.IO.Compression;
-using System.Reflection;
 using System.Threading.Tasks;
 
 namespace IS4.SFI.ConsoleApp
@@ -60,37 +56,14 @@ namespace IS4.SFI.ConsoleApp
             {
                 foreach(var dir in Directory.EnumerateDirectories(baseDirectory))
                 {
-                    yield return GetPluginFromDirectory(dir);
+                    yield return PluginResolvers.GetPluginFromDirectory(dir);
                 }
 
                 foreach(var zip in Directory.EnumerateFiles(baseDirectory, "*.zip"))
                 {
-                    yield return GetPluginFromZip(zip);
+                    yield return PluginResolvers.GetPluginFromZip(zip);
                 }
             }
-        }
-
-        Plugin GetPluginFromDirectory(string dir)
-        {
-            // Look for a file with .dll and the same name as the directory
-            var name = Path.GetFileName(dir) + ".dll";
-            var info = new DirectoryInfo(dir);
-            return new Plugin(GetDirectory(info), name);
-        }
-
-        Plugin GetPluginFromZip(string file)
-        {
-            // Look for a file with .zip changed to .dll
-            var name = Path.ChangeExtension(Path.GetFileName(file), "dll");
-            ZipArchive archive;
-            try{
-                archive = ZipFile.OpenRead(file);
-            }catch(Exception e)
-            {
-                OutputLog?.LogError(e, $"An error occurred while opening plugin archive {Path.GetFileName(file)}.");
-                return default;
-            }
-            return new Plugin(GetDirectory(archive), name);
         }
 
         /// <inheritdoc/>
