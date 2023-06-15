@@ -1,7 +1,6 @@
 ﻿using IS4.SFI.Tools.Xml;
 using Svg;
 using System;
-using System.Reflection;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
@@ -13,10 +12,6 @@ namespace IS4.SFI.Formats
     /// </summary>
     public class SvgFormat : XmlDocumentFormat<SvgDocument>
     {
-        static readonly Func<XmlReader, SvgDocument> open = (Func<XmlReader, SvgDocument>)Delegate.CreateDelegate(typeof(Func<XmlReader, SvgDocument>), null,
-            typeof(SvgDocument).GetMethod(nameof(SvgDocument.Open), BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic, null, new[] { typeof(XmlReader) }, null )
-            .MakeGenericMethod(typeof(SvgDocument)));
-
         static SvgFormat()
         {
             SvgDocument.SkipGdiPlusCapabilityCheck = true;
@@ -38,7 +33,7 @@ namespace IS4.SFI.Formats
         public async override ValueTask<TResult?> Match<TResult, TArgs>(XmlReader reader, XDocumentType? docType, MatchContext context, ResultFactory<SvgDocument, TResult, TArgs> resultFactory, TArgs args) where TResult : default
         {
             reader = new InitialXmlReader(reader);
-            var doc = open(reader);
+            var doc = SvgDocument.Open<SvgDocument>(reader);
             if(doc == null) return default;
             return await resultFactory(doc, args);
         }
