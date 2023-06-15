@@ -2,15 +2,37 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>SemanticFileInspector.Windows</AssemblyName>
-    <RootNamespace>IS4.SFI.Windows</RootNamespace>
+    <AssemblyName>IS4.SFI.Formats.Windows</AssemblyName>
+    <Product>Semantic File Inspector</Product>
+    <Authors>IS4</Authors>
+    <Copyright>Copyright (c) $(Authors) $([System.DateTime]::UtcNow.ToString('yyyy'))</Copyright>
+    <RootNamespace>IS4.SFI.Formats</RootNamespace>
     <LangVersion>9.0</LangVersion>
     <Nullable>enable</Nullable>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <NoWarn>1701;1702;1998</NoWarn>
-    <Authors>IS4</Authors>
-    <DocumentationFile>bin\SemanticFileInspector.Windows.xml</DocumentationFile>
+    <AssemblyTitle>$(Product) Windows Formats</AssemblyTitle>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>$(AssemblyName)</PackageId>
+    <Title>$(AssemblyTitle)</Title>
+    <Description>Provides support for various Windows formats.</Description>
+    <RepositoryUrl>https://github.com/IS4Code/SFI</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>$(RepositoryUrl)/tree/HEAD/SFI.Formats/Windows</PackageProjectUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageTags>linked-data;sparql;rdf;semantic-search;metadata-extraction;windows;win32;pe</PackageTags>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\icon.png" Visible="false">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\LICENSE" Visible="false">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="ParallelExtensionsExtras.CrossPlatform" Version="1.0.0" />
@@ -24,11 +46,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SFI\SFI.csproj" />
-    <ProjectReference Include="..\SFI.BaseFormats\SFI.BaseFormats.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ComTypes\" />
+    <ProjectReference Include="..\Modules\SFI.Formats.Modules.csproj" />
   </ItemGroup>
 
 </Project>
