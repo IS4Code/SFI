@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>IS4.SFI.Hashes.DHash</AssemblyName>
+    <Product>Semantic File Inspector</Product>
+    <Authors>IS4</Authors>
+    <Copyright>Copyright (c) $(Authors) $([System.DateTime]::UtcNow.ToString('yyyy'))</Copyright>
+    <RootNamespace>IS4.SFI.Hashes</RootNamespace>
+    <LangVersion>9.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <NoWarn>1701;1702;1998</NoWarn>
+    <AssemblyTitle>$(Product) DHash</AssemblyTitle>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>$(AssemblyName)</PackageId>
+    <Title>$(AssemblyTitle)</Title>
+    <Description>Provides the DHash algorithm.</Description>
+    <RepositoryUrl>https://github.com/IS4Code/SFI</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>$(RepositoryUrl)/tree/HEAD/SFI.Hashes/DHash</PackageProjectUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageTags>linked-data;sparql;rdf;semantic-search;metadata-extraction;hash-algorithm;dhash</PackageTags>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\icon.png" Visible="false">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\LICENSE" Visible="false">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Drawing.Common" Version="5.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\SFI\SFI.csproj" />
+    <ProjectReference Include="..\..\SFI.Formats\Images\SFI.Formats.Images.csproj" />
+  </ItemGroup>
+
+</Project>

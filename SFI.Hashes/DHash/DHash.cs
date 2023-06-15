@@ -2,6 +2,7 @@
 using IS4.SFI.Vocabulary;
 using System;
 using System.Collections;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Threading.Tasks;
@@ -14,9 +15,15 @@ namespace IS4.SFI.MediaAnalysis.Images
     /// This version scales the image down to two 9×8 and 8×9 images
     /// and interlaces the resulting hash. The pixels are compared
     /// based on the result of <see cref="Color.GetBrightness"/>,
-    /// and if the values are equally, the result differs
+    /// and if the values are equal, the result differs
     /// between the two scaled-down variants.
     /// </summary>
+    [Description("A dHash is a type of image hashing algorithm that encodes the difference between " +
+        "neighboring pixels in a scaled-down version of the input image. " +
+        "This version scales the image down to two 9×8 and 8×9 images " +
+        "and interlaces the resulting hash. The pixels are compared " +
+        "based on their brightness and if the values are equal, the " +
+        "result differs between the two scaled-down variants.")]
     public class DHash : ObjectHashAlgorithm<Image>
     {
         static readonly Color gray = Color.FromArgb(0xBC, 0xBC, 0xBC);
