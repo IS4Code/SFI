@@ -22,9 +22,8 @@ namespace IS4.SFI.WebApp
         /// <inheritdoc/>
         public async override ValueTask AddDefault()
         {
-            await LoadAssembly(BaseFormats.Assembly);
-            await LoadAssembly(ExternalFormats.Assembly);
-            await LoadAssembly(RdfFormats.Assembly);
+            await LoadAssembly(Formats.AllPortable.Provider.Assembly);
+            await LoadAssembly(Hashes.AllPortable.Provider.Assembly);
 
             Plugins.Clear();
             await LoadPlugins();

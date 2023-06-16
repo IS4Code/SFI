@@ -169,11 +169,8 @@ namespace IS4.SFI.Tests
             /// <inheritdoc/>
             public async override ValueTask AddDefault()
             {
-                await LoadAssembly(BaseFormats.Assembly);
-                await LoadAssembly(ExternalFormats.Assembly);
-                await LoadAssembly(RdfFormats.Assembly);
-                await LoadAssembly(MediaAnalysisFormats.Assembly);
-                await LoadAssembly(WindowsFormats.Assembly);
+                await LoadAssembly(Formats.All.Provider.Assembly);
+                await LoadAssembly(Hashes.All.Provider.Assembly);
 
                 await base.AddDefault();
 
