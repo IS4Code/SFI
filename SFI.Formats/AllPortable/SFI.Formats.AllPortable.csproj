@@ -1,0 +1,57 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>IS4.SFI.Formats.AllPortable</AssemblyName>
+    <Product>Semantic File Inspector</Product>
+    <Authors>IS4</Authors>
+    <Copyright>Copyright (c) $(Authors) $([System.DateTime]::UtcNow.ToString('yyyy'))</Copyright>
+    <RootNamespace>IS4.SFI.Formats</RootNamespace>
+    <LangVersion>9.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <AssemblyTitle>$(Product) All Portable Formats</AssemblyTitle>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>$(AssemblyName)</PackageId>
+    <Title>$(AssemblyTitle)</Title>
+    <Description>Meta-package that references all supported and portable formats.</Description>
+    <RepositoryUrl>https://github.com/IS4Code/SFI</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>$(RepositoryUrl)/tree/HEAD/SFI.Formats/AllPortable</PackageProjectUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageTags>linked-data;sparql;rdf;semantic-search;metadata-extraction</PackageTags>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\icon.png" Visible="false">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\LICENSE" Visible="false">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\SFI.ComponentImportGenerator\SFI.ComponentImportGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\Archives\SFI.Formats.Archives.csproj" />
+    <ProjectReference Include="..\CLI\SFI.Formats.CLI.csproj" />
+    <ProjectReference Include="..\Delphi\SFI.Formats.Delphi.csproj" />
+    <ProjectReference Include="..\Disks\SFI.Formats.Disks.csproj" />
+    <ProjectReference Include="..\DOS\SFI.Formats.DOS.csproj" />
+    <ProjectReference Include="..\Flash\SFI.Formats.Flash.csproj" />
+    <ProjectReference Include="..\HTML\SFI.Formats.HTML.csproj" />
+    <ProjectReference Include="..\Metadata\SFI.Formats.Metadata.csproj" />
+    <ProjectReference Include="..\Modules\SFI.Formats.Modules.csproj" />
+    <ProjectReference Include="..\Office\SFI.Formats.Office.csproj" />
+    <ProjectReference Include="..\OLE\SFI.Formats.OLE.csproj" />
+    <ProjectReference Include="..\Packages\SFI.Formats.Packages.csproj" />
+    <ProjectReference Include="..\PDF\SFI.Formats.PDF.csproj" />
+    <ProjectReference Include="..\PE\SFI.Formats.PE.csproj" />
+    <ProjectReference Include="..\RDF\SFI.Formats.RDF.csproj" />
+    <ProjectReference Include="..\SVG\SFI.Formats.SVG.csproj" />
+    <ProjectReference Include="..\WARC\SFI.Formats.WARC.csproj" />
+  </ItemGroup>
+
+</Project>
