@@ -205,4 +205,30 @@ namespace IS4.SFI.Formats
             }
         }
     }
+
+    /// <summary>
+    /// Represents an audio format backed by the WASAPI layer, disallowing MP3.
+    /// </summary>
+    [Browsable(true)]
+    public class WasapiNoMp3Format : WasapiFormat
+    {
+        /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
+        public WasapiNoMp3Format() : base(false)
+        {
+
+        }
+    }
+
+    /// <summary>
+    /// Represents the MP3 format backed by the WASAPI layer.
+    /// </summary>
+    [Browsable(true)]
+    public class WasapiMp3Format : WasapiFormat
+    {
+        /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
+        public WasapiMp3Format() : base(true)
+        {
+
+        }
+    }
 }
