@@ -112,7 +112,7 @@ namespace IS4.SFI
         /// media type. This differs from <see cref="urlPathRegex"/> by excluding
         /// <c>,</c>.
         /// </summary>
-        static readonly Regex dataMimeRegex = new(@$"[^!$&-+\--;=@{baseUnreservedUriChars}]+", RegexOptions.Compiled);
+        static readonly Regex dataMimeRegex = new(@$"[^!$&-+\-.-;=@{baseUnreservedUriChars}]+", RegexOptions.Compiled);
 
         /// <summary>
         /// The <c>data:</c> URI produced by <see cref="CreateDataUri(string?, string?, ArraySegment{byte})"/>.
