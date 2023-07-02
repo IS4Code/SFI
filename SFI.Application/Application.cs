@@ -296,7 +296,10 @@ namespace IS4.SFI
 		/// <param name="properties">The dictionary of property names and their values to assign.</param>
 		private void SetProperties(object component, string componentName, IDictionary<string, string> properties)
         {
-			foreach(var prop in GetConfigurableProperties(component))
+            var batch = component as ISupportInitialize;
+            batch?.BeginInit();
+
+            foreach(var prop in GetConfigurableProperties(component))
             {
 				var name = TextTools.FormatComponentName(prop.Name);
 				if(properties.TryGetValue(name, out var value))
@@ -329,6 +332,8 @@ namespace IS4.SFI
             {
 				LogWriter?.WriteLine($"Warning: Property {componentName}:{pair.Key} was not found!");
             }
+
+			batch?.EndInit();
         }
 
 		/// <summary>

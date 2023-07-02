@@ -100,6 +100,9 @@ namespace IS4.SFI.Application
         {
             base.ConfigureNewComponent(component);
 
+            var batch = component as ISupportInitialize;
+            batch?.BeginInit();
+
             var type = component.GetType();
             foreach(var collection in ComponentCollections.OfType<TypeConfigurationCollection>())
             {
@@ -111,6 +114,8 @@ namespace IS4.SFI.Application
                     }
                 }
             }
+
+            batch?.EndInit();
         }
 
         /// <inheritdoc/>
