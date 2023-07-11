@@ -5,6 +5,7 @@ using IS4.SFI.Application.Tools;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace IS4.SFI.ConsoleApp
@@ -19,24 +20,26 @@ namespace IS4.SFI.ConsoleApp
         /// <summary>
         /// The default image analyzer.
         /// </summary>
-        public ImageAnalyzer ImageAnalyzer { get; }
+        public ImageAnalyzer? ImageAnalyzer { get; private set; }
 
         /// <inheritdoc/>
         public ConsoleInspector()
         {
-            Analyzers.Add(ImageAnalyzer = new ImageAnalyzer());
 
-            var algorithms = ImageAnalyzer.DataHashAlgorithms;
-            foreach(var algorithm in DataAnalyzer.HashAlgorithms)
-            {
-                algorithms.Add(algorithm);
-            }
         }
 
         public async override ValueTask AddDefault()
         {
             await LoadAssembly(Formats.All.Provider.Assembly);
             await LoadAssembly(Hashes.All.Provider.Assembly);
+
+            ImageAnalyzer = Analyzers.OfType<ImageAnalyzer>().FirstOrDefault()!;
+
+            var algorithms = ImageAnalyzer.DataHashAlgorithms;
+            foreach(var algorithm in DataAnalyzer.HashAlgorithms)
+            {
+                algorithms.Add(algorithm);
+            }
 
             Plugins.Clear();
             foreach(var plugin in LoadPlugins())
