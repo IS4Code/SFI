@@ -1,4 +1,5 @@
 ﻿using IS4.SFI.Application.Plugins;
+using IS4.SFI.Tools;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -261,6 +262,20 @@ namespace IS4.SFI.Application
                     }catch(SynchronizationLockException)
                     {
                         goto default;
+                    }
+                    break;
+                case SortedMultiTree<T> collection:
+                    var removing = new List<T>();
+                    foreach(var item in collection)
+                    {
+                        if(!await resultFactory.Invoke(item, GetIdentifier(item)))
+                        {
+                            removing.Add(item);
+                        }
+                    }
+                    foreach(var removed in removing)
+                    {
+                        collection.Remove(removed);
                     }
                     break;
                 default:

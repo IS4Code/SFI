@@ -4,10 +4,8 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace IS4.SFI
@@ -18,11 +16,13 @@ namespace IS4.SFI
     /// </summary>
     public class EntityAnalyzerProvider : IEntityAnalyzers
     {
+        readonly SortedMultiTree<object, Type> analyzers = new(new ObjectAnalyzer(), typeof(object), obj => obj.GetType().GetEntityAnalyzerTypes(), ObjectInheritanceComparer.Instance, TypeInheritanceComparer.Instance);
+
         /// <summary>
         /// A collection of analyzers, each implementing <see cref="IEntityAnalyzer{T}"/>.
         /// </summary>
         [ComponentCollection("analyzer", typeof(IEntityAnalyzer<>))]
-        public ICollection<object> Analyzers { get; } = new SortedSet<object>(EntityAnalyzerComparer.Instance);
+        public ICollection<object> Analyzers => analyzers;
 
         /// <summary>
         /// A collection of instances of <see cref="IContainerAnalyzerProvider"/> to use to
@@ -79,7 +79,7 @@ namespace IS4.SFI
             using var scope1 = log?.BeginScope(entity);
             var nameFriendly = TextTools.GetUserFriendlyName(entity);
             bool any = false;
-            foreach(var analyzer in Analyzers.OfType<IEntityAnalyzer<T>>())
+            foreach(var analyzer in FindAnalyzers<T>())
             {
                 any = true;
                 log?.LogInformation($"Analyzing: {nameFriendly}...");
@@ -124,6 +124,11 @@ namespace IS4.SFI
                 await Update();
             }
             return default;
+        }
+
+        private IEnumerable<IEntityAnalyzer<T>> FindAnalyzers<T>() where T : notnull
+        {
+            return analyzers.Find(typeof(T)).Cast<IEntityAnalyzer<T>>();
         }
 
         /// <summary>
@@ -330,31 +335,66 @@ namespace IS4.SFI
             }
         }
 
-        class EntityAnalyzerComparer : TypeInheritanceComparer<object>
+        class ObjectAnalyzer : EntityAnalyzer<object>
         {
-            public static new readonly IComparer<object> Instance = new EntityAnalyzerComparer();
+            public async override ValueTask<AnalysisResult> Analyze(object entity, AnalysisContext context, IEntityAnalyzers analyzers)
+            {
+                return default;
+            }
+        }
 
-            private EntityAnalyzerComparer()
+        class ObjectInheritanceComparer : IComparer<object>
+        {
+            public static readonly IComparer<object> Instance = new ObjectInheritanceComparer();
+
+            private ObjectInheritanceComparer()
             {
 
             }
 
-            static readonly Type analyzerType = typeof(IEntityAnalyzer<>);
-
-            /// <summary>
-            /// Retrieves all implemented interfaces of <paramref name="initial"/> that
-            /// are generic instantiations of <see cref="IEntityAnalyzer{T}"/>.
-            /// </summary>
-            /// <inheritdoc/>
-            protected override IEnumerable<Type> SelectType(Type initial)
+            public int Compare(object ox, object oy)
             {
-                foreach(var i in initial.GetInterfaces())
+                var x = ox.GetType();
+                var y = oy.GetType();
+                if(x.IsAssignableFrom(y))
                 {
-                    if(i.IsGenericType && i.GetGenericTypeDefinition().Equals(analyzerType))
-                    {
-                        yield return i;
-                    }
+                    if(y.IsAssignableFrom(x)) return 0;
+                    return -1;
                 }
+                if(y.IsAssignableFrom(x)) return 1;
+                return 0;
+            }
+        }
+
+        class TypeInheritanceComparer : IComparer<Type>
+        {
+            public static readonly IComparer<Type> Instance = new TypeInheritanceComparer();
+
+            static readonly Type streamFactoryType = typeof(IStreamFactory);
+            static readonly Type fileInfoType = typeof(IFileInfo);
+
+            private TypeInheritanceComparer()
+            {
+
+            }
+
+            public int Compare(Type x, Type y)
+            {
+                if(
+                    (streamFactoryType.Equals(x) && fileInfoType.IsAssignableFrom(y)) ||
+                    (fileInfoType.IsAssignableFrom(x) && streamFactoryType.Equals(y)))
+                {
+                    // Make IFileInfo not reachable from IStreamFactory
+                    return 0;
+                }
+
+                if(x.IsAssignableFrom(y))
+                {
+                    if(y.IsAssignableFrom(x)) return 0;
+                    return -1;
+                }
+                if(y.IsAssignableFrom(x)) return 1;
+                return 0;
             }
         }
     }
