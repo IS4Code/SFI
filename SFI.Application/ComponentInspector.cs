@@ -129,6 +129,20 @@ namespace IS4.SFI.Application
         static readonly Type enumerableType = typeof(IEnumerable);
         static readonly Type collectionType = typeof(ICollection<>);
 
+        private static bool IsEligibleCollectionInterface(Type type)
+        {
+            if(!type.IsGenericType)
+            {
+                return false;
+            }
+            if(!collectionType.Equals(type.GetGenericTypeDefinition()))
+            {
+                return false;
+            }
+            var arg = type.GetGenericArguments()[0];
+            return ComponentCollection.IsTypeArgumentValid(arg);
+        }
+
         /// <summary>
         /// Browses an object, looking for all properties with <see cref="ComponentCollectionAttribute"/>
         /// and loading the component collections within.
@@ -137,7 +151,7 @@ namespace IS4.SFI.Application
         /// <param name="updateExisting">Whether to update previously found collections.</param>
         protected virtual void CaptureCollections(object instance, bool updateExisting = false)
         {
-            foreach(System.ComponentModel.PropertyDescriptor property in System.ComponentModel.TypeDescriptor.GetProperties(instance))
+            foreach(PropertyDescriptor property in TypeDescriptor.GetProperties(instance))
             {
                 if(property.IsBrowsable && enumerableType.IsAssignableFrom(property.PropertyType))
                 {
@@ -147,7 +161,7 @@ namespace IS4.SFI.Application
                         var collection = (IEnumerable)property.GetValue(instance);
                         if(collection != null)
                         {
-                            var type = collection.GetType().GetInterfaces().FirstOrDefault(i => i.IsGenericType && collectionType.Equals(i.GetGenericTypeDefinition()));
+                            var type = collection.GetType().GetInterfaces().FirstOrDefault(IsEligibleCollectionInterface);
                             if(type != null)
                             {
                                 var itemType = type.GetGenericArguments()[0];

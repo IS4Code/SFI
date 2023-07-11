@@ -66,6 +66,20 @@ namespace IS4.SFI.Application
         static readonly Type genericType = typeof(ComponentCollection<>);
 
         /// <summary>
+        /// Checks whether <paramref name="type"/> is valid to construct
+        /// an instance of <see cref="ComponentCollection{T}"/>.
+        /// </summary>
+        /// <param name="type">The type argument to check.</param>
+        /// <returns>
+        /// Whether a <see cref="ComponentCollection{T}"/> instance can
+        /// be constructed from <paramref name="type"/>.
+        /// </returns>
+        public static bool IsTypeArgumentValid(Type type)
+        {
+            return !type.IsValueType;
+        }
+
+        /// <summary>
         /// Creates a new instance of the collection with a particular element type.
         /// </summary>
         /// <param name="elementType">The element type of the collection.</param>
