@@ -141,14 +141,11 @@ namespace IS4.SFI.Tests
             /// <summary>
             /// The default image analyzer.
             /// </summary>
-            public ImageAnalyzer ImageAnalyzer { get; }
+            public ImageAnalyzer ImageAnalyzer { get; private set; }
 
             /// <inheritdoc/>
             public TestInspector()
             {
-                Analyzers.Add(ImageAnalyzer = new ImageAnalyzer());
-                ImageAnalyzer.MakeThumbnail = false;
-
                 var valueTask = AddDefault();
                 if(valueTask.IsCompletedSuccessfully)
                 {
@@ -177,6 +174,12 @@ namespace IS4.SFI.Tests
                 DataAnalyzer.MinDataLengthToStore = 0;
                 DataAnalyzer.HashAlgorithms.Clear();
                 FileAnalyzer.HashAlgorithms.Clear();
+
+                ImageAnalyzer = Analyzers.OfType<ImageAnalyzer>().FirstOrDefault()!;
+
+                ImageAnalyzer.MakeThumbnail = false;
+                ImageAnalyzer.DataHashAlgorithms.Clear();
+                ImageAnalyzer.LowFrequencyImageHashAlgorithms.Clear();
 
                 DataAnalyzer.HashAlgorithms.Add(BuiltInHash.MD5!);
                 DataAnalyzer.ContentUriFormatter = new NiHashedContentUriFormatter(BuiltInHash.MD5!);
