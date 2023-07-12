@@ -24,7 +24,7 @@ namespace IS4.SFI.Analyzers
         /// to use when recognizing the format of the document.
         /// </summary>
         [ComponentCollection("xml-format")]
-        public ICollection<IXmlDocumentFormat> XmlFormats { get; } = new SortedSet<IXmlDocumentFormat>(TypeInheritanceComparer<IXmlDocumentFormat>.Instance);
+        public ICollection<IXmlDocumentFormat> XmlFormats { get; } = new List<IXmlDocumentFormat>();
 
         /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>
         public XmlAnalyzer() : base(Classes.ContentAsXML, Classes.XmlDocument)

@@ -50,7 +50,7 @@ namespace IS4.SFI.Analyzers
         /// They are sorted based on descending <see cref="IBinaryFileFormat.HeaderLength"/>.
         /// </summary>
         [ComponentCollection("data-format")]
-        public ICollection<IBinaryFileFormat> DataFormats { get; } = new SortedSet<IBinaryFileFormat>(HeaderLengthComparer.Instance);
+        public ICollection<IBinaryFileFormat> DataFormats { get; } = new SortedMultiSet<IBinaryFileFormat>(HeaderLengthComparer.Instance);
 
         /// <summary>
         /// The minimum size at which the data is written to a temporary file on disk
@@ -667,7 +667,7 @@ namespace IS4.SFI.Analyzers
             }
         }
 
-        class HeaderLengthComparer : GlobalObjectComparer<IBinaryFileFormat>
+        class HeaderLengthComparer : IComparer<IBinaryFileFormat>
         {
             public static readonly IComparer<IBinaryFileFormat> Instance = new HeaderLengthComparer();
 
@@ -676,7 +676,7 @@ namespace IS4.SFI.Analyzers
 
             }
 
-            protected override int CompareInner(IBinaryFileFormat x, IBinaryFileFormat y)
+            public int Compare(IBinaryFileFormat x, IBinaryFileFormat y)
             {
                 return -x.HeaderLength.CompareTo(y.HeaderLength);
             }

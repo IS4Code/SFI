@@ -1,5 +1,4 @@
 ﻿using IS4.SFI.Application.Plugins;
-using IS4.SFI.Tools;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -264,7 +263,7 @@ namespace IS4.SFI.Application
                         goto default;
                     }
                     break;
-                case SortedMultiTree<T> collection:
+                case ICollection<T> collection:
                     var removing = new List<T>();
                     foreach(var item in collection)
                     {
