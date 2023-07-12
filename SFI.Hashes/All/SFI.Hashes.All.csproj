@@ -35,11 +35,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\SFI.ComponentImportGenerator\SFI.ComponentImportGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
-    <ProjectReference Include="..\BitTorrent\SFI.Hashes.BitTorrent.csproj" />
+    <ProjectReference Include="..\AllPortable\SFI.Hashes.AllPortable.csproj" />
     <ProjectReference Include="..\Blake3\SFI.Hashes.Blake3.csproj" />
     <ProjectReference Include="..\DHash\SFI.Hashes.DHash.csproj" />
-    <ProjectReference Include="..\Murmur\SFI.Hashes.Murmur.csproj" />
-    <ProjectReference Include="..\NonCryptographic\SFI.Hashes.NonCryptographic.csproj" />
   </ItemGroup>
 
 </Project>
