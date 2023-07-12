@@ -40,9 +40,6 @@ namespace IS4.SFI.Analyzers
 
             var language = new LanguageCode(name.CultureInfo);
 
-            var module = assembly.ManifestModule;
-            node.Set(Properties.OriginalName, module.Name);
-
             foreach(var attribute in assembly.GetCustomAttributesData())
             {
                 string type;
@@ -85,7 +82,7 @@ namespace IS4.SFI.Analyzers
                 }
             }
 
-            return new(node, module.ScopeName);
+            return new(node, assembly.ManifestModule.ScopeName);
         }
 
         class ResourceInfo : IFileInfo
