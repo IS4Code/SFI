@@ -440,13 +440,13 @@ namespace IS4.SFI.Tools
             switch(array)
             {
                 case TValue[] values:
-                    foreach(var item in AllValues)
+                    foreach(var item in AllValues.Distinct(valueEqualityComparer))
                     {
                         values[arrayIndex++] = item;
                     }
                     break;
                 case KeyValuePair<TAspect, TValue>[] pairs:
-                    foreach(var item in AllPairs)
+                    foreach(var item in AllPairs.Distinct(equalityComparer))
                     {
                         pairs[arrayIndex++] = item;
                     }
