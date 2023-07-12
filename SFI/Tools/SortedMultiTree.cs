@@ -472,7 +472,7 @@ namespace IS4.SFI.Tools
         {
             if(valueEqualityComparer.Equals(Value, item))
             {
-                throw new ArgumentException("The root node cannot be removed.", nameof(item));
+                return false;
             }
             bool removed = false;
             foreach(var byAspect in nodes.Values)
