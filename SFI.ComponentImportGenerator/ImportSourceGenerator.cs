@@ -27,7 +27,7 @@ namespace IS4.SFI
                     foreach(var symbol in assembly.GlobalNamespace.GetMembers())
                     {
                         var name = symbol.Name;
-                        if(name == "IS4")
+                        if(name == nameof(IS4))
                         {
                             Visit(symbol, name);
                         }
