@@ -244,7 +244,7 @@ namespace IS4.SFI.Application
         /// <inheritdoc/>
         public override async ValueTask ForEach(IResultFactory<ValueTuple, string> resultFactory)
         {
-            foreach(var item in Collection)
+            foreach(var item in Collection.OrderBy(item => item, NameComparer.Instance))
             {
                 await resultFactory.Invoke(item, GetIdentifier(item));
             }
@@ -298,6 +298,36 @@ namespace IS4.SFI.Application
             }
 
             return Collection.Count;
+        }
+
+        class NameComparer : IComparer<T>
+        {
+            const string baseName = nameof(IS4) + ".";
+
+            public static readonly NameComparer Instance = new();
+
+            static readonly Func<char, bool> dots = c => c == '.';
+
+            public int Compare(T x, T y)
+            {
+                var tx = x.GetType();
+                var ty = y.GetType();
+                var axname = tx.Assembly.GetName().Name;
+                var ayname = ty.Assembly.GetName().Name;
+                if(axname.StartsWith(baseName) && !ayname.StartsWith(baseName))
+                {
+                    return -1;
+                }
+                if(ayname.StartsWith(baseName) && !axname.StartsWith(baseName))
+                {
+                    return 1;
+                }
+                var result = axname.Count(dots).CompareTo(ayname.Count(dots));
+                if(result != 0) return result;
+                result = tx.Namespace.Count(dots).CompareTo(ty.Namespace.Count(dots));
+                if(result != 0) return result;
+                return TextTools.GetUserFriendlyName(x).CompareTo(TextTools.GetUserFriendlyName(y));
+            }
         }
     }
 }
