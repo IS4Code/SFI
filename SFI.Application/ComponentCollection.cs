@@ -253,7 +253,7 @@ namespace IS4.SFI.Application
         /// <inheritdoc/>
         public override async ValueTask<int> Filter(IResultFactory<bool, string> resultFactory)
         {
-            switch(Collection)
+            if(!Collection.IsReadOnly) switch(Collection)
             {
                 case List<T> list:
                     try{
@@ -272,9 +272,14 @@ namespace IS4.SFI.Application
                             removing.Add(item);
                         }
                     }
-                    foreach(var removed in removing)
+                    try{
+                        foreach(var removed in removing)
+                        {
+                            collection.Remove(removed);
+                        }
+                    }catch(NotSupportedException)
                     {
-                        collection.Remove(removed);
+                        goto default;
                     }
                     break;
                 default:
