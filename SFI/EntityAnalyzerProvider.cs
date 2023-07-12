@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -335,10 +336,25 @@ namespace IS4.SFI
             }
         }
 
+        /// <summary>
+        /// The analyzer for arbitrary objects, i.e. those that are
+        /// not accepted by any other analyzer.
+        /// </summary>
         class ObjectAnalyzer : EntityAnalyzer<object>
         {
+            /// <summary>
+            /// Whether to accept all values given to the analyzer.
+            /// </summary>
+            public bool AcceptEverything { get; set; }
+
             public async override ValueTask<AnalysisResult> Analyze(object entity, AnalysisContext context, IEntityAnalyzers analyzers)
             {
+                if(AcceptEverything)
+                {
+                    var node = GetNode(context);
+                    var label = TextTools.GetUserFriendlyName(entity);
+                    return new(node, label);
+                }
                 return default;
             }
         }
