@@ -139,10 +139,10 @@ namespace IS4.SFI
 					}
                 }
 
-				// Print the available components
 				switch(mode)
-				{
-					case Mode.List:
+                {
+                    // Print the available components
+                    case Mode.List:
 						await ConfigureComponents();
 						if(!quiet) LogWriter.WriteLine("Included components:");
 						foreach(var collection in inspector.ComponentCollections)
@@ -150,6 +150,10 @@ namespace IS4.SFI
 							await collection.ForEach(this);
 						}
 						return;
+					// Print the options XML
+					case Mode.Options:
+						PrintOptionsXml();
+                        return;
 				}
 
 				if(inputs.Count == 0 || output == null)
@@ -472,6 +476,11 @@ namespace IS4.SFI
 			/// The application should list all available components.
 			/// </summary>
 			List,
+
+			/// <summary>
+			/// The application should output the provided options in the XML format.
+			/// </summary>
+			Options,
 		}
 
 		/// <inheritdoc/>
@@ -506,6 +515,10 @@ namespace IS4.SFI
 					throw new ApplicationException($"Invalid mode (must be one of {String.Join(", ", modeNames)}).");
 				}
 				this.mode = mode;
+				if(mode == Mode.Options)
+				{
+					CreateOptionsXml();
+				}
 				return OperandState.ContinueOptions;
 			}
 			if(output == null)
@@ -523,174 +536,190 @@ namespace IS4.SFI
 		/// <inheritdoc/>
 		protected override OptionArgument OnOptionFound(string option)
 		{
-			switch(option)
+            OptionArgument Inner()
 			{
-				case "q":
-				case "quiet":
-					if(quiet)
-					{
-						throw OptionAlreadySpecified(option);
-					}
-					quiet = true;
-					return OptionArgument.None;
-				case "c":
-				case "compress":
-					if(options.CompressedOutput)
-					{
-						throw OptionAlreadySpecified(option);
-					}
-					options.CompressedOutput = true;
-					return OptionArgument.None;
-				case "m":
-				case "metadata":
-					if(!options.HideMetadata)
-					{
-						throw OptionAlreadySpecified(option);
-					}
-					options.HideMetadata = false;
-					return OptionArgument.None;
-				case "d":
-				case "data-only":
-					if(dataOnly)
-					{
-						throw OptionAlreadySpecified(option);
-					}
-					dataOnly = true;
-					return OptionArgument.None;
-                case "o":
-                case "only-once":
-                    if(onlyOnce)
-                    {
-                        throw OptionAlreadySpecified(option);
-                    }
-                    onlyOnce = true;
-                    return OptionArgument.None;
-                case "b":
-				case "buffered":
-					if(!options.DirectOutput)
-					{
-						throw OptionAlreadySpecified(option);
-					}
-					options.DirectOutput = false;
-					return OptionArgument.None;
-				case "u":
-				case "ugly":
-					if(!options.PrettyPrint)
-					{
-						throw OptionAlreadySpecified(option);
-					}
-					options.PrettyPrint = false;
-					return OptionArgument.None;
-				case "r":
-				case "root":
-					return OptionArgument.Required;
-				case "i":
-				case "include":
-					return OptionArgument.Required;
-				case "x":
-				case "exclude":
-					return OptionArgument.Required;
-				case "h":
-				case "hash":
-					return OptionArgument.Required;
-				case "s":
-				case "sparql-query":
-					return OptionArgument.Required;
-				case "f":
-				case "format":
-					return OptionArgument.Required;
-				case "p":
-				case "plugin":
-					return OptionArgument.Required;
-				case "config":
-					return OptionArgument.Required;
-				case "?":
-				case "help":
-					Help();
-					return OptionArgument.None;
-				default:
-					if(componentPropertyRegex.IsMatch(option))
-                    {
-						if(componentProperties.ContainsKey(option))
+				switch(option)
+				{
+					case "q":
+					case "quiet":
+						if(quiet)
 						{
 							throw OptionAlreadySpecified(option);
 						}
+						quiet = true;
+						return OptionArgument.None;
+					case "c":
+					case "compress":
+						if(options.CompressedOutput)
+						{
+							throw OptionAlreadySpecified(option);
+						}
+						options.CompressedOutput = true;
+						return OptionArgument.None;
+					case "m":
+					case "metadata":
+						if(!options.HideMetadata)
+						{
+							throw OptionAlreadySpecified(option);
+						}
+						options.HideMetadata = false;
+						return OptionArgument.None;
+					case "d":
+					case "data-only":
+						if(dataOnly)
+						{
+							throw OptionAlreadySpecified(option);
+						}
+						dataOnly = true;
+						return OptionArgument.None;
+					case "o":
+					case "only-once":
+						if(onlyOnce)
+						{
+							throw OptionAlreadySpecified(option);
+						}
+						onlyOnce = true;
+						return OptionArgument.None;
+					case "b":
+					case "buffered":
+						if(!options.DirectOutput)
+						{
+							throw OptionAlreadySpecified(option);
+						}
+						options.DirectOutput = false;
+						return OptionArgument.None;
+					case "u":
+					case "ugly":
+						if(!options.PrettyPrint)
+						{
+							throw OptionAlreadySpecified(option);
+						}
+						options.PrettyPrint = false;
+						return OptionArgument.None;
+					case "r":
+					case "root":
 						return OptionArgument.Required;
-                    }
-					throw UnrecognizedOption(option);
+					case "i":
+					case "include":
+						return OptionArgument.Required;
+					case "x":
+					case "exclude":
+						return OptionArgument.Required;
+					case "h":
+					case "hash":
+						return OptionArgument.Required;
+					case "s":
+					case "sparql-query":
+						return OptionArgument.Required;
+					case "f":
+					case "format":
+						return OptionArgument.Required;
+					case "p":
+					case "plugin":
+						return OptionArgument.Required;
+					case "C":
+					case "config":
+						return OptionArgument.Required;
+					case "?":
+					case "help":
+						Help();
+						return OptionArgument.None;
+					default:
+						if(componentPropertyRegex.IsMatch(option))
+						{
+							if(componentProperties.ContainsKey(option))
+							{
+								throw OptionAlreadySpecified(option);
+							}
+							return OptionArgument.Required;
+						}
+						throw UnrecognizedOption(option);
+				}
 			}
+			var result = Inner();
+			if(result == OptionArgument.None)
+			{
+				StoreOption(option, null);
+            }
+			return result;
 		}
 
 		/// <inheritdoc/>
 		protected override void OnOptionArgumentFound(string option, string? argument)
 		{
-			switch(option)
+			void Inner()
 			{
-				case "r":
-				case "root":
-					if(rootSpecified)
-					{
-						throw OptionAlreadySpecified(option);
-					}
-					if(!Uri.TryCreate(argument, UriKind.Absolute, out _))
-                    {
-						throw new ApplicationException("The argument to option '" + option + "' must be a well-formed absolute URI.");
-					}
-					options.Root = argument!;
-					rootSpecified = true;
-					break;
-				case "i":
-				case "include":
-					componentMatchers.Add(new Matcher(true, argument!));
-					break;
-				case "x":
-				case "exclude":
-					componentMatchers.Add(new Matcher(false, argument!));
-					break;
-				case "h":
-				case "hash":
-					var match = TextTools.ConvertWildcardToRegex(argument!);
-					if(mainHash == null)
-					{
-						mainHash = match;
-						mainHashName = argument;
-						componentMatchers.Add(new Matcher(true, "data-hash:" + argument!, true));
-					}else{
-						throw OptionAlreadySpecified(option);
-					}
-					break;
-				case "s":
-				case "sparql-query":
-					queries.Add(argument!);
-					break;
-				case "f":
-				case "format":
-					if(options.Format != null)
-					{
-						throw OptionAlreadySpecified(option);
-					}
-					options.Format = argument!;
-					break;
-                case "p":
-                case "plugin":
-					plugins.Add(argument!);
-					break;
-				case "config":
-					LoadConfig(argument!);
-					break;
-                default:
-					if(componentPropertyRegex.Match(option) is { Success: true } propMatch)
-                    {
-						var componentId = propMatch.Groups[1].Value.ToLowerInvariant();
-						if(!componentProperties.TryGetValue(componentId, out var dict))
-                        {
-							componentProperties[componentId] = dict = new(StringComparer.OrdinalIgnoreCase);
-                        }
-						dict[propMatch.Groups[2].Value.ToLowerInvariant()] = argument!;
-                    }
-					break;
+				switch(option)
+				{
+					case "r":
+					case "root":
+						if(rootSpecified)
+						{
+							throw OptionAlreadySpecified(option);
+						}
+						if(!Uri.TryCreate(argument, UriKind.Absolute, out _))
+						{
+							throw new ApplicationException("The argument to option '" + option + "' must be a well-formed absolute URI.");
+						}
+						options.Root = argument!;
+						rootSpecified = true;
+						break;
+					case "i":
+					case "include":
+						componentMatchers.Add(new Matcher(true, argument!));
+						break;
+					case "x":
+					case "exclude":
+						componentMatchers.Add(new Matcher(false, argument!));
+						break;
+					case "h":
+					case "hash":
+						var match = TextTools.ConvertWildcardToRegex(argument!);
+						if(mainHash == null)
+						{
+							mainHash = match;
+							mainHashName = argument;
+							componentMatchers.Add(new Matcher(true, "data-hash:" + argument!, true));
+						}else{
+							throw OptionAlreadySpecified(option);
+						}
+						break;
+					case "s":
+					case "sparql-query":
+						queries.Add(argument!);
+						break;
+					case "f":
+					case "format":
+						if(options.Format != null)
+						{
+							throw OptionAlreadySpecified(option);
+						}
+						options.Format = argument!;
+						break;
+					case "p":
+					case "plugin":
+						plugins.Add(argument!);
+						break;
+					case "C":
+					case "config":
+						LoadConfig(argument!);
+						break;
+					default:
+						if(componentPropertyRegex.Match(option) is { Success: true } propMatch)
+						{
+							var componentId = propMatch.Groups[1].Value.ToLowerInvariant();
+							if(!componentProperties.TryGetValue(componentId, out var dict))
+							{
+								componentProperties[componentId] = dict = new(StringComparer.OrdinalIgnoreCase);
+							}
+							dict[propMatch.Groups[2].Value.ToLowerInvariant()] = argument!;
+						}
+						break;
+				}
 			}
-		}
+			Inner();
+            StoreOption(option, argument);
+        }
 
 		class Matcher
         {
@@ -718,6 +747,7 @@ namespace IS4.SFI
 			{
 				if(config is IFileInfo configFile)
 				{
+					LogWriter.WriteLine($"Loading configuration from {configFile.Name}...");
 					using var stream = configFile.Open();
 					var doc = XDocument.Load(stream);
 					var root = doc.Root;
@@ -815,6 +845,121 @@ namespace IS4.SFI
 			return element.Attributes()
 				.Where(a => !a.IsNamespaceDeclaration && a.Name.Namespace == XNamespace.None)
 				.Select(a => new XElement(element.Name.Namespace + a.Name.LocalName, a.Value));
+		}
+
+		XDocument? optionsXml;
+		XElement? optionsRoot;
+
+		void CreateOptionsXml()
+		{
+			optionsXml = new XDocument
+			(
+				optionsRoot = new XElement(configRoot)
+			);
+		}
+
+		void StoreOption(string option, string? argument)
+		{
+			if(optionsRoot != null)
+			{
+				var path = option.Split(':');
+				var elem = optionsRoot;
+				foreach(var component in path)
+				{
+					elem.Add(elem = new XElement(configNs + XmlConvert.EncodeLocalName(component)));
+				}
+				if(argument != null)
+                {
+                    elem.Value = argument;
+					if(String.IsNullOrWhiteSpace(argument))
+					{
+						elem.Add(new XAttribute(XNamespace.Xml + "space", "preserve"));
+					}
+                }
+			}
+		}
+
+		void SimplifyOptions(XElement elem, bool root)
+        {
+			if(!root)
+            {
+                while(elem.NextNode is XElement nextElem && nextElem.Name == elem.Name)
+                {
+					// Merge content with the following element
+					foreach(var attr in nextElem.Attributes())
+					{
+						elem.Add(attr);
+					}
+					foreach(var elem2 in nextElem.Elements())
+					{
+						elem.Add(elem2);
+					}
+					nextElem.Remove();
+                }
+            }
+            foreach(var inner in elem.Elements().ToList())
+			{
+				var name = inner.Name;
+				if(name.Namespace != configNs)
+				{
+					// In case some non-config elements get added
+					continue;
+				}
+				if(inner.IsEmpty && !inner.Attributes().Any(a => a.Name.NamespaceName == XNamespace.None))
+				{
+					// Can't simplify switches
+					continue;
+				}
+				var localName = name.LocalName;
+				if(!inner.Elements().Any())
+				{
+                    // This is a normal option
+                    if(root)
+                    {
+                        switch(localName)
+                        {
+                            case "x":
+                            case "exclude":
+                            case "i":
+                            case "include":
+                            case "s":
+                            case "sparql-query":
+                                // Don't change these to attributes
+                                continue;
+                        }
+                    }
+					if(elem.Attribute(localName) == null)
+					{
+						elem.Add(new XAttribute(localName, inner.Value));
+						inner.Remove();
+					}
+				}else{
+					// Container for options
+					SimplifyOptions(inner, false);
+				}
+			}
+		}
+
+		void PrintOptionsXml()
+		{
+			if(optionsXml != null)
+            {
+                if(output == null)
+                {
+                    throw new ApplicationException("An output must be specified to save the options!");
+                }
+				SimplifyOptions(optionsRoot!, true);
+				using var file = environment.CreateFile(output, "application/xml");
+				var settings = new XmlWriterSettings
+				{
+					Encoding = new UTF8Encoding(false),
+					CloseOutput = false,
+					Indent = true,
+					OmitXmlDeclaration = true
+				};
+                using var writer = XmlWriter.Create(file, settings);
+                optionsXml.Save(writer);
+			}
 		}
     }
 }
