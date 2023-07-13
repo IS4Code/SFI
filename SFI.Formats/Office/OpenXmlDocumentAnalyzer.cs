@@ -1,7 +1,7 @@
 ﻿using IS4.SFI.Services;
 using IS4.SFI.Vocabulary;
 using NPOI;
-using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 
 namespace IS4.SFI.Analyzers
@@ -9,6 +9,7 @@ namespace IS4.SFI.Analyzers
     /// <summary>
     /// Analyzes OOXML-based documents, as instances of <see cref="POIXMLDocument"/>.
     /// </summary>
+    [Description("Analyzes OOXML-based documents.")]
     public class OpenXmlDocumentAnalyzer : MediaObjectAnalyzer<POIXMLDocument>
     {
         /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>

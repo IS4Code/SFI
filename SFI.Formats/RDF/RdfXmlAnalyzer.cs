@@ -1,5 +1,6 @@
 ﻿using IS4.SFI.Services;
 using IS4.SFI.Tools.Xml;
+using System.ComponentModel;
 using System.Threading.Tasks;
 
 namespace IS4.SFI.Analyzers
@@ -9,6 +10,7 @@ namespace IS4.SFI.Analyzers
     /// The analyzer uses the data in the document to describe its node,
     /// assuming URIs relative to the XML base are used.
     /// </summary>
+    [Description("Analyzer of RDF/XML documents. The analyzer uses the data in the document to describe its node, assuming URIs relative to the XML base are used.")]
     public class RdfXmlAnalyzer : MediaObjectAnalyzer<RdfXmlAnalyzer.Document>
     {
         /// <inheritdoc/>

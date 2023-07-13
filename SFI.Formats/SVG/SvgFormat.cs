@@ -1,6 +1,7 @@
 ﻿using IS4.SFI.Tools.Xml;
 using Svg;
 using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
@@ -10,6 +11,7 @@ namespace IS4.SFI.Formats
     /// <summary>
     /// Represents the SVG image format, producing instances of <see cref="SvgDocument"/>.
     /// </summary>
+    [Description("Represents the SVG image format.")]
     public class SvgFormat : XmlDocumentFormat<SvgDocument>
     {
         static SvgFormat()

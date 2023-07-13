@@ -1,6 +1,7 @@
 ﻿using IS4.SFI.Tools;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ namespace IS4.SFI.Formats
     /// <summary>
     /// Represents a general format for extended MZ modules.
     /// </summary>
+    [Description("Represents a general format for extended MZ modules.")]
     public class GenericModuleFormat : ModuleFormat<GenericModuleFormat.Module>
     {
         /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>

@@ -1,4 +1,5 @@
 ﻿using IS4.SFI.Services;
+using System.ComponentModel;
 using System.IO;
 using System.Threading.Tasks;
 using System.Xml;
@@ -10,6 +11,7 @@ namespace IS4.SFI.Analyzers
     /// An analyzer of XMP metadata tags, as instances
     /// of <see cref="XmpTag"/>.
     /// </summary>
+    [Description("An analyzer of XMP metadata tags.")]
     public class XmpTagAnalyzer : EntityAnalyzer<XmpTag>
     {
         /// <inheritdoc/>

@@ -8,6 +8,7 @@ using System;
 using System.Buffers;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace IS4.SFI.Analyzers
     /// It produces an instance of <see cref="IDataObject"/> storing the general information derived from the data,
     /// and an instance of <see cref="IBinaryFormatObject{T}"/> for each of the recognized format, for further analysis.
     /// </summary>
+    [Description("An analyzer of arbitrary data, using the 'data-format' and 'data-hash' collections to describe it.")]
     public sealed class DataAnalyzer : EntityAnalyzer<IStreamFactory>, IEntityAnalyzer<byte[]>
 	{
         /// <summary>
@@ -37,6 +39,7 @@ namespace IS4.SFI.Analyzers
         /// whose output is used to describe the data object or to create its URI if it is too long.
         /// </summary>
         [ComponentCollection("data-hash")]
+        [Description("A collection of used hash algorithms whose output is used to describe the data object or to create its URI if it is too long.")]
         public ICollection<IDataHashAlgorithm> HashAlgorithms { get; } = new List<IDataHashAlgorithm>();
 
         /// <summary>
@@ -50,6 +53,7 @@ namespace IS4.SFI.Analyzers
         /// They are sorted based on descending <see cref="IBinaryFileFormat.HeaderLength"/>.
         /// </summary>
         [ComponentCollection("data-format")]
+        [Description("A collection of recognized formats.")]
         public ICollection<IBinaryFileFormat> DataFormats { get; } = new SortedMultiSet<IBinaryFileFormat>(HeaderLengthComparer.Instance);
 
         /// <summary>
@@ -57,6 +61,7 @@ namespace IS4.SFI.Analyzers
         /// instead of storing in memory, when a seekable stream cannot be produced
         /// otherwise.
         /// </summary>
+        [Description("The minimum size at which the data is written to a temporary file on disk instead of storing in memory, when a seekable stream cannot be produced otherwise.")]
         public long FileSizeToWriteToDisk { get; set; } = 524288;
 
         /// <summary>
@@ -64,17 +69,20 @@ namespace IS4.SFI.Analyzers
         /// instead of using one of its hashes; see <see cref="GetMaxDataLengthToStore(long)"/>
         /// for details.
         /// </summary>
+        [Description("The minimum size at which to consider storing data directly in a URI instead of using one of its hashes.")]
         public int MinDataLengthToStore { get; set; } = 48;
 
         /// <summary>
         /// An estimate of the size of a triple in a data store, used in <see cref="GetMaxDataLengthToStore(long)"/>.
         /// </summary>
+        [Description("An estimate of the size of a triple in a data store.")]
         public int TripleSizeEstimate { get; set; } = 32;
 
         /// <summary>
         /// The maximum depth the data is allowed to be as an entity in a hierarchy
         /// in order to attempt to analyze formats.
         /// </summary>
+        [Description("The maximum depth the data is allowed to be as an entity in a hierarchy in order to attempt to analyze formats.")]
         public int? MaxDepthForFormats { get; set; } = 200;
 
         /// <summary>

@@ -2,6 +2,7 @@
 using IS4.SFI.Vocabulary;
 using NPOI;
 using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 
 namespace IS4.SFI.Analyzers
@@ -9,6 +10,7 @@ namespace IS4.SFI.Analyzers
     /// <summary>
     /// Analyzes OLE-based documents, as instances of <see cref="POIDocument"/>.
     /// </summary>
+    [Description("Analyzes OLE-based documents.")]
     public class OleDocumentAnalyzer : MediaObjectAnalyzer<POIDocument>
     {
         /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>

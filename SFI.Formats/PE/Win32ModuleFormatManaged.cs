@@ -5,6 +5,7 @@ using PeNet.Header.Authenticode;
 using PeNet.Header.Pe;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -15,6 +16,7 @@ namespace IS4.SFI.Formats
     /// <summary>
     /// Represents the Windows PE module format, backed by <see cref="PeFile"/>.
     /// </summary>
+    [Description("Represents the Windows PE module format.")]
     public class Win32ModuleFormatManaged : WinModuleFormat
     {
         /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>

@@ -1,5 +1,6 @@
 ﻿using IS4.SFI.Services;
 using MetadataExtractor.Formats.Xmp;
+using System.ComponentModel;
 using System.IO;
 using System.Threading.Tasks;
 using XmpCore.Impl;
@@ -11,6 +12,7 @@ namespace IS4.SFI.Analyzers
     /// An analyzer of XMP metadata, as instances
     /// of <see cref="XmpDirectory"/>.
     /// </summary>
+    [Description("An analyzer of XMP metadata.")]
     public class XmpMetadataAnalyzer : EntityAnalyzer<XmpDirectory>
     {
         /// <summary>

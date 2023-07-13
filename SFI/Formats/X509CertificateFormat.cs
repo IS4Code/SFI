@@ -2,6 +2,7 @@
 using IS4.SFI.Tools;
 using System;
 using System.Buffers;
+using System.ComponentModel;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
@@ -15,6 +16,7 @@ namespace IS4.SFI.Formats
     /// can be loaded from files, with the exception of
     /// <see cref="X509ContentType.Authenticode"/>.
     /// </summary>
+    [Description("A format representing X.509 certificates.")]
     public class X509CertificateFormat : BinaryFileFormat<X509Certificate2>
     {
         /// <summary>

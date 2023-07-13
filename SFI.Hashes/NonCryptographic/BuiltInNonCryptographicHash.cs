@@ -13,6 +13,7 @@ namespace IS4.SFI.Tools
     /// instance.
     /// </summary>
     [Browsable(false)]
+    [Description("Represents a non-cryptographic hash algorithm.")]
     public class BuiltInNonCryptographicHash : StreamDataHash<NonCryptographicHashAlgorithm>
     {
         readonly Func<NonCryptographicHashAlgorithm> factory;

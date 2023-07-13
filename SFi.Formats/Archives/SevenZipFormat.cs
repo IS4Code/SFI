@@ -1,5 +1,6 @@
 ﻿using IS4.SFI.Formats.Archives;
 using SharpCompress.Archives.SevenZip;
+using System.ComponentModel;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -8,6 +9,7 @@ namespace IS4.SFI.Formats
     /// <summary>
     /// Represents the 7zip archive format.
     /// </summary>
+    [Description("Represents the 7zip archive format.")]
     public class SevenZipFormat : ArchiveFormat<SevenZipArchive>
     {
         /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>

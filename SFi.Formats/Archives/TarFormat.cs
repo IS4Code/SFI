@@ -3,6 +3,7 @@ using IS4.SFI.Services;
 using IS4.SFI.Tools;
 using SharpCompress.Readers.Tar;
 using System;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace IS4.SFI.Formats
     /// <summary>
     /// Represents the tar archive format.
     /// </summary>
+    [Description("Represents the tar archive format.")]
     public class TarFormat : SignatureFormat<IArchiveReader>
     {
         /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>

@@ -1,11 +1,13 @@
 ﻿using NPOI.HSSF.UserModel;
 using NPOI.POIFS.FileSystem;
+using System.ComponentModel;
 
 namespace IS4.SFI.Formats
 {
     /// <summary>
     /// Represents the Excel (XLS) document format, producing instances of <see cref="HSSFWorkbook"/>.
     /// </summary>
+    [Description("Represents the Excel (XLS) document format.")]
     public class ExcelDocumentFormat : OleDocumentFormat<HSSFWorkbook>
     {
         /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>

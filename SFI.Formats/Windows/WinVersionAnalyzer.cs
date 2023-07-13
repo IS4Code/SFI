@@ -14,11 +14,12 @@ using static Vanara.PInvoke.VersionDll;
 namespace IS4.SFI.Analyzers
 {
     /// <summary>
-    /// Analyzes a Windows version resources, as an instance of <see cref="WinVersionInfo"/>
+    /// Analyzes Windows version resources, as an instance of <see cref="WinVersionInfo"/>
     /// storing the VS_VERSIONINFO structure. The parsing of the structure is done
     /// through P/Invoke.
     /// </summary>
     [Browsable(false)]
+    [Description("Analyzes Windows version resources.")]
     public class WinVersionAnalyzer : EntityAnalyzer<WinVersionInfo>
     {
         /// <inheritdoc/>

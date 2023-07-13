@@ -4,6 +4,7 @@ using IS4.SFI.Tools;
 using IS4.SFI.Vocabulary;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -12,6 +13,7 @@ namespace IS4.SFI.Analyzers
     /// <summary>
     /// An analyzer of Delphi objects, as instances of <see cref="DelphiObject"/>.
     /// </summary>
+    [Description("An analyzer of Delphi objects.")]
     public class DelphiObjectAnalyzer : MediaObjectAnalyzer<DelphiObject>
     {
         /// <inheritdoc/>

@@ -15,6 +15,7 @@ namespace IS4.SFI.Analyzers
     /// <summary>
     /// Analyzes image metadata represented by collections of <see cref="Directory"/>.
     /// </summary>
+    [Description("Analyzes image metadata.")]
     public class ImageMetadataAnalyzer : MediaObjectAnalyzer<IReadOnlyList<Directory>>
     {
         /// <inheritdoc/>

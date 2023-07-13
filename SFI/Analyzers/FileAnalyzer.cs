@@ -2,6 +2,7 @@
 using IS4.SFI.Vocabulary;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace IS4.SFI.Analyzers
     /// <see cref="IFileInfo"/>, <see cref="IDirectoryInfo"/>, <see cref="FileInfo"/> or
     /// <see cref="DirectoryInfo"/>.
     /// </summary>
+    [Description("An analyzer of files and directories.")]
     public sealed class FileAnalyzer : EntityAnalyzer<IFileNodeInfo>, IEntityAnalyzer<FileInfo>, IEntityAnalyzer<DirectoryInfo>, IEntityAnalyzer<DriveInfo>, IEntityAnalyzer<IFileInfo>, IEntityAnalyzer<IDirectoryInfo>
     {
         /// <summary>

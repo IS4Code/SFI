@@ -2,6 +2,7 @@
 using IS4.SFI.Vocabulary;
 using SwfDotNet.IO;
 using SwfDotNet.IO.Tags;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,6 +11,7 @@ namespace IS4.SFI.Analyzers
     /// <summary>
     /// An analyzer of Adobe Shockwave Flash objects, as instances of <see cref="Swf"/>.
     /// </summary>
+    [Description("An analyzer of Adobe Shockwave Flash objects.")]
     public class ShockwaveFlashAnalyzer : MediaObjectAnalyzer<Swf>, IEntityAnalyzer<DefineBitsJpeg2Tag>, IEntityAnalyzer<DefineSoundTag>
     {
         /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>

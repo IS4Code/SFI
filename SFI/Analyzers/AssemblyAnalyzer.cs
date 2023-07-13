@@ -2,6 +2,7 @@
 using IS4.SFI.Vocabulary;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ namespace IS4.SFI.Analyzers
     /// <summary>
     /// An analyzer of .NET assemblies, expressed as instances of <see cref="Assembly"/>.
     /// </summary>
+    [Description("An analyzer of .NET assemblies.")]
     public class AssemblyAnalyzer : MediaObjectAnalyzer<Assembly>
     {
         /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>

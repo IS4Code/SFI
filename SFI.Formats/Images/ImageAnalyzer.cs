@@ -6,6 +6,7 @@ using IS4.SFI.Tools.IO;
 using IS4.SFI.Vocabulary;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -18,6 +19,7 @@ namespace IS4.SFI.Analyzers
     /// <summary>
     /// An analyzer of images as instances of <see cref="Image"/>.
     /// </summary>
+    [Description("An analyzer of images.")]
     public class ImageAnalyzer : MediaObjectAnalyzer<Image>
     {
         /// <summary>
@@ -25,6 +27,7 @@ namespace IS4.SFI.Analyzers
         /// hashes from the low-detail form of the image.
         /// </summary>
         [ComponentCollection("image-hash")]
+        [Description("A collection of image-based hash algorithms that produce hashes from the low-detail form of the image.")]
         public ICollection<IObjectHashAlgorithm<Image>> LowFrequencyImageHashAlgorithms { get; } = new List<IObjectHashAlgorithm<Image>>();
 
         /// <summary>
@@ -32,11 +35,13 @@ namespace IS4.SFI.Analyzers
         /// from the individual pixels of the image.
         /// </summary>
         [ComponentCollection("pixel-hash")]
+        [Description("A collection of byte-based hash algorithms producing hashes from the individual pixels of the image.")]
         public ICollection<IDataHashAlgorithm> DataHashAlgorithms { get; } = new List<IDataHashAlgorithm>();
 
         /// <summary>
         /// Whether to produce a small thumbnail <c>data:</c> node from the image.
         /// </summary>
+        [Description("Whether to produce a small thumbnail data: node from the image.")]
         public bool MakeThumbnail { get; set; } = true;
 
         /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>

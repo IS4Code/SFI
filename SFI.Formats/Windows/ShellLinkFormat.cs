@@ -2,6 +2,7 @@
 using IS4.SFI.Tools;
 using IS4.SFI.Windows.ComTypes;
 using System;
+using System.ComponentModel;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -15,6 +16,7 @@ namespace IS4.SFI.Formats
     /// <summary>
     /// Represents the Windows Shell Link format, producing instances of <see cref="IShellLinkW"/>.
     /// </summary>
+    [Description("Represents the Windows Shell Link format.")]
     public class ShellLinkFormat : BinaryFileFormat<IShellLinkW>
     {
         const int headerLength = 76;

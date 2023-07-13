@@ -15,6 +15,7 @@ namespace IS4.SFI.Formats
     /// Represents the Windows PE module format, loaded using P/Invoke.
     /// </summary>
     [Browsable(false)]
+    [Description("Represents the Windows PE module format.")]
     public class Win32ModuleFormat : WinModuleFormat
     {
         /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>

@@ -11,6 +11,7 @@ namespace IS4.SFI.Formats
     /// The MP3 audio format.
     /// </summary>
     [Browsable(false)]
+    [Description("The MP3 audio format.")]
     public class Mp3Format : BinaryFileFormat<WaveStream>
     {
         readonly Mp3FileReaderBase.FrameDecompressorBuilder frameDecompressorBuilder;

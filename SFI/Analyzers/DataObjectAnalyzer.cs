@@ -4,6 +4,7 @@ using IS4.SFI.Tools;
 using IS4.SFI.Vocabulary;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -12,12 +13,14 @@ namespace IS4.SFI.Analyzers
     /// <summary>
     /// An analyzer describing instances of <see cref="IDataObject"/>.
     /// </summary>
+    [Description("An analyzer of data objects, describing their common properties and linking their formats.")]
     public class DataObjectAnalyzer : EntityAnalyzer<IDataObject>
     {
         /// <summary>
         /// Stores the number of digits used for <see cref="TextTools.SizeSuffix(long, int)"/>
         /// when creating the label.
         /// </summary>
+        [Description("Stores the number of digits used when creating the label.")]
         public int LabelSizeSuffixDigits { get; set; } = 2;
 
         /// <inheritdoc/>

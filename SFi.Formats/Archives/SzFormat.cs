@@ -3,6 +3,7 @@ using IS4.SFI.Services;
 using IS4.SFI.Tools;
 using IS4.Tools;
 using System;
+using System.ComponentModel;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace IS4.SFI.Formats
     /// <summary>
     /// Represents the SZ archive format.
     /// </summary>
+    [Description("Represents the SZ archive format.")]
     public class SzFormat : SignatureFormat<IArchiveReader>
     {
         /// <summary>

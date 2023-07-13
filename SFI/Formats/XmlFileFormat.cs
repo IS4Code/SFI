@@ -1,5 +1,6 @@
 ﻿using IS4.SFI.Services;
 using System;
+using System.ComponentModel;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ namespace IS4.SFI.Formats
     /// <summary>
     /// Represents the XML file format, producing instances of <see cref="XmlReader"/>.
     /// </summary>
+    [Description("Represents the XML file format.")]
     public class XmlFileFormat : BinaryFileFormat<XmlReader>
     {
         /// <summary>

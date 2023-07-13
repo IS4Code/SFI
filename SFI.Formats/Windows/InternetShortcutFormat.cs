@@ -1,6 +1,7 @@
 ﻿using IS4.SFI.Services;
 using IS4.SFI.Windows.ComTypes;
 using System;
+using System.ComponentModel;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -14,6 +15,7 @@ namespace IS4.SFI.Formats
     /// <summary>
     /// Represents the URL shortcut format, producing instances of <see cref="IUniformResourceLocator"/>.
     /// </summary>
+    [Description("Represents the URL shortcut format.")]
     public class InternetShortcutFormat : SignatureFormat<IUniformResourceLocator>
     {
         static readonly Type InternetShortcut = Type.GetTypeFromCLSID(new Guid(0xFBF23B40, 0xE3F0, 0x101B, 0x84, 0x88, 0x00, 0xAA, 0x00, 0x3E, 0x56, 0xF8));

@@ -3,6 +3,7 @@ using MetadataExtractor;
 using MetadataExtractor.Formats.FileType;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace IS4.SFI.Formats
     /// Represents a format for images with metadata, producing instances of
     /// <see cref="IReadOnlyList{T}"/> of <see cref="MetadataExtractor.Directory"/>.
     /// </summary>
+    [Description("Represents a format for images with metadata.")]
     public class ImageMetadataFormat : BinaryFileFormat<IReadOnlyList<MetadataExtractor.Directory>>
     {
         /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>

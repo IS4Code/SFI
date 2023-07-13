@@ -4,6 +4,7 @@ using MetadataExtractor;
 using MetadataExtractor.Formats.Exif;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace IS4.SFI.Analyzers
     /// An analyzer of EXIF metadata, as instances
     /// of <see cref="ExifDirectoryBase"/>.
     /// </summary>
+    [Description("An analyzer of EXIF metadata.")]
     public class ExifMetadataAnalyzer : EntityAnalyzer<ExifDirectoryBase>
     {
         /// <inheritdoc/>

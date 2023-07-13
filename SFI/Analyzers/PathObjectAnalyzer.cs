@@ -1,6 +1,7 @@
 ﻿using IS4.SFI.Services;
 using IS4.SFI.Vocabulary;
 using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 
 namespace IS4.SFI.Analyzers
@@ -8,6 +9,7 @@ namespace IS4.SFI.Analyzers
     /// <summary>
     /// An analyzer of file locations, expressed as instances of <see cref="PathObject"/>.
     /// </summary>
+    [Description("An analyzer of file locations.")]
     public class PathObjectAnalyzer : EntityAnalyzer<PathObject>
     {
         /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>

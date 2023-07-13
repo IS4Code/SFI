@@ -1,6 +1,7 @@
 ﻿using IS4.SFI.Formats.Modules;
 using IS4.SFI.Tools;
 using System;
+using System.ComponentModel;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -10,6 +11,7 @@ namespace IS4.SFI.Formats
     /// Represents the MS-DOS MZ module format, producing instances of
     /// <see cref="DosModule"/>.
     /// </summary>
+    [Description("Represents the MS-DOS MZ module format.")]
     public class DosModuleExeFormat : ModuleFormat<DosModule>
     {
         /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>

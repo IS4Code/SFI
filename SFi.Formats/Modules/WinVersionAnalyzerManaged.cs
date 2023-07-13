@@ -4,6 +4,7 @@ using IS4.SFI.Tools;
 using IS4.SFI.Vocabulary;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -12,10 +13,11 @@ using System.Threading.Tasks;
 namespace IS4.SFI.Analyzers
 {
     /// <summary>
-    /// Analyzes a Windows version resources, as an instance of <see cref="WinVersionInfo"/>
+    /// Analyzes Windows version resources, as an instance of <see cref="WinVersionInfo"/>
     /// storing the VS_VERSIONINFO structure. The parsing of the structure is done
     /// in purely managed code.
     /// </summary>
+    [Description("Analyzes Windows version resources.")]
     public class WinVersionAnalyzerManaged : EntityAnalyzer<WinVersionInfo>
     {
         /// <inheritdoc/>

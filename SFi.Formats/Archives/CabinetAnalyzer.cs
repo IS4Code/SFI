@@ -6,6 +6,7 @@ using SharpCompress.Readers;
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace IS4.SFI.Analyzers
 {
@@ -14,6 +15,7 @@ namespace IS4.SFI.Analyzers
     /// The analysis itself is performed by analyzing <see cref="IArchiveReader"/>
     /// on an adapted instance of the archive.
     /// </summary>
+    [Description("Analyzes Cabinet archives.")]
     public class CabinetAnalyzer : MediaObjectAnalyzer<ICabinetArchive>
     {
         /// <inheritdoc/>

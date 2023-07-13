@@ -4,6 +4,7 @@ using IS4.SFI.Vocabulary;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ namespace IS4.SFI.Analyzers
     /// <summary>
     /// Analyzes instances of <see cref="File"/> as containers of tags.
     /// </summary>
+    [Description("Analyzes containers of tags.")]
     public class TagLibAnalyzer : MediaObjectAnalyzer<File>, IPropertyUriFormatter<string>
     {
         /// <inheritdoc/>

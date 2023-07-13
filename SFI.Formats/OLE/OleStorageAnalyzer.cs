@@ -2,6 +2,7 @@
 using OpenMcdf;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -10,6 +11,7 @@ namespace IS4.SFI.Analyzers
     /// <summary>
     /// An analyzer of OLE compound files as instances of <see cref="CompoundFile"/>.
     /// </summary>
+    [Description("An analyzer of OLE compound files.")]
     public class OleStorageAnalyzer : MediaObjectAnalyzer<CompoundFile>
     {
         /// <inheritdoc/>

@@ -1,4 +1,5 @@
 ﻿using NAudio.Wave;
+using System.ComponentModel;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -7,6 +8,7 @@ namespace IS4.SFI.Formats
     /// <summary>
     /// The OGG audio format.
     /// </summary>
+    [Description("The OGG audio format.")]
     public class OggFormat : SignatureFormat<WaveStream>
     {
         /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>

@@ -1,6 +1,7 @@
 ﻿using HtmlAgilityPack;
 using IS4.SFI.Services;
 using System;
+using System.ComponentModel;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,11 +11,13 @@ namespace IS4.SFI.Formats
     /// <summary>
     /// Represents the HTML format, producing instances of <see cref="HtmlDocument"/>.
     /// </summary>
+    [Description("Represents the HTML format.")]
     public class HtmlFormat : BinaryFileFormat<HtmlDocument>
     {
         /// <summary>
         /// Contains the encoding picked for HTML by default.
         /// </summary>
+        [Description("Contains the encoding picked for HTML by default.")]
         public Encoding DefaultEncoding { get; set; } = Encoding.UTF8;
 
         /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>

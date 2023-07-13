@@ -3,6 +3,7 @@ using IS4.SFI.Tools;
 using IS4.SFI.Vocabulary;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -16,6 +17,7 @@ namespace IS4.SFI.Analyzers
     /// Analyzes Web ARChive records, as instances of <see cref="IAsyncEnumerable{T}"/>
     /// of <see cref="Record"/>.
     /// </summary>
+    [Description("Analyzes Web ARChive records.")]
     public class WarcAnalyzer : MediaObjectAnalyzer<IAsyncEnumerable<Record>>
     {
         /// <inheritdoc/>

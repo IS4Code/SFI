@@ -6,6 +6,7 @@ using IS4.SFI.Tools;
 using IS4.SFI.Vocabulary;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace IS4.SFI.Analyzers
     /// <summary>
     /// Analyzes Windows modules, as instances of <see cref="IModule"/>.
     /// </summary>
+    [Description("Analyzes Windows modules.")]
     public class WinModuleAnalyzer : MediaObjectAnalyzer<IModule>
     {
         /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>

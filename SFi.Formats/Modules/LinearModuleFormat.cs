@@ -1,4 +1,5 @@
 ﻿using IS4.SFI.Formats.Modules;
+using System.ComponentModel;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -7,6 +8,7 @@ namespace IS4.SFI.Formats
     /// <summary>
     /// Represents the Linear Executable (LE) MZ module format.
     /// </summary>
+    [Description("Represents the Linear Executable (LE) MZ module format.")]
     public class LinearModuleFormat : WinModuleFormat
     {
         /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>

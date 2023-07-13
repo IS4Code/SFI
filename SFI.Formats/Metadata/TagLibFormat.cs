@@ -1,6 +1,7 @@
 ﻿using IS4.SFI.Services;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ namespace IS4.SFI.Formats
     /// <summary>
     /// Represents tagged formats, as instances of <see cref="TagLib.File"/>.
     /// </summary>
+    [Description("Represents tagged formats.")]
     public class TagLibFormat : BinaryFileFormat<TagLib.File>
     {
         /// <inheritdoc cref="FileFormat{T}.FileFormat(string?, string?)"/>

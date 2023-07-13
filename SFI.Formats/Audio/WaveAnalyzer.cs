@@ -7,12 +7,14 @@ using NAudio.Wave;
 using NAudio.Wave.SampleProviders;
 using System.Drawing;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace IS4.SFI.Analyzers
 {
     /// <summary>
     /// An analyzer of audio as instances of <see cref="WaveStream"/>.
     /// </summary>
+    [Description("An analyzer of audio.")]
     public class WaveAnalyzer : MediaObjectAnalyzer<WaveStream>
     {
         readonly PolarSpectrumGenerator generator = new(512, 512);
@@ -20,6 +22,7 @@ namespace IS4.SFI.Analyzers
         /// <summary>
         /// Whether to produce spectrograms from the audio.
         /// </summary>
+        [Description("Whether to produce spectrograms from the audio.")]
         public bool CreateSpectrum { get; set; } = true;
 
         /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>

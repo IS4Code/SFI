@@ -1,6 +1,7 @@
 ﻿using IS4.SFI.Tools;
 using System;
 using System.Buffers;
+using System.ComponentModel;
 using System.IO;
 using System.IO.Compression;
 using System.Reflection;
@@ -11,6 +12,7 @@ namespace IS4.SFI.Formats
     /// <summary>
     /// Represents the PE module format storing a .NET assembly.
     /// </summary>
+    [Description("Represents the PE module format storing a .NET assembly.")]
     public class CliModuleFormat : ModuleFormat<Assembly>
     {
         const string baseType = "application/vnd.microsoft.portable-executable";

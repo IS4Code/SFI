@@ -3,6 +3,7 @@ using IS4.SFI.RDF;
 using IS4.SFI.Services;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -17,6 +18,7 @@ namespace IS4.SFI.Analyzers
     /// <summary>
     /// An RDFa analyzer derived from <see cref="HtmlAnalyzer"/>.
     /// </summary>
+    [Description("An RDFa analyzer based on HTML.")]
     public class RdfAHtmlAnalyzer : HtmlAnalyzer
     {
         /// <summary>

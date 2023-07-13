@@ -1,4 +1,5 @@
 ﻿using DiscUtils.Iso9660;
+using System.ComponentModel;
 using System.IO;
 
 namespace IS4.SFI.Formats
@@ -6,6 +7,7 @@ namespace IS4.SFI.Formats
     /// <summary>
     /// Represents the ISO CD image format, as an instance of <see cref="CDReader"/>.
     /// </summary>
+    [Description("Represents the ISO CD image format.")]
     public class IsoFormat : DiscFormat<CDReader>
     {
         /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>

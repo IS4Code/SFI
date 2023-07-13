@@ -1,5 +1,6 @@
 ﻿using PdfSharpCore.Pdf;
 using PdfSharpCore.Pdf.IO;
+using System.ComponentModel;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -8,12 +9,14 @@ namespace IS4.SFI.Formats
     /// <summary>
     /// Represents the Portable Document Format, producing instances of <see cref="PdfDocument"/>.
     /// </summary>
+    [Description("Represents the Portable Document Format.")]
     public class PdfFormat : SignatureFormat<PdfDocument>
     {
         /// <summary>
         /// The opening mode used for matched PDF documents.
         /// </summary>
-        public PdfDocumentOpenMode OpenMode { get; } = PdfDocumentOpenMode.InformationOnly;
+        [Description("The opening mode used for matched PDF documents.")]
+        public PdfDocumentOpenMode OpenMode { get; set; } = PdfDocumentOpenMode.InformationOnly;
 
         /// <inheritdoc cref="FileFormat{T}.FileFormat(string?, string?)"/>
         public PdfFormat() : base("%PDF", "application/pdf", "pdf")

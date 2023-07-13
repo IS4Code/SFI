@@ -4,6 +4,7 @@ using IS4.SFI.Tools;
 using IS4.SFI.Vocabulary;
 using MorseCode.ITask;
 using System;
+using System.ComponentModel;
 using System.Net.Mime;
 using System.Threading.Tasks;
 
@@ -12,12 +13,14 @@ namespace IS4.SFI.Analyzers
     /// <summary>
     /// An analyzer of format objects as instances of <see cref="IFormatObject"/>.
     /// </summary>
+    [Description("An analyzer of format objects.")]
     public class FormatObjectAnalyzer : EntityAnalyzer<IFormatObject>, IResultFactory<AnalysisResult, (IFormatObject format, AnalysisContext context, IEntityAnalyzers analyzer)>
     {
         /// <summary>
         /// Stores the number of digits used for <see cref="TextTools.SizeSuffix(long, int)"/>
         /// when creating the label.
         /// </summary>
+        [Description("Stores the number of digits used when creating the label.")]
         public int LabelSizeSuffixDigits { get; set; } = 2;
 
         /// <inheritdoc/>

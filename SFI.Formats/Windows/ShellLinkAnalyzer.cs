@@ -8,12 +8,14 @@ using static Vanara.PInvoke.Shell32;
 using static Vanara.PInvoke.ShlwApi;
 using static Vanara.PInvoke.ComCtl32;
 using System.Text.RegularExpressions;
+using System.ComponentModel;
 
 namespace IS4.SFI.Analyzers
 {
     /// <summary>
     /// An analyzer of Windows Shell Links, as instances of <see cref="IShellLinkW"/>.
     /// </summary>
+    [Description("An analyzer of Windows Shell Links.")]
     public class ShellLinkAnalyzer : MediaObjectAnalyzer<IShellLinkW>
     {
         /// <inheritdoc/>

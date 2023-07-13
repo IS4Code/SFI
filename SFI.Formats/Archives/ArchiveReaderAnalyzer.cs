@@ -1,6 +1,7 @@
 ﻿using IS4.SFI.Formats;
 using IS4.SFI.Services;
 using IS4.SFI.Vocabulary;
+using System.ComponentModel;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 
@@ -9,6 +10,7 @@ namespace IS4.SFI.Analyzers
     /// <summary>
     /// Analyzes archives as instances of <see cref="IArchiveReader"/>.
     /// </summary>
+    [Description("Analyzes archives.")]
     public class ArchiveReaderAnalyzer : MediaObjectAnalyzer<IArchiveReader>
     {
         /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>

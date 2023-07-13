@@ -6,6 +6,7 @@ using IS4.SFI.Vocabulary;
 using MorseCode.ITask;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Channels;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ namespace IS4.SFI.Analyzers
     /// <summary>
     /// An analyzer of XML documents, expressed using the common class <see cref="XmlReader"/>.
     /// </summary>
+    [Description("An analyzer of XML documents, using the 'xml-format' collection to describe them.")]
     public class XmlAnalyzer : MediaObjectAnalyzer<XmlReader>, IResultFactory<AnalysisResult, (IXmlDocumentFormat format, AnalysisContext context, IEntityAnalyzers analyzer)>
     {
         /// <summary>
@@ -24,6 +26,7 @@ namespace IS4.SFI.Analyzers
         /// to use when recognizing the format of the document.
         /// </summary>
         [ComponentCollection("xml-format")]
+        [Description("A collection of XML formats to use when recognizing the format of the document.")]
         public ICollection<IXmlDocumentFormat> XmlFormats { get; } = new List<IXmlDocumentFormat>();
 
         /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>

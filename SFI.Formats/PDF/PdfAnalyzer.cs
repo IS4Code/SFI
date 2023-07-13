@@ -1,7 +1,7 @@
 ﻿using IS4.SFI.Services;
 using IS4.SFI.Vocabulary;
 using PdfSharpCore.Pdf;
-using System;
+using System.ComponentModel;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -10,6 +10,7 @@ namespace IS4.SFI.Analyzers
     /// <summary>
     /// Analyzes PDF documents, as instances of <see cref="PdfDocument"/>.
     /// </summary>
+    [Description("Analyzes PDF documents.")]
     public class PdfAnalyzer : MediaObjectAnalyzer<PdfDocument>
     {
         /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>

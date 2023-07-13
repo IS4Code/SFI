@@ -44,6 +44,7 @@ namespace IS4.SFI.Hashes
         /// <summary>
         /// The size of individually hashed blocks of input files.
         /// </summary>
+        [Description("The size of individually hashed blocks of input files.")]
         public int BlockSize { get; set; } = 262144;
 
         /// <summary>

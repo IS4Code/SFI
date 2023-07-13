@@ -1,5 +1,6 @@
 ﻿using IS4.SFI.Services;
 using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -9,8 +10,9 @@ using System.Threading.Tasks;
 namespace IS4.SFI.Formats
 {
     /// <summary>
-    /// An image format, producing instances of <see cref="Image"/>.
+    /// A general image format, producing instances of <see cref="Image"/>.
     /// </summary>
+    [Description("A general image format.")]
     public class ImageFormat : BinaryFileFormat<Image>
     {
         /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>

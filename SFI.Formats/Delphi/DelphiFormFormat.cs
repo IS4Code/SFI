@@ -1,4 +1,5 @@
 ﻿using IS4.SFI.Formats.Data;
+using System.ComponentModel;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,11 +9,13 @@ namespace IS4.SFI.Formats
     /// <summary>
     /// Represents the DFM format used by Delphi, producing instances of <see cref="DelphiObject"/>.
     /// </summary>
+    [Description("Represents the DFM format used by Delphi.")]
     public class DelphiFormFormat : SignatureFormat<DelphiObject>
     {
         /// <summary>
         /// Contains the encoding used for reading strings.
         /// </summary>
+        [Description("Contains the encoding used for reading strings.")]
         public Encoding DefaultEncoding { get; set; }
 
         /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>

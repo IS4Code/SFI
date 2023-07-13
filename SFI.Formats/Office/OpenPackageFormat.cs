@@ -5,6 +5,7 @@ using NPOI.OpenXml4Net.Exceptions;
 using NPOI.OpenXml4Net.OPC;
 using NPOI.OpenXml4Net.OPC.Internal;
 using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 
 namespace IS4.SFI.Formats
@@ -13,6 +14,7 @@ namespace IS4.SFI.Formats
     /// Represents the OOXML package format, matching packages with the
     /// <see cref="ContentTypeManager.CONTENT_TYPES_PART_NAME"/> file.
     /// </summary>
+    [Description("Represents the OOXML package format.")]
     public sealed class OpenPackageFormat : ContainerFileFormat<IFileNodeInfo, OpenPackageFormat.PackageInfo>
     {
         /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>

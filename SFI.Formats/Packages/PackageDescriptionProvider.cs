@@ -2,6 +2,7 @@
 using IS4.SFI.Services;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Threading.Tasks;
 
 namespace IS4.SFI.Formats
@@ -10,6 +11,7 @@ namespace IS4.SFI.Formats
     /// Provides description of based on the presence of plaintext-based description files.
     /// The names of the used files are stored in <see cref="FileNames"/>.
     /// </summary>
+    [Description("Provides description of based on the presence of plaintext-based description files.")]
     public class PackageDescriptionProvider : PackageProvider<PackageDescriptionProvider.PackageInfo>
     {
         /// <summary>

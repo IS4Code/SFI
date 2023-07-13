@@ -345,6 +345,7 @@ namespace IS4.SFI
             /// <summary>
             /// Whether to accept all values given to the analyzer.
             /// </summary>
+            [Description("Whether to accept all values given to the analyzer.")]
             public bool AcceptEverything { get; set; }
 
             public async override ValueTask<AnalysisResult> Analyze(object entity, AnalysisContext context, IEntityAnalyzers analyzers)

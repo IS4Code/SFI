@@ -3,6 +3,7 @@ using IS4.SFI.Tags;
 using IS4.SFI.Vocabulary;
 using Svg;
 using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 
 namespace IS4.SFI.Analyzers
@@ -10,6 +11,7 @@ namespace IS4.SFI.Analyzers
     /// <summary>
     /// Analyzes SVG images as instances of <see cref="SvgDocument"/>.
     /// </summary>
+    [Description("Analyzes SVG images.")]
     public class SvgAnalyzer : MediaObjectAnalyzer<SvgDocument>
     {
         /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>

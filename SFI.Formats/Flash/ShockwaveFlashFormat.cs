@@ -1,6 +1,7 @@
 ﻿using IS4.SFI.Services;
 using SwfDotNet.IO;
 using System;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ namespace IS4.SFI.Formats
     /// <summary>
     /// Represents the Adobe Shockwave Flash format, as an instance of <see cref="Swf"/>.
     /// </summary>
+    [Description("Represents the Adobe Shockwave Flash format.")]
     public class ShockwaveFlashFormat : BinaryFileFormat<Swf>
     {
         static readonly byte[][] signatures = new[] { "FWS", "CWS", "ZWS" }.Select(h => Encoding.ASCII.GetBytes(h)).ToArray();

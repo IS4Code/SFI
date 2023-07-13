@@ -1,5 +1,6 @@
 ﻿using IS4.SFI.Formats.Archives;
 using SharpCompress.Readers.GZip;
+using System.ComponentModel;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -8,6 +9,7 @@ namespace IS4.SFI.Formats
     /// <summary>
     /// Represents the gzip archive format.
     /// </summary>
+    [Description("Represents the gzip archive format.")]
     public class GZipFormat : SignatureFormat<IArchiveReader>
     {
         /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>

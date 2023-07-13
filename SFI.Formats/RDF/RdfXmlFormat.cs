@@ -1,6 +1,7 @@
 ﻿using IS4.SFI.Analyzers;
 using IS4.SFI.Tools.Xml;
 using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
@@ -10,6 +11,7 @@ namespace IS4.SFI.Formats
     /// <summary>
     /// Represents the RDF/XML format, producing instances of <see cref="RdfXmlAnalyzer.Document"/>.
     /// </summary>
+    [Description("Represents the RDF/XML format.")]
     public class RdfXmlFormat : XmlDocumentFormat<RdfXmlAnalyzer.Document>
     {
         /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>

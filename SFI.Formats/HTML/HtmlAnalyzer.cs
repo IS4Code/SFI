@@ -3,6 +3,7 @@ using IS4.SFI.Services;
 using IS4.SFI.Vocabulary;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Threading.Tasks;
 
 namespace IS4.SFI.Analyzers
@@ -10,6 +11,7 @@ namespace IS4.SFI.Analyzers
     /// <summary>
     /// Analyzer of HTML documents, as instances of <see cref="HtmlDocument"/>.
     /// </summary>
+    [Description("Analyzer of HTML documents.")]
     public class HtmlAnalyzer : MediaObjectAnalyzer<HtmlDocument>
     {
         /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>

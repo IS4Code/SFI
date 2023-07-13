@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Threading.Tasks;
 using Toimik.WarcProtocol;
@@ -9,6 +10,7 @@ namespace IS4.SFI.Formats
     /// Represents the Web ARCive format, producing instances of <see cref="IAsyncEnumerable{T}"/>
     /// of <see cref="Record"/>.
     /// </summary>
+    [Description("Represents the Web ARCive format.")]
     public class WarcFormat : SignatureFormat<IAsyncEnumerable<Record>>
     {
         /// <summary>

@@ -1,6 +1,7 @@
 ﻿using IS4.SFI.Formats.Packages;
 using IS4.SFI.Services;
 using IS4.SFI.Vocabulary;
+using System.ComponentModel;
 using System.Threading.Tasks;
 
 namespace IS4.SFI.Analyzers
@@ -9,6 +10,7 @@ namespace IS4.SFI.Analyzers
     /// Analyzes instances of <see cref="PackageDescription"/>, describing a directory or archive
     /// storing its description as metadata.
     /// </summary>
+    [Description("Analyzes package descriptions describing a directory or archive storing its description as metadata.")]
     public class PackageDescriptionAnalyzer : EntityAnalyzer<PackageDescription>
     {
         /// <inheritdoc/>

@@ -1,5 +1,6 @@
 ﻿using IS4.SFI.Formats.Archives;
 using SharpCompress.Archives.Zip;
+using System.ComponentModel;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -8,6 +9,7 @@ namespace IS4.SFI.Formats
     /// <summary>
     /// Represents the ZIP archive format.
     /// </summary>
+    [Description("Represents the ZIP archive format.")]
     public class ZipFormat : ArchiveFormat<ZipArchive>
     {
         /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>

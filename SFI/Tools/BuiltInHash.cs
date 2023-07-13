@@ -1,6 +1,7 @@
 ﻿using IS4.SFI.Services;
 using IS4.SFI.Vocabulary;
 using System;
+using System.ComponentModel;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace IS4.SFI.Tools
     /// Represents a hash algorithm backed using a native <see cref="Cryptography.HashAlgorithm"/>
     /// instance.
     /// </summary>
+    [Description("Represents a hash algorithm.")]
     public class BuiltInHash : DataHashAlgorithm
     {
         /// <summary>

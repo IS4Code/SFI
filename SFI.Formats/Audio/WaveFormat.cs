@@ -2,6 +2,7 @@
 using IS4.SFI.Tools;
 using NAudio.Wave;
 using System;
+using System.ComponentModel;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -10,6 +11,7 @@ namespace IS4.SFI.Formats
     /// <summary>
     /// Represents the WAV format.
     /// </summary>
+    [Description("Represents the WAV format.")]
     public class WaveFormat : SignatureFormat<WaveStream>
     {
         /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>

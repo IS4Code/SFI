@@ -1,6 +1,6 @@
 ﻿using IS4.SFI.Services;
 using IS4.SFI.Vocabulary;
-using System;
+using System.ComponentModel;
 using System.Globalization;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
@@ -10,11 +10,13 @@ namespace IS4.SFI.Analyzers
     /// <summary>
     /// An analyzer of X.509 certificates, expressed as instances of <see cref="X509Certificate"/>.
     /// </summary>
+    [Description("An analyzer of X.509 certificates.")]
     public class X509CertificateAnalyzer : MediaObjectAnalyzer<X509Certificate>
     {
         /// <summary>
         /// Whether to use the certificate's extensions to provide additional description.
         /// </summary>
+        [Description("Whether to use the certificate's extensions to provide additional description.")]
         public bool DescribeExtensions { get; set; } = true;
 
         /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>

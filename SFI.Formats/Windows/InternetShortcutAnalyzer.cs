@@ -1,5 +1,6 @@
 ﻿using IS4.SFI.Services;
 using IS4.SFI.Vocabulary;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using static Vanara.PInvoke.Url;
 
@@ -8,6 +9,7 @@ namespace IS4.SFI.Analyzers
     /// <summary>
     /// An analyzer of URL shortcuts, as instances of <see cref="IUniformResourceLocator"/>.
     /// </summary>
+    [Description("An analyzer of URL shortcuts.")]
     public class InternetShortcutAnalyzer : MediaObjectAnalyzer<IUniformResourceLocator>
     {
         /// <inheritdoc/>
