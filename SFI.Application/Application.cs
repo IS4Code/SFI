@@ -481,8 +481,7 @@ namespace IS4.SFI
 					// Not a proxy configuration for another type
 
 					var baseType = type;
-					while((baseType = baseType.BaseType) != null)
-					{
+					do{
 						// Look for the nearest base type
 						if(!baseType.IsGenericType)
 						{
@@ -500,7 +499,7 @@ namespace IS4.SFI
                         LogWriter?.WriteLine($"Argument assembly: {objType.Assembly.GetName().Name}");
                         PrintAttributes("Argument assembly ", objType.Assembly);
                         break;
-					}
+					}while((baseType = baseType.BaseType) != null);
                 }
 
                 PrintAttributes("", TypeDescriptor.GetAttributes(component));
