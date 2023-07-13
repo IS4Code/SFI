@@ -11,6 +11,8 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace IS4.SFI
 {
@@ -81,6 +83,7 @@ namespace IS4.SFI
         public async ValueTask Run(params string[] args)
         {
 			try{
+				LoadConfig();
 				Parse(args);
 
 				if(!quiet) Banner();
@@ -599,6 +602,8 @@ namespace IS4.SFI
 				case "p":
 				case "plugin":
 					return OptionArgument.Required;
+				case "config":
+					return OptionArgument.Required;
 				case "?":
 				case "help":
 					Help();
@@ -670,6 +675,9 @@ namespace IS4.SFI
                 case "plugin":
 					plugins.Add(argument!);
 					break;
+				case "config":
+					LoadConfig(argument!);
+					break;
                 default:
 					if(componentPropertyRegex.Match(option) is { Success: true } propMatch)
                     {
@@ -698,5 +706,115 @@ namespace IS4.SFI
 				Predicate = TextTools.ConvertWildcardToRegex(pattern).IsMatch;
 			}
         }
+
+		static readonly XNamespace configNs = "https://sfi.is4.site/config";
+		static readonly XName configRoot = configNs + "options";
+
+		static readonly XName nil = XName.Get("nil", "http://www.w3.org/2001/XMLSchema-instance");
+
+        void LoadConfig(string name = "sfi-config.xml")
+		{
+			foreach(var config in environment.GetFiles(name))
+			{
+				if(config is IFileInfo configFile)
+				{
+					using var stream = configFile.Open();
+					var doc = XDocument.Load(stream);
+					var root = doc.Root;
+					if(root.Name != configRoot)
+					{
+						throw new ApplicationException($"{name}: expected {configRoot} as root element, found {root.Name}.");
+					}
+					foreach(var elem in AttributeElements(root).Concat(root.Elements()))
+					{
+						LoadConfigElement(elem, null);
+					}
+				}
+			}
+		}
+
+		void LoadConfigElement(XElement element, string? prefix)
+		{
+			if(element.Name.Namespace != configNs)
+			{
+				// Ignore foreign elements
+				return;
+			}
+
+			var optionName = XmlConvert.DecodeName(element.Name.LocalName);
+			if(prefix != null)
+			{
+				optionName = prefix + optionName;
+            }
+
+			bool? isNil = null;
+			if(element.Attribute(nil)?.Value is string nilValue)
+			{
+				isNil = XmlConvert.ToBoolean(nilValue);
+			}
+
+			var content = AttributeElements(element).Concat(element.Nodes());
+
+            if(!content.Any(n => n is XText or XElement))
+			{
+                if((element.IsEmpty && isNil != false) || (isNil == true))
+                {
+                    // Must be a switch
+                    var arg = OnOptionFound(optionName);
+                    switch(arg)
+                    {
+                        case OptionArgument.Optional:
+                            OnOptionArgumentFound(optionName, null);
+                            break;
+                        case OptionArgument.Required:
+                            throw ArgumentExpected(optionName);
+                    }
+				}else{
+					// May be a switch or empty string
+					var arg = OnOptionFound(optionName);
+					switch(arg)
+					{
+						case OptionArgument.Optional:
+						case OptionArgument.Required:
+							OnOptionArgumentFound(optionName, "");
+							break;
+					}
+				}
+            }else if(isNil == true)
+			{
+				throw new ApplicationException($"Option {optionName} is set to nil but it has content.");
+			}
+
+            var innerPrefix = optionName + ":";
+
+			foreach(var child in content)
+			{
+				switch(child)
+				{
+					case XText childText:
+						var arg = OnOptionFound(optionName);
+                        switch(arg)
+                        {
+                            case OptionArgument.Optional:
+                            case OptionArgument.Required:
+                                OnOptionArgumentFound(optionName, childText.Value);
+								break;
+                            case OptionArgument.None:
+								throw ArgumentNotExpected(optionName);
+                        }
+                        break;
+					case XElement childElement:
+						LoadConfigElement(childElement, innerPrefix);
+						break;
+				}
+			}
+        }
+
+		static IEnumerable<XElement> AttributeElements(XElement element)
+		{
+			return element.Attributes()
+				.Where(a => !a.IsNamespaceDeclaration && a.Name.Namespace == XNamespace.None)
+				.Select(a => new XElement(element.Name.Namespace + a.Name.LocalName, a.Value));
+		}
     }
 }
