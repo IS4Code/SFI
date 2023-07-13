@@ -4,10 +4,12 @@ using IS4.SFI.Services;
 using Microsoft.Extensions.Logging;
 using MorseCode.ITask;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -153,6 +155,22 @@ namespace IS4.SFI
 					// Print the options XML
 					case Mode.Options:
 						PrintOptionsXml();
+                        return;
+					case Mode.About:
+						if(output != null)
+						{
+							inputs.Add(output);
+						}
+						if(inputs.Count == 0)
+						{
+                            throw new ApplicationException("'about' requires the name of a component.");
+                        }
+                        await ConfigureComponents();
+                        foreach(var collection in inspector.ComponentCollections)
+                        {
+							aboutBrowsedCollection = collection;
+                            await collection.ForEach(this);
+                        }
                         return;
 				}
 
@@ -401,41 +419,212 @@ namespace IS4.SFI
 			return included;
 		}
 
-		async ITask<ValueTuple> IResultFactory<ValueTuple, string>.Invoke<T>(T component, string id)
+		void ListComponent<T>(T component, string id) where T : notnull
+		{
+			LogWriter?.WriteLine($" - {id} ({TextTools.GetUserFriendlyName(TypeDescriptor.GetReflectionType(component))})");
+			if(componentProperties.TryGetValue(id, out var dict))
+			{
+				componentProperties.Remove(id);
+				SetProperties(component, id, dict);
+			}
+			foreach(var prop in GetConfigurableProperties(component))
+			{
+				var value = prop.GetValue(component);
+				var type = Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType;
+				var converter = prop.Converter;
+				string typeDesc;
+				if(GetStandardValues(type, converter, out var values))
+				{
+					const int maxShown = 10;
+					typeDesc = String.Join("|", values.Cast<object>().Take(maxShown).Select(converter.ConvertToInvariantString));
+					if(!converter.GetStandardValuesExclusive() || values.Count > maxShown)
+					{
+						typeDesc = $"{TextTools.GetIdentifierFromType(type)}: {typeDesc}...";
+					}
+				}else{
+					typeDesc = TextTools.GetIdentifierFromType(type);
+				}
+				var line = $"{id}:{TextTools.FormatComponentName(prop.Name)} ({typeDesc})";
+				if(value != null)
+				{
+					LogWriter?.WriteLine($"  - {line} = {converter.ConvertToInvariantString(value)}");
+				}else{
+					LogWriter?.WriteLine($"  - {line}");
+				}
+			}
+        }
+
+        SFI.Application.ComponentCollection? aboutBrowsedCollection;
+
+        void AboutComponent<T>(T component, string id) where T : notnull
+		{
+			if(inputs.Contains(id))
+			{
+                LogWriter?.WriteLine();
+                LogWriter?.WriteLine($"# Component `{id}`");
+				var type = TypeDescriptor.GetReflectionType(component);
+				bool realType = type.Equals(component.GetType());
+
+				if(realType)
+                {
+                    var elementType = aboutBrowsedCollection!.Attribute.CommonType ?? typeof(T);
+                    LogWriter?.WriteLine($"Element type: {elementType.FullName}");
+                }
+
+                var assembly = type.Assembly;
+                LogWriter?.WriteLine($"Component type: {type.FullName}");
+                LogWriter?.WriteLine($"Assembly: {assembly.GetName().Name}");
+				PrintAttributes("Assembly ", assembly);
+
+                if(realType)
+                {
+					// Not a proxy configuration for another type
+
+					var baseType = type;
+					while((baseType = baseType.BaseType) != null)
+					{
+						// Look for the nearest base type
+						if(!baseType.IsGenericType)
+						{
+							// Must be generic
+							continue;
+						}
+						var genArgs = baseType.GetGenericArguments();
+						if(genArgs.Length != 1)
+						{
+							// Must have single type argument
+							continue;
+						}
+                        var objType = genArgs[0];
+                        LogWriter?.WriteLine($"Argument type: {objType.FullName}");
+                        LogWriter?.WriteLine($"Argument assembly: {objType.Assembly.GetName().Name}");
+                        PrintAttributes("Argument assembly ", objType.Assembly);
+                        break;
+					}
+                }
+
+                PrintAttributes("", TypeDescriptor.GetAttributes(component));
+
+				var properties = GetConfigurableProperties(component);
+
+				foreach(var prop in properties)
+				{
+					LogWriter?.WriteLine();
+                    LogWriter?.WriteLine($"## Property `{TextTools.FormatComponentName(prop.Name)}`");
+
+					LogWriter?.WriteLine($"Name: {prop.Name}");
+					
+                    var propType = Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType;
+
+                    LogWriter?.WriteLine($"Type: {propType.FullName}");
+
+                    var converter = prop.Converter;
+
+                    if(GetStandardValues(propType, converter, out var values))
+                    {
+                        var valuesText = String.Join("|", values.Cast<object>().Select(converter.ConvertToInvariantString));
+						var exclusive = converter.GetStandardValuesExclusive();
+
+                        LogWriter?.WriteLine($"Standard values: {valuesText}{(exclusive ? "" : "...")}");
+                    }
+
+					PrintAttributes("", prop.Attributes);
+
+                    var value = prop.GetValue(component);
+					if(value != null)
+					{
+						LogWriter?.WriteLine($"Value: {converter.ConvertToInvariantString(value)}");
+					}
+				}
+            }
+		}
+
+		void PrintAttributes(string prefix, ICustomAttributeProvider provider)
+		{
+			var collection = new AttributeCollection(provider.GetCustomAttributes(false).OfType<Attribute>().ToArray());
+			PrintAttributes(prefix, collection);
+
+        }
+
+		void PrintAttributes(string prefix, AttributeCollection attributes)
+		{
+			foreach(Attribute attr in attributes)
+			{
+				const string attributeSuffix = nameof(Attribute);
+
+				var attrType = attr.GetType();
+				var attrName = attrType.Name;
+                if(!attrName.EndsWith(attributeSuffix))
+				{
+					// Non-standard name
+					continue;
+                }
+                attrName = attrName.Substring(0, attrName.Length - attributeSuffix.Length);
+
+                var mainProperty = attrType.GetProperty(attrName, System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
+				if(mainProperty == null || !stringType.Equals(mainProperty.PropertyType))
+				{
+					var properties = attrType.GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance).Where(p => stringType.Equals(p.PropertyType)).Take(2).ToList();
+					if(properties.Count != 1)
+                    {
+						// Can't find single string property
+                        continue;
+                    }
+					mainProperty = properties[0];
+					if(!attrName.Contains(mainProperty.Name))
+					{
+						// Name is not similar enough
+						continue;
+					}
+				}
+
+				var value = mainProperty.GetValue(attr) as string;
+				if(!String.IsNullOrWhiteSpace(value))
+				{
+					var newline = value!.IndexOf('\n');
+					if(newline != -1)
+					{
+						// Strip after newline character
+						value = value.Substring(0, newline);
+						if(String.IsNullOrWhiteSpace(value))
+						{
+							continue;
+						}
+                    }
+                    value = value.Trim();
+                    LogWriter?.WriteLine($"{prefix}{mainProperty.Name}: {value}");
+				}
+			}
+		}
+
+		static bool GetStandardValues(Type type, TypeConverter converter, out ICollection standardValues)
+		{
+			if(!type.IsPrimitive && (type.IsEnum || Type.GetTypeCode(type) == TypeCode.Object))
+            {
+                if(converter.GetStandardValuesSupported() && converter.GetStandardValues() is { Count: > 0 } values)
+                {
+                    standardValues = values;
+                    return true;
+                }
+            }
+			standardValues = Array.Empty<object>();
+			return false;
+		}
+
+        async ITask<ValueTuple> IResultFactory<ValueTuple, string>.Invoke<T>(T component, string id)
 		{
 			if(IsIncluded(component, id))
 			{
-				LogWriter?.WriteLine($" - {id} ({TextTools.GetUserFriendlyName(TypeDescriptor.GetReflectionType(component))})");
-				if(componentProperties.TryGetValue(id, out var dict))
+				switch(mode)
 				{
-					componentProperties.Remove(id);
-					SetProperties(component, id, dict);
-				}
-				foreach(var prop in GetConfigurableProperties(component))
-				{
-					var value = prop.GetValue(component);
-					var type = Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType;
-					var converter = prop.Converter;
-					string typeDesc;
-					if(!(type.IsPrimitive || (!type.IsEnum && Type.GetTypeCode(type) != TypeCode.Object)) && converter.GetStandardValuesSupported() && converter.GetStandardValues() is { Count: > 0 } values)
-					{
-						const int maxShown = 10;
-                        typeDesc = String.Join("|", values.Cast<object>().Take(maxShown).Select(converter.ConvertToInvariantString));
-						if(!converter.GetStandardValuesExclusive() || values.Count > maxShown)
-                        {
-                            typeDesc = $"{TextTools.GetIdentifierFromType(type)}: {typeDesc}...";
-						}
-					}else{
-						typeDesc = TextTools.GetIdentifierFromType(type);
-					}
-					var line = $"{id}:{TextTools.FormatComponentName(prop.Name)} ({typeDesc})";
-                    if(value != null)
-					{
-						LogWriter?.WriteLine($"  - {line} = {converter.ConvertToInvariantString(value)}");
-					}else{
-						LogWriter?.WriteLine($"  - {line}");
-					}
-				}
+					case Mode.List:
+						ListComponent(component, id);
+                        break;
+					case Mode.About:
+						AboutComponent(component, id);
+						break;
+
+                }
 			}
 			return default;
 		}
@@ -481,6 +670,11 @@ namespace IS4.SFI
 			/// The application should output the provided options in the XML format.
 			/// </summary>
 			Options,
+
+			/// <summary>
+			/// The application should display information about a particular component.
+			/// </summary>
+			About,
 		}
 
 		/// <inheritdoc/>
