@@ -1,6 +1,5 @@
 ﻿using IS4.SFI.Analyzers;
 using IS4.SFI.Application.Tools;
-using IS4.SFI.Formats;
 using IS4.SFI.RDF;
 using IS4.SFI.Services;
 using IS4.SFI.Tools;
@@ -67,7 +66,6 @@ namespace IS4.SFI.Application
             Analyzers.Add(new PathObjectAnalyzer());
             Analyzers.Add(new ExtensionObjectAnalyzer());
             Analyzers.Add(new MediaTypeAnalyzer());
-            Analyzers.Add(new X509CertificateAnalyzer());
             Analyzers.Add(new AssemblyAnalyzer());
             Analyzers.Add(new FormatObjectAnalyzer());
 
@@ -98,7 +96,7 @@ namespace IS4.SFI.Application
         /// </summary>
         public virtual async ValueTask AddDefault()
         {
-            DataAnalyzer.DataFormats.Add(new X509CertificateFormat());
+
         }
 
         static Inspector()
