@@ -44,11 +44,6 @@ namespace IS4.SFI.Application
         /// </summary>
         public DataObjectAnalyzer DataObjectAnalyzer { get; }
 
-        /// <summary>
-        /// The default XML analyzer.
-        /// </summary>
-        public XmlAnalyzer XmlAnalyzer { get; }
-
         /// <inheritdoc cref="EntityAnalyzerProvider.OutputLog"/>
         public new ILogger? OutputLog {
             get {
@@ -69,7 +64,6 @@ namespace IS4.SFI.Application
             Analyzers.Add(FileAnalyzer = new FileAnalyzer());
             Analyzers.Add(DataAnalyzer = new DataAnalyzer(() => new UdeEncodingDetector()));
             Analyzers.Add(DataObjectAnalyzer = new DataObjectAnalyzer());
-            Analyzers.Add(XmlAnalyzer = new XmlAnalyzer());
             Analyzers.Add(new PathObjectAnalyzer());
             Analyzers.Add(new ExtensionObjectAnalyzer());
             Analyzers.Add(new MediaTypeAnalyzer());
@@ -104,7 +98,6 @@ namespace IS4.SFI.Application
         /// </summary>
         public virtual async ValueTask AddDefault()
         {
-            DataAnalyzer.DataFormats.Add(new XmlFileFormat());
             DataAnalyzer.DataFormats.Add(new X509CertificateFormat());
         }
 
