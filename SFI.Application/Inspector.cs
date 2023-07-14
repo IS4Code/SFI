@@ -66,7 +66,6 @@ namespace IS4.SFI.Application
             Analyzers.Add(new PathObjectAnalyzer());
             Analyzers.Add(new ExtensionObjectAnalyzer());
             Analyzers.Add(new MediaTypeAnalyzer());
-            Analyzers.Add(new AssemblyAnalyzer());
             Analyzers.Add(new FormatObjectAnalyzer());
 
             if(BuiltInHash.MD5 != null)
