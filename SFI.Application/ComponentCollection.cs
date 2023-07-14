@@ -2,10 +2,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
+using VDS.RDF.Query.Paths;
 
 namespace IS4.SFI.Application
 {
@@ -20,6 +23,21 @@ namespace IS4.SFI.Application
         public IEnumerable Collection { get; }
 
         /// <summary>
+        /// The type of elements of the collection.
+        /// </summary>
+        public abstract Type ElementType { get; }
+
+        /// <summary>
+        /// The property defining the collection.
+        /// </summary>
+        public PropertyDescriptor? Property { get; }
+
+        /// <summary>
+        /// The component defining the collection.
+        /// </summary>
+        public object? Component { get; }
+
+        /// <summary>
         /// The attribute describing the collection.
         /// </summary>
         public ComponentCollectionAttribute Attribute { get; }
@@ -28,10 +46,14 @@ namespace IS4.SFI.Application
         /// Creates a new instance of the collection.
         /// </summary>
         /// <param name="collection">The value of <see cref="Collection"/>.</param>
+        /// <param name="property">The value of <see cref="Property"/>.</param>
+        /// <param name="component">The value of <see cref="Component"/>.</param>
         /// <param name="attribute">The value of <see cref="Attribute"/>.</param>
-        public ComponentCollection(IEnumerable collection, ComponentCollectionAttribute attribute)
+        public ComponentCollection(IEnumerable collection, PropertyDescriptor? property, object? component, ComponentCollectionAttribute attribute)
         {
             Collection = collection;
+            Property = property;
+            Component = component;
             Attribute = attribute;
         }
 
@@ -83,12 +105,14 @@ namespace IS4.SFI.Application
         /// Creates a new instance of the collection with a particular element type.
         /// </summary>
         /// <param name="elementType">The element type of the collection.</param>
-        /// <param name="collection"><inheritdoc path="/param[@name='collection']" cref="ComponentCollection.ComponentCollection(IEnumerable, ComponentCollectionAttribute)"/></param>
-        /// <param name="attribute"><inheritdoc path="/param[@name='attribute']" cref="ComponentCollection.ComponentCollection(IEnumerable, ComponentCollectionAttribute)"/></param>
+        /// <param name="collection"><inheritdoc path="/param[@name='collection']" cref="ComponentCollection.ComponentCollection(IEnumerable, PropertyDescriptor, object, ComponentCollectionAttribute)"/></param>
+        /// <param name="property"><inheritdoc path="/param[@name='property']" cref="ComponentCollection.ComponentCollection(IEnumerable, PropertyDescriptor, object, ComponentCollectionAttribute)"/></param>
+        /// <param name="component"><inheritdoc path="/param[@name='component']" cref="ComponentCollection.ComponentCollection(IEnumerable, PropertyDescriptor, object, ComponentCollectionAttribute)"/></param>
+        /// <param name="attribute"><inheritdoc path="/param[@name='attribute']" cref="ComponentCollection.ComponentCollection(IEnumerable, PropertyDescriptor, object, ComponentCollectionAttribute)"/></param>
         /// <returns>A new instance of the collection.</returns>
-        public static ComponentCollection Create(Type elementType, IEnumerable collection, ComponentCollectionAttribute attribute)
+        public static ComponentCollection Create(Type elementType, IEnumerable collection, PropertyDescriptor property, object? component, ComponentCollectionAttribute attribute)
         {
-            return (ComponentCollection)Activator.CreateInstance(genericType.MakeGenericType(elementType), collection, attribute);
+            return (ComponentCollection)Activator.CreateInstance(genericType.MakeGenericType(elementType), collection, property, component, attribute);
         }
 
         /// <summary>
@@ -129,11 +153,14 @@ namespace IS4.SFI.Application
     {
         static readonly Type elementType = typeof(T);
 
+        /// <inheritdoc/>
+        public override Type ElementType => elementType;
+
         /// <inheritdoc cref="ComponentCollection.Collection"/>
         public new ICollection<T> Collection => (ICollection<T>)base.Collection;
 
-        /// <inheritdoc cref="ComponentCollection.ComponentCollection(IEnumerable, ComponentCollectionAttribute)"/>
-        public ComponentCollection(ICollection<T> collection, ComponentCollectionAttribute attribute) : base(collection, attribute)
+        /// <inheritdoc cref="ComponentCollection.ComponentCollection(IEnumerable, PropertyDescriptor, object, ComponentCollectionAttribute)"/>
+        public ComponentCollection(ICollection<T> collection, PropertyDescriptor? property, object? component, ComponentCollectionAttribute attribute) : base(collection, property, component, attribute)
         {
 
         }

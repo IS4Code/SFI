@@ -23,7 +23,10 @@ namespace IS4.SFI.Application.Tools
         /// Creates a new instance of the collection using a custom prefix.
         /// </summary>
         /// <param name="prefix">The prefix to assign to all components inside the collection.</param>
-        public TypeConfigurationCollection(string prefix) : base(GetCollection(out var typeMap), new(prefix))
+        /// <param name="commonType">The type of the components described by the collection.</param>
+        /// <param name="instance">The component containing the collection.</param>
+        /// <param name="property">The property defining the collection.</param>
+        public TypeConfigurationCollection(string prefix, Type commonType, string? property, object? instance) : base(GetCollection(out var typeMap), property == null ? null : TypeDescriptor.GetProperties(instance)[property], instance, new(prefix, commonType))
         {
             this.typeMap = typeMap;
         }

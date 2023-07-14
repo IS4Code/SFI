@@ -169,6 +169,10 @@ namespace IS4.SFI
                         foreach(var collection in inspector.ComponentCollections)
                         {
 							aboutBrowsedCollection = collection;
+							if(inputs.Contains(collection.Attribute.Prefix))
+							{
+								AboutCollection(collection);
+							}
                             await collection.ForEach(this);
                         }
                         return;
@@ -538,11 +542,43 @@ namespace IS4.SFI
             }
 		}
 
+		void AboutCollection(Application.ComponentCollection collection)
+        {
+            LogWriter?.WriteLine();
+            LogWriter?.WriteLine($"# Collection `{collection.Attribute.Prefix}`");
+
+			Type? componentType = null;
+			if(collection.Property is PropertyDescriptor prop)
+            {
+				PrintAttributes("", prop.Attributes);
+				componentType = prop.ComponentType;
+            }
+
+            var elementType = collection.Attribute.CommonType ?? collection.ElementType;
+            LogWriter?.WriteLine($"Element type: {elementType.FullName}");
+            LogWriter?.WriteLine($"Element assembly: {elementType.Assembly.GetName().Name}");
+
+            if(collection.Component is object component)
+            {
+                LogWriter?.WriteLine();
+                LogWriter?.WriteLine($"Component: {TextTools.GetUserFriendlyName(component)}");
+                PrintAttributes("Component ", TypeDescriptor.GetAttributes(component));
+				componentType ??= TypeDescriptor.GetReflectionType(component);
+            }
+
+			if(componentType != null)
+			{
+				var assembly = componentType.Assembly;
+				LogWriter?.WriteLine($"Component type: {componentType.FullName}");
+				LogWriter?.WriteLine($"Assembly: {assembly.GetName().Name}");
+				PrintAttributes("Assembly ", assembly);
+			}
+        }
+
 		void PrintAttributes(string prefix, ICustomAttributeProvider provider)
 		{
 			var collection = new AttributeCollection(provider.GetCustomAttributes(false).OfType<Attribute>().ToArray());
 			PrintAttributes(prefix, collection);
-
         }
 
 		void PrintAttributes(string prefix, AttributeCollection attributes)

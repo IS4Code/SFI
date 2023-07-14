@@ -34,27 +34,36 @@ namespace IS4.SFI.Application
         /// <summary>
         /// Stores the configuration for all instances of <see cref="ITripleFormatter"/>.
         /// </summary>
-        public TypeConfigurationCollection FormatterCollection { get; } = new("rdf-formatter");
+        [Description("Stores the configuration for all RDF triple formatters.")]
+        public TypeConfigurationCollection FormatterCollection { get; }
 
         /// <summary>
         /// Stores the configuration for all instances of <see cref="IRdfWriter"/>
         /// and <see cref="IStoreWriter"/>.
         /// </summary>
-        public TypeConfigurationCollection RdfWriterCollection { get; } = new("rdf-writer");
+        [Description("Stores the configuration for all RDF writers.")]
+        public TypeConfigurationCollection RdfWriterCollection { get; }
 
         /// <summary>
         /// Stores the configuration for all instances of <see cref="IRdfHandler"/>.
         /// </summary>
-        public TypeConfigurationCollection RdfHandlerCollection { get; } = new("rdf-handler");
+        [Description("Stores the configuration for all RDF handlers.")]
+        public TypeConfigurationCollection RdfHandlerCollection { get; }
 
         /// <summary>
         /// Stores the configuration for all instances of <see cref="ISparqlResultsWriter"/>.
         /// </summary>
-        public TypeConfigurationCollection SparqlWriterCollection { get; } = new("sparql-writer");
+        [Description("Stores the configuration for all SPARQL Results writers.")]
+        public TypeConfigurationCollection SparqlWriterCollection { get; }
 
         /// <inheritdoc/>
         public ComponentInspector()
         {
+            FormatterCollection = new("rdf-formatter", typeof(ITripleFormatter), nameof(FormatterCollection), this);
+            RdfWriterCollection = new("rdf-writer", typeof(IRdfWriter), nameof(RdfWriterCollection), this);
+            RdfHandlerCollection = new("rdf-handler", typeof(IRdfHandler), nameof(RdfHandlerCollection), this);
+            SparqlWriterCollection = new("sparql-writer", typeof(ISparqlResultsWriter), nameof(SparqlWriterCollection), this);
+
             CaptureCollections(this);
 
             foreach(var definition in MimeTypesHelper.Definitions)
@@ -165,7 +174,7 @@ namespace IS4.SFI.Application
                             if(type != null)
                             {
                                 var itemType = type.GetGenericArguments()[0];
-                                var components = ComponentCollection.Create(itemType, collection, attribute);
+                                var components = ComponentCollection.Create(itemType, collection, property, instance, attribute);
                                 if(componentCollections.Add(components) || updateExisting)
                                 {
                                     foreach(var element in collection)
