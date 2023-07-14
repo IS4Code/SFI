@@ -1160,6 +1160,10 @@ namespace IS4.SFI
                             case "include":
                             case "s":
                             case "sparql-query":
+                            case "p":
+                            case "plugin":
+                            case "C":
+                            case "config":
                                 // Don't change these to attributes
                                 continue;
                         }
