@@ -293,12 +293,6 @@ namespace IS4.SFI
 			}
         }
 
-		static void RegisterCustomDescriptors()
-		{
-			var provider = TypeDescriptor.GetProvider(typeof(Encoding));
-			TypeDescriptor.AddProvider(new EncodingTypeDescriptionProvider(provider), typeof(Encoding));
-		}
-
 		/// <summary>
 		/// Called from an analyzer when an output file should be created.
 		/// </summary>
@@ -317,13 +311,20 @@ namespace IS4.SFI
             await writer(stream);
         }
 
-		/// <summary>
-		/// Assigns the values of properties on a component.
-		/// </summary>
-		/// <param name="component">The component to assign to.</param>
-		/// <param name="componentName">The name of the component, for diagnostics.</param>
-		/// <param name="properties">The dictionary of property names and their values to assign.</param>
-		private void SetProperties(object component, string componentName, IDictionary<string, string> properties)
+        #region Components
+        static void RegisterCustomDescriptors()
+        {
+            var provider = TypeDescriptor.GetProvider(typeof(Encoding));
+            TypeDescriptor.AddProvider(new EncodingTypeDescriptionProvider(provider), typeof(Encoding));
+        }
+
+        /// <summary>
+        /// Assigns the values of properties on a component.
+        /// </summary>
+        /// <param name="component">The component to assign to.</param>
+        /// <param name="componentName">The name of the component, for diagnostics.</param>
+        /// <param name="properties">The dictionary of property names and their values to assign.</param>
+        private void SetProperties(object component, string componentName, IDictionary<string, string> properties)
         {
             var batch = component as ISupportInitialize;
             batch?.BeginInit();
@@ -421,9 +422,16 @@ namespace IS4.SFI
 				}
             }
 			return included;
-		}
+        }
 
-		void ListComponent<T>(T component, string id) where T : notnull
+        async ITask<bool> IResultFactory<bool, string>.Invoke<T>(T value, string name)
+        {
+            return IsIncluded(value, name);
+        }
+        #endregion
+
+        #region Listing
+        void ListComponent<T>(T component, string id) where T : notnull
 		{
 			LogWriter?.WriteLine($" - {id} ({TextTools.GetUserFriendlyName(TypeDescriptor.GetReflectionType(component))})");
 			if(componentProperties.TryGetValue(id, out var dict))
@@ -662,15 +670,12 @@ namespace IS4.SFI
                 }
 			}
 			return default;
-		}
+        }
+        #endregion
 
-		async ITask<bool> IResultFactory<bool, string>.Invoke<T>(T value, string name)
-		{
-			return IsIncluded(value, name);
-		}
-
-		/// <inheritdoc/>
-		protected override string Usage => $"({String.Join("|", modeNames)}) [options] input... output";
+        #region Parameters
+        /// <inheritdoc/>
+        protected override string Usage => $"({String.Join("|", modeNames)}) [options] input... output";
 
 		/// <inheritdoc/>
 		public override void Description()
@@ -964,8 +969,10 @@ namespace IS4.SFI
 				Predicate = TextTools.ConvertWildcardToRegex(pattern).IsMatch;
 			}
         }
+        #endregion
 
-		static readonly XNamespace configNs = "https://sfi.is4.site/config";
+        #region Configuration XML
+        static readonly XNamespace configNs = "https://sfi.is4.site/config";
 		static readonly XName configRoot = configNs + "options";
 
 		static readonly XName nil = XName.Get("nil", "http://www.w3.org/2001/XMLSchema-instance");
@@ -1190,5 +1197,6 @@ namespace IS4.SFI
                 optionsXml.Save(writer);
 			}
 		}
+        #endregion
     }
 }
