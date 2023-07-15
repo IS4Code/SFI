@@ -98,9 +98,9 @@ namespace IS4.SFI.Analyzers
                     case XmlNodeType.Element:
                         // Describe the root element using the XIS vocabulary
                         var elem = node["#element(/1)"];
-                        node.Set(Properties.DocumentElement, elem);
-                        elem.SetClass(Classes.Element);
-                        elem.Set(Properties.LocalName, reader.LocalName);
+                        node.Set(Properties.XmlDocumentElement, elem);
+                        elem.SetClass(Classes.XmlElement);
+                        elem.Set(Properties.XmlLocalName, reader.LocalName);
                         if(!String.IsNullOrEmpty(reader.Prefix))
                         {
                             elem.Set(Properties.XmlPrefix, reader.Prefix);
@@ -109,7 +109,7 @@ namespace IS4.SFI.Analyzers
                         elem.Set(Properties.XmlName, xmlName);
                         if(!String.IsNullOrEmpty(reader.NamespaceURI))
                         {
-                            elem.Set(Properties.NamespaceName, reader.NamespaceURI, Datatypes.AnyUri);
+                            elem.Set(Properties.XmlNamespaceName, reader.NamespaceURI, Datatypes.AnyUri);
                             try{
                                 elem.Set(Properties.SeeAlso, UriFormatter.Instance, reader.NamespaceURI);
                             }catch(UriFormatException)

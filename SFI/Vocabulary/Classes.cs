@@ -179,8 +179,62 @@
         /// <summary>
         /// <c><see cref="Xis"/>:Element</c>.
         /// </summary>
-        [Uri(Xis)]
-        public static readonly ClassUri Element;
+        [Uri(Xis, "Element")]
+        public static readonly ClassUri XmlElement;
+
+        /// <summary>
+        /// <c><see cref="Xis"/>:Attribute</c>.
+        /// </summary>
+        [Uri(Xis, "Attribute")]
+        public static readonly ClassUri XmlAttribute;
+
+        /// <summary>
+        /// <c><see cref="Xis"/>:ProcessingInstruction</c>.
+        /// </summary>
+        [Uri(Xis, "ProcessingInstruction")]
+        public static readonly ClassUri XmlProcessingInstruction;
+
+        /// <summary>
+        /// <c><see cref="Xis"/>:Character</c>.
+        /// </summary>
+        [Uri(Xis, "Character")]
+        public static readonly ClassUri XmlCharacter;
+
+        /// <summary>
+        /// <c><see cref="Xis"/>:UnexpandedEntityReference</c>.
+        /// </summary>
+        [Uri(Xis, "UnexpandedEntityReference")]
+        public static readonly ClassUri XmlUnexpandedEntityReference;
+
+        /// <summary>
+        /// <c><see cref="Xis"/>:Comment</c>.
+        /// </summary>
+        [Uri(Xis, "Comment")]
+        public static readonly ClassUri XmlComment;
+
+        /// <summary>
+        /// <c><see cref="Xis"/>:DocumentTypeDeclaration</c>.
+        /// </summary>
+        [Uri(Xis, "DocumentTypeDeclaration")]
+        public static readonly ClassUri XmlDocumentTypeDeclaration;
+
+        /// <summary>
+        /// <c><see cref="Xis"/>:UnparsedEntity</c>.
+        /// </summary>
+        [Uri(Xis, "UnparsedEntity")]
+        public static readonly ClassUri XmlUnparsedEntity;
+
+        /// <summary>
+        /// <c><see cref="Xis"/>:Notation</c>.
+        /// </summary>
+        [Uri(Xis, "Notation")]
+        public static readonly ClassUri XmlNotation;
+
+        /// <summary>
+        /// <c><see cref="Xis"/>:Namespace</c>.
+        /// </summary>
+        [Uri(Xis, "Namespace")]
+        public static readonly ClassUri XmlNamespace;
 
         /// <summary>
         /// <c><see cref="Sec"/>:Digest</c>.

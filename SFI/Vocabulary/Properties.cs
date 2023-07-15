@@ -585,16 +585,88 @@
         public static readonly PropertyUri Notation;
 
         /// <summary>
+        /// <c><see cref="Xis"/>:attributes</c>.
+        /// </summary>
+        [Uri(Xis, "attributes")]
+        public static readonly PropertyUri XmlAttributes;
+
+        /// <summary>
+        /// <c><see cref="Xis"/>:attributeType</c>.
+        /// </summary>
+        [Uri(Xis, "attributeType")]
+        public static readonly PropertyUri XmlAttributeType;
+
+        /// <summary>
+        /// <c><see cref="Xis"/>:baseURI</c>.
+        /// </summary>
+        [Uri(Xis, "baseURI")]
+        public static readonly PropertyUri XmlBaseUri;
+
+        /// <summary>
+        /// <c><see cref="Xis"/>:characterCode</c>.
+        /// </summary>
+        [Uri(Xis, "characterCode")]
+        public static readonly PropertyUri XmlCharacterCode;
+
+        /// <summary>
+        /// <c><see cref="Xis"/>:characterEncodingScheme</c>.
+        /// </summary>
+        [Uri(Xis, "characterEncodingScheme")]
+        public static readonly PropertyUri XmlCharacterEncodingScheme;
+
+        /// <summary>
+        /// <c><see cref="Xis"/>:children</c>.
+        /// </summary>
+        [Uri(Xis, "children")]
+        public static readonly PropertyUri XmlChildren;
+
+        /// <summary>
+        /// <c><see cref="Xis"/>:content</c>.
+        /// </summary>
+        [Uri(Xis, "content")]
+        public static readonly PropertyUri XmlContent;
+
+        /// <summary>
+        /// <c><see cref="Xis"/>:namespaceAttributes</c>.
+        /// </summary>
+        [Uri(Xis, "namespaceAttributes")]
+        public static readonly PropertyUri XmlNamespaceAttributes;
+
+        /// <summary>
+        /// <c><see cref="Xis"/>:declarationBaseURI</c>.
+        /// </summary>
+        [Uri(Xis, "declarationBaseURI")]
+        public static readonly PropertyUri XmlDeclarationBaseURI;
+
+        /// <summary>
         /// <c><see cref="Xis"/>:documentElement</c>.
         /// </summary>
-        [Uri(Xis)]
-        public static readonly PropertyUri DocumentElement;
+        [Uri(Xis, "documentElement")]
+        public static readonly PropertyUri XmlDocumentElement;
+
+        /// <summary>
+        /// <c><see cref="Xis"/>:elementContentWhitespace</c>.
+        /// </summary>
+        [Uri(Xis, "elementContentWhitespace")]
+        public static readonly PropertyUri XmlElementContentWhitespace;
+
+        /// <summary>
+        /// <c><see cref="Xis"/>:unparsedEntities</c>.
+        /// </summary>
+        [Uri(Xis, "unparsedEntities")]
+        public static readonly PropertyUri XmlUnparsedEntities;
+
+        /// <summary>
+        /// <c><see cref="Xis"/>:inScopeNamespaces</c>.
+        /// </summary>
+        [Uri(Xis, "inScopeNamespaces")]
+        public static readonly PropertyUri XmlInScopeNamespaces;
 
         /// <summary>
         /// <c><see cref="Xis"/>:localName</c>.
         /// </summary>
-        [Uri(Xis)]
-        public static readonly PropertyUri LocalName;
+        [Uri(Xis, "localName")]
+        public static readonly PropertyUri XmlLocalName;
 
         /// <summary>
         /// <c><see cref="Xis"/>:name</c>.
@@ -603,16 +675,94 @@
         public static readonly PropertyUri XmlName;
 
         /// <summary>
+        /// <c><see cref="Xis"/>:namespaceName</c>.
+        /// </summary>
+        [Uri(Xis, "namespaceName")]
+        public static readonly PropertyUri XmlNamespaceName;
+
+        /// <summary>
+        /// <c><see cref="Xis"/>:normalizedValue</c>.
+        /// </summary>
+        [Uri(Xis, "normalizedValue")]
+        public static readonly PropertyUri XmlNormalizedValue;
+
+        /// <summary>
+        /// <c><see cref="Xis"/>:notation</c>.
+        /// </summary>
+        [Uri(Xis, "notation")]
+        public static readonly PropertyUri XmlNotation;
+
+        /// <summary>
+        /// <c><see cref="Xis"/>:notationName</c>.
+        /// </summary>
+        [Uri(Xis, "notationName")]
+        public static readonly PropertyUri XmlNotationName;
+
+        /// <summary>
+        /// <c><see cref="Xis"/>:notations</c>.
+        /// </summary>
+        [Uri(Xis, "notations")]
+        public static readonly PropertyUri XmlNotations;
+
+        /// <summary>
+        /// <c><see cref="Xis"/>:ownerElement</c>.
+        /// </summary>
+        [Uri(Xis, "ownerElement")]
+        public static readonly PropertyUri XmlOwnerElement;
+
+        /// <summary>
+        /// <c><see cref="Xis"/>:parent</c>.
+        /// </summary>
+        [Uri(Xis, "parent")]
+        public static readonly PropertyUri XmlParent;
+
+        /// <summary>
         /// <c><see cref="Xis"/>:prefix</c>.
         /// </summary>
         [Uri(Xis, "prefix")]
         public static readonly PropertyUri XmlPrefix;
 
         /// <summary>
-        /// <c><see cref="Xis"/>:namespaceName</c>.
+        /// <c><see cref="Xis"/>:publicIdentifier</c>.
         /// </summary>
-        [Uri(Xis)]
-        public static readonly PropertyUri NamespaceName;
+        [Uri(Xis, "publicIdentifier")]
+        public static readonly PropertyUri XmlPublicIdentifier;
+
+        /// <summary>
+        /// <c><see cref="Xis"/>:references</c>.
+        /// </summary>
+        [Uri(Xis, "references")]
+        public static readonly PropertyUri XmlReferences;
+
+        /// <summary>
+        /// <c><see cref="Xis"/>:specified</c>.
+        /// </summary>
+        [Uri(Xis, "specified")]
+        public static readonly PropertyUri XmlSpecified;
+
+        /// <summary>
+        /// <c><see cref="Xis"/>:standalone</c>.
+        /// </summary>
+        [Uri(Xis, "standalone")]
+        public static readonly PropertyUri XmlDocumentStandalone;
+
+        /// <summary>
+        /// <c><see cref="Xis"/>:systemIdentifier</c>.
+        /// </summary>
+        [Uri(Xis, "systemIdentifier")]
+        public static readonly PropertyUri XmlSystemIdentifier;
+
+        /// <summary>
+        /// <c><see cref="Xis"/>:target</c>.
+        /// </summary>
+        [Uri(Xis, "target")]
+        public static readonly PropertyUri XmlTarget;
+
+        /// <summary>
+        /// <c><see cref="Xis"/>:version</c>.
+        /// </summary>
+        [Uri(Xis, "version")]
+        public static readonly PropertyUri XmlDocumentVersion;
 
         /// <summary>
         /// <c><see cref="Http"/>:resp</c>.
