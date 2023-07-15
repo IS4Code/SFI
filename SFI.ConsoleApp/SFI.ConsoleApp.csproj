@@ -1,30 +1,57 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
-    <LangVersion>9.0</LangVersion>
+    <AssemblyName>IS4.SFI.ConsoleApp</AssemblyName>
+    <VersionPrefix>1.1</VersionPrefix>
+    <Product>Semantic File Inspector</Product>
+    <Authors>IS4</Authors>
+    <Copyright>Copyright (c) $(Authors) $([System.DateTime]::UtcNow.ToString('yyyy'))</Copyright>
+    <RootNamespace>IS4.SFI.ConsoleApp</RootNamespace>
+    <LangVersion>10.0</LangVersion>
     <Nullable>enable</Nullable>
     <NoWarn>1701;1702;1998</NoWarn>
-    <AssemblyName>SemanticFileInspector.ConsoleApp</AssemblyName>
-    <RootNamespace>IS4.SFI.ConsoleApp</RootNamespace>
-    <Authors>IS4</Authors>
-    <DocumentationFile>bin\SemanticFileInspector.ConsoleApp.xml</DocumentationFile>
+    <DocumentationFile>bin\$(AssemblyName).xml</DocumentationFile>
+    <AssemblyTitle>$(Product) Console Application</AssemblyTitle>
+    <PackageId>$(AssemblyName)</PackageId>
+    <Title>$(AssemblyTitle)</Title>
+    <Description>Provides the $(Product) CLI tool.</Description>
+    <RepositoryUrl>https://github.com/IS4Code/SFI</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>$(RepositoryUrl)/tree/HEAD/SFI.ConsoleApp</PackageProjectUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageTags>linked-data;sparql;rdf;semantic-search;metadata-extraction</PackageTags>
+    <IncludeSymbols>True</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <OutputType>Exe</OutputType>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <PublishSingleFile>true</PublishSingleFile>
     <SelfContained>true</SelfContained>
     <DebugType>embedded</DebugType>
     <PublishTrimmed>true</PublishTrimmed>
-    <AssemblyTitle>Semantic File Inspector Console Application</AssemblyTitle>
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     <_SuppressWinFormsTrimError>true</_SuppressWinFormsTrimError>
     <UseWindowsForms>true</UseWindowsForms>
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>sfi</ToolCommandName>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <Prefer32Bit>false</Prefer32Bit>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-  </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\icon.png" Visible="false">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\LICENSE" Visible="false">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="ParallelExtensionsExtras.CrossPlatform" Version="1.0.0" />
