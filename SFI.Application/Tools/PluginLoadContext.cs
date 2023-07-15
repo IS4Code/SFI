@@ -33,7 +33,10 @@ namespace IS4.SFI.Application.Tools
         /// <param name="dir">The path of the directory.</param>
         public void AddDirectory(string dir)
         {
-            directories.Add(new DirectoryInfoWrapper(new DirectoryInfo(dir)));
+            if(Directory.Exists(dir))
+            {
+                directories.Add(new DirectoryInfoWrapper(new DirectoryInfo(dir)));
+            }
         }
 
         /// <summary>
