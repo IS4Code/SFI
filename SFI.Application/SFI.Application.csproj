@@ -2,15 +2,46 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>SemanticFileInspector.Application</AssemblyName>
-    <LangVersion>9.0</LangVersion>
+    <AssemblyName>IS4.SFI.Application</AssemblyName>
+    <VersionPrefix>1.1</VersionPrefix>
+    <Product>Semantic File Inspector</Product>
+    <Authors>IS4</Authors>
+    <Copyright>Copyright (c) $(Authors) $([System.DateTime]::UtcNow.ToString('yyyy'))</Copyright>
+    <RootNamespace>IS4.SFI.Application</RootNamespace>
+    <LangVersion>10.0</LangVersion>
     <Nullable>enable</Nullable>
     <NoWarn>1701;1702;1998</NoWarn>
-    <RootNamespace>IS4.SFI.Application</RootNamespace>
-    <Authors>IS4</Authors>
-    <DocumentationFile>bin\SemanticFileInspector.Application.xml</DocumentationFile>
-    <AssemblyTitle>Semantic File Inspector</AssemblyTitle>
+    <DocumentationFile>bin\$(AssemblyName).xml</DocumentationFile>
+    <AssemblyTitle>$(Product) Application</AssemblyTitle>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>$(AssemblyName)</PackageId>
+    <Title>$(AssemblyTitle)</Title>
+    <Description>Contains the main $(Product) application to embed in solutions.</Description>
+    <RepositoryUrl>https://github.com/IS4Code/SFI</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>$(RepositoryUrl)/tree/HEAD/SFI.Application</PackageProjectUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageTags>linked-data;sparql;rdf;semantic-search;metadata-extraction;application</PackageTags>
+    <IncludeSymbols>True</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\icon.png" Visible="false">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\LICENSE" Visible="false">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
