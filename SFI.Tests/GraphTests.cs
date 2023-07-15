@@ -76,9 +76,19 @@ namespace IS4.SFI.Tests
                 if(!File.Exists(cachedFile))
                 {
                     Directory.CreateDirectory(Path.GetDirectoryName(cachedFile)!);
-                    using var stream = await httpClient.GetStreamAsync(uri.AbsoluteUri);
-                    using var fileStream = File.Create(cachedFile);
-                    await stream.CopyToAsync(fileStream);
+                    var downloadUri = uri.AbsoluteUri;
+                    for(int i = 0; i < 2; i++)
+                    {
+                        try{
+                            using var stream = await httpClient.GetStreamAsync(downloadUri);
+                            using var fileStream = File.Create(cachedFile);
+                            await stream.CopyToAsync(fileStream);
+                            break;
+                        }catch(HttpRequestException e) when(i == 0)
+                        {
+                            downloadUri = "http://web.archive.org/web/2022id_/" + downloadUri;
+                        }
+                    }
                 }
                 file = new TestFile(idUri, cachedFile);
             }
