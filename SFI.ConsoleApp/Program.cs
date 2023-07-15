@@ -7,8 +7,8 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace IS4.SFI.ConsoleApp
 {
@@ -50,6 +50,12 @@ namespace IS4.SFI.ConsoleApp
             }else if(StandardPaths.IsClipboard(path))
             {
                 return new IFileNodeInfo[] { new DeviceInput(() => new ClipboardStream()) };
+            }else if(StandardPaths.IsFilePicker(path))
+            {
+                return new IFileNodeInfo[] { new DeviceInput(() => {
+                    var path = ShowDialog<OpenFileDialog>("Load input file", null);
+                    return File.OpenRead(path);
+                }) };
             }
             var fileName = Path.GetFileName(path);
             if(fileName.Contains('*') || fileName.Contains('?'))
@@ -88,6 +94,10 @@ namespace IS4.SFI.ConsoleApp
             }else if(StandardPaths.IsClipboard(path))
             {
                 return new ClipboardStream();
+            }else if(StandardPaths.IsFilePicker(path))
+            {
+                path = ShowDialog<SaveFileDialog>("Save output file", mediaType);
+                return File.Create(path);
             }
             var dir = Path.GetDirectoryName(path);
             if(!String.IsNullOrWhiteSpace(dir))
@@ -100,6 +110,45 @@ namespace IS4.SFI.ConsoleApp
         public ValueTask Update()
         {
             return default;
+        }
+
+        static readonly byte[] appGuidNS = Guid.Parse("b1ebfec4-0e2f-42e3-8357-6724abc06db3").ToByteArray();
+
+        static string ShowDialog<TDialog>(string title, string? filter) where TDialog : FileDialog, new()
+        {
+            return StaThread.Invoke(() => {
+                var dialog = new TDialog();
+                dialog.DereferenceLinks = false;
+                dialog.ClientGuid = DataTools.GuidFromName(appGuidNS, title);
+                dialog.Title = title;
+                if(filter != null)
+                {
+                    dialog.Filter = filter + "|*";
+                }
+
+                DialogResult result;
+                var window = ConsoleWindow.Instance;
+                if(window.Handle != IntPtr.Zero)
+                {
+                    result = dialog.ShowDialog(window);
+                }else{
+                    result = dialog.ShowDialog();
+                }
+                if(result != DialogResult.OK)
+                {
+                    throw new ApplicationException($"{title} dialog canceled!");
+                }
+                return dialog.FileName;
+            });
+        }
+
+        class ConsoleWindow : IWin32Window
+        {
+            public static readonly ConsoleWindow Instance = new ConsoleWindow();
+
+            readonly Process process = Process.GetCurrentProcess();
+
+            public IntPtr Handle => process.MainWindowHandle;
         }
 
         /// <summary>

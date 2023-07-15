@@ -70,5 +70,17 @@ namespace IS4.SFI.Application.Tools
         {
             return path is "/dev/clipboard";
         }
+
+        /// <summary>
+        /// Checks whether <paramref name="path"/> identifies the file picker dialog.
+        /// </summary>
+        /// <param name="path">The path to check.</param>
+        /// <returns>
+        /// Whether the path equals <c>/dev/picker</c>.
+        /// </returns>
+        public static bool IsFilePicker(string path)
+        {
+            return path is "/dev/picker";
+        }
     }
 }
