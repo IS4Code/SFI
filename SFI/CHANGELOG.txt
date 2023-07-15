@@ -1,0 +1,10 @@
+1.2.0
+-----
+
+- Fixed `data:` URI escaping.
+- Changed the way analyers are stored in the `EntityAnalyzerProvider`, to resolve issues with more complex hierarchies of derived analyzers.
+- Added `SortedMultiTree` to implement this change, which maintains a tree-like collection of objects reachable using ordered keys.
+- Added `SortedMultiSet` where values are compared using `IComparer` for order but using `IEqualityComparer` for equality, allowing muliple values with the same order key.
+- Removed `GlobalObjectComparer` and `TypeInheritanceComparer`, as they were obsoleted by the methods above and no longer used.
+- All non-critical formats and analyzers (XML, X.509, etc.) moved to their separate projects.
+- All vocabulary items from XIS were added and prefixed with `Xml` in code to distinguish from items with similar names.
