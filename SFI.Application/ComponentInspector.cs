@@ -189,6 +189,8 @@ namespace IS4.SFI.Application
             }
         }
 
+        readonly HashSet<Type> LoadedComponentTypes = new();
+
         /// <summary>
         /// Adds the given <see cref="ComponentType"/> instance into the existing collections.
         /// </summary>
@@ -196,6 +198,12 @@ namespace IS4.SFI.Application
         /// <returns>The number of individual component items that were added.</returns>
         protected virtual async ValueTask<int> LoadIntoCollections(ComponentType component)
         {
+            // Check if type was encountered previously
+            if(!LoadedComponentTypes.Add(component.Type))
+            {
+                return 0;
+            }
+
             int componentCount = 0;
 
             foreach(var collection in ComponentCollections.ToArray())
