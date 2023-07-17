@@ -29,20 +29,18 @@
     <DebugType>embedded</DebugType>
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>sfi</ToolCommandName>
+    <GenerateNuspecDependsOn>$(GenerateNuspecDependsOn);_ExcludeTargetFramework;_ExcludeTargetFrameworkDependency</GenerateNuspecDependsOn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)' == 'net6.0-windows'">
+    <PublishSingleFile>true</PublishSingleFile>
+    <PublishTrimmed>true</PublishTrimmed>
+    <PublishSelfContained>true</PublishSelfContained>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <UseWindowsForms>true</UseWindowsForms>
     <DisableWinExeOutputInference>true</DisableWinExeOutputInference>
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     <_SuppressWinFormsTrimError>true</_SuppressWinFormsTrimError>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(TargetFramework)' == 'net6.0-windows' or '$(TargetFramework)' == 'net6.0'">
-    <PublishSingleFile>true</PublishSingleFile>
-    <PublishTrimmed>true</PublishTrimmed>
-    <SelfContained>true</SelfContained>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)' == 'net461'">
@@ -58,7 +56,7 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-    <None Update="README.md">
+    <None Include="README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
@@ -87,5 +85,21 @@
   <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
+
+  <Target Name="_ExcludeTargetFramework" AfterTargets="_GetTargetFrameworksOutput" BeforeTargets="_WalkEachTargetPerFramework">
+    <ItemGroup>
+      <_TargetFrameworks Remove="net6.0-windows" />
+      <_TargetFrameworks Remove="net461" />
+      <_TargetFrameworks Remove="netstandard2.0" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="_ExcludeTargetFrameworkDependency" AfterTargets="_WalkEachTargetPerFramework" BeforeTargets="GenerateNuspec">
+    <ItemGroup>
+      <_FrameworksWithSuppressedDependencies Include="net6.0-windows" />
+      <_FrameworksWithSuppressedDependencies Include="net461" />
+      <_FrameworksWithSuppressedDependencies Include="netstandard2.0" />
+    </ItemGroup>
+  </Target>
 
 </Project>
