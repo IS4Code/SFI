@@ -4,9 +4,10 @@ using System;
 using System.Buffers;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Linq;
 using System.Numerics;
 
-namespace IS4.SFI.MediaAnalysis.Audio
+namespace IS4.SFI.Formats.Audio
 {
     /// <summary>
     /// Generates polar spectrum images.
@@ -30,6 +31,12 @@ namespace IS4.SFI.MediaAnalysis.Audio
         public static bool IsSupported { get; } = true;
 
         /// <summary>
+        /// The exception that is set when <see cref="IsSupported"/>
+        /// is <see langword="false"/>.
+        /// </summary>
+        public static Exception? NotSupportedException { get; }
+
+        /// <summary>
         /// Creates a new instance of the generator.
         /// </summary>
         /// <param name="width">The value of <see cref="Width"/>.</param>
@@ -42,12 +49,28 @@ namespace IS4.SFI.MediaAnalysis.Audio
 
         static PolarSpectrumGenerator()
         {
-            try
-            {
+            try{
                 MathNet.Numerics.Control.UseNativeMKL();
-            }catch(NotSupportedException)
+            }catch(NotSupportedException e)
             {
+                var path = Environment.GetEnvironmentVariable("PATH");
+                if(!String.IsNullOrWhiteSpace(path))
+                {
+                    // Try to load it from .nuget
+                    foreach((string dir, Version version) in MathNetLibraryHelper.FindMKLInstallations().OrderByDescending(p => p.version))
+                    {
+                        Environment.SetEnvironmentVariable("PATH", $"{path};{dir}");
+                        try{
+                            MathNet.Numerics.Control.UseNativeMKL();
+                            return;
+                        }catch(NotSupportedException)
+                        {
+                            Environment.SetEnvironmentVariable("PATH", path);
+                        }
+                    }
+                }
                 IsSupported = false;
+                NotSupportedException = e;
             }
         }
 

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using System.Threading.Tasks;
 
-namespace IS4.SFI.MediaAnalysis.Audio
+namespace IS4.SFI.Formats.Audio
 {
     /// <summary>
     /// Generates spectrum in frequency space from provided frames of audio data.
