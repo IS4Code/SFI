@@ -31,6 +31,10 @@ namespace IS4.SFI.Formats
         ///     <description><see cref="ValidationType.None"/></description>
         /// </item>
         /// <item>
+        ///     <term><see cref="XmlReaderSettings.MaxCharactersFromEntities"/></term>
+        ///     <description>1024</description>
+        /// </item>
+        /// <item>
         ///     <term><see cref="XmlReaderSettings.Async"/></term>
         ///     <description><see langword="true"/></description>
         /// </item>
@@ -45,9 +49,55 @@ namespace IS4.SFI.Formats
             CloseInput = false,
             DtdProcessing = DtdProcessing.Parse,
             ValidationType = ValidationType.None,
+            MaxCharactersFromEntities = 1024,
             Async = true,
             XmlResolver = new XmlPlaceholderResolver()
         };
+
+        /// <summary>
+        /// The processing of DTDs.
+        /// </summary>
+        [Description("The processing of DTDs.")]
+        public DtdProcessing DtdProcessing {
+            get => ReaderSettings.DtdProcessing;
+            set => ReaderSettings.DtdProcessing = value;
+        }
+
+        /// <summary>
+        /// Whether to perform validation or type assignment when reading.
+        /// </summary>
+        [Description("Whether to perform validation or type assignment when reading.")]
+        public ValidationType ValidationType {
+            get => ReaderSettings.ValidationType;
+            set => ReaderSettings.ValidationType = value;
+        }
+
+        /// <summary>
+        /// Whether to check invalid characters when reading.
+        /// </summary>
+        [Description("Whether to check invalid characters when reading.")]
+        public bool CheckCharacters {
+            get => ReaderSettings.CheckCharacters;
+            set => ReaderSettings.CheckCharacters = value;
+        }
+
+        /// <summary>
+        /// The maximum allowable number of characters from expanded entities.
+        /// </summary>
+        [Description("The maximum allowable number of characters from expanded entities.")]
+        public long MaxCharactersFromEntities {
+            get => ReaderSettings.MaxCharactersFromEntities;
+            set => ReaderSettings.MaxCharactersFromEntities = value;
+        }
+
+        /// <summary>
+        /// The maximum allowable number of characters in a document.
+        /// </summary>
+        [Description("The maximum allowable number of characters in a document.")]
+        public long MaxCharactersInDocument {
+            get => ReaderSettings.MaxCharactersInDocument;
+            set => ReaderSettings.MaxCharactersInDocument = value;
+        }
 
         /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public XmlFileFormat(string mediaType = "application/xml", string extension = "xml") : base(DataTools.MaxBomLength + 1, mediaType, extension)
