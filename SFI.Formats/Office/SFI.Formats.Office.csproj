@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>IS4.SFI.Formats.Office</AssemblyName>
+    <VersionPrefix>1.0.1</VersionPrefix>
     <Product>Semantic File Inspector</Product>
     <Authors>IS4</Authors>
     <Copyright>Copyright (c) $(Authors) $([System.DateTime]::UtcNow.ToString('yyyy'))</Copyright>
@@ -21,6 +22,7 @@
     <PackageIcon>icon.png</PackageIcon>
     <PackageTags>linked-data;sparql;rdf;semantic-search;metadata-extraction;office;ooxml;doc;docx;xls;xlsx</PackageTags>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/CHANGELOG.txt"))</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
@@ -36,7 +38,7 @@
 
   <ItemGroup>
     <PackageReference Include="NPOI" Version="2.5.6" />
-    <PackageReference Include="ScratchPad.NPOI.HWPF" Version="2.5.6" />
+    <PackageReference Include="ScratchPad.NPOI.HWPF" Version="2.5.7" />
   </ItemGroup>
 
   <ItemGroup>
