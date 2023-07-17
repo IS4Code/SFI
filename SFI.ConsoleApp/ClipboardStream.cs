@@ -1,4 +1,6 @@
-﻿using IS4.SFI.Application.Tools;
+﻿#if WINDOWS || NETFRAMEWORK
+
+using IS4.SFI.Application.Tools;
 using System;
 using System.IO;
 using System.Text;
@@ -13,7 +15,7 @@ namespace IS4.SFI.ConsoleApp
 
         protected async override ValueTask Store(ArraySegment<byte> data)
         {
-            var text = encoding.GetString(data);
+            var text = encoding.GetString(data.Array!, data.Offset, data.Count);
             await StaThread.InvokeAsync(() => Clipboard.SetText(text, TextDataFormat.UnicodeText));
         }
 
@@ -27,8 +29,10 @@ namespace IS4.SFI.ConsoleApp
                 }
                 return text;
             });
-            using var writer = new StreamWriter(this, encoding: encoding, leaveOpen: true);
+            using var writer = new StreamWriter(this, encoding: encoding, bufferSize: 1024, leaveOpen: true);
             writer.Write(text);
         }
     }
 }
+
+#endif

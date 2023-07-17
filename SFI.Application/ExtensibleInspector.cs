@@ -51,7 +51,12 @@ namespace IS4.SFI.Application
 
             await base.AddDefault();
 
-            await LoadPlugins();
+            try{
+                await LoadPlugins();
+            }catch(Exception e)
+            {
+                OutputLog?.LogWarning(e, "Plugins could not be loaded.");
+            }
         }
 
         async ValueTask LoadPlugins()

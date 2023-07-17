@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFrameworks>net6.0-windows;net6.0;net461;netstandard2.0</TargetFrameworks>
     <AssemblyName>IS4.SFI.ConsoleApp</AssemblyName>
     <VersionPrefix>1.1</VersionPrefix>
     <Product>Semantic File Inspector</Product>
@@ -10,7 +10,7 @@
     <RootNamespace>IS4.SFI.ConsoleApp</RootNamespace>
     <LangVersion>10.0</LangVersion>
     <Nullable>enable</Nullable>
-    <NoWarn>1701;1702;1998</NoWarn>
+    <NoWarn>1701;1702;1998;NU1602</NoWarn>
     <DocumentationFile>bin\$(AssemblyName).xml</DocumentationFile>
     <AssemblyTitle>$(Product) Console Application</AssemblyTitle>
     <PackageId>$(AssemblyName)</PackageId>
@@ -26,16 +26,27 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <OutputType>Exe</OutputType>
-    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
-    <PublishSingleFile>true</PublishSingleFile>
-    <SelfContained>true</SelfContained>
     <DebugType>embedded</DebugType>
-    <PublishTrimmed>true</PublishTrimmed>
-    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
-    <_SuppressWinFormsTrimError>true</_SuppressWinFormsTrimError>
-    <UseWindowsForms>true</UseWindowsForms>
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>sfi</ToolCommandName>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net6.0-windows'">
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <UseWindowsForms>true</UseWindowsForms>
+    <DisableWinExeOutputInference>true</DisableWinExeOutputInference>
+    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <_SuppressWinFormsTrimError>true</_SuppressWinFormsTrimError>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net6.0-windows' or '$(TargetFramework)' == 'net6.0'">
+    <PublishSingleFile>true</PublishSingleFile>
+    <PublishTrimmed>true</PublishTrimmed>
+    <SelfContained>true</SelfContained>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net461'">
+    <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
   </PropertyGroup>
 
   <ItemGroup>
@@ -58,11 +69,23 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SFI\SFI.csproj" />
+    <ProjectReference Include="..\SFI.RDF\SFI.RDF.csproj" />
     <ProjectReference Include="..\SFI.Application\SFI.Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0-windows' or '$(TargetFramework)' == 'net461'">
     <ProjectReference Include="..\SFI.Formats\All\SFI.Formats.All.csproj" />
     <ProjectReference Include="..\SFI.Hashes\All\SFI.Hashes.All.csproj" />
-    <ProjectReference Include="..\SFI.RDF\SFI.RDF.csproj" />
-    <ProjectReference Include="..\SFI\SFI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0' or '$(TargetFramework)' == 'netstandard2.0'">
+    <ProjectReference Include="..\SFI.Formats\AllPortable\SFI.Formats.AllPortable.csproj" />
+    <ProjectReference Include="..\SFI.Hashes\AllPortable\SFI.Hashes.AllPortable.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
 
 </Project>

@@ -17,10 +17,12 @@ namespace IS4.SFI.ConsoleApp
     {
         string baseDirectory = Path.Combine(AppContext.BaseDirectory, "plugins");
 
+#if WINDOWS || NETFRAMEWORK
         /// <summary>
         /// The default image analyzer.
         /// </summary>
         public ImageAnalyzer? ImageAnalyzer { get; private set; }
+#endif
 
         /// <inheritdoc/>
         public ConsoleInspector()
@@ -30,6 +32,7 @@ namespace IS4.SFI.ConsoleApp
 
         public async override ValueTask AddDefault()
         {
+#if WINDOWS || NETFRAMEWORK
             await LoadAssembly(Formats.All.Provider.Assembly);
             await LoadAssembly(Hashes.All.Provider.Assembly);
 
@@ -38,8 +41,15 @@ namespace IS4.SFI.ConsoleApp
             var algorithms = ImageAnalyzer.DataHashAlgorithms;
             foreach(var algorithm in DataAnalyzer.HashAlgorithms)
             {
-                algorithms.Add(algorithm);
+                if(!algorithms.Contains(algorithm))
+                {
+                    algorithms.Add(algorithm);
+                }
             }
+#else
+            await LoadAssembly(Formats.AllPortable.Provider.Assembly);
+            await LoadAssembly(Hashes.AllPortable.Provider.Assembly);
+#endif
 
             Plugins.Clear();
             foreach(var plugin in LoadPlugins())

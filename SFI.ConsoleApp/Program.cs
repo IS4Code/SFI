@@ -8,7 +8,9 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+#if WINDOWS || NETFRAMEWORK
 using System.Windows.Forms;
+#endif
 
 namespace IS4.SFI.ConsoleApp
 {
@@ -49,13 +51,21 @@ namespace IS4.SFI.ConsoleApp
                 return new IFileNodeInfo[] { new DeviceInput(Console.OpenStandardInput) };
             }else if(StandardPaths.IsClipboard(path))
             {
+#if WINDOWS || NETFRAMEWORK
                 return new IFileNodeInfo[] { new DeviceInput(() => new ClipboardStream()) };
-            }else if(StandardPaths.IsFilePicker(path))
+#else
+                ShowPlatformFileUnavailableException("clipboard");
+#endif
+            } else if(StandardPaths.IsFilePicker(path))
             {
+#if WINDOWS || NETFRAMEWORK
                 return new IFileNodeInfo[] { new DeviceInput(() => {
                     var path = ShowDialog<OpenFileDialog>("Load input file", null);
                     return File.OpenRead(path);
                 }) };
+#else
+                ShowPlatformFileUnavailableException("file picker");
+#endif
             }
             var fileName = Path.GetFileName(path);
             if(fileName.Contains('*') || fileName.Contains('?'))
@@ -93,11 +103,19 @@ namespace IS4.SFI.ConsoleApp
                 return Stream.Null;
             }else if(StandardPaths.IsClipboard(path))
             {
+#if WINDOWS || NETFRAMEWORK
                 return new ClipboardStream();
-            }else if(StandardPaths.IsFilePicker(path))
+#else
+                ShowPlatformFileUnavailableException("clipboard");
+#endif
+            } else if(StandardPaths.IsFilePicker(path))
             {
+#if WINDOWS || NETFRAMEWORK
                 path = ShowDialog<SaveFileDialog>("Save output file", mediaType);
                 return File.Create(path);
+#else
+                ShowPlatformFileUnavailableException("file picker");
+#endif
             }
             var dir = Path.GetDirectoryName(path);
             if(!String.IsNullOrWhiteSpace(dir))
@@ -112,6 +130,7 @@ namespace IS4.SFI.ConsoleApp
             return default;
         }
 
+#if WINDOWS || NETFRAMEWORK
         static readonly byte[] appGuidNS = Guid.Parse("b1ebfec4-0e2f-42e3-8357-6724abc06db3").ToByteArray();
 
         static string ShowDialog<TDialog>(string title, string? filter) where TDialog : FileDialog, new()
@@ -119,7 +138,9 @@ namespace IS4.SFI.ConsoleApp
             return StaThread.Invoke(() => {
                 var dialog = new TDialog();
                 dialog.DereferenceLinks = false;
+#if NET5_0_OR_GREATER
                 dialog.ClientGuid = DataTools.GuidFromName(appGuidNS, title);
+#endif
                 dialog.Title = title;
                 if(filter != null)
                 {
@@ -150,6 +171,16 @@ namespace IS4.SFI.ConsoleApp
 
             public IntPtr Handle => process.MainWindowHandle;
         }
+#else
+        static void ShowPlatformFileUnavailableException(string name)
+        {
+            if(System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows))
+            {
+                throw new ApplicationException($"The special {name} file is available only in distributions targeting Windows.");
+            }
+            throw new ApplicationException($"The special {name} file is available only in Windows.");
+        }
+#endif
 
         /// <summary>
         /// This class represents a device as a file.

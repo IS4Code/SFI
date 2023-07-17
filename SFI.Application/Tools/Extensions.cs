@@ -42,16 +42,12 @@ namespace IS4.SFI.Application.Tools
             {
                 names.Add(new AssemblyName(attr.AssemblyName).Name);
             }
-            var context = AssemblyLoadContext.GetLoadContext(assembly);
-            if(context == null)
-            {
-                throw new ArgumentException("Assembly is not runtime-loaded.", nameof(assembly));
-            }
+            var loader = GetLoader(assembly);
             foreach(var refName in assembly.GetReferencedAssemblies())
             {
                 if(names.Contains(refName.Name))
                 {
-                    var refAssembly = context.LoadFromAssemblyName(refName);
+                    var refAssembly = loader(refName);
                     if(refAssembly != null)
                     {
                         foreach(var type in refAssembly.ExportedTypes)
@@ -60,6 +56,33 @@ namespace IS4.SFI.Application.Tools
                         }
                     }
                 }
+            }
+        }
+
+        static Func<AssemblyName, Assembly> GetLoader(Assembly assembly)
+        {
+            try{
+                var loader = AssemblyContextLoader.GetLoader(assembly);
+                if(loader == null)
+                {
+                    throw new ArgumentException("Assembly is not runtime-loaded.", nameof(assembly));
+                }
+                return loader;
+            }catch{
+                return Assembly.Load;
+            }
+        }
+
+        static class AssemblyContextLoader
+        {
+            public static Func<AssemblyName, Assembly> GetLoader(Assembly assembly)
+            {
+                var context = AssemblyLoadContext.GetLoadContext(assembly);
+                if(context == null)
+                {
+                    return null;
+                }
+                return context.LoadFromAssemblyName;
             }
         }
     }
