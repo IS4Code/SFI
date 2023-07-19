@@ -706,15 +706,15 @@ namespace IS4.SFI
 			/// </summary>
 			List,
 
-			/// <summary>
-			/// The application should output the provided options in the XML format.
-			/// </summary>
-			Options,
+            /// <summary>
+            /// The application should display information about a particular component.
+            /// </summary>
+            About,
 
-			/// <summary>
-			/// The application should display information about a particular component.
-			/// </summary>
-			About,
+            /// <summary>
+            /// The application should output the provided options in the XML format.
+            /// </summary>
+            Options,
 		}
 
 		/// <inheritdoc/>
