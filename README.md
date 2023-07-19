@@ -1,4 +1,4 @@
-Semantic File Inspector
+<img src="icon.png" height="32"> Semantic File Inspector
 ==========
 
 The *Semantic File Inspector* is a .NET project that provides a software suite and a tool to describe any file or piece of data, including its formats and contents, using [RDF (Resource Description Framework)](https://www.w3.org/TR/rdf-primer/).
@@ -9,6 +9,17 @@ The tool is accessible through several options:
 - Installable via <code>[dotnet tool install](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-tool-install) IS4.SFI.ConsoleApp --global</code> (run as `sfi`).
 - Downloadable in the [releases](//github.com/IS4Code/SFI/releases) for your platform.
 
+Supported formats:
+
+* Applications: com, dll, exe, swf.
+* Archives: 7z, cab, gz, iso, rar, sz, tar, udf, zip.
+* Audio: aa, aax, aac, aiff, ape, dsf, flac, m4a, m4b, m4p, mp3, mpc, mpp, ogg, oga, wav, wma, wv, webm.
+* Certificates: der, p7c, pfx.
+* Data: dfm, ole, rdf, warc, xml.
+* Documents: doc, docx, html, pdf, xls, xlsx.
+* Images: bmp, gif, ico, jpg, pbm, pgm, ppm, pnm, pcx, png, psd, tiff, tga, dng, svg, webp.
+* Video: asf, avci, avi, mkv, mov, mp4, mpeg, ogv, wmv.
+
 ## Documentation
 
 For detailed information regarding the command-line API, configuration options, and plugin integration, please see the [wiki](//github.com/IS4Code/SFI/wiki), offering comprehensive documentation covering various aspects of the software.
@@ -17,7 +28,7 @@ For detailed information regarding the command-line API, configuration options, 
 
 The software offers the following features:
 
-- **Format Extraction**: Supports over 30 different formats including common media formats, archives, executables, and documents.
+- **Format Extraction**: Supports over 50 different formats including common media formats, archives, executables, and documents.
 - **Rich Metadata**: Collects rich metadata, including common file properties and format-specific properties such as image dimensions.
 - **Hashing**: Computes hashes using various algorithms to describe and identify the data.
 - **RDF Encoding**: Encodes all the extracted information in RDF using common vocabularies found on the semantic web.
