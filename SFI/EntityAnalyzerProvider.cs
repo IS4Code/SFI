@@ -118,13 +118,13 @@ namespace IS4.SFI
                 {
                     using var scope2 = OutputLog?.BeginScope(analyzer);
                     OutputLog?.LogError(e, $"Error from {TextTools.GetUserFriendlyName(analyzer)}!");
-                    return default;
+                    continue;
                 }finally{
                     await Update();
                 }
             }
-            var type = typeof(T);
-            if(any || !noAnalyzerWarned.ContainsKey(type))
+            Type type;
+            if(!any && !noAnalyzerWarned.ContainsKey(type = typeof(T)))
             {
                 OutputLog?.LogWarning($"No analyzer for {nameFriendly}.");
                 noAnalyzerWarned[type] = true;
