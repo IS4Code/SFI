@@ -129,7 +129,7 @@ namespace IS4.SFI
 
         private IEnumerable<IEntityAnalyzer<T>> FindAnalyzers<T>() where T : notnull
         {
-            return analyzers.Find(typeof(T)).Cast<IEntityAnalyzer<T>>();
+            return analyzers.Find(typeof(T)).OfType<IEntityAnalyzer<T>>();
         }
 
         /// <summary>
