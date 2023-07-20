@@ -126,6 +126,7 @@ namespace IS4.SFI
             Type type;
             if(!any && !noAnalyzerWarned.ContainsKey(type = typeof(T)))
             {
+                using var scope2 = TypeInfo<T>.IsValueType ? OutputLog?.BeginScope(entity) : null;
                 OutputLog?.LogWarning($"No analyzer for {nameFriendly}.");
                 noAnalyzerWarned[type] = true;
                 await Update();

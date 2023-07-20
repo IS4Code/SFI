@@ -118,12 +118,15 @@ namespace IS4.SFI.Application.Tools
 
             class Scope<TState> : Scope where TState : notnull
             {
+                static readonly Type type = typeof(TState);
+                static readonly bool isValueType = type.IsValueType;
+
                 readonly string key;
 
                 public Scope(ComponentLogger logger, LinkedList<Scope> scopes, TState state) : base(scopes)
                 {
                     var key = TextTools.GetIdentifierFromType<TState>();
-                    var id = logger.typeCounters.GetOrAdd(typeof(TState), _ => new()).GetId(state);
+                    var id = isValueType ? 1 : logger.typeCounters.GetOrAdd(type, _ => new()).GetId(state);
                     this.key = id == 1 ? $"[{key}]" : $"[{key}#{id}]";
                 }
 
