@@ -680,7 +680,6 @@ namespace IS4.SFI
 		/// <inheritdoc/>
 		public override void Description()
 		{
-			base.Description();
 			LogWriter.WriteLine();
 			LogWriter.Write(" ");
 			OutputWrapPad("This software analyzes the formats of given files and outputs RDF description of their contents.", 1);
