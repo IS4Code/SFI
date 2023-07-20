@@ -82,7 +82,10 @@ namespace IS4.SFI
             bool any = false;
             foreach(var analyzer in FindAnalyzers<T>())
             {
-                any = true;
+                if(analyzer is not ObjectAnalyzer)
+                {
+                    any = true;
+                }
                 log?.LogInformation($"Analyzing: {nameFriendly}...");
                 await Update();
                 try{
