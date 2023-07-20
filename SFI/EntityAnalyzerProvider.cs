@@ -103,8 +103,11 @@ namespace IS4.SFI
 #endif
                         return result;
                     }
-                    using var scope2 = OutputLog?.BeginScope(analyzer);
-                    OutputLog?.LogWarning($"No result from {TextTools.GetUserFriendlyName(analyzer)}!");
+                    if(analyzer is not ObjectAnalyzer)
+                    {
+                        using var scope2 = OutputLog?.BeginScope(analyzer);
+                        OutputLog?.LogWarning($"No result from {TextTools.GetUserFriendlyName(analyzer)}!");
+                    }
                 }catch(InternalApplicationException)
                 {
                     throw;
