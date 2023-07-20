@@ -16,6 +16,7 @@
     <PackageId>$(AssemblyName)</PackageId>
     <Title>$(AssemblyTitle)</Title>
     <Description>Provides the $(Product) CLI tool.</Description>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
     <RepositoryUrl>https://github.com/IS4Code/SFI</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>$(RepositoryUrl)/tree/HEAD/SFI.ConsoleApp</PackageProjectUrl>
@@ -25,6 +26,7 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReleaseNotes>See https://github.com/IS4Code/SFI/releases/tag/v$(VersionPrefix) for the full changelog.</PackageReleaseNotes>
     <OutputType>Exe</OutputType>
     <DebugType>embedded</DebugType>
     <PackAsTool>true</PackAsTool>
@@ -48,6 +50,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="icon.ico">
+      <Pack>False</Pack>
+    </Content>
     <None Include="..\icon.png" Visible="false">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
