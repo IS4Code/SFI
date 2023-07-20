@@ -57,7 +57,13 @@ namespace IS4.SFI.Application
 				var version = asm.GetName().Version;
 				if(version != null)
 				{
-					msg += " v"+version.ToString(2);
+					if(version.Build == 0)
+					{
+						version = new Version(version.Major, version.Minor);
+					}else{
+						version = new Version(version.Major, version.Minor, version.Build);
+					}
+					msg += " v"+version.ToString();
 				}
 			}
 			var author = asm.GetCustomAttributes(typeof(AssemblyCompanyAttribute), false);
