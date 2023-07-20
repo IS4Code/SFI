@@ -485,7 +485,10 @@ namespace IS4.SFI.Tools
                         // Directly removed, but inner nodes need to be reincluded
                         foreach(var inner in tree)
                         {
-                            Add(inner);
+                            if(!valueEqualityComparer.Equals(inner, item))
+                            {
+                                Add(inner);
+                            }
                         }
                         removed = true;
                     }
