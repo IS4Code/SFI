@@ -729,11 +729,13 @@ namespace IS4.SFI
 				{"m", "metadata", null, "add annotation metadata to output"},
 				{"d", "data-only", null, "do not store input file information"},
 				{"u", "ugly", null, "do not use pretty print"},
-				{"b", "buffered", null, "buffer all data in a graph before writing"},
+                {"o", "only-once", null, "skip processing duplicate entities"},
+                {"b", "buffered", null, "buffer all data in a graph before writing"},
 				{"h", "hash", "pattern", "set the main binary hash"},
 				{"r", "root", "uri", "set the hierarchy root URI prefix"},
 				{"s", "sparql-query", "file", "perform a SPARQL query during processing"},
                 {"p", "plugin", "id", "loads a plugin with a particular identifier"},
+                {"C", "config", "file", "loads additional configuration"},
                 {"?", "help", null, "displays this help message"},
 				{null, "[component]:[property]", "value", "sets a specific component's property (see list)"}
 			};
