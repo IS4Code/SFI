@@ -13,8 +13,6 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Xml;
-using System.Xml.Linq;
 
 namespace IS4.SFI
 {
@@ -22,7 +20,7 @@ namespace IS4.SFI
     /// The main application for analyzing input files and producing output.
     /// </summary>
     /// <typeparam name="TInspector">The type of <see cref="Inspector"/> to use.</typeparam>
-    public class Application<TInspector> : CommandApplication, IResultFactory<ValueTuple, string>, IResultFactory<bool, string> where TInspector : ExtensibleInspector, new()
+    public class Application<TInspector> : ConfigurableApplication, IResultFactory<ValueTuple, string>, IResultFactory<bool, string> where TInspector : ExtensibleInspector, new()
     {
         readonly IApplicationEnvironment environment;
 
@@ -48,7 +46,7 @@ namespace IS4.SFI
 		/// An instance of <see cref="IApplicationEnvironment"/>
 		/// providing manipulation with the environment.
 		/// </param>
-		public Application(IApplicationEnvironment environment)
+		public Application(IApplicationEnvironment environment) : base("https://sfi.is4.site/config")
         {
             this.environment = environment;
 			writer = environment.LogWriter;
@@ -752,7 +750,7 @@ namespace IS4.SFI
 				this.mode = mode;
 				if(mode == Mode.Options)
 				{
-					CreateOptionsXml();
+                    CaptureOptions();
 				}
 				return OperandState.ContinueOptions;
 			}
@@ -812,121 +810,105 @@ namespace IS4.SFI
         /// <inheritdoc/>
         protected override OptionArgumentFlags OnOptionFound(string option)
 		{
-			var canonical = GetCanonicalOption(option);
-            OptionArgumentFlags Inner()
+			switch(GetCanonicalOption(option))
 			{
-				switch(canonical)
-				{
-					case "quiet":
-						quiet = true;
-						return OptionArgumentFlags.None;
-					case "compress":
-						options.CompressedOutput = true;
-						return OptionArgumentFlags.None;
-					case "metadata":
-						options.HideMetadata = false;
-						return OptionArgumentFlags.None;
-					case "data-only":
-						dataOnly = true;
-						return OptionArgumentFlags.None;
-					case "only-once":
-						onlyOnce = true;
-						return OptionArgumentFlags.None;
-					case "buffered":
-						options.DirectOutput = false;
-						return OptionArgumentFlags.None;
-					case "ugly":
-						options.PrettyPrint = false;
-						return OptionArgumentFlags.None;
-					case "root":
+				case "quiet":
+					quiet = true;
+					return OptionArgumentFlags.None;
+				case "compress":
+					options.CompressedOutput = true;
+					return OptionArgumentFlags.None;
+				case "metadata":
+					options.HideMetadata = false;
+					return OptionArgumentFlags.None;
+				case "data-only":
+					dataOnly = true;
+					return OptionArgumentFlags.None;
+				case "only-once":
+					onlyOnce = true;
+					return OptionArgumentFlags.None;
+				case "buffered":
+					options.DirectOutput = false;
+					return OptionArgumentFlags.None;
+				case "ugly":
+					options.PrettyPrint = false;
+					return OptionArgumentFlags.None;
+				case "root":
+					return OptionArgumentFlags.RequiredArgument;
+				case "include":
+					return OptionArgumentFlags.RequiredArgument | OptionArgumentFlags.AllowMultiple;
+				case "exclude":
+					return OptionArgumentFlags.RequiredArgument | OptionArgumentFlags.AllowMultiple;
+				case "hash":
+					return OptionArgumentFlags.RequiredArgument;
+				case "sparql-query":
+					return OptionArgumentFlags.RequiredArgument | OptionArgumentFlags.AllowMultiple;
+				case "format":
+					return OptionArgumentFlags.RequiredArgument;
+				case "plugin":
+					return OptionArgumentFlags.RequiredArgument | OptionArgumentFlags.AllowMultiple;
+				case "config":
+					return OptionArgumentFlags.RequiredArgument | OptionArgumentFlags.AllowMultiple;
+				case "help":
+					Help();
+					return OptionArgumentFlags.None;
+				default:
+					if(componentPropertyRegex.IsMatch(option))
+					{
 						return OptionArgumentFlags.RequiredArgument;
-					case "include":
-						return OptionArgumentFlags.RequiredArgument | OptionArgumentFlags.AllowMultiple;
-					case "exclude":
-						return OptionArgumentFlags.RequiredArgument | OptionArgumentFlags.AllowMultiple;
-					case "hash":
-						return OptionArgumentFlags.RequiredArgument;
-					case "sparql-query":
-						return OptionArgumentFlags.RequiredArgument | OptionArgumentFlags.AllowMultiple;
-					case "format":
-						return OptionArgumentFlags.RequiredArgument;
-					case "plugin":
-						return OptionArgumentFlags.RequiredArgument | OptionArgumentFlags.AllowMultiple;
-					case "config":
-						return OptionArgumentFlags.RequiredArgument | OptionArgumentFlags.AllowMultiple;
-					case "help":
-						Help();
-						return OptionArgumentFlags.None;
-					default:
-						if(componentPropertyRegex.IsMatch(option))
-						{
-							return OptionArgumentFlags.RequiredArgument;
-						}
-						throw UnrecognizedOption(option);
-				}
+					}
+					throw UnrecognizedOption(option);
 			}
-			var result = Inner();
-			if((result & OptionArgumentFlags.HasArgument) == 0)
-			{
-				StoreOption(canonical, null);
-            }
-			return result;
 		}
 
 		/// <inheritdoc/>
 		protected override void OnOptionArgumentFound(string option, string? argument, OptionArgumentFlags flags)
         {
-            var canonical = GetCanonicalOption(option);
-            void Inner()
+			switch(GetCanonicalOption(option))
 			{
-				switch(canonical)
-				{
-					case "root":
-						if(!Uri.TryCreate(argument, UriKind.Absolute, out _))
+				case "root":
+					if(!Uri.TryCreate(argument, UriKind.Absolute, out _))
+					{
+						throw new ApplicationException("The argument to option '" + option + "' must be a well-formed absolute URI.");
+					}
+					options.Root = argument!;
+					rootSpecified = true;
+					break;
+				case "include":
+					componentMatchers.Add(new Matcher(true, argument!));
+					break;
+				case "exclude":
+					componentMatchers.Add(new Matcher(false, argument!));
+					break;
+				case "hash":
+					mainHash = TextTools.ConvertWildcardToRegex(argument!);
+					mainHashName = argument;
+					componentMatchers.Add(new Matcher(true, "data-hash:" + argument!, true));
+					break;
+				case "sparql-query":
+					queries.Add(argument!);
+					break;
+				case "format":
+					options.Format = argument!;
+					break;
+				case "plugin":
+					plugins.Add(argument!);
+					break;
+				case "config":
+					LoadConfig(argument!);
+					break;
+				default:
+					if(componentPropertyRegex.Match(option) is { Success: true } propMatch)
+					{
+						var componentId = propMatch.Groups[1].Value.ToLowerInvariant();
+						if(!componentProperties.TryGetValue(componentId, out var dict))
 						{
-							throw new ApplicationException("The argument to option '" + option + "' must be a well-formed absolute URI.");
+							componentProperties[componentId] = dict = new(StringComparer.OrdinalIgnoreCase);
 						}
-						options.Root = argument!;
-						rootSpecified = true;
-						break;
-					case "include":
-						componentMatchers.Add(new Matcher(true, argument!));
-						break;
-					case "exclude":
-						componentMatchers.Add(new Matcher(false, argument!));
-						break;
-					case "hash":
-						mainHash = TextTools.ConvertWildcardToRegex(argument!);
-						mainHashName = argument;
-						componentMatchers.Add(new Matcher(true, "data-hash:" + argument!, true));
-						break;
-					case "sparql-query":
-						queries.Add(argument!);
-						break;
-					case "format":
-						options.Format = argument!;
-						break;
-					case "plugin":
-						plugins.Add(argument!);
-						break;
-					case "config":
-						LoadConfig(argument!);
-						break;
-					default:
-						if(componentPropertyRegex.Match(option) is { Success: true } propMatch)
-						{
-							var componentId = propMatch.Groups[1].Value.ToLowerInvariant();
-							if(!componentProperties.TryGetValue(componentId, out var dict))
-							{
-								componentProperties[componentId] = dict = new(StringComparer.OrdinalIgnoreCase);
-							}
-							dict[propMatch.Groups[2].Value.ToLowerInvariant()] = argument!;
-						}
-						break;
-				}
+						dict[propMatch.Groups[2].Value.ToLowerInvariant()] = argument!;
+					}
+					break;
 			}
-			Inner();
-            StoreOption(canonical, argument);
         }
 
 		class Matcher
@@ -945,223 +927,22 @@ namespace IS4.SFI
         }
         #endregion
 
-        #region Configuration XML
-        static readonly XNamespace configNs = "https://sfi.is4.site/config";
-		static readonly XName configRoot = configNs + "options";
-
-		static readonly XName nil = XName.Get("nil", "http://www.w3.org/2001/XMLSchema-instance");
-
         void LoadConfig(string name = "sfi-config.xml")
-		{
-			foreach(var config in environment.GetFiles(name))
-			{
-				if(config is IFileInfo configFile)
-				{
-					LogWriter.WriteLine($"Loading configuration from {configFile.Name}...");
-					using var stream = configFile.Open();
-					var doc = XDocument.Load(stream);
-					var root = doc.Root;
-					if(root.Name != configRoot)
-					{
-						throw new ApplicationException($"{name}: expected {configRoot} as root element, found {root.Name}.");
-					}
-					foreach(var elem in AttributeElements(root).Concat(root.Elements()))
-					{
-						LoadConfigElement(elem, null);
-					}
-				}
-			}
-		}
-
-		void LoadConfigElement(XElement element, string? prefix)
-		{
-			if(element.Name.Namespace != configNs)
-			{
-				// Ignore foreign elements
-				return;
-			}
-
-			var optionName = XmlConvert.DecodeName(element.Name.LocalName);
-			if(prefix != null)
-			{
-				optionName = prefix + optionName;
-            }
-
-			bool? isNil = null;
-			if(element.Attribute(nil)?.Value is string nilValue)
-			{
-				isNil = XmlConvert.ToBoolean(nilValue);
-			}
-
-			var content = AttributeElements(element).Concat(element.Nodes());
-
-            if(!content.Any(n => n is XText or XElement))
+        {
+            foreach(var config in environment.GetFiles(name).OfType<IFileInfo>())
             {
-                var flags = OnOptionFound(optionName);
-                if((element.IsEmpty && isNil != false) || (isNil == true))
-                {
-                    // Must be a switch or null optional argument
-					if((flags & OptionArgumentFlags.HasArgument) != 0)
-					{
-						if((flags & OptionArgumentFlags.RequiredArgument) != 0)
-                        {
-                            throw ArgumentExpected(optionName);
-                        }
-                        OnOptionArgumentFound(optionName, null, flags);
-                    }
-				}else{
-					// May be a switch or empty string
-					if((flags & OptionArgumentFlags.HasArgument) != 0)
-                    {
-                        OnOptionArgumentFound(optionName, "", flags);
-                    }
-				}
-            }else if(isNil == true)
-			{
-				throw new ApplicationException($"Option {optionName} is set to nil but it has content.");
-			}
-
-            var innerPrefix = optionName + ":";
-
-			foreach(var child in content)
-			{
-				switch(child)
-				{
-					case XText childText:
-						var flags = OnOptionFound(optionName);
-                        if((flags & OptionArgumentFlags.HasArgument) == 0)
-                        {
-                            throw ArgumentNotExpected(optionName);
-                        }
-                        OnOptionArgumentFound(optionName, childText.Value, flags);
-                        break;
-					case XElement childElement:
-						LoadConfigElement(childElement, innerPrefix);
-						break;
-				}
-			}
+				LoadConfigXml(name, config);
+            }
         }
 
-		static IEnumerable<XElement> AttributeElements(XElement element)
+        void PrintOptionsXml()
 		{
-			return element.Attributes()
-				.Where(a => !a.IsNamespaceDeclaration && a.Name.Namespace == XNamespace.None)
-				.Select(a => new XElement(element.Name.Namespace + a.Name.LocalName, a.Value));
-		}
-
-		XDocument? optionsXml;
-		XElement? optionsRoot;
-
-		void CreateOptionsXml()
-		{
-			optionsXml = new XDocument
-			(
-				optionsRoot = new XElement(configRoot)
-			);
-		}
-
-		void StoreOption(string option, string? argument)
-		{
-			if(optionsRoot != null)
-			{
-				var path = option.Split(':');
-				var elem = optionsRoot;
-				foreach(var component in path)
-				{
-					elem.Add(elem = new XElement(configNs + XmlConvert.EncodeLocalName(component)));
-				}
-				if(argument != null)
-                {
-                    elem.Value = argument;
-					if(String.IsNullOrWhiteSpace(argument))
-					{
-						elem.Add(new XAttribute(XNamespace.Xml + "space", "preserve"));
-					}
-                }
-			}
-		}
-
-		void SimplifyOptions(XElement elem, bool root)
-        {
-			if(!root)
+            if(output == null)
             {
-                while(elem.NextNode is XElement nextElem && nextElem.Name == elem.Name)
-                {
-					// Merge content with the following element
-					foreach(var attr in nextElem.Attributes())
-					{
-						elem.Add(attr);
-					}
-					foreach(var elem2 in nextElem.Elements())
-					{
-						elem.Add(elem2);
-					}
-					nextElem.Remove();
-                }
+                throw new ApplicationException("An output must be specified to save the options!");
             }
-            foreach(var inner in elem.Elements().ToList())
-			{
-				var name = inner.Name;
-				if(name.Namespace != configNs)
-				{
-					// In case some non-config elements get added
-					continue;
-				}
-				if(inner.IsEmpty && !inner.Attributes().Any(a => a.Name.NamespaceName == XNamespace.None))
-				{
-					// Can't simplify switches
-					continue;
-				}
-				var localName = name.LocalName;
-				if(!inner.Elements().Any())
-				{
-                    // This is a normal option
-                    if(root)
-                    {
-                        switch(localName)
-                        {
-                            case "exclude":
-                            case "include":
-                            case "sparql-query":
-                            case "plugin":
-                            case "config":
-                                // Don't change these to attributes
-                                continue;
-                        }
-                    }
-					if(elem.Attribute(localName) == null)
-					{
-						elem.Add(new XAttribute(localName, inner.Value));
-						inner.Remove();
-					}
-				}else{
-					// Container for options
-					SimplifyOptions(inner, false);
-				}
-			}
+			using var file = environment.CreateFile(output, "application/xml");
+			SaveConfigXml(file);
 		}
-
-		void PrintOptionsXml()
-		{
-			if(optionsXml != null)
-            {
-                if(output == null)
-                {
-                    throw new ApplicationException("An output must be specified to save the options!");
-                }
-				SimplifyOptions(optionsRoot!, true);
-				using var file = environment.CreateFile(output, "application/xml");
-				var settings = new XmlWriterSettings
-				{
-					Encoding = new UTF8Encoding(false),
-					CloseOutput = false,
-					Indent = true,
-					OmitXmlDeclaration = true
-				};
-                using var writer = XmlWriter.Create(file, settings);
-                optionsXml.Save(writer);
-			}
-		}
-        #endregion
     }
 }

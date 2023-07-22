@@ -246,25 +246,51 @@ namespace IS4.SFI.Application
 		/// </returns>
 		protected abstract OptionArgumentFlags OnOptionFound(string option);
 
-		/// <summary>
-		/// Called internally from <see cref="Parse(string[])"/> when
-		/// an argument for an option is found.
-		/// </summary>
-		/// <param name="option">The name of the option, without any delimiter characters.</param>
-		/// <param name="argument">The argument of the option.</param>
-		/// <param name="flags">The argument handlings flags previously returned by <see cref="OnOperandFound(string)"/>.</param>
-		protected abstract void OnOptionArgumentFound(string option, string? argument, OptionArgumentFlags flags);
+        /// <summary>
+        /// Calls <see cref="OnOptionFound(string)"/> when
+        /// an option is found.
+        /// </summary>
+        /// <param name="option">The name of the option, without any delimiter characters.</param>
+        /// <returns>
+        /// One of the values of <see cref="OptionArgumentFlags"/> specifying
+        /// the argument handling for this option.
+        /// </returns>
+        protected virtual OptionArgumentFlags OptionFound(string option)
+		{
+			return OnOptionFound(option);
+		}
 
-		/// <summary>
-		/// Called internally from <see cref="Parse(string[])"/> when
-		/// the command's operand is found.
-		/// </summary>
-		/// <param name="operand">The value of the operand.</param>
-		/// <returns>
-		/// One of the values of <see cref="OperandState"/> specifying
-		/// the state of the parser after this operand.
-		/// </returns>
-		protected abstract OperandState OnOperandFound(string operand);
+        /// <summary>
+        /// Called internally from <see cref="Parse(string[])"/> when
+        /// an argument for an option is found.
+        /// </summary>
+        /// <param name="option">The name of the option, without any delimiter characters.</param>
+        /// <param name="argument">The argument of the option.</param>
+        /// <param name="flags">The argument handlings flags previously returned by <see cref="OnOperandFound(string)"/>.</param>
+        protected abstract void OnOptionArgumentFound(string option, string? argument, OptionArgumentFlags flags);
+
+        /// <summary>
+        /// Calls <see cref="OnOptionArgumentFound(string, string?, OptionArgumentFlags)"/>
+		/// when an argument for an option is found.
+        /// </summary>
+        /// <param name="option">The name of the option, without any delimiter characters.</param>
+        /// <param name="argument">The argument of the option.</param>
+        /// <param name="flags">The argument handlings flags previously returned by <see cref="OnOperandFound(string)"/>.</param>
+        protected virtual void OptionArgumentFound(string option, string? argument, OptionArgumentFlags flags)
+		{
+			OnOptionArgumentFound(option, argument, flags);
+		}
+
+        /// <summary>
+        /// Called internally from <see cref="Parse(string[])"/> when
+        /// the command's operand is found.
+        /// </summary>
+        /// <param name="operand">The value of the operand.</param>
+        /// <returns>
+        /// One of the values of <see cref="OperandState"/> specifying
+        /// the state of the parser after this operand.
+        /// </returns>
+        protected abstract OperandState OnOperandFound(string operand);
 
 		/// <summary>
 		/// Modifies the input argument in a desirable way
@@ -321,7 +347,7 @@ namespace IS4.SFI.Application
 					if(delim != -1)
 					{
 						name = arg.Substring(2, delim - 2);
-						flags = OnOptionFound(name);
+						flags = OptionFound(name);
                         if((flags & OptionArgumentFlags.HasArgument) == 0)
 						{
 							throw ArgumentNotExpected(name);
@@ -329,7 +355,7 @@ namespace IS4.SFI.Application
 						argument = arg.Substring(delim + 1);
 					}else{
 						name = arg.Substring(2);
-                        flags = OnOptionFound(name);
+                        flags = OptionFound(name);
                         if((flags & OptionArgumentFlags.HasArgument) == 0)
                         {
                             CheckAdded(name, flags);
@@ -344,7 +370,7 @@ namespace IS4.SFI.Application
 						}
                     }
                     CheckAdded(name, flags);
-                    OnOptionArgumentFound(name, argument, flags);
+                    OptionArgumentFound(name, argument, flags);
                 }else if(arg.Length > 1 && arg[0] == '-' && IsOptionChar(arg[1]))
 				{
 					for(int j = 1; j < arg.Length; j++)
@@ -352,7 +378,7 @@ namespace IS4.SFI.Application
 						string name = arg[j].ToString();
 						string? argument = String.Join("", arg.Skip(j+1).TakeWhile(c => !IsOptionChar(c)));
 
-						var flags = OnOptionFound(name);
+						var flags = OptionFound(name);
 						CheckAdded(name, flags);
 
                         if((flags & OptionArgumentFlags.HasArgument) == 0)
@@ -385,7 +411,7 @@ namespace IS4.SFI.Application
                             }
 						}
 
-                        OnOptionArgumentFound(name, argument, flags);
+                        OptionArgumentFound(name, argument, flags);
 
 						j += argument?.Length ?? 0;
 					}
