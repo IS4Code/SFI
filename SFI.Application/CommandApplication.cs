@@ -241,10 +241,10 @@ namespace IS4.SFI.Application
 		/// </summary>
 		/// <param name="option">The name of the option, without any delimiter characters.</param>
 		/// <returns>
-		/// One of the values of <see cref="OptionArgument"/> specifying
+		/// One of the values of <see cref="OptionArgumentFlags"/> specifying
 		/// the argument handling for this option.
 		/// </returns>
-		protected abstract OptionArgument OnOptionFound(string option);
+		protected abstract OptionArgumentFlags OnOptionFound(string option);
 
 		/// <summary>
 		/// Called internally from <see cref="Parse(string[])"/> when
@@ -252,7 +252,8 @@ namespace IS4.SFI.Application
 		/// </summary>
 		/// <param name="option">The name of the option, without any delimiter characters.</param>
 		/// <param name="argument">The argument of the option.</param>
-		protected abstract void OnOptionArgumentFound(string option, string? argument);
+		/// <param name="flags">The argument handlings flags previously returned by <see cref="OnOperandFound(string)"/>.</param>
+		protected abstract void OnOptionArgumentFound(string option, string? argument, OptionArgumentFlags flags);
 
 		/// <summary>
 		/// Called internally from <see cref="Parse(string[])"/> when
@@ -266,55 +267,40 @@ namespace IS4.SFI.Application
 		protected abstract OperandState OnOperandFound(string operand);
 
 		/// <summary>
-		/// Called internally from <see cref="Parse(string[])"/> when
-		/// a short option is found. The default implementation
-		/// calls <see cref="OnOptionFound(string)"/>.
-		/// </summary>
-		/// <param name="option">The name of the option, without any delimiter characters.</param>
-		/// <returns>
-		/// One of the values of <see cref="OptionArgument"/> specifying
-		/// the argument handling for this option.
-		/// </returns>
-		protected virtual OptionArgument OnShortOptionFound(char option)
-		{
-			return OnOptionFound(option.ToString());
-		}
-
-		/// <summary>
-		/// Called internally from <see cref="Parse(string[])"/> when
-		/// an argument for a short option is found. The default implementation
-		/// calls <see cref="OnOptionArgumentFound(string, string)"/>.
-		/// </summary>
-		/// <param name="option">The name of the option, without any delimiter characters.</param>
-		/// <param name="argument">The argument of the option.</param>
-		protected virtual void OnShortOptionArgumentFound(char option, string? argument)
-		{
-			OnOptionArgumentFound(option.ToString(), argument);
-		}
-		
-		/// <summary>
 		/// Modifies the input argument in a desirable way
 		/// before it is parsed by <see cref="Parse(string[])"/>.
 		/// </summary>
 		/// <param name="arg">The input argument.</param>
 		/// <returns>The modified value.</returns>
-		public virtual string ProcessArg(string arg)
+		protected virtual string ProcessArg(string arg)
 		{
 			return arg;
 		}
 
 		/// <summary>
-		/// Parses the arguments provided to the application
-		/// and initializes it with the values specified
-		/// by the arguments.
+		/// Obtains the canonical representation of an option.
 		/// </summary>
-		/// <param name="args">The arguments to the application.</param>
-		/// <exception cref="ApplicationExitException">
-		/// Could be thrown from one of the option or operand handler
-		/// to indicate that the application should be terminated.
-		/// </exception>
-		public void Parse(string[] args)
+		/// <param name="option">The option name.</param>
+		/// <returns>The canonical option name for <paramref name="option"/>.</returns>
+		protected virtual string GetCanonicalOption(string option)
 		{
+			return option.Length <= 1 ? option : option.ToLowerInvariant();
+        }
+
+        /// <summary>
+        /// Parses the arguments provided to the application
+        /// and initializes it with the values specified
+        /// by the arguments.
+        /// </summary>
+        /// <param name="args">The arguments to the application.</param>
+        /// <exception cref="ApplicationExitException">
+        /// Could be thrown from one of the option or operand handler
+        /// to indicate that the application should be terminated.
+        /// </exception>
+        public void Parse(string[] args)
+		{
+			var added = new HashSet<string>();
+
 			bool operands = false;
 			for(int i = 0; i < args.Length; i++)
 			{
@@ -327,68 +313,81 @@ namespace IS4.SFI.Application
 					operands = true;
 				}else if(arg.StartsWith("--"))
 				{
+					OptionArgumentFlags flags;
+					string name;
+					string? argument;
+
 					int delim = arg.IndexOf('=');
 					if(delim != -1)
 					{
-						string name = arg.Substring(2, delim-2);
-						if(OnOptionFound(name) == OptionArgument.None)
+						name = arg.Substring(2, delim - 2);
+						flags = OnOptionFound(name);
+                        if((flags & OptionArgumentFlags.HasArgument) == 0)
 						{
 							throw ArgumentNotExpected(name);
 						}
-						string argument = arg.Substring(delim+1);
-						OnOptionArgumentFound(name, argument);
+						argument = arg.Substring(delim + 1);
 					}else{
-						string name = arg.Substring(2);
-						switch(OnOptionFound(name))
-						{
-							case OptionArgument.Optional:
-								OnOptionArgumentFound(name, null);
-								break;
-							case OptionArgument.Required:
-								if(++i >= args.Length) throw ArgumentExpected(name);
-								OnOptionArgumentFound(name, ProcessArg(args[i]));
-								break;
+						name = arg.Substring(2);
+                        flags = OnOptionFound(name);
+                        if((flags & OptionArgumentFlags.HasArgument) == 0)
+                        {
+                            CheckAdded(name, flags);
+                            continue;
+                        }
+                        if((flags & OptionArgumentFlags.RequiredArgument) != 0)
+                        {
+                            if(++i >= args.Length) throw ArgumentExpected(name);
+							argument = ProcessArg(args[i]);
+						}else{
+							argument = null;
 						}
-					}
-				}else if(arg.Length > 1 && arg[0] == '-' && IsOptionChar(arg[1]))
+                    }
+                    CheckAdded(name, flags);
+                    OnOptionArgumentFound(name, argument, flags);
+                }else if(arg.Length > 1 && arg[0] == '-' && IsOptionChar(arg[1]))
 				{
 					for(int j = 1; j < arg.Length; j++)
 					{
-						char opt = arg[j];
-						string argument = String.Join("", arg.Skip(j+1).TakeWhile(c => !IsOptionChar(c)));
+						string name = arg[j].ToString();
+						string? argument = String.Join("", arg.Skip(j+1).TakeWhile(c => !IsOptionChar(c)));
+
+						var flags = OnOptionFound(name);
+						CheckAdded(name, flags);
+
+                        if((flags & OptionArgumentFlags.HasArgument) == 0)
+                        {
+							if(argument.Length > 0)
+                            {
+                                throw ArgumentNotExpected(name);
+                            }
+							continue;
+                        }
 						
-						switch(OnShortOptionFound(opt))
-						{
-							case OptionArgument.None:
-								if(argument.Length > 0) throw ArgumentNotExpected(opt);
-								break;
-							case OptionArgument.Optional:
-								if(argument.Length > 0)
+                        if((flags & OptionArgumentFlags.RequiredArgument) != 0)
+                        {
+							if(argument.Length == 0)
+							{
+								if(j+1 < arg.Length)
 								{
-									OnShortOptionArgumentFound(opt, argument);
+                                    argument = arg.Substring(j+1);
+									j = arg.Length-1;
 								}else{
-									OnShortOptionArgumentFound(opt, null);
+									if(++i >= args.Length) throw ArgumentExpected(name);
+									argument = ProcessArg(args[i]);
+                                    argument = ProcessArg(args[i]);
 								}
-								break;
-							case OptionArgument.Required:
-								if(argument.Length > 0)
-								{
-									OnShortOptionArgumentFound(opt, argument);
-								}else{
-									if(j+1 < arg.Length)
-									{
-										OnShortOptionArgumentFound(opt, arg.Substring(j+1));
-										j = arg.Length-1;
-									}else if(++i >= args.Length)
-									{
-										throw ArgumentExpected(opt);
-									}else{
-										OnShortOptionArgumentFound(opt, ProcessArg(args[i]));
-									}
-								}
-								break;
+							}
+						}else{
+							if(argument.Length == 0)
+                            {
+                                argument = null;
+                            }
 						}
-						j += argument.Length;
+
+                        OnOptionArgumentFound(name, argument, flags);
+
+						j += argument?.Length ?? 0;
 					}
 				}else{
 					if(OnOperandFound(arg) == OperandState.OnlyOperands)
@@ -396,24 +395,25 @@ namespace IS4.SFI.Application
 						operands = true;
 					}
 				}
-			}
-		}
-		
-		private static bool IsOptionChar(char c)
+            }
+
+            void CheckAdded(string name, OptionArgumentFlags flags)
+            {
+                if((flags & OptionArgumentFlags.AllowMultiple) == 0)
+                {
+                    if(!added!.Add(GetCanonicalOption(name)))
+                    {
+                        throw OptionAlreadySpecified(name);
+                    }
+                }
+            }
+        }
+
+        private static bool IsOptionChar(char c)
 		{
 			return c == '?' || Char.IsLetter(c);
 		}
 		
-		/// <summary>
-		/// Produces an exception when an unrecognized option is found.
-		/// </summary>
-		/// <param name="option">The name of the option.</param>
-		/// <returns>The exception for this situation.</returns>
-		public ApplicationException UnrecognizedOption(char option)
-		{
-			return UnrecognizedOption(option.ToString());
-		}
-
 		/// <summary>
 		/// Produces an exception when an unrecognized option is found.
 		/// </summary>
@@ -430,31 +430,9 @@ namespace IS4.SFI.Application
 		/// </summary>
 		/// <param name="option">The name of the option.</param>
 		/// <returns>The exception for this situation.</returns>
-		public ApplicationException ArgumentExpected(char option)
-		{
-			return ArgumentExpected(option.ToString());
-		}
-
-		/// <summary>
-		/// Produces an exception when an option should
-		/// have an argument, but none is found in the input.
-		/// </summary>
-		/// <param name="option">The name of the option.</param>
-		/// <returns>The exception for this situation.</returns>
 		public ApplicationException ArgumentExpected(string option)
 		{
 			return new ApplicationException("Argument expected for option '"+option+"'.");
-		}
-
-		/// <summary>
-		/// Produces an exception when an option should not
-		/// have an argument, but one is assigned to it.
-		/// </summary>
-		/// <param name="option">The name of the option.</param>
-		/// <returns>The exception for this situation.</returns>
-		public ApplicationException ArgumentNotExpected(char option)
-		{
-			return ArgumentNotExpected(option.ToString());
 		}
 
 		/// <summary>
@@ -475,32 +453,9 @@ namespace IS4.SFI.Application
 		/// <param name="option">The name of the option.</param>
 		/// <param name="expected">The expected form of the argument.</param>
 		/// <returns>The exception for this situation.</returns>
-		public ApplicationException ArgumentInvalid(char option, string expected)
-		{
-			return ArgumentInvalid(option.ToString(), expected);
-		}
-
-		/// <summary>
-		/// Produces an exception when an option has
-		/// an argument in an invalid form.
-		/// </summary>
-		/// <param name="option">The name of the option.</param>
-		/// <param name="expected">The expected form of the argument.</param>
-		/// <returns>The exception for this situation.</returns>
 		public ApplicationException ArgumentInvalid(string option, string expected)
 		{
 			return new ApplicationException("Invalid argument provided for option '"+option+"', "+expected+" expected.");
-		}
-
-		/// <summary>
-		/// Produces an exception when an option should
-		/// be specified only once, but it was used multiple times.
-		/// </summary>
-		/// <param name="option">The name of the option.</param>
-		/// <returns>The exception for this situation.</returns>
-		public ApplicationException OptionAlreadySpecified(char option)
-		{
-			return OptionAlreadySpecified(option.ToString());
 		}
 
 		/// <summary>
@@ -619,22 +574,33 @@ namespace IS4.SFI.Application
 	/// <summary>
 	/// Specifies the argument handling for an encountered option.
 	/// </summary>
-	public enum OptionArgument
+	[Flags]
+	public enum OptionArgumentFlags
 	{
 		/// <summary>
 		/// The option should not have any argument.
 		/// </summary>
-		None,
+		None = 0,
+
+        /// <summary>
+        /// The option has an argument.
+        /// </summary>
+        HasArgument = 0b10,
 
 		/// <summary>
 		/// The option has an optional argument.
 		/// </summary>
-		Optional,
+		OptionalArgument = 0b10,
 
 		/// <summary>
 		/// The option has a required argument.
 		/// </summary>
-		Required
+		RequiredArgument = 0b110,
+
+		/// <summary>
+		/// The option permits multiple values.
+		/// </summary>
+		AllowMultiple = 0b1000
 	}
 	
 	/// <summary>
