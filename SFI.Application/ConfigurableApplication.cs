@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
@@ -36,7 +37,7 @@ namespace IS4.SFI.Application
             var flags = base.OptionFound(option);
             if((flags & OptionArgumentFlags.HasArgument) == 0)
             {
-                StoreOption(GetCanonicalOption(option), null);
+                StoreOption(GetCanonicalOption(option), null, flags);
             }
             return flags;
         }
@@ -45,7 +46,7 @@ namespace IS4.SFI.Application
         protected override void OptionArgumentFound(string option, string? argument, OptionArgumentFlags flags)
         {
             base.OptionArgumentFound(option, argument, flags);
-            StoreOption(GetCanonicalOption(option), argument);
+            StoreOption(GetCanonicalOption(option), argument, flags);
         }
 
         /// <summary>
@@ -146,29 +147,45 @@ namespace IS4.SFI.Application
 				.Select(a => new XElement(element.Name.Namespace + a.Name.LocalName, a.Value));
 		}
 
-		XDocument? optionsXml;
-		XElement? optionsRoot;
+		CapturedOptions? capturedOptions;
 
-		/// <summary>
-		/// Call to start capturing provided options to save as XML.
-		/// </summary>
-		protected void CaptureOptions()
-		{
-			optionsXml = new XDocument
-			(
-				optionsRoot = new XElement(configRoot)
-			);
-		}
+        class CapturedOptions
+        {
+            public XDocument Document { get; }
+            public XElement Root { get; }
+            public ConditionalWeakTable<XElement, object?> MustRemainElements { get; }
 
-		void StoreOption(string option, string? argument)
+			public CapturedOptions(XName rootName)
+            {
+                Document = new XDocument
+                (
+                    Root = new XElement(rootName)
+                );
+                MustRemainElements = new();
+            }
+        }
+
+        /// <summary>
+        /// Call to start capturing provided options to save as XML.
+        /// </summary>
+        protected void CaptureOptions()
 		{
-			if(optionsRoot != null)
+            capturedOptions = new(configRoot);
+        }
+
+		void StoreOption(string option, string? argument, OptionArgumentFlags flags)
+		{
+			if(capturedOptions != null)
 			{
 				var path = option.Split(':');
-				var elem = optionsRoot;
+				var elem = capturedOptions.Root;
 				foreach(var component in path)
 				{
 					elem.Add(elem = new XElement(configNs + XmlConvert.EncodeLocalName(component)));
+				}
+				if((flags & OptionArgumentFlags.AllowMultiple) != 0)
+				{
+					capturedOptions.MustRemainElements.Add(elem, null);
 				}
 				if(argument != null)
                 {
@@ -216,18 +233,10 @@ namespace IS4.SFI.Application
 				if(!inner.Elements().Any())
 				{
                     // This is a normal option
-                    if(root)
+                    if(capturedOptions!.MustRemainElements.TryGetValue(inner, out _))
                     {
-                        switch(localName)
-                        {
-                            case "exclude":
-                            case "include":
-                            case "sparql-query":
-                            case "plugin":
-                            case "config":
-                                // Don't change these to attributes
-                                continue;
-                        }
+                        // Don't change this to an attribute
+                        continue;
                     }
 					if(elem.Attribute(localName) == null)
 					{
@@ -250,11 +259,11 @@ namespace IS4.SFI.Application
 		/// </exception>
 		public void SaveConfigXml(Stream stream)
 		{
-			if(optionsXml == null)
+			if(capturedOptions == null)
 			{
 				throw new InvalidOperationException("No options were stored.");
 			}
-			SimplifyOptions(optionsRoot!, true);
+			SimplifyOptions(capturedOptions.Root, true);
 			var settings = new XmlWriterSettings
 			{
 				Encoding = new UTF8Encoding(false),
@@ -263,7 +272,7 @@ namespace IS4.SFI.Application
 				OmitXmlDeclaration = true
 			};
             using var writer = XmlWriter.Create(stream, settings);
-            optionsXml.Save(writer);
+            capturedOptions.Document.Save(writer);
 		}
     }
 }
