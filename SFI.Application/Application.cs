@@ -4,13 +4,11 @@ using IS4.SFI.Services;
 using Microsoft.Extensions.Logging;
 using MorseCode.ITask;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -108,7 +106,7 @@ namespace IS4.SFI
 				var logger = inspector.OutputLog;
 				await inspector.AddDefault();
 
-				RegisterCustomDescriptors();
+				ConfigurationTools.RegisterCustomDescriptors();
 
 				int componentCount = 0;
 				async Task ConfigureComponents()
@@ -310,94 +308,14 @@ namespace IS4.SFI
         }
 
         #region Components
-        static void RegisterCustomDescriptors()
-        {
-            var provider = TypeDescriptor.GetProvider(typeof(Encoding));
-            TypeDescriptor.AddProvider(new EncodingTypeDescriptionProvider(provider), typeof(Encoding));
-        }
-
-        /// <summary>
-        /// Assigns the values of properties on a component.
-        /// </summary>
-        /// <param name="component">The component to assign to.</param>
-        /// <param name="componentName">The name of the component, for diagnostics.</param>
-        /// <param name="properties">The dictionary of property names and their values to assign.</param>
         private void SetProperties(object component, string componentName, IDictionary<string, string> properties)
         {
-            var batch = component as ISupportInitialize;
-            batch?.BeginInit();
+			ConfigurationTools.SetProperties(component, componentName, properties);
 
-            foreach(var prop in GetConfigurableProperties(component))
-            {
-				var name = TextTools.FormatComponentName(prop.Name);
-				if(properties.TryGetValue(name, out var value))
-				{
-					// The property is assigned
-					properties.Remove(name);
-					var converter = prop.Converter;
-					object? convertedValue = null;
-					Exception? conversionException = null;
-					try{
-						convertedValue = converter.ConvertFromInvariantString(value);
-                    }catch(Exception e)
-                    {
-						// Conversion failed (for any reason)
-						conversionException = e;
-					}
-					if(convertedValue == null && !(String.IsNullOrEmpty(value) && conversionException == null))
-                    {
-						throw new ApplicationException($"Cannot convert value '{value}' for property {componentName}:{name} to type {TextTools.GetIdentifierFromType(prop.PropertyType)}!", conversionException);
-                    }
-                    try{
-						prop.SetValue(component, convertedValue);
-					}catch(Exception e)
-					{
-						throw new ApplicationException($"Cannot assign value '{value}' to property {componentName}:{name}: {e.Message}", e);
-					}
-				}
-            }
 			foreach(var pair in properties)
             {
 				LogWriter?.WriteLine($"Warning: Property {componentName}:{pair.Key} was not found!");
             }
-
-			batch?.EndInit();
-        }
-
-		/// <summary>
-		/// Returns the collection of all properties on a component
-		/// that can be configured from the command line.
-		/// </summary>
-		/// <remarks>
-		/// Configurable properties are those properties that can be set (not read-only),
-		/// which do not have [<see cref="BrowsableAttribute"/>(<see langword="false"/>)], and their type
-		/// can be converted to and from <see cref="string"/>.
-		/// </remarks>
-		private IEnumerable<PropertyDescriptor> GetConfigurableProperties(object component)
-        {
-			return TypeDescriptor.GetProperties(component).Cast<PropertyDescriptor>().Where(
-				p =>
-					!p.IsReadOnly &&
-					p.IsBrowsable &&
-					IsStringConvertible(p.Converter)
-			);
-		}
-
-		static readonly Type stringType = typeof(string);
-
-		/// <summary>
-		/// Checks whether <paramref name="converter"/> can be used to convert to and from
-		/// <see cref="string"/>.
-		/// </summary>
-		/// <param name="converter">The converter to check.</param>
-		/// <returns><see langword="true"/> if the conversion is permitted, <see langword="false"/> otherwise.</returns>
-		private bool IsStringConvertible(TypeConverter converter)
-        {
-			if(converter != null)
-			{
-				return converter.CanConvertFrom(stringType) && converter.CanConvertTo(stringType);
-			}
-			return false;
         }
 
 		/// <summary>
@@ -437,13 +355,13 @@ namespace IS4.SFI
 				componentProperties.Remove(id);
 				SetProperties(component, id, dict);
 			}
-			foreach(var prop in GetConfigurableProperties(component))
+			foreach(var prop in ConfigurationTools.GetConfigurableProperties(component))
 			{
 				var value = prop.GetValue(component);
 				var type = Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType;
 				var converter = prop.Converter;
 				string typeDesc;
-				if(GetStandardValues(type, converter, out var values))
+				if(ConfigurationTools.GetStandardValues(type, converter, out var values))
 				{
 					const int maxShown = 10;
 					typeDesc = String.Join("|", values.Cast<object>().Take(maxShown).Select(converter.ConvertToInvariantString));
@@ -514,7 +432,7 @@ namespace IS4.SFI
 
                 PrintAttributes("", TypeDescriptor.GetAttributes(component));
 
-				var properties = GetConfigurableProperties(component);
+				var properties = ConfigurationTools.GetConfigurableProperties(component);
 
 				foreach(var prop in properties)
 				{
@@ -529,7 +447,7 @@ namespace IS4.SFI
 
                     var converter = prop.Converter;
 
-                    if(GetStandardValues(propType, converter, out var values))
+                    if(ConfigurationTools.GetStandardValues(propType, converter, out var values))
                     {
                         var valuesText = String.Join("|", values.Cast<object>().Select(converter.ConvertToInvariantString));
 						var exclusive = converter.GetStandardValuesExclusive();
@@ -582,74 +500,19 @@ namespace IS4.SFI
         }
 
 		void PrintAttributes(string prefix, ICustomAttributeProvider provider)
-		{
-			var collection = new AttributeCollection(provider.GetCustomAttributes(false).OfType<Attribute>().ToArray());
-			PrintAttributes(prefix, collection);
+        {
+            foreach(var pair in ConfigurationTools.GetTextAttributes(provider.GetCustomAttributes(false).OfType<Attribute>()))
+            {
+                LogWriter?.WriteLine($"{prefix}{pair.Key}: {pair.Value}");
+            }
         }
 
 		void PrintAttributes(string prefix, AttributeCollection attributes)
 		{
-			foreach(Attribute attr in attributes)
-			{
-				const string attributeSuffix = nameof(Attribute);
-
-				var attrType = attr.GetType();
-				var attrName = attrType.Name;
-                if(!attrName.EndsWith(attributeSuffix))
-				{
-					// Non-standard name
-					continue;
-                }
-                attrName = attrName.Substring(0, attrName.Length - attributeSuffix.Length);
-
-                var mainProperty = attrType.GetProperty(attrName, System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
-				if(mainProperty == null || !stringType.Equals(mainProperty.PropertyType))
-				{
-					var properties = attrType.GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance).Where(p => stringType.Equals(p.PropertyType)).Take(2).ToList();
-					if(properties.Count != 1)
-                    {
-						// Can't find single string property
-                        continue;
-                    }
-					mainProperty = properties[0];
-					if(!attrName.Contains(mainProperty.Name))
-					{
-						// Name is not similar enough
-						continue;
-					}
-				}
-
-				var value = mainProperty.GetValue(attr) as string;
-				if(!String.IsNullOrWhiteSpace(value))
-				{
-					var newline = value!.IndexOf('\n');
-					if(newline != -1)
-					{
-						// Strip after newline character
-						value = value.Substring(0, newline);
-						if(String.IsNullOrWhiteSpace(value))
-						{
-							continue;
-						}
-                    }
-                    value = value.Trim();
-                    LogWriter?.WriteLine($"{prefix}{mainProperty.Name}: {value}");
-				}
-			}
-		}
-
-		static bool GetStandardValues(Type type, TypeConverter converter, out ICollection standardValues)
-		{
-			if(!type.IsPrimitive && (type.IsEnum || Type.GetTypeCode(type) == TypeCode.Object))
+			foreach(var pair in ConfigurationTools.GetTextAttributes(attributes.OfType<Attribute>()))
             {
-                if(converter.GetStandardValuesSupported() && converter.GetStandardValues() is { Count: > 0 } values)
-                {
-                    standardValues = values;
-                    return true;
-                }
+                LogWriter?.WriteLine($"{prefix}{pair.Key}: {pair.Value}");
             }
-			standardValues = Array.Empty<object>();
-			return false;
 		}
 
         async ITask<ValueTuple> IResultFactory<ValueTuple, string>.Invoke<T>(T component, string id)
