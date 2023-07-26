@@ -310,7 +310,14 @@ namespace IS4.SFI
         #region Components
         private void SetProperties(object component, string componentName, IDictionary<string, string> properties)
         {
-			ConfigurationTools.SetProperties(component, componentName, properties);
+			ConfigurationTools.SetProperties(component, componentName, name => {
+				if(properties.TryGetValue(name, out var value))
+				{
+					properties.Remove(name);
+					return value;
+				}
+				return null;
+			});
 
 			foreach(var pair in properties)
             {

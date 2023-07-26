@@ -62,49 +62,50 @@ namespace IS4.SFI.Application.Tools
             }
             return false;
         }
-        
+
         /// <summary>
-        /// Assigns the values of properties on a component. Any assigned properties from <paramref name="properties"/> are removed.
+        /// Assigns the values of properties on a component.
         /// </summary>
         /// <param name="component">The component to assign to.</param>
         /// <param name="componentName">The name of the component, for diagnostics.</param>
-        /// <param name="properties">The dictionary of property names and their values to assign.</param>
-        public static void SetProperties(object component, string componentName, IDictionary<string, string> properties)
+        /// <param name="valueMap">The function that maps property names to their values.</param>
+        public static void SetProperties(object component, string componentName, Func<string, string?> valueMap)
         {
             var batch = component as ISupportInitialize;
             batch?.BeginInit();
 
-            foreach(var prop in GetConfigurableProperties(component))
-            {
-				var name = TextTools.FormatComponentName(prop.Name);
-				if(properties.TryGetValue(name, out var value))
-				{
-					// This property is given a value
-					properties.Remove(name);
-					var converter = prop.Converter;
-					object? convertedValue = null;
-					Exception? conversionException = null;
-					try{
-						convertedValue = converter.ConvertFromInvariantString(value);
-                    }catch(Exception e)
-                    {
-						// Conversion failed (for any reason)
-						conversionException = e;
-					}
-					if(convertedValue == null && !(String.IsNullOrEmpty(value) && conversionException == null))
-                    {
-						throw new ApplicationException($"Cannot convert value '{value}' for property {componentName}:{name} to type {TextTools.GetIdentifierFromType(prop.PropertyType)}!", conversionException);
-                    }
-                    try{
-						prop.SetValue(component, convertedValue);
-					}catch(Exception e)
-					{
-						throw new ApplicationException($"Cannot assign value '{value}' to property {componentName}:{name}: {e.Message}", e);
-					}
-				}
+            try{ 
+                foreach(var prop in GetConfigurableProperties(component))
+                {
+				    var name = TextTools.FormatComponentName(prop.Name);
+				    if(valueMap(name) is string value)
+				    {
+					    // This property is given a value
+					    var converter = prop.Converter;
+					    object? convertedValue = null;
+					    Exception? conversionException = null;
+					    try{
+						    convertedValue = converter.ConvertFromInvariantString(value);
+                        }catch(Exception e)
+                        {
+						    // Conversion failed (for any reason)
+						    conversionException = e;
+					    }
+					    if(convertedValue == null && !(String.IsNullOrEmpty(value) && conversionException == null))
+                        {
+						    throw new ApplicationException($"Cannot convert value '{value}' for property {componentName}:{name} to type {TextTools.GetIdentifierFromType(prop.PropertyType)}!", conversionException);
+                        }
+                        try{
+						    prop.SetValue(component, convertedValue);
+					    }catch(Exception e)
+					    {
+						    throw new ApplicationException($"Cannot assign value '{value}' to property {componentName}:{name}: {e.Message}", e);
+					    }
+				    }
+                }
+            }finally{ 
+			    batch?.EndInit();
             }
-
-			batch?.EndInit();
         }
 
         /// <summary>
