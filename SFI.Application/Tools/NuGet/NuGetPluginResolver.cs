@@ -88,11 +88,16 @@ namespace IS4.SFI.Application.Tools.NuGet
                 runtimeLibraries[libraryName] = version;
             }
 
-            var sourceProvider = new PackageSourceProvider(this, new[]
+            var packageSources = new List<PackageSource>();
+
+            var nugetPackages = Path.Combine(NuGetEnvironment.GetFolderPath(NuGetFolderPath.NuGetHome), "packages");
+            if(Directory.Exists(nugetPackages))
             {
-                new PackageSource(Path.Combine(NuGetEnvironment.GetFolderPath(NuGetFolderPath.NuGetHome), "packages")),
-                new PackageSource(NuGetConstants.V3FeedUrl)
-            });
+                packageSources.Add(new PackageSource(nugetPackages));
+            }
+            packageSources.Add(new PackageSource(NuGetConstants.V3FeedUrl));
+
+            var sourceProvider = new PackageSourceProvider(this, packageSources);
 
             var resourceProviders = Repository.Provider.GetCoreV3();
             var repositoryProvider = new SourceRepositoryProvider(sourceProvider, resourceProviders);
