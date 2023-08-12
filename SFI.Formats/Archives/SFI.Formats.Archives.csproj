@@ -1,8 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>IS4.SFI.Formats.Archives</AssemblyName>
+    <VersionPrefix>1.1</VersionPrefix>
     <Product>Semantic File Inspector</Product>
     <Authors>IS4</Authors>
     <Copyright>Copyright (c) $(Authors) $([System.DateTime]::UtcNow.ToString('yyyy'))</Copyright>
@@ -19,7 +20,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>$(RepositoryUrl)/tree/HEAD/SFI.Formats/Archives</PackageProjectUrl>
     <PackageIcon>icon.png</PackageIcon>
-    <PackageTags>linked-data;sparql;rdf;semantic-search;metadata-extraction;gzip;rar;7z;sz;tar;zip</PackageTags>
+    <PackageTags>linked-data;sparql;rdf;semantic-search;metadata-extraction;gzip;rar;7z;sz;tar;zip;lha</PackageTags>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
@@ -35,6 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Hst.Compression" Version="0.4.57" />
     <PackageReference Include="SharpCompress" Version="0.33.0" />
     <PackageReference Include="IS4.SzReader" Version="1.0.0" />
   </ItemGroup>

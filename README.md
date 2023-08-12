@@ -12,7 +12,7 @@ The tool is accessible through several options:
 Supported formats:
 
 * Applications: com, dll, exe, swf.
-* Archives: 7z, cab, gz, iso, rar, sz, tar, udf, zip.
+* Archives: 7z, cab, gz, iso, lha, rar, sz, tar, udf, zip.
 * Audio: aa, aax, aac, aiff, ape, dsf, flac, m4a, m4b, m4p, mp3, mpc, mpp, ogg, oga, wav, wma, wv, webm.
 * Certificates: der, p7c, pfx.
 * Data: dfm, ole, rdf, warc, xml.
