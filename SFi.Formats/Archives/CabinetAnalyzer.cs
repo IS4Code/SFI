@@ -82,33 +82,18 @@ namespace IS4.SFI.Analyzers
             }
 
             event EventHandler<ReaderExtractionEventArgs<IEntry>> IReader.EntryExtractionProgress {
-                add {
-                    throw new NotSupportedException();
-                }
-
-                remove {
-                    throw new NotSupportedException();
-                }
+                add => throw new NotSupportedException();
+                remove => throw new NotSupportedException();
             }
 
             event EventHandler<CompressedBytesReadEventArgs> IReader.CompressedBytesRead {
-                add {
-                    throw new NotSupportedException();
-                }
-
-                remove {
-                    throw new NotSupportedException();
-                }
+                add => throw new NotSupportedException();
+                remove => throw new NotSupportedException();
             }
 
             event EventHandler<FilePartExtractionBeginEventArgs> IReader.FilePartExtractionBegin {
-                add {
-                    throw new NotSupportedException();
-                }
-
-                remove {
-                    throw new NotSupportedException();
-                }
+                add => throw new NotSupportedException();
+                remove => throw new NotSupportedException();
             }
 
             class CabinetEntry : IEntry
