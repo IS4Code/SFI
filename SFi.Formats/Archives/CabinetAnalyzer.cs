@@ -149,6 +149,12 @@ namespace IS4.SFI.Analyzers
                 public long Size => info.Size;
 
                 public int? Attrib => (int)info.Attributes;
+
+                public bool IsSolid => false;
+
+                public int VolumeIndexFirst => 0;
+
+                public int VolumeIndexLast => 0;
             }
         }
     }
