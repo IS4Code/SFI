@@ -79,7 +79,7 @@ namespace IS4.SFI.Application
 				return;
 			}
 
-			var optionName = XmlConvert.DecodeName(element.Name.LocalName);
+			var optionName = DecodeName(element.Name.LocalName);
 			if(prefix != null)
 			{
 				optionName = prefix + optionName;
@@ -173,6 +173,22 @@ namespace IS4.SFI.Application
             capturedOptions = new(configRoot);
         }
 
+		static string EncodeName(string name)
+		{
+			var encoded = XmlConvert.EncodeLocalName(name);
+			if(encoded.StartsWith("xml", StringComparison.OrdinalIgnoreCase))
+			{
+				// These names are reserved in XML
+				return $"_x{(int)encoded[0]:X4}_{encoded.Substring(1)}";
+			}
+			return encoded;
+        }
+
+		static string DecodeName(string name)
+		{
+			return XmlConvert.DecodeName(name);
+		}
+
 		void StoreOption(string option, string? argument, OptionArgumentFlags flags)
 		{
 			if(capturedOptions != null)
@@ -181,7 +197,7 @@ namespace IS4.SFI.Application
 				var elem = capturedOptions.Root;
 				foreach(var component in path)
 				{
-					elem.Add(elem = new XElement(configNs + XmlConvert.EncodeLocalName(component)));
+					elem.Add(elem = new XElement(configNs + EncodeName(component)));
 				}
 				if((flags & OptionArgumentFlags.AllowMultiple) != 0)
 				{
