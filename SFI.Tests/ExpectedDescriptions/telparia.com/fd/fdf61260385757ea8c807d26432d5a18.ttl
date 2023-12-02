@@ -3,6 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
@@ -11,7 +12,6 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///test.rar>;
      nie:interpretedAs <ni:///mh;1QEQSITL9J_DWsMDz9WYV688eQ?ct=application/octet-stream>;
@@ -20,6 +20,7 @@ _:n1 at:pathObject <file:///test.rar>;
      a nfo:FileDataObject.
 <file:///ASCEN.TXT> at:extensionObject <https://w3id.org/uri4uri/suffix/txt>.
 <file:///BLDCHT.TXT> at:extensionObject <https://w3id.org/uri4uri/suffix/txt>.
+<file:///BLH.NFO> at:extensionObject <https://w3id.org/uri4uri/suffix/nfo>.
 <file:///BLOOD.TXT> at:extensionObject <https://w3id.org/uri4uri/suffix/txt>.
 <file:///BLOOD3D.RAR> at:extensionObject <https://w3id.org/uri4uri/suffix/rar>.
 <file:///BRAINSTM.TXT> at:extensionObject <https://w3id.org/uri4uri/suffix/txt>.
@@ -81,6 +82,22 @@ _:n1 at:pathObject <file:///test.rar>;
                                                     skos:prefLabel "text (1.09 KiB)"@en;
                                                     cnt:characterEncoding "us-ascii".
 <ni:///mh;1QEQ3VtAvqM2X207bH1b0NEVxw?ct=text/plain#line=,1> rdf:value "OUTLAWS CHEAT CODES".
+<ni:///mh;1QEQ4aUKbeuNRvI4mqrzIObJyg?ct=application/octet-stream> at:digest <urn:md5:E1A50A6DEB8D46F2389AAAF320E6C9CA>;
+                                                                  dcterms:extent "52668"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ4aUKbeuNRvI4mqrzIObJyg?ct=application/x-msdos-program>,
+                                                                                    <ni:///mh;1QEQ4aUKbeuNRvI4mqrzIObJyg?ct=application/vnd.microsoft.portable-executable>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (51.43 KiB)"@en.
+<ni:///mh;1QEQ4aUKbeuNRvI4mqrzIObJyg?ct=application/vnd.microsoft.portable-executable> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
+                                                                                       a schema:MediaObject,
+                                                                                         schema:SoftwareApplication,
+                                                                                         nfo:Executable;
+                                                                                       skos:prefLabel "DLL object (51.43 KiB)"@en.
+<ni:///mh;1QEQ4aUKbeuNRvI4mqrzIObJyg?ct=application/x-msdos-program> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-msdos-program>;
+                                                                     a schema:MediaObject,
+                                                                       schema:SoftwareApplication,
+                                                                       nfo:Executable;
+                                                                     skos:prefLabel "EXE object (51.43 KiB)"@en.
 <ni:///mh;1QEQ5RrZXnBkLjjZxVSeb3Y3OQ?ct=text/plain> at:digest <urn:md5:E51AD95E70642E38D9C5549E6F763739>;
                                                     dcterms:extent "19664"^^dt:byte;
                                                     nie:hasPart <ni:///mh;1QEQ5RrZXnBkLjjZxVSeb3Y3OQ?ct=text/plain#line=,1>;
@@ -388,6 +405,15 @@ _:n1 at:pathObject <file:///test.rar>;
                                                              a schema:MediaObject,
                                                                nfo:Archive;
                                                              skos:prefLabel "RAR object (107.8 KiB)"@en.
+<ni:///mh;1QEQAANS3fiG733tEKwfNm8ZVg?ct=application/vnd.rar#/BLH.NFO> at:pathObject <file:///BLH.NFO>;
+                                                                      nie:interpretedAs <ni:///mh;1QEQTJnqTk07Nj9fDoNG1BXb0w?ct=application/octet-stream>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQAANS3fiG733tEKwfNm8ZVg?ct=application/vnd.rar>;
+                                                                      nfo:fileLastModified "1997-05-27T16:49:42.000000+02:00"^^xsd:dateTime;
+                                                                      nfo:fileName "BLH.NFO";
+                                                                      nfo:fileSize 2482 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/BLH.NFO".
 <ni:///mh;1QEQAANS3fiG733tEKwfNm8ZVg?ct=application/vnd.rar#/MDKTRAIN.EXE> at:pathObject <file:///MDKTRAIN.EXE>;
                                                                            nfo:belongsToContainer <ni:///mh;1QEQAANS3fiG733tEKwfNm8ZVg?ct=application/vnd.rar>;
                                                                            nfo:fileLastModified "1997-04-03T08:20:54.000000+02:00"^^xsd:dateTime;
@@ -425,6 +451,7 @@ _:n1 at:pathObject <file:///test.rar>;
                                                                nfo:Archive;
                                                              skos:prefLabel "RAR object (24.7 KiB)"@en.
 <ni:///mh;1QEQG5PbXB3Pw9o6HnMoV8ClqA?ct=application/vnd.rar#/MTGCHT11.EXE> at:pathObject <file:///MTGCHT11.EXE>;
+                                                                           nie:interpretedAs <ni:///mh;1QEQ4aUKbeuNRvI4mqrzIObJyg?ct=application/octet-stream>;
                                                                            nfo:belongsToContainer <ni:///mh;1QEQG5PbXB3Pw9o6HnMoV8ClqA?ct=application/vnd.rar>;
                                                                            nfo:fileLastModified "1997-04-23T02:46:02.000000+02:00"^^xsd:dateTime;
                                                                            nfo:fileName "MTGCHT11.EXE";
@@ -521,6 +548,10 @@ _:n1 at:pathObject <file:///test.rar>;
                                                                            a nfo:FileDataObject,
                                                                              nfo:ArchiveItem;
                                                                            skos:prefLabel "/MDKTRAIN.RAR".
+<ni:///mh;1QEQTJnqTk07Nj9fDoNG1BXb0w?ct=application/octet-stream> at:digest <urn:md5:4C99EA4E4D3B363F5F0E8346D415DBD3>;
+                                                                  dcterms:extent "2482"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (2.42 KiB)"@en.
 <ni:///mh;1QEQUlQVIxZiN3kd4XQzbswNhw?ct=text/plain> at:digest <urn:md5:52541523166237791DE174336ECC0D87>;
                                                     dcterms:extent "154"^^dt:byte;
                                                     nie:hasPart <ni:///mh;1QEQUlQVIxZiN3kd4XQzbswNhw?ct=text/plain#line=,1>;
@@ -570,14 +601,14 @@ _:n1 at:pathObject <file:///test.rar>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQewP57NxNeBbmamPwU-DMIA?ct=application/x-ole-storage>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (14.5 KiB)"@en.
-<ni:///mh;1QEQewP57NxNeBbmamPwU-DMIA?ct=application/x-ole-storage> at:pathObject <file:///>;
+<ni:///mh;1QEQewP57NxNeBbmamPwU-DMIA?ct=application/x-ole-storage> at:pathObject <file:///.>;
                                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
                                                                    nie:interpretedAs <ni:///mh;1QEQewP57NxNeBbmamPwU-DMIA?ct=application/x-ole-storage#/>;
                                                                    nfo:fileLastModified "1997-04-16T20:50:50.920000Z"^^xsd:dateTime;
                                                                    a schema:MediaObject,
                                                                      nfo:EmbeddedFileDataObject;
                                                                    skos:prefLabel "OLE object (14.5 KiB)"@en.
-<ni:///mh;1QEQewP57NxNeBbmamPwU-DMIA?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQewP57NxNeBbmamPwU-DMIA?ct=application/x-ole-storage#/> at:pathObject <file:///>;
                                                                      a nfo:Folder;
                                                                      skos:prefLabel "/".
 <ni:///mh;1QEQewP57NxNeBbmamPwU-DMIA?ct=application/x-ole-storage#/%01CompObj> at:pathObject <file:///%01CompObj>;
@@ -745,6 +776,9 @@ _:n1 at:pathObject <file:///test.rar>;
 <urn:md5:4884CBF49FC35AC303CFD59857AF3C79> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "SITL9J/DWsMDz9WYV688eQ=="^^xsd:base64Binary.
+<urn:md5:4C99EA4E4D3B363F5F0E8346D415DBD3> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "TJnqTk07Nj9fDoNG1BXb0w=="^^xsd:base64Binary.
 <urn:md5:52541523166237791DE174336ECC0D87> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "UlQVIxZiN3kd4XQzbswNhw=="^^xsd:base64Binary.
@@ -805,6 +839,9 @@ _:n1 at:pathObject <file:///test.rar>;
 <urn:md5:DD5B40BEA3365F6D3B6C7D5BD0D115C7> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "3VtAvqM2X207bH1b0NEVxw=="^^xsd:base64Binary.
+<urn:md5:E1A50A6DEB8D46F2389AAAF320E6C9CA> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "4aUKbeuNRvI4mqrzIObJyg=="^^xsd:base64Binary.
 <urn:md5:E51AD95E70642E38D9C5549E6F763739> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "5RrZXnBkLjjZxVSeb3Y3OQ=="^^xsd:base64Binary.

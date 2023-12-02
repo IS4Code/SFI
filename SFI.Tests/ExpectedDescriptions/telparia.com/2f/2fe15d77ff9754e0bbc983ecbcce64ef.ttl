@@ -3,10 +3,10 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix sec: <https://w3id.org/security#>.
@@ -23,6 +23,10 @@ _:n1 at:pathObject <file:///PSXV106J.RAR>;
 <file:///PSXVIDEO.EXE> at:extensionObject <https://w3id.org/uri4uri/suffix/exe>.
 <file:///PSXVIDEO.HLP> at:extensionObject <https://w3id.org/uri4uri/suffix/hlp>.
 <file:///README.TXT> at:extensionObject <https://w3id.org/uri4uri/suffix/txt>.
+<ni:///mh;1QEQBGDnCAfiYuLUEAQ5oosfxg?ct=application/octet-stream> at:digest <urn:md5:0460E70807E262E2D4100439A28B1FC6>;
+                                                                  dcterms:extent "35604"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (34.77 KiB)"@en.
 <ni:///mh;1QEQQXEHlIS-7F2yZ72lQQ1jdg?ct=application/octet-stream> at:digest <urn:md5:4171079484BEEC5DB267BDA5410D6376>;
                                                                   dcterms:extent "81196"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQQXEHlIS-7F2yZ72lQQ1jdg?ct=application/vnd.rar>;
@@ -50,6 +54,7 @@ _:n1 at:pathObject <file:///PSXV106J.RAR>;
                                                                              nfo:ArchiveItem;
                                                                            skos:prefLabel "/PSXVIDEO.EXE".
 <ni:///mh;1QEQQXEHlIS-7F2yZ72lQQ1jdg?ct=application/vnd.rar#/PSXVIDEO.HLP> at:pathObject <file:///PSXVIDEO.HLP>;
+                                                                           nie:interpretedAs <ni:///mh;1QEQBGDnCAfiYuLUEAQ5oosfxg?ct=application/octet-stream>;
                                                                            nfo:belongsToContainer <ni:///mh;1QEQQXEHlIS-7F2yZ72lQQ1jdg?ct=application/vnd.rar>;
                                                                            nfo:fileLastModified "1997-02-17T22:55:56.000000+01:00"^^xsd:dateTime;
                                                                            nfo:fileName "PSXVIDEO.HLP";
@@ -80,6 +85,9 @@ _:n1 at:pathObject <file:///PSXV106J.RAR>;
                                                     skos:prefLabel "text (1.33 KiB)"@en;
                                                     cnt:characterEncoding "shift_jis".
 <ni:///mh;1QEQbQkuItnU3dUkIZ2CsoQiPg?ct=text/plain#line=,1> rdf:value "Psxvideo for Windows 変更履歴".
+<urn:md5:0460E70807E262E2D4100439A28B1FC6> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "BGDnCAfiYuLUEAQ5oosfxg=="^^xsd:base64Binary.
 <urn:md5:4171079484BEEC5DB267BDA5410D6376> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "QXEHlIS+7F2yZ72lQQ1jdg=="^^xsd:base64Binary.
