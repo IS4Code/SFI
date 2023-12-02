@@ -259,7 +259,7 @@ namespace IS4.SFI.Analyzers
                 Data = buffer.GetData();
             }
 
-            public long Length => resource.Length;
+            public long Length => unchecked((uint)resource.Length);
 
             public StreamFactoryAccess Access => StreamFactoryAccess.Parallel;
 
