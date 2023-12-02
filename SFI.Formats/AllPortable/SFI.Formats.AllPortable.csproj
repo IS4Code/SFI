@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
     <AssemblyName>IS4.SFI.Formats.AllPortable</AssemblyName>
     <VersionPrefix>1.1.1</VersionPrefix>
     <Product>Semantic File Inspector</Product>
@@ -57,6 +57,10 @@
     <ProjectReference Include="..\RDF\SFI.Formats.RDF.csproj" />
     <ProjectReference Include="..\SVG\SFI.Formats.SVG.csproj" />
     <ProjectReference Include="..\WARC\SFI.Formats.WARC.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
+    <ProjectReference Include="..\GameArchives\SFI.Formats.GameArchives.csproj" />
   </ItemGroup>
 
 </Project>

@@ -84,7 +84,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFI.Hashes.AllPortable", "S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFI.Formats.XML", "SFI.Formats\XML\SFI.Formats.XML.csproj", "{F72054C4-BCDA-4407-A587-14082B6000CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFI.Formats.Crypto", "SFI.Formats\Crypto\SFI.Formats.Crypto.csproj", "{6B4DEFB2-FC99-4601-A85D-14B10660849E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFI.Formats.Crypto", "SFI.Formats\Crypto\SFI.Formats.Crypto.csproj", "{6B4DEFB2-FC99-4601-A85D-14B10660849E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFI.Formats.GameArchives", "SFI.Formats\GameArchives\SFI.Formats.GameArchives.csproj", "{48365743-E905-44E4-BD60-20A966EC0617}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -248,6 +250,10 @@ Global
 		{6B4DEFB2-FC99-4601-A85D-14B10660849E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B4DEFB2-FC99-4601-A85D-14B10660849E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B4DEFB2-FC99-4601-A85D-14B10660849E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48365743-E905-44E4-BD60-20A966EC0617}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48365743-E905-44E4-BD60-20A966EC0617}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48365743-E905-44E4-BD60-20A966EC0617}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48365743-E905-44E4-BD60-20A966EC0617}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -292,6 +298,7 @@ Global
 		{61B8A051-7D58-49C5-9715-CC3717627C29} = {D9A70FC8-2F32-4F35-968D-5E392BF338FD}
 		{F72054C4-BCDA-4407-A587-14082B6000CE} = {D9A70FC8-2F32-4F35-968D-5E392BF338FD}
 		{6B4DEFB2-FC99-4601-A85D-14B10660849E} = {D9A70FC8-2F32-4F35-968D-5E392BF338FD}
+		{48365743-E905-44E4-BD60-20A966EC0617} = {D9A70FC8-2F32-4F35-968D-5E392BF338FD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7FE705AC-0B51-403F-8065-6129A1C8AAEA}
