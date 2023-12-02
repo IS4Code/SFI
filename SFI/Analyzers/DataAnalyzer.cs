@@ -167,7 +167,8 @@ namespace IS4.SFI.Analyzers
         {
             return await new DataAnalysis(this, streamFactory, context, analyzers).Match(async match => {
                 var node = await match.NodeTask;
-                return await analyzers.Analyze<IDataObject>(match, context.WithNode(node));
+                // Node is initialized from the task.
+                return await analyzers.Analyze<IDataObject>(match, context.WithNode(node).AsInitialized());
             });
 		}
 
