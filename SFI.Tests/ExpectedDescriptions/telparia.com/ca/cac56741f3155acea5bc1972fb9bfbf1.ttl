@@ -3,25 +3,45 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///endtheme.lha>;
      nie:interpretedAs <ni:///mh;1QEQETx_J5S8d3YZZViR9fJyjw?ct=application/octet-stream>;
      nfo:fileName "endtheme.lha";
      nfo:fileSize 42190 ;
      a nfo:FileDataObject.
+<data:application/octet-stream,> dcterms:extent "0"^^dt:byte;
+                                 a cnt:ContentAsBase64;
+                                 skos:prefLabel "binary data (0 B)"@en;
+                                 cnt:bytes ""^^xsd:base64Binary.
 <file:///endtheme.lha> at:extensionObject <https://w3id.org/uri4uri/suffix/lha>.
+<file:///mod.Endtune> at:extensionObject <https://w3id.org/uri4uri/suffix/endtune>.
 <ni:///mh;1QEQETx_J5S8d3YZZViR9fJyjw?ct=application/octet-stream> at:digest <urn:md5:113C7F2794BC777619655891F5F2728F>;
                                                                   dcterms:extent "42190"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQETx_J5S8d3YZZViR9fJyjw?ct=application/x-lha>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (41.2 KiB)"@en.
+<ni:///mh;1QEQETx_J5S8d3YZZViR9fJyjw?ct=application/x-lha> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-lha>;
+                                                           a schema:MediaObject,
+                                                             nfo:Archive;
+                                                           skos:prefLabel "LHA object (41.2 KiB)"@en.
+<ni:///mh;1QEQETx_J5S8d3YZZViR9fJyjw?ct=application/x-lha#/mod.Endtune> at:pathObject <file:///mod.Endtune>;
+                                                                        nie:interpretedAs <data:application/octet-stream,>;
+                                                                        nfo:belongsToContainer <ni:///mh;1QEQETx_J5S8d3YZZViR9fJyjw?ct=application/x-lha>;
+                                                                        nfo:fileLastModified "1996-04-18T17:55:32.000000Z"^^xsd:dateTime;
+                                                                        nfo:fileName "mod.Endtune";
+                                                                        nfo:fileSize 62324 ;
+                                                                        a nfo:FileDataObject,
+                                                                          nfo:ArchiveItem;
+                                                                        skos:prefLabel "/mod.Endtune".
 <urn:md5:113C7F2794BC777619655891F5F2728F> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "ETx/J5S8d3YZZViR9fJyjw=="^^xsd:base64Binary.

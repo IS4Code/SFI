@@ -3,25 +3,245 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///BATS.LZH>;
      nie:interpretedAs <ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/octet-stream>;
      nfo:fileName "BATS.LZH";
      nfo:fileSize 11427 ;
      a nfo:FileDataObject.
+<data:application/octet-stream,> dcterms:extent "0"^^dt:byte;
+                                 a cnt:ContentAsBase64;
+                                 skos:prefLabel "binary data (0 B)"@en;
+                                 cnt:bytes ""^^xsd:base64Binary.
 <file:///BATS.LZH> at:extensionObject <https://w3id.org/uri4uri/suffix/lzh>.
+<file:///CDD.BAT> at:extensionObject <https://w3id.org/uri4uri/suffix/bat>.
+<file:///CHD.BAT> at:extensionObject <https://w3id.org/uri4uri/suffix/bat>.
+<file:///COPI.BAT> at:extensionObject <https://w3id.org/uri4uri/suffix/bat>.
+<file:///CP.BAT> at:extensionObject <https://w3id.org/uri4uri/suffix/bat>.
+<file:///CTRL_G&H.BAT> at:extensionObject <https://w3id.org/uri4uri/suffix/bat>.
+<file:///DA.BAT> at:extensionObject <https://w3id.org/uri4uri/suffix/bat>.
+<file:///DC.BAT> at:extensionObject <https://w3id.org/uri4uri/suffix/bat>.
+<file:///FH.BAT> at:extensionObject <https://w3id.org/uri4uri/suffix/bat>.
+<file:///GOTO1.BAT> at:extensionObject <https://w3id.org/uri4uri/suffix/bat>.
+<file:///GOTO2.BAT> at:extensionObject <https://w3id.org/uri4uri/suffix/bat>.
+<file:///HEADCHEK.BAT> at:extensionObject <https://w3id.org/uri4uri/suffix/bat>.
+<file:///MDEL.BAT> at:extensionObject <https://w3id.org/uri4uri/suffix/bat>.
+<file:///MENU.BAT> at:extensionObject <https://w3id.org/uri4uri/suffix/bat>.
+<file:///MENU1.BAT> at:extensionObject <https://w3id.org/uri4uri/suffix/bat>.
+<file:///MENUS1.BAT> at:extensionObject <https://w3id.org/uri4uri/suffix/bat>.
+<file:///MENUS2.BAT> at:extensionObject <https://w3id.org/uri4uri/suffix/bat>.
+<file:///M_SCREEN.BAT> at:extensionObject <https://w3id.org/uri4uri/suffix/bat>.
+<file:///PARAMDEM.BAT> at:extensionObject <https://w3id.org/uri4uri/suffix/bat>.
+<file:///PATHADD.BAT> at:extensionObject <https://w3id.org/uri4uri/suffix/bat>.
+<file:///SERASE.BAT> at:extensionObject <https://w3id.org/uri4uri/suffix/bat>.
+<file:///SHELLOUT.BAT> at:extensionObject <https://w3id.org/uri4uri/suffix/bat>.
 <ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/octet-stream> at:digest <urn:md5:7C2F76DEDF334E96CC31389742977CB4>;
                                                                   dcterms:extent "11427"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (11.16 KiB)"@en.
+<ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-lha>;
+                                                           a schema:MediaObject,
+                                                             nfo:Archive;
+                                                           skos:prefLabel "LHA object (11.16 KiB)"@en.
+<ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha#/CDD.BAT> at:pathObject <file:///CDD.BAT>;
+                                                                    nie:interpretedAs <data:application/octet-stream,>;
+                                                                    nfo:belongsToContainer <ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha>;
+                                                                    nfo:fileLastModified "1991-11-27T10:00:00.000000Z"^^xsd:dateTime;
+                                                                    nfo:fileName "CDD.BAT";
+                                                                    nfo:fileSize 598 ;
+                                                                    a nfo:FileDataObject,
+                                                                      nfo:ArchiveItem;
+                                                                    skos:prefLabel "/CDD.BAT".
+<ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha#/CHD.BAT> at:pathObject <file:///CHD.BAT>;
+                                                                    nie:interpretedAs <data:application/octet-stream,>;
+                                                                    nfo:belongsToContainer <ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha>;
+                                                                    nfo:fileLastModified "1991-11-27T10:00:00.000000Z"^^xsd:dateTime;
+                                                                    nfo:fileName "CHD.BAT";
+                                                                    nfo:fileSize 258 ;
+                                                                    a nfo:FileDataObject,
+                                                                      nfo:ArchiveItem;
+                                                                    skos:prefLabel "/CHD.BAT".
+<ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha#/COPI.BAT> at:pathObject <file:///COPI.BAT>;
+                                                                     nie:interpretedAs <data:application/octet-stream,>;
+                                                                     nfo:belongsToContainer <ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha>;
+                                                                     nfo:fileLastModified "1991-11-27T10:00:00.000000Z"^^xsd:dateTime;
+                                                                     nfo:fileName "COPI.BAT";
+                                                                     nfo:fileSize 2598 ;
+                                                                     a nfo:FileDataObject,
+                                                                       nfo:ArchiveItem;
+                                                                     skos:prefLabel "/COPI.BAT".
+<ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha#/CP.BAT> at:pathObject <file:///CP.BAT>;
+                                                                   nie:interpretedAs <data:application/octet-stream,>;
+                                                                   nfo:belongsToContainer <ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha>;
+                                                                   nfo:fileLastModified "1991-11-27T10:00:00.000000Z"^^xsd:dateTime;
+                                                                   nfo:fileName "CP.BAT";
+                                                                   nfo:fileSize 511 ;
+                                                                   a nfo:FileDataObject,
+                                                                     nfo:ArchiveItem;
+                                                                   skos:prefLabel "/CP.BAT".
+<ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha#/CTRL_G&H.BAT> at:pathObject <file:///CTRL_G&H.BAT>;
+                                                                         nie:interpretedAs <data:application/octet-stream,>;
+                                                                         nfo:belongsToContainer <ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha>;
+                                                                         nfo:fileLastModified "1991-11-27T10:00:00.000000Z"^^xsd:dateTime;
+                                                                         nfo:fileName "CTRL_G&H.BAT";
+                                                                         nfo:fileSize 175 ;
+                                                                         a nfo:FileDataObject,
+                                                                           nfo:ArchiveItem;
+                                                                         skos:prefLabel "/CTRL_G&H.BAT".
+<ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha#/DA.BAT> at:pathObject <file:///DA.BAT>;
+                                                                   nie:interpretedAs <data:application/octet-stream,>;
+                                                                   nfo:belongsToContainer <ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha>;
+                                                                   nfo:fileLastModified "1991-11-27T10:00:00.000000Z"^^xsd:dateTime;
+                                                                   nfo:fileName "DA.BAT";
+                                                                   nfo:fileSize 269 ;
+                                                                   a nfo:FileDataObject,
+                                                                     nfo:ArchiveItem;
+                                                                   skos:prefLabel "/DA.BAT".
+<ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha#/DC.BAT> at:pathObject <file:///DC.BAT>;
+                                                                   nie:interpretedAs <data:application/octet-stream,>;
+                                                                   nfo:belongsToContainer <ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha>;
+                                                                   nfo:fileLastModified "1991-11-27T10:00:00.000000Z"^^xsd:dateTime;
+                                                                   nfo:fileName "DC.BAT";
+                                                                   nfo:fileSize 474 ;
+                                                                   a nfo:FileDataObject,
+                                                                     nfo:ArchiveItem;
+                                                                   skos:prefLabel "/DC.BAT".
+<ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha#/FH.BAT> at:pathObject <file:///FH.BAT>;
+                                                                   nie:interpretedAs <data:application/octet-stream,>;
+                                                                   nfo:belongsToContainer <ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha>;
+                                                                   nfo:fileLastModified "1991-11-27T10:00:00.000000Z"^^xsd:dateTime;
+                                                                   nfo:fileName "FH.BAT";
+                                                                   nfo:fileSize 229 ;
+                                                                   a nfo:FileDataObject,
+                                                                     nfo:ArchiveItem;
+                                                                   skos:prefLabel "/FH.BAT".
+<ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha#/GOTO1.BAT> at:pathObject <file:///GOTO1.BAT>;
+                                                                      nie:interpretedAs <data:application/octet-stream,>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha>;
+                                                                      nfo:fileLastModified "1991-11-27T10:00:00.000000Z"^^xsd:dateTime;
+                                                                      nfo:fileName "GOTO1.BAT";
+                                                                      nfo:fileSize 207 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/GOTO1.BAT".
+<ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha#/GOTO2.BAT> at:pathObject <file:///GOTO2.BAT>;
+                                                                      nie:interpretedAs <data:application/octet-stream,>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha>;
+                                                                      nfo:fileLastModified "1991-11-27T10:00:00.000000Z"^^xsd:dateTime;
+                                                                      nfo:fileName "GOTO2.BAT";
+                                                                      nfo:fileSize 480 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/GOTO2.BAT".
+<ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha#/HEADCHEK.BAT> at:pathObject <file:///HEADCHEK.BAT>;
+                                                                         nie:interpretedAs <data:application/octet-stream,>;
+                                                                         nfo:belongsToContainer <ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha>;
+                                                                         nfo:fileLastModified "1991-11-27T10:00:00.000000Z"^^xsd:dateTime;
+                                                                         nfo:fileName "HEADCHEK.BAT";
+                                                                         nfo:fileSize 3059 ;
+                                                                         a nfo:FileDataObject,
+                                                                           nfo:ArchiveItem;
+                                                                         skos:prefLabel "/HEADCHEK.BAT".
+<ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha#/MDEL.BAT> at:pathObject <file:///MDEL.BAT>;
+                                                                     nie:interpretedAs <data:application/octet-stream,>;
+                                                                     nfo:belongsToContainer <ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha>;
+                                                                     nfo:fileLastModified "1991-11-27T10:00:00.000000Z"^^xsd:dateTime;
+                                                                     nfo:fileName "MDEL.BAT";
+                                                                     nfo:fileSize 800 ;
+                                                                     a nfo:FileDataObject,
+                                                                       nfo:ArchiveItem;
+                                                                     skos:prefLabel "/MDEL.BAT".
+<ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha#/MENU.BAT> at:pathObject <file:///MENU.BAT>;
+                                                                     nie:interpretedAs <data:application/octet-stream,>;
+                                                                     nfo:belongsToContainer <ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha>;
+                                                                     nfo:fileLastModified "1991-11-27T10:00:00.000000Z"^^xsd:dateTime;
+                                                                     nfo:fileName "MENU.BAT";
+                                                                     nfo:fileSize 2019 ;
+                                                                     a nfo:FileDataObject,
+                                                                       nfo:ArchiveItem;
+                                                                     skos:prefLabel "/MENU.BAT".
+<ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha#/MENU1.BAT> at:pathObject <file:///MENU1.BAT>;
+                                                                      nie:interpretedAs <data:application/octet-stream,>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha>;
+                                                                      nfo:fileLastModified "1991-11-27T10:00:00.000000Z"^^xsd:dateTime;
+                                                                      nfo:fileName "MENU1.BAT";
+                                                                      nfo:fileSize 4797 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/MENU1.BAT".
+<ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha#/MENUS1.BAT> at:pathObject <file:///MENUS1.BAT>;
+                                                                       nie:interpretedAs <data:application/octet-stream,>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha>;
+                                                                       nfo:fileLastModified "1991-11-27T10:00:00.000000Z"^^xsd:dateTime;
+                                                                       nfo:fileName "MENUS1.BAT";
+                                                                       nfo:fileSize 1906 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/MENUS1.BAT".
+<ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha#/MENUS2.BAT> at:pathObject <file:///MENUS2.BAT>;
+                                                                       nie:interpretedAs <data:application/octet-stream,>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha>;
+                                                                       nfo:fileLastModified "1991-11-27T10:00:00.000000Z"^^xsd:dateTime;
+                                                                       nfo:fileName "MENUS2.BAT";
+                                                                       nfo:fileSize 3199 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/MENUS2.BAT".
+<ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha#/M_SCREEN.BAT> at:pathObject <file:///M_SCREEN.BAT>;
+                                                                         nie:interpretedAs <data:application/octet-stream,>;
+                                                                         nfo:belongsToContainer <ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha>;
+                                                                         nfo:fileLastModified "1991-11-27T10:00:00.000000Z"^^xsd:dateTime;
+                                                                         nfo:fileName "M_SCREEN.BAT";
+                                                                         nfo:fileSize 2139 ;
+                                                                         a nfo:FileDataObject,
+                                                                           nfo:ArchiveItem;
+                                                                         skos:prefLabel "/M_SCREEN.BAT".
+<ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha#/PARAMDEM.BAT> at:pathObject <file:///PARAMDEM.BAT>;
+                                                                         nie:interpretedAs <data:application/octet-stream,>;
+                                                                         nfo:belongsToContainer <ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha>;
+                                                                         nfo:fileLastModified "1991-11-27T10:00:00.000000Z"^^xsd:dateTime;
+                                                                         nfo:fileName "PARAMDEM.BAT";
+                                                                         nfo:fileSize 622 ;
+                                                                         a nfo:FileDataObject,
+                                                                           nfo:ArchiveItem;
+                                                                         skos:prefLabel "/PARAMDEM.BAT".
+<ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha#/PATHADD.BAT> at:pathObject <file:///PATHADD.BAT>;
+                                                                        nie:interpretedAs <data:application/octet-stream,>;
+                                                                        nfo:belongsToContainer <ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha>;
+                                                                        nfo:fileLastModified "1991-11-27T10:00:00.000000Z"^^xsd:dateTime;
+                                                                        nfo:fileName "PATHADD.BAT";
+                                                                        nfo:fileSize 19 ;
+                                                                        a nfo:FileDataObject,
+                                                                          nfo:ArchiveItem;
+                                                                        skos:prefLabel "/PATHADD.BAT".
+<ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha#/SERASE.BAT> at:pathObject <file:///SERASE.BAT>;
+                                                                       nie:interpretedAs <data:application/octet-stream,>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha>;
+                                                                       nfo:fileLastModified "1991-11-27T10:00:00.000000Z"^^xsd:dateTime;
+                                                                       nfo:fileName "SERASE.BAT";
+                                                                       nfo:fileSize 610 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/SERASE.BAT".
+<ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha#/SHELLOUT.BAT> at:pathObject <file:///SHELLOUT.BAT>;
+                                                                         nie:interpretedAs <data:application/octet-stream,>;
+                                                                         nfo:belongsToContainer <ni:///mh;1QEQfC923t8zTpbMMTiXQpd8tA?ct=application/x-lha>;
+                                                                         nfo:fileLastModified "1991-11-27T10:00:00.000000Z"^^xsd:dateTime;
+                                                                         nfo:fileName "SHELLOUT.BAT";
+                                                                         nfo:fileSize 872 ;
+                                                                         a nfo:FileDataObject,
+                                                                           nfo:ArchiveItem;
+                                                                         skos:prefLabel "/SHELLOUT.BAT".
 <urn:md5:7C2F76DEDF334E96CC31389742977CB4> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "fC923t8zTpbMMTiXQpd8tA=="^^xsd:base64Binary.

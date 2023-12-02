@@ -3,6 +3,8 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
@@ -10,18 +12,49 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///LHARK.LZH>;
      nie:interpretedAs <ni:///mh;1QEQTOAikQnEMPR8PRcjAf-LOQ?ct=application/octet-stream>;
      nfo:fileName "LHARK.LZH";
      nfo:fileSize 5037 ;
      a nfo:FileDataObject.
+<file:///LHARK-A.INF> at:extensionObject <https://w3id.org/uri4uri/suffix/inf>.
+<file:///LHARK-B.INF> at:extensionObject <https://w3id.org/uri4uri/suffix/inf>.
 <file:///LHARK.LZH> at:extensionObject <https://w3id.org/uri4uri/suffix/lzh>.
+<file:///LHARK.TXT> at:extensionObject <https://w3id.org/uri4uri/suffix/txt>.
 <ni:///mh;1QEQTOAikQnEMPR8PRcjAf-LOQ?ct=application/octet-stream> at:digest <urn:md5:4CE0229109C430F47C3D172301FF8B39>;
                                                                   dcterms:extent "5037"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQTOAikQnEMPR8PRcjAf-LOQ?ct=application/x-lha>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (4.92 KiB)"@en.
+<ni:///mh;1QEQTOAikQnEMPR8PRcjAf-LOQ?ct=application/x-lha> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-lha>;
+                                                           a schema:MediaObject,
+                                                             nfo:Archive;
+                                                           skos:prefLabel "LHA object (4.92 KiB)"@en.
+<ni:///mh;1QEQTOAikQnEMPR8PRcjAf-LOQ?ct=application/x-lha#/LHARK-A.INF> at:pathObject <file:///LHARK-A.INF>;
+                                                                        nfo:belongsToContainer <ni:///mh;1QEQTOAikQnEMPR8PRcjAf-LOQ?ct=application/x-lha>;
+                                                                        nfo:fileLastModified "1997-01-28T22:09:54.000000Z"^^xsd:dateTime;
+                                                                        nfo:fileName "LHARK-A.INF";
+                                                                        nfo:fileSize 1053 ;
+                                                                        a nfo:FileDataObject,
+                                                                          nfo:ArchiveItem;
+                                                                        skos:prefLabel "/LHARK-A.INF".
+<ni:///mh;1QEQTOAikQnEMPR8PRcjAf-LOQ?ct=application/x-lha#/LHARK-B.INF> at:pathObject <file:///LHARK-B.INF>;
+                                                                        nfo:belongsToContainer <ni:///mh;1QEQTOAikQnEMPR8PRcjAf-LOQ?ct=application/x-lha>;
+                                                                        nfo:fileLastModified "1997-01-28T22:10:06.000000Z"^^xsd:dateTime;
+                                                                        nfo:fileName "LHARK-B.INF";
+                                                                        nfo:fileSize 1392 ;
+                                                                        a nfo:FileDataObject,
+                                                                          nfo:ArchiveItem;
+                                                                        skos:prefLabel "/LHARK-B.INF".
+<ni:///mh;1QEQTOAikQnEMPR8PRcjAf-LOQ?ct=application/x-lha#/LHARK.TXT> at:pathObject <file:///LHARK.TXT>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQTOAikQnEMPR8PRcjAf-LOQ?ct=application/x-lha>;
+                                                                      nfo:fileLastModified "1997-07-13T12:01:24.000000Z"^^xsd:dateTime;
+                                                                      nfo:fileName "LHARK.TXT";
+                                                                      nfo:fileSize 12627 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/LHARK.TXT".
 <urn:md5:4CE0229109C430F47C3D172301FF8B39> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "TOAikQnEMPR8PRcjAf+LOQ=="^^xsd:base64Binary.

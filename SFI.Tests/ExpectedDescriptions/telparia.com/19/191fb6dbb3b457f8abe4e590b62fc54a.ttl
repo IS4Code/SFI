@@ -3,6 +3,8 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
@@ -10,18 +12,31 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///falcngry.lzh>;
      nie:interpretedAs <ni:///mh;1QEQ7DgQ2coRR2vU67DvU2NvxQ?ct=application/octet-stream>;
      nfo:fileName "falcngry.lzh";
      nfo:fileSize 161920 ;
      a nfo:FileDataObject.
+<file:///FALCON3G.TIF> at:extensionObject <https://w3id.org/uri4uri/suffix/tif>.
 <file:///falcngry.lzh> at:extensionObject <https://w3id.org/uri4uri/suffix/lzh>.
 <ni:///mh;1QEQ7DgQ2coRR2vU67DvU2NvxQ?ct=application/octet-stream> at:digest <urn:md5:EC3810D9CA11476BD4EBB0EF53636FC5>;
                                                                   dcterms:extent "161920"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ7DgQ2coRR2vU67DvU2NvxQ?ct=application/x-lha>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (158.13 KiB)"@en.
+<ni:///mh;1QEQ7DgQ2coRR2vU67DvU2NvxQ?ct=application/x-lha> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-lha>;
+                                                           a schema:MediaObject,
+                                                             nfo:Archive;
+                                                           skos:prefLabel "LHA object (158.13 KiB)"@en.
+<ni:///mh;1QEQ7DgQ2coRR2vU67DvU2NvxQ?ct=application/x-lha#/FALCON3G.TIF> at:pathObject <file:///FALCON3G.TIF>;
+                                                                         nfo:belongsToContainer <ni:///mh;1QEQ7DgQ2coRR2vU67DvU2NvxQ?ct=application/x-lha>;
+                                                                         nfo:fileLastModified "1992-09-02T12:09:10.000000Z"^^xsd:dateTime;
+                                                                         nfo:fileName "FALCON3G.TIF";
+                                                                         nfo:fileSize 620550 ;
+                                                                         a nfo:FileDataObject,
+                                                                           nfo:ArchiveItem;
+                                                                         skos:prefLabel "/FALCON3G.TIF".
 <urn:md5:EC3810D9CA11476BD4EBB0EF53636FC5> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "7DgQ2coRR2vU67DvU2NvxQ=="^^xsd:base64Binary.

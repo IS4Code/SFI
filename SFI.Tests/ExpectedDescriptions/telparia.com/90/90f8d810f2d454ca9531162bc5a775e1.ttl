@@ -3,25 +3,120 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///hexify.lha>;
      nie:interpretedAs <ni:///mh;1QEQXiUFGItxNGiTLxBkKuGyxg?ct=application/octet-stream>;
      nfo:fileName "hexify.lha";
      nfo:fileSize 13811 ;
      a nfo:FileDataObject.
+<data:application/octet-stream,> dcterms:extent "0"^^dt:byte;
+                                 a cnt:ContentAsBase64;
+                                 skos:prefLabel "binary data (0 B)"@en;
+                                 cnt:bytes ""^^xsd:base64Binary.
+<file:///hexify.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
+<file:///hexify.h> at:extensionObject <https://w3id.org/uri4uri/suffix/h>.
 <file:///hexify.lha> at:extensionObject <https://w3id.org/uri4uri/suffix/lha>.
+<file:///hexify.readme> at:extensionObject <https://w3id.org/uri4uri/suffix/readme>.
+<file:///hexify/> at:pathObject <file:///>.
+<file:///hexify/LICENSE> at:pathObject <file:///LICENSE>.
+<file:///hexify/Makefile> at:pathObject <file:///Makefile>.
+<file:///hexify/hexify.c> at:pathObject <file:///hexify.c>.
+<file:///hexify/hexify.h> at:pathObject <file:///hexify.h>.
+<file:///hexify/hexify.readme> at:pathObject <file:///hexify.readme>.
+<file:///hexify/sample> at:pathObject <file:///sample>.
+<file:///hexify/sample.c> at:pathObject <file:///sample.c>.
+<file:///sample.c> at:extensionObject <https://w3id.org/uri4uri/suffix/c>.
 <ni:///mh;1QEQXiUFGItxNGiTLxBkKuGyxg?ct=application/octet-stream> at:digest <urn:md5:5E2505188B713468932F10642AE1B2C6>;
                                                                   dcterms:extent "13811"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQXiUFGItxNGiTLxBkKuGyxg?ct=application/x-lha>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (13.49 KiB)"@en.
+<ni:///mh;1QEQXiUFGItxNGiTLxBkKuGyxg?ct=application/x-lha> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-lha>;
+                                                           a schema:MediaObject,
+                                                             nfo:Archive;
+                                                           skos:prefLabel "LHA object (13.49 KiB)"@en.
+<ni:///mh;1QEQXiUFGItxNGiTLxBkKuGyxg?ct=application/x-lha#/hexify> at:pathObject <file:///hexify>;
+                                                                   nie:interpretedAs <ni:///mh;1QEQXiUFGItxNGiTLxBkKuGyxg?ct=application/x-lha#/hexify/>;
+                                                                   nfo:belongsToContainer <ni:///mh;1QEQXiUFGItxNGiTLxBkKuGyxg?ct=application/x-lha>;
+                                                                   nfo:fileName "hexify";
+                                                                   a nfo:FileDataObject,
+                                                                     nfo:ArchiveItem;
+                                                                   skos:prefLabel "/hexify".
+<ni:///mh;1QEQXiUFGItxNGiTLxBkKuGyxg?ct=application/x-lha#/hexify/> at:pathObject <file:///hexify/>;
+                                                                    a nfo:Folder;
+                                                                    skos:prefLabel "/hexify/".
+<ni:///mh;1QEQXiUFGItxNGiTLxBkKuGyxg?ct=application/x-lha#/hexify/LICENSE> at:pathObject <file:///hexify/LICENSE>;
+                                                                           nie:interpretedAs <data:application/octet-stream,>;
+                                                                           nfo:belongsToContainer <ni:///mh;1QEQXiUFGItxNGiTLxBkKuGyxg?ct=application/x-lha#/hexify/>;
+                                                                           nfo:fileLastModified "2020-05-01T12:30:00.000000Z"^^xsd:dateTime;
+                                                                           nfo:fileName "LICENSE";
+                                                                           nfo:fileSize 1079 ;
+                                                                           a nfo:FileDataObject,
+                                                                             nfo:ArchiveItem;
+                                                                           skos:prefLabel "/hexify/LICENSE".
+<ni:///mh;1QEQXiUFGItxNGiTLxBkKuGyxg?ct=application/x-lha#/hexify/Makefile> at:pathObject <file:///hexify/Makefile>;
+                                                                            nie:interpretedAs <data:application/octet-stream,>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQXiUFGItxNGiTLxBkKuGyxg?ct=application/x-lha#/hexify/>;
+                                                                            nfo:fileLastModified "2020-05-01T12:30:00.000000Z"^^xsd:dateTime;
+                                                                            nfo:fileName "Makefile";
+                                                                            nfo:fileSize 282 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/hexify/Makefile".
+<ni:///mh;1QEQXiUFGItxNGiTLxBkKuGyxg?ct=application/x-lha#/hexify/hexify.c> at:pathObject <file:///hexify/hexify.c>;
+                                                                            nie:interpretedAs <data:application/octet-stream,>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQXiUFGItxNGiTLxBkKuGyxg?ct=application/x-lha#/hexify/>;
+                                                                            nfo:fileLastModified "2020-05-01T12:30:00.000000Z"^^xsd:dateTime;
+                                                                            nfo:fileName "hexify.c";
+                                                                            nfo:fileSize 852 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/hexify/hexify.c".
+<ni:///mh;1QEQXiUFGItxNGiTLxBkKuGyxg?ct=application/x-lha#/hexify/hexify.h> at:pathObject <file:///hexify/hexify.h>;
+                                                                            nie:interpretedAs <data:application/octet-stream,>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQXiUFGItxNGiTLxBkKuGyxg?ct=application/x-lha#/hexify/>;
+                                                                            nfo:fileLastModified "2020-05-01T12:30:00.000000Z"^^xsd:dateTime;
+                                                                            nfo:fileName "hexify.h";
+                                                                            nfo:fileSize 593 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/hexify/hexify.h".
+<ni:///mh;1QEQXiUFGItxNGiTLxBkKuGyxg?ct=application/x-lha#/hexify/hexify.readme> at:pathObject <file:///hexify/hexify.readme>;
+                                                                                 nie:interpretedAs <data:application/octet-stream,>;
+                                                                                 nfo:belongsToContainer <ni:///mh;1QEQXiUFGItxNGiTLxBkKuGyxg?ct=application/x-lha#/hexify/>;
+                                                                                 nfo:fileLastModified "2020-05-01T12:30:00.000000Z"^^xsd:dateTime;
+                                                                                 nfo:fileName "hexify.readme";
+                                                                                 nfo:fileSize 1006 ;
+                                                                                 a nfo:FileDataObject,
+                                                                                   nfo:ArchiveItem;
+                                                                                 skos:prefLabel "/hexify/hexify.readme".
+<ni:///mh;1QEQXiUFGItxNGiTLxBkKuGyxg?ct=application/x-lha#/hexify/sample> at:pathObject <file:///hexify/sample>;
+                                                                          nie:interpretedAs <data:application/octet-stream,>;
+                                                                          nfo:belongsToContainer <ni:///mh;1QEQXiUFGItxNGiTLxBkKuGyxg?ct=application/x-lha#/hexify/>;
+                                                                          nfo:fileLastModified "2020-05-01T12:30:00.000000Z"^^xsd:dateTime;
+                                                                          nfo:fileName "sample";
+                                                                          nfo:fileSize 19120 ;
+                                                                          a nfo:FileDataObject,
+                                                                            nfo:ArchiveItem;
+                                                                          skos:prefLabel "/hexify/sample".
+<ni:///mh;1QEQXiUFGItxNGiTLxBkKuGyxg?ct=application/x-lha#/hexify/sample.c> at:pathObject <file:///hexify/sample.c>;
+                                                                            nie:interpretedAs <data:application/octet-stream,>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQXiUFGItxNGiTLxBkKuGyxg?ct=application/x-lha#/hexify/>;
+                                                                            nfo:fileLastModified "2020-05-01T12:30:00.000000Z"^^xsd:dateTime;
+                                                                            nfo:fileName "sample.c";
+                                                                            nfo:fileSize 543 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/hexify/sample.c".
 <urn:md5:5E2505188B713468932F10642AE1B2C6> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "XiUFGItxNGiTLxBkKuGyxg=="^^xsd:base64Binary.
