@@ -82,5 +82,17 @@ namespace IS4.SFI.Application.Tools
         {
             return path is "/dev/picker";
         }
+
+        /// <summary>
+        /// Checks whether <paramref name="path"/> identifies the directory picker dialog.
+        /// </summary>
+        /// <param name="path">The path to check.</param>
+        /// <returns>
+        /// Whether the path equals <c>/dev/folderpicker</c>.
+        /// </returns>
+        public static bool IsDirectoryPicker(string path)
+        {
+            return path is "/dev/folderpicker";
+        }
     }
 }

@@ -56,7 +56,7 @@ namespace IS4.SFI.ConsoleApp
 #else
                 ShowPlatformFileUnavailableException("clipboard");
 #endif
-            } else if(StandardPaths.IsFilePicker(path))
+            }else if(StandardPaths.IsFilePicker(path))
             {
 #if WINDOWS || NETFRAMEWORK
                 return new IFileNodeInfo[] { new DeviceInput(() => {
@@ -65,6 +65,39 @@ namespace IS4.SFI.ConsoleApp
                 }) };
 #else
                 ShowPlatformFileUnavailableException("file picker");
+#endif
+            }else if(StandardPaths.IsDirectoryPicker(path))
+            {
+#if WINDOWS || NETFRAMEWORK
+                const string title = "Load input folder";
+                return StaThread.Invoke(() => {
+                    using var dialog = new FolderBrowserDialog();
+                    dialog.Description = title;
+                    dialog.ShowNewFolderButton = false;
+#if NET5_0_OR_GREATER
+                    dialog.ClientGuid = DataTools.GuidFromName(appGuidNS, title);
+                    dialog.AutoUpgradeEnabled = true;
+                    dialog.UseDescriptionForTitle = true;
+#endif
+
+                    DialogResult result;
+                    var window = ConsoleWindow.Instance;
+                    if(window.Handle != IntPtr.Zero)
+                    {
+                        result = dialog.ShowDialog(window);
+                    }else{
+                        result = dialog.ShowDialog();
+                    }
+                    if(result != DialogResult.OK)
+                    {
+                        throw new ApplicationException($"{title} dialog canceled!");
+                    }
+                    return new IFileNodeInfo[] {
+                        new DirectoryInfoWrapper(new DirectoryInfo(dialog.SelectedPath))
+                    };
+                });
+#else
+                ShowPlatformFileUnavailableException("folder picker");
 #endif
             }
             var fileName = Path.GetFileName(path);
@@ -136,7 +169,7 @@ namespace IS4.SFI.ConsoleApp
         static string ShowDialog<TDialog>(string title, string? filter) where TDialog : FileDialog, new()
         {
             return StaThread.Invoke(() => {
-                var dialog = new TDialog();
+                using var dialog = new TDialog();
                 dialog.DereferenceLinks = false;
 #if NET5_0_OR_GREATER
                 dialog.ClientGuid = DataTools.GuidFromName(appGuidNS, title);
