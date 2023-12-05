@@ -33,7 +33,7 @@ namespace IS4.SFI.Analyzers
                 this.mpq = mpq;
             }
 
-            public IEnumerable<IArchiveEntry> Entries => mpq.Select(e => new Entry(mpq, e));
+            public IEnumerable<IArchiveEntry> Entries => mpq.Select((e, i) => new Entry(mpq, i, e));
 
             public bool IsComplete => true;
 
@@ -43,10 +43,12 @@ namespace IS4.SFI.Analyzers
             {
                 readonly MpqArchive mpq;
                 readonly MpqEntry entry;
+                readonly int index;
 
-                public Entry(MpqArchive mpq, MpqEntry entry)
+                public Entry(MpqArchive mpq, int index, MpqEntry entry)
                 {
                     this.mpq = mpq;
+                    this.index = index;
                     this.entry = entry;
                 }
 
@@ -54,7 +56,7 @@ namespace IS4.SFI.Analyzers
 
                 public string? Name => entry.FileName;
 
-                public string? SubName => null;
+                public string? SubName => index.ToString();
 
                 public string? Path => Name;
 
@@ -100,9 +102,9 @@ namespace IS4.SFI.Analyzers
                     return mpq.OpenFile(entry);
                 }
 
-                public override string ToString()
+                public override string? ToString()
                 {
-                    return "/" + Name;
+                    return Path == null ? null : "/" + Path;
                 }
             }
         }
