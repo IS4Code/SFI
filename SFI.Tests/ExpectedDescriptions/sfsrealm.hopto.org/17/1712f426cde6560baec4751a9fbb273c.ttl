@@ -1,0 +1,55 @@
+@base <ni:///mh;1QEQJHglKpSQbcuUXP4x_oG8Iw?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///Shadow.mpq>;
+     nie:interpretedAs <ni:///mh;1QEQJHglKpSQbcuUXP4x_oG8Iw?ct=application/octet-stream>;
+     nfo:fileName "Shadow.mpq";
+     nfo:fileSize 21180 ;
+     a nfo:FileDataObject.
+<file:///Shadow.mpq> at:extensionObject <https://w3id.org/uri4uri/suffix/mpq>.
+<file:///arr/images.dat> at:extensionObject <https://w3id.org/uri4uri/suffix/dat>.
+<ni:///mh;1QEQJHglKpSQbcuUXP4x_oG8Iw?ct=application/octet-stream> at:digest <urn:md5:2478252A94906DCB945CFE31FE81BC23>;
+                                                                  dcterms:extent "21180"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQJHglKpSQbcuUXP4x_oG8Iw?ct=application/x-mpq-compressed>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (20.68 KiB)"@en.
+<ni:///mh;1QEQJHglKpSQbcuUXP4x_oG8Iw?ct=application/x-mpq-compressed> at:pathObject <file:///.>;
+                                                                      schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-mpq-compressed>;
+                                                                      nie:interpretedAs <ni:///mh;1QEQJHglKpSQbcuUXP4x_oG8Iw?ct=application/x-mpq-compressed#/>;
+                                                                      a schema:MediaObject,
+                                                                        nfo:Archive;
+                                                                      skos:prefLabel "MPQ object (20.68 KiB)"@en.
+<ni:///mh;1QEQJHglKpSQbcuUXP4x_oG8Iw?ct=application/x-mpq-compressed#/> at:pathObject <file:///>;
+                                                                        a nfo:Folder;
+                                                                        skos:prefLabel "/".
+<ni:///mh;1QEQJHglKpSQbcuUXP4x_oG8Iw?ct=application/x-mpq-compressed#/%28listfile%29> at:pathObject <file:///(listfile)>;
+                                                                                      nfo:belongsToContainer <ni:///mh;1QEQJHglKpSQbcuUXP4x_oG8Iw?ct=application/x-mpq-compressed#/>;
+                                                                                      nfo:encryptionStatus nfo:encryptedStatus;
+                                                                                      nfo:fileName "(listfile)";
+                                                                                      nfo:fileSize 16 ;
+                                                                                      a nfo:FileDataObject,
+                                                                                        nfo:ArchiveItem;
+                                                                                      skos:prefLabel "/(listfile)".
+<ni:///mh;1QEQJHglKpSQbcuUXP4x_oG8Iw?ct=application/x-mpq-compressed#/arr%5Cimages.dat> at:pathObject <file:///arr/images.dat>;
+                                                                                        nfo:belongsToContainer <ni:///mh;1QEQJHglKpSQbcuUXP4x_oG8Iw?ct=application/x-mpq-compressed#/>;
+                                                                                        nfo:encryptionStatus nfo:encryptedStatus;
+                                                                                        nfo:fileName "arr\\images.dat";
+                                                                                        nfo:fileSize 37962 ;
+                                                                                        a nfo:FileDataObject,
+                                                                                          nfo:ArchiveItem;
+                                                                                        skos:prefLabel "/arr\\images.dat".
+<urn:md5:2478252A94906DCB945CFE31FE81BC23> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "JHglKpSQbcuUXP4x/oG8Iw=="^^xsd:base64Binary.

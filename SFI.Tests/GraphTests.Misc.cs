@@ -16,5 +16,22 @@ namespace IS4.SFI.Tests
         {
             return TestOutputGraph(source);
         }
+
+        [DataRow("https://cdn.pvpgn.pro/mpq/DRTL_IX86_108_109.mpq")]
+        [DataRow("https://nwc3l.com/upload/maps/(2)RuinedRainbow.w3x")]
+        [DataRow("https://sfsrealm.hopto.org/download/patch/Cloak.mpq")]
+        [DataRow("https://sfsrealm.hopto.org/download/patch/Difficult.mpq")]
+        [DataRow("https://sfsrealm.hopto.org/download/patch/Dropship.mpq")]
+        [DataRow("https://sfsrealm.hopto.org/download/patch/Shadow.mpq")]
+        [DataRow("https://sfsrealm.hopto.org/download/patch/colors%201%20SC.mpq")]
+        [DataRow("https://sfsrealm.hopto.org/download/patch/colors%201%20WC.mpq")]
+        [DataRow("https://sfsrealm.hopto.org/download/patch/colors%202%20SC.mpq")]
+        [DataRow("https://sfsrealm.hopto.org/download/patch/colors%202%20WC.mpq")]
+        [DataRow("https://sfsrealm.hopto.org/download/patch/sc_playlist.mpq")]
+        [TestMethod]
+        public Task mpq(string source)
+        {
+            return TestOutputGraph(source);
+        }
     }
 }

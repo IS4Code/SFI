@@ -1,0 +1,181 @@
+@base <ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+
+_:n1 at:pathObject <file:///colors%201%20SC.mpq>;
+     nie:interpretedAs <ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/octet-stream>;
+     nfo:fileName "colors 1 SC.mpq";
+     nfo:fileSize 31085 ;
+     a nfo:FileDataObject.
+<data:application/octet-stream,> dcterms:extent "0"^^dt:byte;
+                                 a cnt:ContentAsBase64;
+                                 skos:prefLabel "binary data (0 B)"@en;
+                                 cnt:bytes ""^^xsd:base64Binary.
+<file:///colors%201%20SC.mpq> at:extensionObject <https://w3id.org/uri4uri/suffix/mpq>.
+<file:///tileset/AshWorld-nc.wpe> at:extensionObject <https://w3id.org/uri4uri/suffix/wpe>.
+<file:///tileset/AshWorld.wpe> at:extensionObject <https://w3id.org/uri4uri/suffix/wpe>.
+<file:///tileset/Desert.wpe> at:extensionObject <https://w3id.org/uri4uri/suffix/wpe>.
+<file:///tileset/Jungle-nc.wpe> at:extensionObject <https://w3id.org/uri4uri/suffix/wpe>.
+<file:///tileset/Jungle.wpe> at:extensionObject <https://w3id.org/uri4uri/suffix/wpe>.
+<file:///tileset/badlands-nc.wpe> at:extensionObject <https://w3id.org/uri4uri/suffix/wpe>.
+<file:///tileset/badlands.wpe> at:extensionObject <https://w3id.org/uri4uri/suffix/wpe>.
+<file:///tileset/desert-nc.wpe> at:extensionObject <https://w3id.org/uri4uri/suffix/wpe>.
+<file:///tileset/ice-nc.wpe> at:extensionObject <https://w3id.org/uri4uri/suffix/wpe>.
+<file:///tileset/ice.wpe> at:extensionObject <https://w3id.org/uri4uri/suffix/wpe>.
+<file:///tileset/install.wpe> at:extensionObject <https://w3id.org/uri4uri/suffix/wpe>.
+<file:///tileset/platform.wpe> at:extensionObject <https://w3id.org/uri4uri/suffix/wpe>.
+<file:///tileset/twilight-nc.wpe> at:extensionObject <https://w3id.org/uri4uri/suffix/wpe>.
+<file:///tileset/twilight.wpe> at:extensionObject <https://w3id.org/uri4uri/suffix/wpe>.
+<ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/octet-stream> at:digest <urn:md5:BE1C16E79D0CF9CB87000D5E7AAEBC2C>;
+                                                                  dcterms:extent "31085"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/x-mpq-compressed>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (30.36 KiB)"@en.
+<ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/x-mpq-compressed> at:pathObject <file:///.>;
+                                                                      schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-mpq-compressed>;
+                                                                      nie:interpretedAs <ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/x-mpq-compressed#/>;
+                                                                      a schema:MediaObject,
+                                                                        nfo:Archive;
+                                                                      skos:prefLabel "MPQ object (30.36 KiB)"@en.
+<ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/x-mpq-compressed#/> at:pathObject <file:///>;
+                                                                        nie:interpretedAs <data:application/octet-stream,>;
+                                                                        nfo:belongsToContainer <ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/x-mpq-compressed#/>;
+                                                                        nfo:fileSize 0 ;
+                                                                        a nfo:Folder,
+                                                                          nfo:FileDataObject,
+                                                                          nfo:ArchiveItem;
+                                                                        skos:prefLabel "/".
+<ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/x-mpq-compressed#/%28listfile%29> at:pathObject <file:///(listfile)>;
+                                                                                      nfo:belongsToContainer <ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/x-mpq-compressed#/>;
+                                                                                      nfo:encryptionStatus nfo:encryptedStatus;
+                                                                                      nfo:fileName "(listfile)";
+                                                                                      nfo:fileSize 307 ;
+                                                                                      a nfo:FileDataObject,
+                                                                                        nfo:ArchiveItem;
+                                                                                      skos:prefLabel "/(listfile)".
+<ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/x-mpq-compressed#/tileset%5CAshWorld-nc.wpe> at:pathObject <file:///tileset/AshWorld-nc.wpe>;
+                                                                                                 nfo:belongsToContainer <ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/x-mpq-compressed#/>;
+                                                                                                 nfo:encryptionStatus nfo:encryptedStatus;
+                                                                                                 nfo:fileName "tileset\\AshWorld-nc.wpe";
+                                                                                                 nfo:fileSize 1024 ;
+                                                                                                 a nfo:FileDataObject,
+                                                                                                   nfo:ArchiveItem;
+                                                                                                 skos:prefLabel "/tileset\\AshWorld-nc.wpe".
+<ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/x-mpq-compressed#/tileset%5CAshWorld.wpe> at:pathObject <file:///tileset/AshWorld.wpe>;
+                                                                                              nfo:belongsToContainer <ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/x-mpq-compressed#/>;
+                                                                                              nfo:encryptionStatus nfo:encryptedStatus;
+                                                                                              nfo:fileName "tileset\\AshWorld.wpe";
+                                                                                              nfo:fileSize 1024 ;
+                                                                                              a nfo:FileDataObject,
+                                                                                                nfo:ArchiveItem;
+                                                                                              skos:prefLabel "/tileset\\AshWorld.wpe".
+<ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/x-mpq-compressed#/tileset%5CDesert.wpe> at:pathObject <file:///tileset/Desert.wpe>;
+                                                                                            nfo:belongsToContainer <ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/x-mpq-compressed#/>;
+                                                                                            nfo:encryptionStatus nfo:encryptedStatus;
+                                                                                            nfo:fileName "tileset\\Desert.wpe";
+                                                                                            nfo:fileSize 1024 ;
+                                                                                            a nfo:FileDataObject,
+                                                                                              nfo:ArchiveItem;
+                                                                                            skos:prefLabel "/tileset\\Desert.wpe".
+<ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/x-mpq-compressed#/tileset%5CJungle-nc.wpe> at:pathObject <file:///tileset/Jungle-nc.wpe>;
+                                                                                               nfo:belongsToContainer <ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/x-mpq-compressed#/>;
+                                                                                               nfo:encryptionStatus nfo:encryptedStatus;
+                                                                                               nfo:fileName "tileset\\Jungle-nc.wpe";
+                                                                                               nfo:fileSize 1024 ;
+                                                                                               a nfo:FileDataObject,
+                                                                                                 nfo:ArchiveItem;
+                                                                                               skos:prefLabel "/tileset\\Jungle-nc.wpe".
+<ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/x-mpq-compressed#/tileset%5CJungle.wpe> at:pathObject <file:///tileset/Jungle.wpe>;
+                                                                                            nfo:belongsToContainer <ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/x-mpq-compressed#/>;
+                                                                                            nfo:encryptionStatus nfo:encryptedStatus;
+                                                                                            nfo:fileName "tileset\\Jungle.wpe";
+                                                                                            nfo:fileSize 1024 ;
+                                                                                            a nfo:FileDataObject,
+                                                                                              nfo:ArchiveItem;
+                                                                                            skos:prefLabel "/tileset\\Jungle.wpe".
+<ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/x-mpq-compressed#/tileset%5Cbadlands-nc.wpe> at:pathObject <file:///tileset/badlands-nc.wpe>;
+                                                                                                 nfo:belongsToContainer <ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/x-mpq-compressed#/>;
+                                                                                                 nfo:encryptionStatus nfo:encryptedStatus;
+                                                                                                 nfo:fileName "tileset\\badlands-nc.wpe";
+                                                                                                 nfo:fileSize 1024 ;
+                                                                                                 a nfo:FileDataObject,
+                                                                                                   nfo:ArchiveItem;
+                                                                                                 skos:prefLabel "/tileset\\badlands-nc.wpe".
+<ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/x-mpq-compressed#/tileset%5Cbadlands.wpe> at:pathObject <file:///tileset/badlands.wpe>;
+                                                                                              nfo:belongsToContainer <ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/x-mpq-compressed#/>;
+                                                                                              nfo:encryptionStatus nfo:encryptedStatus;
+                                                                                              nfo:fileName "tileset\\badlands.wpe";
+                                                                                              nfo:fileSize 1024 ;
+                                                                                              a nfo:FileDataObject,
+                                                                                                nfo:ArchiveItem;
+                                                                                              skos:prefLabel "/tileset\\badlands.wpe".
+<ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/x-mpq-compressed#/tileset%5Cdesert-nc.wpe> at:pathObject <file:///tileset/desert-nc.wpe>;
+                                                                                               nfo:belongsToContainer <ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/x-mpq-compressed#/>;
+                                                                                               nfo:encryptionStatus nfo:encryptedStatus;
+                                                                                               nfo:fileName "tileset\\desert-nc.wpe";
+                                                                                               nfo:fileSize 1024 ;
+                                                                                               a nfo:FileDataObject,
+                                                                                                 nfo:ArchiveItem;
+                                                                                               skos:prefLabel "/tileset\\desert-nc.wpe".
+<ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/x-mpq-compressed#/tileset%5Cice-nc.wpe> at:pathObject <file:///tileset/ice-nc.wpe>;
+                                                                                            nfo:belongsToContainer <ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/x-mpq-compressed#/>;
+                                                                                            nfo:encryptionStatus nfo:encryptedStatus;
+                                                                                            nfo:fileName "tileset\\ice-nc.wpe";
+                                                                                            nfo:fileSize 1024 ;
+                                                                                            a nfo:FileDataObject,
+                                                                                              nfo:ArchiveItem;
+                                                                                            skos:prefLabel "/tileset\\ice-nc.wpe".
+<ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/x-mpq-compressed#/tileset%5Cice.wpe> at:pathObject <file:///tileset/ice.wpe>;
+                                                                                         nfo:belongsToContainer <ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/x-mpq-compressed#/>;
+                                                                                         nfo:encryptionStatus nfo:encryptedStatus;
+                                                                                         nfo:fileName "tileset\\ice.wpe";
+                                                                                         nfo:fileSize 1024 ;
+                                                                                         a nfo:FileDataObject,
+                                                                                           nfo:ArchiveItem;
+                                                                                         skos:prefLabel "/tileset\\ice.wpe".
+<ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/x-mpq-compressed#/tileset%5Cinstall.wpe> at:pathObject <file:///tileset/install.wpe>;
+                                                                                             nfo:belongsToContainer <ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/x-mpq-compressed#/>;
+                                                                                             nfo:encryptionStatus nfo:encryptedStatus;
+                                                                                             nfo:fileName "tileset\\install.wpe";
+                                                                                             nfo:fileSize 1024 ;
+                                                                                             a nfo:FileDataObject,
+                                                                                               nfo:ArchiveItem;
+                                                                                             skos:prefLabel "/tileset\\install.wpe".
+<ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/x-mpq-compressed#/tileset%5Cplatform.wpe> at:pathObject <file:///tileset/platform.wpe>;
+                                                                                              nfo:belongsToContainer <ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/x-mpq-compressed#/>;
+                                                                                              nfo:encryptionStatus nfo:encryptedStatus;
+                                                                                              nfo:fileName "tileset\\platform.wpe";
+                                                                                              nfo:fileSize 1024 ;
+                                                                                              a nfo:FileDataObject,
+                                                                                                nfo:ArchiveItem;
+                                                                                              skos:prefLabel "/tileset\\platform.wpe".
+<ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/x-mpq-compressed#/tileset%5Ctwilight-nc.wpe> at:pathObject <file:///tileset/twilight-nc.wpe>;
+                                                                                                 nfo:belongsToContainer <ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/x-mpq-compressed#/>;
+                                                                                                 nfo:encryptionStatus nfo:encryptedStatus;
+                                                                                                 nfo:fileName "tileset\\twilight-nc.wpe";
+                                                                                                 nfo:fileSize 1024 ;
+                                                                                                 a nfo:FileDataObject,
+                                                                                                   nfo:ArchiveItem;
+                                                                                                 skos:prefLabel "/tileset\\twilight-nc.wpe".
+<ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/x-mpq-compressed#/tileset%5Ctwilight.wpe> at:pathObject <file:///tileset/twilight.wpe>;
+                                                                                              nfo:belongsToContainer <ni:///mh;1QEQvhwW550M-cuHAA1eeq68LA?ct=application/x-mpq-compressed#/>;
+                                                                                              nfo:encryptionStatus nfo:encryptedStatus;
+                                                                                              nfo:fileName "tileset\\twilight.wpe";
+                                                                                              nfo:fileSize 1024 ;
+                                                                                              a nfo:FileDataObject,
+                                                                                                nfo:ArchiveItem;
+                                                                                              skos:prefLabel "/tileset\\twilight.wpe".
+<urn:md5:BE1C16E79D0CF9CB87000D5E7AAEBC2C> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "vhwW550M+cuHAA1eeq68LA=="^^xsd:base64Binary.
