@@ -1,0 +1,96 @@
+@base <ni:///mh;1QEQrYYF6ub1RQ2OzhxggNQ93A?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+
+_:n1 at:pathObject <file:///JUSTIFY.WAD>;
+     nie:interpretedAs <ni:///mh;1QEQrYYF6ub1RQ2OzhxggNQ93A?ct=application/octet-stream>;
+     nfo:fileName "JUSTIFY.WAD";
+     nfo:fileSize 245650 ;
+     a nfo:FileDataObject.
+<data:application/octet-stream,> dcterms:extent "0"^^dt:byte;
+                                 a cnt:ContentAsBase64;
+                                 skos:prefLabel "binary data (0 B)"@en;
+                                 cnt:bytes ""^^xsd:base64Binary.
+<file:///JUSTIFY.WAD> at:extensionObject <https://w3id.org/uri4uri/suffix/wad>.
+<ni:///mh;1QEQrYYF6ub1RQ2OzhxggNQ93A?ct=application/octet-stream> at:digest <urn:md5:AD8605EAE6F5450D8ECE1C6080D43DDC>;
+                                                                  dcterms:extent "245650"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQrYYF6ub1RQ2OzhxggNQ93A?ct=application/x-doom>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (239.89 KiB)"@en.
+<ni:///mh;1QEQrYYF6ub1RQ2OzhxggNQ93A?ct=application/x-doom> at:pathObject <file:///.>;
+                                                            schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-doom>;
+                                                            nie:interpretedAs <ni:///mh;1QEQrYYF6ub1RQ2OzhxggNQ93A?ct=application/x-doom#/>;
+                                                            a schema:MediaObject,
+                                                              nfo:Archive;
+                                                            skos:prefLabel "WAD object (239.89 KiB)"@en.
+<ni:///mh;1QEQrYYF6ub1RQ2OzhxggNQ93A?ct=application/x-doom#/> at:pathObject <file:///>;
+                                                              a nfo:Folder;
+                                                              skos:prefLabel "/".
+<ni:///mh;1QEQrYYF6ub1RQ2OzhxggNQ93A?ct=application/x-doom#/%06:3> at:pathObject <file:///%06>;
+                                                                   nie:interpretedAs <data:application/octet-stream,>;
+                                                                   nfo:belongsToContainer <ni:///mh;1QEQrYYF6ub1RQ2OzhxggNQ93A?ct=application/x-doom#/>;
+                                                                   nfo:fileName """{\"@value\":\"\\u0006\"}"""^^rdf:JSON;
+                                                                   nfo:fileSize 0 ;
+                                                                   a nfo:FileDataObject,
+                                                                     nfo:ArchiveItem;
+                                                                   skos:prefLabel "/␆".
+<ni:///mh;1QEQrYYF6ub1RQ2OzhxggNQ93A?ct=application/x-doom#/%3CCORRUPT%20NAME%3E:6> at:pathObject <file:///%3CCORRUPT%20NAME%3E>;
+                                                                                    nie:interpretedAs <data:application/octet-stream,>;
+                                                                                    nfo:belongsToContainer <ni:///mh;1QEQrYYF6ub1RQ2OzhxggNQ93A?ct=application/x-doom#/>;
+                                                                                    nfo:fileName "<CORRUPT NAME>";
+                                                                                    a nfo:FileDataObject,
+                                                                                      nfo:ArchiveItem;
+                                                                                    skos:prefLabel "/<CORRUPT NAME>".
+<ni:///mh;1QEQrYYF6ub1RQ2OzhxggNQ93A?ct=application/x-doom#/%3CCORRUPT%20NAME%3E:7> at:pathObject <file:///%3CCORRUPT%20NAME%3E>;
+                                                                                    nie:interpretedAs <data:application/octet-stream,>;
+                                                                                    nfo:belongsToContainer <ni:///mh;1QEQrYYF6ub1RQ2OzhxggNQ93A?ct=application/x-doom#/>;
+                                                                                    nfo:fileName "<CORRUPT NAME>";
+                                                                                    nfo:fileSize 536871132 ;
+                                                                                    a nfo:FileDataObject,
+                                                                                      nfo:ArchiveItem;
+                                                                                    skos:prefLabel "/<CORRUPT NAME>".
+<ni:///mh;1QEQrYYF6ub1RQ2OzhxggNQ93A?ct=application/x-doom#/%3CCORRUPT%20NAME%3E:8> at:pathObject <file:///%3CCORRUPT%20NAME%3E>;
+                                                                                    nie:interpretedAs <data:application/octet-stream,>;
+                                                                                    nfo:belongsToContainer <ni:///mh;1QEQrYYF6ub1RQ2OzhxggNQ93A?ct=application/x-doom#/>;
+                                                                                    nfo:fileName "<CORRUPT NAME>";
+                                                                                    nfo:fileSize 654311424 ;
+                                                                                    a nfo:FileDataObject,
+                                                                                      nfo:ArchiveItem;
+                                                                                    skos:prefLabel "/<CORRUPT NAME>".
+<ni:///mh;1QEQrYYF6ub1RQ2OzhxggNQ93A?ct=application/x-doom#/%3F:0> at:pathObject <file:///%3F>;
+                                                                   nie:interpretedAs <data:application/octet-stream,>;
+                                                                   nfo:belongsToContainer <ni:///mh;1QEQrYYF6ub1RQ2OzhxggNQ93A?ct=application/x-doom#/>;
+                                                                   nfo:fileName "?";
+                                                                   a nfo:FileDataObject,
+                                                                     nfo:ArchiveItem;
+                                                                   skos:prefLabel "/?".
+<ni:///mh;1QEQrYYF6ub1RQ2OzhxggNQ93A?ct=application/x-doom#/_%3F%06:9> at:pathObject <file:///_%3F%06>;
+                                                                       nie:interpretedAs <data:application/octet-stream,>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQrYYF6ub1RQ2OzhxggNQ93A?ct=application/x-doom#/>;
+                                                                       nfo:fileName """{\"@value\":\"_?\\u0006\"}"""^^rdf:JSON;
+                                                                       nfo:fileSize 543814 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/_?␆".
+<ni:///mh;1QEQrYYF6ub1RQ2OzhxggNQ93A?ct=application/x-doom#/k%08:1> at:pathObject <file:///k%08>;
+                                                                    nie:interpretedAs <data:application/octet-stream,>;
+                                                                    nfo:belongsToContainer <ni:///mh;1QEQrYYF6ub1RQ2OzhxggNQ93A?ct=application/x-doom#/>;
+                                                                    nfo:fileName """{\"@value\":\"k\\b\"}"""^^rdf:JSON;
+                                                                    nfo:fileSize 0 ;
+                                                                    a nfo:FileDataObject,
+                                                                      nfo:ArchiveItem;
+                                                                    skos:prefLabel "/k␈".
+<urn:md5:AD8605EAE6F5450D8ECE1C6080D43DDC> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "rYYF6ub1RQ2OzhxggNQ93A=="^^xsd:base64Binary.

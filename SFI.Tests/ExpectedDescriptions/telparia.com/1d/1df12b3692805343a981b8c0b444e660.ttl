@@ -1,0 +1,188 @@
+@base <ni:///mh;1QEQfTPoojfXODGDZGi0vyc6BA?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+
+_:n1 at:pathObject <file:///S7.WAD>;
+     nie:interpretedAs <ni:///mh;1QEQfTPoojfXODGDZGi0vyc6BA?ct=application/octet-stream>;
+     nfo:fileName "S7.WAD";
+     nfo:fileSize 1900 ;
+     a nfo:FileDataObject.
+<data:application/octet-stream,> dcterms:extent "0"^^dt:byte;
+                                 a cnt:ContentAsBase64;
+                                 skos:prefLabel "binary data (0 B)"@en;
+                                 cnt:bytes ""^^xsd:base64Binary.
+<data:application/octet-stream,%00%00> dcterms:extent "2"^^dt:byte;
+                                       a cnt:ContentAsBase64;
+                                       skos:prefLabel "binary data (2 B)"@en;
+                                       cnt:bytes "AAA="^^xsd:base64Binary.
+<data:application/octet-stream;base64,AwAAAAQAAwAEAAcAAwALAAIADgAEABAA> dcterms:extent "24"^^dt:byte;
+                                                                        a cnt:ContentAsBase64;
+                                                                        skos:prefLabel "binary data (24 B)"@en;
+                                                                        cnt:bytes "AwAAAAQAAwAEAAcAAwALAAIADgAEABAA"^^xsd:base64Binary.
+<data:application/octet-stream;base64,gP+AAID/wP1AAID+QADA/8ABwP3AAYD+wAFA/kAAIP9gAMD/YAAg/4ABwP+AASD/gP8g/0AAwP0=> dcterms:extent "56"^^dt:byte;
+                                                                                                                    a cnt:ContentAsBase64;
+                                                                                                                    skos:prefLabel "binary data (56 B)"@en;
+                                                                                                                    cnt:bytes "gP+AAID/wP1AAID+QADA/8ABwP3AAYD+wAFA/kAAIP9gAMD/YAAg/4ABwP+AASD/gP8g/0AAwP0="^^xsd:base64Binary.
+<data:application/octet-stream;base64,vv/M/wAAAQAHAA==> dcterms:extent "10"^^dt:byte;
+                                                        a cnt:ContentAsBase64;
+                                                        skos:prefLabel "binary data (10 B)"@en;
+                                                        cnt:bytes "vv/M/wAAAQAHAA=="^^xsd:base64Binary.
+<file:///S7.WAD> at:extensionObject <https://w3id.org/uri4uri/suffix/wad>.
+<ni:///mh;1QEQ-mN0yTFnNDe4n3IMyNSdbw?ct=application/octet-stream> at:digest <urn:md5:FA6374C931673437B89F720CC8D49D6F>;
+                                                                  dcterms:extent "540"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (540 B)"@en.
+<ni:///mh;1QEQ5But8c5E1WRQ-mIkGfC7lA?ct=application/octet-stream> at:digest <urn:md5:E41BADF1CE44D56450FA622419F0BB94>;
+                                                                  dcterms:extent "140"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (140 B)"@en.
+<ni:///mh;1QEQHKeCNHBwhJvh98zSfcLPTg?ct=application/octet-stream> at:digest <urn:md5:1CA782347070849BE1F7CCD27DC2CF4E>;
+                                                                  dcterms:extent "240"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (240 B)"@en.
+<ni:///mh;1QEQaRwUFgGD6J0zUXA-UeVL2A?ct=application/octet-stream> at:digest <urn:md5:691C14160183E89D3351703E51E54BD8>;
+                                                                  dcterms:extent "210"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (210 B)"@en.
+<ni:///mh;1QEQfTPoojfXODGDZGi0vyc6BA?ct=application/octet-stream> at:digest <urn:md5:7D33E8A237D73831836468B4BF273A04>;
+                                                                  dcterms:extent "1900"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQfTPoojfXODGDZGi0vyc6BA?ct=application/x-doom>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (1.86 KiB)"@en.
+<ni:///mh;1QEQfTPoojfXODGDZGi0vyc6BA?ct=application/x-doom> at:pathObject <file:///.>;
+                                                            schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-doom>;
+                                                            nie:interpretedAs <ni:///mh;1QEQfTPoojfXODGDZGi0vyc6BA?ct=application/x-doom#/>;
+                                                            a schema:MediaObject,
+                                                              nfo:Archive;
+                                                            skos:prefLabel "WAD object (1.86 KiB)"@en.
+<ni:///mh;1QEQfTPoojfXODGDZGi0vyc6BA?ct=application/x-doom#/> at:pathObject <file:///>;
+                                                              a nfo:Folder;
+                                                              skos:prefLabel "/".
+<ni:///mh;1QEQfTPoojfXODGDZGi0vyc6BA?ct=application/x-doom#/BLOCKMAP:10> at:pathObject <file:///BLOCKMAP>;
+                                                                         nie:interpretedAs <ni:///mh;1QEQjZSWWWTFMbB36JQVMq2ITA?ct=application/octet-stream>;
+                                                                         nfo:belongsToContainer <ni:///mh;1QEQfTPoojfXODGDZGi0vyc6BA?ct=application/x-doom#/>;
+                                                                         nfo:fileName "BLOCKMAP";
+                                                                         nfo:fileSize 386 ;
+                                                                         a nfo:FileDataObject,
+                                                                           nfo:ArchiveItem;
+                                                                         skos:prefLabel "/BLOCKMAP".
+<ni:///mh;1QEQfTPoojfXODGDZGi0vyc6BA?ct=application/x-doom#/E2M1:0> at:pathObject <file:///E2M1>;
+                                                                    nie:interpretedAs <data:application/octet-stream,>;
+                                                                    nfo:belongsToContainer <ni:///mh;1QEQfTPoojfXODGDZGi0vyc6BA?ct=application/x-doom#/>;
+                                                                    nfo:fileName "E2M1";
+                                                                    nfo:fileSize 0 ;
+                                                                    a nfo:FileDataObject,
+                                                                      nfo:ArchiveItem;
+                                                                    skos:prefLabel "/E2M1".
+<ni:///mh;1QEQfTPoojfXODGDZGi0vyc6BA?ct=application/x-doom#/LINEDEFS:2> at:pathObject <file:///LINEDEFS>;
+                                                                        nie:interpretedAs <ni:///mh;1QEQaRwUFgGD6J0zUXA-UeVL2A?ct=application/octet-stream>;
+                                                                        nfo:belongsToContainer <ni:///mh;1QEQfTPoojfXODGDZGi0vyc6BA?ct=application/x-doom#/>;
+                                                                        nfo:fileName "LINEDEFS";
+                                                                        nfo:fileSize 210 ;
+                                                                        a nfo:FileDataObject,
+                                                                          nfo:ArchiveItem;
+                                                                        skos:prefLabel "/LINEDEFS".
+<ni:///mh;1QEQfTPoojfXODGDZGi0vyc6BA?ct=application/x-doom#/NODES:7> at:pathObject <file:///NODES>;
+                                                                     nie:interpretedAs <ni:///mh;1QEQ5But8c5E1WRQ-mIkGfC7lA?ct=application/octet-stream>;
+                                                                     nfo:belongsToContainer <ni:///mh;1QEQfTPoojfXODGDZGi0vyc6BA?ct=application/x-doom#/>;
+                                                                     nfo:fileName "NODES";
+                                                                     nfo:fileSize 140 ;
+                                                                     a nfo:FileDataObject,
+                                                                       nfo:ArchiveItem;
+                                                                     skos:prefLabel "/NODES".
+<ni:///mh;1QEQfTPoojfXODGDZGi0vyc6BA?ct=application/x-doom#/REJECT:9> at:pathObject <file:///REJECT>;
+                                                                      nie:interpretedAs <data:application/octet-stream,%00%00>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQfTPoojfXODGDZGi0vyc6BA?ct=application/x-doom#/>;
+                                                                      nfo:fileName "REJECT";
+                                                                      nfo:fileSize 2 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/REJECT".
+<ni:///mh;1QEQfTPoojfXODGDZGi0vyc6BA?ct=application/x-doom#/SECTORS:8> at:pathObject <file:///SECTORS>;
+                                                                       nie:interpretedAs <ni:///mh;1QEQjXnpVguzvOfoW5tjM0_H6Q?ct=application/octet-stream>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQfTPoojfXODGDZGi0vyc6BA?ct=application/x-doom#/>;
+                                                                       nfo:fileName "SECTORS";
+                                                                       nfo:fileSize 104 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/SECTORS".
+<ni:///mh;1QEQfTPoojfXODGDZGi0vyc6BA?ct=application/x-doom#/SEGS:5> at:pathObject <file:///SEGS>;
+                                                                    nie:interpretedAs <ni:///mh;1QEQHKeCNHBwhJvh98zSfcLPTg?ct=application/octet-stream>;
+                                                                    nfo:belongsToContainer <ni:///mh;1QEQfTPoojfXODGDZGi0vyc6BA?ct=application/x-doom#/>;
+                                                                    nfo:fileName "SEGS";
+                                                                    nfo:fileSize 240 ;
+                                                                    a nfo:FileDataObject,
+                                                                      nfo:ArchiveItem;
+                                                                    skos:prefLabel "/SEGS".
+<ni:///mh;1QEQfTPoojfXODGDZGi0vyc6BA?ct=application/x-doom#/SIDEDEFS:3> at:pathObject <file:///SIDEDEFS>;
+                                                                        nie:interpretedAs <ni:///mh;1QEQ-mN0yTFnNDe4n3IMyNSdbw?ct=application/octet-stream>;
+                                                                        nfo:belongsToContainer <ni:///mh;1QEQfTPoojfXODGDZGi0vyc6BA?ct=application/x-doom#/>;
+                                                                        nfo:fileName "SIDEDEFS";
+                                                                        nfo:fileSize 540 ;
+                                                                        a nfo:FileDataObject,
+                                                                          nfo:ArchiveItem;
+                                                                        skos:prefLabel "/SIDEDEFS".
+<ni:///mh;1QEQfTPoojfXODGDZGi0vyc6BA?ct=application/x-doom#/SSECTORS:6> at:pathObject <file:///SSECTORS>;
+                                                                        nie:interpretedAs <data:application/octet-stream;base64,AwAAAAQAAwAEAAcAAwALAAIADgAEABAA>;
+                                                                        nfo:belongsToContainer <ni:///mh;1QEQfTPoojfXODGDZGi0vyc6BA?ct=application/x-doom#/>;
+                                                                        nfo:fileName "SSECTORS";
+                                                                        nfo:fileSize 24 ;
+                                                                        a nfo:FileDataObject,
+                                                                          nfo:ArchiveItem;
+                                                                        skos:prefLabel "/SSECTORS".
+<ni:///mh;1QEQfTPoojfXODGDZGi0vyc6BA?ct=application/x-doom#/THINGS:1> at:pathObject <file:///THINGS>;
+                                                                      nie:interpretedAs <data:application/octet-stream;base64,vv/M/wAAAQAHAA==>;
+                                                                      nfo:belongsToContainer <ni:///mh;1QEQfTPoojfXODGDZGi0vyc6BA?ct=application/x-doom#/>;
+                                                                      nfo:fileName "THINGS";
+                                                                      nfo:fileSize 10 ;
+                                                                      a nfo:FileDataObject,
+                                                                        nfo:ArchiveItem;
+                                                                      skos:prefLabel "/THINGS".
+<ni:///mh;1QEQfTPoojfXODGDZGi0vyc6BA?ct=application/x-doom#/VERTEXES:4> at:pathObject <file:///VERTEXES>;
+                                                                        nie:interpretedAs <data:application/octet-stream;base64,gP+AAID/wP1AAID+QADA/8ABwP3AAYD+wAFA/kAAIP9gAMD/YAAg/4ABwP+AASD/gP8g/0AAwP0=>;
+                                                                        nfo:belongsToContainer <ni:///mh;1QEQfTPoojfXODGDZGi0vyc6BA?ct=application/x-doom#/>;
+                                                                        nfo:fileName "VERTEXES";
+                                                                        nfo:fileSize 56 ;
+                                                                        a nfo:FileDataObject,
+                                                                          nfo:ArchiveItem;
+                                                                        skos:prefLabel "/VERTEXES".
+<ni:///mh;1QEQjXnpVguzvOfoW5tjM0_H6Q?ct=application/octet-stream> at:digest <urn:md5:8D79E9560BB3BCE7E85B9B63334FC7E9>;
+                                                                  dcterms:extent "104"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (104 B)"@en.
+<ni:///mh;1QEQjZSWWWTFMbB36JQVMq2ITA?ct=application/octet-stream> at:digest <urn:md5:8D94965964C531B077E8941532AD884C>;
+                                                                  dcterms:extent "386"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (386 B)"@en.
+<urn:md5:1CA782347070849BE1F7CCD27DC2CF4E> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "HKeCNHBwhJvh98zSfcLPTg=="^^xsd:base64Binary.
+<urn:md5:691C14160183E89D3351703E51E54BD8> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "aRwUFgGD6J0zUXA+UeVL2A=="^^xsd:base64Binary.
+<urn:md5:7D33E8A237D73831836468B4BF273A04> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "fTPoojfXODGDZGi0vyc6BA=="^^xsd:base64Binary.
+<urn:md5:8D79E9560BB3BCE7E85B9B63334FC7E9> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "jXnpVguzvOfoW5tjM0/H6Q=="^^xsd:base64Binary.
+<urn:md5:8D94965964C531B077E8941532AD884C> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "jZSWWWTFMbB36JQVMq2ITA=="^^xsd:base64Binary.
+<urn:md5:E41BADF1CE44D56450FA622419F0BB94> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "5But8c5E1WRQ+mIkGfC7lA=="^^xsd:base64Binary.
+<urn:md5:FA6374C931673437B89F720CC8D49D6F> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "+mN0yTFnNDe4n3IMyNSdbw=="^^xsd:base64Binary.

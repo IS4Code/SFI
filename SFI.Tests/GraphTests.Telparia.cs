@@ -440,7 +440,26 @@ namespace IS4.SFI.Tests
         {
             return TestOutputGraph(source);
         }
-        
+
+        [DataRow("https://telparia.com/fileFormatSamples/archive/wad/ARMORY.WAD")]
+        [DataRow("https://telparia.com/fileFormatSamples/archive/wad/BIGGCITY.WAD")]
+        [DataRow("https://telparia.com/fileFormatSamples/archive/wad/DOOM1.WAD")]
+        [DataRow("https://telparia.com/fileFormatSamples/archive/wad/E1M1.WAD")]
+        [DataRow("https://telparia.com/fileFormatSamples/archive/wad/EVILR1_1.WAD")]
+        [DataRow("https://telparia.com/fileFormatSamples/archive/wad/H2HMUD03.WAD")]
+        [DataRow("https://telparia.com/fileFormatSamples/archive/wad/JB.RTS")]
+        [DataRow("https://telparia.com/fileFormatSamples/archive/wad/JUSTIFY.WAD")]
+        [DataRow("https://telparia.com/fileFormatSamples/archive/wad/KOOL.RTS")]
+        [DataRow("https://telparia.com/fileFormatSamples/archive/wad/MUD3.WAD")]
+        [DataRow("https://telparia.com/fileFormatSamples/archive/wad/OLDWEST.WAD")]
+        [DataRow("https://telparia.com/fileFormatSamples/archive/wad/S7.WAD")]
+        [DataRow("https://telparia.com/fileFormatSamples/archive/wad/mine.wad")]
+        [TestMethod]
+        public Task wad(string source)
+        {
+            return TestOutputGraph(source);
+        }
+
         [DataRow("https://telparia.com/fileFormatSamples/archive/warc/radius.vintagebox.de.warc")]
         [TestMethod]
         public Task warc(string source)
