@@ -20,6 +20,7 @@ _:n1 at:pathObject <file:///csj_123_c.pbo>;
      a nfo:FileDataObject.
 <file:///config.bin> at:extensionObject <https://w3id.org/uri4uri/suffix/bin>.
 <file:///csj_123_c.pbo> at:extensionObject <https://w3id.org/uri4uri/suffix/pbo>.
+<file:///csj_123_c/config.bin> at:pathObject <file:///config.bin>.
 <ni:///mh;1QEQ-odf-DHud-5V1ZZlRC1qiw?ct=application/octet-stream> at:digest <urn:md5:FA875FF831EE77EE55D59665442D6A8B>;
                                                                   dcterms:extent "27497"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -31,6 +32,7 @@ _:n1 at:pathObject <file:///csj_123_c.pbo>;
                                                                   skos:prefLabel "binary data (27 KiB)"@en.
 <ni:///mh;1QEQDCYcCbdGh5h9ppW51eUQjg?ct=application/x-pbo> at:pathObject <file:///.>;
                                                            schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-pbo>;
+                                                           schema:version "23092121";
                                                            nie:interpretedAs <ni:///mh;1QEQDCYcCbdGh5h9ppW51eUQjg?ct=application/x-pbo#/>;
                                                            a schema:MediaObject,
                                                              nfo:Archive;
@@ -38,7 +40,7 @@ _:n1 at:pathObject <file:///csj_123_c.pbo>;
 <ni:///mh;1QEQDCYcCbdGh5h9ppW51eUQjg?ct=application/x-pbo#/> at:pathObject <file:///>;
                                                              a nfo:Folder;
                                                              skos:prefLabel "/".
-<ni:///mh;1QEQDCYcCbdGh5h9ppW51eUQjg?ct=application/x-pbo#/config.bin> at:pathObject <file:///config.bin>;
+<ni:///mh;1QEQDCYcCbdGh5h9ppW51eUQjg?ct=application/x-pbo#/config.bin> at:pathObject <file:///csj_123_c/config.bin>;
                                                                        nie:interpretedAs <ni:///mh;1QEQ-odf-DHud-5V1ZZlRC1qiw?ct=application/octet-stream>;
                                                                        nfo:belongsToContainer <ni:///mh;1QEQDCYcCbdGh5h9ppW51eUQjg?ct=application/x-pbo#/>;
                                                                        nfo:fileLastModified "2023-09-21T19:48:14.000000"^^xsd:dateTime;
@@ -46,7 +48,7 @@ _:n1 at:pathObject <file:///csj_123_c.pbo>;
                                                                        nfo:fileSize 27497 ;
                                                                        a nfo:FileDataObject,
                                                                          nfo:ArchiveItem;
-                                                                       skos:prefLabel "/config.bin".
+                                                                       skos:prefLabel "/csj_123_c/config.bin".
 <urn:md5:0C261C09B74687987DA695B9D5E5108E> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "DCYcCbdGh5h9ppW51eUQjg=="^^xsd:base64Binary.

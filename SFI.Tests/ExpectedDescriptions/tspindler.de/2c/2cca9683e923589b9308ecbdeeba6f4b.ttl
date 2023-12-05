@@ -28,15 +28,34 @@ _:n1 at:pathObject <file:///uns_woodbridge.pbo>;
                                  a cnt:ContentAsBase64;
                                  skos:prefLabel "binary data (0 B)"@en;
                                  cnt:bytes ""^^xsd:base64Binary.
-<file:///Textures/WB_Alpha.paa> at:extensionObject <https://w3id.org/uri4uri/suffix/paa>.
-<file:///Textures/WB_Defuse.paa> at:extensionObject <https://w3id.org/uri4uri/suffix/paa>.
-<file:///Textures/WB_Normal.paa> at:extensionObject <https://w3id.org/uri4uri/suffix/paa>.
+<file:///Textures/> at:pathObject <file:///>.
+<file:///Textures/WB_Alpha.paa> at:pathObject <file:///WB_Alpha.paa>.
+<file:///Textures/WB_Defuse.paa> at:pathObject <file:///WB_Defuse.paa>.
+<file:///Textures/WB_Normal.paa> at:pathObject <file:///WB_Normal.paa>.
+<file:///WB_Alpha.paa> at:extensionObject <https://w3id.org/uri4uri/suffix/paa>.
+<file:///WB_Defuse.paa> at:extensionObject <https://w3id.org/uri4uri/suffix/paa>.
+<file:///WB_Normal.paa> at:extensionObject <https://w3id.org/uri4uri/suffix/paa>.
 <file:///config.bin> at:extensionObject <https://w3id.org/uri4uri/suffix/bin>.
-<file:///data/wb_defuse.paa> at:extensionObject <https://w3id.org/uri4uri/suffix/paa>.
+<file:///data/> at:pathObject <file:///>.
+<file:///data/wb_defuse.paa> at:pathObject <file:///wb_defuse.paa>.
 <file:///pboprefix.txt> at:extensionObject <https://w3id.org/uri4uri/suffix/txt>.
 <file:///pboprefix.txt~> at:extensionObject <https://w3id.org/uri4uri/suffix/txt~>.
 <file:///texHeaders.bin> at:extensionObject <https://w3id.org/uri4uri/suffix/bin>.
 <file:///uns_woodbridge.pbo> at:extensionObject <https://w3id.org/uri4uri/suffix/pbo>.
+<file:///uns_woodbridge/Textures> at:pathObject <file:///Textures>.
+<file:///uns_woodbridge/Textures/> at:pathObject <file:///Textures/>.
+<file:///uns_woodbridge/Textures/WB_Alpha.paa> at:pathObject <file:///Textures/WB_Alpha.paa>.
+<file:///uns_woodbridge/Textures/WB_Defuse.paa> at:pathObject <file:///Textures/WB_Defuse.paa>.
+<file:///uns_woodbridge/Textures/WB_Normal.paa> at:pathObject <file:///Textures/WB_Normal.paa>.
+<file:///uns_woodbridge/config.bin> at:pathObject <file:///config.bin>.
+<file:///uns_woodbridge/data> at:pathObject <file:///data>.
+<file:///uns_woodbridge/data/> at:pathObject <file:///data/>.
+<file:///uns_woodbridge/data/wb_defuse.paa> at:pathObject <file:///data/wb_defuse.paa>.
+<file:///uns_woodbridge/pboprefix.txt> at:pathObject <file:///pboprefix.txt>.
+<file:///uns_woodbridge/pboprefix.txt~> at:pathObject <file:///pboprefix.txt~>.
+<file:///uns_woodbridge/texHeaders.bin> at:pathObject <file:///texHeaders.bin>.
+<file:///uns_woodbridge/woodbridge.p3d> at:pathObject <file:///woodbridge.p3d>.
+<file:///wb_defuse.paa> at:extensionObject <https://w3id.org/uri4uri/suffix/paa>.
 <file:///woodbridge.p3d> at:extensionObject <https://w3id.org/uri4uri/suffix/p3d>.
 <ni:///mh;1QEQ6V7OanZcOcf63Ng5Na3H7w?ct=application/octet-stream> at:digest <urn:md5:E95ECE6A765C39C7FADCD83935ADC7EF>;
                                                                   dcterms:extent "192503"^^dt:byte;
@@ -76,34 +95,44 @@ _:n1 at:pathObject <file:///uns_woodbridge.pbo>;
 <ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/> at:pathObject <file:///>;
                                                              a nfo:Folder;
                                                              skos:prefLabel "/".
-<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/Textures%5CWB_Alpha.paa> at:pathObject <file:///Textures/WB_Alpha.paa>;
-                                                                                    nie:interpretedAs <ni:///mh;1QEQVuYbKS2EIUKHk1kb_wf_hQ?ct=application/octet-stream>;
-                                                                                    nfo:belongsToContainer <ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/>;
-                                                                                    nfo:fileLastModified "2015-03-11T20:17:24.000000"^^xsd:dateTime;
-                                                                                    nfo:fileName "Textures\\WB_Alpha.paa";
-                                                                                    nfo:fileSize 66407 ;
-                                                                                    a nfo:FileDataObject,
-                                                                                      nfo:ArchiveItem;
-                                                                                    skos:prefLabel "/Textures\\WB_Alpha.paa".
-<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/Textures%5CWB_Defuse.paa> at:pathObject <file:///Textures/WB_Defuse.paa>;
-                                                                                     nie:interpretedAs <ni:///mh;1QEQHbA99lfSVvcCTSi6wdIWow?ct=application/octet-stream>;
-                                                                                     nfo:belongsToContainer <ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/>;
-                                                                                     nfo:fileLastModified "2015-03-11T20:17:25.000000"^^xsd:dateTime;
-                                                                                     nfo:fileName "Textures\\WB_Defuse.paa";
-                                                                                     nfo:fileSize 100352 ;
-                                                                                     a nfo:FileDataObject,
-                                                                                       nfo:ArchiveItem;
-                                                                                     skos:prefLabel "/Textures\\WB_Defuse.paa".
-<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/Textures%5CWB_Normal.paa> at:pathObject <file:///Textures/WB_Normal.paa>;
-                                                                                     nie:interpretedAs <ni:///mh;1QEQHSOpiSfz09YJ-J5LYRUDPA?ct=application/octet-stream>;
-                                                                                     nfo:belongsToContainer <ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/>;
-                                                                                     nfo:fileLastModified "2015-03-11T20:17:25.000000"^^xsd:dateTime;
-                                                                                     nfo:fileName "Textures\\WB_Normal.paa";
-                                                                                     nfo:fileSize 72000 ;
-                                                                                     a nfo:FileDataObject,
-                                                                                       nfo:ArchiveItem;
-                                                                                     skos:prefLabel "/Textures\\WB_Normal.paa".
-<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/config.bin> at:pathObject <file:///config.bin>;
+<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/Textures> at:pathObject <file:///uns_woodbridge/Textures>;
+                                                                     nie:interpretedAs <ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/Textures/>;
+                                                                     nfo:belongsToContainer <ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/>;
+                                                                     nfo:fileName "Textures";
+                                                                     a nfo:FileDataObject,
+                                                                       nfo:ArchiveItem;
+                                                                     skos:prefLabel "/uns_woodbridge/Textures".
+<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/Textures/> at:pathObject <file:///uns_woodbridge/Textures/>;
+                                                                      a nfo:Folder;
+                                                                      skos:prefLabel "/uns_woodbridge/Textures/".
+<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/Textures/WB_Alpha.paa> at:pathObject <file:///uns_woodbridge/Textures/WB_Alpha.paa>;
+                                                                                  nie:interpretedAs <ni:///mh;1QEQVuYbKS2EIUKHk1kb_wf_hQ?ct=application/octet-stream>;
+                                                                                  nfo:belongsToContainer <ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/Textures/>;
+                                                                                  nfo:fileLastModified "2015-03-11T20:17:24.000000"^^xsd:dateTime;
+                                                                                  nfo:fileName "WB_Alpha.paa";
+                                                                                  nfo:fileSize 66407 ;
+                                                                                  a nfo:FileDataObject,
+                                                                                    nfo:ArchiveItem;
+                                                                                  skos:prefLabel "/uns_woodbridge/Textures/WB_Alpha.paa".
+<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/Textures/WB_Defuse.paa> at:pathObject <file:///uns_woodbridge/Textures/WB_Defuse.paa>;
+                                                                                   nie:interpretedAs <ni:///mh;1QEQHbA99lfSVvcCTSi6wdIWow?ct=application/octet-stream>;
+                                                                                   nfo:belongsToContainer <ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/Textures/>;
+                                                                                   nfo:fileLastModified "2015-03-11T20:17:25.000000"^^xsd:dateTime;
+                                                                                   nfo:fileName "WB_Defuse.paa";
+                                                                                   nfo:fileSize 100352 ;
+                                                                                   a nfo:FileDataObject,
+                                                                                     nfo:ArchiveItem;
+                                                                                   skos:prefLabel "/uns_woodbridge/Textures/WB_Defuse.paa".
+<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/Textures/WB_Normal.paa> at:pathObject <file:///uns_woodbridge/Textures/WB_Normal.paa>;
+                                                                                   nie:interpretedAs <ni:///mh;1QEQHSOpiSfz09YJ-J5LYRUDPA?ct=application/octet-stream>;
+                                                                                   nfo:belongsToContainer <ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/Textures/>;
+                                                                                   nfo:fileLastModified "2015-03-11T20:17:25.000000"^^xsd:dateTime;
+                                                                                   nfo:fileName "WB_Normal.paa";
+                                                                                   nfo:fileSize 72000 ;
+                                                                                   a nfo:FileDataObject,
+                                                                                     nfo:ArchiveItem;
+                                                                                   skos:prefLabel "/uns_woodbridge/Textures/WB_Normal.paa".
+<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/config.bin> at:pathObject <file:///uns_woodbridge/config.bin>;
                                                                        nie:interpretedAs <ni:///mh;1QEQBRZl4PDirXqBJ59UWW3dJA?ct=application/octet-stream>;
                                                                        nfo:belongsToContainer <ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/>;
                                                                        nfo:fileLastModified "2015-03-23T17:22:43.000000"^^xsd:dateTime;
@@ -111,17 +140,27 @@ _:n1 at:pathObject <file:///uns_woodbridge.pbo>;
                                                                        nfo:fileSize 409 ;
                                                                        a nfo:FileDataObject,
                                                                          nfo:ArchiveItem;
-                                                                       skos:prefLabel "/config.bin".
-<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/data%5Cwb_defuse.paa> at:pathObject <file:///data/wb_defuse.paa>;
-                                                                                 nie:interpretedAs <ni:///mh;1QEQHbA99lfSVvcCTSi6wdIWow?ct=application/octet-stream>;
-                                                                                 nfo:belongsToContainer <ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/>;
-                                                                                 nfo:fileLastModified "2015-03-11T20:17:25.000000"^^xsd:dateTime;
-                                                                                 nfo:fileName "data\\wb_defuse.paa";
-                                                                                 nfo:fileSize 100352 ;
-                                                                                 a nfo:FileDataObject,
-                                                                                   nfo:ArchiveItem;
-                                                                                 skos:prefLabel "/data\\wb_defuse.paa".
-<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/pboprefix.txt> at:pathObject <file:///pboprefix.txt>;
+                                                                       skos:prefLabel "/uns_woodbridge/config.bin".
+<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/data> at:pathObject <file:///uns_woodbridge/data>;
+                                                                 nie:interpretedAs <ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/data/>;
+                                                                 nfo:belongsToContainer <ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/>;
+                                                                 nfo:fileName "data";
+                                                                 a nfo:FileDataObject,
+                                                                   nfo:ArchiveItem;
+                                                                 skos:prefLabel "/uns_woodbridge/data".
+<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/data/> at:pathObject <file:///uns_woodbridge/data/>;
+                                                                  a nfo:Folder;
+                                                                  skos:prefLabel "/uns_woodbridge/data/".
+<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/data/wb_defuse.paa> at:pathObject <file:///uns_woodbridge/data/wb_defuse.paa>;
+                                                                               nie:interpretedAs <ni:///mh;1QEQHbA99lfSVvcCTSi6wdIWow?ct=application/octet-stream>;
+                                                                               nfo:belongsToContainer <ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/data/>;
+                                                                               nfo:fileLastModified "2015-03-11T20:17:25.000000"^^xsd:dateTime;
+                                                                               nfo:fileName "wb_defuse.paa";
+                                                                               nfo:fileSize 100352 ;
+                                                                               a nfo:FileDataObject,
+                                                                                 nfo:ArchiveItem;
+                                                                               skos:prefLabel "/uns_woodbridge/data/wb_defuse.paa".
+<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/pboprefix.txt> at:pathObject <file:///uns_woodbridge/pboprefix.txt>;
                                                                           nie:interpretedAs <data:,uns_woodbridge%0D%0A>;
                                                                           nfo:belongsToContainer <ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/>;
                                                                           nfo:fileLastModified "2015-03-11T21:08:28.000000"^^xsd:dateTime;
@@ -129,8 +168,8 @@ _:n1 at:pathObject <file:///uns_woodbridge.pbo>;
                                                                           nfo:fileSize 16 ;
                                                                           a nfo:FileDataObject,
                                                                             nfo:ArchiveItem;
-                                                                          skos:prefLabel "/pboprefix.txt".
-<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/pboprefix.txt~> at:pathObject <file:///pboprefix.txt~>;
+                                                                          skos:prefLabel "/uns_woodbridge/pboprefix.txt".
+<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/pboprefix.txt~> at:pathObject <file:///uns_woodbridge/pboprefix.txt~>;
                                                                            nie:interpretedAs <data:application/octet-stream,>;
                                                                            nfo:belongsToContainer <ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/>;
                                                                            nfo:fileLastModified "2015-03-11T21:08:11.000000"^^xsd:dateTime;
@@ -138,8 +177,8 @@ _:n1 at:pathObject <file:///uns_woodbridge.pbo>;
                                                                            nfo:fileSize 0 ;
                                                                            a nfo:FileDataObject,
                                                                              nfo:ArchiveItem;
-                                                                           skos:prefLabel "/pboprefix.txt~".
-<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/texHeaders.bin> at:pathObject <file:///texHeaders.bin>;
+                                                                           skos:prefLabel "/uns_woodbridge/pboprefix.txt~".
+<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/texHeaders.bin> at:pathObject <file:///uns_woodbridge/texHeaders.bin>;
                                                                            nie:interpretedAs <ni:///mh;1QEQsAHzQsPXnrMPljtnTBaMig?ct=application/octet-stream>;
                                                                            nfo:belongsToContainer <ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/>;
                                                                            nfo:fileLastModified "2015-03-23T17:22:44.000000"^^xsd:dateTime;
@@ -147,8 +186,8 @@ _:n1 at:pathObject <file:///uns_woodbridge.pbo>;
                                                                            nfo:fileSize 735 ;
                                                                            a nfo:FileDataObject,
                                                                              nfo:ArchiveItem;
-                                                                           skos:prefLabel "/texHeaders.bin".
-<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/woodbridge.p3d> at:pathObject <file:///woodbridge.p3d>;
+                                                                           skos:prefLabel "/uns_woodbridge/texHeaders.bin".
+<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/woodbridge.p3d> at:pathObject <file:///uns_woodbridge/woodbridge.p3d>;
                                                                            nie:interpretedAs <ni:///mh;1QEQ6V7OanZcOcf63Ng5Na3H7w?ct=application/octet-stream>;
                                                                            nfo:belongsToContainer <ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/>;
                                                                            nfo:fileLastModified "2015-03-23T17:22:44.000000"^^xsd:dateTime;
@@ -156,7 +195,7 @@ _:n1 at:pathObject <file:///uns_woodbridge.pbo>;
                                                                            nfo:fileSize 192503 ;
                                                                            a nfo:FileDataObject,
                                                                              nfo:ArchiveItem;
-                                                                           skos:prefLabel "/woodbridge.p3d".
+                                                                           skos:prefLabel "/uns_woodbridge/woodbridge.p3d".
 <ni:///mh;1QEQsAHzQsPXnrMPljtnTBaMig?ct=application/octet-stream> at:digest <urn:md5:B001F342C3D79EB30F963B674C168C8A>;
                                                                   dcterms:extent "735"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQsAHzQsPXnrMPljtnTBaMig?ct=application/prs.implied-structure;signature=0DHT>;
