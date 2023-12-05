@@ -44,23 +44,19 @@ namespace IS4.SFI.Tools
         /// </returns>
         public static bool Is<T>(this Exception? exception) where T : Exception
         {
-            if(exception == null)
+            switch(exception)
             {
-                return false;
+                case null:
+                    return false;
+                case T:
+                    return true;
+                case AggregateException aggr:
+                    return aggr.InnerExceptions.Any(Is<T>);
+                case { InnerException: { } inner } when inner != exception:
+                    return inner.Is<T>();
+                default:
+                    return false;
             }
-            if(exception is T)
-            {
-                return true;
-            }
-            if(exception is AggregateException aggr)
-            {
-                 return aggr.InnerExceptions.Any(Is<T>);
-            }
-            if(exception.InnerException != null && exception.InnerException != exception)
-            {
-                return exception.InnerException.Is<T>();
-            }
-            return false;
         }
 
         /// <summary>
