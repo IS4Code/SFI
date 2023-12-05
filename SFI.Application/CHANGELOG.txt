@@ -1,3 +1,13 @@
+1.2
+-----
+
+- Single-character options are converted to their canonical form for duplicate checking and options serialization.
+- XML options serialization determines whether a setting should be stored as element based on its cardinality.
+- The `.nuget/packages` plugin source directory is added only if it exists.
+- Options starting with `xml` are properly encoded when serialized.
+- Support for `/dev/folderpicker` to open a folder browser dialog.
+
+
 1.1.1
 -----
 

@@ -22,6 +22,7 @@
     <PackageIcon>icon.png</PackageIcon>
     <PackageTags>linked-data;sparql;rdf;semantic-search;metadata-extraction;gzip;rar;7z;sz;tar;zip;lha</PackageTags>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/CHANGELOG.txt"))</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
