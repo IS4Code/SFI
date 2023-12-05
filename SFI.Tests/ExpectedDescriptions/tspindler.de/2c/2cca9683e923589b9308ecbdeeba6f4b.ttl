@@ -42,6 +42,7 @@ _:n1 at:pathObject <file:///uns_woodbridge.pbo>;
 <file:///pboprefix.txt~> at:extensionObject <https://w3id.org/uri4uri/suffix/txt~>.
 <file:///texHeaders.bin> at:extensionObject <https://w3id.org/uri4uri/suffix/bin>.
 <file:///uns_woodbridge.pbo> at:extensionObject <https://w3id.org/uri4uri/suffix/pbo>.
+<file:///uns_woodbridge/> at:pathObject <file:///>.
 <file:///uns_woodbridge/Textures> at:pathObject <file:///Textures>.
 <file:///uns_woodbridge/Textures/> at:pathObject <file:///Textures/>.
 <file:///uns_woodbridge/Textures/WB_Alpha.paa> at:pathObject <file:///Textures/WB_Alpha.paa>.
@@ -86,13 +87,14 @@ _:n1 at:pathObject <file:///uns_woodbridge.pbo>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (520.7 KiB)"@en.
-<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo> at:pathObject <file:///.>;
+<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo> at:pathObject <file:///uns_woodbridge>;
                                                            schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-pbo>;
                                                            nie:interpretedAs <ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/>;
+                                                           nfo:fileName "uns_woodbridge";
                                                            a schema:MediaObject,
                                                              nfo:Archive;
                                                            skos:prefLabel "PBO object (520.7 KiB)"@en.
-<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/> at:pathObject <file:///>;
+<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/> at:pathObject <file:///uns_woodbridge/>;
                                                              a nfo:Folder;
                                                              skos:prefLabel "/".
 <ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/Textures> at:pathObject <file:///uns_woodbridge/Textures>;

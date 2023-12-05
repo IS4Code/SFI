@@ -25,7 +25,7 @@ namespace IS4.SFI.Analyzers
         /// <inheritdoc/>
         public async override ValueTask<AnalysisResult> Analyze(IPboFile pbo, AnalysisContext context, IEntityAnalyzers analyzers)
         {
-            var result = await analyzers.Analyze(new Adapter(pbo), context);
+            var result = await analyzers.Analyze<IArchiveFile>(new Adapter(pbo), context);
             if(result.Node != null)
             {
                 if(pbo.GetVersionEntry() is { } version)
@@ -45,7 +45,7 @@ namespace IS4.SFI.Analyzers
             return result;
         }
 
-        class Adapter : IArchiveFile
+        class Adapter : IArchiveFile, IFileNodeInfo
         {
             readonly IPboFile pbo;
             readonly string? prefix;
@@ -76,6 +76,28 @@ namespace IS4.SFI.Analyzers
             public bool IsComplete => true;
 
             public bool IsSolid => false;
+
+            string? IFileNodeInfo.Name => prefix;
+
+            string? IFileNodeInfo.SubName => null;
+
+            string? IFileNodeInfo.Path => prefix;
+
+            int? IFileNodeInfo.Revision => null;
+
+            DateTime? IFileNodeInfo.CreationTime => null;
+
+            DateTime? IFileNodeInfo.LastWriteTime => null;
+
+            DateTime? IFileNodeInfo.LastAccessTime => null;
+
+            FileKind IFileNodeInfo.Kind => FileKind.None;
+
+            FileAttributes IFileNodeInfo.Attributes => FileAttributes.Directory;
+
+            object? IIdentityKey.ReferenceKey => pbo;
+
+            object? IIdentityKey.DataKey => null;
 
             class Entry : IArchiveEntry, IFileInfo
             {
