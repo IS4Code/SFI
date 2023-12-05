@@ -18,11 +18,47 @@ _:n1 at:pathObject <file:///colors%201%20WC.mpq>;
      nfo:fileName "colors 1 WC.mpq";
      nfo:fileSize 19541 ;
      a nfo:FileDataObject.
-<file:///Art/bgs/Forest/forest.ppl> at:extensionObject <https://w3id.org/uri4uri/suffix/ppl>.
-<file:///Art/bgs/Iceland/iceland.ppl> at:extensionObject <https://w3id.org/uri4uri/suffix/ppl>.
-<file:///Art/bgs/Swamp/swamp.ppl> at:extensionObject <https://w3id.org/uri4uri/suffix/ppl>.
-<file:///Art/bgs/XSwamp/xswamp.ppl> at:extensionObject <https://w3id.org/uri4uri/suffix/ppl>.
+<file:///Art/> at:pathObject <file:///>.
+<file:///Art/bgs> at:pathObject <file:///bgs>.
+<file:///Art/bgs/> at:pathObject <file:///bgs/>.
+<file:///Art/bgs/Forest> at:pathObject <file:///bgs/Forest>.
+<file:///Art/bgs/Forest/> at:pathObject <file:///bgs/Forest/>.
+<file:///Art/bgs/Forest/forest.ppl> at:pathObject <file:///bgs/Forest/forest.ppl>.
+<file:///Art/bgs/Iceland> at:pathObject <file:///bgs/Iceland>.
+<file:///Art/bgs/Iceland/> at:pathObject <file:///bgs/Iceland/>.
+<file:///Art/bgs/Iceland/iceland.ppl> at:pathObject <file:///bgs/Iceland/iceland.ppl>.
+<file:///Art/bgs/Swamp> at:pathObject <file:///bgs/Swamp>.
+<file:///Art/bgs/Swamp/> at:pathObject <file:///bgs/Swamp/>.
+<file:///Art/bgs/Swamp/swamp.ppl> at:pathObject <file:///bgs/Swamp/swamp.ppl>.
+<file:///Art/bgs/XSwamp> at:pathObject <file:///bgs/XSwamp>.
+<file:///Art/bgs/XSwamp/> at:pathObject <file:///bgs/XSwamp/>.
+<file:///Art/bgs/XSwamp/xswamp.ppl> at:pathObject <file:///bgs/XSwamp/xswamp.ppl>.
+<file:///Forest/> at:pathObject <file:///>.
+<file:///Forest/forest.ppl> at:pathObject <file:///forest.ppl>.
+<file:///Iceland/> at:pathObject <file:///>.
+<file:///Iceland/iceland.ppl> at:pathObject <file:///iceland.ppl>.
+<file:///Swamp/> at:pathObject <file:///>.
+<file:///Swamp/swamp.ppl> at:pathObject <file:///swamp.ppl>.
+<file:///XSwamp/> at:pathObject <file:///>.
+<file:///XSwamp/xswamp.ppl> at:pathObject <file:///xswamp.ppl>.
+<file:///bgs/> at:pathObject <file:///>.
+<file:///bgs/Forest> at:pathObject <file:///Forest>.
+<file:///bgs/Forest/> at:pathObject <file:///Forest/>.
+<file:///bgs/Forest/forest.ppl> at:pathObject <file:///Forest/forest.ppl>.
+<file:///bgs/Iceland> at:pathObject <file:///Iceland>.
+<file:///bgs/Iceland/> at:pathObject <file:///Iceland/>.
+<file:///bgs/Iceland/iceland.ppl> at:pathObject <file:///Iceland/iceland.ppl>.
+<file:///bgs/Swamp> at:pathObject <file:///Swamp>.
+<file:///bgs/Swamp/> at:pathObject <file:///Swamp/>.
+<file:///bgs/Swamp/swamp.ppl> at:pathObject <file:///Swamp/swamp.ppl>.
+<file:///bgs/XSwamp> at:pathObject <file:///XSwamp>.
+<file:///bgs/XSwamp/> at:pathObject <file:///XSwamp/>.
+<file:///bgs/XSwamp/xswamp.ppl> at:pathObject <file:///XSwamp/xswamp.ppl>.
 <file:///colors%201%20WC.mpq> at:extensionObject <https://w3id.org/uri4uri/suffix/mpq>.
+<file:///forest.ppl> at:extensionObject <https://w3id.org/uri4uri/suffix/ppl>.
+<file:///iceland.ppl> at:extensionObject <https://w3id.org/uri4uri/suffix/ppl>.
+<file:///swamp.ppl> at:extensionObject <https://w3id.org/uri4uri/suffix/ppl>.
+<file:///xswamp.ppl> at:extensionObject <https://w3id.org/uri4uri/suffix/ppl>.
 <ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/octet-stream> at:digest <urn:md5:3E0EC4BEAE6C2596F31645719CC7647F>;
                                                                   dcterms:extent "19541"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed>;
@@ -45,38 +81,98 @@ _:n1 at:pathObject <file:///colors%201%20WC.mpq>;
                                                                                         a nfo:FileDataObject,
                                                                                           nfo:ArchiveItem;
                                                                                         skos:prefLabel "/(listfile)".
-<ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/Art%5Cbgs%5CForest%5Cforest.ppl:0> at:pathObject <file:///Art/bgs/Forest/forest.ppl>;
-                                                                                                         nfo:belongsToContainer <ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/>;
-                                                                                                         nfo:encryptionStatus nfo:encryptedStatus;
-                                                                                                         nfo:fileName "Art\\bgs\\Forest\\forest.ppl";
-                                                                                                         nfo:fileSize 768 ;
-                                                                                                         a nfo:FileDataObject,
-                                                                                                           nfo:ArchiveItem;
-                                                                                                         skos:prefLabel "/Art\\bgs\\Forest\\forest.ppl".
-<ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/Art%5Cbgs%5CIceland%5Ciceland.ppl:1> at:pathObject <file:///Art/bgs/Iceland/iceland.ppl>;
-                                                                                                           nfo:belongsToContainer <ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/>;
-                                                                                                           nfo:encryptionStatus nfo:encryptedStatus;
-                                                                                                           nfo:fileName "Art\\bgs\\Iceland\\iceland.ppl";
-                                                                                                           nfo:fileSize 768 ;
-                                                                                                           a nfo:FileDataObject,
-                                                                                                             nfo:ArchiveItem;
-                                                                                                           skos:prefLabel "/Art\\bgs\\Iceland\\iceland.ppl".
-<ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/Art%5Cbgs%5CSwamp%5Cswamp.ppl:2> at:pathObject <file:///Art/bgs/Swamp/swamp.ppl>;
-                                                                                                       nfo:belongsToContainer <ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/>;
-                                                                                                       nfo:encryptionStatus nfo:encryptedStatus;
-                                                                                                       nfo:fileName "Art\\bgs\\Swamp\\swamp.ppl";
-                                                                                                       nfo:fileSize 768 ;
-                                                                                                       a nfo:FileDataObject,
-                                                                                                         nfo:ArchiveItem;
-                                                                                                       skos:prefLabel "/Art\\bgs\\Swamp\\swamp.ppl".
-<ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/Art%5Cbgs%5CXSwamp%5Cxswamp.ppl:3> at:pathObject <file:///Art/bgs/XSwamp/xswamp.ppl>;
-                                                                                                         nfo:belongsToContainer <ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/>;
-                                                                                                         nfo:encryptionStatus nfo:encryptedStatus;
-                                                                                                         nfo:fileName "Art\\bgs\\XSwamp\\xswamp.ppl";
-                                                                                                         nfo:fileSize 768 ;
-                                                                                                         a nfo:FileDataObject,
-                                                                                                           nfo:ArchiveItem;
-                                                                                                         skos:prefLabel "/Art\\bgs\\XSwamp\\xswamp.ppl".
+<ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/Art> at:pathObject <file:///Art>;
+                                                                           nie:interpretedAs <ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/Art/>;
+                                                                           nfo:belongsToContainer <ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/>;
+                                                                           nfo:fileName "Art";
+                                                                           a nfo:FileDataObject,
+                                                                             nfo:ArchiveItem;
+                                                                           skos:prefLabel "/Art".
+<ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/Art/> at:pathObject <file:///Art/>;
+                                                                            a nfo:Folder;
+                                                                            skos:prefLabel "/Art/".
+<ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/Art/bgs> at:pathObject <file:///Art/bgs>;
+                                                                               nie:interpretedAs <ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/Art/bgs/>;
+                                                                               nfo:belongsToContainer <ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/Art/>;
+                                                                               nfo:fileName "bgs";
+                                                                               a nfo:FileDataObject,
+                                                                                 nfo:ArchiveItem;
+                                                                               skos:prefLabel "/Art/bgs".
+<ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/Art/bgs/> at:pathObject <file:///Art/bgs/>;
+                                                                                a nfo:Folder;
+                                                                                skos:prefLabel "/Art/bgs/".
+<ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/Art/bgs/Forest> at:pathObject <file:///Art/bgs/Forest>;
+                                                                                      nie:interpretedAs <ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/Art/bgs/Forest/>;
+                                                                                      nfo:belongsToContainer <ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/Art/bgs/>;
+                                                                                      nfo:fileName "Forest";
+                                                                                      a nfo:FileDataObject,
+                                                                                        nfo:ArchiveItem;
+                                                                                      skos:prefLabel "/Art/bgs/Forest".
+<ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/Art/bgs/Forest/> at:pathObject <file:///Art/bgs/Forest/>;
+                                                                                       a nfo:Folder;
+                                                                                       skos:prefLabel "/Art/bgs/Forest/".
+<ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/Art/bgs/Forest/forest.ppl:0> at:pathObject <file:///Art/bgs/Forest/forest.ppl>;
+                                                                                                   nfo:belongsToContainer <ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/Art/bgs/Forest/>;
+                                                                                                   nfo:encryptionStatus nfo:encryptedStatus;
+                                                                                                   nfo:fileName "forest.ppl";
+                                                                                                   nfo:fileSize 768 ;
+                                                                                                   a nfo:FileDataObject,
+                                                                                                     nfo:ArchiveItem;
+                                                                                                   skos:prefLabel "/Art/bgs/Forest/forest.ppl".
+<ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/Art/bgs/Iceland> at:pathObject <file:///Art/bgs/Iceland>;
+                                                                                       nie:interpretedAs <ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/Art/bgs/Iceland/>;
+                                                                                       nfo:belongsToContainer <ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/Art/bgs/>;
+                                                                                       nfo:fileName "Iceland";
+                                                                                       a nfo:FileDataObject,
+                                                                                         nfo:ArchiveItem;
+                                                                                       skos:prefLabel "/Art/bgs/Iceland".
+<ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/Art/bgs/Iceland/> at:pathObject <file:///Art/bgs/Iceland/>;
+                                                                                        a nfo:Folder;
+                                                                                        skos:prefLabel "/Art/bgs/Iceland/".
+<ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/Art/bgs/Iceland/iceland.ppl:1> at:pathObject <file:///Art/bgs/Iceland/iceland.ppl>;
+                                                                                                     nfo:belongsToContainer <ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/Art/bgs/Iceland/>;
+                                                                                                     nfo:encryptionStatus nfo:encryptedStatus;
+                                                                                                     nfo:fileName "iceland.ppl";
+                                                                                                     nfo:fileSize 768 ;
+                                                                                                     a nfo:FileDataObject,
+                                                                                                       nfo:ArchiveItem;
+                                                                                                     skos:prefLabel "/Art/bgs/Iceland/iceland.ppl".
+<ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/Art/bgs/Swamp> at:pathObject <file:///Art/bgs/Swamp>;
+                                                                                     nie:interpretedAs <ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/Art/bgs/Swamp/>;
+                                                                                     nfo:belongsToContainer <ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/Art/bgs/>;
+                                                                                     nfo:fileName "Swamp";
+                                                                                     a nfo:FileDataObject,
+                                                                                       nfo:ArchiveItem;
+                                                                                     skos:prefLabel "/Art/bgs/Swamp".
+<ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/Art/bgs/Swamp/> at:pathObject <file:///Art/bgs/Swamp/>;
+                                                                                      a nfo:Folder;
+                                                                                      skos:prefLabel "/Art/bgs/Swamp/".
+<ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/Art/bgs/Swamp/swamp.ppl:2> at:pathObject <file:///Art/bgs/Swamp/swamp.ppl>;
+                                                                                                 nfo:belongsToContainer <ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/Art/bgs/Swamp/>;
+                                                                                                 nfo:encryptionStatus nfo:encryptedStatus;
+                                                                                                 nfo:fileName "swamp.ppl";
+                                                                                                 nfo:fileSize 768 ;
+                                                                                                 a nfo:FileDataObject,
+                                                                                                   nfo:ArchiveItem;
+                                                                                                 skos:prefLabel "/Art/bgs/Swamp/swamp.ppl".
+<ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/Art/bgs/XSwamp> at:pathObject <file:///Art/bgs/XSwamp>;
+                                                                                      nie:interpretedAs <ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/Art/bgs/XSwamp/>;
+                                                                                      nfo:belongsToContainer <ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/Art/bgs/>;
+                                                                                      nfo:fileName "XSwamp";
+                                                                                      a nfo:FileDataObject,
+                                                                                        nfo:ArchiveItem;
+                                                                                      skos:prefLabel "/Art/bgs/XSwamp".
+<ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/Art/bgs/XSwamp/> at:pathObject <file:///Art/bgs/XSwamp/>;
+                                                                                       a nfo:Folder;
+                                                                                       skos:prefLabel "/Art/bgs/XSwamp/".
+<ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/Art/bgs/XSwamp/xswamp.ppl:3> at:pathObject <file:///Art/bgs/XSwamp/xswamp.ppl>;
+                                                                                                   nfo:belongsToContainer <ni:///mh;1QEQPg7Evq5sJZbzFkVxnMdkfw?ct=application/x-mpq-compressed#/Art/bgs/XSwamp/>;
+                                                                                                   nfo:encryptionStatus nfo:encryptedStatus;
+                                                                                                   nfo:fileName "xswamp.ppl";
+                                                                                                   nfo:fileSize 768 ;
+                                                                                                   a nfo:FileDataObject,
+                                                                                                     nfo:ArchiveItem;
+                                                                                                   skos:prefLabel "/Art/bgs/XSwamp/xswamp.ppl".
 <urn:md5:3E0EC4BEAE6C2596F31645719CC7647F> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "Pg7Evq5sJZbzFkVxnMdkfw=="^^xsd:base64Binary.

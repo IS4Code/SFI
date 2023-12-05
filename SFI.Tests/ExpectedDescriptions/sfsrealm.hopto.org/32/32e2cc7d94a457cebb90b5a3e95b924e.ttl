@@ -19,7 +19,9 @@ _:n1 at:pathObject <file:///Dropship.mpq>;
      nfo:fileSize 22828 ;
      a nfo:FileDataObject.
 <file:///Dropship.mpq> at:extensionObject <https://w3id.org/uri4uri/suffix/mpq>.
-<file:///arr/units.dat> at:extensionObject <https://w3id.org/uri4uri/suffix/dat>.
+<file:///arr/> at:pathObject <file:///>.
+<file:///arr/units.dat> at:pathObject <file:///units.dat>.
+<file:///units.dat> at:extensionObject <https://w3id.org/uri4uri/suffix/dat>.
 <ni:///mh;1QEQN5Hr_aLqbRUU4lJSgGqr2w?ct=application/octet-stream> at:digest <urn:md5:3791EBFDA2EA6D1514E25252806AABDB>;
                                                                   dcterms:extent "22828"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQN5Hr_aLqbRUU4lJSgGqr2w?ct=application/x-mpq-compressed>;
@@ -42,14 +44,24 @@ _:n1 at:pathObject <file:///Dropship.mpq>;
                                                                                         a nfo:FileDataObject,
                                                                                           nfo:ArchiveItem;
                                                                                         skos:prefLabel "/(listfile)".
-<ni:///mh;1QEQN5Hr_aLqbRUU4lJSgGqr2w?ct=application/x-mpq-compressed#/arr%5Cunits.dat:1> at:pathObject <file:///arr/units.dat>;
-                                                                                         nfo:belongsToContainer <ni:///mh;1QEQN5Hr_aLqbRUU4lJSgGqr2w?ct=application/x-mpq-compressed#/>;
-                                                                                         nfo:encryptionStatus nfo:encryptedStatus;
-                                                                                         nfo:fileName "arr\\units.dat";
-                                                                                         nfo:fileSize 19876 ;
-                                                                                         a nfo:FileDataObject,
-                                                                                           nfo:ArchiveItem;
-                                                                                         skos:prefLabel "/arr\\units.dat".
+<ni:///mh;1QEQN5Hr_aLqbRUU4lJSgGqr2w?ct=application/x-mpq-compressed#/arr> at:pathObject <file:///arr>;
+                                                                           nie:interpretedAs <ni:///mh;1QEQN5Hr_aLqbRUU4lJSgGqr2w?ct=application/x-mpq-compressed#/arr/>;
+                                                                           nfo:belongsToContainer <ni:///mh;1QEQN5Hr_aLqbRUU4lJSgGqr2w?ct=application/x-mpq-compressed#/>;
+                                                                           nfo:fileName "arr";
+                                                                           a nfo:FileDataObject,
+                                                                             nfo:ArchiveItem;
+                                                                           skos:prefLabel "/arr".
+<ni:///mh;1QEQN5Hr_aLqbRUU4lJSgGqr2w?ct=application/x-mpq-compressed#/arr/> at:pathObject <file:///arr/>;
+                                                                            a nfo:Folder;
+                                                                            skos:prefLabel "/arr/".
+<ni:///mh;1QEQN5Hr_aLqbRUU4lJSgGqr2w?ct=application/x-mpq-compressed#/arr/units.dat:1> at:pathObject <file:///arr/units.dat>;
+                                                                                       nfo:belongsToContainer <ni:///mh;1QEQN5Hr_aLqbRUU4lJSgGqr2w?ct=application/x-mpq-compressed#/arr/>;
+                                                                                       nfo:encryptionStatus nfo:encryptedStatus;
+                                                                                       nfo:fileName "units.dat";
+                                                                                       nfo:fileSize 19876 ;
+                                                                                       a nfo:FileDataObject,
+                                                                                         nfo:ArchiveItem;
+                                                                                       skos:prefLabel "/arr/units.dat".
 <urn:md5:3791EBFDA2EA6D1514E25252806AABDB> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "N5Hr/aLqbRUU4lJSgGqr2w=="^^xsd:base64Binary.

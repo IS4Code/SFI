@@ -10,6 +10,8 @@ using War3Net.IO.Mpq;
 
 namespace IS4.SFI.Analyzers
 {
+    using IEntryGrouping = IGrouping<string?, DirectoryTools.EntryInfo<(MpqEntry entry, int index)>>;
+
     /// <summary>
     /// Analyzes MPQ archives, as instances of <see cref="MpqArchive"/>.
     /// The analysis itself is performed by analyzing an
@@ -32,8 +34,23 @@ namespace IS4.SFI.Analyzers
             {
                 this.mpq = mpq;
             }
-
-            public IEnumerable<IArchiveEntry> Entries => mpq.Select((e, i) => new Entry(mpq, i, e));
+            
+            public IEnumerable<IArchiveEntry> Entries {
+                get {
+                    foreach(var group in DirectoryTools.GroupByDirectories(mpq.Select((e, i) => (e, i)), e => e.e.FileName?.Replace('\\', '/')))
+                    {
+                        if(group.Key == null)
+                        {
+                            foreach(var entry in group)
+                            {
+                                yield return new Entry(mpq, entry.Entry.i, entry.Entry.e);
+                            }
+                        }else{
+                            yield return new Directory(this, "", group);
+                        }
+                    }
+                }
+            }
 
             public bool IsComplete => true;
 
@@ -50,15 +67,16 @@ namespace IS4.SFI.Analyzers
                     this.mpq = mpq;
                     this.index = index;
                     this.entry = entry;
+                    Path = entry.FileName?.Replace('\\', '/');
                 }
 
                 public DateTime? ArchivedTime => null;
 
-                public string? Name => entry.FileName;
+                public string? Name => System.IO.Path.GetFileName(Path);
 
                 public string? SubName => index.ToString();
 
-                public string? Path => Name;
+                public string? Path { get; }
 
                 public int? Revision => null;
 
@@ -106,6 +124,73 @@ namespace IS4.SFI.Analyzers
                 {
                     return Path == null ? null : "/" + Path;
                 }
+            }
+            
+            class Directory : IArchiveEntry, IDirectoryInfo
+            {
+                readonly Adapter parent;
+
+                readonly IEntryGrouping entries;
+
+                readonly string? path;
+
+                public string? Name => entries.Key;
+
+                public string? Path => path + entries.Key;
+
+                public Directory(Adapter parent, string? path, IEntryGrouping entries)
+                {
+                    this.parent = parent;
+                    this.path = path;
+                    this.entries = entries;
+                }
+
+                public IEnumerable<IFileNodeInfo> Entries {
+                    get {
+                        foreach(var group in DirectoryTools.GroupByDirectories(entries, e => e.SubPath, e => e.Entry))
+                        {
+                            if(group.Key == null)
+                            {
+                                foreach(var entry in group)
+                                {
+                                    if(!String.IsNullOrWhiteSpace(entry.SubPath))
+                                    {
+                                        yield return new Entry(parent.mpq, entry.Entry.index, entry.Entry.entry);
+                                    }
+                                }
+                            }else{
+                                yield return new Directory(parent, Path + "/", group);
+                            }
+                        }
+                    }
+                }
+
+                public FileAttributes Attributes => FileAttributes.Directory;
+
+                public Environment.SpecialFolder? SpecialFolderType => null;
+
+                public override string ToString()
+                {
+                    return "/" + Path;
+                }
+
+                public object? ReferenceKey => parent.mpq;
+
+                public object? DataKey => Path;
+
+                public string? SubName => null;
+
+                public int? Revision => null;
+
+                public DateTime? ArchivedTime => null;
+
+                public DateTime? CreationTime => null;
+
+                public DateTime? LastWriteTime => null;
+
+                public DateTime? LastAccessTime => null;
+
+                public FileKind Kind => FileKind.ArchiveItem;
             }
         }
     }

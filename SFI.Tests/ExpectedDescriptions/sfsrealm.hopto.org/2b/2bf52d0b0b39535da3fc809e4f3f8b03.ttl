@@ -18,8 +18,10 @@ _:n1 at:pathObject <file:///Difficult.mpq>;
      nfo:fileName "Difficult.mpq";
      nfo:fileSize 43146 ;
      a nfo:FileDataObject.
+<file:///AISCRIPT.BIN> at:extensionObject <https://w3id.org/uri4uri/suffix/bin>.
 <file:///Difficult.mpq> at:extensionObject <https://w3id.org/uri4uri/suffix/mpq>.
-<file:///scripts/AISCRIPT.BIN> at:extensionObject <https://w3id.org/uri4uri/suffix/bin>.
+<file:///scripts/> at:pathObject <file:///>.
+<file:///scripts/AISCRIPT.BIN> at:pathObject <file:///AISCRIPT.BIN>.
 <ni:///mh;1QEQ4XfiMECXYaY404h-a_4zaQ?ct=application/octet-stream> at:digest <urn:md5:E177E230409761A638D3887E6BFE3369>;
                                                                   dcterms:extent "43146"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ4XfiMECXYaY404h-a_4zaQ?ct=application/x-mpq-compressed>;
@@ -42,14 +44,24 @@ _:n1 at:pathObject <file:///Difficult.mpq>;
                                                                                         a nfo:FileDataObject,
                                                                                           nfo:ArchiveItem;
                                                                                         skos:prefLabel "/(listfile)".
-<ni:///mh;1QEQ4XfiMECXYaY404h-a_4zaQ?ct=application/x-mpq-compressed#/scripts%5CAISCRIPT.BIN:0> at:pathObject <file:///scripts/AISCRIPT.BIN>;
-                                                                                                nfo:belongsToContainer <ni:///mh;1QEQ4XfiMECXYaY404h-a_4zaQ?ct=application/x-mpq-compressed#/>;
-                                                                                                nfo:encryptionStatus nfo:encryptedStatus;
-                                                                                                nfo:fileName "scripts\\AISCRIPT.BIN";
-                                                                                                nfo:fileSize 62050 ;
-                                                                                                a nfo:FileDataObject,
-                                                                                                  nfo:ArchiveItem;
-                                                                                                skos:prefLabel "/scripts\\AISCRIPT.BIN".
+<ni:///mh;1QEQ4XfiMECXYaY404h-a_4zaQ?ct=application/x-mpq-compressed#/scripts> at:pathObject <file:///scripts>;
+                                                                               nie:interpretedAs <ni:///mh;1QEQ4XfiMECXYaY404h-a_4zaQ?ct=application/x-mpq-compressed#/scripts/>;
+                                                                               nfo:belongsToContainer <ni:///mh;1QEQ4XfiMECXYaY404h-a_4zaQ?ct=application/x-mpq-compressed#/>;
+                                                                               nfo:fileName "scripts";
+                                                                               a nfo:FileDataObject,
+                                                                                 nfo:ArchiveItem;
+                                                                               skos:prefLabel "/scripts".
+<ni:///mh;1QEQ4XfiMECXYaY404h-a_4zaQ?ct=application/x-mpq-compressed#/scripts/> at:pathObject <file:///scripts/>;
+                                                                                a nfo:Folder;
+                                                                                skos:prefLabel "/scripts/".
+<ni:///mh;1QEQ4XfiMECXYaY404h-a_4zaQ?ct=application/x-mpq-compressed#/scripts/AISCRIPT.BIN:0> at:pathObject <file:///scripts/AISCRIPT.BIN>;
+                                                                                              nfo:belongsToContainer <ni:///mh;1QEQ4XfiMECXYaY404h-a_4zaQ?ct=application/x-mpq-compressed#/scripts/>;
+                                                                                              nfo:encryptionStatus nfo:encryptedStatus;
+                                                                                              nfo:fileName "AISCRIPT.BIN";
+                                                                                              nfo:fileSize 62050 ;
+                                                                                              a nfo:FileDataObject,
+                                                                                                nfo:ArchiveItem;
+                                                                                              skos:prefLabel "/scripts/AISCRIPT.BIN".
 <urn:md5:E177E230409761A638D3887E6BFE3369> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "4XfiMECXYaY404h+a/4zaQ=="^^xsd:base64Binary.

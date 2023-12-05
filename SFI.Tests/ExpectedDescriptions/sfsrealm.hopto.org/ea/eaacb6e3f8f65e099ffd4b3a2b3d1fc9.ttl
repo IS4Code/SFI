@@ -18,7 +18,9 @@ _:n1 at:pathObject <file:///sc_playlist.mpq>;
      nfo:fileName "sc_playlist.mpq";
      nfo:fileSize 16742 ;
      a nfo:FileDataObject.
-<file:///music/playlist.txt> at:extensionObject <https://w3id.org/uri4uri/suffix/txt>.
+<file:///music/> at:pathObject <file:///>.
+<file:///music/playlist.txt> at:pathObject <file:///playlist.txt>.
+<file:///playlist.txt> at:extensionObject <https://w3id.org/uri4uri/suffix/txt>.
 <file:///sc_playlist.mpq> at:extensionObject <https://w3id.org/uri4uri/suffix/mpq>.
 <ni:///mh;1QEQS6ZL1i509LgJx57y2JDUZg?ct=application/octet-stream> at:digest <urn:md5:4BA64BD62E74F4B809C79EF2D890D466>;
                                                                   dcterms:extent "16742"^^dt:byte;
@@ -42,14 +44,24 @@ _:n1 at:pathObject <file:///sc_playlist.mpq>;
                                                                                         a nfo:FileDataObject,
                                                                                           nfo:ArchiveItem;
                                                                                         skos:prefLabel "/(listfile)".
-<ni:///mh;1QEQS6ZL1i509LgJx57y2JDUZg?ct=application/x-mpq-compressed#/music%5Cplaylist.txt:1> at:pathObject <file:///music/playlist.txt>;
-                                                                                              nfo:belongsToContainer <ni:///mh;1QEQS6ZL1i509LgJx57y2JDUZg?ct=application/x-mpq-compressed#/>;
-                                                                                              nfo:encryptionStatus nfo:encryptedStatus;
-                                                                                              nfo:fileName "music\\playlist.txt";
-                                                                                              nfo:fileSize 1061 ;
-                                                                                              a nfo:FileDataObject,
-                                                                                                nfo:ArchiveItem;
-                                                                                              skos:prefLabel "/music\\playlist.txt".
+<ni:///mh;1QEQS6ZL1i509LgJx57y2JDUZg?ct=application/x-mpq-compressed#/music> at:pathObject <file:///music>;
+                                                                             nie:interpretedAs <ni:///mh;1QEQS6ZL1i509LgJx57y2JDUZg?ct=application/x-mpq-compressed#/music/>;
+                                                                             nfo:belongsToContainer <ni:///mh;1QEQS6ZL1i509LgJx57y2JDUZg?ct=application/x-mpq-compressed#/>;
+                                                                             nfo:fileName "music";
+                                                                             a nfo:FileDataObject,
+                                                                               nfo:ArchiveItem;
+                                                                             skos:prefLabel "/music".
+<ni:///mh;1QEQS6ZL1i509LgJx57y2JDUZg?ct=application/x-mpq-compressed#/music/> at:pathObject <file:///music/>;
+                                                                              a nfo:Folder;
+                                                                              skos:prefLabel "/music/".
+<ni:///mh;1QEQS6ZL1i509LgJx57y2JDUZg?ct=application/x-mpq-compressed#/music/playlist.txt:1> at:pathObject <file:///music/playlist.txt>;
+                                                                                            nfo:belongsToContainer <ni:///mh;1QEQS6ZL1i509LgJx57y2JDUZg?ct=application/x-mpq-compressed#/music/>;
+                                                                                            nfo:encryptionStatus nfo:encryptedStatus;
+                                                                                            nfo:fileName "playlist.txt";
+                                                                                            nfo:fileSize 1061 ;
+                                                                                            a nfo:FileDataObject,
+                                                                                              nfo:ArchiveItem;
+                                                                                            skos:prefLabel "/music/playlist.txt".
 <urn:md5:4BA64BD62E74F4B809C79EF2D890D466> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "S6ZL1i509LgJx57y2JDUZg=="^^xsd:base64Binary.
