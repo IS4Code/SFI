@@ -20,7 +20,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>$(RepositoryUrl)/tree/HEAD/SFI.Formats/GameArchives</PackageProjectUrl>
     <PackageIcon>icon.png</PackageIcon>
-    <PackageTags>linked-data;sparql;rdf;semantic-search;metadata-extraction;dos;wad</PackageTags>
+    <PackageTags>linked-data;sparql;rdf;semantic-search;metadata-extraction;wad;pbo;mpq</PackageTags>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
@@ -38,6 +38,7 @@
   <ItemGroup>
     <PackageReference Include="BisUtils.PBO" Version="1.0.23" />
     <PackageReference Include="WadParser" Version="1.1.2" />
+    <PackageReference Include="War3Net.IO.Mpq" Version="5.6.1" />
   </ItemGroup>
 
   <ItemGroup>
