@@ -33,7 +33,7 @@ namespace IS4.SFI.Analyzers
                 this.wad = wad;
             }
 
-            public IEnumerable<IArchiveEntry> Entries => wad.Lumps.Select(l => new Entry(l));
+            public IEnumerable<IArchiveEntry> Entries => wad.Lumps.Where(l => !l.IsCorrupt || l.Size != 0).Select(l => new Entry(l));
 
             public bool IsComplete => true;
 
@@ -52,7 +52,7 @@ namespace IS4.SFI.Analyzers
 
                 public string? Name => lump.Name;
 
-                public string? SubName => null;
+                public string? SubName => lump.Position.ToString();
 
                 public string? Path => Name;
 
