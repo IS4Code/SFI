@@ -1,6 +1,5 @@
 ﻿using IS4.SFI.Formats;
 using IS4.SFI.Services;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -43,7 +42,7 @@ namespace IS4.SFI.Analyzers
                         {
                             foreach(var entry in group)
                             {
-                                yield return new Entry(mpq, entry.Entry.i, entry.Entry.e);
+                                yield return new Entry(mpq, entry.Entry);
                             }
                         }else{
                             yield return new Directory(this, "", group);
@@ -56,39 +55,23 @@ namespace IS4.SFI.Analyzers
 
             public bool IsSolid => false;
 
-            class Entry : IArchiveEntry, IFileInfo
+            class Entry : ArchiveFileWrapper<(MpqEntry entry, int index)>
             {
                 readonly MpqArchive mpq;
-                readonly MpqEntry entry;
-                readonly int index;
 
-                public Entry(MpqArchive mpq, int index, MpqEntry entry)
+                MpqEntry entry => Entry.entry;
+
+                public Entry(MpqArchive mpq, (MpqEntry entry, int index) entry) : base(entry)
                 {
                     this.mpq = mpq;
-                    this.index = index;
-                    this.entry = entry;
-                    Path = entry.FileName?.Replace('\\', '/');
+                    Path = this.entry.FileName?.Replace('\\', '/');
                 }
 
-                public DateTime? ArchivedTime => null;
+                public override string? SubName => Entry.index.ToString();
 
-                public string? Name => System.IO.Path.GetFileName(Path);
+                public override string? Path { get; }
 
-                public string? SubName => index.ToString();
-
-                public string? Path { get; }
-
-                public int? Revision => null;
-
-                public DateTime? CreationTime => null;
-
-                public DateTime? LastWriteTime => null;
-
-                public DateTime? LastAccessTime => null;
-
-                public FileKind Kind => FileKind.ArchiveItem;
-
-                public FileAttributes Attributes {
+                public override FileAttributes Attributes {
                     get {
                         FileAttributes attributes = 0;
                         if(entry.IsCompressed)
@@ -107,90 +90,41 @@ namespace IS4.SFI.Analyzers
                     }
                 }
 
-                public object? ReferenceKey => entry;
+                protected override object? ReferenceKey => entry;
 
-                public object? DataKey => null;
+                protected override object? DataKey => null;
 
-                public long Length => entry.FileSize;
+                public override long Length => entry.FileSize;
 
-                public StreamFactoryAccess Access => StreamFactoryAccess.Reentrant;
+                public override StreamFactoryAccess Access => StreamFactoryAccess.Reentrant;
 
-                public Stream Open()
+                public override Stream Open()
                 {
                     return mpq.OpenFile(entry);
                 }
-
-                public override string? ToString()
-                {
-                    return Path == null ? null : "/" + Path;
-                }
             }
             
-            class Directory : IArchiveEntry, IDirectoryInfo
+            class Directory : ArchiveDirectoryWrapper<Adapter, (MpqEntry entry, int index)>
             {
-                readonly Adapter parent;
-
-                readonly IEntryGrouping entries;
-
-                readonly string? path;
-
-                public string? Name => entries.Key;
-
-                public string? Path => path + entries.Key;
-
-                public Directory(Adapter parent, string? path, IEntryGrouping entries)
+                public Directory(Adapter parent, string? path, IEntryGrouping entries) : base(parent, default, path, entries)
                 {
-                    this.parent = parent;
-                    this.path = path;
-                    this.entries = entries;
+
                 }
 
-                public IEnumerable<IFileNodeInfo> Entries {
-                    get {
-                        foreach(var group in DirectoryTools.GroupByDirectories(entries, e => e.SubPath, e => e.Entry))
-                        {
-                            if(group.Key == null)
-                            {
-                                foreach(var entry in group)
-                                {
-                                    if(!String.IsNullOrWhiteSpace(entry.SubPath))
-                                    {
-                                        yield return new Entry(parent.mpq, entry.Entry.index, entry.Entry.entry);
-                                    }
-                                }
-                            }else{
-                                yield return new Directory(parent, Path + "/", group);
-                            }
-                        }
-                    }
-                }
-
-                public FileAttributes Attributes => FileAttributes.Directory;
-
-                public Environment.SpecialFolder? SpecialFolderType => null;
-
-                public override string ToString()
+                protected override bool IsValidFile((MpqEntry? entry, int index) entry)
                 {
-                    return "/" + Path;
+                    return entry.entry != null;
                 }
 
-                public object? ReferenceKey => parent.mpq;
+                protected override ArchiveFileWrapper<(MpqEntry entry, int index)> CreateFileWrapper((MpqEntry entry, int index) entry)
+                {
+                    return new Entry(Archive.mpq, entry);
+                }
 
-                public object? DataKey => Path;
-
-                public string? SubName => null;
-
-                public int? Revision => null;
-
-                public DateTime? ArchivedTime => null;
-
-                public DateTime? CreationTime => null;
-
-                public DateTime? LastWriteTime => null;
-
-                public DateTime? LastAccessTime => null;
-
-                public FileKind Kind => FileKind.ArchiveItem;
+                protected override ArchiveDirectoryWrapper<Adapter, (MpqEntry entry, int index)> CreateDirectoryWrapper(string path, IEntryGrouping entries)
+                {
+                    return new Directory(Archive, path, entries);
+                }
             }
         }
     }

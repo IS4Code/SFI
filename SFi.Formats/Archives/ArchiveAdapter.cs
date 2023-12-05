@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using ISharpCompressArchive = SharpCompress.Archives.IArchive;
 using ISharpCompressArchiveEntry = SharpCompress.Archives.IArchiveEntry;
 
 namespace IS4.SFI.Formats.Archives
@@ -28,13 +29,13 @@ namespace IS4.SFI.Formats.Archives
                             yield return new ArchiveFileInfo(entry.Entry);
                         }
                     }else{
-                        yield return ArchiveDirectoryInfo.Create("", group);
+                        yield return ArchiveDirectoryInfo.Create(archive, "", group);
                     }
                 }
             }
         }
 
-        readonly SharpCompress.Archives.IArchive archive;
+        readonly ISharpCompressArchive archive;
 
         /// <inheritdoc/>
         public bool IsComplete => archive.IsComplete;
@@ -93,152 +94,99 @@ namespace IS4.SFI.Formats.Archives
             return path;
         }
 
-        abstract class ArchiveEntryInfo : IArchiveEntry
+        class ArchiveDirectoryInfo : ArchiveDirectoryWrapper<ISharpCompressArchive, ISharpCompressArchiveEntry>
         {
-            protected ISharpCompressArchiveEntry? Entry { get; }
-
-            public ArchiveEntryInfo(ISharpCompressArchiveEntry? entry)
+            protected ArchiveDirectoryInfo(ISharpCompressArchive archive, ISharpCompressArchiveEntry? container, string? path, IArchiveEntryGrouping entries) : base(archive, container, path, entries)
             {
-                Entry = entry;
+
             }
 
-            /// <inheritdoc/>
-            public virtual string? Name => Entry != null ? System.IO.Path.GetFileName(Path) : null;
-
-            /// <inheritdoc/>
-            public string? SubName => null;
-
-            /// <inheritdoc/>
-            public virtual string? Path => ExtractPathSimple(Entry);
-
-            /// <inheritdoc/>
-            public DateTime? CreationTime => Entry?.CreatedTime;
-
-            /// <inheritdoc/>
-            public DateTime? LastWriteTime => Entry?.LastModifiedTime;
-
-            /// <inheritdoc/>
-            public DateTime? LastAccessTime => Entry?.LastAccessedTime;
-
-            /// <inheritdoc/>
-            public DateTime? ArchivedTime => Entry?.LastAccessedTime;
-
-            /// <inheritdoc/>
-            public int? Revision => null;
-
-            /// <inheritdoc cref="IIdentityKey.ReferenceKey"/>
-            protected virtual object? ReferenceKey => Entry?.Archive;
-
-            /// <inheritdoc/>
-            object? IIdentityKey.ReferenceKey => ReferenceKey;
-
-            /// <inheritdoc/>
-            object? IIdentityKey.DataKey => Entry?.Key;
-
-            /// <inheritdoc/>
-            public FileKind Kind => FileKind.ArchiveItem;
-
-            /// <inheritdoc/>
-            public abstract FileAttributes Attributes { get; }
-
-            /// <inheritdoc/>
-            public override string ToString()
+            protected override bool IsValidFile(ISharpCompressArchiveEntry? entry)
             {
-                return "/" + Path;
+                return entry != null;
             }
-        }
 
-        class ArchiveDirectoryInfo : ArchiveEntryInfo, IDirectoryInfo
-        {
-            readonly IArchiveEntryGrouping entries;
-
-            readonly string? path;
-
-            public override string? Name => base.Name ?? entries.Key;
-
-            public override string? Path => base.Path ?? path + entries.Key;
-
-            protected ArchiveDirectoryInfo(ISharpCompressArchiveEntry? container, string? path, IArchiveEntryGrouping entries) : base(container)
+            protected override ArchiveFileWrapper<ISharpCompressArchiveEntry> CreateFileWrapper(ISharpCompressArchiveEntry entry)
             {
-                this.entries = entries;
-                this.path = path;
+                return new ArchiveFileInfo(entry);
             }
 
-            public IEnumerable<IFileNodeInfo> Entries{
-                get{
-                    foreach(var group in DirectoryTools.GroupByDirectories(entries, e => e.SubPath, e => e.Entry))
-                    {
-                        if(group.Key == null)
-                        {
-                            foreach(var entry in group)
-                            {
-                                if(!String.IsNullOrWhiteSpace(entry.SubPath))
-                                {
-                                    yield return new ArchiveFileInfo(entry.Entry);
-                                }
-                            }
-                        }else{
-                            yield return Create(Path + "/", group);
-                        }
-                    }
-                }
+            protected override ArchiveDirectoryWrapper<ISharpCompressArchive, ISharpCompressArchiveEntry> CreateDirectoryWrapper(string path, IArchiveEntryGrouping entries)
+            {
+                return Create(Archive, path, entries);
             }
 
-            /// <inheritdoc/>
-            public override FileAttributes Attributes => FileAttributes.Directory;
-
-            /// <inheritdoc/>
-            public Environment.SpecialFolder? SpecialFolderType => null;
-
-            protected override object? ReferenceKey => base.ReferenceKey ?? entries.FirstOrDefault().Entry?.Archive;
-
-            public static ArchiveDirectoryInfo Create(string path, IArchiveEntryGrouping group)
+            public static ArchiveDirectoryWrapper<ISharpCompressArchive, ISharpCompressArchiveEntry> Create(ISharpCompressArchive archive, string path, IArchiveEntryGrouping group)
             {
                 var container = group.FirstOrDefault(p => String.IsNullOrEmpty(p.SubPath));
                 if(container.Entry != null && container.Entry.Size > 0)
                 {
-                    return new ArchiveFileDirectoryInfo(container.Entry, group);
+                    return new ArchiveFileDirectoryInfo(archive, container.Entry, group);
                 }else{
-                    return new ArchiveDirectoryInfo(container.Entry, path, group);
+                    return new ArchiveDirectoryInfo(archive, container.Entry, path, group);
                 }
             }
         }
 
-        class ArchiveFileDirectoryInfo : ArchiveDirectoryInfo, IFileInfo
+        class ArchiveFileDirectoryInfo : ArchiveFileDirectoryWrapper<ISharpCompressArchive, ISharpCompressArchiveEntry>
         {
-            readonly ArchiveFileInfo entryInfo;
-
-            public ArchiveFileDirectoryInfo(ISharpCompressArchiveEntry container, IArchiveEntryGrouping entries) : base(container, null, entries)
+            public ArchiveFileDirectoryInfo(ISharpCompressArchive archive, ISharpCompressArchiveEntry container, IArchiveEntryGrouping entries) : base(archive, container, entries)
             {
-                entryInfo = new ArchiveFileInfo(container);
+
             }
 
-            public long Length => entryInfo.Length;
-
-            public override FileAttributes Attributes => FileAttributes.Directory | (Entry!.IsEncrypted ? FileAttributes.Encrypted : 0);
-
-            public StreamFactoryAccess Access => entryInfo.Access;
-
-            public Stream Open()
+            protected override bool IsValidFile(ISharpCompressArchiveEntry? entry)
             {
-                return entryInfo.Open();
+                return entry != null;
+            }
+
+            protected override ArchiveDirectoryWrapper<ISharpCompressArchive, ISharpCompressArchiveEntry> CreateDirectoryWrapper(string path, IArchiveEntryGrouping entries)
+            {
+                return ArchiveDirectoryInfo.Create(Archive, path, entries);
+            }
+
+            protected override ArchiveFileWrapper<ISharpCompressArchiveEntry> CreateFileWrapper(ISharpCompressArchiveEntry entry)
+            {
+                return new ArchiveFileInfo(entry);
             }
         }
 
-        class ArchiveFileInfo : ArchiveEntryInfo, IFileInfo
+        class ArchiveFileInfo : ArchiveFileWrapper<ISharpCompressArchiveEntry>
         {
             public ArchiveFileInfo(ISharpCompressArchiveEntry entry) : base(entry)
             {
 
             }
 
-            public long Length => Entry!.Size;
+            /// <inheritdoc/>
+            public override string? Name => Entry != null ? System.IO.Path.GetFileName(Path) : null;
+
+            /// <inheritdoc/>
+            public override string? Path => ExtractPathSimple(Entry);
+
+            /// <inheritdoc/>
+            public override DateTime? CreationTime => Entry?.CreatedTime;
+
+            /// <inheritdoc/>
+            public override DateTime? LastWriteTime => Entry?.LastModifiedTime;
+
+            /// <inheritdoc/>
+            public override DateTime? LastAccessTime => Entry?.LastAccessedTime;
+
+            /// <inheritdoc/>
+            public override DateTime? ArchivedTime => Entry?.LastAccessedTime;
+
+            public override long Length => Entry!.Size;
 
             public override FileAttributes Attributes => Entry!.IsEncrypted ? FileAttributes.Encrypted : FileAttributes.Normal;
 
-            public StreamFactoryAccess Access => StreamFactoryAccess.Parallel;
+            public override StreamFactoryAccess Access => StreamFactoryAccess.Parallel;
 
-            public Stream Open()
+            protected override object? ReferenceKey => Entry;
+
+            protected override object? DataKey => null;
+
+            public override Stream Open()
             {
                 return Entry!.OpenEntryStream();
             }

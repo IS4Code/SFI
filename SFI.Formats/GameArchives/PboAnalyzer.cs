@@ -99,39 +99,23 @@ namespace IS4.SFI.Analyzers
 
             object? IIdentityKey.DataKey => null;
 
-            class Entry : IArchiveEntry, IFileInfo
+            class Entry : ArchiveFileWrapper<PboDataEntry>
             {
-                readonly PboDataEntry entry;
                 readonly Lazy<byte[]> data;
 
-                public Entry(Adapter parent, PboDataEntry entry)
+                public Entry(Adapter parent, PboDataEntry entry) : base(entry)
                 {
-                    this.entry = entry;
                     data = new Lazy<byte[]>(() => parent.pbo.GetEntryData(entry));
                     Path = (parent.prefix != null ? $"{parent.prefix}/{entry.EntryName}" : entry.EntryName)?.Replace('\\', '/');
                 }
 
-                public DateTime? ArchivedTime => null;
+                public override string? Path { get; }
 
-                public string? Name => System.IO.Path.GetFileName(Path);
+                public override DateTime? LastWriteTime => Entry.TimeStamp is 0 or 1 ? null : DateTimeOffset.FromUnixTimeSeconds(unchecked((long)Entry.TimeStamp)).DateTime;
 
-                public string? SubName => null;
-
-                public string? Path { get; }
-
-                public int? Revision => null;
-
-                public DateTime? CreationTime => null;
-
-                public DateTime? LastWriteTime => entry.TimeStamp is 0 or 1 ? null : DateTimeOffset.FromUnixTimeSeconds(unchecked((long)entry.TimeStamp)).DateTime;
-
-                public DateTime? LastAccessTime => null;
-
-                public FileKind Kind => FileKind.ArchiveItem;
-                
-                public FileAttributes Attributes {
+                public override FileAttributes Attributes {
                     get {
-                        switch(entry.EntryMagic)
+                        switch(Entry.EntryMagic)
                         {
                             case PboEntryMagic.Compressed:
                                 return FileAttributes.Compressed;
@@ -143,90 +127,41 @@ namespace IS4.SFI.Analyzers
                     }
                 }
 
-                public object? ReferenceKey => entry;
+                protected override object? ReferenceKey => Entry;
 
-                public object? DataKey => null;
+                protected override object? DataKey => null;
 
-                public long Length => entry.OriginalSize != 0 ? unchecked((long)entry.OriginalSize) : entry.EntryData.Length;
+                public override long Length => Entry.OriginalSize != 0 ? unchecked((long)Entry.OriginalSize) : Entry.EntryData.Length;
 
-                public StreamFactoryAccess Access => StreamFactoryAccess.Parallel;
+                public override StreamFactoryAccess Access => StreamFactoryAccess.Parallel;
 
-                public Stream Open()
+                public override Stream Open()
                 {
                     return new MemoryStream(data.Value, false);
                 }
-
-                public override string ToString()
-                {
-                    return "/" + Path;
-                }
             }
             
-            class Directory : IArchiveEntry, IDirectoryInfo
+            class Directory : ArchiveDirectoryWrapper<Adapter, PboDataEntry>
             {
-                readonly Adapter parent;
-
-                readonly IEntryGrouping entries;
-
-                readonly string? path;
-
-                public string? Name => entries.Key;
-
-                public string? Path => path + entries.Key;
-
-                public Directory(Adapter parent, string? path, IEntryGrouping entries)
+                public Directory(Adapter parent, string? path, IEntryGrouping entries) : base(parent, null, path, entries)
                 {
-                    this.parent = parent;
-                    this.path = path;
-                    this.entries = entries;
+
                 }
 
-                public IEnumerable<IFileNodeInfo> Entries {
-                    get {
-                        foreach(var group in DirectoryTools.GroupByDirectories(entries, e => e.SubPath, e => e.Entry))
-                        {
-                            if(group.Key == null)
-                            {
-                                foreach(var entry in group)
-                                {
-                                    if(!String.IsNullOrWhiteSpace(entry.SubPath))
-                                    {
-                                        yield return new Entry(parent, entry.Entry);
-                                    }
-                                }
-                            }else{
-                                yield return new Directory(parent, Path + "/", group);
-                            }
-                        }
-                    }
-                }
-
-                public FileAttributes Attributes => FileAttributes.Directory;
-
-                public Environment.SpecialFolder? SpecialFolderType => null;
-
-                public override string ToString()
+                protected override bool IsValidFile(PboDataEntry? entry)
                 {
-                    return "/" + Path;
+                    return entry != null;
                 }
 
-                public object? ReferenceKey => parent.pbo;
+                protected override ArchiveFileWrapper<PboDataEntry> CreateFileWrapper(PboDataEntry entry)
+                {
+                    return new Entry(Archive, entry);
+                }
 
-                public object? DataKey => Path;
-
-                public string? SubName => null;
-
-                public int? Revision => null;
-
-                public DateTime? ArchivedTime => null;
-
-                public DateTime? CreationTime => null;
-
-                public DateTime? LastWriteTime => null;
-
-                public DateTime? LastAccessTime => null;
-
-                public FileKind Kind => FileKind.ArchiveItem;
+                protected override ArchiveDirectoryWrapper<Adapter, PboDataEntry> CreateDirectoryWrapper(string path, IEntryGrouping entries)
+                {
+                    return new Directory(Archive, path, entries);
+                }
             }
         }
     }
