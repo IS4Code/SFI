@@ -44,7 +44,7 @@ namespace IS4.SFI.Analyzers
         {
             var node = CreateNode(info, context);
 
-            if(info.Path != "")
+            if(info.Path != "" && info is not IDriveInfo)
             {
                 // is not root
                 node.SetClass(Classes.FileDataObject);
