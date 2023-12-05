@@ -70,14 +70,26 @@ namespace IS4.SFI.Analyzers
                 public DateTime? LastAccessTime => null;
 
                 public FileKind Kind => FileKind.ArchiveItem;
-
-                public FileAttributes Attributes => entry.PackedSize != entry.OriginalSize ? FileAttributes.Compressed : FileAttributes.Normal;
+                
+                public FileAttributes Attributes {
+                    get {
+                        switch(entry.EntryMagic)
+                        {
+                            case PboEntryMagic.Compressed:
+                                return FileAttributes.Compressed;
+                            case PboEntryMagic.Encrypted:
+                                return FileAttributes.Encrypted;
+                            default:
+                                return FileAttributes.Normal;
+                        }
+                    }
+                }
 
                 public object? ReferenceKey => entry;
 
                 public object? DataKey => null;
 
-                public long Length => unchecked((long)entry.OriginalSize);
+                public long Length => entry.OriginalSize != 0 ? unchecked((long)entry.OriginalSize) : entry.EntryData.Length;
 
                 public StreamFactoryAccess Access => StreamFactoryAccess.Parallel;
 
