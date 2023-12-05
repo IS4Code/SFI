@@ -1,0 +1,188 @@
+@base <ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/octet-stream>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
+@prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dt: <http://dbpedia.org/datatype/>.
+@prefix sec: <https://w3id.org/security#>.
+@prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+_:n1 at:pathObject <file:///uns_woodbridge.pbo>;
+     nie:interpretedAs <ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/octet-stream>;
+     nfo:fileName "uns_woodbridge.pbo";
+     nfo:fileSize 533197 ;
+     a nfo:FileDataObject.
+<data:,uns_woodbridge%0D%0A> dcterms:extent "16"^^dt:byte;
+                             a cnt:ContentAsText;
+                             skos:prefLabel "text (16 B)"@en;
+                             cnt:characterEncoding "us-ascii";
+                             cnt:chars """uns_woodbridge
+""".
+<data:application/octet-stream,> dcterms:extent "0"^^dt:byte;
+                                 a cnt:ContentAsBase64;
+                                 skos:prefLabel "binary data (0 B)"@en;
+                                 cnt:bytes ""^^xsd:base64Binary.
+<file:///Textures/WB_Alpha.paa> at:extensionObject <https://w3id.org/uri4uri/suffix/paa>.
+<file:///Textures/WB_Defuse.paa> at:extensionObject <https://w3id.org/uri4uri/suffix/paa>.
+<file:///Textures/WB_Normal.paa> at:extensionObject <https://w3id.org/uri4uri/suffix/paa>.
+<file:///config.bin> at:extensionObject <https://w3id.org/uri4uri/suffix/bin>.
+<file:///data/wb_defuse.paa> at:extensionObject <https://w3id.org/uri4uri/suffix/paa>.
+<file:///pboprefix.txt> at:extensionObject <https://w3id.org/uri4uri/suffix/txt>.
+<file:///pboprefix.txt~> at:extensionObject <https://w3id.org/uri4uri/suffix/txt~>.
+<file:///texHeaders.bin> at:extensionObject <https://w3id.org/uri4uri/suffix/bin>.
+<file:///uns_woodbridge.pbo> at:extensionObject <https://w3id.org/uri4uri/suffix/pbo>.
+<file:///woodbridge.p3d> at:extensionObject <https://w3id.org/uri4uri/suffix/p3d>.
+<ni:///mh;1QEQ6V7OanZcOcf63Ng5Na3H7w?ct=application/octet-stream> at:digest <urn:md5:E95ECE6A765C39C7FADCD83935ADC7EF>;
+                                                                  dcterms:extent "192503"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ6V7OanZcOcf63Ng5Na3H7w?ct=application/prs.implied-structure;signature=ODOL2>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (187.99 KiB)"@en.
+<ni:///mh;1QEQ6V7OanZcOcf63Ng5Na3H7w?ct=application/prs.implied-structure;signature=ODOL2> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=ODOL2>;
+                                                                                           a schema:MediaObject;
+                                                                                           skos:prefLabel "ODOL2 object (187.99 KiB)"@en.
+<ni:///mh;1QEQBRZl4PDirXqBJ59UWW3dJA?ct=application/octet-stream> at:digest <urn:md5:051665E0F0E2AD7A81279F54596DDD24>;
+                                                                  dcterms:extent "409"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (409 B)"@en.
+<ni:///mh;1QEQHSOpiSfz09YJ-J5LYRUDPA?ct=application/octet-stream> at:digest <urn:md5:1D23A98927F3D3D609F89E4B6115033C>;
+                                                                  dcterms:extent "72000"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (70.31 KiB)"@en.
+<ni:///mh;1QEQHbA99lfSVvcCTSi6wdIWow?ct=application/octet-stream> at:digest <urn:md5:1DB03DF657D256F7024D28BAC1D216A3>;
+                                                                  dcterms:extent "100352"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (98 KiB)"@en.
+<ni:///mh;1QEQVuYbKS2EIUKHk1kb_wf_hQ?ct=application/octet-stream> at:digest <urn:md5:56E61B292D8421428793591BFF07FF85>;
+                                                                  dcterms:extent "66407"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (64.85 KiB)"@en.
+<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/octet-stream> at:digest <urn:md5:627461FBBAFA2B738439C19295B58CDC>;
+                                                                  dcterms:extent "533197"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (520.7 KiB)"@en.
+<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo> at:pathObject <file:///.>;
+                                                           schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-pbo>;
+                                                           nie:interpretedAs <ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/>;
+                                                           a schema:MediaObject,
+                                                             nfo:Archive;
+                                                           skos:prefLabel "PBO object (520.7 KiB)"@en.
+<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/> at:pathObject <file:///>;
+                                                             a nfo:Folder;
+                                                             skos:prefLabel "/".
+<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/Textures%5CWB_Alpha.paa> at:pathObject <file:///Textures/WB_Alpha.paa>;
+                                                                                    nie:interpretedAs <ni:///mh;1QEQVuYbKS2EIUKHk1kb_wf_hQ?ct=application/octet-stream>;
+                                                                                    nfo:belongsToContainer <ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/>;
+                                                                                    nfo:fileLastModified "2015-03-11T20:17:24.000000"^^xsd:dateTime;
+                                                                                    nfo:fileName "Textures\\WB_Alpha.paa";
+                                                                                    nfo:fileSize 66407 ;
+                                                                                    a nfo:FileDataObject,
+                                                                                      nfo:ArchiveItem;
+                                                                                    skos:prefLabel "/Textures\\WB_Alpha.paa".
+<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/Textures%5CWB_Defuse.paa> at:pathObject <file:///Textures/WB_Defuse.paa>;
+                                                                                     nie:interpretedAs <ni:///mh;1QEQHbA99lfSVvcCTSi6wdIWow?ct=application/octet-stream>;
+                                                                                     nfo:belongsToContainer <ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/>;
+                                                                                     nfo:fileLastModified "2015-03-11T20:17:25.000000"^^xsd:dateTime;
+                                                                                     nfo:fileName "Textures\\WB_Defuse.paa";
+                                                                                     nfo:fileSize 100352 ;
+                                                                                     a nfo:FileDataObject,
+                                                                                       nfo:ArchiveItem;
+                                                                                     skos:prefLabel "/Textures\\WB_Defuse.paa".
+<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/Textures%5CWB_Normal.paa> at:pathObject <file:///Textures/WB_Normal.paa>;
+                                                                                     nie:interpretedAs <ni:///mh;1QEQHSOpiSfz09YJ-J5LYRUDPA?ct=application/octet-stream>;
+                                                                                     nfo:belongsToContainer <ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/>;
+                                                                                     nfo:fileLastModified "2015-03-11T20:17:25.000000"^^xsd:dateTime;
+                                                                                     nfo:fileName "Textures\\WB_Normal.paa";
+                                                                                     nfo:fileSize 72000 ;
+                                                                                     a nfo:FileDataObject,
+                                                                                       nfo:ArchiveItem;
+                                                                                     skos:prefLabel "/Textures\\WB_Normal.paa".
+<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/config.bin> at:pathObject <file:///config.bin>;
+                                                                       nie:interpretedAs <ni:///mh;1QEQBRZl4PDirXqBJ59UWW3dJA?ct=application/octet-stream>;
+                                                                       nfo:belongsToContainer <ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/>;
+                                                                       nfo:fileLastModified "2015-03-23T17:22:43.000000"^^xsd:dateTime;
+                                                                       nfo:fileName "config.bin";
+                                                                       nfo:fileSize 409 ;
+                                                                       a nfo:FileDataObject,
+                                                                         nfo:ArchiveItem;
+                                                                       skos:prefLabel "/config.bin".
+<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/data%5Cwb_defuse.paa> at:pathObject <file:///data/wb_defuse.paa>;
+                                                                                 nie:interpretedAs <ni:///mh;1QEQHbA99lfSVvcCTSi6wdIWow?ct=application/octet-stream>;
+                                                                                 nfo:belongsToContainer <ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/>;
+                                                                                 nfo:fileLastModified "2015-03-11T20:17:25.000000"^^xsd:dateTime;
+                                                                                 nfo:fileName "data\\wb_defuse.paa";
+                                                                                 nfo:fileSize 100352 ;
+                                                                                 a nfo:FileDataObject,
+                                                                                   nfo:ArchiveItem;
+                                                                                 skos:prefLabel "/data\\wb_defuse.paa".
+<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/pboprefix.txt> at:pathObject <file:///pboprefix.txt>;
+                                                                          nie:interpretedAs <data:,uns_woodbridge%0D%0A>;
+                                                                          nfo:belongsToContainer <ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/>;
+                                                                          nfo:fileLastModified "2015-03-11T21:08:28.000000"^^xsd:dateTime;
+                                                                          nfo:fileName "pboprefix.txt";
+                                                                          nfo:fileSize 16 ;
+                                                                          a nfo:FileDataObject,
+                                                                            nfo:ArchiveItem;
+                                                                          skos:prefLabel "/pboprefix.txt".
+<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/pboprefix.txt~> at:pathObject <file:///pboprefix.txt~>;
+                                                                           nie:interpretedAs <data:application/octet-stream,>;
+                                                                           nfo:belongsToContainer <ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/>;
+                                                                           nfo:fileLastModified "2015-03-11T21:08:11.000000"^^xsd:dateTime;
+                                                                           nfo:fileName "pboprefix.txt~";
+                                                                           nfo:fileSize 0 ;
+                                                                           a nfo:FileDataObject,
+                                                                             nfo:ArchiveItem;
+                                                                           skos:prefLabel "/pboprefix.txt~".
+<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/texHeaders.bin> at:pathObject <file:///texHeaders.bin>;
+                                                                           nie:interpretedAs <ni:///mh;1QEQsAHzQsPXnrMPljtnTBaMig?ct=application/octet-stream>;
+                                                                           nfo:belongsToContainer <ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/>;
+                                                                           nfo:fileLastModified "2015-03-23T17:22:44.000000"^^xsd:dateTime;
+                                                                           nfo:fileName "texHeaders.bin";
+                                                                           nfo:fileSize 735 ;
+                                                                           a nfo:FileDataObject,
+                                                                             nfo:ArchiveItem;
+                                                                           skos:prefLabel "/texHeaders.bin".
+<ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/woodbridge.p3d> at:pathObject <file:///woodbridge.p3d>;
+                                                                           nie:interpretedAs <ni:///mh;1QEQ6V7OanZcOcf63Ng5Na3H7w?ct=application/octet-stream>;
+                                                                           nfo:belongsToContainer <ni:///mh;1QEQYnRh-7r6K3OEOcGSlbWM3A?ct=application/x-pbo#/>;
+                                                                           nfo:fileLastModified "2015-03-23T17:22:44.000000"^^xsd:dateTime;
+                                                                           nfo:fileName "woodbridge.p3d";
+                                                                           nfo:fileSize 192503 ;
+                                                                           a nfo:FileDataObject,
+                                                                             nfo:ArchiveItem;
+                                                                           skos:prefLabel "/woodbridge.p3d".
+<ni:///mh;1QEQsAHzQsPXnrMPljtnTBaMig?ct=application/octet-stream> at:digest <urn:md5:B001F342C3D79EB30F963B674C168C8A>;
+                                                                  dcterms:extent "735"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQsAHzQsPXnrMPljtnTBaMig?ct=application/prs.implied-structure;signature=0DHT>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (735 B)"@en.
+<ni:///mh;1QEQsAHzQsPXnrMPljtnTBaMig?ct=application/prs.implied-structure;signature=0DHT> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=0DHT>;
+                                                                                          a schema:MediaObject;
+                                                                                          skos:prefLabel "0DHT object (735 B)"@en.
+<urn:md5:051665E0F0E2AD7A81279F54596DDD24> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "BRZl4PDirXqBJ59UWW3dJA=="^^xsd:base64Binary.
+<urn:md5:1D23A98927F3D3D609F89E4B6115033C> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "HSOpiSfz09YJ+J5LYRUDPA=="^^xsd:base64Binary.
+<urn:md5:1DB03DF657D256F7024D28BAC1D216A3> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "HbA99lfSVvcCTSi6wdIWow=="^^xsd:base64Binary.
+<urn:md5:56E61B292D8421428793591BFF07FF85> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "VuYbKS2EIUKHk1kb/wf/hQ=="^^xsd:base64Binary.
+<urn:md5:627461FBBAFA2B738439C19295B58CDC> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "YnRh+7r6K3OEOcGSlbWM3A=="^^xsd:base64Binary.
+<urn:md5:B001F342C3D79EB30F963B674C168C8A> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "sAHzQsPXnrMPljtnTBaMig=="^^xsd:base64Binary.
+<urn:md5:E95ECE6A765C39C7FADCD83935ADC7EF> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "6V7OanZcOcf63Ng5Na3H7w=="^^xsd:base64Binary.
