@@ -181,6 +181,11 @@ namespace IS4.SFI.Analyzers
                     while(dataEnd < length)
                     {
                         var childLength = BitConverter.ToUInt16(dataSegment.Array, dataSegment.Offset + dataEnd);
+                        if(childLength == 0)
+                        {
+                            // No meaningful data
+                            break;
+                        }
                         var childSegment = dataSegment.Slice(dataEnd, childLength);
                         var info = new EntryInfo(childSegment);
                         children[info.Name] = info;
