@@ -143,7 +143,10 @@ namespace IS4.SFI.Analyzers
 
                 foreach(var alg in HashAlgorithms)
                 {
-                    await HashAlgorithm.AddHash(node, alg, await alg.ComputeHash(file), context.NodeFactory, OnOutputFile);
+                    if(alg.Accepts(file))
+                    {
+                        await HashAlgorithm.AddHash(node, alg, await alg.ComputeHash(file), context.NodeFactory, OnOutputFile);
+                    }
                 }
 
                 if(file is IDirectoryInfo directory)
@@ -167,7 +170,10 @@ namespace IS4.SFI.Analyzers
 
             foreach(var alg in HashAlgorithms)
             {
-                await HashAlgorithm.AddHash(node, alg, await alg.ComputeHash(directory, false), context.NodeFactory, OnOutputFile);
+                if(alg.Accepts(directory, false))
+                {
+                    await HashAlgorithm.AddHash(node, alg, await alg.ComputeHash(directory, false), context.NodeFactory, OnOutputFile);
+                }
             }
         }
 
@@ -198,7 +204,10 @@ namespace IS4.SFI.Analyzers
 
                 foreach(var alg in HashAlgorithms)
                 {
-                    await HashAlgorithm.AddHash(folder, alg, await alg.ComputeHash(directory, true), context.NodeFactory, OnOutputFile);
+                    if(alg.Accepts(directory, true))
+                    {
+                        await HashAlgorithm.AddHash(folder, alg, await alg.ComputeHash(directory, true), context.NodeFactory, OnOutputFile);
+                    }
                 }
 
                 context = context.WithParent(parent);

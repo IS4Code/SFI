@@ -1,6 +1,7 @@
 ﻿using IS4.SFI.Tools;
 using IS4.SFI.Vocabulary;
 using System;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Numerics;
@@ -100,6 +101,14 @@ namespace IS4.SFI.Services
     public interface IDataHashAlgorithm : IHashAlgorithm
     {
         /// <summary>
+        /// Checks whether <paramref name="instance"/> is accepted as
+        /// a source of hash using this instance's configuration.
+        /// </summary>
+        /// <param name="instance">The instance to check.</param>
+        /// <returns><see langword="true"/> if <paramref name="instance"/> is accepted.</returns>
+        bool Accepts(IIdentityKey? instance);
+
+        /// <summary>
         /// Computes the value of the hash from an input stream.
         /// </summary>
         /// <param name="input">The input stream to compute the hash from.</param>
@@ -134,6 +143,14 @@ namespace IS4.SFI.Services
     /// </summary>
     public interface IFileHashAlgorithm : IHashAlgorithm
     {
+        /// <inheritdoc cref="IDataHashAlgorithm.Accepts(IIdentityKey)"/>
+        bool Accepts(IFileInfo instance);
+
+        /// <summary><inheritdoc cref="Accepts(IFileInfo)" path="/summary"/></summary>
+        /// <param name="instance"><inheritdoc cref="Accepts(IFileInfo)" path="/param[@name='instance']"/></param>
+        /// <param name="contentOnly"><inheritdoc cref="ComputeHash(IDirectoryInfo, bool)" path="/param[@name='contentOnly']"/></param>
+        bool Accepts(IDirectoryInfo instance, bool contentOnly);
+
         /// <summary>
         /// Computes the value of the hash from a file, described by <see cref="IFileInfo"/>.
         /// </summary>
@@ -388,10 +405,34 @@ namespace IS4.SFI.Services
     /// </summary>
     public abstract class DataHashAlgorithm : HashAlgorithm, IDataHashAlgorithm
     {
+        /// <summary>
+        /// The kind of input accepted by the component.
+        /// </summary>
+        [Description("The kind of input accepted by the component.")]
+        public AcceptedInputSource AcceptsData { get; set; } = AcceptedInputSource.All;
+
         /// <inheritdoc/>
         public DataHashAlgorithm(IndividualUri identifier, int hashSize, string prefix, FormattingMethod formatting) : base(identifier, hashSize, prefix, formatting)
         {
 
+        }
+        
+        /// <inheritdoc/>
+        public virtual bool Accepts(IIdentityKey? instance)
+        {
+            if(instance is not IFileInfo)
+            {
+                return true;
+            }
+            switch(AcceptsData)
+            {
+                case AcceptedInputSource.FromFileSystem:
+                    return instance is FileInfoWrapper or DeviceFileInfo;
+                case AcceptedInputSource.FromContainers:
+                    return instance is not (FileInfoWrapper or DeviceFileInfo);
+                default:
+                    return true;
+            }
         }
 
         /// <inheritdoc/>
@@ -415,6 +456,24 @@ namespace IS4.SFI.Services
     /// </summary>
     public abstract class FileHashAlgorithm : HashAlgorithm, IFileHashAlgorithm
     {
+        /// <summary>
+        /// The kind of files accepted by the component.
+        /// </summary>
+        [Description("The kind of files accepted by the component.")]
+        public AcceptedInputSource AcceptsFiles { get; set; } = AcceptedInputSource.All;
+
+        /// <summary>
+        /// The kind of directories accepted by the component.
+        /// </summary>
+        [Description("The kind of directories accepted by the component.")]
+        public AcceptedInputSource AcceptsDirectories { get; set; } = AcceptedInputSource.All;
+
+        /// <summary>
+        /// The kind of directories accepted for their content by the component.
+        /// </summary>
+        [Description("The kind of directories accepted for their content by the component.")]
+        public AcceptedInputSource AcceptsDirectoriesContent { get; set; } = AcceptedInputSource.All;
+
         /// <inheritdoc/>
         public FileHashAlgorithm(IndividualUri identifier, int hashSize, string prefix, FormattingMethod formatting) : base(identifier, hashSize, prefix, formatting)
         {
@@ -422,10 +481,61 @@ namespace IS4.SFI.Services
         }
 
         /// <inheritdoc/>
+        public virtual bool Accepts(IFileInfo instance)
+        {
+            switch(AcceptsFiles)
+            {
+                case AcceptedInputSource.FromFileSystem:
+                    return instance is FileInfoWrapper or DeviceFileInfo;
+                case AcceptedInputSource.FromContainers:
+                    return instance is not (FileInfoWrapper or DeviceFileInfo);
+                default:
+                    return true;
+            }
+        }
+
+        /// <inheritdoc/>
+        public virtual bool Accepts(IDirectoryInfo instance, bool contentOnly)
+        {
+            switch(contentOnly ? AcceptsDirectoriesContent : AcceptsDirectories)
+            {
+                case AcceptedInputSource.FromFileSystem:
+                    return instance is DirectoryInfoWrapper;
+                case AcceptedInputSource.FromContainers:
+                    return instance is not DirectoryInfoWrapper;
+                default:
+                    return true;
+            }
+        }
+
+        /// <inheritdoc/>
         public abstract ValueTask<byte[]> ComputeHash(IFileInfo file);
 
         /// <inheritdoc/>
-        public abstract ValueTask<byte[]> ComputeHash(IDirectoryInfo directory, bool contents);
+        public abstract ValueTask<byte[]> ComputeHash(IDirectoryInfo directory, bool contentOnly);
+    }
+
+    /// <summary>
+    /// Configuration values for instances of <see cref="DataHashAlgorithm"/>
+    /// and <see cref="FileHashAlgorithm"/> controlling the type of accepted
+    /// input.
+    /// </summary>
+    public enum AcceptedInputSource
+    {
+        /// <summary>
+        /// Any input is accepted.
+        /// </summary>
+        All,
+
+        /// <summary>
+        /// Only input directly coming from the local file system is accepted.
+        /// </summary>
+        FromFileSystem,
+
+        /// <summary>
+        /// Only input coming from data nested in containers is accepted.
+        /// </summary>
+        FromContainers
     }
 
     /// <summary>

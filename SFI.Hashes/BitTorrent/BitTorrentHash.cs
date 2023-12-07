@@ -48,12 +48,6 @@ namespace IS4.SFI.Hashes
         public int BlockSize { get; set; } = 262144;
 
         /// <summary>
-        /// Whether to compute the hash of top-level directories.
-        /// </summary>
-        [Description("Whether to compute the hash of top-level directories.")]
-        public bool HashTopLevelDirectories { get; set; } = true;
-
-        /// <summary>
         /// Creates a new instance of the algorithm.
         /// </summary>
         public BitTorrentHash() : base(BitTorrentIndividuals.BTIH, HashAlgorithm.GetHashSize(0), "urn:btih:", FormattingMethod.Hex)
@@ -79,10 +73,6 @@ namespace IS4.SFI.Hashes
         /// <inheritdoc/>
         public async override ValueTask<byte[]> ComputeHash(IDirectoryInfo directory, bool contentOnly)
         {
-            if(!HashTopLevelDirectories && directory is DirectoryInfoWrapper)
-            {
-                return Array.Empty<byte>();
-            }
             var dict = await CreateDictionary(directory, contentOnly);
             var hash = await HashAlgorithm.ComputeHash(dict.EncodeAsBytes());
             bDictCache.Add(hash, dict);

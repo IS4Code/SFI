@@ -225,18 +225,24 @@ namespace IS4.SFI.Analyzers
                             
                             foreach(var hash in analyzer.HashAlgorithms)
                             {
-                                var queue = ChannelArrayStream.Create(out var writer, 1);
-                                hashes[hash] = (writer, Task.Run(async () => await hash.ComputeHash(queue, streamFactory)));
+                                if(hash.Accepts(streamFactory))
+                                {
+                                    var queue = ChannelArrayStream.Create(out var writer, 1);
+                                    hashes[hash] = (writer, Task.Run(async () => await hash.ComputeHash(queue, streamFactory)));
+                                }
                             }
                         }else{
                             seekableFactory = streamFactory;
                             
                             foreach(var hash in analyzer.HashAlgorithms)
                             {
-                                hashes[hash] = (null, Task.Run(async () => {
-                                    using var hashStream = streamFactory.Open();
-                                    return await hash.ComputeHash(hashStream, streamFactory);
-                                }));
+                                if(hash.Accepts(streamFactory))
+                                {
+                                    hashes[hash] = (null, Task.Run(async () => {
+                                        using var hashStream = streamFactory.Open();
+                                        return await hash.ComputeHash(hashStream, streamFactory);
+                                    }));
+                                }
                             }
                         }
 
