@@ -66,7 +66,7 @@ namespace IS4.SFI.WebApp
         {
             if(StandardPaths.IsClipboard(path))
             {
-                return new IFileNodeInfo[] { new DeviceInput(() => new ClipboardStream(js)) };
+                return new IFileNodeInfo[] { new DeviceFileInfo(() => new ClipboardStream(js)) };
             }
             if(inputFiles == null)
             {
@@ -185,55 +185,6 @@ namespace IS4.SFI.WebApp
                     size = decoder.GetChars(buffer, offset, count, chars, 0);
                     await writer.WriteAsync(chars, 0, size);
                 }
-            }
-        }
-
-        /// <summary>
-        /// This class represents a device as a file.
-        /// </summary>
-        class DeviceInput : IFileInfo
-        {
-            readonly Func<Stream> openFunc;
-
-            public DeviceInput(Func<Stream> openFunc)
-            {
-                this.openFunc = openFunc;
-            }
-
-            public string? Name => null;
-
-            public string? SubName => null;
-
-            public string? Path => null;
-
-            public int? Revision => null;
-
-            public DateTime? CreationTime => null;
-
-            public DateTime? LastWriteTime => null;
-
-            public DateTime? LastAccessTime => null;
-
-            public FileKind Kind => FileKind.None;
-
-            public long Length => -1;
-
-            public FileAttributes Attributes => FileAttributes.Device;
-
-            public StreamFactoryAccess Access => StreamFactoryAccess.Single;
-
-            public object? ReferenceKey => this;
-
-            public object? DataKey => null;
-
-            public Stream Open()
-            {
-                return openFunc();
-            }
-
-            public override string? ToString()
-            {
-                return null;
             }
         }
     }

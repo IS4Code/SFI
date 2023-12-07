@@ -48,18 +48,18 @@ namespace IS4.SFI.ConsoleApp
         {
             if(StandardPaths.IsInput(path))
             {
-                return new IFileNodeInfo[] { new DeviceInput(Console.OpenStandardInput) };
+                return new IFileNodeInfo[] { new DeviceFileInfo(Console.OpenStandardInput) };
             }else if(StandardPaths.IsClipboard(path))
             {
 #if WINDOWS || NETFRAMEWORK
-                return new IFileNodeInfo[] { new DeviceInput(() => new ClipboardStream()) };
+                return new IFileNodeInfo[] { new DeviceFileInfo(() => new ClipboardStream()) };
 #else
                 ShowPlatformFileUnavailableException("clipboard");
 #endif
             }else if(StandardPaths.IsFilePicker(path))
             {
 #if WINDOWS || NETFRAMEWORK
-                return new IFileNodeInfo[] { new DeviceInput(() => {
+                return new IFileNodeInfo[] { new DeviceFileInfo(() => {
                     var path = ShowDialog<OpenFileDialog>("Load input file", null);
                     return File.OpenRead(path);
                 }) };
@@ -214,54 +214,5 @@ namespace IS4.SFI.ConsoleApp
             throw new ApplicationException($"The special {name} file is available only in Windows.");
         }
 #endif
-
-        /// <summary>
-        /// This class represents a device as a file.
-        /// </summary>
-        class DeviceInput : IFileInfo
-        {
-            readonly Func<Stream> openFunc;
-
-            public DeviceInput(Func<Stream> openFunc)
-            {
-                this.openFunc = openFunc;
-            }
-
-            public string? Name => null;
-
-            public string? SubName => null;
-
-            public string? Path => null;
-
-            public int? Revision => null;
-
-            public DateTime? CreationTime => null;
-
-            public DateTime? LastWriteTime => null;
-
-            public DateTime? LastAccessTime => null;
-
-            public FileKind Kind => FileKind.None;
-
-            public long Length => -1;
-
-            public FileAttributes Attributes => FileAttributes.Device;
-
-            public StreamFactoryAccess Access => StreamFactoryAccess.Single;
-
-            public object? ReferenceKey => this;
-
-            public object? DataKey => null;
-
-            public Stream Open()
-            {
-                return openFunc();
-            }
-
-            public override string? ToString()
-            {
-                return null;
-            }
-        }
     }
 }
