@@ -1,8 +1,12 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using IS4.SFI.Application.Tools;
+using Microsoft.Extensions.Logging;
 using System;
+using System.Linq;
+using System.Threading;
 
 namespace IS4.SFI.Application.Plugins
 {
+
     /// <summary>
     /// Stores information about an externally loadable component.
     /// </summary>
@@ -16,7 +20,7 @@ namespace IS4.SFI.Application.Plugins
         /// <summary>
         /// The instance of the component, or error.
         /// </summary>
-        readonly Lazy<(bool success, object result)> instance;
+        readonly Lazy<object?> instance;
 
         /// <summary>
         /// Creates a new instance of the class.
@@ -28,14 +32,24 @@ namespace IS4.SFI.Application.Plugins
         {
             Type = type;
 
-            instance = new(() => {
+            Func<object?> innerFactory = () => {
                 try{
-                    return (true, factory());
+                    return factory();
                 }catch(Exception e) when(GlobalOptions.SuppressNonCriticalExceptions)
                 {
                     inspector?.OutputLog?.LogError(e, $"An exception occurred while creating an instance of type {Type} from assembly {Type.Assembly.GetName().Name}.");
-                    return (false, e);
+                    return null;
                 }
+            };
+
+            instance = new(() => {
+                var result = innerFactory();
+                if(result != null && ConfigurationTools.GetConfigurableProperties(result).Any())
+                {
+                    // Value got created, but there are properties, so it should not be cached.
+                    result = new InstanceFactory(result, innerFactory);
+                }
+                return result;
             }, false);
         }
 
@@ -46,8 +60,30 @@ namespace IS4.SFI.Application.Plugins
         public object? GetInstance()
         {
             // Re-use instance if already created
-            var (success, value) = instance.Value;
-            return success ? value : null;
+            var value = instance.Value;
+            return value is InstanceFactory factory ? factory.Next() : value;
+        }
+
+        class InstanceFactory
+        {
+            object? firstResult;
+            readonly Func<object?> factory;
+
+            public InstanceFactory(object firstResult, Func<object?> factory)
+            {
+                this.firstResult = firstResult;
+                this.factory = factory;
+            }
+
+            public object? Next()
+            {
+                if(Interlocked.Exchange(ref firstResult, null) is { } result)
+                {
+                    // First time obtaining the result
+                    return result;
+                }
+                return factory();
+            }
         }
     }
 }

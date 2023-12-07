@@ -14,7 +14,7 @@ namespace IS4.SFI.Tools
     /// instance.
     /// </summary>
     [Description("Represents a hash algorithm.")]
-    public class BuiltInHash : DataHashAlgorithm
+    public abstract class BuiltInHash : DataHashAlgorithm
     {
         /// <summary>
         /// The MD5 hash algorithm, using <see cref="Cryptography.MD5"/>.
@@ -83,7 +83,7 @@ namespace IS4.SFI.Tools
         private static BuiltInHash? Create<THash>(Func<THash> factory, IndividualUri identifier, string prefix, int? numericIdentifier = null, string? niName = null, FormattingMethod formattingMethod = FormattingMethod.Base32) where THash : Cryptography.HashAlgorithm
         {
             try{
-                return new BuiltInHash<THash>(factory, identifier, prefix, numericIdentifier, niName, formattingMethod);
+                return new BuiltInCloneableHash<THash>(factory, identifier, prefix, numericIdentifier, niName, formattingMethod);
             }catch(PlatformNotSupportedException)
             {
                 return null;
@@ -143,6 +143,19 @@ namespace IS4.SFI.Tools
         public BuiltInHash(Func<THash> factory, IndividualUri identifier, string prefix, int? numericIdentifier, string? niName, FormattingMethod formattingMethod) : base(factory, identifier, prefix, numericIdentifier, niName, formattingMethod)
         {
 
+        }
+    }
+
+    class BuiltInCloneableHash<THash> : BuiltInHash<THash>, ICloneable where THash : Cryptography.HashAlgorithm
+    {
+        public BuiltInCloneableHash(Func<THash> factory, IndividualUri identifier, string prefix, int? numericIdentifier, string? niName, FormattingMethod formattingMethod) : base(factory, identifier, prefix, numericIdentifier, niName, formattingMethod)
+        {
+
+        }
+
+        public object Clone()
+        {
+            return MemberwiseClone();
         }
     }
 }

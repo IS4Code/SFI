@@ -2,6 +2,7 @@
 using IS4.SFI.Application;
 using IS4.SFI.Application.Plugins;
 using IS4.SFI.Application.Tools;
+using IS4.SFI.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -41,9 +42,15 @@ namespace IS4.SFI.ConsoleApp
             var algorithms = ImageAnalyzer.DataHashAlgorithms;
             foreach(var algorithm in DataAnalyzer.HashAlgorithms)
             {
-                if(!algorithms.Contains(algorithm))
+                var algType = algorithm.GetType();
+                if(!algorithms.Any(a => algType.Equals(a.GetType())))
                 {
-                    algorithms.Add(algorithm);
+                    if(algorithm is ICloneable cloneable)
+                    {
+                        algorithms.Add((IDataHashAlgorithm)cloneable.Clone());
+                    }else{
+                        algorithms.Add(algorithm);
+                    }
                 }
             }
 #else
