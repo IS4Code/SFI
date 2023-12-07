@@ -56,7 +56,7 @@ namespace IS4.SFI.Formats
 
             public IModuleSignature? Signature {
                 get {
-                    var sig = file.Authenticode;
+                    var sig = file.AuthenticodeInfo;
                     if(sig != null && sig.SignedHash != null)
                     {
                         if(verified ?? (verified = VerifySignatureHash() && VerifyHash(sig)).GetValueOrDefault())
