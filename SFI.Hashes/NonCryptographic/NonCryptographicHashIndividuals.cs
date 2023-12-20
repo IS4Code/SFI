@@ -23,13 +23,13 @@ namespace IS4.SFI.Vocabulary
         public static readonly IndividualUri Crc64;
 
         /// <summary>
-        /// <c><see cref="At"/>:xxhash32</c>.
+        /// <c><see cref="At"/>:xxHash32</c>.
         /// </summary>
         [Uri(At)]
         public static readonly IndividualUri XxHash32;
 
         /// <summary>
-        /// <c><see cref="At"/>:xxhash64</c>.
+        /// <c><see cref="At"/>:xxHash64</c>.
         /// </summary>
         [Uri(At)]
         public static readonly IndividualUri XxHash64;
