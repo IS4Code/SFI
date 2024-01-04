@@ -17,10 +17,10 @@ using System.Threading.Tasks;
 namespace IS4.SFI.Analyzers
 {
     /// <summary>
-    /// An analyzer of images as instances of <see cref="Image"/>.
+    /// An analyzer of images as instances of <see cref="IImage"/>.
     /// </summary>
     [Description("An analyzer of images.")]
-    public class ImageAnalyzer : MediaObjectAnalyzer<Image>
+    public class ImageAnalyzer : MediaObjectAnalyzer<IImage>
     {
         /// <summary>
         /// A collection of <see cref="Image"/>-based hash algorithms that produce
@@ -53,7 +53,7 @@ namespace IS4.SFI.Analyzers
         static readonly ImageTag DefaultTag = new();
 
         /// <inheritdoc/>
-        public async override ValueTask<AnalysisResult> Analyze(Image image, AnalysisContext context, IEntityAnalyzers analyzers)
+        public async override ValueTask<AnalysisResult> Analyze(IImage image, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var node = GetNode(context);
             var tag = (image.Tag as IImageTag) ?? DefaultTag;
@@ -62,7 +62,7 @@ namespace IS4.SFI.Analyzers
 
             if(context.MatchContext.GetService<IImageResourceTag>() is IImageResourceTag imageTag && imageTag.IsTransparent)
             {
-                if(image is Bitmap bmp && bmp.Width > 1 && bmp.Height > 1)
+                if(image is IImage<Image> { UnderlyingImage: Bitmap { Width: > 1, Height: > 1 } bmp })
                 {
                     var colors = new[]
                     {
@@ -87,63 +87,49 @@ namespace IS4.SFI.Analyzers
                 node.Set(Properties.Height, image.Height);
                 node.Set(Properties.HorizontalResolution, (decimal)image.HorizontalResolution);
                 node.Set(Properties.VerticalResolution, (decimal)image.VerticalResolution);
-                int paletteSize;
-                try{
-                    paletteSize = image.Palette?.Entries?.Length ?? 0;
-                }catch(ExternalException)
-                {
-                    paletteSize = 0;
-                }
-                int bpp = Image.GetPixelFormatSize(image.PixelFormat);
+                int paletteSize = image.Palette.Count;
+                int bpp = image.BitDepth;
                 if(bpp != 0) node.Set(paletteSize > 0 ? Properties.BitDepth : Properties.ColorDepth, bpp);
                 if(paletteSize > 0) node.Set(Properties.PaletteSize, paletteSize);
             }
 
             if(!storedAsData)
             {
-                if(MakeThumbnail && tag.MakeThumbnail)
+                if(image is IImage<Image> { UnderlyingImage: { } img })
                 {
-                    ArraySegment<byte> thumbnailData;
-                    using(var thumbnail = ImageTools.ResizeImage(image, 12, 12, PixelFormat.Format32bppArgb, Color.Transparent))
+                    if(MakeThumbnail && tag.MakeThumbnail)
                     {
-                        using var stream = new MemoryStream();
-                        thumbnail.Save(stream, ImageFormat.Png);
-                        thumbnailData = stream.GetData();
+                        ArraySegment<byte> thumbnailData;
+                        using(var thumbnail = ImageTools.ResizeImage(img, 12, 12, PixelFormat.Format32bppArgb, Color.Transparent))
+                        {
+                            using var stream = new MemoryStream();
+                            thumbnail.Save(stream, ImageFormat.Png);
+                            thumbnailData = stream.GetData();
+                        }
+
+                        var thumbNode = context.NodeFactory.Create(UriTools.DataUriFormatter, ("image/png", null, thumbnailData));
+                        node.Set(Properties.Thumbnail, thumbNode);
+                        thumbNode.Set(Properties.AtPrefLabel, "Thumbnail image");
                     }
 
-                    var thumbNode = context.NodeFactory.Create(UriTools.DataUriFormatter, ("image/png", null, thumbnailData));
-                    node.Set(Properties.Thumbnail, thumbNode);
-                    thumbNode.Set(Properties.AtPrefLabel, "Thumbnail image");
-                }
-
-                if(tag.LowFrequencyHash)
-                {
-                    foreach(var hash in LowFrequencyImageHashAlgorithms)
+                    if(tag.LowFrequencyHash)
                     {
-                        var hashBytes = await hash.ComputeHash(image);
-                        await HashAlgorithm.AddHash(node, hash, hashBytes, context.NodeFactory, OnOutputFile);
-                    }
-                }
-
-                if(tag.ByteHash && DataHashAlgorithms.Count > 0 && image is Bitmap bmp)
-                {
-                    var format = image.PixelFormat;
-                    if(Image.GetPixelFormatSize(format) == 0)
-                    {
-                        format = PixelFormat.Format32bppArgb;
-                    }
-
-                    var data = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.ReadOnly, format);
-                    try{
-                        int bpp = Image.GetPixelFormatSize(data.PixelFormat);
-                        await Task.WhenAll(DataHashAlgorithms.Select(hash => Task.Run(async () => {
-                            using var stream = new BitmapDataStream(data.Scan0, data.Stride, data.Height, data.Width, bpp);
-                            var hashBytes = await hash.ComputeHash(stream);
+                        foreach(var hash in LowFrequencyImageHashAlgorithms)
+                        {
+                            var hashBytes = await hash.ComputeHash(img);
                             await HashAlgorithm.AddHash(node, hash, hashBytes, context.NodeFactory, OnOutputFile);
-                        })));
-                    }finally{
-                        bmp.UnlockBits(data);
+                        }
                     }
+                }
+
+                if(tag.ByteHash && DataHashAlgorithms.Count > 0)
+                {
+                    using var data = image.GetData();
+                    await Task.WhenAll(DataHashAlgorithms.Select(hash => Task.Run(async () => {
+                        using var stream = data.Open();
+                        var hashBytes = await hash.ComputeHash(stream);
+                        await HashAlgorithm.AddHash(node, hash, hashBytes, context.NodeFactory, OnOutputFile);
+                    })));
                 }
             }
 

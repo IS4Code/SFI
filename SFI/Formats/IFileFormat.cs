@@ -39,14 +39,14 @@ namespace IS4.SFI.Formats
     public interface IFileFormat<in T> : IFileFormat where T : class
     {
         /// <summary>
-        /// Returns the media type of an object describing an instance of this formats.
+        /// Returns the media type of an object describing an instance of this format.
         /// </summary>
         /// <param name="value">An object compatible with this format.</param>
         /// <returns>A MIME type based on <paramref name="value"/>.</returns>
         string? GetMediaType(T value);
 
         /// <summary>
-        /// Returns the common extension of an object describing an instance of this formats.
+        /// Returns the common extension of an object describing an instance of this format.
         /// </summary>
         /// <param name="value">An object compatible with this format.</param>
         /// <returns>A MIME type based on <paramref name="value"/>.</returns>

@@ -1,4 +1,5 @@
 ﻿using IS4.SFI.Analyzers;
+using IS4.SFI.Formats;
 using IS4.SFI.Tags;
 using IS4.SFI.Tools;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -23,6 +24,8 @@ namespace IS4.SFI.Tests
         /// </summary>
         public ImageAnalyzer Analyzer { get; } = new ImageAnalyzer();
 
+        readonly Formats.ImageFormat imageFormat = new();
+
         /// <summary>
         /// Tests that dimensions and pixel format are correctly stored.
         /// </summary>
@@ -38,7 +41,7 @@ namespace IS4.SFI.Tests
         {
             var image = new Bitmap(width, height, pixelFormat);
 
-            var result = await Analyzer.Analyze(image, Context, this);
+            var result = await Analyzer.Analyze(new DrawingImage(image, imageFormat), Context, this);
 
             Assert.AreSame(Node, result.Node);
             Assert.AreEqual(width, Node[Width]);
@@ -72,7 +75,7 @@ namespace IS4.SFI.Tests
                 MakeThumbnail = thumbnail
             };
 
-            var result = await Analyzer.Analyze(image, Context, this);
+            var result = await Analyzer.Analyze(new DrawingImage(image, imageFormat), Context, this);
 
             Assert.AreEqual(Node, result.Node);
             if(dimensions)
@@ -129,7 +132,7 @@ namespace IS4.SFI.Tests
             var expectedHashResult = await hash.ComputeHash(simulatedData, null);
             var expectedUri = hash[new ArraySegment<byte>(expectedHashResult)];
 
-            var result = await Analyzer.Analyze(image, Context, this);
+            var result = await Analyzer.Analyze(new DrawingImage(image, imageFormat), Context, this);
 
             Assert.AreEqual(Node, result.Node);
             var digest = Node[Digest];

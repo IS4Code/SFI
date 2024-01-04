@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 namespace IS4.SFI.Formats
 {
     /// <summary>
-    /// A general image format, producing instances of <see cref="Image"/>.
+    /// A general image format, producing instances of <see cref="IImage{TUnderlying}"/> of <see cref="Image"/>.
     /// </summary>
     [Description("A general image format.")]
-    public class ImageFormat : BinaryFileFormat<Image>
+    public class ImageFormat : BinaryFileFormat<IImage<Image>>, IFileFormat<Image>
     {
         /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public ImageFormat() : base(0, null, null)
@@ -22,7 +22,7 @@ namespace IS4.SFI.Formats
         }
 
         /// <inheritdoc/>
-        public override string? GetExtension(Image image)
+        public string? GetExtension(Image image)
         {
             var extension = GetCodec(image.RawFormat)?.FilenameExtension;
             if(extension == null) return null;
@@ -33,9 +33,21 @@ namespace IS4.SFI.Formats
         }
 
         /// <inheritdoc/>
-        public override string? GetMediaType(Image image)
+        public string? GetMediaType(Image image)
         {
             return GetCodec(image.RawFormat)?.MimeType;
+        }
+
+        /// <inheritdoc/>
+        public override string? GetMediaType(IImage<Image> image)
+        {
+            return GetMediaType(image.UnderlyingImage);
+        }
+
+        /// <inheritdoc/>
+        public override string? GetExtension(IImage<Image> image)
+        {
+            return GetExtension(image.UnderlyingImage);
         }
 
         private ImageCodecInfo GetCodec(System.Drawing.Imaging.ImageFormat format)
@@ -44,10 +56,10 @@ namespace IS4.SFI.Formats
         }
 
         /// <inheritdoc/>
-        public async override ValueTask<TResult?> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<Image, TResult, TArgs> resultFactory, TArgs args) where TResult : default
+        public async override ValueTask<TResult?> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<IImage<Image>, TResult, TArgs> resultFactory, TArgs args) where TResult : default
         {
             using var image = Image.FromStream(stream);
-            return await resultFactory(image, args);
+            return await resultFactory(new DrawingImage(image, this), args);
         }
 
         /// <inheritdoc/>
