@@ -27,7 +27,11 @@ namespace IS4.SFI.MediaAnalysis.Images
         "result differs between the two scaled-down variants.")]
     public class DHash : ObjectHashAlgorithm<IImage>, IObjectHashAlgorithm<Image>
     {
-        static readonly Color gray = Color.FromArgb(0xBC, 0xBC, 0xBC);
+        /// <summary>
+        /// The color to use when filling the background.
+        /// </summary>
+        [Description("The color to use when filling the background.")]
+        public Color BackgroundColor { get; set; } = Color.FromArgb(0xBC, 0xBC, 0xBC);
 
         /// <inheritdoc cref="ObjectHashAlgorithm{T}.ObjectHashAlgorithm(IndividualUri, int, string, FormattingMethod)"/>
         public DHash() : base(Individuals.DHash, 16, "urn:dhash:", FormattingMethod.Hex)
@@ -38,8 +42,8 @@ namespace IS4.SFI.MediaAnalysis.Images
         /// <inheritdoc/>
         public async override ValueTask<byte[]> ComputeHash(IImage image)
         {
-            using var horiz = image.Resize(9, 8, true, gray);
-            using var vert = image.Resize(8, 9, true, gray);
+            using var horiz = image.Resize(9, 8, true, BackgroundColor);
+            using var vert = image.Resize(8, 9, true, BackgroundColor);
             using var horizBits = horiz.GetData();
             using var vertBits = vert.GetData();
             return ComputeDHash(horizBits, vertBits);
