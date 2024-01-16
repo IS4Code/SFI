@@ -87,6 +87,23 @@ namespace IS4.SFI.Services
         /// </summary>
         /// <returns>An instance of <see cref="IImageData"/> for the image pixels.</returns>
         IImageData GetData();
+
+        /// <summary>
+        /// Saves the image in a particular format.
+        /// </summary>
+        /// <param name="output">The output stream to write the image to.</param>
+        /// <param name="mediaType">The media type identifying the format.</param>
+        void Save(Stream output, string mediaType);
+
+        /// <summary>
+        /// Resizes the image to new dimensions and returns it as a new image.
+        /// </summary>
+        /// <param name="newWith">The new width of the image.</param>
+        /// <param name="newHeight">The new height of the image.</param>
+        /// <param name="use32bppArgb">Whether to create the image using 32-bit ARGB pixel format (compatible with <see cref="Color.FromArgb(int)"/>, or the original one.</param>
+        /// <param name="backgroundColor">The background of the resized image.</param>
+        /// <returns>A new image with the specified dimensions.</returns>
+        IImage Resize(int newWith, int newHeight, bool use32bppArgb, Color backgroundColor);
     }
 
     /// <summary>
@@ -174,7 +191,7 @@ namespace IS4.SFI.Services
         /// Creates a new instance of the class.
         /// </summary>
         /// <param name="underlyingImage">The value of <see cref="UnderlyingImage"/>.</param>
-        /// <param name="format">The <see cref="IFileFormat{T}"/> instance describing the underlying image's format.</param>
+        /// <param name="format">The value of <see cref="UnderlyingFormat"/>.</param>
         protected ImageBase(TUnderlying underlyingImage, IFileFormat<TUnderlying> format)
         {
             this.underlyingImage = underlyingImage;
@@ -186,6 +203,11 @@ namespace IS4.SFI.Services
 
         /// <inheritdoc/>
         public TUnderlying UnderlyingImage => underlyingImage ?? throw new ObjectDisposedException(ToString());
+
+        /// <summary>
+        /// The <see cref="IFileFormat{T}"/> instance describing the underlying image's format.
+        /// </summary>
+        public IFileFormat<TUnderlying> UnderlyingFormat => format;
 
         /// <inheritdoc/>
         public abstract int Width { get; }
@@ -225,6 +247,12 @@ namespace IS4.SFI.Services
 
         /// <inheritdoc/>
         public abstract IImageData GetData();
+
+        /// <inheritdoc/>
+        public abstract void Save(Stream output, string mediaType);
+
+        /// <inheritdoc/>
+        public abstract IImage Resize(int newWith, int newHeight, bool use32bppArgb, Color backgroundColor);
 
         /// <inheritdoc cref="IIdentityKey.ReferenceKey"/>
         protected virtual object? ReferenceKey => underlyingImage;

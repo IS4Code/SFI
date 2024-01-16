@@ -1,10 +1,11 @@
-﻿using IS4.SFI.Services;
+﻿using IS4.SFI.Formats;
+using IS4.SFI.Services;
+using IS4.SFI.Tools;
 using IS4.SFI.Vocabulary;
 using System;
 using System.Collections;
 using System.ComponentModel;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.Threading.Tasks;
 
 namespace IS4.SFI.MediaAnalysis.Images
@@ -24,7 +25,7 @@ namespace IS4.SFI.MediaAnalysis.Images
         "and interlaces the resulting hash. The pixels are compared " +
         "based on their brightness and if the values are equal, the " +
         "result differs between the two scaled-down variants.")]
-    public class DHash : ObjectHashAlgorithm<Image>
+    public class DHash : ObjectHashAlgorithm<IImage>, IObjectHashAlgorithm<Image>
     {
         static readonly Color gray = Color.FromArgb(0xBC, 0xBC, 0xBC);
 
@@ -35,21 +36,21 @@ namespace IS4.SFI.MediaAnalysis.Images
         }
 
         /// <inheritdoc/>
-        public async override ValueTask<byte[]> ComputeHash(Image image)
+        public async override ValueTask<byte[]> ComputeHash(IImage image)
         {
-            using var horiz = ImageTools.ResizeImage(image, 9, 8, PixelFormat.Format32bppArgb, gray);
-            using var vert = ImageTools.ResizeImage(image, 8, 9, PixelFormat.Format32bppArgb, gray);
-            var horizBits = horiz.LockBits(new Rectangle(0, 0, 9, 8), ImageLockMode.ReadOnly, PixelFormat.Format32bppRgb);
-            try{
-                var vertBits = vert.LockBits(new Rectangle(0, 0, 8, 9), ImageLockMode.ReadOnly, PixelFormat.Format32bppRgb);
-                try{
-                    return ComputeDHash(horizBits, vertBits);
-                }finally{
-                    vert.UnlockBits(vertBits);
-                }
-            }finally{
-                horiz.UnlockBits(horizBits);
-            }
+            using var horiz = image.Resize(9, 8, true, gray);
+            using var vert = image.Resize(8, 9, true, gray);
+            using var horizBits = horiz.GetData();
+            using var vertBits = vert.GetData();
+            return ComputeDHash(horizBits, vertBits);
+        }
+
+        readonly Formats.ImageFormat imageFormat = new();
+
+        /// <inheritdoc/>
+        public async ValueTask<byte[]> ComputeHash(Image image)
+        {
+            return await ComputeHash(new DrawingImage(image, imageFormat));
         }
 
         static readonly (byte, byte)[] path = { (0, 3), (1, 3), (1, 2), (0, 2), (0, 1), (0, 0), (1, 0), (1, 1), (2, 1), (2, 0), (3, 0), (3, 1), (3, 2), (2, 2), (2, 3), (3, 3) };
@@ -67,22 +68,24 @@ namespace IS4.SFI.MediaAnalysis.Images
             }
         }
 
-        static unsafe byte[] ComputeDHash(BitmapData horiz, BitmapData vert)
+        static unsafe byte[] ComputeDHash(IImageData horiz, IImageData vert)
         {
             var hash = new BitArray(128);
 
-            byte* hdata = (byte*)horiz.Scan0;
-            byte* vdata = (byte*)vert.Scan0;
+            var hdata = horiz.Memory.Span;
+            var vdata = vert.Memory.Span;
 
             for(int i = 0; i < 64; i++)
             {
                 var point = GetPoint(i);
 
-                var h = hdata + horiz.Stride * point.y + point.x * sizeof(int);
-                var v = vdata + vert.Stride * point.y + point.x * sizeof(int);
+                var h = horiz.Scan0 + horiz.Stride * point.y + point.x * sizeof(int);
+                var v = vert.Scan0 + vert.Stride * point.y + point.x * sizeof(int);
 
-                var hresult = Compare(*(int*)h, *(int*)(h + sizeof(int)), false);
-                var vresult = Compare(*(int*)v, *(int*)(v + vert.Stride), true);
+                var hspan = hdata.Slice(h).MemoryCast<int>();
+
+                var hresult = Compare(hspan[0], hspan[1], false);
+                var vresult = Compare(vdata.Slice(v).MemoryCast<int>()[0], vdata.Slice(v + vert.Stride).MemoryCast<int>()[0], true);
 
                 hash.Set(2 * i, hresult);
                 hash.Set(2 * i + 1, vresult);

@@ -1,4 +1,5 @@
-﻿using IS4.SFI.Services;
+﻿using IS4.SFI.MediaAnalysis.Images;
+using IS4.SFI.Services;
 using IS4.SFI.Tags;
 using IS4.SFI.Tools.IO;
 using System;
@@ -15,6 +16,8 @@ namespace IS4.SFI.Formats
     public class DrawingImage : ImageBase<Image>
     {
         Bitmap Bitmap => UnderlyingImage as Bitmap ?? throw new NotSupportedException();
+
+        new ImageFormat UnderlyingFormat => base.UnderlyingFormat as ImageFormat ?? throw new NotSupportedException();
 
         public DrawingImage(Image underlyingImage, ImageFormat format) : base(underlyingImage, format)
         {
@@ -66,6 +69,17 @@ namespace IS4.SFI.Formats
             var bits = BitDepth;
             var data = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.ReadOnly, bits == 0 ? PixelFormat.Format32bppArgb : bmp.PixelFormat);
             return new DrawingImageData(this, data);
+        }
+
+        public override void Save(Stream output, string mediaType)
+        {
+            var encoder = ImageFormat.GetOutputEncoder(mediaType) ?? throw new ArgumentException("The specified format cannot be found.", nameof(mediaType));
+            UnderlyingImage.Save(output, encoder, new EncoderParameters());
+        }
+
+        public override IImage Resize(int newWith, int newHeight, bool use32bppArgb, Color backgroundColor)
+        {
+            return new DrawingImage(ImageTools.ResizeImage(UnderlyingImage, newWith, newHeight, use32bppArgb ? PixelFormat.Format32bppArgb : UnderlyingImage.PixelFormat, backgroundColor), UnderlyingFormat);
         }
     }
 

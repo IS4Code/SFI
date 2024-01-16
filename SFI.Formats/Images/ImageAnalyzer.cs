@@ -2,7 +2,6 @@
 using IS4.SFI.Services;
 using IS4.SFI.Tags;
 using IS4.SFI.Tools;
-using IS4.SFI.Tools.IO;
 using IS4.SFI.Vocabulary;
 using System;
 using System.Collections.Generic;
@@ -11,7 +10,6 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace IS4.SFI.Analyzers
@@ -56,7 +54,7 @@ namespace IS4.SFI.Analyzers
         public async override ValueTask<AnalysisResult> Analyze(IImage image, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var node = GetNode(context);
-            var tag = (image.Tag as IImageTag) ?? DefaultTag;
+            var tag = image.Tag ?? DefaultTag;
 
             bool storedAsData = node.Scheme.Equals("data", StringComparison.OrdinalIgnoreCase);
 

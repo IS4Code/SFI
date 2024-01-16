@@ -50,7 +50,12 @@ namespace IS4.SFI.Formats
             return GetExtension(image.UnderlyingImage);
         }
 
-        private ImageCodecInfo GetCodec(System.Drawing.Imaging.ImageFormat format)
+        public static ImageCodecInfo? GetOutputEncoder(string mediaType)
+        {
+            return ImageCodecInfo.GetImageEncoders().FirstOrDefault(codec => codec.MimeType.Equals(mediaType, StringComparison.OrdinalIgnoreCase));
+        }
+
+        private ImageCodecInfo? GetCodec(System.Drawing.Imaging.ImageFormat format)
         {
             return ImageCodecInfo.GetImageDecoders().FirstOrDefault(codec => codec.FormatID == format.Guid);
         }
