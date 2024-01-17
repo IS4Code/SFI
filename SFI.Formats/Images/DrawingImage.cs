@@ -12,27 +12,39 @@ using System.Threading;
 
 namespace IS4.SFI.Formats
 {
+    /// <summary>
+    /// Provides an <see cref="IImage{TUnderlying}"/> implementation
+    /// backed by an instance of <see cref="Image"/>.
+    /// </summary>
     public class DrawingImage : ImageBase<Image>
     {
         Bitmap Bitmap => UnderlyingImage as Bitmap ?? throw new NotSupportedException();
 
+        /// <inheritdoc/>
         public DrawingImage(Image underlyingImage, IFileFormat<Image> format) : base(underlyingImage, format)
         {
 
         }
 
+        /// <inheritdoc/>
         public override int Width => UnderlyingImage.Width;
 
+        /// <inheritdoc/>
         public override int Height => UnderlyingImage.Height;
 
+        /// <inheritdoc/>
         public override double HorizontalResolution => UnderlyingImage.HorizontalResolution;
 
+        /// <inheritdoc/>
         public override double VerticalResolution => UnderlyingImage.VerticalResolution;
 
+        /// <inheritdoc/>
         public override bool HasAlpha => Image.IsAlphaPixelFormat(UnderlyingImage.PixelFormat);
 
+        /// <inheritdoc/>
         public override int BitDepth => Image.GetPixelFormatSize(UnderlyingImage.PixelFormat);
 
+        /// <inheritdoc/>
         public override IReadOnlyList<Color> Palette {
             get {
                 try
@@ -45,21 +57,25 @@ namespace IS4.SFI.Formats
             }
         }
 
+        /// <inheritdoc/>
         public override IImageTag? Tag {
             get => (UnderlyingImage.Tag as IImageTag) ?? base.Tag;
             set => UnderlyingImage.Tag = base.Tag = value;
         }
 
+        /// <inheritdoc/>
         public override Color GetPixel(int x, int y)
         {
             return Bitmap.GetPixel(x, y);
         }
 
+        /// <inheritdoc/>
         public override void SetPixel(int x, int y, Color color)
         {
             Bitmap.SetPixel(x, y, color);
         }
 
+        /// <inheritdoc/>
         public override IImageData GetData()
         {
             var bmp = Bitmap;
@@ -68,39 +84,53 @@ namespace IS4.SFI.Formats
             return new DrawingImageData(this, data);
         }
 
+        /// <inheritdoc/>
         public override void Save(Stream output, string mediaType)
         {
             var encoder = ImageFormat.GetOutputEncoder(mediaType) ?? throw new ArgumentException("The specified format cannot be found.", nameof(mediaType));
             UnderlyingImage.Save(output, encoder, new EncoderParameters());
         }
 
+        /// <inheritdoc/>
         public override IImage Resize(int newWith, int newHeight, bool use32bppArgb, Color backgroundColor)
         {
             return new DrawingImage(ImageTools.ResizeImage(UnderlyingImage, newWith, newHeight, use32bppArgb ? PixelFormat.Format32bppArgb : UnderlyingImage.PixelFormat, backgroundColor), UnderlyingFormat);
         }
     }
 
+    /// <summary>
+    /// Provides an <see cref="IImageData"/> implementation
+    /// backed by an instance of <see cref="BitmapData"/>.
+    /// </summary>
     public class DrawingImageData : MemoryImageData<Image>
     {
         BitmapData? _data;
 
         BitmapData data => _data ?? throw new ObjectDisposedException(nameof(DrawingImageData));
 
+        /// <summary>
+        /// Creates a new instance of the data.
+        /// </summary>
+        /// <param name="image">The value of <see cref="ImageData{TUnderlying}.Image"/>.</param>
+        /// <param name="data">The instance of <see cref="BitmapData"/> to access the data of.</param>
         public DrawingImageData(DrawingImage image, BitmapData data) : base(image, data.Stride, System.Drawing.Image.GetPixelFormatSize(data.PixelFormat))
         {
             _data = data;
         }
 
+        /// <inheritdoc/>
         public unsafe override Span<byte> GetSpan()
         {
             return new Span<byte>((data.Scan0 - Scan0).ToPointer(), Size);
         }
 
+        /// <inheritdoc/>
         protected override Stream Open()
         {
             return new BitmapDataStream(data.Scan0, Stride, data.Height, Width, BitDepth);
         }
 
+        /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
             if(Interlocked.Exchange(ref _data, null) is { } bmpData)

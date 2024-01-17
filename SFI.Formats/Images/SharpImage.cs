@@ -20,6 +20,10 @@ using IImage = SixLabors.ImageSharp.IImage;
 
 namespace IS4.SFI.Formats
 {
+    /// <summary>
+    /// Provides an <see cref="IImage{TUnderlying}"/> implementation
+    /// backed by an instance of <see cref="IImage"/>.
+    /// </summary>
     public class SharpImage : ImageBase<IImage>
     {
         Image Image => UnderlyingImage as Image ?? throw new NotSupportedException();
@@ -28,19 +32,27 @@ namespace IS4.SFI.Formats
 
         PixelTypeInfo PixelType => UnderlyingImage.PixelType;
 
+        /// <inheritdoc/>
         public SharpImage(IImage underlyingImage, IFileFormat<IImage> format) : base(underlyingImage, format)
         {
 
         }
 
+        /// <inheritdoc/>
         public override int Width => UnderlyingImage.Width;
 
+        /// <inheritdoc/>
         public override int Height => UnderlyingImage.Height;
 
+        /// <inheritdoc/>
         public override double HorizontalResolution => ResolutionUnit * Metadata.HorizontalResolution;
 
+        /// <inheritdoc/>
         public override double VerticalResolution => ResolutionUnit * Metadata.VerticalResolution;
 
+        /// <summary>
+        /// The coefficient to use when converting resolution to pixel per inch.
+        /// </summary>
         private double ResolutionUnit{
             get{
                 switch(Metadata.ResolutionUnits)
@@ -59,12 +71,16 @@ namespace IS4.SFI.Formats
             }
         }
 
+        /// <inheritdoc/>
         public override bool HasAlpha => PixelType.AlphaRepresentation is not (0 or null);
 
+        /// <inheritdoc/>
         public override int BitDepth => PixelType.BitsPerPixel;
 
+        /// <inheritdoc/>
         public override IReadOnlyList<Color> Palette => Array.Empty<Color>();
 
+        /// <inheritdoc/>
         public override int? PaletteSize{
             get{
                 if(Metadata.GetPngMetadata() is { } png)
@@ -83,6 +99,7 @@ namespace IS4.SFI.Formats
             }
         }
 
+        /// <inheritdoc/>
         [DynamicDependency(nameof(GetImagePixel), typeof(SharpImage))]
         public override Color GetPixel(int x, int y)
         {
@@ -94,6 +111,7 @@ namespace IS4.SFI.Formats
             }
         }
 
+        /// <inheritdoc/>
         [DynamicDependency(nameof(SetImagePixel), typeof(SharpImage))]
         public override void SetPixel(int x, int y, Color color)
         {
@@ -105,20 +123,37 @@ namespace IS4.SFI.Formats
             }
         }
 
-        private static Color GetImagePixel<TPixel>(Image<TPixel> image, int x, int y) where TPixel : unmanaged, IPixel<TPixel>
+        /// <summary>
+        /// Retrieves the color value of a particular pixel in an image.
+        /// </summary>
+        /// <typeparam name="TPixel">The pixel type of the image.</typeparam>
+        /// <param name="image">The image to access.</param>
+        /// <param name="x">The X coordinate of the pixel.</param>
+        /// <param name="y">The Y coordinate of the pixel.</param>
+        /// <returns>The color of the pixel at the specified coordinates.</returns>
+        protected static Color GetImagePixel<TPixel>(Image<TPixel> image, int x, int y) where TPixel : unmanaged, IPixel<TPixel>
         {
             Rgba32 pixel = default;
             image[x, y].ToRgba32(ref pixel);
             return Color.FromArgb(pixel.A, pixel.R, pixel.G, pixel.B);
         }
 
-        private static void SetImagePixel<TPixel>(Image<TPixel> image, int x, int y, Color color) where TPixel : unmanaged, IPixel<TPixel>
+        /// <summary>
+        /// Assigns the color value of a particular pixel in an image.
+        /// </summary>
+        /// <typeparam name="TPixel">The pixel type of the image.</typeparam>
+        /// <param name="image">The image to access.</param>
+        /// <param name="x">The X coordinate of the pixel.</param>
+        /// <param name="y">The Y coordinate of the pixel.</param>
+        /// <param name="color">The color to assign at the specified coordinates.</param>
+        protected static void SetImagePixel<TPixel>(Image<TPixel> image, int x, int y, Color color) where TPixel : unmanaged, IPixel<TPixel>
         {
             TPixel pixel = default;
             pixel.FromArgb32(new(color.R, color.G, color.B, color.A));
             image[x, y] = pixel;
         }
 
+        /// <inheritdoc/>
         [DynamicDependency(nameof(GetImageData), typeof(SharpImage))]
         public override IImageData GetData()
         {
@@ -130,11 +165,18 @@ namespace IS4.SFI.Formats
             }
         }
 
-        private IImageData GetImageData<TPixel>(Image<TPixel> image) where TPixel : unmanaged, IPixel<TPixel>
+        /// <summary>
+        /// Obtains the raw pixel data of the image.
+        /// </summary>
+        /// <typeparam name="TPixel">The pixel type of the image.</typeparam>
+        /// <param name="image">The image to access.</param>
+        /// <returns>An instance of <see cref="IImageData"/> for the image pixels.</returns>
+        protected IImageData GetImageData<TPixel>(Image<TPixel> image) where TPixel : unmanaged, IPixel<TPixel>
         {
             return new SharpImageData<TPixel>(this, image);
         }
 
+        /// <inheritdoc/>
         public override void Save(Stream output, string mediaType)
         {
             var format = Configuration.Default.ImageFormatsManager.FindFormatByMimeType(mediaType) ?? throw new ArgumentException("The specified format cannot be found.", nameof(mediaType));
@@ -146,6 +188,7 @@ namespace IS4.SFI.Formats
             PreferContiguousImageBuffers = true
         };
 
+        /// <inheritdoc/>
         public override Services.IImage Resize(int newWith, int newHeight, bool use32bppArgb, Color backgroundColor)
         {
             var resizeOptions = new ResizeOptions
@@ -172,12 +215,57 @@ namespace IS4.SFI.Formats
         }
     }
 
+    /// <summary>
+    /// Provides an <see cref="IImage{TUnderlying}"/> implementation
+    /// backed by an instance of <see cref="Image{TPixel}"/>.
+    /// </summary>
+    /// <typeparam name="TPixel">The pixel type of the image.</typeparam>
+    public class SharpImage<TPixel> : SharpImage where TPixel : unmanaged, IPixel<TPixel>
+    {
+        Image<TPixel> Image => UnderlyingImage as Image<TPixel> ?? throw new InvalidOperationException();
+
+        /// <inheritdoc/>
+        public SharpImage(Image<TPixel> underlyingImage, IFileFormat<IImage> format) : base(underlyingImage, format)
+        {
+
+        }
+
+        /// <inheritdoc/>
+        public override Color GetPixel(int x, int y)
+        {
+            return GetImagePixel(Image, x, y);
+        }
+
+        /// <inheritdoc/>
+        public override void SetPixel(int x, int y, Color color)
+        {
+            SetImagePixel(Image, x, y, color);
+        }
+
+        /// <inheritdoc/>
+        public override IImageData GetData()
+        {
+            return GetImageData(Image);
+        }
+    }
+
+    /// <summary>
+    /// Provides an <see cref="IImageData"/> implementation
+    /// backed by an instance of <see cref="Image{TPixel}"/>.
+    /// </summary>
+    /// <typeparam name="TPixel">The pixel type of the image.</typeparam>
     public class SharpImageData<TPixel> : MemoryImageData<IImage> where TPixel : unmanaged, IPixel<TPixel>
     {
         readonly Image<TPixel> data;
 
+        /// <inheritdoc/>
         public override bool IsContiguous { get; }
 
+        /// <summary>
+        /// Creates a new instance of the data.
+        /// </summary>
+        /// <param name="image">The value of <see cref="ImageData{TUnderlying}.Image"/>.</param>
+        /// <param name="data">The instance of <see cref="Image{TPixel}"/> to access the data of.</param>
         public SharpImageData(SharpImage image, Image<TPixel> data) : base(image, data.Width * Unsafe.SizeOf<TPixel>(), data.PixelType.BitsPerPixel)
         {
             this.data = data;
@@ -185,6 +273,7 @@ namespace IS4.SFI.Formats
             IsContiguous = data.DangerousTryGetSinglePixelMemory(out _);
         }
 
+        /// <inheritdoc/>
         public override Memory<byte> GetPixel(int x, int y)
         {
             if(IsContiguous)
@@ -195,6 +284,7 @@ namespace IS4.SFI.Formats
             return Utils.Cast<TPixel, byte>(memory);
         }
 
+        /// <inheritdoc/>
         public override Memory<byte> GetRow(int y)
         {
             if(IsContiguous)
@@ -205,6 +295,7 @@ namespace IS4.SFI.Formats
             return Utils.Cast<TPixel, byte>(memory);
         }
 
+        /// <inheritdoc/>
         public override Span<byte> GetSpan()
         {
             if(!data.DangerousTryGetSinglePixelMemory(out var memory))
@@ -214,11 +305,13 @@ namespace IS4.SFI.Formats
             return MemoryMarshal.Cast<TPixel, byte>(memory.Span);
         }
 
+        /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
 
         }
 
+        /// <inheritdoc/>
         protected override Stream Open()
         {
             return new DataStream(data);
