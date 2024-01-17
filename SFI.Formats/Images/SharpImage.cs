@@ -3,6 +3,8 @@ using IS4.SFI.Tools.IO;
 using Microsoft.CSharp.RuntimeBinder;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Advanced;
+using SixLabors.ImageSharp.Formats;
+using SixLabors.ImageSharp.Metadata;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
 using System;
@@ -21,6 +23,10 @@ namespace IS4.SFI.Formats
     {
         Image Image => UnderlyingImage as Image ?? throw new NotSupportedException();
 
+        ImageMetadata Metadata => UnderlyingImage.Metadata;
+
+        PixelTypeInfo PixelType => UnderlyingImage.PixelType;
+
         public SharpImage(IImage underlyingImage, IFileFormat<IImage> format) : base(underlyingImage, format)
         {
 
@@ -30,13 +36,31 @@ namespace IS4.SFI.Formats
 
         public override int Height => UnderlyingImage.Height;
 
-        public override double HorizontalResolution => UnderlyingImage.Metadata.HorizontalResolution;
+        public override double HorizontalResolution => ResolutionUnit * Metadata.HorizontalResolution;
 
-        public override double VerticalResolution => UnderlyingImage.Metadata.VerticalResolution;
+        public override double VerticalResolution => ResolutionUnit * Metadata.VerticalResolution;
 
-        public override bool HasAlpha => UnderlyingImage.PixelType.AlphaRepresentation is not (0 or null);
+        private double ResolutionUnit{
+            get{
+                switch(Metadata.ResolutionUnits)
+                {
+                    case PixelResolutionUnit.AspectRatio:
+                        return 0;
+                    case PixelResolutionUnit.PixelsPerInch:
+                        return 1;
+                    case PixelResolutionUnit.PixelsPerCentimeter:
+                        return 2.54d;
+                    case PixelResolutionUnit.PixelsPerMeter:
+                        return 0.0254d;
+                    default:
+                        throw new NotSupportedException();
+                }
+            }
+        }
 
-        public override int BitDepth => UnderlyingImage.PixelType.BitsPerPixel;
+        public override bool HasAlpha => PixelType.AlphaRepresentation is not (0 or null);
+
+        public override int BitDepth => PixelType.BitsPerPixel;
 
         public override IReadOnlyList<Color> Palette => Array.Empty<Color>(); // TODO
 
