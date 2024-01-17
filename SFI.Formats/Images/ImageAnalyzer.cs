@@ -1,5 +1,4 @@
-﻿using IS4.SFI.MediaAnalysis.Images;
-using IS4.SFI.Services;
+﻿using IS4.SFI.Services;
 using IS4.SFI.Tags;
 using IS4.SFI.Tools;
 using IS4.SFI.Vocabulary;
@@ -7,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -26,7 +24,7 @@ namespace IS4.SFI.Analyzers
         /// </summary>
         [ComponentCollection("image-hash")]
         [Description("A collection of image-based hash algorithms that produce hashes from the low-detail form of the image.")]
-        public ICollection<IObjectHashAlgorithm<IImage>> LowFrequencyImageHashAlgorithms { get; } = new List<IObjectHashAlgorithm<Image>>();
+        public ICollection<IObjectHashAlgorithm<IImage>> LowFrequencyImageHashAlgorithms { get; } = new List<IObjectHashAlgorithm<IImage>>();
 
         /// <summary>
         /// A collection of byte-based hash algorithms producing hashes
@@ -97,10 +95,10 @@ namespace IS4.SFI.Analyzers
                 node.Set(Properties.Height, image.Height);
                 node.Set(Properties.HorizontalResolution, (decimal)image.HorizontalResolution);
                 node.Set(Properties.VerticalResolution, (decimal)image.VerticalResolution);
-                int paletteSize = image.Palette.Count;
+                var paletteSize = image.PaletteSize;
                 int bpp = image.BitDepth;
-                if(bpp != 0) node.Set(paletteSize > 0 ? Properties.BitDepth : Properties.ColorDepth, bpp);
-                if(paletteSize > 0) node.Set(Properties.PaletteSize, paletteSize);
+                if(bpp != 0) node.Set(paletteSize == 0 ? Properties.ColorDepth : Properties.BitDepth, bpp);
+                if(paletteSize is int size && size > 0) node.Set(Properties.PaletteSize, size);
             }
 
             if(!storedAsData)

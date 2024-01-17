@@ -4,6 +4,7 @@ using Microsoft.CSharp.RuntimeBinder;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Advanced;
 using SixLabors.ImageSharp.Formats;
+using SixLabors.ImageSharp.Formats.Png;
 using SixLabors.ImageSharp.Metadata;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
@@ -62,7 +63,25 @@ namespace IS4.SFI.Formats
 
         public override int BitDepth => PixelType.BitsPerPixel;
 
-        public override IReadOnlyList<Color> Palette => Array.Empty<Color>(); // TODO
+        public override IReadOnlyList<Color> Palette => Array.Empty<Color>();
+
+        public override int? PaletteSize{
+            get{
+                if(Metadata.GetPngMetadata() is { } png)
+                {
+                    return png.ColorType == PngColorType.Palette ? null : 0;
+                }
+                if(Metadata.GetGifMetadata() is { } gif)
+                {
+                    return gif.GlobalColorTableLength;
+                }
+                if(Metadata.GetJpegMetadata() != null)
+                {
+                    return 0;
+                }
+                return null;
+            }
+        }
 
         [DynamicDependency(nameof(GetImagePixel), typeof(SharpImage))]
         public override Color GetPixel(int x, int y)

@@ -45,6 +45,11 @@ namespace IS4.SFI.Services
         IReadOnlyList<Color> Palette { get; }
 
         /// <summary>
+        /// The size of the color palette of the image.
+        /// </summary>
+        int? PaletteSize { get; }
+
+        /// <summary>
         /// The format of the image.
         /// </summary>
         IFileFormat<IImage> Format { get; }
@@ -233,6 +238,9 @@ namespace IS4.SFI.Services
 
         /// <inheritdoc/>
         public abstract IReadOnlyList<Color> Palette { get; }
+
+        /// <inheritdoc/>
+        public virtual int? PaletteSize => Palette.Count;
 
         /// <inheritdoc/>
         public abstract int BitDepth { get; }
