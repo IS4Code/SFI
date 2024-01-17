@@ -149,7 +149,7 @@ namespace IS4.SFI.Formats
         protected static void SetImagePixel<TPixel>(Image<TPixel> image, int x, int y, Color color) where TPixel : unmanaged, IPixel<TPixel>
         {
             TPixel pixel = default;
-            pixel.FromArgb32(new(color.R, color.G, color.B, color.A));
+            pixel.FromRgba32(new(color.R, color.G, color.B, color.A));
             image[x, y] = pixel;
         }
 
@@ -179,8 +179,10 @@ namespace IS4.SFI.Formats
         /// <inheritdoc/>
         public override void Save(Stream output, string mediaType)
         {
-            var format = Configuration.Default.ImageFormatsManager.FindFormatByMimeType(mediaType) ?? throw new ArgumentException("The specified format cannot be found.", nameof(mediaType));
-            Image.Save(output, format);
+            var manager = Configuration.Default.ImageFormatsManager;
+            var format = manager.FindFormatByMimeType(mediaType) ?? throw new ArgumentException("The specified format cannot be found.", nameof(mediaType));
+            var encoder = manager.FindEncoder(format) ?? throw new ArgumentException("The specified format's encoder cannot be found.", nameof(mediaType));
+            Image.Save(output, encoder);
         }
 
         static readonly Configuration createConfiguration = new()
@@ -199,14 +201,14 @@ namespace IS4.SFI.Formats
             Action<IImageProcessingContext> operation = context => {
                 if(backgroundColor.A != 0)
                 {
-                    context = context.BackgroundColor(new(new Argb32(backgroundColor.R, backgroundColor.G, backgroundColor.B, backgroundColor.A)));
+                    context = context.BackgroundColor(new(new Bgra32(backgroundColor.R, backgroundColor.G, backgroundColor.B, backgroundColor.A)));
                 }
                 context = context.Resize(resizeOptions);
             };
             Image clone;
             if(use32bppArgb)
             {
-                clone = Image.CloneAs<Argb32>(createConfiguration);
+                clone = Image.CloneAs<Bgra32>(createConfiguration);
                 clone.Mutate(operation);
             }else{
                 clone = Image.Clone(createConfiguration, operation);

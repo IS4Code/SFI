@@ -88,7 +88,7 @@ namespace IS4.SFI.Formats
         public override void Save(Stream output, string mediaType)
         {
             var encoder = ImageFormat.GetOutputEncoder(mediaType) ?? throw new ArgumentException("The specified format cannot be found.", nameof(mediaType));
-            UnderlyingImage.Save(output, encoder, new EncoderParameters());
+            UnderlyingImage.Save(output, encoder, null);
         }
 
         /// <inheritdoc/>
