@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace IS4.SFI.Tools
@@ -86,6 +87,11 @@ namespace IS4.SFI.Tools
         public new IEnumerator<T> GetEnumerator()
         {
             return Values.SelectMany(s => s).GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }
