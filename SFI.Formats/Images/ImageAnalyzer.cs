@@ -26,7 +26,7 @@ namespace IS4.SFI.Analyzers
         /// </summary>
         [ComponentCollection("image-hash")]
         [Description("A collection of image-based hash algorithms that produce hashes from the low-detail form of the image.")]
-        public ICollection<IObjectHashAlgorithm<Image>> LowFrequencyImageHashAlgorithms { get; } = new List<IObjectHashAlgorithm<Image>>();
+        public ICollection<IObjectHashAlgorithm<IImage>> LowFrequencyImageHashAlgorithms { get; } = new List<IObjectHashAlgorithm<Image>>();
 
         /// <summary>
         /// A collection of byte-based hash algorithms producing hashes
@@ -41,6 +41,18 @@ namespace IS4.SFI.Analyzers
         /// </summary>
         [Description("Whether to produce a small thumbnail data: node from the image.")]
         public bool MakeThumbnail { get; set; } = true;
+
+        /// <summary>
+        /// The size of created thumbnails.
+        /// </summary>
+        [Description("The size of created thumbnails.")]
+        public Size ThumbnailSize { get; set; } = new(12, 12);
+
+        /// <summary>
+        /// The media type to use when creating the thumbnail.
+        /// </summary>
+        [Description("The media type to use when creating the thumbnail.")]
+        public string ThumbnailFormat { get; set; } = "image/png";
 
         /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>
         public ImageAnalyzer() : base(Common.ImageClasses)
@@ -93,30 +105,28 @@ namespace IS4.SFI.Analyzers
 
             if(!storedAsData)
             {
-                if(image is IImage<Image> { UnderlyingImage: { } img })
+                if(MakeThumbnail && tag.MakeThumbnail)
                 {
-                    if(MakeThumbnail && tag.MakeThumbnail)
+                    ArraySegment<byte> thumbnailData;
+                    var thumbSize = ThumbnailSize;
+                    using(var thumbnail = image.Resize(thumbSize.Width, thumbSize.Height, true, Color.Transparent))
                     {
-                        ArraySegment<byte> thumbnailData;
-                        using(var thumbnail = ImageTools.ResizeImage(img, 12, 12, PixelFormat.Format32bppArgb, Color.Transparent))
-                        {
-                            using var stream = new MemoryStream();
-                            thumbnail.Save(stream, ImageFormat.Png);
-                            thumbnailData = stream.GetData();
-                        }
-
-                        var thumbNode = context.NodeFactory.Create(UriTools.DataUriFormatter, ("image/png", null, thumbnailData));
-                        node.Set(Properties.Thumbnail, thumbNode);
-                        thumbNode.Set(Properties.AtPrefLabel, "Thumbnail image");
+                        using var stream = new MemoryStream();
+                        thumbnail.Save(stream, ThumbnailFormat);
+                        thumbnailData = stream.GetData();
                     }
 
-                    if(tag.LowFrequencyHash)
+                    var thumbNode = context.NodeFactory.Create(UriTools.DataUriFormatter, (ThumbnailFormat, null, thumbnailData));
+                    node.Set(Properties.Thumbnail, thumbNode);
+                    thumbNode.Set(Properties.AtPrefLabel, "Thumbnail image");
+                }
+
+                if(tag.LowFrequencyHash)
+                {
+                    foreach(var hash in LowFrequencyImageHashAlgorithms)
                     {
-                        foreach(var hash in LowFrequencyImageHashAlgorithms)
-                        {
-                            var hashBytes = await hash.ComputeHash(img);
-                            await HashAlgorithm.AddHash(node, hash, hashBytes, context.NodeFactory, OnOutputFile);
-                        }
+                        var hashBytes = await hash.ComputeHash(image);
+                        await HashAlgorithm.AddHash(node, hash, hashBytes, context.NodeFactory, OnOutputFile);
                     }
                 }
 
