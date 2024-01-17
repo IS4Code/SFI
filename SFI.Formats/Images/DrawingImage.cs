@@ -3,7 +3,6 @@ using IS4.SFI.Services;
 using IS4.SFI.Tags;
 using IS4.SFI.Tools.IO;
 using System;
-using System.Buffers;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -17,9 +16,7 @@ namespace IS4.SFI.Formats
     {
         Bitmap Bitmap => UnderlyingImage as Bitmap ?? throw new NotSupportedException();
 
-        new ImageFormat UnderlyingFormat => base.UnderlyingFormat as ImageFormat ?? throw new NotSupportedException();
-
-        public DrawingImage(Image underlyingImage, ImageFormat format) : base(underlyingImage, format)
+        public DrawingImage(Image underlyingImage, IFileFormat<Image> format) : base(underlyingImage, format)
         {
 
         }
@@ -28,9 +25,9 @@ namespace IS4.SFI.Formats
 
         public override int Height => UnderlyingImage.Height;
 
-        public override float HorizontalResolution => UnderlyingImage.HorizontalResolution;
+        public override double HorizontalResolution => UnderlyingImage.HorizontalResolution;
 
-        public override float VerticalResolution => UnderlyingImage.VerticalResolution;
+        public override double VerticalResolution => UnderlyingImage.VerticalResolution;
 
         public override bool HasAlpha => Image.IsAlphaPixelFormat(UnderlyingImage.PixelFormat);
 
@@ -83,44 +80,15 @@ namespace IS4.SFI.Formats
         }
     }
 
-    public class DrawingImageData : ImageData<Image>
+    public class DrawingImageData : MemoryImageData<Image>
     {
         BitmapData? _data;
 
         BitmapData data => _data ?? throw new ObjectDisposedException(nameof(DrawingImageData));
 
-        public override int Scan0 { get; }
-        public override int Stride { get; }
-        public override int BitDepth { get; }
-        public int Width { get; }
-        public int Size { get; }
-
-        public override long Length => Size;
-
-        public DrawingImageData(DrawingImage image, BitmapData data) : base(image)
+        public DrawingImageData(DrawingImage image, BitmapData data) : base(image, data.Stride, System.Drawing.Image.GetPixelFormatSize(data.PixelFormat))
         {
             _data = data;
-
-            Scan0 = -Math.Min(0, data.Stride * data.Height);
-            Stride = data.Stride;
-            Width = data.Width;
-            BitDepth = System.Drawing.Image.GetPixelFormatSize(data.PixelFormat);
-            Size = Math.Abs(data.Height * data.Stride);
-        }
-
-        public override Memory<byte> GetPixel(int x, int y)
-        {
-            var pixelSize = Math.DivRem(BitDepth, 8, out var rem);
-            if(rem == 0)
-            {
-                throw new NotSupportedException("This operation is not supported when the bit depth is not divisible by 8.");
-            }
-            return GetRow(y).Slice(x * pixelSize, pixelSize);
-        }
-
-        public override Memory<byte> GetRow(int y)
-        {
-            return Memory.Slice(Scan0 + Stride * y, (Width * BitDepth + 7) / 8);
         }
 
         public unsafe override Span<byte> GetSpan()
@@ -128,19 +96,9 @@ namespace IS4.SFI.Formats
             return new Span<byte>((data.Scan0 - Scan0).ToPointer(), Size);
         }
 
-        public unsafe override MemoryHandle Pin(int elementIndex = 0)
-        {
-            return new MemoryHandle((data.Scan0 - Scan0).ToPointer(), pinnable: this);
-        }
-
         protected override Stream Open()
         {
             return new BitmapDataStream(data.Scan0, Stride, data.Height, Width, BitDepth);
-        }
-
-        public override void Unpin()
-        {
-
         }
 
         protected override void Dispose(bool disposing)

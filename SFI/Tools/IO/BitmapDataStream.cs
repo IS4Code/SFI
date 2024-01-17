@@ -7,14 +7,11 @@ using System.Threading.Tasks;
 namespace IS4.SFI.Tools.IO
 {
     /// <summary>
-    /// Provides a read-only stream capable of reading from a memory-backed bitmap data
-    /// (such as provided by System.Drawing.Imaging.BitmapData). The bytes are
-    /// read starting from the first row of the image in sequence.
+    /// Provides a read-only virtual data source that views a sequence of rows
+    /// as a contiguous storage.
     /// </summary>
-    public class BitmapDataStream : Stream
+    public abstract class BitmapRowDataStream : Stream
     {
-        readonly IntPtr scan0;
-        readonly int stride;
         readonly int rowBytes;
         readonly int length;
         readonly int height;
@@ -25,17 +22,10 @@ namespace IS4.SFI.Tools.IO
         /// <summary>
         /// Creates a new instance of the stream.
         /// </summary>
-        /// <param name="scan0">The pointer to the beginning of the first row of the image in memory.</param>
-        /// <param name="stride">
-        /// The number of bytes between the first pixels on two consecutive rows;
-        /// could be negative to indicate that the rows go in reverse order in memory.
-        /// </param>
         /// <param name="height">The number of rows in the image.</param>
         /// <param name="rowBytes">The number of bytes in a single row.</param>
-        public BitmapDataStream(IntPtr scan0, int stride, int height, int rowBytes)
+        public BitmapRowDataStream(int height, int rowBytes)
         {
-            this.scan0 = scan0;
-            this.stride = stride;
             this.height = height;
             this.rowBytes = rowBytes;
             length = rowBytes * height;
@@ -44,15 +34,10 @@ namespace IS4.SFI.Tools.IO
         /// <summary>
         /// Creates a new instance of the stream.
         /// </summary>
-        /// <param name="scan0">The pointer to the beginning of the first row of the image in memory.</param>
-        /// <param name="stride">
-        /// The number of bytes between the first pixels on two consecutive rows;
-        /// could be negative to indicate that the rows go in reverse order in memory.
-        /// </param>
         /// <param name="height">The number of rows in the image.</param>
         /// <param name="width">The number of pixels on a row.</param>
         /// <param name="bpp">The number of bits representing a single pixel.</param>
-        public BitmapDataStream(IntPtr scan0, int stride, int height, int width, int bpp) : this(scan0, stride, height, (width * bpp + 7) / 8)
+        public BitmapRowDataStream(int height, int width, int bpp) : this(height, (width * bpp + 7) / 8)
         {
 
         }
@@ -92,7 +77,7 @@ namespace IS4.SFI.Tools.IO
                     break;
                 }
                 var rest = Math.Min(count, rowBytes - columnOffset);
-                Marshal.Copy(scan0 + stride * row + columnOffset, buffer, offset, rest);
+                CopyData(row, columnOffset, new(buffer, offset, rest));
                 read += rest;
                 offset += rest;
                 columnOffset += rest;
@@ -105,6 +90,14 @@ namespace IS4.SFI.Tools.IO
             }
             return read;
         }
+
+        /// <summary>
+        /// Copies data from a single row to <paramref name="target"/>.
+        /// </summary>
+        /// <param name="row">The index of the row.</param>
+        /// <param name="offset">The offset within the row.</param>
+        /// <param name="target">The target segment to copy the data to.</param>
+        protected abstract void CopyData(int row, int offset, ArraySegment<byte> target);
 
         /// <inheritdoc/>
         public async override Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
@@ -145,6 +138,56 @@ namespace IS4.SFI.Tools.IO
         public override void Write(byte[] buffer, int offset, int count)
         {
             throw new NotSupportedException();
+        }
+    }
+
+    /// <summary>
+    /// Provides a read-only stream capable of reading from a memory-backed bitmap data
+    /// (such as provided by System.Drawing.Imaging.BitmapData). The bytes are
+    /// read starting from the first row of the image in sequence.
+    /// </summary>
+    public class BitmapDataStream : BitmapRowDataStream
+    {
+        readonly IntPtr scan0;
+        readonly int stride;
+
+        /// <summary>
+        /// Creates a new instance of the stream.
+        /// </summary>
+        /// <param name="scan0">The pointer to the beginning of the first row of the image in memory.</param>
+        /// <param name="stride">
+        /// The number of bytes between the first pixels on two consecutive rows;
+        /// could be negative to indicate that the rows go in reverse order in memory.
+        /// </param>
+        /// <param name="height">The number of rows in the image.</param>
+        /// <param name="rowBytes">The number of bytes in a single row.</param>
+        public BitmapDataStream(IntPtr scan0, int stride, int height, int rowBytes) : base(height, rowBytes)
+        {
+            this.scan0 = scan0;
+            this.stride = stride;
+        }
+
+        /// <summary>
+        /// Creates a new instance of the stream.
+        /// </summary>
+        /// <param name="scan0">The pointer to the beginning of the first row of the image in memory.</param>
+        /// <param name="stride">
+        /// The number of bytes between the first pixels on two consecutive rows;
+        /// could be negative to indicate that the rows go in reverse order in memory.
+        /// </param>
+        /// <param name="height">The number of rows in the image.</param>
+        /// <param name="width">The number of pixels on a row.</param>
+        /// <param name="bpp">The number of bits representing a single pixel.</param>
+        public BitmapDataStream(IntPtr scan0, int stride, int height, int width, int bpp) : base(height, width, bpp)
+        {
+            this.scan0 = scan0;
+            this.stride = stride;
+        }
+
+        /// <inheritdoc/>
+        protected override void CopyData(int row, int offset, ArraySegment<byte> target)
+        {
+            Marshal.Copy(scan0 + stride * row + offset, target.Array, target.Offset, target.Count);
         }
     }
 }

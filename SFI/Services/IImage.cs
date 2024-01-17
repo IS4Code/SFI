@@ -27,12 +27,12 @@ namespace IS4.SFI.Services
         /// <summary>
         /// The horizontal resolution, in pixels per inch.
         /// </summary>
-        float HorizontalResolution { get; }
+        double HorizontalResolution { get; }
 
         /// <summary>
         /// The vertical resolution, in pixels per inch.
         /// </summary>
-        float VerticalResolution { get; }
+        double VerticalResolution { get; }
 
         /// <summary>
         /// Whether image has the alpha channel.
@@ -216,10 +216,10 @@ namespace IS4.SFI.Services
         public abstract int Height { get; }
 
         /// <inheritdoc/>
-        public abstract float HorizontalResolution { get; }
+        public abstract double HorizontalResolution { get; }
 
         /// <inheritdoc/>
-        public abstract float VerticalResolution { get; }
+        public abstract double VerticalResolution { get; }
 
         /// <inheritdoc/>
         public abstract bool HasAlpha { get; }
@@ -382,6 +382,81 @@ namespace IS4.SFI.Services
         Stream IStreamFactory.Open()
         {
             return Open();
+        }
+    }
+    
+    public abstract class MemoryImageData<TUnderlying> : ImageData<TUnderlying> where TUnderlying : class
+    {
+        /// <inheritdoc/>
+        public override int Scan0 { get; }
+
+        /// <inheritdoc/>
+        public override int Stride { get; }
+
+        /// <inheritdoc/>
+        public override int BitDepth { get; }
+
+        /// <summary>
+        /// The width of the image.
+        /// </summary>
+        public int Width { get; }
+
+        /// <summary>
+        /// The size of the image data.
+        /// </summary>
+        public int Size { get; }
+
+        /// <summary>
+        /// The size of a row in bytes.
+        /// </summary>
+        public int RowSize { get; }
+
+        /// <inheritdoc/>
+        public override long Length => Size;
+
+        /// <summary>
+        /// Creates a new instance of the data.
+        /// </summary>
+        /// <param name="image">The underlying image.</param>
+        /// <param name="stride">The value of <see cref="Stride"/>.</param>
+        /// <param name="bitDepth">The value of <see cref="BitDepth"/>.</param>
+        public MemoryImageData(ImageBase<TUnderlying> image, int stride, int bitDepth) : base(image)
+        {
+            Scan0 = -Math.Min(0, stride * image.Height);
+            Stride = stride;
+            Width = image.Width;
+            BitDepth = bitDepth;
+            Size = Math.Abs(image.Height * stride);
+            RowSize = (Width * bitDepth + 7) / 8;
+        }
+
+        /// <inheritdoc/>
+        public override Memory<byte> GetPixel(int x, int y)
+        {
+            var pixelSize = Math.DivRem(BitDepth, 8, out var rem);
+            if(rem == 0)
+            {
+                throw new NotSupportedException("This operation is not supported when the bit depth is not divisible by 8.");
+            }
+            return GetRow(y).Slice(x * pixelSize, pixelSize);
+        }
+
+        /// <inheritdoc/>
+        public override Memory<byte> GetRow(int y)
+        {
+            return Memory.Slice(Scan0 + Stride * y, RowSize);
+        }
+
+        /// <inheritdoc/>
+        public unsafe override MemoryHandle Pin(int elementIndex = 0)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <inheritdoc/>
+        public override void Unpin()
+        {
+
         }
     }
 }
