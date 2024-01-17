@@ -132,18 +132,19 @@ namespace IS4.SFI.Formats
     public class SharpImageData<TPixel> : MemoryImageData<IImage> where TPixel : unmanaged, IPixel<TPixel>
     {
         readonly Image<TPixel> data;
-        readonly bool preferSlicing;
+
+        public override bool IsContiguous { get; }
 
         public SharpImageData(SharpImage image, Image<TPixel> data) : base(image, data.Width * Unsafe.SizeOf<TPixel>(), data.PixelType.BitsPerPixel)
         {
             this.data = data;
             // On contiguous buffers, the base implementation of GetPixel and GetRow is better since there is no MemoryManager allocation
-            preferSlicing = data.DangerousTryGetSinglePixelMemory(out _);
+            IsContiguous = data.DangerousTryGetSinglePixelMemory(out _);
         }
 
         public override Memory<byte> GetPixel(int x, int y)
         {
-            if(preferSlicing)
+            if(IsContiguous)
             {
                 return base.GetPixel(x, y);
             }
@@ -153,7 +154,7 @@ namespace IS4.SFI.Formats
 
         public override Memory<byte> GetRow(int y)
         {
-            if(preferSlicing)
+            if(IsContiguous)
             {
                 return base.GetRow(y);
             }

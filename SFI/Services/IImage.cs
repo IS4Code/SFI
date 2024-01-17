@@ -131,6 +131,13 @@ namespace IS4.SFI.Services
     public interface IImageData : IMemoryOwner<byte>, IStreamFactory
     {
         /// <summary>
+        /// Whether the image data is backed by a contiguous range of memory, in which
+        /// case the <see cref="IMemoryOwner{T}.Memory"/> member is usable and describable
+        /// by <see cref="Scan0"/> and <see cref="Stride"/>.
+        /// </summary>
+        bool IsContiguous { get; }
+
+        /// <summary>
         /// The offset of the top-left pixel in the data.
         /// </summary>
         int Scan0 { get; }
@@ -349,6 +356,9 @@ namespace IS4.SFI.Services
         StreamFactoryAccess IStreamFactory.Access => StreamFactoryAccess.Parallel;
 
         /// <inheritdoc/>
+        public abstract bool IsContiguous { get; }
+
+        /// <inheritdoc/>
         public abstract int Scan0 { get; }
 
         /// <inheritdoc/>
@@ -387,6 +397,9 @@ namespace IS4.SFI.Services
     
     public abstract class MemoryImageData<TUnderlying> : ImageData<TUnderlying> where TUnderlying : class
     {
+        /// <inheritdoc/>
+        public override bool IsContiguous => true;
+
         /// <inheritdoc/>
         public override int Scan0 { get; }
 
@@ -430,9 +443,18 @@ namespace IS4.SFI.Services
             RowSize = (Width * bitDepth + 7) / 8;
         }
 
+        private void CheckContiguous()
+        {
+            if(!IsContiguous)
+            {
+                throw new NotImplementedException("This operation is not implemented for non-contiguous memory.");
+            }
+        }
+
         /// <inheritdoc/>
         public override Memory<byte> GetPixel(int x, int y)
         {
+            CheckContiguous();
             var pixelSize = Math.DivRem(BitDepth, 8, out var rem);
             if(rem == 0)
             {
@@ -444,6 +466,7 @@ namespace IS4.SFI.Services
         /// <inheritdoc/>
         public override Memory<byte> GetRow(int y)
         {
+            CheckContiguous();
             return Memory.Slice(Scan0 + Stride * y, RowSize);
         }
 
