@@ -98,7 +98,7 @@ namespace IS4.SFI.Analyzers
                 var paletteSize = image.PaletteSize;
                 int bpp = image.BitDepth;
                 if(bpp != 0) node.Set(paletteSize == 0 ? Properties.ColorDepth : Properties.BitDepth, bpp);
-                if(paletteSize is int size && size > 0) node.Set(Properties.PaletteSize, size);
+                if(paletteSize is int size and > 0) node.Set(Properties.PaletteSize, size);
             }
 
             if(!storedAsData)
