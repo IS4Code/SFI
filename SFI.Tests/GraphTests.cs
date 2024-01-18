@@ -1,5 +1,6 @@
 ﻿using IS4.SFI.Analyzers;
 using IS4.SFI.Application;
+using IS4.SFI.Formats;
 using IS4.SFI.Services;
 using IS4.SFI.Tools;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -184,6 +185,9 @@ namespace IS4.SFI.Tests
                 DataAnalyzer.MinDataLengthToStore = 0;
                 DataAnalyzer.HashAlgorithms.Clear();
                 FileAnalyzer.HashAlgorithms.Clear();
+
+                var imageFormat = DataAnalyzer.DataFormats.OfType<ImageFormat>().FirstOrDefault()!;
+                imageFormat.UseImageSharp = true;
 
                 ImageAnalyzer = Analyzers.OfType<ImageAnalyzer>().FirstOrDefault()!;
 
