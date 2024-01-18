@@ -80,21 +80,9 @@ namespace IS4.SFI.Formats
         /// <inheritdoc/>
         public string? GetExtension(ISharpImage image)
         {
-            if(!storedFormats.TryGetValue(image, out var format))
-            {
-                return null;
-            }
-            int maxLength = 0;
-            string? longest = null;
-            foreach(var extension in format.FileExtensions)
-            {
-                if(extension.Length > maxLength)
-                {
-                    maxLength = extension.Length;
-                    longest = extension;
-                }
-            }
-            return longest;
+            return storedFormats.TryGetValue(image, out var format)
+                ? format.FileExtensions.FirstOrDefault(ext => ext.Length >= 3) ?? format.FileExtensions.FirstOrDefault()
+                : null;
         }
 
         /// <inheritdoc/>
