@@ -1,24 +1,63 @@
 ﻿using IS4.SFI.Services;
+using SixLabors.ImageSharp.Formats;
 using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using ISharpImage = SixLabors.ImageSharp.IImage;
 
 namespace IS4.SFI.Formats
 {
     /// <summary>
-    /// A general image format, producing instances of <see cref="IImage{TUnderlying}"/> of <see cref="Image"/>.
+    /// A general image format, producing instances of <see cref="IImage{TUnderlying}"/> of
+    /// <see cref="Image"/> or <see cref="ISharpImage"/>, based on <see cref="UseImageSharp"/>.
     /// </summary>
     [Description("A general image format.")]
-    public class ImageFormat : BinaryFileFormat<IImage<Image>>, IFileFormat<Image>
+    public class ImageFormat : BinaryFileFormat<IImage>, IFileFormat<Image>, IFileFormat<ISharpImage>
     {
+        /// <summary>
+        /// Whether to use the ImageSharp library to load images.
+        /// </summary>
+        [Description("Whether to use the ImageSharp library to load images.")]
+        public bool UseImageSharp { get; set; } = !RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+
         /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public ImageFormat() : base(0, null, null)
         {
 
+        }
+
+        /// <inheritdoc/>
+        public override string? GetMediaType(IImage image)
+        {
+            switch(image)
+            {
+                case IImage<Image> { UnderlyingImage: var nativeImage }:
+                    return GetMediaType(nativeImage);
+                case IImage<ISharpImage> { UnderlyingImage: var sharpImage }:
+                    return GetMediaType(sharpImage);
+                default:
+                    return null;
+            }
+        }
+
+        /// <inheritdoc/>
+        public override string? GetExtension(IImage image)
+        {
+            switch(image)
+            {
+                case IImage<Image> { UnderlyingImage: var nativeImage }:
+                    return GetExtension(nativeImage);
+                case IImage<ISharpImage> { UnderlyingImage: var sharpImage }:
+                    return GetExtension(sharpImage);
+                default:
+                    return null;
+            }
         }
 
         /// <inheritdoc/>
@@ -39,16 +78,35 @@ namespace IS4.SFI.Formats
         }
 
         /// <inheritdoc/>
-        public override string? GetMediaType(IImage<Image> image)
+        public string? GetExtension(ISharpImage image)
         {
-            return GetMediaType(image.UnderlyingImage);
+            if(!storedFormats.TryGetValue(image, out var format))
+            {
+                return null;
+            }
+            int maxLength = 0;
+            string? longest = null;
+            foreach(var extension in format.FileExtensions)
+            {
+                if(extension.Length > maxLength)
+                {
+                    maxLength = extension.Length;
+                    longest = extension;
+                }
+            }
+            return longest;
         }
 
         /// <inheritdoc/>
-        public override string? GetExtension(IImage<Image> image)
+        public string? GetMediaType(ISharpImage image)
         {
-            return GetExtension(image.UnderlyingImage);
+            return storedFormats.TryGetValue(image, out var format) ? format.DefaultMimeType : null;
         }
+
+        /// <summary>
+        /// Stores the decoded format of an <see cref="ISharpImage"/> instance.
+        /// </summary>
+        static readonly ConditionalWeakTable<ISharpImage, IImageFormat> storedFormats = new();
 
         public static ImageCodecInfo? GetOutputEncoder(string mediaType)
         {
@@ -60,11 +118,28 @@ namespace IS4.SFI.Formats
             return ImageCodecInfo.GetImageDecoders().FirstOrDefault(codec => codec.FormatID == format.Guid);
         }
 
-        /// <inheritdoc/>
-        public async override ValueTask<TResult?> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<IImage<Image>, TResult, TArgs> resultFactory, TArgs args) where TResult : default
+        static SixLabors.ImageSharp.Configuration loadConfiguration = CreateConfiguration();
+
+        static SixLabors.ImageSharp.Configuration CreateConfiguration()
         {
-            using var image = Image.FromStream(stream);
-            return await resultFactory(new DrawingImage(image, this), args);
+            var clone = SixLabors.ImageSharp.Configuration.Default.Clone();
+            clone.PreferContiguousImageBuffers = true;
+            return clone;
+        }
+
+        /// <inheritdoc/>
+        public async override ValueTask<TResult?> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<IImage, TResult, TArgs> resultFactory, TArgs args) where TResult : default
+        {
+            if(UseImageSharp)
+            {
+                var result = await SixLabors.ImageSharp.Image.LoadWithFormatAsync(loadConfiguration, stream);
+                using var image = result.Image;
+                storedFormats.Add(image, result.Format);
+                return await resultFactory(new SharpImage(image, this), args);
+            }else{
+                using var image = Image.FromStream(stream);
+                return await resultFactory(new DrawingImage(image, this), args);
+            }
         }
 
         /// <inheritdoc/>
