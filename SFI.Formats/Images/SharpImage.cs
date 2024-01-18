@@ -58,7 +58,7 @@ namespace IS4.SFI.Formats
                 switch(Metadata.ResolutionUnits)
                 {
                     case PixelResolutionUnit.AspectRatio:
-                        return 0;
+                        return 96;
                     case PixelResolutionUnit.PixelsPerInch:
                         return 1;
                     case PixelResolutionUnit.PixelsPerCentimeter:
@@ -72,10 +72,30 @@ namespace IS4.SFI.Formats
         }
 
         /// <inheritdoc/>
-        public override bool HasAlpha => PixelType.AlphaRepresentation is not (0 or null);
+        public override bool HasAlpha => PixelType.AlphaRepresentation is not (null or 0);
 
         /// <inheritdoc/>
-        public override int BitDepth => PixelType.BitsPerPixel;
+        public override int BitDepth{
+            get{
+                if(Metadata.GetPngMetadata() is { BitDepth: { } pngBits and not 0 } png)
+                {
+                    if(png.ColorType is PngColorType.Rgb or PngColorType.RgbWithAlpha)
+                    {
+                        return PixelType.BitsPerPixel;
+                    }
+                    return (int)pngBits;
+                }
+                if(Metadata.GetGifMetadata() is { GlobalColorTableLength: var palSize and > 0 })
+                {
+                    return (int)Math.Ceiling(Math.Log(palSize / 3, 2));
+                }
+                if(Metadata.GetBmpMetadata() is { BitsPerPixel: var bmpBits and > 0 })
+                {
+                    return (int)bmpBits;
+                }
+                return PixelType.BitsPerPixel;
+            }
+        }
 
         /// <inheritdoc/>
         public override IReadOnlyList<Color> Palette => Array.Empty<Color>();
@@ -83,13 +103,26 @@ namespace IS4.SFI.Formats
         /// <inheritdoc/>
         public override int? PaletteSize{
             get{
-                if(Metadata.GetPngMetadata() is { } png)
+                if(Metadata.GetPngMetadata() is { BitDepth: { } pngBits and not 0 } png)
                 {
-                    return png.ColorType == PngColorType.Palette ? null : 0;
+                    switch(png.ColorType)
+                    {
+                        case PngColorType.Palette:
+                        case PngColorType.Grayscale or PngColorType.GrayscaleWithAlpha:
+                            return (int)pngBits <= 8 ? (1 << (int)pngBits) : 0;
+                        case PngColorType.Rgb or PngColorType.RgbWithAlpha:
+                            return 0;
+                        default:
+                            return null;
+                    }
                 }
-                if(Metadata.GetGifMetadata() is { } gif)
+                if(Metadata.GetGifMetadata() is { GlobalColorTableLength: var fromGif and > 0 })
                 {
-                    return gif.GlobalColorTableLength;
+                    return fromGif / 3;
+                }
+                if(Metadata.GetBmpMetadata() is { BitsPerPixel: var bmpBits and > 0 })
+                {
+                    return (int)bmpBits <= 8 ? (1 << (int)bmpBits) : 0;
                 }
                 if(Metadata.GetJpegMetadata() != null)
                 {
