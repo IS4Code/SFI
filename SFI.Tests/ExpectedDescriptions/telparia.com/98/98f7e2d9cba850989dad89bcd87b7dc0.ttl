@@ -3,6 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -12,7 +13,6 @@
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///g31d.tif>;
      nie:interpretedAs <ni:///mh;1QEQurkYHEducK0y_bDH952fAA?ct=application/octet-stream>;
@@ -26,10 +26,9 @@ _:n1 at:pathObject <file:///g31d.tif>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (122.88 KiB)"@en.
 <ni:///mh;1QEQurkYHEducK0y_bDH952fAA?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
-                                                    nfo:bitDepth 1 ;
+                                                    nfo:colorDepth 24 ;
                                                     nfo:height 3248 ;
                                                     nfo:horizontalResolution 300 ;
-                                                    nfo:paletteSize 2 ;
                                                     nfo:verticalResolution 300 ;
                                                     nfo:width 2464 ;
                                                     <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#comments> "converted PBM file";
@@ -39,7 +38,7 @@ _:n1 at:pathObject <file:///g31d.tif>;
                                                       nfo:Image;
                                                     exif:bitsPerSample 1 ;
                                                     exif:compression 3 ;
-                                                    exif:imageDescription "converted PBM file"^^xsd:string;
+                                                    exif:imageDescription "converted PBM file";
                                                     exif:imageLength 3248 ;
                                                     exif:imageWidth 2464 ;
                                                     exif:orientation 1 ;
@@ -54,7 +53,7 @@ _:n1 at:pathObject <file:///g31d.tif>;
                                                     exif:yResolution 300 ;
                                                     skos:prefLabel "TIFF object (2464×3248, 1-bit)"@en,
                                                                    "TIFF object (2464×3248)"@en,
-                                                                   "TIF object (122.88 KiB)"@en.
+                                                                   "TIFF object (122.88 KiB)"@en.
 <urn:md5:BAB9181C476E70AD32FDB0C7F79D9F00> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "urkYHEducK0y/bDH952fAA=="^^xsd:base64Binary.

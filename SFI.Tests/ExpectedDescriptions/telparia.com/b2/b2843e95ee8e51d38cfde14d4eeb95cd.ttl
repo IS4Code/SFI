@@ -3,6 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
@@ -11,7 +12,6 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///VVMTITLE.png>;
      nie:interpretedAs <ni:///mh;1QEQtO4R_9VVIsYa6iKxUBvBhQ?ct=application/octet-stream>;
@@ -25,14 +25,15 @@ _:n1 at:pathObject <file:///VVMTITLE.png>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (2.45 KiB)"@en.
 <ni:///mh;1QEQtO4R_9VVIsYa6iKxUBvBhQ?ct=image/png> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/png>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 2 ;
                                                    nfo:height 256 ;
                                                    nfo:horizontalResolution 96 ;
+                                                   nfo:paletteSize 4 ;
                                                    nfo:verticalResolution 96 ;
                                                    nfo:width 256 ;
                                                    a schema:MediaObject,
-                                                     nfo:Image,
-                                                     schema:ImageObject;
+                                                     schema:ImageObject,
+                                                     nfo:Image;
                                                    skos:prefLabel "PNG object (256×256, 2-bit)"@en,
                                                                   "PNG object (256×256)"@en,
                                                                   "PNG object (2.45 KiB)"@en.

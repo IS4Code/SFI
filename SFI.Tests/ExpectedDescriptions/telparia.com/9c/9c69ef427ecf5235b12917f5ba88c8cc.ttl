@@ -3,6 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
@@ -11,7 +12,6 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///gunshot.scr>;
      nie:interpretedAs <ni:///mh;1QEQ9e-Jbf3bys-fUxBdv3Gcaw?ct=application/octet-stream>;
@@ -22,7 +22,7 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                  a cnt:ContentAsText;
                  skos:prefLabel "text (8 B)"@en;
                  cnt:characterEncoding "us-ascii";
-                 cnt:chars "T2MAIN.H"^^xsd:string.
+                 cnt:chars "T2MAIN.H".
 <file:///gunshot.scr> at:extensionObject <https://w3id.org/uri4uri/suffix/scr>.
 <ni:///mh;1QEQ-1J9vQTLFiBFa9gdeSdsCQ?ct=application/octet-stream> at:digest <urn:md5:FB527DBD04CB1620456BD81D79276C09>;
                                                                   dcterms:extent "1629"^^dt:byte;
@@ -30,12 +30,17 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.59 KiB)"@en.
 <ni:///mh;1QEQ-1J9vQTLFiBFa9gdeSdsCQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 54 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 53 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (53×54)"@en.
+                                                   skos:prefLabel "BMP object (1.58 KiB)"@en,
+                                                                  "BMP object (53×54)"@en.
 <ni:///mh;1QEQ0Xd6iC3QmzNKZnKkU9WpAw?ct=application/octet-stream> at:digest <urn:md5:D1777A882DD09B334A6672A453D5A903>;
                                                                   dcterms:extent "1658"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ0Xd6iC3QmzNKZnKkU9WpAw?ct=image/bmp>;
@@ -51,8 +56,8 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (56×55)"@en,
-                                                                  "BMP object (1.61 KiB)"@en.
+                                                   skos:prefLabel "BMP object (1.61 KiB)"@en,
+                                                                  "BMP object (56×55)"@en.
 <ni:///mh;1QEQ0umroKNImhAAZlxuXbccPw?ct=application/octet-stream> at:digest <urn:md5:D2E9ABA0A3489A1000665C6E5DB71C3F>;
                                                                   dcterms:extent "614"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ0umroKNImhAAZlxuXbccPw?ct=image/bmp>;
@@ -68,44 +73,59 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (30×31)"@en,
-                                                                  "BMP object (608 B)"@en.
+                                                   skos:prefLabel "BMP object (608 B)"@en,
+                                                                  "BMP object (30×31)"@en.
 <ni:///mh;1QEQ1FrvDJp2EtV91RAwpFQKUQ?ct=application/octet-stream> at:digest <urn:md5:D45AEF0C9A7612D57DD51030A4540A51>;
                                                                   dcterms:extent "603"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ1FrvDJp2EtV91RAwpFQKUQ?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (603 B)"@en.
 <ni:///mh;1QEQ1FrvDJp2EtV91RAwpFQKUQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 68 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 64 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (64×68)"@en.
+                                                   skos:prefLabel "BMP object (592 B)"@en,
+                                                                  "BMP object (64×68)"@en.
 <ni:///mh;1QEQ1Y9CGPd3L79hEylYYuGvpw?ct=application/octet-stream> at:digest <urn:md5:D58F4218F7772FBF6113295862E1AFA7>;
                                                                   dcterms:extent "181"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ1Y9CGPd3L79hEylYYuGvpw?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (181 B)"@en.
 <ni:///mh;1QEQ1Y9CGPd3L79hEylYYuGvpw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 30 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 31 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (31×30)"@en.
+                                                   skos:prefLabel "BMP object (31×30)"@en,
+                                                                  "BMP object (176 B)"@en.
 <ni:///mh;1QEQ1_SiCe9P_vge7X3kbpT3zw?ct=application/octet-stream> at:digest <urn:md5:D7F4A209EF4FFEF81EED7DE46E94F7CF>;
                                                                   dcterms:extent "948"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ1_SiCe9P_vge7X3kbpT3zw?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (948 B)"@en.
 <ni:///mh;1QEQ1_SiCe9P_vge7X3kbpT3zw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 74 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 73 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (73×74)"@en.
+                                                   skos:prefLabel "BMP object (944 B)"@en,
+                                                                  "BMP object (73×74)"@en.
 <ni:///mh;1QEQ1wbeyG2X0pg6qS_haKjdig?ct=application/octet-stream> at:digest <urn:md5:D706DEC86D97D2983AA92FE168A8DD8A>;
                                                                   dcterms:extent "2736"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ1wbeyG2X0pg6qS_haKjdig?ct=audio/vnd.wave>;
@@ -119,8 +139,8 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                         a schema:MediaObject,
                                                           schema:AudioObject,
                                                           nfo:Audio;
-                                                        skos:prefLabel "WAV object (8-bit, 11025 Hz, 1 channel)"@en,
-                                                                       "WAV object (2.67 KiB)"@en.
+                                                        skos:prefLabel "WAV object (2.67 KiB)"@en,
+                                                                       "WAV object (8-bit, 11025 Hz, 1 channel)"@en.
 <ni:///mh;1QEQ1xShhNTNvIxLOMKb2ptz5Q?ct=application/octet-stream> at:digest <urn:md5:D714A184D4CDBC8C4B38C29BDA9B73E5>;
                                                                   dcterms:extent "14659"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ1xShhNTNvIxLOMKb2ptz5Q?ct=audio/vnd.wave>;
@@ -150,32 +170,42 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (55×55)"@en,
-                                                                  "BMP object (496 B)"@en.
+                                                   skos:prefLabel "BMP object (496 B)"@en,
+                                                                  "BMP object (55×55)"@en.
 <ni:///mh;1QEQ29aH_CqBdwcpOmRv-JZpjg?ct=application/octet-stream> at:digest <urn:md5:DBD687FC2A817707293A646FF896698E>;
                                                                   dcterms:extent "3116"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ29aH_CqBdwcpOmRv-JZpjg?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (3.04 KiB)"@en.
 <ni:///mh;1QEQ29aH_CqBdwcpOmRv-JZpjg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 75 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 75 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (75×75)"@en.
+                                                   skos:prefLabel "BMP object (75×75)"@en,
+                                                                  "BMP object (3.03 KiB)"@en.
 <ni:///mh;1QEQ3IGl88axtfeysxzMVm-P3Q?ct=application/octet-stream> at:digest <urn:md5:DC81A5F3C6B1B5F7B2B31CCC566F8FDD>;
                                                                   dcterms:extent "1231"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ3IGl88axtfeysxzMVm-P3Q?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.2 KiB)"@en.
 <ni:///mh;1QEQ3IGl88axtfeysxzMVm-P3Q?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 28 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 80 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (80×28)"@en.
+                                                   skos:prefLabel "BMP object (80×28)"@en,
+                                                                  "BMP object (1.2 KiB)"@en.
 <ni:///mh;1QEQ4Mc_VKMJ-2A86WtcUScAEw?ct=application/octet-stream> at:digest <urn:md5:E0C73F54A309FB603CE96B5C51270013>;
                                                                   dcterms:extent "134"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ4Mc_VKMJ-2A86WtcUScAEw?ct=image/bmp>;
@@ -208,44 +238,59 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×29)"@en,
-                                                                  "BMP object (176 B)"@en.
+                                                   skos:prefLabel "BMP object (176 B)"@en,
+                                                                  "BMP object (32×29)"@en.
 <ni:///mh;1QEQ4wbAnOggoeJ3dF0Obm3bEA?ct=application/octet-stream> at:digest <urn:md5:E306C09CE820A1E277745D0E6E6DDB10>;
                                                                   dcterms:extent "3235"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ4wbAnOggoeJ3dF0Obm3bEA?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (3.16 KiB)"@en.
 <ni:///mh;1QEQ4wbAnOggoeJ3dF0Obm3bEA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 78 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 74 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (74×78)"@en.
+                                                   skos:prefLabel "BMP object (74×78)"@en,
+                                                                  "BMP object (3.16 KiB)"@en.
 <ni:///mh;1QEQ5R_-RiiRxK-zHqLVzPFw4g?ct=application/octet-stream> at:digest <urn:md5:E51FFE462891C4AFB31EA2D5CCF170E2>;
                                                                   dcterms:extent "187"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ5R_-RiiRxK-zHqLVzPFw4g?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (187 B)"@en.
 <ni:///mh;1QEQ5R_-RiiRxK-zHqLVzPFw4g?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 9 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 10 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (10×9)"@en.
+                                                   skos:prefLabel "BMP object (176 B)"@en,
+                                                                  "BMP object (10×9)"@en.
 <ni:///mh;1QEQ6QdKRllcWb_Ja5qLpXjoqA?ct=application/octet-stream> at:digest <urn:md5:E9074A46595C59BFC96B9A8BA578E8A8>;
                                                                   dcterms:extent "1148"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ6QdKRllcWb_Ja5qLpXjoqA?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.12 KiB)"@en.
 <ni:///mh;1QEQ6QdKRllcWb_Ja5qLpXjoqA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 43 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 43 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (43×43)"@en.
+                                                   skos:prefLabel "BMP object (43×43)"@en,
+                                                                  "BMP object (1.11 KiB)"@en.
 <ni:///mh;1QEQ6aAbZBzQ7FchvTlCZsVHPw?ct=application/octet-stream> at:digest <urn:md5:E9A01B641CD0EC5721BD394266C5473F>;
                                                                   dcterms:extent "3358"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ6aAbZBzQ7FchvTlCZsVHPw?ct=image/bmp>;
@@ -261,20 +306,25 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (3.27 KiB)"@en,
-                                                                  "BMP object (77×81)"@en.
+                                                   skos:prefLabel "BMP object (77×81)"@en,
+                                                                  "BMP object (3.27 KiB)"@en.
 <ni:///mh;1QEQ6ndFye4I2mEWcf_xSCTW7A?ct=application/octet-stream> at:digest <urn:md5:EA7745C9EE08DA611671FFF14824D6EC>;
                                                                   dcterms:extent "2709"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ6ndFye4I2mEWcf_xSCTW7A?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (2.65 KiB)"@en.
 <ni:///mh;1QEQ6ndFye4I2mEWcf_xSCTW7A?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 72 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 70 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (70×72)"@en.
+                                                   skos:prefLabel "BMP object (2.64 KiB)"@en,
+                                                                  "BMP object (70×72)"@en.
 <ni:///mh;1QEQ8Q4U-Om077lHfDkz8leFsw?ct=application/octet-stream> at:digest <urn:md5:F10E14F8E9B4EFB9477C3933F25785B3>;
                                                                   dcterms:extent "190"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ8Q4U-Om077lHfDkz8leFsw?ct=image/bmp>;
@@ -290,44 +340,59 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (29×32)"@en,
-                                                                  "BMP object (176 B)"@en.
+                                                   skos:prefLabel "BMP object (176 B)"@en,
+                                                                  "BMP object (29×32)"@en.
 <ni:///mh;1QEQ8cZNc5R2nx5Ow3mVtTwkFA?ct=application/octet-stream> at:digest <urn:md5:F1C64D7394769F1E4EC37995B53C2414>;
                                                                   dcterms:extent "1221"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ8cZNc5R2nx5Ow3mVtTwkFA?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.19 KiB)"@en.
 <ni:///mh;1QEQ8cZNc5R2nx5Ow3mVtTwkFA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 46 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 45 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (45×46)"@en.
+                                                   skos:prefLabel "BMP object (1.19 KiB)"@en,
+                                                                  "BMP object (45×46)"@en.
 <ni:///mh;1QEQ8yxBsnFJMx1GmdOd6sRozQ?ct=application/octet-stream> at:digest <urn:md5:F32C41B27149331D4699D39DEAC468CD>;
                                                                   dcterms:extent "3767"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ8yxBsnFJMx1GmdOd6sRozQ?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (3.68 KiB)"@en.
 <ni:///mh;1QEQ8yxBsnFJMx1GmdOd6sRozQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 83 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 81 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (81×83)"@en.
+                                                   skos:prefLabel "BMP object (3.67 KiB)"@en,
+                                                                  "BMP object (81×83)"@en.
 <ni:///mh;1QEQ9XKbUfa7kC9BlePhzevp-g?ct=application/octet-stream> at:digest <urn:md5:F5729B51F6BB902F4195E3E1CDEBE9FA>;
                                                                   dcterms:extent "420"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ9XKbUfa7kC9BlePhzevp-g?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (420 B)"@en.
 <ni:///mh;1QEQ9XKbUfa7kC9BlePhzevp-g?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 45 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 43 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (43×45)"@en.
+                                                   skos:prefLabel "BMP object (416 B)"@en,
+                                                                  "BMP object (43×45)"@en.
 <ni:///mh;1QEQ9e-Jbf3bys-fUxBdv3Gcaw?ct=application/octet-stream> at:digest <urn:md5:F5EF896DFDDBCACF9F53105DBF719C6B>;
                                                                   dcterms:extent "307456"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ9e-Jbf3bys-fUxBdv3Gcaw?ct=application/vnd.microsoft.portable-executable>,
@@ -1533,24 +1598,34 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (25.98 KiB)"@en.
 <ni:///mh;1QEQ9gzYqyCT4uz3zI2iprJimg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 265 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 200 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (200×265)"@en.
+                                                   skos:prefLabel "BMP object (200×265)"@en,
+                                                                  "BMP object (25.98 KiB)"@en.
 <ni:///mh;1QEQCDIxz1hp3UTvNxocjxU7Ew?ct=application/octet-stream> at:digest <urn:md5:083231CF5869DD44EF371A1C8F153B13>;
                                                                   dcterms:extent "195"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQCDIxz1hp3UTvNxocjxU7Ew?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (195 B)"@en.
 <ni:///mh;1QEQCDIxz1hp3UTvNxocjxU7Ew?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 10 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 10 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (10×10)"@en.
+                                                   skos:prefLabel "BMP object (192 B)"@en,
+                                                                  "BMP object (10×10)"@en.
 <ni:///mh;1QEQCIvrJKM0luhcB-EP21N63w?ct=application/octet-stream> at:digest <urn:md5:088BEB24A33496E85C07E10FDB537ADF>;
                                                                   dcterms:extent "3946"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQCIvrJKM0luhcB-EP21N63w?ct=image/bmp>;
@@ -1574,24 +1649,34 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.11 KiB)"@en.
 <ni:///mh;1QEQCbYroIvlBdXe294OmGQXGg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 90 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 93 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (93×90)"@en.
+                                                   skos:prefLabel "BMP object (93×90)"@en,
+                                                                  "BMP object (1.11 KiB)"@en.
 <ni:///mh;1QEQCmomDz92LUorV-Vtxw6x_A?ct=application/octet-stream> at:digest <urn:md5:0A6A260F3F762D4A2B57E56DC70EB1FC>;
                                                                   dcterms:extent "4437"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQCmomDz92LUorV-Vtxw6x_A?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (4.33 KiB)"@en.
 <ni:///mh;1QEQCmomDz92LUorV-Vtxw6x_A?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 90 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 94 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (94×90)"@en.
+                                                   skos:prefLabel "BMP object (4.33 KiB)"@en,
+                                                                  "BMP object (94×90)"@en.
 <ni:///mh;1QEQCx7Mb0YZqQKhgH_M6CoSEg?ct=application/octet-stream> at:digest <urn:md5:0B1ECC6F4619A902A1807FCCE82A1212>;
                                                                   dcterms:extent "614"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQCx7Mb0YZqQKhgH_M6CoSEg?ct=image/bmp>;
@@ -1615,12 +1700,17 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (204 B)"@en.
 <ni:///mh;1QEQDmJai0Uybr4bpea-0vKF4w?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 11 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 11 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (11×11)"@en.
+                                                   skos:prefLabel "BMP object (11×11)"@en,
+                                                                  "BMP object (192 B)"@en.
 <ni:///mh;1QEQDoiXNYHJ_w32lB1drx-0uA?ct=application/octet-stream> at:digest <urn:md5:0E88973581C9FF0DF6941D5DAF1FB4B8>;
                                                                   dcterms:extent "138"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQDoiXNYHJ_w32lB1drx-0uA?ct=image/bmp>;
@@ -1636,44 +1726,59 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (128 B)"@en,
-                                                                  "BMP object (18×19)"@en.
+                                                   skos:prefLabel "BMP object (18×19)"@en,
+                                                                  "BMP object (128 B)"@en.
 <ni:///mh;1QEQEIh4rKz-JpjxOAz3B3bq7Q?ct=application/octet-stream> at:digest <urn:md5:108878ACACFE2698F1380CF70776EAED>;
                                                                   dcterms:extent "188"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQEIh4rKz-JpjxOAz3B3bq7Q?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (188 B)"@en.
 <ni:///mh;1QEQEIh4rKz-JpjxOAz3B3bq7Q?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 9 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 11 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (11×9)"@en.
+                                                   skos:prefLabel "BMP object (176 B)"@en,
+                                                                  "BMP object (11×9)"@en.
 <ni:///mh;1QEQEZ6hR9gfRtaNHoxFtfPMMg?ct=application/octet-stream> at:digest <urn:md5:119EA147D81F46D68D1E8C45B5F3CC32>;
                                                                   dcterms:extent "1160"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQEZ6hR9gfRtaNHoxFtfPMMg?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.13 KiB)"@en.
 <ni:///mh;1QEQEZ6hR9gfRtaNHoxFtfPMMg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 92 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 91 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (91×92)"@en.
+                                                   skos:prefLabel "BMP object (91×92)"@en,
+                                                                  "BMP object (1.13 KiB)"@en.
 <ni:///mh;1QEQFKsC9p6NwVWrlJRptInVSw?ct=application/octet-stream> at:digest <urn:md5:14AB02F69E8DC155AB949469B489D54B>;
                                                                   dcterms:extent "1784"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQFKsC9p6NwVWrlJRptInVSw?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.74 KiB)"@en.
 <ni:///mh;1QEQFKsC9p6NwVWrlJRptInVSw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 108 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 103 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (103×108)"@en.
+                                                   skos:prefLabel "BMP object (103×108)"@en,
+                                                                  "BMP object (1.73 KiB)"@en.
 <ni:///mh;1QEQFL2f0LGzfcDXCcI6kFpwZw?ct=application/octet-stream> at:digest <urn:md5:14BD9FD0B1B37DC0D709C23A905A7067>;
                                                                   dcterms:extent "138"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQFL2f0LGzfcDXCcI6kFpwZw?ct=image/bmp>;
@@ -1689,68 +1794,93 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (128 B)"@en,
-                                                                  "BMP object (19×19)"@en.
+                                                   skos:prefLabel "BMP object (19×19)"@en,
+                                                                  "BMP object (128 B)"@en.
 <ni:///mh;1QEQH5NQfMS2LgKLu1FK9SDYxA?ct=application/octet-stream> at:digest <urn:md5:1F93507CC4B62E028BBB514AF520D8C4>;
                                                                   dcterms:extent "3195"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQH5NQfMS2LgKLu1FK9SDYxA?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (3.12 KiB)"@en.
 <ni:///mh;1QEQH5NQfMS2LgKLu1FK9SDYxA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 77 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 73 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (73×77)"@en.
+                                                   skos:prefLabel "BMP object (3.11 KiB)"@en,
+                                                                  "BMP object (73×77)"@en.
 <ni:///mh;1QEQHiusiMGdDcjZKtRUqlFEUw?ct=application/octet-stream> at:digest <urn:md5:1E2BAC88C19D0DC8D92AD454AA514453>;
                                                                   dcterms:extent "3076"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQHiusiMGdDcjZKtRUqlFEUw?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (3 KiB)"@en.
 <ni:///mh;1QEQHiusiMGdDcjZKtRUqlFEUw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 74 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 76 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (76×74)"@en.
+                                                   skos:prefLabel "BMP object (3 KiB)"@en,
+                                                                  "BMP object (76×74)"@en.
 <ni:///mh;1QEQHjY6hcaYo15_8-WffChFDQ?ct=application/octet-stream> at:digest <urn:md5:1E363A85C698A35E7FF3E59F7C28450D>;
                                                                   dcterms:extent "2635"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQHjY6hcaYo15_8-WffChFDQ?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (2.57 KiB)"@en.
 <ni:///mh;1QEQHjY6hcaYo15_8-WffChFDQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 70 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 66 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (66×70)"@en.
+                                                   skos:prefLabel "BMP object (66×70)"@en,
+                                                                  "BMP object (2.56 KiB)"@en.
 <ni:///mh;1QEQJ3jinhbnKLtgGGyGWf_8hA?ct=application/octet-stream> at:digest <urn:md5:2778E29E16E728BB60186C8659FFFC84>;
                                                                   dcterms:extent "972"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQJ3jinhbnKLtgGGyGWf_8hA?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (972 B)"@en.
 <ni:///mh;1QEQJ3jinhbnKLtgGGyGWf_8hA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 76 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 72 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (72×76)"@en.
+                                                   skos:prefLabel "BMP object (72×76)"@en,
+                                                                  "BMP object (960 B)"@en.
 <ni:///mh;1QEQJDw-ZiOny02nk7RBXQOssg?ct=application/octet-stream> at:digest <urn:md5:243C3E6623A7CB4DA793B4415D03ACB2>;
                                                                   dcterms:extent "1199"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQJDw-ZiOny02nk7RBXQOssg?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.17 KiB)"@en.
 <ni:///mh;1QEQJDw-ZiOny02nk7RBXQOssg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 95 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 96 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (96×95)"@en.
+                                                   skos:prefLabel "BMP object (1.17 KiB)"@en,
+                                                                  "BMP object (96×95)"@en.
 <ni:///mh;1QEQJF9bEeiSQpC6qpGknEg31Q?ct=application/octet-stream> at:digest <urn:md5:245F5B11E8924290BAAA91A49C4837D5>;
                                                                   dcterms:extent "1130"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQJF9bEeiSQpC6qpGknEg31Q?ct=image/bmp>;
@@ -1766,20 +1896,25 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (1.09 KiB)"@en,
-                                                                  "BMP object (84×89)"@en.
+                                                   skos:prefLabel "BMP object (84×89)"@en,
+                                                                  "BMP object (1.09 KiB)"@en.
 <ni:///mh;1QEQKHkp9X9a8_V1rJARm79N3g?ct=application/octet-stream> at:digest <urn:md5:287929F57F5AF3F575AC90119BBF4DDE>;
                                                                   dcterms:extent "1668"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQKHkp9X9a8_V1rJARm79N3g?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.63 KiB)"@en.
 <ni:///mh;1QEQKHkp9X9a8_V1rJARm79N3g?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 101 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 101 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (101×101)"@en.
+                                                   skos:prefLabel "BMP object (101×101)"@en,
+                                                                  "BMP object (1.63 KiB)"@en.
 <ni:///mh;1QEQLMI7MBnLYaPJRjVWfMXHXQ?ct=application/octet-stream> at:digest <urn:md5:2CC23B3019CB61A3C94635567CC5C75D>;
                                                                   dcterms:extent "502"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQLMI7MBnLYaPJRjVWfMXHXQ?ct=image/bmp>;
@@ -1795,8 +1930,8 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (52×55)"@en,
-                                                                  "BMP object (496 B)"@en.
+                                                   skos:prefLabel "BMP object (496 B)"@en,
+                                                                  "BMP object (52×55)"@en.
 <ni:///mh;1QEQLpScX2nH-NLXEolQcxp3cA?ct=application/octet-stream> at:digest <urn:md5:2E949C5F69C7F8D2D7128950731A7770>;
                                                                   dcterms:extent "598"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQLpScX2nH-NLXEolQcxp3cA?ct=image/bmp>;
@@ -1820,72 +1955,102 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (4.52 KiB)"@en.
 <ni:///mh;1QEQLyv1C70Iigk8mBsGrdGoYg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 94 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 91 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (91×94)"@en.
+                                                   skos:prefLabel "BMP object (4.52 KiB)"@en,
+                                                                  "BMP object (91×94)"@en.
 <ni:///mh;1QEQM1TfmJ8Fa5z2wyBfMFmWiA?ct=application/octet-stream> at:digest <urn:md5:3354DF989F056B9CF6C3205F30599688>;
                                                                   dcterms:extent "1103"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQM1TfmJ8Fa5z2wyBfMFmWiA?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.08 KiB)"@en.
 <ni:///mh;1QEQM1TfmJ8Fa5z2wyBfMFmWiA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 87 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 86 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (86×87)"@en.
+                                                   skos:prefLabel "BMP object (1.08 KiB)"@en,
+                                                                  "BMP object (86×87)"@en.
 <ni:///mh;1QEQM48QbZcoCy03YJyiDQhZDw?ct=application/octet-stream> at:digest <urn:md5:338F106D97280B2D37609CA20D08590F>;
                                                                   dcterms:extent "2492"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQM48QbZcoCy03YJyiDQhZDw?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (2.43 KiB)"@en.
 <ni:///mh;1QEQM48QbZcoCy03YJyiDQhZDw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 66 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 68 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (68×66)"@en.
+                                                   skos:prefLabel "BMP object (2.42 KiB)"@en,
+                                                                  "BMP object (68×66)"@en.
 <ni:///mh;1QEQMAWl4-O5Jc4wVx1ErzbLLw?ct=application/octet-stream> at:digest <urn:md5:3005A5E3E3B925CE30571D44AF36CB2F>;
                                                                   dcterms:extent "1623"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQMAWl4-O5Jc4wVx1ErzbLLw?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.58 KiB)"@en.
 <ni:///mh;1QEQMAWl4-O5Jc4wVx1ErzbLLw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 98 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 102 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (102×98)"@en.
+                                                   skos:prefLabel "BMP object (1.58 KiB)"@en,
+                                                                  "BMP object (102×98)"@en.
 <ni:///mh;1QEQMN44-e8wZESXPsP8EsO8Zw?ct=application/octet-stream> at:digest <urn:md5:30DE38F9EF306444973EC3FC12C3BC67>;
                                                                   dcterms:extent "2599"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQMN44-e8wZESXPsP8EsO8Zw?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (2.54 KiB)"@en.
 <ni:///mh;1QEQMN44-e8wZESXPsP8EsO8Zw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 69 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 65 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (65×69)"@en.
+                                                   skos:prefLabel "BMP object (2.53 KiB)"@en,
+                                                                  "BMP object (65×69)"@en.
 <ni:///mh;1QEQMPC2T8hVEB6GtXNluED4mg?ct=application/octet-stream> at:digest <urn:md5:30F0B64FC855101E86B57365B840F89A>;
                                                                   dcterms:extent "1235"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQMPC2T8hVEB6GtXNluED4mg?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.21 KiB)"@en.
 <ni:///mh;1QEQMPC2T8hVEB6GtXNluED4mg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 98 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 93 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (93×98)"@en.
+                                                   skos:prefLabel "BMP object (93×98)"@en,
+                                                                  "BMP object (1.2 KiB)"@en.
 <ni:///mh;1QEQMS-1-oOKOgHSZo1t50ZhSw?ct=application/octet-stream> at:digest <urn:md5:312FB5FA838A3A01D2668D6DE746614B>;
                                                                   dcterms:extent "1022"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQMS-1-oOKOgHSZo1t50ZhSw?ct=image/bmp>;
@@ -1909,24 +2074,34 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (402 B)"@en.
 <ni:///mh;1QEQNORMY-0R5yhLsRA1vknL4Q?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 43 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 40 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (40×43)"@en.
+                                                   skos:prefLabel "BMP object (40×43)"@en,
+                                                                  "BMP object (400 B)"@en.
 <ni:///mh;1QEQNgz2dhjLVbmY-vQ65R1ljw?ct=application/octet-stream> at:digest <urn:md5:360CF67618CB55B998FAF43AE51D658F>;
                                                                   dcterms:extent "396"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQNgz2dhjLVbmY-vQ65R1ljw?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (396 B)"@en.
 <ni:///mh;1QEQNgz2dhjLVbmY-vQ65R1ljw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 42 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 42 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (42×42)"@en.
+                                                   skos:prefLabel "BMP object (384 B)"@en,
+                                                                  "BMP object (42×42)"@en.
 <ni:///mh;1QEQNjqTBvZRx3ZswhgxqJIrPg?ct=application/octet-stream> at:digest <urn:md5:363A9306F651C7766CC21831A8922B3E>;
                                                                   dcterms:extent "1174"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQNjqTBvZRx3ZswhgxqJIrPg?ct=image/bmp>;
@@ -1959,32 +2134,42 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (592 B)"@en,
-                                                                  "BMP object (32×30)"@en.
+                                                   skos:prefLabel "BMP object (32×30)"@en,
+                                                                  "BMP object (592 B)"@en.
 <ni:///mh;1QEQOhcqwR74yvjT6-_TnaT0xw?ct=application/octet-stream> at:digest <urn:md5:3A172AC11EF8CAF8D3EBEFD39DA4F4C7>;
                                                                   dcterms:extent "5996"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQOhcqwR74yvjT6-_TnaT0xw?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (5.86 KiB)"@en.
 <ni:///mh;1QEQOhcqwR74yvjT6-_TnaT0xw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 105 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 107 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (107×105)"@en.
+                                                   skos:prefLabel "BMP object (107×105)"@en,
+                                                                  "BMP object (5.84 KiB)"@en.
 <ni:///mh;1QEQP41bzIQwtt1rBFHi-UDKlg?ct=application/octet-stream> at:digest <urn:md5:3F8D5BCC8430B6DD6B0451E2F940CA96>;
                                                                   dcterms:extent "181"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQP41bzIQwtt1rBFHi-UDKlg?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (181 B)"@en.
 <ni:///mh;1QEQP41bzIQwtt1rBFHi-UDKlg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 30 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 30 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (30×30)"@en.
+                                                   skos:prefLabel "BMP object (30×30)"@en,
+                                                                  "BMP object (176 B)"@en.
 <ni:///mh;1QEQPGe6bjmjk02ArYr4bKrQhw?ct=application/octet-stream> at:digest <urn:md5:3C67BA6E39A3934D80AD8AF86CAAD087>;
                                                                   dcterms:extent "138"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQPGe6bjmjk02ArYr4bKrQhw?ct=image/bmp>;
@@ -2000,44 +2185,59 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (18×19)"@en,
-                                                                  "BMP object (128 B)"@en.
+                                                   skos:prefLabel "BMP object (128 B)"@en,
+                                                                  "BMP object (18×19)"@en.
 <ni:///mh;1QEQPbrx3dblNNnJcotD4Pwa-A?ct=application/octet-stream> at:digest <urn:md5:3DBAF1DDD6E534D9C9728B43E0FC1AF8>;
                                                                   dcterms:extent "100"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQPbrx3dblNNnJcotD4Pwa-A?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (100 B)"@en.
 <ni:///mh;1QEQPbrx3dblNNnJcotD4Pwa-A?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 10 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 11 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (11×10)"@en.
+                                                   skos:prefLabel "BMP object (96 B)"@en,
+                                                                  "BMP object (11×10)"@en.
 <ni:///mh;1QEQPrz3arbTLyyh0I6XUOY_3Q?ct=application/octet-stream> at:digest <urn:md5:3EBCF76AB6D32F2CA1D08E9750E63FDD>;
                                                                   dcterms:extent "1077"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQPrz3arbTLyyh0I6XUOY_3Q?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.05 KiB)"@en.
 <ni:///mh;1QEQPrz3arbTLyyh0I6XUOY_3Q?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 85 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 80 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (80×85)"@en.
+                                                   skos:prefLabel "BMP object (1.05 KiB)"@en,
+                                                                  "BMP object (80×85)"@en.
 <ni:///mh;1QEQQ50S7lteiZBDvVJlch_oPw?ct=application/octet-stream> at:digest <urn:md5:439D12EE5B5E899043BD5265721FE83F>;
                                                                   dcterms:extent "5524"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQQ50S7lteiZBDvVJlch_oPw?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (5.39 KiB)"@en.
 <ni:///mh;1QEQQ50S7lteiZBDvVJlch_oPw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 104 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 100 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (100×104)"@en.
+                                                   skos:prefLabel "BMP object (5.39 KiB)"@en,
+                                                                  "BMP object (100×104)"@en.
 <ni:///mh;1QEQQI7UYOmV0NKNaNPrsPY2TQ?ct=application/octet-stream> at:digest <urn:md5:408ED460E995D0D28D68D3EBB0F6364D>;
                                                                   dcterms:extent "5474"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQQI7UYOmV0NKNaNPrsPY2TQ?ct=image/bmp>;
@@ -2061,36 +2261,51 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (3.68 KiB)"@en.
 <ni:///mh;1QEQQKbPmOiUXZympHN5M-Yr-g?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 83 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 83 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (83×83)"@en.
+                                                   skos:prefLabel "BMP object (3.67 KiB)"@en,
+                                                                  "BMP object (83×83)"@en.
 <ni:///mh;1QEQRHcWwQczgMVVz7gX9WkiQA?ct=application/octet-stream> at:digest <urn:md5:447716C1073380C555CFB817F5692240>;
                                                                   dcterms:extent "1171"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQRHcWwQczgMVVz7gX9WkiQA?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.14 KiB)"@en.
 <ni:///mh;1QEQRHcWwQczgMVVz7gX9WkiQA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 44 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 42 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (42×44)"@en.
+                                                   skos:prefLabel "BMP object (42×44)"@en,
+                                                                  "BMP object (1.14 KiB)"@en.
 <ni:///mh;1QEQROaAB4K5n9wLJA8Dqym_TA?ct=application/octet-stream> at:digest <urn:md5:44E6800782B99FDC0B240F03AB29BF4C>;
                                                                   dcterms:extent "355"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQROaAB4K5n9wLJA8Dqym_TA?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (355 B)"@en.
 <ni:///mh;1QEQROaAB4K5n9wLJA8Dqym_TA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 20 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 18 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (18×20)"@en.
+                                                   skos:prefLabel "BMP object (352 B)"@en,
+                                                                  "BMP object (18×20)"@en.
 <ni:///mh;1QEQSI8DAhM6ZvcyYKAS7_bscA?ct=application/octet-stream> at:digest <urn:md5:488F0302133A66F73260A012EFF6EC70>;
                                                                   dcterms:extent "1058"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQSI8DAhM6ZvcyYKAS7_bscA?ct=image/bmp>;
@@ -2106,32 +2321,42 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (81×83)"@en,
-                                                                  "BMP object (1.03 KiB)"@en.
+                                                   skos:prefLabel "BMP object (1.03 KiB)"@en,
+                                                                  "BMP object (81×83)"@en.
 <ni:///mh;1QEQSTuULN4lRecZNoMyVLLu8Q?ct=application/octet-stream> at:digest <urn:md5:493B942CDE2545E71936833254B2EEF1>;
                                                                   dcterms:extent "388"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQSTuULN4lRecZNoMyVLLu8Q?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (388 B)"@en.
 <ni:///mh;1QEQSTuULN4lRecZNoMyVLLu8Q?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 41 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 43 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (43×41)"@en.
+                                                   skos:prefLabel "BMP object (43×41)"@en,
+                                                                  "BMP object (384 B)"@en.
 <ni:///mh;1QEQT6h3hgBuJEQMwVCkRee7HQ?ct=application/octet-stream> at:digest <urn:md5:4FA87786006E24440CC150A445E7BB1D>;
                                                                   dcterms:extent "410"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQT6h3hgBuJEQMwVCkRee7HQ?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (410 B)"@en.
 <ni:///mh;1QEQT6h3hgBuJEQMwVCkRee7HQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 44 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 45 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (45×44)"@en.
+                                                   skos:prefLabel "BMP object (45×44)"@en,
+                                                                  "BMP object (400 B)"@en.
 <ni:///mh;1QEQTzsIhof0MmYTUEeWZG7fyg?ct=application/octet-stream> at:digest <urn:md5:4F3B088687F4326613504796646EDFCA>;
                                                                   dcterms:extent "1150"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQTzsIhof0MmYTUEeWZG7fyg?ct=image/bmp>;
@@ -2155,12 +2380,17 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (344 B)"@en.
 <ni:///mh;1QEQU3EYEZMZkKkdqWbWfW0a3g?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 19 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 19 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (19×19)"@en.
+                                                   skos:prefLabel "BMP object (336 B)"@en,
+                                                                  "BMP object (19×19)"@en.
 <ni:///mh;1QEQVOVurolwXdskaphSFlqZ_Q?ct=application/octet-stream> at:digest <urn:md5:54E56EAE89705DDB246A9852165A99FD>;
                                                                   dcterms:extent "3726"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQVOVurolwXdskaphSFlqZ_Q?ct=image/bmp>;
@@ -2176,32 +2406,42 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (85×82)"@en,
-                                                                  "BMP object (3.63 KiB)"@en.
+                                                   skos:prefLabel "BMP object (3.63 KiB)"@en,
+                                                                  "BMP object (85×82)"@en.
 <ni:///mh;1QEQVRiXl3ZKFOvlp_qsJJdjxw?ct=application/octet-stream> at:digest <urn:md5:55189797764A14EBE5A7FAAC249763C7>;
                                                                   dcterms:extent "99"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQVRiXl3ZKFOvlp_qsJJdjxw?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (99 B)"@en.
 <ni:///mh;1QEQVRiXl3ZKFOvlp_qsJJdjxw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 10 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 10 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (10×10)"@en.
+                                                   skos:prefLabel "BMP object (10×10)"@en,
+                                                                  "BMP object (96 B)"@en.
 <ni:///mh;1QEQVVVlu6Su5AuNyZsblZkNhg?ct=application/octet-stream> at:digest <urn:md5:555565BBA4AEE40B8DC99B1B95990D86>;
                                                                   dcterms:extent "3197"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQVVVlu6Su5AuNyZsblZkNhg?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (3.12 KiB)"@en.
 <ni:///mh;1QEQVVVlu6Su5AuNyZsblZkNhg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 77 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 78 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (78×77)"@en.
+                                                   skos:prefLabel "BMP object (78×77)"@en,
+                                                                  "BMP object (3.11 KiB)"@en.
 <ni:///mh;1QEQVkFZ9pw4jmeoqsHoNTHN4Q?ct=application/octet-stream> at:digest <urn:md5:564159F69C388E67A8AAC1E83531CDE1>;
                                                                   dcterms:extent "1178"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQVkFZ9pw4jmeoqsHoNTHN4Q?ct=image/bmp>;
@@ -2225,12 +2465,17 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (4.52 KiB)"@en.
 <ni:///mh;1QEQVo4VGz_mz9FdvijquRLW-w?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 94 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 92 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (92×94)"@en.
+                                                   skos:prefLabel "BMP object (4.52 KiB)"@en,
+                                                                  "BMP object (92×94)"@en.
 <ni:///mh;1QEQW-LiJqvCtlU8vGE3AeajSQ?ct=application/octet-stream> at:digest <urn:md5:5BE2E226ABC2B6553CBC613701E6A349>;
                                                                   dcterms:extent "1574"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQW-LiJqvCtlU8vGE3AeajSQ?ct=image/bmp>;
@@ -2254,12 +2499,17 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.1 KiB)"@en.
 <ni:///mh;1QEQWntNWPU0_Py_ebGICmwjtQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 42 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 42 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (42×42)"@en.
+                                                   skos:prefLabel "BMP object (42×42)"@en,
+                                                                  "BMP object (1.09 KiB)"@en.
 <ni:///mh;1QEQWqyTSOJBAhrex0tThEww1g?ct=application/octet-stream> at:digest <urn:md5:5AAC9348E241021ADEC74B53844C30D6>;
                                                                   dcterms:extent "1686"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQWqyTSOJBAhrex0tThEww1g?ct=image/bmp>;
@@ -2283,36 +2533,51 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.2 KiB)"@en.
 <ni:///mh;1QEQX7kfQExf8DExIMJIKSqXDg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 28 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 80 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (80×28)"@en.
+                                                   skos:prefLabel "BMP object (1.2 KiB)"@en,
+                                                                  "BMP object (80×28)"@en.
 <ni:///mh;1QEQXEcoD_432v6ufiht8n8DDg?ct=application/octet-stream> at:digest <urn:md5:5C47280FFE37DAFEAE7E286DF27F030E>;
                                                                   dcterms:extent "4120"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQXEcoD_432v6ufiht8n8DDg?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (4.02 KiB)"@en.
 <ni:///mh;1QEQXEcoD_432v6ufiht8n8DDg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 91 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 84 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (84×91)"@en.
+                                                   skos:prefLabel "BMP object (84×91)"@en,
+                                                                  "BMP object (4.02 KiB)"@en.
 <ni:///mh;1QEQXGfcpO6Aj-KIkHEAdZLoMw?ct=application/octet-stream> at:digest <urn:md5:5C67DCA4EE808FE2889071007592E833>;
                                                                   dcterms:extent "852"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQXGfcpO6Aj-KIkHEAdZLoMw?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (852 B)"@en.
 <ni:///mh;1QEQXGfcpO6Aj-KIkHEAdZLoMw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 66 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 65 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (65×66)"@en.
+                                                   skos:prefLabel "BMP object (848 B)"@en,
+                                                                  "BMP object (65×66)"@en.
 <ni:///mh;1QEQYP2IDWvacEbmI62KW9IKAw?ct=application/octet-stream> at:digest <urn:md5:60FD880D6BDA7046E623AD8A5BD20A03>;
                                                                   dcterms:extent "4678"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQYP2IDWvacEbmI62KW9IKAw?ct=image/bmp>;
@@ -2328,20 +2593,25 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (96×95)"@en,
-                                                                  "BMP object (4.56 KiB)"@en.
+                                                   skos:prefLabel "BMP object (4.56 KiB)"@en,
+                                                                  "BMP object (96×95)"@en.
 <ni:///mh;1QEQYWBd81egs0T1UqRQCePnbw?ct=application/octet-stream> at:digest <urn:md5:61605DF357A0B344F552A45009E3E76F>;
                                                                   dcterms:extent "5420"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQYWBd81egs0T1UqRQCePnbw?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (5.29 KiB)"@en.
 <ni:///mh;1QEQYWBd81egs0T1UqRQCePnbw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 102 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 100 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (100×102)"@en.
+                                                   skos:prefLabel "BMP object (100×102)"@en,
+                                                                  "BMP object (5.28 KiB)"@en.
 <ni:///mh;1QEQYZqQLJ5HOihCudmQbTigKw?ct=application/octet-stream> at:digest <urn:md5:619A902C9E473A2842B9D9906D38A02B>;
                                                                   dcterms:extent "478"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQYZqQLJ5HOihCudmQbTigKw?ct=image/bmp>;
@@ -2365,12 +2635,17 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.7 KiB)"@en.
 <ni:///mh;1QEQZWVDMyAbe0V-mRIJCl1uTw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 105 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 106 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (106×105)"@en.
+                                                   skos:prefLabel "BMP object (1.69 KiB)"@en,
+                                                                  "BMP object (106×105)"@en.
 <ni:///mh;1QEQZiAK-evtEoz6r43EGxH4kA?ct=application/octet-stream> at:digest <urn:md5:66200AF9EBED128CFAAF8DC41B11F890>;
                                                                   dcterms:extent "194"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQZiAK-evtEoz6r43EGxH4kA?ct=image/bmp>;
@@ -2386,8 +2661,8 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (31×33)"@en,
-                                                                  "BMP object (192 B)"@en.
+                                                   skos:prefLabel "BMP object (192 B)"@en,
+                                                                  "BMP object (31×33)"@en.
 <ni:///mh;1QEQaAXGuTxaMRnXZtjCkRGF5A?ct=application/octet-stream> at:digest <urn:md5:6805C6B93C5A3119D766D8C2911185E4>;
                                                                   dcterms:extent "5266"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQaAXGuTxaMRnXZtjCkRGF5A?ct=image/bmp>;
@@ -2411,72 +2686,102 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (395 B)"@en.
 <ni:///mh;1QEQaBpg1fddWnjc6m6f3sa6sQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 42 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 46 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (46×42)"@en.
+                                                   skos:prefLabel "BMP object (384 B)"@en,
+                                                                  "BMP object (46×42)"@en.
 <ni:///mh;1QEQaqqgdFGc19erUgIme7yuWg?ct=application/octet-stream> at:digest <urn:md5:6AAAA074519CD7D7AB5202267BBCAE5A>;
                                                                   dcterms:extent "1055"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQaqqgdFGc19erUgIme7yuWg?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.03 KiB)"@en.
 <ni:///mh;1QEQaqqgdFGc19erUgIme7yuWg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 83 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 80 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (80×83)"@en.
+                                                   skos:prefLabel "BMP object (80×83)"@en,
+                                                                  "BMP object (1.03 KiB)"@en.
 <ni:///mh;1QEQb0jC-j2s66tlrc2WNfhbhg?ct=application/octet-stream> at:digest <urn:md5:6F48C2FA3DACEBAB65ADCD9635F85B86>;
                                                                   dcterms:extent "840"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQb0jC-j2s66tlrc2WNfhbhg?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (840 B)"@en.
 <ni:///mh;1QEQb0jC-j2s66tlrc2WNfhbhg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 65 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 68 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (68×65)"@en.
+                                                   skos:prefLabel "BMP object (68×65)"@en,
+                                                                  "BMP object (832 B)"@en.
 <ni:///mh;1QEQb8WkG_UKDQMZdjS_4UKJog?ct=application/octet-stream> at:digest <urn:md5:6FC5A41BF50A0D03197634BFE14289A2>;
                                                                   dcterms:extent "1151"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQb8WkG_UKDQMZdjS_4UKJog?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.12 KiB)"@en.
 <ni:///mh;1QEQb8WkG_UKDQMZdjS_4UKJog?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 91 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 92 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (92×91)"@en.
+                                                   skos:prefLabel "BMP object (92×91)"@en,
+                                                                  "BMP object (1.13 KiB)"@en.
 <ni:///mh;1QEQbQu23dQbFSFn_4dYxKoQ6w?ct=application/octet-stream> at:digest <urn:md5:6D0BB6DDD41B152167FF8758C4AA10EB>;
                                                                   dcterms:extent "948"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQbQu23dQbFSFn_4dYxKoQ6w?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (948 B)"@en.
 <ni:///mh;1QEQbQu23dQbFSFn_4dYxKoQ6w?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 74 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 75 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (75×74)"@en.
+                                                   skos:prefLabel "BMP object (75×74)"@en,
+                                                                  "BMP object (944 B)"@en.
 <ni:///mh;1QEQbRCNKPbArmOPxX-_KAy1PQ?ct=application/octet-stream> at:digest <urn:md5:6D108D28F6C0AE638FC57FBF280CB53D>;
                                                                   dcterms:extent "344"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQbRCNKPbArmOPxX-_KAy1PQ?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (344 B)"@en.
 <ni:///mh;1QEQbRCNKPbArmOPxX-_KAy1PQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 19 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 19 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (19×19)"@en.
+                                                   skos:prefLabel "BMP object (336 B)"@en,
+                                                                  "BMP object (19×19)"@en.
 <ni:///mh;1QEQbatPnWU9o8PkvD0nSrrmmg?ct=application/octet-stream> at:digest <urn:md5:6DAB4F9D653DA3C3E4BC3D274ABAE69A>;
                                                                   dcterms:extent "142"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQbatPnWU9o8PkvD0nSrrmmg?ct=image/bmp>;
@@ -2500,24 +2805,34 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (4.43 KiB)"@en.
 <ni:///mh;1QEQbrOawu4vZnmZhIFWeLHOxg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 92 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 92 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (92×92)"@en.
+                                                   skos:prefLabel "BMP object (92×92)"@en,
+                                                                  "BMP object (4.42 KiB)"@en.
 <ni:///mh;1QEQcO-7QOvOaMS24EjktQB1zg?ct=application/octet-stream> at:digest <urn:md5:70EFBB40EBCE68C4B6E048E4B50075CE>;
                                                                   dcterms:extent "924"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQcO-7QOvOaMS24EjktQB1zg?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (924 B)"@en.
 <ni:///mh;1QEQcO-7QOvOaMS24EjktQB1zg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 72 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 68 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (68×72)"@en.
+                                                   skos:prefLabel "BMP object (912 B)"@en,
+                                                                  "BMP object (68×72)"@en.
 <ni:///mh;1QEQctQG7Ctu9YmpE8V09toRcQ?ct=application/octet-stream> at:digest <urn:md5:72D406EC2B6EF589A913C574F6DA1171>;
                                                                   dcterms:extent "1058"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQctQG7Ctu9YmpE8V09toRcQ?ct=image/bmp>;
@@ -2533,8 +2848,8 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (82×83)"@en,
-                                                                  "BMP object (1.03 KiB)"@en.
+                                                   skos:prefLabel "BMP object (1.03 KiB)"@en,
+                                                                  "BMP object (82×83)"@en.
 <ni:///mh;1QEQdEahzhTIikSpXLFi2eHpyw?ct=application/octet-stream> at:digest <urn:md5:7446A1CE14C88A44A95CB162D9E1E9CB>;
                                                                   dcterms:extent "134"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQdEahzhTIikSpXLFi2eHpyw?ct=image/bmp>;
@@ -2558,60 +2873,85 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (888 B)"@en.
 <ni:///mh;1QEQdL4wVBBEXMlLLkdLwV0uYA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 69 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 71 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (71×69)"@en.
+                                                   skos:prefLabel "BMP object (880 B)"@en,
+                                                                  "BMP object (71×69)"@en.
 <ni:///mh;1QEQdw7RYu94M-JntJezvncihw?ct=application/octet-stream> at:digest <urn:md5:770ED162EF7833E267B497B3BE772287>;
                                                                   dcterms:extent "1656"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQdw7RYu94M-JntJezvncihw?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.62 KiB)"@en.
 <ni:///mh;1QEQdw7RYu94M-JntJezvncihw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 55 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 52 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (52×55)"@en.
+                                                   skos:prefLabel "BMP object (52×55)"@en,
+                                                                  "BMP object (1.61 KiB)"@en.
 <ni:///mh;1QEQdz-sjss0WL3zozh22j4lzQ?ct=application/octet-stream> at:digest <urn:md5:773FAC8ECB3458BDF3A33876DA3E25CD>;
                                                                   dcterms:extent "876"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQdz-sjss0WL3zozh22j4lzQ?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (876 B)"@en.
 <ni:///mh;1QEQdz-sjss0WL3zozh22j4lzQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 68 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 65 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (65×68)"@en.
+                                                   skos:prefLabel "BMP object (864 B)"@en,
+                                                                  "BMP object (65×68)"@en.
 <ni:///mh;1QEQeIo3GgIVVSELyAEpijTpoQ?ct=application/octet-stream> at:digest <urn:md5:788A371A021555210BC801298A34E9A1>;
                                                                   dcterms:extent "196"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQeIo3GgIVVSELyAEpijTpoQ?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (196 B)"@en.
 <ni:///mh;1QEQeIo3GgIVVSELyAEpijTpoQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 10 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 11 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (11×10)"@en.
+                                                   skos:prefLabel "BMP object (11×10)"@en,
+                                                                  "BMP object (192 B)"@en.
 <ni:///mh;1QEQeSK-xo-jj2t59vmmHHkZ6w?ct=application/octet-stream> at:digest <urn:md5:7922BEC68FA38F6B79F6F9A61C7919EB>;
                                                                   dcterms:extent "428"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQeSK-xo-jj2t59vmmHHkZ6w?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (428 B)"@en.
 <ni:///mh;1QEQeSK-xo-jj2t59vmmHHkZ6w?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 46 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 41 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (41×46)"@en.
+                                                   skos:prefLabel "BMP object (416 B)"@en,
+                                                                  "BMP object (41×46)"@en.
 <ni:///mh;1QEQeXH6Io8Nam9NdPtvfwDcWg?ct=application/octet-stream> at:digest <urn:md5:7971FA228F0D6A6F4D74FB6F7F00DC5A>;
                                                                   dcterms:extent "662"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQeXH6Io8Nam9NdPtvfwDcWg?ct=image/bmp>;
@@ -2644,44 +2984,59 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (31×33)"@en,
-                                                                  "BMP object (640 B)"@en.
+                                                   skos:prefLabel "BMP object (640 B)"@en,
+                                                                  "BMP object (31×33)"@en.
 <ni:///mh;1QEQfdASCvr6thf7hl0qZkVYIg?ct=application/octet-stream> at:digest <urn:md5:7DD0120AFAFAB617FB865D2A66455822>;
                                                                   dcterms:extent "103"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQfdASCvr6thf7hl0qZkVYIg?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (103 B)"@en.
 <ni:///mh;1QEQfdASCvr6thf7hl0qZkVYIg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 11 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 11 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (11×11)"@en.
+                                                   skos:prefLabel "BMP object (11×11)"@en,
+                                                                  "BMP object (96 B)"@en.
 <ni:///mh;1QEQfvkGeyCNrJpVK31LqEiq_w?ct=application/octet-stream> at:digest <urn:md5:7EF9067B208DAC9A552B7D4BA848AAFF>;
                                                                   dcterms:extent "195"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQfvkGeyCNrJpVK31LqEiq_w?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (195 B)"@en.
 <ni:///mh;1QEQfvkGeyCNrJpVK31LqEiq_w?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 10 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 10 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (10×10)"@en.
+                                                   skos:prefLabel "BMP object (192 B)"@en,
+                                                                  "BMP object (10×10)"@en.
 <ni:///mh;1QEQg4tbY1Jkp4kXc5GfyuT_og?ct=application/octet-stream> at:digest <urn:md5:838B5B635264A7891773919FCAE4FFA2>;
                                                                   dcterms:extent "2527"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQg4tbY1Jkp4kXc5GfyuT_og?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (2.47 KiB)"@en.
 <ni:///mh;1QEQg4tbY1Jkp4kXc5GfyuT_og?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 67 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 66 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (66×67)"@en.
+                                                   skos:prefLabel "BMP object (2.47 KiB)"@en,
+                                                                  "BMP object (66×67)"@en.
 <ni:///mh;1QEQgdJLb0linAuezJEYEJen9g?ct=application/octet-stream> at:digest <urn:md5:81D24B6F49629C0B9ECC91181097A7F6>;
                                                                   dcterms:extent "5838"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQgdJLb0linAuezJEYEJen9g?ct=image/bmp>;
@@ -2714,20 +3069,25 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (52×52)"@en,
-                                                                  "BMP object (464 B)"@en.
+                                                   skos:prefLabel "BMP object (464 B)"@en,
+                                                                  "BMP object (52×52)"@en.
 <ni:///mh;1QEQhvoRxfp1sQ-2vTZqBfXqFQ?ct=application/octet-stream> at:digest <urn:md5:86FA11C5FA75B10FB6BD366A05F5EA15>;
                                                                   dcterms:extent "840"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQhvoRxfp1sQ-2vTZqBfXqFQ?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (840 B)"@en.
 <ni:///mh;1QEQhvoRxfp1sQ-2vTZqBfXqFQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 65 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 67 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (67×65)"@en.
+                                                   skos:prefLabel "BMP object (67×65)"@en,
+                                                                  "BMP object (832 B)"@en.
 <ni:///mh;1QEQi5oLG0-tMVv2LFq-4W7HNA?ct=application/octet-stream> at:digest <urn:md5:8B9A0B1B4FAD315BF62C5ABEE16EC734>;
                                                                   dcterms:extent "1658"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQi5oLG0-tMVv2LFq-4W7HNA?ct=image/bmp>;
@@ -2743,8 +3103,8 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (56×55)"@en,
-                                                                  "BMP object (1.61 KiB)"@en.
+                                                   skos:prefLabel "BMP object (1.61 KiB)"@en,
+                                                                  "BMP object (56×55)"@en.
 <ni:///mh;1QEQigqn7qB9ikhDQ2VEWaSI2g?ct=application/octet-stream> at:digest <urn:md5:8A0AA7EEA07D8A484343654459A488DA>;
                                                                   dcterms:extent "21780"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQigqn7qB9ikhDQ2VEWaSI2g?ct=audio/vnd.wave>;
@@ -2766,39 +3126,51 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (751 B)"@en.
 <ni:///mh;1QEQjlrIULZQlRgk7Qb4uAkZhg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (752 B)"@en.
 <ni:///mh;1QEQjuVR9O8be2pMpZ3jkxWv7Q?ct=application/octet-stream> at:digest <urn:md5:8EE551F4EF1B7B6A4CA59DE39315AFED>;
                                                                   dcterms:extent "1655"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQjuVR9O8be2pMpZ3jkxWv7Q?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.62 KiB)"@en.
 <ni:///mh;1QEQjuVR9O8be2pMpZ3jkxWv7Q?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 100 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 100 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (100×100)"@en.
+                                                   skos:prefLabel "BMP object (100×100)"@en,
+                                                                  "BMP object (1.61 KiB)"@en.
 <ni:///mh;1QEQkB6XOUa0sEThjASIV4RTJA?ct=application/octet-stream> at:digest <urn:md5:901E973946B4B044E18C048857845324>;
                                                                   dcterms:extent "356"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQkB6XOUa0sEThjASIV4RTJA?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (356 B)"@en.
 <ni:///mh;1QEQkB6XOUa0sEThjASIV4RTJA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 20 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 19 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (19×20)"@en.
+                                                   skos:prefLabel "BMP object (19×20)"@en,
+                                                                  "BMP object (352 B)"@en.
 <ni:///mh;1QEQkFubL-QEW2qrJRCwqTIB_Q?ct=application/octet-stream> at:digest <urn:md5:905B9B2FE4045B6AAB2510B0A93201FD>;
                                                                   dcterms:extent "1154"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQkFubL-QEW2qrJRCwqTIB_Q?ct=image/bmp>;
@@ -2814,8 +3186,8 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (89×91)"@en,
-                                                                  "BMP object (1.13 KiB)"@en.
+                                                   skos:prefLabel "BMP object (1.13 KiB)"@en,
+                                                                  "BMP object (89×91)"@en.
 <ni:///mh;1QEQkIOP_tTRhAwfGrrUaZMStQ?ct=application/octet-stream> at:digest <urn:md5:90838FFED4D1840C1F1ABAD4699312B5>;
                                                                   dcterms:extent "614"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQkIOP_tTRhAwfGrrUaZMStQ?ct=image/bmp>;
@@ -2831,44 +3203,59 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (608 B)"@en,
-                                                                  "BMP object (31×31)"@en.
+                                                   skos:prefLabel "BMP object (31×31)"@en,
+                                                                  "BMP object (608 B)"@en.
 <ni:///mh;1QEQktbbAIaO3ZBe-_1ITVcFFA?ct=application/octet-stream> at:digest <urn:md5:92D6DB00868EDD905EFBFD484D570514>;
                                                                   dcterms:extent "3899"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQktbbAIaO3ZBe-_1ITVcFFA?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (3.81 KiB)"@en.
 <ni:///mh;1QEQktbbAIaO3ZBe-_1ITVcFFA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 86 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 82 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (82×86)"@en.
+                                                   skos:prefLabel "BMP object (82×86)"@en,
+                                                                  "BMP object (3.8 KiB)"@en.
 <ni:///mh;1QEQl6n4OFfsV3AAlF9rYTKXtg?ct=application/octet-stream> at:digest <urn:md5:97A9F83857EC577000945F6B613297B6>;
                                                                   dcterms:extent "3768"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQl6n4OFfsV3AAlF9rYTKXtg?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (3.68 KiB)"@en.
 <ni:///mh;1QEQl6n4OFfsV3AAlF9rYTKXtg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 83 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 83 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (83×83)"@en.
+                                                   skos:prefLabel "BMP object (83×83)"@en,
+                                                                  "BMP object (3.67 KiB)"@en.
 <ni:///mh;1QEQlP7dD69LnAeAJlyrEz1MuA?ct=application/octet-stream> at:digest <urn:md5:94FEDD0FAF4B9C0780265CAB133D4CB8>;
                                                                   dcterms:extent "185"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQlP7dD69LnAeAJlyrEz1MuA?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (185 B)"@en.
 <ni:///mh;1QEQlP7dD69LnAeAJlyrEz1MuA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 31 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 30 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (30×31)"@en.
+                                                   skos:prefLabel "BMP object (30×31)"@en,
+                                                                  "BMP object (176 B)"@en.
 <ni:///mh;1QEQlU0RCfTouUMlhgbx8hseZw?ct=application/octet-stream> at:digest <urn:md5:954D1109F4E8B943258606F1F21B1E67>;
                                                                   dcterms:extent "494"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQlU0RCfTouUMlhgbx8hseZw?ct=image/bmp>;
@@ -2892,24 +3279,34 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1 KiB)"@en.
 <ni:///mh;1QEQlVzqhJOO8OS42Lfi58TjBw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 80 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 75 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (75×80)"@en.
+                                                   skos:prefLabel "BMP object (0.98 KiB)"@en,
+                                                                  "BMP object (75×80)"@en.
 <ni:///mh;1QEQlmkbsUX182nAqEy8hazjSA?ct=application/octet-stream> at:digest <urn:md5:96691BB145F5F369C0A84CBC85ACE348>;
                                                                   dcterms:extent "343"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQlmkbsUX182nAqEy8hazjSA?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (343 B)"@en.
 <ni:///mh;1QEQlmkbsUX182nAqEy8hazjSA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 19 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 18 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (18×19)"@en.
+                                                   skos:prefLabel "BMP object (336 B)"@en,
+                                                                  "BMP object (18×19)"@en.
 <ni:///mh;1QEQm17bE2h4d8GQRHQKfDLc2Q?ct=application/octet-stream> at:digest <urn:md5:9B5EDB13687877C19044740A7C32DCD9>;
                                                                   dcterms:extent "134"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQm17bE2h4d8GQRHQKfDLc2Q?ct=image/bmp>;
@@ -2925,20 +3322,25 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (18×18)"@en,
-                                                                  "BMP object (128 B)"@en.
+                                                   skos:prefLabel "BMP object (128 B)"@en,
+                                                                  "BMP object (18×18)"@en.
 <ni:///mh;1QEQmLYbsg6AJmrG7iYTg6QKSw?ct=application/octet-stream> at:digest <urn:md5:98B61BB20E80266AC6EE261383A40A4B>;
                                                                   dcterms:extent "1219"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQmLYbsg6AJmrG7iYTg6QKSw?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.19 KiB)"@en.
 <ni:///mh;1QEQmLYbsg6AJmrG7iYTg6QKSw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 46 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 42 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (42×46)"@en.
+                                                   skos:prefLabel "BMP object (1.19 KiB)"@en,
+                                                                  "BMP object (42×46)"@en.
 <ni:///mh;1QEQnyKVuVLzCM4JQ-QYXBmdUA?ct=application/octet-stream> at:digest <urn:md5:9F2295B952F308CE0943E4185C199D50>;
                                                                   dcterms:extent "526"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQnyKVuVLzCM4JQ-QYXBmdUA?ct=image/bmp>;
@@ -2954,92 +3356,127 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (54×58)"@en,
-                                                                  "BMP object (512 B)"@en.
+                                                   skos:prefLabel "BMP object (512 B)"@en,
+                                                                  "BMP object (54×58)"@en.
 <ni:///mh;1QEQogxO2wjyfKRaj4n8twzN7A?ct=application/octet-stream> at:digest <urn:md5:A20C4EDB08F27CA45A8F89FCB70CCDEC>;
                                                                   dcterms:extent "99"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQogxO2wjyfKRaj4n8twzN7A?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (99 B)"@en.
 <ni:///mh;1QEQogxO2wjyfKRaj4n8twzN7A?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 10 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 10 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (10×10)"@en.
+                                                   skos:prefLabel "BMP object (96 B)"@en,
+                                                                  "BMP object (10×10)"@en.
 <ni:///mh;1QEQomOPbcCych-hyCXah6DiVQ?ct=application/octet-stream> at:digest <urn:md5:A2638F6DC0B2721FA1C825DA87A0E255>;
                                                                   dcterms:extent "196"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQomOPbcCych-hyCXah6DiVQ?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (196 B)"@en.
 <ni:///mh;1QEQomOPbcCych-hyCXah6DiVQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 10 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 11 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (11×10)"@en.
+                                                   skos:prefLabel "BMP object (192 B)"@en,
+                                                                  "BMP object (11×10)"@en.
 <ni:///mh;1QEQp-lvmmIOhTviRFi96aTHgQ?ct=application/octet-stream> at:digest <urn:md5:A7E96F9A620E853BE24458BDE9A4C781>;
                                                                   dcterms:extent "96"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQp-lvmmIOhTviRFi96aTHgQ?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (96 B)"@en.
 <ni:///mh;1QEQp-lvmmIOhTviRFi96aTHgQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 9 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 10 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (10×9)"@en.
+                                                   skos:prefLabel "BMP object (96 B)"@en,
+                                                                  "BMP object (10×9)"@en.
 <ni:///mh;1QEQp7UANeRPSoHrePd1Lp1R4g?ct=application/octet-stream> at:digest <urn:md5:A7B50035E44F4A81EB78F7752E9D51E2>;
                                                                   dcterms:extent "936"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQp7UANeRPSoHrePd1Lp1R4g?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (936 B)"@en.
 <ni:///mh;1QEQp7UANeRPSoHrePd1Lp1R4g?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 73 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 74 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (74×73)"@en.
+                                                   skos:prefLabel "BMP object (74×73)"@en,
+                                                                  "BMP object (928 B)"@en.
 <ni:///mh;1QEQq5_zZ2Naf9-Z_9DJqraMhA?ct=application/octet-stream> at:digest <urn:md5:AB9FF367635A7FDF99FFD0C9AAB68C84>;
                                                                   dcterms:extent "4531"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQq5_zZ2Naf9-Z_9DJqraMhA?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (4.42 KiB)"@en.
 <ni:///mh;1QEQq5_zZ2Naf9-Z_9DJqraMhA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 92 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 90 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (90×92)"@en.
+                                                   skos:prefLabel "BMP object (90×92)"@en,
+                                                                  "BMP object (4.42 KiB)"@en.
 <ni:///mh;1QEQqxWR-qs1RWRTcL6ufFgiAA?ct=application/octet-stream> at:digest <urn:md5:AB1591FAAB3545645370BEAE7C582200>;
                                                                   dcterms:extent "185"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQqxWR-qs1RWRTcL6ufFgiAA?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (185 B)"@en.
 <ni:///mh;1QEQqxWR-qs1RWRTcL6ufFgiAA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 31 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×31)"@en.
+                                                   skos:prefLabel "BMP object (32×31)"@en,
+                                                                  "BMP object (176 B)"@en.
 <ni:///mh;1QEQsXVFZsV153N1mDQJJ3Tskg?ct=application/octet-stream> at:digest <urn:md5:B1754566C575E773759834092774EC92>;
                                                                   dcterms:extent "99"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQsXVFZsV153N1mDQJJ3Tskg?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (99 B)"@en.
 <ni:///mh;1QEQsXVFZsV153N1mDQJJ3Tskg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 10 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 11 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (11×10)"@en.
+                                                   skos:prefLabel "BMP object (11×10)"@en,
+                                                                  "BMP object (96 B)"@en.
 <ni:///mh;1QEQtRM4tyGlMiom6pS2Y6fg4w?ct=application/octet-stream> at:digest <urn:md5:B51338B721A5322A26EA94B663A7E0E3>;
                                                                   dcterms:extent "4870"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQtRM4tyGlMiom6pS2Y6fg4w?ct=image/bmp>;
@@ -3055,8 +3492,8 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (94×99)"@en,
-                                                                  "BMP object (4.75 KiB)"@en.
+                                                   skos:prefLabel "BMP object (4.75 KiB)"@en,
+                                                                  "BMP object (94×99)"@en.
 <ni:///mh;1QEQtgMZGlfM08faAVe-kJKkpA?ct=application/octet-stream> at:digest <urn:md5:B603191A57CCD3C7DA0157BE9092A4A4>;
                                                                   dcterms:extent "5370"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQtgMZGlfM08faAVe-kJKkpA?ct=image/bmp>;
@@ -3072,8 +3509,8 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (101×101)"@en,
-                                                                  "BMP object (5.23 KiB)"@en.
+                                                   skos:prefLabel "BMP object (5.23 KiB)"@en,
+                                                                  "BMP object (101×101)"@en.
 <ni:///mh;1QEQtuvWljOSHIlaq0F4S2Ogdw?ct=application/octet-stream> at:digest <urn:md5:B6EBD69633921C895AAB41784B63A077>;
                                                                   dcterms:extent "2530"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQtuvWljOSHIlaq0F4S2Ogdw?ct=image/bmp>;
@@ -3089,56 +3526,76 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (69×67)"@en,
-                                                                  "BMP object (2.47 KiB)"@en.
+                                                   skos:prefLabel "BMP object (2.47 KiB)"@en,
+                                                                  "BMP object (69×67)"@en.
 <ni:///mh;1QEQuiP-jtnwSRVjjgUw7zRTeA?ct=application/octet-stream> at:digest <urn:md5:BA23FE8ED9F04915638E0530EF345378>;
                                                                   dcterms:extent "1719"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQuiP-jtnwSRVjjgUw7zRTeA?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.68 KiB)"@en.
 <ni:///mh;1QEQuiP-jtnwSRVjjgUw7zRTeA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 104 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 99 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (99×104)"@en.
+                                                   skos:prefLabel "BMP object (1.67 KiB)"@en,
+                                                                  "BMP object (99×104)"@en.
 <ni:///mh;1QEQvGc6UkT_VpVEvTT8c6h2Fg?ct=application/octet-stream> at:digest <urn:md5:BC673A5244FF569544BD34FC73A87616>;
                                                                   dcterms:extent "960"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQvGc6UkT_VpVEvTT8c6h2Fg?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (960 B)"@en.
 <ni:///mh;1QEQvGc6UkT_VpVEvTT8c6h2Fg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 75 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 72 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (72×75)"@en.
+                                                   skos:prefLabel "BMP object (72×75)"@en,
+                                                                  "BMP object (960 B)"@en.
 <ni:///mh;1QEQv_TqKd7cWoCL2uQghMxd4g?ct=application/octet-stream> at:digest <urn:md5:BFF4EA29DEDC5A808BDAE42084CC5DE2>;
                                                                   dcterms:extent "984"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQv_TqKd7cWoCL2uQghMxd4g?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (984 B)"@en.
 <ni:///mh;1QEQv_TqKd7cWoCL2uQghMxd4g?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 77 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 77 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (77×77)"@en.
+                                                   skos:prefLabel "BMP object (976 B)"@en,
+                                                                  "BMP object (77×77)"@en.
 <ni:///mh;1QEQviGAFEnOatXnZdjLavcbBQ?ct=application/octet-stream> at:digest <urn:md5:BE21801449CE6AD5E765D8CB6AF71B05>;
                                                                   dcterms:extent "332"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQviGAFEnOatXnZdjLavcbBQ?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (332 B)"@en.
 <ni:///mh;1QEQviGAFEnOatXnZdjLavcbBQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 18 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 19 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (19×18)"@en.
+                                                   skos:prefLabel "BMP object (19×18)"@en,
+                                                                  "BMP object (320 B)"@en.
 <ni:///mh;1QEQx4LQkAkc61ojkejHS5xc-A?ct=application/octet-stream> at:digest <urn:md5:C782D090091CEB5A2391E8C74B9C5CF8>;
                                                                   dcterms:extent "1742"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQx4LQkAkc61ojkejHS5xc-A?ct=image/bmp>;
@@ -3162,24 +3619,34 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (96 B)"@en.
 <ni:///mh;1QEQx9ggzb-Gzs0Mizxz-HkImg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 9 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 11 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (11×9)"@en.
+                                                   skos:prefLabel "BMP object (96 B)"@en,
+                                                                  "BMP object (11×9)"@en.
 <ni:///mh;1QEQxGMUV0SX6iPYPwG4R3qRSA?ct=application/octet-stream> at:digest <urn:md5:C46314574497EA23D83F01B8477A9148>;
                                                                   dcterms:extent "3076"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQxGMUV0SX6iPYPwG4R3qRSA?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (3 KiB)"@en.
 <ni:///mh;1QEQxGMUV0SX6iPYPwG4R3qRSA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 74 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 76 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (76×74)"@en.
+                                                   skos:prefLabel "BMP object (3 KiB)"@en,
+                                                                  "BMP object (76×74)"@en.
 <ni:///mh;1QEQxx7s8FYUvWRMgb4u9FqoUw?ct=application/octet-stream> at:digest <urn:md5:C71EECF05614BD644C81BE2EF45AA853>;
                                                                   dcterms:extent "502"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQxx7s8FYUvWRMgb4u9FqoUw?ct=image/bmp>;
@@ -3220,24 +3687,34 @@ _:n1 at:pathObject <file:///gunshot.scr>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (344 B)"@en.
 <ni:///mh;1QEQzBL2kLd5bMtClm_aDT6_WQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 19 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 19 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (19×19)"@en.
+                                                   skos:prefLabel "BMP object (19×19)"@en,
+                                                                  "BMP object (336 B)"@en.
 <ni:///mh;1QEQzqrB_RtISI1ma0t0gpVNBg?ct=application/octet-stream> at:digest <urn:md5:CEAAC1FD1B48488D666B4B7482954D06>;
                                                                   dcterms:extent "1652"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQzqrB_RtISI1ma0t0gpVNBg?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.61 KiB)"@en.
 <ni:///mh;1QEQzqrB_RtISI1ma0t0gpVNBg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 100 ;
+                                                   nfo:horizontalResolution 72.009;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 72.009;
                                                    nfo:width 99 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (99×100)"@en.
+                                                   skos:prefLabel "BMP object (1.61 KiB)"@en,
+                                                                  "BMP object (99×100)"@en.
 <urn:md5:083231CF5869DD44EF371A1C8F153B13> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "CDIxz1hp3UTvNxocjxU7Ew=="^^xsd:base64Binary.

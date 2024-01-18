@@ -3,6 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
@@ -11,7 +12,6 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///example.webp>;
      nie:interpretedAs <ni:///mh;1QEQN0Ee8S5tYdjgUTA8SizV9w?ct=application/octet-stream>;
@@ -25,12 +25,16 @@ _:n1 at:pathObject <file:///example.webp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (5.12 MiB)"@en.
 <ni:///mh;1QEQN0Ee8S5tYdjgUTA8SizV9w?ct=image/webp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/webp>;
+                                                    nfo:colorDepth 24 ;
                                                     nfo:height 3072 ;
+                                                    nfo:horizontalResolution 96 ;
+                                                    nfo:verticalResolution 96 ;
                                                     nfo:width 4608 ;
                                                     a schema:MediaObject,
                                                       schema:ImageObject,
                                                       nfo:Image;
-                                                    skos:prefLabel "WEBP object (4608×3072)"@en.
+                                                    skos:prefLabel "WEBP object (4608×3072)"@en,
+                                                                   "WEBP object (5.12 MiB)"@en.
 <urn:md5:37411EF12E6D61D8E051303C4A2CD5F7> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "N0Ee8S5tYdjgUTA8SizV9w=="^^xsd:base64Binary.

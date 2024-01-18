@@ -1,10 +1,10 @@
-@base <x.blank:c8a8212d-7fb4-4968-a89d-c836962d27dc>.
+@base <ni:///mh;1QEQsnFdBtgLDALfqAnftoeciw?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -26,22 +26,22 @@ _:n1 at:pathObject <file:///Lanbyte%20Client-Server%20version%200.01.msi>;
                                                                                                                      skos:prefLabel "text (60 B)"@en;
                                                                                                                      cnt:characterEncoding "windows-1252";
                                                                                                                      cnt:chars """␁€␂€␃€␄€␅€	€
-€␋€␎€␏€Â␆Â␆Â␆Â␆Â␆ƒ␆´␆Ë␆µ␆Á␆␀␀␀␀␀␀␀␀␀␀␀␀␀␀␀␀␀␀␀␀"""^^xsd:string.
+€␋€␎€␏€Â␆Â␆Â␆Â␆Â␆ƒ␆´␆Ë␆µ␆Á␆␀␀␀␀␀␀␀␀␀␀␀␀␀␀␀␀␀␀␀␀""".
 <data:;charset=windows-1252;base64,Bga/BjoGpwFkgBSA> dcterms:extent "12"^^dt:byte;
                                                      a cnt:ContentAsText;
                                                      skos:prefLabel "text (12 B)"@en;
                                                      cnt:characterEncoding "windows-1252";
-                                                     cnt:chars "␆␆¿␆:␆§␁d€␔€"^^xsd:string.
+                                                     cnt:chars "␆␆¿␆:␆§␁d€␔€".
 <data:;charset=windows-1252;base64,SgZcBjOAM4BjBmUGZAZmBg==> dcterms:extent "16"^^dt:byte;
                                                              a cnt:ContentAsText;
                                                              skos:prefLabel "text (16 B)"@en;
                                                              cnt:characterEncoding "windows-1252";
-                                                             cnt:chars "J␆\\␆3€3€c␆e␆d␆f␆"^^xsd:string.
+                                                             cnt:chars "J␆\\␆3€3€c␆e␆d␆f␆".
 <data:;charset=windows-1252;base64,pwGnAacBpwGnAacBpwGnAWAGYQZnBmkGagbPBtAG0gY=> dcterms:extent "32"^^dt:byte;
                                                                                  a cnt:ContentAsText;
                                                                                  skos:prefLabel "text (32 B)"@en;
                                                                                  cnt:characterEncoding "windows-1252";
-                                                                                 cnt:chars "§␁§␁§␁§␁§␁§␁§␁§␁`␆a␆g␆i␆j␆Ï␆Ð␆Ò␆"^^xsd:string.
+                                                                                 cnt:chars "§␁§␁§␁§␁§␁§␁§␁§␁`␆a␆g␆i␆j␆Ï␆Ð␆Ò␆".
 <data:application/octet-stream;base64,5ADlAOYA5wDoAOkApwHtAu8CdAXZBeQFAQABAAEAAQABAAEAAQABAAEAAQABAAEA> dcterms:extent "48"^^dt:byte;
                                                                                                         a cnt:ContentAsBase64;
                                                                                                         skos:prefLabel "binary data (48 B)"@en;
@@ -204,30 +204,34 @@ _:n1 at:pathObject <file:///Lanbyte%20Client-Server%20version%200.01.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQ-ESz-T_E6OyVl_Ep9Q4m3Q?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (308 B)"@en.
 <ni:///mh;1QEQ1jc9hZGTCe-_VlHbEbgpfQ?ct=application/octet-stream> at:digest <urn:md5:D6373D85919309EFBF5651DB11B8297D>;
                                                                   dcterms:extent "758"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ1jc9hZGTCe-_VlHbEbgpfQ?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (758 B)"@en.
 <ni:///mh;1QEQ1jc9hZGTCe-_VlHbEbgpfQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (744 B)"@en.
 <ni:///mh;1QEQ1kn308SvS85NoGXv5y_7mA?ct=application/octet-stream> at:digest <urn:md5:D649F7D3C4AF4BCE4DA065EFE72FFB98>;
                                                                   dcterms:extent "1740"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -265,15 +269,17 @@ _:n1 at:pathObject <file:///Lanbyte%20Client-Server%20version%200.01.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQ8WFUqvr7_J5ukLHocx8byQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (308 B)"@en.
 <ni:///mh;1QEQ90B7wVXJTNm1u7wXTjHntA?ct=application/octet-stream> at:digest <urn:md5:F7407BC155C94CD9B5BBBC174E31E7B4>;
                                                                   dcterms:extent "24576"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ90B7wVXJTNm1u7wXTjHntA?ct=application/vnd.microsoft.portable-executable>;
@@ -298,15 +304,17 @@ _:n1 at:pathObject <file:///Lanbyte%20Client-Server%20version%200.01.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQCmcunuEOS9Cf9GWvvWza1Q?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (308 B)"@en.
 <ni:///mh;1QEQDfFloBG6nBOJfs3OOp5MTA?ct=application/octet-stream> at:digest <urn:md5:0DF165A011BA9C13897ECDCE3A9E4C4C>;
                                                                   dcterms:extent "372"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -333,24 +341,25 @@ _:n1 at:pathObject <file:///Lanbyte%20Client-Server%20version%200.01.msi>;
 <ni:///mh;1QEQEjyZTrfljJkSG3qmYOH9Rg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 28 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 28 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (28×28)"@en,
-                                                                  "BMP object (552 B)"@en.
+                                                   skos:prefLabel "BMP object (552 B)"@en,
+                                                                  "BMP object (28×28)"@en.
 <ni:///mh;1QEQFLlZT3miAZTd97u0kfdXjA?ct=application/octet-stream> at:digest <urn:md5:14B9594F79A20194DDF7BBB491F7578C>;
                                                                   dcterms:extent "12710"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQFLlZT3miAZTd97u0kfdXjA?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (12.41 KiB)"@en.
 <ni:///mh;1QEQFLlZT3miAZTd97u0kfdXjA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 94 ;
                                                    nfo:horizontalResolution 71.9836;
+                                                   nfo:paletteSize 16 ;
                                                    nfo:verticalResolution 71.9836;
                                                    nfo:width 680 ;
                                                    a schema:MediaObject,
@@ -366,30 +375,32 @@ _:n1 at:pathObject <file:///Lanbyte%20Client-Server%20version%200.01.msi>;
 <ni:///mh;1QEQFbwLyHMGSi9SWrFwDXpfrA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 15 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (224 B)"@en,
-                                                                  "BMP object (16×15)"@en.
+                                                   skos:prefLabel "BMP object (16×15)"@en,
+                                                                  "BMP object (224 B)"@en.
 <ni:///mh;1QEQG8bV1cDmr7VEIgMUjtNrnw?ct=application/octet-stream> at:digest <urn:md5:1BC6D5D5C0E6AFB5442203148ED36B9F>;
                                                                   dcterms:extent "758"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQG8bV1cDmr7VEIgMUjtNrnw?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (758 B)"@en.
 <ni:///mh;1QEQG8bV1cDmr7VEIgMUjtNrnw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (744 B)"@en.
 <ni:///mh;1QEQJ1nhRX0_9ghmtarEXdhTrg?ct=application/octet-stream> at:digest <urn:md5:2759E1457D3FF60866B5AAC45DD853AE>;
                                                                   dcterms:extent "78"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -402,9 +413,9 @@ _:n1 at:pathObject <file:///Lanbyte%20Client-Server%20version%200.01.msi>;
 <ni:///mh;1QEQKzO2_2bC7JTUfIDUnVVwtw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 15 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 20 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -555,9 +566,9 @@ _:n1 at:pathObject <file:///Lanbyte%20Client-Server%20version%200.01.msi>;
 <ni:///mh;1QEQTq9UIHBFGkKrgQ2PM9dlJA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 35 ;
-                                                   nfo:horizontalResolution 96.01199;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96.01199;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 35 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -628,44 +639,37 @@ _:n1 at:pathObject <file:///Lanbyte%20Client-Server%20version%200.01.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (766 B)"@en.
 <ni:///mh;1QEQTyS_LUgynuYG6ErW7jJhtg?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:height 32 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
                                                       nfo:width 32 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (32×32)"@en,
-                                                                     "ICO object (766 B)"@en.
+                                                      skos:prefLabel "ICO object (32×32)"@en.
 <ni:///mh;1QEQVEi13EYqizLjk1qtzh-Egg?ct=application/octet-stream> at:digest <urn:md5:5448B5DC462A8B32E3935AADCE1F8482>;
                                                                   dcterms:extent "318"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQVEi13EYqizLjk1qtzh-Egg?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQVEi13EYqizLjk1qtzh-Egg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (308 B)"@en.
 <ni:///mh;1QEQVU_0wZlWJRXXWMmr_1wpQw?ct=application/octet-stream> at:digest <urn:md5:554FF4C199562515D758C9ABFF5C2943>;
                                                                   dcterms:extent "1078"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQVU_0wZlWJRXXWMmr_1wpQw?ct=image/x-icon>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.05 KiB)"@en.
 <ni:///mh;1QEQVU_0wZlWJRXXWMmr_1wpQw?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:hasMediaStream <ni:///mh;1QEQVU_0wZlWJRXXWMmr_1wpQw?ct=image/x-icon#/0>,
                                                                          <ni:///mh;1QEQVU_0wZlWJRXXWMmr_1wpQw?ct=image/x-icon#/1>;
-                                                      nfo:height 16 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
-                                                      nfo:width 16 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
@@ -688,16 +692,12 @@ _:n1 at:pathObject <file:///Lanbyte%20Client-Server%20version%200.01.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.62 KiB)"@en.
 <ni:///mh;1QEQWxGvTZoMfO4aH0gWVEqzuw?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:height 48 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
                                                       nfo:width 48 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (1.62 KiB)"@en,
-                                                                     "ICO object (48×48)"@en.
+                                                      skos:prefLabel "ICO object (48×48)"@en.
 <ni:///mh;1QEQXOTVnUbXjH5AvM7bb25s-w?ct=application/octet-stream> at:digest <urn:md5:5CE4D59D46D78C7E40BCCEDB6F6E6CFB>;
                                                                   dcterms:extent "108"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -708,15 +708,17 @@ _:n1 at:pathObject <file:///Lanbyte%20Client-Server%20version%200.01.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (758 B)"@en.
 <ni:///mh;1QEQ_NI6i4hSZl0WzVONvQw5fA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (744 B)"@en.
 <ni:///mh;1QEQaAH0XfrAdD06DXOxIeJh2g?ct=application/octet-stream> at:digest <urn:md5:6801F45DFAC0743D3A0D73B121E261DA>;
                                                                   dcterms:extent "174352"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQaAH0XfrAdD06DXOxIeJh2g?ct=application/vnd.microsoft.portable-executable>;
@@ -850,15 +852,17 @@ _:n1 at:pathObject <file:///Lanbyte%20Client-Server%20version%200.01.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQcN27SxfCyMHvVGzS5XWoJw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (308 B)"@en.
 <ni:///mh;1QEQciQ1uk0Y8XBLQ-gjoS5Img?ct=application/octet-stream> at:digest <urn:md5:722435BA4D18F1704B43E823A12E489A>;
                                                                   dcterms:extent "203576"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQciQ1uk0Y8XBLQ-gjoS5Img?ct=application/vnd.microsoft.portable-executable>,
@@ -954,15 +958,15 @@ _:n1 at:pathObject <file:///Lanbyte%20Client-Server%20version%200.01.msi>;
 <ni:///mh;1QEQftyNPVwzOxNsir8OAiR43w?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 9 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 15 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (15×9)"@en,
-                                                                  "BMP object (176 B)"@en.
+                                                   skos:prefLabel "BMP object (176 B)"@en,
+                                                                  "BMP object (15×9)"@en.
 <ni:///mh;1QEQg-3KJo_r-93UNp7nHx0j7A?ct=application/octet-stream> at:digest <urn:md5:83EDCA268FEBFBDDD4369EE71F1D23EC>;
                                                                   dcterms:extent "585256"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQg-3KJo_r-93UNp7nHx0j7A?ct=image/bmp>;
@@ -985,31 +989,29 @@ _:n1 at:pathObject <file:///Lanbyte%20Client-Server%20version%200.01.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQg3MKwAOR-w8C9W_i5CB6EA?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:height 16 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
                                                       nfo:width 16 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (16×16)"@en,
-                                                                     "ICO object (318 B)"@en.
+                                                      skos:prefLabel "ICO object (16×16)"@en.
 <ni:///mh;1QEQh4M2SKaH4zPKme2wz3p6Jg?ct=application/octet-stream> at:digest <urn:md5:87833648A687E333CA99EDB0CF7A7A26>;
                                                                   dcterms:extent "758"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQh4M2SKaH4zPKme2wz3p6Jg?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (758 B)"@en.
 <ni:///mh;1QEQh4M2SKaH4zPKme2wz3p6Jg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (744 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQiBdtBgnq8DpAUVql5ru-1A?ct=text/plain> at:digest <urn:md5:88176D0609EAF03A40515AA5E6BBBED4>;
                                                     dcterms:extent "1110"^^dt:byte;
                                                     nie:hasPart <ni:///mh;1QEQiBdtBgnq8DpAUVql5ru-1A?ct=text/plain#line=,1>;
@@ -1097,27 +1099,28 @@ _:n1 at:pathObject <file:///Lanbyte%20Client-Server%20version%200.01.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (34.76 KiB)"@en.
 <ni:///mh;1QEQkh59aKUcmpy-TPv8yUWYvw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 388 ;
                                                    nfo:horizontalResolution 71.9836;
+                                                   nfo:paletteSize 16 ;
                                                    nfo:verticalResolution 71.9836;
                                                    nfo:width 628 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (628×388)"@en,
-                                                                  "BMP object (34.76 KiB)"@en.
+                                                   skos:prefLabel "BMP object (34.76 KiB)"@en,
+                                                                  "BMP object (628×388)"@en.
 <ni:///mh;1QEQlITAQliDCqPC8qcOsEFBTA?ct=application/octet-stream> at:digest <urn:md5:9484C04258830AA3C2F2A70EB041414C>;
                                                                   dcterms:extent "108336"^^dt:byte;
-                                                                  dcterms:hasFormat [a schema:MediaObject ; 
+                                                                  dcterms:hasFormat <ni:///mh;1QEQlITAQliDCqPC8qcOsEFBTA?ct=application/vnd.microsoft.portable-executable>,
+                                                                                    [a schema:MediaObject ; 
                                                                                      a cert:X509Certificate ; 
                                                                                      at:digest <urn:sha1:NV62QEVN8ERCUQCZ2ASC84QYCH6SP9HM> ; 
                                                                                      dcterms:subject """OU=Microsoft Corporation, CN=Microsoft Corporation, L=Redmond, S=Washington, C=US, OU=Digital ID Class 3 - Microsoft Software Validation v2, OU=\"www.verisign.com/repository/CPS Incorp. by Ref.,LIAB.LTD(c)96\", OU=VeriSign Commercial Software Publishers CA, O=\"VeriSign, Inc.\", L=Internet""" ; 
                                                                                      dcterms:creator """OU=VeriSign Commercial Software Publishers CA, O=\"VeriSign, Inc.\", L=Internet""" ; 
                                                                                      dcterms:created "1998-04-16T02:00:00.000000+02:00"^^xsd:dateTime ; 
                                                                                      sec:expiration "1999-04-17T01:59:59.000000+02:00"^^xsd:dateTime ; 
-                                                                                     schema:serialNumber "7966966E83B0D0B601126E9DC0B46571"],
-                                                                                    <ni:///mh;1QEQlITAQliDCqPC8qcOsEFBTA?ct=application/vnd.microsoft.portable-executable>;
+                                                                                     schema:serialNumber "7966966E83B0D0B601126E9DC0B46571"];
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (105.8 KiB)"@en.
 <ni:///mh;1QEQlITAQliDCqPC8qcOsEFBTA?ct=application/vnd.microsoft.portable-executable> at:digest <urn:md5:692A361FE35A77BE506D5C2476DB24DF>;
@@ -1256,31 +1259,29 @@ _:n1 at:pathObject <file:///Lanbyte%20Client-Server%20version%200.01.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.62 KiB)"@en.
 <ni:///mh;1QEQq5yAeO2oKmz5LOCJzMVBdA?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:height 48 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
                                                       nfo:width 48 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (48×48)"@en,
-                                                                     "ICO object (1.62 KiB)"@en.
+                                                      skos:prefLabel "ICO object (48×48)"@en.
 <ni:///mh;1QEQqk3mqxMerZABfqqV6ZMZgw?ct=application/octet-stream> at:digest <urn:md5:AA4DE6AB131EAD90017EAA95E9931983>;
                                                                   dcterms:extent "3766"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQqk3mqxMerZABfqqV6ZMZgw?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (3.68 KiB)"@en.
 <ni:///mh;1QEQqk3mqxMerZABfqqV6ZMZgw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 8 ;
                                                    nfo:height 48 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 256 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 48 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (48×48)"@en.
+                                                   skos:prefLabel "BMP object (48×48)"@en,
+                                                                  "BMP object (3.66 KiB)"@en.
 <ni:///mh;1QEQs33kKRV_k0Lhv7GLYam6KA?ct=application/octet-stream> at:digest <urn:md5:B37DE429157F9342E1BFB18B61A9BA28>;
                                                                   dcterms:extent "312"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -1290,14 +1291,14 @@ _:n1 at:pathObject <file:///Lanbyte%20Client-Server%20version%200.01.msi>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQsnFdBtgLDALfqAnftoeciw?ct=application/x-ole-storage>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.36 MiB)"@en.
-<ni:///mh;1QEQsnFdBtgLDALfqAnftoeciw?ct=application/x-ole-storage> at:pathObject <file:///>;
+<ni:///mh;1QEQsnFdBtgLDALfqAnftoeciw?ct=application/x-ole-storage> at:pathObject <file:///.>;
                                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
                                                                    nie:interpretedAs <ni:///mh;1QEQsnFdBtgLDALfqAnftoeciw?ct=application/x-ole-storage#/>;
                                                                    nfo:fileLastModified "2001-08-21T04:22:01.880000Z"^^xsd:dateTime;
                                                                    a schema:MediaObject,
                                                                      nfo:EmbeddedFileDataObject;
                                                                    skos:prefLabel "OLE object (1.36 MiB)"@en.
-<ni:///mh;1QEQsnFdBtgLDALfqAnftoeciw?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQsnFdBtgLDALfqAnftoeciw?ct=application/x-ole-storage#/> at:pathObject <file:///>;
                                                                      a nfo:Folder;
                                                                      skos:prefLabel "/".
 <ni:///mh;1QEQsnFdBtgLDALfqAnftoeciw?ct=application/x-ole-storage#/%05SummaryInformation> at:pathObject <file:///%05SummaryInformation>;
@@ -1347,47 +1348,41 @@ _:n1 at:pathObject <file:///Lanbyte%20Client-Server%20version%200.01.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQwjy_AC2CGSSBth7X7AiQ9A?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:height 16 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
                                                       nfo:width 16 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (16×16)"@en,
-                                                                     "ICO object (318 B)"@en.
+                                                      skos:prefLabel "ICO object (16×16)"@en.
 <ni:///mh;1QEQwlZ9QpJWm1qZPcWKekgsfQ?ct=application/octet-stream> at:digest <urn:md5:C2567D4292569B5A993DC58A7A482C7D>;
                                                                   dcterms:extent "1662"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQwlZ9QpJWm1qZPcWKekgsfQ?ct=image/x-icon>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.62 KiB)"@en.
 <ni:///mh;1QEQwlZ9QpJWm1qZPcWKekgsfQ?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:height 48 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
                                                       nfo:width 48 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (1.62 KiB)"@en,
-                                                                     "ICO object (48×48)"@en.
+                                                      skos:prefLabel "ICO object (48×48)"@en.
 <ni:///mh;1QEQxbKuEuVep4-BeVOiH6pwQw?ct=application/octet-stream> at:digest <urn:md5:C5B2AE12E55EA78F817953A21FAA7043>;
                                                                   dcterms:extent "310"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQxbKuEuVep4-BeVOiH6pwQw?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (310 B)"@en.
 <ni:///mh;1QEQxbKuEuVep4-BeVOiH6pwQw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 16 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×16)"@en.
+                                                   skos:prefLabel "BMP object (16×16)"@en,
+                                                                  "BMP object (296 B)"@en.
 <ni:///mh;1QEQyXDUXGjNyDf7P-pydZtxkQ?ct=application/octet-stream> at:digest <urn:md5:C970D45C68CDC837FB3FEA72759B7191>;
                                                                   dcterms:extent "90536"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQyXDUXGjNyDf7P-pydZtxkQ?ct=image/bmp>;
@@ -1439,15 +1434,17 @@ _:n1 at:pathObject <file:///Lanbyte%20Client-Server%20version%200.01.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (758 B)"@en.
 <ni:///mh;1QEQzcFi9YKQ-UUrsUyvJ0s_8Q?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (744 B)"@en.
 <ni:///mh;1QEQzhL3gb7Mz0Z-Y-uKeLPwcA?ct=application/octet-stream> at:digest <urn:md5:CE12F781BECCCF467E63EB8A78B3F070>;
                                                                   dcterms:extent "20902"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQzhL3gb7Mz0Z-Y-uKeLPwcA?ct=application/prs.implied-structure;signature=ITSF>;

@@ -1,8 +1,9 @@
-@base <x.blank:8bc7ee4f-b6bd-4f3c-8d65-0e0eb8c183c9>.
+@base <ni:///mh;1QEQFSCF0oepqfntzyiZsaHGng?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
@@ -11,7 +12,6 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///BatMemv1.31c.exe>;
      nie:interpretedAs <ni:///mh;1QEQFSCF0oepqfntzyiZsaHGng?ct=application/octet-stream>;
@@ -22,12 +22,12 @@ _:n1 at:pathObject <file:///BatMemv1.31c.exe>;
                                                           a cnt:ContentAsText;
                                                           skos:prefLabel "text (20 B)"@en;
                                                           cnt:characterEncoding "cp866";
-                                                          cnt:chars " й┘рочn─╜␏▐r·¤ў<г┐␁p"^^xsd:string.
+                                                          cnt:chars " й┘рочn─╜␏▐r·¤ў<г┐␁p".
 <data:;charset=windows-1252;base64,7X76GJ4OHjw4HqjdD3/T4E/Ti/M=> dcterms:extent "20"^^dt:byte;
                                                                  a cnt:ContentAsText;
                                                                  skos:prefLabel "text (20 B)"@en;
                                                                  cnt:characterEncoding "windows-1252";
-                                                                 cnt:chars "í~ú␘ž␎␞<8␞¨Ý␏␡ÓàOÓ‹ó"^^xsd:string.
+                                                                 cnt:chars "í~ú␘ž␎␞<8␞¨Ý␏␡ÓàOÓ‹ó".
 <data:application/octet-stream;base64,0cEcweEDAc+/GKB0DHUoQA==> dcterms:extent "16"^^dt:byte;
                                                                 a cnt:ContentAsBase64;
                                                                 skos:prefLabel "binary data (16 B)"@en;
@@ -245,15 +245,17 @@ _:n1 at:pathObject <file:///BatMemv1.31c.exe>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (758 B)"@en.
 <ni:///mh;1QEQGdaLlTOh8Qwha1zlk0y6Lw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (744 B)"@en.
 <ni:///mh;1QEQLr5hvC52fHipQWqOdyT9ng?ct=application/octet-stream> at:digest <urn:md5:2EBE61BC2E767C78A9416A8E7724FD9E>;
                                                                   dcterms:extent "304"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -276,15 +278,17 @@ _:n1 at:pathObject <file:///BatMemv1.31c.exe>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQYyjOgly9jzJndMXArRMjdg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (308 B)"@en.
 <ni:///mh;1QEQehVhmUTXtm0vjkUBt5uWdQ?ct=application/octet-stream> at:digest <urn:md5:7A15619944D7B66D2F8E4501B79B9675>;
                                                                   dcterms:extent "304"^^dt:byte;
                                                                   a cnt:ContentAsBase64;

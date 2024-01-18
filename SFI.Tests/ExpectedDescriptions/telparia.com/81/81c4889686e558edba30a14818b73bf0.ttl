@@ -3,10 +3,10 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix sec: <https://w3id.org/security#>.
@@ -26,9 +26,20 @@ _:n1 at:pathObject <file:///input_p1.pbm>;
                                                                     schema:ImageObject,
                                                                     nfo:Image;
                                                                   skos:prefLabel "PBM object (70×46)"@en.
+<ni:///mh;1QEQUVS7SfGN0k0puqKbD_Mm7g?ct=image/x-portable-pixmap> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-portable-pixmap>;
+                                                                 nfo:colorDepth 24 ;
+                                                                 nfo:height 46 ;
+                                                                 nfo:horizontalResolution 96 ;
+                                                                 nfo:verticalResolution 96 ;
+                                                                 nfo:width 70 ;
+                                                                 a schema:MediaObject,
+                                                                   schema:ImageObject,
+                                                                   nfo:Image;
+                                                                 skos:prefLabel "PPM object (6.38 KiB)"@en.
 <ni:///mh;1QEQUVS7SfGN0k0puqKbD_Mm7g?ct=text/plain> at:digest <urn:md5:5154BB49F18DD24D29BAA29B0FF326EE>;
                                                     dcterms:extent "6538"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQUVS7SfGN0k0puqKbD_Mm7g?ct=image/x-portable-graymap>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQUVS7SfGN0k0puqKbD_Mm7g?ct=image/x-portable-pixmap>,
+                                                                      <ni:///mh;1QEQUVS7SfGN0k0puqKbD_Mm7g?ct=image/x-portable-graymap>;
                                                     nie:hasPart <ni:///mh;1QEQUVS7SfGN0k0puqKbD_Mm7g?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (6.38 KiB)"@en;

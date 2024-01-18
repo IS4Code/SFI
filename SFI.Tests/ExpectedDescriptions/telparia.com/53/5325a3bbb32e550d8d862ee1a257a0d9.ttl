@@ -3,6 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
@@ -12,7 +13,6 @@
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///General.tif.tif>;
      nie:interpretedAs <ni:///mh;1QEQ_BB3QM6HVXsS4RKJ_7KVdw?ct=application/octet-stream>;
@@ -26,17 +26,14 @@ _:n1 at:pathObject <file:///General.tif.tif>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (3.75 MiB)"@en.
 <ni:///mh;1QEQ_BB3QM6HVXsS4RKJ_7KVdw?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
-                                                    nfo:colorDepth 32 ;
                                                     nfo:hasMediaStream <ni:///mh;1QEQ_BB3QM6HVXsS4RKJ_7KVdw?ct=image/tiff#/0>,
                                                                        <ni:///mh;1QEQ_BB3QM6HVXsS4RKJ_7KVdw?ct=image/tiff#/1>;
                                                     nfo:height 751 ;
-                                                    nfo:horizontalResolution 150 ;
-                                                    nfo:verticalResolution 150 ;
                                                     nfo:width 1099 ;
                                                     a schema:MediaObject,
-                                                      exif:IFD,
+                                                      nfo:Image,
                                                       schema:ImageObject,
-                                                      nfo:Image;
+                                                      exif:IFD;
                                                     exif:apertureValue 0 ;
                                                     exif:brightnessValue 0 ;
                                                     exif:colorSpace 65535 ;
@@ -70,9 +67,8 @@ _:n1 at:pathObject <file:///General.tif.tif>;
                                                     exif:subjectDistance 0 ;
                                                     exif:xResolution 150 ;
                                                     exif:yResolution 150 ;
-                                                    skos:prefLabel "TIFF object (3.75 MiB)"@en,
-                                                                   "TIFF object (1099×751)"@en,
-                                                                   "TIF object (3.75 MiB)"@en.
+                                                    skos:prefLabel "TIFF object (1099×751)"@en,
+                                                                   "TIFF object (3.75 MiB)"@en.
 <ni:///mh;1QEQ_BB3QM6HVXsS4RKJ_7KVdw?ct=image/tiff#/0> nfo:height 751 ;
                                                        nfo:width 1099 ;
                                                        a nfo:MediaStream;

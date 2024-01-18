@@ -3,6 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
@@ -13,7 +14,6 @@
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///sample_detail_1.tif>;
      nie:interpretedAs <ni:///mh;1QEQW5PTdTHQtih61y4gVm2Mgg?ct=application/octet-stream>;
@@ -43,10 +43,10 @@ _:n1 at:pathObject <file:///sample_detail_1.tif>;
                                                                                          <ni:///mh;1QEQW5PTdTHQtih61y4gVm2Mgg?ct=application/octet-stream#arw/2>;
                                                                       a schema:MediaObject,
                                                                         exif:IFD;
-                                                                      exif:artist "Photographer: Felix Nienstaedt"^^xsd:string;
+                                                                      exif:artist "Photographer: Felix Nienstaedt";
                                                                       exif:colorSpace 65535 ;
                                                                       exif:compression 5 ;
-                                                                      exif:copyright "Copyright: Felix Nienstaedt"^^xsd:string;
+                                                                      exif:copyright "Copyright: Felix Nienstaedt";
                                                                       exif:dateTime "2011-04-03T16:39:38.000000"^^xsd:dateTime;
                                                                       exif:exifVersion "30323231"^^xsd:hexBinary;
                                                                       exif:exposureTime "1/1000"^^owl:rational;
@@ -60,7 +60,7 @@ _:n1 at:pathObject <file:///sample_detail_1.tif>;
                                                                       exif:resolutionUnit 2 ;
                                                                       exif:rowsPerStrip 15 ;
                                                                       exif:samplesPerPixel 5 ;
-                                                                      exif:software "Adobe Photoshop CS5 Windows"^^xsd:string;
+                                                                      exif:software "Adobe Photoshop CS5 Windows";
                                                                       exif:xResolution 240 ;
                                                                       exif:yResolution 240 ;
                                                                       skos:prefLabel "ARW object (21.63 MiB)"@en.
@@ -86,17 +86,13 @@ _:n1 at:pathObject <file:///sample_detail_1.tif>;
                                                     <http://ns.adobe.com/xap/1.0/mm/OriginalDocumentID> "xmp.did:34402F22005EE01199A8D7414BD83301";
                                                     <http://purl.org/dc/elements/1.1/format> "image/tiff";
                                                     schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
-                                                    nfo:colorDepth 32 ;
                                                     nfo:height 4572 ;
-                                                    nfo:horizontalResolution 240 ;
-                                                    nfo:verticalResolution 240 ;
                                                     nfo:width 3402 ;
                                                     <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#copyrightMessage> "Copyright: Felix Nienstaedt";
                                                     a schema:MediaObject,
                                                       nfo:Image,
                                                       schema:ImageObject;
-                                                    skos:prefLabel "TIFF object (3402×4572)"@en,
-                                                                   "TIF object (21.63 MiB)"@en.
+                                                    skos:prefLabel "TIFF object (3402×4572)"@en.
 <urn:md5:5B93D37531D0B6287AD72E20566D8C82> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "W5PTdTHQtih61y4gVm2Mgg=="^^xsd:base64Binary.

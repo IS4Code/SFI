@@ -1,8 +1,9 @@
-@base <x.blank:923676e1-3dbc-4fae-a47a-10716a6c7797>.
+@base <ni:///mh;1QEQYhuHW_Axx-0aQOYFNSDNwA?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
@@ -11,7 +12,6 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///DBEAR.SCR>;
      nie:interpretedAs <ni:///mh;1QEQYhuHW_Axx-0aQOYFNSDNwA?ct=application/octet-stream>;
@@ -22,18 +22,18 @@ _:n1 at:pathObject <file:///DBEAR.SCR>;
                                        a cnt:ContentAsText;
                                        skos:prefLabel "text (24 B)"@en;
                                        cnt:characterEncoding "us-ascii";
-                                       cnt:chars "␇PassErr␈Command1␆Image1"^^xsd:string.
+                                       cnt:chars "␇PassErr␈Command1␆Image1".
 <data:,%0ADancinBear%06Timer1%08Picture1%06PicBox> dcterms:extent "34"^^dt:byte;
                                                    a cnt:ContentAsText;
                                                    skos:prefLabel "text (34 B)"@en;
                                                    cnt:characterEncoding "us-ascii";
                                                    cnt:chars """
-DancinBear␆Timer1␈Picture1␆PicBox"""^^xsd:string.
+DancinBear␆Timer1␈Picture1␆PicBox""".
 <data:,%0CPassLockForm%05Text1%08Command2%08Command1%06Image1%06Label1> dcterms:extent "51"^^dt:byte;
                                                                         a cnt:ContentAsText;
                                                                         skos:prefLabel "text (51 B)"@en;
                                                                         cnt:characterEncoding "us-ascii";
-                                                                        cnt:chars "␌PassLockForm␅Text1␈Command2␈Command1␆Image1␆Label1"^^xsd:string.
+                                                                        cnt:chars "␌PassLockForm␅Text1␈Command2␈Command1␆Image1␆Label1".
 <file:///DBEAR.SCR> at:extensionObject <https://w3id.org/uri4uri/suffix/scr>.
 <ni:///mh;1QEQ5KSGAMiZxt7urBxZFKJBMQ?ct=application/octet-stream> at:digest <urn:md5:E4A48600C899C6DEEEAC1C5914A24131>;
                                                                   dcterms:extent "962"^^dt:byte;
@@ -52,15 +52,17 @@ DancinBear␆Timer1␈Picture1␆PicBox"""^^xsd:string.
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (758 B)"@en.
 <ni:///mh;1QEQEaMzjaX56c8wU0xNyNbuJQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (768 B)"@en.
 <ni:///mh;1QEQIAWmqVdczUIUr_YBvYqLrQ?ct=application/octet-stream> at:digest <urn:md5:2005A6A9575CCD4214AFF601BD8A8BAD>;
                                                                   dcterms:extent "531"^^dt:byte;
                                                                   a cnt:ContentAsBase64;

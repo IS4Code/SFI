@@ -3,6 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
@@ -11,7 +12,6 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///savit.scr>;
      nie:interpretedAs <ni:///mh;1QEQve7wpYzK3y8Eyjc-qNqoiQ?ct=application/octet-stream>;
@@ -37,30 +37,32 @@ _:n1 at:pathObject <file:///savit.scr>;
 <ni:///mh;1QEQ-XfL3m95AZ7qNRxkp0wOEg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 18 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 36 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (36×18)"@en,
-                                                                  "BMP object (512 B)"@en.
+                                                   skos:prefLabel "BMP object (512 B)"@en,
+                                                                  "BMP object (36×18)"@en.
 <ni:///mh;1QEQ0Iq3Qj0RcO9IDH3huM7XmA?ct=application/octet-stream> at:digest <urn:md5:D08AB7423D1170EF480C7DE1B8CED798>;
                                                                   dcterms:extent "515"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ0Iq3Qj0RcO9IDH3huM7XmA?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (515 B)"@en.
 <ni:///mh;1QEQ0Iq3Qj0RcO9IDH3huM7XmA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (512 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQ31rixiLTCCHjLcQrooUp0g?ct=application/octet-stream> at:digest <urn:md5:DF5AE2C622D30821E32DC42BA28529D2>;
                                                                   dcterms:extent "519"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ31rixiLTCCHjLcQrooUp0g?ct=image/bmp>;
@@ -69,9 +71,9 @@ _:n1 at:pathObject <file:///savit.scr>;
 <ni:///mh;1QEQ31rixiLTCCHjLcQrooUp0g?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 18 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 36 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -84,16 +86,12 @@ _:n1 at:pathObject <file:///savit.scr>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (783 B)"@en.
 <ni:///mh;1QEQ40vOHe_y35urJkmS3WyHgA?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:height 32 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
                                                       nfo:width 32 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (32×32)"@en,
-                                                                     "ICO object (256 B)"@en.
+                                                      skos:prefLabel "ICO object (32×32)"@en.
 <ni:///mh;1QEQ4Mx8CAjlKm66qYQgCIxlJQ?ct=application/octet-stream> at:digest <urn:md5:E0CC7C0808E52A6EBAA98420088C6525>;
                                                                   dcterms:extent "263"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ4Mx8CAjlKm66qYQgCIxlJQ?ct=image/bmp>;
@@ -102,15 +100,15 @@ _:n1 at:pathObject <file:///savit.scr>;
 <ni:///mh;1QEQ4Mx8CAjlKm66qYQgCIxlJQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 15 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×15)"@en,
-                                                                  "BMP object (256 B)"@en.
+                                                   skos:prefLabel "BMP object (256 B)"@en,
+                                                                  "BMP object (16×15)"@en.
 <ni:///mh;1QEQ6F9X7Yv0lzlPpoxVXNdqGQ?ct=application/octet-stream> at:digest <urn:md5:E85F57ED8BF497394FA68C555CD76A19>;
                                                                   dcterms:extent "3065"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ6F9X7Yv0lzlPpoxVXNdqGQ?ct=application/x-delphi-form>;
@@ -168,15 +166,15 @@ _:n1 at:pathObject <file:///savit.scr>;
 <ni:///mh;1QEQ7RX-iiEbBG8PgcdSL2YBgw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 11 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (256 B)"@en,
-                                                                  "BMP object (16×11)"@en.
+                                                   skos:prefLabel "BMP object (16×11)"@en,
+                                                                  "BMP object (256 B)"@en.
 <ni:///mh;1QEQ82wTGbbQHU8S9i6gonLKsQ?ct=application/octet-stream> at:digest <urn:md5:F36C1319B6D01D4F12F62EA0A272CAB1>;
                                                                   dcterms:extent "519"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ82wTGbbQHU8S9i6gonLKsQ?ct=image/bmp>;
@@ -185,9 +183,9 @@ _:n1 at:pathObject <file:///savit.scr>;
 <ni:///mh;1QEQ82wTGbbQHU8S9i6gonLKsQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 18 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 36 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -202,15 +200,15 @@ _:n1 at:pathObject <file:///savit.scr>;
 <ni:///mh;1QEQ8uP-dIR8DI9ywSIlyKpl6g?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 15 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (256 B)"@en,
-                                                                  "BMP object (16×15)"@en.
+                                                   skos:prefLabel "BMP object (16×15)"@en,
+                                                                  "BMP object (256 B)"@en.
 <ni:///mh;1QEQD0rXFA5xKW13YXf28iV9dQ?ct=application/octet-stream> at:digest <urn:md5:0F4AD7140E71296D776177F6F2257D75>;
                                                                   dcterms:extent "519"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQD0rXFA5xKW13YXf28iV9dQ?ct=image/bmp>;
@@ -219,9 +217,9 @@ _:n1 at:pathObject <file:///savit.scr>;
 <ni:///mh;1QEQD0rXFA5xKW13YXf28iV9dQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 18 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 36 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -236,30 +234,32 @@ _:n1 at:pathObject <file:///savit.scr>;
 <ni:///mh;1QEQDYEzE4L-f9YrJ_Nw7W3Mgg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 15 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×15)"@en,
-                                                                  "BMP object (256 B)"@en.
+                                                   skos:prefLabel "BMP object (256 B)"@en,
+                                                                  "BMP object (16×15)"@en.
 <ni:///mh;1QEQFKSmtGBJ9m8z_lWMFPro6w?ct=application/octet-stream> at:digest <urn:md5:14A4A6B46049F66F33FE558C14FAE8EB>;
                                                                   dcterms:extent "515"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQFKSmtGBJ9m8z_lWMFPro6w?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (515 B)"@en.
 <ni:///mh;1QEQFKSmtGBJ9m8z_lWMFPro6w?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (512 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQFzYqqNdz3Y8epDtiXdi56A?ct=application/octet-stream> at:digest <urn:md5:17362AA8D773DD8F1EA43B625DD8B9E8>;
                                                                   dcterms:extent "519"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQFzYqqNdz3Y8epDtiXdi56A?ct=image/bmp>;
@@ -268,9 +268,9 @@ _:n1 at:pathObject <file:///savit.scr>;
 <ni:///mh;1QEQFzYqqNdz3Y8epDtiXdi56A?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 18 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 36 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -285,9 +285,9 @@ _:n1 at:pathObject <file:///savit.scr>;
 <ni:///mh;1QEQGfka1yA2uSoizvkrUHag9Q?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 11 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -302,9 +302,9 @@ _:n1 at:pathObject <file:///savit.scr>;
 <ni:///mh;1QEQInAdhcFqzSdCV9m93RDepg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 11 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -319,15 +319,15 @@ _:n1 at:pathObject <file:///savit.scr>;
 <ni:///mh;1QEQL7haK1UZViwB7s-1Eao39g?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 18 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 36 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (36×18)"@en,
-                                                                  "BMP object (512 B)"@en.
+                                                   skos:prefLabel "BMP object (512 B)"@en,
+                                                                  "BMP object (36×18)"@en.
 <ni:///mh;1QEQLVeEBz-NtYNV8cW-i6BU7A?ct=application/octet-stream> at:digest <urn:md5:2D5784073F8DB58355F1C5BE8BA054EC>;
                                                                   dcterms:extent "263"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQLVeEBz-NtYNV8cW-i6BU7A?ct=image/bmp>;
@@ -336,15 +336,15 @@ _:n1 at:pathObject <file:///savit.scr>;
 <ni:///mh;1QEQLVeEBz-NtYNV8cW-i6BU7A?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 11 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×11)"@en,
-                                                                  "BMP object (256 B)"@en.
+                                                   skos:prefLabel "BMP object (256 B)"@en,
+                                                                  "BMP object (16×11)"@en.
 <ni:///mh;1QEQLfvUJtNsqjWRm3IJPEGCUQ?ct=application/octet-stream> at:digest <urn:md5:2DFBD426D36CAA35919B72093C418251>;
                                                                   dcterms:extent "2041"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQLfvUJtNsqjWRm3IJPEGCUQ?ct=application/x-delphi-form>;
@@ -367,15 +367,17 @@ _:n1 at:pathObject <file:///savit.scr>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (515 B)"@en.
 <ni:///mh;1QEQSeOWGA3M-U52Yeq9iMvYCQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (512 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQV28hGGjjyfyi0CRiadxEzg?ct=application/octet-stream> at:digest <urn:md5:576F211868E3C9FCA2D0246269DC44CE>;
                                                                   dcterms:extent "2041"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQV28hGGjjyfyi0CRiadxEzg?ct=application/x-delphi-form>;
@@ -408,9 +410,9 @@ _:n1 at:pathObject <file:///savit.scr>;
 <ni:///mh;1QEQXRtFH_cG6pjNSl4foOFg6A?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 19 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 36 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -425,9 +427,9 @@ _:n1 at:pathObject <file:///savit.scr>;
 <ni:///mh;1QEQXY5e_zi3WHD3UsG88ms9Jw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 15 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -458,9 +460,9 @@ _:n1 at:pathObject <file:///savit.scr>;
 <ni:///mh;1QEQY03rAL4gKVr3y-J_PFx2iA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 15 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -473,15 +475,17 @@ _:n1 at:pathObject <file:///savit.scr>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (775 B)"@en.
 <ni:///mh;1QEQbYIdyOFmUJRIwa17BDZG1g?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (768 B)"@en.
 <ni:///mh;1QEQbYxlJI9jIHmjMrnZZ5lA4A?ct=application/octet-stream> at:digest <urn:md5:6D8C65248F632079A332B9D9679940E0>;
                                                                   dcterms:extent "523"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -492,15 +496,17 @@ _:n1 at:pathObject <file:///savit.scr>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (515 B)"@en.
 <ni:///mh;1QEQe-ATd6m9j8viJS_Xz6i_qA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (512 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQe9-3CB3a97SRm3zSv401jQ?ct=application/octet-stream> at:digest <urn:md5:7BDFB7081DDAF7B4919B7CD2BF8D358D>;
                                                                   dcterms:extent "263"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQe9-3CB3a97SRm3zSv401jQ?ct=image/bmp>;
@@ -509,15 +515,15 @@ _:n1 at:pathObject <file:///savit.scr>;
 <ni:///mh;1QEQe9-3CB3a97SRm3zSv401jQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 6 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 9 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (9×6)"@en,
-                                                                  "BMP object (256 B)"@en.
+                                                   skos:prefLabel "BMP object (256 B)"@en,
+                                                                  "BMP object (9×6)"@en.
 <ni:///mh;1QEQhX7xJVcJ3M1EsCe5O9cj1g?ct=application/octet-stream> at:digest <urn:md5:857EF1255709DCCD44B027B93BD723D6>;
                                                                   dcterms:extent "263"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQhX7xJVcJ3M1EsCe5O9cj1g?ct=image/bmp>;
@@ -526,9 +532,9 @@ _:n1 at:pathObject <file:///savit.scr>;
 <ni:///mh;1QEQhX7xJVcJ3M1EsCe5O9cj1g?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 11 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -590,8 +596,8 @@ _:n1 at:pathObject <file:///savit.scr>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×16)"@en,
-                                                                  "BMP object (380 B)"@en.
+                                                   skos:prefLabel "BMP object (380 B)"@en,
+                                                                  "BMP object (32×16)"@en.
 <ni:///mh;1QEQnick0GegKLxvA1y_cqlEPQ?ct=application/octet-stream> at:digest <urn:md5:9E2724D067A028BC6F035CBF72A9443D>;
                                                                   dcterms:extent "263"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQnick0GegKLxvA1y_cqlEPQ?ct=image/bmp>;
@@ -600,15 +606,15 @@ _:n1 at:pathObject <file:///savit.scr>;
 <ni:///mh;1QEQnick0GegKLxvA1y_cqlEPQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 15 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×15)"@en,
-                                                                  "BMP object (256 B)"@en.
+                                                   skos:prefLabel "BMP object (256 B)"@en,
+                                                                  "BMP object (16×15)"@en.
 <ni:///mh;1QEQos84D2y9DfBMu9UPguBNqQ?ct=application/octet-stream> at:digest <urn:md5:A2CF380F6CBD0DF04CBBD50F82E04DA9>;
                                                                   dcterms:extent "505"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQos84D2y9DfBMu9UPguBNqQ?ct=application/x-delphi-form>;
@@ -625,9 +631,9 @@ _:n1 at:pathObject <file:///savit.scr>;
 <ni:///mh;1QEQpOj0znx8KBBuROLWEu4KDg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 6 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 9 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -646,9 +652,9 @@ _:n1 at:pathObject <file:///savit.scr>;
 <ni:///mh;1QEQr37AX45MsLY7BXMqrjuXYw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 12 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 12 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -665,15 +671,17 @@ _:n1 at:pathObject <file:///savit.scr>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (515 B)"@en.
 <ni:///mh;1QEQrjBiLFI5coWu7UNwdUgNrA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (512 B)"@en.
 <ni:///mh;1QEQsZHUFw-I372BjBQQ4W7XGw?ct=application/octet-stream> at:digest <urn:md5:B191D4170F88DFBD818C1410E16ED71B>;
                                                                   dcterms:extent "376"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQsZHUFw-I372BjBQQ4W7XGw?ct=image/bmp>;
@@ -689,8 +697,8 @@ _:n1 at:pathObject <file:///savit.scr>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×16)"@en,
-                                                                  "BMP object (380 B)"@en.
+                                                   skos:prefLabel "BMP object (380 B)"@en,
+                                                                  "BMP object (32×16)"@en.
 <ni:///mh;1QEQsiZFqKgzxuTbPsO3AUVMPA?ct=application/octet-stream> at:digest <urn:md5:B22645A8A833C6E4DB3EC3B701454C3C>;
                                                                   dcterms:extent "519"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQsiZFqKgzxuTbPsO3AUVMPA?ct=image/bmp>;
@@ -699,9 +707,9 @@ _:n1 at:pathObject <file:///savit.scr>;
 <ni:///mh;1QEQsiZFqKgzxuTbPsO3AUVMPA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 18 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 36 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -733,9 +741,9 @@ _:n1 at:pathObject <file:///savit.scr>;
 <ni:///mh;1QEQvcYJQOOzvjRFjM9gDWEyLQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 18 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 18 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -1118,15 +1126,17 @@ _:n1 at:pathObject <file:///savit.scr>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (515 B)"@en.
 <ni:///mh;1QEQyFj_FHISY506zoTK8lkDVQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (512 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQzuzDlJ-f4sgUYiR5Pz_2Wg?ct=application/octet-stream> at:digest <urn:md5:CEECC3949F9FE2C8146224793F3FF65A>;
                                                                   dcterms:extent "523"^^dt:byte;
                                                                   a cnt:ContentAsBase64;

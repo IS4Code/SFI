@@ -3,6 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
@@ -13,7 +14,6 @@
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///example_layers_small.tif>;
      nie:interpretedAs <ni:///mh;1QEQqZyAAgETSVa3P5omN-Y9IQ?ct=application/octet-stream>;
@@ -23,8 +23,8 @@ _:n1 at:pathObject <file:///example_layers_small.tif>;
 <file:///example_layers_small.tif> at:extensionObject <https://w3id.org/uri4uri/suffix/tif>.
 <ni:///mh;1QEQqZyAAgETSVa3P5omN-Y9IQ?ct=application/octet-stream> at:digest <urn:md5:A99C800201134956B73F9A2637E63D21>;
                                                                   dcterms:extent "1076108"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQqZyAAgETSVa3P5omN-Y9IQ?ct=application/octet-stream#arw>,
-                                                                                    <ni:///mh;1QEQqZyAAgETSVa3P5omN-Y9IQ?ct=image/tiff>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQqZyAAgETSVa3P5omN-Y9IQ?ct=image/tiff>,
+                                                                                    <ni:///mh;1QEQqZyAAgETSVa3P5omN-Y9IQ?ct=application/octet-stream#arw>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.03 MiB)"@en.
 <ni:///mh;1QEQqZyAAgETSVa3P5omN-Y9IQ?ct=application/octet-stream#arw> <http://ns.adobe.com/exif/1.0/aux/ApproximateFocusDistance> "94/100";
@@ -76,10 +76,10 @@ _:n1 at:pathObject <file:///example_layers_small.tif>;
                                                                       exif:imageWidth 500 ;
                                                                       exif:isoSpeedRatings 200 ;
                                                                       exif:lightSource 0 ;
-                                                                      exif:make "NIKON CORPORATION"^^xsd:string;
+                                                                      exif:make "NIKON CORPORATION";
                                                                       exif:maxApertureValue "39/10"^^owl:rational;
                                                                       exif:meteringMode 5 ;
-                                                                      exif:model "NIKON D3100"^^xsd:string;
+                                                                      exif:model "NIKON D3100";
                                                                       exif:orientation 1 ;
                                                                       exif:photometricInterpretation 2 ;
                                                                       exif:pixelXDimension 500 ;
@@ -94,12 +94,12 @@ _:n1 at:pathObject <file:///example_layers_small.tif>;
                                                                       exif:sensingMethod 2 ;
                                                                       exif:sharpness 0 ;
                                                                       exif:shutterSpeedValue "1040241/125000"^^owl:rational;
-                                                                      exif:software "Adobe Photoshop CS6 (Windows)"^^xsd:string;
+                                                                      exif:software "Adobe Photoshop CS6 (Windows)";
                                                                       exif:stripByteCounts 499500 ;
                                                                       exif:stripOffsets 30262 ;
-                                                                      exif:subSecTime "00"^^xsd:string;
-                                                                      exif:subSecTimeDigitized "00"^^xsd:string;
-                                                                      exif:subSecTimeOriginal "00"^^xsd:string;
+                                                                      exif:subSecTime "00";
+                                                                      exif:subSecTimeDigitized "00";
+                                                                      exif:subSecTimeOriginal "00";
                                                                       exif:subjectDistanceRange 0 ;
                                                                       exif:userComment "QVNDSUkAAAAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA="^^xsd:base64Binary;
                                                                       exif:whiteBalance 0 ;
@@ -142,7 +142,7 @@ _:n1 at:pathObject <file:///example_layers_small.tif>;
                                                       nfo:Image,
                                                       schema:ImageObject;
                                                     skos:prefLabel "TIFF object (500×333)"@en,
-                                                                   "TIF object (1.03 MiB)"@en.
+                                                                   "TIFF object (1.03 MiB)"@en.
 <urn:md5:A99C800201134956B73F9A2637E63D21> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "qZyAAgETSVa3P5omN+Y9IQ=="^^xsd:base64Binary.

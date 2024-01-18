@@ -1381,7 +1381,8 @@ Sys$Library:VAXCRTL.EXE /Share
 <ni:///mh;1QEQeGgQbMLVGH_hu4rCkpkh2g?ct=text/plain#line=,1> rdf:value "#define dial_cw1_width 9".
 <ni:///mh;1QEQfTkLDYf8Pw4lfQ7PIMKzug?ct=application/octet-stream> at:digest <urn:md5:7D390B0D87FC3F0E257D0ECF20C2B3BA>;
                                                                   dcterms:extent "46890"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQfTkLDYf8Pw4lfQ7PIMKzug?ct=image/x-portable-graymap>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQfTkLDYf8Pw4lfQ7PIMKzug?ct=image/x-portable-graymap>,
+                                                                                    <ni:///mh;1QEQfTkLDYf8Pw4lfQ7PIMKzug?ct=image/x-portable-pixmap>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (45.79 KiB)"@en.
 <ni:///mh;1QEQfTkLDYf8Pw4lfQ7PIMKzug?ct=image/x-portable-graymap> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-portable-graymap>;
@@ -1391,6 +1392,16 @@ Sys$Library:VAXCRTL.EXE /Share
                                                                     schema:ImageObject,
                                                                     nfo:Image;
                                                                   skos:prefLabel "PBM object (125×125)"@en.
+<ni:///mh;1QEQfTkLDYf8Pw4lfQ7PIMKzug?ct=image/x-portable-pixmap> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-portable-pixmap>;
+                                                                 nfo:colorDepth 24 ;
+                                                                 nfo:height 125 ;
+                                                                 nfo:horizontalResolution 96 ;
+                                                                 nfo:verticalResolution 96 ;
+                                                                 nfo:width 125 ;
+                                                                 a schema:MediaObject,
+                                                                   schema:ImageObject,
+                                                                   nfo:Image;
+                                                                 skos:prefLabel "PPM object (45.79 KiB)"@en.
 <ni:///mh;1QEQfz1lOScStMjGI385V5g_CA?ct=text/plain> at:digest <urn:md5:7F3D65392712B4C8C6237F3957983F08>;
                                                     dcterms:extent "311"^^dt:byte;
                                                     nie:hasPart <ni:///mh;1QEQfz1lOScStMjGI385V5g_CA?ct=text/plain#line=,1>;
@@ -3531,10 +3542,10 @@ Sys$Library:VAXCRTL.EXE /Share
                                                     nfo:verticalResolution 96 ;
                                                     nfo:width 125 ;
                                                     a schema:MediaObject,
-                                                      nfo:Image,
-                                                      schema:ImageObject;
-                                                    skos:prefLabel "JPG object (125×125)"@en,
-                                                                   "JPG object (4.28 KiB)"@en.
+                                                      schema:ImageObject,
+                                                      nfo:Image;
+                                                    skos:prefLabel "JPG object (4.28 KiB)"@en,
+                                                                   "JPG object (125×125)"@en.
 <ni:///mh;1QEQoxjwiwfuhSxCljF-Y08aSA?ct=text/plain> at:digest <urn:md5:A318F08B07EE852C4296317E634F1A48>;
                                                     dcterms:extent "6342"^^dt:byte;
                                                     nie:hasPart <ni:///mh;1QEQoxjwiwfuhSxCljF-Y08aSA?ct=text/plain#line=,1>;
@@ -3617,10 +3628,10 @@ Sys$Library:VAXCRTL.EXE /Share
                                                     nfo:verticalResolution 96 ;
                                                     nfo:width 125 ;
                                                     a schema:MediaObject,
-                                                      nfo:Image,
-                                                      schema:ImageObject;
-                                                    skos:prefLabel "JPG object (125×125)"@en,
-                                                                   "JPG object (4.28 KiB)"@en.
+                                                      schema:ImageObject,
+                                                      nfo:Image;
+                                                    skos:prefLabel "JPG object (4.28 KiB)"@en,
+                                                                   "JPG object (125×125)"@en.
 <ni:///mh;1QEQsIe3SFNpr4s7TFSpLmyhaA?ct=text/plain> at:digest <urn:md5:B087B7485369AF8B3B4C54A92E6CA168>;
                                                     dcterms:extent "485"^^dt:byte;
                                                     nie:hasPart <ni:///mh;1QEQsIe3SFNpr4s7TFSpLmyhaA?ct=text/plain#line=,1>;

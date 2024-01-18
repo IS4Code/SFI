@@ -3,6 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
@@ -11,7 +12,6 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix dbo: <http://dbpedia.org/ontology/>.
 
 _:n1 at:pathObject <file:///MINI.CAB>;
@@ -53,30 +53,34 @@ _:n1 at:pathObject <file:///MINI.CAB>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (758 B)"@en.
 <ni:///mh;1QEQ00QM38uXX1xZC5mgjxWtQA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (752 B)"@en.
 <ni:///mh;1QEQ039FlcsTQSQtyBQ0eGK5cQ?ct=application/octet-stream> at:digest <urn:md5:D37F4595CB1341242DC814347862B971>;
                                                                   dcterms:extent "758"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ039FlcsTQSQtyBQ0eGK5cQ?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (758 B)"@en.
 <ni:///mh;1QEQ039FlcsTQSQtyBQ0eGK5cQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (752 B)"@en.
 <ni:///mh;1QEQ0CLTKnvLC1TDS9aHrABWTA?ct=application/octet-stream> at:digest <urn:md5:D022D32A7BCB0B54C34BD687AC00564C>;
                                                                   dcterms:extent "9008"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ0CLTKnvLC1TDS9aHrABWTA?ct=application/x-msdownload;format=ne>;
@@ -101,45 +105,51 @@ _:n1 at:pathObject <file:///MINI.CAB>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQ0CiczQhiSASatc0VDEg-Eg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (320 B)"@en.
 <ni:///mh;1QEQ1MXXZcwdT7govcONPEOkaA?ct=application/octet-stream> at:digest <urn:md5:D4C5D765CC1D4FB828BDC38D3C43A468>;
                                                                   dcterms:extent "758"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ1MXXZcwdT7govcONPEOkaA?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (758 B)"@en.
 <ni:///mh;1QEQ1MXXZcwdT7govcONPEOkaA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (752 B)"@en.
 <ni:///mh;1QEQ1XZ1n46hgH3wqta7mGSjSg?ct=application/octet-stream> at:digest <urn:md5:D576759F8EA1807DF0AAD6BB9864A34A>;
                                                                   dcterms:extent "318"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ1XZ1n46hgH3wqta7mGSjSg?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQ1XZ1n46hgH3wqta7mGSjSg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (320 B)"@en.
 <ni:///mh;1QEQ27X00Ip8_bAMUI1uDnC9lg?ct=application/octet-stream> at:digest <urn:md5:DBB5F4D08A7CFDB00C508D6E0E70BD96>;
                                                                   dcterms:extent "76"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -437,27 +447,34 @@ _:n1 at:pathObject <file:///MINI.CAB>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQ4IeDoOkDXEgsWShoPB2PEg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (304 B)"@en.
 <ni:///mh;1QEQ4TmZPuPTyITl8HJe2w3RTw?ct=application/octet-stream> at:digest <urn:md5:E139993EE3D3C884E5F0725EDB0DD14F>;
                                                                   dcterms:extent "319"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ4TmZPuPTyITl8HJe2w3RTw?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (319 B)"@en.
 <ni:///mh;1QEQ4TmZPuPTyITl8HJe2w3RTw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 17 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 17 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (17×17)"@en.
+                                                   skos:prefLabel "BMP object (17×17)"@en,
+                                                                  "BMP object (320 B)"@en.
 <ni:///mh;1QEQ4lHgdLBUDUxdB30QSzzLVg?ct=application/octet-stream> at:digest <urn:md5:E251E074B0540D4C5D077D104B3CCB56>;
                                                                   dcterms:extent "94"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -478,15 +495,17 @@ _:n1 at:pathObject <file:///MINI.CAB>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.05 KiB)"@en.
 <ni:///mh;1QEQChJZOfYDCfXv4QI6Frjwuw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 64 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 64 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (64×64)"@en.
+                                                   skos:prefLabel "BMP object (64×64)"@en,
+                                                                  "BMP object (1.05 KiB)"@en.
 <ni:///mh;1QEQD-C4wimj1Mu2509JawkBfg?ct=application/octet-stream> at:digest <urn:md5:0FE0B8C229A3D4CBB6E74F496B09017E>;
                                                                   dcterms:extent "97"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -509,8 +528,8 @@ _:n1 at:pathObject <file:///MINI.CAB>;
                                                                   skos:prefLabel "binary data (264 B)"@en.
 <ni:///mh;1QEQGgvTz79j0xTu-KennpZp7A?ct=application/octet-stream> at:digest <urn:md5:1A0BD3CFBF63D314EEF8A7A79E9669EC>;
                                                                   dcterms:extent "75490"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQGgvTz79j0xTu-KennpZp7A?ct=application/vnd.microsoft.portable-executable>,
-                                                                                    <ni:///mh;1QEQGgvTz79j0xTu-KennpZp7A?ct=application/x-msdownload;format=ne>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQGgvTz79j0xTu-KennpZp7A?ct=application/x-msdownload;format=ne>,
+                                                                                    <ni:///mh;1QEQGgvTz79j0xTu-KennpZp7A?ct=application/vnd.microsoft.portable-executable>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (73.72 KiB)"@en.
 <ni:///mh;1QEQGgvTz79j0xTu-KennpZp7A?ct=application/vnd.microsoft.portable-executable> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
@@ -532,19 +551,21 @@ _:n1 at:pathObject <file:///MINI.CAB>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQHmd6RZwCMmDRCEqpuRz8lA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (304 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQHpZiXFK4nAwgPmFTc2afiA?ct=application/octet-stream> at:digest <urn:md5:1E96625C52B89C0C203E615373669F88>;
                                                                   dcterms:extent "12928"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQHpZiXFK4nAwgPmFTc2afiA?ct=application/vnd.microsoft.portable-executable>,
-                                                                                    <ni:///mh;1QEQHpZiXFK4nAwgPmFTc2afiA?ct=application/x-msdownload;format=ne>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQHpZiXFK4nAwgPmFTc2afiA?ct=application/x-msdownload;format=ne>,
+                                                                                    <ni:///mh;1QEQHpZiXFK4nAwgPmFTc2afiA?ct=application/vnd.microsoft.portable-executable>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (12.63 KiB)"@en.
 <ni:///mh;1QEQHpZiXFK4nAwgPmFTc2afiA?ct=application/vnd.microsoft.portable-executable> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
@@ -582,27 +603,34 @@ _:n1 at:pathObject <file:///MINI.CAB>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (319 B)"@en.
 <ni:///mh;1QEQKcLMUggahYEm7-a-ePAkbw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 17 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 17 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (17×17)"@en.
+                                                   skos:prefLabel "BMP object (320 B)"@en,
+                                                                  "BMP object (17×17)"@en.
 <ni:///mh;1QEQNUcGT9P8v4aJF5S9ADQCbA?ct=application/octet-stream> at:digest <urn:md5:3547064FD3FCBF86891794BD0034026C>;
                                                                   dcterms:extent "318"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQNUcGT9P8v4aJF5S9ADQCbA?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQNUcGT9P8v4aJF5S9ADQCbA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (320 B)"@en.
 <ni:///mh;1QEQNdSlgphYFlhYxNRWbbiumg?ct=application/octet-stream> at:digest <urn:md5:35D4A5829858165858C4D4566DB8AE9A>;
                                                                   dcterms:extent "4401"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -613,15 +641,17 @@ _:n1 at:pathObject <file:///MINI.CAB>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (758 B)"@en.
 <ni:///mh;1QEQNhR2DqIyHEei4EdqgHIopw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (752 B)"@en.
 <ni:///mh;1QEQOHAjoIuMDEaOke127GH3cg?ct=application/octet-stream> at:digest <urn:md5:387023A08B8C0C468E91ED76EC61F772>;
                                                                   dcterms:extent "7568"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQOHAjoIuMDEaOke127GH3cg?ct=application/x-msdownload;format=ne>;
@@ -643,8 +673,8 @@ _:n1 at:pathObject <file:///MINI.CAB>;
                                                                             skos:prefLabel "DLL object (KEYBOARD)"@en.
 <ni:///mh;1QEQOd49iGZgl83x7v5SECGUuQ?ct=application/octet-stream> at:digest <urn:md5:39DE3D88666097CDF1EEFE52102194B9>;
                                                                   dcterms:extent "264016"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQOd49iGZgl83x7v5SECGUuQ?ct=application/x-msdownload;format=ne>,
-                                                                                    <ni:///mh;1QEQOd49iGZgl83x7v5SECGUuQ?ct=application/vnd.microsoft.portable-executable>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQOd49iGZgl83x7v5SECGUuQ?ct=application/vnd.microsoft.portable-executable>,
+                                                                                    <ni:///mh;1QEQOd49iGZgl83x7v5SECGUuQ?ct=application/x-msdownload;format=ne>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (257.83 KiB)"@en.
 <ni:///mh;1QEQOd49iGZgl83x7v5SECGUuQ?ct=application/vnd.microsoft.portable-executable> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
@@ -723,15 +753,17 @@ _:n1 at:pathObject <file:///MINI.CAB>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQQcC-YDX6lOTBHACIxEat5w?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (320 B)"@en.
 <ni:///mh;1QEQRXJVOlU8MH188VQykB_ZQw?ct=application/octet-stream> at:digest <urn:md5:4572553A553C307D7CF15432901FD943>;
                                                                   dcterms:extent "76"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -750,15 +782,17 @@ _:n1 at:pathObject <file:///MINI.CAB>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQSZOfxc1m4uVKfrsUvwqOww?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (320 B)"@en.
 <ni:///mh;1QEQT81ZwKCRh0_pYRejvOPLBQ?ct=application/octet-stream> at:digest <urn:md5:4FCD59C0A091874FE96117A3BCE3CB05>;
                                                                   dcterms:extent "9935"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -771,15 +805,15 @@ _:n1 at:pathObject <file:///MINI.CAB>;
 <ni:///mh;1QEQThLUL8AXxloHBHF2agUCFA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 17 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 17 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (320 B)"@en,
-                                                                  "BMP object (17×17)"@en.
+                                                   skos:prefLabel "BMP object (17×17)"@en,
+                                                                  "BMP object (320 B)"@en.
 <ni:///mh;1QEQUWbAbDQw63COf3dfeF1jrw?ct=application/octet-stream> at:digest <urn:md5:5166C06C3430EB708E7F775F785D63AF>;
                                                                   dcterms:extent "5511"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -790,15 +824,17 @@ _:n1 at:pathObject <file:///MINI.CAB>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQV0N4lhUmC1bTTQZxqYyeaQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (320 B)"@en.
 <ni:///mh;1QEQVPQiOvLyuepITPAhWxucKw?ct=application/octet-stream> at:digest <urn:md5:54F4223AF2F2B9EA484CF0215B1B9C2B>;
                                                                   dcterms:extent "2304"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQVPQiOvLyuepITPAhWxucKw?ct=application/x-msdownload;format=ne>;
@@ -824,15 +860,17 @@ _:n1 at:pathObject <file:///MINI.CAB>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (758 B)"@en.
 <ni:///mh;1QEQVwRjOgbEIFkGa3TyLAJ3yA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (752 B)"@en.
 <ni:///mh;1QEQVzdAhRCQW65HGLZEFtTixg?ct=text/plain> at:digest <urn:md5:5737408510905BAE4718B64416D4E2C6>;
                                                     dcterms:extent "358"^^dt:byte;
                                                     nie:hasPart <ni:///mh;1QEQVzdAhRCQW65HGLZEFtTixg?ct=text/plain#line=,1>;
@@ -869,15 +907,17 @@ _:n1 at:pathObject <file:///MINI.CAB>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQXnIi3BfyUDeNYs2Grdr1DA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (320 B)"@en.
 <ni:///mh;1QEQY09XZJ8k0c0ZoFHEXDt2YA?ct=application/octet-stream> at:digest <urn:md5:634F57649F24D1CD19A051C45C3B7660>;
                                                                   dcterms:extent "72"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -888,12 +928,17 @@ _:n1 at:pathObject <file:///MINI.CAB>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (213 B)"@en.
 <ni:///mh;1QEQYkCHOZyQIXXU6zjvhD8IQA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 19 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 50 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (50×19)"@en.
+                                                   skos:prefLabel "BMP object (50×19)"@en,
+                                                                  "BMP object (208 B)"@en.
 <ni:///mh;1QEQZDdsBa2v8u0wxD9HT90EQQ?ct=application/octet-stream> at:digest <urn:md5:64376C05ADAFF2ED30C43F474FDD0441>;
                                                                   dcterms:extent "9280"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQZDdsBa2v8u0wxD9HT90EQQ?ct=application/x-msdownload;format=ne>;
@@ -929,15 +974,15 @@ _:n1 at:pathObject <file:///MINI.CAB>;
 <ni:///mh;1QEQZwrL3-kKV7xQc91yRVavuQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 18 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 19 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (19×18)"@en,
-                                                                  "BMP object (320 B)"@en.
+                                                   skos:prefLabel "BMP object (320 B)"@en,
+                                                                  "BMP object (19×18)"@en.
 <ni:///mh;1QEQ_-FOgPmA8EQRW9sZ_UyOrQ?ct=application/octet-stream> at:digest <urn:md5:FFE14E80F980F044115BDB19FD4C8EAD>;
                                                                   dcterms:extent "296"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -948,16 +993,21 @@ _:n1 at:pathObject <file:///MINI.CAB>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (104 B)"@en.
 <ni:///mh;1QEQ_O207cjKec16ES965s1Q8Q?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 11 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 7 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (7×11)"@en.
+                                                   skos:prefLabel "BMP object (7×11)"@en,
+                                                                  "BMP object (96 B)"@en.
 <ni:///mh;1QEQ_YuFYG7EBfltItim1hO-1g?ct=application/octet-stream> at:digest <urn:md5:FD8B85606EC405F96D22D8A6D613BED6>;
                                                                   dcterms:extent "7280"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQ_YuFYG7EBfltItim1hO-1g?ct=application/vnd.microsoft.portable-executable>,
-                                                                                    <ni:///mh;1QEQ_YuFYG7EBfltItim1hO-1g?ct=application/x-msdownload;format=ne>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ_YuFYG7EBfltItim1hO-1g?ct=application/x-msdownload;format=ne>,
+                                                                                    <ni:///mh;1QEQ_YuFYG7EBfltItim1hO-1g?ct=application/vnd.microsoft.portable-executable>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (7.11 KiB)"@en.
 <ni:///mh;1QEQ_YuFYG7EBfltItim1hO-1g?ct=application/vnd.microsoft.portable-executable> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
@@ -992,30 +1042,34 @@ _:n1 at:pathObject <file:///MINI.CAB>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (758 B)"@en.
 <ni:///mh;1QEQ_asd4kcZS3my6svMs3-QMA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (752 B)"@en.
 <ni:///mh;1QEQbAcTmc9rg-25qFGhLasXNg?ct=application/octet-stream> at:digest <urn:md5:6C071399CF6B83EDB9A851A12DAB1736>;
                                                                   dcterms:extent "318"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQbAcTmc9rg-25qFGhLasXNg?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQbAcTmc9rg-25qFGhLasXNg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (304 B)"@en.
 <ni:///mh;1QEQbKlcTYB3ewHByDUIoHj0ZQ?ct=application/octet-stream> at:digest <urn:md5:6CA95C4D80777B01C1C83508A078F465>;
                                                                   dcterms:extent "5168"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQbKlcTYB3ewHByDUIoHj0ZQ?ct=application/x-msdownload;format=ne>;
@@ -1063,15 +1117,17 @@ _:n1 at:pathObject <file:///MINI.CAB>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQc0SjUQqJ_9DJ2B_xn8HzYQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (320 B)"@en.
 <ni:///mh;1QEQcDbeGixX2uAohWkFpaMovQ?ct=application/octet-stream> at:digest <urn:md5:7036DE1A2C57DAE028856905A5A328BD>;
                                                                   dcterms:extent "57936"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQcDbeGixX2uAohWkFpaMovQ?ct=application/x-msdownload;format=ne>;
@@ -1145,15 +1201,17 @@ _:n1 at:pathObject <file:///MINI.CAB>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQcIjr4DLSD5oKulsRKYs3dA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (320 B)"@en.
 <ni:///mh;1QEQcKb5wBU3UA_9-HzggUzlBw?ct=application/octet-stream> at:digest <urn:md5:70A6F9C01537500FFDF87CE0814CE507>;
                                                                   dcterms:extent "264"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -1168,27 +1226,34 @@ _:n1 at:pathObject <file:///MINI.CAB>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQdSgv1Y6RlJLMkrqe3jXYYw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (320 B)"@en.
 <ni:///mh;1QEQe7kCYzIhBNuCGRcmpgffwQ?ct=application/octet-stream> at:digest <urn:md5:7BB90263322104DB82191726A607DFC1>;
                                                                   dcterms:extent "96"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQe7kCYzIhBNuCGRcmpgffwQ?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (96 B)"@en.
 <ni:///mh;1QEQe7kCYzIhBNuCGRcmpgffwQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 9 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 7 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (7×9)"@en.
+                                                   skos:prefLabel "BMP object (7×9)"@en,
+                                                                  "BMP object (96 B)"@en.
 <ni:///mh;1QEQeR6TFLRrzJxBFNiymAzvOA?ct=application/octet-stream> at:digest <urn:md5:791E9314B46BCC9C4114D8B2980CEF38>;
                                                                   dcterms:extent "334"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQeR6TFLRrzJxBFNiymAzvOA?ct=image/bmp>;
@@ -1197,9 +1262,9 @@ _:n1 at:pathObject <file:///MINI.CAB>;
 <ni:///mh;1QEQeR6TFLRrzJxBFNiymAzvOA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 18 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 19 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -1216,15 +1281,17 @@ _:n1 at:pathObject <file:///MINI.CAB>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQfercLb7ihpv7B58Wkzv6rg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (304 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQfnYNbPk2311sDla8-scboA?ct=application/octet-stream> at:digest <urn:md5:7E760D6CF936DF5D6C0E56BCFAC71BA0>;
                                                                   dcterms:extent "76"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -1239,23 +1306,25 @@ _:n1 at:pathObject <file:///MINI.CAB>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQgo5VddcNg1RekT1GYNlbUQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (320 B)"@en.
 <ni:///mh;1QEQi6cLXIUx_p0Xsub99Vecvg?ct=application/octet-stream> at:digest <urn:md5:8BA70B5C8531FE9D17B2E6FDF5579CBE>;
                                                                   dcterms:extent "6650"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (6.49 KiB)"@en.
 <ni:///mh;1QEQj5PND3wNc7q2E7O_I4VCEA?ct=application/octet-stream> at:digest <urn:md5:8F93CD0F7C0D73BAB613B3BF23854210>;
                                                                   dcterms:extent "12800"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQj5PND3wNc7q2E7O_I4VCEA?ct=application/vnd.microsoft.portable-executable>,
-                                                                                    <ni:///mh;1QEQj5PND3wNc7q2E7O_I4VCEA?ct=application/x-msdownload;format=ne>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQj5PND3wNc7q2E7O_I4VCEA?ct=application/x-msdownload;format=ne>,
+                                                                                    <ni:///mh;1QEQj5PND3wNc7q2E7O_I4VCEA?ct=application/vnd.microsoft.portable-executable>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (12.5 KiB)"@en.
 <ni:///mh;1QEQj5PND3wNc7q2E7O_I4VCEA?ct=application/vnd.microsoft.portable-executable> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
@@ -1316,23 +1385,25 @@ _:n1 at:pathObject <file:///MINI.CAB>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (758 B)"@en.
 <ni:///mh;1QEQmO4pIwRUK9HNHoU6f0wxxw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (752 B)"@en.
 <ni:///mh;1QEQnG1Pol6Lm_RT5D0I1NX3CQ?ct=application/octet-stream> at:digest <urn:md5:9C6D4FA25E8B9BF453E43D08D4D5F709>;
                                                                   dcterms:extent "276"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (276 B)"@en.
 <ni:///mh;1QEQoo-10PFNp1RbfHcQKrJxbQ?ct=application/octet-stream> at:digest <urn:md5:A28FB5D0F14DA7545B7C77102AB2716D>;
                                                                   dcterms:extent "149456"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQoo-10PFNp1RbfHcQKrJxbQ?ct=application/vnd.microsoft.portable-executable>,
-                                                                                    <ni:///mh;1QEQoo-10PFNp1RbfHcQKrJxbQ?ct=application/x-msdownload;format=ne>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQoo-10PFNp1RbfHcQKrJxbQ?ct=application/x-msdownload;format=ne>,
+                                                                                    <ni:///mh;1QEQoo-10PFNp1RbfHcQKrJxbQ?ct=application/vnd.microsoft.portable-executable>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (145.95 KiB)"@en.
 <ni:///mh;1QEQoo-10PFNp1RbfHcQKrJxbQ?ct=application/vnd.microsoft.portable-executable> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
@@ -1887,12 +1958,17 @@ _:n1 at:pathObject <file:///MINI.CAB>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (319 B)"@en.
 <ni:///mh;1QEQqLNmLYKckQLmR2QwylV1cQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 17 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 17 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (17×17)"@en.
+                                                   skos:prefLabel "BMP object (17×17)"@en,
+                                                                  "BMP object (320 B)"@en.
 <ni:///mh;1QEQqpzCY4bpAKX_z50OTbBcsw?ct=application/octet-stream> at:digest <urn:md5:AA9CC26386E900A5FFCF9D0E4DB05CB3>;
                                                                   dcterms:extent "12805"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -1913,15 +1989,17 @@ _:n1 at:pathObject <file:///MINI.CAB>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (758 B)"@en.
 <ni:///mh;1QEQrxtP9_BbZ-DH-JfRPweR7Q?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (752 B)"@en.
 <ni:///mh;1QEQsNg6OuQyIX4QKL6wxB0Rwg?ct=application/octet-stream> at:digest <urn:md5:B0D83A3AE432217E1028BEB0C41D11C2>;
                                                                   dcterms:extent "22417"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -1932,12 +2010,17 @@ _:n1 at:pathObject <file:///MINI.CAB>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (332 B)"@en.
 <ni:///mh;1QEQsT2VrUF_vMihXUSc7L_gQg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 18 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 19 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (19×18)"@en.
+                                                   skos:prefLabel "BMP object (19×18)"@en,
+                                                                  "BMP object (320 B)"@en.
 <ni:///mh;1QEQsXXiRJOle4uHB1TSrFg_rA?ct=application/octet-stream> at:digest <urn:md5:B175E24493A57B8B870754D2AC583FAC>;
                                                                   dcterms:extent "72"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -1948,15 +2031,17 @@ _:n1 at:pathObject <file:///MINI.CAB>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQtBJZ2XHamvhQ4LkACklsYg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (304 B)"@en.
 <ni:///mh;1QEQuDifbadAHFgsrRA-y57SwA?ct=application/octet-stream> at:digest <urn:md5:B8389F6DA7401C582CAD103ECB9ED2C0>;
                                                                   dcterms:extent "4206"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -1982,15 +2067,17 @@ _:n1 at:pathObject <file:///MINI.CAB>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (758 B)"@en.
 <ni:///mh;1QEQvfNspR3AGuKbjJqJf24sxQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (752 B)"@en.
 <ni:///mh;1QEQx_A4M4v1Xec7V8H8eyNnGg?ct=application/octet-stream> at:digest <urn:md5:C7F038338BF55DE73B57C1FC7B23671A>;
                                                                   dcterms:extent "9936"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQx_A4M4v1Xec7V8H8eyNnGg?ct=application/x-msdownload;format=ne>;
@@ -2024,27 +2111,34 @@ _:n1 at:pathObject <file:///MINI.CAB>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQzitd8tbOLhp-dVZxz1LSRw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (320 B)"@en.
 <ni:///mh;1QEQzqcOg38S_Urkgb917zISqA?ct=application/octet-stream> at:digest <urn:md5:CEA70E837F12FD4AE481BF75EF3212A8>;
                                                                   dcterms:extent "319"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQzqcOg38S_Urkgb917zISqA?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (319 B)"@en.
 <ni:///mh;1QEQzqcOg38S_Urkgb917zISqA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 17 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 17 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (17×17)"@en.
+                                                   skos:prefLabel "BMP object (17×17)"@en,
+                                                                  "BMP object (320 B)"@en.
 <urn:md5:052A5B941DE30674210D98D39DA1D641> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "BSpblB3jBnQhDZjTnaHWQQ=="^^xsd:base64Binary.

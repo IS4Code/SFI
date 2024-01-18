@@ -3,6 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
@@ -13,7 +14,6 @@
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///church-raw.dng>;
      nie:interpretedAs <ni:///mh;1QEQN-XRsg7oxa2db6eOJKMXYg?ct=application/octet-stream>;
@@ -23,7 +23,8 @@ _:n1 at:pathObject <file:///church-raw.dng>;
 <file:///church-raw.dng> at:extensionObject <https://w3id.org/uri4uri/suffix/dng>.
 <ni:///mh;1QEQN-XRsg7oxa2db6eOJKMXYg?ct=application/octet-stream> at:digest <urn:md5:37E5D1B20EE8C5AD9D6FA78E24A31762>;
                                                                   dcterms:extent "43676300"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQN-XRsg7oxa2db6eOJKMXYg?ct=application/octet-stream#arw>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQN-XRsg7oxa2db6eOJKMXYg?ct=application/octet-stream#arw>,
+                                                                                    <ni:///mh;1QEQN-XRsg7oxa2db6eOJKMXYg?ct=image/tiff>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (41.65 MiB)"@en.
 <ni:///mh;1QEQN-XRsg7oxa2db6eOJKMXYg?ct=application/octet-stream#arw> nfo:hasMediaStream <ni:///mh;1QEQN-XRsg7oxa2db6eOJKMXYg?ct=application/octet-stream#arw/0>,
@@ -33,7 +34,7 @@ _:n1 at:pathObject <file:///church-raw.dng>;
                                                                       exif:apertureValue "91/40"^^owl:rational;
                                                                       exif:bitsPerSample 10 ;
                                                                       exif:compression 1 ;
-                                                                      exif:copyright "Copyright 2012 Nokia Corporation"^^xsd:string;
+                                                                      exif:copyright "Copyright 2012 Nokia Corporation";
                                                                       exif:dateTime "2013-12-22T10:35:31.000000"^^xsd:dateTime;
                                                                       exif:dateTimeOriginal "2013-12-22T10:35:31.000000"^^xsd:dateTime;
                                                                       exif:exposureBiasValue 0 ;
@@ -46,10 +47,10 @@ _:n1 at:pathObject <file:///church-raw.dng>;
                                                                       exif:imageWidth 960 ,
                                                                                       7728 ;
                                                                       exif:isoSpeedRatings 100 ;
-                                                                      exif:make "Nokia"^^xsd:string;
+                                                                      exif:make "Nokia";
                                                                       exif:maxApertureValue "91/40"^^owl:rational;
                                                                       exif:meteringMode 1 ;
-                                                                      exif:model "Lumia 1020"^^xsd:string;
+                                                                      exif:model "Lumia 1020";
                                                                       exif:orientation 1 ;
                                                                       exif:photometricInterpretation 2 ,
                                                                                                      32803 ;
@@ -59,7 +60,7 @@ _:n1 at:pathObject <file:///church-raw.dng>;
                                                                       exif:samplesPerPixel 3 ,
                                                                                            1 ;
                                                                       exif:shutterSpeedValue "22213/2500"^^owl:rational;
-                                                                      exif:software "Nokia RAW-to-DNG converter v01.00.06"^^xsd:string;
+                                                                      exif:software "Nokia RAW-to-DNG converter v01.00.06";
                                                                       exif:stripByteCounts 1566720 ,
                                                                                            42040320 ;
                                                                       exif:stripOffsets 69260 ,
@@ -74,6 +75,16 @@ _:n1 at:pathObject <file:///church-raw.dng>;
                                                                         nfo:width 7728 ;
                                                                         a nfo:MediaStream;
                                                                         skos:prefLabel "1:Exif SubIFD (7728×4352, 10-bit)".
+<ni:///mh;1QEQN-XRsg7oxa2db6eOJKMXYg?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
+                                                    nfo:colorDepth 24 ;
+                                                    nfo:height 544 ;
+                                                    nfo:horizontalResolution 96 ;
+                                                    nfo:verticalResolution 96 ;
+                                                    nfo:width 960 ;
+                                                    a schema:MediaObject,
+                                                      schema:ImageObject,
+                                                      nfo:Image;
+                                                    skos:prefLabel "TIFF object (41.65 MiB)"@en.
 <urn:md5:37E5D1B20EE8C5AD9D6FA78E24A31762> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "N+XRsg7oxa2db6eOJKMXYg=="^^xsd:base64Binary.

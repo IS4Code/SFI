@@ -3,6 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
@@ -13,7 +14,6 @@
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///example.dng>;
      nie:interpretedAs <ni:///mh;1QEQvUvbfzqMM_WamOwo8cuOyw?ct=application/octet-stream>;
@@ -23,7 +23,8 @@ _:n1 at:pathObject <file:///example.dng>;
 <file:///example.dng> at:extensionObject <https://w3id.org/uri4uri/suffix/dng>.
 <ni:///mh;1QEQvUvbfzqMM_WamOwo8cuOyw?ct=application/octet-stream> at:digest <urn:md5:BD4BDB7F3A8C33F59A98EC28F1CB8ECB>;
                                                                   dcterms:extent "17858626"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQvUvbfzqMM_WamOwo8cuOyw?ct=application/octet-stream#arw>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQvUvbfzqMM_WamOwo8cuOyw?ct=image/tiff>,
+                                                                                    <ni:///mh;1QEQvUvbfzqMM_WamOwo8cuOyw?ct=application/octet-stream#arw>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (17.03 MiB)"@en.
 <ni:///mh;1QEQvUvbfzqMM_WamOwo8cuOyw?ct=application/octet-stream#arw> <http://ns.adobe.com/camera-raw-settings/1.0/AlreadyApplied> "False";
@@ -158,7 +159,7 @@ _:n1 at:pathObject <file:///example.dng>;
                                                                       exif:focalPlaneResolutionUnit 3 ;
                                                                       exif:focalPlaneXResolution "68784793/32768"^^owl:rational;
                                                                       exif:focalPlaneYResolution "68784793/32768"^^owl:rational;
-                                                                      exif:imageDescription "SONY DSC"^^xsd:string;
+                                                                      exif:imageDescription "SONY DSC";
                                                                       exif:imageLength 170 ,
                                                                                        3280 ,
                                                                                        680 ;
@@ -167,10 +168,10 @@ _:n1 at:pathObject <file:///example.dng>;
                                                                                       1024 ;
                                                                       exif:isoSpeedRatings 100 ;
                                                                       exif:lightSource 0 ;
-                                                                      exif:make "SONY"^^xsd:string;
+                                                                      exif:make "SONY";
                                                                       exif:maxApertureValue 4 ;
                                                                       exif:meteringMode 5 ;
-                                                                      exif:model "SLT-A35"^^xsd:string;
+                                                                      exif:model "SLT-A35";
                                                                       exif:orientation 1 ;
                                                                       exif:photometricInterpretation 2 ,
                                                                                                      32803 ,
@@ -185,7 +186,7 @@ _:n1 at:pathObject <file:///example.dng>;
                                                                       exif:sceneType "01"^^xsd:hexBinary;
                                                                       exif:sharpness 0 ;
                                                                       exif:shutterSpeedValue "477741/62500"^^owl:rational;
-                                                                      exif:software "Adobe DNG Converter 8.6 (Windows)"^^xsd:string;
+                                                                      exif:software "Adobe DNG Converter 8.6 (Windows)";
                                                                       exif:stripByteCounts 130560 ,
                                                                                            94548 ;
                                                                       exif:stripOffsets 142134 ,
@@ -206,6 +207,16 @@ _:n1 at:pathObject <file:///example.dng>;
                                                                         nfo:width 1024 ;
                                                                         a nfo:MediaStream;
                                                                         skos:prefLabel "2:Exif SubIFD (1024×680)".
+<ni:///mh;1QEQvUvbfzqMM_WamOwo8cuOyw?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
+                                                    nfo:colorDepth 24 ;
+                                                    nfo:height 170 ;
+                                                    nfo:horizontalResolution 96 ;
+                                                    nfo:verticalResolution 96 ;
+                                                    nfo:width 256 ;
+                                                    a schema:MediaObject,
+                                                      schema:ImageObject,
+                                                      nfo:Image;
+                                                    skos:prefLabel "TIFF object (17.03 MiB)"@en.
 <urn:md5:BD4BDB7F3A8C33F59A98EC28F1CB8ECB> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "vUvbfzqMM/WamOwo8cuOyw=="^^xsd:base64Binary.

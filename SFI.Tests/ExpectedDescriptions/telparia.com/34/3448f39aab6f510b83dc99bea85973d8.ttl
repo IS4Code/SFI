@@ -1,4 +1,4 @@
-@base <x.blank:80c67403-9f0f-4eb4-b7d2-55d62dfb9259>.
+@base <ni:///mh;1QEQYVtmdF3AnnUC95rLB814kg?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
@@ -37,9 +37,9 @@ _:n1 at:pathObject <file:///CD%20Front%20(Alt.).tif>;
                                                     nfo:verticalResolution 600 ;
                                                     nfo:width 2934 ;
                                                     a schema:MediaObject,
-                                                      exif:IFD,
+                                                      nfo:Image,
                                                       schema:ImageObject,
-                                                      nfo:Image;
+                                                      exif:IFD;
                                                     exif:colorSpace 1 ;
                                                     exif:compression 5 ;
                                                     exif:dateTime "2019-11-21T13:55:20.000000"^^xsd:dateTime;
@@ -64,9 +64,8 @@ _:n1 at:pathObject <file:///CD%20Front%20(Alt.).tif>;
                                                                      96 ;
                                                     exif:yResolution 600 ,
                                                                      96 ;
-                                                    skos:prefLabel "TIFF object (17.05 MiB)"@en,
-                                                                   "TIFF object (2934×2942)"@en,
-                                                                   "TIF object (17.05 MiB)"@en.
+                                                    skos:prefLabel "TIFF object (2934×2942)"@en,
+                                                                   "TIFF object (17.05 MiB)"@en.
 <ni:///mh;1QEQYVtmdF3AnnUC95rLB814kg?ct=image/tiff#/0> nfo:height 2942 ;
                                                        nfo:width 2934 ;
                                                        a nfo:MediaStream;

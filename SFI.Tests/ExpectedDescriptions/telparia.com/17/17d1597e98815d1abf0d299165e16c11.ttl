@@ -3,6 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
@@ -11,7 +12,6 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix dbo: <http://dbpedia.org/ontology/>.
 
 _:n1 at:pathObject <file:///ScreenLock.scr>;
@@ -46,15 +46,17 @@ _:n1 at:pathObject <file:///ScreenLock.scr>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (310 B)"@en.
 <ni:///mh;1QEQLoDsyvKuA03ZsQ0Nw4nHzw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 16 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×16)"@en.
+                                                   skos:prefLabel "BMP object (296 B)"@en,
+                                                                  "BMP object (16×16)"@en.
 <ni:///mh;1QEQT-5vvpYlAgIFQHVjLNSoxQ?ct=application/octet-stream> at:digest <urn:md5:4FEE6FBE96250202054075632CD4A8C5>;
                                                                   dcterms:extent "11264"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQT-5vvpYlAgIFQHVjLNSoxQ?ct=application/vnd.microsoft.portable-executable>;
@@ -102,15 +104,17 @@ _:n1 at:pathObject <file:///ScreenLock.scr>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (758 B)"@en.
 <ni:///mh;1QEQcxv3-lIDgdRazu9yGqqePg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (744 B)"@en.
 <urn:md5:2E80ECCAF2AE034DD9B10D0DC389C7CF> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "LoDsyvKuA03ZsQ0Nw4nHzw=="^^xsd:base64Binary.

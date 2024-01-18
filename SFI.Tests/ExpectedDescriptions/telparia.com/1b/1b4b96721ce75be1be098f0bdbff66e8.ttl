@@ -3,13 +3,13 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix dt: <http://dbpedia.org/datatype/>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 
@@ -22,17 +22,17 @@ _:n1 at:pathObject <file:///Weed.scr>;
                                                                 a cnt:ContentAsText;
                                                                 skos:prefLabel "text (43 B)"@en;
                                                                 cnt:characterEncoding "us-ascii";
-                                                                cnt:chars "␈frmError␆Timer1␅cmdOK␆Image1␆Label2␆Label1"^^xsd:string.
+                                                                cnt:chars "␈frmError␆Timer1␅cmdOK␆Image1␆Label2␆Label1".
 <data:,%08frmSaver%06Label2%06Label1%03dog%09imgRedTop> dcterms:extent "37"^^dt:byte;
                                                         a cnt:ContentAsText;
                                                         skos:prefLabel "text (37 B)"@en;
                                                         cnt:characterEncoding "us-ascii";
-                                                        cnt:chars """␈frmSaver␆Label2␆Label1␃dog	imgRedTop"""^^xsd:string.
+                                                        cnt:chars """␈frmSaver␆Label2␆Label1␃dog	imgRedTop""".
 <data:,%0CfrmEnterPass%06Timer1%09cmdCancel%05cmdOK%0BtxtPassword%06Label2%06Label1%07imgIcon> dcterms:extent "70"^^dt:byte;
                                                                                                a cnt:ContentAsText;
                                                                                                skos:prefLabel "text (70 B)"@en;
                                                                                                cnt:characterEncoding "us-ascii";
-                                                                                               cnt:chars """␌frmEnterPass␆Timer1	cmdCancel␅cmdOK␋txtPassword␆Label2␆Label1␇imgIcon"""^^xsd:string.
+                                                                                               cnt:chars """␌frmEnterPass␆Timer1	cmdCancel␅cmdOK␋txtPassword␆Label2␆Label1␇imgIcon""".
 <data:application/octet-stream,> dcterms:extent "0"^^dt:byte;
                                  a cnt:ContentAsBase64;
                                  skos:prefLabel "binary data (0 B)"@en;
@@ -55,15 +55,17 @@ _:n1 at:pathObject <file:///Weed.scr>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (758 B)"@en.
 <ni:///mh;1QEQQx-3yrakoWCS-SnITBUdvg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (768 B)"@en.
 <ni:///mh;1QEQUg9tu2gQf5eEk76x6E70Sg?ct=application/octet-stream> at:digest <urn:md5:520F6DBB68107F978493BEB1E84EF44A>;
                                                                   dcterms:extent "12702"^^dt:byte;
                                                                   a cnt:ContentAsBase64;

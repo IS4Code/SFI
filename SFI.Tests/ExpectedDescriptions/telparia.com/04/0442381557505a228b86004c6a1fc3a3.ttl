@@ -1,10 +1,10 @@
-@base <x.blank:ff751019-e755-4b84-a207-971a2620f9a4>.
+@base <ni:///mh;1QEQVGD_LHz5F3CfEAJgSqrq-Q?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -23,12 +23,12 @@ _:n1 at:pathObject <file:///AzureBay%20Screen%20Saver%203.4.msi>;
                                         a cnt:ContentAsText;
                                         skos:prefLabel "text (4 B)"@en;
                                         cnt:characterEncoding "windows-1252";
-                                        cnt:chars "…␌y␌"^^xsd:string.
+                                        cnt:chars "…␌y␌".
 <data:;charset=windows-1252;base64,BAPlCVwD+gk=> dcterms:extent "8"^^dt:byte;
                                                  a cnt:ContentAsText;
                                                  skos:prefLabel "text (8 B)"@en;
                                                  cnt:characterEncoding "windows-1252";
-                                                 cnt:chars """␄␃å	\\␃ú	"""^^xsd:string.
+                                                 cnt:chars """␄␃å	\\␃ú	""".
 <data:application/octet-stream;base64,/An9CfoJ+glBA0QDACgJgABQAYAAAACAAAAAgA==> dcterms:extent "28"^^dt:byte;
                                                                                 a cnt:ContentAsBase64;
                                                                                 skos:prefLabel "binary data (28 B)"@en;
@@ -138,15 +138,17 @@ _:n1 at:pathObject <file:///AzureBay%20Screen%20Saver%203.4.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (310 B)"@en.
 <ni:///mh;1QEQ0SaccOc3QITY-UgJ4vaZ7w?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 16 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×16)"@en.
+                                                   skos:prefLabel "BMP object (16×16)"@en,
+                                                                  "BMP object (296 B)"@en.
 <ni:///mh;1QEQ1as3ybnTzIbrZLeqOWcbFg?ct=application/octet-stream> at:digest <urn:md5:D5AB37C9B9D3CC86EB64B7AA39671B16>;
                                                                   dcterms:extent "10712"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -198,16 +200,12 @@ _:n1 at:pathObject <file:///AzureBay%20Screen%20Saver%203.4.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (766 B)"@en.
 <ni:///mh;1QEQF9yxqQuxqjnG1LFoEZFFtQ?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:height 32 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
                                                       nfo:width 32 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (32×32)"@en,
-                                                                     "ICO object (766 B)"@en.
+                                                      skos:prefLabel "ICO object (32×32)"@en.
 <ni:///mh;1QEQGTjQROu0n_jjMATlnFGa9w?ct=application/octet-stream> at:digest <urn:md5:1938D044EBB49FF8E33004E59C519AF7>;
                                                                   dcterms:extent "180"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -224,8 +222,8 @@ _:n1 at:pathObject <file:///AzureBay%20Screen%20Saver%203.4.msi>;
 <ni:///mh;1QEQJANQAsUnlHoc6hrMJESkVA?ct=image/jpeg> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/jpeg>;
                                                     nfo:colorDepth 24 ;
                                                     nfo:height 58 ;
-                                                    nfo:horizontalResolution 96 ;
-                                                    nfo:verticalResolution 96 ;
+                                                    nfo:horizontalResolution 9600 ;
+                                                    nfo:verticalResolution 9600 ;
                                                     nfo:width 499 ;
                                                     a schema:MediaObject,
                                                       schema:ImageObject,
@@ -254,16 +252,12 @@ _:n1 at:pathObject <file:///AzureBay%20Screen%20Saver%203.4.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (766 B)"@en.
 <ni:///mh;1QEQMxkGNujhbMKuudFqnt99gQ?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:height 32 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
                                                       nfo:width 32 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (32×32)"@en,
-                                                                     "ICO object (766 B)"@en.
+                                                      skos:prefLabel "ICO object (32×32)"@en.
 <ni:///mh;1QEQOR0neIEyAWrFUCHPJ18yvQ?ct=application/octet-stream> at:digest <urn:md5:391D27788132016AC55021CF275F32BD>;
                                                                   dcterms:extent "120"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -361,14 +355,14 @@ _:n1 at:pathObject <file:///AzureBay%20Screen%20Saver%203.4.msi>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQVGD_LHz5F3CfEAJgSqrq-Q?ct=application/x-ole-storage>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.65 MiB)"@en.
-<ni:///mh;1QEQVGD_LHz5F3CfEAJgSqrq-Q?ct=application/x-ole-storage> at:pathObject <file:///>;
+<ni:///mh;1QEQVGD_LHz5F3CfEAJgSqrq-Q?ct=application/x-ole-storage> at:pathObject <file:///.>;
                                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
                                                                    nie:interpretedAs <ni:///mh;1QEQVGD_LHz5F3CfEAJgSqrq-Q?ct=application/x-ole-storage#/>;
                                                                    nfo:fileLastModified "2005-06-27T22:14:05.736000Z"^^xsd:dateTime;
                                                                    a schema:MediaObject,
                                                                      nfo:EmbeddedFileDataObject;
                                                                    skos:prefLabel "OLE object (1.65 MiB)"@en.
-<ni:///mh;1QEQVGD_LHz5F3CfEAJgSqrq-Q?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQVGD_LHz5F3CfEAJgSqrq-Q?ct=application/x-ole-storage#/> at:pathObject <file:///>;
                                                                      a nfo:Folder;
                                                                      skos:prefLabel "/".
 <ni:///mh;1QEQVGD_LHz5F3CfEAJgSqrq-Q?ct=application/x-ole-storage#/%05SummaryInformation> at:pathObject <file:///%05SummaryInformation>;
@@ -401,16 +395,12 @@ _:n1 at:pathObject <file:///AzureBay%20Screen%20Saver%203.4.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (766 B)"@en.
 <ni:///mh;1QEQYFIiC0EiAPz-LI53zOfEKg?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:height 32 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
                                                       nfo:width 32 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (32×32)"@en,
-                                                                     "ICO object (766 B)"@en.
+                                                      skos:prefLabel "ICO object (32×32)"@en.
 <ni:///mh;1QEQYQWTecOUg5UL74jzy3fwtw?ct=application/octet-stream> at:digest <urn:md5:61059379C39483950BEF88F3CB77F0B7>;
                                                                   dcterms:extent "120"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -421,65 +411,48 @@ _:n1 at:pathObject <file:///AzureBay%20Screen%20Saver%203.4.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (766 B)"@en.
 <ni:///mh;1QEQ_4rn1SHPZr3Czhr3tcGNlw?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:height 32 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
                                                       nfo:width 32 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (32×32)"@en,
-                                                                     "ICO object (766 B)"@en.
+                                                      skos:prefLabel "ICO object (32×32)"@en.
 <ni:///mh;1QEQ_HDBzf3eA94v4N99LnZSMg?ct=application/octet-stream> at:digest <urn:md5:FC70C1CDFDDE03DE2FE0DF7D2E765232>;
                                                                   dcterms:extent "766"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ_HDBzf3eA94v4N99LnZSMg?ct=image/x-icon>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (766 B)"@en.
 <ni:///mh;1QEQ_HDBzf3eA94v4N99LnZSMg?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:height 32 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
                                                       nfo:width 32 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (32×32)"@en,
-                                                                     "ICO object (766 B)"@en.
+                                                      skos:prefLabel "ICO object (32×32)"@en.
 <ni:///mh;1QEQbRNnYmPclyHt66r8aJ2AQQ?ct=application/octet-stream> at:digest <urn:md5:6D13676263DC9721EDEBAAFC689D8041>;
                                                                   dcterms:extent "766"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQbRNnYmPclyHt66r8aJ2AQQ?ct=image/x-icon>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (766 B)"@en.
 <ni:///mh;1QEQbRNnYmPclyHt66r8aJ2AQQ?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:height 32 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
                                                       nfo:width 32 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (32×32)"@en,
-                                                                     "ICO object (766 B)"@en.
+                                                      skos:prefLabel "ICO object (32×32)"@en.
 <ni:///mh;1QEQbkLPDUevJd6kzs2-CT1SHA?ct=application/octet-stream> at:digest <urn:md5:6E42CF0D47AF25DEA4CECDBE093D521C>;
                                                                   dcterms:extent "10134"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQbkLPDUevJd6kzs2-CT1SHA?ct=image/x-icon>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (9.9 KiB)"@en.
 <ni:///mh;1QEQbkLPDUevJd6kzs2-CT1SHA?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:hasMediaStream <ni:///mh;1QEQbkLPDUevJd6kzs2-CT1SHA?ct=image/x-icon#/0>,
                                                                          <ni:///mh;1QEQbkLPDUevJd6kzs2-CT1SHA?ct=image/x-icon#/1>,
                                                                          <ni:///mh;1QEQbkLPDUevJd6kzs2-CT1SHA?ct=image/x-icon#/2>,
                                                                          <ni:///mh;1QEQbkLPDUevJd6kzs2-CT1SHA?ct=image/x-icon#/3>,
                                                                          <ni:///mh;1QEQbkLPDUevJd6kzs2-CT1SHA?ct=image/x-icon#/4>,
                                                                          <ni:///mh;1QEQbkLPDUevJd6kzs2-CT1SHA?ct=image/x-icon#/5>;
-                                                      nfo:height 48 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
-                                                      nfo:width 48 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
@@ -522,13 +495,8 @@ _:n1 at:pathObject <file:///AzureBay%20Screen%20Saver%203.4.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (4.43 KiB)"@en.
 <ni:///mh;1QEQeuYhHPM_OyS8s9_iM1rmZQ?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:hasMediaStream <ni:///mh;1QEQeuYhHPM_OyS8s9_iM1rmZQ?ct=image/x-icon#/0>,
                                                                          <ni:///mh;1QEQeuYhHPM_OyS8s9_iM1rmZQ?ct=image/x-icon#/1>;
-                                                      nfo:height 32 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
-                                                      nfo:width 32 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
@@ -551,13 +519,8 @@ _:n1 at:pathObject <file:///AzureBay%20Screen%20Saver%203.4.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (4.43 KiB)"@en.
 <ni:///mh;1QEQfyVI3GZ9mhVBDiLtOg_QmQ?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:hasMediaStream <ni:///mh;1QEQfyVI3GZ9mhVBDiLtOg_QmQ?ct=image/x-icon#/0>,
                                                                          <ni:///mh;1QEQfyVI3GZ9mhVBDiLtOg_QmQ?ct=image/x-icon#/1>;
-                                                      nfo:height 32 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
-                                                      nfo:width 32 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
@@ -576,45 +539,32 @@ _:n1 at:pathObject <file:///AzureBay%20Screen%20Saver%203.4.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (766 B)"@en.
 <ni:///mh;1QEQg2lw6NslglMlRR8B9IOD-Q?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:height 32 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
                                                       nfo:width 32 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (32×32)"@en,
-                                                                     "ICO object (766 B)"@en.
+                                                      skos:prefLabel "ICO object (32×32)"@en.
 <ni:///mh;1QEQg3MKwAOR-w8C9W_i5CB6EA?ct=application/octet-stream> at:digest <urn:md5:83730AC00391FB0F02F56FE2E4207A10>;
                                                                   dcterms:extent "318"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQg3MKwAOR-w8C9W_i5CB6EA?ct=image/x-icon>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQg3MKwAOR-w8C9W_i5CB6EA?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:height 16 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
                                                       nfo:width 16 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (16×16)"@en,
-                                                                     "ICO object (318 B)"@en.
+                                                      skos:prefLabel "ICO object (16×16)"@en.
 <ni:///mh;1QEQgYPrwTJnoNY1XEtEeENW4g?ct=application/octet-stream> at:digest <urn:md5:8183EBC13267A0D6355C4B44784356E2>;
                                                                   dcterms:extent "1078"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQgYPrwTJnoNY1XEtEeENW4g?ct=image/x-icon>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.05 KiB)"@en.
 <ni:///mh;1QEQgYPrwTJnoNY1XEtEeENW4g?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:hasMediaStream <ni:///mh;1QEQgYPrwTJnoNY1XEtEeENW4g?ct=image/x-icon#/0>,
                                                                          <ni:///mh;1QEQgYPrwTJnoNY1XEtEeENW4g?ct=image/x-icon#/1>;
-                                                      nfo:height 16 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
-                                                      nfo:width 16 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
@@ -733,16 +683,12 @@ _:n1 at:pathObject <file:///AzureBay%20Screen%20Saver%203.4.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (766 B)"@en.
 <ni:///mh;1QEQmxQDabZpvgahXWx84JnEjQ?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:height 32 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
                                                       nfo:width 32 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (32×32)"@en,
-                                                                     "ICO object (766 B)"@en.
+                                                      skos:prefLabel "ICO object (32×32)"@en.
 <ni:///mh;1QEQoTvNBSL9ti_eCS2ZxkncDw?ct=application/octet-stream> at:digest <urn:md5:A13BCD0522FDB62FDE092D99C649DC0F>;
                                                                   dcterms:extent "11184"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -753,16 +699,12 @@ _:n1 at:pathObject <file:///AzureBay%20Screen%20Saver%203.4.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (766 B)"@en.
 <ni:///mh;1QEQp0-KOjFxiwkXE6zg7rYN5g?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:height 32 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
                                                       nfo:width 32 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (32×32)"@en,
-                                                                     "ICO object (766 B)"@en.
+                                                      skos:prefLabel "ICO object (32×32)"@en.
 <ni:///mh;1QEQpX4d22fna6rgv5lBdGPHxQ?ct=application/octet-stream> at:digest <urn:md5:A57E1DDB67E76BAAE0BF99417463C7C5>;
                                                                   dcterms:extent "414"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -775,8 +717,8 @@ _:n1 at:pathObject <file:///AzureBay%20Screen%20Saver%203.4.msi>;
 <ni:///mh;1QEQroZB8CVA85H_Y0VVwUvndA?ct=image/jpeg> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/jpeg>;
                                                     nfo:colorDepth 24 ;
                                                     nfo:height 312 ;
-                                                    nfo:horizontalResolution 96 ;
-                                                    nfo:verticalResolution 96 ;
+                                                    nfo:horizontalResolution 9600 ;
+                                                    nfo:verticalResolution 9600 ;
                                                     nfo:width 499 ;
                                                     a schema:MediaObject,
                                                       schema:ImageObject,
@@ -844,47 +786,41 @@ _:n1 at:pathObject <file:///AzureBay%20Screen%20Saver%203.4.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (758 B)"@en.
 <ni:///mh;1QEQvyEb5NtFghhiwNyIWcx_FQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (744 B)"@en.
 <ni:///mh;1QEQwBk97Q1J_hPa1UobYSH2cg?ct=application/octet-stream> at:digest <urn:md5:C0193DED0D49FE13DAD54A1B6121F672>;
                                                                   dcterms:extent "766"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQwBk97Q1J_hPa1UobYSH2cg?ct=image/x-icon>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (766 B)"@en.
 <ni:///mh;1QEQwBk97Q1J_hPa1UobYSH2cg?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:height 32 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
                                                       nfo:width 32 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (32×32)"@en,
-                                                                     "ICO object (766 B)"@en.
+                                                      skos:prefLabel "ICO object (32×32)"@en.
 <ni:///mh;1QEQwjy_AC2CGSSBth7X7AiQ9A?ct=application/octet-stream> at:digest <urn:md5:C23CBF002D82192481B61ED7EC0890F4>;
                                                                   dcterms:extent "318"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQwjy_AC2CGSSBth7X7AiQ9A?ct=image/x-icon>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQwjy_AC2CGSSBth7X7AiQ9A?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:height 16 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
                                                       nfo:width 16 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (16×16)"@en,
-                                                                     "ICO object (318 B)"@en.
+                                                      skos:prefLabel "ICO object (16×16)"@en.
 <ni:///mh;1QEQxalA_Eq8HrahC0S3LHsjPQ?ct=application/octet-stream> at:digest <urn:md5:C5A940FC4ABC1EB6A10B44B72C7B233D>;
                                                                   dcterms:extent "14876"^^dt:byte;
                                                                   a cnt:ContentAsBase64;

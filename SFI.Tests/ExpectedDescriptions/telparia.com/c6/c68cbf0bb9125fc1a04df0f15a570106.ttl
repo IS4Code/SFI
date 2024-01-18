@@ -1,10 +1,10 @@
-@base <x.blank:f71c16b0-692e-41c4-9fd6-44a7e3bbd25b>.
+@base <ni:///mh;1QEQG8SmXKQNK2N7S8gfnrDiSQ?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -28,22 +28,22 @@ _:n1 at:pathObject <file:///PabloDraw.msi>;
                  a cnt:ContentAsText;
                  skos:prefLabel "text (4 B)"@en;
                  cnt:characterEncoding "us-ascii";
-                 cnt:chars "3␁4␁"^^xsd:string.
+                 cnt:chars "3␁4␁".
 <data:;base64,EQEVARgBBAEEAQQBEgEWARkBEwEXARoBFAEUARQB> dcterms:extent "30"^^dt:byte;
                                                         a cnt:ContentAsText;
                                                         skos:prefLabel "text (30 B)"@en;
                                                         cnt:characterEncoding "us-ascii";
-                                                        cnt:chars "␑␁␕␁␘␁␄␁␄␁␄␁␒␁␖␁␙␁␓␁␗␁␚␁␔␁␔␁␔␁"^^xsd:string.
+                                                        cnt:chars "␑␁␕␁␘␁␄␁␄␁␄␁␒␁␖␁␙␁␓␁␗␁␚␁␔␁␔␁␔␁".
 <data:;base64,EwEXARoBEQEVARgBAAAAAAAA> dcterms:extent "18"^^dt:byte;
                                         a cnt:ContentAsText;
                                         skos:prefLabel "text (18 B)"@en;
                                         cnt:characterEncoding "us-ascii";
-                                        cnt:chars "␓␁␗␁␚␁␑␁␕␁␘␁␀␀␀␀␀␀"^^xsd:string.
+                                        cnt:chars "␓␁␗␁␚␁␑␁␕␁␘␁␀␀␀␀␀␀".
 <data:;base64,FAEUARQBAQEEAQYB> dcterms:extent "12"^^dt:byte;
                                 a cnt:ContentAsText;
                                 skos:prefLabel "text (12 B)"@en;
                                 cnt:characterEncoding "us-ascii";
-                                cnt:chars "␔␁␔␁␔␁␁␁␄␁␆␁"^^xsd:string.
+                                cnt:chars "␔␁␔␁␔␁␁␁␄␁␆␁".
 <data:application/octet-stream;base64,3wA5ATsBPAE+AUABQgFDAUYBRQE6ASABPQE/AUEBGwFEAUcB> dcterms:extent "36"^^dt:byte;
                                                                                         a cnt:ContentAsBase64;
                                                                                         skos:prefLabel "binary data (36 B)"@en;
@@ -131,13 +131,14 @@ _:n1 at:pathObject <file:///PabloDraw.msi>;
 <ni:///mh;1QEQ9-vy_ISGkVtk9gZ_hUpzEQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:colorDepth 32 ;
                                                    nfo:height 48 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 48 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (48×48)"@en.
+                                                   skos:prefLabel "BMP object (48×48)"@en,
+                                                                  "BMP object (9.41 KiB)"@en.
 <ni:///mh;1QEQ9sqXplGkYKSzDBpD--Ee9w?ct=application/octet-stream> at:digest <urn:md5:F6CA97A651A460A4B30C1A43FBE11EF7>;
                                                                   dcterms:extent "71989451"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ9sqXplGkYKSzDBpD--Ee9w?ct=application/vnd.microsoft.portable-executable>;
@@ -260,13 +261,14 @@ _:n1 at:pathObject <file:///PabloDraw.msi>;
 <ni:///mh;1QEQD7Fx1avbTl0uSSDMC_1UMw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:colorDepth 32 ;
                                                    nfo:height 16 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×16)"@en.
+                                                   skos:prefLabel "BMP object (16×16)"@en,
+                                                                  "BMP object (1.1 KiB)"@en.
 <ni:///mh;1QEQEwragxqYIlcw4qjmNTrJMg?ct=application/octet-stream> at:digest <urn:md5:130ADA831A98225730E2A8E6353AC932>;
                                                                   dcterms:extent "312"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -280,14 +282,14 @@ _:n1 at:pathObject <file:///PabloDraw.msi>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQG8SmXKQNK2N7S8gfnrDiSQ?ct=application/x-ole-storage>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (63.93 MiB)"@en.
-<ni:///mh;1QEQG8SmXKQNK2N7S8gfnrDiSQ?ct=application/x-ole-storage> at:pathObject <file:///>;
+<ni:///mh;1QEQG8SmXKQNK2N7S8gfnrDiSQ?ct=application/x-ole-storage> at:pathObject <file:///.>;
                                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
                                                                    nie:interpretedAs <ni:///mh;1QEQG8SmXKQNK2N7S8gfnrDiSQ?ct=application/x-ole-storage#/>;
                                                                    nfo:fileLastModified "2022-01-07T06:19:46.428000Z"^^xsd:dateTime;
                                                                    a schema:MediaObject,
                                                                      nfo:EmbeddedFileDataObject;
                                                                    skos:prefLabel "OLE object (63.93 MiB)"@en.
-<ni:///mh;1QEQG8SmXKQNK2N7S8gfnrDiSQ?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQG8SmXKQNK2N7S8gfnrDiSQ?ct=application/x-ole-storage#/> at:pathObject <file:///>;
                                                                      a nfo:Folder;
                                                                      skos:prefLabel "/".
 <ni:///mh;1QEQG8SmXKQNK2N7S8gfnrDiSQ?ct=application/x-ole-storage#/%05SummaryInformation> at:pathObject <file:///%05SummaryInformation>;
@@ -346,13 +348,14 @@ _:n1 at:pathObject <file:///PabloDraw.msi>;
 <ni:///mh;1QEQQRzN9dqwCieXEe5xbGYpGw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:colorDepth 32 ;
                                                    nfo:height 128 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 128 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (128×128)"@en.
+                                                   skos:prefLabel "BMP object (128×128)"@en,
+                                                                  "BMP object (66.04 KiB)"@en.
 <ni:///mh;1QEQVEfJz0HVcc1negzjk5J9tg?ct=application/octet-stream> at:digest <urn:md5:5447C9CF41D571CD677A0CE393927DB6>;
                                                                   dcterms:extent "2454"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQVEfJz0HVcc1negzjk5J9tg?ct=image/bmp>;
@@ -361,13 +364,14 @@ _:n1 at:pathObject <file:///PabloDraw.msi>;
 <ni:///mh;1QEQVEfJz0HVcc1negzjk5J9tg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:colorDepth 32 ;
                                                    nfo:height 24 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 24 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (24×24)"@en.
+                                                   skos:prefLabel "BMP object (24×24)"@en,
+                                                                  "BMP object (2.38 KiB)"@en.
 <ni:///mh;1QEQWg_UsWEsHdr9Otmi3UeHVg?ct=text/plain> at:digest <urn:md5:5A0FD4B1612C1DDAFD3AD9A2DD478756>;
                                                     dcterms:extent "13683"^^dt:byte;
                                                     nie:hasPart <ni:///mh;1QEQWg_UsWEsHdr9Otmi3UeHVg?ct=text/plain#line=,1>;
@@ -383,13 +387,14 @@ _:n1 at:pathObject <file:///PabloDraw.msi>;
 <ni:///mh;1QEQXV4Pk99Gks5FlqwdTjIy2Q?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:colorDepth 32 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (4.16 KiB)"@en.
 <ni:///mh;1QEQYdFUoLG6Wzsw1rV5lB3FEw?ct=application/octet-stream> at:digest <urn:md5:61D154A0B1BA5B3B30D6B579941DC513>;
                                                                   dcterms:extent "72"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -429,16 +434,11 @@ _:n1 at:pathObject <file:///PabloDraw.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (83.19 KiB)"@en.
 <ni:///mh;1QEQo1AevOzKiuR6gpafOtvAug?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:hasMediaStream <ni:///mh;1QEQo1AevOzKiuR6gpafOtvAug?ct=image/x-icon#/0>,
                                                                          <ni:///mh;1QEQo1AevOzKiuR6gpafOtvAug?ct=image/x-icon#/1>,
                                                                          <ni:///mh;1QEQo1AevOzKiuR6gpafOtvAug?ct=image/x-icon#/2>,
                                                                          <ni:///mh;1QEQo1AevOzKiuR6gpafOtvAug?ct=image/x-icon#/3>,
                                                                          <ni:///mh;1QEQo1AevOzKiuR6gpafOtvAug?ct=image/x-icon#/4>;
-                                                      nfo:height 16 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
-                                                      nfo:width 16 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;

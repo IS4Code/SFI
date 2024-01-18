@@ -1,14 +1,15 @@
-@base <x.blank:9c3c7cd4-e9f3-4424-99fe-bcd58a79e727>.
+@base <data:;charset=windows-1252;base64,UDQKOCA4CgOESDAMAgEB>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix dt: <http://dbpedia.org/datatype/>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///PAT_23_45.pbm>;
      nie:interpretedAs <data:;charset=windows-1252;base64,UDQKOCA4CgOESDAMAgEB>;
@@ -16,10 +17,21 @@ _:n1 at:pathObject <file:///PAT_23_45.pbm>;
      nfo:fileSize 15 ;
      a nfo:FileDataObject.
 <data:;charset=windows-1252;base64,UDQKOCA4CgOESDAMAgEB> dcterms:extent "15"^^dt:byte;
+                                                         dcterms:hasFormat <data:image/x-portable-pixmap;base64,UDQKOCA4CgOESDAMAgEB>;
                                                          a cnt:ContentAsText;
                                                          skos:prefLabel "text (15 B)"@en;
                                                          cnt:characterEncoding "windows-1252";
                                                          cnt:chars """P4
 8 8
-␃„H0␌␂␁␁"""^^xsd:string.
+␃„H0␌␂␁␁""".
+<data:image/x-portable-pixmap;base64,UDQKOCA4CgOESDAMAgEB> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-portable-pixmap>;
+                                                           nfo:colorDepth 24 ;
+                                                           nfo:height 8 ;
+                                                           nfo:horizontalResolution 96 ;
+                                                           nfo:verticalResolution 96 ;
+                                                           nfo:width 8 ;
+                                                           a schema:MediaObject,
+                                                             schema:ImageObject,
+                                                             nfo:Image;
+                                                           skos:prefLabel "PPM object (15 B)"@en.
 <file:///PAT_23_45.pbm> at:extensionObject <https://w3id.org/uri4uri/suffix/pbm>.

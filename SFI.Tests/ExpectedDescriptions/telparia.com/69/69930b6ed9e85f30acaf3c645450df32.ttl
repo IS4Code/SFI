@@ -1,8 +1,9 @@
-@base <x.blank:d8201ae9-0f62-411b-b384-4fd3041f9712>.
+@base <ni:///mh;1QEQKazzK2pSx-4jPs-MyMrsBA?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
@@ -13,7 +14,6 @@
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///RAW_NIKON_D5000.NEF>;
      nie:interpretedAs <ni:///mh;1QEQKazzK2pSx-4jPs-MyMrsBA?ct=application/octet-stream>;
@@ -23,8 +23,8 @@ _:n1 at:pathObject <file:///RAW_NIKON_D5000.NEF>;
 <file:///RAW_NIKON_D5000.NEF> at:extensionObject <https://w3id.org/uri4uri/suffix/nef>.
 <ni:///mh;1QEQKazzK2pSx-4jPs-MyMrsBA?ct=application/octet-stream> at:digest <urn:md5:29ACF32B6A52C7EE233ECF8CC8CAEC04>;
                                                                   dcterms:extent "11741824"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQKazzK2pSx-4jPs-MyMrsBA?ct=image/nef>,
-                                                                                    <ni:///mh;1QEQKazzK2pSx-4jPs-MyMrsBA?ct=image/tiff>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQKazzK2pSx-4jPs-MyMrsBA?ct=image/tiff>,
+                                                                                    <ni:///mh;1QEQKazzK2pSx-4jPs-MyMrsBA?ct=image/nef>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (11.2 MiB)"@en.
 <ni:///mh;1QEQKazzK2pSx-4jPs-MyMrsBA?ct=image/nef> <http://ns.microsoft.com/photo/1.0/Rating> "0";
@@ -38,8 +38,13 @@ _:n1 at:pathObject <file:///RAW_NIKON_D5000.NEF>;
                                                    skos:prefLabel "NEF object (160×120)"@en.
 <ni:///mh;1QEQKazzK2pSx-4jPs-MyMrsBA?ct=image/tiff> <http://ns.microsoft.com/photo/1.0Rating> "0";
                                                     schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
+                                                    nfo:colorDepth 24 ;
                                                     nfo:hasMediaStream <ni:///mh;1QEQKazzK2pSx-4jPs-MyMrsBA?ct=image/tiff#/0>,
                                                                        <ni:///mh;1QEQKazzK2pSx-4jPs-MyMrsBA?ct=image/tiff#/1>;
+                                                    nfo:height 120 ;
+                                                    nfo:horizontalResolution 300 ;
+                                                    nfo:verticalResolution 300 ;
+                                                    nfo:width 160 ;
                                                     a schema:MediaObject,
                                                       exif:IFD,
                                                       schema:ImageObject,

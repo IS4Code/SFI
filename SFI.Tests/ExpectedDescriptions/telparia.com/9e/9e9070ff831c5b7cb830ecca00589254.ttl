@@ -3,6 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
@@ -13,7 +14,6 @@
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///RAW_EPSON_RD1.ERF>;
      nie:interpretedAs <ni:///mh;1QEQz65kZ58u82MVV0iDXNcQ9g?ct=application/octet-stream>;
@@ -27,9 +27,14 @@ _:n1 at:pathObject <file:///RAW_EPSON_RD1.ERF>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (9.53 MiB)"@en.
 <ni:///mh;1QEQz65kZ58u82MVV0iDXNcQ9g?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
+                                                    nfo:colorDepth 24 ;
                                                     nfo:hasMediaStream <ni:///mh;1QEQz65kZ58u82MVV0iDXNcQ9g?ct=image/tiff#/0>,
                                                                        <ni:///mh;1QEQz65kZ58u82MVV0iDXNcQ9g?ct=image/tiff#/1>,
                                                                        <ni:///mh;1QEQz65kZ58u82MVV0iDXNcQ9g?ct=image/tiff#/2>;
+                                                    nfo:height 120 ;
+                                                    nfo:horizontalResolution 72 ;
+                                                    nfo:verticalResolution 72 ;
+                                                    nfo:width 160 ;
                                                     a schema:MediaObject,
                                                       exif:IFD,
                                                       schema:ImageObject,
@@ -50,16 +55,16 @@ _:n1 at:pathObject <file:///RAW_EPSON_RD1.ERF>;
                                                     exif:fileSource "03"^^xsd:hexBinary;
                                                     exif:flash 32 ;
                                                     exif:gainControl 0 ;
-                                                    exif:imageDescription "EPSON DSC Picture"^^xsd:string;
+                                                    exif:imageDescription "EPSON DSC Picture";
                                                     exif:imageLength 120 ,
                                                                      2024 ;
                                                     exif:imageWidth 160 ,
                                                                     3040 ;
                                                     exif:isoSpeedRatings 200 ;
                                                     exif:lightSource 0 ;
-                                                    exif:make "SEIKO EPSON CORP."^^xsd:string;
+                                                    exif:make "SEIKO EPSON CORP.";
                                                     exif:meteringMode 2 ;
-                                                    exif:model "R-D1"^^xsd:string;
+                                                    exif:model "R-D1";
                                                     exif:orientation 1 ;
                                                     exif:photometricInterpretation 2 ,
                                                                                    32803 ;
@@ -71,7 +76,7 @@ _:n1 at:pathObject <file:///RAW_EPSON_RD1.ERF>;
                                                                          1 ;
                                                     exif:sceneCaptureType 0 ;
                                                     exif:sceneType "01"^^xsd:hexBinary;
-                                                    exif:software "E04106-0200"^^xsd:string;
+                                                    exif:software "E04106-0200";
                                                     exif:stripByteCounts 57600 ,
                                                                          9844736 ;
                                                     exif:stripOffsets 1508 ,

@@ -1,8 +1,9 @@
-@base <x.blank:dbf29b51-1a1c-4db9-a1b6-28d1646bbd8f>.
+@base <ni:///mh;1QEQFBJXiJ7TkcwlivYsD4rUpQ?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
@@ -11,7 +12,6 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix dbo: <http://dbpedia.org/ontology/>.
 @prefix cert: <http://www.w3.org/ns/auth/cert#>.
 @prefix ds: <http://www.w3.org/2000/09/xmldsig#>.
@@ -25,7 +25,7 @@ _:n1 at:pathObject <file:///NSIE4.CAB>;
                      a cnt:ContentAsText;
                      skos:prefLabel "text (4 B)"@en;
                      cnt:characterEncoding "us-ascii";
-                     cnt:chars """	␄␀␀"""^^xsd:string.
+                     cnt:chars """	␄␀␀""".
 <data:,%5BInternetShortcut%5D%0D%0AURL%3Dhttp%3A%2F%2Fwww.microsoft.com%2Fnetshow%2F%0D%0A> dcterms:extent "59"^^dt:byte;
                                                                                             dcterms:hasFormat <data:text/x-uri,%5BInternetShortcut%5D%0D%0AURL%3Dhttp%3A%2F%2Fwww.microsoft.com%2Fnetshow%2F%0D%0A>;
                                                                                             a cnt:ContentAsText;
@@ -33,7 +33,7 @@ _:n1 at:pathObject <file:///NSIE4.CAB>;
                                                                                             cnt:characterEncoding "us-ascii";
                                                                                             cnt:chars """[InternetShortcut]
 URL=http://www.microsoft.com/netshow/
-"""^^xsd:string.
+""".
 <data:application/octet-stream;base64,AAABAAEAICAQAAEABADoAgAAAQA=> dcterms:extent "20"^^dt:byte;
                                                                     dcterms:hasFormat <data:image/x-icon;base64,AAABAAEAICAQAAEABADoAgAAAQA=>;
                                                                     a cnt:ContentAsBase64;
@@ -513,60 +513,66 @@ URL=http://www.microsoft.com/netshow/
 <ni:///mh;1QEQ1kX2-Yfj9WPeLXCsd1cqRw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 27 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 38 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (644 B)"@en,
-                                                                  "BMP object (38×27)"@en.
+                                                   skos:prefLabel "BMP object (38×27)"@en,
+                                                                  "BMP object (644 B)"@en.
 <ni:///mh;1QEQ4Skb5fXdhFEh0tZo8kBiOA?ct=application/octet-stream> at:digest <urn:md5:E1291BE5F5DD845121D2D668F2406238>;
                                                                   dcterms:extent "310"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ4Skb5fXdhFEh0tZo8kBiOA?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (310 B)"@en.
 <ni:///mh;1QEQ4Skb5fXdhFEh0tZo8kBiOA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 16 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×16)"@en.
+                                                   skos:prefLabel "BMP object (16×16)"@en,
+                                                                  "BMP object (296 B)"@en.
 <ni:///mh;1QEQ6FuaKA4sI9zHfh1Du9X5Mw?ct=application/octet-stream> at:digest <urn:md5:E85B9A280E2C23DCC77E1D43BBD5F933>;
                                                                   dcterms:extent "758"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ6FuaKA4sI9zHfh1Du9X5Mw?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (758 B)"@en.
 <ni:///mh;1QEQ6FuaKA4sI9zHfh1Du9X5Mw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (744 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQ7b7gw50MpdCWkE_HcXTlUw?ct=application/octet-stream> at:digest <urn:md5:EDBEE0C39D0CA5D096904FC77174E553>;
                                                                   dcterms:extent "758"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ7b7gw50MpdCWkE_HcXTlUw?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (758 B)"@en.
 <ni:///mh;1QEQ7b7gw50MpdCWkE_HcXTlUw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (744 B)"@en.
 <ni:///mh;1QEQ8jkPrkGK4JWB03-NBNxsCA?ct=application/octet-stream> at:digest <urn:md5:F2390FAE418AE09581D37F8D04DC6C08>;
                                                                   dcterms:extent "5842"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ8jkPrkGK4JWB03-NBNxsCA?ct=application/prs.implied-structure;signature=SLTG>;
@@ -659,15 +665,17 @@ URL=http://www.microsoft.com/netshow/
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (758 B)"@en.
 <ni:///mh;1QEQEwBGRgmpyrDH45Q7wSG0PQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (744 B)"@en.
 <ni:///mh;1QEQFBJXiJ7TkcwlivYsD4rUpQ?ct=application/octet-stream> at:digest <urn:md5:141257889ED391CC258AF62C0F8AD4A5>;
                                                                   dcterms:extent "1545651"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQFBJXiJ7TkcwlivYsD4rUpQ?ct=application/vnd.ms-cab-compressed>;
@@ -1007,15 +1015,17 @@ URL=http://www.microsoft.com/netshow/
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQKdHchWs9ore0hPi8bYhMtA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (308 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQKeou7wT25qTRCiaYXWt5aA?ct=application/octet-stream> at:digest <urn:md5:29EA2EEF04F6E6A4D10A26985D6B7968>;
                                                                   dcterms:extent "206336"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQKeou7wT25qTRCiaYXWt5aA?ct=application/vnd.microsoft.portable-executable>;
@@ -1041,15 +1051,17 @@ URL=http://www.microsoft.com/netshow/
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (758 B)"@en.
 <ni:///mh;1QEQN2bT5abjUivbc3DUieLdtg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (744 B)"@en.
 <ni:///mh;1QEQOHqnojCqdngE4bBGE5e2sg?ct=application/octet-stream> at:digest <urn:md5:387AA7A230AA767804E1B0461397B6B2>;
                                                                   dcterms:extent "1958"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQOHqnojCqdngE4bBGE5e2sg?ct=image/bmp>;
@@ -1058,9 +1070,9 @@ URL=http://www.microsoft.com/netshow/
 <ni:///mh;1QEQOHqnojCqdngE4bBGE5e2sg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 8 ;
                                                    nfo:height 5 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 256 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 176 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -1119,30 +1131,34 @@ URL=http://www.microsoft.com/netshow/
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (758 B)"@en.
 <ni:///mh;1QEQVwywkwzXWmUOfkXXy1iH4A?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (744 B)"@en.
 <ni:///mh;1QEQWqloNIoan1Ig5rZSqfN4QA?ct=application/octet-stream> at:digest <urn:md5:5AA968348A1A9F5220E6B652A9F37840>;
                                                                   dcterms:extent "1654"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQWqloNIoan1Ig5rZSqfN4QA?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.62 KiB)"@en.
 <ni:///mh;1QEQWqloNIoan1Ig5rZSqfN4QA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 48 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 48 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (48×48)"@en.
+                                                   skos:prefLabel "BMP object (48×48)"@en,
+                                                                  "BMP object (1.6 KiB)"@en.
 <ni:///mh;1QEQYUICsjTJKiOCHN4ne3Fp8g?ct=application/octet-stream> at:digest <urn:md5:614202B234C92A23821CDE277B7169F2>;
                                                                   dcterms:extent "57040"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQYUICsjTJKiOCHN4ne3Fp8g?ct=application/vnd.microsoft.portable-executable>;
@@ -1219,9 +1235,9 @@ URL=http://www.microsoft.com/netshow/
 <ni:///mh;1QEQ_91ErsanrKpf4nFc0NIXOw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 16 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -1234,15 +1250,17 @@ URL=http://www.microsoft.com/netshow/
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (3.68 KiB)"@en.
 <ni:///mh;1QEQbFB9xFUKhyOyO2Z92RKYUw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 8 ;
                                                    nfo:height 48 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 256 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 48 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (48×48)"@en.
+                                                   skos:prefLabel "BMP object (48×48)"@en,
+                                                                  "BMP object (3.66 KiB)"@en.
 <ni:///mh;1QEQbn8cFPRrYA06KtwM8m-WXA?ct=application/octet-stream> at:digest <urn:md5:6E7F1C14F46B600D3A2ADC0CF26F965C>;
                                                                   dcterms:extent "1085"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -1253,15 +1271,17 @@ URL=http://www.microsoft.com/netshow/
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (3.68 KiB)"@en.
 <ni:///mh;1QEQct7BJusLoXcJv6YdnpHE3g?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 8 ;
                                                    nfo:height 48 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 256 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 48 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (48×48)"@en.
+                                                   skos:prefLabel "BMP object (48×48)"@en,
+                                                                  "BMP object (3.66 KiB)"@en.
 <ni:///mh;1QEQdehbjoVaJ3DLEr1ks83JWQ?ct=application/octet-stream> at:digest <urn:md5:75E85B8E855A2770CB12BD64B3CDC959>;
                                                                   dcterms:extent "4756"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQdehbjoVaJ3DLEr1ks83JWQ?ct=image/bmp>;
@@ -1280,45 +1300,51 @@ URL=http://www.microsoft.com/netshow/
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (310 B)"@en.
 <ni:///mh;1QEQdiUllPIh-IOYmeON-NAtJw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 16 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×16)"@en.
+                                                   skos:prefLabel "BMP object (16×16)"@en,
+                                                                  "BMP object (296 B)"@en.
 <ni:///mh;1QEQejJHv0kFKYQeOmIAGONxLg?ct=application/octet-stream> at:digest <urn:md5:7A3247BF490529841E3A620018E3712E>;
                                                                   dcterms:extent "310"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQejJHv0kFKYQeOmIAGONxLg?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (310 B)"@en.
 <ni:///mh;1QEQejJHv0kFKYQeOmIAGONxLg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 16 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×16)"@en.
+                                                   skos:prefLabel "BMP object (16×16)"@en,
+                                                                  "BMP object (296 B)"@en.
 <ni:///mh;1QEQj37l9I4Kt1yeN7b57wb80g?ct=application/octet-stream> at:digest <urn:md5:8F7EE5F48E0AB75C9E37B6F9EF06FCD2>;
                                                                   dcterms:extent "758"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQj37l9I4Kt1yeN7b57wb80g?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (758 B)"@en.
 <ni:///mh;1QEQj37l9I4Kt1yeN7b57wb80g?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (744 B)"@en.
 <ni:///mh;1QEQjHWbw9_rVo6SPJmMTDn5_g?ct=application/octet-stream> at:digest <urn:md5:8C759BC3DFEB568E923C998C4C39F9FE>;
                                                                   dcterms:extent "4405"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -1372,45 +1398,51 @@ URL=http://www.microsoft.com/netshow/
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (758 B)"@en.
 <ni:///mh;1QEQlEeAebvNtMeJbsCQBXUvoA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (744 B)"@en.
 <ni:///mh;1QEQmdmZsp1RtQBkSnLUfJWm8A?ct=application/octet-stream> at:digest <urn:md5:99D999B29D51B500644A72D47C95A6F0>;
                                                                   dcterms:extent "758"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQmdmZsp1RtQBkSnLUfJWm8A?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (758 B)"@en.
 <ni:///mh;1QEQmdmZsp1RtQBkSnLUfJWm8A?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (744 B)"@en.
 <ni:///mh;1QEQnBH8vfHKexNHArUVJPWnhg?ct=application/octet-stream> at:digest <urn:md5:9C11FCBDF1CA7B134702B51524F5A786>;
                                                                   dcterms:extent "310"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQnBH8vfHKexNHArUVJPWnhg?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (310 B)"@en.
 <ni:///mh;1QEQnBH8vfHKexNHArUVJPWnhg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 16 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×16)"@en.
+                                                   skos:prefLabel "BMP object (296 B)"@en,
+                                                                  "BMP object (16×16)"@en.
 <ni:///mh;1QEQnNsoPeJsTEKtGuz0idtDlQ?ct=application/octet-stream> at:digest <urn:md5:9CDB283DE26C4C42AD1AECF489DB4395>;
                                                                   dcterms:extent "66560"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQnNsoPeJsTEKtGuz0idtDlQ?ct=application/vnd.microsoft.portable-executable>;
@@ -1509,9 +1541,9 @@ URL=http://www.microsoft.com/netshow/
 <ni:///mh;1QEQrBaxTWc4kEDV0TlGihymTg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 8 ;
                                                    nfo:height 128 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 256 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 128 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -1552,9 +1584,9 @@ URL=http://www.microsoft.com/netshow/
 <ni:///mh;1QEQsSwas78RZ2rlLjtOErQQ8w?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 15 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 48 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -1571,15 +1603,17 @@ URL=http://www.microsoft.com/netshow/
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (758 B)"@en.
 <ni:///mh;1QEQuOAQMjDCz3_CQhufvPS43A?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (744 B)"@en.
 <ni:///mh;1QEQwio_rauN6ahF783gUlO_KA?ct=application/octet-stream> at:digest <urn:md5:C22A3FADAB8DE9A845EFCDE05253BF28>;
                                                                   dcterms:extent "272"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -1592,9 +1626,9 @@ URL=http://www.microsoft.com/netshow/
 <ni:///mh;1QEQwz1kOgxmYJV7qm0MSIPmdA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 8 ;
                                                    nfo:height 38 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 256 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -1617,9 +1651,9 @@ URL=http://www.microsoft.com/netshow/
 <ni:///mh;1QEQyDaIaUIyc_IKTcZB1cBLfw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 16 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -1632,15 +1666,17 @@ URL=http://www.microsoft.com/netshow/
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (310 B)"@en.
 <ni:///mh;1QEQyXmrWrPK7COtm1eiYsHJRw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 16 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×16)"@en.
+                                                   skos:prefLabel "BMP object (16×16)"@en,
+                                                                  "BMP object (296 B)"@en.
 <ni:///mh;1QEQz8YftYmd6y8wqgnsUNo-jw?ct=application/octet-stream> at:digest <urn:md5:CFC61FB5899DEB2F30AA09EC50DA3E8F>;
                                                                   dcterms:extent "598"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQz8YftYmd6y8wqgnsUNo-jw?ct=image/bmp>;
@@ -1649,15 +1685,15 @@ URL=http://www.microsoft.com/netshow/
 <ni:///mh;1QEQz8YftYmd6y8wqgnsUNo-jw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 15 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 64 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (64×15)"@en,
-                                                                  "BMP object (584 B)"@en.
+                                                   skos:prefLabel "BMP object (584 B)"@en,
+                                                                  "BMP object (64×15)"@en.
 <urn:md5:063A656E7F85C8698B187A7BA5F80CD4> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "Bjplbn+FyGmLGHp7pfgM1A=="^^xsd:base64Binary.

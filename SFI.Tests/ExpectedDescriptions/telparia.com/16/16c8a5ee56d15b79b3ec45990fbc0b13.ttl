@@ -3,6 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
@@ -12,7 +13,6 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///hi100.tif>;
      nie:interpretedAs <ni:///mh;1QEQKrpognuvnRrxEM4nmlpBMA?ct=application/octet-stream>;
@@ -26,15 +26,15 @@ _:n1 at:pathObject <file:///hi100.tif>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (2.97 MiB)"@en.
 <ni:///mh;1QEQKrpognuvnRrxEM4nmlpBMA?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
-                                                    nfo:colorDepth 32 ;
+                                                    nfo:colorDepth 24 ;
                                                     nfo:height 720 ;
                                                     nfo:horizontalResolution 288 ;
                                                     nfo:verticalResolution 288 ;
                                                     nfo:width 1080 ;
                                                     a schema:MediaObject,
-                                                      nfo:Image,
                                                       exif:IFD,
-                                                      schema:ImageObject;
+                                                      schema:ImageObject,
+                                                      nfo:Image;
                                                     exif:compression 1 ;
                                                     exif:imageLength 720 ;
                                                     exif:imageWidth 1080 ;
@@ -47,7 +47,7 @@ _:n1 at:pathObject <file:///hi100.tif>;
                                                     exif:xResolution 288 ;
                                                     exif:yResolution 288 ;
                                                     skos:prefLabel "TIFF object (1080×720)"@en,
-                                                                   "TIF object (2.97 MiB)"@en.
+                                                                   "TIFF object (2.97 MiB)"@en.
 <urn:md5:2ABA68827BAF9D1AF110CE279A5A4130> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "KrpognuvnRrxEM4nmlpBMA=="^^xsd:base64Binary.

@@ -1,8 +1,9 @@
-@base <x.blank:ca954d71-2486-48da-9cd1-76eb58d4a794>.
+@base <ni:///mh;1QEQEx5_Li_syLNPVIHNq8bZmg?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
@@ -11,7 +12,6 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix xis: <http://www.w3.org/2001/04/infoset#>.
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 
@@ -47,15 +47,17 @@ _:n1 at:pathObject <file:///CWPT_FULL.EXE>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (758 B)"@en.
 <ni:///mh;1QEQ5Q_BH-afx9BUEh6zce7aHg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (744 B)"@en.
 <ni:///mh;1QEQEx5_Li_syLNPVIHNq8bZmg?ct=application/octet-stream> at:digest <urn:md5:131E7F2E2FECC8B34F5481CDABC6D99A>;
                                                                   dcterms:extent "5073019"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQEx5_Li_syLNPVIHNq8bZmg?ct=application/vnd.microsoft.portable-executable>;
@@ -104,15 +106,17 @@ _:n1 at:pathObject <file:///CWPT_FULL.EXE>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (310 B)"@en.
 <ni:///mh;1QEQZlPCYUqCOMnmv-tvjh1hxQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 16 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×16)"@en.
+                                                   skos:prefLabel "BMP object (296 B)"@en,
+                                                                  "BMP object (16×16)"@en.
 <ni:///mh;1QEQwEeiOBfKw89Lat4szg8kUg?ct=application/prs.implied-document+xml;root=assembly;ns=%22urn:schemas-microsoft-com:asm.v1%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=assembly;ns=%22urn:schemas-microsoft-com:asm.v1%22>;
                                                                                                                                       a schema:MediaObject;
                                                                                                                                       skos:prefLabel "ASSEMBLY object"@en.

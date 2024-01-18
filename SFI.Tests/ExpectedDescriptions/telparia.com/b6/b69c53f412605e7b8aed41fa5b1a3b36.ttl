@@ -3,6 +3,8 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
@@ -10,7 +12,6 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///CHOPIN.TTF>;
      nie:interpretedAs <ni:///mh;1QEQ4s4GfyrrBjbBzlWclSTNFA?ct=application/octet-stream>;
@@ -20,8 +21,19 @@ _:n1 at:pathObject <file:///CHOPIN.TTF>;
 <file:///CHOPIN.TTF> at:extensionObject <https://w3id.org/uri4uri/suffix/ttf>.
 <ni:///mh;1QEQ4s4GfyrrBjbBzlWclSTNFA?ct=application/octet-stream> at:digest <urn:md5:E2CE067F2AEB0636C1CE559C9524CD14>;
                                                                   dcterms:extent "46988"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ4s4GfyrrBjbBzlWclSTNFA?ct=image/tga>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (45.89 KiB)"@en.
+<ni:///mh;1QEQ4s4GfyrrBjbBzlWclSTNFA?ct=image/tga> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tga>;
+                                                   nfo:colorDepth 24 ;
+                                                   nfo:height 12847 ;
+                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:verticalResolution 96 ;
+                                                   nfo:width 21327 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "TGA object (45.89 KiB)"@en.
 <urn:md5:E2CE067F2AEB0636C1CE559C9524CD14> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "4s4GfyrrBjbBzlWclSTNFA=="^^xsd:base64Binary.

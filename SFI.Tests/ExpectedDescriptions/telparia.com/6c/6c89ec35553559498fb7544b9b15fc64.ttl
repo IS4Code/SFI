@@ -3,6 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
@@ -11,7 +12,6 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///BOB-89A.GIF>;
      nie:interpretedAs <ni:///mh;1QEQLUp4EjM_xuguNQdYqmME4w?ct=application/octet-stream>;
@@ -25,7 +25,7 @@ _:n1 at:pathObject <file:///BOB-89A.GIF>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (27.04 KiB)"@en.
 <ni:///mh;1QEQLUp4EjM_xuguNQdYqmME4w?ct=image/gif> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/gif>;
-                                                   nfo:bitDepth 8 ;
+                                                   nfo:bitDepth 6 ;
                                                    nfo:hasMediaStream <ni:///mh;1QEQLUp4EjM_xuguNQdYqmME4w?ct=image/gif#/0>,
                                                                       <ni:///mh;1QEQLUp4EjM_xuguNQdYqmME4w?ct=image/gif#/1>;
                                                    nfo:height 200 ;
@@ -39,10 +39,10 @@ _:n1 at:pathObject <file:///BOB-89A.GIF>;
 
 """;
                                                    a schema:MediaObject,
-                                                     nfo:Image,
-                                                     schema:ImageObject;
-                                                   skos:prefLabel "GIF object (320×200)"@en,
-                                                                  "GIF object (27.04 KiB)"@en.
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "GIF object (27.04 KiB)"@en,
+                                                                  "GIF object (320×200)"@en.
 <ni:///mh;1QEQLUp4EjM_xuguNQdYqmME4w?ct=image/gif#/0> nfo:height 200 ;
                                                       nfo:width 320 ;
                                                       a nfo:MediaStream;

@@ -3,6 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
@@ -12,7 +13,6 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///input_gray_4bit.tiff>;
      nie:interpretedAs <ni:///mh;1QEQFNrklrlS1K16c0wG4k4t4Q?ct=application/octet-stream>;
@@ -26,10 +26,9 @@ _:n1 at:pathObject <file:///input_gray_4bit.tiff>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.76 KiB)"@en.
 <ni:///mh;1QEQFNrklrlS1K16c0wG4k4t4Q?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
-                                                    nfo:bitDepth 8 ;
+                                                    nfo:colorDepth 24 ;
                                                     nfo:height 46 ;
                                                     nfo:horizontalResolution 96 ;
-                                                    nfo:paletteSize 256 ;
                                                     nfo:verticalResolution 96 ;
                                                     nfo:width 70 ;
                                                     a schema:MediaObject,
@@ -49,7 +48,7 @@ _:n1 at:pathObject <file:///input_gray_4bit.tiff>;
                                                     exif:stripOffsets 8 ;
                                                     skos:prefLabel "TIFF object (70×46, 4-bit)"@en,
                                                                    "TIFF object (70×46)"@en,
-                                                                   "TIF object (1.76 KiB)"@en.
+                                                                   "TIFF object (1.76 KiB)"@en.
 <urn:md5:14DAE496B952D4AD7A734C06E24E2DE1> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "FNrklrlS1K16c0wG4k4t4Q=="^^xsd:base64Binary.

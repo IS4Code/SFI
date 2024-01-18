@@ -1,10 +1,10 @@
-@base <x.blank:3ee3e7cf-4a40-4e12-9edd-24ba7fc81615>.
+@base <ni:///mh;1QEQ7KXNZVmEGOc2HeX91alt7g?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -27,27 +27,27 @@ _:n1 at:pathObject <file:///install_flash_player_7.msi>;
                    a cnt:ContentAsText;
                    skos:prefLabel "text (4 B)"@en;
                    cnt:characterEncoding "us-ascii";
-                   cnt:chars "A␁>␇"^^xsd:string.
+                   cnt:chars "A␁>␇".
 <data:,d%06%01%00> dcterms:extent "4"^^dt:byte;
                    a cnt:ContentAsText;
                    skos:prefLabel "text (4 B)"@en;
                    cnt:characterEncoding "us-ascii";
-                   cnt:chars "d␆␁␀"^^xsd:string.
+                   cnt:chars "d␆␁␀".
 <data:,f%07%01%00> dcterms:extent "4"^^dt:byte;
                    a cnt:ContentAsText;
                    skos:prefLabel "text (4 B)"@en;
                    cnt:characterEncoding "us-ascii";
-                   cnt:chars "f␇␁␀"^^xsd:string.
+                   cnt:chars "f␇␁␀".
 <data:;charset=windows-1252;base64,AYADgGUHZgYAAAAA> dcterms:extent "12"^^dt:byte;
                                                      a cnt:ContentAsText;
                                                      skos:prefLabel "text (12 B)"@en;
                                                      cnt:characterEncoding "windows-1252";
-                                                     cnt:chars "␁€␃€e␇f␆␀␀␀␀"^^xsd:string.
+                                                     cnt:chars "␁€␃€e␇f␆␀␀␀␀".
 <data:;charset=windows-1252;base64,pwGnAacB0QRIB0kH> dcterms:extent "12"^^dt:byte;
                                                      a cnt:ContentAsText;
                                                      skos:prefLabel "text (12 B)"@en;
                                                      cnt:characterEncoding "windows-1252";
-                                                     cnt:chars "§␁§␁§␁Ñ␄H␇I␇"^^xsd:string.
+                                                     cnt:chars "§␁§␁§␁Ñ␄H␇I␇".
 <data:application/octet-stream,H%07%00%80> dcterms:extent "4"^^dt:byte;
                                            a cnt:ContentAsBase64;
                                            skos:prefLabel "binary data (4 B)"@en;
@@ -152,14 +152,14 @@ _:n1 at:pathObject <file:///install_flash_player_7.msi>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ7KXNZVmEGOc2HeX91alt7g?ct=application/x-ole-storage>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (668 KiB)"@en.
-<ni:///mh;1QEQ7KXNZVmEGOc2HeX91alt7g?ct=application/x-ole-storage> at:pathObject <file:///>;
+<ni:///mh;1QEQ7KXNZVmEGOc2HeX91alt7g?ct=application/x-ole-storage> at:pathObject <file:///.>;
                                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
                                                                    nie:interpretedAs <ni:///mh;1QEQ7KXNZVmEGOc2HeX91alt7g?ct=application/x-ole-storage#/>;
                                                                    nfo:fileLastModified "2004-04-16T00:10:47.981000Z"^^xsd:dateTime;
                                                                    a schema:MediaObject,
                                                                      nfo:EmbeddedFileDataObject;
                                                                    skos:prefLabel "OLE object (668 KiB)"@en.
-<ni:///mh;1QEQ7KXNZVmEGOc2HeX91alt7g?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQ7KXNZVmEGOc2HeX91alt7g?ct=application/x-ole-storage#/> at:pathObject <file:///>;
                                                                      a nfo:Folder;
                                                                      skos:prefLabel "/".
 <ni:///mh;1QEQ7KXNZVmEGOc2HeX91alt7g?ct=application/x-ole-storage#/%05DigitalSignature> at:pathObject <file:///%05DigitalSignature>;
@@ -232,15 +232,17 @@ _:n1 at:pathObject <file:///install_flash_player_7.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQEGL9TnVw7X-bNj_NVig70A?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (308 B)"@en.
 <ni:///mh;1QEQEyd5g3Axduj8UxwNbUOtJw?ct=application/octet-stream> at:digest <urn:md5:13277983703176E8FC531C0D6D43AD27>;
                                                                   dcterms:extent "204"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -263,15 +265,17 @@ _:n1 at:pathObject <file:///install_flash_player_7.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (310 B)"@en.
 <ni:///mh;1QEQJE634j44bZkeQY8aMMJoyg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 16 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×16)"@en.
+                                                   skos:prefLabel "BMP object (16×16)"@en,
+                                                                  "BMP object (296 B)"@en.
 <ni:///mh;1QEQJsIosPEXUSSqLki7nKzubA?ct=application/octet-stream> at:digest <urn:md5:26C228B0F1175124AA2E48BB9CACEE6C>;
                                                                   dcterms:extent "80384"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQJsIosPEXUSSqLki7nKzubA?ct=application/vnd.microsoft.portable-executable>;
@@ -288,15 +292,17 @@ _:n1 at:pathObject <file:///install_flash_player_7.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQKdHchWs9ore0hPi8bYhMtA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (308 B)"@en.
 <ni:///mh;1QEQL7HW-rE1zuORqz1w4cJjRw?ct=application/octet-stream> at:digest <urn:md5:2FB1D6FAB135CEE391AB3D70E1C26347>;
                                                                   dcterms:extent "939368"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQL7HW-rE1zuORqz1w4cJjRw?ct=application/vnd.microsoft.portable-executable>;
@@ -430,9 +436,9 @@ _:n1 at:pathObject <file:///install_flash_player_7.msi>;
 <ni:///mh;1QEQLBzOP2O2oD1tcfN1Aw0ouQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 8 ;
                                                    nfo:height 300 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 256 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 180 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -441,15 +447,15 @@ _:n1 at:pathObject <file:///install_flash_player_7.msi>;
                                                                   "BMP object (53.77 KiB)"@en.
 <ni:///mh;1QEQLKY8rS9WOruyXXrsUOqPKQ?ct=application/octet-stream> at:digest <urn:md5:2CA63CAD2F563ABBB25D7AEC50EA8F29>;
                                                                   dcterms:extent "99688"^^dt:byte;
-                                                                  dcterms:hasFormat [a schema:MediaObject ; 
+                                                                  dcterms:hasFormat <ni:///mh;1QEQLKY8rS9WOruyXXrsUOqPKQ?ct=application/vnd.microsoft.portable-executable>,
+                                                                                    [a schema:MediaObject ; 
                                                                                      a cert:X509Certificate ; 
                                                                                      at:digest <urn:sha1:U8MCW5PY6WWTR2Z4HTV2UQ9TNBGAE247> ; 
                                                                                      dcterms:subject """CN=\"Macromedia, Inc.\", OU=Digital ID Class 3 - Microsoft Software Validation v2, OU=Digital ID Class 3 - Microsoft Software Validation v2, O=\"Macromedia, Inc.\", L=San Francisco, S=CA, C=US""" ; 
                                                                                      dcterms:creator """CN=VeriSign Class 3 Code Signing 2001 CA, OU=Terms of use at https://www.verisign.com/rpa (c)01, OU=VeriSign Trust Network, O=\"VeriSign, Inc.\"""" ; 
                                                                                      dcterms:created "2003-05-27T02:00:00.000000+02:00"^^xsd:dateTime ; 
                                                                                      sec:expiration "2004-06-10T01:59:59.000000+02:00"^^xsd:dateTime ; 
-                                                                                     schema:serialNumber "0477FA2565EA111785DDD089A34E8D79"],
-                                                                                    <ni:///mh;1QEQLKY8rS9WOruyXXrsUOqPKQ?ct=application/vnd.microsoft.portable-executable>;
+                                                                                     schema:serialNumber "0477FA2565EA111785DDD089A34E8D79"];
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (97.35 KiB)"@en.
 <ni:///mh;1QEQLKY8rS9WOruyXXrsUOqPKQ?ct=application/vnd.microsoft.portable-executable> at:digest <urn:md5:4FBEB566C375553DA7D28C9144247EE7>;
@@ -517,15 +523,17 @@ _:n1 at:pathObject <file:///install_flash_player_7.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (190 B)"@en.
 <ni:///mh;1QEQMkHSeHvjS9AYiEdHNApbBA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 16 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×16)"@en.
+                                                   skos:prefLabel "BMP object (16×16)"@en,
+                                                                  "BMP object (180 B)"@en.
 <ni:///mh;1QEQOmhpd5lwtDNCKnex7cFOhQ?ct=application/octet-stream> at:digest <urn:md5:3A6869779970B433422A77B1EDC14E85>;
                                                                   dcterms:extent "12292"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQOmhpd5lwtDNCKnex7cFOhQ?ct=application/prs.implied-structure;signature=MSFT>;
@@ -544,15 +552,17 @@ _:n1 at:pathObject <file:///install_flash_player_7.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQTciu40lThbEWO4-tfJLo-Q?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (308 B)"@en.
 <ni:///mh;1QEQTj78iJsFcMEbkSeXG2xNpw?ct=application/octet-stream> at:digest <urn:md5:4E3EFC889B0570C11B9127971B6C4DA7>;
                                                                   dcterms:extent "476"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -563,15 +573,17 @@ _:n1 at:pathObject <file:///install_flash_player_7.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (758 B)"@en.
 <ni:///mh;1QEQUFaGhqpT2DGpWOfTlGpqYg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (744 B)"@en.
 <ni:///mh;1QEQVTQFBTOBVWFddpXl7oMO0A?ct=text/plain> at:digest <urn:md5:55340505338155615D7695E5EE830ED0>;
                                                     dcterms:extent "438"^^dt:byte;
                                                     nie:hasPart <ni:///mh;1QEQVTQFBTOBVWFddpXl7oMO0A?ct=text/plain#line=,1>;
@@ -631,9 +643,9 @@ _:n1 at:pathObject <file:///install_flash_player_7.msi>;
 <ni:///mh;1QEQtvPppKxSWQbMwVMXCSOagA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 16 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,

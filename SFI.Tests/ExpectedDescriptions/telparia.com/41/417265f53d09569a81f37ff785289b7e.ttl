@@ -3,8 +3,8 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
@@ -93,15 +93,17 @@ _:n1 at:pathObject <file:///ucf-b2sp.zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (310 B)"@en.
 <ni:///mh;1QEQ5nypei0b2hl8Phiiwn1YnQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 16 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×16)"@en.
+                                                   skos:prefLabel "BMP object (296 B)"@en,
+                                                                  "BMP object (16×16)"@en.
 <ni:///mh;1QEQ98URu9b3lQGq4lElX49IKg?ct=application/octet-stream> at:digest <urn:md5:F7C511BBD6F79501AAE251255F8F482A>;
                                                                   dcterms:extent "12911"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -115,13 +117,13 @@ _:n1 at:pathObject <file:///ucf-b2sp.zip>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQMx02jMrvytVKoTrKzzHb8g?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (60.45 KiB)"@en.
-<ni:///mh;1QEQMx02jMrvytVKoTrKzzHb8g?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQMx02jMrvytVKoTrKzzHb8g?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQMx02jMrvytVKoTrKzzHb8g?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (60.45 KiB)"@en.
-<ni:///mh;1QEQMx02jMrvytVKoTrKzzHb8g?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQMx02jMrvytVKoTrKzzHb8g?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQMx02jMrvytVKoTrKzzHb8g?ct=application/zip#/FILE_ID.DIZ> at:pathObject <file:///FILE_ID.DIZ>;
@@ -166,15 +168,17 @@ _:n1 at:pathObject <file:///ucf-b2sp.zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (758 B)"@en.
 <ni:///mh;1QEQOttxuTkNhBW3EcyQW3hqhw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (744 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQT3-rT7z6L4bv3Ibgq35joA?ct=application/octet-stream> at:digest <urn:md5:4F7FAB4FBCFA2F86EFDC86E0AB7E63A0>;
                                                                   dcterms:extent "14867"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQT3-rT7z6L4bv3Ibgq35joA?ct=application/x-dosexec>;

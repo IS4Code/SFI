@@ -3,6 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
@@ -13,7 +14,6 @@
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///example.nef>;
      nie:interpretedAs <ni:///mh;1QEQ6AADxAu3y-T3kAl_Wfo5Vg?ct=application/octet-stream>;
@@ -36,8 +36,13 @@ _:n1 at:pathObject <file:///example.nef>;
                                                      schema:ImageObject;
                                                    skos:prefLabel "NEF object (160×120)"@en.
 <ni:///mh;1QEQ6AADxAu3y-T3kAl_Wfo5Vg?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
+                                                    nfo:colorDepth 24 ;
                                                     nfo:hasMediaStream <ni:///mh;1QEQ6AADxAu3y-T3kAl_Wfo5Vg?ct=image/tiff#/0>,
                                                                        <ni:///mh;1QEQ6AADxAu3y-T3kAl_Wfo5Vg?ct=image/tiff#/1>;
+                                                    nfo:height 120 ;
+                                                    nfo:horizontalResolution 300 ;
+                                                    nfo:verticalResolution 300 ;
+                                                    nfo:width 160 ;
                                                     a schema:MediaObject,
                                                       exif:IFD,
                                                       schema:ImageObject,
@@ -71,10 +76,10 @@ _:n1 at:pathObject <file:///example.nef>;
                                                     exif:jpegInterchangeFormat 175296 ;
                                                     exif:jpegInterchangeFormatLength 1610650 ;
                                                     exif:lightSource 0 ;
-                                                    exif:make "NIKON CORPORATION"^^xsd:string;
+                                                    exif:make "NIKON CORPORATION";
                                                     exif:maxApertureValue "39/10"^^owl:rational;
                                                     exif:meteringMode 5 ;
-                                                    exif:model "NIKON D3100"^^xsd:string;
+                                                    exif:model "NIKON D3100";
                                                     exif:orientation 1 ;
                                                     exif:photometricInterpretation 2 ,
                                                                                    32803 ;
@@ -89,14 +94,14 @@ _:n1 at:pathObject <file:///example.nef>;
                                                     exif:sceneType "01"^^xsd:hexBinary;
                                                     exif:sensingMethod 2 ;
                                                     exif:sharpness 0 ;
-                                                    exif:software "Ver.1.01 "^^xsd:string;
+                                                    exif:software "Ver.1.01 ";
                                                     exif:stripByteCounts 57600 ,
                                                                          11194416 ;
                                                     exif:stripOffsets 117332 ,
                                                                       1785952 ;
-                                                    exif:subSecTime "00"^^xsd:string;
-                                                    exif:subSecTimeDigitized "00"^^xsd:string;
-                                                    exif:subSecTimeOriginal "00"^^xsd:string;
+                                                    exif:subSecTime "00";
+                                                    exif:subSecTimeDigitized "00";
+                                                    exif:subSecTimeOriginal "00";
                                                     exif:subjectDistanceRange 0 ;
                                                     exif:userComment "QVNDSUkAAAAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA="^^xsd:base64Binary;
                                                     exif:whiteBalance 0 ;

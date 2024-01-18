@@ -3,6 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
@@ -13,7 +14,6 @@
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///sample1.dng>;
      nie:interpretedAs <ni:///mh;1QEQO_Ho77XAFF9kcI4Kf4PPaw?ct=application/octet-stream>;
@@ -23,8 +23,9 @@ _:n1 at:pathObject <file:///sample1.dng>;
 <file:///sample1.dng> at:extensionObject <https://w3id.org/uri4uri/suffix/dng>.
 <ni:///mh;1QEQO_Ho77XAFF9kcI4Kf4PPaw?ct=application/octet-stream> at:digest <urn:md5:3BF1E8EFB5C0145F64708E0A7F83CF6B>;
                                                                   dcterms:extent "6372698"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQO_Ho77XAFF9kcI4Kf4PPaw?ct=image/dng>,
-                                                                                    <ni:///mh;1QEQO_Ho77XAFF9kcI4Kf4PPaw?ct=application/octet-stream#arw>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQO_Ho77XAFF9kcI4Kf4PPaw?ct=application/octet-stream#arw>,
+                                                                                    <ni:///mh;1QEQO_Ho77XAFF9kcI4Kf4PPaw?ct=image/tiff>,
+                                                                                    <ni:///mh;1QEQO_Ho77XAFF9kcI4Kf4PPaw?ct=image/dng>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (6.08 MiB)"@en.
 <ni:///mh;1QEQO_Ho77XAFF9kcI4Kf4PPaw?ct=application/octet-stream#arw> nfo:hasMediaStream <ni:///mh;1QEQO_Ho77XAFF9kcI4Kf4PPaw?ct=application/octet-stream#arw/0>,
@@ -33,7 +34,7 @@ _:n1 at:pathObject <file:///sample1.dng>;
                                                                       a schema:MediaObject,
                                                                         exif:IFD;
                                                                       exif:apertureValue "8376/1481"^^owl:rational;
-                                                                      exif:artist "unknown"^^xsd:string;
+                                                                      exif:artist "unknown";
                                                                       exif:bitsPerSample 16 ;
                                                                       exif:colorSpace 65535 ;
                                                                       exif:componentsConfiguration "01020300"^^xsd:hexBinary;
@@ -59,10 +60,10 @@ _:n1 at:pathObject <file:///sample1.dng>;
                                                                                       3516 ,
                                                                                       1024 ;
                                                                       exif:isoSpeedRatings 100 ;
-                                                                      exif:make "Canon"^^xsd:string;
+                                                                      exif:make "Canon";
                                                                       exif:maxApertureValue 4 ;
                                                                       exif:meteringMode 5 ;
-                                                                      exif:model "Canon EOS 350D DIGITAL"^^xsd:string;
+                                                                      exif:model "Canon EOS 350D DIGITAL";
                                                                       exif:orientation 1 ;
                                                                       exif:photometricInterpretation 2 ,
                                                                                                      32803 ,
@@ -101,6 +102,16 @@ _:n1 at:pathObject <file:///sample1.dng>;
                                                      nfo:Image,
                                                      schema:ImageObject;
                                                    skos:prefLabel "DNG object (3516×2328)"@en.
+<ni:///mh;1QEQO_Ho77XAFF9kcI4Kf4PPaw?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
+                                                    nfo:colorDepth 24 ;
+                                                    nfo:height 171 ;
+                                                    nfo:horizontalResolution 96 ;
+                                                    nfo:verticalResolution 96 ;
+                                                    nfo:width 256 ;
+                                                    a schema:MediaObject,
+                                                      schema:ImageObject,
+                                                      nfo:Image;
+                                                    skos:prefLabel "TIFF object (6.08 MiB)"@en.
 <urn:md5:3BF1E8EFB5C0145F64708E0A7F83CF6B> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "O/Ho77XAFF9kcI4Kf4PPaw=="^^xsd:base64Binary.

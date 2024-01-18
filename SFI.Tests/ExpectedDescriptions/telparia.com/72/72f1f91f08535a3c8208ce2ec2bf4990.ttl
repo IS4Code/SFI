@@ -3,6 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
@@ -13,7 +14,6 @@
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///L1004220.DNG>;
      nie:interpretedAs <ni:///mh;1QEQna1XI4Z9iHw2yRnw0q86_A?ct=application/octet-stream>;
@@ -230,12 +230,17 @@ _:n1 at:pathObject <file:///L1004220.DNG>;
                                                     <http://ns.adobe.com/xap/1.0/ModifyDate> "2009-10-19T15:48:10-07:00";
                                                     <http://ns.adobe.com/xap/1.0/Rating> "0";
                                                     schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
+                                                    nfo:colorDepth 24 ;
                                                     nfo:hasMediaStream <ni:///mh;1QEQna1XI4Z9iHw2yRnw0q86_A?ct=image/tiff#/0>,
                                                                        <ni:///mh;1QEQna1XI4Z9iHw2yRnw0q86_A?ct=image/tiff#/1>;
+                                                    nfo:height 216 ;
+                                                    nfo:horizontalResolution 72 ;
+                                                    nfo:verticalResolution 72 ;
+                                                    nfo:width 320 ;
                                                     a schema:MediaObject,
-                                                      exif:IFD,
                                                       schema:ImageObject,
-                                                      nfo:Image;
+                                                      nfo:Image,
+                                                      exif:IFD;
                                                     exif:bitsPerSample 8 ;
                                                     exif:compression 1 ;
                                                     exif:dateTimeDigitized "2009-10-19T15:48:10.000000"^^xsd:dateTime;
@@ -252,15 +257,15 @@ _:n1 at:pathObject <file:///L1004220.DNG>;
                                                     exif:focalLengthIn35mmFilm 35 ;
                                                     exif:imageLength 216 ,
                                                                      3472 ;
-                                                    exif:imageUniqueID "0000000000000000000000000000114c"^^xsd:string;
+                                                    exif:imageUniqueID "0000000000000000000000000000114c";
                                                     exif:imageWidth 320 ,
                                                                     5216 ;
                                                     exif:isoSpeedRatings 160 ;
                                                     exif:lightSource 255 ;
-                                                    exif:make "Leica Camera AG"^^xsd:string;
+                                                    exif:make "Leica Camera AG";
                                                     exif:maxApertureValue 1 ;
                                                     exif:meteringMode 2 ;
-                                                    exif:model "M9 Digital Camera"^^xsd:string;
+                                                    exif:model "M9 Digital Camera";
                                                     exif:orientation 1 ;
                                                     exif:photometricInterpretation 2 ,
                                                                                    32803 ;
@@ -273,7 +278,7 @@ _:n1 at:pathObject <file:///L1004220.DNG>;
                                                     exif:sceneCaptureType 0 ;
                                                     exif:sceneType "01"^^xsd:hexBinary;
                                                     exif:shutterSpeedValue "5/2"^^owl:rational;
-                                                    exif:software "1.002"^^xsd:string;
+                                                    exif:software "1.002";
                                                     exif:stripByteCounts 207360 ,
                                                                          18109952 ;
                                                     exif:stripOffsets 7044 ,

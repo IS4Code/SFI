@@ -3,6 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
@@ -11,7 +12,6 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///bg.ppm>;
      nie:interpretedAs <ni:///mh;1QEQa-EHXsNOUCZxn2E9ZtTfNg?ct=application/octet-stream>;
@@ -21,7 +21,8 @@ _:n1 at:pathObject <file:///bg.ppm>;
 <file:///bg.ppm> at:extensionObject <https://w3id.org/uri4uri/suffix/ppm>.
 <ni:///mh;1QEQa-EHXsNOUCZxn2E9ZtTfNg?ct=application/octet-stream> at:digest <urn:md5:6BE1075EC34E5026719F613D66D4DF36>;
                                                                   dcterms:extent "65596"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQa-EHXsNOUCZxn2E9ZtTfNg?ct=image/x-portable-graymap>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQa-EHXsNOUCZxn2E9ZtTfNg?ct=image/x-portable-pixmap>,
+                                                                                    <ni:///mh;1QEQa-EHXsNOUCZxn2E9ZtTfNg?ct=image/x-portable-graymap>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (64.06 KiB)"@en.
 <ni:///mh;1QEQa-EHXsNOUCZxn2E9ZtTfNg?ct=image/x-portable-graymap> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-portable-graymap>;
@@ -31,6 +32,16 @@ _:n1 at:pathObject <file:///bg.ppm>;
                                                                     schema:ImageObject,
                                                                     nfo:Image;
                                                                   skos:prefLabel "PBM object (256×256)"@en.
+<ni:///mh;1QEQa-EHXsNOUCZxn2E9ZtTfNg?ct=image/x-portable-pixmap> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-portable-pixmap>;
+                                                                 nfo:colorDepth 24 ;
+                                                                 nfo:height 256 ;
+                                                                 nfo:horizontalResolution 96 ;
+                                                                 nfo:verticalResolution 96 ;
+                                                                 nfo:width 256 ;
+                                                                 a schema:MediaObject,
+                                                                   schema:ImageObject,
+                                                                   nfo:Image;
+                                                                 skos:prefLabel "PPM object (64.06 KiB)"@en.
 <urn:md5:6BE1075EC34E5026719F613D66D4DF36> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "a+EHXsNOUCZxn2E9ZtTfNg=="^^xsd:base64Binary.

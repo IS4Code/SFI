@@ -1,8 +1,9 @@
-@base <x.blank:86517d7f-e2e2-4e62-8cef-fb9c569d9184>.
+@base <ni:///mh;1QEQ_LXPblRA-_nYj058NrAgfw?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
@@ -13,7 +14,6 @@
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///sample1.nef>;
      nie:interpretedAs <ni:///mh;1QEQ_LXPblRA-_nYj058NrAgfw?ct=application/octet-stream>;
@@ -23,8 +23,9 @@ _:n1 at:pathObject <file:///sample1.nef>;
 <file:///sample1.nef> at:extensionObject <https://w3id.org/uri4uri/suffix/nef>.
 <ni:///mh;1QEQ_LXPblRA-_nYj058NrAgfw?ct=application/octet-stream> at:digest <urn:md5:FCB5CF6E5440FBF9D88F4E7C36B0207F>;
                                                                   dcterms:extent "19300180"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQ_LXPblRA-_nYj058NrAgfw?ct=image/nef>,
-                                                                                    <ni:///mh;1QEQ_LXPblRA-_nYj058NrAgfw?ct=application/octet-stream#arw>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ_LXPblRA-_nYj058NrAgfw?ct=application/octet-stream#arw>,
+                                                                                    <ni:///mh;1QEQ_LXPblRA-_nYj058NrAgfw?ct=image/nef>,
+                                                                                    <ni:///mh;1QEQ_LXPblRA-_nYj058NrAgfw?ct=image/tiff>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (18.41 MiB)"@en.
 <ni:///mh;1QEQ_LXPblRA-_nYj058NrAgfw?ct=application/octet-stream#arw> <http://ns.adobe.com/photoshop/1.0/DateCreated> "2008-03-15";
@@ -126,6 +127,16 @@ _:n1 at:pathObject <file:///sample1.nef>;
                                                      nfo:Image,
                                                      schema:ImageObject;
                                                    skos:prefLabel "NEF object (212×320)"@en.
+<ni:///mh;1QEQ_LXPblRA-_nYj058NrAgfw?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
+                                                    nfo:colorDepth 24 ;
+                                                    nfo:height 320 ;
+                                                    nfo:horizontalResolution 300 ;
+                                                    nfo:verticalResolution 300 ;
+                                                    nfo:width 212 ;
+                                                    a schema:MediaObject,
+                                                      schema:ImageObject,
+                                                      nfo:Image;
+                                                    skos:prefLabel "TIFF object (18.41 MiB)"@en.
 <urn:md5:FCB5CF6E5440FBF9D88F4E7C36B0207F> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "/LXPblRA+/nYj058NrAgfw=="^^xsd:base64Binary.

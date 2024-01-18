@@ -3,6 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
@@ -12,7 +13,6 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///shiro02.tif>;
      nie:interpretedAs <ni:///mh;1QEQhpkZim5ieZpv2mp08M4hoA?ct=application/octet-stream>;
@@ -22,8 +22,8 @@ _:n1 at:pathObject <file:///shiro02.tif>;
 <file:///shiro02.tif> at:extensionObject <https://w3id.org/uri4uri/suffix/tif>.
 <ni:///mh;1QEQhpkZim5ieZpv2mp08M4hoA?ct=application/octet-stream> at:digest <urn:md5:8699198A6E62799A6FDA6A74F0CE21A0>;
                                                                   dcterms:extent "13339"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQhpkZim5ieZpv2mp08M4hoA?ct=image/tiff>,
-                                                                                    <ni:///mh;1QEQhpkZim5ieZpv2mp08M4hoA?ct=application/octet-stream#arw>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQhpkZim5ieZpv2mp08M4hoA?ct=application/octet-stream#arw>,
+                                                                                    <ni:///mh;1QEQhpkZim5ieZpv2mp08M4hoA?ct=image/tiff>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (13.03 KiB)"@en.
 <ni:///mh;1QEQhpkZim5ieZpv2mp08M4hoA?ct=application/octet-stream#arw> nfo:bitDepth 4 ;
@@ -45,17 +45,12 @@ _:n1 at:pathObject <file:///shiro02.tif>;
                                                                       exif:yResolution 75 ;
                                                                       skos:prefLabel "ARW object (640×480, 4-bit)"@en.
 <ni:///mh;1QEQhpkZim5ieZpv2mp08M4hoA?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
-                                                    nfo:bitDepth 4 ;
                                                     nfo:height 480 ;
-                                                    nfo:horizontalResolution 75 ;
-                                                    nfo:paletteSize 16 ;
-                                                    nfo:verticalResolution 75 ;
                                                     nfo:width 640 ;
                                                     a schema:MediaObject,
                                                       nfo:Image,
                                                       schema:ImageObject;
-                                                    skos:prefLabel "TIFF object (640×480)"@en,
-                                                                   "TIF object (13.03 KiB)"@en.
+                                                    skos:prefLabel "TIFF object (640×480)"@en.
 <urn:md5:8699198A6E62799A6FDA6A74F0CE21A0> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "hpkZim5ieZpv2mp08M4hoA=="^^xsd:base64Binary.

@@ -3,6 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
@@ -11,7 +12,6 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///TREGLER>;
      nie:interpretedAs <ni:///mh;1QEQRd6Rf2Qq_szyVSef5QiSMA?ct=application/octet-stream>;
@@ -28,16 +28,12 @@ _:n1 at:pathObject <file:///TREGLER>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (5.56 KiB)"@en.
 <ni:///mh;1QEQ2KPwkI_NCOEykK91snkfgQ?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:height 64 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
                                                       nfo:width 64 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (64×64)"@en,
-                                                                     "ICO object (5.56 KiB)"@en.
+                                                      skos:prefLabel "ICO object (64×64)"@en.
 <ni:///mh;1QEQRd6Rf2Qq_szyVSef5QiSMA?ct=application/octet-stream> at:digest <urn:md5:45DE917F642AFECCF255279FE5089230>;
                                                                   dcterms:extent "21567"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQRd6Rf2Qq_szyVSef5QiSMA?ct=application/x-delphi-form>;

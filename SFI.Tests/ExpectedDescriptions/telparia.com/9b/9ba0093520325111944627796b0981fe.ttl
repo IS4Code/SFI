@@ -3,6 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
@@ -11,7 +12,6 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///input_256.png>;
      nie:interpretedAs <ni:///mh;1QEQOySIHfMAXejWy1KOWn7Gug?ct=application/octet-stream>;
@@ -28,15 +28,15 @@ _:n1 at:pathObject <file:///input_256.png>;
                                                    nfo:bitDepth 8 ;
                                                    nfo:height 46 ;
                                                    nfo:horizontalResolution 96 ;
-                                                   nfo:paletteSize 255 ;
+                                                   nfo:paletteSize 256 ;
                                                    nfo:verticalResolution 96 ;
                                                    nfo:width 70 ;
                                                    a schema:MediaObject,
                                                      nfo:Image,
                                                      schema:ImageObject;
                                                    skos:prefLabel "PNG object (70×46)"@en,
-                                                                  "PNG object (70×46, 8-bit)"@en,
-                                                                  "PNG object (3.75 KiB)"@en.
+                                                                  "PNG object (3.75 KiB)"@en,
+                                                                  "PNG object (70×46, 8-bit)"@en.
 <urn:md5:3B24881DF3005DE8D6CB528E5A7EC6BA> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "OySIHfMAXejWy1KOWn7Gug=="^^xsd:base64Binary.

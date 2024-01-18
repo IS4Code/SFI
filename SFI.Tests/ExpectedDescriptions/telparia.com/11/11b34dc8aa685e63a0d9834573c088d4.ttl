@@ -3,6 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -12,7 +13,6 @@
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///input_256_matte.tiff>;
      nie:interpretedAs <ni:///mh;1QEQZGGsbRh7eEfI4VKit5LPDQ?ct=application/octet-stream>;
@@ -26,16 +26,12 @@ _:n1 at:pathObject <file:///input_256_matte.tiff>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (8.21 KiB)"@en.
 <ni:///mh;1QEQZGGsbRh7eEfI4VKit5LPDQ?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
-                                                    nfo:bitDepth 8 ;
                                                     nfo:height 46 ;
-                                                    nfo:horizontalResolution 72 ;
-                                                    nfo:paletteSize 256 ;
-                                                    nfo:verticalResolution 72 ;
                                                     nfo:width 70 ;
                                                     a schema:MediaObject,
                                                       exif:IFD,
-                                                      schema:ImageObject,
-                                                      nfo:Image;
+                                                      nfo:Image,
+                                                      schema:ImageObject;
                                                     exif:compression 1 ;
                                                     exif:imageLength 46 ;
                                                     exif:imageWidth 70 ;
@@ -45,13 +41,12 @@ _:n1 at:pathObject <file:///input_256_matte.tiff>;
                                                     exif:resolutionUnit 1 ;
                                                     exif:rowsPerStrip 58 ;
                                                     exif:samplesPerPixel 2 ;
-                                                    exif:software "ImageMagick 6.2.0 02/07/05 Q16 http://www.imagemagick.org"^^xsd:string;
+                                                    exif:software "ImageMagick 6.2.0 02/07/05 Q16 http://www.imagemagick.org";
                                                     exif:stripByteCounts 6440 ;
                                                     exif:stripOffsets 8 ;
                                                     exif:xResolution 72 ;
                                                     exif:yResolution 72 ;
-                                                    skos:prefLabel "TIFF object (70×46)"@en,
-                                                                   "TIF object (8.21 KiB)"@en.
+                                                    skos:prefLabel "TIFF object (70×46)"@en.
 <urn:md5:6461AC6D187B7847C8E152A2B792CF0D> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "ZGGsbRh7eEfI4VKit5LPDQ=="^^xsd:base64Binary.

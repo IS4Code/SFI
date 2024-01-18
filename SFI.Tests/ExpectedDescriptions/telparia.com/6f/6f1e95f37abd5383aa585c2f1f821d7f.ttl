@@ -66,10 +66,10 @@ _:n1 at:pathObject <file:///abydos.ora>;
                                                    nfo:verticalResolution 71.9836;
                                                    nfo:width 800 ;
                                                    a schema:MediaObject,
-                                                     nfo:Image,
-                                                     schema:ImageObject;
-                                                   skos:prefLabel "PNG object (800×600)"@en,
-                                                                  "PNG object (800×600, 8-bit)"@en,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "PNG object (800×600, 8-bit)"@en,
+                                                                  "PNG object (800×600)"@en,
                                                                   "PNG object (1.83 MiB)"@en.
 <ni:///mh;1QEQaxNkx488UHXSMcDZFn4KAw?ct=application/octet-stream> at:digest <urn:md5:6B1364C78F3C5075D231C0D9167E0A03>;
                                                                   dcterms:extent "50440"^^dt:byte;
@@ -79,8 +79,8 @@ _:n1 at:pathObject <file:///abydos.ora>;
 <ni:///mh;1QEQaxNkx488UHXSMcDZFn4KAw?ct=image/png> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/png>;
                                                    nfo:colorDepth 32 ;
                                                    nfo:height 192 ;
-                                                   nfo:horizontalResolution 96.01199;
-                                                   nfo:verticalResolution 96.01199;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 256 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -238,8 +238,8 @@ _:n1 at:pathObject <file:///abydos.ora>;
                                                      schema:ImageObject,
                                                      nfo:Image;
                                                    skos:prefLabel "PNG object (800×600, 8-bit)"@en,
-                                                                  "PNG object (1.83 MiB)"@en,
-                                                                  "PNG object (800×600)"@en.
+                                                                  "PNG object (800×600)"@en,
+                                                                  "PNG object (1.83 MiB)"@en.
 <urn:md5:36794E334927FAEDEB871153C22B6D29> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "NnlOM0kn+u3rhxFTwittKQ=="^^xsd:base64Binary.

@@ -3,8 +3,8 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
@@ -23,18 +23,18 @@ _:n1 at:pathObject <file:///ACDSee%205.0%20Standard%20Trial.msi>;
              a cnt:ContentAsText;
              skos:prefLabel "text (2 B)"@en;
              cnt:characterEncoding "us-ascii";
-             cnt:chars "E␋"^^xsd:string.
+             cnt:chars "E␋".
 <data:;base64,DgMOAw4DDgMOAw4DDgMOAw4DDgMOAw4DDgMOAz0EQgRFBEkEWARaBG0EbgRvBHAEcQRyBHMEfQQ=> dcterms:extent "56"^^dt:byte;
                                                                                             a cnt:ContentAsText;
                                                                                             skos:prefLabel "text (56 B)"@en;
                                                                                             cnt:characterEncoding "us-ascii";
-                                                                                            cnt:chars "␎␃␎␃␎␃␎␃␎␃␎␃␎␃␎␃␎␃␎␃␎␃␎␃␎␃␎␃=␄B␄E␄I␄X␄Z␄m␄n␄o␄p␄q␄r␄s␄}␄"^^xsd:string.
+                                                                                            cnt:chars "␎␃␎␃␎␃␎␃␎␃␎␃␎␃␎␃␎␃␎␃␎␃␎␃␎␃␎␃=␄B␄E␄I␄X␄Z␄m␄n␄o␄p␄q␄r␄s␄}␄".
 <data:;base64,IgoAAAAAAAAAAAAAAAA=> dcterms:extent "14"^^dt:byte;
                                     a cnt:ContentAsText;
                                     skos:prefLabel "text (14 B)"@en;
                                     cnt:characterEncoding "us-ascii";
                                     cnt:chars """\"
-␀␀␀␀␀␀␀␀␀␀␀␀"""^^xsd:string.
+␀␀␀␀␀␀␀␀␀␀␀␀""".
 <data:;charset=windows-1252;base64,eQOrCqwKqgo=> dcterms:extent "8"^^dt:byte;
                                                  a cnt:ContentAsText;
                                                  skos:prefLabel "text (8 B)"@en;
@@ -42,24 +42,24 @@ _:n1 at:pathObject <file:///ACDSee%205.0%20Standard%20Trial.msi>;
                                                  cnt:chars """y␃«
 ¬
 ª
-"""^^xsd:string.
+""".
 <data:;charset=windows-1252;base64,qA0CgKQNpw18BA==> dcterms:extent "10"^^dt:byte;
                                                      a cnt:ContentAsText;
                                                      skos:prefLabel "text (10 B)"@en;
                                                      cnt:characterEncoding "windows-1252";
-                                                     cnt:chars """¨␂€¤§|␄"""^^xsd:string.
+                                                     cnt:chars """¨␂€¤§|␄""".
 <data:;charset=windows-1252;base64,qgovCy4LAAAAAAAAAAAAAAAAAAAAAAAAAAA=> dcterms:extent "26"^^dt:byte;
                                                                          a cnt:ContentAsText;
                                                                          skos:prefLabel "text (26 B)"@en;
                                                                          cnt:characterEncoding "windows-1252";
                                                                          cnt:chars """ª
-/␋.␋␀␀␀␀␀␀␀␀␀␀␀␀␀␀␀␀␀␀␀␀"""^^xsd:string.
+/␋.␋␀␀␀␀␀␀␀␀␀␀␀␀␀␀␀␀␀␀␀␀""".
 <data:;charset=windows-1252;base64,qwqMDHsMigw=> dcterms:extent "8"^^dt:byte;
                                                  a cnt:ContentAsText;
                                                  skos:prefLabel "text (8 B)"@en;
                                                  cnt:characterEncoding "windows-1252";
                                                  cnt:chars """«
-Œ␌{␌Š␌"""^^xsd:string.
+Œ␌{␌Š␌""".
 <data:application/octet-stream;base64,0QbRBtEG4gYAgACAAIAAgLEG3wbgBt8GAIAAgACAAIAAAAAAAAAAAA==> dcterms:extent "40"^^dt:byte;
                                                                                                 a cnt:ContentAsBase64;
                                                                                                 skos:prefLabel "binary data (40 B)"@en;
@@ -123,30 +123,33 @@ _:n1 at:pathObject <file:///ACDSee%205.0%20Standard%20Trial.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (886 B)"@en.
 <ni:///mh;1QEQ1DI140tUjkLxFUSmf2QHIA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:colorDepth 24 ;
                                                    nfo:height 16 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×16)"@en.
+                                                   skos:prefLabel "BMP object (16×16)"@en,
+                                                                  "BMP object (872 B)"@en.
 <ni:///mh;1QEQ1IGeWMWCv_1-pJrdG9t7YA?ct=application/octet-stream> at:digest <urn:md5:D4819E58C582BFFD7EA49ADD1BDB7B60>;
                                                                   dcterms:extent "2230"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ1IGeWMWCv_1-pJrdG9t7YA?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (2.18 KiB)"@en.
 <ni:///mh;1QEQ1IGeWMWCv_1-pJrdG9t7YA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 8 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 256 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (2.16 KiB)"@en.
 <ni:///mh;1QEQ1Xbh3kKhbxWN52HrDP46DA?ct=application/octet-stream> at:digest <urn:md5:D576E1DE42A16F158DE761EB0CFE3A0C>;
                                                                   dcterms:extent "4302"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -157,15 +160,17 @@ _:n1 at:pathObject <file:///ACDSee%205.0%20Standard%20Trial.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.37 KiB)"@en.
 <ni:///mh;1QEQ2ezGwjYkkyl0K6lrxidyoQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 8 ;
                                                    nfo:height 16 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 256 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×16)"@en.
+                                                   skos:prefLabel "BMP object (16×16)"@en,
+                                                                  "BMP object (1.35 KiB)"@en.
 <ni:///mh;1QEQ35aP-6Cb7MT5BsxjlMS-_w?ct=application/octet-stream> at:digest <urn:md5:DF968FFBA09BECC4F906CC6394C4BEFF>;
                                                                   dcterms:extent "112"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -188,15 +193,17 @@ _:n1 at:pathObject <file:///ACDSee%205.0%20Standard%20Trial.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (2.18 KiB)"@en.
 <ni:///mh;1QEQ9U3rfU_t5U83OkS3Nt2liQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 8 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 256 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (2.16 KiB)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQ9rethqQ0xn2UzyXsrWieDg?ct=application/octet-stream> at:digest <urn:md5:F6B7AD86A434C67D94CF25ECAD689E0E>;
                                                                   dcterms:extent "174"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -230,14 +237,9 @@ _:n1 at:pathObject <file:///ACDSee%205.0%20Standard%20Trial.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (14.79 KiB)"@en.
 <ni:///mh;1QEQAm7yaL8tjeg3KmU-ods2BQ?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:hasMediaStream <ni:///mh;1QEQAm7yaL8tjeg3KmU-ods2BQ?ct=image/x-icon#/0>,
                                                                          <ni:///mh;1QEQAm7yaL8tjeg3KmU-ods2BQ?ct=image/x-icon#/1>,
                                                                          <ni:///mh;1QEQAm7yaL8tjeg3KmU-ods2BQ?ct=image/x-icon#/2>;
-                                                      nfo:height 48 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
-                                                      nfo:width 48 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
@@ -260,15 +262,16 @@ _:n1 at:pathObject <file:///ACDSee%205.0%20Standard%20Trial.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (7.18 KiB)"@en.
 <ni:///mh;1QEQBPJZC4sz0YDA_3lOzR16pw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:colorDepth 24 ;
                                                    nfo:height 48 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 48 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (48×48)"@en.
+                                                   skos:prefLabel "BMP object (48×48)"@en,
+                                                                  "BMP object (7.16 KiB)"@en.
 <ni:///mh;1QEQEg9hzlhIR2erlUavi7epFQ?ct=application/octet-stream> at:digest <urn:md5:120F61CE58484767AB9546AF8BB7A915>;
                                                                   dcterms:extent "17364"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -283,30 +286,21 @@ _:n1 at:pathObject <file:///ACDSee%205.0%20Standard%20Trial.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (766 B)"@en.
 <ni:///mh;1QEQF9yxqQuxqjnG1LFoEZFFtQ?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:height 32 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
                                                       nfo:width 32 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (32×32)"@en,
-                                                                     "ICO object (766 B)"@en.
+                                                      skos:prefLabel "ICO object (32×32)"@en.
 <ni:///mh;1QEQF_-t9fdoOgGNghceN1JCHg?ct=application/octet-stream> at:digest <urn:md5:17FFADF5F7683A018D82171E3752421E>;
                                                                   dcterms:extent "4846"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQF_-t9fdoOgGNghceN1JCHg?ct=image/x-icon>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (4.73 KiB)"@en.
 <ni:///mh;1QEQF_-t9fdoOgGNghceN1JCHg?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:hasMediaStream <ni:///mh;1QEQF_-t9fdoOgGNghceN1JCHg?ct=image/x-icon#/0>,
                                                                          <ni:///mh;1QEQF_-t9fdoOgGNghceN1JCHg?ct=image/x-icon#/1>,
                                                                          <ni:///mh;1QEQF_-t9fdoOgGNghceN1JCHg?ct=image/x-icon#/2>;
-                                                      nfo:height 48 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
-                                                      nfo:width 48 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
@@ -460,31 +454,28 @@ _:n1 at:pathObject <file:///ACDSee%205.0%20Standard%20Trial.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (886 B)"@en.
 <ni:///mh;1QEQMOe5Dw9Qz6kj0tH59Ns1ig?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:colorDepth 24 ;
                                                    nfo:height 16 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×16)"@en.
+                                                   skos:prefLabel "BMP object (16×16)"@en,
+                                                                  "BMP object (872 B)"@en.
 <ni:///mh;1QEQMxkGNujhbMKuudFqnt99gQ?ct=application/octet-stream> at:digest <urn:md5:33190636E8E16CC2AEB9D16A9EDF7D81>;
                                                                   dcterms:extent "766"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQMxkGNujhbMKuudFqnt99gQ?ct=image/x-icon>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (766 B)"@en.
 <ni:///mh;1QEQMxkGNujhbMKuudFqnt99gQ?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:height 32 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
                                                       nfo:width 32 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (32×32)"@en,
-                                                                     "ICO object (766 B)"@en.
+                                                      skos:prefLabel "ICO object (32×32)"@en.
 <ni:///mh;1QEQP3oszpLajP3-O_dvcKuUlw?ct=application/octet-stream> at:digest <urn:md5:3F7A2CCE92DA8CFDFE3BF76F70AB9497>;
                                                                   dcterms:extent "682"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -495,15 +486,16 @@ _:n1 at:pathObject <file:///ACDSee%205.0%20Standard%20Trial.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (3.18 KiB)"@en.
 <ni:///mh;1QEQPT6WobpsslAhRwZHmAwoJg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:colorDepth 24 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (3.16 KiB)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQSQJJ5C4B7PfaM4blLekU7Q?ct=application/octet-stream> at:digest <urn:md5:490249E42E01ECF7DA3386E52DE914ED>;
                                                                   dcterms:extent "94208"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQSQJJ5C4B7PfaM4blLekU7Q?ct=application/vnd.microsoft.portable-executable>;
@@ -533,15 +525,16 @@ _:n1 at:pathObject <file:///ACDSee%205.0%20Standard%20Trial.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (3.18 KiB)"@en.
 <ni:///mh;1QEQUaNPpZL2PKASHmzXsvgCXg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:colorDepth 24 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (3.16 KiB)"@en.
 <ni:///mh;1QEQVAh7Cj36RXFvm1VTKL0aGw?ct=text/plain> at:digest <urn:md5:54087B0A3DFA45716F9B555328BD1A1B>;
                                                     dcterms:extent "133"^^dt:byte;
                                                     nie:hasPart <ni:///mh;1QEQVAh7Cj36RXFvm1VTKL0aGw?ct=text/plain#line=,1>;
@@ -559,16 +552,12 @@ _:n1 at:pathObject <file:///ACDSee%205.0%20Standard%20Trial.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (766 B)"@en.
 <ni:///mh;1QEQYFIiC0EiAPz-LI53zOfEKg?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:height 32 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
                                                       nfo:width 32 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (32×32)"@en,
-                                                                     "ICO object (766 B)"@en.
+                                                      skos:prefLabel "ICO object (32×32)"@en.
 <ni:///mh;1QEQYOKiscIDm8Ke_VANqmYMAg?ct=application/octet-stream> at:digest <urn:md5:60E2A2B1C2039BC29EFD500DAA660C02>;
                                                                   dcterms:extent "2880"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -578,14 +567,14 @@ _:n1 at:pathObject <file:///ACDSee%205.0%20Standard%20Trial.msi>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQYOp6yaopRLwOd6eqEBZsVA?ct=application/x-ole-storage>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.22 MiB)"@en.
-<ni:///mh;1QEQYOp6yaopRLwOd6eqEBZsVA?ct=application/x-ole-storage> at:pathObject <file:///>;
+<ni:///mh;1QEQYOp6yaopRLwOd6eqEBZsVA?ct=application/x-ole-storage> at:pathObject <file:///.>;
                                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
                                                                    nie:interpretedAs <ni:///mh;1QEQYOp6yaopRLwOd6eqEBZsVA?ct=application/x-ole-storage#/>;
                                                                    nfo:fileLastModified "2003-03-07T17:49:57.453000Z"^^xsd:dateTime;
                                                                    a schema:MediaObject,
                                                                      nfo:EmbeddedFileDataObject;
                                                                    skos:prefLabel "OLE object (1.22 MiB)"@en.
-<ni:///mh;1QEQYOp6yaopRLwOd6eqEBZsVA?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQYOp6yaopRLwOd6eqEBZsVA?ct=application/x-ole-storage#/> at:pathObject <file:///>;
                                                                      a nfo:Folder;
                                                                      skos:prefLabel "/".
 <ni:///mh;1QEQYOp6yaopRLwOd6eqEBZsVA?ct=application/x-ole-storage#/%05SummaryInformation> at:pathObject <file:///%05SummaryInformation>;
@@ -611,32 +600,24 @@ _:n1 at:pathObject <file:///ACDSee%205.0%20Standard%20Trial.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (766 B)"@en.
 <ni:///mh;1QEQ_4rn1SHPZr3Czhr3tcGNlw?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:height 32 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
                                                       nfo:width 32 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (32×32)"@en,
-                                                                     "ICO object (766 B)"@en.
+                                                      skos:prefLabel "ICO object (32×32)"@en.
 <ni:///mh;1QEQ_HDBzf3eA94v4N99LnZSMg?ct=application/octet-stream> at:digest <urn:md5:FC70C1CDFDDE03DE2FE0DF7D2E765232>;
                                                                   dcterms:extent "766"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ_HDBzf3eA94v4N99LnZSMg?ct=image/x-icon>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (766 B)"@en.
 <ni:///mh;1QEQ_HDBzf3eA94v4N99LnZSMg?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:height 32 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
                                                       nfo:width 32 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (32×32)"@en,
-                                                                     "ICO object (766 B)"@en.
+                                                      skos:prefLabel "ICO object (32×32)"@en.
 <ni:///mh;1QEQ_zNMezPNdZjKHDPqqDlELw?ct=application/octet-stream> at:digest <urn:md5:FF334C7B33CD7598CA1C33EAA839442F>;
                                                                   dcterms:extent "84"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -651,33 +632,24 @@ _:n1 at:pathObject <file:///ACDSee%205.0%20Standard%20Trial.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (766 B)"@en.
 <ni:///mh;1QEQbRNnYmPclyHt66r8aJ2AQQ?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:height 32 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
                                                       nfo:width 32 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (32×32)"@en,
-                                                                     "ICO object (766 B)"@en.
+                                                      skos:prefLabel "ICO object (32×32)"@en.
 <ni:///mh;1QEQbkLPDUevJd6kzs2-CT1SHA?ct=application/octet-stream> at:digest <urn:md5:6E42CF0D47AF25DEA4CECDBE093D521C>;
                                                                   dcterms:extent "10134"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQbkLPDUevJd6kzs2-CT1SHA?ct=image/x-icon>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (9.9 KiB)"@en.
 <ni:///mh;1QEQbkLPDUevJd6kzs2-CT1SHA?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:hasMediaStream <ni:///mh;1QEQbkLPDUevJd6kzs2-CT1SHA?ct=image/x-icon#/0>,
                                                                          <ni:///mh;1QEQbkLPDUevJd6kzs2-CT1SHA?ct=image/x-icon#/1>,
                                                                          <ni:///mh;1QEQbkLPDUevJd6kzs2-CT1SHA?ct=image/x-icon#/2>,
                                                                          <ni:///mh;1QEQbkLPDUevJd6kzs2-CT1SHA?ct=image/x-icon#/3>,
                                                                          <ni:///mh;1QEQbkLPDUevJd6kzs2-CT1SHA?ct=image/x-icon#/4>,
                                                                          <ni:///mh;1QEQbkLPDUevJd6kzs2-CT1SHA?ct=image/x-icon#/5>;
-                                                      nfo:height 48 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
-                                                      nfo:width 48 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
@@ -788,13 +760,8 @@ _:n1 at:pathObject <file:///ACDSee%205.0%20Standard%20Trial.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (4.43 KiB)"@en.
 <ni:///mh;1QEQeuYhHPM_OyS8s9_iM1rmZQ?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:hasMediaStream <ni:///mh;1QEQeuYhHPM_OyS8s9_iM1rmZQ?ct=image/x-icon#/0>,
                                                                          <ni:///mh;1QEQeuYhHPM_OyS8s9_iM1rmZQ?ct=image/x-icon#/1>;
-                                                      nfo:height 32 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
-                                                      nfo:width 32 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
@@ -815,13 +782,14 @@ _:n1 at:pathObject <file:///ACDSee%205.0%20Standard%20Trial.msi>;
 <ni:///mh;1QEQewjOY621-vzjbcqYhyRJMA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:colorDepth 32 ;
                                                    nfo:height 48 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 48 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (48×48)"@en.
+                                                   skos:prefLabel "BMP object (48×48)"@en,
+                                                                  "BMP object (9.41 KiB)"@en.
 <ni:///mh;1QEQfy2YeDHIGBw5E1Mb9QicaQ?ct=application/octet-stream> at:digest <urn:md5:7F2D987831C8181C3913531BF5089C69>;
                                                                   dcterms:extent "9802"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -832,13 +800,8 @@ _:n1 at:pathObject <file:///ACDSee%205.0%20Standard%20Trial.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (4.43 KiB)"@en.
 <ni:///mh;1QEQfyVI3GZ9mhVBDiLtOg_QmQ?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:hasMediaStream <ni:///mh;1QEQfyVI3GZ9mhVBDiLtOg_QmQ?ct=image/x-icon#/0>,
                                                                          <ni:///mh;1QEQfyVI3GZ9mhVBDiLtOg_QmQ?ct=image/x-icon#/1>;
-                                                      nfo:height 32 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
-                                                      nfo:width 32 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
@@ -861,47 +824,41 @@ _:n1 at:pathObject <file:///ACDSee%205.0%20Standard%20Trial.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (766 B)"@en.
 <ni:///mh;1QEQg2lw6NslglMlRR8B9IOD-Q?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:height 32 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
                                                       nfo:width 32 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (32×32)"@en,
-                                                                     "ICO object (766 B)"@en.
+                                                      skos:prefLabel "ICO object (32×32)"@en.
 <ni:///mh;1QEQg3MKwAOR-w8C9W_i5CB6EA?ct=application/octet-stream> at:digest <urn:md5:83730AC00391FB0F02F56FE2E4207A10>;
                                                                   dcterms:extent "318"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQg3MKwAOR-w8C9W_i5CB6EA?ct=image/x-icon>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQg3MKwAOR-w8C9W_i5CB6EA?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:height 16 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
                                                       nfo:width 16 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (16×16)"@en,
-                                                                     "ICO object (318 B)"@en.
+                                                      skos:prefLabel "ICO object (16×16)"@en.
 <ni:///mh;1QEQhNENp0E2j2dzGS_3Dn9YtA?ct=application/octet-stream> at:digest <urn:md5:84D10DA741368F6773192FF70E7F58B4>;
                                                                   dcterms:extent "3766"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQhNENp0E2j2dzGS_3Dn9YtA?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (3.68 KiB)"@en.
 <ni:///mh;1QEQhNENp0E2j2dzGS_3Dn9YtA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 8 ;
                                                    nfo:height 48 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 256 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 48 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (48×48)"@en.
+                                                   skos:prefLabel "BMP object (48×48)"@en,
+                                                                  "BMP object (3.66 KiB)"@en.
 <ni:///mh;1QEQihfrS0Z5Mb9D54ADGISNKA?ct=application/octet-stream> at:digest <urn:md5:8A17EB4B467931BF43E7800318848D28>;
                                                                   dcterms:extent "52082"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQihfrS0Z5Mb9D54ADGISNKA?ct=image/bmp>;
@@ -910,9 +867,9 @@ _:n1 at:pathObject <file:///ACDSee%205.0%20Standard%20Trial.msi>;
 <ni:///mh;1QEQihfrS0Z5Mb9D54ADGISNKA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 8 ;
                                                    nfo:height 311 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 256 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 162 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -927,13 +884,14 @@ _:n1 at:pathObject <file:///ACDSee%205.0%20Standard%20Trial.msi>;
 <ni:///mh;1QEQin9h4XzBFcE81pbM3mL1Lg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:colorDepth 32 ;
                                                    nfo:height 48 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 48 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (48×48)"@en.
+                                                   skos:prefLabel "BMP object (48×48)"@en,
+                                                                  "BMP object (9.41 KiB)"@en.
 <ni:///mh;1QEQkWB0NcSScY9LsPJOsHKdZw?ct=application/octet-stream> at:digest <urn:md5:91607435C492718F4BB0F24EB0729D67>;
                                                                   dcterms:extent "65536"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQkWB0NcSScY9LsPJOsHKdZw?ct=application/vnd.microsoft.portable-executable>;
@@ -1019,32 +977,24 @@ _:n1 at:pathObject <file:///ACDSee%205.0%20Standard%20Trial.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (766 B)"@en.
 <ni:///mh;1QEQmxQDabZpvgahXWx84JnEjQ?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:height 32 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
                                                       nfo:width 32 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (32×32)"@en,
-                                                                     "ICO object (766 B)"@en.
+                                                      skos:prefLabel "ICO object (32×32)"@en.
 <ni:///mh;1QEQp0-KOjFxiwkXE6zg7rYN5g?ct=application/octet-stream> at:digest <urn:md5:A74F8A3A31718B091713ACE0EEB60DE6>;
                                                                   dcterms:extent "766"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQp0-KOjFxiwkXE6zg7rYN5g?ct=image/x-icon>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (766 B)"@en.
 <ni:///mh;1QEQp0-KOjFxiwkXE6zg7rYN5g?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:height 32 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
                                                       nfo:width 32 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (32×32)"@en,
-                                                                     "ICO object (766 B)"@en.
+                                                      skos:prefLabel "ICO object (32×32)"@en.
 <ni:///mh;1QEQs4D_xTBFe9kotp8_ut00bQ?ct=application/octet-stream> at:digest <urn:md5:B380FFC530457BD928B69F3FBADD346D>;
                                                                   dcterms:extent "198"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -1059,31 +1009,28 @@ _:n1 at:pathObject <file:///ACDSee%205.0%20Standard%20Trial.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.37 KiB)"@en.
 <ni:///mh;1QEQuPhvz3LIK4D60OdGCKG85A?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 8 ;
                                                    nfo:height 16 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 256 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×16)"@en.
+                                                   skos:prefLabel "BMP object (16×16)"@en,
+                                                                  "BMP object (1.35 KiB)"@en.
 <ni:///mh;1QEQviJLbcmiigOzWQvLTk6ZjA?ct=application/octet-stream> at:digest <urn:md5:BE224B6DC9A28A03B3590BCB4E4E998C>;
                                                                   dcterms:extent "12062"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQviJLbcmiigOzWQvLTk6ZjA?ct=image/x-icon>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (11.78 KiB)"@en.
 <ni:///mh;1QEQviJLbcmiigOzWQvLTk6ZjA?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:hasMediaStream <ni:///mh;1QEQviJLbcmiigOzWQvLTk6ZjA?ct=image/x-icon#/0>,
                                                                          <ni:///mh;1QEQviJLbcmiigOzWQvLTk6ZjA?ct=image/x-icon#/1>,
                                                                          <ni:///mh;1QEQviJLbcmiigOzWQvLTk6ZjA?ct=image/x-icon#/2>,
                                                                          <ni:///mh;1QEQviJLbcmiigOzWQvLTk6ZjA?ct=image/x-icon#/3>,
                                                                          <ni:///mh;1QEQviJLbcmiigOzWQvLTk6ZjA?ct=image/x-icon#/4>;
-                                                      nfo:height 48 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
-                                                      nfo:width 48 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
@@ -1114,32 +1061,24 @@ _:n1 at:pathObject <file:///ACDSee%205.0%20Standard%20Trial.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (766 B)"@en.
 <ni:///mh;1QEQwBk97Q1J_hPa1UobYSH2cg?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:height 32 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
                                                       nfo:width 32 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (32×32)"@en,
-                                                                     "ICO object (766 B)"@en.
+                                                      skos:prefLabel "ICO object (32×32)"@en.
 <ni:///mh;1QEQwjy_AC2CGSSBth7X7AiQ9A?ct=application/octet-stream> at:digest <urn:md5:C23CBF002D82192481B61ED7EC0890F4>;
                                                                   dcterms:extent "318"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQwjy_AC2CGSSBth7X7AiQ9A?ct=image/x-icon>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQwjy_AC2CGSSBth7X7AiQ9A?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:height 16 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
                                                       nfo:width 16 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (16×16)"@en,
-                                                                     "ICO object (318 B)"@en.
+                                                      skos:prefLabel "ICO object (16×16)"@en.
 <ni:///mh;1QEQww94m0Qroo5PztM3AsDFMQ?ct=application/octet-stream> at:digest <urn:md5:C30F789B442BA28E4FCED33702C0C531>;
                                                                   dcterms:extent "192"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -1170,8 +1109,8 @@ _:n1 at:pathObject <file:///ACDSee%205.0%20Standard%20Trial.msi>;
                                                     a schema:MediaObject,
                                                       schema:ImageObject,
                                                       nfo:Image;
-                                                    skos:prefLabel "JPG object (498×58)"@en,
-                                                                   "JPG object (3.95 KiB)"@en.
+                                                    skos:prefLabel "JPG object (3.95 KiB)"@en,
+                                                                   "JPG object (498×58)"@en.
 <ni:///mh;1QEQzxC7-FEX-e38yLPBQAC2EQ?ct=application/octet-stream> at:digest <urn:md5:CF10BBF85117F9EDFCC8B3C14000B611>;
                                                                   dcterms:extent "3320"^^dt:byte;
                                                                   a cnt:ContentAsBase64;

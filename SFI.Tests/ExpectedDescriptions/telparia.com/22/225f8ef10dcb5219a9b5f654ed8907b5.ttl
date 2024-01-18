@@ -3,6 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
@@ -12,7 +13,6 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///input_mono.tiff>;
      nie:interpretedAs <ni:///mh;1QEQQuNwEe-Xju-2Q76_h7lxbw?ct=application/octet-stream>;
@@ -26,16 +26,15 @@ _:n1 at:pathObject <file:///input_mono.tiff>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.24 KiB)"@en.
 <ni:///mh;1QEQQuNwEe-Xju-2Q76_h7lxbw?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
-                                                    nfo:bitDepth 1 ;
+                                                    nfo:colorDepth 24 ;
                                                     nfo:height 46 ;
                                                     nfo:horizontalResolution 96 ;
-                                                    nfo:paletteSize 2 ;
                                                     nfo:verticalResolution 96 ;
                                                     nfo:width 70 ;
                                                     a schema:MediaObject,
-                                                      nfo:Image,
                                                       exif:IFD,
-                                                      schema:ImageObject;
+                                                      schema:ImageObject,
+                                                      nfo:Image;
                                                     exif:bitsPerSample 1 ;
                                                     exif:compression 4 ;
                                                     exif:imageLength 46 ;
@@ -47,9 +46,9 @@ _:n1 at:pathObject <file:///input_mono.tiff>;
                                                     exif:samplesPerPixel 1 ;
                                                     exif:stripByteCounts 1082 ;
                                                     exif:stripOffsets 8 ;
-                                                    skos:prefLabel "TIFF object (70×46)"@en,
-                                                                   "TIFF object (70×46, 1-bit)"@en,
-                                                                   "TIF object (1.24 KiB)"@en.
+                                                    skos:prefLabel "TIFF object (70×46, 1-bit)"@en,
+                                                                   "TIFF object (1.24 KiB)"@en,
+                                                                   "TIFF object (70×46)"@en.
 <urn:md5:42E37011EF978EEFB643BEBF87B9716F> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "QuNwEe+Xju+2Q76/h7lxbw=="^^xsd:base64Binary.

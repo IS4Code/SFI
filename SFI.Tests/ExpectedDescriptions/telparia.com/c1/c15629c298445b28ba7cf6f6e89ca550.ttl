@@ -3,6 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
@@ -12,7 +13,6 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///example_small.tiff>;
      nie:interpretedAs <ni:///mh;1QEQUD_NHZzS9DgrEfeYJR8RoQ?ct=application/octet-stream>;
@@ -32,9 +32,9 @@ _:n1 at:pathObject <file:///example_small.tiff>;
                                                     nfo:verticalResolution 96 ;
                                                     nfo:width 500 ;
                                                     a schema:MediaObject,
-                                                      exif:IFD,
                                                       schema:ImageObject,
-                                                      nfo:Image;
+                                                      nfo:Image,
+                                                      exif:IFD;
                                                     exif:compression 1 ;
                                                     exif:imageLength 333 ;
                                                     exif:imageWidth 500 ;
@@ -46,8 +46,8 @@ _:n1 at:pathObject <file:///example_small.tiff>;
                                                     exif:samplesPerPixel 3 ;
                                                     exif:xResolution 96 ;
                                                     exif:yResolution 96 ;
-                                                    skos:prefLabel "TIFF object (500×333)"@en,
-                                                                   "TIF object (488.13 KiB)"@en.
+                                                    skos:prefLabel "TIFF object (488.13 KiB)"@en,
+                                                                   "TIFF object (500×333)"@en.
 <urn:md5:503FCD1D9CD2F4382B11F798251F11A1> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "UD/NHZzS9DgrEfeYJR8RoQ=="^^xsd:base64Binary.

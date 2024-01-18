@@ -3,6 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
@@ -11,7 +12,6 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///GIFV.ICO>;
      nie:interpretedAs <ni:///mh;1QEQQxO3tjDuOMXsr2F-WeGA0A?ct=application/octet-stream>;
@@ -25,16 +25,12 @@ _:n1 at:pathObject <file:///GIFV.ICO>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (766 B)"@en.
 <ni:///mh;1QEQQxO3tjDuOMXsr2F-WeGA0A?ct=image/x-icon> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
-                                                      nfo:colorDepth 32 ;
                                                       nfo:height 32 ;
-                                                      nfo:horizontalResolution 96 ;
-                                                      nfo:verticalResolution 96 ;
                                                       nfo:width 32 ;
                                                       a schema:MediaObject,
                                                         schema:ImageObject,
                                                         nfo:Image;
-                                                      skos:prefLabel "ICO object (32×32)"@en,
-                                                                     "ICO object (766 B)"@en.
+                                                      skos:prefLabel "ICO object (32×32)"@en.
 <urn:md5:4313B7B630EE38C5ECAF617E59E180D0> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "QxO3tjDuOMXsr2F+WeGA0A=="^^xsd:base64Binary.

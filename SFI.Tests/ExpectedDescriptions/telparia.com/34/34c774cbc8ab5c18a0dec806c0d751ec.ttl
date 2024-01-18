@@ -3,6 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
@@ -11,7 +12,6 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix dbo: <http://dbpedia.org/ontology/>.
 
 _:n1 at:pathObject <file:///PIXFOLIO.EX_>;
@@ -26,15 +26,17 @@ _:n1 at:pathObject <file:///PIXFOLIO.EX_>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQ5uPNoDu9MfLx0IGquT1jNQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (320 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQ8PjXUMPhPh1Jf2yS3sDKWA?ct=application/octet-stream> at:digest <urn:md5:F0F8D750C3E13E1D497F6C92DEC0CA58>;
                                                                   dcterms:extent "117046"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ8PjXUMPhPh1Jf2yS3sDKWA?ct=application/x-ms-compress-szdd>;
@@ -54,8 +56,8 @@ _:n1 at:pathObject <file:///PIXFOLIO.EX_>;
                                                                            skos:prefLabel "/e".
 <ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/octet-stream> at:digest <urn:md5:351D51E93D8C0CE412B4A013B703B11A>;
                                                                   dcterms:extent "271024"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/x-msdownload;format=ne>,
-                                                                                    <ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/vnd.microsoft.portable-executable>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/vnd.microsoft.portable-executable>,
+                                                                                    <ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/x-msdownload;format=ne>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (264.67 KiB)"@en.
 <ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/vnd.microsoft.portable-executable> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
@@ -131,9 +133,9 @@ _:n1 at:pathObject <file:///PIXFOLIO.EX_>;
 <ni:///mh;1QEQO8zT4ri2A4axXY3RN-EPuA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 8 ;
                                                    nfo:height 103 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 256 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 283 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -148,9 +150,9 @@ _:n1 at:pathObject <file:///PIXFOLIO.EX_>;
 <ni:///mh;1QEQS_59DrMvLvPvI2r4bN4pAQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 8 ;
                                                    nfo:height 239 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 256 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 319 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -163,45 +165,51 @@ _:n1 at:pathObject <file:///PIXFOLIO.EX_>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQTkTy_eLnd8Uz3qB_5tGZcg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (320 B)"@en.
 <ni:///mh;1QEQlk3tdMrzUwLFKNUGzSmTrQ?ct=application/octet-stream> at:digest <urn:md5:964DED74CAF35302C528D506CD2993AD>;
                                                                   dcterms:extent "751"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQlk3tdMrzUwLFKNUGzSmTrQ?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (751 B)"@en.
 <ni:///mh;1QEQlk3tdMrzUwLFKNUGzSmTrQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (752 B)"@en.
 <ni:///mh;1QEQmd4FThVmELBMOez2WdXCNg?ct=application/octet-stream> at:digest <urn:md5:99DE054E156610B04C39ECF659D5C236>;
                                                                   dcterms:extent "318"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQmd4FThVmELBMOez2WdXCNg?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQmd4FThVmELBMOez2WdXCNg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (320 B)"@en.
 <urn:md5:351D51E93D8C0CE412B4A013B703B11A> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "NR1R6T2MDOQStKATtwOxGg=="^^xsd:base64Binary.

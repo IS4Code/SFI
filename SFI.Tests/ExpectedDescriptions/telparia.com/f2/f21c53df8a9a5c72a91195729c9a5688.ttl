@@ -3,6 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
@@ -11,7 +12,6 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///ABOUTWEP_97.DLL>;
      nie:interpretedAs <ni:///mh;1QEQzYz9svQQhWBk1L8xImJNgg?ct=application/octet-stream>;
@@ -25,22 +25,28 @@ _:n1 at:pathObject <file:///ABOUTWEP_97.DLL>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (2.31 KiB)"@en.
 <ni:///mh;1QEQB7Vg_RjcNfnC7owdfSRRiQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 64 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 259 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (259×64)"@en.
+                                                   skos:prefLabel "BMP object (259×64)"@en,
+                                                                  "BMP object (2.3 KiB)"@en.
 <ni:///mh;1QEQVlXA_gjfcTFbVyCpwlOBuA?ct=application/octet-stream> at:digest <urn:md5:5655C0FE08DF71315B5720A9C25381B8>;
                                                                   dcterms:extent "4718"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQVlXA_gjfcTFbVyCpwlOBuA?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (4.61 KiB)"@en.
 <ni:///mh;1QEQVlXA_gjfcTFbVyCpwlOBuA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 64 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 259 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,

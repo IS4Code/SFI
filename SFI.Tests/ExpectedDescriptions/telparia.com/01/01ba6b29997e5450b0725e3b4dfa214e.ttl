@@ -3,7 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
@@ -11,7 +11,6 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///PIANO.OVG>;
      nie:interpretedAs <ni:///mh;1QEQ9CRDOGQbQzi_5yl61-Vkhg?ct=application/octet-stream>;
@@ -21,19 +20,8 @@ _:n1 at:pathObject <file:///PIANO.OVG>;
 <file:///PIANO.OVG> at:extensionObject <https://w3id.org/uri4uri/suffix/ovg>.
 <ni:///mh;1QEQ9CRDOGQbQzi_5yl61-Vkhg?ct=application/octet-stream> at:digest <urn:md5:F4244338641B4338BFE7297AD7E56486>;
                                                                   dcterms:extent "11056"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQ9CRDOGQbQzi_5yl61-Vkhg?ct=image/x-emf>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (10.8 KiB)"@en.
-<ni:///mh;1QEQ9CRDOGQbQzi_5yl61-Vkhg?ct=image/x-emf> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-emf>;
-                                                     nfo:colorDepth 32 ;
-                                                     nfo:height 919 ;
-                                                     nfo:horizontalResolution 71.9292;
-                                                     nfo:verticalResolution 72.04874;
-                                                     nfo:width 712 ;
-                                                     a schema:MediaObject,
-                                                       schema:ImageObject,
-                                                       nfo:Image;
-                                                     skos:prefLabel "EMF object (10.8 KiB)"@en.
 <urn:md5:F4244338641B4338BFE7297AD7E56486> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "9CRDOGQbQzi/5yl61+Vkhg=="^^xsd:base64Binary.

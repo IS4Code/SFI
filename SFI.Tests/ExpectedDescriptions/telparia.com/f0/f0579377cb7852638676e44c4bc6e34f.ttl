@@ -3,6 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
@@ -11,7 +12,6 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///SPADE.BMP>;
      nie:interpretedAs <ni:///mh;1QEQXD6eeDtYnmEcIJRbDn8rGQ?ct=application/octet-stream>;
@@ -25,12 +25,17 @@ _:n1 at:pathObject <file:///SPADE.BMP>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (2.62 KiB)"@en.
 <ni:///mh;1QEQXD6eeDtYnmEcIJRbDn8rGQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 79 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 58 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (58×79)"@en.
+                                                   skos:prefLabel "BMP object (58×79)"@en,
+                                                                  "BMP object (2.62 KiB)"@en.
 <urn:md5:5C3E9E783B589E611C20945B0E7F2B19> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "XD6eeDtYnmEcIJRbDn8rGQ=="^^xsd:base64Binary.

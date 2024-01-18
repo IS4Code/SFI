@@ -3,6 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
@@ -11,7 +12,6 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///Musiclf.dll>;
      nie:interpretedAs <ni:///mh;1QEQUz09Fzob0HS6y1fr1HP2gA?ct=application/octet-stream>;
@@ -22,7 +22,7 @@ _:n1 at:pathObject <file:///Musiclf.dll>;
                                                              a cnt:ContentAsText;
                                                              skos:prefLabel "text (16 B)"@en;
                                                              cnt:characterEncoding "windows-1252";
-                                                             cnt:chars "&=O8Â‚7¸ó$B␃␗›:ƒ"^^xsd:string.
+                                                             cnt:chars "&=O8Â‚7¸ó$B␃␗›:ƒ".
 <data:application/octet-stream;base64,AAABAAEAICAQZQEABADoAgAAAQA=> dcterms:extent "20"^^dt:byte;
                                                                     dcterms:hasFormat <data:image/x-icon;base64,AAABAAEAICAQZQEABADoAgAAAQA=>;
                                                                     a cnt:ContentAsBase64;
@@ -75,30 +75,32 @@ _:n1 at:pathObject <file:///Musiclf.dll>;
 <ni:///mh;1QEQ0RXr3BkWqVlU-zHSFKyojQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 15 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (224 B)"@en,
-                                                                  "BMP object (16×15)"@en.
+                                                   skos:prefLabel "BMP object (16×15)"@en,
+                                                                  "BMP object (224 B)"@en.
 <ni:///mh;1QEQ1Cg-o7-xOfT6W4Dr3LsDcA?ct=application/octet-stream> at:digest <urn:md5:D4283EA3BFB139F4FA5B80EBDCBB0370>;
                                                                   dcterms:extent "318"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ1Cg-o7-xOfT6W4Dr3LsDcA?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQ1Cg-o7-xOfT6W4Dr3LsDcA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (308 B)"@en.
 <ni:///mh;1QEQ1hbTloSpmUU6ZpmV02Yzsw?ct=application/octet-stream> at:digest <urn:md5:D616D39684A999453A669995D36633B3>;
                                                                   dcterms:extent "238"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ1hbTloSpmUU6ZpmV02Yzsw?ct=image/bmp>;
@@ -107,15 +109,15 @@ _:n1 at:pathObject <file:///Musiclf.dll>;
 <ni:///mh;1QEQ1hbTloSpmUU6ZpmV02Yzsw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 15 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (224 B)"@en,
-                                                                  "BMP object (16×15)"@en.
+                                                   skos:prefLabel "BMP object (16×15)"@en,
+                                                                  "BMP object (224 B)"@en.
 <ni:///mh;1QEQ2NKNTtQ4nMcxUnT39f6HFw?ct=application/octet-stream> at:digest <urn:md5:D8D28D4ED4389CC7315274F7F5FE8717>;
                                                                   dcterms:extent "478"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ2NKNTtQ4nMcxUnT39f6HFw?ct=image/bmp>;
@@ -124,9 +126,9 @@ _:n1 at:pathObject <file:///Musiclf.dll>;
 <ni:///mh;1QEQ2NKNTtQ4nMcxUnT39f6HFw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 18 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 36 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -139,30 +141,34 @@ _:n1 at:pathObject <file:///Musiclf.dll>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQ34GriCaEBoOtMK4iKvxf7g?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (308 B)"@en.
 <ni:///mh;1QEQ3U_Yp-GwPS_jxh0r32YJug?ct=application/octet-stream> at:digest <urn:md5:DD4FD8A7E1B03D2FE3C61D2BDF6609BA>;
                                                                   dcterms:extent "758"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ3U_Yp-GwPS_jxh0r32YJug?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (758 B)"@en.
 <ni:///mh;1QEQ3U_Yp-GwPS_jxh0r32YJug?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 4 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (744 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQ6ETnHZzJ96XppgyOUwqP5w?ct=application/octet-stream> at:digest <urn:md5:E844E71D9CC9F7A5E9A60C8E530A8FE7>;
                                                                   dcterms:extent "238"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ6ETnHZzJ96XppgyOUwqP5w?ct=image/bmp>;
@@ -171,9 +177,9 @@ _:n1 at:pathObject <file:///Musiclf.dll>;
 <ni:///mh;1QEQ6ETnHZzJ96XppgyOUwqP5w?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 15 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -188,9 +194,9 @@ _:n1 at:pathObject <file:///Musiclf.dll>;
 <ni:///mh;1QEQ9V85lMb6famO3SbWTP47Ng?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 11 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -205,9 +211,9 @@ _:n1 at:pathObject <file:///Musiclf.dll>;
 <ni:///mh;1QEQA4xT8al3KDA2M6Nyfmpu2w?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 11 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -222,9 +228,9 @@ _:n1 at:pathObject <file:///Musiclf.dll>;
 <ni:///mh;1QEQGgxgKRUiHoenG_d7Smqezg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 11 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -239,30 +245,32 @@ _:n1 at:pathObject <file:///Musiclf.dll>;
 <ni:///mh;1QEQI8GM9JZTMo4aJXx_VUmpoA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 15 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (224 B)"@en,
-                                                                  "BMP object (16×15)"@en.
+                                                   skos:prefLabel "BMP object (16×15)"@en,
+                                                                  "BMP object (224 B)"@en.
 <ni:///mh;1QEQIEFjSYft2NdGCnxI_FRWqw?ct=application/octet-stream> at:digest <urn:md5:2041634987EDD8D7460A7C48FC5456AB>;
                                                                   dcterms:extent "318"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQIEFjSYft2NdGCnxI_FRWqw?ct=image/bmp>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQIEFjSYft2NdGCnxI_FRWqw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (308 B)"@en.
 <ni:///mh;1QEQLhY23BIFlnuH4KSMpDdBYA?ct=application/octet-stream> at:digest <urn:md5:2E1636DC1205967B87E0A48CA4374160>;
                                                                   dcterms:extent "498"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQLhY23BIFlnuH4KSMpDdBYA?ct=image/bmp>;
@@ -271,15 +279,15 @@ _:n1 at:pathObject <file:///Musiclf.dll>;
 <ni:///mh;1QEQLhY23BIFlnuH4KSMpDdBYA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 19 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 36 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (484 B)"@en,
-                                                                  "BMP object (36×19)"@en.
+                                                   skos:prefLabel "BMP object (36×19)"@en,
+                                                                  "BMP object (484 B)"@en.
 <ni:///mh;1QEQPbpBpGV1Rv8p4XQJ-tQ2EA?ct=application/octet-stream> at:digest <urn:md5:3DBA41A4657546FF29E17409FAD43610>;
                                                                   dcterms:extent "280"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -292,15 +300,15 @@ _:n1 at:pathObject <file:///Musiclf.dll>;
 <ni:///mh;1QEQTEbqbyEeJy26qhaGEfJ-hw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 15 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (224 B)"@en,
-                                                                  "BMP object (16×15)"@en.
+                                                   skos:prefLabel "BMP object (16×15)"@en,
+                                                                  "BMP object (224 B)"@en.
 <ni:///mh;1QEQU3u7eEc02Sk7wUeZhfFJtA?ct=application/octet-stream> at:digest <urn:md5:537BBB784734D9293BC1479985F149B4>;
                                                                   dcterms:extent "478"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQU3u7eEc02Sk7wUeZhfFJtA?ct=image/bmp>;
@@ -309,9 +317,9 @@ _:n1 at:pathObject <file:///Musiclf.dll>;
 <ni:///mh;1QEQU3u7eEc02Sk7wUeZhfFJtA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 18 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 36 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -656,9 +664,9 @@ _:n1 at:pathObject <file:///Musiclf.dll>;
 <ni:///mh;1QEQXzT0YieFuzy_A_TSUTnCXw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 18 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 36 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -671,15 +679,17 @@ _:n1 at:pathObject <file:///Musiclf.dll>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQZhfuMA11b8YAoGrW0W-fzw?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (308 B)"@en.
 <ni:///mh;1QEQbKNwBttOe8P3xdOA7vWJ5A?ct=application/octet-stream> at:digest <urn:md5:6CA37006DB4E7BC3F7C5D380EEF589E4>;
                                                                   dcterms:extent "478"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQbKNwBttOe8P3xdOA7vWJ5A?ct=image/bmp>;
@@ -688,15 +698,15 @@ _:n1 at:pathObject <file:///Musiclf.dll>;
 <ni:///mh;1QEQbKNwBttOe8P3xdOA7vWJ5A?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 18 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 36 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (36×18)"@en,
-                                                                  "BMP object (464 B)"@en.
+                                                   skos:prefLabel "BMP object (464 B)"@en,
+                                                                  "BMP object (36×18)"@en.
 <ni:///mh;1QEQenO2wISr8MEfYD3FDYVPLg?ct=application/octet-stream> at:digest <urn:md5:7A73B6C084ABF0C11F603DC50D854F2E>;
                                                                   dcterms:extent "2266"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQenO2wISr8MEfYD3FDYVPLg?ct=image/bmp>;
@@ -722,9 +732,9 @@ _:n1 at:pathObject <file:///Musiclf.dll>;
 <ni:///mh;1QEQevZNOe8tyCxLZfO1R5FWHQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 18 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 36 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -739,15 +749,15 @@ _:n1 at:pathObject <file:///Musiclf.dll>;
 <ni:///mh;1QEQfRdZCMWtB_gQh7yO-CQeGA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 11 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (192 B)"@en,
-                                                                  "BMP object (16×11)"@en.
+                                                   skos:prefLabel "BMP object (16×11)"@en,
+                                                                  "BMP object (192 B)"@en.
 <ni:///mh;1QEQkoqK9j2GWwRcJCohhA_N0A?ct=application/octet-stream> at:digest <urn:md5:928A8AF63D865B045C242A21840FCDD0>;
                                                                   dcterms:extent "478"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQkoqK9j2GWwRcJCohhA_N0A?ct=image/bmp>;
@@ -756,15 +766,15 @@ _:n1 at:pathObject <file:///Musiclf.dll>;
 <ni:///mh;1QEQkoqK9j2GWwRcJCohhA_N0A?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 18 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 36 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (36×18)"@en,
-                                                                  "BMP object (464 B)"@en.
+                                                   skos:prefLabel "BMP object (464 B)"@en,
+                                                                  "BMP object (36×18)"@en.
 <ni:///mh;1QEQqFOf7C1BT8-npwgdaBLCZg?ct=application/octet-stream> at:digest <urn:md5:A8539FEC2D414FCFA7A7081D6812C266>;
                                                                   dcterms:extent "478"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQqFOf7C1BT8-npwgdaBLCZg?ct=image/bmp>;
@@ -773,9 +783,9 @@ _:n1 at:pathObject <file:///Musiclf.dll>;
 <ni:///mh;1QEQqFOf7C1BT8-npwgdaBLCZg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 18 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 36 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -788,15 +798,17 @@ _:n1 at:pathObject <file:///Musiclf.dll>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQrihjd_TD8RTOtEXH_LrxhA?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (308 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQsDQry2uLD7FE-HFlKqdC-A?ct=application/octet-stream> at:digest <urn:md5:B0342BCB6B8B0FB144F871652AA742F8>;
                                                                   dcterms:extent "238"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQsDQry2uLD7FE-HFlKqdC-A?ct=image/bmp>;
@@ -805,15 +817,15 @@ _:n1 at:pathObject <file:///Musiclf.dll>;
 <ni:///mh;1QEQsDQry2uLD7FE-HFlKqdC-A?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 15 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (224 B)"@en,
-                                                                  "BMP object (16×15)"@en.
+                                                   skos:prefLabel "BMP object (16×15)"@en,
+                                                                  "BMP object (224 B)"@en.
 <ni:///mh;1QEQtnszJC4gv6CzoKR_1pz2zw?ct=application/octet-stream> at:digest <urn:md5:B67B33242E20BFA0B3A0A47FD69CF6CF>;
                                                                   dcterms:extent "3207"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQtnszJC4gv6CzoKR_1pz2zw?ct=application/x-delphi-form>;
@@ -836,15 +848,17 @@ _:n1 at:pathObject <file:///Musiclf.dll>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQvXLNkZ9xSOM5TFbPHFnBQQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (308 B)"@en.
 <ni:///mh;1QEQwH2GHvid6jbiPHqBPOHFGg?ct=application/octet-stream> at:digest <urn:md5:C07D861EF89DEA36E23C7A813CE1C51A>;
                                                                   dcterms:extent "206"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQwH2GHvid6jbiPHqBPOHFGg?ct=image/bmp>;
@@ -853,9 +867,9 @@ _:n1 at:pathObject <file:///Musiclf.dll>;
 <ni:///mh;1QEQwH2GHvid6jbiPHqBPOHFGg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
                                                    nfo:bitDepth 4 ;
                                                    nfo:height 11 ;
-                                                   nfo:horizontalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
                                                    nfo:paletteSize 16 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 16 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
@@ -868,15 +882,17 @@ _:n1 at:pathObject <file:///Musiclf.dll>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (318 B)"@en.
 <ni:///mh;1QEQySoY0rHg5m-ZBwQ55EKqtQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
-                                                   nfo:colorDepth 32 ;
+                                                   nfo:bitDepth 1 ;
                                                    nfo:height 32 ;
-                                                   nfo:horizontalResolution 96 ;
-                                                   nfo:verticalResolution 96 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 2 ;
+                                                   nfo:verticalResolution 96.012;
                                                    nfo:width 32 ;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (308 B)"@en.
 <urn:md5:038C53F1A97728303633A3727E6A6EDB> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "A4xT8al3KDA2M6Nyfmpu2w=="^^xsd:base64Binary.

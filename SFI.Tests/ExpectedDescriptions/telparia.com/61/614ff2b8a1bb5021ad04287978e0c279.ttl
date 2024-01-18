@@ -3,6 +3,8 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
@@ -10,7 +12,6 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///BMAP_3684.pbm>;
      nie:interpretedAs <ni:///mh;1QEQhyrTySBWdM6B8vKGODlBbA?ct=application/octet-stream>;
@@ -20,8 +21,19 @@ _:n1 at:pathObject <file:///BMAP_3684.pbm>;
 <file:///BMAP_3684.pbm> at:extensionObject <https://w3id.org/uri4uri/suffix/pbm>.
 <ni:///mh;1QEQhyrTySBWdM6B8vKGODlBbA?ct=application/octet-stream> at:digest <urn:md5:872AD3C9205674CE81F2F2863839416C>;
                                                                   dcterms:extent "43799"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQhyrTySBWdM6B8vKGODlBbA?ct=image/x-portable-pixmap>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (42.77 KiB)"@en.
+<ni:///mh;1QEQhyrTySBWdM6B8vKGODlBbA?ct=image/x-portable-pixmap> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-portable-pixmap>;
+                                                                 nfo:colorDepth 24 ;
+                                                                 nfo:height 342 ;
+                                                                 nfo:horizontalResolution 96 ;
+                                                                 nfo:verticalResolution 96 ;
+                                                                 nfo:width 512 ;
+                                                                 a schema:MediaObject,
+                                                                   schema:ImageObject,
+                                                                   nfo:Image;
+                                                                 skos:prefLabel "PPM object (42.77 KiB)"@en.
 <urn:md5:872AD3C9205674CE81F2F2863839416C> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "hyrTySBWdM6B8vKGODlBbA=="^^xsd:base64Binary.

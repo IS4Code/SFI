@@ -3,7 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
@@ -11,7 +11,6 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///1651596601_example.emf>;
      nie:interpretedAs <ni:///mh;1QEQ8Va69kA6f2eg9s4A27yShA?ct=application/octet-stream>;
@@ -21,19 +20,8 @@ _:n1 at:pathObject <file:///1651596601_example.emf>;
 <file:///1651596601_example.emf> at:extensionObject <https://w3id.org/uri4uri/suffix/emf>.
 <ni:///mh;1QEQ8Va69kA6f2eg9s4A27yShA?ct=application/octet-stream> at:digest <urn:md5:F156BAF6403A7F67A0F6CE00DBBC9284>;
                                                                   dcterms:extent "2880284"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQ8Va69kA6f2eg9s4A27yShA?ct=image/x-emf>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (2.75 MiB)"@en.
-<ni:///mh;1QEQ8Va69kA6f2eg9s4A27yShA?ct=image/x-emf> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-emf>;
-                                                     nfo:colorDepth 32 ;
-                                                     nfo:height 800 ;
-                                                     nfo:horizontalResolution 152.4;
-                                                     nfo:verticalResolution 103.1875;
-                                                     nfo:width 1200 ;
-                                                     a schema:MediaObject,
-                                                       schema:ImageObject,
-                                                       nfo:Image;
-                                                     skos:prefLabel "EMF object (2.75 MiB)"@en.
 <urn:md5:F156BAF6403A7F67A0F6CE00DBBC9284> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "8Va69kA6f2eg9s4A27yShA=="^^xsd:base64Binary.
