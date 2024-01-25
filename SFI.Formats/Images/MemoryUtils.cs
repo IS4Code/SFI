@@ -12,6 +12,10 @@ namespace IS4.SFI.Formats
     {
         public static Memory<TTo> Cast<TFrom, TTo>(Memory<TFrom> from) where TFrom : unmanaged where TTo : unmanaged
         {
+            if(MemoryMarshal.TryGetArray<TFrom>(from, out var array) && array.Array is TTo[] compatible)
+            {
+                return compatible.AsMemory(array.Offset, array.Count);
+            }
             return new CastMemoryManager<TFrom, TTo>(from).Memory;
         }
 
