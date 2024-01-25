@@ -106,7 +106,7 @@ namespace IS4.SFI.Formats
             return ImageCodecInfo.GetImageDecoders().FirstOrDefault(codec => codec.FormatID == format.Guid);
         }
 
-        static SixLabors.ImageSharp.Configuration loadConfiguration = CreateConfiguration();
+        static readonly SixLabors.ImageSharp.Configuration loadConfiguration = CreateConfiguration();
 
         static SixLabors.ImageSharp.Configuration CreateConfiguration()
         {

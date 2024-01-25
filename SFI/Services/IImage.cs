@@ -60,6 +60,24 @@ namespace IS4.SFI.Services
         int BitDepth { get; }
 
         /// <summary>
+        /// Stores a collection of implementation-defined pairs of metadata entries attached to the image,
+        /// using the most natural types of the keys and values available.
+        /// </summary>
+        /// <remarks>
+        /// This collection should have the same size and index layout as <see cref="RawMetadata"/>.
+        /// </remarks>
+        IReadOnlyList<KeyValuePair<object, object>> Metadata { get; }
+
+        /// <summary>
+        /// Stores a collection of implementation-defined pairs of metadata entries attached to the image,
+        /// using the raw types of keys and values.
+        /// </summary>
+        /// <remarks>
+        /// This collection should have the same size and index layout as <see cref="Metadata"/>.
+        /// </remarks>
+        IReadOnlyList<KeyValuePair<long, ReadOnlyMemory<byte>>> RawMetadata { get; }
+
+        /// <summary>
         /// An arbitrary tag assigned to the image.
         /// </summary>
         IImageTag? Tag { get; set; }
@@ -92,6 +110,12 @@ namespace IS4.SFI.Services
         /// </summary>
         /// <returns>An instance of <see cref="IImageData"/> for the image pixels.</returns>
         IImageData GetData();
+
+        /// <summary>
+        /// Retrieves or produces a thumbnail of the image, possibly using the embedded one.
+        /// </summary>
+        /// <returns>An instance of <see cref="IImage"/> for the thumbnail, or null.</returns>
+        IImage? GetThumbnail();
 
         /// <summary>
         /// Saves the image in a particular format.
@@ -245,6 +269,12 @@ namespace IS4.SFI.Services
         /// <inheritdoc/>
         public abstract int BitDepth { get; }
 
+        /// <inheritdoc/>
+        public abstract IReadOnlyList<KeyValuePair<object, object>> Metadata { get; }
+
+        /// <inheritdoc/>
+        public abstract IReadOnlyList<KeyValuePair<long, ReadOnlyMemory<byte>>> RawMetadata { get; }
+
         /// <inheritdoc cref="IIdentityKey.DataKey"/>
         public IFileFormat<IImage<TUnderlying>> Format => this;
 
@@ -262,6 +292,9 @@ namespace IS4.SFI.Services
 
         /// <inheritdoc/>
         public abstract IImageData GetData();
+
+        /// <inheritdoc/>
+        public abstract IImage? GetThumbnail();
 
         /// <inheritdoc/>
         public abstract void Save(Stream output, string mediaType);
@@ -402,7 +435,15 @@ namespace IS4.SFI.Services
             return Open();
         }
     }
-    
+
+    /// <summary>
+    /// Provides a more concrete implementation of <see cref="ImageData{TUnderlying}"/>
+    /// where the underlying memory can be contiguous, calculating the row and pixel layout
+    /// automatically using the <see cref="Stride"/> property.
+    /// </summary>
+    /// <typeparam name="TUnderlying">
+    /// The type of the underlying image instance.
+    /// </typeparam>
     public abstract class MemoryImageData<TUnderlying> : ImageData<TUnderlying> where TUnderlying : class
     {
         /// <inheritdoc/>
