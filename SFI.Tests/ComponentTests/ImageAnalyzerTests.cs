@@ -163,15 +163,15 @@ namespace IS4.SFI.Tests
         /// <returns></returns>
         [TestMethod]
         [DataRow(true, 0, 0, 0)]
-        /*[DataRow(true, 255, 0, 0)]
+        [DataRow(true, 255, 0, 0)]
         [DataRow(true, 0, 255, 0)]
         [DataRow(true, 0, 0, 255)]
-        [DataRow(true, 255, 255, 255)]*/
+        [DataRow(true, 255, 255, 255)]
         [DataRow(false, 0, 0, 0)]
-        /*[DataRow(false, 255, 0, 0)]
+        [DataRow(false, 255, 0, 0)]
         [DataRow(false, 0, 255, 0)]
         [DataRow(false, 0, 0, 255)]
-        [DataRow(false, 255, 255, 255)]*/
+        [DataRow(false, 255, 255, 255)]
         public async Task DataHash(bool native, int r, int g, int b)
         {
             var hash = BuiltInHash.SHA256!;
