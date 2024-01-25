@@ -21,7 +21,7 @@ namespace IS4.SFI.Formats
 
         sealed class CastMemoryManager<TFrom, TTo> : MemoryManager<TTo> where TFrom : unmanaged where TTo : unmanaged
         {
-            readonly Memory<TFrom> memory;
+            Memory<TFrom> memory;
 
             public CastMemoryManager(Memory<TFrom> memory)
             {
@@ -33,19 +33,26 @@ namespace IS4.SFI.Formats
                 return MemoryMarshal.Cast<TFrom, TTo>(memory.Span);
             }
 
-            protected override void Dispose(bool disposing)
-            {
-
-            }
-
             public override MemoryHandle Pin(int elementIndex = 0)
             {
-                throw new NotImplementedException();
+                if(elementIndex != 0)
+                {
+                    throw new NotImplementedException();
+                }
+                return memory.Pin();
             }
 
             public override void Unpin()
             {
 
+            }
+
+            protected override void Dispose(bool disposing)
+            {
+                if(disposing)
+                {
+                    memory = Memory<TFrom>.Empty;
+                }
             }
         }
 

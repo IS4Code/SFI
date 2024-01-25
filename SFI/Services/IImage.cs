@@ -522,13 +522,17 @@ namespace IS4.SFI.Services
         /// <inheritdoc/>
         public unsafe override MemoryHandle Pin(int elementIndex = 0)
         {
-            throw new NotImplementedException();
+            if(elementIndex != 0)
+            {
+                throw new NotImplementedException();
+            }
+            return Memory.Pin();
         }
 
         /// <inheritdoc/>
         public override void Unpin()
         {
-
+            
         }
     }
 }
