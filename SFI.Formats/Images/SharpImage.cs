@@ -460,6 +460,30 @@ namespace IS4.SFI.Formats
             // On contiguous buffers, the base implementation of GetPixel and GetRow is better since there is no MemoryManager allocation
             IsContiguous = data.DangerousTryGetSinglePixelMemory(out _);
         }
+        
+        /// <inheritdoc/>
+        public override Span<byte> this[int x, int y] {
+            get {
+                if(IsContiguous)
+                {
+                    return base[x, y];
+                }
+                var memory = data.DangerousGetPixelRowMemory(y).Slice(x, 1);
+                return MemoryMarshal.Cast<TPixel, byte>(memory.Span);
+            }
+        }
+
+        /// <inheritdoc/>
+        public override Span<byte> this[int y] {
+            get {
+                if(IsContiguous)
+                {
+                    return base[y];
+                }
+                var memory = data.DangerousGetPixelRowMemory(y);
+                return MemoryMarshal.Cast<TPixel, byte>(memory.Span);
+            }
+        }
 
         /// <inheritdoc/>
         public override Memory<byte> GetPixel(int x, int y)

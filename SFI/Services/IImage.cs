@@ -209,14 +209,15 @@ namespace IS4.SFI.Services
         /// </summary>
         /// <param name="y">The coordinates of the pixel.</param>
         /// <returns>The range of bytes corresponding to the row's pixels.</returns>
-        Memory<byte> this[int y] { get; }
+        Span<byte> this[int y] { get; }
 
         /// <summary>
         /// Retrieves the memory range of the pixel at the given point.
         /// </summary>
-        /// <param name="point">The coordinates of the pixel.</param>
+        /// <param name="x">The X coordinate of the pixel.</param>
+        /// <param name="y">The Y coordinate of the pixel.</param>
         /// <returns>The range of bytes corresponding to the pixel.</returns>
-        Memory<byte> this[Point point] { get; }
+        Span<byte> this[int x, int y] { get; }
 
         /// <summary>
         /// Retrieves the memory range of bytes corresponding to a row of pixels.
@@ -477,13 +478,13 @@ namespace IS4.SFI.Services
         }
 
         /// <inheritdoc/>
-        public Memory<byte> this[Point point] {
-            get => GetPixel(point.X, point.Y);
+        public virtual Span<byte> this[int x, int y] {
+            get => GetPixel(x, y).Span;
         }
 
         /// <inheritdoc/>
-        public Memory<byte> this[int y] {
-            get => GetRow(y);
+        public virtual Span<byte> this[int y] {
+            get => GetRow(y).Span;
         }
 
         /// <inheritdoc/>
