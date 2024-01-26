@@ -484,12 +484,31 @@ namespace IS4.SFI.Services
         /// <param name="bitDepth">The value of <see cref="BitDepth"/>.</param>
         public MemoryImageData(ImageBase<TUnderlying> image, int stride, int bitDepth) : base(image)
         {
-            Scan0 = -Math.Min(0, stride * image.Height);
-            Stride = stride;
             Width = image.Width;
             BitDepth = bitDepth;
-            Size = Math.Abs(image.Height * stride);
             RowSize = (Width * bitDepth + 7) / 8;
+            var height = image.Height;
+            if(height == 0)
+            {
+                // No data to move in
+                return;
+            }
+            Stride = stride;
+            if(stride >= 0)
+            {
+                // Top-down: top row first
+                Scan0 = 0;
+            }else{
+                stride = -stride;
+                // Bottom-up: top row last
+                // Scan0 is the offset of the top row relative to the bottom row
+                // (which is at offset 0).
+                Scan0 = (image.Height - 1) * stride;
+            }
+            // The allocated memory ends on the last byte of the last row;
+            // there is no guarantee that the bytes remaining to height*stride
+            // are allocated.
+            Size = (image.Height - 1) * stride + RowSize;
         }
 
         private void CheckContiguous()
