@@ -172,14 +172,37 @@ namespace IS4.SFI.Services
         int Scan0 { get; }
 
         /// <summary>
-        /// The number of bytes in each row.
+        /// The number of rows in the data.
+        /// </summary>
+        int Height { get; }
+
+        /// <summary>
+        /// The offset in bytes of each row from the previous.
         /// </summary>
         int Stride { get; }
+
+        /// <summary>
+        /// The size of each row in bytes.
+        /// </summary>
+        int RowSize { get; }
 
         /// <summary>
         /// The number of bits per pixel.
         /// </summary>
         int BitDepth { get; }
+
+        /// <summary>
+        /// Stores the complete sequence of bytes comprising the data.
+        /// This property is usable even if <see cref="IsContiguous"/>
+        /// is <see langword="false"/>.
+        /// </summary>
+        /// <remarks>
+        /// The data starts at the top-most row and follows each row,
+        /// being exactly <see cref="RowSize"/> bytes long with no padding.
+        /// There is no guarantee that each <see cref="Memory{T}"/> instance
+        /// in the sequence must align with each row.
+        /// </remarks>
+        ReadOnlySequence<byte> Sequence { get; }
 
         /// <summary>
         /// Retrieves the memory range of the pixels at the given row.
@@ -406,10 +429,52 @@ namespace IS4.SFI.Services
         public abstract int Stride { get; }
 
         /// <inheritdoc/>
+        public abstract int Height { get; }
+
+        /// <inheritdoc/>
+        public abstract int RowSize { get; }
+
+        /// <inheritdoc/>
         public abstract int BitDepth { get; }
 
         /// <inheritdoc/>
         public abstract long Length { get; }
+
+        FirstRow? sequenceFirstRow;
+
+        /// <inheritdoc/>
+        public virtual ReadOnlySequence<byte> Sequence {
+            get {
+                if(IsContiguous && Stride == RowSize)
+                {
+                    // No padding, natural order
+                    return new(Memory);
+                }
+                switch(Height)
+                {
+                    case 0:
+                        // No data to expose
+                        return ReadOnlySequence<byte>.Empty;
+                    case 1:
+                        // Just the first row
+                        return new(GetRow(0));
+                }
+                var firstRow = sequenceFirstRow ??= CreateSequence();
+                return new(firstRow, 0, firstRow.LastRow, RowSize);
+            }
+        }
+
+        FirstRow CreateSequence()
+        {
+            var index = Height - 1;
+            var lastRow = new LastRow(this, index);
+            Row previousRow = lastRow;
+            while(--index >= 1)
+            {
+                previousRow = new Row(this, index, previousRow);
+            }
+            return new FirstRow(this, 0, previousRow, lastRow);
+        }
 
         /// <inheritdoc/>
         public Memory<byte> this[Point point] {
@@ -434,6 +499,42 @@ namespace IS4.SFI.Services
         {
             return Open();
         }
+
+        class Row : ReadOnlySequenceSegment<byte>
+        {
+            public Row(ImageData<TUnderlying> data, int index, Row? next)
+            {
+                Memory = data.GetRow(index);
+                RunningIndex = data.RowSize * index;
+                Next = next;
+            }
+        }
+
+        class FirstRow : Row
+        {
+            /// <summary>
+            /// A reference to the last row of the image.
+            /// </summary>
+            public LastRow LastRow { get; }
+
+            public FirstRow(ImageData<TUnderlying> data, int index, Row? next, LastRow lastRow) : base(data, index, next)
+            {
+                LastRow = lastRow;
+            }
+        }
+
+        class LastRow : Row
+        {
+            /// <summary>
+            /// A reference to the image data to keep it alive.
+            /// </summary>
+            public ImageData<TUnderlying> Data { get; }
+
+            public LastRow(ImageData<TUnderlying> data, int index) : base(data, index, null)
+            {
+                Data = data;
+            }
+        }
     }
 
     /// <summary>
@@ -456,7 +557,13 @@ namespace IS4.SFI.Services
         public override int Stride { get; }
 
         /// <inheritdoc/>
+        public override int Height { get; }
+
+        /// <inheritdoc/>
         public override int BitDepth { get; }
+
+        /// <inheritdoc/>
+        public override int RowSize { get; }
 
         /// <summary>
         /// The width of the image.
@@ -467,11 +574,6 @@ namespace IS4.SFI.Services
         /// The size of the image data.
         /// </summary>
         public int Size { get; }
-
-        /// <summary>
-        /// The size of a row in bytes.
-        /// </summary>
-        public int RowSize { get; }
 
         /// <inheritdoc/>
         public override long Length => Size;
@@ -487,8 +589,8 @@ namespace IS4.SFI.Services
             Width = image.Width;
             BitDepth = bitDepth;
             RowSize = (Width * bitDepth + 7) / 8;
-            var height = image.Height;
-            if(height == 0)
+            Height = image.Height;
+            if(Height == 0)
             {
                 // No data to move in
                 return;
@@ -503,12 +605,12 @@ namespace IS4.SFI.Services
                 // Bottom-up: top row last
                 // Scan0 is the offset of the top row relative to the bottom row
                 // (which is at offset 0).
-                Scan0 = (image.Height - 1) * stride;
+                Scan0 = (Height - 1) * stride;
             }
             // The allocated memory ends on the last byte of the last row;
             // there is no guarantee that the bytes remaining to height*stride
             // are allocated.
-            Size = (image.Height - 1) * stride + RowSize;
+            Size = (Height - 1) * stride + RowSize;
         }
 
         private void CheckContiguous()
