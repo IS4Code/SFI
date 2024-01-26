@@ -186,7 +186,7 @@ namespace IS4.SFI.Formats
                 };
                 return new((DrawingPropertyId)item.Id, value);
 
-                object GetMemory<TTo>(Memory<byte> raw) where TTo : unmanaged
+                static object GetMemory<TTo>(Memory<byte> raw) where TTo : unmanaged
                 {
                     ReadOnlyMemory<TTo> cast = MemoryUtils.Cast<byte, TTo>(raw);
                     if(cast.Length == 1)

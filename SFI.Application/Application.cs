@@ -70,7 +70,6 @@ namespace IS4.SFI
 		readonly Dictionary<string, Dictionary<string, string>> componentProperties = new(StringComparer.OrdinalIgnoreCase);
 
 		bool quiet;
-		bool rootSpecified;
 		bool dataOnly;
 		bool onlyOnce;
 
@@ -742,7 +741,6 @@ namespace IS4.SFI
 						throw new ApplicationException("The argument to option '" + option + "' must be a well-formed absolute URI.");
 					}
 					options.Root = argument!;
-					rootSpecified = true;
 					break;
 				case "include":
 					componentMatchers.Add(new Matcher(true, argument!));

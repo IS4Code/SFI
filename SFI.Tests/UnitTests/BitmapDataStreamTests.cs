@@ -13,7 +13,7 @@ namespace IS4.SFI.Tests
     public class BitmapDataStreamTests
     {
         /// <summary>
-        /// The tests for <see cref="BitmapDataStream.Read(byte[], int, int)"/>,
+        /// The tests for <see cref="Stream.Read(byte[], int, int)"/>,
         /// checking randomly-generated data and both positive and negative stride.
         /// </summary>
         [DataRow(0, false)]

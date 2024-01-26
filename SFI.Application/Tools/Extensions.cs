@@ -75,7 +75,7 @@ namespace IS4.SFI.Application.Tools
 
         static class AssemblyContextLoader
         {
-            public static Func<AssemblyName, Assembly> GetLoader(Assembly assembly)
+            public static Func<AssemblyName, Assembly>? GetLoader(Assembly assembly)
             {
                 var context = AssemblyLoadContext.GetLoadContext(assembly);
                 if(context == null)

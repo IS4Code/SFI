@@ -111,9 +111,11 @@ namespace IS4.SFI.Formats
                     switch(png.ColorType)
                     {
                         case PngColorType.Palette:
-                        case PngColorType.Grayscale or PngColorType.GrayscaleWithAlpha:
+                        case PngColorType.Grayscale:
+                        case PngColorType.GrayscaleWithAlpha:
                             return (int)pngBits <= 8 ? (1 << (int)pngBits) : 0;
-                        case PngColorType.Rgb or PngColorType.RgbWithAlpha:
+                        case PngColorType.Rgb:
+                        case PngColorType.RgbWithAlpha:
                             return 0;
                         default:
                             return null;
