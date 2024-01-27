@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace IS4.SFI.Formats
+namespace IS4.SFI.Tools
 {
     static class MemoryUtils
     {

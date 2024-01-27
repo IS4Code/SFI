@@ -1,4 +1,4 @@
-﻿using IS4.SFI.MediaAnalysis.Images;
+﻿using IS4.SFI.Formats;
 using IS4.SFI.Services;
 using IS4.SFI.Tags;
 using IS4.SFI.Tools.IO;
@@ -10,7 +10,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
 
-namespace IS4.SFI.Formats
+namespace IS4.SFI.Tools.Images
 {
     /// <summary>
     /// Provides an <see cref="IImage{TUnderlying}"/> implementation
@@ -106,7 +106,7 @@ namespace IS4.SFI.Formats
         /// <inheritdoc/>
         public override void Save(Stream output, string mediaType)
         {
-            var encoder = ImageFormat.GetOutputEncoder(mediaType) ?? throw new ArgumentException("The specified format cannot be found.", nameof(mediaType));
+            var encoder = Formats.ImageFormat.GetOutputEncoder(mediaType) ?? throw new ArgumentException("The specified format cannot be found.", nameof(mediaType));
             UnderlyingImage.Save(output, encoder, null);
         }
 

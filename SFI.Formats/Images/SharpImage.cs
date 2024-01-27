@@ -1,4 +1,4 @@
-﻿using IS4.SFI.MediaAnalysis.Images;
+﻿using IS4.SFI.Formats;
 using IS4.SFI.Services;
 using IS4.SFI.Tools.IO;
 using Microsoft.CSharp.RuntimeBinder;
@@ -17,7 +17,7 @@ using System.Runtime.InteropServices;
 using Color = System.Drawing.Color;
 using IImage = SixLabors.ImageSharp.IImage;
 
-namespace IS4.SFI.Formats
+namespace IS4.SFI.Tools.Images
 {
     /// <summary>
     /// Provides an <see cref="IImage{TUnderlying}"/> implementation

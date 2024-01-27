@@ -1,5 +1,4 @@
-﻿using IS4.SFI.Formats;
-using SixLabors.ImageSharp;
+﻿using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Metadata;
 using SixLabors.ImageSharp.Metadata.Profiles.Exif;
 using SixLabors.ImageSharp.Metadata.Profiles.Iptc;
@@ -11,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 
-namespace IS4.SFI.MediaAnalysis.Images
+namespace IS4.SFI.Tools.Images
 {
     /// <summary>
     /// Stores utility methods for manipulating images from <see cref="SixLabors.ImageSharp"/>.

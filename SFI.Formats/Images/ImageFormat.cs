@@ -1,4 +1,5 @@
 ﻿using IS4.SFI.Services;
+using IS4.SFI.Tools.Images;
 using SixLabors.ImageSharp.Formats;
 using System;
 using System.ComponentModel;

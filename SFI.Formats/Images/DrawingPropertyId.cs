@@ -1,4 +1,4 @@
-﻿namespace IS4.SFI.Formats
+﻿namespace IS4.SFI.Tools.Images
 {
     /// <summary>
     /// <see href="https://learn.microsoft.com/en-us/dotnet/api/system.drawing.imaging.propertyitem.id"/>
