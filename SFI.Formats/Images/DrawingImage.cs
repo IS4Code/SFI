@@ -3,13 +3,11 @@ using IS4.SFI.Services;
 using IS4.SFI.Tags;
 using IS4.SFI.Tools.IO;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
 
 namespace IS4.SFI.Formats
@@ -66,10 +64,10 @@ namespace IS4.SFI.Formats
         }
 
         /// <inheritdoc/>
-        public override IReadOnlyList<KeyValuePair<object, object>> Metadata => new TypedMetadataView(UnderlyingImage.PropertyItems);
+        public override IReadOnlyList<KeyValuePair<object, object>> Metadata => UnderlyingImage.GetMetadata();
 
         /// <inheritdoc/>
-        public override IReadOnlyList<KeyValuePair<long, ReadOnlyMemory<byte>>> RawMetadata => new RawMetadataView(UnderlyingImage.PropertyItems);
+        public override IReadOnlyList<KeyValuePair<long, ReadOnlyMemory<byte>>> RawMetadata => UnderlyingImage.GetRawMetadata();
 
         /// <inheritdoc/>
         public override Color GetPixel(int x, int y)
@@ -115,107 +113,8 @@ namespace IS4.SFI.Formats
         /// <inheritdoc/>
         public override IImage Resize(int newWidth, int newHeight, bool preserveResolution, bool use32bppArgb, Color backgroundColor)
         {
-            var resized = DrawingImageTools.ResizeImage(UnderlyingImage, newWidth, newHeight, use32bppArgb ? PixelFormat.Format32bppArgb : UnderlyingImage.PixelFormat, backgroundColor, preserveResolution);
+            var resized = UnderlyingImage.Resize(newWidth, newHeight, use32bppArgb ? PixelFormat.Format32bppArgb : UnderlyingImage.PixelFormat, backgroundColor, preserveResolution);
             return new DrawingImage(resized, UnderlyingFormat);
-        }
-
-        abstract class MetadataView<TKey, TValue> : IReadOnlyList<KeyValuePair<TKey, TValue>>
-        {
-            readonly PropertyItem[] items;
-
-            public MetadataView(PropertyItem[] items)
-            {
-                this.items = items;
-            }
-
-            protected abstract KeyValuePair<TKey, TValue> Transform(PropertyItem item);
-
-            public KeyValuePair<TKey, TValue> this[int index] => Transform(items[index]);
-
-            public int Count => items.Length;
-
-            public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
-            {
-                foreach(var item in items)
-                {
-                    yield return Transform(item);
-                }
-            }
-
-            IEnumerator IEnumerable.GetEnumerator()
-            {
-                return GetEnumerator();
-            }
-        }
-
-        sealed class RawMetadataView : MetadataView<long, ReadOnlyMemory<byte>>
-        {
-            public RawMetadataView(PropertyItem[] items) : base(items)
-            {
-
-            }
-
-            protected override KeyValuePair<long, ReadOnlyMemory<byte>> Transform(PropertyItem item)
-            {
-                return new(item.Id, item.Value.AsMemory());
-            }
-        }
-
-        sealed class TypedMetadataView : MetadataView<object, object>
-        {
-            public TypedMetadataView(PropertyItem[] items) : base(items)
-            {
-
-            }
-
-            protected override KeyValuePair<object, object> Transform(PropertyItem item)
-            {
-                var valueRaw = item.Value.AsMemory().Slice(0, item.Len);
-                object value = (DrawingPropertyType)item.Type switch
-                {
-                    DrawingPropertyType.ASCII => Encoding.UTF8.GetString(item.Value, 0, item.Len - 1),
-                    DrawingPropertyType.UInt16 => GetMemory<ushort>(valueRaw),
-                    DrawingPropertyType.UInt32 => GetMemory<uint>(valueRaw),
-                    DrawingPropertyType.RationalUInt32 => GetMemory<SixLabors.ImageSharp.Rational>(valueRaw),
-                    DrawingPropertyType.SByte => GetMemory<sbyte>(valueRaw),
-                    DrawingPropertyType.Int16 => GetMemory<short>(valueRaw),
-                    DrawingPropertyType.Int32 => GetMemory<int>(valueRaw),
-                    DrawingPropertyType.RationalInt32 => GetMemory<SixLabors.ImageSharp.SignedRational>(valueRaw),
-                    DrawingPropertyType.Float => GetMemory<float>(valueRaw),
-                    DrawingPropertyType.Double => GetMemory<double>(valueRaw),
-                    _ => valueRaw,
-                };
-                return new((DrawingPropertyId)item.Id, value);
-
-                static object GetMemory<TTo>(Memory<byte> raw) where TTo : unmanaged
-                {
-                    ReadOnlyMemory<TTo> cast = MemoryUtils.Cast<byte, TTo>(raw);
-                    if(cast.Length == 1)
-                    {
-                        return cast.Span[0];
-                    }
-                    return cast;
-                }
-            }
-
-            /// <summary>
-            /// <see href="https://learn.microsoft.com/en-us/dotnet/api/system.drawing.imaging.propertyitem.type"/>
-            /// </summary>
-            enum DrawingPropertyType : short
-            {
-                Byte = 1,
-                ASCII = 2,
-                UInt16 = 3,
-                UInt32 = 4,
-                RationalUInt32 = 5,
-                SByte = 6,
-                Undefined = 7,
-                Int16 = 8,
-                Int32 = 9,
-                RationalInt32 = 10,
-                Float = 11,
-                Double = 12
-            }
         }
     }
 

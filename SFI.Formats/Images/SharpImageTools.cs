@@ -1,7 +1,15 @@
-﻿using SixLabors.ImageSharp;
+﻿using IS4.SFI.Formats;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Metadata;
+using SixLabors.ImageSharp.Metadata.Profiles.Exif;
+using SixLabors.ImageSharp.Metadata.Profiles.Iptc;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace IS4.SFI.MediaAnalysis.Images
 {
@@ -26,7 +34,7 @@ namespace IS4.SFI.MediaAnalysis.Images
         /// <param name="backgroundColor">The back</param>
         /// <param name="preserveResolution">Whether to preserve the original resolution.</param>
         /// <returns>The resized image.</returns>
-        public static Image ResizeImage(Image image, int width, int height, bool use32bppArgb, System.Drawing.Color backgroundColor, bool preserveResolution)
+        public static Image Resize(this Image image, int width, int height, bool use32bppArgb, System.Drawing.Color backgroundColor, bool preserveResolution)
         {
             var resizeOptions = new ResizeOptions
             {
@@ -59,6 +67,159 @@ namespace IS4.SFI.MediaAnalysis.Images
             }
 
             return resized;
+        }
+        
+        /// <summary>
+        /// Retrieves the image metadata as a list of implementation-defined key-value pairs.
+        /// </summary>
+        /// <param name="image">The image to retrieve the metadata from.</param>
+        /// <returns>The list of metadata items.</returns>
+        public static IReadOnlyList<KeyValuePair<object, object>> GetMetadata(this IImage image)
+        {
+            return new TypedMetadataView(image.Metadata);
+        }
+
+        /// <summary>
+        /// Retrieves the image metadata as a list of raw-valued key-value pairs.
+        /// </summary>
+        /// <param name="image">The image to retrieve the metadata from.</param>
+        /// <returns>The list of metadata items.</returns>
+        public static IReadOnlyList<KeyValuePair<long, ReadOnlyMemory<byte>>> GetRawMetadata(this IImage image)
+        {
+            return new RawMetadataView(image.Metadata);
+        }
+
+        abstract class MetadataView<TKey, TValue> : IReadOnlyList<KeyValuePair<TKey, TValue>>
+        {
+            readonly IReadOnlyList<IExifValue> exif;
+            readonly IReadOnlyList<IptcValue> iptc;
+
+            public MetadataView(ImageMetadata metadata)
+            {
+                exif = metadata.ExifProfile?.Values ?? Array.Empty<IExifValue>();
+                var iptcEnumerable = metadata.IptcProfile?.Values ?? Array.Empty<IptcValue>();
+                iptc = (iptcEnumerable as IReadOnlyList<IptcValue>) ?? iptcEnumerable.ToList();
+            }
+
+            protected abstract KeyValuePair<TKey, TValue> Transform(IExifValue item);
+
+            protected abstract KeyValuePair<TKey, TValue> Transform(IptcValue item);
+
+            public KeyValuePair<TKey, TValue> this[int index] {
+                get {
+                    if(index < exif.Count)
+                    {
+                        return Transform(exif[index]);
+                    }
+                    index -= exif.Count;
+                    return Transform(iptc[index]);
+                }
+            }
+
+            public int Count => exif.Count + iptc.Count;
+
+            public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
+            {
+                foreach(var item in exif)
+                {
+                    yield return Transform(item);
+                }
+                foreach(var item in iptc)
+                {
+                    yield return Transform(item);
+                }
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return GetEnumerator();
+            }
+        }
+        
+        sealed class RawMetadataView : MetadataView<long, ReadOnlyMemory<byte>>
+        {
+            public RawMetadataView(ImageMetadata metadata) : base(metadata)
+            {
+
+            }
+
+            protected override KeyValuePair<long, ReadOnlyMemory<byte>> Transform(IExifValue item)
+            {
+                var val = item.GetValue();
+
+                ReadOnlyMemory<byte> result;
+                if(val is string str)
+                {
+                    result = MemoryUtils.Cast<char, byte>(MemoryMarshal.AsMemory(str.AsMemory()));
+                }else if(item.IsArray && val is Array arr)
+                {
+                    result = (item.DataType, arr) switch
+                    {
+                        (ExifDataType.Byte, byte[] array) => array.AsMemory(),
+                        (ExifDataType.Short, ushort[] array) => MemoryUtils.Cast<ushort, byte>(array.AsMemory()),
+                        (ExifDataType.Long, uint[] array) => MemoryUtils.Cast<uint, byte>(array.AsMemory()),
+                        (ExifDataType.Rational, Rational[] array) => MemoryUtils.Cast<Rational, byte>(array.AsMemory()),
+                        (ExifDataType.SignedByte, sbyte[] array) => MemoryUtils.Cast<sbyte, byte>(array.AsMemory()),
+                        (ExifDataType.SignedShort, short[] array) => MemoryUtils.Cast<short, byte>(array.AsMemory()),
+                        (ExifDataType.SignedLong, int[] array) => MemoryUtils.Cast<int, byte>(array.AsMemory()),
+                        (ExifDataType.SignedRational, SignedRational[] array) => MemoryUtils.Cast<SignedRational, byte>(array.AsMemory()),
+                        (ExifDataType.SingleFloat, float[] array) => MemoryUtils.Cast<float, byte>(array.AsMemory()),
+                        (ExifDataType.DoubleFloat, double[] array) => MemoryUtils.Cast<double, byte>(array.AsMemory()),
+                        (ExifDataType.Long8, ulong[] array) => MemoryUtils.Cast<ulong, byte>(array.AsMemory()),
+                        (ExifDataType.SignedLong8, long[] array) => MemoryUtils.Cast<long, byte>(array.AsMemory()),
+                        _ => MemoryUtils.GetObjectMemory(arr)
+                    };
+                }else{
+                    result = (item.DataType, val) switch
+                    {
+                        (_, EncodedString value) => MemoryUtils.Cast<char, byte>(MemoryMarshal.AsMemory(value.Text.AsMemory())),
+                        (ExifDataType.Byte, Number value) => MemoryUtils.GetValueMemory((byte)(uint)value),
+                        (ExifDataType.Byte, byte value) => MemoryUtils.GetValueMemory(value),
+                        (ExifDataType.Short, Number value) => MemoryUtils.GetValueMemory((ushort)(uint)value),
+                        (ExifDataType.Short, ushort value) => MemoryUtils.GetValueMemory(value),
+                        (ExifDataType.Long, Number value) => MemoryUtils.GetValueMemory((uint)value),
+                        (ExifDataType.Long, uint value) => MemoryUtils.GetValueMemory(value),
+                        (ExifDataType.Rational, Rational value) => MemoryUtils.GetValueMemory(value),
+                        (ExifDataType.SignedByte, Number value) => MemoryUtils.GetValueMemory((sbyte)(int)value),
+                        (ExifDataType.SignedByte, sbyte value) => MemoryUtils.GetValueMemory(value),
+                        (ExifDataType.SignedShort, Number value) => MemoryUtils.GetValueMemory((short)(int)value),
+                        (ExifDataType.SignedShort, short value) => MemoryUtils.GetValueMemory(value),
+                        (ExifDataType.SignedLong, Number value) => MemoryUtils.GetValueMemory((int)value),
+                        (ExifDataType.SignedLong, int value) => MemoryUtils.GetValueMemory(value),
+                        (ExifDataType.SignedRational, SignedRational value) => MemoryUtils.GetValueMemory(value),
+                        (ExifDataType.SingleFloat, float value) => MemoryUtils.GetValueMemory(value),
+                        (ExifDataType.DoubleFloat, double value) => MemoryUtils.GetValueMemory(value),
+                        (ExifDataType.Long8, ulong value) => MemoryUtils.GetValueMemory(value),
+                        (ExifDataType.SignedLong8, long value) => MemoryUtils.GetValueMemory(value),
+                        _ => MemoryUtils.GetObjectMemory(val)
+                    };
+                }
+
+                return new((long)item.Tag, result);
+            }
+
+            protected override KeyValuePair<long, ReadOnlyMemory<byte>> Transform(IptcValue item)
+            {
+                return new((long)item.Tag, item.ToByteArray().AsMemory());
+            }
+        }
+
+        sealed class TypedMetadataView : MetadataView<object, object>
+        {
+            public TypedMetadataView(ImageMetadata metadata) : base(metadata)
+            {
+
+            }
+
+            protected override KeyValuePair<object, object> Transform(IExifValue item)
+            {
+                return new(item.Tag, item.GetValue());
+            }
+
+            protected override KeyValuePair<object, object> Transform(IptcValue item)
+            {
+                return new(item.Tag, item.Value);
+            }
         }
     }
 }
