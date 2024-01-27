@@ -49,7 +49,7 @@ namespace IS4.SFI.MediaAnalysis.Images
             return ComputeDHash(horizBits, vertBits);
         }
 
-        readonly Formats.ImageFormat imageFormat = new();
+        readonly ImageFormat imageFormat = new();
 
         /// <inheritdoc/>
         public async ValueTask<byte[]> ComputeHash(Image image)
@@ -76,23 +76,39 @@ namespace IS4.SFI.MediaAnalysis.Images
         {
             var hash = new BitArray(128);
 
-            var hdata = horiz.Memory.Span;
-            var vdata = vert.Memory.Span;
-
-            for(int i = 0; i < 64; i++)
+            if(horiz.IsContiguous && vert.IsContiguous)
             {
-                var point = GetPoint(i);
+                var hdata = horiz.Memory.Span;
+                var vdata = vert.Memory.Span;
 
-                var h = horiz.Scan0 + horiz.Stride * point.y + point.x * sizeof(int);
-                var v = vert.Scan0 + vert.Stride * point.y + point.x * sizeof(int);
+                for(int i = 0; i < 64; i++)
+                {
+                    var (x, y) = GetPoint(i);
 
-                var hspan = hdata.Slice(h).MemoryCast<int>();
+                    var h = horiz.Scan0 + horiz.Stride * y + x * sizeof(int);
+                    var v = vert.Scan0 + vert.Stride * y + x * sizeof(int);
 
-                var hresult = Compare(hspan[0], hspan[1], false);
-                var vresult = Compare(vdata.Slice(v).MemoryCast<int>()[0], vdata.Slice(v + vert.Stride).MemoryCast<int>()[0], true);
+                    var hspan = hdata.Slice(h).MemoryCast<int>();
 
-                hash.Set(2 * i, hresult);
-                hash.Set(2 * i + 1, vresult);
+                    var hresult = Compare(hspan[0], hspan[1], false);
+                    var vresult = Compare(vdata.Slice(v).MemoryCast<int>()[0], vdata.Slice(v + vert.Stride).MemoryCast<int>()[0], true);
+
+                    hash.Set(2 * i, hresult);
+                    hash.Set(2 * i + 1, vresult);
+                }
+            }else{
+                for(int i = 0; i < 64; i++)
+                {
+                    var (x, y) = GetPoint(i);
+
+                    var hspan = horiz[y].Slice(x * sizeof(int));
+
+                    var hresult = Compare(hspan[0], hspan[1], false);
+                    var vresult = Compare(vert[x, y].MemoryCast<int>()[0], vert[x, y + 1].MemoryCast<int>()[0], true);
+
+                    hash.Set(2 * i, hresult);
+                    hash.Set(2 * i + 1, vresult);
+                }
             }
 
             var bytes = new byte[16];
