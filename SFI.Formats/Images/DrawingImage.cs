@@ -113,9 +113,9 @@ namespace IS4.SFI.Formats
         }
 
         /// <inheritdoc/>
-        public override IImage Resize(int newWith, int newHeight, bool use32bppArgb, Color backgroundColor)
+        public override IImage Resize(int newWidth, int newHeight, bool preserveResolution, bool use32bppArgb, Color backgroundColor)
         {
-            return new DrawingImage(ImageTools.ResizeImage(UnderlyingImage, newWith, newHeight, use32bppArgb ? PixelFormat.Format32bppArgb : UnderlyingImage.PixelFormat, backgroundColor), UnderlyingFormat);
+            return new DrawingImage(DrawingImageTools.ResizeImage(UnderlyingImage, newWidth, newHeight, use32bppArgb ? PixelFormat.Format32bppArgb : UnderlyingImage.PixelFormat, backgroundColor, preserveResolution), UnderlyingFormat);
         }
 
         abstract class MetadataView<TKey, TValue> : IReadOnlyList<KeyValuePair<TKey, TValue>>

@@ -42,8 +42,8 @@ namespace IS4.SFI.MediaAnalysis.Images
         /// <inheritdoc/>
         public async override ValueTask<byte[]> ComputeHash(IImage image)
         {
-            using var horiz = image.Resize(9, 8, true, BackgroundColor);
-            using var vert = image.Resize(8, 9, true, BackgroundColor);
+            using var horiz = image.Resize(9, 8, false, true, BackgroundColor);
+            using var vert = image.Resize(8, 9, false, true, BackgroundColor);
             using var horizBits = horiz.GetData();
             using var vertBits = vert.GetData();
             return ComputeDHash(horizBits, vertBits);

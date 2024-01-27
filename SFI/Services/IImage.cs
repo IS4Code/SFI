@@ -127,12 +127,13 @@ namespace IS4.SFI.Services
         /// <summary>
         /// Resizes the image to new dimensions and returns it as a new image.
         /// </summary>
-        /// <param name="newWith">The new width of the image.</param>
+        /// <param name="newWidth">The new width of the image.</param>
         /// <param name="newHeight">The new height of the image.</param>
+        /// <param name="preserveResolution">Whether to preserve the original resolution.</param>
         /// <param name="use32bppArgb">Whether to create the image using 32-bit ARGB pixel format (compatible with <see cref="Color.FromArgb(int)"/>, or the original one.</param>
         /// <param name="backgroundColor">The background of the resized image.</param>
         /// <returns>A new image with the specified dimensions.</returns>
-        IImage Resize(int newWith, int newHeight, bool use32bppArgb, Color backgroundColor);
+        IImage Resize(int newWidth, int newHeight, bool preserveResolution, bool use32bppArgb, Color backgroundColor);
     }
 
     /// <summary>
@@ -324,7 +325,7 @@ namespace IS4.SFI.Services
         public abstract void Save(Stream output, string mediaType);
 
         /// <inheritdoc/>
-        public abstract IImage Resize(int newWith, int newHeight, bool use32bppArgb, Color backgroundColor);
+        public abstract IImage Resize(int newWith, int newHeight, bool preserveResolution, bool use32bppArgb, Color backgroundColor);
 
         /// <inheritdoc cref="IIdentityKey.ReferenceKey"/>
         protected virtual object? ReferenceKey => underlyingImage;

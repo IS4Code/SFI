@@ -5,13 +5,13 @@ using System.Drawing.Imaging;
 namespace IS4.SFI.MediaAnalysis.Images
 {
     /// <summary>
-    /// Stores utility methods for manipulating images.
+    /// Stores utility methods for manipulating images from <see cref="System.Drawing"/>.
     /// </summary>
-    public static class ImageTools
+    public static class DrawingImageTools
     {
         static readonly ImageAttributes drawAttributes = new();
 
-        static ImageTools()
+        static DrawingImageTools()
         {
             drawAttributes.SetWrapMode(WrapMode.TileFlipXY);
         }
@@ -25,8 +25,9 @@ namespace IS4.SFI.MediaAnalysis.Images
         /// <param name="height">The new height.</param>
         /// <param name="pixelFormat">The pixel format of the new image.</param>
         /// <param name="backgroundColor">The back</param>
+        /// <param name="preserveResolution">Whether to preserve the original resolution.</param>
         /// <returns>The resized image.</returns>
-        public static Bitmap ResizeImage(Image image, int width, int height, PixelFormat pixelFormat, Color backgroundColor)
+        public static Bitmap ResizeImage(Image image, int width, int height, PixelFormat pixelFormat, Color backgroundColor, bool preserveResolution)
         {
             var resized = new Bitmap(width, height, pixelFormat);
 
@@ -44,9 +45,12 @@ namespace IS4.SFI.MediaAnalysis.Images
                 gr.DrawImage(image, new Rectangle(0, 0, width, height), 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, drawAttributes);
             }
 
-            float xCoef = (float)resized.Width / image.Width;
-            float yCoef = (float)resized.Height / image.Height;
-            resized.SetResolution(image.HorizontalResolution * xCoef, image.VerticalResolution * yCoef);
+            if(preserveResolution)
+            {
+                float xCoef = (float)resized.Width / image.Width;
+                float yCoef = (float)resized.Height / image.Height;
+                resized.SetResolution(image.HorizontalResolution * xCoef, image.VerticalResolution * yCoef);
+            }
 
             return resized;
         }

@@ -246,11 +246,11 @@ namespace IS4.SFI.Formats
         };
 
         /// <inheritdoc/>
-        public override Services.IImage Resize(int newWith, int newHeight, bool use32bppArgb, Color backgroundColor)
+        public override Services.IImage Resize(int newWidth, int newHeight, bool preserveResolution, bool use32bppArgb, Color backgroundColor)
         {
             var resizeOptions = new ResizeOptions
             {
-                Size = new(newWith, newHeight),
+                Size = new(newWidth, newHeight),
                 Mode = ResizeMode.Stretch
             };
             Action<IImageProcessingContext> operation = context => {
@@ -267,6 +267,13 @@ namespace IS4.SFI.Formats
                 clone.Mutate(operation);
             }else{
                 clone = Image.Clone(createConfiguration, operation);
+            }
+            if(preserveResolution)
+            {
+                float xCoef = (float)clone.Width / Image.Width;
+                float yCoef = (float)clone.Height / Image.Height;
+                clone.Metadata.HorizontalResolution = Image.Metadata.HorizontalResolution * xCoef;
+                clone.Metadata.VerticalResolution = Image.Metadata.VerticalResolution * yCoef;
             }
             return new SharpImage(clone, UnderlyingFormat);
         }

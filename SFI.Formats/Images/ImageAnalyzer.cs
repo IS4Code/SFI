@@ -107,7 +107,7 @@ namespace IS4.SFI.Analyzers
                 {
                     ArraySegment<byte> thumbnailData;
                     var thumbSize = ThumbnailSize;
-                    using(var thumbnail = image.Resize(thumbSize.Width, thumbSize.Height, true, Color.Transparent))
+                    using(var thumbnail = image.Resize(thumbSize.Width, thumbSize.Height, true, true, Color.Transparent))
                     {
                         using var stream = new MemoryStream();
                         thumbnail.Save(stream, ThumbnailFormat);
