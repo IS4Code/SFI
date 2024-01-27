@@ -35,18 +35,7 @@ namespace IS4.SFI.Tools.Images
         /// <returns>The resized image.</returns>
         public static Image Resize(this Image image, int width, int height, bool use32bppArgb, System.Drawing.Color backgroundColor, bool preserveResolution)
         {
-            var resizeOptions = new ResizeOptions
-            {
-                Size = new(width, height),
-                Mode = ResizeMode.Stretch
-            };
-            Action<IImageProcessingContext> operation = context => {
-                if(backgroundColor.A != 0)
-                {
-                    context = context.BackgroundColor(new(new Bgra32(backgroundColor.R, backgroundColor.G, backgroundColor.B, backgroundColor.A)));
-                }
-                context = context.Resize(resizeOptions);
-            };
+            var operation = ResizeOperation(width, height, backgroundColor);
 
             Image resized;
             if(use32bppArgb)
@@ -59,15 +48,155 @@ namespace IS4.SFI.Tools.Images
 
             if(preserveResolution)
             {
-                float xCoef = (float)resized.Width / image.Width;
-                float yCoef = (float)resized.Height / image.Height;
+                double xCoef = (double)resized.Width / image.Width;
+                double yCoef = (double)resized.Height / image.Height;
                 resized.Metadata.HorizontalResolution = image.Metadata.HorizontalResolution * xCoef;
                 resized.Metadata.VerticalResolution = image.Metadata.VerticalResolution * yCoef;
             }
 
             return resized;
         }
+
+        /// <summary>
+        /// Resizes an image to particular dimensions, while preserving
+        /// the original dimensions in metadata.
+        /// </summary>
+        /// <param name="image">The image to resize.</param>
+        /// <param name="width">The new width.</param>
+        /// <param name="height">The new height.</param>
+        /// <param name="use32bppArgb">Whether to create the image using 32-bit ARGB pixel format, or the original one.</param>
+        /// <param name="backgroundColor">The back</param>
+        /// <param name="preserveResolution">Whether to preserve the original resolution.</param>
+        /// <returns>The resized image.</returns>
+        public static void ResizeInPlace(this Image image, int width, int height, System.Drawing.Color backgroundColor, bool preserveResolution)
+        {
+            var operation = ResizeOperation(width, height, backgroundColor);
+            if(preserveResolution)
+            {
+                double xRes = image.Metadata.HorizontalResolution * width / image.Width;
+                double yRes = image.Metadata.VerticalResolution * height / image.Height;
+                image.Mutate(operation);
+                image.Metadata.HorizontalResolution = xRes;
+                image.Metadata.VerticalResolution = yRes;
+            }else{
+                image.Mutate(operation);
+            }
+        }
+
+        static Action<IImageProcessingContext> ResizeOperation(int width, int height, System.Drawing.Color backgroundColor)
+        {
+            var resizeOptions = new ResizeOptions
+            {
+                Size = new(width, height),
+                Mode = ResizeMode.Stretch
+            };
+
+            return context => {
+                if(backgroundColor.A != 0)
+                {
+                    context = context.BackgroundColor(new(new Bgra32(backgroundColor.R, backgroundColor.G, backgroundColor.B, backgroundColor.A)));
+                }
+                context = context.Resize(resizeOptions);
+            };
+        }
+
+        /// <summary>
+        /// Creates a new image that copies all data from this instance.
+        /// </summary>
+        /// <param name="image">The image to clone.</param>
+        /// <param name="use32bppArgb">Whether to create the image using 32-bit ARGB pixel format (compatible with <see cref="Color.FromArgb(int)"/>, or the original one.</param>
+        /// <returns>The cloned image.</returns>
+        public static Image Clone(this Image image, bool use32bppArgb)
+        {
+            if(use32bppArgb)
+            {
+                return image.CloneAs<Bgra32>(createConfiguration);
+            }else{
+                return image.Clone(_ => { });
+            }
+        }
+
+        /// <summary>
+        /// Rotates or flips an image. The image is first rotated, then flipped.
+        /// </summary>
+        /// <param name="image">The image to rotate or flip.</param>
+        /// <param name="clockwise90DegreeTurns">The multiple of 90 ° resulting in a clockwise rotation.</param>
+        /// <param name="flipHorizontal">Whether to flip the image horizontally.</param>
+        /// <param name="flipVertical">Whether to flip the image vertically.</param>
+        /// <param name="use32bppArgb">Whether to create the image using 32-bit ARGB pixel format, or the original one.</param>
+        /// <returns>The rotated or flipped image.</returns>
+        public static Image RotateFlip(this Image image, int clockwise90DegreeTurns, bool flipHorizontal, bool flipVertical, bool use32bppArgb)
+        {
+            var operation = RotateFlipOperation(clockwise90DegreeTurns, flipHorizontal, flipVertical);
+
+            if(operation == null)
+            {
+                return image.Clone(use32bppArgb);
+            }
+
+            Image rotated;
+            if(use32bppArgb)
+            {
+                rotated = image.CloneAs<Bgra32>(createConfiguration);
+                rotated.Mutate(operation);
+            }else{
+                rotated = image.Clone(createConfiguration, operation);
+            }
+
+            return rotated;
+        }
+
+        /// <summary>
+        /// Rotates or flips an image. The image is first rotated, then flipped.
+        /// </summary>
+        /// <param name="image">The image to rotate or flip.</param>
+        /// <param name="clockwise90DegreeTurns">The multiple of 90 ° resulting in a clockwise rotation.</param>
+        /// <param name="flipHorizontal">Whether to flip the image horizontally.</param>
+        /// <param name="flipVertical">Whether to flip the image vertically.</param>
+        public static void RotateFlipInPlace(this Image image, int clockwise90DegreeTurns, bool flipHorizontal, bool flipVertical)
+        {
+            var operation = RotateFlipOperation(clockwise90DegreeTurns, flipHorizontal, flipVertical);
+            if(operation == null)
+            {
+                return;
+            }
+            image.Mutate(operation);
+        }
         
+        static Action<IImageProcessingContext>? RotateFlipOperation(int clockwise90DegreeTurns, bool flipHorizontal, bool flipVertical)
+        {
+            if(flipHorizontal && flipVertical)
+            {
+                clockwise90DegreeTurns += 2;
+            }
+            clockwise90DegreeTurns = (clockwise90DegreeTurns % 4 + 4) % 4;
+            if(clockwise90DegreeTurns == 0 && !flipHorizontal && !flipVertical)
+            {
+                return null;
+            }
+
+#pragma warning disable CS8509
+            var rotateMode = clockwise90DegreeTurns switch
+            {
+                0 => RotateMode.None,
+                1 => RotateMode.Rotate90,
+                2 => RotateMode.Rotate180,
+                3 => RotateMode.Rotate270
+            };
+#pragma warning restore CS8509
+
+            var flipMode = (flipHorizontal, flipVertical) switch
+            {
+                (false, false) or (true, true) => FlipMode.None,
+                (false, true) => FlipMode.Vertical,
+                (true, false) => FlipMode.Horizontal
+            };
+
+            return context => {
+                context = context.RotateFlip(rotateMode, flipMode);
+            };
+        }
+
         /// <summary>
         /// Retrieves the image metadata as a list of implementation-defined key-value pairs.
         /// </summary>

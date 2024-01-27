@@ -125,6 +125,13 @@ namespace IS4.SFI.Services
         void Save(Stream output, string mediaType);
 
         /// <summary>
+        /// Creates a new image that copies all data from this instance.
+        /// </summary>
+        /// <param name="use32bppArgb">Whether to create the image using 32-bit ARGB pixel format (compatible with <see cref="Color.FromArgb(int)"/>, or the original one.</param>
+        /// <returns>The cloned image.</returns>
+        IImage Clone(bool use32bppArgb);
+
+        /// <summary>
         /// Resizes the image to new dimensions and returns it as a new image.
         /// </summary>
         /// <param name="newWidth">The new width of the image.</param>
@@ -133,7 +140,34 @@ namespace IS4.SFI.Services
         /// <param name="use32bppArgb">Whether to create the image using 32-bit ARGB pixel format (compatible with <see cref="Color.FromArgb(int)"/>, or the original one.</param>
         /// <param name="backgroundColor">The background of the resized image.</param>
         /// <returns>A new image with the specified dimensions.</returns>
-        IImage Resize(int newWidth, int newHeight, bool preserveResolution, bool use32bppArgb, Color backgroundColor);
+        IImage Resize(int newWidth, int newHeight, bool preserveResolution = true, bool use32bppArgb = false, Color backgroundColor = default);
+        
+        /// <summary>
+        /// Resizes the image to new dimensions by mutating the original one.
+        /// </summary>
+        /// <param name="newWidth">The new width of the image.</param>
+        /// <param name="newHeight">The new height of the image.</param>
+        /// <param name="preserveResolution">Whether to preserve the original resolution.</param>
+        /// <param name="backgroundColor">The background of the resized image.</param>
+        void ResizeInPlace(int newWidth, int newHeight, bool preserveResolution = true, Color backgroundColor = default);
+
+        /// <summary>
+        /// Rotates or flips the image and returns it as a new image. The image is first rotated, then flipped.
+        /// </summary>
+        /// <param name="clockwise90DegreeTurns">The multiple of 90 ° resulting in a clockwise rotation.</param>
+        /// <param name="flipHorizontal">Whether to flip the image horizontally.</param>
+        /// <param name="flipVertical">Whether to flip the image vertically.</param>
+        /// <param name="use32bppArgb">Whether to create the image using 32-bit ARGB pixel format (compatible with <see cref="Color.FromArgb(int)"/>, or the original one.</param>
+        /// <returns>A new image rotated or flipped in the specified way.</returns>
+        IImage RotateFlip(int clockwise90DegreeTurns = 0, bool flipHorizontal = false, bool flipVertical = false, bool use32bppArgb = false);
+
+        /// <summary>
+        /// Rotates or flips the image by mutating the original one. The image is first rotated, then flipped.
+        /// </summary>
+        /// <param name="clockwise90DegreeTurns">The multiple of 90 ° resulting in a clockwise rotation.</param>
+        /// <param name="flipHorizontal">Whether to flip the image horizontally.</param>
+        /// <param name="flipVertical">Whether to flip the image vertically.</param>
+        void RotateFlipInPlace(int clockwise90DegreeTurns = 0, bool flipHorizontal = false, bool flipVertical = false);
     }
 
     /// <summary>
@@ -325,13 +359,41 @@ namespace IS4.SFI.Services
         public abstract void Save(Stream output, string mediaType);
 
         /// <inheritdoc/>
-        public abstract IImage Resize(int newWith, int newHeight, bool preserveResolution, bool use32bppArgb, Color backgroundColor);
+        public virtual IImage Resize(int newWidth, int newHeight, bool preserveResolution, bool use32bppArgb, Color backgroundColor)
+        {
+            var clone = Clone(use32bppArgb);
+            clone.ResizeInPlace(newWidth, newHeight, preserveResolution, backgroundColor);
+            return clone;
+        }
+
+        /// <inheritdoc/>
+        public abstract void ResizeInPlace(int newWidth, int newHeight, bool preserveResolution, Color backgroundColor);
+
+        /// <inheritdoc/>
+        public virtual IImage RotateFlip(int clockwise90DegreeTurns, bool flipHorizontal, bool flipVertical, bool use32bppArgb)
+        {
+            var clone = Clone(use32bppArgb);
+            clone.RotateFlipInPlace(clockwise90DegreeTurns, flipHorizontal, flipVertical);
+            return clone;
+        }
+
+        /// <inheritdoc/>
+        public abstract void RotateFlipInPlace(int clockwise90DegreeTurns, bool flipHorizontal, bool flipVertical);
+
+        /// <inheritdoc cref="IImage.Clone(bool)"/>
+        public abstract ImageBase<TUnderlying> Clone(bool use32bppArgb);
 
         /// <summary>
-        /// Creates a new image that copies all data from this instance.
+        /// Replaces the underlying image with a new instance. The original image is disposed.
         /// </summary>
-        /// <returns>The cloned image.</returns>
-        public abstract ImageBase<TUnderlying> Clone();
+        /// <param name="newUnderlyingImage">The new value of <see cref="UnderlyingImage"/>.</param>
+        protected void ReplaceWith(TUnderlying newUnderlyingImage)
+        {
+            if(Interlocked.Exchange(ref underlyingImage, newUnderlyingImage) is IDisposable disposable)
+            {
+                disposable.Dispose();
+            }
+        }
 
         /// <inheritdoc cref="IIdentityKey.ReferenceKey"/>
         protected virtual object? ReferenceKey => underlyingImage;
@@ -343,7 +405,9 @@ namespace IS4.SFI.Services
 
         object? IIdentityKey.DataKey => DataKey;
 
-        object ICloneable.Clone() => Clone();
+        IImage IImage.Clone(bool use32bppArgb) => Clone(use32bppArgb);
+
+        object ICloneable.Clone() => Clone(false);
 
         /// <inheritdoc/>
         public Color this[Point point] {

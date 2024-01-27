@@ -244,10 +244,25 @@ namespace IS4.SFI.Tools.Images
             return new SharpImage(resized, UnderlyingFormat);
         }
 
-        public override ImageBase<IImage> Clone()
+        public override void ResizeInPlace(int newWidth, int newHeight, bool preserveResolution, Color backgroundColor)
         {
-            var cloned = Image.Clone(delegate { });
-            return new SharpImage(cloned, UnderlyingFormat);
+            Image.ResizeInPlace(newWidth, newHeight, backgroundColor, preserveResolution);
+        }
+
+        public override Services.IImage RotateFlip(int clockwise90DegreeTurns, bool flipHorizontal, bool flipVertical, bool use32bppArgb)
+        {
+            var rotated = Image.RotateFlip(clockwise90DegreeTurns, flipHorizontal, flipVertical, use32bppArgb);
+            return new SharpImage(rotated, UnderlyingFormat);
+        }
+
+        public override void RotateFlipInPlace(int clockwise90DegreeTurns, bool flipHorizontal, bool flipVertical)
+        {
+            Image.RotateFlipInPlace(clockwise90DegreeTurns, flipHorizontal, flipVertical);
+        }
+
+        public override ImageBase<IImage> Clone(bool use32bppArgb)
+        {
+            return new SharpImage(Image.Clone(use32bppArgb), UnderlyingFormat);
         }
     }
 

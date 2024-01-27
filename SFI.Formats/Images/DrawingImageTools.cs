@@ -61,6 +61,56 @@ namespace IS4.SFI.Tools.Images
         }
 
         /// <summary>
+        /// Creates a new image that copies all data from this instance.
+        /// </summary>
+        /// <param name="image">The image to clone.</param>
+        /// <param name="use32bppArgb">Whether to create the image using 32-bit ARGB pixel format (compatible with <see cref="Color.FromArgb(int)"/>, or the original one.</param>
+        /// <returns>The cloned image.</returns>
+        public static Image Clone(this Image image, bool use32bppArgb)
+        {
+            return use32bppArgb
+                ? image.Resize(image.Width, image.Height, PixelFormat.Format32bppArgb, Color.Transparent, true)
+                : new Bitmap(image);
+        }
+
+        /// <summary>
+        /// Rotates or flips an image. The image is first rotated, then flipped.
+        /// </summary>
+        /// <param name="image">The image to rotate or flip.</param>
+        /// <param name="clockwise90DegreeTurns">The multiple of 90 ° resulting in a clockwise rotation.</param>
+        /// <param name="flipHorizontal">Whether to flip the image horizontally.</param>
+        /// <param name="flipVertical">Whether to flip the image vertically.</param>
+        public static void RotateFlipInPlace(this Image image, int clockwise90DegreeTurns, bool flipHorizontal, bool flipVertical)
+        {
+            clockwise90DegreeTurns = (clockwise90DegreeTurns % 4 + 4) % 4;
+            if(clockwise90DegreeTurns == 0 && !flipHorizontal && !flipVertical)
+            {
+                return;
+            }
+#pragma warning disable CS8509
+            var type = (clockwise90DegreeTurns, flipHorizontal, flipVertical) switch
+            {
+                (0, false, true) => RotateFlipType.RotateNoneFlipY,
+                (0, true, false) => RotateFlipType.RotateNoneFlipX,
+                (0, true, true) => RotateFlipType.RotateNoneFlipXY,
+                (1, false, false) => RotateFlipType.Rotate90FlipNone,
+                (1, false, true) => RotateFlipType.Rotate90FlipY,
+                (1, true, false) => RotateFlipType.Rotate90FlipX,
+                (1, true, true) => RotateFlipType.Rotate90FlipXY,
+                (2, false, false) => RotateFlipType.Rotate180FlipNone,
+                (2, false, true) => RotateFlipType.Rotate180FlipY,
+                (2, true, false) => RotateFlipType.Rotate180FlipX,
+                (2, true, true) => RotateFlipType.Rotate180FlipXY,
+                (3, false, false) => RotateFlipType.Rotate270FlipNone,
+                (3, false, true) => RotateFlipType.Rotate270FlipY,
+                (3, true, false) => RotateFlipType.Rotate270FlipX,
+                (3, true, true) => RotateFlipType.Rotate270FlipXY
+            };
+#pragma warning restore CS8509
+            image.RotateFlip(type);
+        }
+
+        /// <summary>
         /// Retrieves the image metadata as a list of implementation-defined key-value pairs.
         /// </summary>
         /// <param name="image">The image to retrieve the metadata from.</param>
