@@ -45,6 +45,9 @@ namespace IS4.SFI.Tools.Images
         public override int BitDepth => Image.GetPixelFormatSize(UnderlyingImage.PixelFormat);
 
         /// <inheritdoc/>
+        public override bool Is32bppArgb => UnderlyingImage.PixelFormat == PixelFormat.Format32bppArgb;
+
+        /// <inheritdoc/>
         public override IReadOnlyList<Color> Palette {
             get {
                 try

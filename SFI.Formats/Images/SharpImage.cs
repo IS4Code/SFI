@@ -8,7 +8,6 @@ using SixLabors.ImageSharp.Formats;
 using SixLabors.ImageSharp.Formats.Png;
 using SixLabors.ImageSharp.Metadata;
 using SixLabors.ImageSharp.PixelFormats;
-using SixLabors.ImageSharp.Processing;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -97,6 +96,21 @@ namespace IS4.SFI.Tools.Images
             }
         }
 
+        static readonly Type pixelType32bppArgb = typeof(Bgra32);
+
+        /// <inheritdoc/>
+        public override bool Is32bppArgb {
+            [DynamicDependency(nameof(GetImagePixelType), typeof(SharpImage))]
+            get{
+                try{
+                    return pixelType32bppArgb.Equals(GetImagePixelType((dynamic)UnderlyingImage));
+                }catch(RuntimeBinderException)
+                {
+                    return false;
+                }
+            }
+        }
+
         /// <inheritdoc/>
         public override IReadOnlyList<Color> Palette => Array.Empty<Color>();
 
@@ -139,6 +153,16 @@ namespace IS4.SFI.Tools.Images
 
         /// <inheritdoc/>
         public override IReadOnlyList<KeyValuePair<long, ReadOnlyMemory<byte>>> RawMetadata => UnderlyingImage.GetRawMetadata();
+
+        /// <summary>
+        /// Retrieves the pixel type of an image, as a type implementing <see cref="IPixel{TSelf}"/>.
+        /// </summary>
+        /// <typeparam name="TPixel">The pixel type of the image.</typeparam>
+        /// <returns>The pixel type of an image.</returns>
+        protected static Type GetImagePixelType<TPixel>(Image<TPixel> image) where TPixel : unmanaged, IPixel<TPixel>
+        {
+            return typeof(TPixel);
+        }
 
         /// <inheritdoc/>
         [DynamicDependency(nameof(GetImagePixel), typeof(SharpImage))]

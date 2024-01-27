@@ -35,6 +35,11 @@ namespace IS4.SFI.Services
         double VerticalResolution { get; }
 
         /// <summary>
+        /// Whether the image is using the 32-bit ARGB pixel format (compatible with <see cref="Color.FromArgb(int)"/>.
+        /// </summary>
+        bool Is32bppArgb { get; }
+
+        /// <summary>
         /// Whether image has the alpha channel.
         /// </summary>
         bool HasAlpha { get; }
@@ -318,6 +323,9 @@ namespace IS4.SFI.Services
 
         /// <inheritdoc/>
         public abstract bool HasAlpha { get; }
+
+        /// <inheritdoc/>
+        public abstract bool Is32bppArgb { get; }
 
         /// <inheritdoc/>
         public abstract IReadOnlyList<Color> Palette { get; }
