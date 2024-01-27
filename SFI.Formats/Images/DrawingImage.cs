@@ -116,6 +116,12 @@ namespace IS4.SFI.Tools.Images
             var resized = UnderlyingImage.Resize(newWidth, newHeight, use32bppArgb ? PixelFormat.Format32bppArgb : UnderlyingImage.PixelFormat, backgroundColor, preserveResolution);
             return new DrawingImage(resized, UnderlyingFormat);
         }
+
+        /// <inheritdoc/>
+        public override ImageBase<Image> Clone()
+        {
+            return new DrawingImage(new Bitmap(UnderlyingImage), UnderlyingFormat);
+        }
     }
 
     /// <summary>

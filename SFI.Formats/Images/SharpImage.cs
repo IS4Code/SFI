@@ -8,6 +8,7 @@ using SixLabors.ImageSharp.Formats;
 using SixLabors.ImageSharp.Formats.Png;
 using SixLabors.ImageSharp.Metadata;
 using SixLabors.ImageSharp.PixelFormats;
+using SixLabors.ImageSharp.Processing;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -241,6 +242,12 @@ namespace IS4.SFI.Tools.Images
         {
             var resized = Image.Resize(newWidth, newHeight, use32bppArgb, backgroundColor, preserveResolution);
             return new SharpImage(resized, UnderlyingFormat);
+        }
+
+        public override ImageBase<IImage> Clone()
+        {
+            var cloned = Image.Clone(delegate { });
+            return new SharpImage(cloned, UnderlyingFormat);
         }
     }
 

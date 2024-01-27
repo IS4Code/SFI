@@ -12,7 +12,7 @@ namespace IS4.SFI.Services
     /// <summary>
     /// A basic image or bitmap interface, supporting pixel access.
     /// </summary>
-    public interface IImage : IIdentityKey, IDisposable
+    public interface IImage : IIdentityKey, IDisposable, ICloneable
     {
         /// <summary>
         /// The width of the image, in pixels.
@@ -327,6 +327,12 @@ namespace IS4.SFI.Services
         /// <inheritdoc/>
         public abstract IImage Resize(int newWith, int newHeight, bool preserveResolution, bool use32bppArgb, Color backgroundColor);
 
+        /// <summary>
+        /// Creates a new image that copies all data from this instance.
+        /// </summary>
+        /// <returns>The cloned image.</returns>
+        public abstract ImageBase<TUnderlying> Clone();
+
         /// <inheritdoc cref="IIdentityKey.ReferenceKey"/>
         protected virtual object? ReferenceKey => underlyingImage;
 
@@ -336,6 +342,8 @@ namespace IS4.SFI.Services
         object? IIdentityKey.ReferenceKey => ReferenceKey;
 
         object? IIdentityKey.DataKey => DataKey;
+
+        object ICloneable.Clone() => Clone();
 
         /// <inheritdoc/>
         public Color this[Point point] {
