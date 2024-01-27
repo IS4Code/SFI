@@ -1,4 +1,5 @@
-﻿using IS4.SFI.Services;
+﻿using IS4.SFI.MediaAnalysis.Images;
+using IS4.SFI.Services;
 using IS4.SFI.Tools.IO;
 using Microsoft.CSharp.RuntimeBinder;
 using SixLabors.ImageSharp;
@@ -9,7 +10,6 @@ using SixLabors.ImageSharp.Metadata;
 using SixLabors.ImageSharp.Metadata.Profiles.Exif;
 using SixLabors.ImageSharp.Metadata.Profiles.Iptc;
 using SixLabors.ImageSharp.PixelFormats;
-using SixLabors.ImageSharp.Processing;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -240,42 +240,11 @@ namespace IS4.SFI.Formats
             Image.Save(output, encoder);
         }
 
-        static readonly Configuration createConfiguration = new()
-        {
-            PreferContiguousImageBuffers = true
-        };
-
         /// <inheritdoc/>
         public override Services.IImage Resize(int newWidth, int newHeight, bool preserveResolution, bool use32bppArgb, Color backgroundColor)
         {
-            var resizeOptions = new ResizeOptions
-            {
-                Size = new(newWidth, newHeight),
-                Mode = ResizeMode.Stretch
-            };
-            Action<IImageProcessingContext> operation = context => {
-                if(backgroundColor.A != 0)
-                {
-                    context = context.BackgroundColor(new(new Bgra32(backgroundColor.R, backgroundColor.G, backgroundColor.B, backgroundColor.A)));
-                }
-                context = context.Resize(resizeOptions);
-            };
-            Image clone;
-            if(use32bppArgb)
-            {
-                clone = Image.CloneAs<Bgra32>(createConfiguration);
-                clone.Mutate(operation);
-            }else{
-                clone = Image.Clone(createConfiguration, operation);
-            }
-            if(preserveResolution)
-            {
-                float xCoef = (float)clone.Width / Image.Width;
-                float yCoef = (float)clone.Height / Image.Height;
-                clone.Metadata.HorizontalResolution = Image.Metadata.HorizontalResolution * xCoef;
-                clone.Metadata.VerticalResolution = Image.Metadata.VerticalResolution * yCoef;
-            }
-            return new SharpImage(clone, UnderlyingFormat);
+            var resized = SharpImageTools.ResizeImage(Image, newWidth, newHeight, use32bppArgb, backgroundColor, preserveResolution);
+            return new SharpImage(resized, UnderlyingFormat);
         }
 
         abstract class MetadataView<TKey, TValue> : IReadOnlyList<KeyValuePair<TKey, TValue>>
