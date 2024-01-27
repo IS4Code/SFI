@@ -1,7 +1,7 @@
 ﻿using IS4.SFI.Analyzers;
-using IS4.SFI.Formats;
 using IS4.SFI.Tags;
 using IS4.SFI.Tools;
+using IS4.SFI.Tools.Images;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;

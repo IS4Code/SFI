@@ -1,6 +1,7 @@
 ﻿using IS4.SFI.Formats;
 using IS4.SFI.Services;
 using IS4.SFI.Tools;
+using IS4.SFI.Tools.Images;
 using IS4.SFI.Vocabulary;
 using System;
 using System.Collections;
