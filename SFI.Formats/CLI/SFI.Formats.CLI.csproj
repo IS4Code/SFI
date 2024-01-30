@@ -40,7 +40,30 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\SFI\SFI.csproj" />
+    <ProjectReference Include="..\CLI.Assembly\SFI.Formats.CLI.Assembly.csproj">
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <SkipGetTargetFrameworkProperties>true</SkipGetTargetFrameworkProperties>
+    </ProjectReference>
     <ProjectReference Include="..\Modules\SFI.Formats.Modules.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="EmbeddedAssemblies.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EmbeddedAssemblies.txt</LastGenOutput>
+    </None>
+    <None Update="EmbeddedAssemblies.txt">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>EmbeddedAssemblies.tt</DependentUpon>
+    </None>
+    <EmbeddedResource Include="EmbeddedAssemblies.txt">
+      <LogicalName>EmbeddedAssemblies.txt</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
 
 </Project>

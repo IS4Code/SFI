@@ -1,0 +1,17 @@
+<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="$(SolutionDir)\SFI.Formats\CLI.Assembly\bin\$(Configuration)\net4.6\SFI.Formats.CLI.Assembly.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Runtime.Versioning" #>
+<#@ import namespace="SFI.Formats.CLI.Assembly" #>
+<#@ output extension=".txt" #>
+<#
+
+var framework = AppDomain.CurrentDomain.SetupInformation.TargetFrameworkName;
+var version = new FrameworkName(framework).Version.ToString();
+
+foreach(var pair in AssemblyApiEncoder.EncodeSystemAssemblies(version))
+{
+	WriteLine(pair.Key);
+	WriteLine(pair.Value);
+}
+#>
