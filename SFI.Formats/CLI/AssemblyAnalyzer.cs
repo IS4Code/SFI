@@ -27,6 +27,7 @@ namespace IS4.SFI.Analyzers
             { typeof(AssemblyCompanyAttribute).FullName, (Properties.Creator, true) },
             { typeof(AssemblyCopyrightAttribute).FullName, (Properties.CopyrightNotice, true) },
             { typeof(AssemblyInformationalVersionAttribute).FullName, (Properties.SoftwareVersion, false) },
+            { typeof(AssemblyFileVersionAttribute).FullName, (Properties.Version, false) },
             { typeof(AssemblyTitleAttribute).FullName, (Properties.Title, true) },
             { typeof(AssemblyDescriptionAttribute).FullName, (Properties.Description, true) },
         };
@@ -39,13 +40,14 @@ namespace IS4.SFI.Analyzers
             var name = assembly.GetName();
             node.Set(Properties.Name, name.FullName);
             node.Set(Properties.Version, name.Version.ToString());
+            node.Set(Properties.Broader, AssemblyMetadataItemUriFormatter.Instance, name);
 
             var language = new LanguageCode(name.CultureInfo);
 
             foreach(var attribute in assembly.GetCustomAttributesData())
             {
                 string type;
-                dynamic value;
+                object value;
                 try{
                     if(attribute.ConstructorArguments.Count != 1)
                     {
@@ -64,12 +66,16 @@ namespace IS4.SFI.Analyzers
                 if(predefinedProperties.TryGetValue(type, out var def))
                 {
                     var (propUri, useLang) = def;
-                    if(useLang)
+                    if(useLang && value is string strValue)
                     {
-                        node.Set(propUri, value, language);
+                        node.Set(propUri, strValue, language);
                     }else{
-                        node.Set(propUri, value);
+                        node.Set(propUri, (dynamic)value);
                     }
+                }else if(type == "System.Runtime.InteropServices.GuidAttribute" && value is string guidStr && Guid.TryParse(guidStr, out var guid))
+                {
+                    node.Set(Properties.Identifier, guidStr);
+                    node.Set(Properties.Broader, UriTools.UuidUriFormatter, guid);
                 }
             }
 
