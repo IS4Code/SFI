@@ -311,6 +311,16 @@ namespace IS4.SFI
         {
             return new Uri("urn:uuid:" + guid.ToString("D"), UriKind.Absolute);
         }
+        
+        /// <summary>
+        /// A formatter producing <c>urn:uuid:</c> URIs from instances of <see cref="Guid"/>.
+        /// </summary>
+        public static readonly IGenericUriFormatter<Guid> UuidUriFormatter = new UuidUriFormatterClass();
+
+        class UuidUriFormatterClass : IGenericUriFormatter<Guid>
+        {
+            public Uri this[Guid value] => CreateUuid(value);
+        }
 
         static string ShortenUriPart(string str, int maxPartLength)
         {
