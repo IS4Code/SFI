@@ -18,6 +18,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web;
 using System.Xml.Linq;
 using ExecutionContext = NuGet.ProjectManagement.ExecutionContext;
 using ILogger = Microsoft.Extensions.Logging.ILogger;
@@ -112,38 +113,7 @@ namespace IS4.SFI.Application.Tools.NuGet
         /// <inheritdoc/>
         public async ValueTask<Plugin> GetPluginAsync(string id, CancellationToken cancellationToken)
         {
-            var split = id.Split(idVersionSeparators);
-            var idName = split[0];
-
-            NuGetVersion? version = null;
-            if(split.Length <= 1)
-            {
-                LoggerAdapter? logger = null;
-                foreach(var repository in repositories)
-                {
-                    var find = await repository.GetResourceAsync<FindPackageByIdResource>();
-                    logger ??= new(this);
-                    var allVersions = await find.GetAllVersionsAsync(idName, sourceCacheContext, logger, cancellationToken);
-                    var relVersions = allVersions.Where(v => !v.IsPrerelease);
-                    if(relVersions.Any())
-                    {
-                        version = relVersions.Max();
-                    }else if(allVersions.Any())
-                    {
-                        version = allVersions.Max();
-                    }
-                }
-                if(version == null)
-                {
-                    throw new ArgumentException($"The package {idName} could not be resolved.", nameof(id));
-                }
-            }else if(split.Length > 2)
-            {
-                throw new ArgumentException($"The package identifier '{id}' has unrecognized format.", nameof(id));
-            }else{
-                version = NuGetVersion.Parse(split[1]);
-            }
-            var identity = new PackageIdentity(idName, version);
+            var identity = await ParsePackageIdentifier(id, cancellationToken);
 
             var resolutionContext = new ResolutionContext(
                 DependencyBehavior.Lowest,
@@ -195,9 +165,73 @@ namespace IS4.SFI.Application.Tools.NuGet
                 return true;
             });
 
-            currentPlugin = new(idName);
+            currentPlugin = new(identity.Id);
             await manager.ExecuteNuGetProjectActionsAsync(this, actions, this, sourceCacheContext, cancellationToken);
             return currentPlugin.Plugin;
+        }
+
+        private async Task<PackageIdentity> ParsePackageIdentifier(string id, CancellationToken cancellationToken)
+        {
+            string idName;
+            NuGetVersion version;
+
+            if(id.StartsWith("?"))
+            {
+                var fields = HttpUtility.ParseQueryString(id);
+                idName = fields["package"];
+                if(String.IsNullOrEmpty(idName))
+                {
+                    throw new ArgumentException($"The package identifier '{id}' has unrecognized format.", nameof(id));
+                }
+                var versionStr = fields["version"];
+                if(String.IsNullOrEmpty(idName))
+                {
+                    version = await GetPackageVersion(idName, cancellationToken);
+                }else{
+                    version = NuGetVersion.Parse(versionStr);
+                }
+            }else{
+                var split = id.Split(idVersionSeparators);
+                idName = split[0];
+
+                if(split.Length <= 1)
+                {
+                    version = await GetPackageVersion(idName, cancellationToken);
+                }else if(split.Length > 2)
+                {
+                    throw new ArgumentException($"The package identifier '{id}' has unrecognized format.", nameof(id));
+                }else{
+                    version = NuGetVersion.Parse(split[1]);
+                }
+            }
+
+            return new PackageIdentity(idName, version);
+        }
+
+        private async Task<NuGetVersion> GetPackageVersion(string id, CancellationToken cancellationToken)
+        {
+            NuGetVersion? version = null;
+
+            LoggerAdapter? logger = null;
+            foreach(var repository in repositories)
+            {
+                var find = await repository.GetResourceAsync<FindPackageByIdResource>();
+                logger ??= new(this);
+                var allVersions = await find.GetAllVersionsAsync(id, sourceCacheContext, logger, cancellationToken);
+                var relVersions = allVersions.Where(v => !v.IsPrerelease);
+                if(relVersions.Any())
+                {
+                    version = relVersions.Max();
+                }else if(allVersions.Any())
+                {
+                    version = allVersions.Max();
+                }
+            }
+            if(version == null)
+            {
+                throw new ArgumentException($"The package {id} could not be resolved.", nameof(id));
+            }
+            return version;
         }
 
         /// <summary>

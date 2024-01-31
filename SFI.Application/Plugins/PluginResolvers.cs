@@ -49,7 +49,7 @@ namespace IS4.SFI.Application.Plugins
                 }
             }
 
-            var uriPath = uri.AbsolutePath;
+            var uriPath = uri.PathAndQuery;
             switch(uri.Scheme.ToLowerInvariant())
             {
                 case "file":
@@ -210,7 +210,7 @@ namespace IS4.SFI.Application.Plugins
         /// <summary>
         /// Retrieves a new <see cref="Plugin"/> instance from NuGet.
         /// </summary>
-        /// <param name="id">The identifier of the plugin, as <c>{package}/{version}</c>.</param>
+        /// <param name="id">The identifier of the plugin, as <c>{package}/{version}</c> or <c>?package={package}&amp;version={version}</c>.</param>
         /// <param name="cancellationToken">The token to cancel the operation.</param>
         /// <returns>A plugin instance based on <paramref name="id"/>.</returns>
         public async ValueTask<Plugin> GetPluginFromNuGet(string id, CancellationToken cancellationToken)
