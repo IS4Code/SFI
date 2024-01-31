@@ -85,7 +85,7 @@ namespace IS4.SFI.Tests
                             using var fileStream = File.Create(cachedFile);
                             await stream.CopyToAsync(fileStream);
                             break;
-                        }catch(HttpRequestException e) when(i == 0)
+                        }catch(HttpRequestException) when(i == 0)
                         {
                             downloadUri = "http://web.archive.org/web/2022id_/" + downloadUri;
                         }
@@ -152,7 +152,7 @@ namespace IS4.SFI.Tests
             /// <summary>
             /// The default image analyzer.
             /// </summary>
-            public ImageAnalyzer ImageAnalyzer { get; private set; }
+            public ImageAnalyzer? ImageAnalyzer { get; private set; }
 
             /// <inheritdoc/>
             public TestInspector()
