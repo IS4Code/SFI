@@ -73,6 +73,8 @@ namespace IS4.SFI
 		bool dataOnly;
 		bool onlyOnce;
 
+		ILogger? logger;
+
         /// <summary>
         /// Runs the application with the supplied arguments.
         /// </summary>
@@ -102,7 +104,7 @@ namespace IS4.SFI
 				{
 					inspector.AdditionalPluginIdentifiers.Add(plugin);
 				}
-				var logger = inspector.OutputLog;
+				logger = inspector.OutputLog;
 				await inspector.AddDefault();
 
 				ConfigurationTools.RegisterCustomDescriptors();
@@ -316,7 +318,7 @@ namespace IS4.SFI
 					return value;
 				}
 				return null;
-			});
+			}, logger);
 
 			foreach(var pair in properties)
             {
@@ -363,6 +365,10 @@ namespace IS4.SFI
 			}
 			foreach(var prop in ConfigurationTools.GetConfigurableProperties(component))
 			{
+				if(prop.IsObsolete(out _))
+				{
+					continue;
+				}
 				var value = prop.GetValue(component);
 				var type = Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType;
 				var converter = prop.Converter;

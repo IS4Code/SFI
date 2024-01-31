@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace IS4.SFI.Application.Tools
@@ -63,13 +66,28 @@ namespace IS4.SFI.Application.Tools
             return false;
         }
 
+        static readonly Type obsoleteType = typeof(ObsoleteAttribute);
+
+        /// <summary>
+        /// Checks whether <paramref name="member"/> is obsolete.
+        /// </summary>
+        /// <param name="member">The member to check.</param>
+        /// <param name="attribute">The variable to receive the attribute instance.</param>
+        /// <returns><see langword="true"/> is marked as obsolete, <see langword="false"/> otherwise.</returns>
+        public static bool IsObsolete(this MemberDescriptor member, [MaybeNullWhen(false)] out ObsoleteAttribute attribute)
+        {
+            attribute = member.Attributes[obsoleteType] as ObsoleteAttribute;
+            return attribute != null;
+        }
+
         /// <summary>
         /// Assigns the values of properties on a component.
         /// </summary>
         /// <param name="component">The component to assign to.</param>
         /// <param name="componentName">The name of the component, for diagnostics.</param>
         /// <param name="valueMap">The function that maps property names to their values.</param>
-        public static void SetProperties(object component, string componentName, Func<string, string?> valueMap)
+        /// <param name="logger">The <see cref="ILogger"/> instance to use for logging.</param>
+        public static void SetProperties(object component, string componentName, Func<string, string?> valueMap, ILogger? logger)
         {
             var batch = component as ISupportInitialize;
             batch?.BeginInit();
@@ -80,6 +98,10 @@ namespace IS4.SFI.Application.Tools
 				    var name = TextTools.FormatComponentName(prop.Name);
 				    if(valueMap(name) is string value)
 				    {
+                        if(prop.IsObsolete(out var info))
+                        {
+                            logger?.Log(info.IsError ? LogLevel.Error : LogLevel.Warning, $"Property {componentName}:{name} is obsolete: " + info.Message);
+                        }
 					    // This property is given a value
 					    var converter = prop.Converter;
 					    object? convertedValue = null;
@@ -129,6 +151,11 @@ namespace IS4.SFI.Application.Tools
             return false;
         }
 
+        static readonly Dictionary<Type, string> primaryProperties = new()
+        {
+            { typeof(ObsoleteAttribute), nameof(ObsoleteAttribute.Message) }
+        };
+
         /// <summary>
         /// Retrieves a collection of key-value pairs for each textual attribute from <paramref name="attributes"/>.
         /// </summary>
@@ -149,21 +176,24 @@ namespace IS4.SFI.Application.Tools
                 }
                 attrName = attrName.Substring(0, attrName.Length - attributeSuffix.Length);
 
-                var mainProperty = attrType.GetProperty(attrName, System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
+                var mainProperty = attrType.GetProperty(attrName, BindingFlags.Public | BindingFlags.Instance);
 				if(mainProperty == null || !stringType.Equals(mainProperty.PropertyType))
 				{
-					var properties = attrType.GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance).Where(p => stringType.Equals(p.PropertyType)).Take(2).ToList();
-					if(properties.Count != 1)
+                    if(!primaryProperties.TryGetValue(attrType, out var mainPropertyName) || (mainProperty = attrType.GetProperty(mainPropertyName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)) == null)
                     {
-						// Can't find single string property
-                        continue;
+					    var properties = attrType.GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(p => stringType.Equals(p.PropertyType)).Take(2).ToList();
+					    if(properties.Count != 1)
+                        {
+						    // Can't find single string property
+                            continue;
+                        }
+					    mainProperty = properties[0];
+					    if(!attrName.Contains(mainProperty.Name))
+					    {
+						    // Name is not similar enough
+						    continue;
+					    }
                     }
-					mainProperty = properties[0];
-					if(!attrName.Contains(mainProperty.Name))
-					{
-						// Name is not similar enough
-						continue;
-					}
 				}
 
 				var value = mainProperty.GetValue(attr) as string;
