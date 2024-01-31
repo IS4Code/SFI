@@ -66,29 +66,29 @@ namespace IS4.SFI.Formats
                 }
                 return null;
             }
-        }
 
-        static readonly Dictionary<string, byte[]> dummyAssemblies = GetAssemblies();
+            static readonly Dictionary<string, byte[]> dummyAssemblies = GetAssemblies();
 
-        static Dictionary<string, byte[]> GetAssemblies()
-        {
-            var assemblies = new Dictionary<string, byte[]>(StringComparer.OrdinalIgnoreCase);
-
-            using var resource = typeof(Resolver).Assembly.GetManifestResourceStream("EmbeddedAssemblies.txt");
-            using var reader = new StreamReader(resource);
-            string? name;
-            while((name = reader.ReadLine()) != null)
+            static Dictionary<string, byte[]> GetAssemblies()
             {
-                var base64 = reader.ReadLine()!;
-                var bytes = Convert.FromBase64String(base64);
-                using var buffer = new MemoryStream(bytes);
-                using var deflate = new DeflateStream(buffer, CompressionMode.Decompress);
-                using var output = new MemoryStream();
-                deflate.CopyTo(output);
-                assemblies[name] = output.ToArray();
-            }
+                var assemblies = new Dictionary<string, byte[]>(StringComparer.OrdinalIgnoreCase);
 
-            return assemblies;
+                using var resource = typeof(Resolver).Assembly.GetManifestResourceStream("EmbeddedAssemblies.txt");
+                using var reader = new StreamReader(resource);
+                string? name;
+                while((name = reader.ReadLine()) != null)
+                {
+                    var base64 = reader.ReadLine()!;
+                    var bytes = Convert.FromBase64String(base64);
+                    using var buffer = new MemoryStream(bytes);
+                    using var deflate = new DeflateStream(buffer, CompressionMode.Decompress);
+                    using var output = new MemoryStream();
+                    deflate.CopyTo(output);
+                    assemblies[name] = output.ToArray();
+                }
+
+                return assemblies;
+            }
         }
     }
 }
