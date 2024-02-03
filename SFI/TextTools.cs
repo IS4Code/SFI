@@ -438,9 +438,9 @@ namespace IS4.SFI
         static bool TypeConverterHasDefinedStringConversion(TypeConverter converter)
         {
             var type = converter.GetType();
-            if(type.Equals(converter))
+            if(typeConverterType.Equals(type))
             {
-                // the basic conversion to string is not desirable
+                // the default conversion to string is not desirable
                 return false;
             }
             if(!converter.CanConvertTo(stringType))
