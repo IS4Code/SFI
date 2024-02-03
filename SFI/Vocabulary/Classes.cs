@@ -8,6 +8,7 @@
     /// </summary>
     public static class Classes
     {
+        #region schema
         /// <summary>
         /// <c><see cref="Schema"/>:Photograph</c>.
         /// </summary>
@@ -49,7 +50,9 @@
         /// </summary>
         [Uri(Schema)]
         public static readonly ClassUri DigitalDocument;
+        #endregion
 
+        #region cnt
         /// <summary>
         /// <c><see cref="Cnt"/>:ContentAsText</c>.
         /// </summary>
@@ -73,7 +76,9 @@
         /// </summary>
         [Uri(Cnt)]
         public static readonly ClassUri DoctypeDecl;
+        #endregion
 
+        #region nfo
         /// <summary>
         /// <c><see cref="Nfo"/>:ArchiveItem</c>.
         /// </summary>
@@ -151,6 +156,7 @@
         /// </summary>
         [Uri(Nfo)]
         public static readonly ClassUri EmbeddedFileDataObject;
+        #endregion
 
         /// <summary>
         /// <c><see cref="Nmo"/>:Message</c>.
@@ -170,6 +176,7 @@
         [Uri(Exif)]
         public static readonly ClassUri IFD;
 
+        #region xis
         /// <summary>
         /// <c><see cref="Xis"/>:Document</c>.
         /// </summary>
@@ -235,6 +242,7 @@
         /// </summary>
         [Uri(Xis, "Namespace")]
         public static readonly ClassUri XmlNamespace;
+        #endregion
 
         /// <summary>
         /// <c><see cref="Sec"/>:Digest</c>.
@@ -248,6 +256,7 @@
         [Uri(Cert)]
         public static readonly ClassUri X509Certificate;
 
+        #region http
         /// <summary>
         /// <c><see cref="Http"/>:Request</c>.
         /// </summary>
@@ -265,7 +274,9 @@
         /// </summary>
         [Uri(Http, "MessageHeader")]
         public static readonly ClassUri HttpMessageHeader;
+        #endregion
 
+        #region uriv
         /// <summary>
         /// <c><see cref="Uriv"/>:Mimetype</c>.
         /// </summary>
@@ -295,6 +306,7 @@
         /// </summary>
         [Uri(Uriv, "Suffix")]
         public static readonly ClassUri Extension;
+        #endregion
 
         static Classes()
         {

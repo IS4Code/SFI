@@ -8,6 +8,7 @@
     /// </summary>
     public static class Datatypes
     {
+        #region rdf
         /// <summary>
         /// <c><see cref="Rdf"/>:XMLLiteral</c>.
         /// </summary>
@@ -25,7 +26,9 @@
         /// </summary>
         [Uri(Rdf, "JSON")]
         public static readonly DatatypeUri Json;
+        #endregion
 
+        #region xsd
         /// <summary>
         /// <c><see cref="Xsd"/>:anyURI</c>.
         /// </summary>
@@ -61,6 +64,7 @@
         /// </summary>
         [Uri(Xsd)]
         public static readonly DatatypeUri DateTime;
+        #endregion
 
         /// <summary>
         /// <c><see cref="Owl"/>:rational</c>.
@@ -68,6 +72,7 @@
         [Uri(Owl)]
         public static readonly DatatypeUri Rational;
 
+        #region dt
         /// <summary>
         /// <c><see cref="Dt"/>:byte</c>.
         /// </summary>
@@ -91,6 +96,7 @@
         /// </summary>
         [Uri(Dt)]
         public static readonly DatatypeUri KilobitPerSecond;
+        #endregion
 
         static Datatypes()
         {

@@ -9,6 +9,7 @@
     /// </summary>
     public static class Properties
     {
+        #region rdf
         /// <summary>
         /// <c><see cref="Rdf"/>:type</c>.
         /// </summary>
@@ -37,7 +38,9 @@
         /// <c><see cref="Rdf"/>:_nnn</c>.
         /// </summary>
         public static readonly IPropertyUriFormatter<int> MemberAt = new UriTools.PrefixFormatter<int>(Rdf + "_");
+        #endregion
 
+        #region rdfs
         /// <summary>
         /// <c><see cref="Rdfs"/>:label</c>.
         /// </summary>
@@ -55,7 +58,9 @@
         /// </summary>
         [Uri(Rdfs)]
         public static readonly PropertyUri IsDefinedBy;
+        #endregion
 
+        #region owl
         /// <summary>
         /// <c><see cref="Owl"/>:sameAs</c>.
         /// </summary>
@@ -67,7 +72,9 @@
         /// </summary>
         [Uri(Owl)]
         public static readonly PropertyUri EquivalentProperty;
+        #endregion
 
+        #region dcterms
         /// <summary>
         /// <c><see cref="Dcterms"/>:description</c>.
         /// </summary>
@@ -139,6 +146,7 @@
         /// </summary>
         [Uri(Dcterms)]
         public static readonly PropertyUri Provenance;
+        #endregion
 
         /// <summary>
         /// <c><see cref="Dbo"/>:originalName</c>.
@@ -146,6 +154,7 @@
         [Uri(Dbo)]
         public static readonly PropertyUri OriginalName;
 
+        #region cnt
         /// <summary>
         /// <c><see cref="Cnt"/>:bytes</c>.
         /// </summary>
@@ -211,6 +220,7 @@
         /// </summary>
         [Uri(Cnt)]
         public static readonly PropertyUri DtDecl;
+        #endregion
 
         /// <summary>
         /// <c><see cref="Foaf"/>:depicts</c>.
@@ -218,6 +228,7 @@
         [Uri(Foaf)]
         public static readonly PropertyUri Depicts;
 
+        #region sec
         /// <summary>
         /// <c><see cref="Sec"/>:canonicalizationAlgorithm</c>.
         /// </summary>
@@ -241,7 +252,9 @@
         /// </summary>
         [Uri(Sec)]
         public static readonly PropertyUri Expiration;
+        #endregion
 
+        #region schema
         /// <summary>
         /// <c><see cref="Schema"/>:name</c>.
         /// </summary>
@@ -313,7 +326,9 @@
         /// </summary>
         [Uri(Schema)]
         public static readonly PropertyUri SerialNumber;
+        #endregion
 
+        #region nie
         /// <summary>
         /// <c><see cref="Nie"/>:interpretedAs</c>.
         /// </summary>
@@ -337,7 +352,9 @@
         /// </summary>
         [Uri(Nie)]
         public static readonly PropertyUri MimeType;
+        #endregion
 
+        #region nfo
         /// <summary>
         /// <c><see cref="Nfo"/>:fileName</c>.
         /// </summary>
@@ -529,7 +546,9 @@
         /// </summary>
         [Uri(Nfo)]
         public static readonly PropertyUri FrameRate;
+        #endregion
 
+        #region nmo
         /// <summary>
         /// <c><see cref="Nmo"/>:messageId</c>.
         /// </summary>
@@ -547,7 +566,9 @@
         /// </summary>
         [Uri(Nmo)]
         public static readonly PropertyUri MessageHeader;
+        #endregion
 
+        #region skos
         /// <summary>
         /// <c><see cref="Skos"/>:broader</c>.
         /// </summary>
@@ -583,7 +604,9 @@
         /// </summary>
         [Uri(Skos)]
         public static readonly PropertyUri Notation;
+        #endregion
 
+        #region xis
         /// <summary>
         /// <c><see cref="Xis"/>:attributes</c>.
         /// </summary>
@@ -763,7 +786,9 @@
         /// </summary>
         [Uri(Xis, "version")]
         public static readonly PropertyUri XmlDocumentVersion;
+        #endregion
 
+        #region http
         /// <summary>
         /// <c><see cref="Http"/>:resp</c>.
         /// </summary>
@@ -853,7 +878,9 @@
         /// </summary>
         [Uri(Http, "body")]
         public static readonly PropertyUri HttpBody;
+        #endregion
 
+        #region at
         /// <summary>
         /// <c><see cref="At"/>:digest</c>.
         /// </summary>
@@ -901,6 +928,7 @@
         /// </summary>
         [Uri(At)]
         public static readonly PropertyUri Visited;
+        #endregion
 
         static Properties()
         {

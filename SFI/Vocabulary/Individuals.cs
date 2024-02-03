@@ -14,6 +14,7 @@
         [Uri(Rdf)]
         public static readonly IndividualUri Nil;
 
+        #region dsm, dsm2, ds, enc
         /// <summary>
         /// <c><see cref="Dsm"/>:md5</c>.
         /// </summary>
@@ -85,6 +86,7 @@
         /// </summary>
         [Uri(Dsm2)]
         public static readonly IndividualUri Whirlpool;
+        #endregion
 
         /// <summary>
         /// <c><see cref="At"/>:dhash</c>.
@@ -92,6 +94,7 @@
         [Uri(At, "dhash")]
         public static readonly IndividualUri DHash;
 
+        #region nfo
         /// <summary>
         /// <c><see cref="Nfo"/>:losslessCompressionType</c>.
         /// </summary>
@@ -115,6 +118,7 @@
         /// </summary>
         [Uri(Nfo)]
         public static readonly IndividualUri EncryptedStatus;
+        #endregion
 
         static Individuals()
         {
