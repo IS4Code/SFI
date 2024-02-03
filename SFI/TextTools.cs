@@ -2,6 +2,7 @@
 using IS4.SFI.Tools;
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
@@ -10,6 +11,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Xml;
 
 namespace IS4.SFI
 {
@@ -243,6 +245,175 @@ namespace IS4.SFI
         public static string GetImpliedMediaTypeFromInterpreter(string interpreter)
         {
             return "application/prs.implied-executable;interpreter=" + FormatMimeParameter(interpreter);
+        }
+
+        /// <summary>
+        /// Creates an implied media type from a JSON object using the types of its root members.
+        /// </summary>
+        /// <param name="rootMemberTypes">
+        /// A map from the root member names to their types. Only values "object", "array", "number", "string", "boolean", or "null" are permitted.
+        /// </param>
+        /// <returns>A MIME type in the form of
+        /// <c>application/prs.implied-object+json;{name}={type}…</c>.
+        /// </returns>
+        /// <remarks>
+        /// <para>For efficient handling, <paramref name="rootMemberTypes"/> should
+        /// be an instance of <see cref="SortedDictionary{TKey, TValue}"/>
+        /// or <see cref="ImmutableSortedDictionary{TKey, TValue}"/>
+        /// using <see cref="StringComparer.OrdinalIgnoreCase"/>.</para>
+        /// <para>The "null" type is ignored when producing the MIME type.</para>
+        /// </remarks>
+        /// <exception cref="ArgumentException">
+        /// <paramref name="rootMemberTypes"/> contains duplicate members with differing types,
+        /// or contains invalid types.
+        /// </exception>
+        public static string GetImpliedMediaTypeFromJson(IReadOnlyDictionary<string, string> rootMemberTypes)
+        {
+            var normalized = rootMemberTypes.Select(pair => new KeyValuePair<string, string>(pair.Key.ToLowerInvariant(), pair.Value.ToLowerInvariant()));
+            return GetImpliedMediaTypeFromMembers("application/prs.implied-object+json", normalized, IsSortedDictionary(rootMemberTypes), allowedJsonTypes, nameof(rootMemberTypes));
+        }
+
+        /// <summary>
+        /// Creates an implied media type from a JSON object sequence using the types of the root members.
+        /// </summary>
+        /// <param name="rootMemberTypes">
+        /// A map from the root member names to their types. Only values "object", "array", "number", "string", "boolean", or "null" are permitted.
+        /// </param>
+        /// <returns>A MIME type in the form of
+        /// <c>application/prs.implied-object+json-seq;{name}={type}…</c>.
+        /// </returns>
+        /// <remarks>
+        /// See <see cref="GetImpliedMediaTypeFromJson(IReadOnlyDictionary{string, string})"/> for more details.
+        /// </remarks>
+        /// <exception cref="ArgumentException">
+        /// <paramref name="rootMemberTypes"/> contains duplicate members with differing types,
+        /// or contains invalid types.
+        /// </exception>
+        public static string GetImpliedMediaTypeFromJsonSequence(IReadOnlyDictionary<string, string> rootMemberTypes)
+        {
+            var normalized = rootMemberTypes.Select(pair => new KeyValuePair<string, string>(pair.Key.ToLowerInvariant(), pair.Value.ToLowerInvariant()));
+            return GetImpliedMediaTypeFromMembers("application/prs.implied-object+json-seq", normalized, IsSortedDictionary(rootMemberTypes), allowedJsonTypes, nameof(rootMemberTypes));
+        }
+
+        /// <summary>
+        /// Creates an implied media type from a YAML document using the tags of its top-level mappings.
+        /// </summary>
+        /// <param name="topLevelTags">
+        /// A map from the top-level keys to their tags.
+        /// </param>
+        /// <returns>A MIME type in the form of
+        /// <c>application/prs.implied-object+yaml;{key}={tag}…</c>.
+        /// </returns>
+        /// <remarks>
+        /// See <see cref="GetImpliedMediaTypeFromJson(IReadOnlyDictionary{string, string})"/> for more details.
+        /// </remarks>
+        /// <exception cref="ArgumentException">
+        /// <paramref name="topLevelTags"/> contains duplicate entries with differing tags.
+        /// </exception>
+        public static string GetImpliedMediaTypeFromYaml(IReadOnlyDictionary<string, Uri> topLevelTags)
+        {
+            var normalized = topLevelTags.Select(
+                pair => new KeyValuePair<string, string>
+                (
+                    pair.Key.ToLowerInvariant(),
+                    ShortenYamlTag(pair.Value.AbsoluteUri)
+                )
+            );
+            return GetImpliedMediaTypeFromMembers("application/prs.implied-object+yaml", normalized, IsSortedDictionary(topLevelTags), null, nameof(topLevelTags));
+        }
+
+        static string ShortenYamlTag(string tagUri)
+        {
+            const string standardTagPrefix = "tag:yaml.org,2002:";
+
+            if(tagUri.StartsWith(standardTagPrefix))
+            {
+                var shortened = tagUri.Substring(standardTagPrefix.Length);
+                if(!Uri.IsWellFormedUriString(shortened, UriKind.Absolute))
+                {
+                    return shortened;
+                }
+            }
+            return tagUri;
+        }
+
+        static readonly StringComparer memberNameComparer = StringComparer.OrdinalIgnoreCase;
+
+        static bool IsSortedDictionary<TValue>(IReadOnlyDictionary<string, TValue> dictionary)
+        {
+            switch(dictionary)
+            {
+                case SortedDictionary<string, TValue> sorted:
+                    return memberNameComparer.Equals(sorted.Comparer);
+                case ImmutableSortedDictionary<string, TValue> immutableSorted:
+                    return memberNameComparer.Equals(immutableSorted.KeyComparer);
+            }
+            return false;
+        }
+
+        static readonly HashSet<string> allowedJsonTypes = new(StringComparer.Ordinal)
+        {
+            "object", "array", "number", "string", "boolean"
+        };
+
+        static string GetImpliedMediaTypeFromMembers(string prefix, IEnumerable<KeyValuePair<string, string>> types, bool isSorted, HashSet<string>? allowedTypes, string typesArgumentName)
+        {
+            types = types.Where(
+                pair => {
+                    var name = pair.Key;
+                    if(name.Length == 0)
+                    {
+                        // must be at least one character
+                        return false;
+                    }
+                    // must be a valid ASCII NCName
+                    if(!XmlConvert.IsStartNCNameChar(name[0]))
+                    {
+                        return false;
+                    }
+                    if(name.Any(c => c > '\x7F' || !XmlConvert.IsNCNameChar(c)))
+                    {
+                        return false;
+                    }
+                    return true;
+                }
+            );
+            // Sort if not already sorted
+            if(!isSorted)
+            {
+                types = types.OrderBy(pair => pair.Key, memberNameComparer);
+            }
+            var sb = new StringBuilder(prefix);
+            string? lastMemberName = null;
+            string? lastMemberType = null;
+            foreach(var (name, type) in types)
+            {
+                if(lastMemberName == name)
+                {
+                    // duplicate member
+                    // only the previous one is needed to check since the sequence is sorted
+                    if(lastMemberType != type)
+                    {
+                        throw new ArgumentException($"There are multiple equivalent '{name}' members but with different types ({lastMemberType} and {type}).", typesArgumentName);
+                    }
+                    continue;
+                }
+                (lastMemberName, lastMemberType) = (name, type);
+                if(type == "null")
+                {
+                    // null member type is not useful to output, but is needed for duplicate checking
+                    continue;
+                }
+                if(allowedTypes != null && !allowedTypes.Contains(type))
+                {
+                    throw new ArgumentException($"'{type}' is not a valid JSON value type name.", typesArgumentName);
+                }
+                sb.Append(';');
+                sb.Append(name);
+                sb.Append('=');
+                sb.Append(allowedTypes != null ? type : FormatMimeParameter(type));
+            }
+            return sb.ToString();
         }
 
         static readonly Regex invalidTokenCharacters = new(@"[][()<>@,;:\\""/?=\x00-\x20\x7F-\uFFFF]", RegexOptions.Compiled);
