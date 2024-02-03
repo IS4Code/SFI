@@ -644,42 +644,26 @@ namespace IS4.SFI
         /// <inheritdoc/>
         protected override string GetCanonicalOption(string option)
         {
-			switch(option)
-			{
-				case "q":
-					return "quiet";
-				case "c":
-					return "compress";
-				case "m":
-					return "metadata";
-				case "d":
-					return "data-only";
-				case "o":
-					return "only-once";
-				case "b":
-					return "buffered";
-				case "u":
-					return "ugly";
-				case "r":
-					return "root";
-				case "i":
-					return "include";
-				case "x":
-					return "exclude";
-				case "h":
-					return "hash";
-				case "s":
-					return "sparql-query";
-				case "f":
-					return "format";
-				case "p":
-					return "plugin";
-				case "C":
-					return "config";
-				case "?":
-					return "help";
-			}
-            return base.GetCanonicalOption(option);
+            return option switch
+            {
+                "q" => "quiet",
+                "c" => "compress",
+                "m" => "metadata",
+                "d" => "data-only",
+                "o" => "only-once",
+                "b" => "buffered",
+                "u" => "ugly",
+                "r" => "root",
+                "i" => "include",
+                "x" => "exclude",
+                "h" => "hash",
+                "s" => "sparql-query",
+                "f" => "format",
+                "p" => "plugin",
+                "C" => "config",
+                "?" => "help",
+                _ => base.GetCanonicalOption(option),
+            };
         }
 
         /// <inheritdoc/>
