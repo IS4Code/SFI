@@ -207,6 +207,11 @@ namespace IS4.SFI.Vocabulary
             public const string Httpsc = "http://www.w3.org/2011/http-statusCodes#";
 
             /// <summary>
+            /// CodeOntology, Web of Code
+            /// </summary>
+            public const string Woc = "http://rdf.webofcode.org/woc/";
+
+            /// <summary>
             /// The <c>i18n</c> Namespace for language tags and directions
             /// </summary>
             public const string I18n = "https://www.w3.org/ns/i18n#";

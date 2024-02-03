@@ -880,6 +880,206 @@
         public static readonly PropertyUri HttpBody;
         #endregion
 
+        #region woc
+        /// <summary>
+        /// <c><see cref="Woc"/>:declares</c>.
+        /// </summary>
+        [Uri(Woc, "declares")]
+        public static readonly PropertyUri CodeDeclares;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:extends</c>.
+        /// </summary>
+        [Uri(Woc, "extends")]
+        public static readonly PropertyUri CodeExtends;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:hasActualTypeArgument</c>.
+        /// </summary>
+        [Uri(Woc, "hasActualTypeArgument")]
+        public static readonly PropertyUri CodeTypeArgument;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:hasAnnotation</c>.
+        /// </summary>
+        [Uri(Woc, "hasAnnotation")]
+        public static readonly PropertyUri CodeAnnotation;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:hasConstructor</c>.
+        /// </summary>
+        [Uri(Woc, "hasConstructor")]
+        public static readonly PropertyUri CodeConstructor;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:hasDependency</c>.
+        /// </summary>
+        [Uri(Woc, "hasDependency")]
+        public static readonly PropertyUri CodeDependency;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:hasField</c>.
+        /// </summary>
+        [Uri(Woc, "hasField")]
+        public static readonly PropertyUri CodeField;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:hasFormalTypeParameter</c>.
+        /// </summary>
+        [Uri(Woc, "hasFormalTypeParameter")]
+        public static readonly PropertyUri CodeTypeParameter;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:hasGenericType</c>.
+        /// </summary>
+        [Uri(Woc, "hasGenericType")]
+        public static readonly PropertyUri CodeGenericTypeDefinition;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:hasMethod</c>.
+        /// </summary>
+        [Uri(Woc, "hasMethod")]
+        public static readonly PropertyUri CodeMethod;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:hasModifier</c>.
+        /// </summary>
+        [Uri(Woc, "hasModifier")]
+        public static readonly PropertyUri CodeModifier;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:hasPackage</c>.
+        /// </summary>
+        [Uri(Woc, "hasPackage")]
+        public static readonly PropertyUri CodePackage;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:hasParameter</c>.
+        /// </summary>
+        [Uri(Woc, "hasParameter")]
+        public static readonly PropertyUri CodeParameter;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:hasProject</c>.
+        /// </summary>
+        [Uri(Woc, "hasProject")]
+        public static readonly PropertyUri CodeProject;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:hasReturnType</c>.
+        /// </summary>
+        [Uri(Woc, "hasReturnType")]
+        public static readonly PropertyUri CodeReturnType;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:hasSubClass</c>.
+        /// </summary>
+        [Uri(Woc, "hasSubClass")]
+        public static readonly PropertyUri CodeSubClass;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:hasSubProject</c>.
+        /// </summary>
+        [Uri(Woc, "hasSubProject")]
+        public static readonly PropertyUri CodeSubProject;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:hasType</c>.
+        /// </summary>
+        [Uri(Woc, "hasType")]
+        public static readonly PropertyUri CodeType;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:implements</c>.
+        /// </summary>
+        [Uri(Woc, "implements")]
+        public static readonly PropertyUri CodeImplements;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:isArrayOf</c>.
+        /// </summary>
+        [Uri(Woc, "isArrayOf")]
+        public static readonly PropertyUri CodeArrayElementType;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:isPackageOf</c>.
+        /// </summary>
+        [Uri(Woc, "isPackageOf")]
+        public static readonly PropertyUri CodeDeclaresType;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:isProjectOf</c>.
+        /// </summary>
+        [Uri(Woc, "isProjectOf")]
+        public static readonly PropertyUri CodeContainsPackage;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:overrides</c>.
+        /// </summary>
+        [Uri(Woc, "overrides")]
+        public static readonly PropertyUri CodeOverrides;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:references</c>.
+        /// </summary>
+        [Uri(Woc, "references")]
+        public static readonly PropertyUri CodeReferences;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:returns</c>.
+        /// </summary>
+        [Uri(Woc, "returns")]
+        public static readonly PropertyUri CodeReturns;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:throws</c>.
+        /// </summary>
+        [Uri(Woc, "throws")]
+        public static readonly PropertyUri CodeThrows;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:hasBuildFile</c>.
+        /// </summary>
+        [Uri(Woc, "hasBuildFile")]
+        public static readonly PropertyUri CodeBuildFile;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:hasCanonicalName</c>.
+        /// </summary>
+        [Uri(Woc, "hasCanonicalName")]
+        public static readonly PropertyUri CodeCanonicalName;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:hasDimensions</c>.
+        /// </summary>
+        [Uri(Woc, "hasDimensions")]
+        public static readonly PropertyUri CodeArrayDimensions;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:hasPosition</c>.
+        /// </summary>
+        [Uri(Woc, "hasPosition")]
+        public static readonly PropertyUri CodePosition;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:hasSimpleName</c>.
+        /// </summary>
+        [Uri(Woc, "hasSimpleName")]
+        public static readonly PropertyUri CodeSimpleName;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:hasSourceCode</c>.
+        /// </summary>
+        [Uri(Woc, "hasSourceCode")]
+        public static readonly PropertyUri CodeSourceCode;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:isVarArgs</c>.
+        /// </summary>
+        [Uri(Woc, "isVarArgs")]
+        public static readonly PropertyUri CodeIsVarArgs;
+        #endregion
+
         #region at
         /// <summary>
         /// <c><see cref="At"/>:digest</c>.

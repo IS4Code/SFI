@@ -120,6 +120,110 @@
         public static readonly IndividualUri EncryptedStatus;
         #endregion
 
+        #region woc
+        /// <summary>
+        /// <c><see cref="Woc"/>:Abstract</c>.
+        /// </summary>
+        [Uri(Woc, "Abstract")]
+        public static readonly IndividualUri CodeAbstractModifier;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:Boolean</c>.
+        /// </summary>
+        [Uri(Woc, "Boolean")]
+        public static readonly IndividualUri JavaBooleanType;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:Byte</c>.
+        /// </summary>
+        [Uri(Woc, "Byte")]
+        public static readonly IndividualUri JavaByteType;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:Char</c>.
+        /// </summary>
+        [Uri(Woc, "Char")]
+        public static readonly IndividualUri JavaCharType;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:Default</c>.
+        /// </summary>
+        [Uri(Woc, "Default")]
+        public static readonly IndividualUri CodeDefaultModifier;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:Double</c>.
+        /// </summary>
+        [Uri(Woc, "Double")]
+        public static readonly IndividualUri JavaDoubleType;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:Final</c>.
+        /// </summary>
+        [Uri(Woc, "Final")]
+        public static readonly IndividualUri CodeFinalModifier;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:Float</c>.
+        /// </summary>
+        [Uri(Woc, "Float")]
+        public static readonly IndividualUri JavaFloatType;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:Int</c>.
+        /// </summary>
+        [Uri(Woc, "Int")]
+        public static readonly IndividualUri JavaIntType;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:Long</c>.
+        /// </summary>
+        [Uri(Woc, "Long")]
+        public static readonly IndividualUri JavaLongType;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:Private</c>.
+        /// </summary>
+        [Uri(Woc, "Private")]
+        public static readonly IndividualUri CodePrivateModifier;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:Protected</c>.
+        /// </summary>
+        [Uri(Woc, "Protected")]
+        public static readonly IndividualUri CodeProtectedModifier;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:Public</c>.
+        /// </summary>
+        [Uri(Woc, "Public")]
+        public static readonly IndividualUri CodePublicModifier;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:Short</c>.
+        /// </summary>
+        [Uri(Woc, "Short")]
+        public static readonly IndividualUri JavaShortType;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:Static</c>.
+        /// </summary>
+        [Uri(Woc, "Static")]
+        public static readonly IndividualUri CodeStaticModifier;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:Synchronized</c>.
+        /// </summary>
+        [Uri(Woc, "Synchronized")]
+        public static readonly IndividualUri CodeSynchronizedModifier;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:Volatile</c>.
+        /// </summary>
+        [Uri(Woc, "Volatile")]
+        public static readonly IndividualUri CodeVolatileModifier;
+        #endregion
+
         static Individuals()
         {
             typeof(Individuals).InitializeUris();

@@ -308,6 +308,134 @@
         public static readonly ClassUri Extension;
         #endregion
 
+        #region woc
+        /// <summary>
+        /// <c><see cref="Woc"/>:AnnotationType</c>.
+        /// </summary>
+        [Uri(Woc, "AnnotationType")]
+        public static readonly ClassUri CodeAnnotationType;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:AnonymousClass</c>.
+        /// </summary>
+        [Uri(Woc, "AnonymousClass")]
+        public static readonly ClassUri CodeAnonymousClass;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:ArrayType</c>.
+        /// </summary>
+        [Uri(Woc, "ArrayType")]
+        public static readonly ClassUri CodeArrayType;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:Class</c>.
+        /// </summary>
+        [Uri(Woc, "Class")]
+        public static readonly ClassUri CodeClass;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:CodeElement</c>.
+        /// </summary>
+        [Uri(Woc, "CodeElement")]
+        public static readonly ClassUri CodeElement;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:ComplexType</c>.
+        /// </summary>
+        [Uri(Woc, "ComplexType")]
+        public static readonly ClassUri CodeComplexType;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:Constructor</c>.
+        /// </summary>
+        [Uri(Woc, "Constructor")]
+        public static readonly ClassUri CodeConstructor;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:Enum</c>.
+        /// </summary>
+        [Uri(Woc, "Enum")]
+        public static readonly ClassUri CodeEnum;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:Field</c>.
+        /// </summary>
+        [Uri(Woc, "Field")]
+        public static readonly ClassUri CodeField;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:Interface</c>.
+        /// </summary>
+        [Uri(Woc, "Interface")]
+        public static readonly ClassUri CodeInterface;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:Library</c>.
+        /// </summary>
+        [Uri(Woc, "Library")]
+        public static readonly ClassUri CodeLibrary;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:Method</c>.
+        /// </summary>
+        [Uri(Woc, "Method")]
+        public static readonly ClassUri CodeMethod;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:Package</c>.
+        /// </summary>
+        [Uri(Woc, "Package")]
+        public static readonly ClassUri CodePackage;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:Parameter</c>.
+        /// </summary>
+        [Uri(Woc, "Parameter")]
+        public static readonly ClassUri CodeParameter;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:ParameterizedType</c>.
+        /// </summary>
+        [Uri(Woc, "ParameterizedType")]
+        public static readonly ClassUri CodeGenericParameterizedType;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:PrimitiveType</c>.
+        /// </summary>
+        [Uri(Woc, "PrimitiveType")]
+        public static readonly ClassUri CodePrimitiveType;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:Project</c>.
+        /// </summary>
+        [Uri(Woc, "Project")]
+        public static readonly ClassUri CodeProject;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:Type</c>.
+        /// </summary>
+        [Uri(Woc, "Type")]
+        public static readonly ClassUri CodeType;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:TypeArgument</c>.
+        /// </summary>
+        [Uri(Woc, "TypeArgument")]
+        public static readonly ClassUri CodeTypeArgument;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:TypeVariable</c>.
+        /// </summary>
+        [Uri(Woc, "TypeVariable")]
+        public static readonly ClassUri CodeTypeVariable;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:Variable</c>.
+        /// </summary>
+        [Uri(Woc, "Variable")]
+        public static readonly ClassUri CodeVariable;
+        #endregion
+
         static Classes()
         {
             typeof(Classes).InitializeUris();
