@@ -50,6 +50,137 @@ namespace IS4.SFI.Tests
         }
 
         /// <summary>
+        /// The tests for <see cref="GetImpliedMediaTypeFromXml(Uri?, string?, string)"/>.
+        /// </summary>
+        [TestMethod]
+        [DataRow(null, null, "elem", "root=elem")]
+        [DataRow("http://localhost/test", null, "elem", "root=elem;ns=\"http://localhost/test\"")]
+        [DataRow("http://localhost/test", "PUBLIC ID", "elem", "root=elem;ns=\"http://localhost/test\";public=\"PUBLIC ID\"")]
+        [DataRow(null, "PUBLIC ID", "elem", "root=elem;public=\"PUBLIC ID\"")]
+        public void GetImpliedMediaTypeFromXmlTests(string? nsUri, string? publicId, string rootName, string expected)
+        {
+            string prefix = ImpliedMediaTypePrefix + "document+xml;";
+
+            Uri? ns = nsUri == null ? null : new Uri(nsUri);
+            var result = GetImpliedMediaTypeFromXml(ns, publicId, rootName);
+            Assert.AreEqual(prefix + expected, result);
+        }
+
+        /// <summary>
+        /// The tests for <see cref="GetImpliedMediaTypeFromJson(IReadOnlyDictionary{string, string})"/>
+        /// and <see cref="GetImpliedMediaTypeFromJsonSequence(IReadOnlyDictionary{string, string})"/>.
+        /// </summary>
+        [TestMethod]
+        [DataRow(new string[0], new string[0], "")]
+        [DataRow(new[] { "a" }, new[] { "string" }, "a=string")]
+        [DataRow(new[] { "a" }, new[] { "null" }, "")]
+        [DataRow(new[] { "c", "B", "a" }, new[] { "string", "number", "ARRAY" }, "a=array;b=number;c=string")]
+        [DataRow(new[] { "c", "B", "a" }, new[] { "string", "null", "ARRAY" }, "a=array;c=string")]
+        [DataRow(new[] { "a", "A" }, new[] { "string", "string" }, "a=string")]
+        [DataRow(new[] { "a", "A" }, new[] { "string", "number" }, null)]
+        [DataRow(new[] { "a", "A" }, new[] { "string", "null" }, null)]
+        [DataRow(new[] { "a" }, new[] { "undefined" }, null)]
+        public void GetImpliedMediaTypeFromJsonTests(string[] keys, string[] values, string? expected)
+        {
+            string prefix = ImpliedMediaTypePrefix + "object+json";
+            string prefixSeq = ImpliedMediaTypePrefix + "object+json-seq";
+
+            if(expected is not (null or ""))
+            {
+                prefix += ";";
+                prefixSeq += ";";
+            }
+
+            var pairs = keys.Zip(values, (a, b) => new KeyValuePair<string, string>(a, b));
+
+            foreach(var sorted in new[] { false, true })
+            {
+                IReadOnlyDictionary<string, string> dict;
+                if(sorted)
+                {
+                    var sortedDict = new SortedDictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+                    foreach(var pair in pairs)
+                    {
+                        if(!sortedDict.TryAdd(pair.Key, pair.Value))
+                        {
+                            // deduplication affects the result
+                            return;
+                        }
+                    }
+                    dict = sortedDict;
+                }else{
+                    dict = new Dictionary<string, string>(pairs);
+                }
+                
+                if(expected != null)
+                {
+                    var result = GetImpliedMediaTypeFromJson(dict);
+                    Assert.AreEqual(prefix + expected, result);
+                    var resultSeq = GetImpliedMediaTypeFromJsonSequence(dict);
+                    Assert.AreEqual(prefixSeq + expected, resultSeq);
+                }else{
+                    Assert.ThrowsException<ArgumentException>(() => GetImpliedMediaTypeFromJson(dict));
+                    Assert.ThrowsException<ArgumentException>(() => GetImpliedMediaTypeFromJsonSequence(dict));
+                }
+            }
+        }
+
+        /// <summary>
+        /// The tests for <see cref="GetImpliedMediaTypeFromYaml(IReadOnlyDictionary{string, Uri})"/>.
+        /// </summary>
+        [TestMethod]
+        [DataRow(new string[0], new string[0], "")]
+        [DataRow(new[] { "a" }, new[] { "tag:yaml.org,2002:str" }, "a=str")]
+        [DataRow(new[] { "a" }, new[] { "tag:yaml.org,2002:null" }, "")]
+        [DataRow(new[] { "c", "B", "a" }, new[] { "tag:yaml.org,2002:str", "tag:yaml.org,2002:int", "tag:yaml.org,2002:SEQ" }, "a=SEQ;b=int;c=str")]
+        [DataRow(new[] { "c", "B", "a" }, new[] { "tag:yaml.org,2002:str", "tag:yaml.org,2002:null", "tag:yaml.org,2002:SEQ" }, "a=SEQ;c=str")]
+        [DataRow(new[] { "a", "A" }, new[] { "tag:yaml.org,2002:str", "tag:yaml.org,2002:str" }, "a=str")]
+        [DataRow(new[] { "a", "A" }, new[] { "tag:yaml.org,2002:str", "tag:yaml.org,2002:int" }, null)]
+        [DataRow(new[] { "a", "A" }, new[] { "tag:yaml.org,2002:str", "tag:yaml.org,2002:STR" }, null)]
+        [DataRow(new[] { "a", "A" }, new[] { "tag:yaml.org,2002:str", "tag:yaml.org,2002:null" }, null)]
+        [DataRow(new[] { "a" }, new[] { "about:test" }, "a=\"about:test\"")]
+        [DataRow(new[] { "a" }, new[] { "tag:yaml.org,2002:about:test" }, "a=\"tag:yaml.org,2002:about:test\"")]
+        public void GetImpliedMediaTypeFromYamlTests(string[] keys, string[] values, string? expected)
+        {
+            string prefix = ImpliedMediaTypePrefix + "object+yaml";
+
+            if(expected is not (null or ""))
+            {
+                prefix += ";";
+            }
+
+            var pairs = keys.Zip(values, (a, b) => new KeyValuePair<string, Uri>(a, new Uri(b)));
+
+            foreach(var sorted in new[] { false, true })
+            {
+                IReadOnlyDictionary<string, Uri> dict;
+                if(sorted)
+                {
+                    var sortedDict = new SortedDictionary<string, Uri>(StringComparer.OrdinalIgnoreCase);
+                    foreach(var pair in pairs)
+                    {
+                        if(!sortedDict.TryAdd(pair.Key, pair.Value))
+                        {
+                            // deduplication affects the result
+                            return;
+                        }
+                    }
+                    dict = sortedDict;
+                }else{
+                    dict = new Dictionary<string, Uri>(pairs);
+                }
+                
+                if(expected != null)
+                {
+                    var result = GetImpliedMediaTypeFromYaml(dict);
+                    Assert.AreEqual(prefix + expected, result);
+                }else{
+                    Assert.ThrowsException<ArgumentException>(() => GetImpliedMediaTypeFromYaml(dict));
+                }
+            }
+        }
+
+        /// <summary>
         /// The tests for <see cref="FormatComponentName(string)"/>.
         /// </summary>
         [TestMethod]
