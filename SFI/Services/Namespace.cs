@@ -21,6 +21,11 @@ namespace IS4.SFI.Services
         public abstract Assembly Assembly { get; }
 
         /// <summary>
+        /// Whether this is the global namespace in the assembly.
+        /// </summary>
+        public bool IsGlobal => String.IsNullOrEmpty(FullName);
+
+        /// <summary>
         /// The full name of the namespace, including parent namespaces.
         /// </summary>
         public abstract string FullName { get; }
@@ -34,6 +39,26 @@ namespace IS4.SFI.Services
         /// The full name of the parent namespace.
         /// </summary>
         public abstract string NamespaceName { get; }
+
+        /// <summary>
+        /// The full name of the namespace, including the assembly.
+        /// </summary>
+        public string AssemblyQualifiedName => FullName + ", " + Assembly;
+
+        /// <summary>
+        /// All types located in this namespace.
+        /// </summary>
+        public virtual IEnumerable<Type> DefinedTypes => GetTypes();
+
+        /// <summary>
+        /// All exported types located in this namespace.
+        /// </summary>
+        public virtual IEnumerable<Type> ExportedTypes => GetExportedTypes();
+
+        /// <summary>
+        /// All namespaces located in this namespace.
+        /// </summary>
+        public virtual IEnumerable<Namespace> Namespaces => GetNamespaces();
 
         /// <summary>
         /// Retrieves all types located in this namespace.
@@ -50,8 +75,14 @@ namespace IS4.SFI.Services
         /// <summary>
         /// Retrieves the namespaces located in this namespace.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A collection of all namespaces in this namespace.</returns>
         public abstract IReadOnlyCollection<Namespace> GetNamespaces();
+
+        /// <inheritdoc/>
+        public sealed override string ToString()
+        {
+            return (FullName == "" ? "global::" : FullName) + ", " + Assembly;
+        }
 
         string IGrouping<string, Type>.Key => FullName;
 
@@ -104,115 +135,60 @@ namespace IS4.SFI.Services
         /// </returns>
         public static Namespace FromAssembly(Assembly assembly)
         {
-            return new Root(assembly, GroupTypes(assembly.GetTypes()), GroupTypes(assembly.GetExportedTypes()));
+            return new Node(assembly);
         }
 
-        static IEnumerable<INamespaceGrouping> GroupTypes(IEnumerable<Type> types)
-        {
-            return DirectoryTools.GroupByDirectories(types, t => t.FullName, '.');
-        }
-
-        static IEnumerable<INamespaceGrouping> GroupTypes(INamespaceGrouping? grouping)
-        {
-            if(grouping == null)
-            {
-                return Array.Empty<INamespaceGrouping>();
-            }
-            return DirectoryTools.GroupByDirectories(grouping, t => t.SubPath, t => t.Entry, '.');
-        }
-
-        abstract class Base : Namespace
+        sealed class Node : Namespace
         {
             public override Assembly Assembly { get; }
 
-            protected NamespaceCollection Namespaces { get; }
-            protected List<Type> ExportedTypes { get; }
-            protected List<Type> AllTypes { get; }
-
-            public Base(Assembly assembly)
-            {
-                Assembly = assembly;
-                Namespaces = new();
-                ExportedTypes = new();
-                AllTypes = new();
-            }
-
-            protected Node GetNode(string name)
-            {
-                return
-                    Namespaces.TryGetValue(name, out var node)
-                    ? node
-                    : Namespaces[name] = new(Assembly, FullName, name);
-            }
-
-            public override IReadOnlyCollection<Type> GetExportedTypes()
-            {
-                return ExportedTypes;
-            }
-
-            public override IReadOnlyCollection<Type> GetTypes()
-            {
-                return AllTypes;
-            }
-
-            public override IReadOnlyCollection<Namespace> GetNamespaces()
-            {
-                return Namespaces;
-            }
-
-            protected void Fill(IEnumerable<INamespaceGrouping> allGrouping, IEnumerable<INamespaceGrouping> exportedGrouping)
-            {
-                foreach(var grouping in allGrouping)
-                {
-                    if(grouping.Key is string key)
-                    {
-                        GetNode(key).SetAll(grouping);
-                    }else{
-                        AllTypes.AddRange(grouping.Select(e => e.Entry));
-                    }
-                }
-                foreach(var grouping in exportedGrouping)
-                {
-                    if(grouping.Key is string key)
-                    {
-                        GetNode(key).SetExported(grouping);
-                    }else{
-                        ExportedTypes.AddRange(grouping.Select(e => e.Entry));
-                    }
-                }
-            }
-        }
-
-        sealed class Root : Base
-        {
-            public override string FullName => "";
-
-            public override string Name => "";
-
-            public override string NamespaceName => "";
-
-            public Root(Assembly assembly, IEnumerable<INamespaceGrouping> allGrouping, IEnumerable<INamespaceGrouping> exportedGrouping) : base(assembly)
-            {
-                Fill(allGrouping, exportedGrouping);
-            }
-        }
-
-        sealed class Node : Base
-        {
             public override string FullName => NamespaceName == "" ? Name : (NamespaceName + "." + Name);
 
             public override string Name { get; }
 
             public override string NamespaceName { get; }
 
-            bool initialized;
-            INamespaceGrouping? allGrouping;
-            INamespaceGrouping? exportedGrouping;
+            readonly Dictionary<string, Node> namespaces;
+            readonly List<Type> exportedTypes;
+            readonly List<Type> allTypes;
 
-            public Node(Assembly assembly, string namespaceName, string localName) : base(assembly)
+            bool initialized;
+            IEnumerable<INamespaceGrouping> allGrouping = Array.Empty<INamespaceGrouping>();
+            IEnumerable<INamespaceGrouping> exportedGrouping = Array.Empty<INamespaceGrouping>();
+
+            public Node(Assembly assembly, string namespaceName, string localName)
             {
+                Assembly = assembly;
                 NamespaceName = namespaceName;
                 Name = localName;
+
+                namespaces = new();
+                exportedTypes = new();
+                allTypes = new();
+            }
+
+            public Node(Assembly assembly) : this(assembly, "", "")
+            {
+                allGrouping = GroupTypes(assembly.GetTypes());
+                exportedGrouping = GroupTypes(assembly.GetExportedTypes());
+            }
+
+            public override IReadOnlyCollection<Type> GetTypes()
+            {
+                Initialize();
+                return allTypes;
+            }
+
+            public override IReadOnlyCollection<Type> GetExportedTypes()
+            {
+                Initialize();
+                return exportedTypes;
+            }
+
+            public override IReadOnlyCollection<Namespace> GetNamespaces()
+            {
+                Initialize();
+                return namespaces.Values;
             }
 
             void Initialize()
@@ -221,61 +197,50 @@ namespace IS4.SFI.Services
                 {
                     return;
                 }
-                lock(Namespaces)
+                lock(namespaces)
                 {
                     if(initialized)
                     {
                         return;
                     }
-                    Fill(GroupTypes(allGrouping), GroupTypes(exportedGrouping));
+                    foreach(var grouping in allGrouping)
+                    {
+                        if(grouping.Key is string key)
+                        {
+                            GetNode(key).allGrouping = GroupTypes(grouping);
+                        }else{
+                            allTypes.AddRange(grouping.Select(e => e.Entry));
+                        }
+                    }
+                    foreach(var grouping in exportedGrouping)
+                    {
+                        if(grouping.Key is string key)
+                        {
+                            GetNode(key).exportedGrouping = GroupTypes(grouping);
+                        }else{
+                            exportedTypes.AddRange(grouping.Select(e => e.Entry));
+                        }
+                    }
                     initialized = true;
                 }
             }
 
-            public override IReadOnlyCollection<Type> GetTypes()
+            Node GetNode(string name)
             {
-                Initialize();
-                return base.GetTypes();
+                return
+                    namespaces.TryGetValue(name, out var node)
+                    ? node
+                    : namespaces[name] = new(Assembly, FullName, name);
             }
 
-            public override IReadOnlyCollection<Type> GetExportedTypes()
+            static IEnumerable<INamespaceGrouping> GroupTypes(IEnumerable<Type> types)
             {
-                Initialize();
-                return base.GetExportedTypes();
+                return DirectoryTools.GroupByDirectories(types, t => t.FullName, '.');
             }
 
-            public override IReadOnlyCollection<Namespace> GetNamespaces()
+            static IEnumerable<INamespaceGrouping> GroupTypes(INamespaceGrouping grouping)
             {
-                Initialize();
-                return base.GetNamespaces();
-            }
-
-            public void SetAll(INamespaceGrouping grouping)
-            {
-                allGrouping = grouping;
-            }
-
-            public void SetExported(INamespaceGrouping grouping)
-            {
-                exportedGrouping = grouping;
-            }
-        }
-
-        class NamespaceCollection : Dictionary<string, Node>, IReadOnlyCollection<Namespace>
-        {
-            public NamespaceCollection() : base(StringComparer.Ordinal)
-            {
-
-            }
-
-            IEnumerator<Namespace> IEnumerable<Namespace>.GetEnumerator()
-            {
-                return Values.GetEnumerator();
-            }
-
-            IEnumerator IEnumerable.GetEnumerator()
-            {
-                return Values.GetEnumerator();
+                return DirectoryTools.GroupByDirectories(grouping, t => t.SubPath, t => t.Entry, '.');
             }
         }
     }
