@@ -9,21 +9,22 @@ namespace IS4.SFI
     /// </summary>
     public static class DirectoryTools
     {
-        /// <summary>
-        /// Groups a collection of objects each having a path based on the initial directory
-        /// specified in the path.
-        /// </summary>
-        /// <typeparam name="TEntry">The type of the objects.</typeparam>
-        /// <param name="entries">A collection of objects. Each should have a path determined by <paramref name="pathSelector"/>.</param>
-        /// <param name="pathSelector">A function which should return the path of each object in <paramref name="entries"/>.</param>
-        /// <returns>
-        /// A sequence of instances of <see cref="IGrouping{TKey, TElement}"/> of the objects,
-        /// where the <see cref="IGrouping{TKey, TElement}.Key"/> is the path to the first directory
-        /// storing the entry.
-        /// </returns>
+        /// <inheritdoc cref="GroupByDirectories{TEntry, TValue}(IEnumerable{TEntry}, Func{TEntry, string?}, Func{TEntry, TValue}, char)"/>
         public static IEnumerable<IGrouping<string?, EntryInfo<TEntry>>> GroupByDirectories<TEntry>(IEnumerable<TEntry> entries, Func<TEntry, string?> pathSelector)
         {
-            return GroupByDirectories(entries, pathSelector, e => e);
+            return GroupByDirectories(entries, pathSelector, '/');
+        }
+
+        /// <inheritdoc cref="GroupByDirectories{TEntry, TValue}(IEnumerable{TEntry}, Func{TEntry, string?}, Func{TEntry, TValue}, char)"/>
+        public static IEnumerable<IGrouping<string?, EntryInfo<TEntry>>> GroupByDirectories<TEntry>(IEnumerable<TEntry> entries, Func<TEntry, string?> pathSelector, char separatorChar)
+        {
+            return GroupByDirectories(entries, pathSelector, e => e, separatorChar);
+        }
+
+        /// <inheritdoc cref="GroupByDirectories{TEntry, TValue}(IEnumerable{TEntry}, Func{TEntry, string?}, Func{TEntry, TValue}, char)"/>
+        public static IEnumerable<IGrouping<string?, EntryInfo<TValue>>> GroupByDirectories<TEntry, TValue>(IEnumerable<TEntry> entries, Func<TEntry, string?> pathSelector, Func<TEntry, TValue> valueSelector)
+        {
+            return GroupByDirectories(entries, pathSelector, valueSelector, '/');
         }
 
         /// <summary>
@@ -35,23 +36,24 @@ namespace IS4.SFI
         /// <param name="entries">A collection of objects. Each should have a path determined by <paramref name="pathSelector"/>.</param>
         /// <param name="pathSelector">A function which should return the path of each object in <paramref name="entries"/>.</param>
         /// <param name="valueSelector">A function that transforms a <typeparamref name="TEntry"/> into a value stored in the resulting <see cref="EntryInfo{TEntry}"/>.</param>
+        /// <param name="separatorChar">The character used to separate directory names.</param>
         /// <returns>
         /// A sequence of instances of <see cref="IGrouping{TKey, TElement}"/> of the objects,
         /// where the <see cref="IGrouping{TKey, TElement}.Key"/> is the path to the first directory
         /// storing the entry.
         /// </returns>
-        public static IEnumerable<IGrouping<string?, EntryInfo<TValue>>> GroupByDirectories<TEntry, TValue>(IEnumerable<TEntry> entries, Func<TEntry, string?> pathSelector, Func<TEntry, TValue> valueSelector)
+        public static IEnumerable<IGrouping<string?, EntryInfo<TValue>>> GroupByDirectories<TEntry, TValue>(IEnumerable<TEntry> entries, Func<TEntry, string?> pathSelector, Func<TEntry, TValue> valueSelector, char separatorChar)
         {
-            return entries.Select(e => (d: GetFirstDir(pathSelector(e)), e)).GroupBy(p => p.d.dir, p => new EntryInfo<TValue>(p.d.subpath, valueSelector(p.e)));
+            return entries.Select(e => (d: GetFirstDir(pathSelector(e), separatorChar), e)).GroupBy(p => p.d.dir, p => new EntryInfo<TValue>(p.d.subpath, valueSelector(p.e)));
         }
 
         /// <summary>
         /// Splits <paramref name="path"/> based on the first '/'.
         /// </summary>
-        static (string? dir, string subpath) GetFirstDir(string? path)
+        static (string? dir, string subpath) GetFirstDir(string? path, char separatorChar)
         {
             if(path == null) return default;
-            int index = path.IndexOf('/');
+            int index = path.IndexOf(separatorChar);
             if(index == -1) return (null, path);
             return (path.Substring(0, index), path.Substring(index + 1));
         }
