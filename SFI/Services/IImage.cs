@@ -90,6 +90,14 @@ namespace IS4.SFI.Services
         /// <summary>
         /// Accesses the color of the pixel at the given point.
         /// </summary>
+        /// <param name="x">The X coordinate of the pixel.</param>
+        /// <param name="y">The Y coordinate of the pixel.</param>
+        /// <returns>The color value of the pixel at the specified coordinates.</returns>
+        Color this[int x, int y] { get; set; }
+
+        /// <summary>
+        /// Accesses the color of the pixel at the given point.
+        /// </summary>
         /// <param name="point">The coordinates of the pixel.</param>
         /// <returns>The color value of the pixel at <paramref name="point"/>.</returns>
         Color this[Point point] { get; set; }
@@ -260,6 +268,13 @@ namespace IS4.SFI.Services
         Span<byte> this[int x, int y] { get; }
 
         /// <summary>
+        /// Retrieves the memory range of the pixel at the given point.
+        /// </summary>
+        /// <param name="point">The coordinates of the pixel.</param>
+        /// <returns>The range of bytes corresponding to the pixel.</returns>
+        Span<byte> this[Point point] { get; }
+
+        /// <summary>
         /// Retrieves the memory range of bytes corresponding to a row of pixels.
         /// </summary>
         /// <param name="y">The Y coordinate of the pixels.</param>
@@ -418,9 +433,15 @@ namespace IS4.SFI.Services
         object ICloneable.Clone() => Clone(false);
 
         /// <inheritdoc/>
+        public Color this[int x, int y] {
+            get => GetPixel(x, y);
+            set => SetPixel(x, y, value);
+        }
+
+        /// <inheritdoc/>
         public Color this[Point point] {
-            get => GetPixel(point.X, point.Y);
-            set => SetPixel(point.X, point.Y, value);
+            get => this[point.X, point.Y];
+            set => this[point.X, point.Y] = value;
         }
 
         /// <inheritdoc cref="Dispose()"/>
@@ -561,6 +582,11 @@ namespace IS4.SFI.Services
         /// <inheritdoc/>
         public virtual Span<byte> this[int x, int y] {
             get => GetPixel(x, y).Span;
+        }
+
+        /// <inheritdoc/>
+        public virtual Span<byte> this[Point point] {
+            get => this[point.X, point.Y];
         }
 
         /// <inheritdoc/>
