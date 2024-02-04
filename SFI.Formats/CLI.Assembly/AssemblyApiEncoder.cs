@@ -71,6 +71,7 @@ namespace SFI.Formats.CLI.Assembly
 
             foreach(var mdef in adef.Modules)
             {
+                // Remove all non-type data
                 mdef.Attributes = ModuleAttributes.ILOnly;
                 foreach(var aref in mdef.AssemblyReferences)
                 {
@@ -84,6 +85,7 @@ namespace SFI.Formats.CLI.Assembly
 
                 foreach(var type in mdef.Types.ToList())
                 {
+                    // Remove all non-public types
                     if(type.IsNotPublic && type.FullName != "<Module>")
                     {
                         mdef.Types.Remove(type);
@@ -109,13 +111,22 @@ namespace SFI.Formats.CLI.Assembly
         
         static void StripType(TypeDefinition type)
         {
-            bool isAttribute = type.Name.EndsWith("Attribute", StringComparison.Ordinal);
+            // Type is an attribute type (heuristic)
+            bool isAttribute =
+                type.IsClass && !(type.IsSealed && type.IsAbstract) &&
+                type.BaseType is not (null or { FullName: "System.Object" }) && (
+                    type.Name.EndsWith("Attribute", StringComparison.Ordinal) ||
+                    type.BaseType.Name.EndsWith("Attribute", StringComparison.Ordinal) ||
+                    type.CustomAttributes.Any(attr => attr.Constructor is { DeclaringType: { FullName: "System.AttributeUsageAttribute" } })
+                );
 
+            // Clear metadata
             type.CustomAttributes.Clear();
             type.SecurityDeclarations.Clear();
                         
             foreach(var intf in type.Interfaces.ToList())
             {
+                // Remove all private implementations
                 var itype = intf.InterfaceType;
                 var itypedef = itype as TypeDefinition ?? (itype.IsGenericInstance ? itype.GetElementType() as TypeDefinition : null);
                 if(itypedef != null && itypedef.IsNotPublic)
@@ -128,24 +139,57 @@ namespace SFI.Formats.CLI.Assembly
 
             foreach(var genParam in type.GenericParameters)
             {
+                // Remove all metadata
                 genParam.CustomAttributes.Clear();
                 genParam.Constraints.Clear();
                 genParam.Name = null;
             }
 
-            foreach(var field in type.Fields.ToList())
+            if(!isAttribute && !type.IsEnum)
             {
-                if((!isAttribute && !(field.Name == "value__" && field.FieldType.IsPrimitive)) || field.IsPrivate || field.IsAssembly || field.IsFamilyAndAssembly)
+                // Fields are of no use for non-attribute and non-enum types
+                type.Fields.Clear();
+            }else{
+                foreach(var field in type.Fields.ToList())
                 {
-                    type.Fields.Remove(field);
-                    continue;
+                    if(
+                        // Field is static
+                        field.IsStatic ||
+                        // or not public or protected (and not the enum field)
+                        (!type.IsEnum && (field.IsPrivate || field.IsAssembly || field.IsFamilyAndAssembly)))
+                    {
+                        type.Fields.Remove(field);
+                        continue;
+                    }
+                    // Only public/protected instance attribute fields and the underlying enum field remain
+                    field.CustomAttributes.Clear();
                 }
-                field.CustomAttributes.Clear();
+            }
+
+            ICollection<MethodDefinition> setByProperties;
+            if(isAttribute)
+            {
+                // Store all methods set by attribute properties
+                setByProperties = new HashSet<MethodDefinition>(
+                    type.Properties.Select(p => p.SetMethod).Where(m => m != null)
+                );
+            }else{
+                setByProperties = Array.Empty<MethodDefinition>();
             }
 
             foreach(var method in type.Methods.ToList())
             {
-                if(method.IsStatic || !method.IsVirtual || method.IsPrivate || method.IsAssembly || method.IsFamilyAndAssembly)
+                if(
+                    (
+                        // Method is not an instance attribute set accessor method
+                        (method.IsStatic || !setByProperties.Contains(method)) &&
+                        // and not an attribute constructor
+                        !(isAttribute && method.IsConstructor) &&
+                        // and not overridable
+                        (!method.IsVirtual || method.IsFinal || type.IsSealed)
+                    ) ||
+                    // or not public or protected
+                    method.IsPrivate || method.IsAssembly || method.IsFamilyAndAssembly)
                 {
                     type.Methods.Remove(method);
                     continue;
@@ -153,10 +197,13 @@ namespace SFI.Formats.CLI.Assembly
                 method.CustomAttributes.Clear();
                 if(!method.IsAbstract)
                 {
+                    // Assume runtime implementation for validity
                     method.ImplAttributes = MethodImplAttributes.Runtime;
                 }
                 method.Body = null;
                 method.CallingConvention = MethodCallingConvention.Default;
+
+                // Clear all other metadata
                 method.DebugInformation = null;
                 method.SecurityDeclarations.Clear();
                 method.CustomDebugInformations.Clear();
@@ -189,62 +236,32 @@ namespace SFI.Formats.CLI.Assembly
                 }
             }
 
-            foreach(var prop in type.Properties.ToList())
+            if(!isAttribute)
             {
-                if(prop.GetMethod != null && !type.Methods.Contains(prop.GetMethod))
+                // Properties are not needed for non-attribute types
+                type.Properties.Clear();
+            }else{
+                foreach(var prop in type.Properties.ToList())
                 {
+                    // Clear accessors other than set
                     prop.GetMethod = null;
-                }
-                if(prop.SetMethod != null && !type.Methods.Contains(prop.SetMethod))
-                {
-                    prop.SetMethod = null;
-                }
-                foreach(var other in prop.OtherMethods.ToList())
-                {
-                    if(!type.Methods.Contains(other))
+                    prop.OtherMethods.Clear();
+                    // Property is not publicly assignable
+                    if(prop.SetMethod == null || !type.Methods.Contains(prop.SetMethod))
                     {
-                        prop.OtherMethods.Remove(other);
+                        type.Properties.Remove(prop);
+                        continue;
                     }
+                    prop.CustomAttributes.Clear();
                 }
-                if(!isAttribute || prop.GetMethod == null && prop.SetMethod == null && !prop.HasOtherMethods)
-                {
-                    type.Properties.Remove(prop);
-                    continue;
-                }
-                prop.CustomAttributes.Clear();
             }
 
-            foreach(var evnt in type.Events.ToList())
-            {
-                if(evnt.AddMethod != null && !type.Methods.Contains(evnt.AddMethod))
-                {
-                    evnt.AddMethod = null;
-                }
-                if(evnt.RemoveMethod != null && !type.Methods.Contains(evnt.RemoveMethod))
-                {
-                    evnt.RemoveMethod = null;
-                }
-                if(evnt.InvokeMethod != null && !type.Methods.Contains(evnt.InvokeMethod))
-                {
-                    evnt.InvokeMethod = null;
-                }
-                foreach(var other in evnt.OtherMethods.ToList())
-                {
-                    if(!type.Methods.Contains(other))
-                    {
-                        evnt.OtherMethods.Remove(other);
-                    }
-                }
-                if(!isAttribute || evnt.AddMethod == null && evnt.RemoveMethod == null && evnt.InvokeMethod == null && !evnt.HasOtherMethods)
-                {
-                    type.Events.Remove(evnt);
-                    continue;
-                }
-                evnt.CustomAttributes.Clear();
-            }
+            // Events are not needed
+            type.Events.Clear();
 
             foreach(var nested in type.NestedTypes.ToList())
             {
+                // Remove nested types that are not public or protected
                 if(nested.IsNestedPrivate || nested.IsNestedAssembly || nested.IsNestedFamilyAndAssembly)
                 {
                     type.NestedTypes.Remove(nested);
