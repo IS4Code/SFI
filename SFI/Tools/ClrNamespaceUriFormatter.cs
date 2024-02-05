@@ -20,26 +20,45 @@ namespace IS4.SFI.Services
 
         }
 
-        Uri IUriFormatter<Assembly>.this[Assembly value] => new(Namespace("", value.GetName().Name));
+        Uri IUriFormatter<Assembly>.this[Assembly value] => new(Namespace("", value.GetName()));
 
-        Uri IUriFormatter<AssemblyName>.this[AssemblyName value] => new(Namespace("", value.Name));
+        Uri IUriFormatter<AssemblyName>.this[AssemblyName value] => new(Namespace("", value));
 
-        Uri IUriFormatter<Namespace>.this[Namespace value] => new(Namespace(value.FullName, value.Assembly.GetName().Name));
+        Uri IUriFormatter<Namespace>.this[Namespace value] => new(Namespace(value.FullName, value.Assembly.GetName()));
 
         Uri IUriFormatter<MemberInfo>.this[MemberInfo value] {
             get {
                 if (value is Type { DeclaringType: null } type)
                 {
-                    return new($"{Namespace(type.Namespace, type.Assembly.GetName().Name)}#{EscapeFragmentString(type.Name)}");
+                    // Non-nested type
+                    return new(Type(type));
                 }
-                type = value.DeclaringType;
-                return new($"{Namespace(type.Namespace, type.Assembly.GetName().Name)}#{EscapeFragmentString(type.Name)}.{EscapeFragmentString(value.Name)}");
+                if (value is Type { DeclaringMethod: { } method })
+                {
+                    // Type parameter
+                    return new($"{Member(method)}/{EscapeFragmentString(value.Name)}");
+                }
+                return new(Member(value));
             }
         }
 
-        static string Namespace(string ns, string asm)
+        static string Namespace(string ns, AssemblyName asm)
         {
-            return $"clr-namespace:{EscapePathString(ns)};assembly={EscapeQueryString(asm)}";
+            return $"clr-namespace:{EscapePathString(ns)};assembly={EscapePathString(asm.Name)}";
+        }
+
+        static string Type(Type type)
+        {
+            if(type.DeclaringType != null)
+            {
+                return Member(type);
+            }
+            return $"{Namespace(type.Namespace, type.Assembly.GetName())}#{EscapeFragmentString(type.Name)}";
+        }
+
+        static string Member(MemberInfo member)
+        {
+            return $"{Type(member.DeclaringType)}.{EscapeFragmentString(member.Name)}";
         }
     }
 }

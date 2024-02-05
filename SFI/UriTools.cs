@@ -293,6 +293,27 @@ namespace IS4.SFI
         }
 
         /// <summary>
+        /// Regular expression matching characters that must be escaped in a URI fragment value,
+        /// such as those invalid in URIs in general and <c>#</c>.
+        /// </summary>
+        static readonly Regex urlFragmentRegex = new(@$"[^!$&-;=?@{baseUnreservedUriChars}]+", RegexOptions.Compiled);
+
+        /// <summary>
+        /// Escapes characters in <paramref name="uriString"/> that are invalid in a URI fragment
+        /// component or URI in general.
+        /// </summary>
+        /// <param name="uriString">The string to escape.</param>
+        /// <returns>
+        /// The escaped string.
+        /// </returns>
+        public static string EscapeFragmentString(string uriString)
+        {
+            return urlFragmentRegex.Replace(uriString, m => {
+                return Uri.EscapeDataString(m.Value);
+            });
+        }
+
+        /// <summary>
         /// A formatter producing <c>urn:oid:</c> URIs from instances of <see cref="Oid"/>.
         /// </summary>
         public static readonly IGenericUriFormatter<Oid> OidUriFormatter = new OidUriFormatterClass();
