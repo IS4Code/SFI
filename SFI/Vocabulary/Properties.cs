@@ -1071,7 +1071,7 @@
         /// <c><see cref="Woc"/>:hasSourceCode</c>.
         /// </summary>
         [Uri(Woc, "hasSourceCode")]
-        public static readonly PropertyUri CodeSourceCode;
+        public static readonly PropertyUri CodeSource;
 
         /// <summary>
         /// <c><see cref="Woc"/>:isVarArgs</c>.
