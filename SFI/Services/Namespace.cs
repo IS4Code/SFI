@@ -92,22 +92,40 @@ namespace IS4.SFI.Services
 
         object? IIdentityKey.DataKey => FullName;
 
-        /// <inheritdoc/>
-        public virtual object[] GetCustomAttributes(bool inherit)
+        /// <inheritdoc cref="ICustomAttributeProvider.GetCustomAttributes(bool)" />
+        public virtual IReadOnlyList<Attribute> GetCustomAttributes(bool inherit)
         {
-            return Array.Empty<object>();
+            return Array.Empty<Attribute>();
         }
 
-        /// <inheritdoc/>
-        public virtual object[] GetCustomAttributes(Type attributeType, bool inherit)
+        /// <inheritdoc cref="ICustomAttributeProvider.GetCustomAttributes(Type, bool)" />
+        public virtual IReadOnlyList<Attribute> GetCustomAttributes(Type attributeType, bool inherit)
         {
-            return Array.Empty<object>();
+            return GetCustomAttributes(inherit).Where(obj => obj != null && attributeType.IsAssignableFrom(obj.GetType())).ToArray();
+        }
+
+        /// <inheritdoc cref="MemberInfo.GetCustomAttributesData" />
+        public virtual IReadOnlyList<CustomAttributeData> GetCustomAttributesData()
+        {
+            return Array.Empty<CustomAttributeData>();
+        }
+
+        object[] ICustomAttributeProvider.GetCustomAttributes(bool inherit)
+        {
+            var list = GetCustomAttributes(inherit);
+            return list as object[] ?? list.ToArray();
+        }
+
+        object[] ICustomAttributeProvider.GetCustomAttributes(Type attributeType, bool inherit)
+        {
+            var list = GetCustomAttributes(attributeType, inherit);
+            return list as object[] ?? list.ToArray();
         }
 
         /// <inheritdoc/>
         public virtual bool IsDefined(Type attributeType, bool inherit)
         {
-            return false;
+            return GetCustomAttributes(attributeType, inherit).Any();
         }
 
         IEnumerator<Type> IEnumerable<Type>.GetEnumerator()
@@ -189,6 +207,48 @@ namespace IS4.SFI.Services
             {
                 Initialize();
                 return namespaces.Values;
+            }
+
+            public override IReadOnlyList<Attribute> GetCustomAttributes(bool inherit)
+            {
+                if(!IsGlobal)
+                {
+                    return base.GetCustomAttributes(inherit);
+                }
+                return Attribute.GetCustomAttributes(Assembly, inherit).Concat(
+                    Assembly.Modules.SelectMany(m => Attribute.GetCustomAttributes(m, inherit))
+                ).ToList();
+            }
+
+            public override IReadOnlyList<Attribute> GetCustomAttributes(Type attributeType, bool inherit)
+            {
+                if(!IsGlobal)
+                {
+                    return base.GetCustomAttributes(attributeType, inherit);
+                }
+                return Attribute.GetCustomAttributes(Assembly, attributeType, inherit).Concat(
+                    Assembly.Modules.SelectMany(m => Attribute.GetCustomAttributes(m, attributeType, inherit))
+                ).ToList();
+            }
+
+            public override bool IsDefined(Type attributeType, bool inherit)
+            {
+                if(!IsGlobal)
+                {
+                    return base.IsDefined(attributeType, inherit);
+                }
+                return Assembly.IsDefined(attributeType, inherit) || Assembly.Modules.Any(m => m.IsDefined(attributeType, inherit));
+            }
+
+            public override IReadOnlyList<CustomAttributeData> GetCustomAttributesData()
+            {
+                if(!IsGlobal)
+                {
+                    return base.GetCustomAttributesData();
+                }
+                return Assembly.GetCustomAttributesData().Concat(
+                    Assembly.Modules.SelectMany(m => m.GetCustomAttributesData())
+                ).ToList();
             }
 
             void Initialize()
