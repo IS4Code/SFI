@@ -63,6 +63,7 @@ namespace IS4.SFI.Application
             Analyzers.Add(FileAnalyzer = new FileAnalyzer());
             Analyzers.Add(DataAnalyzer = new DataAnalyzer(() => new UdeEncodingDetector()));
             Analyzers.Add(DataObjectAnalyzer = new DataObjectAnalyzer());
+            Analyzers.Add(new ExceptionAnalyzer());
             Analyzers.Add(new PathObjectAnalyzer());
             Analyzers.Add(new ExtensionObjectAnalyzer());
             Analyzers.Add(new MediaTypeAnalyzer());

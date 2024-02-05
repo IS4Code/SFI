@@ -114,10 +114,17 @@ namespace IS4.SFI
                 }catch(InternalApplicationException)
                 {
                     throw;
-                }catch(Exception e) when(GlobalOptions.SuppressNonCriticalExceptions)
+                }catch(Exception exception) when(GlobalOptions.SuppressNonCriticalExceptions)
                 {
-                    using var scope2 = OutputLog?.BeginScope(analyzer);
-                    OutputLog?.LogError(e, $"Error from {TextTools.GetUserFriendlyName(analyzer)}!");
+                    using(var scope2 = OutputLog?.BeginScope(analyzer))
+                    {
+                        OutputLog?.LogError(exception, $"Error from {TextTools.GetUserFriendlyName(analyzer)}!");
+                    }
+                    if(entity is not Exception && (context.Node != null || context.Link != null))
+                    {
+                        // Non-recursive and some way to track the path to parent
+                        await Analyze(exception, context);
+                    }
                     continue;
                 }finally{
                     await Update();
