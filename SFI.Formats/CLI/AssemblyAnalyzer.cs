@@ -40,7 +40,7 @@ namespace IS4.SFI.Analyzers
             var name = assembly.GetName();
             node.Set(Properties.Name, name.FullName);
             node.Set(Properties.Version, name.Version.ToString());
-            node.Set(Properties.Broader, AssemblyMetadataItemUriFormatter.Instance, name);
+            node.Set(Properties.Broader, ClrNamespaceUriFormatter.Instance, name);
 
             var language = new LanguageCode(name.CultureInfo);
 
