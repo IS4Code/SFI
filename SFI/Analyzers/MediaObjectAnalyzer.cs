@@ -1,6 +1,7 @@
 ﻿using IS4.SFI.Services;
 using IS4.SFI.Vocabulary;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace IS4.SFI.Analyzers
 {
@@ -12,20 +13,24 @@ namespace IS4.SFI.Analyzers
     {
         readonly IEnumerable<ClassUri> classes;
 
-        /// <summary>
-        /// Creates a new instance of the analyzer from a collection of classes applicable to the type.
-        /// </summary>
-        /// <param name="classes">The collection of classes.</param>
+        /// <inheritdoc cref="MediaObjectAnalyzer{T}.MediaObjectAnalyzer(IEnumerable{ClassUri}, ClassUri[])"/>
         public MediaObjectAnalyzer(IEnumerable<ClassUri> classes)
         {
             this.classes = classes;
+        }
+
+        /// <inheritdoc cref="MediaObjectAnalyzer{T}.MediaObjectAnalyzer(IEnumerable{ClassUri}, ClassUri[])"/>
+        public MediaObjectAnalyzer(params ClassUri[] classes) : this((IEnumerable<ClassUri>)classes)
+        {
+
         }
 
         /// <summary>
         /// Creates a new instance of the analyzer from a collection of classes applicable to the type.
         /// </summary>
         /// <param name="classes">The collection of classes.</param>
-        public MediaObjectAnalyzer(params ClassUri[] classes) : this((IEnumerable<ClassUri>)classes)
+        /// <param name="additionalClasses">Additional classes appended to <paramref name="classes"/>.</param>
+        public MediaObjectAnalyzer(IEnumerable<ClassUri> classes, params ClassUri[] additionalClasses) : this(classes.Concat(additionalClasses))
         {
 
         }
