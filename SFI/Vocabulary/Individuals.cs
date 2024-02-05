@@ -224,6 +224,155 @@
         public static readonly IndividualUri CodeVolatileModifier;
         #endregion
 
+        #region err
+        /// <summary>
+        /// Error codes defined by <c><see cref="Err"/>:</c>.
+        /// </summary>
+        public static class Errors
+        {
+            /// <summary>Wrong number of arguments.</summary>
+            [Uri(Err, "FOAP0001")]
+            public static readonly IndividualUri WrongNumberOfArguments;
+
+            /// <summary>Division by zero.</summary>
+            [Uri(Err, "FOAR0001")]
+            public static readonly IndividualUri DivisionByZero;
+
+            /// <summary>Numeric operation overflow/underflow.</summary>
+            [Uri(Err, "FOAR0002")]
+            public static readonly IndividualUri NumericOperationOverflowOrUnderflow;
+
+            /// <summary>Array index out of bounds.</summary>
+            [Uri(Err, "FOAY0001")]
+            public static readonly IndividualUri ArrayIndexOutOfBounds;
+
+            /// <summary>Negative array length.</summary>
+            [Uri(Err, "FOAY0002")]
+            public static readonly IndividualUri NegativeArrayLength;
+
+            /// <summary>Input value too large for decimal.</summary>
+            [Uri(Err, "FOCA0001")]
+            public static readonly IndividualUri InputValueTooLargeForDecimal;
+
+            /// <summary>Invalid lexical value.</summary>
+            [Uri(Err, "FOCA0002")]
+            public static readonly IndividualUri InvalidLexicalValue;
+
+            /// <summary>Input value too large for integer.</summary>
+            [Uri(Err, "FOCA0003")]
+            public static readonly IndividualUri InputValueTooLargeForInteger;
+
+            /// <summary>NaN supplied as float/double value.</summary>
+            [Uri(Err, "FOCA0005")]
+            public static readonly IndividualUri NaNSuppliedAsFloatOrDoubleValue;
+
+            /// <summary>String to be cast to decimal has too many digits of precision.</summary>
+            [Uri(Err, "FOCA0006")]
+            public static readonly IndividualUri TooManyDigitsOfPrecisionInString;
+
+            /// <summary>Codepoint not valid.</summary>
+            [Uri(Err, "FOCH0001")]
+            public static readonly IndividualUri CodepointNotValid;
+
+            /// <summary>Unsupported collation.</summary>
+            [Uri(Err, "FOCH0002")]
+            public static readonly IndividualUri UnsupportedCollation;
+
+            /// <summary>Unsupported normalization form.</summary>
+            [Uri(Err, "FOCH0003")]
+            public static readonly IndividualUri UnsupportedNormalizationForm;
+
+            /// <summary>Collation does not support collation units.</summary>
+            [Uri(Err, "FOCH0004")]
+            public static readonly IndividualUri CollationUnitsNotSupported;
+
+            /// <summary>No context document.</summary>
+            [Uri(Err, "FODC0001")]
+            public static readonly IndividualUri NoContextDocument;
+
+            /// <summary>Error retrieving resource.</summary>
+            [Uri(Err, "FODC0002")]
+            public static readonly IndividualUri ErrorRetrievingResource;
+
+            /// <summary>Function not defined as deterministic.</summary>
+            [Uri(Err, "FODC0003")]
+            public static readonly IndividualUri FunctionNotDeterministic;
+
+            /// <summary>Invalid collection URI.</summary>
+            [Uri(Err, "FODC0004")]
+            public static readonly IndividualUri InvalidCollectionUri;
+
+            /// <summary>Invalid decimal format name.</summary>
+            [Uri(Err, "FODF1280")]
+            public static readonly IndividualUri InvalidDecimalFormatName;
+
+            /// <summary>Invalid decimal format picture string.</summary>
+            [Uri(Err, "FODF1310")]
+            public static readonly IndividualUri InvalidDecimalFormatPictureString;
+
+            /// <summary>Overflow/underflow in date/time operation.</summary>
+            [Uri(Err, "FODT0001")]
+            public static readonly IndividualUri OverflowOrUnderflowInDateOrTimeOperation;
+
+            /// <summary>Overflow/underflow in duration operation.</summary>
+            [Uri(Err, "FODT0002")]
+            public static readonly IndividualUri OverflowOrUnderflowInDurationOperation;
+
+            /// <summary>Invalid timezone value.</summary>
+            [Uri(Err, "FODT0003")]
+            public static readonly IndividualUri InvalidTimezoneValue;
+
+            /// <summary>Unidentified error.</summary>
+            [Uri(Err, "FOER0000")]
+            public static readonly IndividualUri UnidentifiedError;
+
+            /// <summary>Invalid date/time formatting parameters.</summary>
+            [Uri(Err, "FOFD1340")]
+            public static readonly IndividualUri InvalidDateOrTimeFormattingParameters;
+
+            /// <summary>Invalid date/time formatting component.</summary>
+            [Uri(Err, "FOFD1350")]
+            public static readonly IndividualUri InvalidDateOrTimeFormattingComponent;
+
+            /// <summary>Invalid options.</summary>
+            [Uri(Err, "FOJS0005")]
+            public static readonly IndividualUri InvalidOptions;
+
+            /// <summary>Invalid value for cast/constructor.</summary>
+            [Uri(Err, "FORG0001")]
+            public static readonly IndividualUri InvalidValueForCastOrConstructor;
+
+            /// <summary>Invalid argument type.</summary>
+            [Uri(Err, "FORG0006")]
+            public static readonly IndividualUri InvalidArgumentType;
+
+            /// <summary>Invalid date/time.</summary>
+            [Uri(Err, "FORG0010")]
+            public static readonly IndividualUri InvalidDateOrTime;
+
+            /// <summary>Invalid regular expression flags.</summary>
+            [Uri(Err, "FORX0001")]
+            public static readonly IndividualUri InvalidRegularExpressionFlags;
+
+            /// <summary>Invalid regular expression.</summary>
+            [Uri(Err, "FORX0002")]
+            public static readonly IndividualUri InvalidRegularExpression;
+
+            /// <summary>Regular expression matches zero-length string.</summary>
+            [Uri(Err, "FORX0003")]
+            public static readonly IndividualUri RegularExpressionMatchesEmptyString;
+
+            /// <summary>Invalid replacement string.</summary>
+            [Uri(Err, "FORX0004")]
+            public static readonly IndividualUri InvalidReplacementString;
+
+            static Errors()
+            {
+                typeof(Errors).InitializeUris();
+            }
+        }
+        #endregion
+
         static Individuals()
         {
             typeof(Individuals).InitializeUris();

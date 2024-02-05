@@ -1080,6 +1080,50 @@
         public static readonly PropertyUri CodeIsVarArgs;
         #endregion
 
+        #region err
+        /// <summary>
+        /// <c><see cref="Err"/>:code</c>.
+        /// </summary>
+        [Uri(Err, "code")]
+        public static readonly PropertyUri ErrorCode;
+
+        /// <summary>
+        /// <c><see cref="Err"/>:description</c>.
+        /// </summary>
+        [Uri(Err, "description")]
+        public static readonly PropertyUri ErrorDescription;
+
+        /// <summary>
+        /// <c><see cref="Err"/>:value</c>.
+        /// </summary>
+        [Uri(Err, "value")]
+        public static readonly PropertyUri ErrorValue;
+
+        /// <summary>
+        /// <c><see cref="Err"/>:module</c>.
+        /// </summary>
+        [Uri(Err, "module")]
+        public static readonly PropertyUri ErrorModule;
+
+        /// <summary>
+        /// <c><see cref="Err"/>:line-number</c>.
+        /// </summary>
+        [Uri(Err, "line-number")]
+        public static readonly PropertyUri ErrorLineNumber;
+
+        /// <summary>
+        /// <c><see cref="Err"/>:column-number</c>.
+        /// </summary>
+        [Uri(Err, "column-number")]
+        public static readonly PropertyUri ErrorColumnNumber;
+
+        /// <summary>
+        /// <c><see cref="Err"/>:additional</c>.
+        /// </summary>
+        [Uri(Err, "additional")]
+        public static readonly PropertyUri ErrorAdditional;
+        #endregion
+
         #region at
         /// <summary>
         /// <c><see cref="At"/>:digest</c>.
