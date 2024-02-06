@@ -777,14 +777,20 @@ namespace IS4.SFI
                 {
                     if(!includeDeclaringType)
                     {
-                        // Just the position requested
-                        if(type.DeclaringMethod != null)
+                        if(type.IsGenericParameter)
                         {
-                            Syntax("``");
-                        }else{
-                            Syntax("`");
+                            // Just the position requested
+                            if(type.DeclaringMethod != null)
+                            {
+                                Syntax("``");
+                            }else{
+                                Syntax("`");
+                            }
+                            sb.Append(type.GenericParameterPosition);
+                            return;
                         }
-                        sb.Append(type.GenericParameterPosition);
+                        // Just name requested (make sure the type is not constructed)
+                        Literal(includeNamespace ? (type.FullName ?? type.Name) : type.Name);
                         return;
                     }
                     Type(type, includeNamespace);
