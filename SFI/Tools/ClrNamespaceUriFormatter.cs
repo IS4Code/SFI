@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using System.Text;
 
 namespace IS4.SFI.Services
 {
@@ -8,7 +9,7 @@ namespace IS4.SFI.Services
     /// <summary>
     /// Provides support for formatting assemblies, namespaces, types, and members as URIs.
     /// </summary>
-    public class ClrNamespaceUriFormatter : IIndividualUriFormatter<Assembly>, IIndividualUriFormatter<Namespace>, IIndividualUriFormatter<MemberInfo>
+    public class ClrNamespaceUriFormatter : IIndividualUriFormatter<Assembly>, IIndividualUriFormatter<Namespace>, IIndividualUriFormatter<MemberInfo>, IIndividualUriFormatter<ParameterInfo>
     {
         /// <summary>
         /// The instance of the formatter.
@@ -20,24 +21,32 @@ namespace IS4.SFI.Services
 
         }
 
-        Uri IUriFormatter<Assembly>.this[Assembly value] => new(Namespace("", value));
+        Uri IUriFormatter<Assembly>.this[Assembly value] => new(Namespace("", value).ToString());
 
-        Uri IUriFormatter<Namespace>.this[Namespace value] => new(Namespace(value.FullName, value.Assembly));
+        Uri IUriFormatter<Namespace>.this[Namespace value] => new(Namespace(value.FullName, value.Assembly).ToString());
 
         Uri IUriFormatter<MemberInfo>.this[MemberInfo value] {
             get {
-                if (value is Type { DeclaringType: null } type)
-                {
-                    // Non-nested type
-                    return new(Type(type));
-                }
-                if (value is Type { IsGenericParameter: true, DeclaringMethod: { } method })
-                {
-                    // Type parameter
-                    return new($"{Member(method)}/{EscapeFragmentString(value.Name)}");
-                }
-                return new(Member(value));
+                return new(Member(value).ToString());
             }
+        }
+
+        Uri? IUriFormatter<ParameterInfo>.this[ParameterInfo value] {
+            get {
+                var sb = Member(value.Member);
+                sb.Append('/');
+                var name = value.Name;
+                sb.Append(name == null ? value.Position.ToString() : Uri.EscapeDataString(name));
+                return new(sb.ToString());
+            }
+        }
+
+        static StringBuilder Member(MemberInfo member)
+        {
+            var type = member.DeclaringType ?? member as Type;
+            var sb = Namespace(type?.Namespace ?? "", type?.Assembly);
+            sb.Append('#');
+            return TextTools.FormatMemberId(member, sb, true, false, true);
         }
 
         /// <summary>
@@ -45,28 +54,17 @@ namespace IS4.SFI.Services
         /// </summary>
         public const string ReferenceAssemblyMarkerClass = "IS4.SFI.<ReferenceAssembly>";
 
-        static string Namespace(string ns, Assembly asm)
+        static StringBuilder Namespace(string ns, Assembly? asm)
         {
-            if(asm.GetType(ReferenceAssemblyMarkerClass, false) != null)
+            var sb = new StringBuilder("clr-namespace:");
+            sb.Append(EscapePathString(ns));
+            if(asm != null && asm.GetType(ReferenceAssemblyMarkerClass, false) == null)
             {
-                // Assembly marked as reference-only
-                return $"clr-namespace:{EscapePathString(ns)}";
+                // Assembly not marked as reference-only
+                sb.Append(";assembly=");
+                sb.Append(EscapePathString(asm.GetName().Name));
             }
-            return $"clr-namespace:{EscapePathString(ns)};assembly={EscapePathString(asm.GetName().Name)}";
-        }
-
-        static string Type(Type type)
-        {
-            if(type.DeclaringType != null)
-            {
-                return Member(type);
-            }
-            return $"{Namespace(type.Namespace ?? "", type.Assembly)}#{EscapeFragmentString(type.Name)}";
-        }
-
-        static string Member(MemberInfo member)
-        {
-            return $"{Type(member.DeclaringType)}.{EscapeFragmentString(member.Name)}";
+            return sb;
         }
     }
 }

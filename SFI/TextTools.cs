@@ -724,5 +724,241 @@ namespace IS4.SFI
 			// Perform substitution using Regex
 			return Regex.Replace(source.ToString(), pattern.ToString(), text, RegexOptions.Singleline);
         }
+
+        /// <inheritdoc cref="FormatMemberId(MemberInfo, StringBuilder, bool, bool, bool)"/>
+        public static string FormatMemberId(MemberInfo member, bool inUri = false, bool includeNamespace = true, bool includeDeclaringType = true)
+        {
+            var sb = new StringBuilder();
+            FormatMemberId(member, sb, inUri, includeNamespace, includeDeclaringType);
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Produces an identifier from <see cref="MemberInfo"/>.
+        /// </summary>
+        /// <param name="member">The member to get the identifier from.</param>
+        /// <param name="stringBuilder">The buffer to write the result to.</param>
+        /// <param name="inUri">Whether to create a URI-safe identifier.</param>
+        /// <param name="includeNamespace">Whether to include the namespace of the declaring type.</param>
+        /// <returns>The formatted identifier.</returns>
+        public static StringBuilder FormatMemberId(MemberInfo member, StringBuilder stringBuilder, bool inUri = false, bool includeNamespace = true, bool includeDeclaringType = true)
+        {
+            var context = new MemberIdFormatContext(stringBuilder, inUri);
+            context.Member(member, includeNamespace, includeDeclaringType);
+            return stringBuilder;
+        }
+
+        struct MemberIdFormatContext
+        {
+            readonly StringBuilder sb;
+            readonly bool inUri;
+
+            public MemberIdFormatContext(StringBuilder sb, bool inUri)
+            {
+                this.sb = sb;
+                this.inUri = inUri;
+            }
+
+            public void Member(MemberInfo member, bool includeNamespace, bool includeDeclaringType)
+            {
+                if(member is Type type)
+                {
+                    var name = type.Name;
+                    if(type.IsGenericParameter && name == null)
+                    {
+                        // Synthesize name
+                        name = "T" + type.GenericParameterPosition;
+                    }
+                    if(!includeDeclaringType)
+                    {
+                        // Just the type name requested
+                        Literal(includeNamespace ? (type.FullName ?? name) : name);
+                        return;
+                    }
+                    if(type.IsGenericParameter)
+                    {
+                        // Outer gen. parameter (exception to calling Type)
+                        if(type.DeclaringMethod is { } declaringMethod)
+                        {
+                            // On a method
+                            Member(declaringMethod, includeNamespace, true);
+                        }else{
+                            // On a type
+                            Type(type.DeclaringType, includeNamespace);
+                        }
+                        Syntax("/");
+                        Literal(name);
+                        return;
+                    }
+                    Type(type, includeNamespace);
+                    return;
+                }
+                if(includeDeclaringType)
+                {
+                    Type(member.DeclaringType, includeNamespace);
+                    Syntax(".");
+                }
+                if(member is not MethodBase method)
+                {
+                    Literal(member.Name);
+                    return;
+                }
+                if(method.Equals(method.DeclaringType.TypeInitializer))
+                {
+                    Syntax("#cctor");
+                }else if(method.IsConstructor)
+                {
+                    Syntax("#ctor");
+                }else{
+                    // Escapes explicit implementations
+                    Literal(method.Name.Replace('.', '#'));
+                }
+                if(method.IsGenericMethodDefinition)
+                {
+                    Syntax("``");
+                    sb.Append(method.GetGenericArguments().Length);
+                }else if(method.IsGenericMethod)
+                {
+                    Syntax("{");
+                    var genArgs = method.GetGenericArguments();
+                    for(int i = 0; i < genArgs.Length; i++)
+                    {
+                        if(i > 0)
+                        {
+                            Syntax(",");
+                        }
+                        Type(genArgs[i], true);
+                    }
+                    Syntax("}");
+                }
+                var parms = method.GetParameters();
+                if(parms.Length == 0)
+                {
+                    return;
+                }
+                Syntax("(");
+                for(int i = 0; i < parms.Length; i++)
+                {
+                    if(i > 0)
+                    {
+                        Syntax(",");
+                    }
+                    Type(parms[i].ParameterType, true);
+                }
+                Syntax(")");
+            }
+
+            void Type(Type type, bool includeNamespace, bool constructed = false)
+            {
+                if(type.IsArray)
+                {
+                    var elemType = type.GetElementType();
+                    Type(elemType, includeNamespace);
+                    var rank = type.GetArrayRank();
+                    if(rank <= 1)
+                    {
+                        if(type.Equals(elemType.MakeArrayType()))
+                        {
+                            //SZ array
+                            Syntax("[]");
+                            return;
+                        }
+                        Syntax("[*]");
+                        return;
+                    }
+                    Syntax("[");
+                    sb.Append(',', rank - 1);
+                    Syntax("]");
+                    return;
+                }
+                if(type.IsPointer)
+                {
+                    var elemType = type.GetElementType();
+                    Type(elemType, includeNamespace);
+                    Syntax("*");
+                    return;
+                }
+                if(type.IsByRef)
+                {
+                    var elemType = type.GetElementType();
+                    Type(elemType, includeNamespace);
+                    Syntax("@");
+                    return;
+                }
+                if(type.IsGenericParameter)
+                {
+                    if(type.DeclaringMethod != null)
+                    {
+                        // On method
+                        Syntax("``");
+                    }else{
+                        Syntax("`");
+                    }
+                    sb.Append(type.GenericParameterPosition);
+                    return;
+                }
+                if(type.IsConstructedGenericType)
+                {
+                    var elemType = type.GetGenericTypeDefinition();
+                    Type(elemType, includeNamespace, constructed: true);
+                    Syntax("{");
+                    var genArgs = type.GetGenericArguments();
+                    for(int i = 0; i < genArgs.Length; i++)
+                    {
+                        if(i > 0)
+                        {
+                            Syntax(",");
+                        }
+                        Type(genArgs[i], true);
+                    }
+                    Syntax("}");
+                    return;
+                }
+                if(type.DeclaringType is { } declaringType)
+                {
+                    Type(declaringType, includeNamespace);
+                    Syntax(".");
+                }else if(includeNamespace)
+                {
+                    var ns = type.Namespace;
+                    if(!String.IsNullOrEmpty(ns))
+                    {
+                        Literal(ns);
+                        Syntax(".");
+                    }
+                }
+                var name = type.Name;
+                if(constructed)
+                {
+                    // remove arity
+                    int arityStart = name.LastIndexOf('`');
+                    if(arityStart != -1)
+                    {
+                        name = name.Substring(0, arityStart);
+                    }
+                }
+                Literal(name);
+            }
+
+            void Syntax(string text)
+            {
+                if(inUri)
+                {
+                    sb.Append(UriTools.EscapePathString(text));
+                }else{
+                    sb.Append(text);
+                }
+            }
+
+            void Literal(string text)
+            {
+                if(inUri)
+                {
+                    sb.Append(Uri.EscapeDataString(text));
+                }else{
+                    sb.Append(text);
+                }
+            }
+        }
     }
 }
