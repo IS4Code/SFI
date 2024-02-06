@@ -3,7 +3,6 @@ using IS4.SFI.Vocabulary;
 using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace IS4.SFI.Analyzers
 {
@@ -25,8 +24,14 @@ namespace IS4.SFI.Analyzers
             var name = ns.Name;
             var node = GetNode(Uri.EscapeDataString(name), context);
 
-            node.Set(Properties.CodeSimpleName, name);
-            node.Set(Properties.CodeCanonicalName, ns.FullName);
+            if(!String.IsNullOrEmpty(name))
+            {
+                node.Set(Properties.CodeSimpleName, name);
+            }
+            if(!String.IsNullOrEmpty(ns.FullName))
+            {
+                node.Set(Properties.CodeCanonicalName, ns.FullName);
+            }
             node.Set(Properties.Broader, ClrNamespaceUriFormatter.Instance, ns);
 
             AnalyzeCustomAttributes(node, ns.GetCustomAttributesData());
@@ -41,6 +46,22 @@ namespace IS4.SFI.Analyzers
             foreach(var type in ExportedOnly ? ns.ExportedTypes : ns.DefinedTypes)
             {
                 await analyzers.Analyze(type, typeContext);
+            }
+
+            return new(node, name);
+        }
+
+        /// <inheritdoc/>
+        protected async override ValueTask<AnalysisResult> AnalyzeReference(Namespace ns, ILinkedNode node, AnalysisContext context, IEntityAnalyzers analyzers)
+        {
+            var name = ns.Name;
+
+            node.Set(Properties.CodeSimpleName, name);
+            node.Set(Properties.CodeCanonicalName, ns.FullName);
+
+            if(!ns.IsGlobal)
+            {
+                await ReferenceMember(node, Properties.CodeDeclaredBy, ns.DeclaringNamespace, context, analyzers);
             }
 
             return new(node, name);

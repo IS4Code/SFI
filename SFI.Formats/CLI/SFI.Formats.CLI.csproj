@@ -47,6 +47,8 @@
     <ProjectReference Include="..\Modules\SFI.Formats.Modules.csproj" />
   </ItemGroup>
 
+  <Import Project="..\..\SFI.Shared\SFI.Shared.projitems" Label="Shared" />
+
   <ItemGroup>
     <None Update="EmbeddedAssemblies.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

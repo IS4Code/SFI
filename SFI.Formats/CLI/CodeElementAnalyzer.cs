@@ -1,8 +1,11 @@
 ﻿using IS4.SFI.Services;
 using IS4.SFI.Vocabulary;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace IS4.SFI.Analyzers
 {
@@ -12,7 +15,7 @@ namespace IS4.SFI.Analyzers
     /// An analyzer of .NET code elements.
     /// </summary>
     /// <typeparam name="T">The type of the code element.</typeparam>
-    public abstract class CodeElementAnalyzer<T> : EntityAnalyzer<T> where T : ICustomAttributeProvider
+    public abstract class CodeElementAnalyzer<T> : EntityAnalyzer<T>, IEntityAnalyzer<CodeElementAnalyzer<T>.Reference> where T : ICustomAttributeProvider
     {
         readonly ClassUri elementClass;
 
@@ -21,6 +24,12 @@ namespace IS4.SFI.Analyzers
         /// </summary>
         [Description("Whether to analyze exported members only.")]
         public bool ExportedOnly { get; set; }
+
+        /// <summary>
+        /// Whether to analyze outgoing references to members.
+        /// </summary>
+        [Description("Whether to analyze outgoing references to members.")]
+        public bool AnalyzeReferences { get; set; }
 
         /// <summary>
         /// The <see cref="BindingFlags"/> to use when browsing members.
@@ -117,6 +126,169 @@ namespace IS4.SFI.Analyzers
             {
                 node.Set(Properties.CodeModifier, Individuals.CodeStaticModifier);
             }
+        }
+
+        /// <summary>
+        /// Links <paramref name="parent"/> to a referenced member. If the member
+        /// is within the same assembly, it is sent to analysis.
+        /// </summary>
+        /// <typeparam name="TMember">The type of the member.</typeparam>
+        /// <param name="parent">The node referencing the member.</param>
+        /// <param name="property">The property referencing the member.</param>
+        /// <param name="member">The referenced member.</param>
+        /// <param name="context">The context to use when analyzing the member.</param>
+        /// <param name="analyzers">The <see cref="IEntityAnalyzers"/> collection.</param>
+        /// <returns>The task representing the operation.</returns>
+        protected async ValueTask ReferenceMember<TMember>(ILinkedNode parent, PropertyUri property, TMember? member, AnalysisContext context, IEntityAnalyzers analyzers) where TMember : MemberInfo
+        {
+            if(member == null)
+            {
+                return;
+            }
+            if(
+                AnalyzeReferences &&
+                GetMemberAssembly(member, out var assembly) &&
+                await ReferenceMemberInAssembly(assembly, parent, property, member, ClrNamespaceUriFormatter.Instance, context, analyzers))
+            {
+                return;
+            }
+            parent.Set(property, ClrNamespaceUriFormatter.Instance, member);
+        }
+
+        /// <inheritdoc cref="ReferenceMember{TMember}(ILinkedNode, PropertyUri, TMember?, AnalysisContext, IEntityAnalyzers)"/>
+        protected async ValueTask ReferenceMember(ILinkedNode parent, PropertyUri property, ParameterInfo? member, AnalysisContext context, IEntityAnalyzers analyzers)
+        {
+            if(member == null)
+            {
+                return;
+            }
+            if(
+                AnalyzeReferences &&
+                GetMemberAssembly(member, out var assembly) &&
+                await ReferenceMemberInAssembly(assembly, parent, property, member, ClrNamespaceUriFormatter.Instance, context, analyzers))
+            {
+                return;
+            }
+            parent.Set(property, ClrNamespaceUriFormatter.Instance, member);
+        }
+
+        /// <inheritdoc cref="ReferenceMember{TMember}(ILinkedNode, PropertyUri, TMember?, AnalysisContext, IEntityAnalyzers)"/>
+        protected async ValueTask ReferenceMember(ILinkedNode parent, PropertyUri property, Namespace? member, AnalysisContext context, IEntityAnalyzers analyzers)
+        {
+            if(member == null)
+            {
+                return;
+            }
+            if(
+                AnalyzeReferences &&
+                GetMemberAssembly(member, out var assembly) &&
+                await ReferenceMemberInAssembly(assembly, parent, property, member, ClrNamespaceUriFormatter.Instance, context, analyzers))
+            {
+                return;
+            }
+            parent.Set(property, ClrNamespaceUriFormatter.Instance, member);
+        }
+
+        static bool GetMemberAssembly(MemberInfo member, [MaybeNullWhen(false)] out Assembly assembly)
+        {
+            var type = member.DeclaringType ?? (member as Type);
+            assembly = type?.Assembly;
+            return assembly != null;
+        }
+
+        static bool GetMemberAssembly(ParameterInfo param, [MaybeNullWhen(false)] out Assembly assembly)
+        {
+            return GetMemberAssembly(param.Member, out assembly);
+        }
+
+        static bool GetMemberAssembly(Namespace param, [MaybeNullWhen(false)] out Assembly assembly)
+        {
+            assembly = param.Assembly;
+            return assembly != null;
+        }
+
+        static async ValueTask<bool> ReferenceMemberInAssembly<TMember>(Assembly assembly, ILinkedNode parent, PropertyUri property, TMember member, IIndividualUriFormatter<TMember> formatter, AnalysisContext context, IEntityAnalyzers analyzers) where TMember : ICustomAttributeProvider
+        {
+            // Check the assembly defining the member
+            if(assembly.GetType(ClrNamespaceUriFormatter.ReferenceAssemblyMarkerClass, false) == null)
+            {
+                // Do not analyze reference assemblies
+                var reference = new CodeElementAnalyzer<TMember>.Reference(member);
+                var node = context.NodeFactory.Create(formatter, member);
+                var newContext = context.WithParentLink(parent, property).WithNode(node);
+                await analyzers.Analyze(reference, newContext);
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Analyzes a reference to a member. When overriden, this method should
+        /// describe only the members of <paramref name="member"/> that
+        /// are defined by its signature, and not any attributes. Only the members
+        /// declaring <paramref name="member"/> should be referenced in order
+        /// not to cause loops.
+        /// </summary>
+        /// <param name="member">The member to analyze.</param>
+        /// <param name="node">The node representing <paramref name="member"/>.</param>
+        /// <param name="context"><inheritdoc cref="IEntityAnalyzer{T}.Analyze(T, AnalysisContext, IEntityAnalyzers)" path="/param[@name='context']"/></param>
+        /// <param name="analyzers"><inheritdoc cref="IEntityAnalyzer{T}.Analyze(T, AnalysisContext, IEntityAnalyzers)" path="/param[@name='analyzers']"/></param>
+        /// <returns><inheritdoc cref="IEntityAnalyzer{T}.Analyze(T, AnalysisContext, IEntityAnalyzers)" path="/returns"/></returns>
+        protected abstract ValueTask<AnalysisResult> AnalyzeReference(T member, ILinkedNode node, AnalysisContext context, IEntityAnalyzers analyzers);
+
+        ValueTask<AnalysisResult> IEntityAnalyzer<MemberAnalyzer<T>.Reference>.Analyze(MemberAnalyzer<T>.Reference reference, AnalysisContext context, IEntityAnalyzers analyzers)
+        {
+            return AnalyzeReference(reference.Member, GetNode(context), context, analyzers);
+        }
+
+        /// <summary>
+        /// Represents a reference to another member in the same assembly.
+        /// </summary>
+        public struct Reference : IEquatable<Reference>, IIdentityKey
+        {
+            /// <summary>
+            /// The member this instance is a reference to.
+            /// </summary>
+            public T Member { get; }
+
+            /// <summary>
+            /// Creates a new instance of the reference.
+            /// </summary>
+            /// <param name="member">The value of <see cref="Member"/>.</param>
+            public Reference(T member)
+            {
+                Member = member;
+            }
+
+            /// <inheritdoc/>
+            public override string ToString()
+            {
+                return Member.ToString();
+            }
+
+            /// <inheritdoc/>
+            public bool Equals(Reference other)
+            {
+                return Member.Equals(other);
+            }
+
+            /// <inheritdoc/>
+            public override bool Equals(object obj)
+            {
+                return obj is Reference other && Equals(other);
+            }
+
+            /// <inheritdoc/>
+            public override int GetHashCode()
+            {
+                return Member.GetHashCode();
+            }
+
+            static readonly Type thisType = typeof(Reference);
+
+            object? IIdentityKey.ReferenceKey => Member;
+
+            object? IIdentityKey.DataKey => thisType;
         }
     }
 }

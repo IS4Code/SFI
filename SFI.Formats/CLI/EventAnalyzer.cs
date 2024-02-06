@@ -31,30 +31,46 @@ namespace IS4.SFI.Analyzers
             node.Set(Properties.CodeCanonicalName, name);
             node.Set(Properties.Broader, ClrNamespaceUriFormatter.Instance, evnt);
 
-            node.Set(Properties.CodeType, ClrNamespaceUriFormatter.Instance, evnt.EventHandlerType);
+            await ReferenceMember(node, Properties.CodeType, evnt.EventHandlerType, context, analyzers);
 
             if(evnt.AddMethod is { } addMethod && (!ExportedOnly || IsPublic(addMethod)))
             {
-                node.Set(Properties.CodeReferences, ClrNamespaceUriFormatter.Instance, addMethod);
+                await ReferenceMember(node, Properties.CodeReferences, addMethod, context, analyzers);
             }
             if(evnt.RemoveMethod is { } removeMethod && (!ExportedOnly || IsPublic(removeMethod)))
             {
-                node.Set(Properties.CodeReferences, ClrNamespaceUriFormatter.Instance, removeMethod);
+                await ReferenceMember(node, Properties.CodeReferences, removeMethod, context, analyzers);
             }
             if(evnt.RaiseMethod is { } raiseMethod && (!ExportedOnly || IsPublic(raiseMethod)))
             {
-                node.Set(Properties.CodeReferences, ClrNamespaceUriFormatter.Instance, raiseMethod);
+                await ReferenceMember(node, Properties.CodeReferences, raiseMethod, context, analyzers);
             }
 
             foreach(var method in evnt.GetOtherMethods(true))
             {
                 if(!ExportedOnly || IsPublic(method))
                 {
-                    node.Set(Properties.CodeReferences, ClrNamespaceUriFormatter.Instance, method);
+                    await ReferenceMember(node, Properties.CodeReferences, method, context, analyzers);
                 }
             }
 
             AnalyzeCustomAttributes(node, evnt.GetCustomAttributesData());
+
+            return new(node, name);
+        }
+
+        /// <inheritdoc/>
+        protected async override ValueTask<AnalysisResult> AnalyzeReference(EventInfo evnt, ILinkedNode node, AnalysisContext context, IEntityAnalyzers analyzers)
+        {
+            var name = evnt.Name;
+
+            if(!evnt.IsSpecialName)
+            {
+                node.Set(Properties.CodeSimpleName, name);
+            }
+            node.Set(Properties.CodeCanonicalName, name);
+
+            await ReferenceMember(node, Properties.CodeDeclaredBy, evnt.DeclaringType, context, analyzers);
 
             return new(node, name);
         }

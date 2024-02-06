@@ -43,9 +43,25 @@ namespace IS4.SFI.Analyzers
                 isStatic: field.IsStatic
             );
 
-            node.Set(Properties.CodeType, ClrNamespaceUriFormatter.Instance, field.FieldType);
+            await ReferenceMember(node, Properties.CodeType, field.FieldType, context, analyzers);
 
             AnalyzeCustomAttributes(node, field.GetCustomAttributesData());
+
+            return new(node, name);
+        }
+
+        /// <inheritdoc/>
+        protected async override ValueTask<AnalysisResult> AnalyzeReference(FieldInfo field, ILinkedNode node, AnalysisContext context, IEntityAnalyzers analyzers)
+        {
+            var name = field.Name;
+
+            if(!field.IsSpecialName)
+            {
+                node.Set(Properties.CodeSimpleName, name);
+            }
+            node.Set(Properties.CodeCanonicalName, name);
+
+            await ReferenceMember(node, Properties.CodeFieldOf, field.DeclaringType, context, analyzers);
 
             return new(node, name);
         }

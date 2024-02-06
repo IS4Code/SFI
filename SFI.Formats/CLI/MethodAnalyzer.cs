@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 namespace IS4.SFI.Analyzers
 {
     /// <summary>
-    /// An analyzer of .NET fields, as instances of <see cref="MethodInfo"/>.
+    /// An analyzer of .NET methods, as instances of <see cref="MethodBase"/>.
     /// </summary>
-    [Description("An analyzer of .NET fields.")]
-    public class MethodAnalyzer : MemberAnalyzer<MethodInfo>
+    [Description("An analyzer of .NET methods.")]
+    public class MethodAnalyzer : MemberAnalyzer<MethodBase>
     {
         /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>
         public MethodAnalyzer() : base(Classes.CodeMethod)
@@ -21,7 +21,7 @@ namespace IS4.SFI.Analyzers
         }
 
         /// <inheritdoc/>
-        public async override ValueTask<AnalysisResult> Analyze(MethodInfo method, AnalysisContext context, IEntityAnalyzers analyzers)
+        public async override ValueTask<AnalysisResult> Analyze(MethodBase method, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var name = method.Name;
             var node = GetNode(method, context);
@@ -46,21 +46,24 @@ namespace IS4.SFI.Analyzers
                 isStatic: method.IsStatic
             );
 
-            node.Set(Properties.CodeReturnType, ClrNamespaceUriFormatter.Instance, method.ReturnType);
-
-            if(method.IsVirtual && (method.Attributes & MethodAttributes.NewSlot) == 0)
+            if(method is MethodInfo methodInfo)
             {
-                MethodInfo? baseMethod = null;
-                try{
-                    baseMethod = method.GetBaseDefinition();
-                }catch(NotSupportedException)
+                await ReferenceMember(node, Properties.CodeReturnType, methodInfo.ReturnType, context, analyzers);
+
+                if(method.IsVirtual && (method.Attributes & MethodAttributes.NewSlot) == 0)
                 {
-                    // MetadataLoadContext does not support it; look it up by signature
-                    baseMethod = FindBaseMethod(method);
-                }
-                if(baseMethod != null && !method.Equals(baseMethod))
-                {
-                    node.Set(Properties.CodeOverrides, ClrNamespaceUriFormatter.Instance, baseMethod);
+                    MethodInfo? baseMethod = null;
+                    try{
+                        baseMethod = methodInfo.GetBaseDefinition();
+                    }catch(NotSupportedException)
+                    {
+                        // MetadataLoadContext does not support it; look it up by signature
+                        baseMethod = FindBaseMethod(methodInfo);
+                    }
+                    if(baseMethod != null && !method.Equals(baseMethod))
+                    {
+                        await ReferenceMember(node, Properties.CodeOverrides, baseMethod, context, analyzers);
+                    }
                 }
             }
 
@@ -79,6 +82,36 @@ namespace IS4.SFI.Analyzers
             foreach(var methodParam in method.GetParameters())
             {
                 await analyzers.Analyze(methodParam, paramContext);
+            }
+
+            return new(node, name);
+        }
+
+        /// <inheritdoc/>
+        protected async override ValueTask<AnalysisResult> AnalyzeReference(MethodBase method, ILinkedNode node, AnalysisContext context, IEntityAnalyzers analyzers)
+        {
+            var name = method.Name;
+            
+            if(method.IsGenericMethod && !method.IsGenericMethodDefinition && method is MethodInfo methodInfo)
+            {
+                await ReferenceMember(node, Properties.CodeOverrides, methodInfo.GetGenericMethodDefinition(), context, analyzers);
+                foreach(var typeArg in method.GetGenericArguments())
+                {
+                    node.Set(Properties.CodeTypeArgument, ClrNamespaceUriFormatter.Instance, typeArg);
+                }
+            }else{
+                if(!method.IsSpecialName)
+                {
+                    node.Set(Properties.CodeSimpleName, name);
+                }
+                node.Set(Properties.CodeCanonicalName, name);
+
+                foreach(var methodParam in method.GetParameters())
+                {
+                    await ReferenceMember(node, Properties.CodeParameter, methodParam, context, analyzers);
+                }
+
+                await ReferenceMember(node, Properties.CodeMethodOf, method.DeclaringType, context, analyzers);
             }
 
             return new(node, name);

@@ -31,22 +31,38 @@ namespace IS4.SFI.Analyzers
             node.Set(Properties.CodeCanonicalName, name);
             node.Set(Properties.Broader, ClrNamespaceUriFormatter.Instance, prop);
 
-            node.Set(Properties.CodeType, ClrNamespaceUriFormatter.Instance, prop.PropertyType);
+            await ReferenceMember(node, Properties.CodeType, prop.PropertyType, context, analyzers);
 
             if(prop.GetMethod is {  } getMethod && (!ExportedOnly || IsPublic(getMethod)))
             {
-                node.Set(Properties.CodeReturnedBy, ClrNamespaceUriFormatter.Instance, getMethod);
+                await ReferenceMember(node, Properties.CodeReturnedBy, getMethod, context, analyzers);
             }
 
             foreach(var method in prop.GetAccessors(true))
             {
                 if(!ExportedOnly || IsPublic(method))
                 {
-                    node.Set(Properties.CodeReferences, ClrNamespaceUriFormatter.Instance, method);
+                    await ReferenceMember(node, Properties.CodeReferences, method, context, analyzers);
                 }
             }
 
             AnalyzeCustomAttributes(node, prop.GetCustomAttributesData());
+
+            return new(node, name);
+        }
+
+        /// <inheritdoc/>
+        protected async override ValueTask<AnalysisResult> AnalyzeReference(PropertyInfo prop, ILinkedNode node, AnalysisContext context, IEntityAnalyzers analyzers)
+        {
+            var name = prop.Name;
+
+            if(!prop.IsSpecialName)
+            {
+                node.Set(Properties.CodeSimpleName, name);
+            }
+            node.Set(Properties.CodeCanonicalName, name);
+
+            await ReferenceMember(node, Properties.CodeDeclaredBy, prop.DeclaringType, context, analyzers);
 
             return new(node, name);
         }

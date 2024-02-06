@@ -888,6 +888,12 @@
         public static readonly PropertyUri CodeDeclares;
 
         /// <summary>
+        /// <c><see cref="Woc"/>:isDeclaredBy</c>.
+        /// </summary>
+        [Uri(Woc, "isDeclaredBy")]
+        public static readonly PropertyUri CodeDeclaredBy;
+
+        /// <summary>
         /// <c><see cref="Woc"/>:extends</c>.
         /// </summary>
         [Uri(Woc, "extends")]
@@ -924,6 +930,12 @@
         public static readonly PropertyUri CodeField;
 
         /// <summary>
+        /// <c><see cref="Woc"/>:isFieldOf</c>.
+        /// </summary>
+        [Uri(Woc, "isFieldOf")]
+        public static readonly PropertyUri CodeFieldOf;
+
+        /// <summary>
         /// <c><see cref="Woc"/>:hasFormalTypeParameter</c>.
         /// </summary>
         [Uri(Woc, "hasFormalTypeParameter")]
@@ -940,6 +952,12 @@
         /// </summary>
         [Uri(Woc, "hasMethod")]
         public static readonly PropertyUri CodeMethod;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:isMethodOf</c>.
+        /// </summary>
+        [Uri(Woc, "isMethodOf")]
+        public static readonly PropertyUri CodeMethodOf;
 
         /// <summary>
         /// <c><see cref="Woc"/>:hasModifier</c>.
@@ -1008,6 +1026,12 @@
         public static readonly PropertyUri CodeDeclaresType;
 
         /// <summary>
+        /// <c><see cref="Woc"/>:hasPackage</c>.
+        /// </summary>
+        [Uri(Woc, "hasPackage")]
+        public static readonly PropertyUri CodeTypeDeclaredBy;
+
+        /// <summary>
         /// <c><see cref="Woc"/>:isProjectOf</c>.
         /// </summary>
         [Uri(Woc, "isProjectOf")]
@@ -1026,16 +1050,16 @@
         public static readonly PropertyUri CodeReferences;
 
         /// <summary>
-        /// <c><see cref="Woc"/>:isReturnedBy</c>.
-        /// </summary>
-        [Uri(Woc, "isReturnedBy")]
-        public static readonly PropertyUri CodeReturnedBy;
-
-        /// <summary>
         /// <c><see cref="Woc"/>:returns</c>.
         /// </summary>
         [Uri(Woc, "returns")]
         public static readonly PropertyUri CodeReturns;
+
+        /// <summary>
+        /// <c><see cref="Woc"/>:isReturnedBy</c>.
+        /// </summary>
+        [Uri(Woc, "isReturnedBy")]
+        public static readonly PropertyUri CodeReturnedBy;
 
         /// <summary>
         /// <c><see cref="Woc"/>:throws</c>.

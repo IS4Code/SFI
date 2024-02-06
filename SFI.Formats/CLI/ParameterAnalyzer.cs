@@ -1,6 +1,5 @@
 ﻿using IS4.SFI.Services;
 using IS4.SFI.Vocabulary;
-using System;
 using System.ComponentModel;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -23,7 +22,7 @@ namespace IS4.SFI.Analyzers
         public async override ValueTask<AnalysisResult> Analyze(ParameterInfo param, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var name = param.Name;
-            var node = GetNode(name == null ? param.Position.ToString() : Uri.EscapeDataString(name), context);
+            var node = GetNode(param.Position.ToString(), context);
 
             if(name != null)
             {
@@ -34,9 +33,27 @@ namespace IS4.SFI.Analyzers
 
             node.Set(Properties.CodePosition, param.Position);
 
-            node.Set(Properties.CodeType, ClrNamespaceUriFormatter.Instance, param.ParameterType);
+            await ReferenceMember(node, Properties.CodeType, param.ParameterType, context, analyzers);
 
             AnalyzeCustomAttributes(node, param.GetCustomAttributesData());
+
+            return new(node, name);
+        }
+
+        /// <inheritdoc/>
+        protected async override ValueTask<AnalysisResult> AnalyzeReference(ParameterInfo param, ILinkedNode node, AnalysisContext context, IEntityAnalyzers analyzers)
+        {
+            var name = param.Name;
+
+            if(name != null)
+            {
+                node.Set(Properties.CodeSimpleName, name);
+                node.Set(Properties.CodeCanonicalName, name);
+            }
+
+            node.Set(Properties.CodePosition, param.Position);
+
+            node.Set(Properties.CodeType, ClrNamespaceUriFormatter.Instance, param.ParameterType);
 
             return new(node, name);
         }

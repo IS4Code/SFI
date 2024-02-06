@@ -3,6 +3,7 @@ using IS4.SFI.Vocabulary;
 using System;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace IS4.SFI.Analyzers
@@ -82,11 +83,11 @@ namespace IS4.SFI.Analyzers
 
             if(type.BaseType is { } baseType)
             {
-                node.Set(Properties.CodeExtends, ClrNamespaceUriFormatter.Instance, baseType);
+                await ReferenceMember(node, Properties.CodeExtends, baseType, context, analyzers);
             }
             foreach(var implemented in type.GetInterfaces())
             {
-                node.Set(Properties.CodeImplements, ClrNamespaceUriFormatter.Instance, implemented);
+                await ReferenceMember(node, Properties.CodeImplements, implemented, context, analyzers);
             }
 
             AnalyzeCustomAttributes(node, type.GetCustomAttributesData());
@@ -149,6 +150,60 @@ namespace IS4.SFI.Analyzers
                 if(!ExportedOnly || IsPublic(evnt.AddMethod) || IsPublic(evnt.RemoveMethod) || IsPublic(evnt.RaiseMethod) || evnt.GetOtherMethods(true).Any(IsPublic))
                 {
                     await analyzers.Analyze(evnt, declaresContext);
+                }
+            }
+
+            return new(node, name);
+        }
+
+        /// <inheritdoc/>
+        protected async override ValueTask<AnalysisResult> AnalyzeReference(Type type, ILinkedNode node, AnalysisContext context, IEntityAnalyzers analyzers)
+        {
+            var name = type.Name;
+
+            if(type.IsConstructedGenericType)
+            {
+                node.SetClass(Classes.CodeGenericParameterizedType);
+                await ReferenceMember(node, Properties.CodeGenericTypeDefinition, type.GetGenericTypeDefinition(), context, analyzers);
+                foreach(var typeArg in type.GetGenericArguments())
+                {
+                    node.Set(Properties.CodeTypeArgument, ClrNamespaceUriFormatter.Instance, typeArg);
+                }
+            }else if(type.IsArray)
+            {
+                node.SetClass(Classes.CodeArrayType);
+                node.Set(Properties.CodeArrayDimensions, type.GetArrayRank());
+                await ReferenceMember(node, Properties.CodeArrayElementType, type.GetElementType(), context, analyzers);
+            }else if(type.HasElementType)
+            {
+                // Some other form of constructed type not expressible by the vocabulary
+                await ReferenceMember(node, Properties.CodeReferences, type.GetElementType(), context, analyzers);
+            }else if(type.IsGenericParameter)
+            {
+                node.SetClass(Classes.CodeTypeVariable);
+                node.Set(Properties.CodePosition, type.GenericParameterPosition);
+
+                if(type.DeclaringMethod is { } declaringMethod)
+                {
+                    await ReferenceMember(node, Properties.CodeDeclaredBy, declaringMethod, context, analyzers);
+                }else if(type.DeclaringType is { } declaringType)
+                {
+                    await ReferenceMember(node, Properties.CodeDeclaredBy, declaringType, context, analyzers);
+                }
+            }else{
+                if(!type.IsPrimitive)
+                {
+                    node.SetClass(Classes.CodeComplexType);
+                }
+                node.Set(Properties.CodeSimpleName, name);
+                node.Set(Properties.CodeCanonicalName, type.FullName ?? name);
+
+                if(type.DeclaringType is { } declaringType)
+                {
+                    await ReferenceMember(node, Properties.CodeDeclaredBy, declaringType, context, analyzers);
+                }else if(Namespace.FromAssembly(type.Assembly, type.Namespace) is { } ns)
+                {
+                    await ReferenceMember(node, Properties.CodeTypeDeclaredBy, ns, context, analyzers);
                 }
             }
 
