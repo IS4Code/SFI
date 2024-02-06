@@ -47,6 +47,8 @@ namespace IS4.SFI.Analyzers
                 return;
             }
 
+            node.Set(Properties.ErrorValue, ClrNamespaceUriFormatter.Instance, exception.GetType());
+
             node.Set(Properties.ErrorDescription, exception.Message, language);
 
             if(GetErrorCodeAndDetails(exception) is ({ } code, var details))
