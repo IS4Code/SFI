@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 
@@ -13,7 +14,7 @@ namespace IS4.SFI.Services
     /// <see cref="Type"/> and <see cref="Namespace"/> sharing the same namespace,
     /// in a particular assembly.
     /// </summary>
-    public abstract class Namespace : ICustomAttributeProvider, IGrouping<string, Type>, IGrouping<string, Namespace>, IIdentityKey
+    public abstract class Namespace : IEquatable<Namespace>, ICustomAttributeProvider, IGrouping<string, Type>, IGrouping<string, Namespace>, IIdentityKey
     {
         /// <summary>
         /// The assembly containing this namespace.
@@ -21,8 +22,14 @@ namespace IS4.SFI.Services
         public abstract Assembly Assembly { get; }
 
         /// <summary>
+        /// The namespace containing this namespace, or <see langword="null"/> if <see cref="IsGlobal"/> is <see langword="true"/>.
+        /// </summary>
+        public abstract Namespace? DeclaringNamespace { get; }
+
+        /// <summary>
         /// Whether this is the global namespace in the assembly.
         /// </summary>
+        [MemberNotNullWhen(false, nameof(DeclaringNamespace))]
         public bool IsGlobal => String.IsNullOrEmpty(FullName);
 
         /// <summary>
@@ -156,9 +163,29 @@ namespace IS4.SFI.Services
             return new Node(assembly);
         }
 
+        /// <inheritdoc/>
+        public bool Equals(Namespace other)
+        {
+            return Assembly.Equals(other.Assembly) && FullName == other.FullName;
+        }
+
+        /// <inheritdoc/>
+        public override bool Equals(object obj)
+        {
+            return obj is Namespace other && Equals(other);
+        }
+
+        /// <inheritdoc/>
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Assembly, FullName);
+        }
+
         sealed class Node : Namespace
         {
             public override Assembly Assembly { get; }
+
+            public override Namespace? DeclaringNamespace { get; }
 
             public override string FullName => NamespaceName == "" ? Name : (NamespaceName + "." + Name);
 
@@ -174,9 +201,10 @@ namespace IS4.SFI.Services
             IEnumerable<INamespaceGrouping> allGrouping = Array.Empty<INamespaceGrouping>();
             IEnumerable<INamespaceGrouping> exportedGrouping = Array.Empty<INamespaceGrouping>();
 
-            public Node(Assembly assembly, string namespaceName, string localName)
+            public Node(Assembly assembly, Namespace? parent, string namespaceName, string localName)
             {
                 Assembly = assembly;
+                DeclaringNamespace = parent;
                 NamespaceName = namespaceName;
                 Name = localName;
 
@@ -185,7 +213,7 @@ namespace IS4.SFI.Services
                 allTypes = new();
             }
 
-            public Node(Assembly assembly) : this(assembly, "", "")
+            public Node(Assembly assembly) : this(assembly, null, "", "")
             {
                 allGrouping = GroupTypes(assembly.GetTypes());
                 exportedGrouping = GroupTypes(assembly.GetExportedTypes());
@@ -290,7 +318,7 @@ namespace IS4.SFI.Services
                 return
                     namespaces.TryGetValue(name, out var node)
                     ? node
-                    : namespaces[name] = new(Assembly, FullName, name);
+                    : namespaces[name] = new(Assembly, this, FullName, name);
             }
 
             static IEnumerable<INamespaceGrouping> GroupTypes(IEnumerable<Type> types)
