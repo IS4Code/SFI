@@ -1026,6 +1026,12 @@
         public static readonly PropertyUri CodeReferences;
 
         /// <summary>
+        /// <c><see cref="Woc"/>:isReturnedBy</c>.
+        /// </summary>
+        [Uri(Woc, "isReturnedBy")]
+        public static readonly PropertyUri CodeReturnedBy;
+
+        /// <summary>
         /// <c><see cref="Woc"/>:returns</c>.
         /// </summary>
         [Uri(Woc, "returns")]

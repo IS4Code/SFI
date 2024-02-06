@@ -15,8 +15,20 @@ namespace IS4.SFI.Analyzers
     [Description("An analyzer of .NET assemblies.")]
     public class AssemblyAnalyzer : MediaObjectAnalyzer<Assembly>
     {
+        /// <summary>
+        /// Whether to describe all namespaces in the assembly.
+        /// </summary>
+        [Description("Whether to describe all namespaces in the assembly.")]
+        public bool Namespaces { get; set; }
+
+        /// <summary>
+        /// Whether to link all globally declared members and the entry point.
+        /// </summary>
+        [Description("Whether to link all globally declared members and the entry point.")]
+        public bool Globals { get; set; }
+
         /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>
-        public AssemblyAnalyzer() : base(Common.ApplicationClasses)
+        public AssemblyAnalyzer() : base(Common.ApplicationClasses, Classes.CodeElement)
         {
 
         }
@@ -40,7 +52,6 @@ namespace IS4.SFI.Analyzers
             var name = assembly.GetName();
             node.Set(Properties.Name, name.FullName);
             node.Set(Properties.Version, name.Version.ToString());
-            node.Set(Properties.Broader, ClrNamespaceUriFormatter.Instance, name);
 
             var language = new LanguageCode(name.CultureInfo);
 
@@ -87,6 +98,31 @@ namespace IS4.SFI.Analyzers
                     var fileInfo = new ResourceInfo(assembly, resName, info);
                     var resNode = node[UriTools.EscapePathString(resName)];
                     await analyzers.Analyze<IFileInfo>(fileInfo, context.WithParentLink(node, Properties.HasPart).WithNode(resNode));
+                }
+            }
+
+            if(Namespaces)
+            {
+                await analyzers.Analyze(Namespace.FromAssembly(assembly), context.WithNode(node));
+            }
+
+            if(Globals)
+            {
+                if(assembly.EntryPoint is { } entryMethod)
+                {
+                    node.Set(Properties.CodeDeclares, ClrNamespaceUriFormatter.Instance, entryMethod);
+                }
+
+                foreach(var module in assembly.GetModules())
+                {
+                    foreach(var field in module.GetFields())
+                    {
+                        node.Set(Properties.CodeDeclares, ClrNamespaceUriFormatter.Instance, field);
+                    }
+                    foreach(var method in module.GetMethods())
+                    {
+                        node.Set(Properties.CodeDeclares, ClrNamespaceUriFormatter.Instance, method);
+                    }
                 }
             }
 
