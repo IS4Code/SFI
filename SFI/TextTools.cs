@@ -752,6 +752,7 @@ namespace IS4.SFI
         /// <param name="stringBuilder">The buffer to write the result to.</param>
         /// <param name="inUri">Whether to create a URI-safe identifier.</param>
         /// <param name="includeNamespace">Whether to include the namespace of the declaring type.</param>
+        /// <param name="includeDeclaringType">Whether to include the declaring type or method in the identifier.</param>
         /// <returns>The formatted identifier.</returns>
         public static StringBuilder FormatMemberId(MemberInfo member, StringBuilder stringBuilder, bool inUri = false, bool includeNamespace = true, bool includeDeclaringType = true)
         {
@@ -858,19 +859,17 @@ namespace IS4.SFI
                     var elemType = type.GetElementType();
                     Type(elemType, includeNamespace, genericContext: genericContext);
                     var rank = type.GetArrayRank();
-                    if(rank <= 1)
+                    if(rank <= 1 && type.Equals(elemType.MakeArrayType()))
                     {
-                        if(type.Equals(elemType.MakeArrayType()))
-                        {
-                            //SZ array
-                            Syntax("[]");
-                            return;
-                        }
-                        Syntax("[*]");
+                        //SZ array
+                        Syntax("[]");
                         return;
                     }
-                    Syntax("[");
-                    sb.Append(',', rank - 1);
+                    Syntax("[0:");
+                    for(int i = 1; i < rank; i++)
+                    {
+                        Syntax(",0:");
+                    }
                     Syntax("]");
                     return;
                 }
