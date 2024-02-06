@@ -61,15 +61,26 @@ namespace IS4.SFI.Analyzers
         }
 
         /// <summary>
-        /// Analyzes the collection of custom attributes on a node.
+        /// Analyzes the collection of custom attributes and modifiers on a node.
         /// </summary>
         /// <param name="node">The linked node to use.</param>
         /// <param name="attributes">The custom attributes.</param>
-        protected void AnalyzeCustomAttributes(ILinkedNode node, IEnumerable<CustomAttributeData> attributes)
+        /// <param name="optionalModifiers">The optional modifiers.</param>
+        /// <param name="requiredModifiers">The required modifiers.</param>
+        /// <returns>The task representing the operation.</returns>
+        protected async ValueTask AnalyzeCustomAttributes(ILinkedNode node, AnalysisContext context, IEntityAnalyzers analyzers, IEnumerable<CustomAttributeData> attributes, IEnumerable<Type>? optionalModifiers = null, IEnumerable<Type>? requiredModifiers = null)
         {
             foreach(var attr in attributes)
             {
-                node.Set(Properties.CodeAnnotation, ClrNamespaceUriFormatter.Instance, attr.AttributeType);
+                await ReferenceMember(node, Properties.CodeAnnotation, attr.AttributeType, context, analyzers);
+            }
+            foreach(var type in optionalModifiers ?? Type.EmptyTypes)
+            {
+                await ReferenceMember(node, Properties.CodeAnnotation, type, context, analyzers);
+            }
+            foreach(var type in requiredModifiers ?? Type.EmptyTypes)
+            {
+                await ReferenceMember(node, Properties.CodeAnnotation, type, context, analyzers);
             }
         }
 

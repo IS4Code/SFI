@@ -34,7 +34,7 @@ namespace IS4.SFI.Analyzers
             }
             node.Set(Properties.Broader, ClrNamespaceUriFormatter.Instance, ns);
 
-            AnalyzeCustomAttributes(node, ns.GetCustomAttributesData());
+            await AnalyzeCustomAttributes(node, context, analyzers, ns.GetCustomAttributesData());
 
             var declaresContext = context.WithParentLink(node, Properties.CodeDeclares);
             foreach(var ns2 in ns.Namespaces)

@@ -90,7 +90,7 @@ namespace IS4.SFI.Analyzers
                 await ReferenceMember(node, Properties.CodeImplements, implemented, context, analyzers);
             }
 
-            AnalyzeCustomAttributes(node, type.GetCustomAttributesData());
+            await AnalyzeCustomAttributes(node, context, analyzers, type.GetCustomAttributesData());
 
             if(type.IsGenericTypeDefinition)
             {

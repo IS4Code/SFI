@@ -46,7 +46,7 @@ namespace IS4.SFI.Analyzers
                 }
             }
 
-            AnalyzeCustomAttributes(node, prop.GetCustomAttributesData());
+            await AnalyzeCustomAttributes(node, context, analyzers, prop.GetCustomAttributesData(), prop.GetOptionalCustomModifiers(), prop.GetRequiredCustomModifiers());
 
             return new(node, name);
         }

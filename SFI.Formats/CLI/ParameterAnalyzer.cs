@@ -35,7 +35,7 @@ namespace IS4.SFI.Analyzers
 
             await ReferenceMember(node, Properties.CodeType, param.ParameterType, context, analyzers);
 
-            AnalyzeCustomAttributes(node, param.GetCustomAttributesData());
+            await AnalyzeCustomAttributes(node, context, analyzers, param.GetCustomAttributesData(), param.GetOptionalCustomModifiers(), param.GetRequiredCustomModifiers());
 
             return new(node, name);
         }
