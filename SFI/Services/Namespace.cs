@@ -14,7 +14,7 @@ namespace IS4.SFI.Services
     /// <see cref="Type"/> and <see cref="Namespace"/> sharing the same namespace,
     /// in a particular assembly.
     /// </summary>
-    public abstract class Namespace : IEquatable<Namespace>, ICustomAttributeProvider, IGrouping<string, Type>, IGrouping<string, Namespace>, IIdentityKey
+    public abstract class Namespace : IEquatable<Namespace>, ICustomAttributeProvider, IGrouping<string, Type>, IGrouping<string, Namespace>, IReadOnlyDictionary<string, Namespace>, IReadOnlyDictionary<string, Type>, IIdentityKey
     {
         /// <summary>
         /// The assembly containing this namespace.
@@ -80,10 +80,35 @@ namespace IS4.SFI.Services
         public abstract IReadOnlyCollection<Type> GetExportedTypes();
 
         /// <summary>
+        /// Retrieves a type in this namespace.
+        /// </summary>
+        /// <param name="name">The local name of the type.</param>
+        /// <param name="nonPublic">Whether to allow non-public types.</param>
+        /// <returns>
+        /// The type corresponding to <paramref name="name"/>, or <see langword="null"/> if the namespace does not exist.
+        /// </returns>
+        public virtual Type? GetType(string name, bool nonPublic)
+        {
+            return (nonPublic ? GetTypes() : GetExportedTypes()).FirstOrDefault(t => t.Name == name);
+        }
+
+        /// <summary>
         /// Retrieves the namespaces located in this namespace.
         /// </summary>
         /// <returns>A collection of all namespaces in this namespace.</returns>
         public abstract IReadOnlyCollection<Namespace> GetNamespaces();
+
+        /// <summary>
+        /// Retrieves a sub-namespace in this namespace.
+        /// </summary>
+        /// <param name="name">The local name of the namespace.</param>
+        /// <returns>
+        /// The namespace corresponding to <paramref name="name"/>, or <see langword="null"/> if the namespace does not exist.
+        /// </returns>
+        public virtual Namespace? GetNamespace(string name)
+        {
+            return GetNamespaces().FirstOrDefault(ns => ns.Name == name);
+        }
 
         /// <inheritdoc/>
         public sealed override string ToString()
@@ -98,6 +123,22 @@ namespace IS4.SFI.Services
         object? IIdentityKey.ReferenceKey => Assembly;
 
         object? IIdentityKey.DataKey => FullName;
+
+        IEnumerable<string> IReadOnlyDictionary<string, Namespace>.Keys => Namespaces.Select(ns => ns.Name);
+
+        IEnumerable<Namespace> IReadOnlyDictionary<string, Namespace>.Values => Namespaces;
+
+        int IReadOnlyCollection<KeyValuePair<string, Namespace>>.Count => GetNamespaces().Count;
+
+        Namespace IReadOnlyDictionary<string, Namespace>.this[string key] => GetNamespace(key) ?? throw new KeyNotFoundException($"Namespace '{key}' was not found.");
+
+        IEnumerable<string> IReadOnlyDictionary<string, Type>.Keys => DefinedTypes.Select(t => t.Name);
+
+        IEnumerable<Type> IReadOnlyDictionary<string, Type>.Values => DefinedTypes;
+
+        int IReadOnlyCollection<KeyValuePair<string, Type>>.Count => GetTypes().Count;
+
+        Type IReadOnlyDictionary<string, Type>.this[string key] => GetType(key, true) ?? throw new KeyNotFoundException($"Type '{key}' was not found.");
 
         /// <inheritdoc cref="ICustomAttributeProvider.GetCustomAttributes(bool)" />
         public virtual IReadOnlyList<Attribute> GetCustomAttributes(bool inherit)
@@ -135,6 +176,38 @@ namespace IS4.SFI.Services
             return GetCustomAttributes(attributeType, inherit).Any();
         }
 
+        bool IReadOnlyDictionary<string, Namespace>.ContainsKey(string key)
+        {
+            return GetNamespace(key) != null;
+        }
+
+        bool IReadOnlyDictionary<string, Namespace>.TryGetValue(string key, out Namespace value)
+        {
+            value = GetNamespace(key)!;
+            return value != null;
+        }
+
+        IEnumerator<KeyValuePair<string, Namespace>> IEnumerable<KeyValuePair<string, Namespace>>.GetEnumerator()
+        {
+            return Namespaces.Select(ns => new KeyValuePair<string, Namespace>(ns.Name, ns)).GetEnumerator();
+        }
+
+        bool IReadOnlyDictionary<string, Type>.ContainsKey(string key)
+        {
+            return GetType(key, true) != null;
+        }
+
+        bool IReadOnlyDictionary<string, Type>.TryGetValue(string key, out Type value)
+        {
+            value = GetType(key, true)!;
+            return value != null;
+        }
+
+        IEnumerator<KeyValuePair<string, Type>> IEnumerable<KeyValuePair<string, Type>>.GetEnumerator()
+        {
+            return DefinedTypes.Select(t => new KeyValuePair<string, Type>(t.Name, t)).GetEnumerator();
+        }
+
         IEnumerator<Type> IEnumerable<Type>.GetEnumerator()
         {
             return GetTypes().GetEnumerator();
@@ -163,6 +236,31 @@ namespace IS4.SFI.Services
             return new Node(assembly);
         }
 
+        static readonly char[] splitNsChars = { '.' };
+
+        /// <summary>
+        /// Retrieves a particular namespace in an assembly.
+        /// </summary>
+        /// <param name="assembly">The assembly to retrieve the namespace from.</param>
+        /// <param name="fullName">The full name of the namespace.</param>
+        /// <returns>
+        /// The namespace in the assembly 
+        /// </returns>
+        public static Namespace? FromAssembly(Assembly assembly, string? fullName)
+        {
+            var split = (fullName ?? "").Split(splitNsChars);
+            var ns = FromAssembly(assembly);
+            foreach(var localName in split)
+            {
+                ns = ns.GetNamespace(localName);
+                if(ns == null)
+                {
+                    break;
+                }
+            }
+            return ns;
+        }
+
         /// <inheritdoc/>
         public bool Equals(Namespace other)
         {
@@ -181,7 +279,7 @@ namespace IS4.SFI.Services
             return HashCode.Combine(Assembly, FullName);
         }
 
-        sealed class Node : Namespace
+        sealed class Node : Namespace, IReadOnlyDictionary<string, Namespace>
         {
             public override Assembly Assembly { get; }
 
@@ -192,8 +290,8 @@ namespace IS4.SFI.Services
             public override string Name { get; }
 
             public override string NamespaceName { get; }
-
-            readonly Dictionary<string, Node> namespaces;
+            
+            readonly Dictionary<string, Namespace> namespaces;
             readonly List<Type> exportedTypes;
             readonly List<Type> allTypes;
 
@@ -235,6 +333,12 @@ namespace IS4.SFI.Services
             {
                 Initialize();
                 return namespaces.Values;
+            }
+
+            public override Namespace? GetNamespace(string name)
+            {
+                Initialize();
+                return namespaces.TryGetValue(name, out var ns) ? ns : null;
             }
 
             public override IReadOnlyList<Attribute> GetCustomAttributes(bool inherit)
@@ -279,6 +383,22 @@ namespace IS4.SFI.Services
                 ).ToList();
             }
 
+            IEnumerable<string> IReadOnlyDictionary<string, Namespace>.Keys => namespaces.Keys;
+
+            IEnumerable<Namespace> IReadOnlyDictionary<string, Namespace>.Values => namespaces.Values;
+
+            int IReadOnlyCollection<KeyValuePair<string, Namespace>>.Count => namespaces.Count;
+
+            bool IReadOnlyDictionary<string, Namespace>.ContainsKey(string key)
+            {
+                return namespaces.ContainsKey(key);
+            }
+
+            IEnumerator<KeyValuePair<string, Namespace>> IEnumerable<KeyValuePair<string, Namespace>>.GetEnumerator()
+            {
+                return namespaces.GetEnumerator();
+            }
+
             void Initialize()
             {
                 if(initialized)
@@ -316,9 +436,9 @@ namespace IS4.SFI.Services
             Node GetNode(string name)
             {
                 return
-                    namespaces.TryGetValue(name, out var node)
+                    (Node)(namespaces.TryGetValue(name, out var node)
                     ? node
-                    : namespaces[name] = new(Assembly, this, FullName, name);
+                    : namespaces[name] = new Node(Assembly, this, FullName, name));
             }
 
             static IEnumerable<INamespaceGrouping> GroupTypes(IEnumerable<Type> types)
