@@ -217,6 +217,11 @@ namespace IS4.SFI.Vocabulary
             public const string Err = "http://www.w3.org/2005/xqt-errors#";
 
             /// <summary>
+            /// XAML Namespace
+            /// </summary>
+            public const string Xaml = "http://schemas.microsoft.com/winfx/2006/xaml#";
+
+            /// <summary>
             /// The <c>i18n</c> Namespace for language tags and directions
             /// </summary>
             public const string I18n = "https://www.w3.org/ns/i18n#";

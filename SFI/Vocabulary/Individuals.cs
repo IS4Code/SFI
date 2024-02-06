@@ -224,6 +224,92 @@
         public static readonly IndividualUri CodeVolatileModifier;
         #endregion
 
+        #region xaml
+        /// <summary>
+        /// <c><see cref="Xaml"/>:Object</c>.
+        /// </summary>
+        [Uri(Woc, "Object")]
+        public static readonly IndividualUri ClrObjectType;
+
+        /// <summary>
+        /// <c><see cref="Xaml"/>:Boolean</c>.
+        /// </summary>
+        [Uri(Woc, "Boolean")]
+        public static readonly IndividualUri ClrBooleanType;
+
+        /// <summary>
+        /// <c><see cref="Xaml"/>:Char</c>.
+        /// </summary>
+        [Uri(Woc, "Char")]
+        public static readonly IndividualUri ClrCharType;
+
+        /// <summary>
+        /// <c><see cref="Xaml"/>:String</c>.
+        /// </summary>
+        [Uri(Woc, "String")]
+        public static readonly IndividualUri ClrStringType;
+
+        /// <summary>
+        /// <c><see cref="Xaml"/>:Decimal</c>.
+        /// </summary>
+        [Uri(Woc, "Decimal")]
+        public static readonly IndividualUri ClrDecimalType;
+
+        /// <summary>
+        /// <c><see cref="Xaml"/>:Single</c>.
+        /// </summary>
+        [Uri(Woc, "Single")]
+        public static readonly IndividualUri ClrSingleType;
+
+        /// <summary>
+        /// <c><see cref="Xaml"/>:Double</c>.
+        /// </summary>
+        [Uri(Woc, "Double")]
+        public static readonly IndividualUri ClrDoubleType;
+
+        /// <summary>
+        /// <c><see cref="Xaml"/>:Int16</c>.
+        /// </summary>
+        [Uri(Woc, "Int16")]
+        public static readonly IndividualUri ClrInt16Type;
+
+        /// <summary>
+        /// <c><see cref="Xaml"/>:Int32</c>.
+        /// </summary>
+        [Uri(Woc, "Int32")]
+        public static readonly IndividualUri ClrInt32Type;
+
+        /// <summary>
+        /// <c><see cref="Xaml"/>:Int64</c>.
+        /// </summary>
+        [Uri(Woc, "Int64")]
+        public static readonly IndividualUri ClrInt64Type;
+
+        /// <summary>
+        /// <c><see cref="Xaml"/>:TimeSpan</c>.
+        /// </summary>
+        [Uri(Woc, "TimeSpan")]
+        public static readonly IndividualUri ClrTimeSpanType;
+
+        /// <summary>
+        /// <c><see cref="Xaml"/>:Uri</c>.
+        /// </summary>
+        [Uri(Woc, "Uri")]
+        public static readonly IndividualUri ClrUriType;
+
+        /// <summary>
+        /// <c><see cref="Xaml"/>:Byte</c>.
+        /// </summary>
+        [Uri(Woc, "Byte")]
+        public static readonly IndividualUri ClrByteType;
+
+        /// <summary>
+        /// <c><see cref="Xaml"/>:Array</c>.
+        /// </summary>
+        [Uri(Woc, "Array")]
+        public static readonly IndividualUri ClrArrayType;
+        #endregion
+
         #region err
         /// <summary>
         /// Error codes defined by <c><see cref="Err"/>:</c>.
