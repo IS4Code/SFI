@@ -763,31 +763,16 @@ namespace IS4.SFI
             {
                 if(member is Type type)
                 {
-                    var name = type.Name;
-                    if(type.IsGenericParameter && name == null)
-                    {
-                        // Synthesize name
-                        name = "T" + type.GenericParameterPosition;
-                    }
                     if(!includeDeclaringType)
                     {
-                        // Just the type name requested
-                        Literal(includeNamespace ? (type.FullName ?? name) : name);
-                        return;
-                    }
-                    if(type.IsGenericParameter)
-                    {
-                        // Outer gen. parameter (exception to calling Type)
-                        if(type.DeclaringMethod is { } declaringMethod)
+                        // Just the position requested
+                        if(type.DeclaringMethod != null)
                         {
-                            // On a method
-                            Member(declaringMethod, includeNamespace, true);
+                            Syntax("``");
                         }else{
-                            // On a type
-                            Type(type.DeclaringType, includeNamespace);
+                            Syntax("`");
                         }
-                        Syntax("/");
-                        Literal(name);
+                        sb.Append(type.GenericParameterPosition);
                         return;
                     }
                     Type(type, includeNamespace);
@@ -843,17 +828,17 @@ namespace IS4.SFI
                     {
                         Syntax(",");
                     }
-                    Type(parms[i].ParameterType, true);
+                    Type(parms[i].ParameterType, true, genericContext: (method.DeclaringType, method));
                 }
                 Syntax(")");
             }
 
-            void Type(Type type, bool includeNamespace, bool constructed = false)
+            void Type(Type type, bool includeNamespace, bool constructed = false, (Type? type, MethodBase? method) genericContext = default)
             {
                 if(type.IsArray)
                 {
                     var elemType = type.GetElementType();
-                    Type(elemType, includeNamespace);
+                    Type(elemType, includeNamespace, genericContext: genericContext);
                     var rank = type.GetArrayRank();
                     if(rank <= 1)
                     {
@@ -874,26 +859,40 @@ namespace IS4.SFI
                 if(type.IsPointer)
                 {
                     var elemType = type.GetElementType();
-                    Type(elemType, includeNamespace);
+                    Type(elemType, includeNamespace, genericContext: genericContext);
                     Syntax("*");
                     return;
                 }
                 if(type.IsByRef)
                 {
                     var elemType = type.GetElementType();
-                    Type(elemType, includeNamespace);
+                    Type(elemType, includeNamespace, genericContext: genericContext);
                     Syntax("@");
                     return;
                 }
                 if(type.IsGenericParameter)
                 {
-                    if(type.DeclaringMethod != null)
+                    if(type.DeclaringMethod is { } genDeclaringMethod)
                     {
                         // On method
-                        Syntax("``");
-                    }else{
+                        if(!genDeclaringMethod.Equals(genericContext.method))
+                        {
+                            // Not the current one
+                            Member(genDeclaringMethod, true, true);
+                            Syntax("/");
+                        }
                         Syntax("`");
+                    }else if(type.DeclaringType is { } genDeclaringType)
+                    {
+                        // On type
+                        if(!genDeclaringType.Equals(genericContext.type))
+                        {
+                            // Not the current one
+                            Type(genDeclaringType, true);
+                            Syntax("/");
+                        }
                     }
+                    Syntax("`");
                     sb.Append(type.GenericParameterPosition);
                     return;
                 }
@@ -909,7 +908,7 @@ namespace IS4.SFI
                         {
                             Syntax(",");
                         }
-                        Type(genArgs[i], true);
+                        Type(genArgs[i], true, genericContext: genericContext);
                     }
                     Syntax("}");
                     return;

@@ -35,15 +35,14 @@ namespace IS4.SFI.Services
             get {
                 var sb = Member(value.Member);
                 sb.Append('/');
-                var name = value.Name;
-                sb.Append(name == null ? value.Position.ToString() : Uri.EscapeDataString(name));
+                sb.Append(value.Position);
                 return new(sb.ToString());
             }
         }
 
         static StringBuilder Member(MemberInfo member)
         {
-            var type = member.DeclaringType ?? member as Type;
+            var type = member.DeclaringType ?? (member as Type);
             var sb = Namespace(type?.Namespace ?? "", type?.Assembly);
             sb.Append('#');
             return TextTools.FormatMemberId(member, sb, true, false, true);
