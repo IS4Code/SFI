@@ -95,6 +95,15 @@ namespace SFI.Formats.CLI.Assembly
                 }
             }
 
+            if(adef.Modules.Any(m => m.Types.Any(t => t.FullName != "<Module>")))
+            {
+                // There are some types left - add marker class
+                adef.MainModule.Types.Add(new TypeDefinition("IS4.SFI", "<ReferenceAssembly>", TypeAttributes.Sealed | TypeAttributes.Abstract | TypeAttributes.BeforeFieldInit | TypeAttributes.NotPublic)
+                {
+                    BaseType = adef.MainModule.TypeSystem.Object
+                });
+            }
+
             output = new MemoryStream();
             var temporaryPath = Path.GetTempFileName();
             try{

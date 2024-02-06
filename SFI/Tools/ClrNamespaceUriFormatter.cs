@@ -8,7 +8,7 @@ namespace IS4.SFI.Services
     /// <summary>
     /// Provides support for formatting assemblies, namespaces, types, and members as URIs.
     /// </summary>
-    public class ClrNamespaceUriFormatter : IIndividualUriFormatter<Assembly>, IIndividualUriFormatter<AssemblyName>, IIndividualUriFormatter<Namespace>, IIndividualUriFormatter<MemberInfo>
+    public class ClrNamespaceUriFormatter : IIndividualUriFormatter<Assembly>, IIndividualUriFormatter<Namespace>, IIndividualUriFormatter<MemberInfo>
     {
         /// <summary>
         /// The instance of the formatter.
@@ -20,11 +20,9 @@ namespace IS4.SFI.Services
 
         }
 
-        Uri IUriFormatter<Assembly>.this[Assembly value] => new(Namespace("", value.GetName()));
+        Uri IUriFormatter<Assembly>.this[Assembly value] => new(Namespace("", value));
 
-        Uri IUriFormatter<AssemblyName>.this[AssemblyName value] => new(Namespace("", value));
-
-        Uri IUriFormatter<Namespace>.this[Namespace value] => new(Namespace(value.FullName, value.Assembly.GetName()));
+        Uri IUriFormatter<Namespace>.this[Namespace value] => new(Namespace(value.FullName, value.Assembly));
 
         Uri IUriFormatter<MemberInfo>.this[MemberInfo value] {
             get {
@@ -42,9 +40,19 @@ namespace IS4.SFI.Services
             }
         }
 
-        static string Namespace(string ns, AssemblyName asm)
+        /// <summary>
+        /// An internal marker type name that can be used to distinguish reference system assemblies from real ones.
+        /// </summary>
+        public const string ReferenceAssemblyMarkerClass = "IS4.SFI.<ReferenceAssembly>";
+
+        static string Namespace(string ns, Assembly asm)
         {
-            return $"clr-namespace:{EscapePathString(ns)};assembly={EscapePathString(asm.Name)}";
+            if(asm.GetType(ReferenceAssemblyMarkerClass, false) != null)
+            {
+                // Assembly marked as reference-only
+                return $"clr-namespace:{EscapePathString(ns)}";
+            }
+            return $"clr-namespace:{EscapePathString(ns)};assembly={EscapePathString(asm.GetName().Name)}";
         }
 
         static string Type(Type type)
@@ -53,7 +61,7 @@ namespace IS4.SFI.Services
             {
                 return Member(type);
             }
-            return $"{Namespace(type.Namespace ?? "", type.Assembly.GetName())}#{EscapeFragmentString(type.Name)}";
+            return $"{Namespace(type.Namespace ?? "", type.Assembly)}#{EscapeFragmentString(type.Name)}";
         }
 
         static string Member(MemberInfo member)
