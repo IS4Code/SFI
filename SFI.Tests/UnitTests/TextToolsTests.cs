@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace IS4.SFI.Tests
 {
@@ -271,6 +272,34 @@ namespace IS4.SFI.Tests
         {
             var variables = variablesArray.Select(s => s.Split(':')).Select(s => new KeyValuePair<string, object?>(s[0], s[1]));
             var result = SubstituteVariables(text, variables);
+            Assert.AreEqual(expected, result);
+        }
+
+        /// <summary>
+        /// The tests for <see cref="FormatMemberId(MemberInfo, bool, bool, bool)"/>.
+        /// </summary>
+        [TestMethod]
+        [DataRow(typeof(object), null, 0, false, false, false, "Object")]
+        [DataRow(typeof(object), null, 0, false, true, false, "System.Object")]
+        [DataRow(typeof(object[]), null, 0, false, false, false, "Object[]")]
+        [DataRow(typeof(object[]), null, 0, false, true, false, "System.Object[]")]
+        [DataRow(typeof(object), "GetHashCode", BindingFlags.Instance, false, false, false, "GetHashCode")]
+        [DataRow(typeof(object), "GetHashCode", BindingFlags.Instance, false, false, true, "Object.GetHashCode")]
+        [DataRow(typeof(object), "GetHashCode", BindingFlags.Instance, false, true, true, "System.Object.GetHashCode")]
+        [DataRow(typeof(object), "Equals", BindingFlags.Instance, false, false, false, "Equals(System.Object)")]
+        [DataRow(typeof(object), "Equals", BindingFlags.Instance, false, false, true, "Object.Equals(System.Object)")]
+        [DataRow(typeof(object), "Equals", BindingFlags.Instance, false, true, true, "System.Object.Equals(System.Object)")]
+        [DataRow(typeof(Func<,>), null, 0, false, false, true, "Func`2")]
+        [DataRow(typeof(Func<,>), null, 0, true, false, true, "Func%602")]
+        [DataRow(typeof(Func<,>), "Invoke", BindingFlags.Instance, false, false, true, "Func`2.Invoke(`0)")]
+        [DataRow(typeof(Func<byte,char>), "Invoke", BindingFlags.Instance, false, false, true, "Func{System.Byte,System.Char}.Invoke(System.Byte)")]
+        [DataRow(typeof(Array), "Resize", BindingFlags.Static, false, false, true, "Array.Resize``1(``0[]@,System.Int32)")]
+        [DataRow(typeof(Pointer), "Box", BindingFlags.Static, false, false, true, "Pointer.Box(System.Void*,System.Type)")]
+        [DataRow(typeof(object[,]), null, 0, false, false, true, "Object[0:,0:]")]
+        public void FormatMemberIdTests(Type type, string? memberName, BindingFlags bindingFlags, bool inUri, bool includeNamespace, bool includeDeclaringType, string expected)
+        {
+            var member = memberName == null ? type : type.GetMember(memberName, BindingFlags.Public | BindingFlags.NonPublic | bindingFlags).Single();
+            var result = FormatMemberId(member, inUri, includeNamespace, includeDeclaringType);
             Assert.AreEqual(expected, result);
         }
     }
