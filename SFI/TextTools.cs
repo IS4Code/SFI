@@ -693,6 +693,18 @@ namespace IS4.SFI
             return new Regex($"^{wildcardRegex.Replace(pattern, Replacer)}$", RegexOptions.Singleline | RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
         }
 
+        static readonly char[] wildcardCharacters = { '*', '?' };
+
+        /// <summary>
+        /// Checks if <paramref name="text"/> is a wildcard.
+        /// </summary>
+        /// <param name="text">The text to check.</param>
+        /// <returns>Whether <paramref name="text"/> contains any occurrences of <c>*</c> and <c>?</c>.</returns>
+        public static bool ContainsWildcardCharacters(string text)
+        {
+            return text.IndexOfAny(wildcardCharacters) != -1;
+        }
+
         /// <summary>
         /// Substitutes <paramref name="variables"/> in <paramref name="text"/>.
         /// </summary>

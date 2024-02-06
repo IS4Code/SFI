@@ -68,8 +68,9 @@ namespace IS4.SFI
 		string? output;
 
 		readonly Dictionary<string, Dictionary<string, string>> componentProperties = new(StringComparer.OrdinalIgnoreCase);
+        readonly List<KeyValuePair<Regex, List<KeyValuePair<Regex, string>>>> regexComponentProperties = new();
 
-		bool quiet;
+        bool quiet;
 		bool dataOnly;
 		bool onlyOnce;
 
@@ -124,16 +125,13 @@ namespace IS4.SFI
 							{
 								fileOutput.OutputFile += OnOutputFile;
 							}
-							if(componentProperties.Count > 0)
-							{
-								// Check if there are properties for this component
-								var id = collection.GetIdentifier(component);
-								if(componentProperties.TryGetValue(id, out var dict))
-								{
-									componentProperties.Remove(id);
-									SetProperties(component, id, dict);
-								}
-							}
+							if(componentProperties.Count > 0 || regexComponentProperties.Count > 0)
+                            {
+                                // Get properties for this component
+                                var id = collection.GetIdentifier(component);
+								ExtractComponentProperties(id, out var properties, out var regexProperties);
+                                SetProperties(component, id, properties, regexProperties);
+                            }
 						}
 					}
                 }
@@ -308,21 +306,58 @@ namespace IS4.SFI
             await writer(stream);
         }
 
+        private void ExtractComponentProperties(string id, out Dictionary<string, string>? properties, out List<KeyValuePair<Regex, string>>? regexProperties)
+		{
+			if(componentProperties.TryGetValue(id, out properties))
+            {
+                componentProperties.Remove(id);
+			}else{
+                properties = null;
+            }
+			regexProperties = null;
+            foreach(var pair in regexComponentProperties)
+			{
+				if(pair.Key.IsMatch(id))
+				{
+					(regexProperties ??= new()).AddRange(pair.Value);
+				}
+			}
+		}
+
         #region Components
-        private void SetProperties(object component, string componentName, IDictionary<string, string> properties)
+        private void SetProperties(object component, string componentName, IDictionary<string, string>? properties, IList<KeyValuePair<Regex, string>>? regexProperties)
         {
+			if(properties == null && regexProperties == null)
+			{
+				return;
+			}
 			ConfigurationTools.SetProperties(component, componentName, name => {
-				if(properties.TryGetValue(name, out var value))
+				if(properties != null && properties.TryGetValue(name, out var value))
 				{
 					properties.Remove(name);
 					return value;
 				}
+				if(regexProperties != null)
+				{
+					string? regexValue = null;
+					foreach(var pair in regexProperties)
+					{
+						if(pair.Key.IsMatch(name))
+						{
+                            regexValue = pair.Value;
+						}
+					}
+					return regexValue;
+				}
 				return null;
 			}, logger);
 
-			foreach(var pair in properties)
+			if(properties != null)
             {
-				LogWriter?.WriteLine($"Warning: Property {componentName}:{pair.Key} was not found!");
+                foreach(var pair in properties)
+                {
+                    LogWriter?.WriteLine($"Warning: Property {componentName}:{pair.Key} was not found!");
+                }
             }
         }
 
@@ -358,11 +393,8 @@ namespace IS4.SFI
         void ListComponent<T>(T component, string id) where T : notnull
 		{
 			LogWriter?.WriteLine($" - {id} ({TextTools.GetUserFriendlyName(TypeDescriptor.GetReflectionType(component))})");
-			if(componentProperties.TryGetValue(id, out var dict))
-			{
-				componentProperties.Remove(id);
-				SetProperties(component, id, dict);
-			}
+            ExtractComponentProperties(id, out var properties, out var regexProperties);
+			SetProperties(component, id, properties, regexProperties);
 			foreach(var prop in ConfigurationTools.GetConfigurableProperties(component))
 			{
 				if(prop.IsObsolete(out _))
@@ -728,7 +760,7 @@ namespace IS4.SFI
 				case "root":
 					if(!Uri.TryCreate(argument, UriKind.Absolute, out _))
 					{
-						throw new ApplicationException("The argument to option '" + option + "' must be a well-formed absolute URI.");
+						throw new ApplicationException($"The argument to option '{option}' must be a well-formed absolute URI.");
 					}
 					options.Root = argument!;
 					break;
@@ -759,11 +791,24 @@ namespace IS4.SFI
 					if(componentPropertyRegex.Match(option) is { Success: true } propMatch)
 					{
 						var componentId = propMatch.Groups[1].Value.ToLowerInvariant();
-						if(!componentProperties.TryGetValue(componentId, out var dict))
+						var propertyId = propMatch.Groups[2].Value.ToLowerInvariant();
+
+						if(TextTools.ContainsWildcardCharacters(componentId) || TextTools.ContainsWildcardCharacters(propertyId))
 						{
-							componentProperties[componentId] = dict = new(StringComparer.OrdinalIgnoreCase);
+							regexComponentProperties.Add(new(
+								TextTools.ConvertWildcardToRegex(componentId),
+								new()
+								{
+									new(TextTools.ConvertWildcardToRegex(propertyId), argument!)
+								}
+							));
+						}else{
+							if(!componentProperties.TryGetValue(componentId, out var dict))
+							{
+								componentProperties[componentId] = dict = new(StringComparer.OrdinalIgnoreCase);
+							}
+							dict[propertyId] = argument!;
 						}
-						dict[propMatch.Groups[2].Value.ToLowerInvariant()] = argument!;
 					}
 					break;
 			}
