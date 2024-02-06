@@ -33,7 +33,7 @@ namespace IS4.SFI.Services
                     // Non-nested type
                     return new(Type(type));
                 }
-                if (value is Type { DeclaringMethod: { } method })
+                if (value is Type { IsGenericParameter: true, DeclaringMethod: { } method })
                 {
                     // Type parameter
                     return new($"{Member(method)}/{EscapeFragmentString(value.Name)}");
@@ -53,7 +53,7 @@ namespace IS4.SFI.Services
             {
                 return Member(type);
             }
-            return $"{Namespace(type.Namespace, type.Assembly.GetName())}#{EscapeFragmentString(type.Name)}";
+            return $"{Namespace(type.Namespace ?? "", type.Assembly.GetName())}#{EscapeFragmentString(type.Name)}";
         }
 
         static string Member(MemberInfo member)
