@@ -229,85 +229,85 @@
         /// <c><see cref="Xaml"/>:Object</c>.
         /// </summary>
         [Uri(Woc, "Object")]
-        public static readonly IndividualUri ClrObjectType;
+        public static readonly IndividualUri CtsObjectType;
 
         /// <summary>
         /// <c><see cref="Xaml"/>:Boolean</c>.
         /// </summary>
         [Uri(Woc, "Boolean")]
-        public static readonly IndividualUri ClrBooleanType;
+        public static readonly IndividualUri CtsBooleanType;
 
         /// <summary>
         /// <c><see cref="Xaml"/>:Char</c>.
         /// </summary>
         [Uri(Woc, "Char")]
-        public static readonly IndividualUri ClrCharType;
+        public static readonly IndividualUri CtsCharType;
 
         /// <summary>
         /// <c><see cref="Xaml"/>:String</c>.
         /// </summary>
         [Uri(Woc, "String")]
-        public static readonly IndividualUri ClrStringType;
+        public static readonly IndividualUri CtsStringType;
 
         /// <summary>
         /// <c><see cref="Xaml"/>:Decimal</c>.
         /// </summary>
         [Uri(Woc, "Decimal")]
-        public static readonly IndividualUri ClrDecimalType;
+        public static readonly IndividualUri CtsDecimalType;
 
         /// <summary>
         /// <c><see cref="Xaml"/>:Single</c>.
         /// </summary>
         [Uri(Woc, "Single")]
-        public static readonly IndividualUri ClrSingleType;
+        public static readonly IndividualUri CtsSingleType;
 
         /// <summary>
         /// <c><see cref="Xaml"/>:Double</c>.
         /// </summary>
         [Uri(Woc, "Double")]
-        public static readonly IndividualUri ClrDoubleType;
+        public static readonly IndividualUri CtsDoubleType;
 
         /// <summary>
         /// <c><see cref="Xaml"/>:Int16</c>.
         /// </summary>
         [Uri(Woc, "Int16")]
-        public static readonly IndividualUri ClrInt16Type;
+        public static readonly IndividualUri CtsInt16Type;
 
         /// <summary>
         /// <c><see cref="Xaml"/>:Int32</c>.
         /// </summary>
         [Uri(Woc, "Int32")]
-        public static readonly IndividualUri ClrInt32Type;
+        public static readonly IndividualUri CtsInt32Type;
 
         /// <summary>
         /// <c><see cref="Xaml"/>:Int64</c>.
         /// </summary>
         [Uri(Woc, "Int64")]
-        public static readonly IndividualUri ClrInt64Type;
+        public static readonly IndividualUri CtsInt64Type;
 
         /// <summary>
         /// <c><see cref="Xaml"/>:TimeSpan</c>.
         /// </summary>
         [Uri(Woc, "TimeSpan")]
-        public static readonly IndividualUri ClrTimeSpanType;
+        public static readonly IndividualUri CtsTimeSpanType;
 
         /// <summary>
         /// <c><see cref="Xaml"/>:Uri</c>.
         /// </summary>
         [Uri(Woc, "Uri")]
-        public static readonly IndividualUri ClrUriType;
+        public static readonly IndividualUri CtsUriType;
 
         /// <summary>
         /// <c><see cref="Xaml"/>:Byte</c>.
         /// </summary>
         [Uri(Woc, "Byte")]
-        public static readonly IndividualUri ClrByteType;
+        public static readonly IndividualUri CtsByteType;
 
         /// <summary>
         /// <c><see cref="Xaml"/>:Array</c>.
         /// </summary>
         [Uri(Woc, "Array")]
-        public static readonly IndividualUri ClrArrayType;
+        public static readonly IndividualUri CtsArrayType;
         #endregion
 
         #region err
