@@ -54,10 +54,7 @@ namespace IS4.SFI.Analyzers
             if(GetErrorCodeAndDetails(exception) is ({ } code, var details))
             {
                 node.Set(Properties.ErrorCode, code);
-                if(details != null)
-                {
-                    node.Set(Properties.ErrorValue, (dynamic)details);
-                }
+                node.TrySet(Properties.ErrorValue, details);
             }
 
             var trace = new StackTrace(exception, true);

@@ -81,7 +81,7 @@ namespace IS4.SFI.Analyzers
                     {
                         node.Set(propUri, strValue, language);
                     }else{
-                        node.Set(propUri, (dynamic)value);
+                        node.TrySet(propUri, value);
                     }
                 }else if(type == "System.Runtime.InteropServices.GuidAttribute" && value is string guidStr && Guid.TryParse(guidStr, out var guid))
                 {

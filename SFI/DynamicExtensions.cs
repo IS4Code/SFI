@@ -50,6 +50,24 @@ namespace IS4.SFI
             }
         }
 
+        /// <inheritdoc cref="TrySet{TProp}(ILinkedNode, IPropertyUriFormatter{TProp}, TProp, ValueType)"/>
+        public static bool TrySet(this ILinkedNode node, PropertyUri property, object? value)
+        {
+            switch(value)
+            {
+                case string str:
+                    node.Set(property, str);
+                    return true;
+                case Uri uri:
+                    node.Set(property, uri);
+                    return true;
+                case ValueType val:
+                    return TrySet(node, property, val);
+                default:
+                    return false;
+            }
+        }
+
         /// <summary>
         /// Dynamically calls <see cref="ILinkedNode.Set{TValue}(PropertyUri, TValue)"/>
         /// based on the runtime type of <paramref name="value"/>.
@@ -70,6 +88,24 @@ namespace IS4.SFI
             }catch(ArgumentException)
             {
                 return false;
+            }
+        }
+        
+        /// <inheritdoc cref="TrySet{TProp}(ILinkedNode, IPropertyUriFormatter{TProp}, TProp, ValueType)"/>
+        public static bool TrySet<TProp>(this ILinkedNode node, IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, object? value)
+        {
+            switch(value)
+            {
+                case string str:
+                    node.Set(propertyFormatter, propertyValue, str);
+                    return true;
+                case Uri uri:
+                    node.Set(propertyFormatter, propertyValue, uri);
+                    return true;
+                case ValueType val:
+                    return TrySet(node, propertyFormatter, propertyValue, val);
+                default:
+                    return false;
             }
         }
 
