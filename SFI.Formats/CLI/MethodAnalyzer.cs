@@ -28,9 +28,9 @@ namespace IS4.SFI.Analyzers
 
             if(member.IsConstructor || member.Equals(member.DeclaringType.TypeInitializer))
             {
-                node.SetClass(Classes.CodeMethod);
-            }else{
                 node.SetClass(Classes.CodeConstructor);
+            }else{
+                node.SetClass(Classes.CodeMethod);
             }
 
             node.Set(Properties.PrefLabel, member.ToString());
@@ -100,9 +100,9 @@ namespace IS4.SFI.Analyzers
 
             if(member.IsConstructor || member.Equals(member.DeclaringType.TypeInitializer))
             {
-                node.SetClass(Classes.CodeMethod);
-            }else{
                 node.SetClass(Classes.CodeConstructor);
+            }else{
+                node.SetClass(Classes.CodeMethod);
             }
 
             node.Set(Properties.Identifier, TextTools.FormatMemberId(member));
