@@ -745,6 +745,8 @@ namespace IS4.SFI
             return sb.ToString();
         }
 
+        const MemberIdFormatOptions IncludeNamespaceOption = MemberIdFormatOptions.IncludeDeclaringMembersAndNamespace & ~MemberIdFormatOptions.IncludeDeclaringMembers;
+
         /// <summary>
         /// Produces an identifier from <see cref="MemberInfo"/>.
         /// </summary>
@@ -756,7 +758,7 @@ namespace IS4.SFI
         {
             var context = new MemberIdFormatContext(stringBuilder, (options & MemberIdFormatOptions.UriEscaping) != 0);
             bool includeDeclaringMember = (options & MemberIdFormatOptions.IncludeDeclaringMembers) != 0;
-            bool includeNamespace = (options & MemberIdFormatOptions.IncludeDeclaringMembersAndNamespace) != 0;
+            bool includeNamespace = (options & IncludeNamespaceOption) != 0;
             context.Member(member, includeNamespace, includeDeclaringMember);
             return stringBuilder;
         }
