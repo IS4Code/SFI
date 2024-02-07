@@ -63,9 +63,9 @@ namespace IS4.SFI.Analyzers
                         await ReferenceMember(node, Properties.CodeOverrides, baseMethod, context, analyzers);
                     }
                 }
-                await AnalyzeCustomAttributes(node, context, analyzers, methodInfo.GetCustomAttributesData(), methodInfo.ReturnParameter.GetOptionalCustomModifiers(), methodInfo.ReturnParameter.GetRequiredCustomModifiers());
+                await AnalyzeCustomAttributes(node, context, analyzers, methodInfo, methodInfo.GetCustomAttributesData(), methodInfo.ReturnParameter.GetOptionalCustomModifiers(), methodInfo.ReturnParameter.GetRequiredCustomModifiers());
             }else{
-                await AnalyzeCustomAttributes(node, context, analyzers, method.GetCustomAttributesData());
+                await AnalyzeCustomAttributes(node, context, analyzers, method, method.GetCustomAttributesData());
             }
 
             if(method.IsGenericMethodDefinition)

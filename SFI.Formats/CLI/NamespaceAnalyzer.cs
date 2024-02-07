@@ -36,7 +36,7 @@ namespace IS4.SFI.Analyzers
             }
             await ReferenceMember(node, Properties.Broader, ns, context, analyzers);
 
-            await AnalyzeCustomAttributes(node, context, analyzers, ns.GetCustomAttributesData());
+            await AnalyzeCustomAttributes(node, context, analyzers, ns, ns.GetCustomAttributesData());
 
             var declaresContext = context.WithParentLink(node, Properties.CodeDeclares);
             foreach(var ns2 in ns.Namespaces)

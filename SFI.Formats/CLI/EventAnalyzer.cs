@@ -52,7 +52,7 @@ namespace IS4.SFI.Analyzers
                 }
             }
 
-            await AnalyzeCustomAttributes(node, context, analyzers, evnt.GetCustomAttributesData());
+            await AnalyzeCustomAttributes(node, context, analyzers, evnt, evnt.GetCustomAttributesData());
 
             return new(node, name);
         }

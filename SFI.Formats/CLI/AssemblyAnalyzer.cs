@@ -33,17 +33,6 @@ namespace IS4.SFI.Analyzers
 
         }
 
-        static readonly Dictionary<string, (PropertyUri propUri, bool useLang)> predefinedProperties = new()
-        {
-            //{ typeof(AssemblyProductAttribute).FullName, (Properties.) },
-            { typeof(AssemblyCompanyAttribute).FullName, (Properties.Creator, true) },
-            { typeof(AssemblyCopyrightAttribute).FullName, (Properties.CopyrightNotice, true) },
-            { typeof(AssemblyInformationalVersionAttribute).FullName, (Properties.SoftwareVersion, false) },
-            { typeof(AssemblyFileVersionAttribute).FullName, (Properties.Version, false) },
-            { typeof(AssemblyTitleAttribute).FullName, (Properties.Title, true) },
-            { typeof(AssemblyDescriptionAttribute).FullName, (Properties.Description, true) },
-        };
-
         /// <inheritdoc/>
         public async override ValueTask<AnalysisResult> Analyze(Assembly assembly, AnalysisContext context, IEntityAnalyzers analyzers)
         {
@@ -74,7 +63,7 @@ namespace IS4.SFI.Analyzers
                 }catch{
                     continue;
                 }
-                if(predefinedProperties.TryGetValue(type, out var def))
+                if(AttributeConstants.AssemblyAttributeProperties.TryGetValue(type, out var def))
                 {
                     var (propUri, useLang) = def;
                     if(useLang && value is string strValue)
@@ -83,7 +72,7 @@ namespace IS4.SFI.Analyzers
                     }else{
                         node.TrySet(propUri, value);
                     }
-                }else if(type == "System.Runtime.InteropServices.GuidAttribute" && value is string guidStr && Guid.TryParse(guidStr, out var guid))
+                }else if(type == AttributeConstants.GuidAttributeType && value is string guidStr && Guid.TryParse(guidStr, out var guid))
                 {
                     node.Set(Properties.Identifier, guidStr);
                     node.Set(Properties.Broader, UriTools.UuidUriFormatter, guid);

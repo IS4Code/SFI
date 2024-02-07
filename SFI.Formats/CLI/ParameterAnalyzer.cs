@@ -39,10 +39,10 @@ namespace IS4.SFI.Analyzers
             {
                 node.TrySet(Properties.DefaultValue, param.RawDefaultValue ?? DBNull.Value);
             }
-
+            
             await ReferenceMember(node, Properties.CodeType, param.ParameterType, context, analyzers);
 
-            await AnalyzeCustomAttributes(node, context, analyzers, param.GetCustomAttributesData(), param.GetOptionalCustomModifiers(), param.GetRequiredCustomModifiers());
+            await AnalyzeCustomAttributes(node, context, analyzers, param, param.GetCustomAttributesData(), param.GetOptionalCustomModifiers(), param.GetRequiredCustomModifiers());
 
             return new(node, name);
         }

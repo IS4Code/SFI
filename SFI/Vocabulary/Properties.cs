@@ -58,6 +58,12 @@
         /// </summary>
         [Uri(Rdfs)]
         public static readonly PropertyUri IsDefinedBy;
+
+        /// <summary>
+        /// <c><see cref="Rdfs"/>:comment</c>.
+        /// </summary>
+        [Uri(Rdfs)]
+        public static readonly PropertyUri Comment;
         #endregion
 
         #region owl
@@ -72,6 +78,12 @@
         /// </summary>
         [Uri(Owl)]
         public static readonly PropertyUri EquivalentProperty;
+
+        /// <summary>
+        /// <c><see cref="Owl"/>:deprecated</c>.
+        /// </summary>
+        [Uri(Owl)]
+        public static readonly PropertyUri Deprecated;
         #endregion
 
         #region dcterms
