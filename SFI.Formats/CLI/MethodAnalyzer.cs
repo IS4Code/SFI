@@ -92,7 +92,7 @@ namespace IS4.SFI.Analyzers
             var name = method.Name;
 
             node.Set(Properties.Identifier, TextTools.FormatMemberId(method));
-            node.Set(Properties.PrefLabel, TextTools.FormatMemberId(method, includeNamespace: false, includeDeclaringMember: false));
+            node.Set(Properties.PrefLabel, TextTools.FormatMemberId(method, MemberIdFormatOptions.None));
 
             if(method.IsGenericMethod && !method.IsGenericMethodDefinition && method is MethodInfo methodInfo)
             {

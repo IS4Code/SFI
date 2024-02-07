@@ -27,7 +27,7 @@ namespace IS4.SFI.Analyzers
         /// <param name="member">The member to provide the identifier of the node.</param>
         protected ILinkedNode GetNode(MemberInfo member, AnalysisContext context)
         {
-            var id = TextTools.FormatMemberId(member, true, false, false);
+            var id = TextTools.FormatMemberId(member, MemberIdFormatOptions.UriEscaping);
             return GetNode(id, context);
         }
 

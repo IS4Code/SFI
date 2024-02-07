@@ -62,7 +62,7 @@ namespace IS4.SFI.Analyzers
             node.Set(Properties.CodeName, name);
 
             node.Set(Properties.Identifier, TextTools.FormatMemberId(field));
-            node.Set(Properties.PrefLabel, TextTools.FormatMemberId(field, includeNamespace: false, includeDeclaringMember: false));
+            node.Set(Properties.PrefLabel, TextTools.FormatMemberId(field, MemberIdFormatOptions.None));
 
             await ReferenceMember(node, Properties.CodeFieldOf, field.DeclaringType, context, analyzers);
 

@@ -45,7 +45,7 @@ namespace IS4.SFI.Services
             var type = member.DeclaringType ?? (member as Type);
             var sb = Namespace(type?.Namespace ?? "", type?.Assembly);
             sb.Append('#');
-            return TextTools.FormatMemberId(member, sb, true, false, true);
+            return TextTools.FormatMemberId(member, sb, MemberIdFormatOptions.UriEscaping | MemberIdFormatOptions.IncludeDeclaringMembers);
         }
 
         /// <summary>

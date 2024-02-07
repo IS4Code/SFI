@@ -737,11 +737,11 @@ namespace IS4.SFI
 			return Regex.Replace(source.ToString(), pattern.ToString(), text, RegexOptions.Singleline);
         }
 
-        /// <inheritdoc cref="FormatMemberId(MemberInfo, StringBuilder, bool, bool, bool)"/>
-        public static string FormatMemberId(MemberInfo member, bool inUri = false, bool includeNamespace = true, bool includeDeclaringMember = true)
+        /// <inheritdoc cref="FormatMemberId(MemberInfo, StringBuilder, MemberIdFormatOptions)"/>
+        public static string FormatMemberId(MemberInfo member, MemberIdFormatOptions options = MemberIdFormatOptions.IncludeDeclaringMembersAndNamespace)
         {
             var sb = new StringBuilder();
-            FormatMemberId(member, sb, inUri, includeNamespace, includeDeclaringMember);
+            FormatMemberId(member, sb, options);
             return sb.ToString();
         }
 
@@ -750,13 +750,13 @@ namespace IS4.SFI
         /// </summary>
         /// <param name="member">The member to get the identifier from.</param>
         /// <param name="stringBuilder">The buffer to write the result to.</param>
-        /// <param name="inUri">Whether to create a URI-safe identifier.</param>
-        /// <param name="includeNamespace">Whether to include the namespace of the declaring type.</param>
-        /// <param name="includeDeclaringMember">Whether to include the declaring type or method in the identifier.</param>
+        /// <param name="options">The options specifying the format of the identifier..</param>
         /// <returns>The formatted identifier.</returns>
-        public static StringBuilder FormatMemberId(MemberInfo member, StringBuilder stringBuilder, bool inUri = false, bool includeNamespace = true, bool includeDeclaringMember = true)
+        public static StringBuilder FormatMemberId(MemberInfo member, StringBuilder stringBuilder, MemberIdFormatOptions options = MemberIdFormatOptions.IncludeDeclaringMembersAndNamespace)
         {
-            var context = new MemberIdFormatContext(stringBuilder, inUri);
+            var context = new MemberIdFormatContext(stringBuilder, (options & MemberIdFormatOptions.UriEscaping) != 0);
+            bool includeDeclaringMember = (options & MemberIdFormatOptions.IncludeDeclaringMembers) != 0;
+            bool includeNamespace = (options & MemberIdFormatOptions.IncludeDeclaringMembersAndNamespace) != 0;
             context.Member(member, includeNamespace, includeDeclaringMember);
             return stringBuilder;
         }
@@ -950,5 +950,33 @@ namespace IS4.SFI
                 }
             }
         }
+    }
+
+    /// <summary>
+    /// Defines the options for <see cref="TextTools.FormatMemberId(MemberInfo, MemberIdFormatOptions)"/>
+    /// and <see cref="TextTools.FormatMemberId(MemberInfo, StringBuilder, MemberIdFormatOptions)"/>.
+    /// </summary>
+    [Flags]
+    public enum MemberIdFormatOptions
+    {
+        /// <summary>
+        /// Default options.
+        /// </summary>
+        None = 0,
+
+        /// <summary>
+        /// Whether to percent-encode special or invalid URI characters.
+        /// </summary>
+        UriEscaping = 1,
+
+        /// <summary>
+        /// Whether to include the declaring members in the identifier.
+        /// </summary>
+        IncludeDeclaringMembers = 2,
+
+        /// <summary>
+        /// Whether to include the declaring members and the full namespace in the identifier.
+        /// </summary>
+        IncludeDeclaringMembersAndNamespace = 6,
     }
 }

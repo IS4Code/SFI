@@ -163,7 +163,7 @@ namespace IS4.SFI.Analyzers
             var name = type.Name;
 
             node.Set(Properties.Identifier, TextTools.FormatMemberId(type));
-            node.Set(Properties.PrefLabel, TextTools.FormatMemberId(type, includeNamespace: false, includeDeclaringMember: false));
+            node.Set(Properties.PrefLabel, TextTools.FormatMemberId(type, MemberIdFormatOptions.None));
 
             if(type.IsConstructedGenericType)
             {
