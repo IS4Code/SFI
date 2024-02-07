@@ -30,7 +30,7 @@ namespace IS4.SFI.Analyzers
                 node.Set(Properties.CodeSimpleName, name);
             }
             node.Set(Properties.CodeCanonicalName, name);
-            node.Set(Properties.Broader, ClrNamespaceUriFormatter.Instance, prop);
+            await ReferenceMember(node, Properties.Broader, prop, context, analyzers);
             node.Set(Properties.Identifier, prop.MetadataToken);
 
             await ReferenceMember(node, Properties.CodeType, prop.PropertyType, context, analyzers);

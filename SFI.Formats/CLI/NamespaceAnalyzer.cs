@@ -34,7 +34,7 @@ namespace IS4.SFI.Analyzers
                 node.Set(Properties.PrefLabel, fullName);
                 node.Set(Properties.CodeCanonicalName, fullName);
             }
-            node.Set(Properties.Broader, ClrNamespaceUriFormatter.Instance, ns);
+            await ReferenceMember(node, Properties.Broader, ns, context, analyzers);
 
             await AnalyzeCustomAttributes(node, context, analyzers, ns.GetCustomAttributesData());
 

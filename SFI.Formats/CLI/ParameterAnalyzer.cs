@@ -30,7 +30,7 @@ namespace IS4.SFI.Analyzers
             {
                 node.Set(Properties.CodeName, name);
             }
-            node.Set(Properties.Broader, ClrNamespaceUriFormatter.Instance, param);
+            await ReferenceMember(node, Properties.Broader, param, context, analyzers);
             node.Set(Properties.Identifier, param.MetadataToken);
 
             node.Set(Properties.CodePosition, param.Position);

@@ -28,7 +28,7 @@ namespace IS4.SFI.Analyzers
 
             node.Set(Properties.PrefLabel, method.ToString());
             node.Set(Properties.CodeName, name);
-            node.Set(Properties.Broader, ClrNamespaceUriFormatter.Instance, method);
+            await ReferenceMember(node, Properties.Broader, method, context, analyzers);
             node.Set(Properties.Identifier, method.MetadataToken);
 
             SetModifiers(
