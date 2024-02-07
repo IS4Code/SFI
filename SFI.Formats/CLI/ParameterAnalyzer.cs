@@ -35,6 +35,11 @@ namespace IS4.SFI.Analyzers
 
             node.Set(Properties.CodePosition, param.Position);
 
+            if(param.HasDefaultValue)
+            {
+                node.TrySet(Properties.Value, param.RawDefaultValue ?? DBNull.Value);
+            }
+
             await ReferenceMember(node, Properties.CodeType, param.ParameterType, context, analyzers);
 
             await AnalyzeCustomAttributes(node, context, analyzers, param.GetCustomAttributesData(), param.GetOptionalCustomModifiers(), param.GetRequiredCustomModifiers());

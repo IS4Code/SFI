@@ -1,5 +1,6 @@
 ﻿using IS4.SFI.Services;
 using IS4.SFI.Vocabulary;
+using System;
 using System.ComponentModel;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -40,6 +41,11 @@ namespace IS4.SFI.Analyzers
                 isFinal: field.IsInitOnly,
                 isStatic: field.IsStatic
             );
+
+            if(field.IsLiteral)
+            {
+                node.TrySet(Properties.Value, field.GetRawConstantValue() ?? DBNull.Value);
+            }
 
             await ReferenceMember(node, Properties.CodeType, field.FieldType, context, analyzers);
 

@@ -3,6 +3,7 @@ using IS4.SFI.Vocabulary;
 using Microsoft.CSharp.RuntimeBinder;
 using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace IS4.SFI
@@ -61,6 +62,10 @@ namespace IS4.SFI
                 case Uri uri:
                     node.Set(property, uri);
                     return true;
+                case DBNull:
+                case Missing:
+                    node.Set(property, Individuals.Nil);
+                    return true;
                 case ValueType val:
                     return TrySet(node, property, val);
                 default:
@@ -101,6 +106,10 @@ namespace IS4.SFI
                     return true;
                 case Uri uri:
                     node.Set(propertyFormatter, propertyValue, uri);
+                    return true;
+                case DBNull:
+                case Missing:
+                    node.Set(propertyFormatter, propertyValue, Individuals.Nil);
                     return true;
                 case ValueType val:
                     return TrySet(node, propertyFormatter, propertyValue, val);
