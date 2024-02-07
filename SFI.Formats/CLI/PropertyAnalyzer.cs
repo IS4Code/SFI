@@ -25,11 +25,7 @@ namespace IS4.SFI.Analyzers
             var node = GetNode(member, context);
 
             node.Set(Properties.PrefLabel, member.ToString());
-            if(!member.IsSpecialName)
-            {
-                node.Set(Properties.CodeSimpleName, name);
-            }
-            node.Set(Properties.CodeCanonicalName, name);
+            node.Set(Properties.CodeName, name);
             await ReferenceMember(node, Properties.Broader, member, context, analyzers);
             node.Set(Properties.Identifier, member.MetadataToken);
 
