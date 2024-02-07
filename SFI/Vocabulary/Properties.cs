@@ -344,6 +344,12 @@
         /// </summary>
         [Uri(Schema)]
         public static readonly PropertyUri DefaultValue;
+
+        /// <summary>
+        /// <c><see cref="Schema"/>:readonlyValue</c>.
+        /// </summary>
+        [Uri(Schema)]
+        public static readonly PropertyUri ReadonlyValue;
         #endregion
 
         #region nie

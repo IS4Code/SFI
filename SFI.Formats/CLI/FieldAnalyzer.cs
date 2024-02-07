@@ -42,6 +42,11 @@ namespace IS4.SFI.Analyzers
                 isStatic: member.IsStatic
             );
 
+            if(member.IsInitOnly || member.IsLiteral)
+            {
+                node.Set(Properties.ReadonlyValue, true);
+            }
+
             if(member.IsLiteral)
             {
                 node.TrySet(Properties.Value, member.GetRawConstantValue() ?? DBNull.Value);

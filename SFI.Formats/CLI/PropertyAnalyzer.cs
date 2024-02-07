@@ -35,6 +35,11 @@ namespace IS4.SFI.Analyzers
 
             await ReferenceMember(node, Properties.CodeType, member.PropertyType, context, analyzers);
 
+            if(member.CanRead && !member.CanWrite)
+            {
+                node.Set(Properties.ReadonlyValue, true);
+            }
+
             if(member.GetMethod is {  } getMethod && (!ExportedOnly || IsPublic(getMethod)))
             {
                 await ReferenceMember(node, Properties.CodeReturnedBy, getMethod, context, analyzers);
