@@ -358,6 +358,12 @@
         public static readonly ClassUri CodeEnum;
 
         /// <summary>
+        /// <c><see cref="Woc"/>:Executable</c>.
+        /// </summary>
+        [Uri(Woc, "Executable")]
+        public static readonly ClassUri CodeExecutable;
+
+        /// <summary>
         /// <c><see cref="Woc"/>:Field</c>.
         /// </summary>
         [Uri(Woc, "Field")]

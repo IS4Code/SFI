@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 namespace IS4.SFI.Analyzers
 {
     /// <summary>
-    /// An analyzer of .NET methods, as instances of <see cref="MethodBase"/>.
+    /// An analyzer of .NET methods and constructors, as instances of <see cref="MethodBase"/>.
     /// </summary>
-    [Description("An analyzer of .NET methods.")]
+    [Description("An analyzer of .NET methods and constructors.")]
     public class MethodAnalyzer : MemberAnalyzer<MethodBase>
     {
         /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>
-        public MethodAnalyzer() : base(Classes.CodeMethod)
+        public MethodAnalyzer() : base(Classes.CodeExecutable)
         {
 
         }
@@ -25,6 +25,13 @@ namespace IS4.SFI.Analyzers
         {
             var name = member.Name;
             var node = GetNode(member, context);
+
+            if(member.IsConstructor || member.Equals(member.DeclaringType.TypeInitializer))
+            {
+                node.SetClass(Classes.CodeMethod);
+            }else{
+                node.SetClass(Classes.CodeConstructor);
+            }
 
             node.Set(Properties.PrefLabel, member.ToString());
             node.Set(Properties.CodeName, name);
@@ -90,6 +97,13 @@ namespace IS4.SFI.Analyzers
         protected async override ValueTask<AnalysisResult> AnalyzeReference(MethodBase member, ILinkedNode node, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var name = member.Name;
+
+            if(member.IsConstructor || member.Equals(member.DeclaringType.TypeInitializer))
+            {
+                node.SetClass(Classes.CodeMethod);
+            }else{
+                node.SetClass(Classes.CodeConstructor);
+            }
 
             node.Set(Properties.Identifier, TextTools.FormatMemberId(member));
             node.Set(Properties.PrefLabel, TextTools.FormatMemberId(member, MemberIdFormatOptions.None));
