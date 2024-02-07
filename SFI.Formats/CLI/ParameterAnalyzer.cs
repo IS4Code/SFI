@@ -1,5 +1,6 @@
 ﻿using IS4.SFI.Services;
 using IS4.SFI.Vocabulary;
+using System;
 using System.ComponentModel;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -25,10 +26,9 @@ namespace IS4.SFI.Analyzers
             var node = GetNode(param.Position.ToString(), context);
 
             node.Set(Properties.PrefLabel, param.ToString());
-            if(name != null)
+            if(!String.IsNullOrEmpty(name))
             {
-                node.Set(Properties.CodeSimpleName, name);
-                node.Set(Properties.CodeCanonicalName, name);
+                node.Set(Properties.CodeName, name);
             }
             node.Set(Properties.Broader, ClrNamespaceUriFormatter.Instance, param);
             node.Set(Properties.Identifier, param.MetadataToken);
@@ -47,10 +47,9 @@ namespace IS4.SFI.Analyzers
         {
             var name = param.Name;
 
-            if(name != null)
+            if(!String.IsNullOrEmpty(name))
             {
-                node.Set(Properties.CodeSimpleName, name);
-                node.Set(Properties.CodeCanonicalName, name);
+                node.Set(Properties.CodeName, name);
             }
 
             node.Set(Properties.CodePosition, param.Position);

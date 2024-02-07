@@ -58,11 +58,7 @@ namespace IS4.SFI.Analyzers
         {
             var name = prop.Name;
 
-            if(!prop.IsSpecialName)
-            {
-                node.Set(Properties.CodeSimpleName, name);
-            }
-            node.Set(Properties.CodeCanonicalName, name);
+            node.Set(Properties.CodeName, name);
 
             await ReferenceMember(node, Properties.CodeDeclaredBy, prop.DeclaringType, context, analyzers);
 

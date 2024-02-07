@@ -25,11 +25,7 @@ namespace IS4.SFI.Analyzers
             var node = GetNode(evnt, context);
 
             node.Set(Properties.PrefLabel, evnt.ToString());
-            if(!evnt.IsSpecialName)
-            {
-                node.Set(Properties.CodeSimpleName, name);
-            }
-            node.Set(Properties.CodeCanonicalName, name);
+            node.Set(Properties.CodeName, name);
             node.Set(Properties.Broader, ClrNamespaceUriFormatter.Instance, evnt);
             node.Set(Properties.Identifier, evnt.MetadataToken);
 
@@ -66,11 +62,7 @@ namespace IS4.SFI.Analyzers
         {
             var name = evnt.Name;
 
-            if(!evnt.IsSpecialName)
-            {
-                node.Set(Properties.CodeSimpleName, name);
-            }
-            node.Set(Properties.CodeCanonicalName, name);
+            node.Set(Properties.CodeName, name);
 
             await ReferenceMember(node, Properties.CodeDeclaredBy, evnt.DeclaringType, context, analyzers);
 

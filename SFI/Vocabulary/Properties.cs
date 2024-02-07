@@ -1086,6 +1086,12 @@
         public static readonly PropertyUri CodeArrayDimensions;
 
         /// <summary>
+        /// <c><see cref="Woc"/>:hasName</c>.
+        /// </summary>
+        [Uri(Woc, "hasName")]
+        public static readonly PropertyUri CodeName;
+
+        /// <summary>
         /// <c><see cref="Woc"/>:hasPosition</c>.
         /// </summary>
         [Uri(Woc, "hasPosition")]
