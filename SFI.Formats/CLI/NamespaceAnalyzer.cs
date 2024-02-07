@@ -28,9 +28,11 @@ namespace IS4.SFI.Analyzers
             {
                 node.Set(Properties.CodeSimpleName, name);
             }
-            if(!String.IsNullOrEmpty(ns.FullName))
+            var fullName = ns.FullName;
+            if(!String.IsNullOrEmpty(fullName))
             {
-                node.Set(Properties.CodeCanonicalName, ns.FullName);
+                node.Set(Properties.PrefLabel, fullName);
+                node.Set(Properties.CodeCanonicalName, fullName);
             }
             node.Set(Properties.Broader, ClrNamespaceUriFormatter.Instance, ns);
 
@@ -56,8 +58,14 @@ namespace IS4.SFI.Analyzers
         {
             var name = ns.Name;
 
-            node.Set(Properties.CodeSimpleName, name);
-            node.Set(Properties.CodeCanonicalName, ns.FullName);
+            if(!String.IsNullOrEmpty(name))
+            {
+                node.Set(Properties.CodeSimpleName, name);
+            }
+            if(!String.IsNullOrEmpty(ns.FullName))
+            {
+                node.Set(Properties.CodeCanonicalName, ns.FullName);
+            }
 
             if(!ns.IsGlobal)
             {

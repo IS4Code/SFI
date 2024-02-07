@@ -24,13 +24,15 @@ namespace IS4.SFI.Analyzers
             var name = field.Name;
             var node = GetNode(field, context);
 
+            node.Set(Properties.PrefLabel, field.ToString());
             if(!field.IsSpecialName)
             {
                 node.Set(Properties.CodeSimpleName, name);
             }
             node.Set(Properties.CodeCanonicalName, name);
             node.Set(Properties.Broader, ClrNamespaceUriFormatter.Instance, field);
-            
+            node.Set(Properties.Identifier, field.MetadataToken);
+
             SetModifiers(
                 node,
                 isPublic: field.IsPublic,

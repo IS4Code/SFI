@@ -56,12 +56,14 @@ namespace IS4.SFI.Analyzers
                 node.SetClass(Classes.CodeArrayType);
             }
 
+            node.Set(Properties.PrefLabel, type.ToString());
             if(name != null)
             {
                 node.Set(Properties.CodeSimpleName, name);
                 node.Set(Properties.CodeCanonicalName, type.FullName ?? name);
             }
             node.Set(Properties.Broader, ClrNamespaceUriFormatter.Instance, type);
+            node.Set(Properties.Identifier, type.MetadataToken);
 
             if(type.IsGenericParameter)
             {

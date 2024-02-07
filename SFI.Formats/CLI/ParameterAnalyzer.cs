@@ -24,12 +24,14 @@ namespace IS4.SFI.Analyzers
             var name = param.Name;
             var node = GetNode(param.Position.ToString(), context);
 
+            node.Set(Properties.PrefLabel, param.ToString());
             if(name != null)
             {
                 node.Set(Properties.CodeSimpleName, name);
                 node.Set(Properties.CodeCanonicalName, name);
             }
             node.Set(Properties.Broader, ClrNamespaceUriFormatter.Instance, param);
+            node.Set(Properties.Identifier, param.MetadataToken);
 
             node.Set(Properties.CodePosition, param.Position);
 

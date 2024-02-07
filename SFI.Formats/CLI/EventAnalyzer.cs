@@ -24,12 +24,14 @@ namespace IS4.SFI.Analyzers
             var name = evnt.Name;
             var node = GetNode(evnt, context);
 
+            node.Set(Properties.PrefLabel, evnt.ToString());
             if(!evnt.IsSpecialName)
             {
                 node.Set(Properties.CodeSimpleName, name);
             }
             node.Set(Properties.CodeCanonicalName, name);
             node.Set(Properties.Broader, ClrNamespaceUriFormatter.Instance, evnt);
+            node.Set(Properties.Identifier, evnt.MetadataToken);
 
             await ReferenceMember(node, Properties.CodeType, evnt.EventHandlerType, context, analyzers);
 

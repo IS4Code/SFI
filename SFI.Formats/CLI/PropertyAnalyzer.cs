@@ -24,12 +24,14 @@ namespace IS4.SFI.Analyzers
             var name = prop.Name;
             var node = GetNode(prop, context);
 
+            node.Set(Properties.PrefLabel, prop.ToString());
             if(!prop.IsSpecialName)
             {
                 node.Set(Properties.CodeSimpleName, name);
             }
             node.Set(Properties.CodeCanonicalName, name);
             node.Set(Properties.Broader, ClrNamespaceUriFormatter.Instance, prop);
+            node.Set(Properties.Identifier, prop.MetadataToken);
 
             await ReferenceMember(node, Properties.CodeType, prop.PropertyType, context, analyzers);
 

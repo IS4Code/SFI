@@ -26,12 +26,14 @@ namespace IS4.SFI.Analyzers
             var name = method.Name;
             var node = GetNode(method, context);
 
+            node.Set(Properties.PrefLabel, method.ToString());
             if(!method.IsSpecialName)
             {
                 node.Set(Properties.CodeSimpleName, name);
             }
             node.Set(Properties.CodeCanonicalName, name);
             node.Set(Properties.Broader, ClrNamespaceUriFormatter.Instance, method);
+            node.Set(Properties.Identifier, method.MetadataToken);
 
             SetModifiers(
                 node,
