@@ -280,6 +280,18 @@ namespace IS4.SFI.Analyzers
         }
 
         /// <inheritdoc cref="ReferenceMember{TMember}(ILinkedNode, PropertyUri, TMember?, AnalysisContext, IEntityAnalyzers)"/>
+        protected ValueTask ReferenceMember(ILinkedNode parent, PropertyUri property, ConstructorInfo? member, AnalysisContext context, IEntityAnalyzers analyzers)
+        {
+            return ReferenceMember<MethodBase>(parent, property, member, context, analyzers);
+        }
+
+        /// <inheritdoc cref="ReferenceMember{TMember}(ILinkedNode, PropertyUri, TMember?, AnalysisContext, IEntityAnalyzers)"/>
+        protected ValueTask ReferenceMember(ILinkedNode parent, PropertyUri property, MethodInfo? member, AnalysisContext context, IEntityAnalyzers analyzers)
+        {
+            return ReferenceMember<MethodBase>(parent, property, member, context, analyzers);
+        }
+
+        /// <inheritdoc cref="ReferenceMember{TMember}(ILinkedNode, PropertyUri, TMember?, AnalysisContext, IEntityAnalyzers)"/>
         protected async ValueTask ReferenceMember(ILinkedNode parent, PropertyUri property, ParameterInfo? member, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             if(member == null)
@@ -340,8 +352,11 @@ namespace IS4.SFI.Analyzers
                 var reference = new CodeElementAnalyzer<TMember>.Reference(member);
                 var node = context.NodeFactory.Create(formatter, member);
                 var newContext = context.WithParentLink(parent, property).WithNode(node);
-                await analyzers.Analyze(reference, newContext);
-                return true;
+                var result = await analyzers.Analyze(reference, newContext);
+                if(result.Node != null)
+                {
+                    return true;
+                }
             }
             return false;
         }
