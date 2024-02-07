@@ -57,6 +57,9 @@ namespace IS4.SFI.Analyzers
                 node.Set(Properties.CodeName, name);
             }
 
+            node.Set(Properties.Identifier, TextTools.FormatMemberId(param.Member) + "/" + param.Position);
+            node.Set(Properties.PrefLabel, param.Position.ToString());
+
             node.Set(Properties.CodePosition, param.Position);
 
             node.Set(Properties.CodeType, ClrNamespaceUriFormatter.Instance, param.ParameterType);

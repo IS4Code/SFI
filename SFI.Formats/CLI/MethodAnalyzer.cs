@@ -90,7 +90,10 @@ namespace IS4.SFI.Analyzers
         protected async override ValueTask<AnalysisResult> AnalyzeReference(MethodBase method, ILinkedNode node, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var name = method.Name;
-            
+
+            node.Set(Properties.Identifier, TextTools.FormatMemberId(method));
+            node.Set(Properties.PrefLabel, TextTools.FormatMemberId(method, includeNamespace: false, includeDeclaringMember: false));
+
             if(method.IsGenericMethod && !method.IsGenericMethodDefinition && method is MethodInfo methodInfo)
             {
                 await ReferenceMember(node, Properties.CodeOverrides, methodInfo.GetGenericMethodDefinition(), context, analyzers);

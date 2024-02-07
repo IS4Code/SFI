@@ -738,10 +738,10 @@ namespace IS4.SFI
         }
 
         /// <inheritdoc cref="FormatMemberId(MemberInfo, StringBuilder, bool, bool, bool)"/>
-        public static string FormatMemberId(MemberInfo member, bool inUri = false, bool includeNamespace = true, bool includeDeclaringType = true)
+        public static string FormatMemberId(MemberInfo member, bool inUri = false, bool includeNamespace = true, bool includeDeclaringMember = true)
         {
             var sb = new StringBuilder();
-            FormatMemberId(member, sb, inUri, includeNamespace, includeDeclaringType);
+            FormatMemberId(member, sb, inUri, includeNamespace, includeDeclaringMember);
             return sb.ToString();
         }
 
@@ -752,12 +752,12 @@ namespace IS4.SFI
         /// <param name="stringBuilder">The buffer to write the result to.</param>
         /// <param name="inUri">Whether to create a URI-safe identifier.</param>
         /// <param name="includeNamespace">Whether to include the namespace of the declaring type.</param>
-        /// <param name="includeDeclaringType">Whether to include the declaring type or method in the identifier.</param>
+        /// <param name="includeDeclaringMember">Whether to include the declaring type or method in the identifier.</param>
         /// <returns>The formatted identifier.</returns>
-        public static StringBuilder FormatMemberId(MemberInfo member, StringBuilder stringBuilder, bool inUri = false, bool includeNamespace = true, bool includeDeclaringType = true)
+        public static StringBuilder FormatMemberId(MemberInfo member, StringBuilder stringBuilder, bool inUri = false, bool includeNamespace = true, bool includeDeclaringMember = true)
         {
             var context = new MemberIdFormatContext(stringBuilder, inUri);
-            context.Member(member, includeNamespace, includeDeclaringType);
+            context.Member(member, includeNamespace, includeDeclaringMember);
             return stringBuilder;
         }
 
@@ -772,34 +772,16 @@ namespace IS4.SFI
                 this.inUri = inUri;
             }
 
-            public void Member(MemberInfo member, bool includeNamespace, bool includeDeclaringType)
+            public void Member(MemberInfo member, bool includeNamespace, bool includeDeclaringMember)
             {
                 if(member is Type type)
                 {
-                    if(!includeDeclaringType)
-                    {
-                        if(type.IsGenericParameter)
-                        {
-                            // Just the position requested
-                            if(type.DeclaringMethod != null)
-                            {
-                                Syntax("``");
-                            }else{
-                                Syntax("`");
-                            }
-                            sb.Append(type.GenericParameterPosition);
-                            return;
-                        }
-                        // Just name requested (make sure the type is not constructed)
-                        Literal(includeNamespace ? (type.FullName ?? type.Name) : type.Name);
-                        return;
-                    }
-                    Type(type, includeNamespace);
+                    Type(type, includeNamespace, includeDeclaringMember);
                     return;
                 }
-                if(includeDeclaringType)
+                if(includeDeclaringMember)
                 {
-                    Type(member.DeclaringType, includeNamespace);
+                    Type(member.DeclaringType, includeNamespace, true);
                     Syntax(".");
                 }
                 if(member is not MethodBase method)
@@ -831,7 +813,7 @@ namespace IS4.SFI
                         {
                             Syntax(",");
                         }
-                        Type(genArgs[i], true);
+                        Type(genArgs[i], true, true);
                     }
                     Syntax("}");
                 }
@@ -847,17 +829,17 @@ namespace IS4.SFI
                     {
                         Syntax(",");
                     }
-                    Type(parms[i].ParameterType, true, genericContext: (method.DeclaringType, method));
+                    Type(parms[i].ParameterType, true, true, genericContext: (method.DeclaringType, method));
                 }
                 Syntax(")");
             }
 
-            void Type(Type type, bool includeNamespace, bool constructed = false, (Type? type, MethodBase? method) genericContext = default)
+            void Type(Type type, bool includeNamespace, bool includeDeclaringMember, bool constructed = false, (Type? type, MethodBase? method) genericContext = default)
             {
                 if(type.IsArray)
                 {
                     var elemType = type.GetElementType();
-                    Type(elemType, includeNamespace, genericContext: genericContext);
+                    Type(elemType, includeNamespace, includeDeclaringMember, genericContext: genericContext);
                     var rank = type.GetArrayRank();
                     if(rank <= 1 && type.Equals(elemType.MakeArrayType()))
                     {
@@ -876,14 +858,14 @@ namespace IS4.SFI
                 if(type.IsPointer)
                 {
                     var elemType = type.GetElementType();
-                    Type(elemType, includeNamespace, genericContext: genericContext);
+                    Type(elemType, includeNamespace, includeDeclaringMember, genericContext: genericContext);
                     Syntax("*");
                     return;
                 }
                 if(type.IsByRef)
                 {
                     var elemType = type.GetElementType();
-                    Type(elemType, includeNamespace, genericContext: genericContext);
+                    Type(elemType, includeNamespace, includeDeclaringMember, genericContext: genericContext);
                     Syntax("@");
                     return;
                 }
@@ -892,20 +874,20 @@ namespace IS4.SFI
                     if(type.DeclaringMethod is { } genDeclaringMethod)
                     {
                         // On method
-                        if(!genDeclaringMethod.Equals(genericContext.method))
+                        if(includeDeclaringMember && !genDeclaringMethod.Equals(genericContext.method))
                         {
                             // Not the current one
                             Member(genDeclaringMethod, true, true);
                             Syntax("/");
                         }
                         Syntax("`");
-                    }else if(type.DeclaringType is { } genDeclaringType)
+                    }else if(includeDeclaringMember && type.DeclaringType is { } genDeclaringType)
                     {
                         // On type
                         if(!genDeclaringType.Equals(genericContext.type))
                         {
                             // Not the current one
-                            Type(genDeclaringType, true);
+                            Type(genDeclaringType, true, true);
                             Syntax("/");
                         }
                     }
@@ -916,7 +898,7 @@ namespace IS4.SFI
                 if(type.IsConstructedGenericType)
                 {
                     var elemType = type.GetGenericTypeDefinition();
-                    Type(elemType, includeNamespace, constructed: true);
+                    Type(elemType, includeNamespace, includeDeclaringMember, constructed: true);
                     Syntax("{");
                     var genArgs = type.GetGenericArguments();
                     for(int i = 0; i < genArgs.Length; i++)
@@ -925,14 +907,14 @@ namespace IS4.SFI
                         {
                             Syntax(",");
                         }
-                        Type(genArgs[i], true, genericContext: genericContext);
+                        Type(genArgs[i], true, true, genericContext: genericContext);
                     }
                     Syntax("}");
                     return;
                 }
-                if(type.DeclaringType is { } declaringType)
+                if(includeDeclaringMember && type.DeclaringType is { } declaringType)
                 {
-                    Type(declaringType, includeNamespace);
+                    Type(declaringType, includeNamespace, true);
                     Syntax(".");
                 }else if(includeNamespace)
                 {
