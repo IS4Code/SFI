@@ -784,20 +784,12 @@ namespace IS4.SFI
                     Type(member.DeclaringType, includeNamespace, true);
                     Syntax(".");
                 }
+                // Escapes explicit implementations and .ctor
+                var name = member.Name.Replace('.', '#');
+                Literal(name);
                 if(member is not MethodBase method)
                 {
-                    Literal(member.Name);
                     return;
-                }
-                if(method.Equals(method.DeclaringType.TypeInitializer))
-                {
-                    Syntax("#cctor");
-                }else if(method.IsConstructor)
-                {
-                    Syntax("#ctor");
-                }else{
-                    // Escapes explicit implementations
-                    Literal(method.Name.Replace('.', '#'));
                 }
                 if(method.IsGenericMethodDefinition)
                 {
