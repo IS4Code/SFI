@@ -278,29 +278,47 @@ namespace IS4.SFI.Tests
         }
 
         /// <summary>
-        /// The tests for <see cref="FormatMemberId(MemberInfo, MemberIdFormatOptions)"/>.
+        /// The tests for <see cref="FormatMemberId(MemberInfo, MemberIdFormatOptions)"/>
+        /// with type argument.
         /// </summary>
         [TestMethod]
-        [DataRow(typeof(object), null, 0, 0, "Object")]
-        [DataRow(typeof(object), null, 0, IncludeDeclaringMembersAndNamespace, "System.Object")]
-        [DataRow(typeof(object[]), null, 0, 0, "Object[]")]
-        [DataRow(typeof(object[]), null, 0, IncludeDeclaringMembersAndNamespace, "System.Object[]")]
+        [DataRow(typeof(object), 0, "Object")]
+        [DataRow(typeof(object), IncludeDeclaringMembersAndNamespace, "System.Object")]
+        [DataRow(typeof(object[]), 0, "Object[]")]
+        [DataRow(typeof(object[]), IncludeDeclaringMembersAndNamespace, "System.Object[]")]
+        [DataRow(typeof(Func<,>), IncludeDeclaringMembers, "Func`2")]
+        [DataRow(typeof(Func<,>), UriEscaping | IncludeDeclaringMembers, "Func%602")]
+        [DataRow(typeof(object[,]), IncludeDeclaringMembers, "Object[0:,0:]")]
+        [DataRow(typeof(ArraySegment<>.Enumerator), 0, "Enumerator")]
+        [DataRow(typeof(ArraySegment<>.Enumerator), IncludeDeclaringMembers, "ArraySegment`1.Enumerator")]
+        [DataRow(typeof(ArraySegment<>.Enumerator), IncludeDeclaringMembersAndNamespace, "System.ArraySegment`1.Enumerator")]
+        [DataRow(typeof(ArraySegment<byte>.Enumerator), 0, "Enumerator{System.Byte}")]
+        [DataRow(typeof(ArraySegment<byte>.Enumerator), IncludeDeclaringMembers, "ArraySegment`1.Enumerator{System.Byte}")]
+        [DataRow(typeof(ArraySegment<byte>.Enumerator), IncludeDeclaringMembersAndNamespace, "System.ArraySegment`1.Enumerator{System.Byte}")]
+        public void FormatMemberIdTypeTests(Type type, MemberIdFormatOptions options, string expected)
+        {
+            var result = FormatMemberId(type, options);
+            Assert.AreEqual(expected, result);
+        }
+
+        /// <summary>
+        /// The tests for <see cref="FormatMemberId(MemberInfo, MemberIdFormatOptions)"/>
+        /// with a member argument.
+        /// </summary>
+        [TestMethod]
         [DataRow(typeof(object), "GetHashCode", Instance, 0, "GetHashCode")]
         [DataRow(typeof(object), "GetHashCode", Instance, IncludeDeclaringMembers, "Object.GetHashCode")]
         [DataRow(typeof(object), "GetHashCode", Instance, IncludeDeclaringMembersAndNamespace, "System.Object.GetHashCode")]
         [DataRow(typeof(object), "Equals", Instance, 0, "Equals(System.Object)")]
         [DataRow(typeof(object), "Equals", Instance, IncludeDeclaringMembers, "Object.Equals(System.Object)")]
         [DataRow(typeof(object), "Equals", Instance, IncludeDeclaringMembersAndNamespace, "System.Object.Equals(System.Object)")]
-        [DataRow(typeof(Func<,>), null, 0, IncludeDeclaringMembers, "Func`2")]
-        [DataRow(typeof(Func<,>), null, 0, UriEscaping | IncludeDeclaringMembers, "Func%602")]
         [DataRow(typeof(Func<,>), "Invoke", Instance, IncludeDeclaringMembers, "Func`2.Invoke(`0)")]
-        [DataRow(typeof(Func<byte,char>), "Invoke", Instance, IncludeDeclaringMembers, "Func{System.Byte,System.Char}.Invoke(System.Byte)")]
+        [DataRow(typeof(Func<byte, char>), "Invoke", Instance, IncludeDeclaringMembers, "Func{System.Byte,System.Char}.Invoke(System.Byte)")]
         [DataRow(typeof(Array), "Resize", Static, IncludeDeclaringMembers, "Array.Resize``1(``0[]@,System.Int32)")]
         [DataRow(typeof(Pointer), "Box", Static, IncludeDeclaringMembers, "Pointer.Box(System.Void*,System.Type)")]
-        [DataRow(typeof(object[,]), null, 0, IncludeDeclaringMembers, "Object[0:,0:]")]
-        public void FormatMemberIdTests(Type type, string? memberName, BindingFlags bindingFlags, MemberIdFormatOptions options, string expected)
+        public void FormatMemberIdMemberTests(Type type, string memberName, BindingFlags bindingFlags, MemberIdFormatOptions options, string expected)
         {
-            var member = memberName == null ? type : type.GetMember(memberName, Public | NonPublic | bindingFlags).Single();
+            var member = type.GetMember(memberName, Public | NonPublic | bindingFlags).Single();
             var result = FormatMemberId(member, options);
             Assert.AreEqual(expected, result);
         }
