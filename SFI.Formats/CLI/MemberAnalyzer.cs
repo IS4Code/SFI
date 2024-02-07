@@ -2,6 +2,7 @@
 using IS4.SFI.Vocabulary;
 using System.ComponentModel;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace IS4.SFI.Analyzers
 {
@@ -22,6 +23,10 @@ namespace IS4.SFI.Analyzers
         {
 
         }
+
+        /// <inheritdoc cref="IEntityAnalyzer{T}.Analyze(T, AnalysisContext, IEntityAnalyzers)"/>
+        /// <param name="member">The member to analyze.</param>
+        public abstract override ValueTask<AnalysisResult> Analyze(T member, AnalysisContext context, IEntityAnalyzers analyzers);
 
         /// <inheritdoc cref="EntityAnalyzer.GetNode(string, AnalysisContext)"/>
         /// <param name="member">The member to provide the identifier of the node.</param>

@@ -21,64 +21,64 @@ namespace IS4.SFI.Analyzers
         }
 
         /// <inheritdoc/>
-        public async override ValueTask<AnalysisResult> Analyze(MethodBase method, AnalysisContext context, IEntityAnalyzers analyzers)
+        public async override ValueTask<AnalysisResult> Analyze(MethodBase member, AnalysisContext context, IEntityAnalyzers analyzers)
         {
-            var name = method.Name;
-            var node = GetNode(method, context);
+            var name = member.Name;
+            var node = GetNode(member, context);
 
-            node.Set(Properties.PrefLabel, method.ToString());
+            node.Set(Properties.PrefLabel, member.ToString());
             node.Set(Properties.CodeName, name);
-            await ReferenceMember(node, Properties.Broader, method, context, analyzers);
-            node.Set(Properties.Identifier, method.MetadataToken);
+            await ReferenceMember(node, Properties.Broader, member, context, analyzers);
+            node.Set(Properties.Identifier, member.MetadataToken);
 
             SetModifiers(
                 node,
-                isPublic: method.IsPublic,
-                isPrivate: method.IsPrivate,
-                isFamily: method.IsFamily,
-                isFamilyAndAssembly: method.IsFamilyAndAssembly,
-                isFamilyOrAssembly: method.IsFamilyOrAssembly,
-                isAssembly: method.IsAssembly,
-                isAbstract: method.IsAbstract,
-                isFinal: method.IsFinal || !method.IsVirtual,
-                isStatic: method.IsStatic
+                isPublic: member.IsPublic,
+                isPrivate: member.IsPrivate,
+                isFamily: member.IsFamily,
+                isFamilyAndAssembly: member.IsFamilyAndAssembly,
+                isFamilyOrAssembly: member.IsFamilyOrAssembly,
+                isAssembly: member.IsAssembly,
+                isAbstract: member.IsAbstract,
+                isFinal: member.IsFinal || !member.IsVirtual,
+                isStatic: member.IsStatic
             );
 
-            if(method is MethodInfo methodInfo)
+            if(member is MethodInfo method)
             {
-                await ReferenceMember(node, Properties.CodeReturnType, methodInfo.ReturnType, context, analyzers);
+                await ReferenceMember(node, Properties.CodeReturnType, method.ReturnType, context, analyzers);
 
-                if(method.IsVirtual && (method.Attributes & MethodAttributes.NewSlot) == 0)
+                if(member.IsVirtual && (member.Attributes & MethodAttributes.NewSlot) == 0)
                 {
                     MethodInfo? baseMethod = null;
                     try{
-                        baseMethod = methodInfo.GetBaseDefinition();
+                        baseMethod = method.GetBaseDefinition();
                     }catch(NotSupportedException)
                     {
                         // MetadataLoadContext does not support it; look it up by signature
-                        baseMethod = FindBaseMethod(methodInfo);
+                        baseMethod = FindBaseMethod(method);
                     }
-                    if(baseMethod != null && !method.Equals(baseMethod))
+                    if(baseMethod != null && !member.Equals(baseMethod))
                     {
                         await ReferenceMember(node, Properties.CodeOverrides, baseMethod, context, analyzers);
                     }
                 }
-                await AnalyzeCustomAttributes(node, context, analyzers, methodInfo, methodInfo.GetCustomAttributesData(), methodInfo.ReturnParameter.GetOptionalCustomModifiers(), methodInfo.ReturnParameter.GetRequiredCustomModifiers());
+                await AnalyzeCustomAttributes(node, context, analyzers, method, method.GetCustomAttributesData(), method.ReturnParameter.GetOptionalCustomModifiers(), method.ReturnParameter.GetRequiredCustomModifiers());
             }else{
-                await AnalyzeCustomAttributes(node, context, analyzers, method, method.GetCustomAttributesData());
+                await AnalyzeCustomAttributes(node, context, analyzers, member, member.GetCustomAttributesData());
             }
 
-            if(method.IsGenericMethodDefinition)
+            if(member.IsGenericMethodDefinition)
             {
                 var genParamContext = context.WithParentLink(node, Properties.CodeTypeParameter);
-                foreach(var genParam in method.GetGenericArguments())
+                foreach(var genParam in member.GetGenericArguments())
                 {
                     await analyzers.Analyze(genParam, genParamContext);
                 }
             }
 
             var paramContext = context.WithParentLink(node, Properties.CodeParameter);
-            foreach(var methodParam in method.GetParameters())
+            foreach(var methodParam in member.GetParameters())
             {
                 await analyzers.Analyze(methodParam, paramContext);
             }
@@ -87,29 +87,29 @@ namespace IS4.SFI.Analyzers
         }
 
         /// <inheritdoc/>
-        protected async override ValueTask<AnalysisResult> AnalyzeReference(MethodBase method, ILinkedNode node, AnalysisContext context, IEntityAnalyzers analyzers)
+        protected async override ValueTask<AnalysisResult> AnalyzeReference(MethodBase member, ILinkedNode node, AnalysisContext context, IEntityAnalyzers analyzers)
         {
-            var name = method.Name;
+            var name = member.Name;
 
-            node.Set(Properties.Identifier, TextTools.FormatMemberId(method));
-            node.Set(Properties.PrefLabel, TextTools.FormatMemberId(method, MemberIdFormatOptions.None));
+            node.Set(Properties.Identifier, TextTools.FormatMemberId(member));
+            node.Set(Properties.PrefLabel, TextTools.FormatMemberId(member, MemberIdFormatOptions.None));
 
-            if(method.IsGenericMethod && !method.IsGenericMethodDefinition && method is MethodInfo methodInfo)
+            if(member.IsGenericMethod && !member.IsGenericMethodDefinition && member is MethodInfo methodInfo)
             {
                 await ReferenceMember(node, Properties.CodeOverrides, methodInfo.GetGenericMethodDefinition(), context, analyzers);
-                foreach(var typeArg in method.GetGenericArguments())
+                foreach(var typeArg in member.GetGenericArguments())
                 {
                     node.Set(Properties.CodeTypeArgument, ClrNamespaceUriFormatter.Instance, typeArg);
                 }
             }else{
                 node.Set(Properties.CodeName, name);
 
-                foreach(var methodParam in method.GetParameters())
+                foreach(var methodParam in member.GetParameters())
                 {
                     await ReferenceMember(node, Properties.CodeParameter, methodParam, context, analyzers);
                 }
 
-                await ReferenceMember(node, Properties.CodeMethodOf, method.DeclaringType, context, analyzers);
+                await ReferenceMember(node, Properties.CodeMethodOf, member.DeclaringType, context, analyzers);
             }
 
             return new(node, name);

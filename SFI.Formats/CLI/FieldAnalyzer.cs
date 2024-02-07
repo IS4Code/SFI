@@ -20,51 +20,51 @@ namespace IS4.SFI.Analyzers
         }
 
         /// <inheritdoc/>
-        public async override ValueTask<AnalysisResult> Analyze(FieldInfo field, AnalysisContext context, IEntityAnalyzers analyzers)
+        public async override ValueTask<AnalysisResult> Analyze(FieldInfo member, AnalysisContext context, IEntityAnalyzers analyzers)
         {
-            var name = field.Name;
-            var node = GetNode(field, context);
+            var name = member.Name;
+            var node = GetNode(member, context);
 
-            node.Set(Properties.PrefLabel, field.ToString());
+            node.Set(Properties.PrefLabel, member.ToString());
             node.Set(Properties.CodeName, name);
-            await ReferenceMember(node, Properties.Broader, field, context, analyzers);
-            node.Set(Properties.Identifier, field.MetadataToken);
+            await ReferenceMember(node, Properties.Broader, member, context, analyzers);
+            node.Set(Properties.Identifier, member.MetadataToken);
 
             SetModifiers(
                 node,
-                isPublic: field.IsPublic,
-                isPrivate: field.IsPrivate,
-                isFamily: field.IsFamily,
-                isFamilyAndAssembly: field.IsFamilyAndAssembly,
-                isFamilyOrAssembly: field.IsFamilyOrAssembly,
-                isAssembly: field.IsAssembly,
-                isFinal: field.IsInitOnly,
-                isStatic: field.IsStatic
+                isPublic: member.IsPublic,
+                isPrivate: member.IsPrivate,
+                isFamily: member.IsFamily,
+                isFamilyAndAssembly: member.IsFamilyAndAssembly,
+                isFamilyOrAssembly: member.IsFamilyOrAssembly,
+                isAssembly: member.IsAssembly,
+                isFinal: member.IsInitOnly,
+                isStatic: member.IsStatic
             );
 
-            if(field.IsLiteral)
+            if(member.IsLiteral)
             {
-                node.TrySet(Properties.Value, field.GetRawConstantValue() ?? DBNull.Value);
+                node.TrySet(Properties.Value, member.GetRawConstantValue() ?? DBNull.Value);
             }
 
-            await ReferenceMember(node, Properties.CodeType, field.FieldType, context, analyzers);
+            await ReferenceMember(node, Properties.CodeType, member.FieldType, context, analyzers);
 
-            await AnalyzeCustomAttributes(node, context, analyzers, field, field.GetCustomAttributesData(), field.GetOptionalCustomModifiers(), field.GetRequiredCustomModifiers());
+            await AnalyzeCustomAttributes(node, context, analyzers, member, member.GetCustomAttributesData(), member.GetOptionalCustomModifiers(), member.GetRequiredCustomModifiers());
 
             return new(node, name);
         }
 
         /// <inheritdoc/>
-        protected async override ValueTask<AnalysisResult> AnalyzeReference(FieldInfo field, ILinkedNode node, AnalysisContext context, IEntityAnalyzers analyzers)
+        protected async override ValueTask<AnalysisResult> AnalyzeReference(FieldInfo member, ILinkedNode node, AnalysisContext context, IEntityAnalyzers analyzers)
         {
-            var name = field.Name;
+            var name = member.Name;
 
             node.Set(Properties.CodeName, name);
 
-            node.Set(Properties.Identifier, TextTools.FormatMemberId(field));
-            node.Set(Properties.PrefLabel, TextTools.FormatMemberId(field, MemberIdFormatOptions.None));
+            node.Set(Properties.Identifier, TextTools.FormatMemberId(member));
+            node.Set(Properties.PrefLabel, TextTools.FormatMemberId(member, MemberIdFormatOptions.None));
 
-            await ReferenceMember(node, Properties.CodeFieldOf, field.DeclaringType, context, analyzers);
+            await ReferenceMember(node, Properties.CodeFieldOf, member.DeclaringType, context, analyzers);
 
             return new(node, name);
         }

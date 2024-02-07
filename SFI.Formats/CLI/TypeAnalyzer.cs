@@ -20,90 +20,90 @@ namespace IS4.SFI.Analyzers
         }
 
         /// <inheritdoc/>
-        public async override ValueTask<AnalysisResult> Analyze(Type type, AnalysisContext context, IEntityAnalyzers analyzers)
+        public async override ValueTask<AnalysisResult> Analyze(Type member, AnalysisContext context, IEntityAnalyzers analyzers)
         {
-            var name = type.Name;
-            var node = GetNode(type, context);
+            var name = member.Name;
+            var node = GetNode(member, context);
 
-            if(type.IsGenericParameter)
+            if(member.IsGenericParameter)
             {
                 node.SetClass(Classes.CodeTypeVariable);
-            }else if(type.IsPrimitive)
+            }else if(member.IsPrimitive)
             {
                 node.SetClass(Classes.CodePrimitiveType);
-            }else if(type.IsConstructedGenericType)
+            }else if(member.IsConstructedGenericType)
             {
                 node.SetClass(Classes.CodeGenericParameterizedType);
-            }else if(!type.HasElementType)
+            }else if(!member.HasElementType)
             {
                 node.SetClass(Classes.CodeComplexType);
             }
-            if(type.IsClass)
+            if(member.IsClass)
             {
                 node.SetClass(Classes.CodeClass);
             }
-            if(type.IsInterface)
+            if(member.IsInterface)
             {
                 node.SetClass(Classes.CodeInterface);
             }
-            if(type.IsEnum)
+            if(member.IsEnum)
             {
                 node.SetClass(Classes.CodeEnum);
             }
-            if(type.IsArray)
+            if(member.IsArray)
             {
                 node.SetClass(Classes.CodeArrayType);
             }
 
-            node.Set(Properties.PrefLabel, type.ToString());
+            node.Set(Properties.PrefLabel, member.ToString());
             if(name != null)
             {
                 node.Set(Properties.CodeSimpleName, name);
-                node.Set(Properties.CodeCanonicalName, type.FullName ?? name);
+                node.Set(Properties.CodeCanonicalName, member.FullName ?? name);
             }
-            await ReferenceMember(node, Properties.Broader, type, context, analyzers);
-            node.Set(Properties.Identifier, type.MetadataToken);
+            await ReferenceMember(node, Properties.Broader, member, context, analyzers);
+            node.Set(Properties.Identifier, member.MetadataToken);
 
-            if(type.IsGenericParameter)
+            if(member.IsGenericParameter)
             {
-                node.Set(Properties.CodePosition, type.GenericParameterPosition);
+                node.Set(Properties.CodePosition, member.GenericParameterPosition);
             }else{
                 SetModifiers(
                     node,
-                    isPublic: type.IsPublic || type.IsNestedPublic,
-                    isPrivate: type.IsNestedPrivate,
-                    isFamily: type.IsNestedFamily,
-                    isFamilyAndAssembly: type.IsNestedFamANDAssem,
-                    isFamilyOrAssembly: type.IsNestedFamORAssem,
-                    isAssembly: type.IsNotPublic || type.IsNestedAssembly,
-                    isAbstract: type.IsAbstract && !type.IsSealed,
-                    isFinal: type.IsSealed && !type.IsAbstract,
-                    isStatic: type.IsAbstract && type.IsSealed
+                    isPublic: member.IsPublic || member.IsNestedPublic,
+                    isPrivate: member.IsNestedPrivate,
+                    isFamily: member.IsNestedFamily,
+                    isFamilyAndAssembly: member.IsNestedFamANDAssem,
+                    isFamilyOrAssembly: member.IsNestedFamORAssem,
+                    isAssembly: member.IsNotPublic || member.IsNestedAssembly,
+                    isAbstract: member.IsAbstract && !member.IsSealed,
+                    isFinal: member.IsSealed && !member.IsAbstract,
+                    isStatic: member.IsAbstract && member.IsSealed
                 );
             }
 
-            if(type.BaseType is { } baseType)
+            if(member.BaseType is { } baseType)
             {
                 await ReferenceMember(node, Properties.CodeExtends, baseType, context, analyzers);
             }
-            foreach(var implemented in type.GetInterfaces())
+            foreach(var implemented in member.GetInterfaces())
             {
                 await ReferenceMember(node, Properties.CodeImplements, implemented, context, analyzers);
             }
 
-            await AnalyzeCustomAttributes(node, context, analyzers, type, type.GetCustomAttributesData());
+            await AnalyzeCustomAttributes(node, context, analyzers, member, member.GetCustomAttributesData());
 
-            if(type.IsGenericTypeDefinition)
+            if(member.IsGenericTypeDefinition)
             {
                 var genParamContext = context.WithParentLink(node, Properties.CodeTypeParameter);
-                foreach(var genParam in type.GetGenericArguments())
+                foreach(var genParam in member.GetGenericArguments())
                 {
                     await analyzers.Analyze(genParam, genParamContext);
                 }
             }
 
             var fieldContext = context.WithParentLink(node, Properties.CodeField);
-            foreach(var field in type.GetFields(BindingFlags))
+            foreach(var field in member.GetFields(BindingFlags))
             {
                 if(!ExportedOnly || field.IsPublic || field.IsFamily || field.IsFamilyOrAssembly)
                 {
@@ -112,7 +112,7 @@ namespace IS4.SFI.Analyzers
             }
 
             var constructorContext = context.WithParentLink(node, Properties.CodeConstructor);
-            foreach(var ctor in type.GetConstructors(BindingFlags))
+            foreach(var ctor in member.GetConstructors(BindingFlags))
             {
                 if(!ExportedOnly || IsPublic(ctor))
                 {
@@ -121,7 +121,7 @@ namespace IS4.SFI.Analyzers
             }
 
             var methodContext = context.WithParentLink(node, Properties.CodeMethod);
-            foreach(var method in type.GetMethods(BindingFlags))
+            foreach(var method in member.GetMethods(BindingFlags))
             {
                 if(!ExportedOnly || IsPublic(method))
                 {
@@ -130,7 +130,7 @@ namespace IS4.SFI.Analyzers
             }
 
             var declaresContext = context.WithParentLink(node, Properties.CodeDeclares);
-            foreach(var nested in type.GetNestedTypes(BindingFlags))
+            foreach(var nested in member.GetNestedTypes(BindingFlags))
             {
                 if(!ExportedOnly || nested.IsNestedPublic || nested.IsNestedFamily || nested.IsNestedFamORAssem)
                 {
@@ -138,7 +138,7 @@ namespace IS4.SFI.Analyzers
                 }
             }
             
-            foreach(var property in type.GetProperties(BindingFlags))
+            foreach(var property in member.GetProperties(BindingFlags))
             {
                 if(!ExportedOnly || property.GetAccessors(true).Any(IsPublic))
                 {
@@ -146,7 +146,7 @@ namespace IS4.SFI.Analyzers
                 }
             }
 
-            foreach(var evnt in type.GetEvents(BindingFlags))
+            foreach(var evnt in member.GetEvents(BindingFlags))
             {
                 if(!ExportedOnly || IsPublic(evnt.AddMethod) || IsPublic(evnt.RemoveMethod) || IsPublic(evnt.RaiseMethod) || evnt.GetOtherMethods(true).Any(IsPublic))
                 {
@@ -158,54 +158,54 @@ namespace IS4.SFI.Analyzers
         }
 
         /// <inheritdoc/>
-        protected async override ValueTask<AnalysisResult> AnalyzeReference(Type type, ILinkedNode node, AnalysisContext context, IEntityAnalyzers analyzers)
+        protected async override ValueTask<AnalysisResult> AnalyzeReference(Type member, ILinkedNode node, AnalysisContext context, IEntityAnalyzers analyzers)
         {
-            var name = type.Name;
+            var name = member.Name;
 
-            node.Set(Properties.Identifier, TextTools.FormatMemberId(type));
-            node.Set(Properties.PrefLabel, TextTools.FormatMemberId(type, MemberIdFormatOptions.None));
+            node.Set(Properties.Identifier, TextTools.FormatMemberId(member));
+            node.Set(Properties.PrefLabel, TextTools.FormatMemberId(member, MemberIdFormatOptions.None));
 
-            if(type.IsConstructedGenericType)
+            if(member.IsConstructedGenericType)
             {
                 node.SetClass(Classes.CodeGenericParameterizedType);
-                await ReferenceMember(node, Properties.CodeGenericTypeDefinition, type.GetGenericTypeDefinition(), context, analyzers);
-                foreach(var typeArg in type.GetGenericArguments())
+                await ReferenceMember(node, Properties.CodeGenericTypeDefinition, member.GetGenericTypeDefinition(), context, analyzers);
+                foreach(var typeArg in member.GetGenericArguments())
                 {
                     node.Set(Properties.CodeTypeArgument, ClrNamespaceUriFormatter.Instance, typeArg);
                 }
-            }else if(type.IsArray)
+            }else if(member.IsArray)
             {
                 node.SetClass(Classes.CodeArrayType);
-                node.Set(Properties.CodeArrayDimensions, type.GetArrayRank());
-                await ReferenceMember(node, Properties.CodeArrayElementType, type.GetElementType(), context, analyzers);
-            }else if(type.HasElementType)
+                node.Set(Properties.CodeArrayDimensions, member.GetArrayRank());
+                await ReferenceMember(node, Properties.CodeArrayElementType, member.GetElementType(), context, analyzers);
+            }else if(member.HasElementType)
             {
                 // Some other form of constructed type not expressible by the vocabulary
-                await ReferenceMember(node, Properties.CodeReferences, type.GetElementType(), context, analyzers);
-            }else if(type.IsGenericParameter)
+                await ReferenceMember(node, Properties.CodeReferences, member.GetElementType(), context, analyzers);
+            }else if(member.IsGenericParameter)
             {
                 node.SetClass(Classes.CodeTypeVariable);
-                node.Set(Properties.CodePosition, type.GenericParameterPosition);
+                node.Set(Properties.CodePosition, member.GenericParameterPosition);
 
-                if(type.DeclaringMethod is { } declaringMethod)
+                if(member.DeclaringMethod is { } declaringMethod)
                 {
                     await ReferenceMember(node, Properties.CodeDeclaredBy, declaringMethod, context, analyzers);
-                }else if(type.DeclaringType is { } declaringType)
+                }else if(member.DeclaringType is { } declaringType)
                 {
                     await ReferenceMember(node, Properties.CodeDeclaredBy, declaringType, context, analyzers);
                 }
             }else{
-                if(!type.IsPrimitive)
+                if(!member.IsPrimitive)
                 {
                     node.SetClass(Classes.CodeComplexType);
                 }
                 node.Set(Properties.CodeSimpleName, name);
-                node.Set(Properties.CodeCanonicalName, type.FullName ?? name);
+                node.Set(Properties.CodeCanonicalName, member.FullName ?? name);
 
-                if(type.DeclaringType is { } declaringType)
+                if(member.DeclaringType is { } declaringType)
                 {
                     await ReferenceMember(node, Properties.CodeDeclaredBy, declaringType, context, analyzers);
-                }else if(Namespace.FromAssembly(type.Assembly, type.Namespace) is { } ns)
+                }else if(Namespace.FromAssembly(member.Assembly, member.Namespace) is { } ns)
                 {
                     await ReferenceMember(node, Properties.CodeTypeDeclaredBy, ns, context, analyzers);
                 }

@@ -19,28 +19,28 @@ namespace IS4.SFI.Analyzers
         }
 
         /// <inheritdoc/>
-        public async override ValueTask<AnalysisResult> Analyze(PropertyInfo prop, AnalysisContext context, IEntityAnalyzers analyzers)
+        public async override ValueTask<AnalysisResult> Analyze(PropertyInfo member, AnalysisContext context, IEntityAnalyzers analyzers)
         {
-            var name = prop.Name;
-            var node = GetNode(prop, context);
+            var name = member.Name;
+            var node = GetNode(member, context);
 
-            node.Set(Properties.PrefLabel, prop.ToString());
-            if(!prop.IsSpecialName)
+            node.Set(Properties.PrefLabel, member.ToString());
+            if(!member.IsSpecialName)
             {
                 node.Set(Properties.CodeSimpleName, name);
             }
             node.Set(Properties.CodeCanonicalName, name);
-            await ReferenceMember(node, Properties.Broader, prop, context, analyzers);
-            node.Set(Properties.Identifier, prop.MetadataToken);
+            await ReferenceMember(node, Properties.Broader, member, context, analyzers);
+            node.Set(Properties.Identifier, member.MetadataToken);
 
-            await ReferenceMember(node, Properties.CodeType, prop.PropertyType, context, analyzers);
+            await ReferenceMember(node, Properties.CodeType, member.PropertyType, context, analyzers);
 
-            if(prop.GetMethod is {  } getMethod && (!ExportedOnly || IsPublic(getMethod)))
+            if(member.GetMethod is {  } getMethod && (!ExportedOnly || IsPublic(getMethod)))
             {
                 await ReferenceMember(node, Properties.CodeReturnedBy, getMethod, context, analyzers);
             }
 
-            foreach(var method in prop.GetAccessors(true))
+            foreach(var method in member.GetAccessors(true))
             {
                 if(!ExportedOnly || IsPublic(method))
                 {
@@ -48,22 +48,22 @@ namespace IS4.SFI.Analyzers
                 }
             }
 
-            await AnalyzeCustomAttributes(node, context, analyzers, prop, prop.GetCustomAttributesData(), prop.GetOptionalCustomModifiers(), prop.GetRequiredCustomModifiers());
+            await AnalyzeCustomAttributes(node, context, analyzers, member, member.GetCustomAttributesData(), member.GetOptionalCustomModifiers(), member.GetRequiredCustomModifiers());
 
             return new(node, name);
         }
 
         /// <inheritdoc/>
-        protected async override ValueTask<AnalysisResult> AnalyzeReference(PropertyInfo prop, ILinkedNode node, AnalysisContext context, IEntityAnalyzers analyzers)
+        protected async override ValueTask<AnalysisResult> AnalyzeReference(PropertyInfo member, ILinkedNode node, AnalysisContext context, IEntityAnalyzers analyzers)
         {
-            var name = prop.Name;
+            var name = member.Name;
 
             node.Set(Properties.CodeName, name);
 
-            node.Set(Properties.Identifier, TextTools.FormatMemberId(prop));
-            node.Set(Properties.PrefLabel, TextTools.FormatMemberId(prop, MemberIdFormatOptions.None));
+            node.Set(Properties.Identifier, TextTools.FormatMemberId(member));
+            node.Set(Properties.PrefLabel, TextTools.FormatMemberId(member, MemberIdFormatOptions.None));
 
-            await ReferenceMember(node, Properties.CodeDeclaredBy, prop.DeclaringType, context, analyzers);
+            await ReferenceMember(node, Properties.CodeDeclaredBy, member.DeclaringType, context, analyzers);
 
             return new(node, name);
         }

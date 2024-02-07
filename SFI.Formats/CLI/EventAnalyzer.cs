@@ -19,32 +19,32 @@ namespace IS4.SFI.Analyzers
         }
 
         /// <inheritdoc/>
-        public async override ValueTask<AnalysisResult> Analyze(EventInfo evnt, AnalysisContext context, IEntityAnalyzers analyzers)
+        public async override ValueTask<AnalysisResult> Analyze(EventInfo member, AnalysisContext context, IEntityAnalyzers analyzers)
         {
-            var name = evnt.Name;
-            var node = GetNode(evnt, context);
+            var name = member.Name;
+            var node = GetNode(member, context);
 
-            node.Set(Properties.PrefLabel, evnt.ToString());
+            node.Set(Properties.PrefLabel, member.ToString());
             node.Set(Properties.CodeName, name);
-            await ReferenceMember(node, Properties.Broader, evnt, context, analyzers);
-            node.Set(Properties.Identifier, evnt.MetadataToken);
+            await ReferenceMember(node, Properties.Broader, member, context, analyzers);
+            node.Set(Properties.Identifier, member.MetadataToken);
 
-            await ReferenceMember(node, Properties.CodeType, evnt.EventHandlerType, context, analyzers);
+            await ReferenceMember(node, Properties.CodeType, member.EventHandlerType, context, analyzers);
 
-            if(evnt.AddMethod is { } addMethod && (!ExportedOnly || IsPublic(addMethod)))
+            if(member.AddMethod is { } addMethod && (!ExportedOnly || IsPublic(addMethod)))
             {
                 await ReferenceMember(node, Properties.CodeReferences, addMethod, context, analyzers);
             }
-            if(evnt.RemoveMethod is { } removeMethod && (!ExportedOnly || IsPublic(removeMethod)))
+            if(member.RemoveMethod is { } removeMethod && (!ExportedOnly || IsPublic(removeMethod)))
             {
                 await ReferenceMember(node, Properties.CodeReferences, removeMethod, context, analyzers);
             }
-            if(evnt.RaiseMethod is { } raiseMethod && (!ExportedOnly || IsPublic(raiseMethod)))
+            if(member.RaiseMethod is { } raiseMethod && (!ExportedOnly || IsPublic(raiseMethod)))
             {
                 await ReferenceMember(node, Properties.CodeReferences, raiseMethod, context, analyzers);
             }
 
-            foreach(var method in evnt.GetOtherMethods(true))
+            foreach(var method in member.GetOtherMethods(true))
             {
                 if(!ExportedOnly || IsPublic(method))
                 {
@@ -52,22 +52,22 @@ namespace IS4.SFI.Analyzers
                 }
             }
 
-            await AnalyzeCustomAttributes(node, context, analyzers, evnt, evnt.GetCustomAttributesData());
+            await AnalyzeCustomAttributes(node, context, analyzers, member, member.GetCustomAttributesData());
 
             return new(node, name);
         }
 
         /// <inheritdoc/>
-        protected async override ValueTask<AnalysisResult> AnalyzeReference(EventInfo evnt, ILinkedNode node, AnalysisContext context, IEntityAnalyzers analyzers)
+        protected async override ValueTask<AnalysisResult> AnalyzeReference(EventInfo member, ILinkedNode node, AnalysisContext context, IEntityAnalyzers analyzers)
         {
-            var name = evnt.Name;
+            var name = member.Name;
 
             node.Set(Properties.CodeName, name);
 
-            node.Set(Properties.Identifier, TextTools.FormatMemberId(evnt));
-            node.Set(Properties.PrefLabel, TextTools.FormatMemberId(evnt, MemberIdFormatOptions.None));
+            node.Set(Properties.Identifier, TextTools.FormatMemberId(member));
+            node.Set(Properties.PrefLabel, TextTools.FormatMemberId(member, MemberIdFormatOptions.None));
 
-            await ReferenceMember(node, Properties.CodeDeclaredBy, evnt.DeclaringType, context, analyzers);
+            await ReferenceMember(node, Properties.CodeDeclaredBy, member.DeclaringType, context, analyzers);
 
             return new(node, name);
         }
