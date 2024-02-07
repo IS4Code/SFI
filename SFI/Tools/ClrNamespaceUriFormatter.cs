@@ -9,7 +9,7 @@ namespace IS4.SFI.Services
     /// <summary>
     /// Provides support for formatting assemblies, namespaces, types, and members as URIs.
     /// </summary>
-    public class ClrNamespaceUriFormatter : IIndividualUriFormatter<Assembly>, IIndividualUriFormatter<Namespace>, IIndividualUriFormatter<MemberInfo>, IIndividualUriFormatter<ParameterInfo>
+    public class ClrNamespaceUriFormatter : IIndividualUriFormatter<Assembly>, IIndividualUriFormatter<AssemblyName>, IIndividualUriFormatter<Namespace>, IIndividualUriFormatter<MemberInfo>, IIndividualUriFormatter<ParameterInfo>
     {
         /// <summary>
         /// The instance of the formatter.
@@ -22,6 +22,8 @@ namespace IS4.SFI.Services
         }
 
         Uri IUriFormatter<Assembly>.this[Assembly value] => new(Namespace("", value).ToString());
+
+        Uri IUriFormatter<AssemblyName>.this[AssemblyName value] => new(Namespace("", value).ToString());
 
         Uri IUriFormatter<Namespace>.this[Namespace value] => new(Namespace(value.FullName, value.Assembly).ToString());
 
@@ -55,13 +57,22 @@ namespace IS4.SFI.Services
 
         static StringBuilder Namespace(string ns, Assembly? asm)
         {
-            var sb = new StringBuilder("clr-namespace:");
-            sb.Append(EscapePathString(ns));
             if(asm != null && asm.GetType(ReferenceAssemblyMarkerClass, false) == null)
             {
                 // Assembly not marked as reference-only
+                return Namespace(ns, asm.GetName());
+            }
+            return Namespace(ns, (AssemblyName?)null);
+        }
+
+        static StringBuilder Namespace(string ns, AssemblyName? asm)
+        {
+            var sb = new StringBuilder("clr-namespace:");
+            sb.Append(EscapePathString(ns));
+            if(asm != null)
+            {
                 sb.Append(";assembly=");
-                sb.Append(EscapePathString(asm.GetName().Name));
+                sb.Append(EscapePathString(asm.Name));
             }
             return sb;
         }

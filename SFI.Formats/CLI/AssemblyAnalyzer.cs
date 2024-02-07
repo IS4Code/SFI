@@ -44,6 +44,11 @@ namespace IS4.SFI.Analyzers
 
             var language = new LanguageCode(name.CultureInfo);
 
+            foreach(var reference in assembly.GetReferencedAssemblies())
+            {
+                node.Set(Properties.CodeReferences, ClrNamespaceUriFormatter.Instance, reference);
+            }
+
             foreach(var attribute in assembly.GetCustomAttributesData())
             {
                 string type;
