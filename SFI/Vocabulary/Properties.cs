@@ -326,6 +326,12 @@
         /// </summary>
         [Uri(Schema)]
         public static readonly PropertyUri SerialNumber;
+
+        /// <summary>
+        /// <c><see cref="Schema"/>:defaultValue</c>.
+        /// </summary>
+        [Uri(Schema)]
+        public static readonly PropertyUri DefaultValue;
         #endregion
 
         #region nie

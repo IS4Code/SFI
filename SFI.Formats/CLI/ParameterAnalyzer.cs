@@ -37,7 +37,7 @@ namespace IS4.SFI.Analyzers
 
             if(param.HasDefaultValue)
             {
-                node.TrySet(Properties.Value, param.RawDefaultValue ?? DBNull.Value);
+                node.TrySet(Properties.DefaultValue, param.RawDefaultValue ?? DBNull.Value);
             }
 
             await ReferenceMember(node, Properties.CodeType, param.ParameterType, context, analyzers);
