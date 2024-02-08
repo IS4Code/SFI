@@ -23,8 +23,8 @@ _:n1 at:pathObject <file:///example.dng>;
 <file:///example.dng> at:extensionObject <https://w3id.org/uri4uri/suffix/dng>.
 <ni:///mh;1QEQvUvbfzqMM_WamOwo8cuOyw?ct=application/octet-stream> at:digest <urn:md5:BD4BDB7F3A8C33F59A98EC28F1CB8ECB>;
                                                                   dcterms:extent "17858626"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQvUvbfzqMM_WamOwo8cuOyw?ct=image/tiff>,
-                                                                                    <ni:///mh;1QEQvUvbfzqMM_WamOwo8cuOyw?ct=application/octet-stream#arw>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQvUvbfzqMM_WamOwo8cuOyw?ct=application/octet-stream#arw>,
+                                                                                    <ni:///mh;1QEQvUvbfzqMM_WamOwo8cuOyw?ct=image/tiff>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (17.03 MiB)"@en.
 <ni:///mh;1QEQvUvbfzqMM_WamOwo8cuOyw?ct=application/octet-stream#arw> <http://ns.adobe.com/camera-raw-settings/1.0/AlreadyApplied> "False";
@@ -208,7 +208,7 @@ _:n1 at:pathObject <file:///example.dng>;
                                                                         a nfo:MediaStream;
                                                                         skos:prefLabel "2:Exif SubIFD (1024×680)".
 <ni:///mh;1QEQvUvbfzqMM_WamOwo8cuOyw?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
-                                                    nfo:colorDepth 24 ;
+                                                    nfo:colorDepth 32 ;
                                                     nfo:height 170 ;
                                                     nfo:horizontalResolution 96 ;
                                                     nfo:verticalResolution 96 ;

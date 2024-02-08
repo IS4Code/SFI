@@ -132,17 +132,17 @@ _:n1 at:pathObject <file:///example_layers_small.tiff>;
                                                     <http://ns.adobe.com/xap/1.0/mm/OriginalDocumentID> "0A5D1088FB0E5EBC9A5FC17986F8A170";
                                                     <http://purl.org/dc/elements/1.1/format> "image/tiff";
                                                     schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
-                                                    nfo:colorDepth 24 ;
+                                                    nfo:colorDepth 32 ;
                                                     nfo:height 333 ;
                                                     nfo:horizontalResolution 300 ;
                                                     nfo:verticalResolution 300 ;
                                                     nfo:width 500 ;
                                                     <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#comments> "                                    ";
                                                     a schema:MediaObject,
-                                                      nfo:Image,
-                                                      schema:ImageObject;
-                                                    skos:prefLabel "TIFF object (500×333)"@en,
-                                                                   "TIFF object (1.03 MiB)"@en.
+                                                      schema:ImageObject,
+                                                      nfo:Image;
+                                                    skos:prefLabel "TIFF object (1.03 MiB)"@en,
+                                                                   "TIFF object (500×333)"@en.
 <urn:md5:149B1DF9882D1D93264922C5EE19EFA4> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "FJsd+YgtHZMmSSLF7hnvpA=="^^xsd:base64Binary.

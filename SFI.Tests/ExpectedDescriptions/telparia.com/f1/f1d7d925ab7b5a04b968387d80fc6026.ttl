@@ -26,15 +26,15 @@ _:n1 at:pathObject <file:///input_256.tiff>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (4.89 KiB)"@en.
 <ni:///mh;1QEQ9N-K4RlXhUqlxXmk9wH7fg?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
-                                                    nfo:colorDepth 24 ;
+                                                    nfo:colorDepth 32 ;
                                                     nfo:height 46 ;
                                                     nfo:horizontalResolution 96 ;
                                                     nfo:verticalResolution 96 ;
                                                     nfo:width 70 ;
                                                     a schema:MediaObject,
+                                                      exif:IFD,
                                                       schema:ImageObject,
-                                                      nfo:Image,
-                                                      exif:IFD;
+                                                      nfo:Image;
                                                     exif:bitsPerSample 8 ;
                                                     exif:compression 1 ;
                                                     exif:imageLength 46 ;
@@ -49,8 +49,8 @@ _:n1 at:pathObject <file:///input_256.tiff>;
                                                     exif:stripOffsets 8 ;
                                                     exif:xResolution 1 ;
                                                     exif:yResolution 1 ;
-                                                    skos:prefLabel "TIFF object (4.89 KiB)"@en,
-                                                                   "TIFF object (70×46, 8-bit)"@en,
+                                                    skos:prefLabel "TIFF object (70×46, 8-bit)"@en,
+                                                                   "TIFF object (4.89 KiB)"@en,
                                                                    "TIFF object (70×46)"@en.
 <urn:md5:F4DF8AE11957854AA5C579A4F701FB7E> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;

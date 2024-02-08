@@ -5,8 +5,8 @@
 @prefix at: <http://archive.data.is4.site/terms/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
-@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix dt: <http://dbpedia.org/datatype/>.
@@ -26,7 +26,7 @@ _:n1 at:pathObject <file:///input_gray_16bit.tiff>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (6.53 KiB)"@en.
 <ni:///mh;1QEQv1zGd3WaiSbGtqIkEdRSwQ?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
-                                                    nfo:colorDepth 24 ;
+                                                    nfo:colorDepth 32 ;
                                                     nfo:height 46 ;
                                                     nfo:horizontalResolution 96 ;
                                                     nfo:verticalResolution 96 ;

@@ -5,8 +5,8 @@
 @prefix at: <http://archive.data.is4.site/terms/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
-@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix exif: <http://www.w3.org/2003/12/exif/ns#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix dt: <http://dbpedia.org/datatype/>.
@@ -26,15 +26,15 @@ _:n1 at:pathObject <file:///input_256_planar_contig.tiff>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (4.9 KiB)"@en.
 <ni:///mh;1QEQkAtEv6LdD19bxjKSa3StCQ?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
-                                                    nfo:colorDepth 24 ;
+                                                    nfo:colorDepth 32 ;
                                                     nfo:height 46 ;
                                                     nfo:horizontalResolution 96 ;
                                                     nfo:verticalResolution 96 ;
                                                     nfo:width 70 ;
                                                     a schema:MediaObject,
-                                                      exif:IFD,
                                                       schema:ImageObject,
-                                                      nfo:Image;
+                                                      nfo:Image,
+                                                      exif:IFD;
                                                     exif:bitsPerSample 8 ;
                                                     exif:compression 1 ;
                                                     exif:imageLength 46 ;
@@ -49,8 +49,8 @@ _:n1 at:pathObject <file:///input_256_planar_contig.tiff>;
                                                     exif:stripOffsets 8 ;
                                                     exif:xResolution 1 ;
                                                     exif:yResolution 1 ;
-                                                    skos:prefLabel "TIFF object (70×46, 8-bit)"@en,
-                                                                   "TIFF object (4.9 KiB)"@en,
+                                                    skos:prefLabel "TIFF object (4.9 KiB)"@en,
+                                                                   "TIFF object (70×46, 8-bit)"@en,
                                                                    "TIFF object (70×46)"@en.
 <urn:md5:900B44BFA2DD0F5F5BC632926B74AD09> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;

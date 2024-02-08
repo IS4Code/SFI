@@ -26,16 +26,16 @@ _:n1 at:pathObject <file:///ccitt_4.tif>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (67.92 KiB)"@en.
 <ni:///mh;1QEQNXZBm9Aj9YjX_lUQbsf0Zg?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
-                                                    nfo:colorDepth 24 ;
+                                                    nfo:colorDepth 32 ;
                                                     nfo:height 2376 ;
                                                     nfo:horizontalResolution 200 ;
                                                     nfo:verticalResolution 200 ;
                                                     nfo:width 1728 ;
                                                     <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#comments> "converted PBM file";
                                                     a schema:MediaObject,
+                                                      nfo:Image,
                                                       exif:IFD,
-                                                      schema:ImageObject,
-                                                      nfo:Image;
+                                                      schema:ImageObject;
                                                     exif:bitsPerSample 1 ;
                                                     exif:compression 4 ;
                                                     exif:imageDescription "converted PBM file";

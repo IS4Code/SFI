@@ -139,6 +139,11 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                                     a cnt:ContentAsBase64;
                                                                     skos:prefLabel "binary data (20 B)"@en;
                                                                     cnt:bytes "AAABAAEAQEACAAEAAQAwBAAAAQA="^^xsd:base64Binary.
+<data:application/octet-stream;base64,AAABAAIAICACAAEAAQAwAQAAAQAgIBAAAQAEAOgCAAAC> dcterms:extent "33"^^dt:byte;
+                                                                                    dcterms:hasFormat <data:image/x-icon;base64,AAABAAIAICACAAEAAQAwAQAAAQAgIBAAAQAEAOgCAAAC>;
+                                                                                    a cnt:ContentAsBase64;
+                                                                                    skos:prefLabel "binary data (33 B)"@en;
+                                                                                    cnt:bytes "AAABAAIAICACAAEAAQAwAQAAAQAgIBAAAQAEAOgCAAAC"^^xsd:base64Binary.
 <data:application/octet-stream;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAACAA==> dcterms:extent "34"^^dt:byte;
                                                                                         dcterms:hasFormat <data:image/x-icon;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAACAA==>;
                                                                                         a cnt:ContentAsBase64;
@@ -385,6 +390,21 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                           schema:ImageObject,
                                                           nfo:Image;
                                                         skos:prefLabel "ICO object (64×64)"@en.
+<data:image/x-icon;base64,AAABAAIAICACAAEAAQAwAQAAAQAgIBAAAQAEAOgCAAAC> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
+                                                                        nfo:hasMediaStream <data:image/x-icon;base64,AAABAAIAICACAAEAAQAwAQAAAQAgIBAAAQAEAOgCAAAC#/0>,
+                                                                                           <data:image/x-icon;base64,AAABAAIAICACAAEAAQAwAQAAAQAgIBAAAQAEAOgCAAAC#/1>;
+                                                                        a schema:MediaObject,
+                                                                          schema:ImageObject,
+                                                                          nfo:Image;
+                                                                        skos:prefLabel "ICO object (48 B)"@en.
+<data:image/x-icon;base64,AAABAAIAICACAAEAAQAwAQAAAQAgIBAAAQAEAOgCAAAC#/0> nfo:height 32 ;
+                                                                           nfo:width 32 ;
+                                                                           a nfo:MediaStream;
+                                                                           skos:prefLabel "0:ICO (32×32)".
+<data:image/x-icon;base64,AAABAAIAICACAAEAAQAwAQAAAQAgIBAAAQAEAOgCAAAC#/1> nfo:height 0 ;
+                                                                           nfo:width 16 ;
+                                                                           a nfo:MediaStream;
+                                                                           skos:prefLabel "1:ICO (16×0)".
 <data:image/x-icon;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAACAA==> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
                                                                             nfo:hasMediaStream <data:image/x-icon;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAACAA==#/0>,
                                                                                                <data:image/x-icon;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAACAA==#/1>;
@@ -638,8 +658,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (10.71 KiB)"@en,
-                                                                  "BMP object (322×243)"@en.
+                                                   skos:prefLabel "BMP object (322×243)"@en,
+                                                                  "BMP object (10.71 KiB)"@en.
 <ni:///mh;1QEQ-Ej-6TzRUVmMdBb1-c_ewA?ct=application/octet-stream> at:digest <urn:md5:F848FEE93CD151598C7416F5F9CFDEC0>;
                                                                   dcterms:extent "758"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ-Ej-6TzRUVmMdBb1-c_ewA?ct=image/bmp>;
@@ -682,8 +702,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en,
-                                                                  "BMP object (744 B)"@en.
+                                                   skos:prefLabel "BMP object (744 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQ25uEevM94N_o33oHWgZ2dw?ct=application/octet-stream> at:digest <urn:md5:DB9B847AF33DE0DFE8DF7A075A067677>;
                                                                   dcterms:extent "758"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ25uEevM94N_o33oHWgZ2dw?ct=image/bmp>;
@@ -750,8 +770,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en,
-                                                                  "BMP object (744 B)"@en.
+                                                   skos:prefLabel "BMP object (744 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQ4-Xb3l7tLdcZF_lwv40yuQ?ct=application/octet-stream> at:digest <urn:md5:E3E5DBDE5EED2DD71917F970BF8D32B9>;
                                                                   dcterms:extent "310"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ4-Xb3l7tLdcZF_lwv40yuQ?ct=image/bmp>;
@@ -767,8 +787,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×16)"@en,
-                                                                  "BMP object (296 B)"@en.
+                                                   skos:prefLabel "BMP object (296 B)"@en,
+                                                                  "BMP object (16×16)"@en.
 <ni:///mh;1QEQ4Bjn6jhv1VaSaYb08hzqmA?ct=application/octet-stream> at:digest <urn:md5:E018E7EA386FD556926986F4F21CEA98>;
                                                                   dcterms:extent "758"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ4Bjn6jhv1VaSaYb08hzqmA?ct=image/bmp>;
@@ -892,12 +912,12 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en,
-                                                                  "BMP object (744 B)"@en.
+                                                   skos:prefLabel "BMP object (744 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQ6DQ9p4uyJBmSRiWQkbKBsQ?ct=application/octet-stream> at:digest <urn:md5:E8343DA78BB224199246259091B281B1>;
                                                                   dcterms:extent "76496"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQ6DQ9p4uyJBmSRiWQkbKBsQ?ct=application/vnd.microsoft.portable-executable>,
-                                                                                    <ni:///mh;1QEQ6DQ9p4uyJBmSRiWQkbKBsQ?ct=application/x-msdownload;format=ne>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ6DQ9p4uyJBmSRiWQkbKBsQ?ct=application/x-msdownload;format=ne>,
+                                                                                    <ni:///mh;1QEQ6DQ9p4uyJBmSRiWQkbKBsQ?ct=application/vnd.microsoft.portable-executable>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (74.7 KiB)"@en.
 <ni:///mh;1QEQ6DQ9p4uyJBmSRiWQkbKBsQ?ct=application/vnd.microsoft.portable-executable> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
@@ -915,11 +935,19 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                                             schema:version "4.0.0.1111",
                                                                                            "4.00.1111";
                                                                             nie:hasPart <ni:///mh;1QEQ6DQ9p4uyJBmSRiWQkbKBsQ?ct=application/x-msdownload;format=ne#/Icon/1>,
-                                                                                        <ni:///mh;1QEQ6DQ9p4uyJBmSRiWQkbKBsQ?ct=application/x-msdownload;format=ne#/Icon/2>;
+                                                                                        <ni:///mh;1QEQ6DQ9p4uyJBmSRiWQkbKBsQ?ct=application/x-msdownload;format=ne#/Icon/2>,
+                                                                                        <ni:///mh;1QEQ6DQ9p4uyJBmSRiWQkbKBsQ?ct=application/x-msdownload;format=ne#/GroupIcon/110>;
                                                                             a schema:MediaObject,
                                                                               schema:SoftwareApplication,
                                                                               nfo:Executable;
-                                                                            skos:prefLabel "EXE object (74.7 KiB)"@en.
+                                                                            skos:prefLabel "EXE object (UNINSTAL)"@en.
+<ni:///mh;1QEQ6DQ9p4uyJBmSRiWQkbKBsQ?ct=application/x-msdownload;format=ne#/GroupIcon/110> at:pathObject <file:///110>;
+                                                                                           nie:interpretedAs <data:application/octet-stream;base64,AAABAAIAICACAAEAAQAwAQAAAQAgIBAAAQAEAOgCAAAC>;
+                                                                                           nfo:fileName "110";
+                                                                                           nfo:fileSize 48 ;
+                                                                                           a nfo:FileDataObject,
+                                                                                             nfo:EmbeddedFileDataObject;
+                                                                                           skos:prefLabel "/GroupIcon/110".
 <ni:///mh;1QEQ6DQ9p4uyJBmSRiWQkbKBsQ?ct=application/x-msdownload;format=ne#/Icon/1> at:pathObject <file:///1>;
                                                                                     nie:interpretedAs <ni:///mh;1QEQbAcTmc9rg-25qFGhLasXNg?ct=application/octet-stream>;
                                                                                     nfo:fileName "1";
@@ -949,8 +977,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en,
-                                                                  "BMP object (176 B)"@en.
+                                                   skos:prefLabel "BMP object (176 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQ7N7R5nycdCkdNDYN3kvZBw?ct=application/octet-stream> at:digest <urn:md5:ECDED1E67C9C74291D34360DDE4BD907>;
                                                                   dcterms:extent "512"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -970,8 +998,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (112 B)"@en,
-                                                                  "BMP object (16×16)"@en.
+                                                   skos:prefLabel "BMP object (16×16)"@en,
+                                                                  "BMP object (112 B)"@en.
 <ni:///mh;1QEQ7vIzBBvFnHdtvx7PDOkevQ?ct=application/octet-stream> at:digest <urn:md5:EEF233041BC59C776DBF1ECF0CE91EBD>;
                                                                   dcterms:extent "758"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ7vIzBBvFnHdtvx7PDOkevQ?ct=image/bmp>;
@@ -1028,8 +1056,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en,
-                                                                  "BMP object (744 B)"@en.
+                                                   skos:prefLabel "BMP object (744 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQ97uh8l4z7B3lZdSvJZovnQ?ct=application/octet-stream> at:digest <urn:md5:F7BBA1F25E33EC1DE565D4AF259A2F9D>;
                                                                   dcterms:extent "190"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ97uh8l4z7B3lZdSvJZovnQ?ct=image/bmp>;
@@ -1045,8 +1073,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (176 B)"@en,
-                                                                  "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (176 B)"@en.
 <ni:///mh;1QEQ9fQvEUaFS2CpUU_MF-dtCg?ct=application/octet-stream> at:digest <urn:md5:F5F42F1146854B60A9514FCC17E76D0A>;
                                                                   dcterms:extent "310"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ9fQvEUaFS2CpUU_MF-dtCg?ct=image/bmp>;
@@ -1066,8 +1094,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                                   "BMP object (296 B)"@en.
 <ni:///mh;1QEQ9uNo4QtgCDbdNJ_5N7GDog?ct=application/octet-stream> at:digest <urn:md5:F6E368E10B600836DD349FF937B183A2>;
                                                                   dcterms:extent "69886"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQ9uNo4QtgCDbdNJ_5N7GDog?ct=application/x-dosexec>,
-                                                                                    <ni:///mh;1QEQ9uNo4QtgCDbdNJ_5N7GDog?ct=application/x-msdos-program>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ9uNo4QtgCDbdNJ_5N7GDog?ct=application/x-msdos-program>,
+                                                                                    <ni:///mh;1QEQ9uNo4QtgCDbdNJ_5N7GDog?ct=application/x-dosexec>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (68.25 KiB)"@en.
 <ni:///mh;1QEQ9uNo4QtgCDbdNJ_5N7GDog?ct=application/x-dosexec> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-dosexec>;
@@ -1139,8 +1167,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en,
-                                                                  "BMP object (176 B)"@en.
+                                                   skos:prefLabel "BMP object (176 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQBtfLXZBH4iDjc44MkExG7A?ct=application/octet-stream> at:digest <urn:md5:06D7CB5D9047E220E3738E0C904C46EC>;
                                                                   dcterms:extent "190"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQBtfLXZBH4iDjc44MkExG7A?ct=image/bmp>;
@@ -1156,8 +1184,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en,
-                                                                  "BMP object (176 B)"@en.
+                                                   skos:prefLabel "BMP object (176 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQC5MfxMpuydbnXHs91ajToQ?ct=application/octet-stream> at:digest <urn:md5:0B931FC4CA6EC9D6E75C7B3DD5A8D3A1>;
                                                                   dcterms:extent "758"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQC5MfxMpuydbnXHs91ajToQ?ct=image/bmp>;
@@ -1190,8 +1218,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×16)"@en,
-                                                                  "BMP object (296 B)"@en.
+                                                   skos:prefLabel "BMP object (296 B)"@en,
+                                                                  "BMP object (16×16)"@en.
 <ni:///mh;1QEQDDGv20gnGe1PmXbCePD6-A?ct=application/octet-stream> at:digest <urn:md5:0C31AFDB482719ED4F9976C278F0FAF8>;
                                                                   dcterms:extent "758"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQDDGv20gnGe1PmXbCePD6-A?ct=image/bmp>;
@@ -1224,8 +1252,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en,
-                                                                  "BMP object (744 B)"@en.
+                                                   skos:prefLabel "BMP object (744 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQEK5iC18BoIdxhjzE-jKK0g?ct=application/octet-stream> at:digest <urn:md5:10AE620B5F01A08771863CC4FA328AD2>;
                                                                   dcterms:extent "126"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQEK5iC18BoIdxhjzE-jKK0g?ct=image/bmp>;
@@ -1262,8 +1290,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×16)"@en,
-                                                                  "BMP object (296 B)"@en.
+                                                   skos:prefLabel "BMP object (296 B)"@en,
+                                                                  "BMP object (16×16)"@en.
 <ni:///mh;1QEQFDaAr8fhUvpvhxBMpP54Kg?ct=text/plain> at:digest <urn:md5:143680AFC7E152FA6F87104CA4FE782A>;
                                                     dcterms:extent "7332"^^dt:byte;
                                                     nie:hasPart <ni:///mh;1QEQFDaAr8fhUvpvhxBMpP54Kg?ct=text/plain#line=,1>;
@@ -1293,8 +1321,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×16)"@en,
-                                                                  "BMP object (112 B)"@en.
+                                                   skos:prefLabel "BMP object (112 B)"@en,
+                                                                  "BMP object (16×16)"@en.
 <ni:///mh;1QEQGk2HWlmW1wzY5rn5gTeFlw?ct=application/octet-stream> at:digest <urn:md5:1A4D875A5996D70CD8E6B9F981378597>;
                                                                   dcterms:extent "310"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQGk2HWlmW1wzY5rn5gTeFlw?ct=image/bmp>;
@@ -1344,8 +1372,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (176 B)"@en,
-                                                                  "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (176 B)"@en.
 <ni:///mh;1QEQI1P__8AdKLBOyFIhClLOmg?ct=application/octet-stream> at:digest <urn:md5:2353FFFFC01D28B04EC852210A52CE9A>;
                                                                   dcterms:extent "126"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQI1P__8AdKLBOyFIhClLOmg?ct=image/bmp>;
@@ -1361,8 +1389,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×16)"@en,
-                                                                  "BMP object (112 B)"@en.
+                                                   skos:prefLabel "BMP object (112 B)"@en,
+                                                                  "BMP object (16×16)"@en.
 <ni:///mh;1QEQIdXAjIMNqrVFjISaSM8NfQ?ct=application/octet-stream> at:digest <urn:md5:21D5C08C830DAAB5458C849A48CF0D7D>;
                                                                   dcterms:extent "21629"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQIdXAjIMNqrVFjISaSM8NfQ?ct=application/x-msdownload;format=le>;
@@ -1405,8 +1433,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en,
-                                                                  "BMP object (744 B)"@en.
+                                                   skos:prefLabel "BMP object (744 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQJNf0GGhcOH7Ty2U62Mm47g?ct=application/octet-stream> at:digest <urn:md5:24D7F418685C387ED3CB653AD8C9B8EE>;
                                                                   dcterms:extent "190"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQJNf0GGhcOH7Ty2U62Mm47g?ct=image/bmp>;
@@ -1439,8 +1467,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×16)"@en,
-                                                                  "BMP object (112 B)"@en.
+                                                   skos:prefLabel "BMP object (112 B)"@en,
+                                                                  "BMP object (16×16)"@en.
 <ni:///mh;1QEQJokjsDvtXogtLhB9hPtmlg?ct=application/octet-stream> at:digest <urn:md5:268923B03BED5E882D2E107D84FB6696>;
                                                                   dcterms:extent "758"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQJokjsDvtXogtLhB9hPtmlg?ct=image/bmp>;
@@ -1456,8 +1484,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en,
-                                                                  "BMP object (744 B)"@en.
+                                                   skos:prefLabel "BMP object (744 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQK4C1SRlRDcCN-ho1k9QOgg?ct=application/octet-stream> at:digest <urn:md5:2B80B54919510DC08DFA1A3593D40E82>;
                                                                   dcterms:extent "105984"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQK4C1SRlRDcCN-ho1k9QOgg?ct=application/vnd.microsoft.portable-executable>;
@@ -1685,8 +1713,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (112 B)"@en,
-                                                                  "BMP object (16×16)"@en.
+                                                   skos:prefLabel "BMP object (16×16)"@en,
+                                                                  "BMP object (112 B)"@en.
 <ni:///mh;1QEQKMAqrfkVhqzHSWxBwNizQA?ct=application/octet-stream> at:digest <urn:md5:28C02AADF91586ACC7496C41C0D8B340>;
                                                                   dcterms:extent "190"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQKMAqrfkVhqzHSWxBwNizQA?ct=image/bmp>;
@@ -1719,8 +1747,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×16)"@en,
-                                                                  "BMP object (296 B)"@en.
+                                                   skos:prefLabel "BMP object (296 B)"@en,
+                                                                  "BMP object (16×16)"@en.
 <ni:///mh;1QEQMb2AFw2D-lrEPT6ugsMsfQ?ct=application/octet-stream> at:digest <urn:md5:31BD80170D83FA5AC43D3EAE82C32C7D>;
                                                                   dcterms:extent "69120"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQMb2AFw2D-lrEPT6ugsMsfQ?ct=application/vnd.microsoft.portable-executable>;
@@ -1772,8 +1800,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×16)"@en,
-                                                                  "BMP object (112 B)"@en.
+                                                   skos:prefLabel "BMP object (112 B)"@en,
+                                                                  "BMP object (16×16)"@en.
 <ni:///mh;1QEQQlKtqXfKw2sW79hYwtLu2g?ct=application/octet-stream> at:digest <urn:md5:4252ADA977CAC36B16EFD858C2D2EEDA>;
                                                                   dcterms:extent "190"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQQlKtqXfKw2sW79hYwtLu2g?ct=image/bmp>;
@@ -1789,8 +1817,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en,
-                                                                  "BMP object (176 B)"@en.
+                                                   skos:prefLabel "BMP object (176 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQRytHTq-K91AXMLiMnVFT2A?ct=application/octet-stream> at:digest <urn:md5:472B474EAF8AF7501730B88C9D5153D8>;
                                                                   dcterms:extent "758"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQRytHTq-K91AXMLiMnVFT2A?ct=image/bmp>;
@@ -1806,8 +1834,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en,
-                                                                  "BMP object (744 B)"@en.
+                                                   skos:prefLabel "BMP object (744 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQSSJtgitNHexFIhDhH7ui5Q?ct=application/octet-stream> at:digest <urn:md5:49226D822B4D1DEC452210E11FBBA2E5>;
                                                                   dcterms:extent "310"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQSSJtgitNHexFIhDhH7ui5Q?ct=image/bmp>;
@@ -1823,8 +1851,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (296 B)"@en,
-                                                                  "BMP object (16×16)"@en.
+                                                   skos:prefLabel "BMP object (16×16)"@en,
+                                                                  "BMP object (296 B)"@en.
 <ni:///mh;1QEQSXSWB5TbtCf-ZIHWG7aUGA?ct=application/octet-stream> at:digest <urn:md5:4974960794DBB427FE6481D61BB69418>;
                                                                   dcterms:extent "190"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQSXSWB5TbtCf-ZIHWG7aUGA?ct=image/bmp>;
@@ -1840,8 +1868,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en,
-                                                                  "BMP object (176 B)"@en.
+                                                   skos:prefLabel "BMP object (176 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQSpHJz6ucqmMhNAZV456t8A?ct=application/octet-stream> at:digest <urn:md5:4A91C9CFAB9CAA6321340655E39EADF0>;
                                                                   dcterms:extent "3038"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQSpHJz6ucqmMhNAZV456t8A?ct=image/bmp>;
@@ -1857,8 +1885,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (2.95 KiB)"@en,
-                                                                  "BMP object (192×24)"@en.
+                                                   skos:prefLabel "BMP object (192×24)"@en,
+                                                                  "BMP object (2.95 KiB)"@en.
 <ni:///mh;1QEQSwWWSeMz7gR_6QDypP-OFw?ct=application/octet-stream> at:digest <urn:md5:4B059649E333EE047FE900F2A4FF8E17>;
                                                                   dcterms:extent "126"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQSwWWSeMz7gR_6QDypP-OFw?ct=image/bmp>;
@@ -1874,8 +1902,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×16)"@en,
-                                                                  "BMP object (112 B)"@en.
+                                                   skos:prefLabel "BMP object (112 B)"@en,
+                                                                  "BMP object (16×16)"@en.
 <ni:///mh;1QEQT5XfV6fdrp9Ji14doKfy_A?ct=application/octet-stream> at:digest <urn:md5:4F95DF57A7DDAE9F498B5E1DA0A7F2FC>;
                                                                   dcterms:extent "1086"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQT5XfV6fdrp9Ji14doKfy_A?ct=image/bmp>;
@@ -1891,8 +1919,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (64×64)"@en,
-                                                                  "BMP object (1.05 KiB)"@en.
+                                                   skos:prefLabel "BMP object (1.05 KiB)"@en,
+                                                                  "BMP object (64×64)"@en.
 <ni:///mh;1QEQTBP2ajgORuetAzlUTNS-EA?ct=application/octet-stream> at:digest <urn:md5:4C13F66A380E46E7AD0339544CD4BE10>;
                                                                   dcterms:extent "126"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQTBP2ajgORuetAzlUTNS-EA?ct=image/bmp>;
@@ -1908,8 +1936,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×16)"@en,
-                                                                  "BMP object (112 B)"@en.
+                                                   skos:prefLabel "BMP object (112 B)"@en,
+                                                                  "BMP object (16×16)"@en.
 <ni:///mh;1QEQTjZgEMSVuX3a3y8EgJvXAg?ct=application/octet-stream> at:digest <urn:md5:4E366010C495B97DDADF2F04809BD702>;
                                                                   dcterms:extent "190"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQTjZgEMSVuX3a3y8EgJvXAg?ct=image/bmp>;
@@ -1925,8 +1953,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en,
-                                                                  "BMP object (176 B)"@en.
+                                                   skos:prefLabel "BMP object (176 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQUo3ZxUYIEmfoI16z_CeH3A?ct=application/octet-stream> at:digest <urn:md5:528DD9C546081267E8235EB3FC2787DC>;
                                                                   dcterms:extent "6160"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQUo3ZxUYIEmfoI16z_CeH3A?ct=application/x-msdownload;format=ne>;
@@ -1992,8 +2020,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en,
-                                                                  "BMP object (176 B)"@en.
+                                                   skos:prefLabel "BMP object (176 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQYT12vp-xMyTTS2W1shLDow?ct=application/octet-stream> at:digest <urn:md5:613D76BE9FB13324D34B65B5B212C3A3>;
                                                                   dcterms:extent "126"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQYT12vp-xMyTTS2W1shLDow?ct=image/bmp>;
@@ -2009,8 +2037,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×16)"@en,
-                                                                  "BMP object (112 B)"@en.
+                                                   skos:prefLabel "BMP object (112 B)"@en,
+                                                                  "BMP object (16×16)"@en.
 <ni:///mh;1QEQYTypR6jq3dOGNcfTndTFrg?ct=application/octet-stream> at:digest <urn:md5:613CA947A8EADDD38635C7D39DD4C5AE>;
                                                                   dcterms:extent "758"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQYTypR6jq3dOGNcfTndTFrg?ct=image/bmp>;
@@ -2067,8 +2095,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en,
-                                                                  "BMP object (744 B)"@en.
+                                                   skos:prefLabel "BMP object (744 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQafPsuc7YYQ2wqTaRfgz2Tg?ct=application/octet-stream> at:digest <urn:md5:69F3ECB9CED8610DB0A936917E0CF64E>;
                                                                   dcterms:extent "126"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQafPsuc7YYQ2wqTaRfgz2Tg?ct=image/bmp>;
@@ -2101,8 +2129,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en,
-                                                                  "BMP object (176 B)"@en.
+                                                   skos:prefLabel "BMP object (176 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQbAcTmc9rg-25qFGhLasXNg?ct=application/octet-stream> at:digest <urn:md5:6C071399CF6B83EDB9A851A12DAB1736>;
                                                                   dcterms:extent "318"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQbAcTmc9rg-25qFGhLasXNg?ct=image/bmp>;
@@ -2118,8 +2146,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en,
-                                                                  "BMP object (304 B)"@en.
+                                                   skos:prefLabel "BMP object (304 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQbGxN6DdZfRxh3v2gREAc4w?ct=application/octet-stream> at:digest <urn:md5:6C6C4DE837597D1C61DEFDA044401CE3>;
                                                                   dcterms:extent "758"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQbGxN6DdZfRxh3v2gREAc4w?ct=image/bmp>;
@@ -2135,8 +2163,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en,
-                                                                  "BMP object (752 B)"@en.
+                                                   skos:prefLabel "BMP object (752 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQb_Q6CQHxckxi7W_ka8e7WQ?ct=application/octet-stream> at:digest <urn:md5:6FF43A0901F1724C62ED6FE46BC7BB59>;
                                                                   dcterms:extent "758"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQb_Q6CQHxckxi7W_ka8e7WQ?ct=image/bmp>;
@@ -2241,8 +2269,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×16)"@en,
-                                                                  "BMP object (112 B)"@en.
+                                                   skos:prefLabel "BMP object (112 B)"@en,
+                                                                  "BMP object (16×16)"@en.
 <ni:///mh;1QEQhK_XTE2umWxqiff_HWKkWA?ct=application/octet-stream> at:digest <urn:md5:84AFD74C4DAE996C6A89F7FF1D62A458>;
                                                                   dcterms:extent "20480"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQhK_XTE2umWxqiff_HWKkWA?ct=application/vnd.microsoft.portable-executable>;
@@ -2540,8 +2568,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×16)"@en,
-                                                                  "BMP object (112 B)"@en.
+                                                   skos:prefLabel "BMP object (112 B)"@en,
+                                                                  "BMP object (16×16)"@en.
 <ni:///mh;1QEQiDgCpmU2fgApG0xnm2_pOA?ct=application/octet-stream> at:digest <urn:md5:883802A665367E00291B4C679B6FE938>;
                                                                   dcterms:extent "758"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQiDgCpmU2fgApG0xnm2_pOA?ct=image/bmp>;
@@ -2574,8 +2602,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en,
-                                                                  "BMP object (744 B)"@en.
+                                                   skos:prefLabel "BMP object (744 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQjgiNM0RjnbS5DYCzYrqmXw?ct=application/octet-stream> at:digest <urn:md5:8E088D3344639DB4B90D80B362BAA65F>;
                                                                   dcterms:extent "190"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQjgiNM0RjnbS5DYCzYrqmXw?ct=image/bmp>;
@@ -2608,8 +2636,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en,
-                                                                  "BMP object (176 B)"@en.
+                                                   skos:prefLabel "BMP object (176 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQlFrFwfqSVsGG7uvkivFjNw?ct=application/octet-stream> at:digest <urn:md5:945AC5C1FA9256C186EEEBE48AF16337>;
                                                                   dcterms:extent "49543"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQlFrFwfqSVsGG7uvkivFjNw?ct=application/x-dosexec>;
@@ -2635,8 +2663,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en,
-                                                                  "BMP object (744 B)"@en.
+                                                   skos:prefLabel "BMP object (744 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQnnHOoSPzrkvKauAwvPcbaw?ct=application/octet-stream> at:digest <urn:md5:9E71CEA123F3AE4BCA6AE030BCF71B6B>;
                                                                   dcterms:extent "43197"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQnnHOoSPzrkvKauAwvPcbaw?ct=application/x-msdownload;format=le>;
@@ -3017,8 +3045,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en,
-                                                                  "BMP object (744 B)"@en.
+                                                   skos:prefLabel "BMP object (744 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQojvqop2tBQv_JU15CT9b5w?ct=application/octet-stream> at:digest <urn:md5:A23BEAA29DAD050BFF254D79093F5BE7>;
                                                                   dcterms:extent "126"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQojvqop2tBQv_JU15CT9b5w?ct=image/bmp>;
@@ -3034,8 +3062,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (16×16)"@en,
-                                                                  "BMP object (112 B)"@en.
+                                                   skos:prefLabel "BMP object (112 B)"@en,
+                                                                  "BMP object (16×16)"@en.
 <ni:///mh;1QEQpIMU6iEgHK4KdCA_et-swA?ct=application/octet-stream> at:digest <urn:md5:A48314EA21201CAE0A74203F7ADFACC0>;
                                                                   dcterms:extent "310"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQpIMU6iEgHK4KdCA_et-swA?ct=image/bmp>;
@@ -3051,8 +3079,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (296 B)"@en,
-                                                                  "BMP object (16×16)"@en.
+                                                   skos:prefLabel "BMP object (16×16)"@en,
+                                                                  "BMP object (296 B)"@en.
 <ni:///mh;1QEQpxr44V-EakhoCGtKAYjHOg?ct=application/octet-stream> at:digest <urn:md5:A71AF8E15F846A4868086B4A0188C73A>;
                                                                   dcterms:extent "24576"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQpxr44V-EakhoCGtKAYjHOg?ct=application/vnd.microsoft.portable-executable>;
@@ -3767,8 +3795,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en,
-                                                                  "BMP object (744 B)"@en.
+                                                   skos:prefLabel "BMP object (744 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQtOgQNLqD0JkHxeUhwFxgcw?ct=application/octet-stream> at:digest <urn:md5:B4E81034BA83D09907C5E521C05C6073>;
                                                                   dcterms:extent "758"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQtOgQNLqD0JkHxeUhwFxgcw?ct=image/bmp>;
@@ -3784,8 +3812,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en,
-                                                                  "BMP object (744 B)"@en.
+                                                   skos:prefLabel "BMP object (744 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQu5dqK9V1M-iLiARCUc9PlA?ct=application/octet-stream> at:digest <urn:md5:BB976A2BD57533E88B88044251CF4F94>;
                                                                   dcterms:extent "15252"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQu5dqK9V1M-iLiARCUc9PlA?ct=application/x-msdos-program>;
@@ -3845,8 +3873,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en,
-                                                                  "BMP object (744 B)"@en.
+                                                   skos:prefLabel "BMP object (744 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQv_kZZH-ypTFlD-gNtsoX9g?ct=application/octet-stream> at:digest <urn:md5:BFF919647FB2A531650FE80DB6CA17F6>;
                                                                   dcterms:extent "20554"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQv_kZZH-ypTFlD-gNtsoX9g?ct=application/x-msdos-program>;
@@ -3889,8 +3917,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en,
-                                                                  "BMP object (744 B)"@en.
+                                                   skos:prefLabel "BMP object (744 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQxcBCR243_xWnk0tT5Xsttg?ct=application/octet-stream> at:digest <urn:md5:C5C042476E37FF15A7934B53E57B2DB6>;
                                                                   dcterms:extent "2300"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQxcBCR243_xWnk0tT5Xsttg?ct=image/bmp>;
@@ -3923,8 +3951,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en,
-                                                                  "BMP object (744 B)"@en.
+                                                   skos:prefLabel "BMP object (744 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQzPmGZuujz-xrvqXJKGLPvQ?ct=application/octet-stream> at:digest <urn:md5:CCF98666EBA3CFEC6BBEA5C92862CFBD>;
                                                                   dcterms:extent "190"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQzPmGZuujz-xrvqXJKGLPvQ?ct=image/bmp>;
@@ -3940,8 +3968,8 @@ _:n1 at:pathObject <file:///win95_02.cab>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en,
-                                                                  "BMP object (176 B)"@en.
+                                                   skos:prefLabel "BMP object (176 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <ni:///mh;1QEQzzxutn_wgyBfGTRmiFZd7w?ct=application/octet-stream> at:digest <urn:md5:CF3C6EB67FF083205F19346688565DEF>;
                                                                   dcterms:extent "318"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQzzxutn_wgyBfGTRmiFZd7w?ct=image/bmp>;

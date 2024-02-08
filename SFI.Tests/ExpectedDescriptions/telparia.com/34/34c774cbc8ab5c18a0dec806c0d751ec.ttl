@@ -19,6 +19,30 @@ _:n1 at:pathObject <file:///PIXFOLIO.EX_>;
      nfo:fileName "PIXFOLIO.EX_";
      nfo:fileSize 117046 ;
      a nfo:FileDataObject.
+<data:application/octet-stream;base64,AAABAAEAICAQAAEABADoAgAAAQ==> dcterms:extent "19"^^dt:byte;
+                                                                    dcterms:hasFormat <data:image/x-icon;base64,AAABAAEAICAQAAEABADoAgAAAQ==>;
+                                                                    a cnt:ContentAsBase64;
+                                                                    skos:prefLabel "binary data (19 B)"@en;
+                                                                    cnt:bytes "AAABAAEAICAQAAEABADoAgAAAQ=="^^xsd:base64Binary.
+<data:application/octet-stream;base64,AAACAAEAIABAAAEAAQA0AQAAAg==> dcterms:extent "19"^^dt:byte;
+                                                                    a cnt:ContentAsBase64;
+                                                                    skos:prefLabel "binary data (19 B)"@en;
+                                                                    cnt:bytes "AAACAAEAIABAAAEAAQA0AQAAAg=="^^xsd:base64Binary.
+<data:application/octet-stream;base64,AAACAAEAIABAAAEAAQA0AQAAAw==> dcterms:extent "19"^^dt:byte;
+                                                                    a cnt:ContentAsBase64;
+                                                                    skos:prefLabel "binary data (19 B)"@en;
+                                                                    cnt:bytes "AAACAAEAIABAAAEAAQA0AQAAAw=="^^xsd:base64Binary.
+<data:application/octet-stream;base64,AAACAAEAIABAAAEAAQA0AQAABA==> dcterms:extent "19"^^dt:byte;
+                                                                    a cnt:ContentAsBase64;
+                                                                    skos:prefLabel "binary data (19 B)"@en;
+                                                                    cnt:bytes "AAACAAEAIABAAAEAAQA0AQAABA=="^^xsd:base64Binary.
+<data:image/x-icon;base64,AAABAAEAICAQAAEABADoAgAAAQ==> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
+                                                        nfo:height 32 ;
+                                                        nfo:width 32 ;
+                                                        a schema:MediaObject,
+                                                          schema:ImageObject,
+                                                          nfo:Image;
+                                                        skos:prefLabel "ICO object (32×32)"@en.
 <file:///PIXFOLIO.EX_> at:extensionObject <https://w3id.org/uri4uri/suffix/ex_>.
 <ni:///mh;1QEQ5uPNoDu9MfLx0IGquT1jNQ?ct=application/octet-stream> at:digest <urn:md5:E6E3CDA03BBD31F2F1D081AAB93D6335>;
                                                                   dcterms:extent "318"^^dt:byte;
@@ -35,8 +59,8 @@ _:n1 at:pathObject <file:///PIXFOLIO.EX_>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (320 B)"@en,
-                                                                  "BMP object (32×32)"@en.
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (320 B)"@en.
 <ni:///mh;1QEQ8PjXUMPhPh1Jf2yS3sDKWA?ct=application/octet-stream> at:digest <urn:md5:F0F8D750C3E13E1D497F6C92DEC0CA58>;
                                                                   dcterms:extent "117046"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ8PjXUMPhPh1Jf2yS3sDKWA?ct=application/x-ms-compress-szdd>;
@@ -78,11 +102,15 @@ _:n1 at:pathObject <file:///PIXFOLIO.EX_>;
                                                                                         <ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/x-msdownload;format=ne#/Icon/1>,
                                                                                         <ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/x-msdownload;format=ne#/Cursor/2>,
                                                                                         <ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/x-msdownload;format=ne#/Cursor/3>,
-                                                                                        <ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/x-msdownload;format=ne#/Cursor/4>;
+                                                                                        <ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/x-msdownload;format=ne#/Cursor/4>,
+                                                                                        <ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/x-msdownload;format=ne#/GroupCursor/HELPCURSOR>,
+                                                                                        <ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/x-msdownload;format=ne#/GroupCursor/PIXCROSS>,
+                                                                                        <ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/x-msdownload;format=ne#/GroupCursor/THUMBNAIL>,
+                                                                                        <ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/x-msdownload;format=ne#/GroupIcon/SHOWICON>;
                                                                             a schema:MediaObject,
                                                                               schema:SoftwareApplication,
                                                                               nfo:Executable;
-                                                                            skos:prefLabel "EXE object (264.67 KiB)"@en.
+                                                                            skos:prefLabel "EXE object (PixFolio)"@en.
 <ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/x-msdownload;format=ne#/Bitmap/PIXCOVER> at:pathObject <file:///PIXCOVER>;
                                                                                              nie:interpretedAs <ni:///mh;1QEQS_59DrMvLvPvI2r4bN4pAQ?ct=application/octet-stream>;
                                                                                              nfo:fileName "PIXCOVER";
@@ -118,6 +146,34 @@ _:n1 at:pathObject <file:///PIXFOLIO.EX_>;
                                                                                       a nfo:FileDataObject,
                                                                                         nfo:EmbeddedFileDataObject;
                                                                                       skos:prefLabel "/Cursor/4".
+<ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/x-msdownload;format=ne#/GroupCursor/HELPCURSOR> at:pathObject <file:///HELPCURSOR>;
+                                                                                                    nie:interpretedAs <data:application/octet-stream;base64,AAACAAEAIABAAAEAAQA0AQAAAg==>;
+                                                                                                    nfo:fileName "HELPCURSOR";
+                                                                                                    nfo:fileSize 32 ;
+                                                                                                    a nfo:FileDataObject,
+                                                                                                      nfo:EmbeddedFileDataObject;
+                                                                                                    skos:prefLabel "/GroupCursor/HELPCURSOR".
+<ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/x-msdownload;format=ne#/GroupCursor/PIXCROSS> at:pathObject <file:///PIXCROSS>;
+                                                                                                  nie:interpretedAs <data:application/octet-stream;base64,AAACAAEAIABAAAEAAQA0AQAAAw==>;
+                                                                                                  nfo:fileName "PIXCROSS";
+                                                                                                  nfo:fileSize 32 ;
+                                                                                                  a nfo:FileDataObject,
+                                                                                                    nfo:EmbeddedFileDataObject;
+                                                                                                  skos:prefLabel "/GroupCursor/PIXCROSS".
+<ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/x-msdownload;format=ne#/GroupCursor/THUMBNAIL> at:pathObject <file:///THUMBNAIL>;
+                                                                                                   nie:interpretedAs <data:application/octet-stream;base64,AAACAAEAIABAAAEAAQA0AQAABA==>;
+                                                                                                   nfo:fileName "THUMBNAIL";
+                                                                                                   nfo:fileSize 32 ;
+                                                                                                   a nfo:FileDataObject,
+                                                                                                     nfo:EmbeddedFileDataObject;
+                                                                                                   skos:prefLabel "/GroupCursor/THUMBNAIL".
+<ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/x-msdownload;format=ne#/GroupIcon/SHOWICON> at:pathObject <file:///SHOWICON>;
+                                                                                                nie:interpretedAs <data:application/octet-stream;base64,AAABAAEAICAQAAEABADoAgAAAQ==>;
+                                                                                                nfo:fileName "SHOWICON";
+                                                                                                nfo:fileSize 32 ;
+                                                                                                a nfo:FileDataObject,
+                                                                                                  nfo:EmbeddedFileDataObject;
+                                                                                                skos:prefLabel "/GroupIcon/SHOWICON".
 <ni:///mh;1QEQNR1R6T2MDOQStKATtwOxGg?ct=application/x-msdownload;format=ne#/Icon/1> at:pathObject <file:///1>;
                                                                                     nie:interpretedAs <ni:///mh;1QEQlk3tdMrzUwLFKNUGzSmTrQ?ct=application/octet-stream>;
                                                                                     nfo:fileName "1";

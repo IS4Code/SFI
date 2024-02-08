@@ -18,6 +18,38 @@ _:n1 at:pathObject <file:///BACKWB95.EXE>;
      nfo:fileName "BACKWB95.EXE";
      nfo:fileSize 2665200 ;
      a nfo:FileDataObject.
+<data:application/octet-stream;base64,AAABAAEAICAQAAEABADoAgAAAw==> dcterms:extent "19"^^dt:byte;
+                                                                    dcterms:hasFormat <data:image/x-icon;base64,AAABAAEAICAQAAEABADoAgAAAw==>;
+                                                                    a cnt:ContentAsBase64;
+                                                                    skos:prefLabel "binary data (19 B)"@en;
+                                                                    cnt:bytes "AAABAAEAICAQAAEABADoAgAAAw=="^^xsd:base64Binary.
+<data:application/octet-stream;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAAC> dcterms:extent "33"^^dt:byte;
+                                                                                    dcterms:hasFormat <data:image/x-icon;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAAC>;
+                                                                                    a cnt:ContentAsBase64;
+                                                                                    skos:prefLabel "binary data (33 B)"@en;
+                                                                                    cnt:bytes "AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAAC"^^xsd:base64Binary.
+<data:image/x-icon;base64,AAABAAEAICAQAAEABADoAgAAAw==> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
+                                                        nfo:height 32 ;
+                                                        nfo:width 32 ;
+                                                        a schema:MediaObject,
+                                                          schema:ImageObject,
+                                                          nfo:Image;
+                                                        skos:prefLabel "ICO object (32×32)"@en.
+<data:image/x-icon;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAAC> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
+                                                                        nfo:hasMediaStream <data:image/x-icon;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAAC#/0>,
+                                                                                           <data:image/x-icon;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAAC#/1>;
+                                                                        a schema:MediaObject,
+                                                                          schema:ImageObject,
+                                                                          nfo:Image;
+                                                                        skos:prefLabel "ICO object (40 B)"@en.
+<data:image/x-icon;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAAC#/0> nfo:height 32 ;
+                                                                           nfo:width 32 ;
+                                                                           a nfo:MediaStream;
+                                                                           skos:prefLabel "0:ICO (32×32)".
+<data:image/x-icon;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAAC#/1> nfo:height 0 ;
+                                                                           nfo:width 16 ;
+                                                                           a nfo:MediaStream;
+                                                                           skos:prefLabel "1:ICO (16×0)".
 <file:///BACKWB95.EXE> at:extensionObject <https://w3id.org/uri4uri/suffix/exe>.
 <ni:///mh;1QEQCFkS1Dg_No55bmId0kQIOA?ct=application/octet-stream> at:digest <urn:md5:085912D4383F368E796E621DD2440838>;
                                                                   dcterms:extent "755"^^dt:byte;
@@ -38,8 +70,8 @@ _:n1 at:pathObject <file:///BACKWB95.EXE>;
                                                                   "BMP object (744 B)"@en.
 <ni:///mh;1QEQT7ngQJEUzcFChS815Axd9Q?ct=application/octet-stream> at:digest <urn:md5:4FB9E0409114CDC142852F35E40C5DF5>;
                                                                   dcterms:extent "2665200"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQT7ngQJEUzcFChS815Axd9Q?ct=application/x-msdownload;format=ne>,
-                                                                                    <ni:///mh;1QEQT7ngQJEUzcFChS815Axd9Q?ct=application/vnd.microsoft.portable-executable>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQT7ngQJEUzcFChS815Axd9Q?ct=application/vnd.microsoft.portable-executable>,
+                                                                                    <ni:///mh;1QEQT7ngQJEUzcFChS815Axd9Q?ct=application/x-msdownload;format=ne>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (2.54 MiB)"@en.
 <ni:///mh;1QEQT7ngQJEUzcFChS815Axd9Q?ct=application/vnd.microsoft.portable-executable> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
@@ -51,7 +83,9 @@ _:n1 at:pathObject <file:///BACKWB95.EXE>;
                                                                             nie:hasPart <ni:///mh;1QEQT7ngQJEUzcFChS815Axd9Q?ct=application/x-msdownload;format=ne#/1024/MYRESOURCE>,
                                                                                         <ni:///mh;1QEQT7ngQJEUzcFChS815Axd9Q?ct=application/x-msdownload;format=ne#/Icon/1>,
                                                                                         <ni:///mh;1QEQT7ngQJEUzcFChS815Axd9Q?ct=application/x-msdownload;format=ne#/Icon/2>,
-                                                                                        <ni:///mh;1QEQT7ngQJEUzcFChS815Axd9Q?ct=application/x-msdownload;format=ne#/Icon/3>;
+                                                                                        <ni:///mh;1QEQT7ngQJEUzcFChS815Axd9Q?ct=application/x-msdownload;format=ne#/Icon/3>,
+                                                                                        <ni:///mh;1QEQT7ngQJEUzcFChS815Axd9Q?ct=application/x-msdownload;format=ne#/GroupIcon/99>,
+                                                                                        <ni:///mh;1QEQT7ngQJEUzcFChS815Axd9Q?ct=application/x-msdownload;format=ne#/GroupIcon/103>;
                                                                             a schema:MediaObject,
                                                                               schema:SoftwareApplication,
                                                                               nfo:Executable;
@@ -63,6 +97,20 @@ _:n1 at:pathObject <file:///BACKWB95.EXE>;
                                                                                              a nfo:FileDataObject,
                                                                                                nfo:EmbeddedFileDataObject;
                                                                                              skos:prefLabel "/1024/MYRESOURCE".
+<ni:///mh;1QEQT7ngQJEUzcFChS815Axd9Q?ct=application/x-msdownload;format=ne#/GroupIcon/103> at:pathObject <file:///103>;
+                                                                                           nie:interpretedAs <data:application/octet-stream;base64,AAABAAEAICAQAAEABADoAgAAAw==>;
+                                                                                           nfo:fileName "103";
+                                                                                           nfo:fileSize 24 ;
+                                                                                           a nfo:FileDataObject,
+                                                                                             nfo:EmbeddedFileDataObject;
+                                                                                           skos:prefLabel "/GroupIcon/103".
+<ni:///mh;1QEQT7ngQJEUzcFChS815Axd9Q?ct=application/x-msdownload;format=ne#/GroupIcon/99> at:pathObject <file:///99>;
+                                                                                          nie:interpretedAs <data:application/octet-stream;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAAC>;
+                                                                                          nfo:fileName "99";
+                                                                                          nfo:fileSize 40 ;
+                                                                                          a nfo:FileDataObject,
+                                                                                            nfo:EmbeddedFileDataObject;
+                                                                                          skos:prefLabel "/GroupIcon/99".
 <ni:///mh;1QEQT7ngQJEUzcFChS815Axd9Q?ct=application/x-msdownload;format=ne#/Icon/1> at:pathObject <file:///1>;
                                                                                     nie:interpretedAs <ni:///mh;1QEQCFkS1Dg_No55bmId0kQIOA?ct=application/octet-stream>;
                                                                                     nfo:fileName "1";
@@ -120,8 +168,8 @@ _:n1 at:pathObject <file:///BACKWB95.EXE>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (32×32)"@en,
-                                                                  "BMP object (744 B)"@en.
+                                                   skos:prefLabel "BMP object (744 B)"@en,
+                                                                  "BMP object (32×32)"@en.
 <urn:md5:085912D4383F368E796E621DD2440838> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "CFkS1Dg/No55bmId0kQIOA=="^^xsd:base64Binary.

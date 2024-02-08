@@ -23,8 +23,8 @@ _:n1 at:pathObject <file:///example.nef>;
 <file:///example.nef> at:extensionObject <https://w3id.org/uri4uri/suffix/nef>.
 <ni:///mh;1QEQ6AADxAu3y-T3kAl_Wfo5Vg?ct=application/octet-stream> at:digest <urn:md5:E80003C40BB7CBE4F790097F59FA3956>;
                                                                   dcterms:extent "12980368"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQ6AADxAu3y-T3kAl_Wfo5Vg?ct=image/tiff>,
-                                                                                    <ni:///mh;1QEQ6AADxAu3y-T3kAl_Wfo5Vg?ct=image/nef>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ6AADxAu3y-T3kAl_Wfo5Vg?ct=image/nef>,
+                                                                                    <ni:///mh;1QEQ6AADxAu3y-T3kAl_Wfo5Vg?ct=image/tiff>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (12.38 MiB)"@en.
 <ni:///mh;1QEQ6AADxAu3y-T3kAl_Wfo5Vg?ct=image/nef> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/nef>;
@@ -36,7 +36,7 @@ _:n1 at:pathObject <file:///example.nef>;
                                                      schema:ImageObject;
                                                    skos:prefLabel "NEF object (160×120)"@en.
 <ni:///mh;1QEQ6AADxAu3y-T3kAl_Wfo5Vg?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
-                                                    nfo:colorDepth 24 ;
+                                                    nfo:colorDepth 32 ;
                                                     nfo:hasMediaStream <ni:///mh;1QEQ6AADxAu3y-T3kAl_Wfo5Vg?ct=image/tiff#/0>,
                                                                        <ni:///mh;1QEQ6AADxAu3y-T3kAl_Wfo5Vg?ct=image/tiff#/1>;
                                                     nfo:height 120 ;
@@ -44,9 +44,9 @@ _:n1 at:pathObject <file:///example.nef>;
                                                     nfo:verticalResolution 300 ;
                                                     nfo:width 160 ;
                                                     a schema:MediaObject,
-                                                      exif:IFD,
                                                       schema:ImageObject,
-                                                      nfo:Image;
+                                                      nfo:Image,
+                                                      exif:IFD;
                                                     exif:bitsPerSample 12 ;
                                                     exif:cfaPattern "0002000201020001"^^xsd:hexBinary;
                                                     exif:compression 1 ,

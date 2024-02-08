@@ -24,8 +24,8 @@ _:n1 at:pathObject <file:///sample1.nef>;
 <ni:///mh;1QEQ_LXPblRA-_nYj058NrAgfw?ct=application/octet-stream> at:digest <urn:md5:FCB5CF6E5440FBF9D88F4E7C36B0207F>;
                                                                   dcterms:extent "19300180"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ_LXPblRA-_nYj058NrAgfw?ct=application/octet-stream#arw>,
-                                                                                    <ni:///mh;1QEQ_LXPblRA-_nYj058NrAgfw?ct=image/nef>,
-                                                                                    <ni:///mh;1QEQ_LXPblRA-_nYj058NrAgfw?ct=image/tiff>;
+                                                                                    <ni:///mh;1QEQ_LXPblRA-_nYj058NrAgfw?ct=image/tiff>,
+                                                                                    <ni:///mh;1QEQ_LXPblRA-_nYj058NrAgfw?ct=image/nef>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (18.41 MiB)"@en.
 <ni:///mh;1QEQ_LXPblRA-_nYj058NrAgfw?ct=application/octet-stream#arw> <http://ns.adobe.com/photoshop/1.0/DateCreated> "2008-03-15";
@@ -128,7 +128,7 @@ _:n1 at:pathObject <file:///sample1.nef>;
                                                      schema:ImageObject;
                                                    skos:prefLabel "NEF object (212×320)"@en.
 <ni:///mh;1QEQ_LXPblRA-_nYj058NrAgfw?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
-                                                    nfo:colorDepth 24 ;
+                                                    nfo:colorDepth 32 ;
                                                     nfo:height 320 ;
                                                     nfo:horizontalResolution 300 ;
                                                     nfo:verticalResolution 300 ;

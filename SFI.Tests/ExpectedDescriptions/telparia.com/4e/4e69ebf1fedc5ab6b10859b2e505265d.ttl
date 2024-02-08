@@ -132,7 +132,7 @@ _:n1 at:pathObject <file:///example_layers_small.tif>;
                                                     <http://ns.adobe.com/xap/1.0/mm/OriginalDocumentID> "0A5D1088FB0E5EBC9A5FC17986F8A170";
                                                     <http://purl.org/dc/elements/1.1/format> "image/tiff";
                                                     schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
-                                                    nfo:colorDepth 24 ;
+                                                    nfo:colorDepth 32 ;
                                                     nfo:height 333 ;
                                                     nfo:horizontalResolution 300 ;
                                                     nfo:verticalResolution 300 ;
@@ -141,8 +141,8 @@ _:n1 at:pathObject <file:///example_layers_small.tif>;
                                                     a schema:MediaObject,
                                                       nfo:Image,
                                                       schema:ImageObject;
-                                                    skos:prefLabel "TIFF object (500×333)"@en,
-                                                                   "TIFF object (1.03 MiB)"@en.
+                                                    skos:prefLabel "TIFF object (1.03 MiB)"@en,
+                                                                   "TIFF object (500×333)"@en.
 <urn:md5:A99C800201134956B73F9A2637E63D21> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "qZyAAgETSVa3P5omN+Y9IQ=="^^xsd:base64Binary.

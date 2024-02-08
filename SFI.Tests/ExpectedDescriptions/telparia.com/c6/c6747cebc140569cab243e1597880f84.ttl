@@ -23,8 +23,8 @@ _:n1 at:pathObject <file:///church-raw.dng>;
 <file:///church-raw.dng> at:extensionObject <https://w3id.org/uri4uri/suffix/dng>.
 <ni:///mh;1QEQN-XRsg7oxa2db6eOJKMXYg?ct=application/octet-stream> at:digest <urn:md5:37E5D1B20EE8C5AD9D6FA78E24A31762>;
                                                                   dcterms:extent "43676300"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQN-XRsg7oxa2db6eOJKMXYg?ct=application/octet-stream#arw>,
-                                                                                    <ni:///mh;1QEQN-XRsg7oxa2db6eOJKMXYg?ct=image/tiff>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQN-XRsg7oxa2db6eOJKMXYg?ct=image/tiff>,
+                                                                                    <ni:///mh;1QEQN-XRsg7oxa2db6eOJKMXYg?ct=application/octet-stream#arw>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (41.65 MiB)"@en.
 <ni:///mh;1QEQN-XRsg7oxa2db6eOJKMXYg?ct=application/octet-stream#arw> nfo:hasMediaStream <ni:///mh;1QEQN-XRsg7oxa2db6eOJKMXYg?ct=application/octet-stream#arw/0>,
@@ -76,7 +76,7 @@ _:n1 at:pathObject <file:///church-raw.dng>;
                                                                         a nfo:MediaStream;
                                                                         skos:prefLabel "1:Exif SubIFD (7728×4352, 10-bit)".
 <ni:///mh;1QEQN-XRsg7oxa2db6eOJKMXYg?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
-                                                    nfo:colorDepth 24 ;
+                                                    nfo:colorDepth 32 ;
                                                     nfo:height 544 ;
                                                     nfo:horizontalResolution 96 ;
                                                     nfo:verticalResolution 96 ;

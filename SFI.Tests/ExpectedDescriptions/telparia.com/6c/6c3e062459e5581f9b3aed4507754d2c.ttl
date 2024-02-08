@@ -26,7 +26,7 @@ _:n1 at:pathObject <file:///test.tiff>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (497.46 KiB)"@en.
 <ni:///mh;1QEQnZDQFsw2zvaqtVMX-ORoTw?ct=image/tiff> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
-                                                    nfo:colorDepth 24 ;
+                                                    nfo:colorDepth 32 ;
                                                     nfo:hasMediaStream <ni:///mh;1QEQnZDQFsw2zvaqtVMX-ORoTw?ct=image/tiff#/0>,
                                                                        <ni:///mh;1QEQnZDQFsw2zvaqtVMX-ORoTw?ct=image/tiff#/1>;
                                                     nfo:height 600 ;
@@ -34,9 +34,9 @@ _:n1 at:pathObject <file:///test.tiff>;
                                                     nfo:verticalResolution 96 ;
                                                     nfo:width 800 ;
                                                     a schema:MediaObject,
+                                                      exif:IFD,
                                                       schema:ImageObject,
-                                                      nfo:Image,
-                                                      exif:IFD;
+                                                      nfo:Image;
                                                     exif:compression 8 ;
                                                     exif:imageLength 600 ;
                                                     exif:imageWidth 800 ;
@@ -49,8 +49,8 @@ _:n1 at:pathObject <file:///test.tiff>;
                                                                          260990 ;
                                                     exif:stripOffsets 8 ,
                                                                       248116 ;
-                                                    skos:prefLabel "TIFF object (497.46 KiB)"@en,
-                                                                   "TIFF object (800×600)"@en.
+                                                    skos:prefLabel "TIFF object (800×600)"@en,
+                                                                   "TIFF object (497.46 KiB)"@en.
 <ni:///mh;1QEQnZDQFsw2zvaqtVMX-ORoTw?ct=image/tiff#/0> nfo:height 600 ;
                                                        nfo:width 800 ;
                                                        a nfo:MediaStream;

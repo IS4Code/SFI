@@ -38,7 +38,7 @@ _:n1 at:pathObject <file:///RAW_NIKON_D5000.NEF>;
                                                    skos:prefLabel "NEF object (160×120)"@en.
 <ni:///mh;1QEQKazzK2pSx-4jPs-MyMrsBA?ct=image/tiff> <http://ns.microsoft.com/photo/1.0Rating> "0";
                                                     schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
-                                                    nfo:colorDepth 24 ;
+                                                    nfo:colorDepth 32 ;
                                                     nfo:hasMediaStream <ni:///mh;1QEQKazzK2pSx-4jPs-MyMrsBA?ct=image/tiff#/0>,
                                                                        <ni:///mh;1QEQKazzK2pSx-4jPs-MyMrsBA?ct=image/tiff#/1>;
                                                     nfo:height 120 ;
@@ -46,9 +46,9 @@ _:n1 at:pathObject <file:///RAW_NIKON_D5000.NEF>;
                                                     nfo:verticalResolution 300 ;
                                                     nfo:width 160 ;
                                                     a schema:MediaObject,
-                                                      exif:IFD,
                                                       schema:ImageObject,
-                                                      nfo:Image;
+                                                      nfo:Image,
+                                                      exif:IFD;
                                                     exif:bitsPerSample 12 ;
                                                     exif:cfaPattern "0002000201020001"^^xsd:hexBinary;
                                                     exif:compression 1 ,

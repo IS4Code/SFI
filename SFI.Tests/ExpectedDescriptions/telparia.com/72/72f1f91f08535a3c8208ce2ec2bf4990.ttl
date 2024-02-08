@@ -23,8 +23,8 @@ _:n1 at:pathObject <file:///L1004220.DNG>;
 <file:///L1004220.DNG> at:extensionObject <https://w3id.org/uri4uri/suffix/dng>.
 <ni:///mh;1QEQna1XI4Z9iHw2yRnw0q86_A?ct=application/octet-stream> at:digest <urn:md5:9DAD5723867D887C36C919F0D2AF3AFC>;
                                                                   dcterms:extent "18336108"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQna1XI4Z9iHw2yRnw0q86_A?ct=image/dng>,
-                                                                                    <ni:///mh;1QEQna1XI4Z9iHw2yRnw0q86_A?ct=image/tiff>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQna1XI4Z9iHw2yRnw0q86_A?ct=image/tiff>,
+                                                                                    <ni:///mh;1QEQna1XI4Z9iHw2yRnw0q86_A?ct=image/dng>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (17.49 MiB)"@en.
 <ni:///mh;1QEQna1XI4Z9iHw2yRnw0q86_A?ct=image/dng> <http://ns.adobe.com/camera-raw-settings/1.0/AlreadyApplied> "False";
@@ -230,7 +230,7 @@ _:n1 at:pathObject <file:///L1004220.DNG>;
                                                     <http://ns.adobe.com/xap/1.0/ModifyDate> "2009-10-19T15:48:10-07:00";
                                                     <http://ns.adobe.com/xap/1.0/Rating> "0";
                                                     schema:encodingFormat <https://w3id.org/uri4uri/mime/image/tiff>;
-                                                    nfo:colorDepth 24 ;
+                                                    nfo:colorDepth 32 ;
                                                     nfo:hasMediaStream <ni:///mh;1QEQna1XI4Z9iHw2yRnw0q86_A?ct=image/tiff#/0>,
                                                                        <ni:///mh;1QEQna1XI4Z9iHw2yRnw0q86_A?ct=image/tiff#/1>;
                                                     nfo:height 216 ;
@@ -238,9 +238,9 @@ _:n1 at:pathObject <file:///L1004220.DNG>;
                                                     nfo:verticalResolution 72 ;
                                                     nfo:width 320 ;
                                                     a schema:MediaObject,
+                                                      exif:IFD,
                                                       schema:ImageObject,
-                                                      nfo:Image,
-                                                      exif:IFD;
+                                                      nfo:Image;
                                                     exif:bitsPerSample 8 ;
                                                     exif:compression 1 ;
                                                     exif:dateTimeDigitized "2009-10-19T15:48:10.000000"^^xsd:dateTime;
