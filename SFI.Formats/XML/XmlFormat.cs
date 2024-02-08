@@ -99,6 +99,14 @@ namespace IS4.SFI.Formats
             set => ReaderSettings.MaxCharactersInDocument = value;
         }
 
+        /// <summary>
+        /// Whether to prevent accepting files starting with <c>&lt;?php</c> as XML.
+        /// </summary>
+        [Description("Whether to prevent accepting files starting with '<?php' as XML.")]
+        public bool IgnorePhp { get; set; } = true;
+
+        static readonly byte[] phpSignaureBytes = Encoding.ASCII.GetBytes("?php");
+
         /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public XmlFileFormat(string mediaType = "application/xml", string extension = "xml") : base(DataTools.MaxBomLength + 1, mediaType, extension)
         {
@@ -120,6 +128,14 @@ namespace IS4.SFI.Formats
                 case (byte)' ':
                 // XML declaration
                 case (byte)'<':
+                    if(IgnorePhp)
+                    {
+                        if(header.Slice(1).StartsWith(phpSignaureBytes.AsSpan()))
+                        {
+                            // PHP detected
+                            return false;
+                        }
+                    }
                     return true;
                 default: return false;
             }
@@ -133,6 +149,14 @@ namespace IS4.SFI.Formats
             while(reader.NodeType == XmlNodeType.Whitespace || reader.NodeType == XmlNodeType.SignificantWhitespace)
             {
                 if(!await reader.ReadAsync()) return default;
+            }
+            if(IgnorePhp)
+            {
+                if(reader.NodeType == XmlNodeType.ProcessingInstruction && reader.Name == "php")
+                {
+                    // PHP detected
+                    return default;
+                }
             }
             return await resultFactory(reader, args);
         }
