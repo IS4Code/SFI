@@ -235,7 +235,12 @@ namespace IS4.SFI.Analyzers
                 buffer.Write(Data.Array, Data.Offset, 6);
                 for(int i = 0; i < count; i++)
                 {
-                    var info = Data.Slice(6 + i * 14, 14);
+                    int offset = 6 + i * 14;
+                    if(Data.Count < offset + 14)
+                    {
+                        return;
+                    }
+                    var info = Data.Slice(offset, 14);
                     var span = info.AsSpan().MemoryCast<short>();
                     int id = span[6];
                     buffer.Write(info.Array, info.Offset, info.Count - 2);
