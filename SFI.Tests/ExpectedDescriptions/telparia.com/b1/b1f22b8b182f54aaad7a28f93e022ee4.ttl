@@ -3,6 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
@@ -11,14 +12,166 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///PICKLE.002>;
      nie:interpretedAs <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/octet-stream>;
      nfo:fileName "PICKLE.002";
      nfo:fileSize 1125025 ;
      a nfo:FileDataObject.
+<data:,Microsoft%20Windows%20Sound%20System%0D%0AFFFF%2CFFFF%2CFFFF%0D%0A> dcterms:extent "48"^^dt:byte;
+                                                                           a cnt:ContentAsText;
+                                                                           skos:prefLabel "text (48 B)"@en;
+                                                                           cnt:characterEncoding "us-ascii";
+                                                                           cnt:chars """Microsoft Windows Sound System
+FFFF,FFFF,FFFF
+""".
+<data:,Roland%20Sound%20Canvas%0D%0AFFFF%2CFFFF%2CFFFF%0D%0A> dcterms:extent "37"^^dt:byte;
+                                                              a cnt:ContentAsText;
+                                                              skos:prefLabel "text (37 B)"@en;
+                                                              cnt:characterEncoding "us-ascii";
+                                                              cnt:chars """Roland Sound Canvas
+FFFF,FFFF,FFFF
+""".
+<data:,SoundBlaster%20AWE32%0D%0AFFFF%2CFFFF%2CFFFF%0D%0A> dcterms:extent "36"^^dt:byte;
+                                                           a cnt:ContentAsText;
+                                                           skos:prefLabel "text (36 B)"@en;
+                                                           cnt:characterEncoding "us-ascii";
+                                                           cnt:chars """SoundBlaster AWE32
+FFFF,FFFF,FFFF
+""".
+<data:,SoundBlaster%20Pro%20-%20OPL3%0D%0A220%2CFFFF%2CFFFF%0D%0A> dcterms:extent "40"^^dt:byte;
+                                                                   a cnt:ContentAsText;
+                                                                   skos:prefLabel "text (40 B)"@en;
+                                                                   cnt:characterEncoding "us-ascii";
+                                                                   cnt:chars """SoundBlaster Pro - OPL3
+220,FFFF,FFFF
+""".
+<data:,SoundBlaster%20Pro%20-%20Yamaha%0D%0AFFFF%2CFFFF%2CFFFF%0D%0A> dcterms:extent "43"^^dt:byte;
+                                                                      a cnt:ContentAsText;
+                                                                      skos:prefLabel "text (43 B)"@en;
+                                                                      cnt:characterEncoding "us-ascii";
+                                                                      cnt:chars """SoundBlaster Pro - Yamaha
+FFFF,FFFF,FFFF
+""".
+<data:,SoundBlaster%20or%20compatible%0D%0AFFFF%2CFFFF%2CFFFF%0D%0A> dcterms:extent "44"^^dt:byte;
+                                                                     a cnt:ContentAsText;
+                                                                     skos:prefLabel "text (44 B)"@en;
+                                                                     cnt:characterEncoding "us-ascii";
+                                                                     cnt:chars """SoundBlaster or compatible
+FFFF,FFFF,FFFF
+""".
+<data:,Tandy%20Sensation%20OPL3%0D%0AFFFF%2CFFFF%2CFFFF%0D%0A> dcterms:extent "38"^^dt:byte;
+                                                               a cnt:ContentAsText;
+                                                               skos:prefLabel "text (38 B)"@en;
+                                                               cnt:characterEncoding "us-ascii";
+                                                               cnt:chars """Tandy Sensation OPL3
+FFFF,FFFF,FFFF
+""".
+<data:,VESA%20MIDI%20Driver%0D%0AFFFF%2CFFFF%2CFFFF%0D%0A> dcterms:extent "34"^^dt:byte;
+                                                           a cnt:ContentAsText;
+                                                           skos:prefLabel "text (34 B)"@en;
+                                                           cnt:characterEncoding "us-ascii";
+                                                           cnt:chars """VESA MIDI Driver
+FFFF,FFFF,FFFF
+""".
 <file:///PICKLE.002> at:extensionObject <https://w3id.org/uri4uri/suffix/002>.
+<file:///PW.MIS> at:extensionObject <https://w3id.org/uri4uri/suffix/mis>.
+<file:///PW/> at:pathObject <file:///>.
+<file:///PW/PW.MIS> at:pathObject <file:///PW.MIS>.
+<file:///PW/PW1.ARC> at:pathObject <file:///PW1.ARC>.
+<file:///PW/PW1.EXE> at:pathObject <file:///PW1.EXE>.
+<file:///PW/PW1.GF> at:pathObject <file:///PW1.GF>.
+<file:///PW/PW1.LCR> at:pathObject <file:///PW1.LCR>.
+<file:///PW/PW2.EXE> at:pathObject <file:///PW2.EXE>.
+<file:///PW/PW3.EXE> at:pathObject <file:///PW3.EXE>.
+<file:///PW/SBAWE32.ADD> at:pathObject <file:///SBAWE32.ADD>.
+<file:///PW/SBAWE32.ADV> at:pathObject <file:///SBAWE32.ADV>.
+<file:///PW/SBFM.ADD> at:pathObject <file:///SBFM.ADD>.
+<file:///PW/SBFM.ADV> at:pathObject <file:///SBFM.ADV>.
+<file:///PW/SBLASTER.COM> at:pathObject <file:///SBLASTER.COM>.
+<file:///PW/SBP1FM.ADD> at:pathObject <file:///SBP1FM.ADD>.
+<file:///PW/SBP1FM.ADV> at:pathObject <file:///SBP1FM.ADV>.
+<file:///PW/SBP2FM.ADD> at:pathObject <file:///SBP2FM.ADD>.
+<file:///PW/SBP2FM.ADV> at:pathObject <file:///SBP2FM.ADV>.
+<file:///PW/SC32MPU.ADD> at:pathObject <file:///SC32MPU.ADD>.
+<file:///PW/SC32MPU.ADV> at:pathObject <file:///SC32MPU.ADV>.
+<file:///PW/SENSAT.ADD> at:pathObject <file:///SENSAT.ADD>.
+<file:///PW/SENSAT.ADV> at:pathObject <file:///SENSAT.ADV>.
+<file:///PW/SETD.EXE> at:pathObject <file:///SETD.EXE>.
+<file:///PW/SETM.EXE> at:pathObject <file:///SETM.EXE>.
+<file:///PW/SMSND.COM> at:pathObject <file:///SMSND.COM>.
+<file:///PW/SNDSYS.COM> at:pathObject <file:///SNDSYS.COM>.
+<file:///PW/SOURCE.COM> at:pathObject <file:///SOURCE.COM>.
+<file:///PW/SSWAVE.COM> at:pathObject <file:///SSWAVE.COM>.
+<file:///PW/STFX.COM> at:pathObject <file:///STFX.COM>.
+<file:///PW/TANSLTL.COM> at:pathObject <file:///TANSLTL.COM>.
+<file:///PW/VESADIG.ADV> at:pathObject <file:///VESADIG.ADV>.
+<file:///PW/VESAMID.ADD> at:pathObject <file:///VESAMID.ADD>.
+<file:///PW/VESAMID.ADV> at:pathObject <file:///VESAMID.ADV>.
+<file:///PW/VMSND.COM> at:pathObject <file:///VMSND.COM>.
+<file:///PW/WSS.ADD> at:pathObject <file:///WSS.ADD>.
+<file:///PW/WSS.ADV> at:pathObject <file:///WSS.ADV>.
+<file:///PW1.ARC> at:extensionObject <https://w3id.org/uri4uri/suffix/arc>.
+<file:///PW1.EXE> at:extensionObject <https://w3id.org/uri4uri/suffix/exe>.
+<file:///PW1.GF> at:extensionObject <https://w3id.org/uri4uri/suffix/gf>.
+<file:///PW1.LCR> at:extensionObject <https://w3id.org/uri4uri/suffix/lcr>.
+<file:///PW2.EXE> at:extensionObject <https://w3id.org/uri4uri/suffix/exe>.
+<file:///PW3.EXE> at:extensionObject <https://w3id.org/uri4uri/suffix/exe>.
+<file:///SBAWE32.ADD> at:extensionObject <https://w3id.org/uri4uri/suffix/add>.
+<file:///SBAWE32.ADV> at:extensionObject <https://w3id.org/uri4uri/suffix/adv>.
+<file:///SBFM.ADD> at:extensionObject <https://w3id.org/uri4uri/suffix/add>.
+<file:///SBFM.ADV> at:extensionObject <https://w3id.org/uri4uri/suffix/adv>.
+<file:///SBLASTER.COM> at:extensionObject <https://w3id.org/uri4uri/suffix/com>.
+<file:///SBP1FM.ADD> at:extensionObject <https://w3id.org/uri4uri/suffix/add>.
+<file:///SBP1FM.ADV> at:extensionObject <https://w3id.org/uri4uri/suffix/adv>.
+<file:///SBP2FM.ADD> at:extensionObject <https://w3id.org/uri4uri/suffix/add>.
+<file:///SBP2FM.ADV> at:extensionObject <https://w3id.org/uri4uri/suffix/adv>.
+<file:///SC32MPU.ADD> at:extensionObject <https://w3id.org/uri4uri/suffix/add>.
+<file:///SC32MPU.ADV> at:extensionObject <https://w3id.org/uri4uri/suffix/adv>.
+<file:///SENSAT.ADD> at:extensionObject <https://w3id.org/uri4uri/suffix/add>.
+<file:///SENSAT.ADV> at:extensionObject <https://w3id.org/uri4uri/suffix/adv>.
+<file:///SETD.EXE> at:extensionObject <https://w3id.org/uri4uri/suffix/exe>.
+<file:///SETM.EXE> at:extensionObject <https://w3id.org/uri4uri/suffix/exe>.
+<file:///SMSND.COM> at:extensionObject <https://w3id.org/uri4uri/suffix/com>.
+<file:///SNDSYS.COM> at:extensionObject <https://w3id.org/uri4uri/suffix/com>.
+<file:///SOURCE.COM> at:extensionObject <https://w3id.org/uri4uri/suffix/com>.
+<file:///SSWAVE.COM> at:extensionObject <https://w3id.org/uri4uri/suffix/com>.
+<file:///STFX.COM> at:extensionObject <https://w3id.org/uri4uri/suffix/com>.
+<file:///TANSLTL.COM> at:extensionObject <https://w3id.org/uri4uri/suffix/com>.
+<file:///VESADIG.ADV> at:extensionObject <https://w3id.org/uri4uri/suffix/adv>.
+<file:///VESAMID.ADD> at:extensionObject <https://w3id.org/uri4uri/suffix/add>.
+<file:///VESAMID.ADV> at:extensionObject <https://w3id.org/uri4uri/suffix/adv>.
+<file:///VMSND.COM> at:extensionObject <https://w3id.org/uri4uri/suffix/com>.
+<file:///WSS.ADD> at:extensionObject <https://w3id.org/uri4uri/suffix/add>.
+<file:///WSS.ADV> at:extensionObject <https://w3id.org/uri4uri/suffix/adv>.
+<ni:///mh;1QEQ1_B7RaQOhwnWspWfybE0kA?ct=application/octet-stream> at:digest <urn:md5:D7F07B45A40E8709D6B2959FC9B13490>;
+                                                                  dcterms:extent "15153"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (14.8 KiB)"@en.
+<ni:///mh;1QEQ5aJBPpquF2sJUKQ_F6bb0Q?ct=application/octet-stream> at:digest <urn:md5:E5A2413E9AAE176B0950A43F17A6DBD1>;
+                                                                  dcterms:extent "3104"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ5aJBPpquF2sJUKQ_F6bb0Q?ct=application/x-dosexec>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (3.03 KiB)"@en.
+<ni:///mh;1QEQ5aJBPpquF2sJUKQ_F6bb0Q?ct=application/x-dosexec> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-dosexec>;
+                                                               a schema:MediaObject,
+                                                                 schema:SoftwareApplication,
+                                                                 nfo:Executable;
+                                                               skos:prefLabel "COM object (3.03 KiB)"@en.
+<ni:///mh;1QEQDyqPNTEhnTPQlOkrANQaDg?ct=application/octet-stream> at:digest <urn:md5:0F2A8F3531219D33D094E92B00D41A0E>;
+                                                                  dcterms:extent "15991"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (15.62 KiB)"@en.
+<ni:///mh;1QEQFqz3hj9o3f1vuQLMkux3pg?ct=application/octet-stream> at:digest <urn:md5:16ACF7863F68DDFD6FB902CC92EC77A6>;
+                                                                  dcterms:extent "3200"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQFqz3hj9o3f1vuQLMkux3pg?ct=application/x-dosexec>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (3.13 KiB)"@en.
+<ni:///mh;1QEQFqz3hj9o3f1vuQLMkux3pg?ct=application/x-dosexec> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-dosexec>;
+                                                               a schema:MediaObject,
+                                                                 schema:SoftwareApplication,
+                                                                 nfo:Executable;
+                                                               skos:prefLabel "COM object (3.13 KiB)"@en.
 <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/octet-stream> at:digest <urn:md5:1FA1EF4A6F86E31DC7EE28901E58BF91>;
                                                                   dcterms:extent "1125025"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar>;
@@ -28,6 +181,551 @@ _:n1 at:pathObject <file:///PICKLE.002>;
                                                              a schema:MediaObject,
                                                                nfo:Archive;
                                                              skos:prefLabel "RAR object (1.07 MiB)"@en.
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW> at:pathObject <file:///PW>;
+                                                                 nie:interpretedAs <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/>;
+                                                                 nfo:belongsToContainer <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar>;
+                                                                 nfo:fileName "PW";
+                                                                 a nfo:FileDataObject,
+                                                                   nfo:ArchiveItem;
+                                                                 skos:prefLabel "/PW".
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/> at:pathObject <file:///PW/>;
+                                                                  a nfo:Folder;
+                                                                  skos:prefLabel "/PW/".
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/PW.MIS> at:pathObject <file:///PW/PW.MIS>;
+                                                                        nfo:belongsToContainer <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/>;
+                                                                        nfo:fileLastModified "1996-02-10T09:30:56.000000+01:00"^^xsd:dateTime;
+                                                                        nfo:fileName "PW.MIS";
+                                                                        nfo:fileSize 362135 ;
+                                                                        a nfo:FileDataObject,
+                                                                          nfo:ArchiveItem;
+                                                                        skos:prefLabel "/PW/PW.MIS".
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/PW1.ARC> at:pathObject <file:///PW/PW1.ARC>;
+                                                                         nie:interpretedAs <ni:///mh;1QEQnf3Ci8F2JB6dUlQIONZ8WA?ct=application/octet-stream>;
+                                                                         nfo:belongsToContainer <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/>;
+                                                                         nfo:fileLastModified "1996-02-10T09:30:56.000000+01:00"^^xsd:dateTime;
+                                                                         nfo:fileName "PW1.ARC";
+                                                                         nfo:fileSize 626054 ;
+                                                                         a nfo:FileDataObject,
+                                                                           nfo:ArchiveItem;
+                                                                         skos:prefLabel "/PW/PW1.ARC".
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/PW1.EXE> at:pathObject <file:///PW/PW1.EXE>;
+                                                                         nie:interpretedAs <ni:///mh;1QEQRUn1zsnA_B8K1iDr1NWwZQ?ct=application/octet-stream>;
+                                                                         nfo:belongsToContainer <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/>;
+                                                                         nfo:fileLastModified "1996-03-24T14:35:34.000000+01:00"^^xsd:dateTime;
+                                                                         nfo:fileName "PW1.EXE";
+                                                                         nfo:fileSize 259017 ;
+                                                                         a nfo:FileDataObject,
+                                                                           nfo:ArchiveItem;
+                                                                         skos:prefLabel "/PW/PW1.EXE".
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/PW1.GF> at:pathObject <file:///PW/PW1.GF>;
+                                                                        nie:interpretedAs <ni:///mh;1QEQcRYvLR78CPXRk2C5ONt_DQ?ct=application/octet-stream>;
+                                                                        nfo:belongsToContainer <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/>;
+                                                                        nfo:fileLastModified "1996-02-10T09:30:56.000000+01:00"^^xsd:dateTime;
+                                                                        nfo:fileName "PW1.GF";
+                                                                        nfo:fileSize 924000 ;
+                                                                        a nfo:FileDataObject,
+                                                                          nfo:ArchiveItem;
+                                                                        skos:prefLabel "/PW/PW1.GF".
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/PW1.LCR> at:pathObject <file:///PW/PW1.LCR>;
+                                                                         nie:interpretedAs <ni:///mh;1QEQrSbki1qRgT5bYW1QmZ6Heg?ct=application/octet-stream>;
+                                                                         nfo:belongsToContainer <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/>;
+                                                                         nfo:fileLastModified "1996-02-10T09:30:56.000000+01:00"^^xsd:dateTime;
+                                                                         nfo:fileName "PW1.LCR";
+                                                                         nfo:fileSize 192727 ;
+                                                                         a nfo:FileDataObject,
+                                                                           nfo:ArchiveItem;
+                                                                         skos:prefLabel "/PW/PW1.LCR".
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/PW2.EXE> at:pathObject <file:///PW/PW2.EXE>;
+                                                                         nie:interpretedAs <ni:///mh;1QEQknSCnh1hHuYZ5_JVixsRgQ?ct=application/octet-stream>;
+                                                                         nfo:belongsToContainer <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/>;
+                                                                         nfo:fileLastModified "1996-03-24T14:37:32.000000+01:00"^^xsd:dateTime;
+                                                                         nfo:fileName "PW2.EXE";
+                                                                         nfo:fileSize 258997 ;
+                                                                         a nfo:FileDataObject,
+                                                                           nfo:ArchiveItem;
+                                                                         skos:prefLabel "/PW/PW2.EXE".
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/PW3.EXE> at:pathObject <file:///PW/PW3.EXE>;
+                                                                         nie:interpretedAs <ni:///mh;1QEQVKGXQ3URCXFRgN0TLV4sYg?ct=application/octet-stream>;
+                                                                         nfo:belongsToContainer <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/>;
+                                                                         nfo:fileLastModified "1996-03-24T14:45:08.000000+01:00"^^xsd:dateTime;
+                                                                         nfo:fileName "PW3.EXE";
+                                                                         nfo:fileSize 259301 ;
+                                                                         a nfo:FileDataObject,
+                                                                           nfo:ArchiveItem;
+                                                                         skos:prefLabel "/PW/PW3.EXE".
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/SBAWE32.ADD> at:pathObject <file:///PW/SBAWE32.ADD>;
+                                                                             nie:interpretedAs <data:,SoundBlaster%20AWE32%0D%0AFFFF%2CFFFF%2CFFFF%0D%0A>;
+                                                                             nfo:belongsToContainer <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/>;
+                                                                             nfo:fileLastModified "1996-02-10T09:30:56.000000+01:00"^^xsd:dateTime;
+                                                                             nfo:fileName "SBAWE32.ADD";
+                                                                             nfo:fileSize 36 ;
+                                                                             a nfo:FileDataObject,
+                                                                               nfo:ArchiveItem;
+                                                                             skos:prefLabel "/PW/SBAWE32.ADD".
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/SBAWE32.ADV> at:pathObject <file:///PW/SBAWE32.ADV>;
+                                                                             nie:interpretedAs <ni:///mh;1QEQMwNt85xdraJxFRNvNKQcUQ?ct=application/octet-stream>;
+                                                                             nfo:belongsToContainer <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/>;
+                                                                             nfo:fileLastModified "1996-02-10T09:30:56.000000+01:00"^^xsd:dateTime;
+                                                                             nfo:fileName "SBAWE32.ADV";
+                                                                             nfo:fileSize 39843 ;
+                                                                             a nfo:FileDataObject,
+                                                                               nfo:ArchiveItem;
+                                                                             skos:prefLabel "/PW/SBAWE32.ADV".
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/SBFM.ADD> at:pathObject <file:///PW/SBFM.ADD>;
+                                                                          nie:interpretedAs <data:,SoundBlaster%20or%20compatible%0D%0AFFFF%2CFFFF%2CFFFF%0D%0A>;
+                                                                          nfo:belongsToContainer <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/>;
+                                                                          nfo:fileLastModified "1996-02-10T09:30:56.000000+01:00"^^xsd:dateTime;
+                                                                          nfo:fileName "SBFM.ADD";
+                                                                          nfo:fileSize 44 ;
+                                                                          a nfo:FileDataObject,
+                                                                            nfo:ArchiveItem;
+                                                                          skos:prefLabel "/PW/SBFM.ADD".
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/SBFM.ADV> at:pathObject <file:///PW/SBFM.ADV>;
+                                                                          nie:interpretedAs <ni:///mh;1QEQuEw_bilP-yMFGID85_UK3w?ct=application/octet-stream>;
+                                                                          nfo:belongsToContainer <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/>;
+                                                                          nfo:fileLastModified "1996-02-10T09:30:56.000000+01:00"^^xsd:dateTime;
+                                                                          nfo:fileName "SBFM.ADV";
+                                                                          nfo:fileSize 14743 ;
+                                                                          a nfo:FileDataObject,
+                                                                            nfo:ArchiveItem;
+                                                                          skos:prefLabel "/PW/SBFM.ADV".
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/SBLASTER.COM> at:pathObject <file:///PW/SBLASTER.COM>;
+                                                                              nie:interpretedAs <ni:///mh;1QEQzIgj_IHu8wuysUBntJ8Www?ct=application/octet-stream>;
+                                                                              nfo:belongsToContainer <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/>;
+                                                                              nfo:fileLastModified "1996-02-10T09:30:56.000000+01:00"^^xsd:dateTime;
+                                                                              nfo:fileName "SBLASTER.COM";
+                                                                              nfo:fileSize 4560 ;
+                                                                              a nfo:FileDataObject,
+                                                                                nfo:ArchiveItem;
+                                                                              skos:prefLabel "/PW/SBLASTER.COM".
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/SBP1FM.ADD> at:pathObject <file:///PW/SBP1FM.ADD>;
+                                                                            nie:interpretedAs <data:,SoundBlaster%20Pro%20-%20Yamaha%0D%0AFFFF%2CFFFF%2CFFFF%0D%0A>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/>;
+                                                                            nfo:fileLastModified "1996-02-10T09:30:56.000000+01:00"^^xsd:dateTime;
+                                                                            nfo:fileName "SBP1FM.ADD";
+                                                                            nfo:fileSize 43 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/PW/SBP1FM.ADD".
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/SBP1FM.ADV> at:pathObject <file:///PW/SBP1FM.ADV>;
+                                                                            nie:interpretedAs <ni:///mh;1QEQ1_B7RaQOhwnWspWfybE0kA?ct=application/octet-stream>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/>;
+                                                                            nfo:fileLastModified "1996-02-10T09:30:56.000000+01:00"^^xsd:dateTime;
+                                                                            nfo:fileName "SBP1FM.ADV";
+                                                                            nfo:fileSize 15153 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/PW/SBP1FM.ADV".
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/SBP2FM.ADD> at:pathObject <file:///PW/SBP2FM.ADD>;
+                                                                            nie:interpretedAs <data:,SoundBlaster%20Pro%20-%20OPL3%0D%0A220%2CFFFF%2CFFFF%0D%0A>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/>;
+                                                                            nfo:fileLastModified "1996-02-10T09:30:56.000000+01:00"^^xsd:dateTime;
+                                                                            nfo:fileName "SBP2FM.ADD";
+                                                                            nfo:fileSize 40 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/PW/SBP2FM.ADD".
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/SBP2FM.ADV> at:pathObject <file:///PW/SBP2FM.ADV>;
+                                                                            nie:interpretedAs <ni:///mh;1QEQykccZdB8ygcglKDLNpwUBA?ct=application/octet-stream>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/>;
+                                                                            nfo:fileLastModified "1996-02-10T09:30:56.000000+01:00"^^xsd:dateTime;
+                                                                            nfo:fileName "SBP2FM.ADV";
+                                                                            nfo:fileSize 16263 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/PW/SBP2FM.ADV".
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/SC32MPU.ADD> at:pathObject <file:///PW/SC32MPU.ADD>;
+                                                                             nie:interpretedAs <data:,Roland%20Sound%20Canvas%0D%0AFFFF%2CFFFF%2CFFFF%0D%0A>;
+                                                                             nfo:belongsToContainer <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/>;
+                                                                             nfo:fileLastModified "1996-02-10T09:30:56.000000+01:00"^^xsd:dateTime;
+                                                                             nfo:fileName "SC32MPU.ADD";
+                                                                             nfo:fileSize 37 ;
+                                                                             a nfo:FileDataObject,
+                                                                               nfo:ArchiveItem;
+                                                                             skos:prefLabel "/PW/SC32MPU.ADD".
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/SC32MPU.ADV> at:pathObject <file:///PW/SC32MPU.ADV>;
+                                                                             nie:interpretedAs <ni:///mh;1QEQgxy8p-6kSj6kItL75JjC1Q?ct=application/octet-stream>;
+                                                                             nfo:belongsToContainer <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/>;
+                                                                             nfo:fileLastModified "1996-02-10T09:30:56.000000+01:00"^^xsd:dateTime;
+                                                                             nfo:fileName "SC32MPU.ADV";
+                                                                             nfo:fileSize 10590 ;
+                                                                             a nfo:FileDataObject,
+                                                                               nfo:ArchiveItem;
+                                                                             skos:prefLabel "/PW/SC32MPU.ADV".
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/SENSAT.ADD> at:pathObject <file:///PW/SENSAT.ADD>;
+                                                                            nie:interpretedAs <data:,Tandy%20Sensation%20OPL3%0D%0AFFFF%2CFFFF%2CFFFF%0D%0A>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/>;
+                                                                            nfo:fileLastModified "1996-02-10T09:30:56.000000+01:00"^^xsd:dateTime;
+                                                                            nfo:fileName "SENSAT.ADD";
+                                                                            nfo:fileSize 38 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/PW/SENSAT.ADD".
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/SENSAT.ADV> at:pathObject <file:///PW/SENSAT.ADV>;
+                                                                            nie:interpretedAs <ni:///mh;1QEQDyqPNTEhnTPQlOkrANQaDg?ct=application/octet-stream>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/>;
+                                                                            nfo:fileLastModified "1996-02-10T09:30:56.000000+01:00"^^xsd:dateTime;
+                                                                            nfo:fileName "SENSAT.ADV";
+                                                                            nfo:fileSize 15991 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/PW/SENSAT.ADV".
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/SETD.EXE> at:pathObject <file:///PW/SETD.EXE>;
+                                                                          nie:interpretedAs <ni:///mh;1QEQigx9fauZi1lCTO0OiLbDFw?ct=application/octet-stream>;
+                                                                          nfo:belongsToContainer <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/>;
+                                                                          nfo:fileLastModified "1996-02-10T09:30:56.000000+01:00"^^xsd:dateTime;
+                                                                          nfo:fileName "SETD.EXE";
+                                                                          nfo:fileSize 85846 ;
+                                                                          a nfo:FileDataObject,
+                                                                            nfo:ArchiveItem;
+                                                                          skos:prefLabel "/PW/SETD.EXE".
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/SETM.EXE> at:pathObject <file:///PW/SETM.EXE>;
+                                                                          nie:interpretedAs <ni:///mh;1QEQUvXRSAIIjfAJgt17wf2wqg?ct=application/octet-stream>;
+                                                                          nfo:belongsToContainer <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/>;
+                                                                          nfo:fileLastModified "1996-02-10T09:30:56.000000+01:00"^^xsd:dateTime;
+                                                                          nfo:fileName "SETM.EXE";
+                                                                          nfo:fileSize 86842 ;
+                                                                          a nfo:FileDataObject,
+                                                                            nfo:ArchiveItem;
+                                                                          skos:prefLabel "/PW/SETM.EXE".
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/SMSND.COM> at:pathObject <file:///PW/SMSND.COM>;
+                                                                           nie:interpretedAs <ni:///mh;1QEQ5aJBPpquF2sJUKQ_F6bb0Q?ct=application/octet-stream>;
+                                                                           nfo:belongsToContainer <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/>;
+                                                                           nfo:fileLastModified "1996-02-10T09:30:56.000000+01:00"^^xsd:dateTime;
+                                                                           nfo:fileName "SMSND.COM";
+                                                                           nfo:fileSize 3104 ;
+                                                                           a nfo:FileDataObject,
+                                                                             nfo:ArchiveItem;
+                                                                           skos:prefLabel "/PW/SMSND.COM".
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/SNDSYS.COM> at:pathObject <file:///PW/SNDSYS.COM>;
+                                                                            nie:interpretedAs <ni:///mh;1QEQZOGGzlwdlQaUTkmcW_Tnnw?ct=application/octet-stream>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/>;
+                                                                            nfo:fileLastModified "1996-02-10T09:30:56.000000+01:00"^^xsd:dateTime;
+                                                                            nfo:fileName "SNDSYS.COM";
+                                                                            nfo:fileSize 6115 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/PW/SNDSYS.COM".
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/SOURCE.COM> at:pathObject <file:///PW/SOURCE.COM>;
+                                                                            nie:interpretedAs <ni:///mh;1QEQMgCkt_IHKLaKVJB3vu5Ibg?ct=application/octet-stream>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/>;
+                                                                            nfo:fileLastModified "1996-02-10T09:30:56.000000+01:00"^^xsd:dateTime;
+                                                                            nfo:fileName "SOURCE.COM";
+                                                                            nfo:fileSize 3424 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/PW/SOURCE.COM".
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/SSWAVE.COM> at:pathObject <file:///PW/SSWAVE.COM>;
+                                                                            nie:interpretedAs <ni:///mh;1QEQsK6xsrxlvcTELlCixg58jw?ct=application/octet-stream>;
+                                                                            nfo:belongsToContainer <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/>;
+                                                                            nfo:fileLastModified "1996-02-10T09:30:56.000000+01:00"^^xsd:dateTime;
+                                                                            nfo:fileName "SSWAVE.COM";
+                                                                            nfo:fileSize 5201 ;
+                                                                            a nfo:FileDataObject,
+                                                                              nfo:ArchiveItem;
+                                                                            skos:prefLabel "/PW/SSWAVE.COM".
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/STFX.COM> at:pathObject <file:///PW/STFX.COM>;
+                                                                          nie:interpretedAs <ni:///mh;1QEQsdo4QomnprNpIuvNfN0SqQ?ct=application/octet-stream>;
+                                                                          nfo:belongsToContainer <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/>;
+                                                                          nfo:fileLastModified "1996-02-10T09:30:56.000000+01:00"^^xsd:dateTime;
+                                                                          nfo:fileName "STFX.COM";
+                                                                          nfo:fileSize 4592 ;
+                                                                          a nfo:FileDataObject,
+                                                                            nfo:ArchiveItem;
+                                                                          skos:prefLabel "/PW/STFX.COM".
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/TANSLTL.COM> at:pathObject <file:///PW/TANSLTL.COM>;
+                                                                             nie:interpretedAs <ni:///mh;1QEQFqz3hj9o3f1vuQLMkux3pg?ct=application/octet-stream>;
+                                                                             nfo:belongsToContainer <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/>;
+                                                                             nfo:fileLastModified "1996-02-10T09:30:56.000000+01:00"^^xsd:dateTime;
+                                                                             nfo:fileName "TANSLTL.COM";
+                                                                             nfo:fileSize 3200 ;
+                                                                             a nfo:FileDataObject,
+                                                                               nfo:ArchiveItem;
+                                                                             skos:prefLabel "/PW/TANSLTL.COM".
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/VESADIG.ADV> at:pathObject <file:///PW/VESADIG.ADV>;
+                                                                             nie:interpretedAs <ni:///mh;1QEQbBnKmlTMVWJO2oUL7oQ1zA?ct=application/octet-stream>;
+                                                                             nfo:belongsToContainer <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/>;
+                                                                             nfo:fileLastModified "1996-02-10T09:30:56.000000+01:00"^^xsd:dateTime;
+                                                                             nfo:fileName "VESADIG.ADV";
+                                                                             nfo:fileSize 6288 ;
+                                                                             a nfo:FileDataObject,
+                                                                               nfo:ArchiveItem;
+                                                                             skos:prefLabel "/PW/VESADIG.ADV".
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/VESAMID.ADD> at:pathObject <file:///PW/VESAMID.ADD>;
+                                                                             nie:interpretedAs <data:,VESA%20MIDI%20Driver%0D%0AFFFF%2CFFFF%2CFFFF%0D%0A>;
+                                                                             nfo:belongsToContainer <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/>;
+                                                                             nfo:fileLastModified "1996-02-10T09:30:56.000000+01:00"^^xsd:dateTime;
+                                                                             nfo:fileName "VESAMID.ADD";
+                                                                             nfo:fileSize 34 ;
+                                                                             a nfo:FileDataObject,
+                                                                               nfo:ArchiveItem;
+                                                                             skos:prefLabel "/PW/VESAMID.ADD".
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/VESAMID.ADV> at:pathObject <file:///PW/VESAMID.ADV>;
+                                                                             nie:interpretedAs <ni:///mh;1QEQo20WLlyoKw8BPo7-Ki5Irw?ct=application/octet-stream>;
+                                                                             nfo:belongsToContainer <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/>;
+                                                                             nfo:fileLastModified "1996-02-10T09:30:56.000000+01:00"^^xsd:dateTime;
+                                                                             nfo:fileName "VESAMID.ADV";
+                                                                             nfo:fileSize 12352 ;
+                                                                             a nfo:FileDataObject,
+                                                                               nfo:ArchiveItem;
+                                                                             skos:prefLabel "/PW/VESAMID.ADV".
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/VMSND.COM> at:pathObject <file:///PW/VMSND.COM>;
+                                                                           nie:interpretedAs <ni:///mh;1QEQL7X_Bk_eqNpxACglIalbsQ?ct=application/octet-stream>;
+                                                                           nfo:belongsToContainer <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/>;
+                                                                           nfo:fileLastModified "1996-02-10T09:30:56.000000+01:00"^^xsd:dateTime;
+                                                                           nfo:fileName "VMSND.COM";
+                                                                           nfo:fileSize 3104 ;
+                                                                           a nfo:FileDataObject,
+                                                                             nfo:ArchiveItem;
+                                                                           skos:prefLabel "/PW/VMSND.COM".
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/WSS.ADD> at:pathObject <file:///PW/WSS.ADD>;
+                                                                         nie:interpretedAs <data:,Microsoft%20Windows%20Sound%20System%0D%0AFFFF%2CFFFF%2CFFFF%0D%0A>;
+                                                                         nfo:belongsToContainer <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/>;
+                                                                         nfo:fileLastModified "1996-02-10T09:30:56.000000+01:00"^^xsd:dateTime;
+                                                                         nfo:fileName "WSS.ADD";
+                                                                         nfo:fileSize 48 ;
+                                                                         a nfo:FileDataObject,
+                                                                           nfo:ArchiveItem;
+                                                                         skos:prefLabel "/PW/WSS.ADD".
+<ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/WSS.ADV> at:pathObject <file:///PW/WSS.ADV>;
+                                                                         nie:interpretedAs <ni:///mh;1QEQDyqPNTEhnTPQlOkrANQaDg?ct=application/octet-stream>;
+                                                                         nfo:belongsToContainer <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/>;
+                                                                         nfo:fileLastModified "1996-02-10T09:30:56.000000+01:00"^^xsd:dateTime;
+                                                                         nfo:fileName "WSS.ADV";
+                                                                         nfo:fileSize 15991 ;
+                                                                         a nfo:FileDataObject,
+                                                                           nfo:ArchiveItem;
+                                                                         skos:prefLabel "/PW/WSS.ADV".
+<ni:///mh;1QEQL7X_Bk_eqNpxACglIalbsQ?ct=application/octet-stream> at:digest <urn:md5:2FB5FF064FDEA8DA7100282521A95BB1>;
+                                                                  dcterms:extent "3104"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQL7X_Bk_eqNpxACglIalbsQ?ct=application/x-dosexec>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (3.03 KiB)"@en.
+<ni:///mh;1QEQL7X_Bk_eqNpxACglIalbsQ?ct=application/x-dosexec> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-dosexec>;
+                                                               a schema:MediaObject,
+                                                                 schema:SoftwareApplication,
+                                                                 nfo:Executable;
+                                                               skos:prefLabel "COM object (3.03 KiB)"@en.
+<ni:///mh;1QEQMgCkt_IHKLaKVJB3vu5Ibg?ct=application/octet-stream> at:digest <urn:md5:3200A4B7F20728B68A549077BEEE486E>;
+                                                                  dcterms:extent "3424"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQMgCkt_IHKLaKVJB3vu5Ibg?ct=application/x-dosexec>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (3.34 KiB)"@en.
+<ni:///mh;1QEQMgCkt_IHKLaKVJB3vu5Ibg?ct=application/x-dosexec> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-dosexec>;
+                                                               a schema:MediaObject,
+                                                                 schema:SoftwareApplication,
+                                                                 nfo:Executable;
+                                                               skos:prefLabel "COM object (3.34 KiB)"@en.
+<ni:///mh;1QEQMwNt85xdraJxFRNvNKQcUQ?ct=application/octet-stream> at:digest <urn:md5:33036DF39C5DADA27115136F34A41C51>;
+                                                                  dcterms:extent "39843"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (38.91 KiB)"@en.
+<ni:///mh;1QEQRUn1zsnA_B8K1iDr1NWwZQ?ct=application/octet-stream> at:digest <urn:md5:4549F5CEC9C0FC1F0AD620EBD4D5B065>;
+                                                                  dcterms:extent "259017"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQRUn1zsnA_B8K1iDr1NWwZQ?ct=application/x-msdos-program>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (252.95 KiB)"@en.
+<ni:///mh;1QEQRUn1zsnA_B8K1iDr1NWwZQ?ct=application/x-msdos-program> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-msdos-program>;
+                                                                     a schema:MediaObject,
+                                                                       schema:SoftwareApplication,
+                                                                       nfo:Executable;
+                                                                     skos:prefLabel "EXE object (252.95 KiB)"@en.
+<ni:///mh;1QEQUvXRSAIIjfAJgt17wf2wqg?ct=application/octet-stream> at:digest <urn:md5:52F5D14802088DF00982DD7BC1FDB0AA>;
+                                                                  dcterms:extent "86842"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQUvXRSAIIjfAJgt17wf2wqg?ct=application/x-msdos-program>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (84.81 KiB)"@en.
+<ni:///mh;1QEQUvXRSAIIjfAJgt17wf2wqg?ct=application/x-msdos-program> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-msdos-program>;
+                                                                     a schema:MediaObject,
+                                                                       schema:SoftwareApplication,
+                                                                       nfo:Executable;
+                                                                     skos:prefLabel "EXE object (84.81 KiB)"@en.
+<ni:///mh;1QEQVKGXQ3URCXFRgN0TLV4sYg?ct=application/octet-stream> at:digest <urn:md5:54A19743751109715180DD132D5E2C62>;
+                                                                  dcterms:extent "259301"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQVKGXQ3URCXFRgN0TLV4sYg?ct=application/x-msdos-program>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (253.22 KiB)"@en.
+<ni:///mh;1QEQVKGXQ3URCXFRgN0TLV4sYg?ct=application/x-msdos-program> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-msdos-program>;
+                                                                     a schema:MediaObject,
+                                                                       schema:SoftwareApplication,
+                                                                       nfo:Executable;
+                                                                     skos:prefLabel "EXE object (253.22 KiB)"@en.
+<ni:///mh;1QEQZOGGzlwdlQaUTkmcW_Tnnw?ct=application/octet-stream> at:digest <urn:md5:64E186CE5C1D9506944E499C5BF4E79F>;
+                                                                  dcterms:extent "6115"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQZOGGzlwdlQaUTkmcW_Tnnw?ct=application/x-dosexec>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (5.97 KiB)"@en.
+<ni:///mh;1QEQZOGGzlwdlQaUTkmcW_Tnnw?ct=application/x-dosexec> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-dosexec>;
+                                                               a schema:MediaObject,
+                                                                 schema:SoftwareApplication,
+                                                                 nfo:Executable;
+                                                               skos:prefLabel "COM object (5.97 KiB)"@en.
+<ni:///mh;1QEQbBnKmlTMVWJO2oUL7oQ1zA?ct=application/octet-stream> at:digest <urn:md5:6C19CA9A54CC55624EDA850BEE8435CC>;
+                                                                  dcterms:extent "6288"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (6.14 KiB)"@en.
+<ni:///mh;1QEQcRYvLR78CPXRk2C5ONt_DQ?ct=application/octet-stream> at:digest <urn:md5:71162F2D1EFC08F5D19360B938DB7F0D>;
+                                                                  dcterms:extent "924000"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQcRYvLR78CPXRk2C5ONt_DQ?ct=application/prs.implied-structure;signature=F0>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (902.34 KiB)"@en.
+<ni:///mh;1QEQcRYvLR78CPXRk2C5ONt_DQ?ct=application/prs.implied-structure;signature=F0> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=F0>;
+                                                                                        a schema:MediaObject;
+                                                                                        skos:prefLabel "F0 object (902.34 KiB)"@en.
+<ni:///mh;1QEQgxy8p-6kSj6kItL75JjC1Q?ct=application/octet-stream> at:digest <urn:md5:831CBCA7EEA44A3EA422D2FBE498C2D5>;
+                                                                  dcterms:extent "10590"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (10.34 KiB)"@en.
+<ni:///mh;1QEQigx9fauZi1lCTO0OiLbDFw?ct=application/octet-stream> at:digest <urn:md5:8A0C7D7DAB998B59424CED0E88B6C317>;
+                                                                  dcterms:extent "85846"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQigx9fauZi1lCTO0OiLbDFw?ct=application/x-msdos-program>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (83.83 KiB)"@en.
+<ni:///mh;1QEQigx9fauZi1lCTO0OiLbDFw?ct=application/x-msdos-program> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-msdos-program>;
+                                                                     a schema:MediaObject,
+                                                                       schema:SoftwareApplication,
+                                                                       nfo:Executable;
+                                                                     skos:prefLabel "EXE object (83.83 KiB)"@en.
+<ni:///mh;1QEQknSCnh1hHuYZ5_JVixsRgQ?ct=application/octet-stream> at:digest <urn:md5:9274829E1D611EE619E7F2558B1B1181>;
+                                                                  dcterms:extent "258997"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQknSCnh1hHuYZ5_JVixsRgQ?ct=application/x-msdos-program>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (252.93 KiB)"@en.
+<ni:///mh;1QEQknSCnh1hHuYZ5_JVixsRgQ?ct=application/x-msdos-program> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-msdos-program>;
+                                                                     a schema:MediaObject,
+                                                                       schema:SoftwareApplication,
+                                                                       nfo:Executable;
+                                                                     skos:prefLabel "EXE object (252.93 KiB)"@en.
+<ni:///mh;1QEQnf3Ci8F2JB6dUlQIONZ8WA?ct=application/octet-stream> at:digest <urn:md5:9DFDC28BC176241E9D52540838D67C58>;
+                                                                  dcterms:extent "626054"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQnf3Ci8F2JB6dUlQIONZ8WA?ct=application/prs.implied-structure;signature=PW1>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (611.38 KiB)"@en.
+<ni:///mh;1QEQnf3Ci8F2JB6dUlQIONZ8WA?ct=application/prs.implied-structure;signature=PW1> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=PW1>;
+                                                                                         a schema:MediaObject;
+                                                                                         skos:prefLabel "PW1 object (611.38 KiB)"@en.
+<ni:///mh;1QEQo20WLlyoKw8BPo7-Ki5Irw?ct=application/octet-stream> at:digest <urn:md5:A36D162E5CA82B0F013E8EFE2A2E48AF>;
+                                                                  dcterms:extent "12352"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (12.06 KiB)"@en.
+<ni:///mh;1QEQrSbki1qRgT5bYW1QmZ6Heg?ct=application/octet-stream> at:digest <urn:md5:AD26E48B5A91813E5B616D50999E877A>;
+                                                                  dcterms:extent "192727"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQrSbki1qRgT5bYW1QmZ6Heg?ct=application/prs.implied-structure;signature=PW1>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (188.21 KiB)"@en.
+<ni:///mh;1QEQrSbki1qRgT5bYW1QmZ6Heg?ct=application/prs.implied-structure;signature=PW1> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-structure;signature=PW1>;
+                                                                                         a schema:MediaObject;
+                                                                                         skos:prefLabel "PW1 object (188.21 KiB)"@en.
+<ni:///mh;1QEQsK6xsrxlvcTELlCixg58jw?ct=application/octet-stream> at:digest <urn:md5:B0AEB1B2BC65BDC4C42E50A2C60E7C8F>;
+                                                                  dcterms:extent "5201"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQsK6xsrxlvcTELlCixg58jw?ct=application/x-dosexec>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (5.08 KiB)"@en.
+<ni:///mh;1QEQsK6xsrxlvcTELlCixg58jw?ct=application/x-dosexec> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-dosexec>;
+                                                               a schema:MediaObject,
+                                                                 schema:SoftwareApplication,
+                                                                 nfo:Executable;
+                                                               skos:prefLabel "COM object (5.08 KiB)"@en.
+<ni:///mh;1QEQsdo4QomnprNpIuvNfN0SqQ?ct=application/octet-stream> at:digest <urn:md5:B1DA384289A7A6B36922EBCD7CDD12A9>;
+                                                                  dcterms:extent "4592"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQsdo4QomnprNpIuvNfN0SqQ?ct=application/x-dosexec>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (4.48 KiB)"@en.
+<ni:///mh;1QEQsdo4QomnprNpIuvNfN0SqQ?ct=application/x-dosexec> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-dosexec>;
+                                                               a schema:MediaObject,
+                                                                 schema:SoftwareApplication,
+                                                                 nfo:Executable;
+                                                               skos:prefLabel "COM object (4.48 KiB)"@en.
+<ni:///mh;1QEQuEw_bilP-yMFGID85_UK3w?ct=application/octet-stream> at:digest <urn:md5:B84C3F6E294FFB23051880FCE7F50ADF>;
+                                                                  dcterms:extent "14743"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (14.4 KiB)"@en.
+<ni:///mh;1QEQykccZdB8ygcglKDLNpwUBA?ct=application/octet-stream> at:digest <urn:md5:CA471C65D07CCA072094A0CB369C1404>;
+                                                                  dcterms:extent "16263"^^dt:byte;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (15.88 KiB)"@en.
+<ni:///mh;1QEQzIgj_IHu8wuysUBntJ8Www?ct=application/octet-stream> at:digest <urn:md5:CC8823FC81EEF30BB2B14067B49F16C3>;
+                                                                  dcterms:extent "4560"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQzIgj_IHu8wuysUBntJ8Www?ct=application/x-dosexec>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (4.45 KiB)"@en.
+<ni:///mh;1QEQzIgj_IHu8wuysUBntJ8Www?ct=application/x-dosexec> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-dosexec>;
+                                                               a schema:MediaObject,
+                                                                 schema:SoftwareApplication,
+                                                                 nfo:Executable;
+                                                               skos:prefLabel "COM object (4.45 KiB)"@en.
+<urn:md5:0F2A8F3531219D33D094E92B00D41A0E> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "DyqPNTEhnTPQlOkrANQaDg=="^^xsd:base64Binary.
+<urn:md5:16ACF7863F68DDFD6FB902CC92EC77A6> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "Fqz3hj9o3f1vuQLMkux3pg=="^^xsd:base64Binary.
 <urn:md5:1FA1EF4A6F86E31DC7EE28901E58BF91> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "H6HvSm+G4x3H7iiQHli/kQ=="^^xsd:base64Binary.
+<urn:md5:2FB5FF064FDEA8DA7100282521A95BB1> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "L7X/Bk/eqNpxACglIalbsQ=="^^xsd:base64Binary.
+<urn:md5:3200A4B7F20728B68A549077BEEE486E> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "MgCkt/IHKLaKVJB3vu5Ibg=="^^xsd:base64Binary.
+<urn:md5:33036DF39C5DADA27115136F34A41C51> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "MwNt85xdraJxFRNvNKQcUQ=="^^xsd:base64Binary.
+<urn:md5:4549F5CEC9C0FC1F0AD620EBD4D5B065> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "RUn1zsnA/B8K1iDr1NWwZQ=="^^xsd:base64Binary.
+<urn:md5:52F5D14802088DF00982DD7BC1FDB0AA> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "UvXRSAIIjfAJgt17wf2wqg=="^^xsd:base64Binary.
+<urn:md5:54A19743751109715180DD132D5E2C62> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "VKGXQ3URCXFRgN0TLV4sYg=="^^xsd:base64Binary.
+<urn:md5:64E186CE5C1D9506944E499C5BF4E79F> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "ZOGGzlwdlQaUTkmcW/Tnnw=="^^xsd:base64Binary.
+<urn:md5:6C19CA9A54CC55624EDA850BEE8435CC> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "bBnKmlTMVWJO2oUL7oQ1zA=="^^xsd:base64Binary.
+<urn:md5:71162F2D1EFC08F5D19360B938DB7F0D> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "cRYvLR78CPXRk2C5ONt/DQ=="^^xsd:base64Binary.
+<urn:md5:831CBCA7EEA44A3EA422D2FBE498C2D5> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "gxy8p+6kSj6kItL75JjC1Q=="^^xsd:base64Binary.
+<urn:md5:8A0C7D7DAB998B59424CED0E88B6C317> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "igx9fauZi1lCTO0OiLbDFw=="^^xsd:base64Binary.
+<urn:md5:9274829E1D611EE619E7F2558B1B1181> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "knSCnh1hHuYZ5/JVixsRgQ=="^^xsd:base64Binary.
+<urn:md5:9DFDC28BC176241E9D52540838D67C58> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "nf3Ci8F2JB6dUlQIONZ8WA=="^^xsd:base64Binary.
+<urn:md5:A36D162E5CA82B0F013E8EFE2A2E48AF> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "o20WLlyoKw8BPo7+Ki5Irw=="^^xsd:base64Binary.
+<urn:md5:AD26E48B5A91813E5B616D50999E877A> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "rSbki1qRgT5bYW1QmZ6Heg=="^^xsd:base64Binary.
+<urn:md5:B0AEB1B2BC65BDC4C42E50A2C60E7C8F> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "sK6xsrxlvcTELlCixg58jw=="^^xsd:base64Binary.
+<urn:md5:B1DA384289A7A6B36922EBCD7CDD12A9> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "sdo4QomnprNpIuvNfN0SqQ=="^^xsd:base64Binary.
+<urn:md5:B84C3F6E294FFB23051880FCE7F50ADF> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "uEw/bilP+yMFGID85/UK3w=="^^xsd:base64Binary.
+<urn:md5:CA471C65D07CCA072094A0CB369C1404> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "ykccZdB8ygcglKDLNpwUBA=="^^xsd:base64Binary.
+<urn:md5:CC8823FC81EEF30BB2B14067B49F16C3> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "zIgj/IHu8wuysUBntJ8Www=="^^xsd:base64Binary.
+<urn:md5:D7F07B45A40E8709D6B2959FC9B13490> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "1/B7RaQOhwnWspWfybE0kA=="^^xsd:base64Binary.
+<urn:md5:E5A2413E9AAE176B0950A43F17A6DBD1> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "5aJBPpquF2sJUKQ/F6bb0Q=="^^xsd:base64Binary.

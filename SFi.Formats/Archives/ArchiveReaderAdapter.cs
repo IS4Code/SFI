@@ -69,7 +69,11 @@ namespace IS4.SFI.Formats.Archives
             }catch(IncompleteArchiveException)
             {
                 IsComplete = false;
-                throw;
+                return false;
+            }catch(MultiVolumeExtractionException)
+            {
+                IsComplete = false;
+                return false;
             }
         }
 

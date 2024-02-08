@@ -3,6 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
@@ -11,14 +12,114 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix dbo: <http://dbpedia.org/ontology/>.
 
 _:n1 at:pathObject <file:///ZIPCRACK.RAR>;
      nie:interpretedAs <ni:///mh;1QEQUI8tSESp6R2hZ5Cd7dKd8g?ct=application/octet-stream>;
      nfo:fileName "ZIPCRACK.RAR";
      nfo:fileSize 1457500 ;
      a nfo:FileDataObject.
+<data:application/octet-stream;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAACAA==> dcterms:extent "34"^^dt:byte;
+                                                                                        dcterms:hasFormat <data:image/x-icon;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAACAA==>;
+                                                                                        a cnt:ContentAsBase64;
+                                                                                        skos:prefLabel "binary data (34 B)"@en;
+                                                                                        cnt:bytes "AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAACAA=="^^xsd:base64Binary.
+<data:image/x-icon;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAACAA==> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/x-icon>;
+                                                                            nfo:hasMediaStream <data:image/x-icon;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAACAA==#/0>,
+                                                                                               <data:image/x-icon;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAACAA==#/1>;
+                                                                            a schema:MediaObject,
+                                                                              schema:ImageObject,
+                                                                              nfo:Image;
+                                                                            skos:prefLabel "ICO object (34 B)"@en.
+<data:image/x-icon;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAACAA==#/0> nfo:height 32 ;
+                                                                               nfo:width 32 ;
+                                                                               a nfo:MediaStream;
+                                                                               skos:prefLabel "0:ICO (32×32)".
+<data:image/x-icon;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAACAA==#/1> nfo:height 0 ;
+                                                                               nfo:width 16 ;
+                                                                               a nfo:MediaStream;
+                                                                               skos:prefLabel "1:ICO (16×0)".
+<file:///SETUP.LST> at:extensionObject <https://w3id.org/uri4uri/suffix/lst>.
 <file:///ZIPCRACK.RAR> at:extensionObject <https://w3id.org/uri4uri/suffix/rar>.
+<file:///setup.exe> at:extensionObject <https://w3id.org/uri4uri/suffix/exe>.
+<file:///zipcrack.CAB> at:extensionObject <https://w3id.org/uri4uri/suffix/cab>.
+<ni:///mh;1QEQ2qvbgwNPdw4tZX5UMpgeTQ?ct=application/octet-stream> at:digest <urn:md5:DAABDB83034F770E2D657E5432981E4D>;
+                                                                  dcterms:extent "758"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ2qvbgwNPdw4tZX5UMpgeTQ?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (758 B)"@en.
+<ni:///mh;1QEQ2qvbgwNPdw4tZX5UMpgeTQ?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
+                                                   nfo:height 32 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
+                                                   nfo:width 32 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (32×32)"@en,
+                                                                  "BMP object (744 B)"@en.
+<ni:///mh;1QEQNVYaesspmnJ46HBv1uAaoA?ct=application/octet-stream> at:digest <urn:md5:35561A7ACB299A7278E8706FD6E01AA0>;
+                                                                  dcterms:extent "140800"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQNVYaesspmnJ46HBv1uAaoA?ct=application/vnd.microsoft.portable-executable>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (137.5 KiB)"@en.
+<ni:///mh;1QEQNVYaesspmnJ46HBv1uAaoA?ct=application/vnd.microsoft.portable-executable> dbo:originalName "SETUP.EXE";
+                                                                                       dcterms:creator "Microsoft Corporation"@en-us;
+                                                                                       dcterms:description "Setup Bootstrap for Visual Basic Setup Toolkit"@en-us;
+                                                                                       schema:copyrightNotice "Copyright © 1987-1998 Microsoft Corp."@en-us;
+                                                                                       schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
+                                                                                       schema:name "SETUP.EXE";
+                                                                                       schema:softwareVersion "6.0.81.69",
+                                                                                                              "6.00.8169";
+                                                                                       schema:version "6.0.81.69",
+                                                                                                      "6.00.8169";
+                                                                                       nie:hasPart <ni:///mh;1QEQNVYaesspmnJ46HBv1uAaoA?ct=application/vnd.microsoft.portable-executable#/Icon/1>,
+                                                                                                   <ni:///mh;1QEQNVYaesspmnJ46HBv1uAaoA?ct=application/vnd.microsoft.portable-executable#/Icon/2>,
+                                                                                                   <ni:///mh;1QEQNVYaesspmnJ46HBv1uAaoA?ct=application/vnd.microsoft.portable-executable#/GroupIcon/1500>;
+                                                                                       a schema:MediaObject,
+                                                                                         schema:SoftwareApplication,
+                                                                                         nfo:Executable;
+                                                                                       skos:prefLabel "EXE object (SETUP.EXE)"@en.
+<ni:///mh;1QEQNVYaesspmnJ46HBv1uAaoA?ct=application/vnd.microsoft.portable-executable#/GroupIcon/1500> at:pathObject <file:///1500>;
+                                                                                                       nie:interpretedAs <data:application/octet-stream;base64,AAABAAIAICAQAAEABADoAgAAAQAQEBAAAQAEACgBAAACAA==>;
+                                                                                                       nfo:fileName "1500";
+                                                                                                       nfo:fileSize 34 ;
+                                                                                                       a nfo:FileDataObject,
+                                                                                                         nfo:EmbeddedFileDataObject;
+                                                                                                       skos:prefLabel "/GroupIcon/1500".
+<ni:///mh;1QEQNVYaesspmnJ46HBv1uAaoA?ct=application/vnd.microsoft.portable-executable#/Icon/1> at:pathObject <file:///1>;
+                                                                                               nie:interpretedAs <ni:///mh;1QEQ2qvbgwNPdw4tZX5UMpgeTQ?ct=application/octet-stream>;
+                                                                                               nfo:fileName "1";
+                                                                                               nfo:fileSize 744 ;
+                                                                                               a nfo:FileDataObject,
+                                                                                                 nfo:EmbeddedFileDataObject;
+                                                                                               skos:prefLabel "/Icon/1".
+<ni:///mh;1QEQNVYaesspmnJ46HBv1uAaoA?ct=application/vnd.microsoft.portable-executable#/Icon/2> at:pathObject <file:///2>;
+                                                                                               nie:interpretedAs <ni:///mh;1QEQT4fjQfAJdtSqbEZetWsrqg?ct=application/octet-stream>;
+                                                                                               nfo:fileName "2";
+                                                                                               nfo:fileSize 296 ;
+                                                                                               a nfo:FileDataObject,
+                                                                                                 nfo:EmbeddedFileDataObject;
+                                                                                               skos:prefLabel "/Icon/2".
+<ni:///mh;1QEQT4fjQfAJdtSqbEZetWsrqg?ct=application/octet-stream> at:digest <urn:md5:4F87E341F00976D4AA6C465EB56B2BAA>;
+                                                                  dcterms:extent "310"^^dt:byte;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQT4fjQfAJdtSqbEZetWsrqg?ct=image/bmp>;
+                                                                  a cnt:ContentAsBase64;
+                                                                  skos:prefLabel "binary data (310 B)"@en.
+<ni:///mh;1QEQT4fjQfAJdtSqbEZetWsrqg?ct=image/bmp> schema:encodingFormat <https://w3id.org/uri4uri/mime/image/bmp>;
+                                                   nfo:bitDepth 4 ;
+                                                   nfo:height 16 ;
+                                                   nfo:horizontalResolution 96.012;
+                                                   nfo:paletteSize 16 ;
+                                                   nfo:verticalResolution 96.012;
+                                                   nfo:width 16 ;
+                                                   a schema:MediaObject,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "BMP object (16×16)"@en,
+                                                                  "BMP object (296 B)"@en.
 <ni:///mh;1QEQUI8tSESp6R2hZ5Cd7dKd8g?ct=application/octet-stream> at:digest <urn:md5:508F2D4844A9E91DA167909DEDD29DF2>;
                                                                   dcterms:extent "1457500"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQUI8tSESp6R2hZ5Cd7dKd8g?ct=application/vnd.rar>;
@@ -28,6 +129,51 @@ _:n1 at:pathObject <file:///ZIPCRACK.RAR>;
                                                              a schema:MediaObject,
                                                                nfo:Archive;
                                                              skos:prefLabel "RAR object (1.39 MiB)"@en.
+<ni:///mh;1QEQUI8tSESp6R2hZ5Cd7dKd8g?ct=application/vnd.rar#/SETUP.LST> at:pathObject <file:///SETUP.LST>;
+                                                                        nie:interpretedAs <ni:///mh;1QEQwOZ3ZiQY8nOh7c3J-eI-oA?ct=text/plain>;
+                                                                        nfo:belongsToContainer <ni:///mh;1QEQUI8tSESp6R2hZ5Cd7dKd8g?ct=application/vnd.rar>;
+                                                                        nfo:fileLastModified "1998-10-12T20:33:38.000000+02:00"^^xsd:dateTime;
+                                                                        nfo:fileName "SETUP.LST";
+                                                                        nfo:fileSize 4111 ;
+                                                                        a nfo:FileDataObject,
+                                                                          nfo:ArchiveItem;
+                                                                        skos:prefLabel "/SETUP.LST".
+<ni:///mh;1QEQUI8tSESp6R2hZ5Cd7dKd8g?ct=application/vnd.rar#/setup.exe> at:pathObject <file:///setup.exe>;
+                                                                        nie:interpretedAs <ni:///mh;1QEQNVYaesspmnJ46HBv1uAaoA?ct=application/octet-stream>;
+                                                                        nfo:belongsToContainer <ni:///mh;1QEQUI8tSESp6R2hZ5Cd7dKd8g?ct=application/vnd.rar>;
+                                                                        nfo:fileLastModified "1998-06-18T00:00:00.000000+02:00"^^xsd:dateTime;
+                                                                        nfo:fileName "setup.exe";
+                                                                        nfo:fileSize 140800 ;
+                                                                        a nfo:FileDataObject,
+                                                                          nfo:ArchiveItem;
+                                                                        skos:prefLabel "/setup.exe".
+<ni:///mh;1QEQUI8tSESp6R2hZ5Cd7dKd8g?ct=application/vnd.rar#/zipcrack.CAB> at:pathObject <file:///zipcrack.CAB>;
+                                                                           nfo:belongsToContainer <ni:///mh;1QEQUI8tSESp6R2hZ5Cd7dKd8g?ct=application/vnd.rar>;
+                                                                           nfo:fileLastModified "1998-10-12T20:39:58.000000+02:00"^^xsd:dateTime;
+                                                                           nfo:fileName "zipcrack.CAB";
+                                                                           nfo:fileSize 2483614 ;
+                                                                           a nfo:FileDataObject,
+                                                                             nfo:ArchiveItem;
+                                                                           skos:prefLabel "/zipcrack.CAB".
+<ni:///mh;1QEQwOZ3ZiQY8nOh7c3J-eI-oA?ct=text/plain> at:digest <urn:md5:C0E677662418F273A1EDCDC9F9E23EA0>;
+                                                    dcterms:extent "4111"^^dt:byte;
+                                                    nie:hasPart <ni:///mh;1QEQwOZ3ZiQY8nOh7c3J-eI-oA?ct=text/plain#line=,1>;
+                                                    a cnt:ContentAsText;
+                                                    skos:prefLabel "text (4.01 KiB)"@en;
+                                                    cnt:characterEncoding "us-ascii".
+<ni:///mh;1QEQwOZ3ZiQY8nOh7c3J-eI-oA?ct=text/plain#line=,1> rdf:value "[Bootstrap]".
+<urn:md5:35561A7ACB299A7278E8706FD6E01AA0> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "NVYaesspmnJ46HBv1uAaoA=="^^xsd:base64Binary.
+<urn:md5:4F87E341F00976D4AA6C465EB56B2BAA> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "T4fjQfAJdtSqbEZetWsrqg=="^^xsd:base64Binary.
 <urn:md5:508F2D4844A9E91DA167909DEDD29DF2> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "UI8tSESp6R2hZ5Cd7dKd8g=="^^xsd:base64Binary.
+<urn:md5:C0E677662418F273A1EDCDC9F9E23EA0> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "wOZ3ZiQY8nOh7c3J+eI+oA=="^^xsd:base64Binary.
+<urn:md5:DAABDB83034F770E2D657E5432981E4D> a sec:Digest;
+                                           sec:digestAlgorithm dsm:md5;
+                                           sec:digestValue "2qvbgwNPdw4tZX5UMpgeTQ=="^^xsd:base64Binary.
