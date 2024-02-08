@@ -88,7 +88,7 @@ namespace IS4.SFI.Tools.Images
                 {
                     return (int)Math.Ceiling(Math.Log(palSize / 3, 2));
                 }
-                if(ImageMetadata.GetBmpMetadata() is { BitsPerPixel: var bmpBits and > 0 })
+                if(ImageMetadata.GetBmpMetadata() is { InfoHeaderType: not 0, BitsPerPixel: var bmpBits and > 0 })
                 {
                     return (int)bmpBits;
                 }
