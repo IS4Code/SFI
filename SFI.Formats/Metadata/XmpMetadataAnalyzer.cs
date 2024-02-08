@@ -28,13 +28,16 @@ namespace IS4.SFI.Analyzers
         public async override ValueTask<AnalysisResult> Analyze(XmpDirectory directory, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var node = GetNode(context);
-            var serializer = new XmpSerializerRdf();
-            using(var stream = new MemoryStream())
+            if(directory.XmpMeta is { } xmp)
             {
-                // Store as RDF/XML in <x:xmpmeta>
-                serializer.Serialize(directory.XmpMeta, stream, XmpSerializeOptions);
-                stream.Position = 0;
-                DataTools.DescribeAsXmp(node, stream);
+                var serializer = new XmpSerializerRdf();
+                using(var stream = new MemoryStream())
+                {
+                    // Store as RDF/XML in <x:xmpmeta>
+                    serializer.Serialize(xmp, stream, XmpSerializeOptions);
+                    stream.Position = 0;
+                    DataTools.DescribeAsXmp(node, stream);
+                }
             }
             return new AnalysisResult(node);
         }
