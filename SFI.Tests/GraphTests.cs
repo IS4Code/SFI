@@ -39,7 +39,6 @@ namespace IS4.SFI.Tests
         };
 
         static readonly IRdfReader turtleParser = new Notation3Parser();
-        static readonly TurtleFormatter turtleFormatter = new();
 
         static async Task TestOutputGraph(string source)
         {
@@ -130,6 +129,7 @@ namespace IS4.SFI.Tests
             string notmatchedFile = Path.Combine(notmatchedDir, id + ".ttl");
             if(!report!.AreEqual)
             {
+                var turtleFormatter = new TurtleFormatter(graph2);
                 Console.Error.WriteLine($"File: {compareFile}");
                 Console.Error.WriteLine("Added:");
                 foreach(var added in report.AddedTriples.Concat(report.AddedMSGs.SelectMany(g => g.Triples)))
