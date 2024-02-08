@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace IS4.SFI.Analyzers
 {
@@ -20,9 +21,9 @@ namespace IS4.SFI.Analyzers
     public sealed class ExceptionAnalyzer : EntityAnalyzer<Exception>
     {
         /// <summary>
-        /// Whether to ignore source code position obtained from the stack trace.
+        /// Whether to ignore source code position obtained from the exception.
         /// </summary>
-        [Description("Whether to ignore source code position obtained from the stack trace.")]
+        [Description("Whether to ignore source code position obtained from the exception.")]
         public bool IgnoreSourcePosition { get; set; }
 
         /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>
@@ -81,6 +82,17 @@ namespace IS4.SFI.Analyzers
             }else if(exception.TargetSite is { DeclaringType: { } declaringType })
             {
                 node.Set(Properties.ErrorModule, ClrNamespaceUriFormatter.Instance, declaringType);
+                if(!IgnoreSourcePosition && exception is IXmlLineInfo lineInfo && lineInfo.HasLineInfo())
+                {
+                    if(IsDefined(lineInfo.LineNumber, out var line))
+                    {
+                        node.Set(Properties.ErrorLineNumber, line);
+                    }
+                    if(IsDefined(lineInfo.LinePosition, out var column))
+                    {
+                        node.Set(Properties.ErrorColumnNumber, column);
+                    }
+                }
             }
         }
 
