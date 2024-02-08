@@ -871,7 +871,7 @@ namespace IS4.SFI
                         if(includeDeclaringMember && !genDeclaringMethod.Equals(genericContext.method))
                         {
                             // Not the current one
-                            Member(genDeclaringMethod, true, true);
+                            Member(genDeclaringMethod, includeNamespace, true);
                             Syntax("/");
                         }
                         Syntax("`");
@@ -881,7 +881,7 @@ namespace IS4.SFI
                         if(!genDeclaringType.Equals(genericContext.type))
                         {
                             // Not the current one
-                            Type(genDeclaringType, true, true);
+                            Type(genDeclaringType, includeNamespace, true);
                             Syntax("/");
                         }
                     }
