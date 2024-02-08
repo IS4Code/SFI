@@ -1,6 +1,5 @@
 ﻿using IS4.SFI.Formats;
 using IS4.SFI.Services;
-using IS4.SFI.Tools;
 using IS4.SFI.Tools.Xml;
 using IS4.SFI.Vocabulary;
 using MorseCode.ITask;
@@ -189,7 +188,7 @@ namespace IS4.SFI.Analyzers
                 }
             }while(await ReadSafe(reader));
 
-            throw new InvalidOperationException();
+            throw new XmlException("The root element could not be found in the XML data.");
         }
 
         static async ValueTask<bool> ReadSafe(XmlReader reader)
