@@ -19,6 +19,12 @@ namespace IS4.SFI.Analyzers
     [Description("An analyzer of exceptions that may arise during analysis of other entities.")]
     public sealed class ExceptionAnalyzer : EntityAnalyzer<Exception>
     {
+        /// <summary>
+        /// Whether to ignore source code position obtained from the stack trace.
+        /// </summary>
+        [Description("Whether to ignore source code position obtained from the stack trace.")]
+        public bool IgnoreSourcePosition { get; set; }
+
         /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>
         public ExceptionAnalyzer()
         {
@@ -61,13 +67,16 @@ namespace IS4.SFI.Analyzers
             if(HasComponentStackFrame(trace, out var frame, out var analyzerType))
             {
                 node.Set(Properties.ErrorModule, ClrNamespaceUriFormatter.Instance, analyzerType);
-                if(IsDefined(frame.GetFileLineNumber(), out var line))
+                if(!IgnoreSourcePosition)
                 {
-                    node.Set(Properties.ErrorLineNumber, line);
-                }
-                if(IsDefined(frame.GetFileColumnNumber(), out var column))
-                {
-                    node.Set(Properties.ErrorColumnNumber, column);
+                    if(IsDefined(frame.GetFileLineNumber(), out var line))
+                    {
+                        node.Set(Properties.ErrorLineNumber, line);
+                    }
+                    if(IsDefined(frame.GetFileColumnNumber(), out var column))
+                    {
+                        node.Set(Properties.ErrorColumnNumber, column);
+                    }
                 }
             }else if(exception.TargetSite is { DeclaringType: { } declaringType })
             {
