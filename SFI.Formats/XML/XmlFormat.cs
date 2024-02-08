@@ -119,26 +119,32 @@ namespace IS4.SFI.Formats
             if(isBinary) return false;
             header = header.Slice(DataTools.FindBom(header));
             if(header.Length == 0) return false;
-            switch(header[0])
+            for(int i = 0; i < header.Length; i++)
             {
-                // Whitespace
-                case (byte)'\t':
-                case (byte)'\r':
-                case (byte)'\n':
-                case (byte)' ':
-                // XML declaration
-                case (byte)'<':
-                    if(IgnorePhp)
-                    {
-                        if(header.Slice(1).StartsWith(phpSignaureBytes.AsSpan()))
+                switch(header[i])
+                {
+                    // Whitespace
+                    case (byte)'\t':
+                    case (byte)'\r':
+                    case (byte)'\n':
+                    case (byte)' ':
+                        continue;
+                    // XML declaration
+                    case (byte)'<':
+                        if(IgnorePhp)
                         {
-                            // PHP detected
-                            return false;
+                            if(header.Slice(i + 1).StartsWith(phpSignaureBytes.AsSpan()))
+                            {
+                                // PHP detected
+                                return false;
+                            }
                         }
-                    }
-                    return true;
-                default: return false;
+                        return true;
+                    default:
+                        return false;
+                }
             }
+            return false;
         }
 
         /// <inheritdoc/>
