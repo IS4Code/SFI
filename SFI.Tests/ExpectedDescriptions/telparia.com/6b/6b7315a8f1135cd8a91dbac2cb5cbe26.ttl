@@ -5,11 +5,9 @@
 @prefix at: <http://archive.data.is4.site/terms/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
-@prefix cnt: <http://www.w3.org/2011/content#>.
-@prefix xis: <http://www.w3.org/2001/04/infoset#>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
-@prefix err: <http://www.w3.org/2005/xqt-errors#>.
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
@@ -23,32 +21,14 @@ _:n1 at:pathObject <file:///example.html>;
 <file:///example.html> at:extensionObject <https://w3id.org/uri4uri/suffix/html>.
 <ni:///mh;1QEQifcRHgQSHdyCzf-Mw-ql_Q?ct=application/octet-stream> at:digest <urn:md5:89F7111E04121DDC82CDFF8CC3EAA5FD>;
                                                                   dcterms:extent "136782"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQifcRHgQSHdyCzf-Mw-ql_Q?ct=application/xml>,
-                                                                                    <ni:///mh;1QEQifcRHgQSHdyCzf-Mw-ql_Q?ct=text/html>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQifcRHgQSHdyCzf-Mw-ql_Q?ct=text/html>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (133.58 KiB)"@en.
-<ni:///mh;1QEQifcRHgQSHdyCzf-Mw-ql_Q?ct=application/prs.implied-document+xml;root=html> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=html>;
-                                                                                        a schema:MediaObject;
-                                                                                        skos:prefLabel "HTML object"@en.
-<ni:///mh;1QEQifcRHgQSHdyCzf-Mw-ql_Q?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQifcRHgQSHdyCzf-Mw-ql_Q?ct=application/prs.implied-document+xml;root=html>;
-                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
-                                                         a schema:MediaObject,
-                                                           cnt:ContentAsXML,
-                                                           xis:Document;
-                                                         xis:documentElement <ni:///mh;1QEQifcRHgQSHdyCzf-Mw-ql_Q?ct=application/xml#element(/1)>;
-                                                         skos:prefLabel "XML object (html)"@en.
-<ni:///mh;1QEQifcRHgQSHdyCzf-Mw-ql_Q?ct=application/xml#element(/1)> a xis:Element;
-                                                                     xis:localName "html";
-                                                                     xis:name "html".
 <ni:///mh;1QEQifcRHgQSHdyCzf-Mw-ql_Q?ct=text/html> schema:encodingFormat <https://w3id.org/uri4uri/mime/text/html>;
                                                    a schema:MediaObject,
                                                      schema:DigitalDocument,
                                                      nfo:Document;
-                                                   skos:prefLabel "HTML object (133.58 KiB)"@en;
-                                                   err:code err:FOCA0002;
-                                                   err:description "Invalid URI: The Uri string is too long."@en;
-                                                   err:module <clr-namespace:IS4.SFI.Analyzers;assembly=IS4.SFI.Formats.RDF#RdfAHtmlAnalyzer>;
-                                                   err:value <clr-namespace:System;assembly=System.Private.Uri#UriFormatException>.
+                                                   skos:prefLabel "HTML object (133.58 KiB)"@en.
 <urn:md5:89F7111E04121DDC82CDFF8CC3EAA5FD> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "ifcRHgQSHdyCzf+Mw+ql/Q=="^^xsd:base64Binary.

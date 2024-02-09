@@ -14,7 +14,6 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
-@prefix err: <http://www.w3.org/2005/xqt-errors#>.
 
 _:n1 at:pathObject <file:///cole-voyage-of-life-tol.epub>;
      nie:interpretedAs <ni:///mh;1QEQi89n5Lqu0P_sHwGpiIfEsQ?ct=application/octet-stream>;
@@ -135,10 +134,7 @@ _:n1 at:pathObject <file:///cole-voyage-of-life-tol.epub>;
                                                    a schema:MediaObject,
                                                      schema:DigitalDocument,
                                                      nfo:Document;
-                                                   skos:prefLabel "HTML object (91.67 KiB)"@en;
-                                                   err:description """Malformed XML Literal - the undefined namespace prefix 'c.length;k++){l=a.exec(c[k])||[],m=l[1],n=(l[2]||\"\").split(\".\").sort(),s=f.event.special[m]||{},m=(g?s.delegatetype' is used"""@en;
-                                                   err:module <clr-namespace:IS4.SFI.Analyzers;assembly=IS4.SFI.Formats.RDF#RdfAHtmlAnalyzer>;
-                                                   err:value <clr-namespace:VDS.RDF.Parsing;assembly=dotNetRdf#RdfParseException>.
+                                                   skos:prefLabel "HTML object (91.67 KiB)"@en.
 <ni:///mh;1QEQ2yzM7-3MdBpFpYLpGlr-jQ?ct=text/plain> at:digest <urn:md5:DB2CCCEFEDCC741A45A582E91A5AFE8D>;
                                                     dcterms:extent "93871"^^dt:byte;
                                                     dcterms:hasFormat <ni:///mh;1QEQ2yzM7-3MdBpFpYLpGlr-jQ?ct=text/html>;
@@ -212,8 +208,8 @@ _:n1 at:pathObject <file:///cole-voyage-of-life-tol.epub>;
                                                    skos:prefLabel "HTML object (2.21 KiB)"@en.
 <ni:///mh;1QEQTffiIbFv868Z2wy4YqqYxw?ct=text/plain> at:digest <urn:md5:4DF7E221B16FF3AF19DB0CB862AA98C7>;
                                                     dcterms:extent "2264"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQTffiIbFv868Z2wy4YqqYxw?ct=text/html>,
-                                                                      <ni:///mh;1QEQTffiIbFv868Z2wy4YqqYxw?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQTffiIbFv868Z2wy4YqqYxw?ct=application/xml>,
+                                                                      <ni:///mh;1QEQTffiIbFv868Z2wy4YqqYxw?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQTffiIbFv868Z2wy4YqqYxw?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (2.21 KiB)"@en;
@@ -245,8 +241,8 @@ _:n1 at:pathObject <file:///cole-voyage-of-life-tol.epub>;
                                                    skos:prefLabel "HTML object (1.83 KiB)"@en.
 <ni:///mh;1QEQXqDgTEQIwmZjYzadcxRVtA?ct=text/plain> at:digest <urn:md5:5EA0E04C4408C2666363369D731455B4>;
                                                     dcterms:extent "1879"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQXqDgTEQIwmZjYzadcxRVtA?ct=application/xml>,
-                                                                      <ni:///mh;1QEQXqDgTEQIwmZjYzadcxRVtA?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQXqDgTEQIwmZjYzadcxRVtA?ct=text/html>,
+                                                                      <ni:///mh;1QEQXqDgTEQIwmZjYzadcxRVtA?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQXqDgTEQIwmZjYzadcxRVtA?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (1.83 KiB)"@en;
@@ -613,8 +609,8 @@ _:n1 at:pathObject <file:///cole-voyage-of-life-tol.epub>;
                                                    skos:prefLabel "HTML object (3.52 KiB)"@en.
 <ni:///mh;1QEQlw1-rPBz9REAOfDWtNfjig?ct=text/plain> at:digest <urn:md5:970D7EACF073F5110039F0D6B4D7E38A>;
                                                     dcterms:extent "3602"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQlw1-rPBz9REAOfDWtNfjig?ct=application/xml>,
-                                                                      <ni:///mh;1QEQlw1-rPBz9REAOfDWtNfjig?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQlw1-rPBz9REAOfDWtNfjig?ct=text/html>,
+                                                                      <ni:///mh;1QEQlw1-rPBz9REAOfDWtNfjig?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQlw1-rPBz9REAOfDWtNfjig?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (3.52 KiB)"@en;
@@ -726,8 +722,8 @@ _:n1 at:pathObject <file:///cole-voyage-of-life-tol.epub>;
                                                    skos:prefLabel "HTML object (2.48 KiB)"@en.
 <ni:///mh;1QEQwdF4HCJRfVPuYIqdhgJMkA?ct=text/plain> at:digest <urn:md5:C1D1781C22517D53EE608A9D86024C90>;
                                                     dcterms:extent "2542"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQwdF4HCJRfVPuYIqdhgJMkA?ct=text/html>,
-                                                                      <ni:///mh;1QEQwdF4HCJRfVPuYIqdhgJMkA?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQwdF4HCJRfVPuYIqdhgJMkA?ct=application/xml>,
+                                                                      <ni:///mh;1QEQwdF4HCJRfVPuYIqdhgJMkA?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQwdF4HCJRfVPuYIqdhgJMkA?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (2.48 KiB)"@en;

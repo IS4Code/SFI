@@ -1,14 +1,13 @@
-@base <x.blank:4b5f912f-31d6-4c84-a97f-67bba7e2962f>.
+@base <ni:///mh;1QEQZXm17L4Q4ss8aGjDctxntA?ct=text/plain>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
-@prefix cnt: <http://www.w3.org/2011/content#>.
-@prefix xis: <http://www.w3.org/2001/04/infoset#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
@@ -20,19 +19,6 @@ _:n1 at:pathObject <file:///images.html>;
      nfo:fileSize 3196 ;
      a nfo:FileDataObject.
 <file:///images.html> at:extensionObject <https://w3id.org/uri4uri/suffix/html>.
-<ni:///mh;1QEQZXm17L4Q4ss8aGjDctxntA?ct=application/prs.implied-document+xml;root=HTML> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=HTML>;
-                                                                                        a schema:MediaObject;
-                                                                                        skos:prefLabel "HTML object"@en.
-<ni:///mh;1QEQZXm17L4Q4ss8aGjDctxntA?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQZXm17L4Q4ss8aGjDctxntA?ct=application/prs.implied-document+xml;root=HTML>;
-                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
-                                                         a schema:MediaObject,
-                                                           cnt:ContentAsXML,
-                                                           xis:Document;
-                                                         xis:documentElement <ni:///mh;1QEQZXm17L4Q4ss8aGjDctxntA?ct=application/xml#element(/1)>;
-                                                         skos:prefLabel "XML object (HTML)"@en.
-<ni:///mh;1QEQZXm17L4Q4ss8aGjDctxntA?ct=application/xml#element(/1)> a xis:Element;
-                                                                     xis:localName "HTML";
-                                                                     xis:name "HTML".
 <ni:///mh;1QEQZXm17L4Q4ss8aGjDctxntA?ct=text/html> dcterms:title "Puzzling Quilt Images";
                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/text/html>;
                                                    a schema:MediaObject,
@@ -41,8 +27,7 @@ _:n1 at:pathObject <file:///images.html>;
                                                    skos:prefLabel "HTML object (3.12 KiB)"@en.
 <ni:///mh;1QEQZXm17L4Q4ss8aGjDctxntA?ct=text/plain> at:digest <urn:md5:6579B5ECBE10E2CB3C6868C372DC67B4>;
                                                     dcterms:extent "3196"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQZXm17L4Q4ss8aGjDctxntA?ct=text/html>,
-                                                                      <ni:///mh;1QEQZXm17L4Q4ss8aGjDctxntA?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQZXm17L4Q4ss8aGjDctxntA?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQZXm17L4Q4ss8aGjDctxntA?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (3.12 KiB)"@en;

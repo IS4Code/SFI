@@ -1,19 +1,17 @@
-@base <x.blank:ba69a799-1df2-40aa-92e6-ee675194a9e9>.
+@base <ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
-@prefix cnt: <http://www.w3.org/2011/content#>.
-@prefix xis: <http://www.w3.org/2001/04/infoset#>.
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 
 _:n1 at:pathObject <file:///test.html>;
      nie:interpretedAs <ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=application/octet-stream>;
@@ -23,30 +21,9 @@ _:n1 at:pathObject <file:///test.html>;
 <file:///test.html> at:extensionObject <https://w3id.org/uri4uri/suffix/html>.
 <ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=application/octet-stream> at:digest <urn:md5:019DB3B07FF46E22830BAA39D77DBA39>;
                                                                   dcterms:extent "68393"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=application/xml>,
-                                                                                    <ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=text/html>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=text/html>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (66.79 KiB)"@en.
-<ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=application/prs.implied-document+xml;root=html;public=%22-//W3C//DTD%20HTML%204.01//EN%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=html;public=%22-//W3C//DTD%20HTML%204.01//EN%22>,
-                                                                                                                                                         <urn:publicid:-:W3C:DTD+HTML+4.01:EN>;
-                                                                                                                                   a schema:MediaObject;
-                                                                                                                                   skos:prefLabel "HTML object"@en.
-<ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=application/prs.implied-document+xml;root=html;public=%22-//W3C//DTD%20HTML%204.01//EN%22>;
-                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
-                                                         a schema:MediaObject,
-                                                           cnt:ContentAsXML,
-                                                           xis:Document;
-                                                         xis:documentElement <ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=application/xml#element(/1)>;
-                                                         skos:prefLabel "XML object (html)"@en;
-                                                         cnt:dtDecl <ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=application/xml#dtd()>.
-<ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=application/xml#dtd()> a cnt:DoctypeDecl;
-                                                               rdfs:seeAlso <urn:publicid:-:W3C:DTD+HTML+4.01:EN>;
-                                                               cnt:doctypeName "HTML";
-                                                               cnt:publicId "-//W3C//DTD HTML 4.01//EN";
-                                                               cnt:systemId "http://www.w3.org/TR/html4/strict.dtd"^^xsd:anyURI.
-<ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=application/xml#element(/1)> a xis:Element;
-                                                                     xis:localName "html";
-                                                                     xis:name "html".
 <ni:///mh;1QEQAZ2zsH_0biKDC6o51326OQ?ct=text/html> dcterms:title "World of Solitaire";
                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/text/html>;
                                                    a schema:MediaObject,
@@ -64,4 +41,3 @@ _:n1 at:pathObject <file:///test.html>;
 <urn:md5:019DB3B07FF46E22830BAA39D77DBA39> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "AZ2zsH/0biKDC6o51326OQ=="^^xsd:base64Binary.
-<urn:publicid:-:W3C:DTD+HTML+4.01:EN> rdfs:isDefinedBy <http://www.w3.org/TR/html4/strict.dtd>.

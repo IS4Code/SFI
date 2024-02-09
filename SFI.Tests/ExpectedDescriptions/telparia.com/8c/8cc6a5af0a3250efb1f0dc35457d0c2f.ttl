@@ -1,14 +1,13 @@
-@base <x.blank:a00936de-d8b9-4462-87a7-32fa9c8f02d3>.
+@base <ni:///mh;1QEQs0WxQngnhQ8dXsy6OlkG4g?ct=text/plain>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
-@prefix cnt: <http://www.w3.org/2011/content#>.
-@prefix xis: <http://www.w3.org/2001/04/infoset#>.
-@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
-@prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
@@ -20,19 +19,6 @@ _:n1 at:pathObject <file:///Invalid%E8%A8%AD%E5%AE%9A.html>;
      nfo:fileSize 3034 ;
      a nfo:FileDataObject.
 <file:///Invalid%E8%A8%AD%E5%AE%9A.html> at:extensionObject <https://w3id.org/uri4uri/suffix/html>.
-<ni:///mh;1QEQs0WxQngnhQ8dXsy6OlkG4g?ct=application/prs.implied-document+xml;root=HTML> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=HTML>;
-                                                                                        a schema:MediaObject;
-                                                                                        skos:prefLabel "HTML object"@en.
-<ni:///mh;1QEQs0WxQngnhQ8dXsy6OlkG4g?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQs0WxQngnhQ8dXsy6OlkG4g?ct=application/prs.implied-document+xml;root=HTML>;
-                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
-                                                         a schema:MediaObject,
-                                                           cnt:ContentAsXML,
-                                                           xis:Document;
-                                                         xis:documentElement <ni:///mh;1QEQs0WxQngnhQ8dXsy6OlkG4g?ct=application/xml#element(/1)>;
-                                                         skos:prefLabel "XML object (HTML)"@en.
-<ni:///mh;1QEQs0WxQngnhQ8dXsy6OlkG4g?ct=application/xml#element(/1)> a xis:Element;
-                                                                     xis:localName "HTML";
-                                                                     xis:name "HTML".
 <ni:///mh;1QEQs0WxQngnhQ8dXsy6OlkG4g?ct=text/html> dcterms:title """{\"@value\":\"Invalid\\u001b$B@_Dj\\u001b(J\"}"""^^rdf:JSON;
                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/text/html>;
                                                    a schema:MediaObject,
@@ -41,8 +27,7 @@ _:n1 at:pathObject <file:///Invalid%E8%A8%AD%E5%AE%9A.html>;
                                                    skos:prefLabel "HTML object (2.96 KiB)"@en.
 <ni:///mh;1QEQs0WxQngnhQ8dXsy6OlkG4g?ct=text/plain> at:digest <urn:md5:B345B1427827850F1D5ECCBA3A5906E2>;
                                                     dcterms:extent "3034"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQs0WxQngnhQ8dXsy6OlkG4g?ct=application/xml>,
-                                                                      <ni:///mh;1QEQs0WxQngnhQ8dXsy6OlkG4g?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQs0WxQngnhQ8dXsy6OlkG4g?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQs0WxQngnhQ8dXsy6OlkG4g?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (2.96 KiB)"@en;

@@ -1,18 +1,17 @@
-@base <x.blank:fd803789-2880-48ce-b94b-9a3d72bddea0>.
+@base <ni:///mh;1QEQa55H-noBua3bYd2LMRxVwQ?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
-@prefix cnt: <http://www.w3.org/2011/content#>.
-@prefix xis: <http://www.w3.org/2001/04/infoset#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///apple.html>;
      nie:interpretedAs <ni:///mh;1QEQa55H-noBua3bYd2LMRxVwQ?ct=application/octet-stream>;
@@ -22,23 +21,9 @@ _:n1 at:pathObject <file:///apple.html>;
 <file:///apple.html> at:extensionObject <https://w3id.org/uri4uri/suffix/html>.
 <ni:///mh;1QEQa55H-noBua3bYd2LMRxVwQ?ct=application/octet-stream> at:digest <urn:md5:6B9E47FA7A01B9ADDB61DD8B311C55C1>;
                                                                   dcterms:extent "9097"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQa55H-noBua3bYd2LMRxVwQ?ct=text/html>,
-                                                                                    <ni:///mh;1QEQa55H-noBua3bYd2LMRxVwQ?ct=application/xml>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQa55H-noBua3bYd2LMRxVwQ?ct=text/html>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (8.88 KiB)"@en.
-<ni:///mh;1QEQa55H-noBua3bYd2LMRxVwQ?ct=application/prs.implied-document+xml;root=HTML> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=HTML>;
-                                                                                        a schema:MediaObject;
-                                                                                        skos:prefLabel "HTML object"@en.
-<ni:///mh;1QEQa55H-noBua3bYd2LMRxVwQ?ct=application/xml> dcterms:hasFormat <ni:///mh;1QEQa55H-noBua3bYd2LMRxVwQ?ct=application/prs.implied-document+xml;root=HTML>;
-                                                         schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
-                                                         a schema:MediaObject,
-                                                           cnt:ContentAsXML,
-                                                           xis:Document;
-                                                         xis:documentElement <ni:///mh;1QEQa55H-noBua3bYd2LMRxVwQ?ct=application/xml#element(/1)>;
-                                                         skos:prefLabel "XML object (HTML)"@en.
-<ni:///mh;1QEQa55H-noBua3bYd2LMRxVwQ?ct=application/xml#element(/1)> a xis:Element;
-                                                                     xis:localName "HTML";
-                                                                     xis:name "HTML".
 <ni:///mh;1QEQa55H-noBua3bYd2LMRxVwQ?ct=text/html> dcterms:title "�A�b�v�����A�\\�t�g";
                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/text/html>;
                                                    a schema:MediaObject,
