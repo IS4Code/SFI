@@ -1,18 +1,19 @@
-@base <x.blank:01b69d6d-a2af-4d99-9746-0ec32082519f>.
+@base <ni:///mh;1QEQifcRHgQSHdyCzf-Mw-ql_Q?ct=application/octet-stream>.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xis: <http://www.w3.org/2001/04/infoset#>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix err: <http://www.w3.org/2005/xqt-errors#>.
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///example.html>;
      nie:interpretedAs <ni:///mh;1QEQifcRHgQSHdyCzf-Mw-ql_Q?ct=application/octet-stream>;
@@ -43,7 +44,11 @@ _:n1 at:pathObject <file:///example.html>;
                                                    a schema:MediaObject,
                                                      schema:DigitalDocument,
                                                      nfo:Document;
-                                                   skos:prefLabel "HTML object (133.58 KiB)"@en.
+                                                   skos:prefLabel "HTML object (133.58 KiB)"@en;
+                                                   err:code err:FOCA0002;
+                                                   err:description "Invalid URI: The Uri string is too long."@en;
+                                                   err:module <clr-namespace:IS4.SFI.Analyzers;assembly=IS4.SFI.Formats.RDF#RdfAHtmlAnalyzer>;
+                                                   err:value <clr-namespace:System;assembly=System.Private.Uri#UriFormatException>.
 <urn:md5:89F7111E04121DDC82CDFF8CC3EAA5FD> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "ifcRHgQSHdyCzf+Mw+ql/Q=="^^xsd:base64Binary.

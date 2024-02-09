@@ -3,16 +3,14 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
-@prefix cnt: <http://www.w3.org/2011/content#>.
-@prefix xis: <http://www.w3.org/2001/04/infoset#>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///DB.php>;
      nie:interpretedAs <ni:///mh;1QEQLNRo0EFUaL7T5sXOIGM8Dw?ct=application/octet-stream>;
@@ -22,14 +20,8 @@ _:n1 at:pathObject <file:///DB.php>;
 <file:///DB.php> at:extensionObject <https://w3id.org/uri4uri/suffix/php>.
 <ni:///mh;1QEQLNRo0EFUaL7T5sXOIGM8Dw?ct=application/octet-stream> at:digest <urn:md5:2CD468D0415468BED3E6C5CE20633C0F>;
                                                                   dcterms:extent "18843"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQLNRo0EFUaL7T5sXOIGM8Dw?ct=application/xml>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (18.4 KiB)"@en.
-<ni:///mh;1QEQLNRo0EFUaL7T5sXOIGM8Dw?ct=application/xml> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/xml>;
-                                                         a schema:MediaObject,
-                                                           cnt:ContentAsXML,
-                                                           xis:Document;
-                                                         skos:prefLabel "XML object (18.4 KiB)"@en.
 <urn:md5:2CD468D0415468BED3E6C5CE20633C0F> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "LNRo0EFUaL7T5sXOIGM8Dw=="^^xsd:base64Binary.

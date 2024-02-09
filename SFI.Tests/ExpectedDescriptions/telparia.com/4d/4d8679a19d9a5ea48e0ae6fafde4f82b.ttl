@@ -14,6 +14,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix err: <http://www.w3.org/2005/xqt-errors#>.
 
 _:n1 at:pathObject <file:///pri-mail_l.ott>;
      nie:interpretedAs <ni:///mh;1QEQ4nt_MfStkSJ_18bRD4lx6g?ct=application/octet-stream>;
@@ -234,8 +235,8 @@ _:n1 at:pathObject <file:///pri-mail_l.ott>;
                                                      schema:ImageObject,
                                                      nfo:Image;
                                                    skos:prefLabel "PNG object (124×160, 8-bit)"@en,
-                                                                  "PNG object (1.03 KiB)"@en,
-                                                                  "PNG object (124×160)"@en.
+                                                                  "PNG object (124×160)"@en,
+                                                                  "PNG object (1.03 KiB)"@en.
 <ni:///mh;1QEQdJuMNZcg356WENGxi6h3dw?ct=application/prs.implied-document+xml;root=document-settings;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=document-settings;ns=%22urn:oasis:names:tc:opendocument:xmlns:office:1.0%22>;
                                                                                                                                                                a schema:MediaObject;
                                                                                                                                                                skos:prefLabel "DOCUMENT-SETTINGS object"@en.
@@ -293,6 +294,9 @@ _:n1 at:pathObject <file:///pri-mail_l.ott>;
                                                            cnt:ContentAsXML,
                                                            xis:Document;
                                                          skos:prefLabel "XML object (1.1 KiB)"@en;
+                                                         err:description "The root element could not be found in the XML data."@en;
+                                                         err:module <clr-namespace:IS4.SFI.Analyzers;assembly=IS4.SFI.Formats.XML#XmlAnalyzer>;
+                                                         err:value <clr-namespace:System.Xml;assembly=System.Private.Xml#XmlException>;
                                                          cnt:declaredEncoding "UTF-8";
                                                          cnt:dtDecl <ni:///mh;1QEQpQgMyZrbuEsuXBifvkqjpw?ct=application/xml#dtd()>;
                                                          cnt:version "1.0".

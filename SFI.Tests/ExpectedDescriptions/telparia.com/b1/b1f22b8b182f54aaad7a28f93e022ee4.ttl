@@ -6,6 +6,7 @@
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix err: <http://www.w3.org/2005/xqt-errors#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix dt: <http://dbpedia.org/datatype/>.
@@ -192,6 +193,9 @@ FFFF,FFFF,FFFF
                                                                   a nfo:Folder;
                                                                   skos:prefLabel "/PW/".
 <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/PW.MIS> at:pathObject <file:///PW/PW.MIS>;
+                                                                        nie:interpretedAs [err:value <clr-namespace:SharpCompress.Common;assembly=SharpCompress#InvalidFormatException> ; 
+                                                                                           err:description "file crc mismatch"@en ; 
+                                                                                           err:module <clr-namespace:IS4.SFI.Analyzers;assembly=IS4.SFI#DataAnalyzer>];
                                                                         nfo:belongsToContainer <ni:///mh;1QEQH6HvSm-G4x3H7iiQHli_kQ?ct=application/vnd.rar#/PW/>;
                                                                         nfo:fileLastModified "1996-02-10T09:30:56.000000+01:00"^^xsd:dateTime;
                                                                         nfo:fileName "PW.MIS";

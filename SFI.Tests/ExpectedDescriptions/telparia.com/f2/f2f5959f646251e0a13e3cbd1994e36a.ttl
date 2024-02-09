@@ -3,11 +3,12 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix xis: <http://www.w3.org/2001/04/infoset#>.
+@prefix err: <http://www.w3.org/2005/xqt-errors#>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix sec: <https://w3id.org/security#>.
@@ -24,7 +25,10 @@ _:n1 at:pathObject <file:///1650203769_ISOlat1.sgml>;
                                                          a schema:MediaObject,
                                                            cnt:ContentAsXML,
                                                            xis:Document;
-                                                         skos:prefLabel "XML object (6.14 KiB)"@en.
+                                                         skos:prefLabel "XML object (6.14 KiB)"@en;
+                                                         err:description "The root element could not be found in the XML data."@en;
+                                                         err:module <clr-namespace:IS4.SFI.Analyzers;assembly=IS4.SFI.Formats.XML#XmlAnalyzer>;
+                                                         err:value <clr-namespace:System.Xml;assembly=System.Private.Xml#XmlException>.
 <ni:///mh;1QEQ4hatdkb-ZTlsVJfOYu7O1w?ct=text/plain> at:digest <urn:md5:E216AD7646FE65396C5497CE62EECED7>;
                                                     dcterms:extent "6283"^^dt:byte;
                                                     dcterms:hasFormat <ni:///mh;1QEQ4hatdkb-ZTlsVJfOYu7O1w?ct=application/xml>;

@@ -3,7 +3,9 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
+@prefix err: <http://www.w3.org/2005/xqt-errors#>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
@@ -11,7 +13,6 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 
 _:n1 at:pathObject <file:///IDICTVXX.RAR>;
      nie:interpretedAs <ni:///mh;1QEQ3JKjnBwMwsEpWqJRs8Swxg?ct=application/octet-stream>;
@@ -27,7 +28,10 @@ _:n1 at:pathObject <file:///IDICTVXX.RAR>;
 <ni:///mh;1QEQ3JKjnBwMwsEpWqJRs8Swxg?ct=application/vnd.rar> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.rar>;
                                                              a schema:MediaObject,
                                                                nfo:Archive;
-                                                             skos:prefLabel "RAR object (290.5 KiB)"@en.
+                                                             skos:prefLabel "RAR object (290.5 KiB)"@en;
+                                                             err:description "rar header crc mismatch"@en;
+                                                             err:module <clr-namespace:IS4.SFI.Analyzers;assembly=IS4.SFI.Formats.Archives#ArchiveReaderAnalyzer>;
+                                                             err:value <clr-namespace:SharpCompress.Common;assembly=SharpCompress#InvalidFormatException>.
 <urn:md5:DC92A39C1C0CC2C1295AA251B3C4B0C6> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "3JKjnBwMwsEpWqJRs8Swxg=="^^xsd:base64Binary.

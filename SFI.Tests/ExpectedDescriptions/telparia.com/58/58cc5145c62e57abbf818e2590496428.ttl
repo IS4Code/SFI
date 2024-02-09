@@ -3,9 +3,10 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix err: <http://www.w3.org/2005/xqt-errors#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix dt: <http://dbpedia.org/datatype/>.
@@ -27,16 +28,19 @@ _:n1 at:pathObject <file:///vrow121.zip>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQogIMDTV0hfhEb6B-pPGniA?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (6.79 KiB)"@en.
-<ni:///mh;1QEQogIMDTV0hfhEb6B-pPGniA?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQogIMDTV0hfhEb6B-pPGniA?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQogIMDTV0hfhEb6B-pPGniA?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (6.79 KiB)"@en.
-<ni:///mh;1QEQogIMDTV0hfhEb6B-pPGniA?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQogIMDTV0hfhEb6B-pPGniA?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQogIMDTV0hfhEb6B-pPGniA?ct=application/zip#/FILEID.DIZ> at:pathObject <file:///FILEID.DIZ>;
+                                                                     nie:interpretedAs [err:value <clr-namespace:System;assembly=System.Private.CoreLib#NotSupportedException> ; 
+                                                                                        err:description "CompressionMethod: 6"@en ; 
+                                                                                        err:module <clr-namespace:IS4.SFI.Analyzers;assembly=IS4.SFI#DataAnalyzer>];
                                                                      nfo:belongsToContainer <ni:///mh;1QEQogIMDTV0hfhEb6B-pPGniA?ct=application/zip#/>;
                                                                      nfo:fileLastModified "1993-05-22T20:55:08.000000+02:00"^^xsd:dateTime;
                                                                      nfo:fileName "FILEID.DIZ";
@@ -45,6 +49,9 @@ _:n1 at:pathObject <file:///vrow121.zip>;
                                                                        nfo:ArchiveItem;
                                                                      skos:prefLabel "/FILEID.DIZ".
 <ni:///mh;1QEQogIMDTV0hfhEb6B-pPGniA?ct=application/zip#/VGAROW.DOC> at:pathObject <file:///VGAROW.DOC>;
+                                                                     nie:interpretedAs [err:value <clr-namespace:System;assembly=System.Private.CoreLib#NotSupportedException> ; 
+                                                                                        err:description "CompressionMethod: 6"@en ; 
+                                                                                        err:module <clr-namespace:IS4.SFI.Analyzers;assembly=IS4.SFI#DataAnalyzer>];
                                                                      nfo:belongsToContainer <ni:///mh;1QEQogIMDTV0hfhEb6B-pPGniA?ct=application/zip#/>;
                                                                      nfo:fileLastModified "1993-05-22T20:53:08.000000+02:00"^^xsd:dateTime;
                                                                      nfo:fileName "VGAROW.DOC";
@@ -53,6 +60,9 @@ _:n1 at:pathObject <file:///vrow121.zip>;
                                                                        nfo:ArchiveItem;
                                                                      skos:prefLabel "/VGAROW.DOC".
 <ni:///mh;1QEQogIMDTV0hfhEb6B-pPGniA?ct=application/zip#/VGAROW.EXE> at:pathObject <file:///VGAROW.EXE>;
+                                                                     nie:interpretedAs [err:value <clr-namespace:System;assembly=System.Private.CoreLib#NotSupportedException> ; 
+                                                                                        err:description "CompressionMethod: 6"@en ; 
+                                                                                        err:module <clr-namespace:IS4.SFI.Analyzers;assembly=IS4.SFI#DataAnalyzer>];
                                                                      nfo:belongsToContainer <ni:///mh;1QEQogIMDTV0hfhEb6B-pPGniA?ct=application/zip#/>;
                                                                      nfo:fileLastModified "1993-05-22T17:51:08.000000+02:00"^^xsd:dateTime;
                                                                      nfo:fileName "VGAROW.EXE";

@@ -14,6 +14,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix err: <http://www.w3.org/2005/xqt-errors#>.
 
 _:n1 at:pathObject <file:///cole-voyage-of-life-tol.epub>;
      nie:interpretedAs <ni:///mh;1QEQi89n5Lqu0P_sHwGpiIfEsQ?ct=application/octet-stream>;
@@ -134,7 +135,10 @@ _:n1 at:pathObject <file:///cole-voyage-of-life-tol.epub>;
                                                    a schema:MediaObject,
                                                      schema:DigitalDocument,
                                                      nfo:Document;
-                                                   skos:prefLabel "HTML object (91.67 KiB)"@en.
+                                                   skos:prefLabel "HTML object (91.67 KiB)"@en;
+                                                   err:description """Malformed XML Literal - the undefined namespace prefix 'c.length;k++){l=a.exec(c[k])||[],m=l[1],n=(l[2]||\"\").split(\".\").sort(),s=f.event.special[m]||{},m=(g?s.delegatetype' is used"""@en;
+                                                   err:module <clr-namespace:IS4.SFI.Analyzers;assembly=IS4.SFI.Formats.RDF#RdfAHtmlAnalyzer>;
+                                                   err:value <clr-namespace:VDS.RDF.Parsing;assembly=dotNetRdf#RdfParseException>.
 <ni:///mh;1QEQ2yzM7-3MdBpFpYLpGlr-jQ?ct=text/plain> at:digest <urn:md5:DB2CCCEFEDCC741A45A582E91A5AFE8D>;
                                                     dcterms:extent "93871"^^dt:byte;
                                                     dcterms:hasFormat <ni:///mh;1QEQ2yzM7-3MdBpFpYLpGlr-jQ?ct=text/html>;
@@ -155,8 +159,8 @@ _:n1 at:pathObject <file:///cole-voyage-of-life-tol.epub>;
                                                     nfo:verticalResolution 72 ;
                                                     nfo:width 243 ;
                                                     a schema:MediaObject,
-                                                      nfo:Image,
-                                                      schema:ImageObject;
+                                                      schema:ImageObject,
+                                                      nfo:Image;
                                                     skos:prefLabel "JPG object (243×268)"@en,
                                                                    "JPG object (12.26 KiB)"@en.
 <ni:///mh;1QEQPVV2ScxhQ84U20KBRNbx-w?ct=application/octet-stream> at:digest <urn:md5:3D557649CC6143CE14DB428144D6F1FB>;
@@ -171,8 +175,8 @@ _:n1 at:pathObject <file:///cole-voyage-of-life-tol.epub>;
                                                     nfo:verticalResolution 199 ;
                                                     nfo:width 1024 ;
                                                     a schema:MediaObject,
-                                                      nfo:Image,
-                                                      schema:ImageObject;
+                                                      schema:ImageObject,
+                                                      nfo:Image;
                                                     skos:prefLabel "JPG object (1024×698)"@en,
                                                                    "JPG object (88.86 KiB)"@en.
 <ni:///mh;1QEQQRv7-Z7Ih49GkKjIhustzw?ct=text/plain> at:digest <urn:md5:411BFBF99EC8878F4690A8C886EB2DCF>;
@@ -208,8 +212,8 @@ _:n1 at:pathObject <file:///cole-voyage-of-life-tol.epub>;
                                                    skos:prefLabel "HTML object (2.21 KiB)"@en.
 <ni:///mh;1QEQTffiIbFv868Z2wy4YqqYxw?ct=text/plain> at:digest <urn:md5:4DF7E221B16FF3AF19DB0CB862AA98C7>;
                                                     dcterms:extent "2264"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQTffiIbFv868Z2wy4YqqYxw?ct=application/xml>,
-                                                                      <ni:///mh;1QEQTffiIbFv868Z2wy4YqqYxw?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQTffiIbFv868Z2wy4YqqYxw?ct=text/html>,
+                                                                      <ni:///mh;1QEQTffiIbFv868Z2wy4YqqYxw?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQTffiIbFv868Z2wy4YqqYxw?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (2.21 KiB)"@en;
@@ -241,8 +245,8 @@ _:n1 at:pathObject <file:///cole-voyage-of-life-tol.epub>;
                                                    skos:prefLabel "HTML object (1.83 KiB)"@en.
 <ni:///mh;1QEQXqDgTEQIwmZjYzadcxRVtA?ct=text/plain> at:digest <urn:md5:5EA0E04C4408C2666363369D731455B4>;
                                                     dcterms:extent "1879"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQXqDgTEQIwmZjYzadcxRVtA?ct=text/html>,
-                                                                      <ni:///mh;1QEQXqDgTEQIwmZjYzadcxRVtA?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQXqDgTEQIwmZjYzadcxRVtA?ct=application/xml>,
+                                                                      <ni:///mh;1QEQXqDgTEQIwmZjYzadcxRVtA?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQXqDgTEQIwmZjYzadcxRVtA?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (1.83 KiB)"@en;
@@ -260,8 +264,8 @@ _:n1 at:pathObject <file:///cole-voyage-of-life-tol.epub>;
                                                     nfo:verticalResolution 199 ;
                                                     nfo:width 320 ;
                                                     a schema:MediaObject,
-                                                      nfo:Image,
-                                                      schema:ImageObject;
+                                                      schema:ImageObject,
+                                                      nfo:Image;
                                                     skos:prefLabel "JPG object (320×280)"@en,
                                                                    "JPG object (71.1 KiB)"@en.
 <ni:///mh;1QEQhvu6OG7GIxEldfs5N_HV6g?ct=application/octet-stream> at:digest <urn:md5:86FBBA386EC623112575FB3937F1D5EA>;
@@ -276,8 +280,8 @@ _:n1 at:pathObject <file:///cole-voyage-of-life-tol.epub>;
                                                     nfo:verticalResolution 199 ;
                                                     nfo:width 320 ;
                                                     a schema:MediaObject,
-                                                      nfo:Image,
-                                                      schema:ImageObject;
+                                                      schema:ImageObject,
+                                                      nfo:Image;
                                                     skos:prefLabel "JPG object (320×400)"@en,
                                                                    "JPG object (92.08 KiB)"@en.
 <ni:///mh;1QEQi89n5Lqu0P_sHwGpiIfEsQ?ct=application/octet-stream> at:digest <urn:md5:8BCF67E4BAAED0FFEC1F01A98887C4B1>;
@@ -555,8 +559,8 @@ _:n1 at:pathObject <file:///cole-voyage-of-life-tol.epub>;
                                                     nfo:verticalResolution 199 ;
                                                     nfo:width 1024 ;
                                                     a schema:MediaObject,
-                                                      nfo:Image,
-                                                      schema:ImageObject;
+                                                      schema:ImageObject,
+                                                      nfo:Image;
                                                     skos:prefLabel "JPG object (1024×697)"@en,
                                                                    "JPG object (146.4 KiB)"@en.
 <ni:///mh;1QEQjcO9KFL_qJWcqlDfvchEdQ?ct=application/prs.implied-document+xml;root=container;ns=%22urn:oasis:names:tc:opendocument:xmlns:container%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=container;ns=%22urn:oasis:names:tc:opendocument:xmlns:container%22>;
@@ -628,8 +632,8 @@ _:n1 at:pathObject <file:///cole-voyage-of-life-tol.epub>;
                                                     nfo:verticalResolution 199 ;
                                                     nfo:width 320 ;
                                                     a schema:MediaObject,
-                                                      nfo:Image,
-                                                      schema:ImageObject;
+                                                      schema:ImageObject,
+                                                      nfo:Image;
                                                     skos:prefLabel "JPG object (320×240)"@en,
                                                                    "JPG object (78.25 KiB)"@en.
 <ni:///mh;1QEQpmPisCCn6oLmSHuTngDRcw?ct=application/octet-stream> at:digest <urn:md5:A663E2B020A7EA82E6487B939E00D173>;
@@ -660,8 +664,8 @@ _:n1 at:pathObject <file:///cole-voyage-of-life-tol.epub>;
                                                     nfo:verticalResolution 199 ;
                                                     nfo:width 1024 ;
                                                     a schema:MediaObject,
-                                                      nfo:Image,
-                                                      schema:ImageObject;
+                                                      schema:ImageObject,
+                                                      nfo:Image;
                                                     skos:prefLabel "JPG object (1024×673)"@en,
                                                                    "JPG object (146.56 KiB)"@en.
 <ni:///mh;1QEQurQnw4yQCgpXM6hoOKY6kA?ct=application/prs.implied-document+xml;root=package;ns=%22http://www.idpf.org/2007/opf%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=package;ns=%22http://www.idpf.org/2007/opf%22>;
@@ -722,8 +726,8 @@ _:n1 at:pathObject <file:///cole-voyage-of-life-tol.epub>;
                                                    skos:prefLabel "HTML object (2.48 KiB)"@en.
 <ni:///mh;1QEQwdF4HCJRfVPuYIqdhgJMkA?ct=text/plain> at:digest <urn:md5:C1D1781C22517D53EE608A9D86024C90>;
                                                     dcterms:extent "2542"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQwdF4HCJRfVPuYIqdhgJMkA?ct=application/xml>,
-                                                                      <ni:///mh;1QEQwdF4HCJRfVPuYIqdhgJMkA?ct=text/html>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQwdF4HCJRfVPuYIqdhgJMkA?ct=text/html>,
+                                                                      <ni:///mh;1QEQwdF4HCJRfVPuYIqdhgJMkA?ct=application/xml>;
                                                     nie:hasPart <ni:///mh;1QEQwdF4HCJRfVPuYIqdhgJMkA?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (2.48 KiB)"@en;
@@ -741,8 +745,8 @@ _:n1 at:pathObject <file:///cole-voyage-of-life-tol.epub>;
                                                     nfo:verticalResolution 199 ;
                                                     nfo:width 320 ;
                                                     a schema:MediaObject,
-                                                      nfo:Image,
-                                                      schema:ImageObject;
+                                                      schema:ImageObject,
+                                                      nfo:Image;
                                                     skos:prefLabel "JPG object (320×240)"@en,
                                                                    "JPG object (68.06 KiB)"@en.
 <ni:///mh;1QEQySbwAeUmFVzh2hjijMOXng?ct=application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=html;ns=%22http://www.w3.org/1999/xhtml%22>;
@@ -771,8 +775,8 @@ _:n1 at:pathObject <file:///cole-voyage-of-life-tol.epub>;
                                                    skos:prefLabel "HTML object (1.94 KiB)"@en.
 <ni:///mh;1QEQySbwAeUmFVzh2hjijMOXng?ct=text/plain> at:digest <urn:md5:C926F001E526155CE1DA18E28CC3979E>;
                                                     dcterms:extent "1987"^^dt:byte;
-                                                    dcterms:hasFormat <ni:///mh;1QEQySbwAeUmFVzh2hjijMOXng?ct=text/html>,
-                                                                      <ni:///mh;1QEQySbwAeUmFVzh2hjijMOXng?ct=application/xml>;
+                                                    dcterms:hasFormat <ni:///mh;1QEQySbwAeUmFVzh2hjijMOXng?ct=application/xml>,
+                                                                      <ni:///mh;1QEQySbwAeUmFVzh2hjijMOXng?ct=text/html>;
                                                     nie:hasPart <ni:///mh;1QEQySbwAeUmFVzh2hjijMOXng?ct=text/plain#line=,1>;
                                                     a cnt:ContentAsText;
                                                     skos:prefLabel "text (1.94 KiB)"@en;

@@ -14,6 +14,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
+@prefix err: <http://www.w3.org/2005/xqt-errors#>.
 
 _:n1 at:pathObject <file:///cnt-04.ott>;
      nie:interpretedAs <ni:///mh;1QEQS9GM7j0cD_hPm0d86LlkKQ?ct=application/octet-stream>;
@@ -248,8 +249,8 @@ _:n1 at:pathObject <file:///cnt-04.ott>;
                                                    nfo:verticalResolution 96 ;
                                                    nfo:width 160 ;
                                                    a schema:MediaObject,
-                                                     nfo:Image,
-                                                     schema:ImageObject;
+                                                     schema:ImageObject,
+                                                     nfo:Image;
                                                    skos:prefLabel "PNG object (160×124, 8-bit)"@en,
                                                                   "PNG object (160×124)"@en,
                                                                   "PNG object (932 B)"@en.
@@ -258,6 +259,9 @@ _:n1 at:pathObject <file:///cnt-04.ott>;
                                                            cnt:ContentAsXML,
                                                            xis:Document;
                                                          skos:prefLabel "XML object (1.07 KiB)"@en;
+                                                         err:description "The root element could not be found in the XML data."@en;
+                                                         err:module <clr-namespace:IS4.SFI.Analyzers;assembly=IS4.SFI.Formats.XML#XmlAnalyzer>;
+                                                         err:value <clr-namespace:System.Xml;assembly=System.Private.Xml#XmlException>;
                                                          cnt:declaredEncoding "UTF-8";
                                                          cnt:dtDecl <ni:///mh;1QEQg0DKXdPC5yMovuSp8xhpUA?ct=application/xml#dtd()>;
                                                          cnt:version "1.0".

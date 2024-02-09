@@ -3,9 +3,10 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
-@prefix schema: <http://schema.org/>.
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
+@prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix err: <http://www.w3.org/2005/xqt-errors#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix dt: <http://dbpedia.org/datatype/>.
@@ -25,16 +26,19 @@ _:n1 at:pathObject <file:///breakout.zip>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQo9-0xK9hhjNSCjGFiW0mAA?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (7.96 KiB)"@en.
-<ni:///mh;1QEQo9-0xK9hhjNSCjGFiW0mAA?ct=application/zip> at:pathObject <file:///>;
+<ni:///mh;1QEQo9-0xK9hhjNSCjGFiW0mAA?ct=application/zip> at:pathObject <file:///.>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQo9-0xK9hhjNSCjGFiW0mAA?ct=application/zip#/>;
                                                          a schema:MediaObject,
                                                            nfo:Archive;
                                                          skos:prefLabel "ZIP object (7.96 KiB)"@en.
-<ni:///mh;1QEQo9-0xK9hhjNSCjGFiW0mAA?ct=application/zip#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQo9-0xK9hhjNSCjGFiW0mAA?ct=application/zip#/> at:pathObject <file:///>;
                                                            a nfo:Folder;
                                                            skos:prefLabel "/".
 <ni:///mh;1QEQo9-0xK9hhjNSCjGFiW0mAA?ct=application/zip#/BREAKOUT.ACC> at:pathObject <file:///BREAKOUT.ACC>;
+                                                                       nie:interpretedAs [err:value <clr-namespace:System;assembly=System.Private.CoreLib#NotSupportedException> ; 
+                                                                                          err:description "CompressionMethod: 1"@en ; 
+                                                                                          err:module <clr-namespace:IS4.SFI.Analyzers;assembly=IS4.SFI#DataAnalyzer>];
                                                                        nfo:belongsToContainer <ni:///mh;1QEQo9-0xK9hhjNSCjGFiW0mAA?ct=application/zip#/>;
                                                                        nfo:fileLastModified "1987-11-15T22:05:44.000000+01:00"^^xsd:dateTime;
                                                                        nfo:fileName "BREAKOUT.ACC";

@@ -12,6 +12,7 @@
 @prefix sec: <https://w3id.org/security#>.
 @prefix dsm: <http://www.w3.org/2001/04/xmldsig-more#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix err: <http://www.w3.org/2005/xqt-errors#>.
 
 _:n1 at:pathObject <file:///test.rar>;
      nie:interpretedAs <ni:///mh;1QEQSITL9J_DWsMDz9WYV688eQ?ct=application/octet-stream>;
@@ -84,8 +85,8 @@ _:n1 at:pathObject <file:///test.rar>;
 <ni:///mh;1QEQ3VtAvqM2X207bH1b0NEVxw?ct=text/plain#line=,1> rdf:value "OUTLAWS CHEAT CODES".
 <ni:///mh;1QEQ4aUKbeuNRvI4mqrzIObJyg?ct=application/octet-stream> at:digest <urn:md5:E1A50A6DEB8D46F2389AAAF320E6C9CA>;
                                                                   dcterms:extent "52668"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQ4aUKbeuNRvI4mqrzIObJyg?ct=application/x-msdos-program>,
-                                                                                    <ni:///mh;1QEQ4aUKbeuNRvI4mqrzIObJyg?ct=application/vnd.microsoft.portable-executable>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQ4aUKbeuNRvI4mqrzIObJyg?ct=application/vnd.microsoft.portable-executable>,
+                                                                                    <ni:///mh;1QEQ4aUKbeuNRvI4mqrzIObJyg?ct=application/x-msdos-program>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (51.43 KiB)"@en.
 <ni:///mh;1QEQ4aUKbeuNRvI4mqrzIObJyg?ct=application/vnd.microsoft.portable-executable> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
@@ -415,6 +416,10 @@ _:n1 at:pathObject <file:///test.rar>;
                                                                         nfo:ArchiveItem;
                                                                       skos:prefLabel "/BLH.NFO".
 <ni:///mh;1QEQAANS3fiG733tEKwfNm8ZVg?ct=application/vnd.rar#/MDKTRAIN.EXE> at:pathObject <file:///MDKTRAIN.EXE>;
+                                                                           nie:interpretedAs [err:value <clr-namespace:System;assembly=System.Private.CoreLib#NullReferenceException> ; 
+                                                                                              err:description "Object reference not set to an instance of an object."@en ; 
+                                                                                              err:code err:FODC0002 ; 
+                                                                                              err:module <clr-namespace:IS4.SFI.Analyzers;assembly=IS4.SFI#DataAnalyzer>];
                                                                            nfo:belongsToContainer <ni:///mh;1QEQAANS3fiG733tEKwfNm8ZVg?ct=application/vnd.rar>;
                                                                            nfo:fileLastModified "1997-04-03T08:20:54.000000+02:00"^^xsd:dateTime;
                                                                            nfo:fileName "MDKTRAIN.EXE";
@@ -698,7 +703,10 @@ _:n1 at:pathObject <file:///test.rar>;
 <ni:///mh;1QEQqgXn5c4vEWqeOONSs3VGtg?ct=application/vnd.rar> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.rar>;
                                                              a schema:MediaObject,
                                                                nfo:Archive;
-                                                             skos:prefLabel "RAR object (2.01 KiB)"@en.
+                                                             skos:prefLabel "RAR object (2.01 KiB)"@en;
+                                                             err:description "Unknown Rar Header: 118"@en;
+                                                             err:module <clr-namespace:IS4.SFI.Analyzers;assembly=IS4.SFI.Formats.Archives#ArchiveReaderAnalyzer>;
+                                                             err:value <clr-namespace:SharpCompress.Common;assembly=SharpCompress#InvalidFormatException>.
 <ni:///mh;1QEQqgXn5c4vEWqeOONSs3VGtg?ct=application/vnd.rar#/TRAINER.EXE> at:pathObject <file:///TRAINER.EXE>;
                                                                           nie:interpretedAs <ni:///mh;1QEQEyjQ0_5Bpo8yXW9WsP7nAQ?ct=application/octet-stream>;
                                                                           nfo:belongsToContainer <ni:///mh;1QEQqgXn5c4vEWqeOONSs3VGtg?ct=application/vnd.rar>;

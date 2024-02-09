@@ -6,6 +6,7 @@
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix err: <http://www.w3.org/2005/xqt-errors#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix dt: <http://dbpedia.org/datatype/>.
@@ -32,6 +33,10 @@ _:n1 at:pathObject <file:///LHARK.LZH>;
                                                              nfo:Archive;
                                                            skos:prefLabel "LHA object (4.92 KiB)"@en.
 <ni:///mh;1QEQTOAikQnEMPR8PRcjAf-LOQ?ct=application/x-lha#/LHARK-A.INF> at:pathObject <file:///LHARK-A.INF>;
+                                                                        nie:interpretedAs [err:value <clr-namespace:System;assembly=System.Private.CoreLib#Exception> ; 
+                                                                                           err:description "make_table(): Bad table (case b), total = 56320, tablebits = 8"@en ; 
+                                                                                           err:code err:FOER0000 ; 
+                                                                                           err:module <clr-namespace:IS4.SFI.Analyzers;assembly=IS4.SFI#DataAnalyzer>];
                                                                         nfo:belongsToContainer <ni:///mh;1QEQTOAikQnEMPR8PRcjAf-LOQ?ct=application/x-lha>;
                                                                         nfo:fileLastModified "1997-01-28T22:09:54.000000Z"^^xsd:dateTime;
                                                                         nfo:fileName "LHARK-A.INF";
@@ -40,6 +45,10 @@ _:n1 at:pathObject <file:///LHARK.LZH>;
                                                                           nfo:ArchiveItem;
                                                                         skos:prefLabel "/LHARK-A.INF".
 <ni:///mh;1QEQTOAikQnEMPR8PRcjAf-LOQ?ct=application/x-lha#/LHARK-B.INF> at:pathObject <file:///LHARK-B.INF>;
+                                                                        nie:interpretedAs [err:value <clr-namespace:System;assembly=System.Private.CoreLib#Exception> ; 
+                                                                                           err:description "make_table(): Bad table (case b), total = 5632, tablebits = 8"@en ; 
+                                                                                           err:code err:FOER0000 ; 
+                                                                                           err:module <clr-namespace:IS4.SFI.Analyzers;assembly=IS4.SFI#DataAnalyzer>];
                                                                         nfo:belongsToContainer <ni:///mh;1QEQTOAikQnEMPR8PRcjAf-LOQ?ct=application/x-lha>;
                                                                         nfo:fileLastModified "1997-01-28T22:10:06.000000Z"^^xsd:dateTime;
                                                                         nfo:fileName "LHARK-B.INF";
@@ -48,6 +57,10 @@ _:n1 at:pathObject <file:///LHARK.LZH>;
                                                                           nfo:ArchiveItem;
                                                                         skos:prefLabel "/LHARK-B.INF".
 <ni:///mh;1QEQTOAikQnEMPR8PRcjAf-LOQ?ct=application/x-lha#/LHARK.TXT> at:pathObject <file:///LHARK.TXT>;
+                                                                      nie:interpretedAs [err:value <clr-namespace:System;assembly=System.Private.CoreLib#Exception> ; 
+                                                                                         err:description "make_table(): Bad table (case b), total = 54784, tablebits = 8"@en ; 
+                                                                                         err:code err:FOER0000 ; 
+                                                                                         err:module <clr-namespace:IS4.SFI.Analyzers;assembly=IS4.SFI#DataAnalyzer>];
                                                                       nfo:belongsToContainer <ni:///mh;1QEQTOAikQnEMPR8PRcjAf-LOQ?ct=application/x-lha>;
                                                                       nfo:fileLastModified "1997-07-13T12:01:24.000000Z"^^xsd:dateTime;
                                                                       nfo:fileName "LHARK.TXT";

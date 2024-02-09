@@ -6,6 +6,7 @@
 @prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix err: <http://www.w3.org/2005/xqt-errors#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix dt: <http://dbpedia.org/datatype/>.
@@ -28,8 +29,15 @@ _:n1 at:pathObject <file:///falcngry.lzh>;
 <ni:///mh;1QEQ7DgQ2coRR2vU67DvU2NvxQ?ct=application/x-lha> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-lha>;
                                                            a schema:MediaObject,
                                                              nfo:Archive;
-                                                           skos:prefLabel "LHA object (158.13 KiB)"@en.
+                                                           skos:prefLabel "LHA object (158.13 KiB)"@en;
+                                                           err:description "read header (level %x) is unknown"@en;
+                                                           err:module <clr-namespace:IS4.SFI.Analyzers;assembly=IS4.SFI.Formats.Archives#ArchiveReaderAnalyzer>;
+                                                           err:value <clr-namespace:System.IO;assembly=System.Private.CoreLib#IOException>.
 <ni:///mh;1QEQ7DgQ2coRR2vU67DvU2NvxQ?ct=application/x-lha#/FALCON3G.TIF> at:pathObject <file:///FALCON3G.TIF>;
+                                                                         nie:interpretedAs [err:value <clr-namespace:System;assembly=System.Private.CoreLib#Exception> ; 
+                                                                                            err:description "make_table(): Bad table (case b), total = 9216, tablebits = 8"@en ; 
+                                                                                            err:code err:FOER0000 ; 
+                                                                                            err:module <clr-namespace:IS4.SFI.Analyzers;assembly=IS4.SFI#DataAnalyzer>];
                                                                          nfo:belongsToContainer <ni:///mh;1QEQ7DgQ2coRR2vU67DvU2NvxQ?ct=application/x-lha>;
                                                                          nfo:fileLastModified "1992-09-02T12:09:10.000000Z"^^xsd:dateTime;
                                                                          nfo:fileName "FALCON3G.TIF";
