@@ -227,6 +227,11 @@ namespace IS4.SFI.Tests
                 {
                     extensionObjectAnalyzer.AddClasses = false;
                 }
+
+                if(Analyzers.OfType<AssemblyAnalyzer>().FirstOrDefault() is { } assemblyAnalyzer)
+                {
+                    assemblyAnalyzer.LinkGlobals = true;
+                }
             }
         }
 
