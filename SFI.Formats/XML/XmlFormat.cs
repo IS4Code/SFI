@@ -105,7 +105,17 @@ namespace IS4.SFI.Formats
         [Description("Whether to prevent accepting files starting with '<?php' as XML.")]
         public bool IgnorePhp { get; set; } = true;
 
+        /// <summary>
+        /// Whether to prevent accepting <c>&lt;html&gt;</c> files as XML.
+        /// </summary>
+        [Description("Whether to prevent accepting '<html>' files as XML.")]
+        public bool IgnoreHtml { get; set; } = true;
+
         static readonly byte[] phpSignaureBytes = Encoding.ASCII.GetBytes("?php");
+
+        static readonly byte[] htmlElementBytes = Encoding.ASCII.GetBytes("html");
+
+        static readonly byte[] htmlDoctypeBytes = Encoding.ASCII.GetBytes("!DOCTYPE html");
 
         /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public XmlFileFormat(string mediaType = "application/xml", string extension = "xml") : base(DataTools.MaxBomLength + 1, mediaType, extension)
@@ -135,9 +145,17 @@ namespace IS4.SFI.Formats
                     case (byte)'<':
                         if(IgnorePhp)
                         {
-                            if(header.Slice(i + 1).StartsWith(phpSignaureBytes.AsSpan()))
+                            if(FollowedByToken(header, i, phpSignaureBytes))
                             {
                                 // PHP detected
+                                return false;
+                            }
+                        }
+                        if(IgnoreHtml)
+                        {
+                            if(FollowedByToken(header, i, htmlElementBytes) || FollowedByToken(header, i, htmlDoctypeBytes))
+                            {
+                                // HTML detected
                                 return false;
                             }
                         }
@@ -147,6 +165,22 @@ namespace IS4.SFI.Formats
                 }
             }
             return maybe;
+        }
+
+        static bool FollowedByToken(ReadOnlySpan<byte> header, int position, ReadOnlySpan<byte> span)
+        {
+            var next = header.Slice(position + 1);
+            if(next.Length > span.Length && next.StartsWith(span))
+            {
+                // span follows with one byte after it
+                var nextByte = next[span.Length];
+                if(nextByte < 0x80 && !XmlConvert.IsNCNameChar((char)nextByte))
+                {
+                    // the byte is not a part of the name, so the name is complete
+                    return true;
+                }
+            }
+            return false;
         }
 
         /// <inheritdoc/>
@@ -163,6 +197,34 @@ namespace IS4.SFI.Formats
                 if(reader.NodeType == XmlNodeType.ProcessingInstruction && reader.Name == "php")
                 {
                     // PHP detected
+                    return default;
+                }
+            }
+            if(IgnoreHtml)
+            {
+                if(reader.NodeType == XmlNodeType.DocumentType && reader.Name.Equals("html", StringComparison.OrdinalIgnoreCase))
+                {
+                    var publicId = reader.GetAttribute("PUBLIC");
+                    var systemId = reader.GetAttribute("SYSTEM");
+                    if(String.IsNullOrEmpty(publicId) && String.IsNullOrEmpty(systemId))
+                    {
+                        // plain HTML 5
+                        return default;
+                    }
+                    if(systemId == "about:legacy-compat")
+                    {
+                        // legacy compatible HTML 5
+                        return default;
+                    }
+                    if(publicId != null && (publicId.StartsWith("-//W3C//DTD HTML ", StringComparison.Ordinal) || publicId.StartsWith("-//IETF//DTD HTML ")))
+                    {
+                        // older HTML version
+                        return default;
+                    }
+                }
+                if(reader.NodeType == XmlNodeType.Element && String.IsNullOrEmpty(reader.NamespaceURI) && reader.Name.Equals("html", StringComparison.OrdinalIgnoreCase))
+                {
+                    // HTML detected (no DOCTYPE)
                     return default;
                 }
             }
