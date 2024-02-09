@@ -198,27 +198,32 @@ namespace IS4.SFI.Tests
                 DataAnalyzer.HashAlgorithms.Add(BuiltInHash.MD5!);
                 DataAnalyzer.ContentUriFormatter = new NiHashedContentUriFormatter(BuiltInHash.MD5!);
 
-                if(Analyzers.OfType<WaveAnalyzer>().FirstOrDefault() is WaveAnalyzer waveAnalyzer)
+                if(Analyzers.OfType<ExceptionAnalyzer>().FirstOrDefault() is { } exceptionAnalyzer)
+                {
+                    exceptionAnalyzer.IgnoreSourcePosition = true;
+                }
+
+                if(Analyzers.OfType<WaveAnalyzer>().FirstOrDefault() is { } waveAnalyzer)
                 {
                     waveAnalyzer.CreateSpectrum = false;
                 }
 
-                if(Analyzers.OfType<DosModuleAnalyzer>().FirstOrDefault() is DosModuleAnalyzer dosAnalyzer)
+                if(Analyzers.OfType<DosModuleAnalyzer>().FirstOrDefault() is { } dosAnalyzer)
                 {
                     dosAnalyzer.Emulate = false;
                 }
 
-                if(Analyzers.OfType<X509CertificateAnalyzer>().FirstOrDefault() is X509CertificateAnalyzer x509Analyzer)
+                if(Analyzers.OfType<X509CertificateAnalyzer>().FirstOrDefault() is { } x509Analyzer)
                 {
                     x509Analyzer.DescribeExtensions = false;
                 }
 
-                if(Analyzers.OfType<MediaTypeAnalyzer>().FirstOrDefault() is MediaTypeAnalyzer mediaTypeAnalyzer)
+                if(Analyzers.OfType<MediaTypeAnalyzer>().FirstOrDefault() is { } mediaTypeAnalyzer)
                 {
                     mediaTypeAnalyzer.AddClasses = false;
                 }
 
-                if(Analyzers.OfType<ExtensionObjectAnalyzer>().FirstOrDefault() is ExtensionObjectAnalyzer extensionObjectAnalyzer)
+                if(Analyzers.OfType<ExtensionObjectAnalyzer>().FirstOrDefault() is { } extensionObjectAnalyzer)
                 {
                     extensionObjectAnalyzer.AddClasses = false;
                 }
