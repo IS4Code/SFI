@@ -1,7 +1,6 @@
 ﻿using IS4.SFI.Services;
 using IS4.SFI.Vocabulary;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Reflection;
@@ -19,13 +18,13 @@ namespace IS4.SFI.Analyzers
         /// Whether to describe all namespaces in the assembly.
         /// </summary>
         [Description("Whether to describe all namespaces in the assembly.")]
-        public bool Namespaces { get; set; }
+        public bool DescribeNamespaces { get; set; }
 
         /// <summary>
         /// Whether to link all globally declared members and the entry point.
         /// </summary>
         [Description("Whether to link all globally declared members and the entry point.")]
-        public bool Globals { get; set; }
+        public bool LinkGlobals { get; set; }
 
         /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>
         public AssemblyAnalyzer() : base(Common.ApplicationClasses, Classes.CodeElement)
@@ -95,12 +94,12 @@ namespace IS4.SFI.Analyzers
                 }
             }
 
-            if(Namespaces)
+            if(DescribeNamespaces)
             {
                 await analyzers.Analyze(Namespace.FromAssembly(assembly), context.WithNode(node));
             }
 
-            if(Globals)
+            if(LinkGlobals)
             {
                 if(assembly.EntryPoint is { } entryMethod)
                 {
