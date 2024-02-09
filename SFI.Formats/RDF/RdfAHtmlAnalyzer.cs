@@ -37,6 +37,12 @@ namespace IS4.SFI.Analyzers
 
         static string? initialContext;
 
+        /// <summary>
+        /// Whether to ignore any parsing exceptions when loading RDFa data.
+        /// </summary>
+        [Description("Whether to ignore any parsing exceptions when loading RDFa data.")]
+        public bool SuppressParsingErrors { get; set; } = true;
+
         /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>
         public RdfAHtmlAnalyzer() : base()
         {
@@ -49,24 +55,32 @@ namespace IS4.SFI.Analyzers
             var result = await base.Analyze(document, context, analyzers);
             if(result.Node is ILinkedNode node)
             {
-                initialContext = await RdfAInitialContext.PrefixString;
-                var reader = new Parser.DummyReader(document);
-                if(!node.TryDescribe(RdfAParser, baseUri => {
-                    Parser.SetBase(document, baseUri);
-                    return reader;
-                }))
+                try{
+                    initialContext = await RdfAInitialContext.PrefixString;
+                    var reader = new Parser.DummyReader(document);
+                    if(!node.TryDescribe(RdfAParser, baseUri => {
+                        Parser.SetBase(document, baseUri);
+                        return reader;
+                    }))
+                    {
+                        node.Describe(uri => {
+                            var graph = new Graph(true);
+                            graph.BaseUri = uri;
+                            RdfAParser.Load(graph, reader);
+                            var buffer = new MemoryStream();
+                            RdfXmlWriter.Save(graph, new StreamWriter(buffer, Encoding.UTF8), true);
+                            buffer.Position = 0;
+                            var xmlReader = XmlReader.Create(new StreamReader(buffer, Encoding.UTF8));
+                            if(xmlReader.MoveToContent() == XmlNodeType.Element) return xmlReader;
+                            return null;
+                        });
+                    }
+                }catch(RdfParseException) when(SuppressParsingErrors)
                 {
-                    node.Describe(uri => {
-                        var graph = new Graph(true);
-                        graph.BaseUri = uri;
-                        RdfAParser.Load(graph, reader);
-                        var buffer = new MemoryStream();
-                        RdfXmlWriter.Save(graph, new StreamWriter(buffer, Encoding.UTF8), true);
-                        buffer.Position = 0;
-                        var xmlReader = XmlReader.Create(new StreamReader(buffer, Encoding.UTF8));
-                        if(xmlReader.MoveToContent() == XmlNodeType.Element) return xmlReader;
-                        return null;
-                    });
+
+                }catch(FormatException) when(SuppressParsingErrors)
+                {
+
                 }
             }
             return result;
