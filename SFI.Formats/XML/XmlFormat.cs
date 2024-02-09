@@ -119,6 +119,7 @@ namespace IS4.SFI.Formats
             if(isBinary) return false;
             header = header.Slice(DataTools.FindBom(header));
             if(header.Length == 0) return false;
+            bool maybe = false;
             for(int i = 0; i < header.Length; i++)
             {
                 switch(header[i])
@@ -128,6 +129,7 @@ namespace IS4.SFI.Formats
                     case (byte)'\r':
                     case (byte)'\n':
                     case (byte)' ':
+                        maybe = true;
                         continue;
                     // XML declaration
                     case (byte)'<':
@@ -144,7 +146,7 @@ namespace IS4.SFI.Formats
                         return false;
                 }
             }
-            return false;
+            return maybe;
         }
 
         /// <inheritdoc/>
