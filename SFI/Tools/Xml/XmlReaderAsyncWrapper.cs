@@ -53,6 +53,9 @@ namespace IS4.SFI.Tools.Xml
                 }catch(NotSupportedException)
                 {
                     tryAsync = false;
+                }catch(InvalidOperationException)
+                {
+                    tryAsync = false;
                 }
             }
             return Read();
@@ -69,6 +72,9 @@ namespace IS4.SFI.Tools.Xml
                 {
                     tryAsync = false;
                 }catch(NotSupportedException)
+                {
+                    tryAsync = false;
+                }catch(InvalidOperationException)
                 {
                     tryAsync = false;
                 }
