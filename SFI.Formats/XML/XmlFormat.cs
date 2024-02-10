@@ -1,5 +1,7 @@
 ﻿using IS4.SFI.Services;
+using IS4.SFI.Tools.Xml;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Text;
@@ -111,6 +113,12 @@ namespace IS4.SFI.Formats
         [Description("Whether to prevent accepting '<html>' files as XML.")]
         public bool IgnoreHtml { get; set; } = true;
 
+        /// <summary>
+        /// Whether to load the document fully before analysis, discarding invalid XML.
+        /// </summary>
+        [Description("Whether to load the document fully before analysis, discarding invalid XML.")]
+        public bool ParseFully { get; set; }
+
         static readonly byte[] phpSignaureBytes = Encoding.ASCII.GetBytes("?php");
 
         static readonly byte[] htmlElementBytes = Encoding.ASCII.GetBytes("html");
@@ -188,7 +196,7 @@ namespace IS4.SFI.Formats
         {
             using var reader = XmlReader.Create(stream, ReaderSettings);
             if(!await reader.ReadAsync()) return default;
-            while(reader.NodeType == XmlNodeType.Whitespace || reader.NodeType == XmlNodeType.SignificantWhitespace)
+            while(reader.NodeType is XmlNodeType.Whitespace or XmlNodeType.SignificantWhitespace)
             {
                 if(!await reader.ReadAsync()) return default;
             }
@@ -228,7 +236,60 @@ namespace IS4.SFI.Formats
                     return default;
                 }
             }
+            if(ParseFully)
+            {
+                using var cachedReader = await PreloadXmlReader(reader);
+                if(cachedReader == null)
+                {
+                    return default;
+                }
+                return await resultFactory(cachedReader, args);
+            }
             return await resultFactory(reader, args);
+        }
+
+        /// <summary>
+        /// Loads fully the XML document from <paramref name="input"/> and returns
+        /// a reader to the cached document.
+        /// </summary>
+        /// <param name="input">The input forward-only XML reader.</param>
+        /// <returns>The resulting <see cref="XmlReader"/> instance reading from the document, or <see langword="null"/> on failure.</returns>
+        /// <exception cref="XmlException">An arbitrary exception from parsing the XML.</exception>
+        protected async virtual ValueTask<XmlReader?> PreloadXmlReader(XmlReader input)
+        {
+            var readerSequence = new List<XmlReader>();
+
+            // Look for DOCTYPE or the root element
+            while(input.NodeType is not (XmlNodeType.Element or XmlNodeType.DocumentType))
+            {
+                // Preserve everything up that point
+                readerSequence.Add(new XmlReaderState(input));
+                if(!await input.ReadAsync()) return null;
+            }
+            if(input.NodeType == XmlNodeType.DocumentType)
+            {
+                // Preserve DOCTYPE too
+                readerSequence.Add(new XmlReaderState(input));
+            }
+
+            // readerSequence now contains all comments, PIs before the DOCTYPE or root, and the declaration,
+            // input is positioned either at DOCTYPE (since it affects the document reading) or the root
+            var doc = new XmlDocument();
+            await doc.LoadAsync(input);
+            // Base document reader
+            XmlReader reader = new XmlNodeReader(doc);
+            // Async support
+            reader = new XmlReaderAsyncWrapper(reader);
+            // Apply settings (if any)
+            reader = XmlReader.Create(reader, ReaderSettings);
+            if(!await reader.ReadAsync()) return null;
+            // Now positioned at anything following the DOCTYPE or at the root
+            readerSequence.Add(reader);
+            // Concat with the preceding states
+            reader = new SequenceXmlReader(readerSequence);
+            // Move to the original inital state
+            if(!await reader.ReadAsync()) return null;
+            return reader;
         }
 
         class XmlPlaceholderResolver : XmlResolver
