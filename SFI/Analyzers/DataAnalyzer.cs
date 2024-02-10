@@ -195,7 +195,7 @@ namespace IS4.SFI.Analyzers
                 encodingDetector = analyzer.EncodingDetectorFactory?.Invoke();
 
                 this.streamFactory = streamFactory;
-                this.context = context.WithMatchContext(c => c.WithServices(this.streamFactory));
+                this.context = context.WithMatchContext(c => c.WithServices(this.streamFactory).WithService(encodingDetector));
                 this.analyzers = analyzers;
             }
 
