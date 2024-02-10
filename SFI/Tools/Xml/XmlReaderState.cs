@@ -305,7 +305,13 @@ namespace IS4.SFI.Tools.Xml
         /// <inheritdoc/>
         public override bool Read()
         {
-            throw new NotSupportedException();
+            return false;
+        }
+
+        /// <inheritdoc/>
+        public override Task<bool> ReadAsync()
+        {
+            return Task.FromResult(false);
         }
 
         /// <inheritdoc/>
