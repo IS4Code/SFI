@@ -11,7 +11,7 @@ namespace IS4.SFI.Formats
     /// The parameters are stored as services implementing specific
     /// interfaces, retrievable via <see cref="GetService{T}"/>.
     /// </summary>
-    public struct MatchContext
+    public struct MatchContext : IServiceProvider
     {
         readonly ImmutableDictionary<Type, object>? serviceMap;
 
@@ -66,6 +66,20 @@ namespace IS4.SFI.Formats
         public T? GetService<T>() where T : class
         {
             return serviceMap != null && serviceMap.TryGetValue(typeof(T), out var value) ? (T)value : null;
+        }
+
+        /// <summary>
+        /// Attempts to retrieve a service based on its type,
+        /// provided via <paramref name="serviceType"/>.
+        /// </summary>
+        /// <param name="serviceType">The type of the service to retrieve.</param>
+        /// <returns>
+        /// An instance of the requested service,
+        /// if stored in the context, or <see langword="null"/> otherwise.
+        /// </returns>
+        public object? GetService(Type serviceType)
+        {
+            return serviceMap != null && serviceMap.TryGetValue(serviceType, out var value) ? value : null;
         }
 
         /// <summary>
