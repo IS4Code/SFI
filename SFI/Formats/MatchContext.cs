@@ -77,8 +77,12 @@ namespace IS4.SFI.Formats
         /// <typeparam name="T">The type implemented by the service.</typeparam>
         /// <param name="service">The implementing service.</param>
         /// <returns>A new context with the service.</returns>
-        public MatchContext WithService<T>(T service)
+        public MatchContext WithService<T>(T? service) where T : notnull
         {
+            if(service == null)
+            {
+                return this;
+            }
             return new MatchContext(serviceMap, typeof(T), service);
         }
 
@@ -90,8 +94,12 @@ namespace IS4.SFI.Formats
         /// </summary>
         /// <param name="services">The implementing service.</param>
         /// <returns>A new context with the service.</returns>
-        public MatchContext WithServices(object services)
+        public MatchContext WithServices(object? services)
         {
+            if(services == null)
+            {
+                return this;
+            }
             return new MatchContext(serviceMap, null, services);
         }
 
