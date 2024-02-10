@@ -119,6 +119,18 @@ namespace IS4.SFI.Formats
         [Description("Whether to load the document fully before analysis, discarding invalid XML.")]
         public bool ParseFully { get; set; }
 
+        /// <summary>
+        /// The default encoding to use for reading the texts.
+        /// </summary>
+        [Description("The default encoding to use for reading the texts.")]
+        public Encoding? DefaultEncoding { get; set; }
+
+        /// <summary>
+        /// Whether to use the detected encoding of the text file, if there is any.
+        /// </summary>
+        [Description("Whether to use the detected encoding of the text file, if there is any.")]
+        public bool UseDetectedEncoding { get; set; }
+
         static readonly byte[] phpSignaureBytes = Encoding.ASCII.GetBytes("?php");
 
         static readonly byte[] htmlElementBytes = Encoding.ASCII.GetBytes("html");
@@ -194,7 +206,20 @@ namespace IS4.SFI.Formats
         /// <inheritdoc/>
         public async override ValueTask<TResult?> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<XmlReader, TResult, TArgs> resultFactory, TArgs args) where TResult : default
         {
-            using var reader = XmlReader.Create(stream, ReaderSettings);
+            var encoding = DefaultEncoding;
+            if(UseDetectedEncoding && context.GetService<IEncodingDetector>() is { Charset: var charset and not (null or "") })
+            {
+                try{
+                    encoding = Encoding.GetEncoding(charset, EncoderFallback.ExceptionFallback, DecoderFallback.ExceptionFallback);
+                }catch(ArgumentException e)
+                {
+                    // Bad detected encoding is not a format matching exception
+                    throw new InternalApplicationException(e);
+                }
+            }
+            using var reader = encoding != null
+                ? XmlReader.Create(new StreamReader(stream, encoding, true, 1024, true), ReaderSettings)
+                : XmlReader.Create(stream, ReaderSettings);
             if(!await reader.ReadAsync()) return default;
             while(reader.NodeType is XmlNodeType.Whitespace or XmlNodeType.SignificantWhitespace)
             {
