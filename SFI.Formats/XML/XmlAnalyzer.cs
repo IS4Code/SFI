@@ -29,7 +29,7 @@ namespace IS4.SFI.Analyzers
         public ICollection<IXmlDocumentFormat> XmlFormats { get; } = new List<IXmlDocumentFormat>();
 
         /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>
-        public XmlAnalyzer() : base(Classes.ContentAsXML, Classes.XmlDocument)
+        public XmlAnalyzer() : base(Classes.ContentAsXML)
         {
 
         }
@@ -38,6 +38,13 @@ namespace IS4.SFI.Analyzers
         public async override ValueTask<AnalysisResult> Analyze(XmlReader reader, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var node = GetNode(context);
+
+            var conformanceLevel = reader.Settings?.ConformanceLevel ?? ConformanceLevel.Auto;
+
+            if(conformanceLevel == ConformanceLevel.Document)
+            {
+                node.SetClass(Classes.XmlDocument);
+            }
 
             XDocumentType? docType = null;
             do
@@ -97,7 +104,12 @@ namespace IS4.SFI.Analyzers
                     case XmlNodeType.Element:
                         // Describe the root element using the XIS vocabulary
                         var elem = node["#element(/1)"];
-                        node.Set(Properties.XmlDocumentElement, elem);
+                        if(conformanceLevel == ConformanceLevel.Document)
+                        {
+                            node.Set(Properties.XmlDocumentElement, elem);
+                        }else{
+                            elem.Set(Properties.XmlParent, node);
+                        }
                         elem.SetClass(Classes.XmlElement);
                         elem.Set(Properties.XmlLocalName, reader.LocalName);
                         if(!String.IsNullOrEmpty(reader.Prefix))
