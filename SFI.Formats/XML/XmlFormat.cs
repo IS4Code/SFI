@@ -114,10 +114,10 @@ namespace IS4.SFI.Formats
         public bool IgnoreHtml { get; set; } = true;
 
         /// <summary>
-        /// Whether to load the document fully before analysis, discarding invalid XML.
+        /// The method used for the processing of XML data before it is analyzed.
         /// </summary>
-        [Description("Whether to load the document fully before analysis, discarding invalid XML.")]
-        public bool ParseFully { get; set; }
+        [Description("The method used for the processing of XML data before it is analyzed.")]
+        public XmlProcessingMethod ProcessingMethod { get; set; }
 
         /// <summary>
         /// The default encoding to use for reading the texts.
@@ -217,60 +217,67 @@ namespace IS4.SFI.Formats
                     throw new InternalApplicationException(e);
                 }
             }
-            using var reader = encoding != null
-                ? XmlReader.Create(new StreamReader(stream, encoding, true, 1024, true), ReaderSettings)
-                : XmlReader.Create(stream, ReaderSettings);
-            if(!await reader.ReadAsync()) return default;
-            while(reader.NodeType is XmlNodeType.Whitespace or XmlNodeType.SignificantWhitespace)
+            long startPosition = ProcessingMethod == XmlProcessingMethod.TwoPass && stream.CanSeek ? stream.Position : -1;
+            using var reader = await CreateReader();
+            if(reader == null)
             {
-                if(!await reader.ReadAsync()) return default;
+                return default;
             }
-            if(IgnorePhp)
+            if(IgnorePhp && IsReaderAtPhp(reader))
             {
-                if(reader.NodeType == XmlNodeType.ProcessingInstruction && reader.Name == "php")
-                {
-                    // PHP detected
-                    return default;
-                }
+                return default;
             }
-            if(IgnoreHtml)
+            if(IgnoreHtml && IsReaderAtHtml(reader))
             {
-                if(reader.NodeType == XmlNodeType.DocumentType && reader.Name.Equals("html", StringComparison.OrdinalIgnoreCase))
-                {
-                    var publicId = reader.GetAttribute("PUBLIC");
-                    var systemId = reader.GetAttribute("SYSTEM");
-                    if(String.IsNullOrEmpty(publicId) && String.IsNullOrEmpty(systemId))
+                return default;
+            }
+            switch(ProcessingMethod)
+            {
+                case XmlProcessingMethod.PreLoad:
+                    using(var preloadedReader = await PreloadXmlReader(reader))
                     {
-                        // plain HTML 5
-                        return default;
+                        if(preloadedReader == null)
+                        {
+                            return default;
+                        }
+                        return await resultFactory(preloadedReader, args);
                     }
-                    if(systemId == "about:legacy-compat")
+                case XmlProcessingMethod.TwoPass:
+                    if(startPosition == -1)
                     {
-                        // legacy compatible HTML 5
-                        return default;
+                        // Cannot seek; fallback
+                        goto case XmlProcessingMethod.PreLoad;
                     }
-                    if(publicId != null && (publicId.StartsWith("-//W3C//DTD HTML ", StringComparison.Ordinal) || publicId.StartsWith("-//IETF//DTD HTML ")))
+                    // Read to the end (verify conformance)
+                    while(await reader.ReadAsync());
+                    // Old reader no longer needed
+                    reader.Close();
+                    // Restart
+                    stream.Position = startPosition;
+                    using(var secondReader = await CreateReader())
                     {
-                        // older HTML version
-                        return default;
+                        if(secondReader == null)
+                        {
+                            return default;
+                        }
+                        return await resultFactory(secondReader, args);
                     }
-                }
-                if(reader.NodeType == XmlNodeType.Element && String.IsNullOrEmpty(reader.NamespaceURI) && reader.Name.Equals("html", StringComparison.OrdinalIgnoreCase))
-                {
-                    // HTML detected (no DOCTYPE)
-                    return default;
-                }
+                default:
+                    return await resultFactory(reader, args);
             }
-            if(ParseFully)
+
+            async ValueTask<XmlReader?> CreateReader()
             {
-                using var cachedReader = await PreloadXmlReader(reader);
-                if(cachedReader == null)
+                var reader = encoding != null
+                    ? XmlReader.Create(new StreamReader(stream, encoding, true, 1024, true), ReaderSettings)
+                    : XmlReader.Create(stream, ReaderSettings);
+                if(!await reader.ReadAsync()) return null;
+                while(reader.NodeType is XmlNodeType.Whitespace or XmlNodeType.SignificantWhitespace)
                 {
-                    return default;
+                    if(!await reader.ReadAsync()) return null;
                 }
-                return await resultFactory(cachedReader, args);
+                return reader;
             }
-            return await resultFactory(reader, args);
         }
 
         /// <summary>
@@ -315,6 +322,56 @@ namespace IS4.SFI.Formats
             // Move to the original inital state
             if(!await reader.ReadAsync()) return null;
             return reader;
+        }
+
+        /// <summary>
+        /// Checks whether <see cref="XmlReader"/> is at an HTML document.
+        /// </summary>
+        /// <param name="reader">The XML reader to check.</param>
+        /// <returns><see langword="true"/> if <paramref name="reader"/> is located at HTML DOCTYPE or root element, <see langword="false"/> otherwise.</returns>
+        protected virtual bool IsReaderAtHtml(XmlReader reader)
+        {
+            if(reader.NodeType == XmlNodeType.DocumentType && reader.Name.Equals("html", StringComparison.OrdinalIgnoreCase))
+            {
+                var publicId = reader.GetAttribute("PUBLIC");
+                var systemId = reader.GetAttribute("SYSTEM");
+                if(String.IsNullOrEmpty(publicId) && String.IsNullOrEmpty(systemId))
+                {
+                    // plain HTML 5
+                    return true;
+                }
+                if(systemId == "about:legacy-compat")
+                {
+                    // legacy compatible HTML 5
+                    return true;
+                }
+                if(publicId != null && (publicId.StartsWith("-//W3C//DTD HTML ", StringComparison.Ordinal) || publicId.StartsWith("-//IETF//DTD HTML ")))
+                {
+                    // older HTML version
+                    return true;
+                }
+            }
+            if(reader.NodeType == XmlNodeType.Element && reader.Depth == 0 && String.IsNullOrEmpty(reader.NamespaceURI) && reader.Name.Equals("html", StringComparison.OrdinalIgnoreCase))
+            {
+                // HTML detected (no DOCTYPE)
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Checks whether <see cref="XmlReader"/> is at PHP code.
+        /// </summary>
+        /// <param name="reader">The XML reader to check.</param>
+        /// <returns><see langword="true"/> if <paramref name="reader"/> is located at a PHP declaration, <see langword="false"/> otherwise.</returns>
+        protected virtual bool IsReaderAtPhp(XmlReader reader)
+        {
+            if(reader.NodeType == XmlNodeType.ProcessingInstruction && reader.Name == "php")
+            {
+                // PHP detected
+                return true;
+            }
+            return false;
         }
 
         class XmlPlaceholderResolver : XmlResolver
@@ -368,5 +425,29 @@ namespace IS4.SFI.Formats
                 return $"<?{target}?>";
             }
         }
+    }
+
+    /// <summary>
+    /// Defines the method used for the processing of XML data before it is analyzed.
+    /// </summary>
+    public enum XmlProcessingMethod
+    {
+        /// <summary>
+        /// No pre-parsing is used.
+        /// </summary>
+        [Description("No pre-parsing is used.")]
+        None,
+
+        /// <summary>
+        /// If possible, the <see cref="XmlReader"/> is constructed twice: first to validate the input, then to analyze it.
+        /// </summary>
+        [Description("If possible, the XML reader is constructed twice: first to validate the input, then to analyze it.")]
+        TwoPass,
+
+        /// <summary>
+        /// The XML data is loaded fully into memory before analysis.
+        /// </summary>
+        [Description("The XML data is loaded fully into memory before analysis.")]
+        PreLoad,
     }
 }
