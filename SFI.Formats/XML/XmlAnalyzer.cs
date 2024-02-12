@@ -69,6 +69,12 @@ namespace IS4.SFI.Analyzers
                         }
                         break;
                     case XmlNodeType.DocumentType:
+                        // Must be compatible with document conformance
+                        if(conformanceLevel == ConformanceLevel.Fragment)
+                        {
+                            throw XmlException("XML fragment expected, but the data contains a document type declaration.");
+                        }
+                        conformanceLevel = ConformanceLevel.Document;
                         var name = reader.Name;
                         var pubid = reader.GetAttribute("PUBLIC");
                         var sysid = reader.GetAttribute("SYSTEM");
@@ -196,11 +202,28 @@ namespace IS4.SFI.Analyzers
                             await MatchFormat(ImprovisedXmlFormat.Instance, rootState);
                         }
 
-                        return new AnalysisResult(node, xmlName);
+                        if(conformanceLevel == ConformanceLevel.Document)
+                        {
+                            return new AnalysisResult(node, xmlName);
+                        }
+                        break;
                 }
             }while(await ReadSafe(reader));
 
-            throw new XmlException("The root element could not be found in the XML data.");
+            if(conformanceLevel == ConformanceLevel.Document)
+            {
+                throw XmlException("The root element could not be found in the XML data.");
+            }
+            return new AnalysisResult(node);
+
+            Exception XmlException(string message)
+            {
+                if(reader is IXmlLineInfo info && info.HasLineInfo())
+                {
+                    return new XmlException(message, null, info.LineNumber, info.LinePosition);
+                }
+                return new XmlException(message);
+            }
         }
 
         static async ValueTask<bool> ReadSafe(XmlReader reader)
