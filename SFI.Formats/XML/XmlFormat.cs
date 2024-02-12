@@ -245,7 +245,7 @@ namespace IS4.SFI.Formats
                 }
             }
             long startPosition = ProcessingMethod == XmlProcessingMethod.TwoPass && stream.CanSeek ? stream.Position : -1;
-            using var reader = await CreateReader();
+            using var reader = await CreateReader(ReaderSettings);
             if(reader == null)
             {
                 return default;
@@ -277,15 +277,25 @@ namespace IS4.SFI.Formats
                     }
                     // Read to the end (verify conformance)
                     while(await reader.ReadAsync());
+                    var nametable = reader.NameTable;
                     // Old reader no longer needed
                     reader.Close();
                     // Restart
                     stream.Position = startPosition;
-                    using(var secondReader = await CreateReader())
+                    XmlReaderSettings newSettings;
+                    if(nametable != null)
+                    {
+                        // Re-use nametable
+                        newSettings = ReaderSettings.Clone();
+                        newSettings.NameTable = nametable;
+                    }else{
+                        newSettings = ReaderSettings;
+                    }
+                    using(var secondReader = await CreateReader(newSettings))
                     {
                         if(secondReader == null)
                         {
-                            return default;
+                            throw new InternalApplicationException(new ArgumentException("XML data was modified in the second pass.", nameof(stream)));
                         }
                         return await resultFactory(secondReader, args);
                     }
@@ -293,11 +303,11 @@ namespace IS4.SFI.Formats
                     return await resultFactory(reader, args);
             }
 
-            async ValueTask<XmlReader?> CreateReader()
+            async ValueTask<XmlReader?> CreateReader(XmlReaderSettings settings)
             {
                 var reader = encoding != null
-                    ? XmlReader.Create(new StreamReader(stream, encoding, true, 1024, true), ReaderSettings)
-                    : XmlReader.Create(stream, ReaderSettings);
+                    ? XmlReader.Create(new StreamReader(stream, encoding, true, 1024, true), settings)
+                    : XmlReader.Create(stream, settings);
                 if(!await reader.ReadAsync()) return null;
                 while(reader.NodeType is XmlNodeType.Whitespace or XmlNodeType.SignificantWhitespace)
                 {
@@ -333,7 +343,7 @@ namespace IS4.SFI.Formats
 
             // readerSequence now contains all comments, PIs before the DOCTYPE or root, and the declaration,
             // input is positioned either at DOCTYPE (since it affects the document reading) or the root
-            var doc = new XmlDocument();
+            var doc = new XmlDocument(input.NameTable);
             await doc.LoadAsync(input);
             // Base document reader
             XmlReader reader = new XmlNodeReader(doc);
