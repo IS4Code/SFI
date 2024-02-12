@@ -102,6 +102,33 @@ namespace IS4.SFI.Formats
         }
 
         /// <summary>
+        /// Whether to ignore comments.
+        /// </summary>
+        [Description("Whether to ignore comments.")]
+        public bool IgnoreComments {
+            get => ReaderSettings.IgnoreComments;
+            set => ReaderSettings.IgnoreComments = value;
+        }
+
+        /// <summary>
+        /// Whether to ignore processing instructions.
+        /// </summary>
+        [Description("Whether to ignore processing instructions.")]
+        public bool IgnoreProcessingInstructions {
+            get => ReaderSettings.IgnoreProcessingInstructions;
+            set => ReaderSettings.IgnoreProcessingInstructions = value;
+        }
+
+        /// <summary>
+        /// Whether to ignore insignificant white space.
+        /// </summary>
+        [Description("Whether to ignore insignificant white space.")]
+        public bool IgnoreWhitespace {
+            get => ReaderSettings.IgnoreWhitespace;
+            set => ReaderSettings.IgnoreWhitespace = value;
+        }
+
+        /// <summary>
         /// Whether to prevent accepting files starting with <c>&lt;?php</c> as XML.
         /// </summary>
         [Description("Whether to prevent accepting files starting with '<?php' as XML.")]
