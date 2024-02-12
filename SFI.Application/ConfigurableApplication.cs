@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Schema;
 
 namespace IS4.SFI.Application
 {
@@ -19,7 +20,7 @@ namespace IS4.SFI.Application
 		readonly XNamespace configNs;
 		readonly XName configRoot;
 
-		static readonly XName nil = XName.Get("nil", "http://www.w3.org/2001/XMLSchema-instance");
+		static readonly XName nil = XName.Get("nil", XmlSchema.InstanceNamespace);
 
 		/// <summary>
 		/// Creates a new instance of the application.
