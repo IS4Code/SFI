@@ -47,6 +47,7 @@ namespace IS4.SFI.Analyzers
             }
 
             XDocumentType? docType = null;
+            int lastElementIndex = 0;
             do
             {
                 switch(reader.NodeType)
@@ -109,7 +110,7 @@ namespace IS4.SFI.Analyzers
                         break;
                     case XmlNodeType.Element:
                         // Describe the root element using the XIS vocabulary
-                        var elem = node["#element(/1)"];
+                        var elem = node[$"#element(/{++lastElementIndex})"];
                         if(conformanceLevel == ConformanceLevel.Document)
                         {
                             node.Set(Properties.XmlDocumentElement, elem);
@@ -140,7 +141,13 @@ namespace IS4.SFI.Analyzers
                             }
                         }
 
-                        context = context.WithNode(null);
+                        if(conformanceLevel == ConformanceLevel.Document)
+                        {
+                            context = context.WithNode(null);
+                        }else{
+                            // Matched format is linked just to the element for fragments
+                            context = context.WithParentLink(elem, Properties.HasFormat);
+                        }
 
                         // Capture the state of the XmlReader
                         var rootState = new XmlReaderState(reader);
@@ -153,57 +160,72 @@ namespace IS4.SFI.Analyzers
                             var result = await format.Match(localReader, docType, context.MatchContext, this, (format, context, analyzers));
                             if(result.Node != null)
                             {
-                                node.Set(Properties.HasFormat, result.Node);
+                                if(conformanceLevel == ConformanceLevel.Document)
+                                {
+                                    node.Set(Properties.HasFormat, result.Node);
+                                }
                                 return true;
                             }
                             return false;
                         }
 
-                        bool any = false;
-                        if(formats.Count <= 1)
+                        bool anyFormat = false;
+
+                        if(formats.Count > 0)
                         {
-                            foreach(var format in formats)
+                            var formatReader = reader;
+                            if(conformanceLevel != ConformanceLevel.Document)
                             {
-                                // For a single XML format, just give the reader to it
-                                if(await MatchFormat(format, reader))
-                                {
-                                    any = true;
-                                }
-                            }
-                        }else{
-                            // For multiple formats, each shall get its own channel of replicated XML states
-                            var tasks = new Task<bool>[formats.Count];
-                            var writers = new ChannelWriter<XmlReaderState>[formats.Count];
-                            for(int i = 0; i < formats.Count; i++)
-                            {
-                                var channelReader = ChannelXmlReader.Create(reader, out writers[i]);
-                                var format = formats[i];
-                                tasks[i] = Task.Run(() => MatchFormat(format, channelReader));
+                                // Restrict the reader to the current element
+                                formatReader = formatReader.ReadSubtree();
+                                await formatReader.ReadAsync();
                             }
 
-                            foreach(var state in new[] { rootState }.Concat(XmlReaderState.ReadFrom(reader)))
+                            if(formats.Count <= 1)
                             {
+                                foreach(var format in formats)
+                                {
+                                    // For a single XML format, just give the reader to it
+                                    if(await MatchFormat(format, formatReader))
+                                    {
+                                        anyFormat = true;
+                                    }
+                                }
+                            }else{
+                                // For multiple formats, each shall get its own channel of replicated XML states
+                                var tasks = new Task<bool>[formats.Count];
+                                var writers = new ChannelWriter<XmlReaderState>[formats.Count];
+                                for(int i = 0; i < formats.Count; i++)
+                                {
+                                    var channelReader = ChannelXmlReader.Create(formatReader, out writers[i]);
+                                    var format = formats[i];
+                                    tasks[i] = Task.Run(() => MatchFormat(format, channelReader));
+                                }
+
+                                foreach(var state in new[] { rootState }.Concat(XmlReaderState.ReadFrom(formatReader)))
+                                {
+                                    foreach(var writer in writers)
+                                    {
+                                        await writer.WriteAsync(state);
+                                    }
+                                }
                                 foreach(var writer in writers)
                                 {
-                                    await writer.WriteAsync(state);
+                                    writer.TryComplete();
                                 }
-                            }
-                            foreach(var writer in writers)
-                            {
-                                writer.TryComplete();
-                            }
 
-                            await Task.WhenAll(tasks);
+                                await Task.WhenAll(tasks);
 
-                            any = tasks.Any(t => t.Result);
-                        }
-                        if(!any)
-                        {
-                            await MatchFormat(ImprovisedXmlFormat.Instance, rootState);
+                                anyFormat = tasks.Any(t => t.Result);
+                            }
                         }
 
                         if(conformanceLevel == ConformanceLevel.Document)
                         {
+                            if(!anyFormat)
+                            {
+                                await MatchFormat(ImprovisedXmlFormat.Instance, rootState);
+                            }
                             return new AnalysisResult(node, xmlName);
                         }
                         break;
