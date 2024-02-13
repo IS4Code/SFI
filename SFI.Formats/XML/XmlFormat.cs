@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
@@ -11,9 +12,9 @@ using System.Xml;
 namespace IS4.SFI.Formats
 {
     /// <summary>
-    /// Represents the XML file format, producing instances of <see cref="XmlReader"/>.
+    /// Represents the XML document and/or parsed entity file format, producing instances of <see cref="XmlReader"/>.
     /// </summary>
-    [Description("Represents the XML file format.")]
+    [Description("Represents the XML document and/or parsed entity file format.")]
     public class XmlFileFormat : BinaryFileFormat<XmlReader>
     {
         /// <summary>
@@ -129,6 +130,15 @@ namespace IS4.SFI.Formats
         }
 
         /// <summary>
+        /// The level of conformance which the reader will comply.
+        /// </summary>
+        [Description("The level of conformance which the reader will comply.")]
+        public ConformanceLevel ConformanceLevel {
+            get => ReaderSettings.ConformanceLevel;
+            set => ReaderSettings.ConformanceLevel = value;
+        }
+
+        /// <summary>
         /// Whether to prevent accepting files starting with <c>&lt;?php</c> as XML.
         /// </summary>
         [Description("Whether to prevent accepting files starting with '<?php' as XML.")]
@@ -179,7 +189,8 @@ namespace IS4.SFI.Formats
             bool maybe = false;
             for(int i = 0; i < header.Length; i++)
             {
-                switch(header[i])
+                var b = header[i];
+                switch(b)
                 {
                     // Whitespace
                     case (byte)'\t':
@@ -208,7 +219,18 @@ namespace IS4.SFI.Formats
                         }
                         return true;
                     default:
-                        return false;
+                        if(ReaderSettings.ConformanceLevel == ConformanceLevel.Document)
+                        {
+                            // Text characters not allowed outside before first tag
+                            return false;
+                        }
+                        // Might be content
+                        if(b < 0x80 && !XmlConvert.IsXmlChar((char)b))
+                        {
+                            // Is ASCII but not a character allowed in XML data
+                            return false;
+                        }
+                        break;
                 }
             }
             return maybe;
@@ -244,8 +266,17 @@ namespace IS4.SFI.Formats
                     throw new InternalApplicationException(e);
                 }
             }
-            long startPosition = ProcessingMethod == XmlProcessingMethod.TwoPass && stream.CanSeek ? stream.Position : -1;
-            using var reader = await CreateReader(ReaderSettings);
+            var settings = ReaderSettings;
+            if(settings.ConformanceLevel == ConformanceLevel.Auto)
+            {
+                // Clone to receive the updated ConformanceLevel
+                settings = settings.Clone();
+            }
+            long startPosition =
+                // Can be reset
+                ProcessingMethod == XmlProcessingMethod.TwoPass && stream.CanSeek
+                ? stream.Position : -1;
+            using var reader = await CreateReader(settings);
             if(reader == null)
             {
                 return default;
@@ -258,10 +289,39 @@ namespace IS4.SFI.Formats
             {
                 return default;
             }
+            switch(reader.NodeType)
+            {
+                case XmlNodeType.Text:
+                case XmlNodeType.CDATA:
+                case XmlNodeType.EntityReference:
+                    switch(settings.ConformanceLevel)
+                    {
+                        case ConformanceLevel.Document:
+                            // Non-element data found in document
+                            return default;
+                        case ConformanceLevel.Auto:
+                            // This is now a fragment
+                            settings.ConformanceLevel = ConformanceLevel.Fragment;
+                            break;
+                    }
+                    break;
+                case XmlNodeType.DocumentType:
+                    switch(settings.ConformanceLevel)
+                    {
+                        case ConformanceLevel.Fragment:
+                            // DOCTYPE found in fragment
+                            return default;
+                        case ConformanceLevel.Auto:
+                            // This is now a document
+                            settings.ConformanceLevel = ConformanceLevel.Document;
+                            break;
+                    }
+                    break;
+            }
             switch(ProcessingMethod)
             {
                 case XmlProcessingMethod.PreLoad:
-                    using(var preloadedReader = await PreloadXmlReader(reader))
+                    using(var preloadedReader = await PreloadXmlReader(reader, settings))
                     {
                         if(preloadedReader == null)
                         {
@@ -275,31 +335,24 @@ namespace IS4.SFI.Formats
                         // Cannot seek; fallback
                         goto case XmlProcessingMethod.PreLoad;
                     }
-                    // Read to the end (verify conformance)
-                    while(await reader.ReadAsync());
-                    var nametable = reader.NameTable;
-                    // Old reader no longer needed
-                    reader.Close();
+                    settings = await FirstPassXmlRead(reader, settings);
+                    if(settings == null)
+                    {
+                        // Not matched
+                        return default;
+                    }
                     // Restart
                     stream.Position = startPosition;
-                    XmlReaderSettings newSettings;
-                    if(nametable != null)
-                    {
-                        // Re-use nametable
-                        newSettings = ReaderSettings.Clone();
-                        newSettings.NameTable = nametable;
-                    }else{
-                        newSettings = ReaderSettings;
-                    }
-                    using(var secondReader = await CreateReader(newSettings))
+                    using(var secondReader = await CreateReader(settings))
                     {
                         if(secondReader == null)
                         {
-                            throw new InternalApplicationException(new ArgumentException("XML data was modified in the second pass.", nameof(stream)));
+                            throw new InternalApplicationException(new ArgumentException("XML data was modified before the second pass.", nameof(stream)));
                         }
                         return await resultFactory(secondReader, args);
                     }
                 default:
+                    // Might remain at ConformanceLevel.Auto, effectively signalling a fragment
                     return await resultFactory(reader, args);
             }
 
@@ -318,41 +371,219 @@ namespace IS4.SFI.Formats
         }
 
         /// <summary>
+        /// Performs a one pass of reading from an <see cref="XmlReader"/> instance.
+        /// </summary>
+        /// <param name="reader">The input XML reader.</param>
+        /// <param name="settings">The settings used for reading.</param>
+        /// <returns>Modified <paramref name="settings"/> to use for second-pass reading, or <see langword="null"/> on failure.</returns>
+        /// <exception cref="XmlException">An arbitrary exception from parsing the XML.</exception>
+        protected async virtual ValueTask<XmlReaderSettings?> FirstPassXmlRead(XmlReader reader, XmlReaderSettings settings)
+        {
+            // A single root element is needed for documents
+            bool foundElement = reader.NodeType == XmlNodeType.Element;
+            // A presence of any markup is needed for non-documents to be interesting
+            bool foundMarkup = foundElement || settings.ConformanceLevel == ConformanceLevel.Document;
+            // Read to the end (verify conformance)
+            while(await reader.ReadAsync())
+            {
+                if(reader.Depth != 0)
+                {
+                    // Nothing useful in an element
+                    continue;
+                }
+                switch(settings.ConformanceLevel)
+                {
+                    case ConformanceLevel.Auto:
+                        // Detecting conformance level
+                        switch(reader.NodeType)
+                        {
+                            case XmlNodeType.CDATA:
+                            case XmlNodeType.EntityReference:
+                            case XmlNodeType.Text:
+                                // Content found outside an element
+                                settings.ConformanceLevel = ConformanceLevel.Fragment;
+                                break;
+                            case XmlNodeType.Element:
+                                if(!foundElement)
+                                {
+                                    foundElement = true;
+                                }else{
+                                    // Found another element
+                                    settings.ConformanceLevel = ConformanceLevel.Fragment;
+                                }
+                                break;
+                        }
+                        goto case ConformanceLevel.Fragment;
+                    case ConformanceLevel.Fragment:
+                        if(foundMarkup)
+                        {
+                            break;
+                        }
+                        // Detecting the presence of any markup at all
+                        switch(reader.NodeType)
+                        {
+                            case XmlNodeType.CDATA:
+                            case XmlNodeType.EntityReference:
+                            case XmlNodeType.Element:
+                            case XmlNodeType.Comment:
+                            case XmlNodeType.ProcessingInstruction:
+                                foundMarkup = true;
+                                break;
+                        }
+                        break;
+                }
+            }
+            if(!foundMarkup)
+            {
+                // This is just text or whitespace, nothing useful at all
+                return null;
+            }
+            if(!foundElement)
+            {
+                // No element whatsoever, so this is just a fragment
+                settings.ConformanceLevel = ConformanceLevel.Fragment;
+            }
+            if(settings.ConformanceLevel == ConformanceLevel.Auto)
+            {
+                // No indication of this being a fragment, so treat it as a document
+                settings.ConformanceLevel = ConformanceLevel.Document;
+            }
+            var nametable = reader.NameTable;
+            // Old reader no longer needed
+            reader.Close();
+            if(nametable != null)
+            {
+                // Re-use nametable
+                if(settings == ReaderSettings)
+                {
+                    // Clone if not already duplicated
+                    settings = settings.Clone();
+                }
+                settings.NameTable = nametable;
+            }
+            return settings;
+        }
+
+        /// <summary>
         /// Loads fully the XML document from <paramref name="input"/> and returns
         /// a reader to the cached document.
         /// </summary>
         /// <param name="input">The input forward-only XML reader.</param>
+        /// <param name="settings">The settings used for reading.</param>
         /// <returns>The resulting <see cref="XmlReader"/> instance reading from the document, or <see langword="null"/> on failure.</returns>
         /// <exception cref="XmlException">An arbitrary exception from parsing the XML.</exception>
-        protected async virtual ValueTask<XmlReader?> PreloadXmlReader(XmlReader input)
+        protected async virtual ValueTask<XmlReader?> PreloadXmlReader(XmlReader input, XmlReaderSettings settings)
         {
             var readerSequence = new List<XmlReader>();
 
-            // Look for DOCTYPE or the root element
-            while(input.NodeType is not (XmlNodeType.Element or XmlNodeType.DocumentType))
+            // Look for DOCTYPE or any content
+            while(input.NodeType is not (XmlNodeType.DocumentType or XmlNodeType.Element or XmlNodeType.Text or XmlNodeType.CDATA or XmlNodeType.EntityReference))
             {
                 // Preserve everything up that point
                 readerSequence.Add(new XmlReaderState(input));
-                if(!await input.ReadAsync()) return null;
+                if(await input.ReadAsync())
+                {
+                    continue;
+                }
+                // At the end with no content text/element or DOCTYPE
+                switch(settings.ConformanceLevel)
+                {
+                    case ConformanceLevel.Document:
+                        // Document needs DOCTYPE or element
+                        return null;
+                    case ConformanceLevel.Auto:
+                        settings.ConformanceLevel = ConformanceLevel.Fragment;
+                        break;
+                }
+                if(!readerSequence.Any(state => state.NodeType is XmlNodeType.Comment or XmlNodeType.ProcessingInstruction))
+                {
+                    // Just whitespace, nothing useful
+                    return null;
+                }
+                // Just retrieve what has been read so far
+                var sequenceReader = new SequenceXmlReader(readerSequence);
+                // Move to the original inital state
+                if(!await sequenceReader.ReadAsync()) return null;
+                return sequenceReader;
             }
             if(input.NodeType == XmlNodeType.DocumentType)
             {
-                // Preserve DOCTYPE too
+                switch(settings.ConformanceLevel)
+                {
+                    case ConformanceLevel.Fragment:
+                        // No DOCTYPE valid in a fragment
+                        return null;
+                    case ConformanceLevel.Auto:
+                        settings.ConformanceLevel = ConformanceLevel.Document;
+                        break;
+                }
+                // Preserve the DOCTYPE too
                 readerSequence.Add(new XmlReaderState(input));
             }
 
-            // readerSequence now contains all comments, PIs before the DOCTYPE or root, and the declaration,
-            // input is positioned either at DOCTYPE (since it affects the document reading) or the root
+            // readerSequence now contains all comments and PIs before the DOCTYPE or the first content node, and the declaration.
+            // input is positioned either at DOCTYPE (since it affects the document reading) or the first content node.
+            
             var doc = new XmlDocument(input.NameTable);
-            await doc.LoadAsync(input);
             // Base document reader
-            XmlReader reader = new XmlNodeReader(doc);
+            XmlReader reader;
+            if(settings.ConformanceLevel == ConformanceLevel.Document)
+            {
+                // Just load the rest into the document
+                await doc.LoadAsync(input);
+                reader = new XmlNodeReader(doc);
+            }else{
+                // Store it in a fragment node
+                var fragment = doc.CreateDocumentFragment();
+                using(var writer = fragment.CreateNavigator().AppendChild())
+                {
+                    await input.CopyToAsync(writer);
+                }
+                if(settings.ConformanceLevel == ConformanceLevel.Auto)
+                {
+                    // Now we can determine which it is
+                    var childNodes = fragment.ChildNodes.OfType<XmlNode>();
+                    if(childNodes.Where(n => n.NodeType is XmlNodeType.Element).Take(2).Count() != 1)
+                    {
+                        // No or multiple elements - fragment
+                        settings.ConformanceLevel = ConformanceLevel.Fragment;
+                    }else if(childNodes.Any(n => n.NodeType is XmlNodeType.Text or XmlNodeType.CDATA or XmlNodeType.EntityReference))
+                    {
+                        // Character data outside the element
+                        settings.ConformanceLevel = ConformanceLevel.Fragment;
+                    }else{
+                        // Valid document
+                        settings.ConformanceLevel = ConformanceLevel.Document;
+                    }
+                }
+                reader = new XmlNodeReader(fragment);
+            }
             // Async support
             reader = new XmlReaderAsyncWrapper(reader);
             // Apply settings (if any)
-            reader = XmlReader.Create(reader, ReaderSettings);
+            if(settings.ConformanceLevel is var conformanceLevel and not (ConformanceLevel.Auto or ConformanceLevel.Document))
+            {
+                // Briefly swap out the conformance level to prevent errors
+                if(settings == ReaderSettings)
+                {
+                    settings = settings.Clone();
+                }
+                settings.ConformanceLevel = ConformanceLevel.Auto;
+                try{
+                    reader = XmlReader.Create(reader, settings);
+                }finally{
+                    settings.ConformanceLevel = conformanceLevel;
+                }
+            }else{
+                reader = XmlReader.Create(reader, settings);
+            }
             if(!await reader.ReadAsync()) return null;
-            // Now positioned at anything following the DOCTYPE or at the root
+            // Now positioned at anything following the DOCTYPE or at first content node
+            if(readerSequence.Count == 0)
+            {
+                // Nothing in the preceding sequence
+                return reader;
+            }
             readerSequence.Add(reader);
             // Concat with the preceding states
             reader = new SequenceXmlReader(readerSequence);
@@ -409,6 +640,29 @@ namespace IS4.SFI.Formats
                 return true;
             }
             return false;
+        }
+
+        /// <inheritdoc/>
+        /// <remarks>
+        /// <c>application/xml-external-parsed-entity</c> is reported if the reader is not set to reading a document.
+        /// </remarks>
+        public override string? GetMediaType(XmlReader value)
+        {
+            return IsReadingFragment(value) ? "application/xml-external-parsed-entity" : base.GetMediaType(value);
+        }
+
+        /// <inheritdoc/>
+        /// <remarks>
+        /// <c>ent</c> is reported if the reader is not set to reading a document.
+        /// </remarks>
+        public override string? GetExtension(XmlReader value)
+        {
+            return IsReadingFragment(value) ? "ent" : base.GetExtension(value);
+        }
+
+        private bool IsReadingFragment(XmlReader reader)
+        {
+            return reader.Settings?.ConformanceLevel != ConformanceLevel.Document;
         }
 
         class XmlPlaceholderResolver : XmlResolver
