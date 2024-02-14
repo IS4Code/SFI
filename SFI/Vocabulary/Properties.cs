@@ -372,6 +372,12 @@
         public static readonly PropertyUri HasPart;
 
         /// <summary>
+        /// <c><see cref="Nie"/>:hasLogicalPart</c>.
+        /// </summary>
+        [Uri(Nie)]
+        public static readonly PropertyUri HasLogicalPart;
+
+        /// <summary>
         /// <c><see cref="Nie"/>:mimeType</c>.
         /// </summary>
         [Uri(Nie)]
@@ -590,6 +596,20 @@
         /// </summary>
         [Uri(Nmo)]
         public static readonly PropertyUri MessageHeader;
+        #endregion
+
+        #region ndo
+        /// <summary>
+        /// <c><see cref="Ndo"/>:copiedFrom</c>.
+        /// </summary>
+        [Uri(Ndo)]
+        public static readonly PropertyUri CopiedFrom;
+
+        /// <summary>
+        /// <c><see cref="Ndo"/>:referrer</c>.
+        /// </summary>
+        [Uri(Ndo, "referrer")]
+        public static readonly PropertyUri DownloadReferrer;
         #endregion
 
         #region skos

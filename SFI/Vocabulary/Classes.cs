@@ -156,6 +156,32 @@
         /// </summary>
         [Uri(Nfo)]
         public static readonly ClassUri EmbeddedFileDataObject;
+
+        /// <summary>
+        /// <c><see cref="Nfo"/>:RemoteDataObject</c>.
+        /// </summary>
+        [Uri(Nfo)]
+        public static readonly ClassUri RemoteDataObject;
+        #endregion
+
+        #region ndo
+        /// <summary>
+        /// <c><see cref="Ndo"/>:P2PFile</c>.
+        /// </summary>
+        [Uri(Ndo)]
+        public static readonly ClassUri P2PFile;
+
+        /// <summary>
+        /// <c><see cref="Ndo"/>:Torrent</c>.
+        /// </summary>
+        [Uri(Ndo)]
+        public static readonly ClassUri Torrent;
+
+        /// <summary>
+        /// <c><see cref="Ndo"/>:TorrentedFile</c>.
+        /// </summary>
+        [Uri(Ndo)]
+        public static readonly ClassUri TorrentedFile;
         #endregion
 
         /// <summary>
