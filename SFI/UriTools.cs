@@ -1,6 +1,7 @@
 ﻿using IS4.SFI.Services;
 using IS4.SFI.Tools;
 using System;
+using System.Net.Mime;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -20,8 +21,7 @@ namespace IS4.SFI
         /// Creates a <c>data:</c> URI from the provided components. The type of the <c>data:</c>
         /// URI (base64 or percent-encoded) is chosen based on which
         /// variant is shorter. The result <see cref="Uri"/>
-        /// also implements <see cref="IIndividualUriFormatter{T}"/> of
-        /// <see cref="IFormatObject"/>.
+        /// also implements <see cref="IMediaTypeUriFormatter"/>.
         /// </summary>
         /// <param name="mediaType">The media type of the resource.</param>
         /// <param name="charset">The character set of the resource, if textual.</param>
@@ -65,7 +65,7 @@ namespace IS4.SFI
         /// Formatting it using <see cref="IFormatObject"/> will replace
         /// the media type stored by the URI.
         /// </summary>
-        class DataUri : EncodedUri, IIndividualUriFormatter<IFormatObject>
+        class DataUri : EncodedUri, IMediaTypeUriFormatter
         {
             readonly string data;
 
@@ -74,12 +74,35 @@ namespace IS4.SFI
                 this.data = data;
             }
 
-            public Uri? this[IFormatObject value] {
+            public Uri? Format(string? mediaType)
+            {
+                return mediaType == null ? null : new DataUri(mediaType, data);
+            }
+
+            public Uri? this[(string? mediaType, string? charset, ValueTuple data) value] => this[(value.mediaType, value.charset)];
+
+            public Uri? this[(ContentType? mediaType, ValueTuple data) value] => this[value.mediaType];
+
+            public Uri? this[(IFormatObject? formatObject, ValueTuple data) value] => this[value.formatObject];
+
+            public Uri? this[(string? mediaType, string? charset) value] {
                 get {
-                    var type = value.MediaType;
-                    return type == null ? null : new DataUri(type, data);
+                    var (mediaType, charset) = value;
+                    if(mediaType == null)
+                    {
+                        return Format(null);
+                    }
+                    if(charset != null)
+                    {
+                        mediaType += ";charset=" + charset;
+                    }
+                    return Format(mediaType);
                 }
             }
+
+            public Uri? this[ContentType? value] => Format(value?.ToString());
+
+            public Uri? this[IFormatObject? value] => Format(value?.MediaType);
 
             static string CreateUri(string? type, string data)
             {
