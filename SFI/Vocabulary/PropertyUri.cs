@@ -75,7 +75,7 @@ namespace IS4.SFI.Vocabulary
         /// <inheritdoc/>
         public bool Equals(PropertyUri other)
         {
-            return vocabularyRaw + Term == other.vocabularyRaw + other.Term;
+            return vocabularyRaw == other.vocabularyRaw && Term == other.Term;
         }
 
         /// <inheritdoc/>
@@ -87,7 +87,7 @@ namespace IS4.SFI.Vocabulary
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            return Value.GetHashCode();
+            return HashCode.Combine(vocabularyRaw, Term);
         }
 
         /// <summary>

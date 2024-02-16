@@ -52,7 +52,7 @@ namespace IS4.SFI.Vocabulary
         /// <inheritdoc/>
         public bool Equals(ClassUri other)
         {
-            return Value == other.Value;
+            return Vocabulary == other.Vocabulary && Term == other.Term;
         }
 
         /// <inheritdoc/>
@@ -64,7 +64,7 @@ namespace IS4.SFI.Vocabulary
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            return Value.GetHashCode();
+            return HashCode.Combine(Vocabulary, Term);
         }
 
         /// <summary>
