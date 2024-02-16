@@ -3,6 +3,7 @@ using IS4.SFI.Vocabulary;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Xml;
 
@@ -373,6 +374,17 @@ namespace IS4.SFI.Services
         /// <param name="obj">The object node of the triple.</param>
         protected abstract void HandleTriple(TNode? subj, TNode? pred, TNode? obj);
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private void HandleTriple(TNode? subj, TNode? pred, TNode? obj, bool inverse)
+        {
+            if(inverse)
+            {
+                HandleTriple(obj, pred, subj);
+            }else{
+                HandleTriple(subj, pred, obj);
+            }
+        }
+
         /// <summary>
         /// Creates a new URI node in the current graph.
         /// </summary>
@@ -524,21 +536,21 @@ namespace IS4.SFI.Services
         /// <inheritdoc/>
         public void Set(PropertyUri property, IndividualUri value)
         {
-            HandleTriple(Subject, Cache[property], Cache[value]);
+            HandleTriple(Subject, Cache[property], Cache[value], property.IsInverse);
         }
 
         /// <inheritdoc/>
         public void Set(PropertyUri property, string value)
         {
             if(value == null) throw new ArgumentNullException(nameof(value));
-            HandleTriple(Subject, Cache[property], CreateNode(value));
+            HandleTriple(Subject, Cache[property], CreateNode(value), property.IsInverse);
         }
 
         /// <inheritdoc/>
         public void Set(PropertyUri property, string value, DatatypeUri datatype)
         {
             if(value == null) throw new ArgumentNullException(nameof(value));
-            HandleTriple(Subject, Cache[property], CreateNode(value, Cache[datatype]));
+            HandleTriple(Subject, Cache[property], CreateNode(value, Cache[datatype]), property.IsInverse);
         }
 
         /// <inheritdoc/>
@@ -548,7 +560,7 @@ namespace IS4.SFI.Services
             var datatype = CreateNode(datatypeFormatter, datatypeValue);
             if(datatype != null)
             {
-                HandleTriple(Subject, Cache[property], CreateNode(value, datatype));
+                HandleTriple(Subject, Cache[property], CreateNode(value, datatype), property.IsInverse);
             }
         }
 
@@ -556,7 +568,7 @@ namespace IS4.SFI.Services
         public void Set<TValue>(PropertyUri property, TValue value, DatatypeUri datatype) where TValue : IFormattable
         {
             if(value == null) throw new ArgumentNullException(nameof(value));
-            HandleTriple(Subject, Cache[property], CreateNode(value.ToString(null, CultureInfo.InvariantCulture), Cache[datatype]));
+            HandleTriple(Subject, Cache[property], CreateNode(value.ToString(null, CultureInfo.InvariantCulture), Cache[datatype]), property.IsInverse);
         }
 
         /// <inheritdoc/>
@@ -566,7 +578,7 @@ namespace IS4.SFI.Services
             var datatype = CreateNode(datatypeFormatter, datatypeValue);
             if(datatype != null)
             {
-                HandleTriple(Subject, Cache[property], CreateNode(value.ToString(null, CultureInfo.InvariantCulture), datatype));
+                HandleTriple(Subject, Cache[property], CreateNode(value.ToString(null, CultureInfo.InvariantCulture), datatype), property.IsInverse);
             }
         }
 
@@ -574,13 +586,13 @@ namespace IS4.SFI.Services
         public void Set(PropertyUri property, string value, LanguageCode language)
         {
             if(value == null) throw new ArgumentNullException(nameof(value));
-            HandleTriple(Subject, Cache[property], language.IsEmpty ? CreateNode(value) : CreateNode(value, language.Value));
+            HandleTriple(Subject, Cache[property], language.IsEmpty ? CreateNode(value) : CreateNode(value, language.Value), property.IsInverse);
         }
 
         /// <inheritdoc/>
         public void Set<T>(PropertyUri property, IIndividualUriFormatter<T> formatter, T value)
         {
-            HandleTriple(Subject, Cache[property], CreateNode(formatter, value));
+            HandleTriple(Subject, Cache[property], CreateNode(formatter, value), property.IsInverse);
         }
 
         /// <inheritdoc/>
@@ -588,7 +600,7 @@ namespace IS4.SFI.Services
         {
             if(value == null) throw new ArgumentNullException(nameof(value));
             if(value is not LinkedNode<TNode, TGraphNode, TVocabularyCache> node) throw new ArgumentException($"The object must derive from {typeof(LinkedNode<TNode, TGraphNode, TVocabularyCache>)}.", nameof(value));
-            HandleTriple(Subject, Cache[property], node.Subject);
+            HandleTriple(Subject, Cache[property], node.Subject, property.IsInverse);
         }
 
         /// <inheritdoc/>
@@ -600,13 +612,13 @@ namespace IS4.SFI.Services
         /// <inheritdoc/>
         public void Set(PropertyUri property, bool value)
         {
-            HandleTriple(Subject, Cache[property], CreateNode(value));
+            HandleTriple(Subject, Cache[property], CreateNode(value), property.IsInverse);
         }
 
         /// <inheritdoc/>
         public void Set<TValue>(PropertyUri property, TValue value) where TValue : struct, IEquatable<TValue>, IFormattable
         {
-            HandleTriple(Subject, Cache[property], CreateNode(value));
+            HandleTriple(Subject, Cache[property], CreateNode(value), property.IsInverse);
         }
 
         /// <inheritdoc/>

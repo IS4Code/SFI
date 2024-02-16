@@ -7,8 +7,19 @@ namespace IS4.SFI.Vocabulary
     /// </summary>
     public struct PropertyUri : ITermUri, IEquatable<PropertyUri>
     {
+        const char invertChar = '^';
+
+        readonly string vocabularyRaw;
+
+        /// <summary>
+        /// Whether the property is an inverse, i.e. it links object to subject in a triple.
+        /// </summary>
+        public bool IsInverse => !String.IsNullOrEmpty(vocabularyRaw) && vocabularyRaw[0] == invertChar;
+
+        string VocabularyUri => IsInverse ? String.Intern(vocabularyRaw.Substring(1)) : vocabularyRaw;
+
         /// <inheritdoc/>
-        public VocabularyUri Vocabulary { get; }
+        public VocabularyUri Vocabulary => new VocabularyUri(VocabularyUri);
 
         /// <inheritdoc/>
         public string Term { get; }
@@ -23,7 +34,7 @@ namespace IS4.SFI.Vocabulary
         /// <param name="term">The value of <see cref="Term"/>.</param>
         public PropertyUri(VocabularyUri vocabulary, string term)
         {
-            Vocabulary = vocabulary;
+            vocabularyRaw = vocabulary.Value;
             Term = term;
         }
 
@@ -42,18 +53,29 @@ namespace IS4.SFI.Vocabulary
         }
 
         /// <summary>
+        /// Inverts the direction of the property, i.e. the value of <see cref="IsInverse"/>.
+        /// </summary>
+        /// <returns>A new <see cref="PropertyUri"/> with the inverted direction.</returns>
+        public PropertyUri AsInverse()
+        {
+            return IsInverse
+                ? new(Vocabulary, Term)
+                : new(new VocabularyUri(invertChar + vocabularyRaw), Term);
+        }
+
+        /// <summary>
         /// Returns <see cref="Value"/> formatted as a URI node.
         /// </summary>
         /// <returns>The formatted value of the instance.</returns>
         public override string ToString()
         {
-            return $"<{Value}>";
+            return $"{(IsInverse ? invertChar : null)}<{Value}>";
         }
 
         /// <inheritdoc/>
         public bool Equals(PropertyUri other)
         {
-            return Value == other.Value;
+            return vocabularyRaw + Term == other.vocabularyRaw + other.Term;
         }
 
         /// <inheritdoc/>
