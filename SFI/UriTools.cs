@@ -1,7 +1,6 @@
 ﻿using IS4.SFI.Services;
 using IS4.SFI.Tools;
 using System;
-using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -11,64 +10,11 @@ namespace IS4.SFI
     /// <summary>
     /// Stores utility methods for manipulating URIs, as instances of <see cref="Uri"/>.
     /// </summary>
-    public static class UriTools
+    public static partial class UriTools
     {
         const string publicid = "publicid:";
 
-        /// <summary>
-        /// A URI formatter which uses a prefix to prepend its argument when forming
-        /// the resulting URI.
-        /// </summary>
-        public class PrefixFormatter<T> : IGenericUriFormatter<T>
-        {
-            readonly string prefix;
-
-            /// <summary>
-            /// Creates a new insntace of the formatter, with the chosen prefix.
-            /// </summary>
-            /// <param name="prefix">The URI prefix to use.</param>
-            public PrefixFormatter(string prefix)
-            {
-                this.prefix = prefix;
-            }
-
-            /// <summary>
-            /// Creates a new URI from the stored prefix, appended with
-            /// <paramref name="value"/>.
-            /// </summary>
-            /// <param name="value">The value to append to the prefix.</param>
-            /// <returns>The full URI formed from the prefix and <paramref name="value"/>.</returns>
-            public Uri this[T value] => new(prefix + value, UriKind.Absolute);
-        }
-
         static readonly Regex pubIdRegex = new(@"(^\s+|\s+$)|(\s+)|(\/\/)|(::)|([+:\/;'?#%])", RegexOptions.Compiled);
-
-        /// <summary>
-        /// A formatter which uses <see cref="CreatePublicId(string)"/> to convert
-        /// <c>PUBLIC</c> identifiers to <c>urn:publicid:</c>.
-        /// </summary>
-        public static readonly IIndividualUriFormatter<string> PublicIdFormatter = new PublicIdFormatterClass();
-
-        class PublicIdFormatterClass : IIndividualUriFormatter<string>
-        {
-            public Uri this[string value] => CreatePublicId(value);
-        }
-
-        /// <summary>
-        /// A formatter which uses <see cref="CreateDataUri(string?, string?, ArraySegment{byte})"/>
-        /// to create a <c>data:</c> URI from its components.
-        /// </summary>
-        public static readonly IIndividualUriFormatter<(string? mediaType, string? charset, ArraySegment<byte> data)> DataUriFormatter = new DataUriFormatterClass();
-        
-        class DataUriFormatterClass : IIndividualUriFormatter<(string?, string?, ArraySegment<byte>)>
-        {
-            public Uri this[(string?, string?, ArraySegment<byte>) value] {
-                get {
-                    var (mediaType, charset, bytes) = value;
-                    return CreateDataUri(mediaType, charset, bytes);
-                }
-            }
-        }
 
         /// <summary>
         /// Creates a <c>data:</c> URI from the provided components. The type of the <c>data:</c>
@@ -314,16 +260,6 @@ namespace IS4.SFI
         }
 
         /// <summary>
-        /// A formatter producing <c>urn:oid:</c> URIs from instances of <see cref="Oid"/>.
-        /// </summary>
-        public static readonly IGenericUriFormatter<Oid> OidUriFormatter = new OidUriFormatterClass();
-
-        class OidUriFormatterClass : IGenericUriFormatter<Oid>
-        {
-            public Uri this[Oid value] => new("urn:oid:" + value.Value, UriKind.Absolute);
-        }
-
-        /// <summary>
         /// Creates a new <c>urn:uuid:</c> URI from a UUID stored as <see cref="Guid"/>.
         /// </summary>
         /// <param name="guid">The UUID to store.</param>
@@ -331,16 +267,6 @@ namespace IS4.SFI
         public static Uri CreateUuid(Guid guid)
         {
             return new Uri("urn:uuid:" + guid.ToString("D"), UriKind.Absolute);
-        }
-        
-        /// <summary>
-        /// A formatter producing <c>urn:uuid:</c> URIs from instances of <see cref="Guid"/>.
-        /// </summary>
-        public static readonly IGenericUriFormatter<Guid> UuidUriFormatter = new UuidUriFormatterClass();
-
-        class UuidUriFormatterClass : IGenericUriFormatter<Guid>
-        {
-            public Uri this[Guid value] => CreateUuid(value);
         }
 
         static string ShortenUriPart(string str, int maxPartLength)
