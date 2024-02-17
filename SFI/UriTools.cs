@@ -5,6 +5,7 @@ using System.Net.Mime;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
+using System.Xml;
 
 namespace IS4.SFI
 {
@@ -379,6 +380,59 @@ namespace IS4.SFI
                 prefix = component.StartsWith("/") ? "" : "/";
             }
             return new EncodedUri(uri.AbsoluteUri + prefix + component);
+        }
+
+        /// <summary>
+        /// Produce an absolute URI from a relative <see cref="Uri"/> instance
+        /// by wrapping it in the <c>lid:</c> scheme.
+        /// </summary>
+        /// <param name="uri">The URI to wrap.</param>
+        /// <returns>The wrapped URI storing the original, or unchanged if the URI is absolute.</returns>
+        public static Uri WrapRelativeUri(Uri uri)
+        {
+            if(uri.IsAbsoluteUri && !uri.Scheme.Equals("lid", StringComparison.OrdinalIgnoreCase))
+            {
+                // lid: URIs need to be wrapped too
+                return uri;
+            }
+            var uriStr = uri.ToString();
+            int fragmentAt = uriStr.IndexOf('#');
+            string? fragmentPart;
+            if(fragmentAt != -1)
+            {
+                fragmentPart = uriStr.Substring(fragmentAt);
+                uriStr = uriStr.Substring(0, fragmentAt);
+            }else{
+                fragmentPart = null;
+            }
+            var basePart =
+                (uri.IsAbsoluteUri ? "lid:uri/" : "lid:uri/$base:")
+                + Uri.EscapeDataString(uriStr);
+            return new EncodedUri(basePart + fragmentPart);
+        }
+
+        static readonly Uri emptyBase = new EncodedUri("lid:uri/$base:");
+
+        /// <summary>
+        /// Converts an instance of <see cref="XmlQualifiedName"/> identifying
+        /// a XML namespace-qualified term to its full URI.
+        /// </summary>
+        /// <param name="qname">The QName to convert.</param>
+        /// <returns>The URI identifying the same term.</returns>
+        public static Uri QNameToUri(XmlQualifiedName qname)
+        {
+            Uri nsUri;
+            if(String.IsNullOrEmpty(qname.Namespace))
+            {
+                nsUri = emptyBase;
+            }else{
+                nsUri = WrapRelativeUri(new EncodedUri(qname.Namespace, UriKind.RelativeOrAbsolute));
+                if(qname.Namespace.EndsWith("#"))
+                {
+                    return new EncodedUri(nsUri + qname.Name);
+                }
+            }
+            return MakeSubUri(nsUri, "#" + qname.Name);
         }
     }
 }

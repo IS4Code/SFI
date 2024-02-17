@@ -114,7 +114,7 @@ namespace IS4.SFI.Analyzers
                         thumbnailData = stream.GetData();
                     }
 
-                    var thumbNode = context.NodeFactory.Create(UriTools.DataUriFormatter, (ThumbnailFormat, null, thumbnailData));
+                    var thumbNode = context.NodeFactory.Create(UriTools.DataUriFormatter, (ThumbnailFormat, default(string), thumbnailData));
                     node.Set(Properties.Thumbnail, thumbNode);
                     thumbNode.Set(Properties.AtPrefLabel, "Thumbnail image");
                 }

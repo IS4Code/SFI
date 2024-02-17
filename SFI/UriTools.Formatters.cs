@@ -4,6 +4,7 @@ using System.Collections;
 using System.Net.Mime;
 using System.Security.Cryptography;
 using System.Text;
+using System.Xml;
 
 namespace IS4.SFI
 {
@@ -88,10 +89,16 @@ namespace IS4.SFI
         /// </summary>
         public static readonly IGenericUriFormatter<Guid> UuidUriFormatter = TypedFormatterClass.Instance;
 
+        /// <summary>
+        /// A formatter producing generic URIs from instances of <see cref="XmlQualifiedName"/>.
+        /// </summary>
+        public static readonly IGenericUriFormatter<XmlQualifiedName> QNameFormatter = TypedFormatterClass.Instance;
+
         sealed class TypedFormatterClass :
             IMediaTypeBasedUriFormatter<ArraySegment<byte>>,
             IGenericUriFormatter<Oid>,
-            IGenericUriFormatter<Guid>
+            IGenericUriFormatter<Guid>,
+            IGenericUriFormatter<XmlQualifiedName>
         {
             public static readonly TypedFormatterClass Instance = new();
 
@@ -139,6 +146,8 @@ namespace IS4.SFI
             public Uri this[Oid value] => new("urn:oid:" + value.Value, UriKind.Absolute);
 
             public Uri this[Guid value] => CreateUuid(value);
+
+            public Uri this[XmlQualifiedName value] => QNameToUri(value);
         }
     }
 }

@@ -417,7 +417,7 @@ namespace IS4.SFI.Analyzers
                         NodeTask = new ValueTask<ILinkedNode?>(analysis.analyzer.InitNewNode(node, context));
                     }else if(IsComplete)
                     {
-                        node = context.NodeFactory.Create(UriTools.DataUriFormatter, (null, charsetMatch?.Charset, ByteValue));
+                        node = context.NodeFactory.Create(UriTools.DataUriFormatter, (default(string), charsetMatch?.Charset, ByteValue));
                         NodeTask = new ValueTask<ILinkedNode?>(analysis.analyzer.InitNewNode(node, context));
                     }else{
                         async ValueTask<ILinkedNode?> HashNode()

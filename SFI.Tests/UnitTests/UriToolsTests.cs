@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Xml;
 
 namespace IS4.SFI.Tests
 {
@@ -190,6 +191,44 @@ namespace IS4.SFI.Tests
             var uri = new Uri(uriString, UriKind.RelativeOrAbsolute);
             var result = MakeSubUri(uri, component, formRoot);
             Assert.AreEqual(uriString + expectedAppended, result.OriginalString);
+        }
+
+        /// <summary>
+        /// The tests for <see cref="WrapRelativeUri(Uri)"/>.
+        /// </summary>
+        [TestMethod]
+        [DataRow("x.scheme:path", "x.scheme:path")]
+        [DataRow("x.scheme:path#", "x.scheme:path#")]
+        [DataRow("x.scheme:path#fragment", "x.scheme:path#fragment")]
+        [DataRow("lid:path", "lid:uri/lid%3Apath")]
+        [DataRow("lid:path#", "lid:uri/lid%3Apath#")]
+        [DataRow("lid:path#fragment", "lid:uri/lid%3Apath#fragment")]
+        [DataRow("path", "lid:uri/$base:path")]
+        [DataRow("path#", "lid:uri/$base:path#")]
+        [DataRow("path/segment?query#fragment", "lid:uri/$base:path%2Fsegment%3Fquery#fragment")]
+        public void WrapRelativeUriTest(string uriString, string expected)
+        {
+            var uri = new Uri(uriString, UriKind.RelativeOrAbsolute);
+            var result = WrapRelativeUri(uri);
+            Assert.AreEqual(expected, result.OriginalString);
+        }
+
+        /// <summary>
+        /// The tests for <see cref="QNameToUri(XmlQualifiedName)"/>.
+        /// </summary>
+        [TestMethod]
+        [DataRow("http://example.org/path", "elem", "http://example.org/path#elem")]
+        [DataRow("http://example.org/path/", "elem", "http://example.org/path/#elem")]
+        [DataRow("http://example.org/path#", "elem", "http://example.org/path#elem")]
+        [DataRow("http://example.org/path#root", "elem", "http://example.org/path#root/elem")]
+        [DataRow(null, "elem", "lid:uri/$base:#elem")]
+        [DataRow(null, "elem/@attr", "lid:uri/$base:#elem/@attr")]
+        [DataRow(null, "@attr", "lid:uri/$base:#@attr")]
+        public void QNameToUriTests(string ns, string name, string expected)
+        {
+            var qname = new XmlQualifiedName(name, ns);
+            var result = QNameToUri(qname);
+            Assert.AreEqual(expected, result.OriginalString);
         }
     }
 }
