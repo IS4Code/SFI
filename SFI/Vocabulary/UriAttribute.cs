@@ -28,7 +28,7 @@ namespace IS4.SFI.Vocabulary
         /// <param name="localName">The value of <see cref="LocalName"/>.</param>
         public UriAttribute(string vocabulary, string? localName = null)
         {
-            Vocabulary = new VocabularyUri(vocabulary);
+            Vocabulary = new VocabularyUri(String.Intern(vocabulary));
             LocalName = localName;
         }
     }
