@@ -15,12 +15,7 @@ namespace IS4.SFI.Analyzers
         public override async ValueTask<AnalysisResult> Analyze(IReadOnlyList<Uri> entity, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var node = GetNode(context);
-
-            for(int i = 0; i < entity.Count; i++)
-            {
-                node.Set(Properties.MemberAt, i + 1, entity[i]);
-            }
-
+            node.SetMembers(entity);
             return new(node);
         }
     }
