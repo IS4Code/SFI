@@ -8,6 +8,12 @@ namespace IS4.SFI.Vocabulary
     /// </summary>
     public static class Extensions
     {
+        /// <inheritdoc cref="InitializeUris(Type, object?)"/>
+        public static void InitializeUris(this Type type)
+        {
+            InitializeUris(type, null);
+        }
+
         /// <summary>
         /// Initializes all static (<see cref="BindingFlags.Static"/>) fields on the type
         /// specified by <paramref name="type"/>, whether they are public (<see cref="BindingFlags.Public"/>)
@@ -22,15 +28,16 @@ namespace IS4.SFI.Vocabulary
         /// When called from the type initializer, this also works on read-only fields.
         /// </summary>
         /// <param name="type">The type whose fields to initialize.</param>
-        public static void InitializeUris(this Type type)
+        /// <param name="instance">If not <see langword="null"/>, instance fields are set instead.</param>
+        public static void InitializeUris(this Type type, object? instance)
         {
-            foreach(var field in type.GetFields(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic))
+            foreach(var field in type.GetFields((instance == null ? BindingFlags.Static : BindingFlags.Instance) | BindingFlags.Public | BindingFlags.NonPublic))
             {
                 var uriAttribute = field.GetCustomAttribute<UriAttribute>();
                 if(uriAttribute != null)
                 {
                     // Assumes that the constructor fieldType(UriAttribute, string) exists
-                    field.SetValue(null, Activator.CreateInstance(field.FieldType, uriAttribute, field.Name));
+                    field.SetValue(instance, Activator.CreateInstance(field.FieldType, uriAttribute, field.Name));
                 }
             }
         }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Concurrent;
+using System.Runtime.CompilerServices;
 
 namespace IS4.SFI.Vocabulary
 {
@@ -16,7 +18,7 @@ namespace IS4.SFI.Vocabulary
         /// </summary>
         public bool IsInverse => !String.IsNullOrEmpty(vocabularyRaw) && vocabularyRaw[0] == invertChar;
 
-        string VocabularyUri => IsInverse ? String.Intern(vocabularyRaw.Substring(1)) : vocabularyRaw;
+        string VocabularyUri => IsInverse ? GetInverseVocabulary(vocabularyRaw) : vocabularyRaw;
 
         /// <inheritdoc/>
         public VocabularyUri Vocabulary => new VocabularyUri(VocabularyUri);
@@ -27,14 +29,25 @@ namespace IS4.SFI.Vocabulary
         /// <inheritdoc/>
         public string Value => Vocabulary.Value + Term;
 
+        /// <inheritdoc cref="PropertyUri(SFI.Vocabulary.VocabularyUri, string, bool)"/>
+        public PropertyUri(VocabularyUri vocabulary, string term) : this(vocabulary, term, false)
+        {
+
+        }
+
         /// <summary>
         /// Creates a new instance of the term.
         /// </summary>
         /// <param name="vocabulary">The value of <see cref="Vocabulary"/>.</param>
         /// <param name="term">The value of <see cref="Term"/>.</param>
-        public PropertyUri(VocabularyUri vocabulary, string term)
+        /// <param name="isInverse">The value of <see cref="IsInverse"/>.</param>
+        public PropertyUri(VocabularyUri vocabulary, string term, bool isInverse)
         {
-            vocabularyRaw = vocabulary.Value;
+            if(String.IsNullOrEmpty(vocabulary.Value) || vocabulary.Value[0] == invertChar)
+            {
+                throw new ArgumentException("The vocabulary URI has invalid format.", nameof(vocabulary));
+            }
+            vocabularyRaw = isInverse ? GetInverseVocabulary(vocabulary.Value) : vocabulary.Value;
             Term = term;
         }
 
@@ -58,9 +71,7 @@ namespace IS4.SFI.Vocabulary
         /// <returns>A new <see cref="PropertyUri"/> with the inverted direction.</returns>
         public PropertyUri AsInverse()
         {
-            return IsInverse
-                ? new(Vocabulary, Term)
-                : new(new VocabularyUri(invertChar + vocabularyRaw), Term);
+            return new(Vocabulary, Term, !IsInverse);
         }
 
         IDirectionalTermUri IDirectionalTermUri.AsInverse()
@@ -115,6 +126,45 @@ namespace IS4.SFI.Vocabulary
         public static bool operator !=(PropertyUri a, PropertyUri b)
         {
             return !a.Equals(b);
+        }
+
+        static readonly ConditionalWeakTable<string, string> inverseMap = new();
+        static readonly ConditionalWeakTable<string, string>.CreateValueCallback valueFactory = s => {
+            var result = CreateInverseVocabulary(s);
+            try{
+                inverseMap.Add(result, s);
+            }catch(ArgumentException)
+            {
+                // Should not happen since result is a new unique string
+            }
+            return result;
+        };
+
+        static readonly ConcurrentDictionary<string, string> internedInverseMap = new(ReferenceEqualityComparer<string>.Default);
+        static readonly Func<string, string> internedValueFactory = s => {
+            var result = String.Intern(CreateInverseVocabulary(s));
+            internedInverseMap[result] = s;
+            return result;
+        };
+
+        static string GetInverseVocabulary(string str)
+        {
+            if(String.IsInterned(str) is string interned)
+            {
+                return internedInverseMap.GetOrAdd(interned, internedValueFactory);
+            }else{
+                return inverseMap.GetValue(str, valueFactory);
+            }
+        }
+
+        static string CreateInverseVocabulary(string str)
+        {
+            if(str[0] == invertChar)
+            {
+                return str.Substring(1);
+            }else{
+                return invertChar + str;
+            }
         }
     }
 }
