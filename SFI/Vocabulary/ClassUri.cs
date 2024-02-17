@@ -5,7 +5,7 @@ namespace IS4.SFI.Vocabulary
     /// <summary>
     /// Represents an RDF class term in a vocabulary.
     /// </summary>
-    public struct ClassUri : ITermUri, IEquatable<ClassUri>
+    public struct ClassUri : ITermUri<ClassUri>
     {
         /// <inheritdoc/>
         public VocabularyUri Vocabulary { get; }

@@ -5,7 +5,7 @@ namespace IS4.SFI.Vocabulary
     /// <summary>
     /// Represents an RDF property term in a vocabulary.
     /// </summary>
-    public struct PropertyUri : ITermUri, IEquatable<PropertyUri>
+    public struct PropertyUri : IDirectionalTermUri<PropertyUri>
     {
         const char invertChar = '^';
 
@@ -61,6 +61,11 @@ namespace IS4.SFI.Vocabulary
             return IsInverse
                 ? new(Vocabulary, Term)
                 : new(new VocabularyUri(invertChar + vocabularyRaw), Term);
+        }
+
+        IDirectionalTermUri IDirectionalTermUri.AsInverse()
+        {
+            return AsInverse();
         }
 
         /// <summary>
