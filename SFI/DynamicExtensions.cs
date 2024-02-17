@@ -51,7 +51,7 @@ namespace IS4.SFI
             }
         }
 
-        /// <inheritdoc cref="TrySet{TProp}(ILinkedNode, IPropertyUriFormatter{TProp}, TProp, ValueType)"/>
+        /// <inheritdoc cref="TrySet(ILinkedNode, PropertyUri, ValueType)"/>
         public static bool TrySet(this ILinkedNode node, PropertyUri property, object? value)
         {
             switch(value)
