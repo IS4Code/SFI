@@ -101,7 +101,7 @@ namespace IS4.SFI.ConsoleApp
 #endif
             }
             var fileName = Path.GetFileName(path);
-            if(fileName.Contains('*') || fileName.Contains('?'))
+            if(TextTools.ContainsWildcardCharacters(fileName))
             {
                 var directory = Path.GetDirectoryName(path);
                 if(String.IsNullOrEmpty(directory))
@@ -211,7 +211,7 @@ namespace IS4.SFI.ConsoleApp
             {
                 throw new ApplicationException($"The special {name} file is available only in distributions targeting Windows.");
             }
-            throw new ApplicationException($"The special {name} file is available only in Windows.");
+            throw new ApplicationException($"The special {name} file is available only on Windows.");
         }
 #endif
     }
