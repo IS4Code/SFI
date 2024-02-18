@@ -8,6 +8,12 @@
     /// </summary>
     public static class Classes
     {
+        /// <summary>
+        /// <c><see cref="Rdfs"/>:ContainerMembershipProperty</c>.
+        /// </summary>
+        [Uri(Rdfs)]
+        public static readonly ClassUri ContainerMembershipProperty;
+
         #region schema
         /// <summary>
         /// <c><see cref="Schema"/>:Photograph</c>.

@@ -149,7 +149,14 @@ namespace IS4.SFI.Services
         /// <returns>A new instance of the node.</returns>
         protected abstract LinkedNode<TNode, TGraphNode, TVocabularyCache>? CreateInGraph(TGraphNode? graph);
 
-        private TNode? CreateNode<T>(IUriFormatter<T> formatter, T value)
+        /// <summary>
+        /// Creates a new URI node in the current graph using a formatter.
+        /// </summary>
+        /// <typeparam name="T">The type of <paramref name="value"/> accepted by the formatter.</typeparam>
+        /// <param name="formatter">The <see cref="IUriFormatter{T}"/> instance to use.</param>
+        /// <param name="value">The opaque value given to the formatter.</param>
+        /// <returns>A node corresponding to the formatted value, or <see langword="null"/> if <paramref name="formatter"/> did not return a URI.</returns>
+        protected virtual TNode? CreateNode<T>(IUriFormatter<T> formatter, T value)
         {
             try{
                 var uri = formatter[value];
@@ -160,7 +167,14 @@ namespace IS4.SFI.Services
             }
         }
 
-        private TGraphNode? CreateGraphNode<T>(IGraphUriFormatter<T> formatter, T value)
+        /// <summary>
+        /// Creates a new graph node in the current graph using a formatter.
+        /// </summary>
+        /// <typeparam name="T">The type of <paramref name="value"/> accepted by the formatter.</typeparam>
+        /// <param name="formatter">The <see cref="IGraphUriFormatter{T}"/> instance to use.</param>
+        /// <param name="value">The opaque value given to the formatter.</param>
+        /// <returns>A node corresponding to the formatted value, or <see langword="null"/> if <paramref name="formatter"/> did not return a URI.</returns>
+        protected virtual TGraphNode? CreateGraphNode<T>(IGraphUriFormatter<T> formatter, T value)
         {
             try{
                 var uri = formatter[value];

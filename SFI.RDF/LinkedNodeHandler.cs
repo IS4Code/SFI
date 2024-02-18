@@ -61,6 +61,13 @@ namespace IS4.SFI.RDF
         public int UriPartShortened { get; set; } = 64;
 
         /// <summary>
+        /// Whether to emit additional identifying triples to help identify container membership properties.
+        /// </summary>
+        public bool DescribeMembershipProperties { get; set; } = true;
+
+        SparseBitTable memberMetadataEmitted;
+
+        /// <summary>
         /// Creates a new instance of the handler.
         /// </summary>
         /// <param name="root">The root of the node hierarchy.</param>
@@ -358,6 +365,23 @@ namespace IS4.SFI.RDF
                     return true;
                 }
                 return false;
+            }
+
+            /// <inheritdoc/>
+            protected override INode? CreateNode<T>(IUriFormatter<T> formatter, T value)
+            {
+                var node = base.CreateNode(formatter, value);
+                if(handler.DescribeMembershipProperties && formatter == Properties.MemberAt)
+                {
+                    int index = (int)(object)value!;
+                    if(handler.memberMetadataEmitted.TryAdd(index))
+                    {
+                        // Add metadata to help querying the membership property
+                        HandleTriple(node, Cache[Properties.Type], Cache[Classes.ContainerMembershipProperty]);
+                        HandleTriple(node, Cache[Properties.SubPropertyOf], Cache[Properties.Member]);
+                    }
+                }
+                return node;
             }
 
             public override void SetAsBase()

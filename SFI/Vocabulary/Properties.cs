@@ -64,6 +64,18 @@
         /// </summary>
         [Uri(Rdfs)]
         public static readonly PropertyUri Comment;
+
+        /// <summary>
+        /// <c><see cref="Rdfs"/>:subPropertyOf</c>.
+        /// </summary>
+        [Uri(Rdfs)]
+        public static readonly PropertyUri SubPropertyOf;
+
+        /// <summary>
+        /// <c><see cref="Rdfs"/>:member</c>.
+        /// </summary>
+        [Uri(Rdfs)]
+        public static readonly PropertyUri Member;
         #endregion
 
         #region owl
