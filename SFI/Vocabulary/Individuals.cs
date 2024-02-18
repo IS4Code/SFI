@@ -388,6 +388,14 @@
             [Uri(Err, "FODC0004")]
             public static readonly IndividualUri InvalidCollectionUri;
 
+            /// <summary>Invalid document URI.</summary>
+            [Uri(Err, "FODC0005")]
+            public static readonly IndividualUri InvalidDocumentUri;
+
+            /// <summary>Invalid XML document.</summary>
+            [Uri(Err, "FODC0006")]
+            public static readonly IndividualUri InvalidXmlDocument;
+
             /// <summary>Invalid decimal format name.</summary>
             [Uri(Err, "FODF1280")]
             public static readonly IndividualUri InvalidDecimalFormatName;

@@ -38,18 +38,18 @@ namespace IS4.SFI.Analyzers
             var node = GetNode(context);
 
             var language = new LanguageCode(CultureInfo.CurrentUICulture);
-            AnalyzeException(exception, node, language);
+            AnalyzeException(exception, node, language, context);
 
             return new(node);
         }
 
-        void AnalyzeException(Exception exception, ILinkedNode node, LanguageCode language)
+        void AnalyzeException(Exception exception, ILinkedNode node, LanguageCode language, AnalysisContext context)
         {
             if(exception is AggregateException aggr)
             {
                 foreach(var inner in aggr.InnerExceptions)
                 {
-                    AnalyzeException(inner, node, language);
+                    AnalyzeException(inner, node, language, context);
                 }
                 return;
             }
@@ -62,6 +62,41 @@ namespace IS4.SFI.Analyzers
             {
                 node.Set(Properties.ErrorCode, code);
                 node.TrySet(Properties.ErrorValue, details);
+            }
+
+            if(exception.Source != null)
+            {
+                node.Set(Properties.ErrorModule, exception.Source);
+            }
+
+            if(exception.HelpLink != null && Uri.TryCreate(exception.HelpLink, UriKind.RelativeOrAbsolute, out var helpUri))
+            {
+                helpUri = UriTools.WrapRelativeUri(helpUri);
+                node.Set(Properties.SeeAlso, UriFormatter.Instance, helpUri);
+            }
+
+            if(exception is XmlException { SourceUri: { } source } xmlException)
+            {
+                if(Uri.TryCreate(source, UriKind.RelativeOrAbsolute, out var sourceUri))
+                {
+                    sourceUri = UriTools.WrapRelativeUri(sourceUri);
+                    var sourceNode = context.NodeFactory.Create(UriFormatter.Instance, sourceUri);
+                    if(IsDefined(xmlException.LineNumber, out var line) && line > 1)
+                    {
+                        var parentNode = sourceNode;
+                        sourceUri = UriTools.MakeSubUri(sourceUri, $"#line={line - 1},{line}");
+                        sourceNode = context.NodeFactory.Create(UriFormatter.Instance, sourceUri);
+                        parentNode.Set(Properties.HasPart, sourceNode);
+                    }
+                    if(IsDefined(xmlException.LinePosition, out var column))
+                    {
+                        var parentNode = sourceNode;
+                        sourceUri = UriTools.MakeSubUri(sourceUri, $"#char={column - 1}");
+                        sourceNode = context.NodeFactory.Create(UriFormatter.Instance, sourceUri);
+                        parentNode.Set(Properties.HasPart, sourceNode);
+                    }
+                    node.Set(Properties.ErrorAdditional, sourceNode);
+                }
             }
 
             var trace = new StackTrace(exception, true);
@@ -166,6 +201,7 @@ namespace IS4.SFI.Analyzers
                 InvalidTimeZoneException => (InvalidTimezoneValue, null),
                 IndexOutOfRangeException => (ArrayIndexOutOfBounds, null),
                 ArgumentException argument => (InvalidArgumentType, argument.ParamName),
+                XmlException => (InvalidXmlDocument, null),
                 NullReferenceException => (ErrorRetrievingResource, null),
                 { InnerException: { } inner } when inner != exception => GetErrorCodeAndDetails(inner),
                 _ when UnknownExceptionTypes.Contains(exception.GetType()) => (UnidentifiedError, null),
