@@ -1,3 +1,13 @@
+1.2
+-----
+
+- A few more properties added to `XmlFormat` to ignore non-data XML nodes.
+- HTML and PHP files looking like XML are skipped by default (controllable).
+- Default encoding used during parsing can be changed, or used from the encoding detector.
+- Fragment conformance mode can now be specified, treating the XML as external parsed entities.
+- The XML can be parsed fully before analysis to ensure it is well-formed according to the conformance mode.
+
+
 1.1
 -----
 

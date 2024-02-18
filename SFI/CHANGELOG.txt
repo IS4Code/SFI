@@ -1,10 +1,20 @@
-1.2.2
+1.3
 ----
 
 - Hash algorithms can now be configured to reject particular sources of input.
 - Added `DeviceFileInfo` to support custom input sources.
 - Added `IImage` as a common interface for images.
+- Added `Namespace` to represent namespaces in code as an abstraction.
 - `FileAnalyer` does not add `nfo:FileDataObject` to instances of `IDriveInfo`.
+- A few more URI formatters and formatting options (UUIDs, QNames, CLR members, DocId-like).
+- Non-critical exceptions resulting from analysis are analyzed and described, using the XPath Errors vocabulary.
+- `TrySet` has a new `object?`-taking overload that accepts other reference types supported by `ILinkedNode`.
+- (`Try`)`SetMembers` extension method for container membership properties.
+- Reading from `XmlReaderState` now simply returns false instead of exception.
+- An instance of `IEntityAnalyzer` is provided as a service to formats and analyzers.
+- `DatatypeUri` can be converted back and forth from XML Schema datatypes.
+- `PropertyUri` can be inverted, swapping subject and object when used.
+- Faster term comparisons (but require vocabularies to match exactly).
 
 
 1.2.1

@@ -5,6 +5,7 @@
 - XML options serialization determines whether a setting should be stored as element based on its cardinality.
 - The `.nuget/packages` plugin source directory is added only if it exists.
 - Options starting with `xml` are properly encoded when serialized.
+- Component and property names support wildcards when assigning (but the `:` must still be fully present).
 - Support for `/dev/folderpicker` to open a folder browser dialog.
 - Individual components are not shared across collections if they are configurable.
 - NuGet plugins support the `nuget:?package={package}&version={version}` format.
