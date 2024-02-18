@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>IS4.SFI.Hashes.All</AssemblyName>
-    <VersionPrefix>1.0.1</VersionPrefix>
+    <VersionPrefix>1.0.2</VersionPrefix>
     <Product>Semantic File Inspector</Product>
     <Authors>IS4</Authors>
     <Copyright>Copyright (c) $(Authors) $([System.DateTime]::UtcNow.ToString('yyyy'))</Copyright>
@@ -39,7 +39,6 @@
     <ProjectReference Include="..\..\SFI.ComponentImportGenerator\SFI.ComponentImportGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     <ProjectReference Include="..\AllPortable\SFI.Hashes.AllPortable.csproj" />
     <ProjectReference Include="..\Blake3\SFI.Hashes.Blake3.csproj" />
-    <ProjectReference Include="..\DHash\SFI.Hashes.DHash.csproj" />
   </ItemGroup>
 
 </Project>

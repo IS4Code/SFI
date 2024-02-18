@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>IS4.SFI.Hashes.AllPortable</AssemblyName>
-    <VersionPrefix>1.0.1</VersionPrefix>
+    <VersionPrefix>1.0.2</VersionPrefix>
     <Product>Semantic File Inspector</Product>
     <Authors>IS4</Authors>
     <Copyright>Copyright (c) $(Authors) $([System.DateTime]::UtcNow.ToString('yyyy'))</Copyright>
@@ -38,6 +38,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\SFI.ComponentImportGenerator\SFI.ComponentImportGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     <ProjectReference Include="..\BitTorrent\SFI.Hashes.BitTorrent.csproj" />
+    <ProjectReference Include="..\DHash\SFI.Hashes.DHash.csproj" />
     <ProjectReference Include="..\Murmur\SFI.Hashes.Murmur.csproj" />
     <ProjectReference Include="..\NonCryptographic\SFI.Hashes.NonCryptographic.csproj" />
   </ItemGroup>
