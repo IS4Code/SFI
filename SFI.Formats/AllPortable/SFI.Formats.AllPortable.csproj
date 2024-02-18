@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
     <AssemblyName>IS4.SFI.Formats.AllPortable</AssemblyName>
-    <VersionPrefix>1.2</VersionPrefix>
+    <VersionPrefix>1.2.1</VersionPrefix>
     <Product>Semantic File Inspector</Product>
     <Authors>IS4</Authors>
     <Copyright>Copyright (c) $(Authors) $([System.DateTime]::UtcNow.ToString('yyyy'))</Copyright>
@@ -47,6 +47,7 @@
     <ProjectReference Include="..\DOS\SFI.Formats.DOS.csproj" />
     <ProjectReference Include="..\Flash\SFI.Formats.Flash.csproj" />
     <ProjectReference Include="..\HTML\SFI.Formats.HTML.csproj" />
+    <ProjectReference Include="..\Images\SFI.Formats.Images.csproj" />
     <ProjectReference Include="..\Metadata\SFI.Formats.Metadata.csproj" />
     <ProjectReference Include="..\Modules\SFI.Formats.Modules.csproj" />
     <ProjectReference Include="..\Office\SFI.Formats.Office.csproj" />
