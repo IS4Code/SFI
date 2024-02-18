@@ -167,6 +167,7 @@ namespace IS4.SFI.Analyzers
                 IndexOutOfRangeException => (ArrayIndexOutOfBounds, null),
                 ArgumentException argument => (InvalidArgumentType, argument.ParamName),
                 NullReferenceException => (ErrorRetrievingResource, null),
+                { InnerException: { } inner } when inner != exception => GetErrorCodeAndDetails(inner),
                 _ when UnknownExceptionTypes.Contains(exception.GetType()) => (UnidentifiedError, null),
                 _ => default
             };
