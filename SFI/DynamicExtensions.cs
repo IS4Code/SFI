@@ -52,10 +52,18 @@ namespace IS4.SFI
         }
 
         /// <inheritdoc cref="TrySet(ILinkedNode, PropertyUri, ValueType)"/>
+        /// <remarks>
+        /// This method accepts instances of <see cref="string"/>, <see cref="Uri"/>,
+        /// and also <see cref="DBNull"/> and <see cref="Missing"/> (interpreted as
+        /// <see cref="Individuals.Nil"/>). For <see langword="null"/> values,
+        /// it returns <see langword="true"/> but does not assign anything.
+        /// </remarks>
         public static bool TrySet(this ILinkedNode node, PropertyUri property, object? value)
         {
             switch(value)
             {
+                case null:
+                    return true;
                 case string str:
                     node.Set(property, str);
                     return true;
@@ -97,10 +105,13 @@ namespace IS4.SFI
         }
         
         /// <inheritdoc cref="TrySet{TProp}(ILinkedNode, IPropertyUriFormatter{TProp}, TProp, ValueType)"/>
+        /// <remarks><inheritdoc cref="TrySet(ILinkedNode, PropertyUri, object?)" path="/remarks"/></remarks>
         public static bool TrySet<TProp>(this ILinkedNode node, IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, object? value)
         {
             switch(value)
             {
+                case null:
+                    return true;
                 case string str:
                     node.Set(propertyFormatter, propertyValue, str);
                     return true;
