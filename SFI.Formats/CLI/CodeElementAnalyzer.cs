@@ -110,15 +110,24 @@ namespace IS4.SFI.Analyzers
             }
             foreach(var type in optionalModifiers ?? Type.EmptyTypes)
             {
+                AnalyzeCustomModifier(node, type, false);
                 await ReferenceMember(node, Properties.CodeAnnotation, type, context, analyzers);
             }
             foreach(var type in requiredModifiers ?? Type.EmptyTypes)
             {
+                AnalyzeCustomModifier(node, type, true);
                 await ReferenceMember(node, Properties.CodeAnnotation, type, context, analyzers);
             }
         }
 
-        private void AnalyzeCustomAttribute(ILinkedNode node, LanguageCode language, bool isParameter, CustomAttributeData attribute)
+        /// <summary>
+        /// Analyzes a custom attribute on a code element.
+        /// </summary>
+        /// <param name="node">The node to which the attribute pertains, representing the code element.</param>
+        /// <param name="language">The langauge of the assembly.</param>
+        /// <param name="isParameter">Whether the attribute is on a method parameter.</param>
+        /// <param name="attribute">The data of the attribute.</param>
+        protected virtual void AnalyzeCustomAttribute(ILinkedNode node, LanguageCode language, bool isParameter, CustomAttributeData attribute)
         {
             string type;
             try{
@@ -194,6 +203,21 @@ namespace IS4.SFI.Analyzers
             {
                 node.Set(Properties.Identifier, guidStr);
                 node.Set(Properties.Broader, UriTools.UuidUriFormatter, guid);
+            }
+        }
+
+        /// <summary>
+        /// Analyzes a custom modifier on a code element.
+        /// </summary>
+        /// <param name="node">The node to which the attribute pertains, representing the code element.</param>
+        /// <param name="modifier">The type of the custom modifier.</param>
+        /// <param name="isRequired">Whether the modifier is required.</param>
+        protected virtual void AnalyzeCustomModifier(ILinkedNode node, Type modifier, bool isRequired)
+        {
+            var type = modifier.FullName;
+            if(type == AttributeConstants.IsVolatileModifierType)
+            {
+                node.Set(Properties.CodeModifier, Individuals.CodeVolatileModifier);
             }
         }
 

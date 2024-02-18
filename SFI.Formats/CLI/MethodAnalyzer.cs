@@ -51,13 +51,18 @@ namespace IS4.SFI.Analyzers
                 isStatic: member.IsStatic
             );
 
+            if((member.MethodImplementationFlags & MethodImplAttributes.Synchronized) != 0)
+            {
+                node.Set(Properties.CodeModifier, Individuals.CodeSynchronizedModifier);
+            }
+
             if(member is MethodInfo method)
             {
                 await ReferenceMember(node, Properties.CodeReturnType, method.ReturnType, context, analyzers);
 
                 if(member.IsVirtual && (member.Attributes & MethodAttributes.NewSlot) == 0)
                 {
-                    MethodInfo? baseMethod = null;
+                    MethodInfo? baseMethod;
                     try{
                         baseMethod = method.GetBaseDefinition();
                     }catch(NotSupportedException)
@@ -70,7 +75,7 @@ namespace IS4.SFI.Analyzers
                         await ReferenceMember(node, Properties.CodeOverrides, baseMethod, context, analyzers);
                     }
                 }
-                await AnalyzeCustomAttributes(node, context, analyzers, method, method.GetCustomAttributesData(), method.ReturnParameter.GetOptionalCustomModifiers(), method.ReturnParameter.GetRequiredCustomModifiers());
+                await AnalyzeCustomAttributes(node, context, analyzers, method, method.GetCustomAttributesData().Concat(method.ReturnParameter.GetCustomAttributesData()), method.ReturnParameter.GetOptionalCustomModifiers(), method.ReturnParameter.GetRequiredCustomModifiers());
             }else{
                 await AnalyzeCustomAttributes(node, context, analyzers, member, member.GetCustomAttributesData());
             }

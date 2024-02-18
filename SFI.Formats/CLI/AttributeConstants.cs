@@ -10,10 +10,14 @@ namespace IS4.SFI.Analyzers
 {
     internal static class AttributeConstants
     {
+        public static readonly string AttributeType = typeof(Attribute).FullName;
+        public static readonly string AttributeUsageAttributeType = typeof(AttributeUsageAttribute).FullName;
         public static readonly string GuidAttributeType = typeof(GuidAttribute).FullName;
         public static readonly string DecimalConstantAttributeType = typeof(DecimalConstantAttribute).FullName;
         public static readonly string DateTimeConstantAttributeType = typeof(DateTimeConstantAttribute).FullName;
         public static readonly string ObsoleteAttributeType = typeof(ObsoleteAttribute).FullName;
+
+        public static readonly string IsVolatileModifierType = typeof(IsVolatile).FullName;
 
         public static readonly IReadOnlyDictionary<string, (PropertyUri Uri, bool UseLanguage)> AssemblyAttributeProperties = new Dictionary<string, (PropertyUri, bool)>()
         {

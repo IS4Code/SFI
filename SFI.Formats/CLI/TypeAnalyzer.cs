@@ -54,6 +54,10 @@ namespace IS4.SFI.Analyzers
             {
                 node.SetClass(Classes.CodeArrayType);
             }
+            if(IsAttribute(member))
+            {
+                node.SetClass(Classes.CodeAnnotationType);
+            }
 
             node.Set(Properties.PrefLabel, member.ToString());
             if(name != null)
@@ -212,6 +216,32 @@ namespace IS4.SFI.Analyzers
             }
 
             return new(node, name);
+        }
+
+        static bool IsAttribute(Type type)
+        {
+            try{
+                while(type != null)
+                {
+                    if(!type.IsClass || (type.IsSealed && type.IsAbstract))
+                    {
+                        return false;
+                    }
+                    if(type.FullName == AttributeConstants.AttributeType)
+                    {
+                        return true;
+                    }
+                    if(type.GetCustomAttributesData().Any(a => a.AttributeType.FullName == AttributeConstants.AttributeUsageAttributeType))
+                    {
+                        return true;
+                    }
+                    type = type.BaseType;
+                }
+                return false;
+            }catch(TypeLoadException)
+            {
+                return type.Name.EndsWith("Attribute", StringComparison.Ordinal);
+            }
         }
     }
 }
