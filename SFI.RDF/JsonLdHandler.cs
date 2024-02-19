@@ -45,6 +45,8 @@ namespace IS4.SFI.RDF
 
         readonly HashSet<string> propertyUsesArray = new(StringComparer.Ordinal);
 
+        bool Indented;
+
         /// <summary>
         /// Number of space characters to indent with.
         /// </summary>
@@ -54,6 +56,7 @@ namespace IS4.SFI.RDF
         }
 
         string __ = "  ";
+        string _ = " ";
 
         /// <summary>
         /// Create a new JSON-LD handler with default formatting options.
@@ -74,7 +77,8 @@ namespace IS4.SFI.RDF
             this.namespaceMapper = namespaceMapper;
             this.options = options ?? new()
             {
-                UseNativeTypes = true
+                UseNativeTypes = true,
+                JsonFormatting = Newtonsoft.Json.Formatting.Indented
             };
             this.uriFormatter = uriFormatter;
             this.uriComparer = uriComparer ?? new UriComparer();
@@ -131,6 +135,8 @@ namespace IS4.SFI.RDF
             base.StartRdfInternal();
             namespaceMapper.Clear();
             propertyUsesArray.Clear();
+            Indented = JsonFormatting == Newtonsoft.Json.Formatting.Indented;
+            _ = Indented ? " " : "";
             WriteLine("{");
         }
 
@@ -155,8 +161,8 @@ namespace IS4.SFI.RDF
             {
                 if(state.InArray)
                 {
-                    WriteLine($"{__}{__}{FormatComplexNode(state.LastObject)}");
-                    Write($"{__}]");
+                    WriteLineIndented($"{__}{FormatComplexNode(state.LastObject)}");
+                    WriteIndented("]");
                     state.InArray = false;
                 }else{
                     Write(FormatComplexNode(state.LastObject));
@@ -175,7 +181,7 @@ namespace IS4.SFI.RDF
             if(state.Context.Count > 0)
             {
                 WriteLine(",");
-                WriteLine($"{__}\"@context\": {{");
+                WriteLineIndented($"\"@context\":{_}{{");
                 var first = true;
                 foreach(var def in state.Context)
                 {
@@ -185,10 +191,10 @@ namespace IS4.SFI.RDF
                     }else{
                         WriteLine(",");
                     }
-                    Write($"{__}{__}{FormatString(def.Key)}: {FormatString(GetUriString(def.Value))}");
+                    WriteIndented($"{__}{FormatString(def.Key)}:{_}{FormatString(GetUriString(def.Value))}");
                 }
                 WriteLine();
-                WriteLine($"{__}}}");
+                WriteLineIndented("}");
             }else{
                 WriteLine();
             }
@@ -197,7 +203,7 @@ namespace IS4.SFI.RDF
         void Nest()
         {
             // Enter nested object
-            Write($"{__}\"@nest\": ");
+            WriteIndented("\"@nest\": ");
 
             // Preserve original state
             var fork = state.Fork();
@@ -247,7 +253,7 @@ namespace IS4.SFI.RDF
 
         void OpenProperty(string key)
         {
-            Write($"{__}{key}: ");
+            WriteIndented($"{key}: ");
             if(propertyUsesArray.Contains(key))
             {
                 state.InArray = true;
@@ -273,7 +279,7 @@ namespace IS4.SFI.RDF
             if(state.LastSubject == null)
             {
                 // Begin of document
-                WriteLine($"{__}\"@id\": {FormatSimpleNode(t.Subject)},");
+                WriteLineIndented($"\"@id\":{_}{FormatSimpleNode(t.Subject)},");
                 OpenProperty(FormatSimpleNode(t.Predicate));
             }else{
                 if(t.Subject.Equals(state.LastSubject))
@@ -297,7 +303,7 @@ namespace IS4.SFI.RDF
                             {
                                 Write(__);
                             }
-                            WriteLine($"{__}{FormatComplexNode(state.LastObject)},");
+                            WriteLineIndented($"{FormatComplexNode(state.LastObject)},");
                         }
                     }else{
                         if(state.LastObject != null)
@@ -340,7 +346,7 @@ namespace IS4.SFI.RDF
                             WriteLine(",");
                             var includedKey = "\"@included\"";
                             BeforeAddKey(ref includedKey);
-                            Write($"{__}{includedKey}: ");
+                            WriteIndented($"{includedKey}: ");
                         }
                     }else{
                         // Could be merged with the last property
@@ -364,7 +370,7 @@ namespace IS4.SFI.RDF
                     };
 
                     WriteLine("{");
-                    WriteLine($"{__}\"@id\": {FormatSimpleNode(t.Subject)},");
+                    WriteLineIndented($"\"@id\":{_}{FormatSimpleNode(t.Subject)},");
                     OpenProperty(FormatSimpleNode(t.Predicate));
                 }
             }
@@ -483,15 +489,15 @@ namespace IS4.SFI.RDF
             switch(node)
             {
                 case IUriNode uriNode:
-                    return $"{{\"@id\": {FormatUri(uriNode.Uri)}}}";
+                    return $"{{\"@id\":{_}{FormatUri(uriNode.Uri)}}}";
                 case IBlankNode blankNode:
-                    return $"{{\"@id\": {FormatString("_:" + blankNode.InternalID)}}}";
+                    return $"{{\"@id\":{_}{FormatString("_:" + blankNode.InternalID)}}}";
                 case ILiteralNode literalNode:
                     var rawValue = literalNode.Value;
                     var value = FormatString(rawValue);
                     if(!String.IsNullOrEmpty(literalNode.Language))
                     {
-                        return $"{{\"@value\": {value}, \"@language\": {FormatString(literalNode.Language)}}}";
+                        return $"{{\"@value\":{_}{value},{_}\"@language\":{_}{FormatString(literalNode.Language)}}}";
                     }else if(literalNode.DataType is not (null or { AbsoluteUri: XmlSpecsHelper.XmlSchemaDataTypeString }))
                     {
                         if(UseNativeTypes)
@@ -535,7 +541,7 @@ namespace IS4.SFI.RDF
 
                             }
                         }
-                        return $"{{\"@value\": {value}, \"@type\": {FormatUri(literalNode.DataType)}}}";
+                        return $"{{\"@value\":{_}{value},{_}\"@type\":{_}{FormatUri(literalNode.DataType)}}}";
                     }
                     return value;
                 default:
@@ -551,12 +557,47 @@ namespace IS4.SFI.RDF
         string linePart = "";
         void Write(string str)
         {
+            if(!Indented)
+            {
+                output.Write(str.Trim());
+                return;
+            }
             linePart += str;
         }
 
         void WriteLine(string? str = null)
         {
-            output.WriteLine(linePart + str);
+            if(!Indented)
+            {
+                output.WriteLine(str?.Trim() ?? "");
+                return;
+            }
+            output.Write(linePart);
+            output.WriteLine(str ?? "");
+            linePart = state.Indent;
+        }
+
+        void WriteIndented(string str)
+        {
+            if(!Indented)
+            {
+                output.Write(str.Trim());
+                return;
+            }
+            Write(__);
+            Write(str);
+        }
+
+        void WriteLineIndented(string str)
+        {
+            if(!Indented)
+            {
+                output.WriteLine(str.Trim());
+                return;
+            }
+            output.Write(linePart);
+            output.Write(__);
+            output.WriteLine(str);
             linePart = state.Indent;
         }
 

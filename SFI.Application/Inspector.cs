@@ -541,10 +541,13 @@ namespace IS4.SFI.Application
         private void CreateRdfFileHandler(TextWriter writer, out INamespaceMapper mapper, InspectorOptions options, MimeTypeDefinition format, out IRdfHandler handler)
         {
             var qnameMapper = new QNameOutputMapper();
-            if(options.PrettyPrint && format.CanonicalMimeType == "application/ld+json")
+            if(format.CanonicalMimeType == "application/ld+json")
             {
                 // Use the custom JSON-LD handler
-                handler = new JsonLdHandler(writer, qnameMapper);
+                handler = new JsonLdHandler(writer, qnameMapper)
+                {
+                    JsonFormatting = options.PrettyPrint ? Newtonsoft.Json.Formatting.Indented : 0
+                };
                 ConfigureNewComponent(handler);
             }else{
                 var rdfWriter = format.CanWriteRdf ? format.GetRdfWriter() as IFormatterBasedWriter : null;
