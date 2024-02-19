@@ -579,14 +579,9 @@ namespace IS4.SFI.Formats
             }
             if(!await reader.ReadAsync()) return null;
             // Now positioned at anything following the DOCTYPE or at first content node
-            if(readerSequence.Count == 0)
-            {
-                // Nothing in the preceding sequence
-                return reader;
-            }
             readerSequence.Add(reader);
             // Concat with the preceding states
-            reader = new SequenceXmlReader(readerSequence);
+            reader = new SequenceXmlReader(readerSequence, settings);
             // Move to the original inital state
             if(!await reader.ReadAsync()) return null;
             return reader;

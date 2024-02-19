@@ -33,13 +33,20 @@ namespace IS4.SFI.Tools.Xml
         /// <inheritdoc/>
         protected override XmlReader? PassiveReader => Current;
 
+        readonly XmlReaderSettings? settings;
+
+        /// <inheritdoc/>
+        public override XmlReaderSettings Settings => settings ?? base.Settings;
+
         /// <summary>
         /// Creates a new reader from a sequence of readers.
         /// </summary>
         /// <param name="sequence">The inner sequence to read from.</param>
+        /// <param name="settings">The value of <see cref="Settings"/>.</param>
         /// <exception cref="ArgumentException"><paramref name="sequence"/> is empty.</exception>
-        public SequenceXmlReader(IEnumerable<XmlReader> sequence)
+        public SequenceXmlReader(IEnumerable<XmlReader> sequence, XmlReaderSettings? settings = null)
         {
+            this.settings = settings;
             enumerator = sequence.GetEnumerator();
         }
         
