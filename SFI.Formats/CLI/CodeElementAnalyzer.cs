@@ -136,7 +136,12 @@ namespace IS4.SFI.Analyzers
             {
                 type = tle.TypeName;
             }
-            var args = attribute.ConstructorArguments;
+            IList<CustomAttributeTypedArgument> args;
+            try{
+                args = attribute.ConstructorArguments;
+            }catch{
+                args = Array.Empty<CustomAttributeTypedArgument>();
+            }
             var valueProperty = isParameter ? Properties.DefaultValue : Properties.Value;
             if(type == AttributeConstants.DecimalConstantAttributeType && args.Count == 5)
             {
