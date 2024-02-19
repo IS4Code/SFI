@@ -108,7 +108,7 @@ namespace IS4.SFI.Analyzers
                         }
                         docType = new XDocumentType(name, pubid, sysid, reader.Value);
                         break;
-                    case XmlNodeType.Element:
+                    case XmlNodeType.Element when reader.Depth == 0:
                         // Describe the root element using the XIS vocabulary
                         var elem = node[$"#element(/{++lastElementIndex})"];
                         if(conformanceLevel == ConformanceLevel.Document)
