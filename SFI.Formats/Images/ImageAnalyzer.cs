@@ -38,7 +38,7 @@ namespace IS4.SFI.Analyzers
         /// Whether to produce a small thumbnail <c>data:</c> node from the image.
         /// </summary>
         [Description("Whether to produce a small thumbnail data: node from the image.")]
-        public bool MakeThumbnail { get; set; } = true;
+        public bool MakeThumbnail { get; set; } = Environment.ProcessorCount > 1;
 
         /// <summary>
         /// The size of created thumbnails.
