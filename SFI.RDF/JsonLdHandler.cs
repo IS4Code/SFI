@@ -43,6 +43,8 @@ namespace IS4.SFI.RDF
         readonly State initialState;
         State state;
 
+        readonly HashSet<string> propertyUsesArray = new(StringComparer.Ordinal);
+
         /// <summary>
         /// Number of space characters to indent with.
         /// </summary>
@@ -128,6 +130,7 @@ namespace IS4.SFI.RDF
         {
             base.StartRdfInternal();
             namespaceMapper.Clear();
+            propertyUsesArray.Clear();
             WriteLine("{");
         }
 
@@ -160,7 +163,7 @@ namespace IS4.SFI.RDF
                 }
             }else if(state.InArray)
             {
-                Write("]");
+                Write(" ]");
                 state.InArray = false;
             }
         }
@@ -198,7 +201,11 @@ namespace IS4.SFI.RDF
 
             // Preserve original state
             var fork = state.Fork();
-            state.LastPredicate = null;
+            if(!state.InArray)
+            {
+                // Preserve the array property
+                state.LastPredicate = null;
+            }
             state.LastObject = null;
             stateStack.Push(state);
             fork.Indent += __;
@@ -210,11 +217,19 @@ namespace IS4.SFI.RDF
         {
             if(state.Keys.Add(key))
             {
+                state.LastKey = key;
                 return false;
+            }
+
+            if(state.LastKey == key)
+            {
+                // Make this an array next time
+                propertyUsesArray.Add(key);
             }
 
             Nest();
             state.Keys.Add(key);
+            state.LastKey = key;
 
             return true;
         }
@@ -228,6 +243,16 @@ namespace IS4.SFI.RDF
                 namespaceMapper.AddNamespace(leaving.Key, leaving.Value);
             }
             return state = stateStack.Pop();
+        }
+
+        void OpenProperty(string key)
+        {
+            Write($"{__}{key}: ");
+            if(propertyUsesArray.Contains(key))
+            {
+                state.InArray = true;
+                WriteLine("[");
+            }
         }
 
         /// <inheritdoc/>
@@ -249,7 +274,7 @@ namespace IS4.SFI.RDF
             {
                 // Begin of document
                 WriteLine($"{__}\"@id\": {FormatSimpleNode(t.Subject)},");
-                Write($"{__}{FormatSimpleNode(t.Predicate)}: ");
+                OpenProperty(FormatSimpleNode(t.Predicate));
             }else{
                 if(t.Subject.Equals(state.LastSubject))
                 {
@@ -283,10 +308,10 @@ namespace IS4.SFI.RDF
                         }
                         var predicateKey = FormatSimpleNode(t.Predicate);
                         BeforeAddKey(ref predicateKey);
-                        Write($"{__}{predicateKey}: ");
+                        OpenProperty(predicateKey);
                     }
                 }else{
-                    // A different subject
+                    // A completely different subject
                     if(!t.Subject.Equals(state.LastObject))
                     {
                         if(stateStack.Any(s => t.Subject.Equals(s.LastSubject)))
@@ -299,6 +324,11 @@ namespace IS4.SFI.RDF
                                 // Close intermediate states
                                 CloseObject();
                                 Write("}");
+                            }
+                            if(state.InArray && !t.Predicate.Equals(state.LastPredicate))
+                            {
+                                // Ending the array
+                                CloseValue();
                             }
                             // Start again
                             WriteLine(",");
@@ -318,7 +348,13 @@ namespace IS4.SFI.RDF
 
                     var indent = state.Indent + __;
                     // Already written
-                    state.LastPredicate = null;
+                    if(!state.InArray)
+                    {
+                        state.LastPredicate = null;
+                    }else{
+                        // Starting an object in array
+                        Write(__);
+                    }
                     state.LastObject = null;
                     // Open a new state
                     stateStack.Push(state);
@@ -329,7 +365,7 @@ namespace IS4.SFI.RDF
 
                     WriteLine("{");
                     WriteLine($"{__}\"@id\": {FormatSimpleNode(t.Subject)},");
-                    Write($"{__}{FormatSimpleNode(t.Predicate)}: ");
+                    OpenProperty(FormatSimpleNode(t.Predicate));
                 }
             }
             state.LastSubject = t.Subject;
@@ -539,6 +575,7 @@ namespace IS4.SFI.RDF
             public bool InArray;
             public string Indent = "";
             public HashSet<string> Keys = new(StringComparer.Ordinal);
+            public string? LastKey;
             public Dictionary<string, Uri> Context = new(StringComparer.Ordinal);
             public Dictionary<string, Uri> LeavingContext = new(StringComparer.Ordinal);
 
@@ -547,6 +584,7 @@ namespace IS4.SFI.RDF
                 var fork = (State)MemberwiseClone();
                 fork.Keys = new(StringComparer.Ordinal);
                 fork.Context = new(StringComparer.Ordinal);
+                fork.LastKey = null;
                 return fork;
             }
         }
