@@ -3,6 +3,7 @@
 @using System.IO;
 @using System.Text.RegularExpressions;
 @using Microsoft.VisualBasic.FileIO;
+@inject NavigationManager navManager
 @inject IJSRuntime js
 
 <h1>Semantic File Inspector</h1>
@@ -47,9 +48,31 @@
 
     Dictionary<string, BlobArrayStream> outputFiles = new();
     const string initialCommand = "describe -r urn:uuid: -d -x *-hash:* -h xxh64 * output.ttl";
-    string Command { get; set; } = initialCommand;
+
+    const string fragmentCommandPrefix = "#!";
+
+    string? _command;
+    string Command{
+        get{
+            return _command ??= (GetCommandFromFragment(navManager.Uri) ?? initialCommand);
+        }
+        set{
+            _command = value;
+        }
+    }
     List<string> outputChunks = new List<string>();
     WebEnvironment? webEnvironment;
+
+    string? GetCommandFromFragment(string uri)
+    {
+        var fragIndex = uri.IndexOf(fragmentCommandPrefix);
+        if(fragIndex == -1)
+        {
+            return null;
+        }
+        var frag = uri.Substring(fragIndex + fragmentCommandPrefix.Length);
+        return Uri.UnescapeDataString(frag);
+    }
 
     void OnFileChange(int index, InputFileChangeEventArgs e, SortedDictionary<int, IReadOnlyList<IBrowserFile>> groups, Dictionary<string, IBrowserFile> byName)
     {
@@ -71,7 +94,9 @@
 
     async void OnSubmit()
     {
-        await RunCommand(lineWhitespace.Replace(Command, ""));
+        var cmd = lineWhitespace.Replace(Command, "");
+        navManager.NavigateTo(fragmentCommandPrefix + Uri.EscapeDataString(cmd), forceLoad: false, replace: true);
+        await RunCommand(cmd);
     }
 
     async Task OnReset()
