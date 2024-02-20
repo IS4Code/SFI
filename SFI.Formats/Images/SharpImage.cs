@@ -100,7 +100,7 @@ namespace IS4.SFI.Tools.Images
 
         /// <inheritdoc/>
         public override bool Is32bppArgb {
-            [DynamicDependency(nameof(GetImagePixelType), typeof(SharpImage))]
+            [DynamicDependency(nameof(GetImagePixelType) + "``1", typeof(SharpImage))]
             get{
                 try{
                     return pixelType32bppArgb.Equals(GetImagePixelType((dynamic)UnderlyingImage));
@@ -165,7 +165,7 @@ namespace IS4.SFI.Tools.Images
         }
 
         /// <inheritdoc/>
-        [DynamicDependency(nameof(GetImagePixel), typeof(SharpImage))]
+        [DynamicDependency(nameof(GetImagePixel) + "``1", typeof(SharpImage))]
         public override Color GetPixel(int x, int y)
         {
             try{
@@ -177,7 +177,7 @@ namespace IS4.SFI.Tools.Images
         }
 
         /// <inheritdoc/>
-        [DynamicDependency(nameof(SetImagePixel), typeof(SharpImage))]
+        [DynamicDependency(nameof(SetImagePixel) + "``1", typeof(SharpImage))]
         public override void SetPixel(int x, int y, Color color)
         {
             try{
@@ -219,7 +219,7 @@ namespace IS4.SFI.Tools.Images
         }
 
         /// <inheritdoc/>
-        [DynamicDependency(nameof(GetImageData), typeof(SharpImage))]
+        [DynamicDependency(nameof(GetImageData) + "``1", typeof(SharpImage))]
         public override IImageData GetData()
         {
             try{

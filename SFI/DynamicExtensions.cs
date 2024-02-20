@@ -22,7 +22,7 @@ namespace IS4.SFI
         /// <param name="context">The context to be passed to <see cref="IEntityAnalyzers.Analyze{T}(T, AnalysisContext)"/>.</param>
         /// <typeparam name="TConstraint">The constraining type to affect the selected runtime type.</typeparam>
         /// <returns>The result from the method, or the default value of <see cref="AnalysisResult"/> on failure.</returns>
-        [DynamicDependency(nameof(Constrained<object>.Analyze), typeof(Constrained<>))]
+        [DynamicDependency(nameof(Constrained<object>.Analyze) + "``1", typeof(Constrained<>))]
         public static ValueTask<AnalysisResult> TryAnalyze<TConstraint>(this IEntityAnalyzers analyzers, TConstraint entity, AnalysisContext context) where TConstraint : class
         {
             if(entity == null) return default;
@@ -89,7 +89,7 @@ namespace IS4.SFI
         /// <param name="property">The property to assign.</param>
         /// <param name="value">The value of the property.</param>
         /// <returns>Whether the call was successful or not.</returns>
-        [DynamicDependency(nameof(ILinkedNode.Set), typeof(ILinkedNode))]
+        [DynamicDependency(nameof(ILinkedNode.Set) + "``1", typeof(ILinkedNode))]
         public static bool TrySet(this ILinkedNode node, PropertyUri property, ValueType value)
         {
             try{
@@ -139,7 +139,7 @@ namespace IS4.SFI
         /// <param name="propertyValue">The value to pass to the <paramref name="propertyFormatter"/>.</param>
         /// <param name="value">The value of the property.</param>
         /// <returns>Whether the call was successful or not.</returns>
-        [DynamicDependency(nameof(ILinkedNode.Set), typeof(ILinkedNode))]
+        [DynamicDependency(nameof(ILinkedNode.Set) + "``2", typeof(ILinkedNode))]
         public static bool TrySet<TProp>(this ILinkedNode node, IPropertyUriFormatter<TProp> propertyFormatter, TProp propertyValue, ValueType value)
         {
             try{

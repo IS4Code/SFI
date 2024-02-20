@@ -69,7 +69,7 @@ namespace IS4.SFI.Tools
             return new ObjectMemoryManager(obj).Memory;
         }
 
-        [DynamicDependency(nameof(GetDynamicArrayMemory), typeof(MemoryUtils))]
+        [DynamicDependency(nameof(GetDynamicArrayMemory) + "``1", typeof(MemoryUtils))]
         static Memory<byte> GetArrayMemory(Array array)
         {
             if(array is byte[] byteArray)
