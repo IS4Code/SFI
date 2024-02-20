@@ -86,9 +86,17 @@ namespace IS4.SFI.Application.Tools
 
         public bool HandleTriple(Triple t)
         {
-            if(isProxy) mergedGraph.Assert(t);
-            currentGraph.Assert(t);
-            return baseHandler.HandleTriple(t);
+            bool addToBase = false;
+            if(isProxy)
+            {
+                addToBase = mergedGraph.Assert(t);
+            }
+            addToBase &= currentGraph.Assert(t);
+            if(addToBase)
+            {
+                return baseHandler.HandleTriple(t);
+            }
+            return true;
         }
 
         public bool HandleQuad(Triple t, IRefNode graph)
