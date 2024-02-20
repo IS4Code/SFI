@@ -35,6 +35,12 @@ namespace IS4.SFI.Vocabulary
         public static readonly IndividualUri XxHash64;
 
         /// <summary>
+        /// <c><see cref="At"/>:xxHash3</c>.
+        /// </summary>
+        [Uri(At)]
+        public static readonly IndividualUri XxHash3;
+
+        /// <summary>
         /// <c><see cref="At"/>:xxHash64</c>.
         /// </summary>
         [Uri(At)]

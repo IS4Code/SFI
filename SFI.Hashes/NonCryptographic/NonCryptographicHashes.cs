@@ -35,7 +35,12 @@ namespace IS4.SFI.Hashes
         public static readonly BuiltInNonCryptographicHash XXH64 = Create(() => new XxHash64(), span => XxHash64.Hash(span), NonCryptographicHashIndividuals.XxHash64, "urn:xxh64:", 0xb3e2, formattingMethod: FormattingMethod.Hex);
 
         /// <summary>
-        /// The XxHash64 hash algorithm, using <see cref="XxHash128"/>.
+        /// The XxHash3 hash algorithm, using <see cref="XxHash3"/>.
+        /// </summary>
+        public static readonly BuiltInNonCryptographicHash XXH3 = Create(() => new XxHash3(), span => XxHash3.Hash(span), NonCryptographicHashIndividuals.XxHash3, "urn:xxh3:", 0xb3e3, formattingMethod: FormattingMethod.Hex);
+
+        /// <summary>
+        /// The XxHash128 hash algorithm, using <see cref="XxHash128"/>.
         /// </summary>
         public static readonly BuiltInNonCryptographicHash XXH128 = Create(() => new XxHash128(), span => XxHash128.Hash(span), NonCryptographicHashIndividuals.XxHash128, "urn:xxh128:", 0xb3e4, formattingMethod: FormattingMethod.Hex);
 
@@ -49,6 +54,7 @@ namespace IS4.SFI.Hashes
             CRC64,
             XXH32,
             XXH64,
+            XXH3,
             XXH128
         };
 
