@@ -31,7 +31,7 @@ namespace IS4.SFI.Tests
         static readonly InspectorOptions inspectorOptions = new()
         {
             CompressedOutput = false,
-            DirectOutput = false,
+            Buffering = BufferingLevel.Full,
             Format = "ttl",
             HideMetadata = true,
             PrettyPrint = true,

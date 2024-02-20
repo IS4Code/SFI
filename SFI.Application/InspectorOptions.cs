@@ -13,7 +13,26 @@ namespace IS4.SFI.Application
         /// <summary>
         /// Whether to write the output directly or use an intermediate graph.
         /// </summary>
-        public bool DirectOutput { get; set; }
+        public bool DirectOutput {
+            get => Buffering != BufferingLevel.Full;
+            [Obsolete("Set " + nameof(Buffering) + " instead to the appropriate level.")]
+            set {
+                if(value)
+                {
+                    if(Buffering == BufferingLevel.Full)
+                    {
+                        Buffering = BufferingLevel.None;
+                    }
+                }else{
+                    Buffering = BufferingLevel.Full;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Specifies the level of buffering for output.
+        /// </summary>
+        public BufferingLevel Buffering { get; set; }
 
         /// <summary>
         /// Whether to compress the output file with gzip.
@@ -65,5 +84,26 @@ namespace IS4.SFI.Application
         /// Whether to shorten blank node IDs in the resulting graph.
         /// </summary>
         public bool SimplifyBlankNodes { get; set; }
+    }
+
+    /// <summary>
+    /// The degree of buffering of triples.
+    /// </summary>
+    public enum BufferingLevel
+    {
+        /// <summary>
+        /// No triples are buffered.
+        /// </summary>
+        None = 0,
+
+        /// <summary>
+        /// Trimples are buffered in a temporary graph, storing a view of the output graph.
+        /// </summary>
+        Temporary = 1,
+
+        /// <summary>
+        /// Triples are buffered in a single graph which is then serialized to the output.
+        /// </summary>
+        Full = 2
     }
 }

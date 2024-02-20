@@ -261,7 +261,7 @@ namespace IS4.SFI.Application
             using var writer = await OpenFile(outputFactory, options);
             CreateRdfFileHandler(writer, out var mapper, options, format, out var handler);
             Graph? queryGraph = null;
-            if(queries.Count > 0)
+            if(options.Buffering == BufferingLevel.Temporary || queries.Count > 0)
             {
                 handler = new TemporaryGraphHandler(handler, out queryGraph);
             }
@@ -269,7 +269,7 @@ namespace IS4.SFI.Application
             SetDefaultNamespaces(mapper);
 
             NodeQueryTester? tester = null;
-            if(queryGraph != null)
+            if(queries.Count > 0 && queryGraph != null)
             {
                 tester = new FileNodeQueryTester(handler, queryGraph, queries);
             }

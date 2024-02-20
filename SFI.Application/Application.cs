@@ -37,14 +37,16 @@ namespace IS4.SFI
 
 		static readonly IEnumerable<string> modeNames = Enum.GetNames(typeof(Mode)).Select(n => n.ToLowerInvariant());
 
-		/// <summary>
-		/// Creates a new instance of the application from the supplied environment.
-		/// </summary>
-		/// <param name="environment">
-		/// An instance of <see cref="IApplicationEnvironment"/>
-		/// providing manipulation with the environment.
-		/// </param>
-		public Application(IApplicationEnvironment environment) : base("https://sfi.is4.site/config")
+        static readonly IEnumerable<string> bufferingNames = Enum.GetNames(typeof(BufferingLevel)).Select(n => n.ToLowerInvariant());
+
+        /// <summary>
+        /// Creates a new instance of the application from the supplied environment.
+        /// </summary>
+        /// <param name="environment">
+        /// An instance of <see cref="IApplicationEnvironment"/>
+        /// providing manipulation with the environment.
+        /// </param>
+        public Application(IApplicationEnvironment environment) : base("https://sfi.is4.site/config")
         {
             this.environment = environment;
 			writer = environment.LogWriter;
@@ -52,7 +54,7 @@ namespace IS4.SFI
             options = new InspectorOptions
             {
                 PrettyPrint = true,
-                DirectOutput = true,
+                Buffering = BufferingLevel.Temporary,
                 NewLine = environment.NewLine,
                 HideMetadata = true
             };
@@ -634,7 +636,7 @@ namespace IS4.SFI
 				{"d", "data-only", null, "do not store input file information"},
 				{"u", "ugly", null, "do not use pretty print"},
                 {"o", "only-once", null, "skip processing duplicate entities"},
-                {"b", "buffered", null, "buffer all data in a graph before writing"},
+                {"b", "buffered", String.Join("|", bufferingNames), "buffer all data in a graph before writing"},
 				{"h", "hash", "pattern", "set the main binary hash"},
 				{"r", "root", "uri", "set the hierarchy root URI prefix"},
 				{"s", "sparql-query", "file", "perform a SPARQL query during processing"},
@@ -719,8 +721,7 @@ namespace IS4.SFI
 					onlyOnce = true;
 					return OptionArgumentFlags.None;
 				case "buffered":
-					options.DirectOutput = false;
-					return OptionArgumentFlags.None;
+					return OptionArgumentFlags.OptionalArgument;
 				case "ugly":
 					options.PrettyPrint = false;
 					return OptionArgumentFlags.None;
@@ -757,6 +758,17 @@ namespace IS4.SFI
         {
 			switch(GetCanonicalOption(option))
 			{
+				case "buffered":
+					if(argument == null)
+					{
+						options.Buffering = BufferingLevel.Full;
+					}else if(Enum.TryParse(argument, true, out BufferingLevel level))
+					{
+						options.Buffering = level;
+					}else{
+						throw ArgumentInvalid(option, String.Join("|", bufferingNames));
+					}
+					break;
 				case "root":
 					if(!Uri.TryCreate(argument, UriKind.Absolute, out _))
 					{
