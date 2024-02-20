@@ -34,6 +34,11 @@ namespace IS4.SFI.Hashes
         /// </summary>
         public static readonly BuiltInNonCryptographicHash XXH64 = Create(() => new XxHash64(), span => XxHash64.Hash(span), NonCryptographicHashIndividuals.XxHash64, "urn:xxh64:", 0xb3e2, formattingMethod: FormattingMethod.Hex);
 
+        /// <summary>
+        /// The XxHash64 hash algorithm, using <see cref="XxHash128"/>.
+        /// </summary>
+        public static readonly BuiltInNonCryptographicHash XXH128 = Create(() => new XxHash128(), span => XxHash128.Hash(span), NonCryptographicHashIndividuals.XxHash128, "urn:xxh128:", 0xb3e4, formattingMethod: FormattingMethod.Hex);
+
         private static BuiltInNonCryptographicHash Create<THash>(Func<THash> factory, Hasher hasher, IndividualUri identifier, string prefix, int? numericIdentifier = null, string? niName = null, FormattingMethod formattingMethod = FormattingMethod.Base32) where THash : NonCryptographicHashAlgorithm
         {
             return new BuiltInNonCryptographicHashAlgorithm<THash>(factory, hasher, identifier, prefix, numericIdentifier, niName, formattingMethod);
@@ -43,7 +48,8 @@ namespace IS4.SFI.Hashes
             CRC32,
             CRC64,
             XXH32,
-            XXH64
+            XXH64,
+            XXH128
         };
 
         /// <summary>

@@ -34,6 +34,12 @@ namespace IS4.SFI.Vocabulary
         [Uri(At)]
         public static readonly IndividualUri XxHash64;
 
+        /// <summary>
+        /// <c><see cref="At"/>:xxHash64</c>.
+        /// </summary>
+        [Uri(At)]
+        public static readonly IndividualUri XxHash128;
+
         static NonCryptographicHashIndividuals()
         {
             typeof(NonCryptographicHashIndividuals).InitializeUris();
