@@ -102,7 +102,7 @@ namespace IS4.SFI.Application
                     // Must be a switch or null optional argument
 					if((flags & OptionArgumentFlags.HasArgument) != 0)
 					{
-						if((flags & OptionArgumentFlags.RequiredArgument) != 0)
+						if((flags & OptionArgumentFlags.RequiredArgument) == OptionArgumentFlags.RequiredArgument)
                         {
                             throw ArgumentExpected(optionName);
                         }

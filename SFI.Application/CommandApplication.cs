@@ -361,7 +361,7 @@ namespace IS4.SFI.Application
                             CheckAdded(name, flags);
                             continue;
                         }
-                        if((flags & OptionArgumentFlags.RequiredArgument) != 0)
+                        if((flags & OptionArgumentFlags.RequiredArgument) == OptionArgumentFlags.RequiredArgument)
                         {
                             if(++i >= args.Length) throw ArgumentExpected(name);
 							argument = ProcessArg(args[i]);
@@ -390,7 +390,7 @@ namespace IS4.SFI.Application
 							continue;
                         }
 						
-                        if((flags & OptionArgumentFlags.RequiredArgument) != 0)
+                        if((flags & OptionArgumentFlags.RequiredArgument) == OptionArgumentFlags.RequiredArgument)
                         {
 							if(argument.Length == 0)
 							{
