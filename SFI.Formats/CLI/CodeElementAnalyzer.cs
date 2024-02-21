@@ -179,6 +179,13 @@ namespace IS4.SFI.Analyzers
                 {
                     node.Set(Properties.Comment, message, language);
                 }
+            }else if(type == AttributeConstants.AssemblyMetadataAttribute)
+            {
+                if(args.Count == 2 && (args[0].Value, args[1].Value) is (string key, string val))
+                {
+                    node.Set(Vocabularies.Xyz, key, val);
+                }
+                return;
             }
             if(args.Count != 1)
             {

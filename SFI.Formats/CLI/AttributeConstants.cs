@@ -17,6 +17,7 @@ namespace IS4.SFI.Analyzers
         public static readonly string DateTimeConstantAttributeType = typeof(DateTimeConstantAttribute).FullName;
         public static readonly string ObsoleteAttributeType = typeof(ObsoleteAttribute).FullName;
         public static readonly string UnmanagedCallersOnlyAttributeType = "System.Runtime.InteropServices.UnmanagedCallersOnlyAttribute";
+        public static readonly string AssemblyMetadataAttribute = typeof(AssemblyMetadataAttribute).FullName;
 
         public static readonly string IsVolatileModifierType = typeof(IsVolatile).FullName;
 
