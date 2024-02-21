@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -17,10 +18,8 @@ namespace IS4.SFI.Analyzers
     /// An analyzer of .NET code elements.
     /// </summary>
     /// <typeparam name="T">The type of the code element.</typeparam>
-    public abstract class CodeElementAnalyzer<T> : EntityAnalyzer<T>, IEntityAnalyzer<CodeElementAnalyzer<T>.Reference> where T : ICustomAttributeProvider
+    public abstract class CodeElementAnalyzer<T> : MediaObjectAnalyzer<T>, IEntityAnalyzer<CodeElementAnalyzer<T>.Reference> where T : class, ICustomAttributeProvider
     {
-        readonly ClassUri elementClass;
-
         /// <summary>
         /// Whether to analyze exported members only.
         /// </summary>
@@ -38,28 +37,24 @@ namespace IS4.SFI.Analyzers
         /// </summary>
         protected const BindingFlags BindingFlags = Instance | Static | Public | NonPublic | DeclaredOnly;
 
-        /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>
-        public CodeElementAnalyzer()
-        {
+        static readonly ClassUri[] defaultClasses = { Classes.CodeElement };
 
-        }
-
-        /// <summary>
-        /// Creates a new instance of the analyzer with a specific code element class.
-        /// </summary>
-        /// <param name="elementClass">The concrete class of the code element.</param>
-        public CodeElementAnalyzer(ClassUri elementClass)
+        /// <inheritdoc/>
+        public CodeElementAnalyzer(IEnumerable<ClassUri> classes) : base(defaultClasses.Concat(classes))
         {
-            this.elementClass = elementClass;
+            SkipMediaObjectClass = true;
         }
 
         /// <inheritdoc/>
-        protected override void InitNode(ILinkedNode node, AnalysisContext context)
+        public CodeElementAnalyzer(params ClassUri[] classes) : base(defaultClasses.Concat(classes))
         {
-            base.InitNode(node, context);
+            SkipMediaObjectClass = true;
+        }
 
-            node.SetClass(Classes.CodeElement);
-            node.SetClass(elementClass);
+        /// <inheritdoc/>
+        public CodeElementAnalyzer(IEnumerable<ClassUri> classes, params ClassUri[] additionalClasses) : base(defaultClasses.Concat(classes).Concat(additionalClasses))
+        {
+            SkipMediaObjectClass = true;
         }
 
         /// <summary>
@@ -195,7 +190,7 @@ namespace IS4.SFI.Analyzers
             }catch{
                 return;
             }
-            if(AttributeConstants.MemberAttributeProperties.TryGetValue(type, out var def))
+            if(AttributeConstants.AttributeProperties.TryGetValue(type, out var def))
             {
                 var (propUri, useLang) = def;
                 if(useLang && value is string strValue)
@@ -354,6 +349,22 @@ namespace IS4.SFI.Analyzers
             parent.Set(property, ClrNamespaceUriFormatter.Instance, member);
         }
 
+        /// <inheritdoc cref="ReferenceMember{TMember}(ILinkedNode, PropertyUri, TMember?, AnalysisContext, IEntityAnalyzers)"/>
+        protected async ValueTask ReferenceMember(ILinkedNode parent, PropertyUri property, Assembly? member, AnalysisContext context, IEntityAnalyzers analyzers)
+        {
+            if(member == null)
+            {
+                return;
+            }
+            if(
+                AnalyzeReferences &&
+                await ReferenceMemberInAssembly(member, parent, property, member, ClrNamespaceUriFormatter.Instance, context, analyzers))
+            {
+                return;
+            }
+            parent.Set(property, ClrNamespaceUriFormatter.Instance, member);
+        }
+
         static bool GetMemberAssembly(MemberInfo member, [MaybeNullWhen(false)] out Assembly assembly)
         {
             var type = member.DeclaringType ?? (member as Type);
@@ -372,7 +383,7 @@ namespace IS4.SFI.Analyzers
             return assembly != null;
         }
 
-        static async ValueTask<bool> ReferenceMemberInAssembly<TMember>(Assembly assembly, ILinkedNode parent, PropertyUri property, TMember member, IIndividualUriFormatter<TMember> formatter, AnalysisContext context, IEntityAnalyzers analyzers) where TMember : ICustomAttributeProvider
+        static async ValueTask<bool> ReferenceMemberInAssembly<TMember>(Assembly assembly, ILinkedNode parent, PropertyUri property, TMember member, IIndividualUriFormatter<TMember> formatter, AnalysisContext context, IEntityAnalyzers analyzers) where TMember : class, ICustomAttributeProvider
         {
             // Check the assembly defining the member
             if(assembly.GetType(ClrNamespaceUriFormatter.ReferenceAssemblyMarkerClass, false) == null)

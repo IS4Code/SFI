@@ -33,7 +33,13 @@ namespace IS4.SFI.Analyzers
         protected ILinkedNode GetNode(MemberInfo member, AnalysisContext context)
         {
             var id = TextTools.FormatMemberId(member, MemberIdFormatOptions.UriEscaping);
-            return GetNode(id, context);
+            var node = GetNode(id, context);
+            if(!context.Initialized && member.Module == null)
+            {
+                // Self-contained
+                node.SetClass(Classes.MediaObject);
+            }
+            return node;
         }
 
         internal bool IsPublic(MethodBase? method)

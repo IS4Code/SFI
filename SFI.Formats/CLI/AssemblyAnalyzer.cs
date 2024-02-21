@@ -12,7 +12,7 @@ namespace IS4.SFI.Analyzers
     /// An analyzer of .NET assemblies, expressed as instances of <see cref="Assembly"/>.
     /// </summary>
     [Description("An analyzer of .NET assemblies.")]
-    public class AssemblyAnalyzer : MediaObjectAnalyzer<Assembly>
+    public class AssemblyAnalyzer : CodeElementAnalyzer<Assembly>
     {
         /// <summary>
         /// Whether to describe all namespaces in the assembly.
@@ -29,7 +29,7 @@ namespace IS4.SFI.Analyzers
         /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>
         public AssemblyAnalyzer() : base(Common.ApplicationClasses, Classes.CodeElement)
         {
-
+            SkipMediaObjectClass = false;
         }
 
         /// <inheritdoc/>
@@ -41,47 +41,12 @@ namespace IS4.SFI.Analyzers
             node.Set(Properties.Name, name.FullName);
             node.Set(Properties.Version, name.Version.ToString());
 
-            var language = new LanguageCode(name.CultureInfo);
-
             foreach(var reference in assembly.GetReferencedAssemblies())
             {
-                node.Set(Properties.CodeReferences, ClrNamespaceUriFormatter.Instance, reference);
+                await ReferenceMember(node, Properties.CodeReferences, new ReferencedAssembly(assembly, reference), context, analyzers);
             }
 
-            foreach(var attribute in assembly.GetCustomAttributesData())
-            {
-                string type;
-                object value;
-                try{
-                    if(attribute.ConstructorArguments.Count != 1)
-                    {
-                        continue;
-                    }
-                    try{
-                        type = attribute.AttributeType.FullName;
-                    }catch(TypeLoadException tle) when(!String.IsNullOrEmpty(tle.TypeName))
-                    {
-                        type = tle.TypeName;
-                    }
-                    value = attribute.ConstructorArguments[0].Value;
-                }catch{
-                    continue;
-                }
-                if(AttributeConstants.AssemblyAttributeProperties.TryGetValue(type, out var def))
-                {
-                    var (propUri, useLang) = def;
-                    if(useLang && value is string strValue)
-                    {
-                        node.Set(propUri, strValue, language);
-                    }else{
-                        node.TrySet(propUri, value);
-                    }
-                }else if(type == AttributeConstants.GuidAttributeType && value is string guidStr && Guid.TryParse(guidStr, out var guid))
-                {
-                    node.Set(Properties.Identifier, guidStr);
-                    node.Set(Properties.Broader, UriTools.UuidUriFormatter, guid);
-                }
-            }
+            await AnalyzeCustomAttributes(node, context, analyzers, assembly, assembly.GetCustomAttributesData());
 
             foreach(var resName in assembly.GetManifestResourceNames())
             {
@@ -108,18 +73,56 @@ namespace IS4.SFI.Analyzers
 
                 foreach(var module in assembly.GetModules())
                 {
-                    foreach(var field in module.GetFields())
+                    if(!ExportedOnly)
                     {
-                        node.Set(Properties.CodeDeclares, ClrNamespaceUriFormatter.Instance, field);
+                        foreach(var field in module.GetFields())
+                        {
+                            await ReferenceMember(node, Properties.CodeDeclares, field, context, analyzers);
+                        }
                     }
                     foreach(var method in module.GetMethods())
                     {
-                        node.Set(Properties.CodeDeclares, ClrNamespaceUriFormatter.Instance, method);
+                        if(!ExportedOnly || IsUnmanagedExport(method))
+                        {
+                            await ReferenceMember(node, Properties.CodeDeclares, method, context, analyzers);
+                        }
                     }
                 }
             }
 
             return new(node, assembly.ManifestModule.ScopeName);
+        }
+
+        /// <inheritdoc/>
+        protected async override ValueTask<AnalysisResult> AnalyzeReference(Assembly member, ILinkedNode node, AnalysisContext context, IEntityAnalyzers analyzers)
+        {
+            var name = member.GetName();
+            node.Set(Properties.Name, name.FullName);
+            node.Set(Properties.Version, name.Version.ToString());
+            return new(node, name.FullName);
+        }
+
+        static bool IsUnmanagedExport(MethodInfo method)
+        {
+            if(!method.IsPublic)
+            {
+                return false;
+            }
+            foreach(var attribute in method.GetCustomAttributesData())
+            {
+                string type;
+                try{
+                    type = attribute.AttributeType.FullName;
+                }catch(TypeLoadException tle) when(!String.IsNullOrEmpty(tle.TypeName))
+                {
+                    type = tle.TypeName;
+                }
+                if(type == AttributeConstants.UnmanagedCallersOnlyAttributeType)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         class ResourceInfo : IFileInfo

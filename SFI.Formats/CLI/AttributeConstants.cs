@@ -16,10 +16,11 @@ namespace IS4.SFI.Analyzers
         public static readonly string DecimalConstantAttributeType = typeof(DecimalConstantAttribute).FullName;
         public static readonly string DateTimeConstantAttributeType = typeof(DateTimeConstantAttribute).FullName;
         public static readonly string ObsoleteAttributeType = typeof(ObsoleteAttribute).FullName;
+        public static readonly string UnmanagedCallersOnlyAttributeType = "System.Runtime.InteropServices.UnmanagedCallersOnlyAttribute";
 
         public static readonly string IsVolatileModifierType = typeof(IsVolatile).FullName;
 
-        public static readonly IReadOnlyDictionary<string, (PropertyUri Uri, bool UseLanguage)> AssemblyAttributeProperties = new Dictionary<string, (PropertyUri, bool)>()
+        public static readonly IReadOnlyDictionary<string, (PropertyUri Uri, bool UseLanguage)> AttributeProperties = new Dictionary<string, (PropertyUri, bool)>()
         {
             //{ typeof(AssemblyProductAttribute).FullName, (Properties.) },
             { typeof(AssemblyCompanyAttribute).FullName, (Properties.Creator, true) },
@@ -28,10 +29,7 @@ namespace IS4.SFI.Analyzers
             { typeof(AssemblyFileVersionAttribute).FullName, (Properties.Version, false) },
             { typeof(AssemblyTitleAttribute).FullName, (Properties.Title, true) },
             { typeof(AssemblyDescriptionAttribute).FullName, (Properties.Description, true) },
-        };
 
-        public static readonly IReadOnlyDictionary<string, (PropertyUri Uri, bool UseLanguage)> MemberAttributeProperties = new Dictionary<string, (PropertyUri, bool)>()
-        {
             { typeof(CategoryAttribute).FullName, (Properties.Category, true) },
             { typeof(DefaultValueAttribute).FullName, (Properties.DefaultValue, false) },
             { typeof(DisplayNameAttribute).FullName, (Properties.Label, true) },

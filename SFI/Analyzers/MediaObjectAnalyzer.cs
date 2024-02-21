@@ -13,6 +13,11 @@ namespace IS4.SFI.Analyzers
     {
         readonly IEnumerable<ClassUri> classes;
 
+        /// <summary>
+        /// Whether to omit assigning <see cref="Classes.MediaObject"/> to the node.
+        /// </summary>
+        protected bool SkipMediaObjectClass { get; set; }
+
         /// <inheritdoc cref="MediaObjectAnalyzer{T}.MediaObjectAnalyzer(IEnumerable{ClassUri}, ClassUri[])"/>
         public MediaObjectAnalyzer(IEnumerable<ClassUri> classes)
         {
@@ -44,7 +49,11 @@ namespace IS4.SFI.Analyzers
         {
             base.InitNode(node, context);
 
-            node.SetClass(Classes.MediaObject);
+            if(!SkipMediaObjectClass)
+            {
+                node.SetClass(Classes.MediaObject);
+            }
+
             foreach(var cls in classes)
             {
                 node.SetClass(cls);
