@@ -34,7 +34,7 @@ namespace IS4.SFI.Analyzers
         {
             var id = TextTools.FormatMemberId(member, MemberIdFormatOptions.UriEscaping);
             var node = GetNode(id, context);
-            if(!context.Initialized && member.Module == null)
+            if(!context.Initialized && member.Module == null && member.DeclaringType == null)
             {
                 // Self-contained
                 node.SetClass(Classes.MediaObject);
