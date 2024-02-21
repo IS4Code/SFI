@@ -37,7 +37,7 @@ namespace IS4.SFI
 
 		static readonly IEnumerable<string> modeNames = Enum.GetNames(typeof(Mode)).Select(n => n.ToLowerInvariant());
 
-        static readonly IEnumerable<string> bufferingNames = Enum.GetNames(typeof(BufferingLevel)).Select(n => n.ToLowerInvariant());
+        static readonly IEnumerable<string> bufferingNames = Enum.GetValues(typeof(BufferingLevel)).Cast<Enum>().Select(v => $"{v.ToString().ToLowerInvariant()} ({Convert.ToInt32(v)})");
 
         /// <summary>
         /// Creates a new instance of the application from the supplied environment.
@@ -636,7 +636,7 @@ namespace IS4.SFI
 				{"d", "data-only", null, "do not store input file information"},
 				{"u", "ugly", null, "do not use pretty print"},
                 {"o", "only-once", null, "skip processing duplicate entities"},
-                {"b", "buffered", String.Join("|", bufferingNames), "buffer all data in a graph before writing"},
+                {"b", "buffered", String.Join("|", bufferingNames), "set the level of graph buffering of data"},
 				{"h", "hash", "pattern", "set the main binary hash"},
 				{"r", "root", "uri", "set the hierarchy root URI prefix"},
 				{"s", "sparql-query", "file", "perform a SPARQL query during processing"},
@@ -759,14 +759,14 @@ namespace IS4.SFI
 			switch(GetCanonicalOption(option))
 			{
 				case "buffered":
-					if(argument == null)
+					if(String.IsNullOrEmpty(argument))
 					{
 						options.Buffering = BufferingLevel.Full;
-					}else if(Enum.TryParse(argument, true, out BufferingLevel level))
+					}else if(Enum.TryParse(argument, true, out BufferingLevel level) && Enum.IsDefined(typeof(BufferingLevel), level))
 					{
 						options.Buffering = level;
 					}else{
-						throw ArgumentInvalid(option, String.Join("|", bufferingNames));
+						throw ArgumentInvalid(option, $"one of {String.Join(", ", bufferingNames)}");
 					}
 					break;
 				case "root":
