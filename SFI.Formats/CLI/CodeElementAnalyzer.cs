@@ -375,7 +375,7 @@ namespace IS4.SFI.Analyzers
         static bool GetMemberAssembly(MemberInfo member, [MaybeNullWhen(false)] out Assembly assembly)
         {
             var type = member.DeclaringType ?? (member as Type);
-            assembly = type?.Assembly;
+            assembly = type?.Assembly ?? member.Module?.Assembly;
             return assembly != null;
         }
 
