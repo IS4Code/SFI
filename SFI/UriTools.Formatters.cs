@@ -14,7 +14,7 @@ namespace IS4.SFI
         /// A URI formatter which uses a prefix to prepend its argument when forming
         /// the resulting URI.
         /// </summary>
-        public class PrefixFormatter<T> : IGenericUriFormatter<T>
+        public class PrefixFormatter<T> : IUniversalUriFormatter<T>
         {
             readonly string prefix;
 
@@ -82,23 +82,23 @@ namespace IS4.SFI
         /// <summary>
         /// A formatter producing <c>urn:oid:</c> URIs from instances of <see cref="Oid"/>.
         /// </summary>
-        public static readonly IGenericUriFormatter<Oid> OidUriFormatter = TypedFormatterClass.Instance;
+        public static readonly IUniversalUriFormatter<Oid> OidUriFormatter = TypedFormatterClass.Instance;
 
         /// <summary>
         /// A formatter producing <c>urn:uuid:</c> URIs from instances of <see cref="Guid"/>.
         /// </summary>
-        public static readonly IGenericUriFormatter<Guid> UuidUriFormatter = TypedFormatterClass.Instance;
+        public static readonly IUniversalUriFormatter<Guid> UuidUriFormatter = TypedFormatterClass.Instance;
 
         /// <summary>
         /// A formatter producing generic URIs from instances of <see cref="XmlQualifiedName"/>.
         /// </summary>
-        public static readonly IGenericUriFormatter<XmlQualifiedName> QNameFormatter = TypedFormatterClass.Instance;
+        public static readonly IUniversalUriFormatter<XmlQualifiedName> QNameFormatter = TypedFormatterClass.Instance;
 
         sealed class TypedFormatterClass :
             IMediaTypeBasedUriFormatter<ArraySegment<byte>>,
-            IGenericUriFormatter<Oid>,
-            IGenericUriFormatter<Guid>,
-            IGenericUriFormatter<XmlQualifiedName>
+            IUniversalUriFormatter<Oid>,
+            IUniversalUriFormatter<Guid>,
+            IUniversalUriFormatter<XmlQualifiedName>
         {
             public static readonly TypedFormatterClass Instance = new();
 

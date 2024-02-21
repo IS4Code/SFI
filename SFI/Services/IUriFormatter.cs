@@ -78,12 +78,22 @@ namespace IS4.SFI.Services
     }
 
     /// <summary>
+    /// Allows production of URIs from values with the intention of using
+    /// them as individuals, properties, classes, datatypes, or graphs in RDF.
+    /// </summary>
+    /// <typeparam name="T">The type of values used by the formatter.</typeparam>
+    public interface IUniversalUriFormatter<in T> : IGenericUriFormatter<T>, IDatatypeUriFormatter<T>, IGraphUriFormatter<T>
+    {
+
+    }
+
+    /// <summary>
     /// A simple implementation of <see cref="IUriFormatter{T}"/> that produces
     /// URIs from <see cref="String"/> or just returning the input <see cref="Uri"/>.
     /// </summary>
     public sealed class UriFormatter :
-        IGenericUriFormatter<string>, IDatatypeUriFormatter<string>, IGraphUriFormatter<string>,
-        IGenericUriFormatter<Uri>, IDatatypeUriFormatter<Uri>, IGraphUriFormatter<Uri>
+        IUniversalUriFormatter<string>,
+        IUniversalUriFormatter<Uri>
     {
         /// <summary>
         /// The singleton instance of the formatter.

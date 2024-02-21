@@ -7,7 +7,7 @@ namespace IS4.SFI.Vocabulary
     /// <summary>
     /// Stores the URI of an RDF vocabulary.
     /// </summary>
-    public struct VocabularyUri : IEquatable<VocabularyUri>, IGenericUriFormatter<string>, IDatatypeUriFormatter<string>, IGraphUriFormatter<string>
+    public struct VocabularyUri : IEquatable<VocabularyUri>, IUniversalUriFormatter<string>
     {
         /// <summary>
         /// The absolute URI of the vocabulary.
