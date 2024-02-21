@@ -47,6 +47,11 @@ namespace IS4.SFI.Vocabulary
         public static readonly IIndividualUriFormatter<string> Httpsc = new VocabularyUri(Uri.Httpsc);
 
         /// <summary>
+        /// The vocabulary for terms derived from string values.
+        /// </summary>
+        public static readonly IUniversalUriFormatter<string> Xyz = new VocabularyUri(Uri.Xyz);
+
+        /// <summary>
         /// The vocabulary for datatypes specifying the text language and direction.
         /// </summary>
         public static readonly IDatatypeUriFormatter<(LanguageCode? lang, bool? rtl)> I18n = new I18nFormatter();
@@ -225,6 +230,11 @@ namespace IS4.SFI.Vocabulary
             /// XAML Namespace
             /// </summary>
             public const string Xaml = "http://schemas.microsoft.com/winfx/2006/xaml#";
+
+            /// <summary>
+            /// SPARQL Anything default namespace
+            /// </summary>
+            public const string Xyz = "http://sparql.xyz/facade-x/data/";
 
             /// <summary>
             /// The <c>i18n</c> Namespace for language tags and directions
