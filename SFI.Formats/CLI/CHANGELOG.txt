@@ -1,3 +1,13 @@
+1.1.1
+-----
+
+- Loading core .NET assemblies works again.
+- `AssemblyAnalyzer` now inherits the same properties as member analyzers.
+- Referenced assemblies can be analyzed as references.
+- Assembly and normal attributes are unified; specifying them on any metadata element leads to the same properties.
+- The `[AssemblyMetadata]` attribute is recognized.
+
+
 1.1
 -----
 
