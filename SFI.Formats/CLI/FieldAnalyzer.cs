@@ -20,10 +20,9 @@ namespace IS4.SFI.Analyzers
         }
 
         /// <inheritdoc/>
-        public async override ValueTask<AnalysisResult> Analyze(FieldInfo member, AnalysisContext context, IEntityAnalyzers analyzers)
+        protected async override ValueTask<AnalysisResult> AnalyzeDefinition(FieldInfo member, ILinkedNode node, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var name = member.Name;
-            var node = GetNode(member, context);
 
             node.Set(Properties.PrefLabel, member.ToString());
             node.Set(Properties.CodeName, name);

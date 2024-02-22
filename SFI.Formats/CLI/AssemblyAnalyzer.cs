@@ -116,6 +116,8 @@ namespace IS4.SFI.Analyzers
                 }catch(TypeLoadException tle) when(!String.IsNullOrEmpty(tle.TypeName))
                 {
                     type = tle.TypeName;
+                }catch{
+                    continue;
                 }
                 if(type == AttributeConstants.UnmanagedCallersOnlyAttributeType)
                 {

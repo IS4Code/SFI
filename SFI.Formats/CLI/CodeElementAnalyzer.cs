@@ -100,8 +100,13 @@ namespace IS4.SFI.Analyzers
             var language = new LanguageCode(assembly?.GetName().CultureInfo ?? CultureInfo.InvariantCulture);
             foreach(var attr in attributes)
             {
-                AnalyzeCustomAttribute(node, language, isParameter, attr);
-                await ReferenceMember(node, Properties.CodeAnnotation, attr.AttributeType, context, analyzers);
+                try{
+                    AnalyzeCustomAttribute(node, language, isParameter, attr);
+                    await ReferenceMember(node, Properties.CodeAnnotation, attr.AttributeType, context, analyzers);
+                }catch(Exception e)
+                {
+                    await analyzers.Analyze(e, context.WithNode(node));
+                }
             }
             foreach(var type in optionalModifiers ?? Type.EmptyTypes)
             {

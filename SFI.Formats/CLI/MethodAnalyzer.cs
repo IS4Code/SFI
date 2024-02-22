@@ -21,10 +21,9 @@ namespace IS4.SFI.Analyzers
         }
 
         /// <inheritdoc/>
-        public async override ValueTask<AnalysisResult> Analyze(MethodBase member, AnalysisContext context, IEntityAnalyzers analyzers)
+        protected async override ValueTask<AnalysisResult> AnalyzeDefinition(MethodBase member, ILinkedNode node, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var name = member.Name;
-            var node = GetNode(member, context);
 
             if(member.IsConstructor || member.Equals(member.DeclaringType.TypeInitializer))
             {

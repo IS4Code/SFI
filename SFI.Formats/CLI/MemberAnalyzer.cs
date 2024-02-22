@@ -1,5 +1,6 @@
 ﻿using IS4.SFI.Services;
 using IS4.SFI.Vocabulary;
+using System;
 using System.ComponentModel;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -26,7 +27,19 @@ namespace IS4.SFI.Analyzers
 
         /// <inheritdoc cref="IEntityAnalyzer{T}.Analyze(T, AnalysisContext, IEntityAnalyzers)"/>
         /// <param name="member">The member to analyze.</param>
-        public abstract override ValueTask<AnalysisResult> Analyze(T member, AnalysisContext context, IEntityAnalyzers analyzers);
+        /// <param name="node">The node representing the member.</param>
+        protected abstract ValueTask<AnalysisResult> AnalyzeDefinition(T member, ILinkedNode node, AnalysisContext context, IEntityAnalyzers analyzers);
+
+        public async override ValueTask<AnalysisResult> Analyze(T entity, AnalysisContext context, IEntityAnalyzers analyzers)
+        {
+            var node = GetNode(entity, context);
+            try{
+                return await AnalyzeDefinition(entity, node, context, analyzers);
+            }catch(Exception e)
+            {
+                return await analyzers.Analyze(e, context.WithNode(node));
+            }
+        }
 
         /// <inheritdoc cref="EntityAnalyzer.GetNode(string, AnalysisContext)"/>
         /// <param name="member">The member to provide the identifier of the node.</param>
