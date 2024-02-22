@@ -19,7 +19,7 @@
     {
         <InputFile OnChange="@(args => OnFileChange(i, args, pluginFilesGroups, PluginFiles))" multiple /><text>&#32;</text>
     }</p>
-    <p><button type="submit">Execute</button> <button type="reset">Reset</button></p>
+    <p><button type="submit">Execute</button> <button type="button" @onclick="OnStop">Stop</button> <button type="reset">Reset</button></p>
 </form>
 
 <ul>
@@ -97,6 +97,11 @@
         var cmd = lineWhitespace.Replace(Command, "");
         navManager.NavigateTo(fragmentCommandPrefix + Uri.EscapeDataString(cmd), forceLoad: false, replace: true);
         await RunCommand(cmd);
+    }
+
+    void OnStop()
+    {
+        webEnvironment?.Dispose();
     }
 
     async Task OnReset()
