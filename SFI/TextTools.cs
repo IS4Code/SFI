@@ -811,7 +811,30 @@ namespace IS4.SFI
                     }
                     Syntax("}");
                 }
-                var parms = method.GetParameters();
+                ParameterInfo[] parms;
+                try{
+                    parms = method.GetParameters();
+                }catch{
+                    // Partially unresolved method - try to form from string
+                    var label = method.ToString();
+                    if(!label.EndsWith(")", StringComparison.Ordinal))
+                    {
+                        // Unexpected label format
+                        throw;
+                    }
+                    if(label.EndsWith("()", StringComparison.Ordinal))
+                    {
+                        // No arguments - just erroring return type
+                        return;
+                    }
+                    Syntax("(");
+                    if(!ParametersFromLabel(method, label))
+                    {
+                        throw;
+                    }
+                    Syntax(")");
+                    return;
+                }
                 if(parms.Length == 0)
                 {
                     return;
@@ -827,6 +850,53 @@ namespace IS4.SFI
                 }
                 Syntax(")");
             }
+
+            bool ParametersFromLabel(MethodBase method, string label)
+            {
+                var sb = new StringBuilder(" ");
+                sb.Append(method.Name);
+                Dictionary<string, int>? typeParams = null;
+                if(method.IsGenericMethodDefinition)
+                {
+                    sb.Append('[');
+                    bool paramFirst = true;
+                    foreach(var typeParam in method.GetGenericArguments())
+                    {
+                        (typeParams ??= new())[typeParam.Name] = typeParam.GenericParameterPosition;
+                        if(paramFirst)
+                        {
+                            paramFirst = false;
+                        }else{
+                            sb.Append(',');
+                        }
+                        sb.Append(typeParam.Name);
+                    }
+                    sb.Append(']');
+                }
+                sb.Append('(');
+                var namePart = sb.ToString();
+                var nameIndex = label.IndexOf(namePart, StringComparison.Ordinal);
+                if(nameIndex == -1)
+                {
+                    return false;
+                }
+                nameIndex += namePart.Length;
+                var parms = label.Substring(nameIndex, label.Length - 1 - nameIndex).Split(argsSplit, StringSplitOptions.None);
+                bool first = true;
+                foreach(var param in parms)
+                {
+                    if(first)
+                    {
+                        first = false;
+                    }else{
+                        sb.Append(',');
+                    }
+                    TypeFromLabel(param, typeParams);
+                }
+                return true;
+            }
+
+            static readonly string[] argsSplit = { ", " };
 
             void Type(Type type, bool includeNamespace, bool includeDeclaringMember, bool constructed = false, (Type? type, MethodBase? method) genericContext = default)
             {
@@ -932,24 +1002,87 @@ namespace IS4.SFI
                 Literal(name);
             }
 
+            /* lang=regex */
+            const string labelReplacementBase = @"(?<r> ByRef(?=[],]|$))|\[(?<a>[,*]*)\]|(?<g>\[(?![],*])|(?<![[,*])\](?! ))|(?<n>\+)";
+            /* lang=regex */
+            const string labelReplacementTypeParam = @"|(?<t>(?<![^[*,])[^][.*, ]+(?![^]*, ]))";
+            /* lang=regex */
+            const string labelReplacementGarbage = @"|(?<x>[^ *,a-zA-Z0-9_`.]+)";
+
+            static readonly Regex labelReplacementNonGeneric = new(labelReplacementBase + labelReplacementGarbage, RegexOptions.Compiled | RegexOptions.CultureInvariant);
+            static readonly Regex labelReplacementGeneric = new(labelReplacementBase + labelReplacementTypeParam + labelReplacementGarbage, RegexOptions.Compiled | RegexOptions.CultureInvariant);
+
+            void TypeFromLabel(string label, Dictionary<string, int>? typeParams)
+            {
+                var inUri = this.inUri;
+                var regex = typeParams == null ? labelReplacementNonGeneric : labelReplacementGeneric;
+                label = regex.Replace(label, m => {
+                    string replacement = m.Value;
+                    if(m.Groups["r"].Success)
+                    {
+                        // ByRef type
+                        replacement = "@";
+                    }else if(m.Groups["a"] is { Success: true, Value: var array })
+                    {
+                        if(array.Length == 0)
+                        {
+                            // SZ array
+                            replacement = "[]";
+                        }else if(array == "*")
+                        {
+                            // MD array with dimension 1
+                            replacement =  "[0:]";
+                        }else{
+                            replacement = "[" + String.Join(",", Enumerable.Repeat("0:", array.Length + 1)) + "]";
+                        }
+                    }else if(m.Groups["g"] is { Success: true, Value: var paren })
+                    {
+                        // Generic parenthesis
+#pragma warning disable CS8509
+                        replacement =  paren switch
+                        {
+                            "[" => "{",
+                            "]" => "}"
+                        };
+#pragma warning restore CS8509
+                    }else if(m.Groups["n"].Success)
+                    {
+                        replacement = ".";
+                    }else if(m.Groups["t"] is { Success: true, Value: var type})
+                    {
+                        if(typeParams!.TryGetValue(type, out var index))
+                        {
+                            // Type parameter
+                            replacement = "``" + index;
+                        }
+                    }else if(m.Groups["x"].Success)
+                    {
+                        // Garbage characters part of name
+                        return LiteralValue(replacement, inUri);
+                    }
+                    return SyntaxValue(replacement, inUri);
+                });
+                sb.Append(label);
+            }
+
             void Syntax(string text)
             {
-                if(inUri)
-                {
-                    sb.Append(UriTools.EscapePathString(text));
-                }else{
-                    sb.Append(text);
-                }
+                sb.Append(SyntaxValue(text, inUri));
             }
 
             void Literal(string text)
             {
-                if(inUri)
-                {
-                    sb.Append(Uri.EscapeDataString(text));
-                }else{
-                    sb.Append(text);
-                }
+                sb.Append(LiteralValue(text, inUri));
+            }
+
+            static string SyntaxValue(string text, bool inUri)
+            {
+                return inUri ? UriTools.EscapePathString(text) : text;
+            }
+
+            static string LiteralValue(string text, bool inUri)
+            {
+                return inUri ? Uri.EscapeDataString(text) : text;
             }
         }
     }
