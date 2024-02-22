@@ -64,7 +64,7 @@ namespace IS4.SFI.Formats
                 {
                     return context.LoadFromByteArray(assemblyData);
                 }
-                return null;
+                return context.CoreAssembly;
             }
 
             static readonly Dictionary<string, byte[]> dummyAssemblies = GetAssemblies();
