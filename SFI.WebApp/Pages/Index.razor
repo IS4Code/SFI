@@ -95,7 +95,7 @@
     async void OnSubmit()
     {
         var cmd = lineWhitespace.Replace(Command, "");
-        navManager.NavigateTo(fragmentCommandPrefix + Uri.EscapeDataString(cmd), forceLoad: false, replace: true);
+        navManager.NavigateTo(fragmentCommandPrefix + UriTools.EscapeFragmentString(cmd), forceLoad: false, replace: true);
         await RunCommand(cmd);
     }
 
