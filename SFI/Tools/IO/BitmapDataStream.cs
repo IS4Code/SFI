@@ -92,11 +92,12 @@ namespace IS4.SFI.Tools.IO
         }
 
         /// <summary>
-        /// Copies data from a single row to <paramref name="target"/>.
+        /// Fills <paramref name="target"/> using the pixel data from a single row.
         /// </summary>
         /// <param name="row">The index of the row.</param>
         /// <param name="offset">The offset within the row.</param>
         /// <param name="target">The target segment to copy the data to.</param>
+        /// <exception cref="ArgumentException"><paramref name="target"/> is too big for the row data.</exception>
         protected abstract void CopyData(int row, int offset, ArraySegment<byte> target);
 
         /// <inheritdoc/>

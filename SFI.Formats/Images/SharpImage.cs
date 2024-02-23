@@ -428,7 +428,14 @@ namespace IS4.SFI.Tools.Images
             protected override void CopyData(int row, int offset, ArraySegment<byte> target)
             {
                 var rowData = MemoryMarshal.Cast<TPixel, byte>(data.DangerousGetPixelRowMemory(row).Span).Slice(offset);
-                rowData.CopyTo(target.AsSpan());
+                var targetSpan = target.AsSpan();
+                if(targetSpan.Length > rowData.Length)
+                {
+                    throw new ArgumentException("The buffer is too big for the row data.", nameof(target));
+                }else{
+                    rowData = rowData.Slice(0, targetSpan.Length);
+                }
+                rowData.CopyTo(targetSpan);
             }
         }
     }
