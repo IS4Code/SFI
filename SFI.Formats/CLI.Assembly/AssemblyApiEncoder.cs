@@ -66,7 +66,12 @@ namespace SFI.Formats.CLI.Assembly
             aname.PublicKeyToken = null;
             name = aname.Name;
 
+            var visible = adef.CustomAttributes.Where(a => a.AttributeType.FullName == "System.Runtime.CompilerServices.InternalsVisibleToAttribute").ToList();
             adef.CustomAttributes.Clear();
+            foreach(var attr in visible)
+            {
+                adef.CustomAttributes.Add(attr);
+            }
             adef.SecurityDeclarations.Clear();
 
             foreach(var mdef in adef.Modules)
@@ -86,7 +91,7 @@ namespace SFI.Formats.CLI.Assembly
                 foreach(var type in mdef.Types.ToList())
                 {
                     // Remove all non-public types
-                    if(type.IsNotPublic && type.FullName != "<Module>")
+                    if(visible.Count == 0 && type.IsNotPublic && type.FullName != "<Module>")
                     {
                         mdef.Types.Remove(type);
                         continue;

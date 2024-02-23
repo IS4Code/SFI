@@ -1,11 +1,12 @@
 1.1.1
 -----
 
-- Loading core .NET assemblies works again.
 - `AssemblyAnalyzer` now inherits the same properties as member analyzers.
 - Referenced assemblies can be analyzed as references.
 - Assembly and normal attributes are unified; specifying them on any metadata element leads to the same properties.
 - The `[AssemblyMetadata]` attribute is recognized.
+- Reference assemblies preserve `[InternalsVisibleTo]` and internal members that may be visible outside the assembly.
+- Better recovery from exceptions during analysis; loading core .NET assemblies works again.
 
 
 1.1
