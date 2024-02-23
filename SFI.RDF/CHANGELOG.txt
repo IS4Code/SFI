@@ -2,6 +2,7 @@
 -----
 
 - `JsonLdHandler` now turns consecutive objects with the same property into arrays once they appear for the second time.
+- Fixed race condition when validating a property for the first time.
 
 
 1.2
