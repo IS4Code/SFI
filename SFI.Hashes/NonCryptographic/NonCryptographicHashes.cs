@@ -46,7 +46,7 @@ namespace IS4.SFI.Hashes
 
         private static BuiltInNonCryptographicHash Create<THash>(Func<THash> factory, Hasher hasher, IndividualUri identifier, string prefix, int? numericIdentifier = null, string? niName = null, FormattingMethod formattingMethod = FormattingMethod.Base32) where THash : NonCryptographicHashAlgorithm
         {
-            return new CloneableHash<THash>(factory, hasher, identifier, prefix, numericIdentifier, niName, formattingMethod);
+            return new Hash<THash>(factory, hasher, identifier, prefix, numericIdentifier, niName, formattingMethod);
         }
 
         readonly BuiltInNonCryptographicHash[] hashes = {
@@ -72,9 +72,9 @@ namespace IS4.SFI.Hashes
             return GetEnumerator();
         }
 
-        class CloneableHash<THash> : BuiltInNonCryptographicHashAlgorithm<THash>, ICloneable where THash : NonCryptographicHashAlgorithm
+        class Hash<THash> : BuiltInNonCryptographicHashAlgorithm<THash>, ICloneable where THash : NonCryptographicHashAlgorithm
         {
-            public CloneableHash(Func<NonCryptographicHashAlgorithm> factory, Hasher hasher, IndividualUri identifier, string prefix, int? numericIdentifier, string? niName, FormattingMethod formattingMethod) : base(factory, hasher, identifier, prefix, numericIdentifier, niName, formattingMethod)
+            public Hash(Func<NonCryptographicHashAlgorithm> factory, Hasher hasher, IndividualUri identifier, string prefix, int? numericIdentifier, string? niName, FormattingMethod formattingMethod) : base(factory, hasher, identifier, prefix, numericIdentifier, niName, formattingMethod)
             {
 
             }

@@ -83,7 +83,7 @@ namespace IS4.SFI.Tools
         private static BuiltInHash? Create<THash>(Func<THash> factory, IndividualUri identifier, string prefix, int? numericIdentifier = null, string? niName = null, FormattingMethod formattingMethod = FormattingMethod.Base32) where THash : Cryptography.HashAlgorithm
         {
             try{
-                return new BuiltInCloneableHash<THash>(factory, identifier, prefix, numericIdentifier, niName, formattingMethod);
+                return new Hash<THash>(factory, identifier, prefix, numericIdentifier, niName, formattingMethod);
             }catch(PlatformNotSupportedException)
             {
                 return null;
@@ -146,9 +146,9 @@ namespace IS4.SFI.Tools
         }
     }
 
-    class BuiltInCloneableHash<THash> : BuiltInHash<THash>, ICloneable where THash : Cryptography.HashAlgorithm
+    class Hash<THash> : BuiltInHash<THash>, ICloneable where THash : Cryptography.HashAlgorithm
     {
-        public BuiltInCloneableHash(Func<THash> factory, IndividualUri identifier, string prefix, int? numericIdentifier, string? niName, FormattingMethod formattingMethod) : base(factory, identifier, prefix, numericIdentifier, niName, formattingMethod)
+        public Hash(Func<THash> factory, IndividualUri identifier, string prefix, int? numericIdentifier, string? niName, FormattingMethod formattingMethod) : base(factory, identifier, prefix, numericIdentifier, niName, formattingMethod)
         {
 
         }
