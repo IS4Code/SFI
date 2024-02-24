@@ -223,6 +223,8 @@ namespace IS4.SFI.Services
             return GetNamespaces().Cast<object>().Concat(GetTypes()).GetEnumerator();
         }
 
+        static readonly Type namespaceType = typeof(Namespace);
+
         /// <summary>
         /// Retrieves the root namespace in an assembly.
         /// </summary>
@@ -231,8 +233,16 @@ namespace IS4.SFI.Services
         /// The root namespace of the assembly, i.e. the collection of all types
         /// and namespaces with no parent namespace.
         /// </returns>
+        /// <remarks>
+        /// Custom implementations of <see cref="Assembly"/> may offer their own implementation
+        /// of <see cref="Namespace"/> by implementing <see cref="IServiceProvider"/>.
+        /// </remarks>
         public static Namespace FromAssembly(Assembly assembly)
         {
+            if(assembly is IServiceProvider serviceProvider && serviceProvider.GetService(namespaceType) is Namespace result)
+            {
+                return result;
+            }
             return new Node(assembly);
         }
 
@@ -244,12 +254,17 @@ namespace IS4.SFI.Services
         /// <param name="assembly">The assembly to retrieve the namespace from.</param>
         /// <param name="fullName">The full name of the namespace.</param>
         /// <returns>
-        /// The namespace in the assembly 
+        /// The namespace in the assembly identified by <paramref name="fullName"/>.
         /// </returns>
+        /// <remarks><inheritdoc cref="FromAssembly(Assembly)" path="/remarks"/></remarks>
         public static Namespace? FromAssembly(Assembly assembly, string? fullName)
         {
-            var split = (fullName ?? "").Split(splitNsChars);
             var ns = FromAssembly(assembly);
+            if(String.IsNullOrEmpty(fullName))
+            {
+                return ns;
+            }
+            var split = fullName!.Split(splitNsChars);
             foreach(var localName in split)
             {
                 ns = ns.GetNamespace(localName);
