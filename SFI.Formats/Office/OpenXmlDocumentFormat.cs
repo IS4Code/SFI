@@ -45,7 +45,7 @@ namespace IS4.SFI.Formats
         /// </summary>
         /// <param name="package">The OOXML package.</param>
         /// <returns>The media object representing the package.</returns>
-        protected abstract T Open(OPCPackage package);
+        protected abstract T? Open(OPCPackage package);
 
         /// <inheritdoc/>
         public override string? GetMediaType(T value)
@@ -53,10 +53,29 @@ namespace IS4.SFI.Formats
             return base.GetMediaType(value) ?? value.GetProperties()?.CoreProperties?.ContentType;
         }
 
+        const string mainSuffix = ".main+xml";
+
         private T? TryOpen(OPCPackage package)
         {
             try{
-                return Open(package);
+                var document = Open(package);
+                if(document?.GetPackagePart() is not { ContentType: string contentType })
+                {
+                    return null;
+                }
+                var mediaType = MediaType;
+                if(mediaType != null)
+                {
+                    if(
+                        contentType.Length != mediaType.Length + mainSuffix.Length ||
+                        !contentType.StartsWith(mediaType, StringComparison.OrdinalIgnoreCase) ||
+                        !contentType.EndsWith(mainSuffix, StringComparison.OrdinalIgnoreCase)
+                        )
+                    {
+                        return null;
+                    }
+                }
+                return document;
             }catch(InternalApplicationException)
             {
                 throw;
