@@ -69,6 +69,26 @@ namespace IS4.SFI.Services
 
     /// <summary>
     /// Allows production of URIs from values with the intention of using
+    /// them as classes or datatypes in RDF.
+    /// </summary>
+    /// <typeparam name="T">The type of values used by the formatter.</typeparam>
+    public interface ITypeUriFormatter<in T> : IClassUriFormatter<T>, IDatatypeUriFormatter<T>
+    {
+
+    }
+
+    /// <summary>
+    /// Allows production of URIs from values with the intention of using
+    /// them as properties, classes, or datatypes in RDF.
+    /// </summary>
+    /// <typeparam name="T">The type of values used by the formatter.</typeparam>
+    public interface IMetaUriFormatter<in T> : IPropertyUriFormatter<T>, ITypeUriFormatter<T>
+    {
+
+    }
+
+    /// <summary>
+    /// Allows production of URIs from values with the intention of using
     /// them as graphs in RDF.
     /// </summary>
     /// <typeparam name="T">The type of values used by the formatter.</typeparam>
@@ -82,7 +102,7 @@ namespace IS4.SFI.Services
     /// them as individuals, properties, classes, datatypes, or graphs in RDF.
     /// </summary>
     /// <typeparam name="T">The type of values used by the formatter.</typeparam>
-    public interface IUniversalUriFormatter<in T> : IGenericUriFormatter<T>, IDatatypeUriFormatter<T>, IGraphUriFormatter<T>
+    public interface IUniversalUriFormatter<in T> : IGenericUriFormatter<T>, IMetaUriFormatter<T>, IGraphUriFormatter<T>
     {
 
     }
