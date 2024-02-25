@@ -1,5 +1,6 @@
 ﻿using ICSharpCode.SharpZipLib.Zip;
 using IS4.SFI.Services;
+using IS4.SFI.Vocabulary;
 using NPOI.OpenXml4Net.OPC;
 using NPOI.OpenXml4Net.OPC.Internal;
 using NPOI.OpenXml4Net.Util;
@@ -57,7 +58,7 @@ namespace IS4.SFI.Formats
             }
         }
 
-        class PackageInfo : IContainerAnalyzer<IContainerNode, IFileNodeInfo>, IContainerAnalyzer
+        class PackageInfo : EntityAnalyzer, IContainerAnalyzer<IContainerNode, IFileNodeInfo>, IContainerAnalyzer
         {
             readonly OpenXmlDocumentFormat<T> format;
             readonly IDirectoryInfo root;
@@ -78,8 +79,8 @@ namespace IS4.SFI.Formats
                     var obj = format.TryOpen(Package);
                     if(obj != null)
                     {
-                        context = context.WithNode(null);
-                        await analyzers.Analyze(new FormatObject<T>(format, obj), context);
+                        var node = GetNode(context);
+                        await analyzers.Analyze(new FormatObject<T>(format, obj), context.WithParentLink(node, Properties.HasFormat));
                     }
                 }
                 return await inner(ContainerBehaviour.None);

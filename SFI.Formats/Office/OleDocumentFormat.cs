@@ -1,4 +1,5 @@
 ﻿using IS4.SFI.Services;
+using IS4.SFI.Vocabulary;
 using NPOI.POIFS.FileSystem;
 using System.Linq;
 using System.Threading.Tasks;
@@ -47,7 +48,7 @@ namespace IS4.SFI.Formats
             }
         }
 
-        class PackageInfo : IContainerAnalyzer<IContainerNode, IDirectoryInfo>, IContainerAnalyzer
+        class PackageInfo : EntityAnalyzer, IContainerAnalyzer<IContainerNode, IDirectoryInfo>, IContainerAnalyzer
         {
             readonly OleDocumentFormat<T> format;
 
@@ -81,8 +82,8 @@ namespace IS4.SFI.Formats
                 var obj = format.TryOpen(fs);
                 if(obj != null)
                 {
-                    context = context.WithNode(null);
-                    await analyzers.Analyze(new FormatObject<T>(format, obj), context);
+                    var node = GetNode(context);
+                    await analyzers.Analyze(new FormatObject<T>(format, obj), context.WithParentLink(node, Properties.HasFormat));
                 }
                 return await inner(ContainerBehaviour.None);
             }
