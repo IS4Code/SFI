@@ -259,8 +259,10 @@ _:n1 at:pathObject <file:///cnt-04.ott>;
                                                            cnt:ContentAsXML,
                                                            xis:Document;
                                                          skos:prefLabel "XML object (1.07 KiB)"@en;
-                                                         err:description "The root element could not be found in the XML data."@en;
-                                                         err:module <clr-namespace:IS4.SFI.Analyzers;assembly=IS4.SFI.Formats.XML#XmlAnalyzer>;
+                                                         err:code err:FODC0006;
+                                                         err:description "The root element could not be found in the XML data. Line 3, position 2."@en;
+                                                         err:module "IS4.SFI.Formats.XML",
+                                                                    <clr-namespace:IS4.SFI.Analyzers;assembly=IS4.SFI.Formats.XML#XmlAnalyzer>;
                                                          err:value <clr-namespace:System.Xml;assembly=System.Private.Xml#XmlException>;
                                                          cnt:declaredEncoding "UTF-8";
                                                          cnt:dtDecl <ni:///mh;1QEQg0DKXdPC5yMovuSp8xhpUA?ct=application/xml#dtd()>;

@@ -383,6 +383,8 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                                                                                    nfo:Document;
                                                                                                                  skos:prefLabel "DOCX object (PPT test file)"@en.
 <ni:///mh;1QEQDfW3XauZa0KT9eQL56uFYw?ct=application/zip> at:pathObject <file:///.>;
+                                                         dcterms:hasFormat <ni:///mh;1QEQDfW3XauZa0KT9eQL56uFYw?ct=application/vnd.openxmlformats-officedocument.spreadsheetml.sheet>,
+                                                                           <ni:///mh;1QEQDfW3XauZa0KT9eQL56uFYw?ct=application/vnd.openxmlformats-officedocument.wordprocessingml.document>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQDfW3XauZa0KT9eQL56uFYw?ct=application/zip#/>;
                                                          a schema:MediaObject,
@@ -1021,11 +1023,11 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                    nfo:verticalResolution 72.009;
                                                    nfo:width 88 ;
                                                    a schema:MediaObject,
-                                                     nfo:Image,
-                                                     schema:ImageObject;
-                                                   skos:prefLabel "PNG object (88×31)"@en,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "PNG object (4.96 KiB)"@en,
                                                                   "PNG object (88×31, 8-bit)"@en,
-                                                                  "PNG object (4.96 KiB)"@en.
+                                                                  "PNG object (88×31)"@en.
 <ni:///mh;1QEQIcn4LDfpniSbwinI3IGmyQ?ct=application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
                                                                                                                                                                  a schema:MediaObject;
                                                                                                                                                                  skos:prefLabel "SLDLAYOUT object"@en.
@@ -1248,8 +1250,8 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                    nfo:verticalResolution 219.9894;
                                                    nfo:width 213 ;
                                                    a schema:MediaObject,
-                                                     nfo:Image,
-                                                     schema:ImageObject;
+                                                     schema:ImageObject,
+                                                     nfo:Image;
                                                    skos:prefLabel "PNG object (213×215, 8-bit)"@en,
                                                                   "PNG object (213×215)"@en,
                                                                   "PNG object (9.66 KiB)"@en.
@@ -1450,8 +1452,8 @@ _:n1 at:pathObject <file:///example.pptm>;
                                                     nfo:verticalResolution 220 ;
                                                     nfo:width 833 ;
                                                     a schema:MediaObject,
-                                                      nfo:Image,
-                                                      schema:ImageObject;
+                                                      schema:ImageObject,
+                                                      nfo:Image;
                                                     skos:prefLabel "JPG object (833×553)"@en,
                                                                    "JPG object (227.85 KiB)"@en.
 <ni:///mh;1QEQfnGU42PAhgkPOyaA-ABnyQ?ct=application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22>;

@@ -672,10 +672,10 @@ _:n1 at:pathObject <file:///example.ppsx>;
                                                    nfo:verticalResolution 219.9894;
                                                    nfo:width 213 ;
                                                    a schema:MediaObject,
-                                                     nfo:Image,
-                                                     schema:ImageObject;
-                                                   skos:prefLabel "PNG object (213×215)"@en,
-                                                                  "PNG object (213×215, 8-bit)"@en,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "PNG object (213×215, 8-bit)"@en,
+                                                                  "PNG object (213×215)"@en,
                                                                   "PNG object (9.66 KiB)"@en.
 <ni:///mh;1QEQSIeNLWfARv_AdxNNADso2Q?ct=application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
                                                                                                                                                                  a schema:MediaObject;
@@ -818,8 +818,8 @@ _:n1 at:pathObject <file:///example.ppsx>;
                                                     nfo:verticalResolution 220 ;
                                                     nfo:width 833 ;
                                                     a schema:MediaObject,
-                                                      nfo:Image,
-                                                      schema:ImageObject;
+                                                      schema:ImageObject,
+                                                      nfo:Image;
                                                     skos:prefLabel "JPG object (833×553)"@en,
                                                                    "JPG object (227.85 KiB)"@en.
 <ni:///mh;1QEQeXYimx_UTq2HYJYnRAQNdw?ct=application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
@@ -1060,6 +1060,8 @@ _:n1 at:pathObject <file:///example.ppsx>;
                                                                                                                    nfo:Document;
                                                                                                                  skos:prefLabel "DOCX object (PPT test file)"@en.
 <ni:///mh;1QEQqXYWRFjcsoQElb9lQp5HQg?ct=application/zip> at:pathObject <file:///.>;
+                                                         dcterms:hasFormat <ni:///mh;1QEQqXYWRFjcsoQElb9lQp5HQg?ct=application/vnd.openxmlformats-officedocument.spreadsheetml.sheet>,
+                                                                           <ni:///mh;1QEQqXYWRFjcsoQElb9lQp5HQg?ct=application/vnd.openxmlformats-officedocument.wordprocessingml.document>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQqXYWRFjcsoQElb9lQp5HQg?ct=application/zip#/>;
                                                          a schema:MediaObject,

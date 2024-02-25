@@ -133,10 +133,10 @@ _:n1 at:pathObject <file:///example.docm>;
                                                    nfo:verticalResolution 219.9894;
                                                    nfo:width 164 ;
                                                    a schema:MediaObject,
-                                                     nfo:Image,
-                                                     schema:ImageObject;
-                                                   skos:prefLabel "PNG object (164×165)"@en,
-                                                                  "PNG object (164×165, 8-bit)"@en,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "PNG object (164×165, 8-bit)"@en,
+                                                                  "PNG object (164×165)"@en,
                                                                   "PNG object (6.94 KiB)"@en.
 <ni:///mh;1QEQF2Q_iDTEsDwIey4G2k2Egg?ct=application/prs.implied-document+xml;root=endnotes;ns=%22http://schemas.openxmlformats.org/wordprocessingml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=endnotes;ns=%22http://schemas.openxmlformats.org/wordprocessingml/2006/main%22>;
                                                                                                                                                                   a schema:MediaObject;
@@ -257,8 +257,8 @@ _:n1 at:pathObject <file:///example.docm>;
                                                     nfo:verticalResolution 220 ;
                                                     nfo:width 571 ;
                                                     a schema:MediaObject,
-                                                      nfo:Image,
-                                                      schema:ImageObject;
+                                                      schema:ImageObject,
+                                                      nfo:Image;
                                                     skos:prefLabel "JPG object (571×379)"@en,
                                                                    "JPG object (116.38 KiB)"@en.
 <ni:///mh;1QEQ_nYTgUYsAs6TP7PlxYLjvQ?ct=application/prs.implied-document+xml;root=webSettings;ns=%22http://schemas.openxmlformats.org/wordprocessingml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=webSettings;ns=%22http://schemas.openxmlformats.org/wordprocessingml/2006/main%22>;
@@ -346,6 +346,8 @@ _:n1 at:pathObject <file:///example.docm>;
                                                                                                                    nfo:Document;
                                                                                                                  skos:prefLabel "DOCX object"@en.
 <ni:///mh;1QEQdGIG5zJK2Gfign5vxne3hg?ct=application/zip> at:pathObject <file:///.>;
+                                                         dcterms:hasFormat <ni:///mh;1QEQdGIG5zJK2Gfign5vxne3hg?ct=application/vnd.openxmlformats-officedocument.spreadsheetml.sheet>,
+                                                                           <ni:///mh;1QEQdGIG5zJK2Gfign5vxne3hg?ct=application/vnd.openxmlformats-officedocument.wordprocessingml.document>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQdGIG5zJK2Gfign5vxne3hg?ct=application/zip#/>;
                                                          a schema:MediaObject,
@@ -704,10 +706,10 @@ _:n1 at:pathObject <file:///example.docm>;
                                                    nfo:verticalResolution 219.9894;
                                                    nfo:width 296 ;
                                                    a schema:MediaObject,
-                                                     nfo:Image,
-                                                     schema:ImageObject;
-                                                   skos:prefLabel "PNG object (296×103)"@en,
-                                                                  "PNG object (296×103, 8-bit)"@en,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "PNG object (296×103, 8-bit)"@en,
+                                                                  "PNG object (296×103)"@en,
                                                                   "PNG object (12.97 KiB)"@en.
 <urn:md5:0BBA8C9CB255E80C96B2E6A431A20BD4> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;

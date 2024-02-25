@@ -360,6 +360,8 @@ _:n1 at:pathObject <file:///example.xlsx>;
                                                                                                                    nfo:Document;
                                                                                                                  skos:prefLabel "DOCX object"@en.
 <ni:///mh;1QEQc_9Hk9TumYbAQP7tyV7FtA?ct=application/zip> at:pathObject <file:///.>;
+                                                         dcterms:hasFormat <ni:///mh;1QEQc_9Hk9TumYbAQP7tyV7FtA?ct=application/vnd.openxmlformats-officedocument.spreadsheetml.sheet>,
+                                                                           <ni:///mh;1QEQc_9Hk9TumYbAQP7tyV7FtA?ct=application/vnd.openxmlformats-officedocument.wordprocessingml.document>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQc_9Hk9TumYbAQP7tyV7FtA?ct=application/zip#/>;
                                                          a schema:MediaObject,
@@ -890,8 +892,8 @@ _:n1 at:pathObject <file:///example.xlsx>;
                                                    nfo:verticalResolution 219.9894;
                                                    nfo:width 296 ;
                                                    a schema:MediaObject,
-                                                     nfo:Image,
-                                                     schema:ImageObject;
+                                                     schema:ImageObject,
+                                                     nfo:Image;
                                                    skos:prefLabel "PNG object (296×103, 8-bit)"@en,
                                                                   "PNG object (296×103)"@en,
                                                                   "PNG object (12.97 KiB)"@en.

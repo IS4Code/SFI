@@ -39,7 +39,8 @@ _:n1 at:pathObject <file:///PSXV106J.RAR>;
                                                              skos:prefLabel "RAR object (79.29 KiB)"@en;
                                                              err:code err:FODC0002;
                                                              err:description "Object reference not set to an instance of an object."@en;
-                                                             err:module <clr-namespace:IS4.SFI.Analyzers;assembly=IS4.SFI.Formats.Archives#ArchiveReaderAnalyzer>;
+                                                             err:module "SharpCompress",
+                                                                        <clr-namespace:IS4.SFI.Analyzers;assembly=IS4.SFI.Formats.Archives#ArchiveReaderAnalyzer>;
                                                              err:value <clr-namespace:System;assembly=System.Private.CoreLib#NullReferenceException>.
 <ni:///mh;1QEQQXEHlIS-7F2yZ72lQQ1jdg?ct=application/vnd.rar#/HISTORY.TXT> at:pathObject <file:///HISTORY.TXT>;
                                                                           nie:interpretedAs <ni:///mh;1QEQbQkuItnU3dUkIZ2CsoQiPg?ct=text/plain>;
@@ -54,6 +55,7 @@ _:n1 at:pathObject <file:///PSXV106J.RAR>;
                                                                            nie:interpretedAs [err:value <clr-namespace:System;assembly=System.Private.CoreLib#NullReferenceException> ; 
                                                                                               err:description "Object reference not set to an instance of an object."@en ; 
                                                                                               err:code err:FODC0002 ; 
+                                                                                              err:module "SharpCompress" ; 
                                                                                               err:module <clr-namespace:IS4.SFI.Analyzers;assembly=IS4.SFI#DataAnalyzer>];
                                                                            nfo:belongsToContainer <ni:///mh;1QEQQXEHlIS-7F2yZ72lQQ1jdg?ct=application/vnd.rar>;
                                                                            nfo:fileLastModified "1997-02-19T18:46:42.000000+01:00"^^xsd:dateTime;

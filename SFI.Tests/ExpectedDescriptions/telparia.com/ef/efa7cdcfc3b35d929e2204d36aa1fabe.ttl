@@ -160,11 +160,11 @@ _:n1 at:pathObject <file:///example_multipage.docx>;
                                                    nfo:verticalResolution 219.9894;
                                                    nfo:width 164 ;
                                                    a schema:MediaObject,
-                                                     nfo:Image,
-                                                     schema:ImageObject;
-                                                   skos:prefLabel "PNG object (164×165)"@en,
-                                                                  "PNG object (6.94 KiB)"@en,
-                                                                  "PNG object (164×165, 8-bit)"@en.
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "PNG object (164×165, 8-bit)"@en,
+                                                                  "PNG object (164×165)"@en,
+                                                                  "PNG object (6.94 KiB)"@en.
 <ni:///mh;1QEQEq1fkL3qm53XJZhLDVeKOA?ct=application/octet-stream> at:digest <urn:md5:12AD5F90BDEA9B9DD725984B0D578A38>;
                                                                   dcterms:extent "1393238"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQEq1fkL3qm53XJZhLDVeKOA?ct=application/zip>;
@@ -195,6 +195,8 @@ _:n1 at:pathObject <file:///example_multipage.docx>;
                                                                                                                    nfo:Document;
                                                                                                                  skos:prefLabel "DOCX object"@en.
 <ni:///mh;1QEQEq1fkL3qm53XJZhLDVeKOA?ct=application/zip> at:pathObject <file:///.>;
+                                                         dcterms:hasFormat <ni:///mh;1QEQEq1fkL3qm53XJZhLDVeKOA?ct=application/vnd.openxmlformats-officedocument.spreadsheetml.sheet>,
+                                                                           <ni:///mh;1QEQEq1fkL3qm53XJZhLDVeKOA?ct=application/vnd.openxmlformats-officedocument.wordprocessingml.document>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQEq1fkL3qm53XJZhLDVeKOA?ct=application/zip#/>;
                                                          a schema:MediaObject,
@@ -480,11 +482,11 @@ _:n1 at:pathObject <file:///example_multipage.docx>;
                                                    nfo:verticalResolution 300.228;
                                                    nfo:width 403 ;
                                                    a schema:MediaObject,
-                                                     nfo:Image,
-                                                     schema:ImageObject;
-                                                   skos:prefLabel "PNG object (403×141)"@en,
-                                                                  "PNG object (403×141, 8-bit)"@en,
-                                                                  "PNG object (17.18 KiB)"@en.
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "PNG object (403×141, 8-bit)"@en,
+                                                                  "PNG object (17.18 KiB)"@en,
+                                                                  "PNG object (403×141)"@en.
 <ni:///mh;1QEQWLNxx2imopimkLBZko2RBw?ct=application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22>;
                                                                                                                                                                        a schema:MediaObject;
                                                                                                                                                                        skos:prefLabel "RELATIONSHIPS object"@en.
@@ -575,8 +577,8 @@ _:n1 at:pathObject <file:///example_multipage.docx>;
                                                     nfo:width 2048 ;
                                                     <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#comments> "*";
                                                     a schema:MediaObject,
-                                                      nfo:Image,
-                                                      schema:ImageObject;
+                                                      schema:ImageObject,
+                                                      nfo:Image;
                                                     skos:prefLabel "JPG object (2048×1361)"@en,
                                                                    "JPG object (662.76 KiB)"@en.
 <ni:///mh;1QEQjUx7qoAvNAIZzQEeZHEdAA?ct=application/prs.implied-document+xml;root=settings;ns=%22http://schemas.openxmlformats.org/wordprocessingml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=settings;ns=%22http://schemas.openxmlformats.org/wordprocessingml/2006/main%22>;

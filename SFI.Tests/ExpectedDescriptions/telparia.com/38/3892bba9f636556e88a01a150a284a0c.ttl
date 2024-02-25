@@ -30,7 +30,8 @@ _:n1 at:pathObject <file:///REGISTER.RAR>;
                                                                nfo:Archive;
                                                              skos:prefLabel "RAR object (23.88 KiB)"@en;
                                                              err:description "rar header crc mismatch"@en;
-                                                             err:module <clr-namespace:IS4.SFI.Analyzers;assembly=IS4.SFI.Formats.Archives#ArchiveReaderAnalyzer>;
+                                                             err:module "SharpCompress",
+                                                                        <clr-namespace:IS4.SFI.Analyzers;assembly=IS4.SFI.Formats.Archives#ArchiveReaderAnalyzer>;
                                                              err:value <clr-namespace:SharpCompress.Common;assembly=SharpCompress#InvalidFormatException>.
 <urn:md5:F4339F1740545EC46791F0BA64C509B0> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;

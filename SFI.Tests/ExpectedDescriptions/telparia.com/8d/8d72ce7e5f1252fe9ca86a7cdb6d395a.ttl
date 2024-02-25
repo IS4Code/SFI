@@ -119,8 +119,8 @@ _:n1 at:pathObject <file:///ZIPCRACK.RAR>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "BMP object (296 B)"@en,
-                                                                  "BMP object (16×16)"@en.
+                                                   skos:prefLabel "BMP object (16×16)"@en,
+                                                                  "BMP object (296 B)"@en.
 <ni:///mh;1QEQUI8tSESp6R2hZ5Cd7dKd8g?ct=application/octet-stream> at:digest <urn:md5:508F2D4844A9E91DA167909DEDD29DF2>;
                                                                   dcterms:extent "1457500"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQUI8tSESp6R2hZ5Cd7dKd8g?ct=application/vnd.rar>;
@@ -151,6 +151,7 @@ _:n1 at:pathObject <file:///ZIPCRACK.RAR>;
 <ni:///mh;1QEQUI8tSESp6R2hZ5Cd7dKd8g?ct=application/vnd.rar#/zipcrack.CAB> at:pathObject <file:///zipcrack.CAB>;
                                                                            nie:interpretedAs [err:value <clr-namespace:SharpCompress.Common;assembly=SharpCompress#MultiVolumeExtractionException> ; 
                                                                                               err:description "No stream provided when requested by MultiVolumeRarReader"@en ; 
+                                                                                              err:module "SharpCompress" ; 
                                                                                               err:module <clr-namespace:IS4.SFI.Analyzers;assembly=IS4.SFI#DataAnalyzer>];
                                                                            nfo:belongsToContainer <ni:///mh;1QEQUI8tSESp6R2hZ5Cd7dKd8g?ct=application/vnd.rar>;
                                                                            nfo:fileLastModified "1998-10-12T20:39:58.000000+02:00"^^xsd:dateTime;

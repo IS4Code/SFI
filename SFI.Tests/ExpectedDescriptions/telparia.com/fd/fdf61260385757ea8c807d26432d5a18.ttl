@@ -419,6 +419,7 @@ _:n1 at:pathObject <file:///test.rar>;
                                                                            nie:interpretedAs [err:value <clr-namespace:System;assembly=System.Private.CoreLib#NullReferenceException> ; 
                                                                                               err:description "Object reference not set to an instance of an object."@en ; 
                                                                                               err:code err:FODC0002 ; 
+                                                                                              err:module "SharpCompress" ; 
                                                                                               err:module <clr-namespace:IS4.SFI.Analyzers;assembly=IS4.SFI#DataAnalyzer>];
                                                                            nfo:belongsToContainer <ni:///mh;1QEQAANS3fiG733tEKwfNm8ZVg?ct=application/vnd.rar>;
                                                                            nfo:fileLastModified "1997-04-03T08:20:54.000000+02:00"^^xsd:dateTime;
@@ -433,8 +434,8 @@ _:n1 at:pathObject <file:///test.rar>;
                                                                   skos:prefLabel "binary data (7.26 KiB)"@en.
 <ni:///mh;1QEQEyjQ0_5Bpo8yXW9WsP7nAQ?ct=application/octet-stream> at:digest <urn:md5:1328D0D3FE41A68F325D6F56B0FEE701>;
                                                                   dcterms:extent "2009"^^dt:byte;
-                                                                  dcterms:hasFormat <ni:///mh;1QEQEyjQ0_5Bpo8yXW9WsP7nAQ?ct=application/x-msdos-program>,
-                                                                                    <ni:///mh;1QEQEyjQ0_5Bpo8yXW9WsP7nAQ?ct=application/vnd.microsoft.portable-executable>;
+                                                                  dcterms:hasFormat <ni:///mh;1QEQEyjQ0_5Bpo8yXW9WsP7nAQ?ct=application/vnd.microsoft.portable-executable>,
+                                                                                    <ni:///mh;1QEQEyjQ0_5Bpo8yXW9WsP7nAQ?ct=application/x-msdos-program>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.96 KiB)"@en.
 <ni:///mh;1QEQEyjQ0_5Bpo8yXW9WsP7nAQ?ct=application/vnd.microsoft.portable-executable> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
@@ -705,7 +706,8 @@ _:n1 at:pathObject <file:///test.rar>;
                                                                nfo:Archive;
                                                              skos:prefLabel "RAR object (2.01 KiB)"@en;
                                                              err:description "Unknown Rar Header: 118"@en;
-                                                             err:module <clr-namespace:IS4.SFI.Analyzers;assembly=IS4.SFI.Formats.Archives#ArchiveReaderAnalyzer>;
+                                                             err:module "SharpCompress",
+                                                                        <clr-namespace:IS4.SFI.Analyzers;assembly=IS4.SFI.Formats.Archives#ArchiveReaderAnalyzer>;
                                                              err:value <clr-namespace:SharpCompress.Common;assembly=SharpCompress#InvalidFormatException>.
 <ni:///mh;1QEQqgXn5c4vEWqeOONSs3VGtg?ct=application/vnd.rar#/TRAINER.EXE> at:pathObject <file:///TRAINER.EXE>;
                                                                           nie:interpretedAs <ni:///mh;1QEQEyjQ0_5Bpo8yXW9WsP7nAQ?ct=application/octet-stream>;

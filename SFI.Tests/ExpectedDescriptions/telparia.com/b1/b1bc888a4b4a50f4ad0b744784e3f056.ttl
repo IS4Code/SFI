@@ -3,10 +3,10 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix nfo: <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#>.
 @prefix at: <http://archive.data.is4.site/terms/>.
+@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix schema: <http://schema.org/>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
-@prefix nie: <http://www.semanticdesktop.org/ontologies/2007/01/19/nie#>.
 @prefix cnt: <http://www.w3.org/2011/content#>.
 @prefix dt: <http://dbpedia.org/datatype/>.
 @prefix sec: <https://w3id.org/security#>.
@@ -37,14 +37,15 @@ _:n1 at:pathObject <file:///example.dot>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ-6hVS9dBA74adXvIaADmig?ct=application/x-ole-storage>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (720 KiB)"@en.
-<ni:///mh;1QEQ-6hVS9dBA74adXvIaADmig?ct=application/x-ole-storage> at:pathObject <file:///>;
+<ni:///mh;1QEQ-6hVS9dBA74adXvIaADmig?ct=application/x-ole-storage> at:pathObject <file:///.>;
+                                                                   dcterms:hasFormat <ni:///mh;1QEQ-6hVS9dBA74adXvIaADmig?ct=application/msword>;
                                                                    schema:encodingFormat <https://w3id.org/uri4uri/mime/application/x-ole-storage>;
                                                                    nie:interpretedAs <ni:///mh;1QEQ-6hVS9dBA74adXvIaADmig?ct=application/x-ole-storage#/>;
                                                                    nfo:fileLastModified "2015-07-16T12:31:00.577000Z"^^xsd:dateTime;
                                                                    a schema:MediaObject,
                                                                      nfo:EmbeddedFileDataObject;
                                                                    skos:prefLabel "OLE object (720 KiB)"@en.
-<ni:///mh;1QEQ-6hVS9dBA74adXvIaADmig?ct=application/x-ole-storage#/> at:pathObject <file:///./>;
+<ni:///mh;1QEQ-6hVS9dBA74adXvIaADmig?ct=application/x-ole-storage#/> at:pathObject <file:///>;
                                                                      a nfo:Folder;
                                                                      skos:prefLabel "/".
 <ni:///mh;1QEQ-6hVS9dBA74adXvIaADmig?ct=application/x-ole-storage#/%01CompObj> at:pathObject <file:///%01CompObj>;

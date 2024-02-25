@@ -96,6 +96,8 @@ _:n1 at:pathObject <file:///example.docx>;
                                                                                                                    nfo:Document;
                                                                                                                  skos:prefLabel "DOCX object"@en.
 <ni:///mh;1QEQ2y8bl_1uaHPJVwYQoRdAZg?ct=application/zip> at:pathObject <file:///.>;
+                                                         dcterms:hasFormat <ni:///mh;1QEQ2y8bl_1uaHPJVwYQoRdAZg?ct=application/vnd.openxmlformats-officedocument.spreadsheetml.sheet>,
+                                                                           <ni:///mh;1QEQ2y8bl_1uaHPJVwYQoRdAZg?ct=application/vnd.openxmlformats-officedocument.wordprocessingml.document>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQ2y8bl_1uaHPJVwYQoRdAZg?ct=application/zip#/>;
                                                          a schema:MediaObject,
@@ -328,10 +330,10 @@ _:n1 at:pathObject <file:///example.docx>;
                                                    nfo:verticalResolution 219.9894;
                                                    nfo:width 164 ;
                                                    a schema:MediaObject,
-                                                     nfo:Image,
-                                                     schema:ImageObject;
-                                                   skos:prefLabel "PNG object (164×165)"@en,
-                                                                  "PNG object (164×165, 8-bit)"@en,
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "PNG object (164×165, 8-bit)"@en,
+                                                                  "PNG object (164×165)"@en,
                                                                   "PNG object (6.94 KiB)"@en.
 <ni:///mh;1QEQDOn9YgPrhZixFvshupF1bw?ct=application/octet-stream> at:digest <urn:md5:0CE9FD6203EB8598B116FB21BA91756F>;
                                                                   dcterms:extent "143891"^^dt:byte;
@@ -345,8 +347,8 @@ _:n1 at:pathObject <file:///example.docx>;
                                                     nfo:verticalResolution 220 ;
                                                     nfo:width 635 ;
                                                     a schema:MediaObject,
-                                                      nfo:Image,
-                                                      schema:ImageObject;
+                                                      schema:ImageObject,
+                                                      nfo:Image;
                                                     skos:prefLabel "JPG object (635×422)"@en,
                                                                    "JPG object (140.52 KiB)"@en.
 <ni:///mh;1QEQFBvw8gDKM750x6HBZrHnnA?ct=application/prs.implied-document+xml;root=settings;ns=%22http://schemas.openxmlformats.org/wordprocessingml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=settings;ns=%22http://schemas.openxmlformats.org/wordprocessingml/2006/main%22>;
@@ -631,8 +633,8 @@ _:n1 at:pathObject <file:///example.docx>;
                                                      schema:ImageObject,
                                                      nfo:Image;
                                                    skos:prefLabel "PNG object (296×103, 8-bit)"@en,
-                                                                  "PNG object (12.97 KiB)"@en,
-                                                                  "PNG object (296×103)"@en.
+                                                                  "PNG object (296×103)"@en,
+                                                                  "PNG object (12.97 KiB)"@en.
 <urn:md5:0BBA8C9CB255E80C96B2E6A431A20BD4> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "C7qMnLJV6AyWsuakMaIL1A=="^^xsd:base64Binary.

@@ -26,8 +26,10 @@ _:n1 at:pathObject <file:///1650203769_ISOlat1.sgml>;
                                                            cnt:ContentAsXML,
                                                            xis:Document;
                                                          skos:prefLabel "XML object (6.14 KiB)"@en;
-                                                         err:description "The root element could not be found in the XML data."@en;
-                                                         err:module <clr-namespace:IS4.SFI.Analyzers;assembly=IS4.SFI.Formats.XML#XmlAnalyzer>;
+                                                         err:code err:FODC0006;
+                                                         err:description "The root element could not be found in the XML data. Line 13, position 3."@en;
+                                                         err:module "IS4.SFI.Formats.XML",
+                                                                    <clr-namespace:IS4.SFI.Analyzers;assembly=IS4.SFI.Formats.XML#XmlAnalyzer>;
                                                          err:value <clr-namespace:System.Xml;assembly=System.Private.Xml#XmlException>.
 <ni:///mh;1QEQ4hatdkb-ZTlsVJfOYu7O1w?ct=text/plain> at:digest <urn:md5:E216AD7646FE65396C5497CE62EECED7>;
                                                     dcterms:extent "6283"^^dt:byte;

@@ -126,10 +126,10 @@ _:n1 at:pathObject <file:///mdxredist.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (231.5 KiB)"@en.
 <ni:///mh;1QEQ7ybp8NAnepOUHwLyBgW1pg?ct=application/vnd.microsoft.portable-executable> dbo:originalName "Microsoft.DirectX.DirectPlay.dll";
-                                                                                       dcterms:creator "Microsoft Corporation"@en-us,
-                                                                                                       "Microsoft Corporation";
-                                                                                       dcterms:description "Microsoft Managed DirectPlay"@en-us,
-                                                                                                           "Core DirectPlay classes for Managed DirectX";
+                                                                                       dcterms:creator "Microsoft Corporation",
+                                                                                                       "Microsoft Corporation"@en-us;
+                                                                                       dcterms:description "Core DirectPlay classes for Managed DirectX",
+                                                                                                           "Microsoft Managed DirectPlay"@en-us;
                                                                                        dcterms:title "Microsoft.DirectX.DirectPlay";
                                                                                        woc:declares <clr-namespace:;assembly=Microsoft.DirectX.DirectPlay#%3CModule%3E.__DllMainCRTStartupForGS%4012(System.Void*,System.UInt32,System.Void*)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.DirectPlay#%3CModule%3E.%3F%3F_C%40_1BO%40EIOMCHMO%40%3F%24AAx%3F%24AA%3F9%3F%24AAd%3F%24AAi%3F%24AAr%3F%24AAe%3F%24AAc%3F%24AAt%3F%24AAp%3F%24AAl%3F%24AAa%3F%24AAy%3F%24AA%3F3%3F%24AA%3F1%3F%24AA%3F%24AA%40>,
@@ -217,26 +217,38 @@ _:n1 at:pathObject <file:///mdxredist.msi>;
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.DirectPlay#%3CModule%3E.CoInitializeEx(System.Void*,System.UInt32)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.DirectPlay#%3CModule%3E.CoCreateInstance(_GUID*,IUnknown*,System.UInt32,_GUID*,System.Void**)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.DirectPlay#%3CModule%3E.CoUninitialize>;
+                                                                                       woc:hasAnnotation <clr-namespace:System#CLSCompliantAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyDescriptionAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyDelaySignAttribute>,
+                                                                                                         <clr-namespace:System.Runtime.InteropServices#ComVisibleAttribute>,
+                                                                                                         <clr-namespace:System.Diagnostics#DebuggableAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyTitleAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyKeyFileAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyConfigurationAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyCompanyAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyTrademarkAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyCopyrightAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyProductAttribute>;
                                                                                        woc:references <clr-namespace:;assembly=mscorlib>,
                                                                                                       <clr-namespace:;assembly=Microsoft.VisualC>,
                                                                                                       <clr-namespace:;assembly=Microsoft.DirectX>,
                                                                                                       <clr-namespace:;assembly=System>,
                                                                                                       <clr-namespace:;assembly=System.Windows.Forms>,
                                                                                                       <clr-namespace:;assembly=Microsoft.DirectX.DirectSound>;
-                                                                                       schema:copyrightNotice "© Microsoft Corporation. All rights reserved."@en-us,
-                                                                                                              "Copyright (c) Microsoft Corporation. All rights reserved.";
+                                                                                       schema:copyrightNotice "Copyright (c) Microsoft Corporation. All rights reserved.",
+                                                                                                              "© Microsoft Corporation. All rights reserved."@en-us;
                                                                                        schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
-                                                                                       schema:name "Microsoft.DirectX.DirectPlay.dll",
-                                                                                                   "Microsoft.DirectX.DirectPlay, Version=1.0.900.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35";
+                                                                                       schema:name "Microsoft.DirectX.DirectPlay, Version=1.0.900.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35",
+                                                                                                   "Microsoft.DirectX.DirectPlay.dll";
                                                                                        schema:softwareVersion "5.3.0.900",
                                                                                                               "5.3.0000000.900";
-                                                                                       schema:version "5.3.0.900",
-                                                                                                      "5.3.0000000.900 built by: DIRECTX",
-                                                                                                      "1.0.900.0";
+                                                                                       schema:version "1.0.900.0",
+                                                                                                      "5.3.0.900",
+                                                                                                      "5.3.0000000.900 built by: DIRECTX";
                                                                                        a schema:MediaObject,
+                                                                                         woc:CodeElement,
                                                                                          schema:SoftwareApplication,
-                                                                                         nfo:Executable,
-                                                                                         woc:CodeElement;
+                                                                                         nfo:Executable;
                                                                                        skos:prefLabel "DLL object (Microsoft.DirectX.DirectPlay.dll)"@en,
                                                                                                       "EXE object (Microsoft.DirectX.DirectPlay.dll)"@en.
 <ni:///mh;1QEQAqS0aXM971jbq3DpbnVZCQ?ct=application/octet-stream> at:digest <urn:md5:02A4B469733DEF58DBAB70E96E755909>;
@@ -251,8 +263,8 @@ _:n1 at:pathObject <file:///mdxredist.msi>;
 <ni:///mh;1QEQBLS_l1MDT32Y5wXfbTNJvw?ct=application/vnd.microsoft.portable-executable> dbo:originalName "Microsoft.DirectX.AudioVideoPlayback.dll";
                                                                                        dcterms:creator "Microsoft Corporation"@en-us,
                                                                                                        "Microsoft Corporation";
-                                                                                       dcterms:description "Microsoft Managed AudioVideoPlayback"@en-us,
-                                                                                                           "Core AudioVideoPlayback classes for Managed DirectX";
+                                                                                       dcterms:description "Core AudioVideoPlayback classes for Managed DirectX",
+                                                                                                           "Microsoft Managed AudioVideoPlayback"@en-us;
                                                                                        dcterms:title "Microsoft.DirectX.AudioVideoPlayback";
                                                                                        woc:declares <clr-namespace:;assembly=Microsoft.DirectX.AudioVideoPlayback#%3CModule%3E.__DllMainCRTStartupForGS%4012(System.Void*,System.UInt32,System.Void*)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.AudioVideoPlayback#%3CModule%3E.%3F%3F_C%40_0BC%40FHGCMCMB%40AVPAudioWndClass%3F%24AA%3F%24AA%40>,
@@ -321,6 +333,18 @@ _:n1 at:pathObject <file:///mdxredist.msi>;
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.AudioVideoPlayback#%3CModule%3E.InterlockedDecrement(System.Int32*)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.AudioVideoPlayback#%3CModule%3E.new(System.UInt32)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.AudioVideoPlayback#%3CModule%3E.delete(System.Void*)>;
+                                                                                       woc:hasAnnotation <clr-namespace:System#CLSCompliantAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyTitleAttribute>,
+                                                                                                         <clr-namespace:System.Runtime.InteropServices#ComVisibleAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyKeyFileAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyProductAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyDescriptionAttribute>,
+                                                                                                         <clr-namespace:System.Diagnostics#DebuggableAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyCopyrightAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyConfigurationAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyDelaySignAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyTrademarkAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyCompanyAttribute>;
                                                                                        woc:references <clr-namespace:;assembly=mscorlib>,
                                                                                                       <clr-namespace:;assembly=Microsoft.VisualC>,
                                                                                                       <clr-namespace:;assembly=Microsoft.DirectX.Direct3D>,
@@ -328,20 +352,20 @@ _:n1 at:pathObject <file:///mdxredist.msi>;
                                                                                                       <clr-namespace:;assembly=System.Drawing>,
                                                                                                       <clr-namespace:;assembly=System.Windows.Forms>,
                                                                                                       <clr-namespace:;assembly=Microsoft.DirectX>;
-                                                                                       schema:copyrightNotice "© Microsoft Corporation. All rights reserved."@en-us,
-                                                                                                              "Copyright (c) Microsoft Corporation. All rights reserved.";
+                                                                                       schema:copyrightNotice "Copyright (c) Microsoft Corporation. All rights reserved.",
+                                                                                                              "© Microsoft Corporation. All rights reserved."@en-us;
                                                                                        schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
-                                                                                       schema:name "Microsoft.DirectX.AudioVideoPlayback.dll",
-                                                                                                   "Microsoft.DirectX.AudioVideoPlayback, Version=1.0.900.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35";
+                                                                                       schema:name "Microsoft.DirectX.AudioVideoPlayback, Version=1.0.900.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35",
+                                                                                                   "Microsoft.DirectX.AudioVideoPlayback.dll";
                                                                                        schema:softwareVersion "5.3.0.900",
                                                                                                               "5.3.0000000.900";
-                                                                                       schema:version "5.3.0.900",
-                                                                                                      "5.3.0000000.900 built by: DIRECTX",
-                                                                                                      "1.0.900.0";
+                                                                                       schema:version "1.0.900.0",
+                                                                                                      "5.3.0.900",
+                                                                                                      "5.3.0000000.900 built by: DIRECTX";
                                                                                        a schema:MediaObject,
+                                                                                         woc:CodeElement,
                                                                                          schema:SoftwareApplication,
-                                                                                         nfo:Executable,
-                                                                                         woc:CodeElement;
+                                                                                         nfo:Executable;
                                                                                        skos:prefLabel "DLL object (Microsoft.DirectX.AudioVideoPlayback.dll)"@en,
                                                                                                       "EXE object (Microsoft.DirectX.AudioVideoPlayback.dll)"@en.
 <ni:///mh;1QEQBnqWwTCBYip7x87KHxkbBQ?ct=application/prs.implied-document+xml;root=doc> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=doc>;
@@ -461,6 +485,18 @@ _:n1 at:pathObject <file:///mdxredist.msi>;
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX#%3CModule%3E.D3DXPlaneFromPoints(D3DXPLANE*,D3DXVECTOR3*,D3DXVECTOR3*,D3DXVECTOR3*)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX#%3CModule%3E.D3DXPlaneTransform(D3DXPLANE*,D3DXPLANE*,D3DXMATRIX*)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX#%3CModule%3E.D3DXCreateMatrixStack(System.UInt32,ID3DXMatrixStack**)>;
+                                                                                       woc:hasAnnotation <clr-namespace:System.Reflection#AssemblyTitleAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyConfigurationAttribute>,
+                                                                                                         <clr-namespace:System#CLSCompliantAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyCompanyAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyKeyFileAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyDelaySignAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyTrademarkAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyDescriptionAttribute>,
+                                                                                                         <clr-namespace:System.Diagnostics#DebuggableAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyProductAttribute>,
+                                                                                                         <clr-namespace:System.Runtime.InteropServices#ComVisibleAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyCopyrightAttribute>;
                                                                                        woc:references <clr-namespace:;assembly=mscorlib>,
                                                                                                       <clr-namespace:;assembly=Microsoft.VisualC>,
                                                                                                       <clr-namespace:;assembly=System>;
@@ -486,10 +522,10 @@ _:n1 at:pathObject <file:///mdxredist.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (133 KiB)"@en.
 <ni:///mh;1QEQI3XmlFUAWUtpbYgNxSiF4g?ct=application/vnd.microsoft.portable-executable> dbo:originalName "Microsoft.DirectX.DirectInput.dll";
-                                                                                       dcterms:creator "Microsoft Corporation"@en-us,
-                                                                                                       "Microsoft Corporation";
-                                                                                       dcterms:description "Microsoft Managed DirectInput"@en-us,
-                                                                                                           "Core DirectInput classes for Managed DirectX";
+                                                                                       dcterms:creator "Microsoft Corporation",
+                                                                                                       "Microsoft Corporation"@en-us;
+                                                                                       dcterms:description "Core DirectInput classes for Managed DirectX",
+                                                                                                           "Microsoft Managed DirectInput"@en-us;
                                                                                        dcterms:title "Microsoft.DirectX.DirectInput";
                                                                                        woc:declares <clr-namespace:;assembly=Microsoft.DirectX.DirectInput#%3CModule%3E.__DllMainCRTStartupForGS%4012(System.Void*,System.UInt32,System.Void*)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.DirectInput#%3CModule%3E.%3F%3F_C%40_09GAFEAPMM%40%3F%24HL0%3F%24HN%3F3%3F5%3F%24HL1%3F%24HN%3F6%3F%24AA%40>,
@@ -543,28 +579,39 @@ _:n1 at:pathObject <file:///mdxredist.msi>;
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.DirectInput#%3CModule%3E.lstrlenA(System.SByte*)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.DirectInput#%3CModule%3E.DirectInput8Create(HINSTANCE__*,System.UInt32,_GUID*,System.Void**,IUnknown*)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.DirectInput#%3CModule%3E.GetModuleHandleA(System.SByte*)>;
+                                                                                       woc:hasAnnotation <clr-namespace:System.Reflection#AssemblyProductAttribute>,
+                                                                                                         <clr-namespace:System.Runtime.InteropServices#ComVisibleAttribute>,
+                                                                                                         <clr-namespace:System#CLSCompliantAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyConfigurationAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyDescriptionAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyTitleAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyCompanyAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyKeyFileAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyDelaySignAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyTrademarkAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyCopyrightAttribute>;
                                                                                        woc:references <clr-namespace:;assembly=mscorlib>,
                                                                                                       <clr-namespace:;assembly=Microsoft.VisualC>,
                                                                                                       <clr-namespace:;assembly=System.Windows.Forms>,
                                                                                                       <clr-namespace:;assembly=System>,
                                                                                                       <clr-namespace:;assembly=System.Drawing>,
                                                                                                       <clr-namespace:;assembly=Microsoft.DirectX>;
-                                                                                       schema:copyrightNotice "© Microsoft Corporation. All rights reserved."@en-us,
-                                                                                                              "Copyright (c) Microsoft Corporation. All rights reserved.";
+                                                                                       schema:copyrightNotice "Copyright (c) Microsoft Corporation. All rights reserved.",
+                                                                                                              "© Microsoft Corporation. All rights reserved."@en-us;
                                                                                        schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
-                                                                                       schema:name "Microsoft.DirectX.DirectInput.dll",
-                                                                                                   "Microsoft.DirectX.DirectInput, Version=1.0.1901.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35";
+                                                                                       schema:name "Microsoft.DirectX.DirectInput, Version=1.0.1901.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35",
+                                                                                                   "Microsoft.DirectX.DirectInput.dll";
                                                                                        schema:softwareVersion "5.3.1.1126",
                                                                                                               "5.3.0000001.1126";
-                                                                                       schema:version "5.3.1.1126",
-                                                                                                      "5.3.0000001.1126 built by: DIRECTX",
-                                                                                                      "1.0.1901.0";
+                                                                                       schema:version "1.0.1901.0",
+                                                                                                      "5.3.1.1126",
+                                                                                                      "5.3.0000001.1126 built by: DIRECTX";
                                                                                        a schema:MediaObject,
+                                                                                         woc:CodeElement,
                                                                                          schema:SoftwareApplication,
-                                                                                         nfo:Executable,
-                                                                                         woc:CodeElement;
-                                                                                       skos:prefLabel "DLL object (Microsoft.DirectX.DirectInput.dll)"@en,
-                                                                                                      "EXE object (Microsoft.DirectX.DirectInput.dll)"@en.
+                                                                                         nfo:Executable;
+                                                                                       skos:prefLabel "EXE object (Microsoft.DirectX.DirectInput.dll)"@en,
+                                                                                                      "DLL object (Microsoft.DirectX.DirectInput.dll)"@en.
 <ni:///mh;1QEQJguYAai_UGf-eayRR9ibAg?ct=application/octet-stream> at:digest <urn:md5:260B9801A8BF5067FE79AC9147D89B02>;
                                                                   dcterms:extent "84"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -661,6 +708,18 @@ _:n1 at:pathObject <file:///mdxredist.msi>;
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.DirectInput#%3CModule%3E.lstrlenA(System.SByte*)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.DirectInput#%3CModule%3E.DirectInput8Create(HINSTANCE__*,System.UInt32,_GUID*,System.Void**,IUnknown*)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.DirectInput#%3CModule%3E.GetModuleHandleA(System.SByte*)>;
+                                                                                       woc:hasAnnotation <clr-namespace:System#CLSCompliantAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyDescriptionAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyDelaySignAttribute>,
+                                                                                                         <clr-namespace:System.Runtime.InteropServices#ComVisibleAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyConfigurationAttribute>,
+                                                                                                         <clr-namespace:System.Diagnostics#DebuggableAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyTitleAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyCompanyAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyKeyFileAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyTrademarkAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyCopyrightAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyProductAttribute>;
                                                                                        woc:references <clr-namespace:;assembly=mscorlib>,
                                                                                                       <clr-namespace:;assembly=Microsoft.VisualC>,
                                                                                                       <clr-namespace:;assembly=System.Windows.Forms>,
@@ -678,9 +737,9 @@ _:n1 at:pathObject <file:///mdxredist.msi>;
                                                                                                       "5.3.0.900",
                                                                                                       "5.3.0000000.900 built by: DIRECTX";
                                                                                        a schema:MediaObject,
+                                                                                         woc:CodeElement,
                                                                                          schema:SoftwareApplication,
-                                                                                         nfo:Executable,
-                                                                                         woc:CodeElement;
+                                                                                         nfo:Executable;
                                                                                        skos:prefLabel "EXE object (Microsoft.DirectX.DirectInput.dll)"@en,
                                                                                                       "DLL object (Microsoft.DirectX.DirectInput.dll)"@en.
 <ni:///mh;1QEQTwFCAA_kqmfVzg8I3YNeDQ?ct=application/prs.implied-document+xml;root=doc> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=doc>;
@@ -808,6 +867,18 @@ _:n1 at:pathObject <file:///mdxredist.msi>;
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.Direct3D#%3CModule%3E.GetObjectA(System.Void*,System.Int32,System.Void*)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.Direct3D#%3CModule%3E.GetIconInfo(HICON__*,_ICONINFO*)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.Direct3D#%3CModule%3E.DirectXFileCreate(IDirectXFile**)>;
+                                                                                       woc:hasAnnotation <clr-namespace:System.Runtime.InteropServices#ComVisibleAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyDescriptionAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyTitleAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyProductAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyConfigurationAttribute>,
+                                                                                                         <clr-namespace:System#CLSCompliantAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyDelaySignAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyCopyrightAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyKeyFileAttribute>,
+                                                                                                         <clr-namespace:System.Diagnostics#DebuggableAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyTrademarkAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyCompanyAttribute>;
                                                                                        woc:references <clr-namespace:;assembly=mscorlib>,
                                                                                                       <clr-namespace:;assembly=Microsoft.VisualC>,
                                                                                                       <clr-namespace:;assembly=Microsoft.DirectX>,
@@ -825,11 +896,11 @@ _:n1 at:pathObject <file:///mdxredist.msi>;
                                                                                                       "5.3.0.900",
                                                                                                       "5.3.0000000.900 built by: DIRECTX";
                                                                                        a schema:MediaObject,
+                                                                                         woc:CodeElement,
                                                                                          schema:SoftwareApplication,
-                                                                                         nfo:Executable,
-                                                                                         woc:CodeElement;
-                                                                                       skos:prefLabel "EXE object (Microsoft.DirectX.Direct3D.dll)"@en,
-                                                                                                      "DLL object (Microsoft.DirectX.Direct3D.dll)"@en.
+                                                                                         nfo:Executable;
+                                                                                       skos:prefLabel "DLL object (Microsoft.DirectX.Direct3D.dll)"@en,
+                                                                                                      "EXE object (Microsoft.DirectX.Direct3D.dll)"@en.
 <ni:///mh;1QEQWAbkWAJZJ8dYpbjS12C37g?ct=application/octet-stream> at:digest <urn:md5:5806E458025927C758A5B8D2D760B7EE>;
                                                                   dcterms:extent "13032"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -891,10 +962,10 @@ _:n1 at:pathObject <file:///mdxredist.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (1.82 MiB)"@en.
 <ni:///mh;1QEQcUefsVjyMoJtZ9wspOQuJA?ct=application/vnd.microsoft.portable-executable> dbo:originalName "Microsoft.DirectX.Direct3DX.dll";
-                                                                                       dcterms:creator "Microsoft Corporation"@en-us,
-                                                                                                       "Microsoft Corporation";
-                                                                                       dcterms:description "Microsoft Managed D3DX"@en-us,
-                                                                                                           "Managed layer for D3DX";
+                                                                                       dcterms:creator "Microsoft Corporation",
+                                                                                                       "Microsoft Corporation"@en-us;
+                                                                                       dcterms:description "Managed layer for D3DX",
+                                                                                                           "Microsoft Managed D3DX"@en-us;
                                                                                        dcterms:title "Microsoft.DirectX.Direct3DX";
                                                                                        woc:declares <clr-namespace:;assembly=Microsoft.DirectX.Direct3DX#%3CModule%3E.__DllMainCRTStartupForGS%4012(System.Void*,System.UInt32,System.Void*)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.Direct3DX#%3CModule%3E.%3F%3F_C%40_09GAFEAPMM%40%3F%24HL0%3F%24HN%3F3%3F5%3F%24HL1%3F%24HN%3F6%3F%24AA%40>,
@@ -1160,28 +1231,39 @@ _:n1 at:pathObject <file:///mdxredist.msi>;
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.Direct3DX#%3CModule%3E.D3DXFrameCalculateBoundingSphere(_D3DXFRAME*,D3DXVECTOR3*,System.Single*)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.Direct3DX#%3CModule%3E.D3DXFrameFind(_D3DXFRAME*,System.SByte*)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.Direct3DX#%3CModule%3E.D3DXFrameDestroy(_D3DXFRAME*,ID3DXAllocateHierarchy*)>;
+                                                                                       woc:hasAnnotation <clr-namespace:System.Reflection#AssemblyCopyrightAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyCompanyAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyTrademarkAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyProductAttribute>,
+                                                                                                         <clr-namespace:System.Runtime.InteropServices#ComVisibleAttribute>,
+                                                                                                         <clr-namespace:System#CLSCompliantAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyConfigurationAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyDescriptionAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyTitleAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyKeyFileAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyDelaySignAttribute>;
                                                                                        woc:references <clr-namespace:;assembly=mscorlib>,
                                                                                                       <clr-namespace:;assembly=Microsoft.VisualC>,
                                                                                                       <clr-namespace:;assembly=Microsoft.DirectX.Direct3D>,
                                                                                                       <clr-namespace:;assembly=Microsoft.DirectX>,
                                                                                                       <clr-namespace:;assembly=System.Drawing>,
                                                                                                       <clr-namespace:;assembly=System>;
-                                                                                       schema:copyrightNotice "© Microsoft Corporation. All rights reserved."@en-us,
-                                                                                                              "Copyright (c) Microsoft Corporation. All rights reserved.";
+                                                                                       schema:copyrightNotice "Copyright (c) Microsoft Corporation. All rights reserved.",
+                                                                                                              "© Microsoft Corporation. All rights reserved."@en-us;
                                                                                        schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
-                                                                                       schema:name "Microsoft.DirectX.Direct3DX.dll",
-                                                                                                   "Microsoft.DirectX.Direct3DX, Version=1.0.1901.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35";
+                                                                                       schema:name "Microsoft.DirectX.Direct3DX, Version=1.0.1901.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35",
+                                                                                                   "Microsoft.DirectX.Direct3DX.dll";
                                                                                        schema:softwareVersion "5.3.1.1126",
                                                                                                               "5.3.0000001.1126";
-                                                                                       schema:version "5.3.1.1126",
-                                                                                                      "5.3.0000001.1126 built by: DIRECTX",
-                                                                                                      "1.0.1901.0";
+                                                                                       schema:version "1.0.1901.0",
+                                                                                                      "5.3.1.1126",
+                                                                                                      "5.3.0000001.1126 built by: DIRECTX";
                                                                                        a schema:MediaObject,
+                                                                                         woc:CodeElement,
                                                                                          schema:SoftwareApplication,
-                                                                                         nfo:Executable,
-                                                                                         woc:CodeElement;
-                                                                                       skos:prefLabel "DLL object (Microsoft.DirectX.Direct3DX.dll)"@en,
-                                                                                                      "EXE object (Microsoft.DirectX.Direct3DX.dll)"@en.
+                                                                                         nfo:Executable;
+                                                                                       skos:prefLabel "EXE object (Microsoft.DirectX.Direct3DX.dll)"@en,
+                                                                                                      "DLL object (Microsoft.DirectX.Direct3DX.dll)"@en.
 <ni:///mh;1QEQdRYkoqSlt3paWT_MfXdWPQ?ct=application/prs.implied-document+xml;root=doc> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=doc>;
                                                                                        a schema:MediaObject;
                                                                                        skos:prefLabel "DOC object"@en.
@@ -1300,6 +1382,17 @@ _:n1 at:pathObject <file:///mdxredist.msi>;
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX#%3CModule%3E.D3DXPlaneFromPoints(D3DXPLANE*,D3DXVECTOR3*,D3DXVECTOR3*,D3DXVECTOR3*)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX#%3CModule%3E.D3DXPlaneTransform(D3DXPLANE*,D3DXPLANE*,D3DXMATRIX*)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX#%3CModule%3E.D3DXCreateMatrixStack(System.UInt32,ID3DXMatrixStack**)>;
+                                                                                       woc:hasAnnotation <clr-namespace:System.Reflection#AssemblyCopyrightAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyTitleAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyTrademarkAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyProductAttribute>,
+                                                                                                         <clr-namespace:System.Runtime.InteropServices#ComVisibleAttribute>,
+                                                                                                         <clr-namespace:System#CLSCompliantAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyConfigurationAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyDelaySignAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyCompanyAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyDescriptionAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyKeyFileAttribute>;
                                                                                        woc:references <clr-namespace:;assembly=mscorlib>,
                                                                                                       <clr-namespace:;assembly=Microsoft.VisualC>,
                                                                                                       <clr-namespace:;assembly=System>;
@@ -1346,10 +1439,10 @@ _:n1 at:pathObject <file:///mdxredist.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (121 KiB)"@en.
 <ni:///mh;1QEQh-6Bkz24bcuTjU0G36Dqmw?ct=application/vnd.microsoft.portable-executable> dbo:originalName "Microsoft.DirectX.DirectDraw.dll";
-                                                                                       dcterms:creator "Microsoft Corporation"@en-us,
-                                                                                                       "Microsoft Corporation";
-                                                                                       dcterms:description "Microsoft Managed DirectDraw"@en-us,
-                                                                                                           "Core DirectDraw classes for Managed DirectX";
+                                                                                       dcterms:creator "Microsoft Corporation",
+                                                                                                       "Microsoft Corporation"@en-us;
+                                                                                       dcterms:description "Core DirectDraw classes for Managed DirectX",
+                                                                                                           "Microsoft Managed DirectDraw"@en-us;
                                                                                        dcterms:title "Microsoft.DirectX.DirectDraw";
                                                                                        woc:declares <clr-namespace:;assembly=Microsoft.DirectX.DirectDraw#%3CModule%3E.__DllMainCRTStartupForGS%4012(System.Void*,System.UInt32,System.Void*)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.DirectDraw#%3CModule%3E.%3F%3F_C%40_09GAFEAPMM%40%3F%24HL0%3F%24HN%3F3%3F5%3F%24HL1%3F%24HN%3F6%3F%24AA%40>,
@@ -1395,28 +1488,39 @@ _:n1 at:pathObject <file:///mdxredist.msi>;
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.DirectDraw#%3CModule%3E.CreateSolidBrush(System.UInt32)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.DirectDraw#%3CModule%3E.CreateBrushIndirect(tagLOGBRUSH*)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.DirectDraw#%3CModule%3E.LoadImageA(HINSTANCE__*,System.SByte*,System.UInt32,System.Int32,System.Int32,System.UInt32)>;
+                                                                                       woc:hasAnnotation <clr-namespace:System.Reflection#AssemblyProductAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyCompanyAttribute>,
+                                                                                                         <clr-namespace:System.Runtime.InteropServices#ComVisibleAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyCopyrightAttribute>,
+                                                                                                         <clr-namespace:System#CLSCompliantAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyConfigurationAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyDescriptionAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyTitleAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyKeyFileAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyDelaySignAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyTrademarkAttribute>;
                                                                                        woc:references <clr-namespace:;assembly=mscorlib>,
                                                                                                       <clr-namespace:;assembly=Microsoft.VisualC>,
                                                                                                       <clr-namespace:;assembly=Microsoft.DirectX>,
                                                                                                       <clr-namespace:;assembly=System>,
                                                                                                       <clr-namespace:;assembly=System.Windows.Forms>,
                                                                                                       <clr-namespace:;assembly=System.Drawing>;
-                                                                                       schema:copyrightNotice "© Microsoft Corporation. All rights reserved."@en-us,
-                                                                                                              "Copyright (c) Microsoft Corporation. All rights reserved.";
+                                                                                       schema:copyrightNotice "Copyright (c) Microsoft Corporation. All rights reserved.",
+                                                                                                              "© Microsoft Corporation. All rights reserved."@en-us;
                                                                                        schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
-                                                                                       schema:name "Microsoft.DirectX.DirectDraw.dll",
-                                                                                                   "Microsoft.DirectX.DirectDraw, Version=1.0.1901.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35";
+                                                                                       schema:name "Microsoft.DirectX.DirectDraw, Version=1.0.1901.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35",
+                                                                                                   "Microsoft.DirectX.DirectDraw.dll";
                                                                                        schema:softwareVersion "5.3.1.1126",
                                                                                                               "5.3.0000001.1126";
-                                                                                       schema:version "5.3.1.1126",
-                                                                                                      "5.3.0000001.1126 built by: DIRECTX",
-                                                                                                      "1.0.1901.0";
+                                                                                       schema:version "1.0.1901.0",
+                                                                                                      "5.3.1.1126",
+                                                                                                      "5.3.0000001.1126 built by: DIRECTX";
                                                                                        a schema:MediaObject,
+                                                                                         woc:CodeElement,
                                                                                          schema:SoftwareApplication,
-                                                                                         nfo:Executable,
-                                                                                         woc:CodeElement;
-                                                                                       skos:prefLabel "DLL object (Microsoft.DirectX.DirectDraw.dll)"@en,
-                                                                                                      "EXE object (Microsoft.DirectX.DirectDraw.dll)"@en.
+                                                                                         nfo:Executable;
+                                                                                       skos:prefLabel "EXE object (Microsoft.DirectX.DirectDraw.dll)"@en,
+                                                                                                      "DLL object (Microsoft.DirectX.DirectDraw.dll)"@en.
 <ni:///mh;1QEQhU-0GrgDwphVkmOEsAUH7w?ct=application/octet-stream> at:digest <urn:md5:854FB41AB803C29855926384B00507EF>;
                                                                   dcterms:extent "133120"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQhU-0GrgDwphVkmOEsAUH7w?ct=application/vnd.microsoft.portable-executable>;
@@ -1472,6 +1576,18 @@ _:n1 at:pathObject <file:///mdxredist.msi>;
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.DirectDraw#%3CModule%3E.CreateSolidBrush(System.UInt32)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.DirectDraw#%3CModule%3E.CreateBrushIndirect(tagLOGBRUSH*)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.DirectDraw#%3CModule%3E.LoadImageA(HINSTANCE__*,System.SByte*,System.UInt32,System.Int32,System.Int32,System.UInt32)>;
+                                                                                       woc:hasAnnotation <clr-namespace:System.Reflection#AssemblyDelaySignAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyCompanyAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyKeyFileAttribute>,
+                                                                                                         <clr-namespace:System#CLSCompliantAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyDescriptionAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyTrademarkAttribute>,
+                                                                                                         <clr-namespace:System.Runtime.InteropServices#ComVisibleAttribute>,
+                                                                                                         <clr-namespace:System.Diagnostics#DebuggableAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyConfigurationAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyCopyrightAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyProductAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyTitleAttribute>;
                                                                                        woc:references <clr-namespace:;assembly=mscorlib>,
                                                                                                       <clr-namespace:;assembly=Microsoft.VisualC>,
                                                                                                       <clr-namespace:;assembly=Microsoft.DirectX>,
@@ -1489,9 +1605,9 @@ _:n1 at:pathObject <file:///mdxredist.msi>;
                                                                                                       "5.3.0.900",
                                                                                                       "5.3.0000000.900 built by: DIRECTX";
                                                                                        a schema:MediaObject,
+                                                                                         woc:CodeElement,
                                                                                          schema:SoftwareApplication,
-                                                                                         nfo:Executable,
-                                                                                         woc:CodeElement;
+                                                                                         nfo:Executable;
                                                                                        skos:prefLabel "EXE object (Microsoft.DirectX.DirectDraw.dll)"@en,
                                                                                                       "DLL object (Microsoft.DirectX.DirectDraw.dll)"@en.
 <ni:///mh;1QEQiB9eUnttAKs494DZUn2OJw?ct=application/octet-stream> at:digest <urn:md5:881F5E527B6D00AB38F780D9527D8E27>;
@@ -1500,10 +1616,10 @@ _:n1 at:pathObject <file:///mdxredist.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (135.5 KiB)"@en.
 <ni:///mh;1QEQiB9eUnttAKs494DZUn2OJw?ct=application/vnd.microsoft.portable-executable> dbo:originalName "Microsoft.DirectX.DirectSound.dll";
-                                                                                       dcterms:creator "Microsoft Corporation"@en-us,
-                                                                                                       "Microsoft Corporation";
-                                                                                       dcterms:description "Microsoft Managed DirectSound"@en-us,
-                                                                                                           "Core DirectSound classes for Managed DirectX";
+                                                                                       dcterms:creator "Microsoft Corporation",
+                                                                                                       "Microsoft Corporation"@en-us;
+                                                                                       dcterms:description "Core DirectSound classes for Managed DirectX",
+                                                                                                           "Microsoft Managed DirectSound"@en-us;
                                                                                        dcterms:title "Microsoft.DirectX.DirectSound";
                                                                                        woc:declares <clr-namespace:;assembly=Microsoft.DirectX.DirectSound#%3CModule%3E.__DllMainCRTStartupForGS%4012(System.Void*,System.UInt32,System.Void*)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.DirectSound#%3CModule%3E.%3F%3F_C%40_09GAFEAPMM%40%3F%24HL0%3F%24HN%3F3%3F5%3F%24HL1%3F%24HN%3F6%3F%24AA%40>,
@@ -1594,27 +1710,39 @@ _:n1 at:pathObject <file:///mdxredist.msi>;
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.DirectSound#%3CModule%3E.CreateFileMappingA(System.Void*,_SECURITY_ATTRIBUTES*,System.UInt32,System.UInt32,System.UInt32,System.SByte*)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.DirectSound#%3CModule%3E.GetFileSize(System.Void*,System.UInt32*)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.DirectSound#%3CModule%3E.CreateFileA(System.SByte*,System.UInt32,System.UInt32,_SECURITY_ATTRIBUTES*,System.UInt32,System.UInt32,System.Void*)>;
+                                                                                       woc:hasAnnotation <clr-namespace:System.Diagnostics#DebuggableAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyTitleAttribute>,
+                                                                                                         <clr-namespace:System.Runtime.InteropServices#ComVisibleAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyKeyFileAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyTrademarkAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyCopyrightAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyProductAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyConfigurationAttribute>,
+                                                                                                         <clr-namespace:System#CLSCompliantAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyDescriptionAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyDelaySignAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyCompanyAttribute>;
                                                                                        woc:references <clr-namespace:;assembly=mscorlib>,
                                                                                                       <clr-namespace:;assembly=Microsoft.VisualC>,
                                                                                                       <clr-namespace:;assembly=Microsoft.DirectX>,
                                                                                                       <clr-namespace:;assembly=System>,
                                                                                                       <clr-namespace:;assembly=System.Windows.Forms>;
-                                                                                       schema:copyrightNotice "© Microsoft Corporation. All rights reserved."@en-us,
-                                                                                                              "Copyright (c) Microsoft Corporation. All rights reserved.";
+                                                                                       schema:copyrightNotice "Copyright (c) Microsoft Corporation. All rights reserved.",
+                                                                                                              "© Microsoft Corporation. All rights reserved."@en-us;
                                                                                        schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
-                                                                                       schema:name "Microsoft.DirectX.DirectSound.dll",
-                                                                                                   "Microsoft.DirectX.DirectSound, Version=1.0.900.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35";
+                                                                                       schema:name "Microsoft.DirectX.DirectSound, Version=1.0.900.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35",
+                                                                                                   "Microsoft.DirectX.DirectSound.dll";
                                                                                        schema:softwareVersion "5.3.0.900",
                                                                                                               "5.3.0000000.900";
-                                                                                       schema:version "5.3.0.900",
-                                                                                                      "5.3.0000000.900 built by: DIRECTX",
-                                                                                                      "1.0.900.0";
+                                                                                       schema:version "1.0.900.0",
+                                                                                                      "5.3.0.900",
+                                                                                                      "5.3.0000000.900 built by: DIRECTX";
                                                                                        a schema:MediaObject,
+                                                                                         woc:CodeElement,
                                                                                          schema:SoftwareApplication,
-                                                                                         nfo:Executable,
-                                                                                         woc:CodeElement;
-                                                                                       skos:prefLabel "DLL object (Microsoft.DirectX.DirectSound.dll)"@en,
-                                                                                                      "EXE object (Microsoft.DirectX.DirectSound.dll)"@en.
+                                                                                         nfo:Executable;
+                                                                                       skos:prefLabel "EXE object (Microsoft.DirectX.DirectSound.dll)"@en,
+                                                                                                      "DLL object (Microsoft.DirectX.DirectSound.dll)"@en.
 <ni:///mh;1QEQj1IfRoUwYBJzMnnSFIEcjg?ct=application/octet-stream> at:digest <urn:md5:8F521F4685306012733279D214811C8E>;
                                                                   dcterms:extent "5064542"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQj1IfRoUwYBJzMnnSFIEcjg?ct=application/vnd.ms-cab-compressed>;
@@ -2085,10 +2213,10 @@ _:n1 at:pathObject <file:///mdxredist.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (216.5 KiB)"@en.
 <ni:///mh;1QEQk6NEiAIqpxuCuXFbM0kAPw?ct=application/vnd.microsoft.portable-executable> dbo:originalName "Microsoft.DirectX.DirectPlay.dll";
-                                                                                       dcterms:creator "Microsoft Corporation"@en-us,
-                                                                                                       "Microsoft Corporation";
-                                                                                       dcterms:description "Microsoft Managed DirectPlay"@en-us,
-                                                                                                           "Core DirectPlay classes for Managed DirectX";
+                                                                                       dcterms:creator "Microsoft Corporation",
+                                                                                                       "Microsoft Corporation"@en-us;
+                                                                                       dcterms:description "Core DirectPlay classes for Managed DirectX",
+                                                                                                           "Microsoft Managed DirectPlay"@en-us;
                                                                                        dcterms:title "Microsoft.DirectX.DirectPlay";
                                                                                        woc:declares <clr-namespace:;assembly=Microsoft.DirectX.DirectPlay#%3CModule%3E.__DllMainCRTStartupForGS%4012(System.Void*,System.UInt32,System.Void*)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.DirectPlay#%3CModule%3E.%3F%3F_C%40_1BO%40EIOMCHMO%40%3F%24AAx%3F%24AA%3F9%3F%24AAd%3F%24AAi%3F%24AAr%3F%24AAe%3F%24AAc%3F%24AAt%3F%24AAp%3F%24AAl%3F%24AAa%3F%24AAy%3F%24AA%3F3%3F%24AA%3F1%3F%24AA%3F%24AA%40>,
@@ -2184,28 +2312,39 @@ _:n1 at:pathObject <file:///mdxredist.msi>;
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.DirectPlay#%3CModule%3E.CoInitializeEx(System.Void*,System.UInt32)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.DirectPlay#%3CModule%3E.CoCreateInstance(_GUID*,IUnknown*,System.UInt32,_GUID*,System.Void**)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.DirectPlay#%3CModule%3E.CoUninitialize>;
+                                                                                       woc:hasAnnotation <clr-namespace:System.Reflection#AssemblyCopyrightAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyProductAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyCompanyAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyTrademarkAttribute>,
+                                                                                                         <clr-namespace:System.Runtime.InteropServices#ComVisibleAttribute>,
+                                                                                                         <clr-namespace:System#CLSCompliantAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyConfigurationAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyDescriptionAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyTitleAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyKeyFileAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyDelaySignAttribute>;
                                                                                        woc:references <clr-namespace:;assembly=mscorlib>,
                                                                                                       <clr-namespace:;assembly=Microsoft.VisualC>,
                                                                                                       <clr-namespace:;assembly=Microsoft.DirectX>,
                                                                                                       <clr-namespace:;assembly=System>,
                                                                                                       <clr-namespace:;assembly=System.Windows.Forms>,
                                                                                                       <clr-namespace:;assembly=Microsoft.DirectX.DirectSound>;
-                                                                                       schema:copyrightNotice "© Microsoft Corporation. All rights reserved."@en-us,
-                                                                                                              "Copyright (c) Microsoft Corporation. All rights reserved.";
+                                                                                       schema:copyrightNotice "Copyright (c) Microsoft Corporation. All rights reserved.",
+                                                                                                              "© Microsoft Corporation. All rights reserved."@en-us;
                                                                                        schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
-                                                                                       schema:name "Microsoft.DirectX.DirectPlay.dll",
-                                                                                                   "Microsoft.DirectX.DirectPlay, Version=1.0.1901.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35";
+                                                                                       schema:name "Microsoft.DirectX.DirectPlay, Version=1.0.1901.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35",
+                                                                                                   "Microsoft.DirectX.DirectPlay.dll";
                                                                                        schema:softwareVersion "5.3.1.1126",
                                                                                                               "5.3.0000001.1126";
-                                                                                       schema:version "5.3.1.1126",
-                                                                                                      "5.3.0000001.1126 built by: DIRECTX",
-                                                                                                      "1.0.1901.0";
+                                                                                       schema:version "1.0.1901.0",
+                                                                                                      "5.3.1.1126",
+                                                                                                      "5.3.0000001.1126 built by: DIRECTX";
                                                                                        a schema:MediaObject,
+                                                                                         woc:CodeElement,
                                                                                          schema:SoftwareApplication,
-                                                                                         nfo:Executable,
-                                                                                         woc:CodeElement;
-                                                                                       skos:prefLabel "DLL object (Microsoft.DirectX.DirectPlay.dll)"@en,
-                                                                                                      "EXE object (Microsoft.DirectX.DirectPlay.dll)"@en.
+                                                                                         nfo:Executable;
+                                                                                       skos:prefLabel "EXE object (Microsoft.DirectX.DirectPlay.dll)"@en,
+                                                                                                      "DLL object (Microsoft.DirectX.DirectPlay.dll)"@en.
 <ni:///mh;1QEQkv4F2KqrydHYU4_QsS3gkw?ct=application/prs.implied-document+xml;root=doc> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=doc>;
                                                                                        a schema:MediaObject;
                                                                                        skos:prefLabel "DOC object"@en.
@@ -2376,6 +2515,17 @@ _:n1 at:pathObject <file:///mdxredist.msi>;
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.Direct3D#%3CModule%3E.GetObjectA(System.Void*,System.Int32,System.Void*)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.Direct3D#%3CModule%3E.GetIconInfo(HICON__*,_ICONINFO*)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.Direct3D#%3CModule%3E.DirectXFileCreate(IDirectXFile**)>;
+                                                                                       woc:hasAnnotation <clr-namespace:System.Reflection#AssemblyTrademarkAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyProductAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyDelaySignAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyCopyrightAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyCompanyAttribute>,
+                                                                                                         <clr-namespace:System.Runtime.InteropServices#ComVisibleAttribute>,
+                                                                                                         <clr-namespace:System#CLSCompliantAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyConfigurationAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyDescriptionAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyKeyFileAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyTitleAttribute>;
                                                                                        woc:references <clr-namespace:;assembly=mscorlib>,
                                                                                                       <clr-namespace:;assembly=Microsoft.VisualC>,
                                                                                                       <clr-namespace:;assembly=Microsoft.DirectX>,
@@ -2626,6 +2776,18 @@ _:n1 at:pathObject <file:///mdxredist.msi>;
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.Direct3DX#%3CModule%3E.D3DXCreateFragmentLinker(IDirect3DDevice9*,System.UInt32,ID3DXFragmentLinker**)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.Direct3DX#%3CModule%3E.D3DXGatherFragmentsFromFileW(System.UInt16*,_D3DXMACRO*,ID3DXInclude*,System.UInt32,ID3DXBuffer**,ID3DXBuffer**)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.Direct3DX#%3CModule%3E.D3DXGatherFragments(System.SByte*,System.UInt32,_D3DXMACRO*,ID3DXInclude*,System.UInt32,ID3DXBuffer**,ID3DXBuffer**)>;
+                                                                                       woc:hasAnnotation <clr-namespace:System.Reflection#AssemblyDescriptionAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyTitleAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyProductAttribute>,
+                                                                                                         <clr-namespace:System.Runtime.InteropServices#ComVisibleAttribute>,
+                                                                                                         <clr-namespace:System#CLSCompliantAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyConfigurationAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyKeyFileAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyDelaySignAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyTrademarkAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyCopyrightAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyCompanyAttribute>,
+                                                                                                         <clr-namespace:System.Diagnostics#DebuggableAttribute>;
                                                                                        woc:references <clr-namespace:;assembly=mscorlib>,
                                                                                                       <clr-namespace:;assembly=Microsoft.VisualC>,
                                                                                                       <clr-namespace:;assembly=Microsoft.DirectX.Direct3D>,
@@ -2643,9 +2805,9 @@ _:n1 at:pathObject <file:///mdxredist.msi>;
                                                                                                       "5.3.0.900",
                                                                                                       "5.3.0000000.900 built by: DIRECTX";
                                                                                        a schema:MediaObject,
+                                                                                         woc:CodeElement,
                                                                                          schema:SoftwareApplication,
-                                                                                         nfo:Executable,
-                                                                                         woc:CodeElement;
+                                                                                         nfo:Executable;
                                                                                        skos:prefLabel "EXE object (Microsoft.DirectX.Direct3DX.dll)"@en,
                                                                                                       "DLL object (Microsoft.DirectX.Direct3DX.dll)"@en.
 <ni:///mh;1QEQtuw9zw0k8PTWYpUXv5hlEA?ct=application/octet-stream> at:digest <urn:md5:B6EC3DCF0D24F0F4D6629517BF986510>;
@@ -2667,6 +2829,18 @@ _:n1 at:pathObject <file:///mdxredist.msi>;
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.Diagnostics#%3CModule%3E.CoUninitialize>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.Diagnostics#%3CModule%3E.VariantClear(tagVARIANT*)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.Diagnostics#%3CModule%3E.VariantInit(tagVARIANT*)>;
+                                                                                       woc:hasAnnotation <clr-namespace:System.Reflection#AssemblyCompanyAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyTrademarkAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyConfigurationAttribute>,
+                                                                                                         <clr-namespace:System.Diagnostics#DebuggableAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyProductAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyDescriptionAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyKeyFileAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyCopyrightAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyDelaySignAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyTitleAttribute>,
+                                                                                                         <clr-namespace:System.Runtime.InteropServices#ComVisibleAttribute>,
+                                                                                                         <clr-namespace:System#CLSCompliantAttribute>;
                                                                                        woc:references <clr-namespace:;assembly=mscorlib>,
                                                                                                       <clr-namespace:;assembly=Microsoft.VisualC>;
                                                                                        schema:copyrightNotice "Copyright (c) Microsoft Corporation. All rights reserved.",
@@ -2680,11 +2854,11 @@ _:n1 at:pathObject <file:///mdxredist.msi>;
                                                                                                       "5.3.0.900",
                                                                                                       "5.3.0000000.900 built by: DIRECTX";
                                                                                        a schema:MediaObject,
+                                                                                         woc:CodeElement,
                                                                                          schema:SoftwareApplication,
-                                                                                         nfo:Executable,
-                                                                                         woc:CodeElement;
-                                                                                       skos:prefLabel "EXE object (Microsoft.DirectX.Diagnostics.dll)"@en,
-                                                                                                      "DLL object (Microsoft.DirectX.Diagnostics.dll)"@en.
+                                                                                         nfo:Executable;
+                                                                                       skos:prefLabel "DLL object (Microsoft.DirectX.Diagnostics.dll)"@en,
+                                                                                                      "EXE object (Microsoft.DirectX.Diagnostics.dll)"@en.
 <ni:///mh;1QEQvAuNQuwcOKy9tPSrEvi2rQ?ct=application/octet-stream> at:digest <urn:md5:BC0B8D42EC1C38ACBDB4F4AB12F8B6AD>;
                                                                   dcterms:extent "160"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
@@ -2699,10 +2873,10 @@ _:n1 at:pathObject <file:///mdxredist.msi>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (128 KiB)"@en.
 <ni:///mh;1QEQxt7uW3f1WDu_3fzRAuXMTA?ct=application/vnd.microsoft.portable-executable> dbo:originalName "Microsoft.DirectX.DirectSound.dll";
-                                                                                       dcterms:creator "Microsoft Corporation"@en-us,
-                                                                                                       "Microsoft Corporation";
-                                                                                       dcterms:description "Microsoft Managed DirectSound"@en-us,
-                                                                                                           "Core DirectSound classes for Managed DirectX";
+                                                                                       dcterms:creator "Microsoft Corporation",
+                                                                                                       "Microsoft Corporation"@en-us;
+                                                                                       dcterms:description "Core DirectSound classes for Managed DirectX",
+                                                                                                           "Microsoft Managed DirectSound"@en-us;
                                                                                        dcterms:title "Microsoft.DirectX.DirectSound";
                                                                                        woc:declares <clr-namespace:;assembly=Microsoft.DirectX.DirectSound#%3CModule%3E.__DllMainCRTStartupForGS%4012(System.Void*,System.UInt32,System.Void*)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.DirectSound#%3CModule%3E.%3F%3F_C%40_09GAFEAPMM%40%3F%24HL0%3F%24HN%3F3%3F5%3F%24HL1%3F%24HN%3F6%3F%24AA%40>,
@@ -2793,27 +2967,38 @@ _:n1 at:pathObject <file:///mdxredist.msi>;
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.DirectSound#%3CModule%3E.CreateFileMappingA(System.Void*,_SECURITY_ATTRIBUTES*,System.UInt32,System.UInt32,System.UInt32,System.SByte*)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.DirectSound#%3CModule%3E.GetFileSize(System.Void*,System.UInt32*)>,
                                                                                                     <clr-namespace:;assembly=Microsoft.DirectX.DirectSound#%3CModule%3E.CreateFileA(System.SByte*,System.UInt32,System.UInt32,_SECURITY_ATTRIBUTES*,System.UInt32,System.UInt32,System.Void*)>;
+                                                                                       woc:hasAnnotation <clr-namespace:System.Reflection#AssemblyDescriptionAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyTitleAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyKeyFileAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyDelaySignAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyTrademarkAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyCopyrightAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyProductAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyCompanyAttribute>,
+                                                                                                         <clr-namespace:System.Runtime.InteropServices#ComVisibleAttribute>,
+                                                                                                         <clr-namespace:System#CLSCompliantAttribute>,
+                                                                                                         <clr-namespace:System.Reflection#AssemblyConfigurationAttribute>;
                                                                                        woc:references <clr-namespace:;assembly=mscorlib>,
                                                                                                       <clr-namespace:;assembly=Microsoft.VisualC>,
                                                                                                       <clr-namespace:;assembly=Microsoft.DirectX>,
                                                                                                       <clr-namespace:;assembly=System>,
                                                                                                       <clr-namespace:;assembly=System.Windows.Forms>;
-                                                                                       schema:copyrightNotice "© Microsoft Corporation. All rights reserved."@en-us,
-                                                                                                              "Copyright (c) Microsoft Corporation. All rights reserved.";
+                                                                                       schema:copyrightNotice "Copyright (c) Microsoft Corporation. All rights reserved.",
+                                                                                                              "© Microsoft Corporation. All rights reserved."@en-us;
                                                                                        schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.microsoft.portable-executable>;
-                                                                                       schema:name "Microsoft.DirectX.DirectSound.dll",
-                                                                                                   "Microsoft.DirectX.DirectSound, Version=1.0.1901.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35";
+                                                                                       schema:name "Microsoft.DirectX.DirectSound, Version=1.0.1901.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35",
+                                                                                                   "Microsoft.DirectX.DirectSound.dll";
                                                                                        schema:softwareVersion "5.3.1.1126",
                                                                                                               "5.3.0000001.1126";
-                                                                                       schema:version "5.3.1.1126",
-                                                                                                      "5.3.0000001.1126 built by: DIRECTX",
-                                                                                                      "1.0.1901.0";
+                                                                                       schema:version "1.0.1901.0",
+                                                                                                      "5.3.1.1126",
+                                                                                                      "5.3.0000001.1126 built by: DIRECTX";
                                                                                        a schema:MediaObject,
+                                                                                         woc:CodeElement,
                                                                                          schema:SoftwareApplication,
-                                                                                         nfo:Executable,
-                                                                                         woc:CodeElement;
-                                                                                       skos:prefLabel "DLL object (Microsoft.DirectX.DirectSound.dll)"@en,
-                                                                                                      "EXE object (Microsoft.DirectX.DirectSound.dll)"@en.
+                                                                                         nfo:Executable;
+                                                                                       skos:prefLabel "EXE object (Microsoft.DirectX.DirectSound.dll)"@en,
+                                                                                                      "DLL object (Microsoft.DirectX.DirectSound.dll)"@en.
 <ni:///mh;1QEQy-8PFwLQsT_9OBvx70kPIQ?ct=application/octet-stream> at:digest <urn:md5:CBEF0F1702D0B13FFD381BF1EF490F21>;
                                                                   dcterms:extent "132"^^dt:byte;
                                                                   a cnt:ContentAsBase64;
