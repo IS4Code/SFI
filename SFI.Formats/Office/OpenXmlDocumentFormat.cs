@@ -1,6 +1,7 @@
 ﻿using ICSharpCode.SharpZipLib.Zip;
 using IS4.SFI.Services;
 using IS4.SFI.Vocabulary;
+using NPOI;
 using NPOI.OpenXml4Net.OPC;
 using NPOI.OpenXml4Net.OPC.Internal;
 using NPOI.OpenXml4Net.Util;
@@ -18,7 +19,7 @@ namespace IS4.SFI.Formats
     /// Represents a format based on the OOXML package format.
     /// </summary>
     /// <typeparam name="T">The type of the instances created by the format.</typeparam>
-    public abstract class OpenXmlDocumentFormat<T> : ContainerFileFormat<IDirectoryInfo, T> where T : class
+    public abstract class OpenXmlDocumentFormat<T> : ContainerFileFormat<IDirectoryInfo, T> where T : POIXMLDocument
     {
         /// <inheritdoc/>
         public OpenXmlDocumentFormat(string mediaType, string extension) : base(mediaType, extension)
@@ -45,6 +46,12 @@ namespace IS4.SFI.Formats
         /// <param name="package">The OOXML package.</param>
         /// <returns>The media object representing the package.</returns>
         protected abstract T Open(OPCPackage package);
+
+        /// <inheritdoc/>
+        public override string? GetMediaType(T value)
+        {
+            return base.GetMediaType(value) ?? value.GetProperties()?.CoreProperties?.ContentType;
+        }
 
         private T? TryOpen(OPCPackage package)
         {
