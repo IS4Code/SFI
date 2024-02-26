@@ -21,6 +21,11 @@ namespace IS4.SFI.Formats
     /// <typeparam name="T">The type of the instances created by the format.</typeparam>
     public abstract class OpenXmlDocumentFormat<T> : ContainerFileFormat<IDirectoryInfo, T> where T : POIXMLDocument
     {
+        /// <summary>
+        /// Stores the recognized media types and extensions associated with the core part of the package.
+        /// </summary>
+        public abstract IReadOnlyDictionary<string, (string MediaType, string Extension)> RecognizedTypes { get; }
+
         /// <inheritdoc/>
         public OpenXmlDocumentFormat(string mediaType, string extension) : base(mediaType, extension)
         {
@@ -48,32 +53,44 @@ namespace IS4.SFI.Formats
         protected abstract T? Open(OPCPackage package);
 
         /// <inheritdoc/>
-        public override string? GetMediaType(T value)
+        public override string? GetMediaType(T? value)
         {
-            return base.GetMediaType(value) ?? value.GetProperties()?.CoreProperties?.ContentType;
+            var type = GetMainContentType(value);
+            if(type == null || !RecognizedTypes.TryGetValue(type, out var info))
+            {
+                return null;
+            }
+            return info.MediaType;
         }
 
-        const string mainSuffix = ".main+xml";
+        /// <inheritdoc/>
+        public override string? GetExtension(T? value)
+        {
+            var type = GetMainContentType(value);
+            if(type == null || !RecognizedTypes.TryGetValue(type, out var info))
+            {
+                return null;
+            }
+            return info.Extension;
+        }
+
+        /// <summary>
+        /// Retrieves the content type of the core part of the package.
+        /// </summary>
+        /// <param name="document">The document to retrieve from.</param>
+        /// <returns>The content type specified by the part.</returns>
+        protected string? GetMainContentType(T? document)
+        {
+            return document?.GetPackagePart().ContentType;
+        }
 
         private T? TryOpen(OPCPackage package)
         {
             try{
                 var document = Open(package);
-                if(document?.GetPackagePart() is not { ContentType: string contentType })
+                if(GetMediaType(document) == null)
                 {
                     return null;
-                }
-                var mediaType = MediaType;
-                if(mediaType != null)
-                {
-                    if(
-                        contentType.Length != mediaType.Length + mainSuffix.Length ||
-                        !contentType.StartsWith(mediaType, StringComparison.OrdinalIgnoreCase) ||
-                        !contentType.EndsWith(mainSuffix, StringComparison.OrdinalIgnoreCase)
-                        )
-                    {
-                        return null;
-                    }
                 }
                 return document;
             }catch(InternalApplicationException)
@@ -82,6 +99,27 @@ namespace IS4.SFI.Formats
             }catch{
                 return null;
             }
+        }
+
+        internal static Dictionary<string, (string, string)> BuildOfficeFormats((string mime, string ext)[] normal, (string mime, string ext)[] macro)
+        {
+            const string mainSuffix = ".main+xml";
+
+            var dict = new Dictionary<string, (string, string)>(StringComparer.OrdinalIgnoreCase);
+
+            foreach(var (mime, ext) in normal)
+            {
+                var mimePart = "application/vnd.openxmlformats-officedocument." + mime;
+                dict[mimePart + mainSuffix] = (mimePart, ext);
+            }
+
+            foreach(var (mime, ext) in macro)
+            {
+                var mimePart = "application/vnd.ms-" + mime + ".macroEnabled";
+                dict[mimePart + mainSuffix] = (mimePart + ".12", ext);
+            }
+
+            return dict;
         }
 
         class PackageInfo : EntityAnalyzer, IContainerAnalyzer<IContainerNode, IFileNodeInfo>, IContainerAnalyzer
