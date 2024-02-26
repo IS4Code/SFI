@@ -362,11 +362,11 @@ _:n1 at:pathObject <file:///example.ppsx>;
                                                    nfo:verticalResolution 72.009;
                                                    nfo:width 88 ;
                                                    a schema:MediaObject,
-                                                     nfo:Image,
-                                                     schema:ImageObject;
-                                                   skos:prefLabel "PNG object (88×31)"@en,
-                                                                  "PNG object (88×31, 8-bit)"@en,
-                                                                  "PNG object (4.96 KiB)"@en.
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "PNG object (4.96 KiB)"@en,
+                                                                  "PNG object (88×31)"@en,
+                                                                  "PNG object (88×31, 8-bit)"@en.
 <ni:///mh;1QEQG28zEg4mE613i7RiEUj2AA?ct=application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
                                                                                                                                                                  a schema:MediaObject;
                                                                                                                                                                  skos:prefLabel "SLDLAYOUT object"@en.
@@ -1039,29 +1039,18 @@ _:n1 at:pathObject <file:///example.ppsx>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQqXYWRFjcsoQElb9lQp5HQg?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (272.07 KiB)"@en.
-<ni:///mh;1QEQqXYWRFjcsoQElb9lQp5HQg?ct=application/vnd.openxmlformats-officedocument.spreadsheetml.sheet> dcterms:created "2014-09-24T15:58:09.000000Z"^^xsd:dateTime;
-                                                                                                           dcterms:creator "Vb1";
-                                                                                                           dcterms:modified "2018-07-10T13:33:57.000000Z"^^xsd:dateTime;
-                                                                                                           dcterms:title "PPT test file";
-                                                                                                           schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.openxmlformats-officedocument.spreadsheetml.sheet>;
-                                                                                                           schema:version "15";
-                                                                                                           a schema:MediaObject,
-                                                                                                             schema:DigitalDocument,
-                                                                                                             nfo:Document;
-                                                                                                           skos:prefLabel "XLSX object (PPT test file)"@en.
-<ni:///mh;1QEQqXYWRFjcsoQElb9lQp5HQg?ct=application/vnd.openxmlformats-officedocument.wordprocessingml.document> dcterms:created "2014-09-24T15:58:09.000000Z"^^xsd:dateTime;
-                                                                                                                 dcterms:creator "Vb1";
-                                                                                                                 dcterms:modified "2018-07-10T13:33:57.000000Z"^^xsd:dateTime;
-                                                                                                                 dcterms:title "PPT test file";
-                                                                                                                 schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.openxmlformats-officedocument.wordprocessingml.document>;
-                                                                                                                 schema:version "15";
-                                                                                                                 a schema:MediaObject,
-                                                                                                                   schema:DigitalDocument,
-                                                                                                                   nfo:Document;
-                                                                                                                 skos:prefLabel "DOCX object (PPT test file)"@en.
+<ni:///mh;1QEQqXYWRFjcsoQElb9lQp5HQg?ct=application/vnd.openxmlformats-officedocument.presentationml.presentation> dcterms:created "2014-09-24T15:58:09.000000Z"^^xsd:dateTime;
+                                                                                                                   dcterms:creator "Vb1";
+                                                                                                                   dcterms:modified "2018-07-10T13:33:57.000000Z"^^xsd:dateTime;
+                                                                                                                   dcterms:title "PPT test file";
+                                                                                                                   schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.openxmlformats-officedocument.presentationml.presentation>;
+                                                                                                                   schema:version "15";
+                                                                                                                   a schema:MediaObject,
+                                                                                                                     schema:DigitalDocument,
+                                                                                                                     nfo:Document;
+                                                                                                                   skos:prefLabel "PPTX object (PPT test file)"@en.
 <ni:///mh;1QEQqXYWRFjcsoQElb9lQp5HQg?ct=application/zip> at:pathObject <file:///.>;
-                                                         dcterms:hasFormat <ni:///mh;1QEQqXYWRFjcsoQElb9lQp5HQg?ct=application/vnd.openxmlformats-officedocument.spreadsheetml.sheet>,
-                                                                           <ni:///mh;1QEQqXYWRFjcsoQElb9lQp5HQg?ct=application/vnd.openxmlformats-officedocument.wordprocessingml.document>;
+                                                         dcterms:hasFormat <ni:///mh;1QEQqXYWRFjcsoQElb9lQp5HQg?ct=application/vnd.openxmlformats-officedocument.presentationml.presentation>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQqXYWRFjcsoQElb9lQp5HQg?ct=application/zip#/>;
                                                          a schema:MediaObject,

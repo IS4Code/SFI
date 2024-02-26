@@ -350,18 +350,8 @@ _:n1 at:pathObject <file:///example.xlsx>;
                                                                                                              schema:DigitalDocument,
                                                                                                              nfo:Document;
                                                                                                            skos:prefLabel "XLSX object"@en.
-<ni:///mh;1QEQc_9Hk9TumYbAQP7tyV7FtA?ct=application/vnd.openxmlformats-officedocument.wordprocessingml.document> dcterms:created "2014-09-24T13:27:18.000000Z"^^xsd:dateTime;
-                                                                                                                 dcterms:creator "Vb1";
-                                                                                                                 dcterms:modified "2014-11-18T13:59:18.000000Z"^^xsd:dateTime;
-                                                                                                                 schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.openxmlformats-officedocument.wordprocessingml.document>;
-                                                                                                                 schema:version "6";
-                                                                                                                 a schema:MediaObject,
-                                                                                                                   schema:DigitalDocument,
-                                                                                                                   nfo:Document;
-                                                                                                                 skos:prefLabel "DOCX object"@en.
 <ni:///mh;1QEQc_9Hk9TumYbAQP7tyV7FtA?ct=application/zip> at:pathObject <file:///.>;
-                                                         dcterms:hasFormat <ni:///mh;1QEQc_9Hk9TumYbAQP7tyV7FtA?ct=application/vnd.openxmlformats-officedocument.spreadsheetml.sheet>,
-                                                                           <ni:///mh;1QEQc_9Hk9TumYbAQP7tyV7FtA?ct=application/vnd.openxmlformats-officedocument.wordprocessingml.document>;
+                                                         dcterms:hasFormat <ni:///mh;1QEQc_9Hk9TumYbAQP7tyV7FtA?ct=application/vnd.openxmlformats-officedocument.spreadsheetml.sheet>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQc_9Hk9TumYbAQP7tyV7FtA?ct=application/zip#/>;
                                                          a schema:MediaObject,
@@ -895,8 +885,8 @@ _:n1 at:pathObject <file:///example.xlsx>;
                                                      schema:ImageObject,
                                                      nfo:Image;
                                                    skos:prefLabel "PNG object (296×103, 8-bit)"@en,
-                                                                  "PNG object (296×103)"@en,
-                                                                  "PNG object (12.97 KiB)"@en.
+                                                                  "PNG object (12.97 KiB)"@en,
+                                                                  "PNG object (296×103)"@en.
 <urn:md5:2368904FA2E33623455644E96519E65F> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "I2iQT6LjNiNFVkTpZRnmXw=="^^xsd:base64Binary.

@@ -437,23 +437,15 @@ _:n1 at:pathObject <file:///example.pptx>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQCxWX4sKxXt8nTUek9vjz7g?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (270.71 KiB)"@en.
-<ni:///mh;1QEQCxWX4sKxXt8nTUek9vjz7g?ct=application/vnd.openxmlformats-officedocument.spreadsheetml.sheet> dcterms:modified "2018-07-10T13:26:53.000000Z"^^xsd:dateTime;
-                                                                                                           schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.openxmlformats-officedocument.spreadsheetml.sheet>;
-                                                                                                           schema:version "2";
-                                                                                                           a schema:MediaObject,
-                                                                                                             schema:DigitalDocument,
-                                                                                                             nfo:Document;
-                                                                                                           skos:prefLabel "XLSX object"@en.
-<ni:///mh;1QEQCxWX4sKxXt8nTUek9vjz7g?ct=application/vnd.openxmlformats-officedocument.wordprocessingml.document> dcterms:modified "2018-07-10T13:26:53.000000Z"^^xsd:dateTime;
-                                                                                                                 schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.openxmlformats-officedocument.wordprocessingml.document>;
-                                                                                                                 schema:version "2";
-                                                                                                                 a schema:MediaObject,
-                                                                                                                   schema:DigitalDocument,
-                                                                                                                   nfo:Document;
-                                                                                                                 skos:prefLabel "DOCX object"@en.
+<ni:///mh;1QEQCxWX4sKxXt8nTUek9vjz7g?ct=application/vnd.openxmlformats-officedocument.presentationml.presentation> dcterms:modified "2018-07-10T13:26:53.000000Z"^^xsd:dateTime;
+                                                                                                                   schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.openxmlformats-officedocument.presentationml.presentation>;
+                                                                                                                   schema:version "2";
+                                                                                                                   a schema:MediaObject,
+                                                                                                                     schema:DigitalDocument,
+                                                                                                                     nfo:Document;
+                                                                                                                   skos:prefLabel "PPTX object"@en.
 <ni:///mh;1QEQCxWX4sKxXt8nTUek9vjz7g?ct=application/zip> at:pathObject <file:///.>;
-                                                         dcterms:hasFormat <ni:///mh;1QEQCxWX4sKxXt8nTUek9vjz7g?ct=application/vnd.openxmlformats-officedocument.spreadsheetml.sheet>,
-                                                                           <ni:///mh;1QEQCxWX4sKxXt8nTUek9vjz7g?ct=application/vnd.openxmlformats-officedocument.wordprocessingml.document>;
+                                                         dcterms:hasFormat <ni:///mh;1QEQCxWX4sKxXt8nTUek9vjz7g?ct=application/vnd.openxmlformats-officedocument.presentationml.presentation>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQCxWX4sKxXt8nTUek9vjz7g?ct=application/zip#/>;
                                                          a schema:MediaObject,
@@ -1059,9 +1051,9 @@ _:n1 at:pathObject <file:///example.pptx>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "PNG object (4.96 KiB)"@en,
-                                                                  "PNG object (88×31)"@en,
-                                                                  "PNG object (88×31, 8-bit)"@en.
+                                                   skos:prefLabel "PNG object (88×31)"@en,
+                                                                  "PNG object (88×31, 8-bit)"@en,
+                                                                  "PNG object (4.96 KiB)"@en.
 <ni:///mh;1QEQLTqWUM68emx0-ol1iHKRrQ?ct=application/prs.implied-document+xml;root=presentation;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=presentation;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
                                                                                                                                                                     a schema:MediaObject;
                                                                                                                                                                     skos:prefLabel "PRESENTATION object"@en.
@@ -1204,8 +1196,8 @@ _:n1 at:pathObject <file:///example.pptx>;
                                                    nfo:verticalResolution 219.9894;
                                                    nfo:width 213 ;
                                                    a schema:MediaObject,
-                                                     nfo:Image,
-                                                     schema:ImageObject;
+                                                     schema:ImageObject,
+                                                     nfo:Image;
                                                    skos:prefLabel "PNG object (213×215, 8-bit)"@en,
                                                                   "PNG object (213×215)"@en,
                                                                   "PNG object (9.66 KiB)"@en.
@@ -1377,8 +1369,8 @@ _:n1 at:pathObject <file:///example.pptx>;
                                                     nfo:verticalResolution 220 ;
                                                     nfo:width 833 ;
                                                     a schema:MediaObject,
-                                                      schema:ImageObject,
-                                                      nfo:Image;
+                                                      nfo:Image,
+                                                      schema:ImageObject;
                                                     skos:prefLabel "JPG object (833×553)"@en,
                                                                    "JPG object (227.85 KiB)"@en.
 <ni:///mh;1QEQjIg89OmddW86_qlBez-9ZQ?ct=application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=Relationships;ns=%22http://schemas.openxmlformats.org/package/2006/relationships%22>;

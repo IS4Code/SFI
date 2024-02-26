@@ -257,8 +257,8 @@ _:n1 at:pathObject <file:///example.docm>;
                                                     nfo:verticalResolution 220 ;
                                                     nfo:width 571 ;
                                                     a schema:MediaObject,
-                                                      schema:ImageObject,
-                                                      nfo:Image;
+                                                      nfo:Image,
+                                                      schema:ImageObject;
                                                     skos:prefLabel "JPG object (571×379)"@en,
                                                                    "JPG object (116.38 KiB)"@en.
 <ni:///mh;1QEQ_nYTgUYsAs6TP7PlxYLjvQ?ct=application/prs.implied-document+xml;root=webSettings;ns=%22http://schemas.openxmlformats.org/wordprocessingml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=webSettings;ns=%22http://schemas.openxmlformats.org/wordprocessingml/2006/main%22>;
@@ -319,35 +319,21 @@ _:n1 at:pathObject <file:///example.docm>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQdGIG5zJK2Gfign5vxne3hg?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (152.5 KiB)"@en.
-<ni:///mh;1QEQdGIG5zJK2Gfign5vxne3hg?ct=application/vnd.openxmlformats-officedocument.spreadsheetml.sheet> dcterms:created "2015-07-16T13:06:00.000000Z"^^xsd:dateTime;
-                                                                                                           dcterms:creator "Vb1";
-                                                                                                           dcterms:modified "2015-07-16T13:06:00.000000Z"^^xsd:dateTime;
-                                                                                                           schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.openxmlformats-officedocument.spreadsheetml.sheet>;
-                                                                                                           schema:version "2";
-                                                                                                           nfo:characterCount 2713 ;
-                                                                                                           nfo:lineCount 19 ;
-                                                                                                           nfo:pageCount 1 ;
-                                                                                                           nfo:wordCount 405 ;
-                                                                                                           a schema:MediaObject,
-                                                                                                             schema:DigitalDocument,
-                                                                                                             nfo:Document;
-                                                                                                           skos:prefLabel "XLSX object"@en.
-<ni:///mh;1QEQdGIG5zJK2Gfign5vxne3hg?ct=application/vnd.openxmlformats-officedocument.wordprocessingml.document> dcterms:created "2015-07-16T13:06:00.000000Z"^^xsd:dateTime;
-                                                                                                                 dcterms:creator "Vb1";
-                                                                                                                 dcterms:modified "2015-07-16T13:06:00.000000Z"^^xsd:dateTime;
-                                                                                                                 schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.openxmlformats-officedocument.wordprocessingml.document>;
-                                                                                                                 schema:version "2";
-                                                                                                                 nfo:characterCount 2713 ;
-                                                                                                                 nfo:lineCount 19 ;
-                                                                                                                 nfo:pageCount 1 ;
-                                                                                                                 nfo:wordCount 405 ;
-                                                                                                                 a schema:MediaObject,
-                                                                                                                   schema:DigitalDocument,
-                                                                                                                   nfo:Document;
-                                                                                                                 skos:prefLabel "DOCX object"@en.
+<ni:///mh;1QEQdGIG5zJK2Gfign5vxne3hg?ct=application/vnd.ms-word.document.macroEnabled.12> dcterms:created "2015-07-16T13:06:00.000000Z"^^xsd:dateTime;
+                                                                                          dcterms:creator "Vb1";
+                                                                                          dcterms:modified "2015-07-16T13:06:00.000000Z"^^xsd:dateTime;
+                                                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.ms-word.document.macroEnabled.12>;
+                                                                                          schema:version "2";
+                                                                                          nfo:characterCount 2713 ;
+                                                                                          nfo:lineCount 19 ;
+                                                                                          nfo:pageCount 1 ;
+                                                                                          nfo:wordCount 405 ;
+                                                                                          a schema:MediaObject,
+                                                                                            schema:DigitalDocument,
+                                                                                            nfo:Document;
+                                                                                          skos:prefLabel "DOCM object"@en.
 <ni:///mh;1QEQdGIG5zJK2Gfign5vxne3hg?ct=application/zip> at:pathObject <file:///.>;
-                                                         dcterms:hasFormat <ni:///mh;1QEQdGIG5zJK2Gfign5vxne3hg?ct=application/vnd.openxmlformats-officedocument.spreadsheetml.sheet>,
-                                                                           <ni:///mh;1QEQdGIG5zJK2Gfign5vxne3hg?ct=application/vnd.openxmlformats-officedocument.wordprocessingml.document>;
+                                                         dcterms:hasFormat <ni:///mh;1QEQdGIG5zJK2Gfign5vxne3hg?ct=application/vnd.ms-word.document.macroEnabled.12>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQdGIG5zJK2Gfign5vxne3hg?ct=application/zip#/>;
                                                          a schema:MediaObject,
@@ -709,8 +695,8 @@ _:n1 at:pathObject <file:///example.docm>;
                                                      schema:ImageObject,
                                                      nfo:Image;
                                                    skos:prefLabel "PNG object (296×103, 8-bit)"@en,
-                                                                  "PNG object (296×103)"@en,
-                                                                  "PNG object (12.97 KiB)"@en.
+                                                                  "PNG object (12.97 KiB)"@en,
+                                                                  "PNG object (296×103)"@en.
 <urn:md5:0BBA8C9CB255E80C96B2E6A431A20BD4> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "C7qMnLJV6AyWsuakMaIL1A=="^^xsd:base64Binary.

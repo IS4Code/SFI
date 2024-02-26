@@ -69,19 +69,6 @@ _:n1 at:pathObject <file:///example.docx>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQ2y8bl_1uaHPJVwYQoRdAZg?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (175.49 KiB)"@en.
-<ni:///mh;1QEQ2y8bl_1uaHPJVwYQoRdAZg?ct=application/vnd.openxmlformats-officedocument.spreadsheetml.sheet> dcterms:created "2015-07-16T13:05:00.000000Z"^^xsd:dateTime;
-                                                                                                           dcterms:creator "Vb1";
-                                                                                                           dcterms:modified "2015-07-16T13:05:00.000000Z"^^xsd:dateTime;
-                                                                                                           schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.openxmlformats-officedocument.spreadsheetml.sheet>;
-                                                                                                           schema:version "2";
-                                                                                                           nfo:characterCount 2725 ;
-                                                                                                           nfo:lineCount 19 ;
-                                                                                                           nfo:pageCount 1 ;
-                                                                                                           nfo:wordCount 407 ;
-                                                                                                           a schema:MediaObject,
-                                                                                                             schema:DigitalDocument,
-                                                                                                             nfo:Document;
-                                                                                                           skos:prefLabel "XLSX object"@en.
 <ni:///mh;1QEQ2y8bl_1uaHPJVwYQoRdAZg?ct=application/vnd.openxmlformats-officedocument.wordprocessingml.document> dcterms:created "2015-07-16T13:05:00.000000Z"^^xsd:dateTime;
                                                                                                                  dcterms:creator "Vb1";
                                                                                                                  dcterms:modified "2015-07-16T13:05:00.000000Z"^^xsd:dateTime;
@@ -96,8 +83,7 @@ _:n1 at:pathObject <file:///example.docx>;
                                                                                                                    nfo:Document;
                                                                                                                  skos:prefLabel "DOCX object"@en.
 <ni:///mh;1QEQ2y8bl_1uaHPJVwYQoRdAZg?ct=application/zip> at:pathObject <file:///.>;
-                                                         dcterms:hasFormat <ni:///mh;1QEQ2y8bl_1uaHPJVwYQoRdAZg?ct=application/vnd.openxmlformats-officedocument.spreadsheetml.sheet>,
-                                                                           <ni:///mh;1QEQ2y8bl_1uaHPJVwYQoRdAZg?ct=application/vnd.openxmlformats-officedocument.wordprocessingml.document>;
+                                                         dcterms:hasFormat <ni:///mh;1QEQ2y8bl_1uaHPJVwYQoRdAZg?ct=application/vnd.openxmlformats-officedocument.wordprocessingml.document>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQ2y8bl_1uaHPJVwYQoRdAZg?ct=application/zip#/>;
                                                          a schema:MediaObject,
@@ -333,8 +319,8 @@ _:n1 at:pathObject <file:///example.docx>;
                                                      schema:ImageObject,
                                                      nfo:Image;
                                                    skos:prefLabel "PNG object (164×165, 8-bit)"@en,
-                                                                  "PNG object (164×165)"@en,
-                                                                  "PNG object (6.94 KiB)"@en.
+                                                                  "PNG object (6.94 KiB)"@en,
+                                                                  "PNG object (164×165)"@en.
 <ni:///mh;1QEQDOn9YgPrhZixFvshupF1bw?ct=application/octet-stream> at:digest <urn:md5:0CE9FD6203EB8598B116FB21BA91756F>;
                                                                   dcterms:extent "143891"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQDOn9YgPrhZixFvshupF1bw?ct=image/jpeg>;

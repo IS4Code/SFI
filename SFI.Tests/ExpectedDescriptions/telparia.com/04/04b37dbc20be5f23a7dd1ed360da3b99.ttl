@@ -164,19 +164,6 @@ _:n1 at:pathObject <file:///testing.docx>;
                                                                   dcterms:hasFormat <ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip>;
                                                                   a cnt:ContentAsBase64;
                                                                   skos:prefLabel "binary data (10.48 KiB)"@en.
-<ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/vnd.openxmlformats-officedocument.spreadsheetml.sheet> dcterms:created "2014-04-18T13:01:00.000000Z"^^xsd:dateTime;
-                                                                                                           dcterms:creator "dtobias";
-                                                                                                           dcterms:modified "2014-04-18T13:03:00.000000Z"^^xsd:dateTime;
-                                                                                                           schema:encodingFormat <https://w3id.org/uri4uri/mime/application/vnd.openxmlformats-officedocument.spreadsheetml.sheet>;
-                                                                                                           schema:version "1";
-                                                                                                           nfo:characterCount 328 ;
-                                                                                                           nfo:lineCount 2 ;
-                                                                                                           nfo:pageCount 1 ;
-                                                                                                           nfo:wordCount 49 ;
-                                                                                                           a schema:MediaObject,
-                                                                                                             schema:DigitalDocument,
-                                                                                                             nfo:Document;
-                                                                                                           skos:prefLabel "XLSX object"@en.
 <ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/vnd.openxmlformats-officedocument.wordprocessingml.document> dcterms:created "2014-04-18T13:01:00.000000Z"^^xsd:dateTime;
                                                                                                                  dcterms:creator "dtobias";
                                                                                                                  dcterms:modified "2014-04-18T13:03:00.000000Z"^^xsd:dateTime;
@@ -191,8 +178,7 @@ _:n1 at:pathObject <file:///testing.docx>;
                                                                                                                    nfo:Document;
                                                                                                                  skos:prefLabel "DOCX object"@en.
 <ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip> at:pathObject <file:///.>;
-                                                         dcterms:hasFormat <ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/vnd.openxmlformats-officedocument.spreadsheetml.sheet>,
-                                                                           <ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/vnd.openxmlformats-officedocument.wordprocessingml.document>;
+                                                         dcterms:hasFormat <ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/vnd.openxmlformats-officedocument.wordprocessingml.document>;
                                                          schema:encodingFormat <https://w3id.org/uri4uri/mime/application/zip>;
                                                          nie:interpretedAs <ni:///mh;1QEQI7W2J9enmLUWubRNdLXy9w?ct=application/zip#/>;
                                                          a schema:MediaObject,
