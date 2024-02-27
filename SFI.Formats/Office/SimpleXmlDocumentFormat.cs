@@ -40,7 +40,12 @@ namespace IS4.SFI.Formats
             return new Document(package);
         }
 
-        class Document : POIXMLDocument
+        internal interface IPresentation
+        {
+
+        }
+
+        class Document : POIXMLDocument, IPresentation
         {
             public Document(OPCPackage package) : base(package)
             {

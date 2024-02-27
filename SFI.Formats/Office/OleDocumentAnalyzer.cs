@@ -1,7 +1,10 @@
-﻿using IS4.SFI.Services;
+﻿using IS4.SFI.Formats;
+using IS4.SFI.Services;
 using IS4.SFI.Vocabulary;
 using NPOI;
-using System;
+using NPOI.HWPF;
+using NPOI.SS.UserModel;
+using NPOI.XWPF.UserModel;
 using System.ComponentModel;
 using System.Threading.Tasks;
 
@@ -23,6 +26,18 @@ namespace IS4.SFI.Analyzers
         public async override ValueTask<AnalysisResult> Analyze(POIDocument document, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var node = GetNode(context);
+
+            if(document is IWorkbook)
+            {
+                node.SetClass(Classes.Spreadsheet);
+                node.SetClass(Classes.SpreadsheetDigitalDocument);
+            }
+            if(document is Document or HWPFDocumentCore)
+            {
+                node.SetClass(Classes.PaginatedTextDocument);
+                node.SetClass(Classes.TextDigitalDocument);
+            }
+
             string? label = null;
             var sum = document.SummaryInformation;
             if(sum != null)

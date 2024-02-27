@@ -56,6 +56,24 @@
         /// </summary>
         [Uri(Schema)]
         public static readonly ClassUri DigitalDocument;
+
+        /// <summary>
+        /// <c><see cref="Schema"/>:TextDigitalDocument</c>.
+        /// </summary>
+        [Uri(Schema)]
+        public static readonly ClassUri TextDigitalDocument;
+
+        /// <summary>
+        /// <c><see cref="Schema"/>:SpreadsheetDigitalDocument</c>.
+        /// </summary>
+        [Uri(Schema)]
+        public static readonly ClassUri SpreadsheetDigitalDocument;
+
+        /// <summary>
+        /// <c><see cref="Schema"/>:PresentationDigitalDocument</c>.
+        /// </summary>
+        [Uri(Schema)]
+        public static readonly ClassUri PresentationDigitalDocument;
         #endregion
 
         #region cnt
@@ -150,6 +168,24 @@
         /// </summary>
         [Uri(Nfo)]
         public static readonly ClassUri Document;
+
+        /// <summary>
+        /// <c><see cref="Nfo"/>:Presentation</c>.
+        /// </summary>
+        [Uri(Nfo)]
+        public static readonly ClassUri Presentation;
+
+        /// <summary>
+        /// <c><see cref="Nfo"/>:PaginatedTextDocument</c>.
+        /// </summary>
+        [Uri(Nfo)]
+        public static readonly ClassUri PaginatedTextDocument;
+
+        /// <summary>
+        /// <c><see cref="Nfo"/>:Spreadsheet</c>.
+        /// </summary>
+        [Uri(Nfo)]
+        public static readonly ClassUri Spreadsheet;
 
         /// <summary>
         /// <c><see cref="Nfo"/>:MediaStream</c>.

@@ -1,6 +1,9 @@
-﻿using IS4.SFI.Services;
+﻿using IS4.SFI.Formats;
+using IS4.SFI.Services;
 using IS4.SFI.Vocabulary;
 using NPOI;
+using NPOI.SS.UserModel;
+using NPOI.XWPF.UserModel;
 using System.ComponentModel;
 using System.Threading.Tasks;
 
@@ -22,6 +25,23 @@ namespace IS4.SFI.Analyzers
         public async override ValueTask<AnalysisResult> Analyze(POIXMLDocument document, AnalysisContext context, IEntityAnalyzers analyzers)
         {
             var node = GetNode(context);
+
+            if(document is IWorkbook)
+            {
+                node.SetClass(Classes.Spreadsheet);
+                node.SetClass(Classes.SpreadsheetDigitalDocument);
+            }
+            if(document is Document)
+            {
+                node.SetClass(Classes.PaginatedTextDocument);
+                node.SetClass(Classes.TextDigitalDocument);
+            }
+            if(document is SimpleXmlDocumentFormat.IPresentation)
+            {
+                node.SetClass(Classes.Presentation);
+                node.SetClass(Classes.PresentationDigitalDocument);
+            }
+
             var properties = document.GetProperties();
             string? label = null;
             var core = properties.CoreProperties;
