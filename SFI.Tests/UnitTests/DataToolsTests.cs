@@ -265,5 +265,25 @@ namespace IS4.SFI.Tests
         {
             return input.Split(splitChars, StringSplitOptions.RemoveEmptyEntries).Select(n => Convert.ToByte(n, 16)).ToArray();
         }
+
+        /// <summary>
+        /// The tests for <see cref="GetStringKey(ArraySegment{byte})"/>
+        /// and <see cref="GetStringKey(ReadOnlySpan{byte})"/>.
+        /// </summary>
+        /// <remarks>
+        /// The results of the method are not contractual
+        /// </remarks>
+        [TestMethod]
+        [DataRow(null, 0, 0, "#")]
+        [DataRow(new byte[0], 0, 0, "#")]
+        [DataRow(new byte[] { 0x20, 0x00, 0x21 }, 0, 3, "$ !")]
+        [DataRow(new byte[] { 0x20, 0x00, 0x21, 0x00 }, 0, 4, "# !")]
+        public void GetStringKeyTests(byte[]? array, int offset, int count, string expected)
+        {
+            var result = GetStringKey(array == null ? default : new ArraySegment<byte>(array, offset, count));
+            Assert.AreEqual(expected, result);
+            var result2 = GetStringKey(array == null ? default : array.AsSpan(offset, count));
+            Assert.AreEqual(expected, result2);
+        }
     }
 }

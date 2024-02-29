@@ -481,19 +481,31 @@ namespace IS4.SFI
         /// <returns>A string with characters matching <paramref name="bytes"/>.</returns>
         public static string GetStringKey(ArraySegment<byte> bytes)
         {
+            if(bytes.Count == 0)
+            {
+                return "#";
+            }
             return GetStringKey(bytes.AsSpan());
         }
 
         /// <inheritdoc cref="GetStringKey(ArraySegment{byte})"/>
         public static unsafe string GetStringKey(ReadOnlySpan<byte> bytes)
         {
+            if(bytes.Length == 0)
+            {
+                return "#";
+            }
             fixed(byte* bytesPtr = bytes)
             {
                 return RawCopyStringEncoding.Instance.GetString(bytesPtr, bytes.Length);
             }
         }
 
-        class RawCopyStringEncoding : Encoding
+        /// <remarks>
+        /// On .NET Standard 2.1+, we could use <c>String.Create&lt;TState&gt;(Int32, TState, SpanAction&lt;Char,TState&gt;)</c>,
+        /// but this works fine as it is.
+        /// </remarks>
+        sealed class RawCopyStringEncoding : Encoding
         {
             public static readonly RawCopyStringEncoding Instance = new();
 
