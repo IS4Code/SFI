@@ -32,6 +32,10 @@
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>sfi</ToolCommandName>
     <GenerateNuspecDependsOn>$(GenerateNuspecDependsOn);_ExcludeTargetFramework;_ExcludeTargetFrameworkDependency</GenerateNuspecDependsOn>
+    <Configurations>Debug;Release;Minimal</Configurations>
+    <ConditionalCompilationSymbols>
+      <ConditionalCompilationSymbol Name="SFI_MINIMAL" Comment="Minimal build without additional components." />
+    </ConditionalCompilationSymbols>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)' == 'net6.0-windows'">
@@ -41,12 +45,21 @@
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <UseWindowsForms>true</UseWindowsForms>
     <DisableWinExeOutputInference>true</DisableWinExeOutputInference>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     <_SuppressWinFormsTrimError>true</_SuppressWinFormsTrimError>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)' == 'net461'">
     <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Minimal'">
+    <DefineConstants>SFI_MINIMAL</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
@@ -77,15 +90,23 @@
     <ProjectReference Include="..\SFI.Application\SFI.Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0-windows' or '$(TargetFramework)' == 'net461'">
-    <ProjectReference Include="..\SFI.Formats\All\SFI.Formats.All.csproj" />
-    <ProjectReference Include="..\SFI.Hashes\All\SFI.Hashes.All.csproj" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0' or '$(TargetFramework)' == 'netstandard2.0'">
-    <ProjectReference Include="..\SFI.Formats\AllPortable\SFI.Formats.AllPortable.csproj" />
-    <ProjectReference Include="..\SFI.Hashes\AllPortable\SFI.Hashes.AllPortable.csproj" />
-  </ItemGroup>
+  <Choose>
+    <When Condition="'$(Configuration)' == 'Minimal'">
+      <!-- No additional references. -->
+    </When>
+    <When Condition="'$(TargetFramework)' == 'net6.0-windows' or '$(TargetFramework)' == 'net461'">
+      <ItemGroup>
+        <ProjectReference Include="..\SFI.Formats\All\SFI.Formats.All.csproj" />
+        <ProjectReference Include="..\SFI.Hashes\All\SFI.Hashes.All.csproj" />
+      </ItemGroup>
+    </When>
+    <When Condition="'$(TargetFramework)' == 'net6.0' or '$(TargetFramework)' == 'netstandard2.0'">
+      <ItemGroup>
+        <ProjectReference Include="..\SFI.Formats\AllPortable\SFI.Formats.AllPortable.csproj" />
+        <ProjectReference Include="..\SFI.Hashes\AllPortable\SFI.Hashes.AllPortable.csproj" />
+      </ItemGroup>
+    </When>
+  </Choose>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
     <Reference Include="System.Windows.Forms" />

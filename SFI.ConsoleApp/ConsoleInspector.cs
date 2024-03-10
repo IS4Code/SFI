@@ -18,11 +18,13 @@ namespace IS4.SFI.ConsoleApp
     {
         string baseDirectory = Path.Combine(AppContext.BaseDirectory, "plugins");
 
+#if !SFI_MINIMAL
 #if WINDOWS || NETFRAMEWORK
         /// <summary>
         /// The default image analyzer.
         /// </summary>
         public ImageAnalyzer? ImageAnalyzer { get; private set; }
+#endif
 #endif
 
         /// <inheritdoc/>
@@ -33,6 +35,7 @@ namespace IS4.SFI.ConsoleApp
 
         public async override ValueTask AddDefault()
         {
+#if !SFI_MINIMAL
 #if WINDOWS || NETFRAMEWORK
             await LoadAssembly(Formats.All.Provider.Assembly);
             await LoadAssembly(Hashes.All.Provider.Assembly);
@@ -56,6 +59,7 @@ namespace IS4.SFI.ConsoleApp
 #else
             await LoadAssembly(Formats.AllPortable.Provider.Assembly);
             await LoadAssembly(Hashes.AllPortable.Provider.Assembly);
+#endif
 #endif
 
             Plugins.Clear();
