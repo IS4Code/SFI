@@ -213,6 +213,18 @@ namespace IS4.SFI
 
         async ValueTask<AnalysisResult> AnalyzeInner<T>(T entity, AnalysisContext context) where T : notnull
         {
+            try
+            {
+                // Detect too deep recursion - may happen only for extremely nested structures
+                // within a single file (because DataAnalyzer is asynchronous).
+                RuntimeHelpers.EnsureSufficientExecutionStack();
+            }
+            catch(InsufficientExecutionStackException)
+            {
+                // Break the recursion by forcing the continuation to be executed asynchronously
+                await Task.Yield();
+            }
+
             var wrapper = MatchRoot(entity, context, this, null);
             if(wrapper != null)
             {
