@@ -32,7 +32,6 @@
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>sfi</ToolCommandName>
     <GenerateNuspecDependsOn>$(GenerateNuspecDependsOn);_ExcludeTargetFramework;_ExcludeTargetFrameworkDependency</GenerateNuspecDependsOn>
-    <Configurations>Debug;Release;Minimal</Configurations>
     <ConditionalCompilationSymbols>
       <ConditionalCompilationSymbol Name="SFI_MINIMAL" Comment="Minimal build without additional components." />
     </ConditionalCompilationSymbols>
@@ -58,7 +57,7 @@
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)' == 'Minimal'">
+  <PropertyGroup Condition="'$(SfiMinimalBuild)' == 'true'">
     <DefineConstants>SFI_MINIMAL</DefineConstants>
   </PropertyGroup>
 
@@ -91,7 +90,7 @@
   </ItemGroup>
 
   <Choose>
-    <When Condition="'$(Configuration)' == 'Minimal'">
+    <When Condition="'$(SfiMinimalBuild)' == 'true'">
       <!-- No additional references. -->
     </When>
     <When Condition="'$(TargetFramework)' == 'net6.0-windows' or '$(TargetFramework)' == 'net461'">
