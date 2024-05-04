@@ -3,6 +3,7 @@ using IS4.SFI.Vocabulary;
 using System;
 using System.ComponentModel;
 using System.IO;
+using System.Security.Cryptography;
 using System.Threading;
 using System.Threading.Tasks;
 using Cryptography = System.Security.Cryptography;
@@ -85,6 +86,9 @@ namespace IS4.SFI.Tools
             try{
                 return new Hash<THash>(factory, identifier, prefix, numericIdentifier, niName, formattingMethod);
             }catch(PlatformNotSupportedException)
+            {
+                return null;
+            }catch(CryptographicException)
             {
                 return null;
             }
