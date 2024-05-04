@@ -41,7 +41,7 @@ namespace IS4.SFI.Analyzers
                             node.Set(property, r.Numerator);
                             continue;
                         }
-                        value = r.GetSimplifiedInstance().ToString();
+                        value = r.ToString();
                         datatype = Datatypes.Rational;
                         break;
                     case StringValue s:
