@@ -18,6 +18,7 @@ namespace IS4.SFI.Formats
         /// The collection of file names which are looked up in a directory.
         /// By default it contains only "FILE_ID.DIZ".
         /// </summary>
+        [Description("The collection of file names which are looked up in a directory.")]
         public ICollection<string> FileNames { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
         /// <summary>
