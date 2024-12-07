@@ -199,7 +199,7 @@ namespace IS4.SFI.Application.Tools
         /// <param name="valueMap">The function that maps property names to their values.</param>
         /// <param name="logger">The <see cref="ILogger"/> instance to use for logging.</param>
         [DynamicDependency(nameof(AddToCollection) + "``1", typeof(ConfigurationTools))]
-        public static void SetProperties(object component, string componentName, Func<string, string?> valueMap, ILogger? logger)
+        public static void SetProperties(object component, string componentName, Func<string, IEnumerable<string>> valueMap, ILogger? logger)
         {
             var batch = component as ISupportInitialize;
             batch?.BeginInit();
@@ -208,9 +208,10 @@ namespace IS4.SFI.Application.Tools
                 foreach(var prop in GetConfigurableProperties(component))
                 {
 				    var name = TextTools.FormatComponentName(prop.Name);
-				    if(valueMap(name) is string value)
+                    bool first = true;
+				    foreach(var value in valueMap(name))
 				    {
-                        if(prop.IsObsolete(out var info))
+                        if(first && prop.IsObsolete(out var info))
                         {
                             logger?.Log(info.IsError ? LogLevel.Error : LogLevel.Warning, $"Property {componentName}:{name} is obsolete: " + info.Message);
                         }
@@ -221,6 +222,9 @@ namespace IS4.SFI.Application.Tools
                         {
                             // Must be a collection
                             converter = TypeDescriptor.GetConverter(GetCollectionElementType(prop.PropertyType));
+                        }else if(!first)
+                        {
+                            throw new ApplicationException($"The non-collection property {componentName}:{name} is assigned more than one value.");
                         }
 					    object? convertedValue = null;
 					    Exception? conversionException = null;
@@ -248,6 +252,7 @@ namespace IS4.SFI.Application.Tools
 					    {
 						    throw new ApplicationException($"Cannot assign value '{value}' to property {componentName}:{name}: {e.Message}", e);
 					    }
+                        first = false;
 				    }
                 }
             }finally{ 

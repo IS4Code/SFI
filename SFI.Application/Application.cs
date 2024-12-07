@@ -70,7 +70,7 @@ namespace IS4.SFI
 		string? mainHashName;
 		string? output;
 
-		readonly Dictionary<string, Dictionary<string, string>> componentProperties = new(StringComparer.OrdinalIgnoreCase);
+		readonly Dictionary<string, Dictionary<string, List<string>>> componentProperties = new(StringComparer.OrdinalIgnoreCase);
         readonly List<KeyValuePair<Regex, List<KeyValuePair<Regex, string>>>> regexComponentProperties = new();
 
         bool quiet;
@@ -309,7 +309,7 @@ namespace IS4.SFI
             await writer(stream);
         }
 
-        private void ExtractComponentProperties(string id, out Dictionary<string, string>? properties, out List<KeyValuePair<Regex, string>>? regexProperties)
+        private void ExtractComponentProperties(string id, out Dictionary<string, List<string>>? properties, out List<KeyValuePair<Regex, string>>? regexProperties)
 		{
 			if(componentProperties.TryGetValue(id, out properties))
             {
@@ -328,34 +328,33 @@ namespace IS4.SFI
 		}
 
         #region Components
-        private void SetProperties(object component, string componentName, IDictionary<string, string>? properties, IList<KeyValuePair<Regex, string>>? regexProperties)
+        private void SetProperties(object component, string componentName, IDictionary<string, List<string>>? properties, IList<KeyValuePair<Regex, string>>? regexProperties)
         {
 			if(properties == null && regexProperties == null)
 			{
 				return;
 			}
 			ConfigurationTools.SetProperties(component, componentName, name => {
-				if(properties != null && properties.TryGetValue(name, out var value))
+				if(properties != null && properties.TryGetValue(name, out var list))
 				{
-					properties.Remove(name);
-					return value;
+                    properties.Remove(name);
+				}else{
+					list = null;
 				}
 				if(regexProperties != null)
 				{
-					string? regexValue = null;
 					foreach(var pair in regexProperties)
 					{
 						if(pair.Key.IsMatch(name))
 						{
-                            regexValue = pair.Value;
+							(list ??= new()).Add(pair.Value);
 						}
 					}
-					return regexValue;
 				}
-				return null;
+				return list ?? (IEnumerable<string>)Array.Empty<string>();
 			}, logger);
 
-			if(properties != null)
+            if(properties != null)
             {
                 foreach(var pair in properties)
                 {
@@ -773,7 +772,7 @@ namespace IS4.SFI
 				default:
 					if(componentPropertyRegex.IsMatch(option))
 					{
-						return OptionArgumentFlags.RequiredArgument;
+						return OptionArgumentFlags.RequiredArgument | OptionArgumentFlags.AllowMultiple;
 					}
 					throw UnrecognizedOption(option);
 			}
@@ -845,7 +844,11 @@ namespace IS4.SFI
 							{
 								componentProperties[componentId] = dict = new(StringComparer.OrdinalIgnoreCase);
 							}
-							dict[propertyId] = argument!;
+							if(!dict.TryGetValue(propertyId, out var list))
+							{
+								dict[propertyId] = list = new();
+                            }
+							list.Add(argument!);
 						}
 					}
 					break;
