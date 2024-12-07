@@ -4,6 +4,7 @@ using IS4.SFI.Services;
 using Microsoft.Extensions.Logging;
 using MorseCode.ITask;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -421,12 +422,30 @@ namespace IS4.SFI
 				var line = $"{id}:{TextTools.FormatComponentName(prop.Name)} ({typeDesc})";
 				if(value != null)
 				{
-					LogWriter?.WriteLine($"  - {line} = {converter.ConvertToInvariantString(value)}");
+					string text;
+					if(GetPropertySequenceValue(prop, type, value, ref converter) is { } sequence)
+					{
+						// Format as sequence
+						text = String.Join(", ", sequence.Cast<object>().Select(converter.ConvertToInvariantString));
+					}else{
+						text = converter.ConvertToInvariantString(value);
+					}
+					LogWriter?.WriteLine($"  - {line} = {text}");
 				}else{
 					LogWriter?.WriteLine($"  - {line}");
 				}
 			}
         }
+
+		static IEnumerable? GetPropertySequenceValue(PropertyDescriptor property, Type type, object value, ref TypeConverter typeConverter)
+		{
+			if(property.IsReadOnly && value is IEnumerable sequence && value is not string && ConfigurationTools.GetCollectionElementType(type) is { } elementType)
+            {
+                typeConverter = TypeDescriptor.GetConverter(elementType);
+				return sequence;
+            }
+			return null;
+		}
 
         SFI.Application.ComponentCollection? aboutBrowsedCollection;
 
@@ -506,7 +525,14 @@ namespace IS4.SFI
                     var value = prop.GetValue(component);
 					if(value != null)
 					{
-						LogWriter?.WriteLine($"Value: {converter.ConvertToInvariantString(value)}");
+						if(GetPropertySequenceValue(prop, propType, value, ref converter) is { } sequence)
+						{
+							// Format as sequence
+							var text = String.Join(", ", sequence.Cast<object>().Select(converter.ConvertToInvariantString));
+							LogWriter?.WriteLine($"Values: {text}");
+						}else{
+                            LogWriter?.WriteLine($"Value: {converter.ConvertToInvariantString(value)}");
+                        }
 					}
 				}
             }

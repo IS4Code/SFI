@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.CSharp.RuntimeBinder;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -34,6 +35,7 @@ namespace IS4.SFI.Application.Tools
         /// Returns the collection of all properties on a component
         /// that can be configured from the command line.
         /// </summary>
+        /// <param name="component">The component to configure.</param>
         /// <remarks>
         /// Configurable properties are those properties that can be set (not read-only),
         /// which do not have <c>[<see cref="BrowsableAttribute"/>(<see langword="false"/>)]</c>, and their type
@@ -42,14 +44,96 @@ namespace IS4.SFI.Application.Tools
         public static IEnumerable<PropertyDescriptor> GetConfigurableProperties(object component)
         {
             return TypeDescriptor.GetProperties(component).Cast<PropertyDescriptor>().Where(
-                p =>
-                    !p.IsReadOnly &&
-                    p.IsBrowsable &&
-                    IsStringConvertible(p.Converter)
+                p => p.IsBrowsable && (
+                    IsConfigurableStringProperty(p) ||
+                    IsConfigurableCollectionProperty(p, component)
+                )
             );
         }
 
+        /// <summary>
+        /// Checks whether <paramref name="prop"/> can be configured using
+        /// a string value.
+        /// </summary>
+        /// <param name="prop">The property to check.</param>
+        /// <returns><see langword="true"/> if the property is accessible as a string, <see langword="false"/> otherwise.</returns>
+        public static bool IsConfigurableStringProperty(PropertyDescriptor prop)
+        {
+            return !prop.IsReadOnly && IsStringConvertible(prop.Converter);
+        }
+
         static readonly Type stringType = typeof(string);
+        static readonly Type enumerableType = typeof(IEnumerable);
+        static readonly Type collectionType = typeof(ICollection<>);
+
+        /// <summary>
+        /// Checks whether <paramref name="property"/> can be configured using
+        /// a collection of strings.
+        /// </summary>
+        /// <param name="property">The property to check.</param>
+        /// <param name="component">The component that has the property.</param>
+        /// <returns><see langword="true"/> if the property is accessible as a collection of strings, <see langword="false"/> otherwise.</returns>
+        [DynamicDependency(nameof(IsCollectionAccessible) + "``1", typeof(ConfigurationTools))]
+        public static bool IsConfigurableCollectionProperty(PropertyDescriptor property, object component)
+        {
+            if(!property.IsReadOnly)
+            {
+                // Set as a whole; not supported
+                return false;
+            }
+            if(property.Attributes.OfType<ComponentCollectionAttribute>().Any())
+            {
+                // Ignore component collections
+                return false;
+            }
+            var propType = property.PropertyType;
+            if(!enumerableType.IsAssignableFrom(propType) || stringType.Equals(propType))
+            {
+                // Not a collection
+                return false;
+            }
+
+            if(GetCollectionElementType(propType) is not { } elementType)
+            {
+                // Can't find ICollection<T>
+                return false;
+            }
+
+            if(!IsStringConvertible(TypeDescriptor.GetConverter(elementType)))
+            {
+                // Cannot access as strings
+                return false;
+            }
+
+            dynamic collection;
+            try{
+                collection = property.GetValue(component);
+            }catch{
+                // Can't retrieve
+                return false;
+            }
+            if(collection is null)
+            {
+                // No default value
+                return false;
+            }
+            try{
+                // Inspect through interface
+                return IsCollectionAccessible(collection);
+            }catch(RuntimeBinderException)
+            {
+                return false;
+            }
+        }
+
+        static bool IsCollectionAccessible<T>(ICollection<T> collection)
+        {
+            try{
+                return !collection.IsReadOnly;
+            }catch{
+                return false;
+            }
+        }
 
         /// <summary>
         /// Checks whether <paramref name="converter"/> can be used to convert to and from
@@ -64,6 +148,33 @@ namespace IS4.SFI.Application.Tools
                 return converter.CanConvertFrom(stringType) && converter.CanConvertTo(stringType);
             }
             return false;
+        }
+
+        /// <summary>
+        /// Retrieves the element type from a <see cref="ICollection{T}"/> type.
+        /// </summary>
+        /// <param name="type">The type of the collection.</param>
+        /// <returns>The type of the element, or <see langword="null"/>.</returns>
+        public static Type? GetCollectionElementType(Type type)
+        {
+            if(type.IsInterface && ExtractCollectionElementType(type) is { } elementType)
+            {
+                return elementType;
+            }
+            return type.GetInterfaces().Select(ExtractCollectionElementType).FirstOrDefault(t => t is not null);
+
+            static Type? ExtractCollectionElementType(Type t)
+            {
+                if(!t.IsGenericType)
+                {
+                    return null;
+                }
+                if(!collectionType.Equals(t.GetGenericTypeDefinition()))
+                {
+                    return null;
+                }
+                return t.GetGenericArguments()[0];
+            }
         }
 
         static readonly Type obsoleteType = typeof(ObsoleteAttribute);
@@ -87,6 +198,7 @@ namespace IS4.SFI.Application.Tools
         /// <param name="componentName">The name of the component, for diagnostics.</param>
         /// <param name="valueMap">The function that maps property names to their values.</param>
         /// <param name="logger">The <see cref="ILogger"/> instance to use for logging.</param>
+        [DynamicDependency(nameof(AddToCollection) + "``1", typeof(ConfigurationTools))]
         public static void SetProperties(object component, string componentName, Func<string, string?> valueMap, ILogger? logger)
         {
             var batch = component as ISupportInitialize;
@@ -104,6 +216,12 @@ namespace IS4.SFI.Application.Tools
                         }
 					    // This property is given a value
 					    var converter = prop.Converter;
+                        bool isCollection = prop.IsReadOnly;
+                        if(isCollection)
+                        {
+                            // Must be a collection
+                            converter = TypeDescriptor.GetConverter(GetCollectionElementType(prop.PropertyType));
+                        }
 					    object? convertedValue = null;
 					    Exception? conversionException = null;
 					    try{
@@ -113,12 +231,19 @@ namespace IS4.SFI.Application.Tools
 						    // Conversion failed (for any reason)
 						    conversionException = e;
 					    }
+
 					    if(convertedValue == null && !(String.IsNullOrEmpty(value) && conversionException == null))
                         {
 						    throw new ApplicationException($"Cannot convert value '{value}' for property {componentName}:{name} to type {TextTools.GetIdentifierFromType(prop.PropertyType)}!", conversionException);
                         }
                         try{
-						    prop.SetValue(component, convertedValue);
+                            if(isCollection)
+                            {
+                                dynamic collection = prop.GetValue(component);
+                                AddToCollection(collection, value);
+                            }else{
+                                prop.SetValue(component, convertedValue);
+                            }
 					    }catch(Exception e)
 					    {
 						    throw new ApplicationException($"Cannot assign value '{value}' to property {componentName}:{name}: {e.Message}", e);
@@ -128,6 +253,11 @@ namespace IS4.SFI.Application.Tools
             }finally{ 
 			    batch?.EndInit();
             }
+        }
+
+        static void AddToCollection<T>(ICollection<T> collection, T value)
+        {
+            collection.Add(value);
         }
 
         /// <summary>
