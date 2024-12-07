@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace IS4.SFI.Analyzers
@@ -23,6 +22,18 @@ namespace IS4.SFI.Analyzers
         /// </summary>
         [ComponentCollection("file-hash")]
         public ICollection<IFileHashAlgorithm> HashAlgorithms { get; } = new List<IFileHashAlgorithm>();
+
+        /// <summary>
+        /// Contains names of files that will be ignored when encountered in a directory.
+        /// </summary>
+        [Description("Contains names of files that will be ignored when encountered in a directory.")]
+        public ICollection<string> IgnoredFiles { get; } = new HashSet<string>(StringComparer.Ordinal);
+
+        /// <summary>
+        /// Contains case-insensitive names of files that will be ignored when encountered in a directory.
+        /// </summary>
+        [Description("Contains case-insensitive names of files that will be ignored when encountered in a directory.")]
+        public ICollection<string> IgnoredFilesCaseInsensitive { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
         /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>
         public FileAnalyzer()
@@ -214,6 +225,11 @@ namespace IS4.SFI.Analyzers
 
                 foreach(var entry in directory.Entries)
                 {
+                    var entryName = entry.Name;
+                    if(entryName is not null && (IgnoredFiles.Contains(entryName) || IgnoredFilesCaseInsensitive.Contains(entryName)))
+                    {
+                        continue;
+                    }
                     var entryNode = CreateNode(entry, context);
                     entryNode.Set(Properties.BelongsToContainer, folder);
                     await analyzer.Analyze(entry, context.WithNode(entryNode));
