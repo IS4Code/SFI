@@ -22,10 +22,35 @@ namespace IS4.SFI.Formats
     public class ImageFormat : BinaryFileFormat<IImage>, IFileFormat<Image>, IFileFormat<ISharpImage>
     {
         /// <summary>
+        /// Whether to prefer the ImageSharp library to load images.
+        /// </summary>
+        [Description("Whether to prefer the ImageSharp library to load images.")]
+        public bool PreferImageSharp { get; set; } = !RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+
+        /// <summary>
+        /// Whether to allow the ImageSharp library to load images.
+        /// </summary>
+        [Description("Whether to allow the ImageSharp library to load images.")]
+        public bool AllowImageSharp { get; set; } = true;
+
+        /// <summary>
+        /// Whether to allow the native System.Drawing library to load images.
+        /// </summary>
+        [Description("Whether to allow the native System.Drawing library to load images.")]
+        public bool AllowNativeImage { get; set; } = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+
+        /// <summary>
         /// Whether to use the ImageSharp library to load images.
         /// </summary>
+#pragma warning disable CS0618
+        [Obsolete("The " + nameof(UseImageSharp) + " property was renamed to " + nameof(PreferImageSharp) + ".", false)]
+#pragma warning restore CS0618
         [Description("Whether to use the ImageSharp library to load images.")]
-        public bool UseImageSharp { get; set; } = !RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool UseImageSharp {
+            get => PreferImageSharp;
+            set => PreferImageSharp = value;
+        }
 
         /// <inheritdoc cref="FileFormat{T}.FileFormat(string, string)"/>
         public ImageFormat() : base(0, null, null)
@@ -119,15 +144,32 @@ namespace IS4.SFI.Formats
         /// <inheritdoc/>
         public async override ValueTask<TResult?> Match<TResult, TArgs>(Stream stream, MatchContext context, ResultFactory<IImage, TResult, TArgs> resultFactory, TArgs args) where TResult : default
         {
-            if(UseImageSharp)
+            bool allowNative = AllowNativeImage;
+            bool allowImageSharp = AllowImageSharp;
+            bool preferImageSharp = PreferImageSharp;
+            try{
+                if(allowNative && !preferImageSharp)
+                {
+                    using var drawingImage = Image.FromStream(stream);
+                    return await resultFactory(new DrawingImage(drawingImage, this), args);
+                }
+            }catch(PlatformNotSupportedException) when(allowImageSharp)
             {
+                AllowNativeImage = false;
+            }catch(Exception e) when (allowImageSharp && e is ArgumentException or OutOfMemoryException)
+            {
+
+            }
+
+            try{
                 var result = await SixLabors.ImageSharp.Image.LoadWithFormatAsync(loadConfiguration, stream);
                 using var image = result.Image;
                 storedFormats.Add(image, result.Format);
                 return await resultFactory(new SharpImage(image, this), args);
-            }else{
-                using var image = Image.FromStream(stream);
-                return await resultFactory(new DrawingImage(image, this), args);
+            }catch(Exception e) when (preferImageSharp && allowNative && e is NotSupportedException or SixLabors.ImageSharp.UnknownImageFormatException or SixLabors.ImageSharp.InvalidImageContentException)
+            {
+                using var drawingImage = Image.FromStream(stream);
+                return await resultFactory(new DrawingImage(drawingImage, this), args);
             }
         }
 
