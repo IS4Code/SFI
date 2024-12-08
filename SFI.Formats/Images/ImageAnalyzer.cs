@@ -52,6 +52,20 @@ namespace IS4.SFI.Analyzers
         [Description("The media type to use when creating the thumbnail.")]
         public string ThumbnailFormat { get; set; } = "image/png";
 
+        /// <summary>
+        /// The rectangles in pixels where the image is to be cropped.
+        /// </summary>
+        [Description("The rectangles in pixels where the image is to be cropped.")]
+        public ICollection<Rectangle> MakeCroppedInPixels { get; } = new HashSet<Rectangle>();
+
+        /// <summary>
+        /// The rectangles in ratios where the image is to be cropped.
+        /// </summary>
+        [Description("The rectangles in ratios where the image is to be cropped.")]
+        public ICollection<RectangleF> MakeCroppedInRatios { get; } = new HashSet<RectangleF>();
+
+        private bool MakeCropped => MakeCroppedInPixels.Count > 0 || MakeCroppedInRatios.Count > 0;
+
         /// <inheritdoc cref="EntityAnalyzer.EntityAnalyzer"/>
         public ImageAnalyzer() : base(Common.ImageClasses)
         {
@@ -141,9 +155,76 @@ namespace IS4.SFI.Analyzers
                         await HashAlgorithm.AddHash(node, hash, hashBytes, context.NodeFactory, OnOutputFile);
                     })));
                 }
+
+                if(tag.MakeThumbnail && MakeCropped)
+                {
+                    foreach(var (cropped, fragment) in GetCroppedParts(image))
+                    {
+                        cropped.Tag = new ImageTag
+                        {
+                            StoreEncodingProperties = false,
+                            HighFrequencyHash = tag.HighFrequencyHash,
+                            LowFrequencyHash = tag.LowFrequencyHash,
+                            ByteHash = tag.ByteHash,
+                            MakeThumbnail = false
+                        };
+
+                        var childContext = context
+                            .WithParentLink(node, Properties.HasPart)
+                            .WithNode(node[fragment]);
+                        await analyzers.Analyze(cropped, childContext);
+                    }
+                }
             }
 
             return new AnalysisResult(node);
+        }
+
+        IEnumerable<(IImage cropped, string fragment)> GetCroppedParts(IImage image)
+        {
+            var wholePixels = new Rectangle(0, 0, image.Width, image.Height);
+            foreach(var crop in MakeCroppedInPixels)
+            {
+                var rect = crop;
+                if(rect.X < 0)
+                {
+                    rect.X += image.Width;
+                }
+                if(rect.Y < 0)
+                {
+                    rect.Y += image.Height;
+                }
+                rect.Intersect(wholePixels);
+                if(rect == wholePixels || rect.Width <= 0 || rect.Height <= 0)
+                {
+                    continue;
+                }
+                yield return (image.Crop(rect, true), $"#xywh={rect.X},{rect.Y},{rect.Width},{rect.Height}");
+            }
+            foreach(var crop in MakeCroppedInRatios)
+            {
+                var rectRatio = crop;
+                if(rectRatio.X < 0)
+                {
+                    rectRatio.X += 1;
+                }
+                if(rectRatio.Y < 0)
+                {
+                    rectRatio.Y += 1;
+                }
+                var rect = new Rectangle(
+                    (int)Math.Round(rectRatio.X * image.Width),
+                    (int)Math.Round(rectRatio.Y * image.Height),
+                    (int)Math.Round(rectRatio.Width * image.Width),
+                    (int)Math.Round(rectRatio.Height * image.Height)
+                );
+                rect.Intersect(wholePixels);
+                if(rect == wholePixels || rect.Width <= 0 || rect.Height <= 0)
+                {
+                    continue;
+                }
+                yield return (image.Crop(rect, true), $"#xywh={rect.X},{rect.Y},{rect.Width},{rect.Height}");
+            }
         }
     }
 }

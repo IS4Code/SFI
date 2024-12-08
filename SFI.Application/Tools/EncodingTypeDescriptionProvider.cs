@@ -6,72 +6,46 @@ using System.Text;
 
 namespace IS4.SFI.Application.Tools
 {
-    internal class EncodingTypeDescriptionProvider : TypeDescriptionProvider
+    internal class EncodingTypeDescriptionProvider : CustomStringConversionTypeDescriptionProviderDelegator<Encoding>
     {
         public EncodingTypeDescriptionProvider(TypeDescriptionProvider parent) : base(parent)
         {
 
         }
 
-        public override ICustomTypeDescriptor GetTypeDescriptor(Type objectType, object instance)
+        protected override Descriptor GetTypeDescriptor(ICustomTypeDescriptor parent)
         {
-            if(instance is Encoding || typeof(Encoding).IsAssignableFrom(objectType))
-            {
-                return new Descriptor(base.GetTypeDescriptor(objectType, instance));
-            }
-            return base.GetTypeDescriptor(objectType, instance);
+            return new CustomDescriptor(parent);
         }
 
-        class Descriptor : CustomTypeDescriptor
+        sealed class CustomDescriptor : Descriptor
         {
-            public Descriptor(ICustomTypeDescriptor parent) : base(parent)
+            public CustomDescriptor(ICustomTypeDescriptor parent) : base(parent)
             {
 
             }
 
-            public override TypeConverter GetConverter()
+            protected override Converter GetConverter(TypeConverter parent)
             {
-                return new Converter(base.GetConverter());
+                return new CustomConverter(parent);
             }
         }
 
-        class Converter : TypeConverter
+        sealed class CustomConverter : Converter
         {
-            static readonly Type stringType = typeof(string);
-
-            readonly TypeConverter parent;
-
-            public Converter(TypeConverter parent)
+            public CustomConverter(TypeConverter parent) : base(parent)
             {
-                this.parent = parent;
+
             }
 
-            public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
+            protected override object? ConvertFromString(ITypeDescriptorContext context, CultureInfo culture, string name)
             {
-                return stringType.Equals(sourceType) || parent.CanConvertFrom(context, sourceType);
+                return Encoding.GetEncoding(name);
             }
 
-            public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+            protected override string ConvertToString(ITypeDescriptorContext context, CultureInfo culture, Encoding encoding)
             {
-                return stringType.Equals(destinationType) || parent.CanConvertTo(context, destinationType);
-            }
-
-            public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
-            {
-                if(value is string name)
-                {
-                    return Encoding.GetEncoding(name);
-                }
-                return parent.ConvertFrom(context, culture, value);
-            }
-
-            public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
-            {
-                if(value is Encoding encoding && stringType.Equals(destinationType))
-                {
-                    return encoding.WebName;
-                }
-                return parent.ConvertTo(context, culture, value, destinationType);
+                return encoding.WebName;
             }
 
             public override StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
@@ -163,31 +137,6 @@ namespace IS4.SFI.Application.Tools
                 {
                     throw new NotSupportedException();
                 }
-            }
-
-            public override object CreateInstance(ITypeDescriptorContext context, IDictionary propertyValues)
-            {
-                return parent.CreateInstance(context, propertyValues);
-            }
-
-            public override bool GetCreateInstanceSupported(ITypeDescriptorContext context)
-            {
-                return parent.GetCreateInstanceSupported(context);
-            }
-
-            public override PropertyDescriptorCollection GetProperties(ITypeDescriptorContext context, object value, Attribute[] attributes)
-            {
-                return parent.GetProperties(context, value, attributes);
-            }
-
-            public override bool GetPropertiesSupported(ITypeDescriptorContext context)
-            {
-                return parent.GetPropertiesSupported(context);
-            }
-
-            public override bool IsValid(ITypeDescriptorContext context, object value)
-            {
-                return parent.IsValid(context, value);
             }
         }
     }

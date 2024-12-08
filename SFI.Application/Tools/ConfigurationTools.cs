@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -27,8 +28,14 @@ namespace IS4.SFI.Application.Tools
         /// </remarks>
         public static void RegisterCustomDescriptors()
         {
-            var provider = TypeDescriptor.GetProvider(typeof(Encoding));
-            TypeDescriptor.AddProvider(new EncodingTypeDescriptionProvider(provider), typeof(Encoding));
+            var encodingProvider = TypeDescriptor.GetProvider(typeof(Encoding));
+            TypeDescriptor.AddProvider(new EncodingTypeDescriptionProvider(encodingProvider), typeof(Encoding));
+
+            var floatProvider = TypeDescriptor.GetProvider(typeof(float));
+            TypeDescriptor.AddProvider(new PercentSingleTypeDescriptionProvider(floatProvider), typeof(float));
+
+            var rectangleFProvider = TypeDescriptor.GetProvider(typeof(RectangleF));
+            TypeDescriptor.AddProvider(new RectangleFTypeDescriptionProvider(rectangleFProvider), typeof(RectangleF));
         }
 
         /// <summary>
