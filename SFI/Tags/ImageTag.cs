@@ -1,4 +1,7 @@
-﻿namespace IS4.SFI.Tags
+﻿using System;
+using System.ComponentModel;
+
+namespace IS4.SFI.Tags
 {
     /// <summary>
     /// A tag storing configuration for analyzing images.
@@ -6,9 +9,9 @@
     public interface IImageTag
     {
         /// <summary>
-        /// Whether to add the image's dimensions to the output.
+        /// Whether to add the image's encoding properties (dimensions, bit depth, etc.) to the output.
         /// </summary>
-        bool StoreDimensions { get; }
+        bool StoreEncodingProperties { get; }
 
         /// <summary>
         /// Whether to add the thumbnail to the output.
@@ -38,7 +41,15 @@
     public class ImageTag : IImageTag
     {
         /// <inheritdoc/>
-        public bool StoreDimensions { get; set; } = true;
+        public bool StoreEncodingProperties { get; set; } = true;
+
+        /// <inheritdoc cref="StoreEncodingProperties"/>
+        [Obsolete("This member was renamed to " + nameof(StoreEncodingProperties) + ".")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool StoreDimensions {
+            get => StoreEncodingProperties;
+            set => StoreEncodingProperties = value;
+        }
 
         /// <inheritdoc/>
         public bool MakeThumbnail { get; set; } = true;

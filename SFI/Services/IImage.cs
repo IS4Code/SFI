@@ -65,6 +65,13 @@ namespace IS4.SFI.Services
         int BitDepth { get; }
 
         /// <summary>
+        /// Whether the image uses lossless compression.
+        /// Might be <see langword="null"/> when the information is not known,
+        /// or when the format does not support different types of compression.
+        /// </summary>
+        bool? IsLossless { get; }
+
+        /// <summary>
         /// Stores a collection of implementation-defined pairs of metadata entries attached to the image,
         /// using the most natural types of the keys and values available.
         /// </summary>
@@ -350,6 +357,9 @@ namespace IS4.SFI.Services
 
         /// <inheritdoc/>
         public abstract int BitDepth { get; }
+
+        /// <inheritdoc/>
+        public abstract bool? IsLossless { get; }
 
         /// <inheritdoc/>
         public abstract IReadOnlyList<KeyValuePair<object, object>> Metadata { get; }

@@ -37,7 +37,7 @@ namespace IS4.SFI.Analyzers
                 using var bmp = svg.Draw();
                 bmp.Tag = new ImageTag
                 {
-                    StoreDimensions = false
+                    StoreEncodingProperties = false
                 };
                 exception = (await analyzers.Analyze(bmp, context)).Exception;
             }catch(Exception e)

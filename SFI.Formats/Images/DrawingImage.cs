@@ -44,6 +44,8 @@ namespace IS4.SFI.Tools.Images
         /// <inheritdoc/>
         public override int BitDepth => Image.GetPixelFormatSize(UnderlyingImage.PixelFormat);
 
+        public override bool? IsLossless => null;
+
         /// <inheritdoc/>
         public override bool Is32bppArgb => UnderlyingImage.PixelFormat == PixelFormat.Format32bppArgb;
 

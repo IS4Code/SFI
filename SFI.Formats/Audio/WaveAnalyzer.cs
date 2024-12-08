@@ -116,7 +116,7 @@ namespace IS4.SFI.Analyzers
 
                 bmp.Tag = new ImageTag
                 {
-                    StoreDimensions = false,
+                    StoreEncodingProperties = false,
                     HighFrequencyHash = false,
                     ByteHash = false
                 };

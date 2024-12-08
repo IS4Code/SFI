@@ -122,7 +122,7 @@ namespace IS4.SFI.Tests
 
             var image = CreateImage(16, 16, PixelFormat.Format32bppArgb, native, new()
             {
-                StoreDimensions = dimensions,
+                StoreEncodingProperties = dimensions,
                 ByteHash = byteHash,
                 MakeThumbnail = thumbnail
             });

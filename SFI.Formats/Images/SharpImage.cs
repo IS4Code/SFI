@@ -96,6 +96,22 @@ namespace IS4.SFI.Tools.Images
             }
         }
 
+        /// <inheritdoc/>
+        public override bool? IsLossless{
+            get{
+                if(ImageMetadata.GetWebpMetadata() is { FileFormat: { } webpFormat })
+                {
+                    return webpFormat switch
+                    {
+                        SixLabors.ImageSharp.Formats.Webp.WebpFileFormatType.Lossless => true,
+                        SixLabors.ImageSharp.Formats.Webp.WebpFileFormatType.Lossy => false,
+                        _ => null
+                    };
+                }
+                return null;
+            }
+        }
+
         static readonly Type pixelType32bppArgb = typeof(Bgra32);
 
         /// <inheritdoc/>

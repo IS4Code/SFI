@@ -89,7 +89,7 @@ namespace IS4.SFI.Analyzers
                 }
             }
 
-            if(tag.StoreDimensions)
+            if(tag.StoreEncodingProperties)
             {
                 node.Set(Properties.Width, image.Width);
                 node.Set(Properties.Height, image.Height);
@@ -99,6 +99,10 @@ namespace IS4.SFI.Analyzers
                 int bpp = image.BitDepth;
                 if(bpp != 0) node.Set(paletteSize == 0 ? Properties.ColorDepth : Properties.BitDepth, bpp);
                 if(paletteSize is int size and > 0) node.Set(Properties.PaletteSize, size);
+                if(image.IsLossless is bool lossless)
+                {
+                    node.Set(Properties.CompressionType, lossless ? Individuals.LosslessCompressionType : Individuals.LossyCompressionType);
+                }
             }
 
             if(!storedAsData)
