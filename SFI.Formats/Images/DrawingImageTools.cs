@@ -52,19 +52,24 @@ namespace IS4.SFI.Tools.Images
 
             if(preserveResolution)
             {
-                float xCoef = (float)resized.Width / image.Width;
-                float yCoef = (float)resized.Height / image.Height;
-                resized.SetResolution(image.HorizontalResolution * xCoef, image.VerticalResolution * yCoef);
+                CopyResolution(image, resized);
             }
 
             return resized;
+        }
+
+        static void CopyResolution(Image source, Bitmap target)
+        {
+            float xCoef = (float)target.Width / source.Width;
+            float yCoef = (float)target.Height / source.Height;
+            target.SetResolution(source.HorizontalResolution * xCoef, source.VerticalResolution * yCoef);
         }
 
         /// <summary>
         /// Creates a new image that copies all data from this instance.
         /// </summary>
         /// <param name="image">The image to clone.</param>
-        /// <param name="use32bppArgb">Whether to create the image using 32-bit ARGB pixel format (compatible with <see cref="Color.FromArgb(int)"/>, or the original one.</param>
+        /// <param name="use32bppArgb">Whether to create the image using 32-bit ARGB pixel format (compatible with <see cref="Color.FromArgb(int)"/>), or the original one.</param>
         /// <returns>The cloned image.</returns>
         public static Image Clone(this Image image, bool use32bppArgb)
         {
@@ -108,6 +113,40 @@ namespace IS4.SFI.Tools.Images
             };
 #pragma warning restore CS8509
             image.RotateFlip(type);
+        }
+
+        /// <summary>
+        /// Crops an image.
+        /// </summary>
+        /// <param name="image">The image to crop.</param>
+        /// <param name="cropRectangle">The rectangle within the image that should be cropped to.</param>
+        /// <param name="pixelFormat">The pixel format of the new image.</param>
+        /// <returns>The cropped image.</returns>
+        public static Image Crop(this Image image, Rectangle cropRectangle, PixelFormat pixelFormat)
+        {
+            if(image is Bitmap bmp)
+            {
+                return bmp.Clone(cropRectangle, pixelFormat);
+            }
+
+            var width = cropRectangle.Width;
+            var height = cropRectangle.Height;
+
+            var cropped = new Bitmap(width, height, pixelFormat);
+
+            using(var gr = Graphics.FromImage(cropped))
+            {
+                gr.SmoothingMode = SmoothingMode.HighQuality;
+                gr.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                gr.PixelOffsetMode = PixelOffsetMode.HighQuality;
+                gr.CompositingMode = CompositingMode.SourceCopy;
+                gr.CompositingQuality = CompositingQuality.HighQuality;
+                gr.DrawImage(image, new Rectangle(0, 0, width, height), cropRectangle.X, cropRectangle.Y, width, height, GraphicsUnit.Pixel, drawAttributes);
+            }
+
+            CopyResolution(image, cropped);
+
+            return cropped;
         }
 
         /// <summary>

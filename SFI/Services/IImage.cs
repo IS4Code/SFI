@@ -147,7 +147,7 @@ namespace IS4.SFI.Services
         /// <summary>
         /// Creates a new image that copies all data from this instance.
         /// </summary>
-        /// <param name="use32bppArgb">Whether to create the image using 32-bit ARGB pixel format (compatible with <see cref="Color.FromArgb(int)"/>, or the original one.</param>
+        /// <param name="use32bppArgb">Whether to create the image using 32-bit ARGB pixel format (compatible with <see cref="Color.FromArgb(int)"/>), or the original one.</param>
         /// <returns>The cloned image.</returns>
         IImage Clone(bool use32bppArgb);
 
@@ -157,7 +157,7 @@ namespace IS4.SFI.Services
         /// <param name="newWidth">The new width of the image.</param>
         /// <param name="newHeight">The new height of the image.</param>
         /// <param name="preserveResolution">Whether to preserve the original resolution.</param>
-        /// <param name="use32bppArgb">Whether to create the image using 32-bit ARGB pixel format (compatible with <see cref="Color.FromArgb(int)"/>, or the original one.</param>
+        /// <param name="use32bppArgb">Whether to create the image using 32-bit ARGB pixel format (compatible with <see cref="Color.FromArgb(int)"/>), or the original one.</param>
         /// <param name="backgroundColor">The background of the resized image.</param>
         /// <returns>A new image with the specified dimensions.</returns>
         IImage Resize(int newWidth, int newHeight, bool preserveResolution = true, bool use32bppArgb = false, Color backgroundColor = default);
@@ -177,7 +177,7 @@ namespace IS4.SFI.Services
         /// <param name="clockwise90DegreeTurns">The multiple of 90 ° resulting in a clockwise rotation.</param>
         /// <param name="flipHorizontal">Whether to flip the image horizontally.</param>
         /// <param name="flipVertical">Whether to flip the image vertically.</param>
-        /// <param name="use32bppArgb">Whether to create the image using 32-bit ARGB pixel format (compatible with <see cref="Color.FromArgb(int)"/>, or the original one.</param>
+        /// <param name="use32bppArgb">Whether to create the image using 32-bit ARGB pixel format (compatible with <see cref="Color.FromArgb(int)"/>), or the original one.</param>
         /// <returns>A new image rotated or flipped in the specified way.</returns>
         IImage RotateFlip(int clockwise90DegreeTurns = 0, bool flipHorizontal = false, bool flipVertical = false, bool use32bppArgb = false);
 
@@ -188,6 +188,20 @@ namespace IS4.SFI.Services
         /// <param name="flipHorizontal">Whether to flip the image horizontally.</param>
         /// <param name="flipVertical">Whether to flip the image vertically.</param>
         void RotateFlipInPlace(int clockwise90DegreeTurns = 0, bool flipHorizontal = false, bool flipVertical = false);
+
+        /// <summary>
+        /// Crops the image and returns it as a new image.
+        /// </summary>
+        /// <param name="cropRectangle">The rectangle within the image that should be cropped to.</param>
+        /// <param name="use32bppArgb">Whether to create the image using 32-bit ARGB pixel format (compatible with <see cref="Color.FromArgb(int)"/>), or the original one.</param>
+        /// <returns>A new image cropped to the area.</returns>
+        IImage Crop(Rectangle cropRectangle, bool use32bppArgb = false);
+
+        /// <summary>
+        /// Crops the image by mutating the original one.
+        /// </summary>
+        /// <param name="cropRectangle">The rectangle within the image that should be cropped to.</param>
+        void CropInPlace(Rectangle cropRectangle);
     }
 
     /// <summary>
@@ -412,6 +426,17 @@ namespace IS4.SFI.Services
 
         /// <inheritdoc/>
         public abstract void RotateFlipInPlace(int clockwise90DegreeTurns, bool flipHorizontal, bool flipVertical);
+
+        /// <inheritdoc/>
+        public virtual IImage Crop(Rectangle cropRectangle, bool use32bppArgb = false)
+        {
+            var clone = Clone(use32bppArgb);
+            clone.CropInPlace(cropRectangle);
+            return clone;
+        }
+
+        /// <inheritdoc/>
+        public abstract void CropInPlace(Rectangle cropRectangle);
 
         /// <inheritdoc cref="IImage.Clone(bool)"/>
         public abstract ImageBase<TUnderlying> Clone(bool use32bppArgb);

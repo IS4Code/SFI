@@ -8,6 +8,7 @@ using SixLabors.ImageSharp.Formats;
 using SixLabors.ImageSharp.Formats.Png;
 using SixLabors.ImageSharp.Metadata;
 using SixLabors.ImageSharp.PixelFormats;
+using SixLabors.ImageSharp.Processing;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -284,22 +285,39 @@ namespace IS4.SFI.Tools.Images
             return new SharpImage(resized, UnderlyingFormat);
         }
 
+        /// <inheritdoc/>
         public override void ResizeInPlace(int newWidth, int newHeight, bool preserveResolution, Color backgroundColor)
         {
             Image.ResizeInPlace(newWidth, newHeight, backgroundColor, preserveResolution);
         }
 
+        /// <inheritdoc/>
         public override Services.IImage RotateFlip(int clockwise90DegreeTurns, bool flipHorizontal, bool flipVertical, bool use32bppArgb)
         {
             var rotated = Image.RotateFlip(clockwise90DegreeTurns, flipHorizontal, flipVertical, use32bppArgb);
             return new SharpImage(rotated, UnderlyingFormat);
         }
 
+        /// <inheritdoc/>
         public override void RotateFlipInPlace(int clockwise90DegreeTurns, bool flipHorizontal, bool flipVertical)
         {
             Image.RotateFlipInPlace(clockwise90DegreeTurns, flipHorizontal, flipVertical);
         }
 
+        /// <inheritdoc/>
+        public override Services.IImage Crop(System.Drawing.Rectangle cropRectangle, bool use32bppArgb)
+        {
+            var croppped = Image.Crop(cropRectangle, use32bppArgb);
+            return new SharpImage(croppped, UnderlyingFormat);
+        }
+
+        /// <inheritdoc/>
+        public override void CropInPlace(System.Drawing.Rectangle cropRectangle)
+        {
+            Image.CropInPlace(cropRectangle);
+        }
+
+        /// <inheritdoc/>
         public override ImageBase<IImage> Clone(bool use32bppArgb)
         {
             return new SharpImage(Image.Clone(use32bppArgb), UnderlyingFormat);

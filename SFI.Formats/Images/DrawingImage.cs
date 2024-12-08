@@ -122,15 +122,31 @@ namespace IS4.SFI.Tools.Images
             return new DrawingImage(resized, UnderlyingFormat);
         }
 
+        /// <inheritdoc/>
         public override void ResizeInPlace(int newWidth, int newHeight, bool preserveResolution, Color backgroundColor)
         {
             var resized = UnderlyingImage.Resize(newWidth, newHeight, UnderlyingImage.PixelFormat, backgroundColor, preserveResolution);
             ReplaceWith(resized);
         }
 
+        /// <inheritdoc/>
         public override void RotateFlipInPlace(int clockwise90DegreeTurns, bool flipHorizontal, bool flipVertical)
         {
             UnderlyingImage.RotateFlipInPlace(clockwise90DegreeTurns, flipHorizontal, flipVertical);
+        }
+
+        /// <inheritdoc/>
+        public override IImage Crop(Rectangle cropRectangle, bool use32bppArgb = false)
+        {
+            var cropped = UnderlyingImage.Crop(cropRectangle, use32bppArgb ? PixelFormat.Format32bppArgb : UnderlyingImage.PixelFormat);
+            return new DrawingImage(cropped, UnderlyingFormat);
+        }
+
+        /// <inheritdoc/>
+        public override void CropInPlace(Rectangle cropRectangle)
+        {
+            var cropped = UnderlyingImage.Crop(cropRectangle, UnderlyingImage.PixelFormat);
+            ReplaceWith(cropped);
         }
 
         /// <inheritdoc/>

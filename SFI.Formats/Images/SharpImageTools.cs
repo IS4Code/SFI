@@ -104,7 +104,7 @@ namespace IS4.SFI.Tools.Images
         /// Creates a new image that copies all data from this instance.
         /// </summary>
         /// <param name="image">The image to clone.</param>
-        /// <param name="use32bppArgb">Whether to create the image using 32-bit ARGB pixel format (compatible with <see cref="Color.FromArgb(int)"/>, or the original one.</param>
+        /// <param name="use32bppArgb">Whether to create the image using 32-bit ARGB pixel format (compatible with <see cref="Color.FromArgb(int)"/>), or the original one.</param>
         /// <returns>The cloned image.</returns>
         public static Image Clone(this Image image, bool use32bppArgb)
         {
@@ -194,6 +194,50 @@ namespace IS4.SFI.Tools.Images
 
             return context => {
                 context = context.RotateFlip(rotateMode, flipMode);
+            };
+        }
+
+        /// <summary>
+        /// Crops an image.
+        /// </summary>
+        /// <param name="image">The image to crop.</param>
+        /// <param name="cropRectangle">The rectangle within the image that should be cropped to.</param>
+        /// <param name="use32bppArgb">Whether to create the image using 32-bit ARGB pixel format (compatible with <see cref="Color.FromArgb(int)"/>), or the original one.</param>
+        /// <returns>The cropped image.</returns>
+        public static Image Crop(this Image image, System.Drawing.Rectangle cropRectangle, bool use32bppArgb = false)
+        {
+            var operation = CropOperation(cropRectangle);
+
+            Image cropped;
+            if(use32bppArgb)
+            {
+                cropped = image.CloneAs<Bgra32>(createConfiguration);
+                cropped.Mutate(operation);
+            }
+            else
+            {
+                cropped = image.Clone(createConfiguration, operation);
+            }
+
+            return cropped;
+        }
+
+        /// <summary>
+        /// Crops an image.
+        /// </summary>
+        /// <param name="image">The image to crop.</param>
+        /// <param name="cropRectangle">The rectangle within the image that should be cropped to.</param>
+        public static void CropInPlace(this Image image, System.Drawing.Rectangle cropRectangle)
+        {
+            var operation = CropOperation(cropRectangle);
+            image.Mutate(operation);
+        }
+        
+        static Action<IImageProcessingContext>? CropOperation(System.Drawing.Rectangle cropRectangle)
+        {
+            var rectangle = new Rectangle(cropRectangle.X, cropRectangle.Y, cropRectangle.Width, cropRectangle.Height);
+            return context => {
+                context = context.Crop(rectangle);
             };
         }
 
