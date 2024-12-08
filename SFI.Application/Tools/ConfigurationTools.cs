@@ -244,7 +244,7 @@ namespace IS4.SFI.Application.Tools
                             if(isCollection)
                             {
                                 dynamic collection = prop.GetValue(component);
-                                AddToCollection(collection, value);
+                                AddToCollection(collection, (dynamic?)convertedValue);
                             }else{
                                 prop.SetValue(component, convertedValue);
                             }
