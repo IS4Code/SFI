@@ -163,8 +163,8 @@ _:n1 at:pathObject <file:///example_multipage.docx>;
                                                      schema:ImageObject,
                                                      nfo:Image;
                                                    skos:prefLabel "PNG object (164×165, 8-bit)"@en,
-                                                                  "PNG object (6.94 KiB)"@en,
-                                                                  "PNG object (164×165)"@en.
+                                                                  "PNG object (164×165)"@en,
+                                                                  "PNG object (6.94 KiB)"@en.
 <ni:///mh;1QEQEq1fkL3qm53XJZhLDVeKOA?ct=application/octet-stream> at:digest <urn:md5:12AD5F90BDEA9B9DD725984B0D578A38>;
                                                                   dcterms:extent "1393238"^^dt:byte;
                                                                   dcterms:hasFormat <ni:///mh;1QEQEq1fkL3qm53XJZhLDVeKOA?ct=application/zip>;
@@ -180,7 +180,9 @@ _:n1 at:pathObject <file:///example_multipage.docx>;
                                                                                                                  nfo:wordCount 611 ;
                                                                                                                  a schema:MediaObject,
                                                                                                                    schema:DigitalDocument,
-                                                                                                                   nfo:Document;
+                                                                                                                   nfo:Document,
+                                                                                                                   nfo:PaginatedTextDocument,
+                                                                                                                   schema:TextDigitalDocument;
                                                                                                                  skos:prefLabel "DOCX object"@en.
 <ni:///mh;1QEQEq1fkL3qm53XJZhLDVeKOA?ct=application/zip> at:pathObject <file:///.>;
                                                          dcterms:hasFormat <ni:///mh;1QEQEq1fkL3qm53XJZhLDVeKOA?ct=application/vnd.openxmlformats-officedocument.wordprocessingml.document>;
@@ -564,8 +566,8 @@ _:n1 at:pathObject <file:///example_multipage.docx>;
                                                     nfo:width 2048 ;
                                                     <http://www.semanticdesktop.org/ontologies/2007/05/10/nid3#comments> "*";
                                                     a schema:MediaObject,
-                                                      schema:ImageObject,
-                                                      nfo:Image;
+                                                      nfo:Image,
+                                                      schema:ImageObject;
                                                     skos:prefLabel "JPG object (2048×1361)"@en,
                                                                    "JPG object (662.76 KiB)"@en.
 <ni:///mh;1QEQjUx7qoAvNAIZzQEeZHEdAA?ct=application/prs.implied-document+xml;root=settings;ns=%22http://schemas.openxmlformats.org/wordprocessingml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=settings;ns=%22http://schemas.openxmlformats.org/wordprocessingml/2006/main%22>;

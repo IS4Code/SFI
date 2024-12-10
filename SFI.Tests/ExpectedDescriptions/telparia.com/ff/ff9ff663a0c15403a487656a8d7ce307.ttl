@@ -364,8 +364,8 @@ _:n1 at:pathObject <file:///example.ppsx>;
                                                    a schema:MediaObject,
                                                      schema:ImageObject,
                                                      nfo:Image;
-                                                   skos:prefLabel "PNG object (4.96 KiB)"@en,
-                                                                  "PNG object (88×31)"@en,
+                                                   skos:prefLabel "PNG object (88×31)"@en,
+                                                                  "PNG object (4.96 KiB)"@en,
                                                                   "PNG object (88×31, 8-bit)"@en.
 <ni:///mh;1QEQG28zEg4mE613i7RiEUj2AA?ct=application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=sldLayout;ns=%22http://schemas.openxmlformats.org/presentationml/2006/main%22>;
                                                                                                                                                                  a schema:MediaObject;
@@ -1047,7 +1047,9 @@ _:n1 at:pathObject <file:///example.ppsx>;
                                                                                                                    schema:version "15";
                                                                                                                    a schema:MediaObject,
                                                                                                                      schema:DigitalDocument,
-                                                                                                                     nfo:Document;
+                                                                                                                     nfo:Document,
+                                                                                                                     nfo:Presentation,
+                                                                                                                     schema:PresentationDigitalDocument;
                                                                                                                    skos:prefLabel "PPTX object (PPT test file)"@en.
 <ni:///mh;1QEQqXYWRFjcsoQElb9lQp5HQg?ct=application/zip> at:pathObject <file:///.>;
                                                          dcterms:hasFormat <ni:///mh;1QEQqXYWRFjcsoQElb9lQp5HQg?ct=application/vnd.openxmlformats-officedocument.presentationml.presentation>;

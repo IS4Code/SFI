@@ -126,8 +126,8 @@ _:n1 at:pathObject <file:///example.dotx>;
                                                      schema:ImageObject,
                                                      nfo:Image;
                                                    skos:prefLabel "PNG object (164×165, 8-bit)"@en,
-                                                                  "PNG object (164×165)"@en,
-                                                                  "PNG object (6.94 KiB)"@en.
+                                                                  "PNG object (6.94 KiB)"@en,
+                                                                  "PNG object (164×165)"@en.
 <ni:///mh;1QEQDEGPm1dl1ldmP2tGGlM0cQ?ct=application/prs.implied-document+xml;root=Types;ns=%22http://schemas.openxmlformats.org/package/2006/content-types%22> schema:encodingFormat <https://w3id.org/uri4uri/mime/application/prs.implied-document+xml;root=Types;ns=%22http://schemas.openxmlformats.org/package/2006/content-types%22>;
                                                                                                                                                                a schema:MediaObject;
                                                                                                                                                                skos:prefLabel "TYPES object"@en.
@@ -410,7 +410,9 @@ _:n1 at:pathObject <file:///example.dotx>;
                                                                                                                  nfo:wordCount 405 ;
                                                                                                                  a schema:MediaObject,
                                                                                                                    schema:DigitalDocument,
-                                                                                                                   nfo:Document;
+                                                                                                                   nfo:Document,
+                                                                                                                   nfo:PaginatedTextDocument,
+                                                                                                                   schema:TextDigitalDocument;
                                                                                                                  skos:prefLabel "DOTX object"@en.
 <ni:///mh;1QEQl1WtEhecE5caHF92vSirkw?ct=application/zip> at:pathObject <file:///.>;
                                                          dcterms:hasFormat <ni:///mh;1QEQl1WtEhecE5caHF92vSirkw?ct=application/vnd.openxmlformats-officedocument.wordprocessingml.template>;
@@ -692,11 +694,11 @@ _:n1 at:pathObject <file:///example.dotx>;
                                                    nfo:verticalResolution 219.9894;
                                                    nfo:width 296 ;
                                                    a schema:MediaObject,
-                                                     nfo:Image,
-                                                     schema:ImageObject;
-                                                   skos:prefLabel "PNG object (296×103)"@en,
-                                                                  "PNG object (12.97 KiB)"@en,
-                                                                  "PNG object (296×103, 8-bit)"@en.
+                                                     schema:ImageObject,
+                                                     nfo:Image;
+                                                   skos:prefLabel "PNG object (296×103, 8-bit)"@en,
+                                                                  "PNG object (296×103)"@en,
+                                                                  "PNG object (12.97 KiB)"@en.
 <urn:md5:07BA7A8AD83B98D620EB0B6D0C248EC9> a sec:Digest;
                                            sec:digestAlgorithm dsm:md5;
                                            sec:digestValue "B7p6itg7mNYg6wttDCSOyQ=="^^xsd:base64Binary.

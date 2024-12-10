@@ -187,7 +187,9 @@ namespace IS4.SFI.Tests
                 FileAnalyzer.HashAlgorithms.Clear();
 
                 var imageFormat = DataAnalyzer.DataFormats.OfType<ImageFormat>().FirstOrDefault()!;
-                imageFormat.UseImageSharp = true;
+                imageFormat.PreferImageSharp = true;
+                imageFormat.AllowImageSharp = true;
+                imageFormat.AllowNativeImage = false;
 
                 ImageAnalyzer = Analyzers.OfType<ImageAnalyzer>().FirstOrDefault()!;
 

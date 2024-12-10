@@ -34,7 +34,9 @@ _:n1 at:pathObject <file:///example.doc>;
                                                             nfo:wordCount 405 ;
                                                             a schema:MediaObject,
                                                               schema:DigitalDocument,
-                                                              nfo:Document;
+                                                              nfo:Document,
+                                                              nfo:PaginatedTextDocument,
+                                                              schema:TextDigitalDocument;
                                                             skos:prefLabel "DOC object"@en.
 <ni:///mh;1QEQ3CnPH571mYnxrUwl89dRzQ?ct=application/octet-stream> at:digest <urn:md5:DC29CF1F9EF59989F1AD4C25F3D751CD>;
                                                                   dcterms:extent "732672"^^dt:byte;

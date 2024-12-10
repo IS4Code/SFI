@@ -49,7 +49,9 @@ _:n1 at:pathObject <file:///example_multipage.doc>;
                                                             schema:version "8";
                                                             a schema:MediaObject,
                                                               schema:DigitalDocument,
-                                                              nfo:Document;
+                                                              nfo:Document,
+                                                              nfo:PaginatedTextDocument,
+                                                              schema:TextDigitalDocument;
                                                             skos:prefLabel "DOC object"@en.
 <ni:///mh;1QEQddd_d-CPj6Ab2H8fXerU_A?ct=application/octet-stream> at:digest <urn:md5:75D77F77E08F8FA01BD87F1F5DEAD4FC>;
                                                                   dcterms:extent "735232"^^dt:byte;
