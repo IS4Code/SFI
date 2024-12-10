@@ -274,10 +274,7 @@ namespace IS4.SFI.Application
                 tester = new FileNodeQueryTester(handler, queryGraph, queries);
             }
 
-            foreach(var entity in entities)
-            {
-                await AnalyzeEntity(entity, handler, graphHandlers, mapper, tester, options);
-            }
+            await AnalyzeEntities(entities, handler, graphHandlers, mapper, tester, options);
         }
 
         /// <summary>
@@ -298,10 +295,7 @@ namespace IS4.SFI.Application
                 tester = new FileNodeQueryTester(handler, graph, queries);
             }
 
-            foreach(var entity in entities)
-            {
-                await AnalyzeEntity(entity, handler, graphHandlers, null, tester, options);
-            }
+            await AnalyzeEntities(entities, handler, graphHandlers, null, tester, options);
 
             OutputLog?.LogInformation("Saving...");
             SaveGraph(graph, textWriter, options, format);
@@ -328,10 +322,7 @@ namespace IS4.SFI.Application
 
             SparqlResultSet result;
             try{
-                foreach(var entity in entities)
-                {
-                    await AnalyzeEntity(entity, handler, graphHandlers, null, tester, options);
-                }
+                await AnalyzeEntities(entities, handler, graphHandlers, null, tester, options);
                 foreach(var _ in tester.Match(graph.CreateBlankNode()));
                 result = tester.GetResultSet();
             }catch(SearchNodeQueryTester.SearchEndedException searchEnded)
@@ -369,10 +360,7 @@ namespace IS4.SFI.Application
 
             SparqlResultSet result;
             try{
-                foreach(var entity in entities)
-                {
-                    await AnalyzeEntity(entity, handler, graphHandlers, null, tester, options);
-                }
+                await AnalyzeEntities(entities, handler, graphHandlers, null, tester, options);
                 tester ??= new SearchNodeQueryTester(handler, graph, queries);
                 foreach(var _ in tester.Match(graph.CreateBlankNode()));
                 result = tester.GetResultSet();
@@ -471,18 +459,18 @@ namespace IS4.SFI.Application
             }
             return results;
         }
+
         /// <summary>
-        /// Analyzes a single entity.
+        /// Analyzes a sequence of entities.
         /// </summary>
-        /// <typeparam name="T">The type of <paramref name="entity"/>.</typeparam>
-        /// <param name="entity">The entity to analyze.</param>
-        /// <param name="rdfHandler">The RDF handler to receive the description of the entity.</param>
+        /// <typeparam name="T">The type of <paramref name="entities"/>.</typeparam>
+        /// <param name="entities">The entities to analyze.</param>
+        /// <param name="rdfHandler">The RDF handler to receive the description of the entities.</param>
         /// <param name="graphHandlers">A collection of RDF handlers for other graphs.</param>
         /// <param name="mapper">The mapper storing default namespaces to add to <paramref name="rdfHandler"/>..</param>
         /// <param name="queryTester">An instance of <see cref="NodeQueryTester"/> to match nodes using user-provided queries.</param>
         /// <param name="options">Additional options.</param>
-        /// <returns>The result of the analysis.</returns>
-        private async ValueTask<AnalysisResult> AnalyzeEntity<T>(T entity, IRdfHandler rdfHandler, IReadOnlyDictionary<Uri, IRdfHandler?> graphHandlers, INamespaceMapper? mapper, NodeQueryTester? queryTester, InspectorOptions options) where T : class
+        private async ValueTask AnalyzeEntities<T>(IEnumerable<T> entities, IRdfHandler rdfHandler, IReadOnlyDictionary<Uri, IRdfHandler?> graphHandlers, INamespaceMapper? mapper, NodeQueryTester? queryTester, InspectorOptions options) where T : class
         {
             // The node factory/handler
             var handler = new LinkedNodeHandler(new UriTools.PrefixFormatter<string>(options.Root), rdfHandler, graphHandlers, queryTester, options.SimplifyBlankNodes);
@@ -501,7 +489,11 @@ namespace IS4.SFI.Application
                 }
 
                 var node = options.Node != null ? handler.Create(UriFormatter.Instance, options.Node) : null;
-                return await this.Analyze(entity, AnalysisContext.Create(node, handler));
+
+                foreach(var entity in entities)
+                {
+                    await this.Analyze(entity, AnalysisContext.Create(node, handler));
+                }
             }finally{
                 rdfHandler.EndRdf(true);
                 foreach(var graphHandler in graphHandlers)
