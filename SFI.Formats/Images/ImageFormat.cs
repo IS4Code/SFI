@@ -19,7 +19,7 @@ namespace IS4.SFI.Formats
     /// <see cref="Image"/> or <see cref="ISharpImage"/>, based on <see cref="UseImageSharp"/>.
     /// </summary>
     [Description("A general image format.")]
-    public class ImageFormat : BinaryFileFormat<IImage>, IFileFormat<Image>, IFileFormat<ISharpImage>
+    public class ImageFormat : BinaryFileFormat<IImage>, IFileFormat<Image>, IFileFormat<ISharpImage>, ISupportInitialize
     {
         /// <summary>
         /// Whether to prefer the ImageSharp library to load images.
@@ -183,6 +183,23 @@ namespace IS4.SFI.Formats
         public override bool CheckHeader(ReadOnlySpan<byte> header, bool isBinary, IEncodingDetector? encodingDetector)
         {
             return true;
+        }
+
+        void ISupportInitialize.BeginInit()
+        {
+
+        }
+
+        void ISupportInitialize.EndInit()
+        {
+            if(!AllowImageSharp && !AllowNativeImage)
+            {
+                throw new ApplicationException($"Both {nameof(AllowImageSharp)} and {nameof(AllowNativeImage)} are disabled.");
+            }
+            if(PreferImageSharp && !AllowImageSharp)
+            {
+                throw new ApplicationException($"{nameof(PreferImageSharp)} is set but ImageSharp is disabled.");
+            }
         }
     }
 }
