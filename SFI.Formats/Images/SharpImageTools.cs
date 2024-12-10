@@ -1,4 +1,5 @@
 ﻿using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Formats.Tga;
 using SixLabors.ImageSharp.Metadata;
 using SixLabors.ImageSharp.Metadata.Profiles.Exif;
 using SixLabors.ImageSharp.Metadata.Profiles.Iptc;
@@ -392,6 +393,108 @@ namespace IS4.SFI.Tools.Images
             {
                 return new(item.Tag, item.Value);
             }
+        }
+
+        internal static void FixTgaAlpha(Image image)
+        {
+            if(image.Width == 0 || image.Height == 0)
+            {
+                return;
+            }
+            var metadata = image.Metadata.GetTgaMetadata();
+            if(metadata.BitsPerPixel != TgaBitsPerPixel.Pixel32 || metadata.AlphaChannelBits != 8)
+            {
+                // Unsupported case
+                return;
+            }
+            // Check if image type is compatible, then look for non-zero alpha channel
+            if(image is Image<Rgba32> bitmapRgba)
+            {
+                if(bitmapRgba[0, 0].A != 0)
+                {
+                    return;
+                }
+                try
+                {
+                    bitmapRgba.ProcessPixelRows(pixelAlphaDetectionRgba);
+                }
+                catch(NonZeroAlphaSignal)
+                {
+                    return;
+                }
+                bitmapRgba.ProcessPixelRows(pixelAlphaCorrectionRgba);
+            }
+            else if(image is Image<Bgra32> bitmapBgra)
+            {
+                if(bitmapBgra[0, 0].A != 0)
+                {
+                    return;
+                }
+                try
+                {
+                    bitmapBgra.ProcessPixelRows(pixelAlphaDetectionBgra);
+                }
+                catch(NonZeroAlphaSignal)
+                {
+                    return;
+                }
+                bitmapBgra.ProcessPixelRows(pixelAlphaCorrectionBgra);
+            }
+        }
+
+        static readonly PixelAccessorAction<Rgba32> pixelAlphaDetectionRgba = pixelAccessor => {
+            for(int y = 0; y < pixelAccessor.Height; y++)
+            {
+                var span = pixelAccessor.GetRowSpan(y);
+                for(int x = 0; x < pixelAccessor.Width; x++)
+                {
+                    if(span[x].A != 0)
+                    {
+                        throw new NonZeroAlphaSignal();
+                    }
+                }
+            }
+        };
+
+        static readonly PixelAccessorAction<Rgba32> pixelAlphaCorrectionRgba = pixelAccessor => {
+            for(int y = 0; y < pixelAccessor.Height; y++)
+            {
+                var span = pixelAccessor.GetRowSpan(y);
+                for(int x = 0; x < pixelAccessor.Width; x++)
+                {
+                    span[x].A = 255;
+                }
+            }
+        };
+
+        static readonly PixelAccessorAction<Bgra32> pixelAlphaDetectionBgra = pixelAccessor => {
+            for(int y = 0; y < pixelAccessor.Height; y++)
+            {
+                var span = pixelAccessor.GetRowSpan(y);
+                for(int x = 0; x < pixelAccessor.Width; x++)
+                {
+                    if(span[x].A != 0)
+                    {
+                        throw new NonZeroAlphaSignal();
+                    }
+                }
+            }
+        };
+
+        static readonly PixelAccessorAction<Bgra32> pixelAlphaCorrectionBgra = pixelAccessor => {
+            for(int y = 0; y < pixelAccessor.Height; y++)
+            {
+                var span = pixelAccessor.GetRowSpan(y);
+                for(int x = 0; x < pixelAccessor.Width; x++)
+                {
+                    span[x].A = 255;
+                }
+            }
+        };
+
+        sealed class NonZeroAlphaSignal : Exception
+        {
+
         }
     }
 }

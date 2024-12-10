@@ -40,6 +40,12 @@ namespace IS4.SFI.Formats
         public bool AllowNativeImage { get; set; } = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
 
         /// <summary>
+        /// Whether to correct zeroed out alpha channel in TGA images.
+        /// </summary>
+        [Description("Whether to correct zeroed out alpha channel in TGA images.")]
+        public bool TargaAlphaCorrection { get; set; } = true;
+
+        /// <summary>
         /// Whether to use the ImageSharp library to load images.
         /// </summary>
 #pragma warning disable CS0618
@@ -165,6 +171,10 @@ namespace IS4.SFI.Formats
                 var result = await SixLabors.ImageSharp.Image.LoadWithFormatAsync(loadConfiguration, stream);
                 using var image = result.Image;
                 storedFormats.Add(image, result.Format);
+                if(TargaAlphaCorrection && result.Format is SixLabors.ImageSharp.Formats.Tga.TgaFormat)
+                {
+                    SharpImageTools.FixTgaAlpha(image);
+                }
                 return await resultFactory(new SharpImage(image, this), args);
             }catch(Exception e) when (preferImageSharp && allowNative && e is NotSupportedException or SixLabors.ImageSharp.UnknownImageFormatException or SixLabors.ImageSharp.InvalidImageContentException)
             {
