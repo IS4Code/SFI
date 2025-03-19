@@ -13,6 +13,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
 using VDS.RDF;
+using VDS.RDF.Parsing;
 
 namespace IS4.SFI.RDF
 {
@@ -447,8 +448,18 @@ namespace IS4.SFI.RDF
 
             protected override INode CreateNode(string value, string language)
             {
-                if(DataTools.IsSafeString(value)) return Graph.CreateLiteralNode(value, language);
+                if(DataTools.IsSafeString(value) && IsSafeLanguage(language)) return Graph.CreateLiteralNode(value, language);
                 return Graph.CreateLiteralNode(DataTools.CreateLiteralJsonLd(value, language), GetUri(Cache[Datatypes.Json]));
+            }
+
+            private static bool IsSafeLanguage(string language)
+            {
+                if(language.StartsWith("x-", StringComparison.OrdinalIgnoreCase))
+                {
+                    // Fix privateuse appearing at start
+                    return LanguageTag.IsWellFormed("en-" + language);
+                }
+                return LanguageTag.IsWellFormed(language);
             }
 
             protected override INode CreateNode(bool value)
